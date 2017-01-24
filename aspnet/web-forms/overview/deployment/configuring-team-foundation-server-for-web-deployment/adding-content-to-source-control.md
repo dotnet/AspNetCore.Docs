@@ -25,7 +25,7 @@ This topic forms part of a series of tutorials based around the enterprise deplo
 
 ## Task Overview
 
-In most cases, every member of the developer team should be able to add content to source control. To add a solution to source control in TFS, you&#x27;ll need to complete these high-level steps:
+In most cases, every member of the developer team should be able to add content to source control. To add a solution to source control in TFS, you'll need to complete these high-level steps:
 
 - Connect to a team project.
 - Map the team project folder structure on the server to a folder structure on your local computer.
@@ -34,7 +34,7 @@ In most cases, every member of the developer team should be able to add content 
 
 This topic will show you how to perform these procedures.
 
-The tasks and walkthroughs in this topic assume that you&#x27;ve already created a new TFS team project to manage your content. For more information on creating a new team project, see [Creating a Team Project in TFS](creating-a-team-project-in-tfs.md).
+The tasks and walkthroughs in this topic assume that you've already created a new TFS team project to manage your content. For more information on creating a new team project, see [Creating a Team Project in TFS](creating-a-team-project-in-tfs.md).
 
 ### Who Performs These Procedures?
 
@@ -69,11 +69,11 @@ Before you add any content to source control, you need to connect to a team proj
 10. In the **Map** dialog box, in the **Local folder** box, browse to (or create) a local folder to act as the root folder for the team project, and then click **Map**.
 
     ![](adding-content-to-source-control/_static/image5.png)
-11. When you&#x27;re prompted to download source files, click **Yes**.
+11. When you're prompted to download source files, click **Yes**.
 
     ![](adding-content-to-source-control/_static/image6.png)
 
-At this point, you have mapped the server-side folder for the team project to a local folder on your developer workstation. You&#x27;ve also downloaded any existing content from the team project to your local folder structure. You can now start to add your own content to source control.
+At this point, you have mapped the server-side folder for the team project to a local folder on your developer workstation. You've also downloaded any existing content from the team project to your local folder structure. You can now start to add your own content to source control.
 
 ## Add Projects and Solutions to Source Control
 
@@ -92,12 +92,12 @@ To add projects and solutions to source control, you first need to move them to 
 
     > [!NOTE]
     > In some cases, depending on how your organization likes to structure content in TFS, you may need to add projects to source control individually to provide more fine-grained control over how your source code is organized.
-4. Verify that the **Source Control Explorer** tab displays the content you&#x27;ve added within the server folder structure for the team project.
+4. Verify that the **Source Control Explorer** tab displays the content you've added within the server folder structure for the team project.
 
     ![](adding-content-to-source-control/_static/image8.png)
 
     > [!NOTE]
-    > The **Source Control Explorer** tab displays your content with no further prompting because you added your solution to a mapped folder on the local file system. If your solution was in an unmapped location, you&#x27;d be prompted to specify folder locations in both TFS and your local file system.
+    > The **Source Control Explorer** tab displays your content with no further prompting because you added your solution to a mapped folder on the local file system. If your solution was in an unmapped location, you'd be prompted to specify folder locations in both TFS and your local file system.
 5. On the **Source Control Explorer** tab, in the **Folders** pane, right-click the team project (for example, **ContactManager**), and then click **Check In Pending Changes**.
 6. In the **Check In – Source Files** dialog box, type a comment, and then click **Check In**.
 

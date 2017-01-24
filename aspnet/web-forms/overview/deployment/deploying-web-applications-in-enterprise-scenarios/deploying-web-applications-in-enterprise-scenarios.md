@@ -27,7 +27,7 @@ by [Jason Lee](https://github.com/jrjlee)
 > - Deploy changes to web applications that are running in different server environments.
 > 
 > > [!NOTE]
-> > While these tutorials describe the use of TFS as a CI server, the guidance is easily adapted to any CI server. You don&#x27;t need a detailed knowledge of TFS to understand and leverage the tutorials.
+> > While these tutorials describe the use of TFS as a CI server, the guidance is easily adapted to any CI server. You don't need a detailed knowledge of TFS to understand and leverage the tutorials.
 > 
 > 
 > For an Italian translation of these tutorials, visit [http://www.lucamorelli.it](http://www.lucamorelli.it).
@@ -35,7 +35,7 @@ by [Jason Lee](https://github.com/jrjlee)
 
 ## About the Authors
 
-Jason Lee is a principal technologist with [Content Master](http://www.contentmaster.com/) where he has been working with Microsoft products and technologies, especially SharePoint and ASP.NET, for several years. Jason holds a PhD in computing and is currently MCPD and MCTS certified. You can read Jason&#x27;s technical blog at [www.jrjlee.com](http://www.jrjlee.com/).
+Jason Lee is a principal technologist with [Content Master](http://www.contentmaster.com/) where he has been working with Microsoft products and technologies, especially SharePoint and ASP.NET, for several years. Jason holds a PhD in computing and is currently MCPD and MCTS certified. You can read Jason's technical blog at [www.jrjlee.com](http://www.jrjlee.com/).
 
 Benjamin Curry is a principal technologist with [Content Master](http://www.contentmaster.com/) who has written whitepapers, SDK documentation, PowerPoint presentations, and instructor-led and online training courses during his career. An original member of the ASP.NET documentation team, he has worked with Microsoft's web technologies for over a decade.
 
@@ -45,7 +45,7 @@ This set of tutorials is for ASP.NET web application developers and solution arc
 
 ## Requirements
 
-To follow the walkthroughs and perform the tasks that these tutorials describe, you&#x27;ll need to install this software on your development computer:
+To follow the walkthroughs and perform the tasks that these tutorials describe, you'll need to install this software on your development computer:
 
 - Visual Studio 2010 Premium or Ultimate Edition with Service Pack 1
 - .NET Framework 4.0
@@ -54,7 +54,7 @@ To follow the walkthroughs and perform the tasks that these tutorials describe, 
 - IIS 7.5 Express
 - SQL Server Express 2008 R2
 
-To perform the deployment steps described throughout these walkthroughs, you&#x27;ll need to have access to sample Web application deployment environments. For best results, these environments should reflect your organization's enterprise deployment pattern. You can then modify the walkthroughs provided in this documentation to reflect the deployment environments and requirements of your own organization.
+To perform the deployment steps described throughout these walkthroughs, you'll need to have access to sample Web application deployment environments. For best results, these environments should reflect your organization's enterprise deployment pattern. You can then modify the walkthroughs provided in this documentation to reflect the deployment environments and requirements of your own organization.
 
 ## Series Contents
 

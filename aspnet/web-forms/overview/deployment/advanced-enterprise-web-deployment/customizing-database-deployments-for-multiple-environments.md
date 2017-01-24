@@ -21,10 +21,10 @@ by [Jason Lee](https://github.com/jrjlee)
 > This topic describes how to tailor the properties of a database to specific target environments as part of the deployment process.
 > 
 > > [!NOTE]
-> > The topic assumes that you&#x27;re deploying a Visual Studio 2010 database project using MSBuild.exe and VSDBCMD.exe. For more information on why you might choose this approach, see [Web Deployment in the Enterprise](../web-deployment-in-the-enterprise/web-deployment-in-the-enterprise.md) and [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
+> > The topic assumes that you're deploying a Visual Studio 2010 database project using MSBuild.exe and VSDBCMD.exe. For more information on why you might choose this approach, see [Web Deployment in the Enterprise](../web-deployment-in-the-enterprise/web-deployment-in-the-enterprise.md) and [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
 > 
 > 
-> When you deploy a database project to multiple destinations, you&#x27;ll often want to customize the database deployment properties for each target environment. For example, in test environments you&#x27;d typically recreate the database on every deployment, whereas in staging or production environments you&#x27;d be a lot more likely to make incremental updates to preserve your data.
+> When you deploy a database project to multiple destinations, you'll often want to customize the database deployment properties for each target environment. For example, in test environments you'd typically recreate the database on every deployment, whereas in staging or production environments you'd be a lot more likely to make incremental updates to preserve your data.
 > 
 > In a Visual Studio 2010 database project, deployment settings are contained within a deployment configuration (.sqldeployment) file. This topic will show you how to create environment-specific deployment configuration files and specify the one you want to use as a VSDBCMD parameter.
 
@@ -40,7 +40,7 @@ This topic assumes that:
 - You use the split project file approach to solution deployment, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md).
 - You call VSDBCMD from the project file to deploy your database project, as described in [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md).
 
-To create a deployment system that supports varying the database deployment properties between target environments, you&#x27;ll need to:
+To create a deployment system that supports varying the database deployment properties between target environments, you'll need to:
 
 - Create a deployment configuration (.sqldeployment) file for each target environment.
 - Create a VSDBCMD command that specifies the deployment configuration file as a command-line switch.
@@ -52,9 +52,9 @@ This topic will show you how to perform each of these procedures.
 
 By default, a database project contains a single deployment configuration file named *Database.sqldeployment*. If you open this file in Visual Studio 2010, you can see the different deployment options that are available to you:
 
-- **Deployment comparison collation**. This lets you choose whether to use the database collation of your project (the *source* collation) or the database collation of your destination server (the *target* collation). In most cases, you&#x27;ll want to use the source collation when you deploy to a development or test environment. When you deploy to a staging or production environment, you&#x27;ll usually want to leave the target collation unchanged to avoid any interoperability issues.
-- **Deploy database properties**. This lets you choose whether to apply the database properties, as defined in the *Database.sqlsettings* file. When you deploy a database for the first time, you should deploy the database properties. If you&#x27;re updating an existing database, the properties should already be in place, and you shouldn&#x27;t need to deploy them again.
-- **Always re-create database**. This lets you choose whether to re-create the target database every time you deploy or make incremental changes to bring the target database up to date with your schema. If you re-create the database, you&#x27;ll lose any data in the existing database. As such, you should usually set this to **false** for deployments to staging or production environments.
+- **Deployment comparison collation**. This lets you choose whether to use the database collation of your project (the *source* collation) or the database collation of your destination server (the *target* collation). In most cases, you'll want to use the source collation when you deploy to a development or test environment. When you deploy to a staging or production environment, you'll usually want to leave the target collation unchanged to avoid any interoperability issues.
+- **Deploy database properties**. This lets you choose whether to apply the database properties, as defined in the *Database.sqlsettings* file. When you deploy a database for the first time, you should deploy the database properties. If you're updating an existing database, the properties should already be in place, and you shouldn't need to deploy them again.
+- **Always re-create database**. This lets you choose whether to re-create the target database every time you deploy or make incremental changes to bring the target database up to date with your schema. If you re-create the database, you'll lose any data in the existing database. As such, you should usually set this to **false** for deployments to staging or production environments.
 - **Block incremental deployment if data loss might occur**. This lets you choose whether deployment should stop if a change to the database schema will cause the loss of data. You typically set this to **true** for a deployment to a production environment, to give you the opportunity to intervene and protect any important data. If you have set **Always re-create database** to **false**, this setting will have no effect.
 - **Execute deployment in single-user mode**. This is not usually an issue in development or test environments. However, you should typically set this to **true** for deployments to staging or production environments. This prevents users from making changes to the database while the deployment is underway.
 - **Back up database before deployment**. You typically set this to **true** when you deploy to a production environment, as a precaution against data loss. You may also want to set it to **true** when you deploy to a staging environment, if your staging database contains a lot of data.
@@ -119,7 +119,7 @@ You can invoke a VSDBCMD command from an MSBuild project file by using an **Exec
 [!code-xml[Main](customizing-database-deployments-for-multiple-environments/samples/sample2.xml)]
 
 
-- In practice, to make your project files easy to read and reuse, you&#x27;ll want to create properties to store the various command-line parameters. This makes it easier for users to provide property values in an environment-specific project file or to override default values from the MSBuild command line. If you use the split project file approach described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md), you should divide your build instructions and properties between the two files accordingly:
+- In practice, to make your project files easy to read and reuse, you'll want to create properties to store the various command-line parameters. This makes it easier for users to provide property values in an environment-specific project file or to override default values from the MSBuild command line. If you use the split project file approach described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md), you should divide your build instructions and properties between the two files accordingly:
 - Environment-specific settings, like the deployment configuration filename, the database connection string, and the target database name, should go in the environment-specific project file.
 - The MSBuild target that runs the VSDBCMD command, together with any universal properties like the location of the VSDBCMD executable, should go in the universal project file.
 

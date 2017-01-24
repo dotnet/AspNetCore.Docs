@@ -32,8 +32,8 @@ This table shows the main advantages and disadvantages of each deployment approa
 
 | Approach | Advantages | Disadvantages | Typical Scenarios |
 | --- | --- | --- | --- |
-| Remote Agent | It is easy to set up. It is suitable for regular updates to web applications and content. | The user must be an administrator on the target server. the user can&#x27;t supply alternative credentials. | Development environments. Test environments. |
-| Temp Agent | There is no need to install Web Deploy on the target computer. The latest version of Web Deploy is automatically used. | The user must be an administrator on the target server. The user can&#x27;t supply alternative credentials. | Development environments. Test environments. |
+| Remote Agent | It is easy to set up. It is suitable for regular updates to web applications and content. | The user must be an administrator on the target server. the user can't supply alternative credentials. | Development environments. Test environments. |
+| Temp Agent | There is no need to install Web Deploy on the target computer. The latest version of Web Deploy is automatically used. | The user must be an administrator on the target server. The user can't supply alternative credentials. | Development environments. Test environments. |
 | Web Deploy Handler | Non-administrator users can deploy content. It is suitable for regular updates to web applications and content. | It is a lot more complex to set up. | Staging environments. Intranet production environments. Hosted environments. |
 | Offline Deployment | It is very easy to set up. It is suitable for isolated environments. | The server administrator must manually copy and import the web package every time. | Internet-facing production environments. Isolated network environments. |
   
@@ -66,15 +66,15 @@ In actual fact, the Web Deploy executable can infer the endpoint address of the 
 > For more information on Web Deploy command-line syntax and *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx).
 
 
-The remote agent offers a straightforward way to deploy content from a remote location, and this approach can work well with one-click or automated deployment. However, the user who runs the deployment command must also be either a domain administrator or a member of the local administrators group on the destination server. In addition, the remote agent doesn&#x27;t support basic authentication, so you can&#x27;t pass alternative credentials on the command line.
+The remote agent offers a straightforward way to deploy content from a remote location, and this approach can work well with one-click or automated deployment. However, the user who runs the deployment command must also be either a domain administrator or a member of the local administrators group on the destination server. In addition, the remote agent doesn't support basic authentication, so you can't pass alternative credentials on the command line.
 
-The remote agent provides a useful approach to deployment in development or test scenarios, where it&#x27;s not uncommon for developers to have full administrator control over a test server environment, and applications are typically rebuilt and redeployed very frequently. However, this approach is usually less acceptable for staging or production environments.
+The remote agent provides a useful approach to deployment in development or test scenarios, where it's not uncommon for developers to have full administrator control over a test server environment, and applications are typically rebuilt and redeployed very frequently. However, this approach is usually less acceptable for staging or production environments.
 
 For an end-to-end example of a scenario that uses the remote agent approach, see [Scenario: Configuring a Test Environment for Web Deployment](scenario-configuring-a-test-environment-for-web-deployment.md).
 
 ## Using the Temp Agent
 
-The temp agent approach to deployment is similar to the remote agent approach. However, in contrast to the remote agent approach, you don&#x27;t need to install Web Deploy on the destination web server. Instead, when you perform the deployment, Web Deploy will install a temporary version of the web deployment agent service on the destination server and will use this to deploy your content to IIS. When the deployment is complete, all temporary files are removed.
+The temp agent approach to deployment is similar to the remote agent approach. However, in contrast to the remote agent approach, you don't need to install Web Deploy on the destination web server. Instead, when you perform the deployment, Web Deploy will install a temporary version of the web deployment agent service on the destination server and will use this to deploy your content to IIS. When the deployment is complete, all temporary files are removed.
 
 If you want to use the temp agent provider setting, add the **/g** flag to your deployment command:
 
@@ -86,7 +86,7 @@ If you want to use the temp agent provider setting, add the **/g** flag to your 
 > You can't use the temp agent if the web deployment agent service is installed on the destination computer, even if the service is not running.
 
 
-The advantage of this approach is that you don&#x27;t need to maintain installations of Web Deploy on your destination servers. Furthermore, you don&#x27;t need to ensure that the source and destination computers are running the same version of Web Deploy. However, this approach suffers from the same principal limitations as the remote agent approach, namely that you must be a local administrator on the destination server in order to deploy content, and only NTLM authentication is supported. The temp agent approach also requires a lot more initial configuration of the destination environment.
+The advantage of this approach is that you don't need to maintain installations of Web Deploy on your destination servers. Furthermore, you don't need to ensure that the source and destination computers are running the same version of Web Deploy. However, this approach suffers from the same principal limitations as the remote agent approach, namely that you must be a local administrator on the destination server in order to deploy content, and only NTLM authentication is supported. The temp agent approach also requires a lot more initial configuration of the destination environment.
 
 For more information on using the temp agent, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx) and [Web Deploy On Demand](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx).
 
@@ -112,7 +112,7 @@ In the case of non-administrator users, the Web Management Service (WMSvc) will 
 [!code-console[Main](choosing-the-right-approach-to-web-deployment/samples/sample6.cmd)]
 
 
-For example, suppose a build process is configured to automatically deploy a web application to a staging environment after every successful build. If you used the remote agent approach, you&#x27;d need to make the build process identity an administrator on your destination servers. In contrast, using the Web Deploy Handler approach you can give a non-administrator user&#x2014;**FABRIKAM\stagingdeployer** in this case&#x2014;permission to a specific IIS website only, and the build process can provide these credentials to deploy the web package.
+For example, suppose a build process is configured to automatically deploy a web application to a staging environment after every successful build. If you used the remote agent approach, you'd need to make the build process identity an administrator on your destination servers. In contrast, using the Web Deploy Handler approach you can give a non-administrator user&#x2014;**FABRIKAM\stagingdeployer** in this case&#x2014;permission to a specific IIS website only, and the build process can provide these credentials to deploy the web package.
 
 
 [!code-console[Main](choosing-the-right-approach-to-web-deployment/samples/sample7.cmd)]
@@ -128,9 +128,9 @@ For an end-to-end example of a scenario that uses the Web Deploy Handler approac
 
 ## Using Offline Deployment
 
-In some cases, it&#x27;s not possible or practical to deploy applications and content to an IIS website from a remote location. For example, the source and destination computers may be in isolated networks or network segments, or firewall policy may not permit remote access.
+In some cases, it's not possible or practical to deploy applications and content to an IIS website from a remote location. For example, the source and destination computers may be in isolated networks or network segments, or firewall policy may not permit remote access.
 
-In scenarios like these, you can still use the packaging and publishing capabilities of Web Deploy; you just can&#x27;t use them from a remote location. Instead, an administrator on the destination server must copy the web package onto the server and import it through IIS Manager.
+In scenarios like these, you can still use the packaging and publishing capabilities of Web Deploy; you just can't use them from a remote location. Instead, an administrator on the destination server must copy the web package onto the server and import it through IIS Manager.
 
 ![](choosing-the-right-approach-to-web-deployment/_static/image1.png)
 

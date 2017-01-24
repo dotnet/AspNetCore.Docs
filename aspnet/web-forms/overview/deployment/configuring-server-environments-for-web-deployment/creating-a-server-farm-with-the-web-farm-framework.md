@@ -45,14 +45,14 @@ Before you start to configure your staging and production environments, we recom
 
 ## Task Overview
 
-To complete the tasks and walkthroughs in this topic, you&#x27;ll need at least three servers&#x2014;one WFF controller, one primary web server for the server farm, and one or more secondary web servers for the server farm. You can add more secondary servers to a WFF server farm at any time. At a high level, to create and configure a WFF server farm for your staging or production environment you&#x27;ll need to:
+To complete the tasks and walkthroughs in this topic, you'll need at least three servers&#x2014;one WFF controller, one primary web server for the server farm, and one or more secondary web servers for the server farm. You can add more secondary servers to a WFF server farm at any time. At a high level, to create and configure a WFF server farm for your staging or production environment you'll need to:
 
 - Create a controller server by installing Internet Information Services (IIS) 7.5 and WFF 2.0.
 - Prepare primary and secondary servers by creating a common administrator account and configuring firewall exceptions.
 - Configure the server farm by using IIS Manager on the controller server.
 - Configure load balancing using IIS Application Request Routing (ARR) or an alternative load-balancing technology.
 
-The tasks and walkthroughs in this topic assume that you&#x27;re starting with clean server builds running Windows Server 2008 R2. Before you begin, for each server, ensure that:
+The tasks and walkthroughs in this topic assume that you're starting with clean server builds running Windows Server 2008 R2. Before you begin, for each server, ensure that:
 
 - Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
 - The server is domain-joined.
@@ -64,7 +64,7 @@ The tasks and walkthroughs in this topic assume that you&#x27;re starting with c
 
 ## Create the WFF Controller Server
 
-To create a WFF controller server, you&#x27;ll need to install both IIS 7 or later and WFF 2.0 or later. Under the covers, WFF uses the IIS Web Deployment Tool (Web Deploy) 2.x to synchronize the servers in your farm. If you use the Web Platform Installer to install WFF, the installer will automatically download and install Web Deploy for you.
+To create a WFF controller server, you'll need to install both IIS 7 or later and WFF 2.0 or later. Under the covers, WFF uses the IIS Web Deployment Tool (Web Deploy) 2.x to synchronize the servers in your farm. If you use the Web Platform Installer to install WFF, the installer will automatically download and install Web Deploy for you.
 
 **To create the WFF controller server**
 
@@ -86,7 +86,7 @@ To create a WFF controller server, you&#x27;ll need to install both IIS 7 or lat
 Before you create a WFF server farm, you should complete some preparation tasks on the web servers that will make up the farm:
 
 - Add firewall exceptions to allow the **Core Networking**, **Remote Administration**, and **File and Printer Sharing** features to communicate with the WFF controller server.
-- Create a domain account (for example, **FABRIKAM\stagingfarm**) in Active Directory and add it to the local administrators group on each server. You&#x27;ll use this account as the server farm administrator account when you create the server farm.
+- Create a domain account (for example, **FABRIKAM\stagingfarm**) in Active Directory and add it to the local administrators group on each server. You'll use this account as the server farm administrator account when you create the server farm.
 
 For more information on how to configure these firewall exceptions in Windows Firewall, see [System and Platform Requirements for the Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805128). For other firewall systems, consult your product documentation.
 
@@ -105,15 +105,15 @@ You can use the next procedure to add a domain account to the local administrato
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image5.png)
 6. In the **Administrators Properties** dialog box, click **OK**.
 
-Your servers are now ready to be added to a server farm. In the case of the primary server, you can configure the server to meet your application requirements before or after you create the server farm&#x2014;in both cases, the WFF will synchronize the servers by deploying the same products, components, or configuration to your secondary servers. For the sake of simplicity, this tutorial assumes that you&#x27;ll configure the primary server when you&#x27;ve finished creating the server farm.
+Your servers are now ready to be added to a server farm. In the case of the primary server, you can configure the server to meet your application requirements before or after you create the server farm&#x2014;in both cases, the WFF will synchronize the servers by deploying the same products, components, or configuration to your secondary servers. For the sake of simplicity, this tutorial assumes that you'll configure the primary server when you've finished creating the server farm.
 
 ## Create the WFF Server Farm
 
 At this point, all your servers are ready to be added to a WFF server farm:
 
-- You&#x27;ve installed WFF on the controller server.
-- You&#x27;ve configured firewall exceptions on your primary and secondary web servers.
-- You&#x27;ve added a domain account to the local administrators group on your primary and secondary web servers.
+- You've installed WFF on the controller server.
+- You've configured firewall exceptions on your primary and secondary web servers.
+- You've added a domain account to the local administrators group on your primary and secondary web servers.
 
 The next step is to create the server farm in WFF. You can do this from IIS Manager on the WFF controller server.
 
@@ -132,7 +132,7 @@ The next step is to create the server farm in WFF. You can do this from IIS Mana
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image7.png)
 
     > [!NOTE]
-    > You might have noticed that **Server is available for Load Balancing** is selected by default. WFF uses the IIS ARR module to implement load balancing and thereby distribute requests across the web servers in your server farm. In most scenarios, you&#x27;d only clear the **Server is available for Load Balancing** option if you wanted to use a third-party load balancing solution instead.
+    > You might have noticed that **Server is available for Load Balancing** is selected by default. WFF uses the IIS ARR module to implement load balancing and thereby distribute requests across the web servers in your server farm. In most scenarios, you'd only clear the **Server is available for Load Balancing** option if you wanted to use a third-party load balancing solution instead.
 8. On the **Add Servers** page, type the FQDN of your first secondary server, and then click **Add**.
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image8.png)
@@ -181,7 +181,7 @@ When you create a web farm, you need to set up some form of load balancing to di
 WFF is designed to integrate closely with IIS ARR. To take advantage of this integration, you need to install the ARR module on the WFF controller server. You then direct all your web traffic to the controller server, typically by configuring Domain Name System (DNS) records. The controller server will then distribute incoming requests among the servers in your farm, based on server availability and various other criteria.
 
 > [!NOTE]
-> You don&#x27;t have to use ARR with WFF; you can configure WFF to work with third-party load balancing solutions. For more information, see [Overview of the Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805126).
+> You don't have to use ARR with WFF; you can configure WFF to work with third-party load balancing solutions. For more information, see [Overview of the Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805126).
 
 
 Load balancing using ARR is a complex topic, most of which is beyond the scope of this tutorial. However, you can use the next procedure to install the ARR module and get started with load balancing.

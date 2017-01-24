@@ -1,7 +1,7 @@
 ---
 title: "Web Deployment in the Enterprise | Microsoft Docs"
 author: jrjlee
-description: "This tutorial describes how to meet lots of the challenges you&#x27;ll encounter when you manage the deployment of enterprise-scale web applications to devel..."
+description: "This tutorial describes how to meet lots of the challenges you'll encounter when you manage the deployment of enterprise-scale web applications to devel..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
@@ -18,7 +18,7 @@ by [Jason Lee](https://github.com/jrjlee)
 
 [Download PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
-> This tutorial describes how to meet lots of the challenges you&#x27;ll encounter when you manage the deployment of enterprise-scale web applications to development, test, staging, and production environments. The tutorial includes a reference solution together with a mixture of conceptual and task-oriented content to guide you through various common tasks and procedures.
+> This tutorial describes how to meet lots of the challenges you'll encounter when you manage the deployment of enterprise-scale web applications to development, test, staging, and production environments. The tutorial includes a reference solution together with a mixture of conceptual and task-oriented content to guide you through various common tasks and procedures.
 > 
 > For an Italian translation of these tutorials, visit [http://www.lucamorelli.it](http://www.lucamorelli.it).
 
@@ -41,19 +41,19 @@ This tutorial, together with the other tutorials in this series, uses this high-
 
 - **Use custom Microsoft Build Engine (MSBuild) project files to control the overall build and deployment process.**
 - This lets you build and deploy every project in the solution as part of a single, scriptable operation.
-- Environment-specific settings are configured using simple environment-specific project files. In contrast to the Visual Studio–centric approach of using solution configurations and publish profiles to configure deployments for different environments, this approach lets you configure and manage the deployment process from outside Visual Studio. This means that developers don&#x27;t need advance knowledge of connection strings, service endpoints, server credentials, and other deployment variables for destination environments.
+- Environment-specific settings are configured using simple environment-specific project files. In contrast to the Visual Studio–centric approach of using solution configurations and publish profiles to configure deployments for different environments, this approach lets you configure and manage the deployment process from outside Visual Studio. This means that developers don't need advance knowledge of connection strings, service endpoints, server credentials, and other deployment variables for destination environments.
 - The custom project files can be invoked by Team Build as part of a Team Foundation Server (TFS) workflow. This lets you configure automated deployment for CI scenarios.
 
 **Use the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) to package and deploy web application projects.**
 
 - Web Deploy provides a framework that lets you package and deploy your web application content to a destination IIS web server, together with dependencies, configuration settings, security settings, and any other requirements.
 - You can control the entire packaging and deployment process from within your custom MSBuild project files. You can also manipulate the configuration settings that accompany your web deployment package, like connection strings, service endpoints, and IIS destination details.
-- Web Deploy, together with the Web Publishing Pipeline, offers lots of extensibility points that let you customize your deployments. For example, it&#x27;s easy to exclude unwanted files and folders from your web deployment packages.
+- Web Deploy, together with the Web Publishing Pipeline, offers lots of extensibility points that let you customize your deployments. For example, it's easy to exclude unwanted files and folders from your web deployment packages.
 
 **Use the VSDBCMD.exe utility to deploy and update database schemas.**
 
 - VSDBCMD allows you to deploy databases from a database schema file (.dbschema), which is generated when you build a Visual Studio database project. In contrast, the database deployment functionality included in Web Deploy is more suited to deploying existing databases from a local SQL Server instance.
-- Unlike Visual Studio&#x27;s functionality for deploying database projects, VSDBCMD lets you deploy differential updates to an existing target database. This allows you to preserve any existing data while you upgrade the database schema.
+- Unlike Visual Studio's functionality for deploying database projects, VSDBCMD lets you deploy differential updates to an existing target database. This allows you to preserve any existing data while you upgrade the database schema.
 - You can execute VSDBCMD commands from within your custom MSBuild project files.
 
 ## Content Map

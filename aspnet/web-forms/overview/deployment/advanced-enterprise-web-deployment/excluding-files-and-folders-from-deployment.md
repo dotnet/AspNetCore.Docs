@@ -49,7 +49,7 @@ When you choose **Only files needed to run this application**, the WPP will try 
 
 ## Excluding Specific Files and Folders
 
-In some cases, you&#x27;ll want more fine-grained control over which files and folders are deployed. If you know which files you want to exclude ahead of time, and the exclusion applies to all destination environments, you can simply set the **Build Action** of each file to **None**.
+In some cases, you'll want more fine-grained control over which files and folders are deployed. If you know which files you want to exclude ahead of time, and the exclusion applies to all destination environments, you can simply set the **Build Action** of each file to **None**.
 
 **To exclude specific files from deployment**
 
@@ -78,7 +78,7 @@ This is the basic structure of this *.wpp.targets* file:
 [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample1.xml)]
 
 
-Note that each item includes an item metadata element named **FromTarget**. This is an optional value that doesn&#x27;t affect the build process; it simply serves to indicate why particular files or folders were omitted if someone reviews the build logs.
+Note that each item includes an item metadata element named **FromTarget**. This is an optional value that doesn't affect the build process; it simply serves to indicate why particular files or folders were omitted if someone reviews the build logs.
 
 ## Excluding Files and Folders from a Web Package
 

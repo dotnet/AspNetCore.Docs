@@ -32,15 +32,15 @@ by [Jason Lee](https://github.com/jrjlee)
 Yes, if you want to allow non-administrator users to deploy content to specific IIS websites. This approach is often desirable in these types of scenarios:
 
 - Staging or production environments, where the person or service account that triggers the remote deployment is unlikely to have access to the credentials of a server administrator.
-- Hosted environments, where you want to give remote users the ability to update their websites without giving them full control of your web servers (or access to anyone else&#x27;s websites).
+- Hosted environments, where you want to give remote users the ability to update their websites without giving them full control of your web servers (or access to anyone else's websites).
 
 In development or test scenarios, or in smaller organizations, deploying content using server administrator credentials is often less contentious. In these scenarios, configuring your web servers to support deployment using the [Web Deploy Remote Agent Service](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md) offers a more straightforward approach.
 
 ## Task Overview
 
-To configure the web server to accept and deploy web packages from a remote computer using the Web Deploy Handler approach, you&#x27;ll need to:
+To configure the web server to accept and deploy web packages from a remote computer using the Web Deploy Handler approach, you'll need to:
 
-- Create, or choose, a domain user account (the "non-administrator user") whose credentials you&#x27;ll use to perform deployments.
+- Create, or choose, a domain user account (the "non-administrator user") whose credentials you'll use to perform deployments.
 - Install IIS 7.5, including the Web Management Service and the Basic Authentication module.
 - Install Web Deploy 2.1 or later.
 - Configure the Web Management Service to allow remote connections, and start the service.
@@ -49,12 +49,12 @@ To configure the web server to accept and deploy web packages from a remote comp
 - Ensure that the Web Management Service delegation rules permit the service to add and change website content using your non-administrator user account.
 - Configure any firewalls to allow incoming connections on port 8172.
 
-To host the ContactManager sample solution specifically, you&#x27;ll also need to:
+To host the ContactManager sample solution specifically, you'll also need to:
 
 - Install the .NET Framework 4.0.
 - Install ASP.NET MVC 3.
 
-This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you&#x27;re starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
+This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
 
 - Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
 - The server is domain-joined.
@@ -78,7 +78,7 @@ In this case, you need to install these things:
 - **ASP.NET MVC 3**. This installs the assemblies you need to run MVC 3 applications.
 
 > [!NOTE]
-> This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don&#x27;t have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
+> This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don't have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
 
 
 **To install the required products and components**
@@ -108,7 +108,7 @@ In this case, you need to install these things:
 13. Review the license terms, and if you consent to the terms, click **I Accept**.
 14. When the installation is complete, click **Finish**, and then close the **Web Platform Installer 3.0** window.
 
-If you installed the .NET Framework 4.0 before you installed IIS, you&#x27;ll need to run the [ASP.NET IIS Registration Tool](https://msdn.microsoft.com/en-us/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) to register the latest version of ASP.NET with IIS. If you don&#x27;t do this, you&#x27;ll find that IIS will serve static content (like HTML files) without any problems, but it will return **HTTP Error 404.0 – Not Found** when you attempt to browse to ASP.NET content. You can use the next procedure to ensure that ASP.NET 4.0 is registered.
+If you installed the .NET Framework 4.0 before you installed IIS, you'll need to run the [ASP.NET IIS Registration Tool](https://msdn.microsoft.com/en-us/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) to register the latest version of ASP.NET with IIS. If you don't do this, you'll find that IIS will serve static content (like HTML files) without any problems, but it will return **HTTP Error 404.0 – Not Found** when you attempt to browse to ASP.NET content. You can use the next procedure to ensure that ASP.NET 4.0 is registered.
 
 **To register ASP.NET 4.0 with IIS**
 
@@ -123,11 +123,11 @@ If you installed the .NET Framework 4.0 before you installed IIS, you&#x27;ll ne
 
     [!code-console[Main](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/samples/sample2.cmd)]
 
-As a good practice, use Windows Update again at this point to download and install any available updates for the new products and components you&#x27;ve installed.
+As a good practice, use Windows Update again at this point to download and install any available updates for the new products and components you've installed.
 
 ## Configure the Web Management Service
 
-Now that you&#x27;ve installed everything you need, the next step is to configure the Web Management Service in IIS. At a high level, you&#x27;ll need to complete these tasks:
+Now that you've installed everything you need, the next step is to configure the Web Management Service in IIS. At a high level, you'll need to complete these tasks:
 
 - Enable basic authentication at the server level.
 - Configure the Web Management Service to accept remote connections.
@@ -153,7 +153,7 @@ Now that you&#x27;ve installed everything you need, the next step is to configur
 7. In the center pane, select **Enable remote connections**.
 
     > [!NOTE]
-    > If the Web Management Service is already running, you&#x27;ll need to stop it first.
+    > If the Web Management Service is already running, you'll need to stop it first.
 8. In the **Actions** pane, click **Start** to start the Web Management Service.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image7.png)
@@ -171,19 +171,19 @@ Now that you&#x27;ve installed everything you need, the next step is to configur
 
     These rules allow authorized Web Management Service users to use various Web Deploy providers. For example, to deploy web applications and content to IIS through the Web Deploy Handler, there must be a delegation rule that allows all authenticated Web Management Service users to use the **contentPath** and **iisApp** providers (the last rule that you can see in the screenshot).
 
-    If you installed products and components in the order described in this topic, the latest version of Web Deploy should automatically add all the required delegation rules to the Web Management Service. If the Management Service Delegation page does not show any rules, you&#x27;ll need to create them yourself. For instructions on how to do this, see [Configure the Web Deployment Handler](https://go.microsoft.com/?linkid=9805124).
+    If you installed products and components in the order described in this topic, the latest version of Web Deploy should automatically add all the required delegation rules to the Web Management Service. If the Management Service Delegation page does not show any rules, you'll need to create them yourself. For instructions on how to do this, see [Configure the Web Deployment Handler](https://go.microsoft.com/?linkid=9805124).
 13. In the **Connections** pane, click the server node again to return to the top-level settings.
 
 ## Create and Configure an IIS Website
 
-Before you can deploy web content to your server, you need to create and configure an IIS website to host the content. Web Deploy can only deploy web packages to an existing IIS website; it can&#x27;t create the website for you. You also need to do a little extra configuration to allow your non-administrator account to deploy content remotely. At a high level, you&#x27;ll need to complete these tasks:
+Before you can deploy web content to your server, you need to create and configure an IIS website to host the content. Web Deploy can only deploy web packages to an existing IIS website; it can't create the website for you. You also need to do a little extra configuration to allow your non-administrator account to deploy content remotely. At a high level, you'll need to complete these tasks:
 
 - Create a folder on the file system to host your content.
 - Create an IIS website to serve the content, and associate it with the local folder.
 - Grant read permissions to the application pool identity on the local folder.
 - Grant the necessary IIS permissions to the domain account that will deploy your web application.
 
-Although there&#x27;s nothing stopping you from deploying content to the default website in IIS, this approach is not recommended for anything other than test or demonstration scenarios. To simulate a production environment, you should create a new IIS website with settings that are specific to the requirements of your application.
+Although there's nothing stopping you from deploying content to the default website in IIS, this approach is not recommended for anything other than test or demonstration scenarios. To simulate a production environment, you should create a new IIS website with settings that are specific to the requirements of your application.
 
 **To create an IIS website**
 
@@ -226,7 +226,7 @@ Although there&#x27;s nothing stopping you from deploying content to the default
     > [!NOTE]
     > The sample solution requires .NET Framework 4.0. This is not a requirement for Web Deploy in general.
 
-In order for your website to serve content, the application pool identity must have read permissions on the local folder that stores the content. In IIS 7.5, application pools run with a unique application pool identity by default (in contrast to previous versions of IIS, where application pools would typically run using the Network Service account). The application pool identity is not a real user account and does not show up on any lists of users or groups&#x2014;instead, it&#x27;s created dynamically when the application pool is started. Each application pool identity is added to the local **IIS\_IUSRS** security group as a hidden item.
+In order for your website to serve content, the application pool identity must have read permissions on the local folder that stores the content. In IIS 7.5, application pools run with a unique application pool identity by default (in contrast to previous versions of IIS, where application pools would typically run using the Network Service account). The application pool identity is not a real user account and does not show up on any lists of users or groups&#x2014;instead, it's created dynamically when the application pool is started. Each application pool identity is added to the local **IIS\_IUSRS** security group as a hidden item.
 
 To grant permissions to an application pool identity on a file or folder, you have two options:
 
@@ -251,7 +251,7 @@ The most common approach is to assign permissions to the local **IIS\_IUSRS** gr
 6. In the **Permissions for***[folder name]* dialog box, notice that the new group has been assigned the **Read &amp; execute**, **List folder contents**, and **Read** permissions by default. Leave this unchanged and click **OK**.
 7. Click **OK** to close the *[folder name]***Properties** dialog box.
 
-As a final task, you must grant the appropriate permissions to the non-administrator user whose credentials you&#x27;ll use to deploy content. This user requires the permissions to deploy content remotely to your website.
+As a final task, you must grant the appropriate permissions to the non-administrator user whose credentials you'll use to deploy content. This user requires the permissions to deploy content remotely to your website.
 
 **To configure IIS website permissions for a non-administrator domain user**
 
@@ -274,7 +274,7 @@ As a final task, you must grant the appropriate permissions to the non-administr
 
 ## Configure Firewall Exceptions
 
-By default, the IIS Web Management Service listens on TCP port 8172. If Windows Firewall is enabled on your web server, you&#x27;ll need to create a new inbound rule to allow TCP traffic on port 8172 (all outbound traffic is permitted by default in Windows Firewall). If you use a third-party firewall, you&#x27;ll need to create rules to allow traffic.
+By default, the IIS Web Management Service listens on TCP port 8172. If Windows Firewall is enabled on your web server, you'll need to create a new inbound rule to allow TCP traffic on port 8172 (all outbound traffic is permitted by default in Windows Firewall). If you use a third-party firewall, you'll need to create rules to allow traffic.
 
 | Direction | From Port | To Port | Port Type |
 | --- | --- | --- | --- |

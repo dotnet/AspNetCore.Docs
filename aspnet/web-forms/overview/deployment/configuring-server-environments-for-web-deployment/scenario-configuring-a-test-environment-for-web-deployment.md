@@ -21,7 +21,7 @@ by [Jason Lee](https://github.com/jrjlee)
 > This topic describes a typical web deployment scenario for developer or test environments and explains the tasks you need to complete in order to set up a similar environment.
 
 
-When developers work on web applications, they&#x27;re often given access to a server environment that they can use to test changes to their applications in a realistic setting. This kind of development or test environment typically has these characteristics:
+When developers work on web applications, they're often given access to a server environment that they can use to test changes to their applications in a realistic setting. This kind of development or test environment typically has these characteristics:
 
 - The environment consists of a single web server and a single database server.
 - The developers usually have administrator privileges on the servers, to let them configure the environment to the requirements of their applications.
@@ -46,7 +46,7 @@ The test environment needs to support single-step or automated deployment from a
 > You could also use [Web Deploy On Demand](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx) (the "temp agent"). This is similar to the remote agent approach in terms of requirements and constraints.
 
 
-In this case, the developers have administrator privileges on the destination servers, and the test environment is not subject to strict security constraints, so the logical choice is to configure the test web server to support deployment using the remote agent. This is less complex and requires less initial configuration than the Web Deploy Handler approach. You&#x27;ll also need to configure your database server to support remote access and deployment.
+In this case, the developers have administrator privileges on the destination servers, and the test environment is not subject to strict security constraints, so the logical choice is to configure the test web server to support deployment using the remote agent. This is less complex and requires less initial configuration than the Web Deploy Handler approach. You'll also need to configure your database server to support remote access and deployment.
 
 These topics provide all the information you need in order to complete these tasks:
 

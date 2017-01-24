@@ -51,12 +51,12 @@ This illustrates the process:
 
 ![](creating-a-build-definition-that-supports-deployment/_static/image1.png)
 
-The [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) sample solution includes a custom MSBuild project file, *Publish.proj*, that you can run from MSBuild or Team Build. As described in [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md), this project file defines the logic that deploys your web packages and databases to a target environment. The file includes logic that omits the building and packaging process if it&#x27;s running in Team Build, leaving just the deployment tasks to run. This is because when you automate deployment in this way, you&#x27;ll typically want to ensure that the solution builds successfully and passes any unit tests before the deployment process commences.
+The [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) sample solution includes a custom MSBuild project file, *Publish.proj*, that you can run from MSBuild or Team Build. As described in [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md), this project file defines the logic that deploys your web packages and databases to a target environment. The file includes logic that omits the building and packaging process if it's running in Team Build, leaving just the deployment tasks to run. This is because when you automate deployment in this way, you'll typically want to ensure that the solution builds successfully and passes any unit tests before the deployment process commences.
 
 The next section explains how to implement this process by creating a new build definition.
 
 > [!NOTE]
-> This procedure&#x2014;in which a single automated process builds, tests, and deploys a solution&#x2014;is likely to be most suited to deployment to test environments. For staging and production environments you&#x27;re a lot more likely to want to deploy content from a previous build that you&#x27;ve already verified and validated in a test environment. This approach is described in the next topic, [Deploying a Specific Build](deploying-a-specific-build.md).
+> This procedure&#x2014;in which a single automated process builds, tests, and deploys a solution&#x2014;is likely to be most suited to deployment to test environments. For staging and production environments you're a lot more likely to want to deploy content from a previous build that you've already verified and validated in a test environment. This approach is described in the next topic, [Deploying a Specific Build](deploying-a-specific-build.md).
 
 
 ### Who Performs This Procedure?
@@ -79,7 +79,7 @@ The next procedure describes how to create a build definition that CI triggers. 
     ![](creating-a-build-definition-that-supports-deployment/_static/image3.png)
 
     > [!NOTE]
-    > This drop location stores several builds, depending on the retention policy you configure. When you want to publish deployment artifacts from a specific build to a staging or production environment, this is where you&#x27;ll find them.
+    > This drop location stores several builds, depending on the retention policy you configure. When you want to publish deployment artifacts from a specific build to a staging or production environment, this is where you'll find them.
 5. On the **Process** tab, in the **Build process file** dropdown list, leave **DefaultTemplate.xaml** selected. This is one of the default build process templates that get added to all new team projects.
 6. In the **Build process parameters** table, click in the **Items to Build** row, and then click the **ellipsis** button.
 
@@ -113,7 +113,7 @@ The next procedure describes how to create a build definition that CI triggers. 
 
 At this point, you have created at least one new build definition. The build process you defined will now run according to the triggers you specified in the build definition.
 
-If you&#x27;ve configured your build definition to use CI, you can test your build definition in two ways:
+If you've configured your build definition to use CI, you can test your build definition in two ways:
 
 - Check in some content to the team project to trigger an automatic build.
 - Queue a build manually.
@@ -149,7 +149,7 @@ TFS provides a broad range of functionality to help you monitor the build proces
 
 This topic described how to create a build definition in TFS. The build definition is configured for CI, so the build process runs whenever a developer checks in content to the team project. The build definition executes a custom MSBuild project file to deploy web packages and database scripts to a target server environment.
 
-In order for an automated deployment to succeed as part of a build process, you&#x27;ll need to grant appropriate permissions to the build service account on the target web servers and the target database server. The final topic in this tutorial, [Configuring Permissions for Team Build Deployment](configuring-permissions-for-team-build-deployment.md), describes how to identify and configure the permissions required for automated deployment from a Team Build server.
+In order for an automated deployment to succeed as part of a build process, you'll need to grant appropriate permissions to the build service account on the target web servers and the target database server. The final topic in this tutorial, [Configuring Permissions for Team Build Deployment](configuring-permissions-for-team-build-deployment.md), describes how to identify and configure the permissions required for automated deployment from a Team Build server.
 
 ## Further Reading
 

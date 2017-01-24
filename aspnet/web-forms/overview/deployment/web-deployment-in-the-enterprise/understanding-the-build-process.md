@@ -21,7 +21,7 @@ by [Jason Lee](https://github.com/jrjlee)
 > This topic provides a walkthrough of an enterprise-scale build and deployment process. The approach described in this topic uses custom Microsoft Build Engine (MSBuild) project files to provide fine-grained control over every aspect of the process. Within the project files, custom MSBuild targets are used to run deployment utilities like the Internet Information Services (IIS) Web Deployment Tool (MSDeploy.exe) and the database deployment utility VSDBCMD.exe.
 > 
 > > [!NOTE]
-> > The previous topic, [Understanding the Project File](understanding-the-project-file.md), described the key components of an MSBuild project file and introduced the concept of split project files to support deployment to multiple target environments. If you&#x27;re not already familiar with these concepts, you should review [Understanding the Project File](understanding-the-project-file.md) before you work through this topic.
+> > The previous topic, [Understanding the Project File](understanding-the-project-file.md), described the key components of an MSBuild project file and introduced the concept of split project files to support deployment to multiple target environments. If you're not already familiar with these concepts, you should review [Understanding the Project File](understanding-the-project-file.md) before you work through this topic.
 
 
 This topic forms part of a series of tutorials based around the enterprise deployment requirements of a fictional company named Fabrikam, Inc. This tutorial series uses a sample solution&#x2014;the [Contact Manager solution](the-contact-manager-solution.md)&#x2014;to represent a web application with a realistic level of complexity, including an ASP.NET MVC 3 application, a Windows Communication Foundation (WCF) service, and a database project.
@@ -40,7 +40,7 @@ In the sample solution, you can find these three files in the Publish solution f
 
 ![](understanding-the-build-process/_static/image1.png)
 
-Before you look at these files in more detail, let&#x27;s take a look at how the overall build process works when you use this approach. At a high level, the build and deployment process looks like this:
+Before you look at these files in more detail, let's take a look at how the overall build process works when you use this approach. At a high level, the build and deployment process looks like this:
 
 ![](understanding-the-build-process/_static/image2.png)
 
@@ -104,7 +104,7 @@ At this point, the remaining elements are targets. Targets are processed differe
 [!code-xml[Main](understanding-the-build-process/samples/sample5.xml)]
 
 
-This instructs MSBuild to invoke the **FullPublish** target, if targets are not specified when MSBuild.exe is invoked. The **FullPublish** target doesn&#x27;t contain any tasks; instead it simply specifies a list of dependencies.
+This instructs MSBuild to invoke the **FullPublish** target, if targets are not specified when MSBuild.exe is invoked. The **FullPublish** target doesn't contain any tasks; instead it simply specifies a list of dependencies.
 
 
 [!code-xml[Main](understanding-the-build-process/samples/sample6.xml)]
@@ -126,10 +126,10 @@ The **Clean** target basically deletes the output directory and all its contents
 [!code-xml[Main](understanding-the-build-process/samples/sample7.xml)]
 
 
-Notice that the target includes an **ItemGroup** element. When you define properties or items within a **Target** element, you're creating *dynamic* properties and items. In other words, the properties or items aren&#x27;t processed until the target is executed. The output directory might not exist or contain any files until the build process begins, so you can&#x27;t build the **\_FilesToDelete** list as a static item; you have to wait until execution is underway. As such, you build the list as a dynamic item within the target.
+Notice that the target includes an **ItemGroup** element. When you define properties or items within a **Target** element, you're creating *dynamic* properties and items. In other words, the properties or items aren't processed until the target is executed. The output directory might not exist or contain any files until the build process begins, so you can't build the **\_FilesToDelete** list as a static item; you have to wait until execution is underway. As such, you build the list as a dynamic item within the target.
 
 > [!NOTE]
-> In this case, because the **Clean** target is the first to be executed, there&#x27;s no real need to use a dynamic item group. However, it&#x27;s good practice to use dynamic properties and items in this type of scenario, as you might want to execute targets in a different order at some point.  
+> In this case, because the **Clean** target is the first to be executed, there's no real need to use a dynamic item group. However, it's good practice to use dynamic properties and items in this type of scenario, as you might want to execute targets in a different order at some point.  
 > You should also aim to avoid declaring items that will never be used. If you have items that will only be used by a specific target, consider placing them inside the target to remove any unnecessary overhead on the build process.
 
 
@@ -148,7 +148,7 @@ The **BuildProjects** target basically builds all the projects in the sample sol
 [!code-xml[Main](understanding-the-build-process/samples/sample8.xml)]
 
 
-This target was described in some detail in the previous topic, [Understanding the Project File](understanding-the-project-file.md), to illustrate how tasks and targets reference properties and items. At this point, you&#x27;re mainly interested in the **MSBuild** task. You can use this task to build multiple projects. The task does not create a new instance of MSBuild.exe; it uses the current running instance to build each project. The key points of interest in this example are the deployment properties:
+This target was described in some detail in the previous topic, [Understanding the Project File](understanding-the-project-file.md), to illustrate how tasks and targets reference properties and items. At this point, you're mainly interested in the **MSBuild** task. You can use this task to build multiple projects. The task does not create a new instance of MSBuild.exe; it uses the current running instance to build each project. The key points of interest in this example are the deployment properties:
 
 - The **DeployOnBuild** property instructs MSBuild to run any deployment instructions in the project settings when the build of each project is complete.
 - The **DeployTarget** property identifies the target that you want to invoke after the project is built. In this case, the **Package** target builds the project output into a deployable web package.
@@ -159,15 +159,15 @@ This target was described in some detail in the previous topic, [Understanding t
 
 ### The GatherPackagesForPublishing Target
 
-If you study the **GatherPackagesForPublishing** target, you&#x27;ll notice that it doesn&#x27;t actually contain any tasks. Instead, it contains a single item group that defines three dynamic items.
+If you study the **GatherPackagesForPublishing** target, you'll notice that it doesn't actually contain any tasks. Instead, it contains a single item group that defines three dynamic items.
 
 
 [!code-xml[Main](understanding-the-build-process/samples/sample9.xml)]
 
 
-These items refer to the deployment packages that were created when the **BuildProjects** target was executed. You couldn&#x27;t define these items statically in the project file, because the files to which the items refer don&#x27;t exist until the **BuildProjects** target is executed. Instead, the items must be defined dynamically within a target that is not invoked until after the **BuildProjects** target is executed.
+These items refer to the deployment packages that were created when the **BuildProjects** target was executed. You couldn't define these items statically in the project file, because the files to which the items refer don't exist until the **BuildProjects** target is executed. Instead, the items must be defined dynamically within a target that is not invoked until after the **BuildProjects** target is executed.
 
-The items are not used within this target&#x2014;this target simply builds the items and the metadata associated with each item value. Once these elements are processed, the **PublishPackages** item will contain two values, the path to the *ContactManager.Mvc.deploy.cmd* file and the path to the *ContactManager.Service.deploy.cmd* file. Web Deploy creates these files as part of the web package for each project, and these are the files that you must invoke on the destination server in order to deploy the packages. If you open up one of these files, you&#x27;ll basically see an MSDeploy.exe command with various build-specific parameter values.
+The items are not used within this target&#x2014;this target simply builds the items and the metadata associated with each item value. Once these elements are processed, the **PublishPackages** item will contain two values, the path to the *ContactManager.Mvc.deploy.cmd* file and the path to the *ContactManager.Service.deploy.cmd* file. Web Deploy creates these files as part of the web package for each project, and these are the files that you must invoke on the destination server in order to deploy the packages. If you open up one of these files, you'll basically see an MSDeploy.exe command with various build-specific parameter values.
 
 The **DbPublishPackages** item will contain a single value, the path to the *ContactManager.Database.deploymanifest* file.
 
@@ -175,11 +175,11 @@ The **DbPublishPackages** item will contain a single value, the path to the *Con
 > A .deploymanifest file is generated when you build a database project, and it uses the same schema as an MSBuild project file. It contains all the information required to deploy a database, including the location of the database schema (.dbschema) and details of any pre-deployment and post-deployment scripts. For more information, see [An Overview of Database Build and Deployment](https://msdn.microsoft.com/en-us/library/aa833165.aspx).
 
 
-You&#x27;ll learn more about how deployment packages and database deployment manifests are created and used in [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md) and [Deploying Database Projects](deploying-database-projects.md).
+You'll learn more about how deployment packages and database deployment manifests are created and used in [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md) and [Deploying Database Projects](deploying-database-projects.md).
 
 ### The PublishDbPackages Target
 
-Briefly speaking, the **PublishDbPackages** target invokes the VSDBCMD utility to deploy the **ContactManager** database to a target environment. Configuring database deployment involves lots of decisions and nuances, and you&#x27;ll learn more about this in [Deploying Database Projects](deploying-database-projects.md) and [Customizing Database Deployments for Multiple Environments](../advanced-enterprise-web-deployment/customizing-database-deployments-for-multiple-environments.md). In this topic, we&#x27;ll focus on how this target actually functions.
+Briefly speaking, the **PublishDbPackages** target invokes the VSDBCMD utility to deploy the **ContactManager** database to a target environment. Configuring database deployment involves lots of decisions and nuances, and you'll learn more about this in [Deploying Database Projects](deploying-database-projects.md) and [Customizing Database Deployments for Multiple Environments](../advanced-enterprise-web-deployment/customizing-database-deployments-for-multiple-environments.md). In this topic, we'll focus on how this target actually functions.
 
 First, notice that the opening tag includes an **Outputs** attribute.
 
@@ -196,7 +196,7 @@ This is an example of *target batching*. In MSBuild project files, batching is a
 > **Identity** is one of the [built-in metadata values](https://msdn.microsoft.com/en-us/library/ms164313.aspx) that is assigned to every item on creation. It refers to the value of the **Include** attribute in the **Item** element&#x2014;in other words, the path and filename of the item.
 
 
-In this case, because there should never be more than one item with the same path and filename, we&#x27;re essentially working with batch sizes of one. The target is executed once for every database package.
+In this case, because there should never be more than one item with the same path and filename, we're essentially working with batch sizes of one. The target is executed once for every database package.
 
 You can see a similar notation in the **\_Cmd** property, which builds a VSDBCMD command with the appropriate switches.
 
@@ -218,7 +218,7 @@ As a result of this notation, the **Exec** task will create batches based on uni
 
 ### The PublishWebPackages Target
 
-By this point, you&#x27;ve invoked the **BuildProjects** target, which generates a web deployment package for each project in the sample solution. Accompanying each package is a *deploy.cmd* file, which contains the MSDeploy.exe commands required to deploy the package to the target environment, and a *SetParameters.xml* file, which specifies the necessary details of the target environment. You&#x27;ve also invoked the **GatherPackagesForPublishing** target, which generates an item collection containing the *deploy.cmd* files you&#x27;re interested in. Essentially, the **PublishWebPackages** target performs these functions:
+By this point, you've invoked the **BuildProjects** target, which generates a web deployment package for each project in the sample solution. Accompanying each package is a *deploy.cmd* file, which contains the MSDeploy.exe commands required to deploy the package to the target environment, and a *SetParameters.xml* file, which specifies the necessary details of the target environment. You've also invoked the **GatherPackagesForPublishing** target, which generates an item collection containing the *deploy.cmd* files you're interested in. Essentially, the **PublishWebPackages** target performs these functions:
 
 - It manipulates the *SetParameters.xml* file for each package to include the correct details for the target environment, using the **XmlPoke** task.
 - It invokes the *deploy.cmd* file for each package, using the appropriate switches.

@@ -27,7 +27,7 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Process Overview
 
-In this topic, you&#x27;ll learn how to create and run a command file that uses these project files to perform a repeatable deployment to your target environment. Essentially, the command file simply needs to contain an MSBuild command that:
+In this topic, you'll learn how to create and run a command file that uses these project files to perform a repeatable deployment to your target environment. Essentially, the command file simply needs to contain an MSBuild command that:
 
 - Tells MSBuild to execute the environment-agnostic *Publish.proj* file.
 - Tells the *Publish.proj* file which file contains the environment-specific project settings and where to find it.
@@ -53,7 +53,7 @@ To do this, your MSBuild command should resemble this:
 [!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample2.cmd)]
 
 
-From here, it&#x27;s a simple step to move to a repeatable, single-step deployment. All you need to do is to add your MSBuild command to a .cmd file. In the Contact Manager solution, the Publish folder includes a file named *Publish-Dev.cmd* that does exactly this.
+From here, it's a simple step to move to a repeatable, single-step deployment. All you need to do is to add your MSBuild command to a .cmd file. In the Contact Manager solution, the Publish folder includes a file named *Publish-Dev.cmd* that does exactly this.
 
 
 [!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample3.cmd)]
@@ -73,7 +73,7 @@ To deploy or redeploy the Contact Manager solution, all you need to do is run th
 
 ## Run the Deployment
 
-When you&#x27;ve created a command file for your target environment, you should be able to complete the entire deployment by simply running the file.
+When you've created a command file for your target environment, you should be able to complete the entire deployment by simply running the file.
 
 **To deploy the Contact Manager solution to your test environment**
 
@@ -83,7 +83,7 @@ When you&#x27;ve created a command file for your target environment, you should 
 4. If your configuration settings and test servers are set up correctly, the Command Prompt window will show a **Build succeeded** message when MSBuild has finished processing the project files.
 
     ![](creating-and-running-a-deployment-command-file/_static/image1.png)
-5. If this is the first time you&#x27;ve deployed the solution to this environment, you&#x27;ll need to add the test web server machine account to the **db\_datawriter** and **db\_datareader** roles on the **ContactManager** database. This procedure is described in [Configure a Database Server for Web Deploy Publishing](../configuring-server-environments-for-web-deployment/configuring-a-database-server-for-web-deploy-publishing.md).
+5. If this is the first time you've deployed the solution to this environment, you'll need to add the test web server machine account to the **db\_datawriter** and **db\_datareader** roles on the **ContactManager** database. This procedure is described in [Configure a Database Server for Web Deploy Publishing](../configuring-server-environments-for-web-deployment/configuring-a-database-server-for-web-deploy-publishing.md).
 
     > [!NOTE]
     > You only need to assign these permissions when you create the database. By default, the build process will not recreate the database on every deployment&#x2014;instead, it will compare the existing database to the latest schema and make only the changes required. As a result, you should only need to map these database roles the first time you deploy the solution.

@@ -27,35 +27,35 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Performing a "What If" Deployment for Web Packages
 
-Web Deploy includes functionality that lets you perform deployments in "what if" (or trial) mode. When you deploy artifacts in "what if" mode, Web Deploy generates a log file as if you had performed the deployment, but it doesn&#x27;t actually change anything on the destination server. Reviewing the log file can help you to understand what impact your deployment will have on the destination server, in particular:
+Web Deploy includes functionality that lets you perform deployments in "what if" (or trial) mode. When you deploy artifacts in "what if" mode, Web Deploy generates a log file as if you had performed the deployment, but it doesn't actually change anything on the destination server. Reviewing the log file can help you to understand what impact your deployment will have on the destination server, in particular:
 
 - What will get added.
 - What will get updated.
 - What will get deleted.
 
-Because a "what if" deployment doesn&#x27;t actually change anything on the destination server, what it can&#x27;t always do is predict whether a deployment will succeed.
+Because a "what if" deployment doesn't actually change anything on the destination server, what it can't always do is predict whether a deployment will succeed.
 
 As described in [Deploying Web Packages](../web-deployment-in-the-enterprise/deploying-web-packages.md), you can deploy web packages using Web Deploy in two ways&#x2014;by using the MSDeploy.exe command-line utility directly or by running the *.deploy.cmd* file that the build process generates.
 
-If you&#x27;re using MSDeploy.exe directly, you can run a "what if" deployment by adding the **–whatif** flag to your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package to a staging environment, the MSDeploy command should resemble this:
+If you're using MSDeploy.exe directly, you can run a "what if" deployment by adding the **–whatif** flag to your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package to a staging environment, the MSDeploy command should resemble this:
 
 
 [!code-console[Main](performing-a-what-if-deployment/samples/sample1.cmd)]
 
 
-When you&#x27;re satisfied with the results of your "what if" deployment, you can remove the **–whatif** flag to run a live deployment.
+When you're satisfied with the results of your "what if" deployment, you can remove the **–whatif** flag to run a live deployment.
 
 > [!NOTE]
 > For more information on command-line options for MSDeploy.exe, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
 
 
-If you&#x27;re using the *.deploy.cmd* file, you can run a "what if" deployment by including the **/t** flag (trial mode) flag instead of the **/y** flag ("yes," or update mode) in your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package by running the *.deploy.cmd* file, your command should resemble this:
+If you're using the *.deploy.cmd* file, you can run a "what if" deployment by including the **/t** flag (trial mode) flag instead of the **/y** flag ("yes," or update mode) in your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package by running the *.deploy.cmd* file, your command should resemble this:
 
 
 [!code-console[Main](performing-a-what-if-deployment/samples/sample2.cmd)]
 
 
-When you&#x27;re satisfied with the results of your "trial mode" deployment, you can replace the **/t** flag with a **/y** flag to run a live deployment:
+When you're satisfied with the results of your "trial mode" deployment, you can replace the **/t** flag with a **/y** flag to run a live deployment:
 
 
 [!code-console[Main](performing-a-what-if-deployment/samples/sample3.cmd)]
@@ -67,15 +67,15 @@ When you&#x27;re satisfied with the results of your "trial mode" deployment, you
 
 ## Performing a "What If" Deployment for Databases
 
-This section assumes that you&#x27;re using the VSDBCMD utility to perform incremental, schema-based database deployment. This approach is described in more detail in [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). We recommend that you familiarize yourself with this topic before you apply the concepts described here.
+This section assumes that you're using the VSDBCMD utility to perform incremental, schema-based database deployment. This approach is described in more detail in [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). We recommend that you familiarize yourself with this topic before you apply the concepts described here.
 
-When you use VSDBCMD in **Deploy** mode, you can use the **/dd** (or **/DeployToDatabase**) flag to control whether VSDBCMD actually deploys the database or just generates a deployment script. If you&#x27;re deploying a .dbschema file, this is the behavior:
+When you use VSDBCMD in **Deploy** mode, you can use the **/dd** (or **/DeployToDatabase**) flag to control whether VSDBCMD actually deploys the database or just generates a deployment script. If you're deploying a .dbschema file, this is the behavior:
 
 - If you specify **/dd+** or **/dd**, VSDBCMD will generate a deployment script and deploy the database.
 - If you specify **/dd-** or omit the switch, VSDBCMD will generate a deployment script only.
 
 > [!NOTE]
-> If you&#x27;re deploying a .deploymanifest file rather than a .dbschema file, the behavior of the **/dd** switch is a lot more complicated. Essentially, VSDBCMD will ignore the value of the **/dd** switch if the .deploymanifest file includes a **DeployToDatabase** element with a value of **True**. [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md) describes this behavior in full.
+> If you're deploying a .deploymanifest file rather than a .dbschema file, the behavior of the **/dd** switch is a lot more complicated. Essentially, VSDBCMD will ignore the value of the **/dd** switch if the .deploymanifest file includes a **DeployToDatabase** element with a value of **True**. [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md) describes this behavior in full.
 
 
 For example, to generate a deployment script for the **ContactManager** database without actually deploying the database, your VSDBCMD command should resemble this:
@@ -87,13 +87,13 @@ For example, to generate a deployment script for the **ContactManager** database
 VSDBCMD is a differential database deployment tool, and as such the deployment script is dynamically generated to contain all the SQL commands necessary to update the current database, if one exists, to the specified schema. Reviewing the deployment script is a useful way to determine what impact your deployment will have on the current database and the data it contains. For example, you might want to determine:
 
 - Whether any existing tables will be removed, and whether that will result in data loss.
-- Whether the order of operations carries a risk of data loss, for example, if you&#x27;re splitting or merging tables.
+- Whether the order of operations carries a risk of data loss, for example, if you're splitting or merging tables.
 
-If you&#x27;re happy with the deployment script, you can repeat the VSDBCMD with a **/dd+** flag to make the changes. Alternatively, you can edit the deployment script to meet your requirements and then execute it manually on the database server.
+If you're happy with the deployment script, you can repeat the VSDBCMD with a **/dd+** flag to make the changes. Alternatively, you can edit the deployment script to meet your requirements and then execute it manually on the database server.
 
 ## Integrating "What If" Functionality into Custom Project Files
 
-In more complex deployment scenarios, you&#x27;ll want to use a custom Microsoft Build Engine (MSBuild) project file to encapsulate your build and deployment logic, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). For example, in the [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) sample solution, the *Publish.proj* file:
+In more complex deployment scenarios, you'll want to use a custom Microsoft Build Engine (MSBuild) project file to encapsulate your build and deployment logic, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). For example, in the [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) sample solution, the *Publish.proj* file:
 
 - Builds the solution.
 - Uses Web Deploy to package and deploy the ContactManager.Mvc application.
@@ -108,7 +108,7 @@ The *Publish.proj* file demonstrates how you can do this. First, you need to cre
 [!code-xml[Main](performing-a-what-if-deployment/samples/sample5.xml)]
 
 
-In this case, you&#x27;ve created a property named **WhatIf** with a default value of **false**. Users can override this value by setting the property to **true** in a command-line parameter, as you&#x27;ll see shortly.
+In this case, you've created a property named **WhatIf** with a default value of **false**. Users can override this value by setting the property to **true** in a command-line parameter, as you'll see shortly.
 
 The next stage is to parameterize any Web Deploy and VSDBCMD commands so that the flags reflect the **WhatIf** property value. For example, the next target (taken from the *Publish.proj* file and simplified) runs the *.deploy.cmd* file to deploy a web package. By default, the command includes a **/Y** switch ("yes," or update mode). If **WhatIf** is set to **true**, this is replaced by a **/T** switch (trial, or "what if" mode).
 

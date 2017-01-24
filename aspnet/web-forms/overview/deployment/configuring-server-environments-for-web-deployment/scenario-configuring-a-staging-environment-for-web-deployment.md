@@ -36,15 +36,15 @@ For example, in our [tutorial scenario](../deploying-web-applications-in-enterpr
 
 ![](scenario-configuring-a-staging-environment-for-web-deployment/_static/image1.png)
 
-Note that in most cases, you won&#x27;t necessarily want to deploy the latest build to the staging environment. Instead, you&#x27;re a lot more likely to want to deploy a specific build that has already undergone validation and verification in the test environment.
+Note that in most cases, you won't necessarily want to deploy the latest build to the staging environment. Instead, you're a lot more likely to want to deploy a specific build that has already undergone validation and verification in the test environment.
 
 ## Solution Overview
 
 In this scenario, you can deduce these facts from an analysis of the deployment requirements:
 
-- The user or process account that performs the deployment won't have administrator privileges on the staging servers, so the staging web servers must support non-administrator deployment. As such, you&#x27;ll need to configure the staging web servers to use the Web Deploy Handler rather than the remote agent.
-- The staging environment includes multiple web servers, but it needs to support one-click or automated deployment, so you&#x27;ll need to use the Web Farm Framework (WFF) to create a server farm. Using this approach, you can deploy an application to one web server (the primary server), and WFF will replicate the deployment on all the other web servers in the staging environment.
-- The user or process account that performs the deployment must have permissions to create databases. As such, you&#x27;ll need to add the account to the **dbcreator** server role on the database server, in addition to configuring the database server to support remote access and deployment.
+- The user or process account that performs the deployment won't have administrator privileges on the staging servers, so the staging web servers must support non-administrator deployment. As such, you'll need to configure the staging web servers to use the Web Deploy Handler rather than the remote agent.
+- The staging environment includes multiple web servers, but it needs to support one-click or automated deployment, so you'll need to use the Web Farm Framework (WFF) to create a server farm. Using this approach, you can deploy an application to one web server (the primary server), and WFF will replicate the deployment on all the other web servers in the staging environment.
+- The user or process account that performs the deployment must have permissions to create databases. As such, you'll need to add the account to the **dbcreator** server role on the database server, in addition to configuring the database server to support remote access and deployment.
 
 These topics provide all the information you need in order to complete these tasks:
 

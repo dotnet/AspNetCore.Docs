@@ -24,7 +24,7 @@ by [Jason Lee](https://github.com/jrjlee)
 The production environment is the final destination for a web application or a website. By this point, your application has been through testing, has been deployed to a staging environment, and is ready to "go live." The characteristics of a production environment can vary widely according to the nature and purpose of your web content, the size of your organization, your target audience, and lots of other factors. In an enterprise-scale scenario, the production environment may have these characteristics:
 
 - The environment consists of multiple load-balanced web servers and one or more database servers, often with failover clustering and database mirroring.
-- If the environment is Internet-facing, it&#x27;s likely to be segregated from your internal network. It may be on a different subnet in a perimeter network, it may be on a different domain, and it may be on an entirely different network infrastructure.
+- If the environment is Internet-facing, it's likely to be segregated from your internal network. It may be on a different subnet in a perimeter network, it may be on a different domain, and it may be on an entirely different network infrastructure.
 - Developers and build server process accounts are highly unlikely to have administrator privileges on the production servers.
 - Changes to applications are deployed on a less frequent basis than test or staging deployments.
 

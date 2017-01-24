@@ -20,15 +20,15 @@ by [Jason Lee](https://github.com/jrjlee)
 
 > This topic describes how to add user accounts to database roles as part of a solution deployment to a test environment.
 > 
-> When you deploy a solution containing a database project to a staging or production environment, you typically don&#x27;t want the developer to automate the addition of user accounts to database roles. In most cases, the developer won&#x27;t know which user accounts need to be added to which database roles, and these requirements could change at any time. However, when you deploy a solution containing a database project to a development or test environment, the situation is usually rather different:
+> When you deploy a solution containing a database project to a staging or production environment, you typically don't want the developer to automate the addition of user accounts to database roles. In most cases, the developer won't know which user accounts need to be added to which database roles, and these requirements could change at any time. However, when you deploy a solution containing a database project to a development or test environment, the situation is usually rather different:
 > 
 > - The developer typically re-deploys the solution on a regular basis, often several times a day.
 > - The database is typically re-created on every deployment, which means that database users must be created and added to roles after every deployment.
 > - The developer typically has full control over the target development or test environment.
 > 
-> In this scenario, it&#x27;s often beneficial to automatically create database users and assign database role memberships as part of the deployment process.
+> In this scenario, it's often beneficial to automatically create database users and assign database role memberships as part of the deployment process.
 > 
-> The key factor is that this operation needs to be conditional based on the target environment. If you&#x27;re deploying to a staging or a production environment, you want to skip the operation. If you&#x27;re deploying to a developer or test environment, you want to deploy role memberships without further intervention. This topic describes one approach you can use to address this challenge.
+> The key factor is that this operation needs to be conditional based on the target environment. If you're deploying to a staging or a production environment, you want to skip the operation. If you're deploying to a developer or test environment, you want to deploy role memberships without further intervention. This topic describes one approach you can use to address this challenge.
 
 
 This topic forms part of a series of tutorials based around the enterprise deployment requirements of a fictional company named Fabrikam, Inc. This tutorial series uses a sample solution&#x2014;the [Contact Manager solution](../web-deployment-in-the-enterprise/the-contact-manager-solution.md)&#x2014;to represent a web application with a realistic level of complexity, including an ASP.NET MVC 3 application, a Windows Communication Foundation (WCF) service, and a database project.
@@ -42,11 +42,11 @@ This topic assumes that:
 - You use the split project file approach to solution deployment, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md).
 - You call VSDBCMD from the project file to deploy your database project, as described in [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md).
 
-To create database users and assign role memberships when you deploy a database project to a test environment, you&#x27;ll need to:
+To create database users and assign role memberships when you deploy a database project to a test environment, you'll need to:
 
 - Create a Transact Structured Query Language (Transact-SQL) script that makes the necessary database changes.
 - Create a Microsoft Build Engine (MSBuild) target that uses the sqlcmd.exe utility to run the SQL script.
-- Configure your project files to invoke the target when you&#x27;re deploying your solution to a test environment.
+- Configure your project files to invoke the target when you're deploying your solution to a test environment.
 
 This topic will show you how to perform each of these procedures.
 
@@ -74,7 +74,7 @@ You can create a Transact-SQL script in a lot of different ways, and in any loca
 
 ## Executing the Script on the Target Database
 
-Ideally, you&#x27;d run any required Transact-SQL scripts as part of a post-deployment script when you deploy your database project. However, post-deployment scripts don&#x27;t allow you to execute logic conditionally based on solution configurations or build properties. The alternative is to run your SQL scripts directly from the MSBuild project file, by creating a **Target** element that executes a sqlcmd.exe command. You can use this command to run your script on the target database:
+Ideally, you'd run any required Transact-SQL scripts as part of a post-deployment script when you deploy your database project. However, post-deployment scripts don't allow you to execute logic conditionally based on solution configurations or build properties. The alternative is to run your SQL scripts directly from the MSBuild project file, by creating a **Target** element that executes a sqlcmd.exe command. You can use this command to run your script on the target database:
 
 
 [!code-console[Main](deploying-database-role-memberships-to-test-environments/samples/sample2.cmd)]
@@ -88,9 +88,9 @@ Before you embed this command in an MSBuild target, you need to consider under w
 
 - The target database must exist before you change its role memberships. As such, you need to run this script *after* the database deployment.
 - You need to include a condition so that the script is only executed for test environments.
-- If you&#x27;re running a "what if" deployment&#x2014;in other words, if you&#x27;re generating deployment scripts but not actually running them&#x2014;you shouldn&#x27;t run the SQL script.
+- If you're running a "what if" deployment&#x2014;in other words, if you're generating deployment scripts but not actually running them&#x2014;you shouldn't run the SQL script.
 
-If you&#x27;re using the split project file approach described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md), as demonstrated by the Contact Manager sample solution, you can split the build instructions for your SQL script like this:
+If you're using the split project file approach described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md), as demonstrated by the Contact Manager sample solution, you can split the build instructions for your SQL script like this:
 
 - Any required environment-specific properties, together with the property that determines whether to deploy permissions, should go in the environment-specific project file (for example, *Env-Dev.proj*).
 - The MSBuild target itself, together with any properties that will not change between destination environments, should go in the universal project file (for example, *Publish.proj*).
@@ -110,9 +110,9 @@ In the universal project file, you need to provide the location of the sqlcmd ex
 Notice that you add the location of the sqlcmd executable as a static property, as this could be useful to other targets. In contrast, you define the location of your SQL script and the syntax of the sqlcmd command as dynamic properties within the target, as they will not be required before the target is executed. In this case, the **DeployTestDBPermissions** target will only be executed if these conditions are met:
 
 - The **DeployTestDBRoleMemberships** property is set to **true**.
-- The user hasn&#x27;t specified a **WhatIf=true** flag.
+- The user hasn't specified a **WhatIf=true** flag.
 
-Finally, don&#x27;t forget to invoke the target. In the *Publish.proj* file, you can do this by adding the target to the dependency list for the default **FullPublish** target. You need to ensure that the **DeployTestDBPermissions** target is not executed until the **PublishDbPackages** target has been executed.
+Finally, don't forget to invoke the target. In the *Publish.proj* file, you can do this by adding the target to the dependency list for the default **FullPublish** target. You need to ensure that the **DeployTestDBPermissions** target is not executed until the **PublishDbPackages** target has been executed.
 
 
 [!code-xml[Main](deploying-database-role-memberships-to-test-environments/samples/sample5.xml)]
@@ -120,7 +120,7 @@ Finally, don&#x27;t forget to invoke the target. In the *Publish.proj* file, you
 
 ## Conclusion
 
-This topic described one way in which you can add database users and role memberships as a post-deployment action when you deploy a database project. This is typically useful when you regularly re-create a database in a test environment, but it should usually be avoided when you deploy databases to staging or production environments. As such, you should ensure that you use the necessary conditional logic so that database users and role memberships are only created when it&#x27;s appropriate to do so.
+This topic described one way in which you can add database users and role memberships as a post-deployment action when you deploy a database project. This is typically useful when you regularly re-create a database in a test environment, but it should usually be avoided when you deploy databases to staging or production environments. As such, you should ensure that you use the necessary conditional logic so that database users and role memberships are only created when it's appropriate to do so.
 
 ## Further Reading
 

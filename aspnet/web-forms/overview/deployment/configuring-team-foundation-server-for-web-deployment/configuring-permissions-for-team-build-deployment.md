@@ -29,7 +29,7 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 When you install the Team Foundation Server (TFS) 2010 build service, you specify the identity with which you want the service to run. By default, this is the Network Service account. Alternatively, you can configure the build service to run using a domain account.
 
-Any deployment tasks that require Windows authentication, and that you plan to automate using Team Build, will run using the build service identity. As such, you&#x27;ll need to grant the build service identity any required permissions on your web servers and your database servers.
+Any deployment tasks that require Windows authentication, and that you plan to automate using Team Build, will run using the build service identity. As such, you'll need to grant the build service identity any required permissions on your web servers and your database servers.
 
 > [!NOTE]
 > The Network Service account uses the machine account to authenticate to other computers. Machine accounts take the form *[domain name]\[machine name]***$**&#x2014;for example, **FABRIKAM\TFSBUILD$**. As such, if your build service runs using the Network Service identity, you should grant any required permissions to the machine account identity for your build server.
@@ -44,17 +44,17 @@ As described in [Choosing the Right Approach to Web Deployment](../configuring-s
 
 The remote agent has two key limitations in this case:
 
-- The remote agent supports only NTLM authentication. In other words, the deployment must use the build service identity&#x2014;you can&#x27;t impersonate another account.
+- The remote agent supports only NTLM authentication. In other words, the deployment must use the build service identity&#x2014;you can't impersonate another account.
 - To use the remote agent, the account that performs the deployment must be an administrator on the target server.
 
-Together, these two limitations make the remote agent approach undesirable for an automated Team Build deployment. To use this approach, you&#x27;d need to make the build service account an administrator on any target web servers.
+Together, these two limitations make the remote agent approach undesirable for an automated Team Build deployment. To use this approach, you'd need to make the build service account an administrator on any target web servers.
 
 In contrast, the Web Deploy Handler approach offers various advantages:
 
 - The Web Deploy Handler supports basic authentication over HTTPS, which allows you to pass the credentials of an alternative account to the IIS Web Deployment Tool (Web Deploy).
 - You can configure target web servers to allow non-administrator users to deploy content to specific IIS websites using the Web Deploy Handler.
 
-As a result, it&#x27;s clearly preferable to target the Web Deploy Handler when you automate web package deployment from Team Build. This is the recommended process:
+As a result, it's clearly preferable to target the Web Deploy Handler when you automate web package deployment from Team Build. This is the recommended process:
 
 1. Create a low-privileged domain account to use for the deployment.
 2. Configure the Web Deploy Handler and grant the account the required permissions to deploy content to a specific IIS website, as described in [Configuring a Web Server for Web Deploy Publishing (Web Deploy Handler)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md).
@@ -70,7 +70,7 @@ To deploy a database to SQL Server, you must:
 
 - Create a login for the deploying account on the SQL Server instance.
 - Grant the login **DBCreator** permissions on the SQL Server instance.
-- After the initial deployment, add the login to the **db\_owner** role on the target database. This is required because on subsequent deployments, you&#x27;re modifying an existing database rather than creating a new database.
+- After the initial deployment, add the login to the **db\_owner** role on the target database. This is required because on subsequent deployments, you're modifying an existing database rather than creating a new database.
 
 You can authenticate to a SQL Server instance using either NTLM authentication or SQL Server authentication:
 

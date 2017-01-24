@@ -20,10 +20,10 @@ by [Jason Lee](https://github.com/jrjlee)
 
 > This topic illustrates how a fictional company manages the deployment of an ASP.NET web application through test, staging, and production environments as part of a continuous development process. Throughout the topic, links are provided to further information and walkthroughs on how to perform specific tasks.
 > 
-> The topic is designed to provide a high-level overview for a [series of tutorials](deploying-web-applications-in-enterprise-scenarios.md) on web deployment in the enterprise. Don&#x27;t worry if you&#x27;re not familiar with some of the concepts described here&#x2014;the tutorials that follow provide detailed information on all of these tasks and techniques.
+> The topic is designed to provide a high-level overview for a [series of tutorials](deploying-web-applications-in-enterprise-scenarios.md) on web deployment in the enterprise. Don't worry if you're not familiar with some of the concepts described here&#x2014;the tutorials that follow provide detailed information on all of these tasks and techniques.
 > 
 > > [!NOTE]
-> > Forthe sake of simplicity, this topic doesn&#x27;t discuss updating databases as part of the deployment process. However, making incremental updates to databases features is a requirement of many enterprise deployment scenarios, and you can find guidance on how to accomplish this later in this tutorial series. For more information, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
+> > Forthe sake of simplicity, this topic doesn't discuss updating databases as part of the deployment process. However, making incremental updates to databases features is a requirement of many enterprise deployment scenarios, and you can find guidance on how to accomplish this later in this tutorial series. For more information, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
 
 
 ## Overview
@@ -45,7 +45,7 @@ These stages form part of a continuous development cycle.
 
 ![](application-lifecycle-management-from-development-to-production/_static/image1.png)
 
-In practice, the process is slightly more complicated than this, as you&#x27;ll see when we look at each stage in more detail. Fabrikam, Inc. uses a different approach to deployment for each target environment.
+In practice, the process is slightly more complicated than this, as you'll see when we look at each stage in more detail. Fabrikam, Inc. uses a different approach to deployment for each target environment.
 
 ![](application-lifecycle-management-from-development-to-production/_static/image2.png)
 
@@ -54,7 +54,7 @@ The rest of this topic examines these key stages of this deployment lifecycle:
 - **Prerequisites**: How you need to configure your server infrastructure before you put your deployment logic in place.
 - **Initial development and deployment**: What you need to do before you deploy your solution for the first time.
 - **Deployment to test**: How to package and deploy content to a test environment automatically when a developer checks in new code.
-- **Deployment to staging**: How to deploy specific builds to a staging environment and how to perform "what if" deployments to ensure that a deployment won&#x27;t cause any problems.
+- **Deployment to staging**: How to deploy specific builds to a staging environment and how to perform "what if" deployments to ensure that a deployment won't cause any problems.
 - **Deployment to production**: How to import web packages into a production environment when network infrastructure prevents remote deployment.
 
 ## Prerequisites
@@ -132,7 +132,7 @@ The **DeployOnBuild=true** and **DeployTarget=package** properties are used when
 > For a detailed walkthrough on how to create a build definition like this, see [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).
 
 
-The *Publish.proj* file contains targets that build each project in the solution. However, it also includes conditional logic that skips these build targets if you&#x27;re executing the file in Team Build. This lets you take advantage of the additional build functionality that Team Build offers, like the ability to run unit tests. If the solution build or the unit tests fail, the *Publish.proj* file will not be executed and the application will not be deployed.
+The *Publish.proj* file contains targets that build each project in the solution. However, it also includes conditional logic that skips these build targets if you're executing the file in Team Build. This lets you take advantage of the additional build functionality that Team Build offers, like the ability to run unit tests. If the solution build or the unit tests fail, the *Publish.proj* file will not be executed and the application will not be deployed.
 
 The conditional logic is accomplished by evaluating the **BuildingInTeamBuild** property. This is an MSBuild property that is automatically set to **true** when you use Team Build to build your projects.
 
@@ -144,16 +144,16 @@ When a build meets all of the requirements of the developer team in the test env
 
 The build definitions used to deploy the solution to the staging environment, **DeployToStaging-WhatIf** and **DeployToStaging**, share these characteristics:
 
-- They don&#x27;t actually build anything. When Rob deploys the solution to the staging environment, he wants to deploy a specific, existing build that&#x27;s already been verified and validated in the test environment. The build definitions just need to run the custom project files that control the deployment process.
+- They don't actually build anything. When Rob deploys the solution to the staging environment, he wants to deploy a specific, existing build that's already been verified and validated in the test environment. The build definitions just need to run the custom project files that control the deployment process.
 - When Rob triggers a build, he uses the build parameters to specify which build contains the resources he wants to deploy from the build server.
 - The build definitions are not triggered automatically. Rob manually queues a build when he wants to deploy the solution to the staging environment.
 
 This is the high-level process for a deployment to the staging environment:
 
 1. The staging environment administrator, Rob Walters, queues a build using the **DeployToStaging-WhatIf** build definition. Rob uses the build definition parameters to specify which build he wants to deploy.
-2. The **DeployToStaging-WhatIf** build definition runs the custom project files in "what if" mode. This generates log files as if Rob was performing a live deployment, but it doesn&#x27;t actually make any changes to the destination environment.
+2. The **DeployToStaging-WhatIf** build definition runs the custom project files in "what if" mode. This generates log files as if Rob was performing a live deployment, but it doesn't actually make any changes to the destination environment.
 3. Rob reviews the log files to ascertain the effects of the deployment on the staging environment. In particular, Rob wants to check what will be added, what will be updated, and what will be deleted.
-4. If Rob is satisfied that the deployment won&#x27;t make any undesirable changes to existing resources or data, he queues a build using the **DeployToStaging** build definition.
+4. If Rob is satisfied that the deployment won't make any undesirable changes to existing resources or data, he queues a build using the **DeployToStaging** build definition.
 5. The **DeployToStaging** build definition runs the custom project files. These publish the deployment resources to the primary web server in the staging environment.
 6. The Web Farm Framework (WFF) controller synchronizes the web servers in the staging environment. This makes the application available on all the web servers in the server farm.
 
@@ -185,7 +185,7 @@ Within the *Publish.proj* file, the **WhatIf** property indicates that all deplo
 > For more information on how to configure "what if" deployments, see [Performing a "What If" Deployment](../advanced-enterprise-web-deployment/performing-a-what-if-deployment.md).
 
 
-Once you&#x27;ve deployed your application to the primary web server in the staging environment, the WFF will automatically synchronize the application across all the servers in the server farm.
+Once you've deployed your application to the primary web server in the staging environment, the WFF will automatically synchronize the application across all the servers in the server farm.
 
 > [!NOTE]
 > For more information on configuring the WFF to synchronize web servers, see [Create a Server Farm with the Web Farm Framework](../configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework.md).
@@ -214,7 +214,7 @@ IIS Manager includes an Import Application Package Wizard that makes it easy to 
 
 This topic provided an illustration of the deployment lifecycle for a typical enterprise-scale web application.
 
-This topic forms part of a series of tutorials that provide guidance on various aspects of web application deployment. In practice, there are lots of additional tasks and considerations at each stage of the deployment process, and it&#x27;s not possible to cover them all in a single walkthrough. For more information, consult these tutorials:
+This topic forms part of a series of tutorials that provide guidance on various aspects of web application deployment. In practice, there are lots of additional tasks and considerations at each stage of the deployment process, and it's not possible to cover them all in a single walkthrough. For more information, consult these tutorials:
 
 - [Web Deployment in the Enterprise](../web-deployment-in-the-enterprise/web-deployment-in-the-enterprise.md). This tutorial provides a comprehensive introduction to web deployment techniques using MSBuild and the IIS Web Deployment Tool (Web Deploy).
 - [Configuring Server Environments for Web Deployment](../configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment.md). This tutorial provides guidance on how to configure Windows server environments to support various deployment scenarios.

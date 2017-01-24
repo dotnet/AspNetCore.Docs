@@ -24,9 +24,9 @@ by [Jason Lee](https://github.com/jrjlee)
 > 
 > - Add additional information about the packaging process to the build logs.
 > - Log errors under certain conditions, for example, if duplicate files are found in the packaging list.
-> - Create a Log directory in the *ProjectName*\_Package folder and use it to record information about the files you&#x27;re packaging.
+> - Create a Log directory in the *ProjectName*\_Package folder and use it to record information about the files you're packaging.
 > 
-> If the packaging process is failing, or your web deployment packages don&#x27;t contain the files that you expect, you can use this information to troubleshoot the process and pinpoint where things are going wrong.
+> If the packaging process is failing, or your web deployment packages don't contain the files that you expect, you can use this information to troubleshoot the process and pinpoint where things are going wrong.
 > 
 > > [!NOTE]
 > > The **EnablePackageProcessLoggingAndAssert** property only works if you build your project using the **Debug** configuration. The property is ignored in other configurations.
@@ -38,7 +38,7 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Understanding the EnablePackageProcessLoggingAndAssert Property
 
-[Building and Packaging Web Application Projects](../web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.md) described how the Web Publishing Pipeline (WPP) provides a set of MSBuild targets that extend the functionality of MSBuild and enable it to integrate with the Internet Information Services (IIS) Web Deployment Tool (Web Deploy). When you package a web application project, you&#x27;re invoking WPP targets.
+[Building and Packaging Web Application Projects](../web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.md) described how the Web Publishing Pipeline (WPP) provides a set of MSBuild targets that extend the functionality of MSBuild and enable it to integrate with the Internet Information Services (IIS) Web Deployment Tool (Web Deploy). When you package a web application project, you're invoking WPP targets.
 
 Lots of these WPP targets include conditional logic that logs additional information when the **EnablePackageProcessLoggingAndAssert** property is set to **true**. For example, if you review the **Package** target, you can see that it creates an additional log directory and writes a list of files to a text file if **EnablePackageProcessLoggingAndAssert** is equal to **true**.
 
@@ -60,13 +60,13 @@ If you build your project from the command line, you can supply a value for the 
 [!code-console[Main](troubleshooting-the-packaging-process/samples/sample2.cmd)]
 
 
-If you&#x27;re using a custom project file to build your projects, you can include the **EnablePackageProcessLoggingAndAssert** value in the **Properties** attribute of the **MSBuild** task:
+If you're using a custom project file to build your projects, you can include the **EnablePackageProcessLoggingAndAssert** value in the **Properties** attribute of the **MSBuild** task:
 
 
 [!code-xml[Main](troubleshooting-the-packaging-process/samples/sample3.xml)]
 
 
-If you&#x27;re using a Team Foundation Server (TFS) build definition to build your projects, you can supply a value for the **EnablePackageProcessLoggingAndAssert** property in the **MSBuild Arguments** row:![](troubleshooting-the-packaging-process/_static/image1.png)
+If you're using a Team Foundation Server (TFS) build definition to build your projects, you can supply a value for the **EnablePackageProcessLoggingAndAssert** property in the **MSBuild Arguments** row:![](troubleshooting-the-packaging-process/_static/image1.png)
 
 > [!NOTE]
 > For more information on creating and configuring build definitions, see [Creating a Build Definition That Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).
@@ -99,7 +99,7 @@ The list of files that you see will vary according to the things in your project
 > The names of the additional log files typically correspond to WPP targets. You can review these targets by examining the *Microsoft.Web.Publishing.targets* file in the %PROGRAMFILES(x86)%\MSBuild\Microsoft\VisualStudio\v10.0\Web folder.
 
 
-If the contents of your web package aren&#x27;t what you expected, reviewing these files can be a useful way to identify at what point in the process things went wrong.
+If the contents of your web package aren't what you expected, reviewing these files can be a useful way to identify at what point in the process things went wrong.
 
 ## Conclusion
 

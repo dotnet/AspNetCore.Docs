@@ -58,7 +58,7 @@ The WPP also parameterizes these properties in the deployment package it generat
 
 ### Custom Parameterization
 
-In more complex deployment scenarios, you&#x27;ll often want to parameterize additional properties before you deploy your project. Generally speaking, you should parameterize any properties and settings that will vary between destination environments. These can include:
+In more complex deployment scenarios, you'll often want to parameterize additional properties before you deploy your project. Generally speaking, you should parameterize any properties and settings that will vary between destination environments. These can include:
 
 - Service endpoints in the *web.config* file.
 - Application settings in the *web.config*file.
@@ -68,7 +68,7 @@ The easiest way to parameterize these properties is to add a *parameters.xml* fi
 
 ![](configuring-parameters-for-web-package-deployment/_static/image1.png)
 
-If you open this file, you&#x27;ll see that it contains a single **parameter** entry. The entry uses an XML Path Language (XPath) query to locate and parameterize the endpoint URL of the ContactService Windows Communication Foundation (WCF) service in the *web.config* file.
+If you open this file, you'll see that it contains a single **parameter** entry. The entry uses an XML Path Language (XPath) query to locate and parameterize the endpoint URL of the ContactService Windows Communication Foundation (WCF) service in the *web.config* file.
 
 
 [!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample2.xml)]
@@ -86,7 +86,7 @@ For full details on how to create a *parameters.xml* file, see [How to: Use Para
 
 ## Modifying the SetParameters.xml File
 
-If you plan to deploy the web application package manually&#x2014;either by running the *.deploy.cmd* file or by running MSDeploy.exe from the command line&#x2014;there&#x27;s nothing to stop you manually editing the *SetParameters.xml* file prior to the deployment. However, if you're working on an enterprise-scale solution, you may need to deploy a web application package as part of a larger, automated build and deployment process. In this scenario, you need the Microsoft Build Engine (MSBuild) to modify the *SetParameters.xml* file for you. You can do this by using the MSBuild **XmlPoke** task.
+If you plan to deploy the web application package manually&#x2014;either by running the *.deploy.cmd* file or by running MSDeploy.exe from the command line&#x2014;there's nothing to stop you manually editing the *SetParameters.xml* file prior to the deployment. However, if you're working on an enterprise-scale solution, you may need to deploy a web application package as part of a larger, automated build and deployment process. In this scenario, you need the Microsoft Build Engine (MSBuild) to modify the *SetParameters.xml* file for you. You can do this by using the MSBuild **XmlPoke** task.
 
 The [Contact Manager sample solution](the-contact-manager-solution.md) illustrates this process. The code examples that follow have been edited to show only the details that are relevant to this example.
 
@@ -123,16 +123,16 @@ Finally, in the *Publish.proj* file, the **PublishWebPackages** target uses the 
 [!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample6.xml)]
 
 
-You&#x27;ll notice that each **XmlPoke** task specifies four attribute values:
+You'll notice that each **XmlPoke** task specifies four attribute values:
 
 - The **XmlInputPath** attribute tells the task where to find the file you want to modify.
 - The **Query** attribute is an XPath query that identifies the XML node you want to change.
 - The **Value** attribute is the new value you want to insert into the selected XML node.
-- The **Condition** attribute is the criteria on which the task should run or not run. In these cases, the condition ensures that you don&#x27;t try to insert a null or empty value into the *SetParameters.xml* file.
+- The **Condition** attribute is the criteria on which the task should run or not run. In these cases, the condition ensures that you don't try to insert a null or empty value into the *SetParameters.xml* file.
 
 ## Conclusion
 
-This topic described the role of the *SetParameters.xm*l file and explained how it&#x27;s generated when you build a web application project. It explained how you can parameterize additional settings by adding a *parameters.xml* file to your project. It also described how you can modify the *SetParameters.xml* file as part of a larger, automated build process, by using the **XmlPoke** task in your project files.
+This topic described the role of the *SetParameters.xm*l file and explained how it's generated when you build a web application project. It explained how you can parameterize additional settings by adding a *parameters.xml* file to your project. It also described how you can modify the *SetParameters.xml* file as part of a larger, automated build process, by using the **XmlPoke** task in your project files.
 
 The next topic, [Deploying Web Packages](deploying-web-packages.md), describes how you can deploy a web package either by running the *.deploy.cmd* file or by using MSDeploy.exe commands directly. In both cases, you can specify your *SetParameters.xml* file as a deployment parameter.
 

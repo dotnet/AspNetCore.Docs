@@ -36,23 +36,23 @@ Yes, if the user who will deploy the content can supply the credentials of an ad
 - Development or test environments, where the developer has full control over the destination web server and database server.
 - Smaller organizations in which a single user or a small group of users has control over the entire application lifecycle.
 
-In lots of larger organizations, and particularly for staging or production environments, it&#x27;s often not realistic to give users administrator rights on web servers. In the case of hosted web servers, this is especially unlikely to be the case. In addition, if you&#x27;re planning to automate deployment from a build server, you may not want to use administrator credentials for the deployment process. In these scenarios, configuring your web servers to support deployment using the [Web Deploy Handler](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md) may provide a more satisfactory choice.
+In lots of larger organizations, and particularly for staging or production environments, it's often not realistic to give users administrator rights on web servers. In the case of hosted web servers, this is especially unlikely to be the case. In addition, if you're planning to automate deployment from a build server, you may not want to use administrator credentials for the deployment process. In these scenarios, configuring your web servers to support deployment using the [Web Deploy Handler](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md) may provide a more satisfactory choice.
 
 ## Task Overview
 
-This topic describes how to configure an Internet Information Services (IIS) 7.5 web server to accept and deploy web packages from a remote computer using the Web Deploy Remote Agent approach. You&#x27;ll need to:
+This topic describes how to configure an Internet Information Services (IIS) 7.5 web server to accept and deploy web packages from a remote computer using the Web Deploy Remote Agent approach. You'll need to:
 
 - Install IIS 7.5 and the IIS 7 recommended configuration.
 - Install Web Deploy 2.1 or later.
 - Create an IIS website to host the deployed content.
 - Ensure that the Web Deployment Agent Service is running.
 
-To host the sample solution specifically, you&#x27;ll also need to:
+To host the sample solution specifically, you'll also need to:
 
 - Install the .NET Framework 4.0.
 - Install ASP.NET MVC 3.
 
-This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you&#x27;re starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
+This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a clean server build running Windows Server 2008 R2. Before you continue, ensure that:
 
 - Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
 - The server is domain-joined.
@@ -74,7 +74,7 @@ In this case, you need to install these things:
 - **ASP.NET MVC 3**. This installs the assemblies you need to run MVC 3 applications.
 
 > [!NOTE]
-> This walkthrough describes the use of the Web Platform Installer to install and configure the required components. Although you don&#x27;t have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
+> This walkthrough describes the use of the Web Platform Installer to install and configure the required components. Although you don't have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
 
 
 **To install the required products and components**
@@ -102,7 +102,7 @@ In this case, you need to install these things:
 11. Review the license terms, and if you consent to the terms, click **I Accept**.
 12. When the installation is complete, click **Finish**, and then close the **Web Platform Installer 3.0** window.
 
-If you installed the .NET Framework 4.0 before you installed IIS, you&#x27;ll need to run the [ASP.NET IIS Registration Tool](https://msdn.microsoft.com/en-us/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) to register the latest version of ASP.NET with IIS. If you don&#x27;t do this, you&#x27;ll find that IIS will serve static content (like HTML files) without any problems, but it will return **HTTP Error 404.0 – Not Found** when you attempt to browse to ASP.NET content. You can use this procedure to ensure that ASP.NET 4.0 is registered.
+If you installed the .NET Framework 4.0 before you installed IIS, you'll need to run the [ASP.NET IIS Registration Tool](https://msdn.microsoft.com/en-us/library/k6h9cz8h(v=VS.100).aspx) (aspnet\_regiis.exe) to register the latest version of ASP.NET with IIS. If you don't do this, you'll find that IIS will serve static content (like HTML files) without any problems, but it will return **HTTP Error 404.0 – Not Found** when you attempt to browse to ASP.NET content. You can use this procedure to ensure that ASP.NET 4.0 is registered.
 
 **To register ASP.NET 4.0 with IIS**
 
@@ -117,17 +117,17 @@ If you installed the .NET Framework 4.0 before you installed IIS, you&#x27;ll ne
 
     [!code-console[Main](configuring-a-web-server-for-web-deploy-publishing-remote-agent/samples/sample2.cmd)]
 
-As a good practice, use Windows Update again at this point to download and install any available updates for the new products and components you&#x27;ve installed.
+As a good practice, use Windows Update again at this point to download and install any available updates for the new products and components you've installed.
 
 ## Configure the IIS Website
 
-Before you can deploy web content to your server, you need to create and configure an IIS website to host the content. Web Deploy can only deploy web packages to an existing IIS website; it can&#x27;t create the website for you. At a high level, you&#x27;ll need to complete these tasks:
+Before you can deploy web content to your server, you need to create and configure an IIS website to host the content. Web Deploy can only deploy web packages to an existing IIS website; it can't create the website for you. At a high level, you'll need to complete these tasks:
 
 - Create a folder on the file system to host your content.
 - Create an IIS website to serve the content, and associate it with the local folder.
 - Grant read permissions to the application pool identity on the local folder.
 
-Although there&#x27;s nothing stopping you from deploying content to the default website in IIS, this approach is not recommended for anything other than test or demonstration scenarios. To simulate a production environment, you should create a new IIS website with settings that are specific to the requirements of your application.
+Although there's nothing stopping you from deploying content to the default website in IIS, this approach is not recommended for anything other than test or demonstration scenarios. To simulate a production environment, you should create a new IIS website with settings that are specific to the requirements of your application.
 
 **To create and configure an IIS website**
 
@@ -170,7 +170,7 @@ Although there&#x27;s nothing stopping you from deploying content to the default
     > [!NOTE]
     > The sample solution requires .NET Framework 4.0. This is not a requirement for Web Deploy in general.
 
-In order for your website to serve content, the application pool identity must have read permissions on the local folder that stores the content. In IIS 7.5, application pools run with a unique application pool identity by default (in contrast to previous versions of IIS, where application pools would typically run using the Network Service account). The application pool identity is not a real user account and does not show up on any lists of users or groups&#x2014;instead, it&#x27;s created dynamically when the application pool is started. Each application pool identity is added to the local **IIS\_IUSRS** security group as a hidden item.
+In order for your website to serve content, the application pool identity must have read permissions on the local folder that stores the content. In IIS 7.5, application pools run with a unique application pool identity by default (in contrast to previous versions of IIS, where application pools would typically run using the Network Service account). The application pool identity is not a real user account and does not show up on any lists of users or groups&#x2014;instead, it's created dynamically when the application pool is started. Each application pool identity is added to the local **IIS\_IUSRS** security group as a hidden item.
 
 To grant permissions to an application pool identity on a file or folder, you have two options:
 
@@ -213,7 +213,7 @@ By default, the Remote Agent Service listens on TCP port 80, at this URL:
 
 http://[*server name*]/MSDEPLOYAGENTSERVICE
 
-In most cases, you won&#x27;t need to configure any additional firewall rules for the Remote Agent Service because web servers typically listen for HTTP requests on port 80. If you customized your installation to listen on a nonstandard port, you&#x27;ll need to configure firewall exceptions as required.
+In most cases, you won't need to configure any additional firewall rules for the Remote Agent Service because web servers typically listen for HTTP requests on port 80. If you customized your installation to listen on a nonstandard port, you'll need to configure firewall exceptions as required.
 
 ## Conclusion
 

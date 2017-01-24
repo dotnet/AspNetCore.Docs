@@ -27,7 +27,7 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Task Overview
 
-To prepare a build server to build and deploy your solutions, you&#x27;ll need to:
+To prepare a build server to build and deploy your solutions, you'll need to:
 
 - Install and configure the TFS build service.
 - Install Visual Studio 2010.
@@ -36,9 +36,9 @@ To prepare a build server to build and deploy your solutions, you&#x27;ll need t
 
 This topic will show you how to perform these procedures or point to other resources where they exist. The tasks and walkthroughs in this topic assume that:
 
-- You&#x27;re starting with a clean server build running Windows Server 2008 R2 Service Pack 1.
+- You're starting with a clean server build running Windows Server 2008 R2 Service Pack 1.
 - The server is domain-joined with a static IP address.
-- You&#x27;ve installed the TFS application tier on a separate server, as described in [Enterprise Web Deployment: Scenario Overview](../deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview.md).
+- You've installed the TFS application tier on a separate server, as described in [Enterprise Web Deployment: Scenario Overview](../deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview.md).
 
 ### Who Performs These Procedures?
 
@@ -46,7 +46,7 @@ In most cases, a TFS administrator will be responsible for configuring build ser
 
 ## Install and Configure the TFS Build Service
 
-When you configure a build server, your first task is to install and configure the TFS build service. As part of this process, you&#x27;ll need to:
+When you configure a build server, your first task is to install and configure the TFS build service. As part of this process, you'll need to:
 
 - Install the TFS build service and configure a service account. Any build tasks, including deployment, will run using the identity of the build service account.
 - Create a *build controller* and one or more *build agents*. Each build controller manages a set of build agents. When you queue a build, the build controller assigns the build task to an available build agent. Each team project collection in TFS is mapped to a single build controller.
@@ -62,9 +62,9 @@ The [Administering Team Foundation Build](https://msdn.microsoft.com/en-us/libra
 
 ## Install Required Products and Components
 
-To enable the build server to build your solutions, you must install any products, components, or assemblies that your solution requires. Before you install any web platform components, you should install Visual Studio 2010 (any version) on the build server. This ensures that the core Microsoft Build Engine (MSBuild) target files and the Web Publishing Pipeline (WPP) target files are available to the build service. The Visual Studio installer should also install Web Deploy, which you&#x27;ll need if you plan to deploy web packages as part of your build process.
+To enable the build server to build your solutions, you must install any products, components, or assemblies that your solution requires. Before you install any web platform components, you should install Visual Studio 2010 (any version) on the build server. This ensures that the core Microsoft Build Engine (MSBuild) target files and the Web Publishing Pipeline (WPP) target files are available to the build service. The Visual Studio installer should also install Web Deploy, which you'll need if you plan to deploy web packages as part of your build process.
 
-The best way to install common web platform components is to use the [Web Platform Installer](https://go.microsoft.com/?linkid=9805118). This ensures that you&#x27;re installing the latest version of each product, and it also automatically detects and installs any prerequisites for each product. In the case of the [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) solution, you should use the Web Platform Installer to install these products and components:
+The best way to install common web platform components is to use the [Web Platform Installer](https://go.microsoft.com/?linkid=9805118). This ensures that you're installing the latest version of each product, and it also automatically detects and installs any prerequisites for each product. In the case of the [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) solution, you should use the Web Platform Installer to install these products and components:
 
 - **.NET Framework 4.0**. This is required to run applications that were built on this version of the .NET Framework.
 - **Web Deployment Tool 2.1 or later**. This installs Web Deploy (and its underlying executable, MSDeploy.exe) on your server. As part of this process, it installs and starts the Web Deployment Agent Service. This service lets you deploy web packages from a remote computer.
@@ -78,7 +78,7 @@ The best way to install common web platform components is to use the [Web Platfo
     2. Visual Web Developer. This ensures that the WPP targets are added to your build server.
 
         ![](configuring-a-tfs-build-server-for-web-deployment/_static/image1.png)
-2. When the installation of Visual Studio 2010 is complete, download and install [Visual Studio 2010 Service Pack 1](https://go.microsoft.com/?linkid=9805133) (if it&#x27;s not already included in your installation media).
+2. When the installation of Visual Studio 2010 is complete, download and install [Visual Studio 2010 Service Pack 1](https://go.microsoft.com/?linkid=9805133) (if it's not already included in your installation media).
 
     > [!NOTE]
     > Visual Studio 2010 Service Pack 1 resolves a bug that can prevent MSBuild from locating the MSDeploy executable.
@@ -99,7 +99,7 @@ The best way to install common web platform components is to use the [Web Platfo
 12. When the installation is complete, click **Finish**, and then close the **Web Platform Installer 3.0** window.
 
 > [!NOTE]
-> If your deployment process includes the use of tools like VSDBCMD.exe or SQLCMD.exe, you&#x27;ll need to ensure that these are installed on your build server. VSDBCMD.exe is a Visual Studio tool and is typically added to the server when you install Team Foundation Build. SQLCMD.exe is a SQL Server tool. You can download a stand-alone version of SQLCMD.exe from the [Microsoft SQL Server 2008 R2 Feature Pack](https://go.microsoft.com/?linkid=9805134) page.
+> If your deployment process includes the use of tools like VSDBCMD.exe or SQLCMD.exe, you'll need to ensure that these are installed on your build server. VSDBCMD.exe is a Visual Studio tool and is typically added to the server when you install Team Foundation Build. SQLCMD.exe is a SQL Server tool. You can download a stand-alone version of SQLCMD.exe from the [Microsoft SQL Server 2008 R2 Feature Pack](https://go.microsoft.com/?linkid=9805134) page.
 
 
 ## Conclusion

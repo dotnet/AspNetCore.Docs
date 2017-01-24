@@ -18,9 +18,9 @@ by [Jason Lee](https://github.com/jrjlee)
 
 [Download PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
-> Microsoft Build Engine (MSBuild) project files lie at the heart of the build and deployment process. This topic starts with a conceptual overview of MSBuild and the project file. It describes the key components you&#x27;ll come across when you work with project files, and it works through an example of how you can use project files to deploy real-world applications.
+> Microsoft Build Engine (MSBuild) project files lie at the heart of the build and deployment process. This topic starts with a conceptual overview of MSBuild and the project file. It describes the key components you'll come across when you work with project files, and it works through an example of how you can use project files to deploy real-world applications.
 > 
-> What you&#x27;ll learn:
+> What you'll learn:
 > 
 > - How MSBuild uses MSBuild project files to build projects.
 > - How MSBuild integrates with deployment technologies, like the Internet Information Services (IIS) Web Deployment Tool (Web Deploy).
@@ -32,7 +32,7 @@ by [Jason Lee](https://github.com/jrjlee)
 
 When you create and build solutions in Visual Studio, Visual Studio uses MSBuild to build each project in your solution. Every Visual Studio project includes an MSBuild project file, with a file extension that reflects the type of project&#x2014;for example, a C# project (.csproj), a Visual Basic.NET project (.vbproj), or a database project (.dbproj). In order to build a project, MSBuild must process the project file associated with the project. The project file is an XML document that contains all the information and instructions that MSBuild needs in order to build your project, like the content to include, the platform requirements, versioning information, web server or database server settings, and the tasks that must be performed.
 
-MSBuild project files are based on the [MSBuild XML schema](https://msdn.microsoft.com/en-us/library/5dy88c2e.aspx), and as a result the build process is entirely open and transparent. In addition, you don&#x27;t need to install Visual Studio in order to use the MSBuild engine&#x2014;the MSBuild.exe executable is part of the .NET Framework, and you can run it from a command prompt. As a developer, you can craft your own MSBuild project files, using the MSBuild XML schema, to impose sophisticated and fine-grained control over how your projects are built and deployed. These custom project files work in exactly the same way as the project files that Visual Studio generates automatically.
+MSBuild project files are based on the [MSBuild XML schema](https://msdn.microsoft.com/en-us/library/5dy88c2e.aspx), and as a result the build process is entirely open and transparent. In addition, you don't need to install Visual Studio in order to use the MSBuild engine&#x2014;the MSBuild.exe executable is part of the .NET Framework, and you can run it from a command prompt. As a developer, you can craft your own MSBuild project files, using the MSBuild XML schema, to impose sophisticated and fine-grained control over how your projects are built and deployed. These custom project files work in exactly the same way as the project files that Visual Studio generates automatically.
 
 > [!NOTE]
 > You can also use MSBuild project files with the Team Build service in Team Foundation Server (TFS). For example, you can use project files in continuous integration (CI) scenarios to automate deployment to a test environment when new code is checked in. For more information, see [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md).
@@ -43,17 +43,17 @@ MSBuild project files are based on the [MSBuild XML schema](https://msdn.microso
 When you create your own project files, you can use any file extension you like. However, to make your solutions easier for others to understand, you should use these common conventions:
 
 - Use the .proj extension when you create a project file that builds projects.
-- Use the .targets extension when you create a reusable project file to import into other project files. Files with a .targets extension typically don&#x27;t build anything themselves, they simply contain instructions that you can import into your .proj files.
+- Use the .targets extension when you create a reusable project file to import into other project files. Files with a .targets extension typically don't build anything themselves, they simply contain instructions that you can import into your .proj files.
 
 ### Integration with Deployment Technologies
 
-If you&#x27;ve worked with web application projects in Visual Studio 2010, like ASP.NET web applications and ASP.NET MVC web applications, you&#x27;ll know that these projects include built-in support for packaging and deploying the web application to a target environment. The **Properties** pages for these projects include **Package/Publish Web** and **Package/Publish SQL** tabs that you can use to configure how the components of your application are packaged and deployed. This shows the **Package/Publish Web** tab:
+If you've worked with web application projects in Visual Studio 2010, like ASP.NET web applications and ASP.NET MVC web applications, you'll know that these projects include built-in support for packaging and deploying the web application to a target environment. The **Properties** pages for these projects include **Package/Publish Web** and **Package/Publish SQL** tabs that you can use to configure how the components of your application are packaged and deployed. This shows the **Package/Publish Web** tab:
 
 ![](understanding-the-project-file/_static/image1.png)
 
 The underlying technology behind these capabilities is known as the Web Publishing Pipeline (WPP). The WPP essentially brings MSBuild and [Web Deploy](https://go.microsoft.com/?linkid=9805122) together to provide a complete build, package, and deployment process for your web applications.
 
-The good news is that you can take advantage of the integration points that the WPP provides when you create custom project files for web projects. You can include deployment instructions in your project file, which allows you to build your projects, create web deployment packages, and install these packages on remote servers through a single project file and a single call to MSBuild. You can also call any other executables as part of your build process. For example, you can run the VSDBCMD.exe command-line tool to deploy a database from a schema file. Over the course of this topic, you&#x27;ll see how you can take advantage of these capabilities to meet the requirements of your enterprise deployment scenarios.
+The good news is that you can take advantage of the integration points that the WPP provides when you create custom project files for web projects. You can include deployment instructions in your project file, which allows you to build your projects, create web deployment packages, and install these packages on remote servers through a single project file and a single call to MSBuild. You can also call any other executables as part of your build process. For example, you can run the VSDBCMD.exe command-line tool to deploy a database from a schema file. Over the course of this topic, you'll see how you can take advantage of these capabilities to meet the requirements of your enterprise deployment scenarios.
 
 > [!NOTE]
 > For more information on how the web application deployment process works, see [ASP.NET Web Application Project Deployment Overview](https://msdn.microsoft.com/en-us/library/dd394698.aspx).
@@ -61,7 +61,7 @@ The good news is that you can take advantage of the integration points that the 
 
 ## The Anatomy of a Project File
 
-Before you look at the build process in more detail, it's worth taking a few moments to familiarize yourself with the basic structure of an MSBuild project file. This section provides an overview of the more common elements that you'll encounter when you review, edit, or create a project file. In particular, you&#x27;ll learn:
+Before you look at the build process in more detail, it's worth taking a few moments to familiarize yourself with the basic structure of an MSBuild project file. This section provides an overview of the more common elements that you'll encounter when you review, edit, or create a project file. In particular, you'll learn:
 
 - How to use *properties* to manage variables for the build process.
 - How to use *items* to identify the inputs to the build process, like code files.
@@ -94,7 +94,7 @@ To retrieve a property value, you use the format **$(***PropertyName***)***.*For
 
 
 > [!NOTE]
-> You&#x27;ll see examples of how and when to use property values later in this topic.
+> You'll see examples of how and when to use property values later in this topic.
 
 
 Embedding information as static properties in a project file is not always the ideal approach to managing the build process. In a lot of scenarios, you'll want to obtain the information from other sources or empower the user to provide the information from the command prompt. MSBuild allows you to specify any property value as a command-line parameter. For example, the user could provide a value for **ServerName** when he or she runs MSBuild.exe from the command line.
@@ -133,7 +133,7 @@ By specifying multiple **Item** elements with the same name, you're effectively 
 [!code-xml[Main](understanding-the-project-file/samples/sample7.xml)]
 
 
-In this way, the project file is instructing MSBuild to construct lists of files that need to be processed in the same way&#x2014;the **Reference** list includes assemblies that must be in place for a successful build, the **Compile** list includes code files that must be compiled, and the **Content** list includes resources that must be copied unaltered. We&#x27;ll look at how the build process references and uses these items later in this topic.
+In this way, the project file is instructing MSBuild to construct lists of files that need to be processed in the same way&#x2014;the **Reference** list includes assemblies that must be in place for a successful build, the **Compile** list includes code files that must be compiled, and the **Content** list includes resources that must be copied unaltered. We'll look at how the build process references and uses these items later in this topic.
 
 Item elements can also include [ItemMetadata](https://msdn.microsoft.com/en-us/library/ms164284.aspx) child elements. These are user-defined key-value pairs and essentially represent properties that are specific to that item. For example, a lot of the **Compile** item elements in the project file include **DependentUpon** child elements.
 
@@ -179,7 +179,7 @@ Alternatively, you can add a **DefaultTargets** attribute to the **Project** ele
 [!code-xml[Main](understanding-the-project-file/samples/sample11.xml)]
 
 
-In this case, you don&#x27;t need to specify the target from the command line. You can simply specify the project file, and MSBuild will invoke the **FullPublish** target for you.
+In this case, you don't need to specify the target from the command line. You can simply specify the project file, and MSBuild will invoke the **FullPublish** target for you.
 
 
 [!code-console[Main](understanding-the-project-file/samples/sample12.cmd)]
@@ -187,7 +187,7 @@ In this case, you don&#x27;t need to specify the target from the command line. Y
 
 Both targets and tasks can include **Condition** attributes. As such, you can choose to omit entire targets or individual tasks if certain conditions are met.
 
-Generally speaking, when you create useful tasks and targets, you&#x27;ll need to refer to the properties and items that you&#x27;ve defined elsewhere in the project file:
+Generally speaking, when you create useful tasks and targets, you'll need to refer to the properties and items that you've defined elsewhere in the project file:
 
 - To use a property value, type **$(***PropertyName***)**, where *PropertyName* is the name of the **Property** element or the name of the parameter.
 - To use an item, type **@(***ItemName***)**, where *ItemName* is the name of the **Item** element.
@@ -213,7 +213,7 @@ In this sample, you can observe these key points:
 
     [!code-xml[Main](understanding-the-project-file/samples/sample15.xml)]
 
-You can also see that the **MSBuild** task invokes a target named **Build**. This is one of several built-in targets that are widely used in Visual Studio project files and are available to you in your custom project files, like **Build**, **Clean**, **Rebuild**, and **Publish**. You&#x27;ll learn more about using targets and tasks to control the build process, and about the **MSBuild** task in particular, later in this topic.
+You can also see that the **MSBuild** task invokes a target named **Build**. This is one of several built-in targets that are widely used in Visual Studio project files and are available to you in your custom project files, like **Build**, **Clean**, **Rebuild**, and **Publish**. You'll learn more about using targets and tasks to control the build process, and about the **MSBuild** task in particular, later in this topic.
 
 > [!NOTE]
 > For more information on targets, see [MSBuild Targets](https://msdn.microsoft.com/en-us/library/ms171462.aspx).
@@ -221,7 +221,7 @@ You can also see that the **MSBuild** task invokes a target named **Build**. Thi
 
 ## Splitting Project Files to Support Multiple Environments
 
-Suppose you want to be able to deploy a solution to multiple environments, like test servers, staging platforms, and production environments. The configuration may vary substantially between these environments&#x2014;not just in terms of server names, connection strings, and so on, but also potentially in terms of credentials, security settings, and lots of other factors. If you need to do this regularly, it&#x27;s not really expedient to edit multiple properties in your project file every time you switch the target environment. Nor is it an ideal solution to require an endless list of property values to be provided to the build process.
+Suppose you want to be able to deploy a solution to multiple environments, like test servers, staging platforms, and production environments. The configuration may vary substantially between these environments&#x2014;not just in terms of server names, connection strings, and so on, but also potentially in terms of credentials, security settings, and lots of other factors. If you need to do this regularly, it's not really expedient to edit multiple properties in your project file every time you switch the target environment. Nor is it an ideal solution to require an endless list of property values to be provided to the build process.
 
 Fortunately there is an alternative. MSBuild lets you split your build configuration across multiple project files. To see how this works, in the sample solution, notice that there are two custom project files:
 

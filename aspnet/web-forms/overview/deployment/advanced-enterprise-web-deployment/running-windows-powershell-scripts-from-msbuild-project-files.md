@@ -39,14 +39,14 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Task Overview
 
-To run a Windows PowerShell script as part of an automated or single-step deployment process, you&#x27;ll need to complete these high-level tasks:
+To run a Windows PowerShell script as part of an automated or single-step deployment process, you'll need to complete these high-level tasks:
 
 - Add the Windows PowerShell script to your solution and to source control.
 - Create a command that invokes your Windows PowerShell script.
 - Escape any reserved XML characters in your command.
 - Create a target in your custom MSBuild project file and use the **Exec** task to run your command.
 
-This topic will show you how to perform these procedures. The tasks and walkthroughs in this topic assume that you&#x27;re already familiar with MSBuild targets and properties, and that you understand how to use a custom MSBuild project file to drive a build and deployment process. For more information, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md).
+This topic will show you how to perform these procedures. The tasks and walkthroughs in this topic assume that you're already familiar with MSBuild targets and properties, and that you understand how to use a custom MSBuild project file to drive a build and deployment process. For more information, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md).
 
 ## Creating and Adding Windows PowerShell Scripts
 
@@ -67,7 +67,7 @@ To make the **LogDeploy.ps1** script available to MSBuild, you need to:
 - Add the script to source control.
 - Add the script to your solution in Visual Studio 2010.
 
-You don&#x27;t need to deploy the script with your solution content, regardless of whether you plan to run the script on the build server or on a remote computer. One option is to add the script to a solution folder. In the Contact Manager example, because you want to use the Windows PowerShell script as part of the deployment process, it makes sense to add the script to the Publish solution folder.
+You don't need to deploy the script with your solution content, regardless of whether you plan to run the script on the build server or on a remote computer. One option is to add the script to a solution folder. In the Contact Manager example, because you want to use the Windows PowerShell script as part of the deployment process, it makes sense to add the script to the Publish solution folder.
 
 ![](running-windows-powershell-scripts-from-msbuild-project-files/_static/image1.png)
 
@@ -89,7 +89,7 @@ For example:
 [!code-console[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample4.cmd)]
 
 
-If the path to your script includes spaces, you need to enclose the file path in single quotes preceded by an ampersand. You can&#x27;t use double quotes, because you&#x27;ve already used them to enclose the command:
+If the path to your script includes spaces, you need to enclose the file path in single quotes preceded by an ampersand. You can't use double quotes, because you've already used them to enclose the command:
 
 
 [!code-console[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample5.cmd)]
@@ -98,7 +98,7 @@ If the path to your script includes spaces, you need to enclose the file path in
 There are a few additional considerations when you invoke this command from MSBuild. First, you should include the **–NonInteractive** flag to ensure that the script executes quietly. Next, you should include the **–ExecutionPolicy** flag with an appropriate argument value. This specifies the execution policy that Windows PowerShell will apply to your script and allows you to override the default execution policy, which may prevent execution of your script. You can choose from these argument values:
 
 - A value of **Unrestricted** will allow Windows PowerShell to execute your script, regardless of whether the script is signed.
-- A value of **RemoteSigned** will allow Windows PowerShell to execute unsigned scripts that were created on the local machine. However, scripts that were created elsewhere must be signed. (In practice, you&#x27;re very unlikely to have created a Windows PowerShell script locally on a build server).
+- A value of **RemoteSigned** will allow Windows PowerShell to execute unsigned scripts that were created on the local machine. However, scripts that were created elsewhere must be signed. (In practice, you're very unlikely to have created a Windows PowerShell script locally on a build server).
 - A value of **AllSigned** will allow Windows PowerShell to execute signed scripts only.
 
 The default execution policy is **Restricted**, which prevents Windows PowerShell from running any script files.
@@ -137,7 +137,7 @@ Windows PowerShell is capable of running scripts on remote computers through [Wi
 > Before you use the **Invoke-Command** cmdlet to execute Windows PowerShell scripts on a remote computer, you need to configure a WinRM listener to accept remote messages. You can do this by running the command **winrm quickconfig** on the remote computer. For more information, see [Installation and Configuration for Windows Remote Management](https://msdn.microsoft.com/en-us/library/windows/desktop/aa384372(v=vs.85).aspx).
 
 
-From a Windows PowerShell window, you&#x27;d use this syntax to run the **LogDeploy.ps1** script on a remote computer:
+From a Windows PowerShell window, you'd use this syntax to run the **LogDeploy.ps1** script on a remote computer:
 
 
 [!code-powershell[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample8.ps1)]

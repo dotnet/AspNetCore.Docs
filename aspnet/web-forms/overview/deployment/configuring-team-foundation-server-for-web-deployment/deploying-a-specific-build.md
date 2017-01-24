@@ -27,13 +27,13 @@ The deployment method at the heart of these tutorials is based on the split proj
 
 ## Task Overview
 
-Until now, the topics in this tutorial set have focused on how to build, package, and deploy web applications and databases as part of a single-step or automated process. However, in some common scenarios, you&#x27;ll want to select the resources that you deploy from a list of builds in a drop folder. In other words, the latest build may not be the build you want to deploy.
+Until now, the topics in this tutorial set have focused on how to build, package, and deploy web applications and databases as part of a single-step or automated process. However, in some common scenarios, you'll want to select the resources that you deploy from a list of builds in a drop folder. In other words, the latest build may not be the build you want to deploy.
 
-Consider the continuous integration (CI) scenario described in the previous topic, [Creating a Build Definition That Supports Deployment](creating-a-build-definition-that-supports-deployment.md). You&#x27;ve created a build definition in Team Foundation Server (TFS) 2010. Every time a developer checks code into TFS, Team Build will build your code, create web packages and database scripts as part of the build process, run any unit tests, and deploy your resources to a test environment. Depending on the retention policy you configured when you created the build definition, TFS will retain a certain number of previous builds.
+Consider the continuous integration (CI) scenario described in the previous topic, [Creating a Build Definition That Supports Deployment](creating-a-build-definition-that-supports-deployment.md). You've created a build definition in Team Foundation Server (TFS) 2010. Every time a developer checks code into TFS, Team Build will build your code, create web packages and database scripts as part of the build process, run any unit tests, and deploy your resources to a test environment. Depending on the retention policy you configured when you created the build definition, TFS will retain a certain number of previous builds.
 
 ![](deploying-a-specific-build/_static/image1.png)
 
-Now, suppose you&#x27;ve performed verification and validation testing against one of these builds in your test environment, and you&#x27;re ready to deploy your application to a staging environment. In the meantime, developers may have checked in new code. You don&#x27;t want to rebuild the solution and deploy to the staging environment, and you don&#x27;t want to deploy the latest build to the staging environment. Instead, you want to deploy the specific build that you&#x27;ve verified and validated on the test servers.
+Now, suppose you've performed verification and validation testing against one of these builds in your test environment, and you're ready to deploy your application to a staging environment. In the meantime, developers may have checked in new code. You don't want to rebuild the solution and deploy to the staging environment, and you don't want to deploy the latest build to the staging environment. Instead, you want to deploy the specific build that you've verified and validated on the test servers.
 
 To accomplish this, you need to tell the Microsoft Build Engine (MSBuild) where to find the web packages and database scripts that a specific build generated.
 
@@ -54,19 +54,19 @@ If you want your project file to deploy web packages and database scripts from a
 [!code-console[Main](deploying-a-specific-build/samples/sample2.cmd)]
 
 
-In practice, however, you&#x27;d also want to skip the **Build** target&#x2014;there&#x27;s no point in building your solution if you don&#x27;t plan to use the build outputs. You could do this by specifying the targets you want to execute from the command line:
+In practice, however, you'd also want to skip the **Build** target&#x2014;there's no point in building your solution if you don't plan to use the build outputs. You could do this by specifying the targets you want to execute from the command line:
 
 
 [!code-console[Main](deploying-a-specific-build/samples/sample3.cmd)]
 
 
-However, in most cases, you&#x27;ll want to build your deployment logic into a TFS build definition. This enables users with the **Queue builds** permission to trigger the deployment from any Visual Studio installation with a connection to the TFS server.
+However, in most cases, you'll want to build your deployment logic into a TFS build definition. This enables users with the **Queue builds** permission to trigger the deployment from any Visual Studio installation with a connection to the TFS server.
 
 ## Creating a Build Definition to Deploy Specific Builds
 
 The next procedure describes how to create a build definition that enables users to trigger deployments to a staging environment with a single command.
 
-In this case, you don&#x27;t want the build definition to actually build anything&#x2014;you just want it to execute the deployment logic in your custom project file. The *Publish.proj* file includes conditional logic that skips the **Build** target if the file is running in Team Build. It does this by evaluating the built-in **BuildingInTeamBuild** property, which is automatically set to **true** if you run your project file in Team Build. As a result, you can skip the build process and simply run the project file to deploy an existing build.
+In this case, you don't want the build definition to actually build anything&#x2014;you just want it to execute the deployment logic in your custom project file. The *Publish.proj* file includes conditional logic that skips the **Build** target if the file is running in Team Build. It does this by evaluating the built-in **BuildingInTeamBuild** property, which is automatically set to **true** if you run your project file in Team Build. As a result, you can skip the build process and simply run the project file to deploy an existing build.
 
 **To create a build definition to trigger deployment manually**
 
@@ -96,7 +96,7 @@ In this case, you don&#x27;t want the build definition to actually build anythin
     ![](deploying-a-specific-build/_static/image6.png)
 
     > [!NOTE]
-    > You&#x27;ll need to override the **OutputRoot** value every time you queue a build. This is covered in the next procedure.
+    > You'll need to override the **OutputRoot** value every time you queue a build. This is covered in the next procedure.
 13. Click **Save**.
 
 When you trigger a build, you need to update the **OutputRoot** property to point to the build you want to deploy.

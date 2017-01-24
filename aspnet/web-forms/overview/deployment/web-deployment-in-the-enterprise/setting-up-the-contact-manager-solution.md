@@ -23,7 +23,7 @@ by [Jason Lee](https://github.com/jrjlee)
 
 ## System Requirements
 
-To run the Contact Manager solution locally and to perform the other tasks described in this tutorial, you&#x27;ll need to install this software on your developer workstation:
+To run the Contact Manager solution locally and to perform the other tasks described in this tutorial, you'll need to install this software on your developer workstation:
 
 - Visual Studio 2010 Service Pack 1, Premium or Ultimate Edition
 - Internet Information Services (IIS) 7.5 Express
@@ -42,9 +42,9 @@ You can download the Contact Manager sample application from the MSDN Code Galle
 
 ## Configure and Run the Solution
 
-To configure and run the Contact Manager solution on your local machine, you&#x27;ll need to perform these high-level steps:
+To configure and run the Contact Manager solution on your local machine, you'll need to perform these high-level steps:
 
-1. If you don&#x27;t have one already, create a local ASP.NET application services database with the membership and role management features enabled.
+1. If you don't have one already, create a local ASP.NET application services database with the membership and role management features enabled.
 2. Edit connection strings in the *web.config* files to point to your local SQL Server Express instance.
 3. Run the solution from Visual Studio 2010.
 
@@ -85,7 +85,7 @@ The next step is to make sure that the connection strings in the Contact Manager
 4. In the **Solution Explorer** window, expand the **ContactManager.Service** project, and then double-click the **Web.config** node.
 
     ![](setting-up-the-contact-manager-solution/_static/image3.png)
-5. In the **connectionStrings** element, in the connection string named **ContactManagerContext**, verify that the **Data Source** property is set to your local instance of SQL Server Express. You don&#x27;t need to change anything else in the connection string.
+5. In the **connectionStrings** element, in the connection string named **ContactManagerContext**, verify that the **Data Source** property is set to your local instance of SQL Server Express. You don't need to change anything else in the connection string.
 
     [!code-xml[Main](setting-up-the-contact-manager-solution/samples/sample3.xml)]
 6. Save all open files.
@@ -105,10 +105,10 @@ You should now be ready to run the Contact Manager solution on your local machin
 3. Add a few contacts, and then verify that the application works as expected.
 
     ![](setting-up-the-contact-manager-solution/_static/image5.png)
-4. Browse to `http://localhost:50114/Account/Register` (adjust the URL if you&#x27;re hosting the application on a different port). Add a user name, email address, and password, and verify that you're able to register an account successfully.
+4. Browse to `http://localhost:50114/Account/Register` (adjust the URL if you're hosting the application on a different port). Add a user name, email address, and password, and verify that you're able to register an account successfully.
 
     ![](setting-up-the-contact-manager-solution/_static/image6.png)
-5. Browse to `http://localhost:50114/Account/LogOn` (adjust the URL if you&#x27;re hosting the application on a different port). Verify that you&#x27;re able to log on using the account you just created.
+5. Browse to `http://localhost:50114/Account/LogOn` (adjust the URL if you're hosting the application on a different port). Verify that you're able to log on using the account you just created.
 
     ![](setting-up-the-contact-manager-solution/_static/image7.png)
 6. Close Internet Explorer to stop debugging.

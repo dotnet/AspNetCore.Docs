@@ -25,7 +25,7 @@ This topic forms part of a series of tutorials based around the enterprise deplo
 
 ## Task Overview
 
-To provision and use a new team project in TFS, you&#x27;ll need to complete these high-level steps:
+To provision and use a new team project in TFS, you'll need to complete these high-level steps:
 
 - Grant permissions to the user who will create the new team project.
 - Create the team project.
@@ -34,7 +34,7 @@ To provision and use a new team project in TFS, you&#x27;ll need to complete the
 
 This topic will show you how to perform these procedures, and it will identify the users and job roles that are likely to be responsible for each procedure. Be aware that, depending on the structure of your organization, each of these tasks may be the responsibility of a different person.
 
-The tasks and walkthroughs in this topic assume that you&#x27;ve installed and configured TFS, and that you&#x27;ve created a team project collection as part of the configuration process. For more information on these assumptions, and for more general background information on the scenario, see [Configure a TFS Build Server for Web Deployment](configuring-a-tfs-build-server-for-web-deployment.md).
+The tasks and walkthroughs in this topic assume that you've installed and configured TFS, and that you've created a team project collection as part of the configuration process. For more information on these assumptions, and for more general background information on the scenario, see [Configure a TFS Build Server for Web Deployment](configuring-a-tfs-build-server-for-web-deployment.md).
 
 ## Grant Permissions to the Team Project Creator
 
@@ -42,7 +42,7 @@ In order to create a new team project, you need these permissions:
 
 - You must have the **Create new projects** permission on the TFS application tier. You typically grant this permission by adding users to the **Project Collection Administrators** TFS group. The **Team Foundation Administrators** global group also includes this permission.
 - You must have permission to create new team sites within the SharePoint site collection that corresponds to the TFS team project collection. You typically grant this permission by adding the user to a SharePoint group with **Full Control** rights on the SharePoint site collection.
-- If you&#x27;re using SQL Server Reporting Services features, you must be a member of the **Team Foundation Content Manager** role in Reporting Services.
+- If you're using SQL Server Reporting Services features, you must be a member of the **Team Foundation Content Manager** role in Reporting Services.
 
 ### Who Performs These Procedures?
 
@@ -89,7 +89,7 @@ Next, you need to give the user permission to create new team sites in the Share
 3. Open Internet Explorer, and then go to the URL you noted in step 2.
 
     > [!NOTE]
-    > If you&#x27;re not logged on to Windows as the user who created the team project collection, you&#x27;ll need to sign in to SharePoint as this user in order to continue.
+    > If you're not logged on to Windows as the user who created the team project collection, you'll need to sign in to SharePoint as this user in order to continue.
 4. On the **Site Actions** menu, click **Site Settings**.
 
     ![](creating-a-team-project-in-tfs/_static/image7.png)
@@ -114,7 +114,7 @@ For more information on enabling users to create new team projects within a team
 
 ## Create a New Team Project and Add Users
 
-Once you have the necessary permissions, you can use the **Team Explorer** window in Visual Studio 2010 to create a new team project. This approach provides a wizard that collects all the required information and performs the necessary tasks in TFS, SharePoint, and SQL Server Reporting Services. You&#x27;ll also need to grant permissions on the new team project to members of the developer team, to enable them to add and modify content.
+Once you have the necessary permissions, you can use the **Team Explorer** window in Visual Studio 2010 to create a new team project. This approach provides a wizard that collects all the required information and performs the necessary tasks in TFS, SharePoint, and SQL Server Reporting Services. You'll also need to grant permissions on the new team project to members of the developer team, to enable them to add and modify content.
 
 ### Who Performs These Procedures?
 
@@ -129,7 +129,7 @@ The next procedure describes how to create a new team project in TFS 2010.
 1. On the **Start** menu, point to **All Programs**, click **Microsoft Visual Studio 2010**, right-click **Microsoft Visual Studio 2010**, and then click **Run as administrator**.
 
     > [!NOTE]
-    > If you don&#x27;t run Visual Studio 2010 as an administrator, the New Team Project Wizard will fail on the last step.
+    > If you don't run Visual Studio 2010 as an administrator, the New Team Project Wizard will fail on the last step.
 2. If the **User Account Control** dialog box appears, click **Yes**.
 3. In Visual Studio, on the **Team** menu, click **Connect to Team Foundation Server**.
 
@@ -166,7 +166,7 @@ The next procedure describes how to create a new team project in TFS 2010.
 
 ### Add Users to a Team Project
 
-Now that you&#x27;ve created the new team project, you can grant permissions to users to enable them to start adding and collaborating on content.
+Now that you've created the new team project, you can grant permissions to users to enable them to start adding and collaborating on content.
 
 **To add users to a team project**
 

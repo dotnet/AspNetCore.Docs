@@ -20,10 +20,10 @@ by [Jason Lee](https://github.com/jrjlee)
 
 > This topic describes how to configure a SQL Server 2008 R2 database server to support web deployment and publishing.
 > 
-> The tasks described in this topic are common to every deployment scenario&#x2014;it doesn&#x27;t matter whether your web servers are configured to use the IIS Web Deployment Tool (Web Deploy) Remote Agent Service, the Web Deploy Handler, or offline deployment or your application is running on a single web server or a server farm. The way you deploy the database may change according to security requirements and other considerations. For example, you might deploy the database with or without sample data, and you might deploy user role mappings or configure them manually after deployment. However, the way you configure the database server remains the same.
+> The tasks described in this topic are common to every deployment scenario&#x2014;it doesn't matter whether your web servers are configured to use the IIS Web Deployment Tool (Web Deploy) Remote Agent Service, the Web Deploy Handler, or offline deployment or your application is running on a single web server or a server farm. The way you deploy the database may change according to security requirements and other considerations. For example, you might deploy the database with or without sample data, and you might deploy user role mappings or configure them manually after deployment. However, the way you configure the database server remains the same.
 
 
-You don&#x27;t have to install any additional products or tools to configuring a database server to support web deployment. Assuming that your database server and your web server run on different machines, you simply need to:
+You don't have to install any additional products or tools to configuring a database server to support web deployment. Assuming that your database server and your web server run on different machines, you simply need to:
 
 - Permit SQL Server to communicate using TCP/IP.
 - Allow SQL Server traffic through any firewalls.
@@ -32,7 +32,7 @@ You don&#x27;t have to install any additional products or tools to configuring a
 - Give the account that will run the deployment a SQL Server login and database creator permissions.
 - To support repeat deployments, map the deployment account login to the **db\_owner** database role.
 
-This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you&#x27;re starting with a default instance of SQL Server 2008 R2 running on Windows Server 2008 R2. Before you continue, ensure that:
+This topic will show you how to perform each of these procedures. The tasks and walkthroughs in this topic assume that you're starting with a default instance of SQL Server 2008 R2 running on Windows Server 2008 R2. Before you continue, ensure that:
 
 - Windows Server 2008 R2 Service Pack 1 and all available updates are installed.
 - The server is domain-joined.
@@ -60,14 +60,14 @@ To enable SQL Server to communicate over TCP/IP, use SQL Server Configuration Ma
 2. In the tree view pane, expand **SQL Server Network Configuration**, and then click **Protocols for MSSQLSERVER**.
 
     > [!NOTE]
-    > If you have installed multiple instances of SQL Server, you&#x27;ll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
+    > If you have installed multiple instances of SQL Server, you'll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
 3. In the details pane, right-click the **TCP/IP** row, and then click **Enable**.
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image1.png)
 4. In the **Warning** dialog box, click **OK**.
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image2.png)
-5. You need to restart the MSSQLSERVER service before your new network configuration will take effect. You can do that at a command prompt, from the Services console, or from SQL Server Management Studio. In this procedure, you&#x27;ll use SQL Server Management Studio.
+5. You need to restart the MSSQLSERVER service before your new network configuration will take effect. You can do that at a command prompt, from the Services console, or from SQL Server Management Studio. In this procedure, you'll use SQL Server Management Studio.
 6. Close SQL Server Configuration Manager.
 7. On the **Start** menu, point to **All Programs**, click **Microsoft SQL Server 2008 R2**, and then click **SQL Server Management Studio**.
 8. In the **Connect to Server** dialog box, in the **Server name** box, type the name of the database server, and then click **Connect**.
@@ -87,7 +87,7 @@ To allow SQL Server traffic through a firewall, you first need to know which por
 - A *named instance* of SQL Server listens for (and responds to) requests on a dynamically assigned TCP port.
 - If the SQL Server Browser service is enabled, clients can query the service on UDP port 1434 to find out which TCP port to use for a particular SQL Server instance. However, this service is often disabled for security reasons.
 
-Assuming that you&#x27;re using a default instance of SQL Server, you need to configure your firewall to allow traffic.
+Assuming that you're using a default instance of SQL Server, you need to configure your firewall to allow traffic.
 
 | Direction | From Port | To Port | Port Type |
 | --- | --- | --- | --- |
@@ -99,7 +99,7 @@ Assuming that you&#x27;re using a default instance of SQL Server, you need to co
 > Technically, a client computer will use a randomly assigned TCP port between 1024 and 5000 to communicate with SQL Server, and you can restrict your firewall rules accordingly. For more information on SQL Server ports and firewalls, see [TCP/IP port numbers required to communicate to SQL over a firewall](https://go.microsoft.com/?linkid=9805125) and [How to: Configure a Server to Listen on a Specific TCP Port (SQL Server Configuration Manager)](https://msdn.microsoft.com/en-us/library/ms177440.aspx).
 
 
-In most Windows Server environments, you'll likely have to configure Windows Firewall on the database server. By default, Windows Firewall allows all outbound traffic unless a rule specifically prohibits it. To enable your web server to reach your database, you need to configure an inbound rule that allows TCP traffic on the port number that the SQL Server instance uses. If you&#x27;re using a default instance of SQL Server, you can use the next procedure to configure this rule.
+In most Windows Server environments, you'll likely have to configure Windows Firewall on the database server. By default, Windows Firewall allows all outbound traffic unless a rule specifically prohibits it. To enable your web server to reach your database, you need to configure an inbound rule that allows TCP traffic on the port number that the SQL Server instance uses. If you're using a default instance of SQL Server, you can use the next procedure to configure this rule.
 
 **To configure Windows Firewall to allow communication with a default SQL Server instance**
 
@@ -129,7 +129,7 @@ When you deploy a web application to Internet Information Services (IIS), the ap
 - Add a login for the web server machine account to the SQL Server instance.
 - Map the machine account login to any required database roles (typically **db\_datareader** and **db\_datawriter**).
 
-If your web application is running on a server farm, rather than a single server, you&#x27;ll need to repeat these procedures for every web server in the server farm.
+If your web application is running on a server farm, rather than a single server, you'll need to repeat these procedures for every web server in the server farm.
 
 > [!NOTE]
 > For more information on application pool identities and accessing network resources, see [Application Pool Identities](https://go.microsoft.com/?linkid=9805123).
@@ -140,7 +140,7 @@ You can approach these tasks in various ways. To create the login, you can eithe
 - Create the login manually on the database server, using Transact-SQL or SQL Server Management Studio.
 - Use a SQL Server 2008 Server Project in Visual Studio to create and deploy the login.
 
-A SQL Server login is a server-level object, rather than a database-level object, so it&#x27;s not dependent on the database you want to deploy. As such, you can create the login at any point, and the easiest approach is often to create the login manually on the database server before you start deploying databases. You can use the next procedure to create a login in SQL Server Management Studio.
+A SQL Server login is a server-level object, rather than a database-level object, so it's not dependent on the database you want to deploy. As such, you can create the login at any point, and the easiest approach is often to create the login manually on the database server before you start deploying databases. You can use the next procedure to create a login in SQL Server Management Studio.
 
 **To create a SQL Server login for the web server machine account**
 
@@ -154,12 +154,12 @@ A SQL Server login is a server-level object, rather than a database-level object
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image11.png)
 5. Click **OK**.
 
-At this point, your database server is ready for Web Deploy publishing. However, any solutions you deploy won&#x27;t work until you map the machine account login to the required database roles. Mapping the login to database roles requires a lot more thought, as you can&#x27;t map roles until after you&#x27;ve deployed the database. To map the machine account login to the required database roles, you can either:
+At this point, your database server is ready for Web Deploy publishing. However, any solutions you deploy won't work until you map the machine account login to the required database roles. Mapping the login to database roles requires a lot more thought, as you can't map roles until after you've deployed the database. To map the machine account login to the required database roles, you can either:
 
-- Assign the database roles to the login manually, after you&#x27;ve deployed the database for the first time.
+- Assign the database roles to the login manually, after you've deployed the database for the first time.
 - Use a post-deployment script to assign the database roles to the login.
 
-For more information on automating the creation of logins and database role mappings, see [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md). Alternatively, you can use the next procedure to map the machine account login to the required database roles manually. Remember that you can't perform this procedure until *after* you&#x27;ve deployed the database.
+For more information on automating the creation of logins and database role mappings, see [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md). Alternatively, you can use the next procedure to map the machine account login to the required database roles manually. Remember that you can't perform this procedure until *after* you've deployed the database.
 
 **To map database roles to the web server machine account login**
 
@@ -174,7 +174,7 @@ For more information on automating the creation of logins and database role mapp
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image13.png)
 6. Click **OK**.
 
-While manually mapping database roles is often more than adequate for test environments, it&#x27;s less desirable for automated or one-click deployments to staging or production environments. You can find more information on automating this kind of task using post-deployment scripts in [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md).
+While manually mapping database roles is often more than adequate for test environments, it's less desirable for automated or one-click deployments to staging or production environments. You can find more information on automating this kind of task using post-deployment scripts in [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md).
 
 > [!NOTE]
 > For more information on server projects and database projects, see [Visual Studio 2010 SQL Server Database Projects](https://msdn.microsoft.com/en-us/library/ff678491.aspx).
@@ -182,10 +182,10 @@ While manually mapping database roles is often more than adequate for test envir
 
 ## Configure Permissions for the Deployment Account
 
-If the account that you'll use to run the deployment is not a SQL Server administrator, you&#x27;ll also need to create a login for this account. In order to create the database, the account must be a member of the **dbcreator** server role or have equivalent permissions.
+If the account that you'll use to run the deployment is not a SQL Server administrator, you'll also need to create a login for this account. In order to create the database, the account must be a member of the **dbcreator** server role or have equivalent permissions.
 
 > [!NOTE]
-> When you use Web Deploy or VSDBCMD to deploy a database, you can use Windows credentials or SQL Server credentials (if your SQL Server instance is configured to support mixed mode authentication). The next procedure assumes that you want to use Windows credentials, but there&#x27;s nothing stopping you from specifying a SQL Server user name and password in your connection string when you configure the deployment.
+> When you use Web Deploy or VSDBCMD to deploy a database, you can use Windows credentials or SQL Server credentials (if your SQL Server instance is configured to support mixed mode authentication). The next procedure assumes that you want to use Windows credentials, but there's nothing stopping you from specifying a SQL Server user name and password in your connection string when you configure the deployment.
 
 
 **To set up permissions for the deployment account**
@@ -198,7 +198,7 @@ If the account that you'll use to run the deployment is not a SQL Server adminis
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image14.png)
 
-To support subsequent deployments, you'll also need to add the deploying account to the **db\_owner** role on the database after the first deployment. This is because on subsequent deployments you're modifying the schema of an existing database, rather than creating a new database. As described in the previous section, you can&#x27;t add a user to a database role until you&#x27;ve created the database, for obvious reasons.
+To support subsequent deployments, you'll also need to add the deploying account to the **db\_owner** role on the database after the first deployment. This is because on subsequent deployments you're modifying the schema of an existing database, rather than creating a new database. As described in the previous section, you can't add a user to a database role until you've created the database, for obvious reasons.
 
 **To map the deployment account login to the db\_owner database role**
 
