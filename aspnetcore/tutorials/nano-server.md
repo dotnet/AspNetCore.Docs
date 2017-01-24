@@ -97,7 +97,7 @@ Install-NanoServerPackage -Name Microsoft-NanoServer-Storage-Package
 Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
 ```
 
-To quickly verify if IIS is setup correctly, you can visit the url `http://192.168.1.10/` and should see a welcome page. When IIS is installed, a website called `Default Web Site` listening on port 80 is created by default.
+To quickly verify if IIS is setup correctly, you can visit the URL `http://192.168.1.10/` and should see a welcome page. When IIS is installed, a website called `Default Web Site` listening on port 80 is created by default.
 
 ## Installing the ASP.NET Core Module (ANCM)
 
