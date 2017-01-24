@@ -1747,7 +1747,6 @@
 
 
 # [Ajax](ajax/index.md)
-## [Ajax](ajax/overview.md)
 ## [Microsoft Ajax Content Delivery Network](ajax/cdn/index.md)
 ### [Microsoft Ajax Content Delivery Network](ajax/cdn/overview.md)
 ### [jQuery UI](ajax/cdn/jquery-ui/index.md)
