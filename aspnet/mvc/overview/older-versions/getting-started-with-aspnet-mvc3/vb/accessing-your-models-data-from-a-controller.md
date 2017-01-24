@@ -31,7 +31,7 @@ In this section, you'll create a new `MoviesController` class and write code tha
 
 Right-click the *Controllers* folder and create a new `MoviesController` controller. Select the following options:
 
-- Controller name: **MoviesController**. (This is the default. )
+- Controller name: **MoviesController**. (This is the default.)
 - Template: **Controller with read/write actions and views, using Entity Framework**.
 - Model class: **Movie (MvcMovie.Models)**.
 - Data context class: **MovieDBContext (MvcMovie.Models)**.
