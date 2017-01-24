@@ -34,7 +34,7 @@ ASP.NET Web Pages and the Razor syntax provide a fast, approachable, and lightwe
 
 [Learn more about Web Pages](web-pages/index.md)
 
-### Notes about the frameworks for websites and web applications
+### Notes about Web Forms, MVC, and Web Pages
 
 All three ASP.NET frameworks are based on the .NET Framework and share core functionality of .NET and of ASP.NET. For example, all three frameworks offer a login security model based around membership, and all three share the same facilities for managing requests, handling sessions, and so on that are part of the core ASP.NET functionality.
 
