@@ -1,5 +1,5 @@
 ---
-title: Hosting | Microsoft Docs
+title: Hosting in ASP.NET Core| Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/hosting
 ---
-# Hosting
+# Hosting in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 

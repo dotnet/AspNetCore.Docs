@@ -1,5 +1,5 @@
 ---
-title: Using Grunt | Microsoft Docs
+title: Using Grunt in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/using-grunt
 ---
-# Using Grunt
+# Using Grunt in ASP.NET Core 
 
 By [Noel Rice](http://blog.falafel.com/author/noel-rice/)
 

@@ -1,5 +1,5 @@
 ---
-title: Dependency Injection | Microsoft Docs
+title: Dependency Injection in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/dependency-injection
 ---
-# Dependency Injection
+# Dependency Injection in ASP.NET Core
 
 <a name=fundamentals-dependency-injection></a>
 

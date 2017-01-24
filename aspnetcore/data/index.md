@@ -1,5 +1,5 @@
 ---
-title: Working with Data | Microsoft Docs
+title: Working with Data in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -11,7 +11,7 @@ ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2ef
 ms.technology: aspnet
 ms.prod: aspnet-core
 ---
-# Working with Data
+# Working with Data in ASP.NET Core 
 
 *   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
     *   [Getting started](ef-mvc/intro.md)
