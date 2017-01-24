@@ -1,4 +1,5 @@
 # [ASP.NET Core Module Configuration Reference](aspnet-core-module.md)
+# [Using IIS Modules with ASP.NET Core](iis-modules.md)
 # [Directory Structure](directory-structure.md)
 # [Servicing](servicing.md)
 # [Data Protection](dataprotection.md)
