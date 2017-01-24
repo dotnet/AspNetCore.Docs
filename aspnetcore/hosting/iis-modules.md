@@ -34,7 +34,11 @@ To disable a module without removing it from the application, many modules offer
 </configuration>
 ```
 
-If you opt to remove the module with a setting in *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module you wish to remove in the list. In the **Actions** sidebar on the right, click **Unlock**. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. Doing this won't affect your use of the module with other apps on the server.
+If you opt to remove the module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. First, unlock the module at the server level. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module you wish to remove in the list. In the **Actions** sidebar on the right, click **Unlock**.
+
+Next, you must unlock the `<modules>` section of *web.config*. In the **Connections** sidebar, click the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer:modules` section. In the **Actions** sidebar on the right, click to **Unlock** the section.
+
+At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. Doing this won't affect your use of the module with other apps on the server.
 
 ```xml
 <configuration> 
