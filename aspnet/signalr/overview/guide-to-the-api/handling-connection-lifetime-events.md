@@ -242,8 +242,6 @@ SignalR version 2 does not have a built-in server API for disconnecting clients.
 
 [!code-csharp[Main](handling-connection-lifetime-events/samples/sample6.cs)]
 
-> [!NOTE] 
-> 
 > [!WARNING]
 > Security - Neither this method for disconnecting clients nor the proposed built-in API will address the scenario of hacked clients that are running malicious code, since the clients could reconnect or the hacked code might remove the `stopClient` method or change what it does. The appropriate place to implement stateful denial-of-service (DOS) protection is not in the framework or the server layer, but rather in front-end infrastructure.
 

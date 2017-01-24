@@ -98,8 +98,6 @@ The key value is passed to the method as the `id` parameter and comes from *rout
 
     <a id="overpost"></a>
 
-    > [!NOTE] 
-    > 
     > [!WARNING]
     > Security - The `ValidateAntiForgeryToken` attribute helps prevent [cross-site request forgery](../../security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) attacks. It requires a corresponding `Html.AntiForgeryToken()` statement in the view, which you'll see later.
     > 

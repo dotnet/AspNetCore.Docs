@@ -75,8 +75,6 @@ The scaffolded code for the Students `Index` page left out the `Enrollments` pro
 
 <a id="overpost"></a>
 
-    > [!NOTE] 
-    > 
     > [!WARNING]
     > Security - The `Bind` attribute is added to protect against *over-posting*. For example, suppose the `Student` entity includes a `Secret` property that you don't want this web page to update.
     > 
