@@ -185,7 +185,6 @@ In this task, you will add a Controller class that will handle URLs to the Home 
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex1 HomeController Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample1.cs)]
 
@@ -252,14 +251,12 @@ In this task, you will modify the Controller methods that are called **actions**
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex2 StoreController Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample2.cs)]
 2. Add **Browse** and **Details** methods. To do this, add the following code to the **StoreController**:
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex2 StoreController BrowseAndDetails*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample3.cs)]
 
@@ -310,7 +307,6 @@ In this task, you will use the **querystring** to send parameters to the **Brows
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex3 StoreController BrowseMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample4.cs)]
 
@@ -345,7 +341,6 @@ In this task, you will use the **URL** to pass an **Id** parameter to the **Deta
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex3 StoreController DetailsMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample5.cs)]
 
@@ -389,18 +384,15 @@ The file **~/Views/Shared/\_layout.cshtml** allows you to setup a template for c
     > [!NOTE]
     > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. The file **\_layout.cshtml** contains the HTML container layout for all pages on the site. It includes the **&lt;html&gt;** element for the HTML response, as well as the **&lt;head&gt;** and **&lt;body&gt;** elements. **@RenderBody()** within the HTML body identify regions that view templates will be able to fill in with dynamic content.
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample6.cshtml)]
 4. Add a common header with links to the Home page and Store area on all pages in the site. In order to do that, add the following code below &lt;body&gt; statement.
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample7.cshtml)]
 5. Include a div to render the body section of each page. Replace **@RenderBody()** with the following higlighted code:
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample8.cshtml)]
 
@@ -434,7 +426,6 @@ In this task, you will add a View template to generate the HTML response that wi
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex4 HomeController Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample9.cs)]
 2. Now, you need to add an appropriate View template. To do this, **right-click** inside the **Index** action method and select **Add View**. This will bring up the **Add View** dialog.
@@ -461,7 +452,6 @@ In this task, you will add a View template to generate the HTML response that wi
     > This way, ASP.NET MVC avoids having to explicitly specify the name or location of a View template when using this naming convention to return a View.
 5. The generated View template is based on the **\_layout.cshtml** template earlier defined. Update the ViewBag.Title property to **Home**, and change the main content to **This is the Home Page**, as shown in the code below:
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample10.cshtml)]
 6. Select **MvcMusicStore** project in the Solution Explorer and Press **F5** to run the Application.
@@ -541,7 +531,6 @@ In this task, you will add those 2 properties to the **StoreIndexViewModel** cla
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex5 StoreIndexViewModel properties*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample11.cs)]
 
@@ -566,7 +555,6 @@ In this task, you will update the **StoreController** to use the **StoreIndexVie
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex5 StoreIndexViewModel using ViewModels*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample12.cs)]
 3. Change the **StoreController**'s **Index** action method so that it creates and populates a **StoreIndexViewModel** object and then passes it off to a View template to generate an HTML response with it.
@@ -579,7 +567,6 @@ In this task, you will update the **StoreController** to use the **StoreIndexVie
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex5 StoreController Index method*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample13.cs)]
 
@@ -624,7 +611,6 @@ In this task, you will update the View template created in the last task to retr
 
 1. In the **Index.cshtml** file, within the **Store** folder, replace its code with the following:
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample14.cshtml)]
 
@@ -639,8 +625,7 @@ In this task, you will update the View template created in the last task to retr
     > 
     > You can just select the **NumberOfGenres** property from the Intellisense list rather than typing it in and then it will auto-complete it by pressing the **tab key**.
 2. Loop over the genre list in **StoreIndexViewModel** and create an HTML **&lt;ul&gt;** list using a **foreach** loop.
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample15.cshtml)]
 3. Press **F5** to run the Application and browse **/Store**. You will see the list of genres passed in the **StoreIndexViewModel** object from the **StoreController** to the View template.
@@ -686,7 +671,6 @@ Unlike ViewModels, which are created just to pass information from the Controlle
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 Genre*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample16.cs)]
 5. Following the same procedure as before, add an **Album** class. To do this, right-click the **Models** folder in the **Solution Explorer**, select **Add** and then the **New Item** option. Under **Code**, choose the **Class** item and name the file *Album.cs*, then click **Add**.
@@ -694,7 +678,6 @@ Unlike ViewModels, which are created just to pass information from the Controlle
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 Album*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample17.cs)]
 
@@ -710,14 +693,12 @@ A **StoreBrowseViewModel** will be used in this task to show the Albums that mat
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 UsingModel*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample18.cs)]
 3. Add two properties to **StoreBrowseViewModel** class: **Genre** and **Albums**. To do this, add the following code:
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 ModelProperties*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample19.cs)]
 
@@ -739,21 +720,18 @@ In this task, you will modify the **StoreController**'s **Browse** and **Details
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 UsingModelInController*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample20.cs)]
 2. Replace the **Browse** action method to use the **StoreViewBrowseController** class. You will create a Genre and two new Albums objects with dummy data (in the next Hands-on Lab you will consume real data from a database). To do this, replace the **Browse** method with the following code:
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 BrowseMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample21.cs)]
 3. Replace the **Details** action method to use the **StoreViewBrowseController** class. You will create a new **Album** object to be returned to the **View**. To do this, replace the **Details** method with the following code:
 
     (Code Snippet - *ASP.NET MVC 4 Fundamentals - Ex6 DetailsMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample22.cs)]
 
@@ -772,8 +750,7 @@ In this task, you will add a **Browse** View to show the Albums found for a spec
 
     *Adding a Browse View*
 4. Modify the **Browse.cshtml** to display the Genre's information, accessing the **StoreBrowseViewModel** object that is passed to the view template. To do this, replace the content with the following:
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample23.cshtml)]
 
@@ -805,8 +782,7 @@ In this task, you will implement the **Store/Details** view to display informati
 
     *Adding a Details View*
 3. Modify the **Details.cshtml** file to display the Album's information, accessing the **Album** object that is passed to the view template. To do this, replace the content with the following:
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample24.cshtml)]
 
@@ -833,8 +809,7 @@ In this task, you will add a link in the Store View to have a link in every Genr
 
 1. Close the browser if needed, to return to the Visual Studio window. Update the **Index** page to add a link to the **Browse** page. To do this, in the **Solution Explorer** expand the **Views** folder, then the **Store** folder and double-click the **Index.cshtml** page.
 2. Add a link to the Browse view indicating the genre selected. To do this, replace the following highlighted code within the **&lt;li&gt;** tags:
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample25.cshtml)]
 
@@ -876,7 +851,6 @@ You will now use the ViewBag dynamic collection to pass a list of &quot;**Starre
 
 1. Close the browser if needed, to return to the Visual Studio window. Open **StoreController.cs** and modify **Index** method to create a list of starred genres into ViewModel collection :
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample26.cs)]
 
@@ -888,8 +862,7 @@ You will now use the ViewBag dynamic collection to pass a list of &quot;**Starre
 
     *Adding star image to the solution*
 3. Open the view **Store/Index.cshtml** and modify the content. You will read the &quot;starred&quot; property in the **ViewBag** collection, and ask if the current genre name is in the list. In that case you will show a star icon right to the genre link.
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample27.cshtml)]
 

@@ -120,8 +120,6 @@ This approach will show you how to generate less coupled applications, which are
 
 The MVC Music Store provided in the begin solution now includes a service that manages the Store Controller data named **StoreService**. Below you will find the Store Service implementation. Note that all the methods return Model entities.
 
-C#
-
 [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample1.cs)]
 
 **StoreController** from the begin solution now consumes **StoreService**. All the data references were removed from **StoreController**, and now possible to modify the current data access provider without changing any method that consumes **StoreService**.
@@ -135,8 +133,6 @@ You will find below that the **StoreController** implementation has a dependency
 > 
 > To resolve the dependency, the controller has to be created by an abstract factory (a class that returns any object of the specified type).
 
-
-C#
 
 [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample2.cs)]
 
@@ -210,7 +206,6 @@ In this task, you will update the **Application\_Start** method located in **Glo
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex01 - Initialize Unity*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample4.cs)]
 2. Open **Bootstrapper.cs** file.
@@ -218,14 +213,12 @@ In this task, you will update the **Application\_Start** method located in **Glo
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex01 - Bootstrapper Adding Namespaces*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample5.cs)]
 4. Replace **BuildUnityContainer** method's content with the following code that registers Store Controller and Store Service.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex01 - Register Store Controller and Service*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample6.cs)]
 
@@ -288,17 +281,14 @@ In this task, you will create a view that performs a service call to generate a 
 
     ![Pages folder](aspnet-mvc-4-dependency-injection/_static/image9.png "Pages folder")
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample7.cs)]
 4. Open **Browse.cshtml** view from **/Views/Store** folder, and make it inherit from **MyBasePage.cs**.
 
-    C#
 
     [!code-cshtml[Main](aspnet-mvc-4-dependency-injection/samples/sample8.cshtml)]
 5. In the **Browse** view, add a call to **MessageService** to display an image and a message retrieved by the service.
-
-    HTML(C#)
+(C#)
 
     [!code-cshtml[Main](aspnet-mvc-4-dependency-injection/samples/sample9.cshtml)]
 
@@ -313,14 +303,12 @@ In the previous task, you injected a new dependency inside a view to perform a s
 > Since ASP.NET MVC 3, the implementation for Dependency Injection had simplified the interfaces to register services. **IDependencyResolver** and **IViewPageActivator** are part of ASP.NET MVC 3 features for Dependency Injection.
 > 
 > **- IDependencyResolver** interface replaces the previous IMvcServiceLocator. Implementers of IDependencyResolver must return an instance of the service or a service collection.
-> 
-> C#
+>
 > 
 > [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample10.cs)]
 > 
 > **- IViewPageActivator** interface provides more fine-grained control over how view pages are instantiated via dependency injection. The classes that implement **IViewPageActivator** interface can create view instances using context information.
 > 
-> C#
 > 
 > [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample11.cs)]
 
@@ -328,7 +316,6 @@ In the previous task, you injected a new dependency inside a view to perform a s
 1. Create the /**Factories** folder in the project's root folder.
 2. Include **CustomViewPageActivator.cs** to your solution from **/Sources/Assets/** to **Factories** folder. To do that, right-click the **/Factories** folder, select **Add | Existing Item** and then select **CustomViewPageActivator.cs**. This class implements the **IViewPageActivator** interface to hold the Unity Container.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample12.cs)]
 
@@ -336,7 +323,6 @@ In the previous task, you injected a new dependency inside a view to perform a s
     > **CustomViewPageActivator** is responsible for managing the creation of a view by using a Unity container.
 3. Include **UnityDependencyResolver.cs** file from **/Sources/Assets** to **/Factories** folder. To do that, right-click the **/Factories** folder, select **Add | Existing Item** and then select **UnityDependencyResolver.cs** file.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample13.cs)]
 
@@ -367,28 +353,24 @@ To inject **Browse** View, you will now register the custom dependency resolver 
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex02 - Register Message Service*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample14.cs)]
 3. Add a reference to **MvcMusicStore.Factories** namespace.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex02 - Factories Namespace*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample15.cs)]
 4. Register **CustomViewPageActivator** as a View Page activator into the Unity container:
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex02 - Register CustomViewPageActivator*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample16.cs)]
 5. Replace ASP.NET MVC 4 default dependency resolver with an instance of **UnityDependencyResolver**. To do this, replace **Initialise** method content with the following code:
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex02 - Update Dependency Resolver*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample17.cs)]
 
@@ -436,7 +418,6 @@ In this task, you will include in the Music Store a custom action filter to trac
     > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Include **TraceActionFilter.cs** file from **/Sources/Assets** to **/Filters** folder.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample18.cs)]
 
@@ -447,19 +428,16 @@ In this task, you will include in the Music Store a custom action filter to trac
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Filter Provider Adding Namespaces*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample19.cs)]
 5. Make the class inherit from **IFilterProvider** Interface.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample20.cs)]
 6. Add a **IUnityContainer** property in the **FilterProvider** class, and then create a class constructor to assign the container.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Filter Provider Constructor*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample21.cs)]
 
@@ -469,7 +447,6 @@ In this task, you will include in the Music Store a custom action filter to trac
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Filter Provider GetFilters*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample22.cs)]
 
@@ -482,7 +459,6 @@ In this task, you will enable site tracking. To do that, you will register the f
 
 1. Open **Web.config** located in the project root and enable trace tracking at System.Web group.
 
-    XML
 
     [!code-xml[Main](aspnet-mvc-4-dependency-injection/samples/sample23.xml)]
 2. Open **Bootstrapper.cs** at project root.
@@ -490,14 +466,12 @@ In this task, you will enable site tracking. To do that, you will register the f
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Bootstrapper Adding Namespaces*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample24.cs)]
 4. Select the **BuildUnityContainer** method and register the filter in the Unity Container. You will have to register the filter provider as well as the action filter.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Register FilterProvider and ActionFilter*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample25.cs)]
 

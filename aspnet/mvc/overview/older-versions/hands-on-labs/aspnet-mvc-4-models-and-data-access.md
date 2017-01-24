@@ -217,14 +217,12 @@ In this task, you will update the StoreController class so that, instead of usin
 
     (Code Snippet - *Models And Data Access - Ex1 storeDB*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample1.cs)]
 2. The **MusicStoreEntities** class exposes a collection property for each table in the database. Update **Browse** action method to retrieve a Genre with all of the **Albums**.
 
     (Code Snippet - *Models And Data Access - Ex1 Store Browse*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample2.cs)]
 
@@ -236,14 +234,12 @@ In this task, you will update the StoreController class so that, instead of usin
 
     (Code Snippet - *Models And Data Access - Ex1 Store Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample3.cs)]
 4. Update **Index** action method to retrieve all the genres and transform the collection to a list.
 
     (Code Snippet - *Models And Data Access - Ex1 Store GenreMenu*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample4.cs)]
 
@@ -303,14 +299,12 @@ In this task, you will populate the database with sample data when it is intiall
 
     (Code Snippet - *Models And Data Access - Ex2 Global Asax Usings*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample5.cs)]
 4. In the **Application\_Start()** method add the following line to set the database initializer.
 
     (Code Snippet - *Models And Data Access - Ex2 Global Asax SetInitializer*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample6.cs)]
 
@@ -327,7 +321,6 @@ Now that you have already added a database to our project, you will write in the
 
     *Web.config file location*
 
-    XML
 
     [!code-xml[Main](aspnet-mvc-4-models-and-data-access/samples/sample7.xml)]
 
@@ -346,7 +339,6 @@ Now that you have already configured the connection to the database, you will li
 
     (Code Snippet - *Models And Data Access - Ex2 Code First Genre*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample8.cs)]
 
@@ -358,14 +350,12 @@ Now that you have already configured the connection to the database, you will li
 
     (Code Snippet - *Models And Data Access - Ex2 Code First Album*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample9.cs)]
 3. Open the POCO model class **Artist** and include the **ArtistId** property.
 
     (Code Snippet - *Models And Data Access - Ex2 Code First Artist*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample10.cs)]
 4. Right-click the **Models** project folder and select **Add | Class**. Name the file **MusicStoreEntities.cs**. Then, click **Add.**
@@ -379,14 +369,12 @@ Now that you have already configured the connection to the database, you will li
     *Adding a class*
 5. Open the class you have just created, **MusicStoreEntities.cs**, and include the namespaces **System.Data.Entity** and **System.Data.Entity.Infrastructure**.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample11.cs)]
 6. Replace the class declaration to extend the **DbContext** class: declare a public **DBSet** and override **OnModelCreating** method. After this step you will get a domain class that will link your model with the Entity Framework. In order to do that, replace the class code with the following:
 
     (Code Snippet - *Models And Data Access - Ex2 Code First MusicStoreEntities*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample12.cs)]
 
@@ -410,14 +398,12 @@ In this task, you will update the StoreController class so that, instead of usin
 
     (Code Snippet - *Models And Data Access - Ex1 storeDB*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample13.cs)]
 2. The **MusicStoreEntities** class exposes a collection property for each table in the database. Update **Browse** action method to retrieve a Genre with all of the **Albums**.
 
     (Code Snippet - *Models And Data Access - Ex2 Store Browse*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample14.cs)]
 
@@ -429,14 +415,12 @@ In this task, you will update the StoreController class so that, instead of usin
 
     (Code Snippet - *Models And Data Access - Ex2 Store Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample15.cs)]
 4. Update **Index** action method to retrieve all the genres and transform the collection to a list.
 
     (Code Snippet - *Models And Data Access - Ex2 Store GenreMenu*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample16.cs)]
 
@@ -490,7 +474,6 @@ In this task, you will change the **StoreController** class to access the databa
 
     (Code Snippet - *Models And Data Access - Ex3 StoreController BrowseMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample17.cs)]
 
@@ -527,7 +510,6 @@ In this task, you will repeat the previous procedure to get albums by their Id.
 
     (Code Snippet - *Models And Data Access - Ex3 StoreController DetailsMethod*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample18.cs)]
 

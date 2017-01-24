@@ -145,19 +145,16 @@ In this task you will create a custom filter attribute class that will contain t
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex1-CustomActionFilterNamespaces*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample1.cs)]
 4. Inherit the **CustomActionFilter** class from **ActionFilterAttribute** and then make **CustomActionFilter** class implement **IActionFilter** interface.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample2.cs)]
 5. Make **CustomActionFilter** class override the method **OnActionExecuting** and add the necessary logic to log the filter's execution. To do this, add the following highlighted code within **CustomActionFilter** class.
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex1-LoggingActions*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample3.cs)]
 
@@ -179,19 +176,15 @@ It is also possible to intercept a specific controller method.
 
 1. Open the **StoreController** at **MvcMusicStore\Controllers** and add a reference to the **Filters** namespace:
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample4.cs)]
 2. Inject the custom filter **CustomActionFilter** into **StoreController** class by adding **[CustomActionFilter]** attribute before the class declaration.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample5.cs)]
 
     > [!NOTE]
     > When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
-    > 
-    > C#
     > 
     > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample6.cs)]
 
@@ -215,8 +208,6 @@ In this task, you will test that the logging filter is working. You will start t
     > For simplicity purposes we're cleaning up the **ActionLog** table each time the application runs so it will only show the logs of each particular task's verification.
     > 
     > You might need to remove the following code from the **Session\_Start** method (in the **Global.asax** class), in order to save an historical log for all the actions executed within the Store Controller.
-    > 
-    > C#
     > 
     > [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample7.cs)]
 3. Click one of the **Genres** from the menu and perform some actions there, like browsing an available album.
@@ -263,14 +254,12 @@ In this task, you will create a new Custom Action Filter to inject into the Stor
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex2-MyNewCustomActionFilterNamespaces*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample8.cs)]
 4. Replace the default class declaration with the following code.
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex2-MyNewCustomActionFilterClass*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample9.cs)]
 
@@ -286,7 +275,6 @@ In this task, you will add a new custom filter into the StoreController Class an
 
 1. Open the **StoreController** class located at **MvcMusicStore\Controllers** and inject the new custom filter **MyNewCustomActionFilter** into **StoreController** class like is shown in the following code.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample10.cs)]
 2. Now, run the application in order to see how these two Custom Action Filters work. To do this, press **F5** and wait until the application starts.
@@ -312,7 +300,6 @@ In this task, you will learn how to manage the filters' execution order by using
 
 1. Open the **StoreController** class located at **MvcMusicStore\Controllers** and specify the **Order** property in both filters like shown below.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample11.cs)]
 2. Now, verify how the filters are executed depending on its Order property's value. You will find that the filter with the smallest Order value (**CustomActionFilter**) is the first one that is executed. Press **F5** and wait until the application starts.
@@ -329,7 +316,6 @@ In this task, you will learn how to manage the filters' execution order by using
     *Action log with activity logged*
 6. Now, you will update the Filters' order value and verify how the logging order changes. In the **StoreController** class, update the Filters' Order value like shown below.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample12.cs)]
 7. Run the application again by pressing **F5**.
@@ -349,7 +335,6 @@ In this task, you will update the solution to register the new filter (**MyNewCu
 
 1. In **StoreController** class, remove **[MyNewCustomActionFilter]** attribute and the order property from **[CustomActionFilter]**. It should look like the following:
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample13.cs)]
 2. Open **Global.asax** file and locate the **Application\_Start** method. Notice that each thime the application starts it is registering the global filters by calling **RegisterGlobalFilters** method within **FilterConfig** class.
@@ -360,12 +345,10 @@ In this task, you will update the solution to register the new filter (**MyNewCu
 3. Open **FilterConfig.cs** file within **App\_Start** folder.
 4. Add a reference to using System.Web.Mvc; using MvcMusicStore.Filters; namespace.
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample14.cs)]
 5. Update **RegisterGlobalFilters** method adding your custom filter. To do this, add the highlighted code:
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample15.cs)]
 6. Run the application by pressing **F5**.

@@ -253,7 +253,6 @@ Visual Studio now updates the HTML opening or closing tags of the element that y
 
 1. On the **Default.aspx** page, add an **H3** element with a title (for example, Visual Studio 2012 Rocks!).
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample5.aspx)]
 2. Change the **H3** tag and type **H2** or **H1.**
@@ -281,7 +280,6 @@ Visual Studio now includes several HTML5 code snippets. In this task, you will u
     *Inserting HTML5 Code Snippets*
 3. Update the audio source to point to an existing audio file.
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.aspx)]
 
@@ -404,8 +402,6 @@ This task will introduce you to some of the new JavaScript editor features, whic
 
     The following code uses HTML5 local storage to store a *pageLoadCount* variable that stores the number of times the page has been visited by the current user. Local Storage is a client-side key-value database introduced with the HTML5 standard. The data is saved on the local machine, inside the user's browser.
 
-    JavaScript
-
     [!code-html[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample7.html)]
 
     > [!NOTE]
@@ -439,8 +435,6 @@ In this task, you will discover the new JavaScript validation for the ECMAScript
 
 1. Open **ECMA5script5.js** located under the **Scripts\custom** project folder. You will now test validation for ECMAScript5 standard.
 
-    JavaScript
-
     [!code-html[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample8.html)]
 
     You can check out the &quot; **use strict** &quot; direction in the first line of the file, which enables ECMAScript5 **strict mode**. This mode consists in a subset of the language that clarifies ambiguities from the past edition, and adds some new features, such as getters and setters, library support for JSON, and more complete reflection on object properties.
@@ -472,8 +466,6 @@ In this task, you will explore Visual Studio features for XML documentation in J
     *JavaScript XML documentation integrated to IntelliSense*
 2. Below **add** function in **XMLDoc.js** file, create a new function named **test**.
 3. In the **test** function, call the **multiply** function that receives two parameters. Notice the tooltip box is showing the **multiply** function documentation.
-
-    JavaScript
 
     [!code-javascript[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample9.js)]
 
@@ -547,21 +539,18 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     Notice that the new **Microsoft.Web.Optimization** namespace is commented out at the beginning of the file. Uncomment the using directive to include the bundling and minification features.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample10.cs)]
 4. Locate the **Application\_Start** method.
 
     In this method, uncomment the EnableDefaultBundles call as shown in the snippet below. This enables us to reference a bundled collection of CSS files in a folder by using the path to that folder, plus the &quot;CSS&quot; or the &quot;JS&quot; suffix.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample11.cs)]
 5. Open the **Optimization.aspx** file and locate the content control for **HeadContent**.
 
     Notice the CSS files and the JS files have a single referenced tag.
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.aspx)]
 
@@ -571,7 +560,6 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     You can use the path **Scripts/custom/JS** as shown below to bundle and minify all the JS files inside a **Scripts/custom** folder. This is the default behavior with the default bundles.
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample13.aspx)]
 7. Open the **Styles\Site.css** file.
@@ -614,14 +602,12 @@ In this task, you will configure a static bundle to define a specific set of fil
 
     Notice that the files are not located in the same place; this is another advantage over the default bundling.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample14.cs)]
 4. Open the **Optimization.aspx** file.
 
     Notice that the link to **Static JS Bundle** is using the path you have declared when you configured the static bundle in the Global.asax.cs file: **/StaticBundle**.
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample15.aspx)]
 5. Press **F5** to run the application, and then navigate to the **Optimization** page.
@@ -648,7 +634,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     You are defining a dynamic folder bundle that will use the **CoffeeMinify** custom minification processor that will only apply to the files with the &quot;**.coffee**&quot; extension (CoffeeScript files). Notice that you can use a search pattern to select the files to bundle within a folder, like '\*.coffee'.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample16.cs)]
 3. Open the NuGet Package Manager Console. To do this, use the menu **View** | **Other Windows** | **Package Manager Console**.
@@ -667,7 +652,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     This class inherits from JsMinify to minify the JavaScript output resulting from the CoffeeScript code compilation. It calls the CoffeeScript compiler to generate the JavaScript code first, and then it sends it to the JsMinify.Process method to minify the resulting code.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample17.cs)]
 8. Open the **Script1.coffee** and **Script2.coffee** files from the **Scripts/bundle** folder.
@@ -686,7 +670,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     Notice that the link to **Dynamic JS Bundle** is referencing the **Scripts/bundle** folder by using the **/Coffee** suffix you configured for the dynamic folder bundle.
 
-    HTML
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample18.aspx)]
 10. Press **F5** to run the application, and then navigate to the **Optimization** page.
@@ -701,8 +684,6 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 > [!NOTE]
 > Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
-
-<a id="Summary"></a>
 
 <a id="Summary"></a>
 ## Summary

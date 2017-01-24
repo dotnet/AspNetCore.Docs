@@ -133,14 +133,12 @@ In this task, you will customize the StoreManager Index action method to return 
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex1 using MvcMusicStore*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample1.cs)]
 2. Add a field to the **StoreManagerController** to hold an instance of **MusicStoreEntities.**
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex1 MusicStoreEntities*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample2.cs)]
 3. Implement the StoreManagerController Index action to return a View with the list of albums.
@@ -149,7 +147,6 @@ In this task, you will customize the StoreManager Index action method to return 
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex1 StoreManagerController Index*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample3.cs)]
 
@@ -185,17 +182,14 @@ In this task, you will adjust the simple View template created with ASP.NET MVC 
 
 1. Review the code created. The generated list of fields will be part of the following HTML table that **Scaffolding** is using for displaying tabular data.
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.cshtml)]
 2. Replace the **&lt;table&gt;** code with the following code to display only the **Genre**, **Artist**, **Album Title**, and **Price** fields. This deletes the **AlbumId** and **Album Art URL** columns. Also, it changes GenreId and ArtistId columns to display their linked class properties of **Artist.Name** and **Genre.Name**, and removes the **Details** link.
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.cshtml)]
 3. Change the following descriptions.
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.cshtml)]
 
@@ -248,7 +242,6 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
 2. Open StoreManager's Index View. To do this, in the Solution Explorer expand the **Views** folder, then the **StoreManager** and open the **Index.cshtml** file.
 3. Add the following code below the **@model** directive to define the **Truncate** helper method.
 
-    C#
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.cshtml)]
 
@@ -262,7 +255,6 @@ In this task, you will use the **Truncate** method to truncate the text in the V
 1. Open StoreManager's Index View. To do this, in the Solution Explorer expand the **Views** folder, then the **StoreManager** and open the **Index.cshtml** file.
 2. Replace the lines that show the **Artist Name** and Album's **Title**. To do this, replace the following lines.
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.cshtml)]
 
@@ -311,7 +303,6 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex3 StoreManagerController HTTP-GET Edit action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample9.cs)]
 
@@ -357,7 +348,6 @@ In this task, you will add drop-downs to the View template created in the last t
 
 1. Replace all the **Album** fieldset code with the following:
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.cshtml)]
 
@@ -393,7 +383,6 @@ Now that the Edit View displays as expected, you need to implement the HTTP-POST
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex3 StoreManagerController HTTP-POST Edit action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample11.cs)]
 
@@ -454,7 +443,6 @@ In this task, you will implement the HTTP-GET version of the Create action metho
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex4 StoreManagerController HTTP-GET Create action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample12.cs)]
 
@@ -473,7 +461,6 @@ In this task, you will add the Create View template that will display a new (emp
     *Adding the Create View*
 3. Update the **GenreId** and **ArtistId** fields to use a drop-down list as shown below:
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.cshtml)]
 
@@ -503,7 +490,6 @@ In this task, you will implement the HTTP-POST version of the Create action meth
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex4 StoreManagerController HTTP- POST Create action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample14.cs)]
 
@@ -559,7 +545,6 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex5 Handling Deletion HTTP-GET Delete action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample15.cs)]
 4. Right-click inside the **Delete** action method and select **Add View**. This will bring up the Add View dialog.
@@ -570,7 +555,6 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
     *Adding a Delete View*
 6. The Delete template shows all the fields from the model. You will show only the album's title. To do this, replace the content of the view with the following code:
 
-    HTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.cshtml)]
 
@@ -600,7 +584,6 @@ In this task, you will implement the HTTP-POST version of the Delete action meth
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex5 Handling Deletion HTTP-POST Delete action*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample17.cs)]
 
@@ -637,8 +620,6 @@ In this task, you will add Data Annotations to the Album Model that will make th
 
 For a simple Model class, adding a Data Annotation is just handled by adding a **using** statement for **System.ComponentModel.DataAnnotation**, then placing a **[Required]** attribute on the appropriate properties. The following example would make the **Name** property a required field in the View.
 
-C#
-
 [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample18.cs)]
 
 This is a little more complex in cases like this application where the Entity Data Model is generated. If you added Data Annotations directly to the model classes, they would be overwritten if you update the model from the database. Instead, you can make use of metadata partial classes which will exist to hold the annotations and are associated with the model classes using the **[MetadataType]** attribute.
@@ -659,7 +640,6 @@ This is a little more complex in cases like this application where the Entity Da
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex6 Album metadata partial class*)
 
-    C#
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample19.cs)]
 
@@ -727,7 +707,6 @@ In this task, you will run the application before including jQuery in order to c
     *Client validation disabled*
 4. In the browser, open the HTML source code:
 
-    HTML
 
     [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample20.html)]
 
@@ -740,7 +719,6 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
 1. Open **Web.Config** file at project root, and make sure that the **ClientValidationEnabled** and **UnobtrusiveJavaScriptEnabled** keys values are set to **true**.
 
-    XML
 
     [!code-xml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample21.xml)]
 
@@ -752,8 +730,6 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
     > Additionally, you can assign ClientValidationEnabled attribute into any controller to have a custom behavior.
 2. Open **Create.cshtml** at **Views\StoreManager**.
 3. Make sure the following script files, **jquery.validate** and **jquery.validate.unobtrusive**, are referenced in the view throught the &quot;**~/bundles/jqueryval**&quot; bundle.
-
-    CSHTML
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.cshtml)]
 
@@ -777,7 +753,6 @@ In this task, you will test that the **StoreManager** create view template perfo
     *Client validation with jQuery enabled*
 3. In the browser, open the source code for Create view:
 
-    HTML
 
     [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.html)]
 
@@ -794,14 +769,10 @@ In this task, you will test that the **StoreManager** create view template perfo
     > 
     > All the data values are filled with model **Data Annotation**. Then, all the logic that works at server side can be run at client side. For example, Price attribute has the following data annotation in the model:
     > 
-    > C#
-    > 
     > [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.cs)]
     > 
     > After using Unobtrusive jQuery, the generated code is:
-    > 
-    > HTML
-    > 
+    >  
     > [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.html)]
 
 * * *

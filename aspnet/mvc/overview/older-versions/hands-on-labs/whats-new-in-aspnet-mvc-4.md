@@ -148,7 +148,6 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 6. Open the file **AuthConfig.cs** located under the **App\_Start** folder.
 7. Remove the comment from the last line to register Google client for *OAuth* authentication.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample1.cs)]
 
@@ -224,7 +223,6 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 8. The new template also uses the **Viewport meta tag**. Most mobile browsers define a width for a virtual browser window or &quot;viewport&quot;, which is larger than the actual width of the mobile device. This enables mobile browsers to display the entire web page inside the virtual display. The **Viewport meta tag** allows web developers to set the width, height and scale of the browser area on mobile devices **.** The ASP.NET MVC 4 template for Mobile Applications sets the viewport to the device width (&quot;width=device-width&quot;) in the layout template (*Views\Shared\_Layout.cshtml*), so that all the pages will have their viewport set to the device screen width. Notice that the Viewport meta tag will not change the default browser view.
 9. Open **\_Layout.cshtml**, located in the **Views | Shared** folder, and comment the Viewport meta tag. Run the application, if not already opened, and check out the differences.
 
-    HTML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample2.cshtml)]
 
@@ -234,7 +232,6 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 10. In Visual Studio, press **SHIFT** + **F5** to stop debugging the application.
 11. Uncomment the viewport meta tag.
 
-    HTML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample3.cshtml)]
 
@@ -319,7 +316,6 @@ In this task, you will create a mock of the photo service to retrieve the conten
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - Gallery Action*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample4.cs)]
 7. Press **F5** to run the solution, and then browse to the following URL in order to test the mocked photo service: `http://localhost:[port]/photo/gallery` (the [port] value depends on the current port where the application was launched). The request to this URL should retrieve the content of the **Photos.json** file.
@@ -341,7 +337,6 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - Photo model*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample5.cs)]
 4. Open the **HomeController.cs** file from the **Controllers** folder.
@@ -349,14 +344,12 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - HomeController Usings*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample6.cs)]
 6. Update the **Index** action to use **HttpClient** to retrieve the gallery data, and then use the **JavaScriptSerializer** to deserialize it to the view model.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - Index Action*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample7.cs)]
 7. Open the **Index.cshtml** file located under the **Views\Home** folder and replace all the content with the following code.
@@ -365,7 +358,6 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - Photo List*)
 
-    HTML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample8.cshtml)]
 8. In the **Solution Explorer**, right-click the **Content** folder of your project, and select **Add | Existing Item**. Browse to the **Source\Assets\Content** folder of this lab and add the **Site.css** file. You will have to confirm its replacement. If you have the **Site.css** file open, you will have to confirm to reload the file also.
@@ -422,7 +414,6 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex03 - Register Mobile Bundles*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample10.cs)]
 5. Run the application using a desktop web browser.
@@ -449,7 +440,6 @@ In this task, you will create a mobile version of the index view with content ad
 1. Copy the **Views\Home\Index.cshtml** view and paste it to create a copy, rename the new file to **Index.Mobile.cshtml**.
 2. Open the new created **Index.Mobile.cshtml** view and replace the existing &lt;ul&gt; tag with this code. By doing this, you will be updating the &lt;ul&gt; tag with jQuery Mobile data annotations to use the mobile themes from jQuery.
 
-    HTML
 
     [!code-html[Main](whats-new-in-aspnet-mvc-4/samples/sample11.html)]
 
@@ -498,7 +488,6 @@ In this task, you will update the mobile layout to use a different theme than th
 2. Open the **\_Layout.Mobile.cshtml** file located in **Views\Shared**.
 3. Find the div element with the data-role set to &quot;page&quot; and update the **data-theme** to &quot;**e**&quot;.
 
-    XML
 
     [!code-html[Main](whats-new-in-aspnet-mvc-4/samples/sample13.html)]
 4. Press **CTRL + S** to save the changes.
@@ -555,7 +544,6 @@ In this task, you will update the desktop layout to include the view-switcher. T
 3. Go back to Visual Studio and open the **\_Layout.cshtml** view.
 4. Find the login section and insert a call to render the **\_ViewSwitcher** partial view below the **\_LogOnPartial** partial view. Then, press **CTRL + S** to save the changes.
 
-    HTML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample14.cshtml)]
 5. Press **CTRL + S** to save the changes.
@@ -587,14 +575,12 @@ In this task, you will create a customized layout for iPhone devices, and you wi
 1. In Visual Studio, press **SHIFT** + **F5** to stop debugging the application.
 2. Open **Global.asax.cs** and add the following using statement.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample15.cs)]
 3. Add the following highlighted code into the Application\_Start method.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex03 - iPhone DisplayMode*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample16.cs)]
 
@@ -608,7 +594,6 @@ In this task, you will create a customized layout for iPhone devices, and you wi
 5. Open **\_Layout.iPhone.csthml** you created in the previous step.
 6. Find the div element with the data-role attribute set to **page** and change the **data-theme** attribute to &quot;**a**&quot;.
 
-    XML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample17.cshtml)]
 
@@ -647,17 +632,14 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 2. Open the **HomeController.cs** class from the **Controllers** folder.
 3. Add the following using statement.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample18.cs)]
 4. Update the **HomeController** class to inherit from **AsyncController**. Controllers that derive from AsyncController enable ASP.NET to process asynchronous requests, and they can still service synchronous action methods.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample19.cs)]
 5. Add the **async** keyword to the **Index** method and make it return the type **Task&lt;ActionResult&gt;**.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample20.cs)]
 
@@ -667,7 +649,6 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - GetAsync*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample21.cs)]
 
@@ -679,7 +660,6 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - ReadAsStringAsync*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample22.cs)]
 8. Run the application. You will notice no major changes, but your code will not block a thread from the thread pool making a better usage of the server resources and improving performance.
@@ -695,36 +675,30 @@ Asynchronous action methods that return Task instances can also support time-out
 1. Go back to Visual Studio and press **SHIFT + F5** to stop debugging.
 2. Add the following using statement to the **HomeController.cs** file.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample23.cs)]
 3. Update the Index action to receive a **CancellationToken** argument.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample24.cs)]
 4. Update the **GetAsync** call to pass the cancellation token.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - SendAsync with CancellationToken*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample25.cs)]
 5. Decorate the *Index* method with an **AsyncTimeout** attribute set to 500 milliseconds and a **HandleError** attribute configured to handle **TaskCanceledException** by redirecting to a **TimedOut** view.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - Attributes*)
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample26.cs)]
 6. Open the **PhotoController** class and update the **Gallery** method to delay the execution 1000 miliseconds (1 second) to simulate a long running task.
 
-    C#
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample27.cs)]
 7. Open the **Web.config** file and enable custom errors by adding the following element.
 
-    XML
 
     [!code-xml[Main](whats-new-in-aspnet-mvc-4/samples/sample28.xml)]
 8. Create a new view in **Views\Shared** named **TimedOut** and use the default layout. In the Solution Explorer, right-click the **Views\Shared** folder and select **Add | View**.
@@ -734,7 +708,6 @@ Asynchronous action methods that return Task instances can also support time-out
     *Using different views for each mobile device*
 9. Update the **TimedOut** view content as shown below.
 
-    HTML
 
     [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample29.cshtml)]
 10. Run the application and navigate to the root URL. As you have added a **Thread.Sleep** of 1000 milliseconds, you will get a time-out error, generated by the **AsyncTimeout** attribute and catch by the **HandleError** attribute.
