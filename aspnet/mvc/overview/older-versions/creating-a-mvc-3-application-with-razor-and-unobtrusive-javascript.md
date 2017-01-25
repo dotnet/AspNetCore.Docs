@@ -50,7 +50,7 @@ In this tutorial you will not be using the ASP.NET membership provider, so you c
 
 Edit the *\_Layout.cshtml* file and replace the markup inside the `<div>` element named `logindisplay` with the message *&quot;*Login Disabled&quot;. The following example shows the new markup:
 
-[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.html)]
+[!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.cshtml)]
 
 ## Adding the Model
 
@@ -168,7 +168,7 @@ The first two jQuery scripts are hosted by the Microsoft Ajax Content Delivery N
 
 Run the application and click an edit link. View the page's source in the browser. The browser source shows many attributes of the form `data-val` (for data validation). When client validation and unobtrusive JavaScript is enabled, input fields with a client-validation rule contain the `data-val="true"` attribute to trigger unobtrusive client validation. For example, the `City` field in the model was decorated with the [Required](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) attribute, which results in the HTML shown in the following example:
 
-[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample15.html)]
+[!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample15.cshtml)]
 
 For each client-validation rule, an attribute is added that has the form `data-val-rulename="message"`. Using the `City` field example shown earlier, the required client-validation rule generates the `data-val-required` attribute and the message &quot;The City field is required&quot;. Run the application, edit one of the users, and clear the `City` field. When you tab out of the field, you see a client-side validation error message.
 
@@ -176,7 +176,7 @@ For each client-validation rule, an attribute is added that has the form `data-v
 
 Similarly, for each parameter in the client-validation rule, an attribute is added that has the form `data-val-rulename-paramname=paramvalue`. For example, the `FirstName` property is annotated with the [StringLength](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) attribute and specifies a minimum length of 3 and a maximum length of 8. The data validation rule named `length` has the parameter name `max` and the parameter value 8. The following shows the HTML that is generated for the `FirstName` field when you edit one of the users:
 
-[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample16.html)]
+[!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample16.cshtml)]
 
 For more information about unobtrusive client validation, see the entry [Unobtrusive Client Validation in ASP.NET MVC 3](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html) in Brad Wilson's blog.
 

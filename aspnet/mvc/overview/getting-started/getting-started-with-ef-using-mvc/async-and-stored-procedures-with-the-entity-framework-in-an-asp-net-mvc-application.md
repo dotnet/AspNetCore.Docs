@@ -78,11 +78,11 @@ In the Create, Delete, Details, and Edit views, change the caption for the `Inst
 
 In the Create and Edit views use the following code:
 
-[!code-html[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.html)]
+[!code-cshtml[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cshtml)]
 
 In the Delete and Details views use the following code:
 
-[!code-html[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.html)]
+[!code-cshtml[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.cshtml)]
 
 Run the application, and click the **Departments** tab.
 

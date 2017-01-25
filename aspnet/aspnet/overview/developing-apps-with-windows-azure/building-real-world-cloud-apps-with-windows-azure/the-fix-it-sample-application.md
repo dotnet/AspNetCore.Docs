@@ -158,7 +158,7 @@ We changed it to this:
 
 For the **Create a Fix It** button on the home page, the Fix It app hard coded an anchor element:
 
-[!code-html[Main](the-fix-it-sample-application/samples/sample12.html)]
+[!code-cshtml[Main](the-fix-it-sample-application/samples/sample12.cshtml)]
 
 For View/Action links like this it's better to use the [Url.Action](https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.action.aspx) HTML helper, for example:
 

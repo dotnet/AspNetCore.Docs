@@ -123,7 +123,7 @@ To display the image, all the MVC view has to do is include the `PhotoUrl` value
 
 If you look at the HTML of the page that displays, you see the URL pointing directly to the image in blob storage, something like this:
 
-[!code-html[Main](unstructured-blob-storage/samples/sample13.html?highlight=11)]
+[!code-cshtml[Main](unstructured-blob-storage/samples/sample13.cshtml?highlight=11)]
 
 ## Summary
 

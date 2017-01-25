@@ -285,11 +285,11 @@ The following image shows this process:
 
 The client should have two pages: one for home page and the other for callback.Here is the sample JavaScript code found in the *Index.cshtml* file:
 
-[!code-html[Main](owin-oauth-20-authorization-server/samples/sample18.html)]
+[!code-cshtml[Main](owin-oauth-20-authorization-server/samples/sample18.cshtml)]
 
 Here is the callback handling code in *SignIn.cshtml* file:
 
-[!code-html[Main](owin-oauth-20-authorization-server/samples/sample19.html)]
+[!code-cshtml[Main](owin-oauth-20-authorization-server/samples/sample19.cshtml)]
 
 > [!NOTE]
 > A best practice is to move the JavaScript to an external file and not embed it with the Razor markup. To keep this sample simple, they have been combined.

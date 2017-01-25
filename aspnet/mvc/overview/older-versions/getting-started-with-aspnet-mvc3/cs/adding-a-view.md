@@ -73,7 +73,7 @@ First, you want to change the "My MVC Application" title at the top of the page.
 
 Layout templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Note the `@RenderBody()` line near the bottom of the file. `RenderBody` is a placeholder where all the view-specific pages you create show up, "wrapped" in the layout page. Change the title heading in the layout template from "My MVC Application" to "MVC Movie App".
 
-[!code-html[Main](adding-a-view/samples/sample3.html)]
+[!code-cshtml[Main](adding-a-view/samples/sample3.cshtml)]
 
 Run the application and notice that it now says "MVC Movie App". Click the **About** link, and you see how that page shows "MVC Movie App", too. We were able to make the change once in the layout template and have all pages on the site reflect the new title.
 

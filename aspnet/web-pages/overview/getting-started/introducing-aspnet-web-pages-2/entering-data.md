@@ -53,7 +53,7 @@ Create a page named *AddMovie.cshtml*.
 
 Replace what's in the file with the following markup. Overwrite everything; you'll add a code block at the top shortly.
 
-[!code-html[Main](entering-data/samples/sample1.html)]
+[!code-cshtml[Main](entering-data/samples/sample1.cshtml)]
 
 This example shows typical HTML for creating a form. It uses `<input>` elements for the text boxes and for the submit button. The captions for the text boxes are created by using standard `<label>` elements. The `<fieldset>` and `<legend>` elements put a nice box around the form.
 
@@ -214,7 +214,7 @@ To style the individual error messages that are displayed by `Html.ValidationMes
 
 To see how this technique works, add a `<style>` element inside the `<head>` section of the page. Then define style classes named `field-validation-error` and `validation-summary-errors` that contain the following rules:
 
-[!code-html[Main](entering-data/samples/sample13.html?highlight=4-17)]
+[!code-cshtml[Main](entering-data/samples/sample13.cshtml?highlight=4-17)]
 
 Normally you'd probably put style information into a separate *.css* file, but for simplicity you can put them in the page for now. (Later in this tutorial set, you'll move the CSS rules to a separate *.css* file.)
 
@@ -230,7 +230,7 @@ One final step is to make it convenient to get to the *AddMovie* page from the o
 
 Open the *Movies* page again. After the closing `</div>` tag that follows the `WebGrid` helper, add the following markup:
 
-[!code-html[Main](entering-data/samples/sample14.html)]
+[!code-cshtml[Main](entering-data/samples/sample14.cshtml)]
 
 As you saw before, ASP.NET interprets the `~` operator as the root of the website. You don't have to use the `~` operator; you could use the markup `<a href="./AddMovie">Add a movie</a>` or some other way to define the path that HTML understands. But the `~` operator is a good general approach when you create links for Razor pages, because it makes the site more flexible — if you move the current page to a subfolder, the link will still go to the *AddMovie* page. (Remember that the `~` operator only works in *.cshtml* pages. ASP.NET understands it, but it's not standard HTML.)
 
