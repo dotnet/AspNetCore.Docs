@@ -91,13 +91,13 @@ Many modules offer a configuration setting that will allow you to disable it wit
 ```
 
 ### Module removal
-If you opt to remove the module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps to remove the module are outlined below.
+If you opt to remove a module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps to remove the module are outlined below.
 
 1. Unlock the module at the server level. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module in the list. In the **Actions** sidebar on the right, click **Unlock**. Unlock as many modules as you plan to remove with *web.config* later.
 
-2. Deploy your application without a `system.webServer:modules` section in *web.config*. If you deploy an app with a *web.config* containing the `<modules>` section without having unlocked the section first in the IIS Manager, the Configuration Manager will throw an exception when you try to unlock the section. Therefore, deploy your application without a `system.webServer:modules` section.
+2. Deploy your application without a `<modules>` section in *web.config*. If you deploy an app with a *web.config* containing the `<modules>` section without having unlocked the section first in the IIS Manager, the Configuration Manager will throw an exception when you try to unlock the section. Therefore, deploy your application without a `<modules>` section.
 
-3. Unlock the `<modules>` section of *web.config*. In the **Connections** sidebar, click the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer:modules` section. In the **Actions** sidebar on the right, click to **Unlock** the section.
+3. Unlock the `<modules>` section of *web.config*. In the **Connections** sidebar, click the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer/modules` section. In the **Actions** sidebar on the right, click to **Unlock** the section.
 
 4. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. You can add multiple `<remove>` elements to remove multiple modules. Don't forget that if you make *web.config* changes on the server to make them immeidately in the project locally. Removing a module this way won't affect your use of the module with other apps on the server.
 
