@@ -77,10 +77,10 @@ WindowsAuthentication | No |
 When using IIS modules with .NET applications, keep in mind that when you interact with the IIS Manager to configure settings that you're directly changing the *web.config* file of the app. If you later deploy a *web.config* with the app, any changes you made in the IIS Manager on the server will be overwritten by the settings in the deployed *web.config* file. After you've made changes to an app's *web.config* on the server, mirror those changes in your project's *web.config* immediately.
 
 ## Disabling IIS modules
-If you have an active IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.
+If you have an IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.
 
 ### Module deactivation
-Many modules offer a configuration setting that will allow you to disable it without removing it from the application. This is the simplest and quickest way to deactivate a module. For example, if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the child elements section of [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver).
+Many modules offer a configuration setting that will allow you to disable it without removing it from the application. This is the simplest and quickest way to deactivate a module. For example, if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the *Child Elements* section of [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver).
 
 ```xml
 <configuration>
@@ -99,7 +99,7 @@ If you opt to remove a module with a setting in *web.config*, you must unlock th
 
 3. Unlock the `<modules>` section of *web.config*. In the **Connections** sidebar, click the website in **Sites**. In the **Management** area, open the **Configuration Editor**. Use the navigation controls to select the `system.webServer/modules` section. In the **Actions** sidebar on the right, click to **Unlock** the section.
 
-4. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. You can add multiple `<remove>` elements to remove multiple modules. Don't forget that if you make *web.config* changes on the server to make them immeidately in the project locally. Removing a module this way won't affect your use of the module with other apps on the server.
+4. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. You can add multiple `<remove>` elements to remove multiple modules. Don't forget that if you make *web.config* changes on the server to make them immediately in the project locally. Removing a module this way won't affect your use of the module with other apps on the server.
 
   ```xml
   <configuration> 
