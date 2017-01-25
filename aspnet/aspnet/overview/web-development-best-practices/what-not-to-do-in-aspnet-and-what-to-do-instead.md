@@ -126,7 +126,7 @@ You can HTML encode the value in markup with the &lt;%: %&gt; syntax, as shown b
 
 Or, in Razor syntax, you can HTML encode with @, as shown below.
 
-[!code-html[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample6.html?highlight=1)]
+[!code-cshtml[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample6.cshtml?highlight=1)]
 
 The next example shows how to HTML encode a value in code-behind.
 
