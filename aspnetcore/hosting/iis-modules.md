@@ -91,7 +91,7 @@ Many modules offer a configuration setting that will allow you to disable it wit
 ```
 
 ### Module removal
-If you opt to remove a module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps to remove the module are outlined below.
+If you opt to remove a module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps are outlined below.
 
 1. Unlock the module at the server level. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module in the list. In the **Actions** sidebar on the right, click **Unlock**. Unlock as many modules as you plan to remove with *web.config* later.
 
