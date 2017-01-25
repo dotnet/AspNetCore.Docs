@@ -11,7 +11,7 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 **[AnchorTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-[comment]: **[CacheTagHelper](builtin/resources/AnchorTagHelper.md)**
+**[CacheTagHelper](builtin/resources/CacheTagHelper.md)**
 
 [comment]: **[DistributedTagHelper](builtin/resources/AnchorTagHelper.md)**
 

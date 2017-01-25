@@ -1,21 +1,14 @@
 ﻿[Back To Built In Tag Helpers List](../../builtin.md)
 
 
-# AnchorTagHelper
+# CacheTagHelper
 
 By [Peter Kellner](http://peterkellner.net) 
 
 
-The ```AnchorTagHelper``` enhances the html anchor (`<a ... ></a>`) tag. A new set of attributes are defined that work with the anchor tag. The link generated (on the href tag) is based on a combination of these new attributes that work together to form the final redirect URL. That URL can include an optional protocol such as https.
-
-For reference, the following ASP.NET ```SpeakerController.cs``` is defined as you would expect in a default Visual Studio .Net Core Web Project.
+The ```CacheTagHelper``` provides the ability to dramatically improve the performance of your ASP.NET core app by caching its content to the internal ASP.NET core cache provider.
 
 
-
-<br/>
-**SpeakerController.cs** 
-
-[!code-csharp[SpeakerController](../sample/TagHelpersBuiltInAspNetCore/src/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs)]
 
 <br/>
 These attributes are defined as follows:
@@ -97,32 +90,10 @@ Hash tags are useful when doing client side applications. They can be used for e
 
 ## asp-area
 
-```asp-area``` sets the area name that ASP.NET core will use to set the appropriate route with.  Below are examples of how the area attribute causes a remapping of routes.  That is, by setting ```asp-area``` to Blogs will invoke the Areas functionality such that the directory Areas/Blogs will prefix the associated controllers and views for this anchor tag.
+```asp-area``` allows for a razor view area to be associated with the hyperlink URL. That is, if you have a project setup in a similar fashion to the project pictured below, the link generated will include as its first segment the area you mention.
 
-* Project name
+![](../_static/ProjectControllersArea.png)
 
-  * wwwroot
-
-  * Areas
-
-    * Blogs
-
-      * Controllers
-
-        * HomeController.cs
-
-      * Views
-
-        * Home
-
-          * Index.cshtml
-          
-          * AboutBlog.cshtml
-          
-  * Controllers
-  
-
-        
 Specifying an area tag that is valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the ```AnchorTagHelper```.
 
 ```
@@ -139,6 +110,7 @@ The generated HTML will include the areas segment and will be as follows:
 > For MVC Areas to work in your web application, the route template must include a reference to the area if it exists. That template (which is the second parameter of the ```routes.MapRoute``` method call) will look as follows: ```template: "{area:exists}/{controller=Home}/{action=Index}"```.
 
 
+
 ## asp-protocol
 
 The ```asp-protocol``` is for specifying a particular protocol (such as ```https```) in your URL. An example ```AnchorTagHelper``` that includes the protocol will look as follows.
@@ -151,10 +123,9 @@ and will generate HTML as follows.
 
 (of course the domain, in the case above is localhost, but this will be substituted for whatever the actual domain hosting the web site is hosted at).
 
-## See Also
-
-* [Areas](../../../../controllers/areas.md)
 
 
 
+REFERENCES:
 
+https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory
