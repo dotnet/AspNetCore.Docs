@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/extensibility/app-parts/sample)
 
-An *Application Part* is a resource where MVC features may be discovered, such as an assembly. *Feature providers* work with application parts to populate the features of an ASP.NET Core MVC app. 
+An *Application Part* is an abstraction over the resources of an application, from which MVC features like controllers, view components, or tag helpers may be discovered. One example of an application part is an AssemblyPart, which encapsulates an assembly reference and exposes types and compilation references. *Feature providers* work with application parts to populate the features of an ASP.NET Core MVC app. 
 The main use case for application parts is to allow you to configure your app to discover (or avoid loading) MVC features from an assembly.
 
 ## Introducing Application Parts
@@ -44,7 +44,7 @@ services
 
 By default MVC will search the dependency tree and find controllers (even in other assemblies). To load an arbitrary assembly (for instance, from a plugin that isn't referenced at compile time), you can use an application part.
 
-You can use application parts to *avoid* looking for controllers in a particular assembly or location. You can control which parts (or assemblies) are available to the app by modifying the `ApplicationParts` collection of the `ApplicationPartManager`. The order of the entries in the `ApplicationParts` collection is not important. It is important to fully configure the `ApplicationPartManager` before using anything that requires services these parts have added.
+You can use application parts to *avoid* looking for controllers in a particular assembly or location. You can control which parts (or assemblies) are available to the app by modifying the `ApplicationParts` collection of the `ApplicationPartManager`. The order of the entries in the `ApplicationParts` collection is not important. It is important to fully configure the `ApplicationPartManager` before using it to configure services in the container. For example, you should fully configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Failing to do so, will mean that controllers in application parts added after that method call will not be affected (will not get registered as services) which might result in incorrect bevavior of your application.
 
 If you have an assembly that contains controllers you do not want to be used, remove it from the `ApplicationPartManager`:
 
@@ -73,9 +73,6 @@ Application Feature Providers examine application parts and provide features for
 - [Metadata Reference](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.razor.compilation.metadatareferencefeatureprovider)
 - [Tag Helpers](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
 - [View Components](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
-
-> [!NOTE]
-> Views do not use feature providers but will do so in a future release.
 
 Feature providers inherit from `IApplicationFeatureProvider<T>`, where `T` is the type of the feature. You can implement your own feature providers for any of MVC's feature types listed above. The order of feature providers in the `ApplicationPartManager.FeatureProviders` collection can be important, since later providers can react to actions taken by previous providers.
 
