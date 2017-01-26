@@ -166,7 +166,7 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 **Client JavaScript code for enabling tracing to the browser console (without the generated proxy)**
 
-[!code-javascript[Main](enabling-signalr-tracing/samples/sample10.ja?highlight=2)]
+[!code-javascript[Main](enabling-signalr-tracing/samples/sample10.js?highlight=2)]
 
 When tracing is enabled, the JavaScript client logs events to the browser console. To access the browser console, see [Monitoring Transports](../getting-started/introduction-to-signalr.md).
 
