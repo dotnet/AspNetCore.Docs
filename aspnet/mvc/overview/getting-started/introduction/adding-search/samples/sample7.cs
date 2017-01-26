@@ -1,7 +1,7 @@
 public ActionResult Index(string searchString) 
 {           
-     var movies = from m in db.Movies 
-                  select m; 
+	var movies = from m in db.Movies 
+                 select m; 
  
     if (!String.IsNullOrEmpty(searchString)) 
     { 

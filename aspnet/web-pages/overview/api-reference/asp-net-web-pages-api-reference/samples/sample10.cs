@@ -1,3 +1,3 @@
 if (Request["companyname"].IsEmpty()) {
-   @:Company name is required.<br />
+	@:Company name is required.<br />
 }

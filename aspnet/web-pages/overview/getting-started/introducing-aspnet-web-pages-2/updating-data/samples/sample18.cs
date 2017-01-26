@@ -1,5 +1,5 @@
 if(!IsPost){
-     if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
+	if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
         movieId = Request.QueryString["ID"];
         var db = Database.Open("WebPagesMovies");
         var dbCommand = "SELECT * FROM Movies WHERE ID = @0";

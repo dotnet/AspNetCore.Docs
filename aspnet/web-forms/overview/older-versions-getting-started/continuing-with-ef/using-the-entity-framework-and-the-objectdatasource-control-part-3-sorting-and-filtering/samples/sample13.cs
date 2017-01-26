@@ -1,4 +1,4 @@
 public IEnumerable<Department> GetDepartments(string sortExpression)
-        {
-            return GetDepartmentsByName(sortExpression, "");
-        }
+{
+	return GetDepartmentsByName(sortExpression, "");
+}

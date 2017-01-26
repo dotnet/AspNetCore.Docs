@@ -7,7 +7,6 @@ using System.Web.Routing;
 
 namespace MvcApplication1
 {
- 
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -25,7 +24,6 @@ namespace MvcApplication1
               "",
               new { controller = "Home", action = "Index", id = "" }
             );
-
         }
 
         protected void Application_Start()

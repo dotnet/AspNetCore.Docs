@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WingtipToys.Logic
 {
-  internal class RoleActions
-  {
-  }
+	internal class RoleActions
+	{
+	}
 }

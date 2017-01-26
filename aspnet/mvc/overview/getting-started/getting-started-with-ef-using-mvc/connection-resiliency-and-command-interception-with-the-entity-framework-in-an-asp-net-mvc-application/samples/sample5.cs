@@ -6,7 +6,6 @@ namespace ContosoUniversity.Logging
 {
     public class Logger : ILogger
     {
-
         public void Information(string message)
         {
             Trace.TraceInformation(message);

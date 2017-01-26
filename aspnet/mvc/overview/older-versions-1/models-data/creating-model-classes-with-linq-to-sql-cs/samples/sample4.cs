@@ -3,24 +3,24 @@ using System.Linq;
 
 namespace MvcApplication1.Models
 {
-         public class MovieRepository : IMovieRepository
-         {
-              private MovieDataContext _dataContext;
+     public class MovieRepository : IMovieRepository
+     {
+          private MovieDataContext _dataContext;
 
-              public MovieRepository()
-              {
-                    _dataContext = new MovieDataContext();
-              }
+          public MovieRepository()
+          {
+                _dataContext = new MovieDataContext();
+          }
 
-              #region IMovieRepository Members
+          #region IMovieRepository Members
 
-              public IList<Movie> ListAll()
-              {
-                   var movies = from m in _dataContext.Movies
-                        select m;
-                   return movies.ToList();
-              }
+          public IList<Movie> ListAll()
+          {
+               var movies = from m in _dataContext.Movies
+                    select m;
+               return movies.ToList();
+          }
 
-              #endregion
-         }
+          #endregion
+     }
 }

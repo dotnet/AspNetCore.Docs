@@ -13,7 +13,6 @@ namespace MvcApplication1.Controllers
 
           public ActionResult About()
           {
-
                return View();
           }
      }

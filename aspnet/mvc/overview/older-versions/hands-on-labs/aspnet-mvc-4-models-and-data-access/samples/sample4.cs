@@ -2,7 +2,7 @@
 [ChildActionOnly]
 public ActionResult GenreMenu()
 {
-     var genres = this.storeDB.Genres.Take(9).ToList();
+	var genres = this.storeDB.Genres.Take(9).ToList();
 
-     return this.PartialView(genres);
+	return this.PartialView(genres);
 }

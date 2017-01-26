@@ -1,27 +1,27 @@
 using System.Linq;
 
-    using System.Web.Mvc;
+using System.Web.Mvc;
 
-    using MovieApp.Models; 
+using MovieApp.Models; 
 
-    namespace MovieApp.Controllers
+namespace MovieApp.Controllers
 
-    {
+{
 
-        public class HomeController : Controller
+	public class HomeController : Controller
 
-        {
+	{
 
-            private MoviesDBEntities _db = new MoviesDBEntities(); 
+		private MoviesDBEntities _db = new MoviesDBEntities(); 
 
-            public ActionResult Index()
+		public ActionResult Index()
 
-            {
+		{
 
-                return View(_db.MovieSet.ToList());
+			return View(_db.MovieSet.ToList());
 
-            }
+		}
 
-        }
+	}
 
-    }
+}

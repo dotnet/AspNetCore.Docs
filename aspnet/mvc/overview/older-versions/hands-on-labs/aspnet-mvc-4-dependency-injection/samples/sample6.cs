@@ -1,13 +1,11 @@
 private static 
 
 IUnityContainer BuildUnityContainer()
-  {
-        var container = new UnityContainer
+{
+	var container = new UnityContainer();
 
-();
+	container.RegisterType<IStoreService, StoreService>();
+	container.RegisterType<IController, StoreController>("Store");        
 
-        container.RegisterType<IStoreService, StoreService>();
-        container.RegisterType<IController, StoreController>("Store");        
-
-        return container;
-  }
+	return container;
+}

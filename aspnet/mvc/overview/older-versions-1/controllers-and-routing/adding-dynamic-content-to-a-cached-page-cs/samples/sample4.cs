@@ -26,6 +26,5 @@ namespace MvcApplication1.Helpers
             var ad = ads[rnd.Next(ads.Count)];
             return String.Format("<img src='{0}' />", ad);
         }
-
     }
 }

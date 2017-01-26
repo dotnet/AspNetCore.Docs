@@ -1,7 +1,7 @@
 //
 // GET: /Checkout/Complete
 public ActionResult Complete(int id)
- {
+{
     // Validate customer owns this order
     bool isValid = storeDB.Orders.Any(
         o => o.OrderId == id &&

@@ -1,7 +1,7 @@
 private static 
 
 IUnityContainer BuildUnityContainer()
-  {
+{
         var container = new UnityContainer();
 
         ...
@@ -10,4 +10,4 @@ IUnityContainer BuildUnityContainer()
         container.RegisterInstance<IActionFilter>("LogActionFilter", new TraceActionFilter());
 
         return container;
-  }
+}

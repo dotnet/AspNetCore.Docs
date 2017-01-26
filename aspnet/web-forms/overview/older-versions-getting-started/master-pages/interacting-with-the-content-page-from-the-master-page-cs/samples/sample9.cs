@@ -1,12 +1,12 @@
 protected void DoublePrice_Click(object sender, EventArgs e)
 {
- // Double the prices
- DoublePricesDataSource.Update();
+	// Double the prices
+	DoublePricesDataSource.Update();
 
- // Refresh RecentProducts
- RecentProducts.DataBind();
+	// Refresh RecentProducts
+	RecentProducts.DataBind();
 
- // Raise the PricesDoubled event
- if (PricesDoubled != null)
- PricesDoubled(this, EventArgs.Empty);
+	// Raise the PricesDoubled event
+	if (PricesDoubled != null)
+	PricesDoubled(this, EventArgs.Empty);
 }

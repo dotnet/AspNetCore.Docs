@@ -9,7 +9,6 @@ namespace MvcApplication1.Controllers
           public string Index()
           {
                return DateTime.Now.ToString("T");
-
           }
      }
 }

@@ -18,6 +18,5 @@ namespace MvcApplication1.Models
             var rnd = new Random();
             return news[rnd.Next(news.Count)];
         }
-
     }
 }

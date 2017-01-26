@@ -1,7 +1,7 @@
 public class 
 
 FilterProvider : IFilterProvider
- {
+{
       private IUnityContainer container;
 
       public FilterProvider(IUnityContainer container)
@@ -20,4 +20,4 @@ controllerContext, ActionDescriptor actionDescriptor)
 (actionFilter, FilterScope.First, null);
             }
       }
- }
+}

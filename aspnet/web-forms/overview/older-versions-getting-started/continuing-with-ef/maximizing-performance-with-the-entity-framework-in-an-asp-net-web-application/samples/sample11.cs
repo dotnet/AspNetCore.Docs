@@ -1,4 +1,4 @@
 public IEnumerable<InstructorName> GetInstructorNames()
-        {
-            return context.CompiledInstructorNamesQuery();
-        }
+{
+	return context.CompiledInstructorNamesQuery();
+}

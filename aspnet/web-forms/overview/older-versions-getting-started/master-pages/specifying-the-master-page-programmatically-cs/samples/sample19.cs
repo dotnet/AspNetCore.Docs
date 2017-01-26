@@ -1,17 +1,16 @@
 protected override void OnPreInit(EventArgs e) 
 { 
- SetMasterPageFile();
- base.OnPreInit(e); 
+	SetMasterPageFile();
+	base.OnPreInit(e); 
 } 
 protected virtual void SetMasterPageFile()
 { 
- this.MasterPageFile = GetMasterPageFileFromSession();
+	this.MasterPageFile = GetMasterPageFileFromSession();
 } 
 protected string GetMasterPageFileFromSession() 
 { 
- if (Session["MyMasterPage"] == null) 
- return "~/Site.master";
- else
- return
- Session["MyMasterPage"].ToString(); 
+	if (Session["MyMasterPage"] == null) 
+		return "~/Site.master";
+	else
+		return Session["MyMasterPage"].ToString(); 
 }

@@ -1,131 +1,131 @@
 using System;
 
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
-    using System.Linq;
+using System.Linq;
 
-    using System.Web;
+using System.Web;
 
-    using System.Web.Mvc;
+using System.Web.Mvc;
 
-    using System.Web.Mvc.Ajax; 
+using System.Web.Mvc.Ajax; 
 
-    namespace MovieApp.Controllers
+namespace MovieApp.Controllers
 
-    {
+{
 
-        public class HomeController : Controller
+	public class HomeController : Controller
 
-        {
+	{
 
-            //
+		//
 
-            // GET: /Home/ 
+		// GET: /Home/ 
 
-            public ActionResult Index()
+		public ActionResult Index()
 
-            {
+		{
 
-                return View();
+			return View();
 
-            } 
+		} 
 
-            //
+		//
 
-            // GET: /Home/Details/5 
+		// GET: /Home/Details/5 
 
-            public ActionResult Details(int id)
+		public ActionResult Details(int id)
 
-            {
+		{
 
-                return View();
+			return View();
 
-            } 
+		} 
 
-            //
+		//
 
-            // GET: /Home/Create 
+		// GET: /Home/Create 
 
-            public ActionResult Create()
+		public ActionResult Create()
 
-            {
+		{
 
-                return View();
+			return View();
 
-            }  
+		}  
 
-            //
+		//
 
-            // POST: /Home/Create 
+		// POST: /Home/Create 
 
-            [AcceptVerbs(HttpVerbs.Post)]
+		[AcceptVerbs(HttpVerbs.Post)]
 
-            public ActionResult Create(FormCollection collection)
+		public ActionResult Create(FormCollection collection)
 
-            {
+		{
 
-                try
+			try
 
-                {
+			{
 
-                    // TODO: Add insert logic here 
+				// TODO: Add insert logic here 
 
-                    return RedirectToAction("Index");
+				return RedirectToAction("Index");
 
-                }
+			}
 
-                catch
+			catch
 
-                {
+			{
 
-                    return View();
+				return View();
 
-                }
+			}
 
-            } 
+		} 
 
-            //
+		//
 
-            // GET: /Home/Edit/5
+		// GET: /Home/Edit/5
 
-            public ActionResult Edit(int id)
+		public ActionResult Edit(int id)
 
-            {
+		{
 
-                return View();
+			return View();
 
-            } 
+		} 
 
-            //
+		//
 
-            // POST: /Home/Edit/5 
+		// POST: /Home/Edit/5 
 
-            [AcceptVerbs(HttpVerbs.Post)]
+		[AcceptVerbs(HttpVerbs.Post)]
 
-            public ActionResult Edit(int id, FormCollection collection)
+		public ActionResult Edit(int id, FormCollection collection)
 
-            {
+		{
 
-                try
+			try
 
-                {
+			{
 
-                    // TODO: Add update logic here
+				// TODO: Add update logic here
 
-                    return RedirectToAction("Index");
+				return RedirectToAction("Index");
 
-                }
+			}
 
-                catch
+			catch
 
-                {
+			{
 
-                    return View();
+				return View();
 
-                }
+			}
 
-            }
+		}
 
-        }
+	}
 
-    }
+}

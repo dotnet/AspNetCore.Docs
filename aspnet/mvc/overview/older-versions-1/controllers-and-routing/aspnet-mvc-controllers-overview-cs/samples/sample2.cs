@@ -9,12 +9,10 @@ namespace MvcApplication1.Controllers
 {
     public class BookController : Controller
     {
-
         public ActionResult Index()
         {
             // Add action logic here
             return View();
         }
-
     }
 }

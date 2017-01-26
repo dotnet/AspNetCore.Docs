@@ -1,45 +1,45 @@
 //
 
-    // GET: /Home/Edit/5 
+// GET: /Home/Edit/5 
 
-    public ActionResult Edit(int id)
+public ActionResult Edit(int id)
 
-    {
+{
 
-        var movieToEdit = (from m in _db.MovieSet
+	var movieToEdit = (from m in _db.MovieSet
 
-                           where m.Id == id
+					   where m.Id == id
 
-                           select m).First(); 
+					   select m).First(); 
 
-        return View(movieToEdit);
+	return View(movieToEdit);
 
-    } 
+} 
 
-    //
+//
 
-    // POST: /Home/Edit/5 
+// POST: /Home/Edit/5 
 
-    [AcceptVerbs(HttpVerbs.Post)]
+[AcceptVerbs(HttpVerbs.Post)]
 
-    public ActionResult Edit(Movie movieToEdit)
+public ActionResult Edit(Movie movieToEdit)
 
-    { 
+{ 
 
-        var originalMovie = (from m in _db.MovieSet
+	var originalMovie = (from m in _db.MovieSet
 
-                             where m.Id == movieToEdit.Id
+						 where m.Id == movieToEdit.Id
 
-                             select m).First(); 
+						 select m).First(); 
 
-        if (!ModelState.IsValid)
+	if (!ModelState.IsValid)
 
-            return View(originalMovie);
+		return View(originalMovie);
 
-            _db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
+		_db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
 
-            _db.SaveChanges(); 
+		_db.SaveChanges(); 
 
-            return RedirectToAction("Index");
+		return RedirectToAction("Index");
 
-    }
+}

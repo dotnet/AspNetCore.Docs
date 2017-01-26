@@ -1,4 +1,4 @@
 if (searchString != null)
         page = 1;
-    else
-        searchString = currentFilter;
+else
+	searchString = currentFilter;

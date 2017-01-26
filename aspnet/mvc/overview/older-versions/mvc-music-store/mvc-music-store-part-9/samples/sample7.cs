@@ -1,8 +1,8 @@
 //
 // POST: /Checkout/AddressAndPayment
 [HttpPost]
- public ActionResult AddressAndPayment(FormCollection values)
- {
+public ActionResult AddressAndPayment(FormCollection values)
+{
     var order = new Order();
     TryUpdateModel(order);
  

@@ -1,6 +1,6 @@
 public ActionResult Index()
 {
-     var genres = this.storeDB.Genres;
+	var genres = this.storeDB.Genres;
 
-     return this.View(genres);
+	return this.View(genres);
 }

@@ -17,6 +17,5 @@ namespace MvcApplication1.Controllers
             // Add action logic here
             return View();
         }
-
     }
 }

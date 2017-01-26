@@ -1,2 +1,2 @@
 db.Albums.Add(album);
- db.SaveChanges();
+db.SaveChanges();

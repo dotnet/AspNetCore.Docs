@@ -1,6 +1,6 @@
 public override void Up()
 {
-            CreateStoredProcedure(
+	CreateStoredProcedure(
         "dbo.Department_Insert",
         p => new
             {
@@ -23,7 +23,7 @@ public override void Up()
               WHERE @@ROWCOUNT > 0 AND t0.[DepartmentID] = @DepartmentID"
     );
     
-            CreateStoredProcedure(
+	CreateStoredProcedure(
         "dbo.Department_Update",
         p => new
             {
@@ -39,7 +39,7 @@ public override void Up()
               WHERE ([DepartmentID] = @DepartmentID)"
     );
     
-            CreateStoredProcedure(
+	CreateStoredProcedure(
         "dbo.Department_Delete",
         p => new
             {
@@ -48,6 +48,5 @@ public override void Up()
         body:
             @"DELETE [dbo].[Department]
               WHERE ([DepartmentID] = @DepartmentID)"
-    );
-    
+    );    
 }

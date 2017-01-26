@@ -1,4 +1,4 @@
 public void RefreshRecentProductsGrid() 
 { 
- RecentProducts.DataBind();
+	RecentProducts.DataBind();
 }

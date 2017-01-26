@@ -9,6 +9,5 @@ namespace MvcApplication1.Controllers
         {
             return "This information is secret.";
         }
-
     }
 }

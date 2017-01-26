@@ -18,6 +18,5 @@ namespace MvcApplication1.Controllers
         {
             return "Hello!";
         }
-    
     }
 }

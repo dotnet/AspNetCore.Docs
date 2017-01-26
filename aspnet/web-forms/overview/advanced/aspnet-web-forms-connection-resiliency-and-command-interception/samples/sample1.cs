@@ -3,11 +3,11 @@ using System.Data.Entity.SqlServer;
  
 namespace WingtipToys.Logic
 {
-  public class WingtipToysConfiguration : DbConfiguration
-  {
-    public WingtipToysConfiguration()
-    {
-      SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
-    }
-  }
+	public class WingtipToysConfiguration : DbConfiguration
+	{
+		public WingtipToysConfiguration()
+		{
+		  SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
+		}
+	}
 }

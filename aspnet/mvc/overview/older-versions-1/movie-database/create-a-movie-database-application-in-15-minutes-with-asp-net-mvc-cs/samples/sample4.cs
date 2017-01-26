@@ -1,33 +1,33 @@
 //
 
-            // GET: /Home/Create 
+// GET: /Home/Create 
 
-            public ActionResult Create()
+public ActionResult Create()
 
-            {
+{
 
-                return View();
+	return View();
 
-            }  
+}  
 
-            //
+//
 
-            // POST: /Home/Create 
+// POST: /Home/Create 
 
-            [AcceptVerbs(HttpVerbs.Post)]
+[AcceptVerbs(HttpVerbs.Post)]
 
-            public ActionResult Create([Bind(Exclude="Id")] Movie movieToCreate)
+public ActionResult Create([Bind(Exclude="Id")] Movie movieToCreate)
 
-            {
+{
 
-                 if (!ModelState.IsValid)
+	 if (!ModelState.IsValid)
 
-                    return View(); 
+		return View(); 
 
-                _db.AddToMovieSet(movieToCreate);
+	_db.AddToMovieSet(movieToCreate);
 
-                _db.SaveChanges(); 
+	_db.SaveChanges(); 
 
-                return RedirectToAction("Index");
+	return RedirectToAction("Index");
 
-            }
+}

@@ -1,8 +1,8 @@
 namespace GeekQuiz.Hubs
 {
-     using Microsoft.AspNet.SignalR;
+	using Microsoft.AspNet.SignalR;
 
-     public class StatisticsHub : Hub
-     {
-     }
+	public class StatisticsHub : Hub
+	{
+	}
 }

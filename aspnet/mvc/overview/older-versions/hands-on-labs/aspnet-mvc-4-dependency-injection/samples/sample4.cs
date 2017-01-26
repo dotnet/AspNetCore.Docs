@@ -1,7 +1,7 @@
 protected void 
 
 Application_Start()
-  {
+{
         AreaRegistration.RegisterAllAreas();
 
         WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -12,4 +12,4 @@ Application_Start()
         Bootstrapper.Initialise();
 
         AppConfig.Configure();
-  }
+}

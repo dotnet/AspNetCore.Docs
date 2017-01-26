@@ -22,5 +22,4 @@ public ActionResult SearchIndex(string movieGenre, string searchString)
     {
         return View(movies.Where(x => x.Genre == movieGenre));
     }
-
 }
