@@ -123,7 +123,7 @@ In this section, you'll use the same JavaScript client from the [Getting Started
 
     The following code (highlighted in the code sample above) is the addition that you've made to the client used in the Getting Stared tutorial (in addition to upgrading the code to SignalR version 2 beta). This line of code explicitly sets the base connection URL for SignalR on the server.
 
-    [!code-csharp[Main](tutorial-signalr-self-host/samples/sample6.cs)]
+    [!code-javascript[Main](tutorial-signalr-self-host/samples/sample6.js)]
 6. Right-click on the solution, and select **Set Startup Projects...**. Select the **Multiple startup projects** radio button, and set both projects' **Action** to **Start**.
 
     ![](tutorial-signalr-self-host/_static/image6.png)

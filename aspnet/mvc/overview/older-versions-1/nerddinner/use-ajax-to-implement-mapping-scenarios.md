@@ -53,7 +53,7 @@ Let's now create the Map.js file that we can use to encapsulate the JavaScript f
 
 Below is the JavaScript code we'll add to the Map.js file that will interact with Virtual Earth to display our map and add locations pins to it for our dinners:
 
-[!code-csharp[Main](use-ajax-to-implement-mapping-scenarios/samples/sample2.cs)]
+[!code-javascript[Main](use-ajax-to-implement-mapping-scenarios/samples/sample2.js)]
 
 ### Integrating the Map with Create and Edit Forms
 

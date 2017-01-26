@@ -205,7 +205,7 @@ In some applications you might want to display a message to the user when there 
     [!code-javascript[Main](handling-connection-lifetime-events/samples/sample3.js)]
 - Handle the `disconnected` event to display a message when an attempt to reconnect has timed out. In this scenario, the only way to re-establish a connection with the server again is to restart the SignalR connection by calling the `Start` method, which will create a new connection ID. The following code sample uses a flag to make sure that you issue the notification only after a reconnecting timeout, not after a normal end to the SignalR connection caused by calling the `Stop` method.
 
-    [!code-csharp[Main](handling-connection-lifetime-events/samples/sample4.cs)]
+    [!code-javascript[Main](handling-connection-lifetime-events/samples/sample4.js)]
 
 <a id="continuousreconnect"></a>
 
@@ -223,7 +223,7 @@ A potential problem to be aware of in mobile clients is that continuous reconnec
 
 SignalR version 1.1.1 does not have a built-in server API for disconnecting clients. There are [plans for adding this functionality in the future](https://github.com/SignalR/SignalR/issues/2101). In the current SignalR release, the simplest way to disconnect a client from the server is to implement a disconnect method on the client and call that method from the server. The following code sample shows a disconnect method for a JavaScript client using the generated proxy.
 
-[!code-csharp[Main](handling-connection-lifetime-events/samples/sample6.cs)]
+[!code-javascript[Main](handling-connection-lifetime-events/samples/sample6.js)]
 
 > [!WARNING]
 > Security - Neither this method for disconnecting clients nor the proposed built-in API will address the scenario of hacked clients that are running malicious code, since the clients could reconnect or the hacked code might remove the `stopClient` method or change what it does. The appropriate place to implement stateful denial-of-service (DOS) protection is not in the framework or the server layer, but rather in front-end infrastructure.

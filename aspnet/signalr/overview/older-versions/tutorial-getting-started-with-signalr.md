@@ -138,7 +138,7 @@ The HTML page in the code sample shows how to use the SignalR jQuery library to 
 
 The following code declares a proxy for a hub.
 
-[!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample6.cs)]
+[!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample6.js)]
 
 > [!NOTE]
 > In jQuery the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in jQuery as **chatHub**.

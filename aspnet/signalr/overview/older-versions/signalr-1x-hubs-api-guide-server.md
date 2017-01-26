@@ -103,7 +103,7 @@ There might be extraordinary circumstances that make this base URL not usable fo
 
 **JavaScript client code that specifies the URL (without the generated proxy)**
 
-[!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample5.cs?highlight=1)]
+[!code-javascript[Main](signalr-1x-hubs-api-guide-server/samples/sample5.js?highlight=1)]
 
 **.NET client code that specifies the URL**
 
@@ -161,7 +161,7 @@ By default, JavaScript clients refer to Hubs by using a camel-cased version of t
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample10.cs?highlight=1)]
+[!code-javascript[Main](signalr-1x-hubs-api-guide-server/samples/sample10.js?highlight=1)]
 
 If you want to specify a different name for clients to use, add the `HubName` attribute. When you use a `HubName` attribute, there is no name change to camel case on JavaScript clients.
 
@@ -171,7 +171,7 @@ If you want to specify a different name for clients to use, add the `HubName` at
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample12.cs?highlight=1)]
+[!code-javascript[Main](signalr-1x-hubs-api-guide-server/samples/sample12.js?highlight=1)]
 
 <a id="multiplehubs"></a>
 
@@ -286,7 +286,7 @@ You can specify complex types and arrays for the parameters. The following examp
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample26.cs?highlight=2-3)]
+[!code-javascript[Main](signalr-1x-hubs-api-guide-server/samples/sample26.js?highlight=2-3)]
 
 <a id="selectingclients"></a>
 

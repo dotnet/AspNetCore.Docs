@@ -170,7 +170,7 @@ The **Chat.cshtml** view file in the code sample shows how to use the SignalR jQ
 
 The following code declares a reference to a hub proxy.
 
-[!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample6.cs)]
+[!code-javascript[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample6.js)]
 
 > [!NOTE]
 > In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.

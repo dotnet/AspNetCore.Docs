@@ -54,11 +54,11 @@ SignalR uses two communication models: Hubs and PersistentConnections. The synta
 
 **JavaScript client code that creates a PersistentConnection in a JavaScript client**
 
-[!code-csharp[Main](troubleshooting/samples/sample1.cs)]
+[!code-javascript[Main](troubleshooting/samples/sample1.js)]
 
 **JavaScript client code that creates a Hub Proxy in a Javascript client**
 
-[!code-csharp[Main](troubleshooting/samples/sample2.cs)]
+[!code-javascript[Main](troubleshooting/samples/sample2.js)]
 
 **C# server code that maps a route to a PersistentConnection**
 
@@ -74,13 +74,13 @@ If the Hub's connection is started before methods that can be called from the se
 
 **Incorrect JavaScript client code that will not allow Hubs messages to be received**
 
-[!code-csharp[Main](troubleshooting/samples/sample5.cs)]
+[!code-javascript[Main](troubleshooting/samples/sample5.js)]
 
 Instead, add the method subscriptions before calling Start:
 
 **JavaScript client code that correctly adds subscriptions to a hub**
 
-[!code-csharp[Main](troubleshooting/samples/sample6.cs)]
+[!code-javascript[Main](troubleshooting/samples/sample6.js)]
 
 ### Missing method name on the hub proxy
 
@@ -88,7 +88,7 @@ Verify that the method defined on the server is subscribed to on the client. Eve
 
 **JavaScript client code that adds methods to a hub proxy**
 
-[!code-csharp[Main](troubleshooting/samples/sample7.cs)]
+[!code-javascript[Main](troubleshooting/samples/sample7.js)]
 
 ### Hub or hub methods not declared as Public
 

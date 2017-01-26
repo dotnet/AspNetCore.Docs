@@ -95,13 +95,13 @@ The models are defined in ~/Scripts/application/models. The models all have thre
 
 The ~/Scripts/application/lib folder contains a few handy jQuery plug-ins. The form.ts file defines a plug-in for working with form data. Often you need to serialize or deserialize form data and show any model validation errors. The form.ts plug-in has methods such as `serializeFields`, `deserializeFields`, and `showFieldErrors`. The following example shows how to serialize a form to a model.
 
-[!code-csharp[Main](backbonejs-template/samples/sample6.cs)]
+[!code-javascript[Main](backbonejs-template/samples/sample6.js)]
 
 The flashbar.ts plug-in gives various kinds of feedback messages to the user. The methods are `$.showSuccessbar`, `$.showErrorbar` and `$.showInfobar`. Behind the scenes, it uses Twitter Bootstrap alerts to show nicely animated messages.
 
 The confirm.ts plug-in replaces the browser's confirm dialog, although the API is somewhat different:
 
-[!code-csharp[Main](backbonejs-template/samples/sample7.cs)]
+[!code-javascript[Main](backbonejs-template/samples/sample7.js)]
 
 ## Walkthrough: Server Code
 

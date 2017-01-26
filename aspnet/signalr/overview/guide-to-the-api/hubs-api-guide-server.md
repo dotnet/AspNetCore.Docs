@@ -120,7 +120,7 @@ There might be extraordinary circumstances that make this base URL not usable fo
 
 **JavaScript client code that specifies the URL (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-server/samples/sample4.cs?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample4.js?highlight=1)]
 
 **.NET client code that specifies the URL**
 
@@ -178,7 +178,7 @@ By default, JavaScript clients refer to Hubs by using a camel-cased version of t
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](hubs-api-guide-server/samples/sample9.cs?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample9.js?highlight=1)]
 
 If you want to specify a different name for clients to use, add the `HubName` attribute. When you use a `HubName` attribute, there is no name change to camel case on JavaScript clients.
 
@@ -188,7 +188,7 @@ If you want to specify a different name for clients to use, add the `HubName` at
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](hubs-api-guide-server/samples/sample11.cs?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample11.js?highlight=1)]
 
 <a id="multiplehubs"></a>
 
@@ -319,7 +319,7 @@ You can specify complex types and arrays for the parameters. The following examp
 
 **JavaScript client using generated proxy**
 
-[!code-csharp[Main](hubs-api-guide-server/samples/sample27.cs?highlight=2-3)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample27.js?highlight=2-3)]
 
 <a id="selectingclients"></a>
 

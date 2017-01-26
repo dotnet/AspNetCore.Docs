@@ -90,11 +90,11 @@ The following code examples show what JavaScript code looks like for invoking th
 
 **With the generated proxy**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample2.cs?highlight=1-2,8)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample2.js?highlight=1-2,8)]
 
 **Without the generated proxy**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample3.cs?highlight=2-3,9)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample3.js?highlight=2-3,9)]
 
 <a id="cantusegenproxy"></a>
 
@@ -177,11 +177,11 @@ If you are using the generated proxy, you don't have to create the connection ob
 
 **Establish a connection (with the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample8.cs?highlight=5)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample8.js?highlight=5)]
 
 **Establish a connection (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample9.cs?highlight=1,6)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample9.js?highlight=1,6)]
 
 The sample code uses the default "/signalr" URL to connect to your SignalR service. For information about how to specify a different base URL, see [ASP.NET SignalR Hubs API Guide - Server - The /signalr URL](hubs-api-guide-server.md).
 
@@ -270,7 +270,7 @@ If you want to send data to the server when the client connects, you can add que
 
 **Set a query string value before calling the start method (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample13.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample13.js?highlight=2)]
 
 The following example shows how to read a query string parameter in server code.
 
@@ -288,7 +288,7 @@ As part of the process of connecting, a SignalR client normally negotiates with 
 
 **Client code that specifies the transport method (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample16.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample16.js?highlight=2)]
 
 As an alternative, you can specify multiple transport methods in the order in which you want SignalR to try them:
 
@@ -298,7 +298,7 @@ As an alternative, you can specify multiple transport methods in the order in wh
 
 **Client code that specifies a custom transport fallback scheme (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample18.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample18.js?highlight=2)]
 
 You can use the following values for specifying the transport method:
 
@@ -315,7 +315,7 @@ The following examples show how to find out which transport method is being used
 
 **Client code that displays the transport method used by a connection (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample20.cs?highlight=3)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample20.js?highlight=3)]
 
 For information about how to check the transport method in server code, see [ASP.NET SignalR Hubs API Guide - Server - How to get information about the client from the Context property](hubs-api-guide-server.md). For more information about transports and fallbacks, see [Introduction to SignalR - Transports and Fallbacks](../getting-started/introduction-to-signalr.md).
 
@@ -333,7 +333,7 @@ On the client the proxy name is a camel-cased version of the Hub class name. Sig
 
 **Get a reference to the generated client proxy for the Hub**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample22.cs?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample22.js?highlight=1)]
 
 **Create client proxy for the Hub class (without generated proxy)**
 
@@ -347,7 +347,7 @@ If you decorate your Hub class with a `HubName` attribute, use the exact name wi
 
 **Get a reference to the generated client proxy for the Hub**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample25.cs?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample25.js?highlight=1)]
 
 **Create client proxy for the Hub class (without generated proxy)**
 
@@ -365,7 +365,7 @@ Method name matching is case-insensitive. For example, `Clients.All.addContosoCh
 
 **Define method on client (with the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample27.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample27.js?highlight=2)]
 
 **Alternate way to define method on client (with the generated proxy)**
 
@@ -373,7 +373,7 @@ Method name matching is case-insensitive. For example, `Clients.All.addContosoCh
 
 **Define method on client (without the generated proxy, or when adding after calling the start method)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample29.cs?highlight=3)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample29.js?highlight=3)]
 
 **Server code that calls the client method**
 
@@ -383,11 +383,11 @@ The following examples include a complex object as a method parameter.
 
 **Define method on client that takes a complex object (with the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample31.cs?highlight=2-3)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample31.js?highlight=2-3)]
 
 **Define method on client that takes a complex object (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample32.cs?highlight=3-4)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample32.js?highlight=3-4)]
 
 **Server code that defines the complex object**
 
@@ -477,7 +477,7 @@ For example, if you want to display warning messages when there are connection p
 
 **Handle the connectionSlow event (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample47.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample47.js?highlight=2)]
 
 For more information, see [Understanding and Handling Connection Lifetime Events in SignalR](handling-connection-lifetime-events.md).
 
@@ -499,7 +499,7 @@ The following example shows how to add a handler for the error event.
 
 **Add an error handler (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample50.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample50.js?highlight=2)]
 
 The following example shows how to handle an error from a method invocation.
 
@@ -525,6 +525,6 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 **Enable logging (without the generated proxy)**
 
-[!code-csharp[Main](hubs-api-guide-javascript-client/samples/sample54.cs?highlight=2)]
+[!code-javascript[Main](hubs-api-guide-javascript-client/samples/sample54.js?highlight=2)]
 
 To see the logs, open your browser's developer tools and go to the Console tab. For a tutorial that shows step-by-step instructions and screen shots that show how to do this, see [Server Broadcast with ASP.NET Signalr - Enable Logging](../getting-started/tutorial-server-broadcast-with-signalr.md).

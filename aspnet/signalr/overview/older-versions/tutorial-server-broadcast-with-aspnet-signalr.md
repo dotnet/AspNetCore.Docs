@@ -216,11 +216,11 @@ You have now completed setting up the server code. In the next section you'll se
 5. Create a new JavaScript file in the project folder and name it *StockTicker.js*..
 6. Replace the template code with the following code:
 
-    [!code-csharp[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample14.cs)]
+    [!code-javascript[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample14.js)]
 
     $.connection refers to the SignalR proxies. The code gets a reference to the proxy for the StockTickerHub class and puts it in the ticker variable. The proxy name is the name that was set by the [HubName] attribute:
 
-    [!code-csharp[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample15.cs)]
+    [!code-javascript[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample15.js)]
 
     [!code-csharp[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample16.cs)]
 
@@ -282,7 +282,7 @@ For any given connection, SignalR chooses the best transport method that both th
 
 1. Open *StockTicker.js* and add a line of code to enable logging immediately before the code that initializes the connection at the end of the file:
 
-    [!code-csharp[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample21.cs)]
+    [!code-javascript[Main](tutorial-server-broadcast-with-aspnet-signalr/samples/sample21.js)]
 2. Press F5 to run the project.
 3. Open your browser's developer tools window, and select the Console to see the logs. You might have to refresh the page to see the logs of Signalr negotiating the transport method for a new connection.
 
