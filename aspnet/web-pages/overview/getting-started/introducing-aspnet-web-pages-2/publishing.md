@@ -189,9 +189,9 @@ Click the **Publish** button in the ribbon. WebMatrix determines what's changed 
 
 ![The 'Publish' dialog box showing changed files ready for republishing](publishing/_static/image22.png)
 
-> [!NOTE] 
+> [!IMPORTANT] 
 > 
-> **Important** By default, WebMatrix publishes your database (*.sdf* file) only the first time you publish the site. Once your site is published and people are interacting with the website, the database on the live site typically has the site's real data. You have to be very careful not to overwrite the live database with the *.sdf* file that's on your computer, which usually contains only test data. That's why you see the warning **Publishing will overwrite any remote databases**, and why the check box for *WebPagesMovies.sdf* is cleared by default.
+> By default, WebMatrix publishes your database (*.sdf* file) only the first time you publish the site. Once your site is published and people are interacting with the website, the database on the live site typically has the site's real data. You have to be very careful not to overwrite the live database with the *.sdf* file that's on your computer, which usually contains only test data. That's why you see the warning **Publishing will overwrite any remote databases**, and why the check box for *WebPagesMovies.sdf* is cleared by default.
 
 
 Click **Continue**. WebMatrix publishes the changed files and shows you a success message, like it did the first time you published.
