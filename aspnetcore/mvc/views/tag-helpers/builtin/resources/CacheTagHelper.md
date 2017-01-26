@@ -8,7 +8,13 @@ By [Peter Kellner](http://peterkellner.net)
 
 The ```CacheTagHelper``` provides the ability to dramatically improve the performance of your ASP.NET core app by caching its content to the internal ASP.NET core cache provider.
 
+A simple example that shows the ```CacheTagHelper``` in action set's the current time inside the HTML Element Cache.  The Razor View Engine sets the default cache value to be 20 minutes so that there is no need to set any attributes if 20 minutes is a reasonable cache value.
 
+Here is an example of the code you would include in your cshtml page to achieve caching the current date and time for 20 minutes.
+
+```<Cache>@DateTime.Now<Cache>```
+
+You can get much more control of the cache duration by setting any of the following attributes.
 
 <br/>
 These attributes are defined as follows:
