@@ -1,5 +1,5 @@
 [AsyncTimeout(2500)]
- [HandleError(ExceptionType = typeof(TaskCanceledException), View = "TimedOut")]
+[HandleError(ExceptionType = typeof(TaskCanceledException), View = "TimedOut")]
 public async Task<ActionResult> Index(string city,
     CancellationToken cancellationToken) {
     var newsService = new NewsService();

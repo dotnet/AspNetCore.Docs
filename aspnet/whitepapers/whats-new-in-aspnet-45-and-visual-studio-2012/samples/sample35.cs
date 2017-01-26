@@ -10,10 +10,10 @@ function GetOrSet(key, value) {
 ///	 <param name="value" type="String">The value to set</param>
 ///	 <returns type="MyLib" />
 /// </signature>
-if (value) {
- 	   values[key] = value;
- 	   return this;
-} else {
- 	   return values[key];
-}
+	if (value) {
+		values[key] = value;
+		return this;
+	} else {
+		return values[key];
+	}
 }

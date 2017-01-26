@@ -1,4 +1,4 @@
 [ValidateInput(false)]
-    public ActionResult SomeAction() {
-        return View();
-    }
+public ActionResult SomeAction() {
+	return View();
+}

@@ -1,2 +1,2 @@
 HttpBrowserCapabilities browserCaps = 
-          base.GetHttpBrowserCapabilities(request);
+	base.GetHttpBrowserCapabilities(request);

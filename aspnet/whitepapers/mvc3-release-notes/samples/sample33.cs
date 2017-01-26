@@ -1,2 +1,2 @@
 HtmlHelper.ClientValidationEnabled = true;
-    HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+HtmlHelper.UnobtrusiveJavaScriptEnabled = true;

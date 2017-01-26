@@ -3,4 +3,4 @@ DefaultDisplayMode("iPhone")
 {
     ContextCondition = (context => context.GetOverriddenUserAgent().IndexOf
         ("iPhone", StringComparison.OrdinalIgnoreCase) >= 0)
- });
+});
