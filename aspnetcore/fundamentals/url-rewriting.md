@@ -54,12 +54,12 @@ Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module]
 ## Package
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.Rewrite`](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
 
-## Extension and Options
+## Extension and options
 Establish your URL rewrite and redirect rules by creating an instance of the `RewriteOptions` class with extension methods for each of your rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with `app.UseRewriter(options);`.
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1)]
 
-### URL Redirect
+### URL redirect
 Use `AddRedirect()` to redirect requests. The first parameter will contain your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, it defaults to 302 (Found), which indicates that the resource has been temporarily moved or replaced.
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=2)]
@@ -74,7 +74,7 @@ The part of the expression contained by parentheses is called a *capture group*.
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes **/redirected/1234/5678**.
 
-### URL Redirect to a secure endpoint
+### URL redirect to a secure endpoint
 Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 ```csharp
 var options = new RewriteOptions()
@@ -94,7 +94,7 @@ Original Request using `AddRedirectToHttpsPermanent()`: **/secure**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
-### URL Rewrite
+### URL rewrite
 Use `AddRewrite()` to create a rules for rewriting URLs. The first parameter will contain your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, will indicate to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=3)]
@@ -233,7 +233,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 > ```
 
 ### Method-based rule
-Use `Add(Action\<RewriteContext\> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `context.Result` determines how additional pipeline processing is handled.
+Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in a method. The `RewriteContext` exposes the `HttpContext` for use in your method. The `context.Result` determines how additional pipeline processing is handled.
 
 `context.Result` | Action
 --- | ---
@@ -268,7 +268,7 @@ Original Request: **/image.jpg**
 
 ![Browser window with Developer Tools tracking the requests and responses for image.jpg](url-rewriting/_static/add_redirect_jpg_requests.png)
 
-## Regex Examples
+## Regex examples
 
 Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example
 --- | :---: | :---:
@@ -279,7 +279,7 @@ Avoid rewriting specific requests | `(.*[^(\.axd)])$`<br>Yes: **/resource.htm**<
 Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>**path/1/2/3** | `path/$3/$2/$1`<br>**path/3/2/1**
 Replace a URL segment | `^(.*)/segment2/(.*)`<br>**/segment1/segment2/segment3** | `$1/replaced/$2`<br>**/segment1/replaced/segment3**
 
-## Additional Resources
+## Resources
 * [Application Startup](startup.md)
 * [Middleware](middleware.md)
 * [Regular expressions in .NET](https://docs.microsoft.com/en-us/dotnet/articles/standard/base-types/regular-expressions)
