@@ -200,7 +200,7 @@ Go to the live site (you can click the link in the success message if it's still
 
 > [!TIP] 
 > 
-> ### Editing Files Remotely
+> **Editing Files Remotely**
 > 
 > As an alternative to changing your site and then republishing, you can edit remote files directly in WebMatrix. In this scenario, you open a file that's on the service provider, and WebMatrix downloads a copy of it for you to edit. Every time you save the file, WebMatrix sends the changes to the site.
 > 

@@ -157,7 +157,7 @@ If you want, view the page source in the browser. You can see that the `<title>`
 
 > [!TIP] 
 > 
-> ### The Page Object
+> **The Page Object**
 > 
 > A useful feature of `Page` is that it's a dynamic object — the `Title` property is not a fixed or reserved name. You can use *any* name for a value of the `Page` object. For example, you could as easily have passed the title by using a property named `Page.CurrentName` or `Page.MyPage`. The only restriction is that the name has to follow the normal rules for what properties can be named. (For example, the name can't contain a space.)
 > 

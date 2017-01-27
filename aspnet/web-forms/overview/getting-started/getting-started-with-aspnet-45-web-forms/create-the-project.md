@@ -58,7 +58,7 @@ You can switch between **Design** view and **Source** view by selecting an optio
 
 > [!TIP] 
 > 
-> ## Understanding the ASP.NET Frameworks
+> **Understanding the ASP.NET Frameworks**
 > 
 > ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model. A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access. The Wingtip Toy Store is based on ASP.NET Web Forms, but many of the concepts you learn in this tutorial series are applicable to all of ASP.NET.
 > 
@@ -116,11 +116,11 @@ When a Web server receives a request for a page, it finds the page, processes it
 
 > [!TIP] 
 > 
-> #### Web Application Features in the Web Forms Application Template
+> **Web Application Features in the Web Forms Application Template**
 > 
 > The ASP.NET Web Forms Application template provides a rich set of built-in functionality. It not only provides you with a *Home.aspx* page, an *About.aspx* page, a *Contact.aspx* page, but also includes membership functionality that registers users and saves their credentials so that they can log in to your website. This overview provides more information about some of the features contained in the ASP.NET Web Forms Application template and how they are used in the Wingtip Toys application.
 > 
-> #### Membership
+> **Membership**
 > 
 > [ASP.NET](https://msdn.microsoft.com/en-us/library/yh26yfzy.aspx) Identity stores your users' credentials in a database created by the application. When your users log in, the application validates their credentials by reading the database. Your project's *Account* folder contains the files that implement the various parts of membership: registering, logging in, changing a password, and authorizing access. Additionally, ASP.NET Web Forms supports OAuth and OpenID. These authentication enhancements allow users to log into your site using existing credentials, from such accounts as Facebook, Twitter, Windows Live, and Google.
 > 
@@ -128,27 +128,27 @@ When a Web server receives a request for a page, it finds the page, processes it
 > 
 > By default, the template creates a membership database using a default database name on an instance of SQL Server Express LocalDB, the development database server that comes with Visual Studio Express 2013 for Web.
 > 
-> #### SQL Server Express LocalDB
+> **SQL Server Express LocalDB**
 > 
 > [SQL Server Express LocalDB](https://technet.microsoft.com/library/hh510202.aspx) is a lightweight version of SQL Server that has many programmability features of a SQL Server database. SQL Server Express LocalDB runs in user mode and has a fast, zero-configuration installation that has a short list of installation prerequisites. In Microsoft SQL Server, any database or Transact-SQL code can be moved from SQL Server Express LocalDB to SQL Server and SQL Azure without any upgrade steps. So, SQL Server Express LocalDB can be used as a developer environment for applications targeting all editions of SQL Server. SQL Server Express LocalDB enables features such as stored procedures, user-defined functions and aggregates, .NET Framework integration, spatial types and others that are not available in SQL Server Compact.
 > 
-> #### Master Pages
+> **Master Pages**
 > 
 > An [ASP.NET master page](https://msdn.microsoft.com/en-us/library/wtxbf3hh.aspx) defines a consistent appearance and behavior for all of the pages in your application. The layout of the master page merges with the content from an individual content page to produce the final page that the user sees. In the Wingtip Toys application, you modify the *Site.master* master page so that all the pages in the Wingtip Toys website share the same distinctive logo and navigation bar.
 > 
-> #### HTML5
+> **HTML5**
 > 
 > The ASP.NET Web Forms Application template supports [HTML5](http://www.w3schools.com/html/html5_intro.asp), which is the latest version of the HTML markup language. HTML5 supports new elements and functionality that make it easier to create Web sites.
 > 
-> #### Modernizr
+> **Modernizr**
 > 
 > For browsers that do not support HTML5, you can use [Modernizr](http://www.modernizr.com/). Modernizr is an open-source JavaScript library that can detect whether a browser supports HTML5 features, and enable them if it does not. In the ASP.NET Web Forms Application template, Modernizr is installed as a NuGet package.
 > 
-> #### Bootstrap
+> **Bootstrap**
 > 
 > The Visual Studio 2013 project templates use [Bootstrap](http://getbootstrap.com/), a layout and theming framework created by Twitter. Bootstrap uses CSS3 to provide responsive design, which means layouts can dynamically adapt to different browser window sizes. You can also use Bootstrap's theming feature to easily effect a change in the application's look and feel. By default, the ASP.NET Web Application template in Visual Studio 2013 includes Bootstrap as a NuGet package.
 > 
-> #### NuGet Packages
+> **NuGet Packages**
 > 
 > The ASP.NET Web Forms Application template includes a set of [NuGet](http://www.nuget.org/) packages. These packages provide componentized functionality in the form of open source libraries and tools. There is a wide variety of packages to help you create and test your applications. Visual Studio makes it easy to add, remove, and update NuGet packages. Developers can create and add packages to NuGet as well.
 > 
@@ -156,15 +156,15 @@ When a Web server receives a request for a page, it finds the page, processes it
 > 
 > When you install a package, NuGet copies files to your solution and automatically makes whatever changes are needed, such as adding references and changing the configuration associated with your Web application. If you decide to remove the library, NuGet removes files and reverses whatever changes it made in your project so that no clutter is left. NuGet is available from the **Tools** menu in Visual Studio.
 > 
-> #### jQuery
+> **jQuery**
 > 
 > [jQuery](http://jquery.com/) is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development. The jQuery JavaScript library is included in the ASP.NET Web Forms Application template as a NuGet package.
 > 
-> #### Unobtrusive Validation
+> **Unobtrusive Validation**
 > 
 > Built-in validator controls have been configured to use unobtrusive JavaScript for client-side validation logic. This significantly reduces the amount of JavaScript rendered inline in the page markup and reduces the overall page size. Unobtrusive validation is added globally to the ASP.NET Web Forms Application template based on the setting in the &lt;appSettings&gt; element of the *Web.config* file at the root of the application.
 > 
-> #### Entity Framework Code First
+> **Entity Framework Code First**
 > 
 > Besides the features in the ASP.NET Web Forms Application template, the Wingtip Toys application uses [Entity Framework Code First](https://weblogs.asp.net/scottgu/archive/2010/12/08/announcing-entity-framework-code-first-ctp5-release.aspx), which is a NuGet library that enables code-centric development when you work with data. Put simply, it creates the database portion of your application for you based on the code that you write. Using the Entity Framework, you retrieve and manipulate data as strongly typed objects. This lets you focus on the business logic in your application rather than the details of how data is accessed.
 > 

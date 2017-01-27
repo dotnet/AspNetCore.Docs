@@ -56,7 +56,7 @@ This is what these statements look like when the page runs in a browser:
 
 > [!TIP] 
 > 
-> ### HTML Encoding
+> **HTML Encoding**
 > 
 > When you display content in a page using the `@` character, as in the preceding examples, ASP.NET HTML-encodes the output. This replaces reserved HTML characters (such as `<` and `>` and `&`) with codes that enable the characters to be displayed as characters in a web page instead of being interpreted as HTML tags or entities. Without HTML encoding, the output from your server code might not display correctly, and could expose a page to security risks.
 > 
@@ -207,7 +207,7 @@ The Razor syntax gives you all the power of ASP.NET, but using a simplified synt
 
 > [!TIP] 
 > 
-> ### Classes and Instances
+> **Classes and Instances**
 > 
 > ASP.NET server code uses objects, which are in turn built on the idea of classes. The class is the definition or template for an object. For example, an application might contain a `Customer` class that defines the properties and methods that any customer object needs.
 > 

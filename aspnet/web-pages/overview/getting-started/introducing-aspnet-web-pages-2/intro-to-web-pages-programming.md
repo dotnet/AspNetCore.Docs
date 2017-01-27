@@ -115,7 +115,7 @@ As you expect from your experience in the previous tutorial, none of the Razor c
 
 > [!TIP] 
 > 
-> ### Razor and C#
+> **Razor and C#**
 > 
 > Up to now we've said that you're working with Razor syntax. That's true, but it's not the complete story. The actual programming language you're using is called *C#*. C# was created by Microsoft over a decade ago and has become one of the primary programming languages for creating Windows apps. All the rules you've seen about how to name a variable and how to create statements and so on are actually all rules of the C# language.
 > 
@@ -225,7 +225,7 @@ There's a trick here, as you can see. Like the name says, the query string is a 
 
 > [!TIP] 
 > 
-> ### Data Types and As( ) Methods
+> **Data Types and As() Methods**
 > 
 > We've only said so far that when you create a variable, you use the keyword var. That's not the entire story, though. In order to manipulate values — to add numbers, or concatenate strings, or compare dates, or test for true/false — C# has to work with an appropriate internal representation of the value. C# can *usually* figure out what that representation should be (that is, what *type* the data is) based on what you're doing with the values. Now and then, though, it can't do that. If not, you have to help out by explicitly indicating how C# should represent the data. The AsBool method does that — it tells C# that a string value of "true" or "false" should be treated as a Boolean value. Similar methods exist to represent strings as other types as well, like AsInt (treat as an integer), AsDateTime (treat as a date/time), AsFloat (treat as a floating-point number), and so on. When you use these As( ) methods, if C# can't represent the string value as requested, you'll see an error.
 

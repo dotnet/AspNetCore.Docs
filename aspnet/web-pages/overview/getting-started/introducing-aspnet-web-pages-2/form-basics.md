@@ -58,9 +58,11 @@ When this markup runs in a page, it creates a simple form that looks like this i
 
 The `<form>` element encloses HTML elements to be submitted. (An easy mistake to make is to add elements to the page but then forget to put them inside a `<form>` element. In that case, nothing is submitted.) The `method` attribute tells the browser how to submit the user input. You set this to `post` if you're performing an update on the server or to `get` if you're just fetching data from the server.
 
+<a id="GET,_POST,_and_HTTP_Verb_Safety"></a>
+
 > [!TIP] 
 > 
-> ### <a id="GET,_POST,_and_HTTP_Verb_Safety"></a>  GET, POST, and HTTP Verb Safety
+> **GET, POST, and HTTP Verb Safety**
 > 
 > HTTP, the protocol that browsers and servers use to exchange information, is remarkably simple in its basic operations. Browsers use only a few verbs to make requests to servers. When you write code for the web, it's helpful to understand these verbs and how the browser and server use them. Far and away the most commonly used verbs are these:
 > 
@@ -94,7 +96,7 @@ The interesting part is what you, the page developer, do with the user's input. 
 
 > [!TIP] 
 > 
-> ### HTML5 and Input Forms
+> **HTML5 and Input Forms**
 > 
 > As you might know, HTML is in transition and the latest version (HTML5) includes support for more intuitive ways for users to enter information. For example, in HTML5, you (the page developer) can tell the page that you want the user to enter a date. The browser can then automatically display a calendar rather than requiring the user to enter a date manually. However, HTML5 is new and is not supported in all browsers yet.
 > 
@@ -147,9 +149,11 @@ In plain English, the entire `if` condition translates into the following: *If t
 
 This block sets the stage for creating a query that uses the search term. You'll do that in the next section.
 
+<a id="BKMK_TheRequestObject"></a>
+
 > [!TIP] 
 > 
-> ### <a id="BKMK_TheRequestObject"></a>  The Request Object
+> **The Request Object**
 > 
 > The `Request` object contains all the information that the browser sends to your application when a page is requested or submitted. This object includes any information that the user provides, like text box values or a file to upload. It also includes all sorts of additional information, like cookies, values in the URL query string (if any), the file path of the page that is running, the type of browser that the user is using, the list of languages that are set in the browser, and much more.
 > 

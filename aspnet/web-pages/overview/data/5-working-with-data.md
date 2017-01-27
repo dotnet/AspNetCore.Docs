@@ -59,7 +59,7 @@ With this basic understanding of databases, you're ready to learn how to create 
 
 > [!TIP] 
 > 
-> ### Relational Databases
+> **Relational Databases**
 > 
 > You can store data in lots of ways, including text files and spreadsheets. For most business uses, though, data is stored in a relational database.
 > 
@@ -148,7 +148,7 @@ Once you've got a database with data in it, you can display the data in an ASP.N
 
 > [!TIP] 
 > 
-> ### Structured Query Language (SQL)
+> **Structured Query Language (SQL)**
 > 
 > SQL is a language that's used in most relational databases for managing data in a database. It includes commands that let you retrieve data and update it, and that let you create, modify, and manage database tables. SQL is different than a programming language (like the one you're using in WebMatrix) because with SQL, the idea is that you tell the database what you want, and it's the database's job to figure out how to get the data or perform the task. Here are examples of some SQL commands and what they do:
 > 

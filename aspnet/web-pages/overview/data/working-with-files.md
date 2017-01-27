@@ -138,7 +138,7 @@ This procedure shows you how to read and display the data that you created in th
 
 > [!TIP] 
 > 
-> ### Displaying Data from a Microsoft Excel Comma-Delimited File
+> **Displaying Data from a Microsoft Excel Comma-Delimited File**
 > 
 > You can use Microsoft Excel to save the data contained in a spreadsheet as a comma-delimited file (*.csv* file). When you do, the file is saved in plain text, not in Excel format. Each row in the spreadsheet is separated by a line break in the text file, and each data item is separated by a comma. You can use the code shown in the previous example to read an Excel comma-delimited file just by changing the name of the data file in your code.
 

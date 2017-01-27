@@ -120,7 +120,7 @@ In the original version of the code, `students` is typed as an `IQueryable` obje
 
 > [!TIP] 
 > 
-> ### IQueryable vs. IEnumerable
+> **IQueryable vs. IEnumerable**
 > 
 > After you implement the repository as shown here, even if you enter something in the **Search** box the query sent to SQL Server returns all Student rows because it doesn't include your search criteria:
 > 

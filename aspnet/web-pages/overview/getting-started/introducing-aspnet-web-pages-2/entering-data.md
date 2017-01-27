@@ -141,7 +141,7 @@ Obviously, you don't want to let users enter half-empty movie information into t
 
 > [!TIP] 
 > 
-> ### Null and Empty Strings
+> **Null and Empty Strings**
 > 
 > In programming, there's a distinction between different notions of "no value." In general, a value is *null* if it has never been set or initialized in any way. In contrast, a variable that expects character data (strings) can be set to an *empty string*. In that case, the value is not null; it's just been explicitly set to a string of characters whose length is zero. These two statements show the difference:
 > 

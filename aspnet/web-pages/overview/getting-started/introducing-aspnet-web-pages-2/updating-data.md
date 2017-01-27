@@ -104,7 +104,7 @@ The column consists *only* of the markup that renders the link, plus some inform
 
 > [!TIP] 
 > 
-> ### Named Parameters and Positional Parameters for a Method
+> **Named Parameters and Positional Parameters for a Method**
 > 
 > Many times when you've called a method and passed parameters to it, you've simply listed the parameter values separated by commas. Here are a couple of examples:
 > 
@@ -210,7 +210,7 @@ After the code uses `db.Execute` to run the `Update` statement, it redirects bac
 
 > [!TIP] 
 > 
-> ### Different SQL Statements, Different Methods
+> **Different SQL Statements, Different Methods**
 > 
 > You might have noticed that you use slightly different methods to run different SQL statements. To run a `Select` query that potentially returns multiple records, you use the `Query` method. To run a `Select` query that you know will return only one database item, you use the `QuerySingle` method. To run commands that make changes but that don't return database items, you use the `Execute` method.
 > 

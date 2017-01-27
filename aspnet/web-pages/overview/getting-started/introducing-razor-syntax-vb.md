@@ -56,7 +56,7 @@ The result displayed in a browser:
 
 > [!TIP] 
 > 
-> ### HTML Encoding
+> **HTML Encoding**
 > 
 > When you display content in a page using the `@` character, as in the preceding examples, ASP.NET HTML-encodes the output. This replaces reserved HTML characters (such as `<` and `>` and `&`) with codes that enable the characters to be displayed as characters in a web page instead of being interpreted as HTML tags or entities. Without HTML encoding, the output from your server code might not display correctly, and could expose a page to security risks.
 > 
@@ -143,7 +143,7 @@ The result displayed in a browser (after clicking **Submit**):
 
 > [!TIP] 
 > 
-> ### HTTP GET and POST Methods and the IsPost Property
+> **HTTP GET and POST Methods and the IsPost Property**
 > 
 > The protocol used for web pages (HTTP) supports a very limited number of methods (&quot;verbs&quot;) that are used to make requests to the server. The two most common ones are GET, which is used to read a page, and POST, which is used to submit a page. In general, the first time a user requests a page, the page is requested using GET. If the user fills in a form and then clicks **Submit**, the browser makes a POST request to the server.
 > 

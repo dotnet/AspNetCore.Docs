@@ -47,7 +47,7 @@ The key value is passed to the method as the `id` parameter and comes from *rout
 
 > [!TIP] 
 > 
-> ### Route data
+> **Route data**
 > 
 > Route data is data that the model binder found in a URL segment specified in the routing table. For example, the default route specifies `controller`, `action`, and `id` segments:
 > 
@@ -156,7 +156,7 @@ As a result of these changes, the method signature of the HttpPost Edit method i
 
 > [!TIP] 
 > 
-> ### Entity States and the Attach and SaveChanges Methods
+> **Entity States and the Attach and SaveChanges Methods**
 > 
 > The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database, and this information determines what happens when you call the `SaveChanges` method. For example, when you pass a new entity to the [Add](https://msdn.microsoft.com/en-us/library/system.data.entity.dbset.add(v=vs.103).aspx) method, that entity's state is set to `Added`. Then when you call the [SaveChanges](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method, the database context issues a SQL `INSERT` command.
 > 

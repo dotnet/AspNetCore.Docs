@@ -211,7 +211,7 @@ At this stage, the database has been opened, you've gotten the data you want, an
 
 > [!TIP] 
 > 
-> ### Structured Query Language (SQL)
+> **Structured Query Language (SQL)**
 > 
 > SQL is a language that's used in most relational databases for managing data in a database. It includes commands that let you retrieve data and update it, and that let you create, modify, and manage data in database tables. SQL is different than a programming language (like C#). With SQL, you tell the database what you want, and it's the database's job to figure out how to get the data or perform the task. Here are examples of some SQL commands and what they do:
 > 

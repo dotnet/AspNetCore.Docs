@@ -145,7 +145,7 @@ The method accepts optional route data (`id`) and a query string parameter (`cou
 
 > [!TIP] 
 > 
-> ### Route data
+> **Route data**
 > 
 > Route data is data that the model binder found in a URL segment specified in the routing table. For example, the default route specifies `controller`, `action`, and `id` segments:
 > 
