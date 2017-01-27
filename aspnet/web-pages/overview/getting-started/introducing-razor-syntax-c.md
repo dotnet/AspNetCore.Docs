@@ -363,7 +363,7 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
 | `()` | Parentheses. Used to group expressions and to pass parameters to methods. | [!code-javascript[Main](introducing-razor-syntax-c/samples/sample42.js)] |
 | `[]` | Brackets. Used for accessing values in arrays or collections. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)] |
 | `!` | Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`). | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)] |
-| `&&` `||` | Logical AND and OR, which are used to link conditions together. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)] |
+| `&& ||` | Logical AND and OR, which are used to link conditions together. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)] |
 
 <a id="ID_WorkingWithFileAndFolderPaths"></a>
 ## Working with File and Folder Paths in Code
