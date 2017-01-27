@@ -16,34 +16,32 @@ uid: security/authentication/facebook-logins
 
 <a name=security-authentication-facebook-logins></a>
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), [Valeriy Novytskyy](https://github.com/01binary)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
 *  Navigate to the [Facebook for Developers](https://developers.facebook.com/apps) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
-* Click the **Create a New App** button in the upper right corner to create a new app ID:
+* Click the **Create a New App** button in the upper right corner to create a new app ID.
 
 ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
-* Fill out the form and click the **Create App ID** button:
+* Fill out the form and click the **Create App ID** button.
 
 ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-
-
-* The **Product Setup** page is displayed, letting you select the features for your new app. Click **Get Started** on **Facebook Login**:
+* The **Product Setup** page is displayed, letting you select the features for your new app. Click **Get Started** on **Facebook Login**.
 
 ![Product Setup page](index/_static/FBProductSetup.png)
 
-* Next, you will be guided through a quick start process at a  **Choose a Platform** screen. This will help you set up client-side login integration, which is not needed in this tutorial. 
+* Next, a quick start process begins at a **Choose a Platform** screen. This will help you set up client-side login integration, which we won't be doing in this tutorial. 
 
     To bypass this, click the **Settings** link in the menu at the left.
 
 
-* You are presented with the **Client OAuth Settings** page, with some defaults already set:
+* You are presented with the **Client OAuth Settings** page, with some defaults already set.
 
 ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
@@ -56,8 +54,8 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
   > You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
 * Click the **Dashboard** link in the left navigation. 
-
-    On this page, you'll need to make a note of your `App ID` and your `App Secret` before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
+    
+    On this page, you'll need to make a note of your `App ID` and your `App Secret` before dismissing this page. Later in this tutorial, you will add both into your ASP.NET Core application.
 
 ## Storing Facebook App ID and AppSecret
 
