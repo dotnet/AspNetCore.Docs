@@ -1,4 +1,4 @@
-﻿---
+---
 title: Preventing Cross-Site Scripting | Microsoft Docs
 author: rick-anderson
 description: 
