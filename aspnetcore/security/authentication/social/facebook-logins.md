@@ -24,11 +24,11 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 *  Navigate to the [Facebook for Developers](https://developers.facebook.com/apps) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
-* Click the **Create a New App** button in the upper right corner to create a new app ID.
+* Tap the **+ Add a New App** button in the upper right corner to create a new App ID. (If this is your first app with Facebook, the text of the button will be **Create a New App**.)
 
 ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
-* Fill out the form and click the **Create App ID** button.
+* Fill out the form and tap the **Create App ID** button.
 
 ![Create a New App ID form](index/_static/FBNewAppId.png)
 
@@ -36,16 +36,17 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ![Product Setup page](index/_static/FBProductSetup.png)
 
-* Next, a quick start process begins at a **Choose a Platform** screen. This will help you set up client-side login integration, which we won't be doing in this tutorial. 
+* Next, a quick start process begins at the **Choose a Platform** screen. This will help you set up client-side login integration, which isn't covered in this tutorial. 
 
     To bypass this, click the **Settings** link in the menu at the left.
 
 
-* You are presented with the **Client OAuth Settings** page, with some defaults already set.
+* You are presented with the **Client OAuth Settings** page with some defaults already set.
 
 ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
-* Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`. Then, click **Save Changes**.
+* Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). 
+* Click **Save Changes**.
   
   > [!NOTE]
   > When deploying the site you'll need to register a new public url.
@@ -55,7 +56,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Click the **Dashboard** link in the left navigation. 
     
-    On this page, you'll need to make a note of your `App ID` and your `App Secret` before dismissing this page. Later in this tutorial, you will add both into your ASP.NET Core application.
+    On this page, you'll need to make a note of your `App ID` and your `App Secret`. Later in this tutorial, you will add both into your ASP.NET Core application.
 
 ## Storing Facebook App ID and AppSecret
 
