@@ -68,7 +68,7 @@ If you intend to deploy your applications with Web Deploy in Visual Studio, inst
 
 ## Application configuration
 
-### Enabling the *IISIntegration* components
+### Enabling the IISIntegration components
 
 Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*.
 
@@ -83,7 +83,7 @@ var host = new WebHostBuilder()
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
-### Setting *IISOptions* for the *IISIntegration* service
+### Setting IISOptions for the IISIntegration service
 
 To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*.
 
@@ -178,9 +178,13 @@ In web farm scenarios, an application can be configured to use a UNC path to sto
 
 When adding applications to an IIS Site's root application, the root application *web.config* file should include the `<handlers>` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the `<handlers>` section. If you repeat the `<handlers>` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
 
-## Configuration of IIS via *web.config*
+## Configuration of IIS with web.config
 
 IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the server level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver) and the [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+
+## Configuration sections of web.config
+
+Unlike .NET Framework applications that are configured with the `<system.web>`, `<appSettings>`, `<connectionStrings>`, and `<location>` elements in *web.config*, ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration).
 
 ## Application Pools
 
@@ -419,7 +423,7 @@ Troubleshooting
 
 * This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to [Directory Structure](../hosting/directory-structure.md), confirm that your application's deployed files and folders are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment.
 
-## Additional resources
+## Resources
 
 * [Introduction to ASP.NET Core](../index.md)
 
