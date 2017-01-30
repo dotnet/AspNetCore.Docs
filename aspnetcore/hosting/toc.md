@@ -1,4 +1,4 @@
-# [ASP.NET Core Module Configuration Reference](aspnet-core-module.md)
-# [Directory Structure](directory-structure.md)
-# [Servicing](servicing.md)
-# [Data Protection](dataprotection.md)
+# [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module)
+# [Directory structure](xref:hosting/directory-structure)
+# [Servicing](xref:hosting/servicing)
+# [Data Protection](xref:hosting/dataprotection)
