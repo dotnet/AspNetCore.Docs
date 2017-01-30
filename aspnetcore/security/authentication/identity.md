@@ -97,7 +97,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     After stopping the application, view the user database from Visual Studio by selecting **View** -> **SQL Server Object Explorer**. Then, expand the following within the **SQL Server Object Explorer**:
     
-    * (localdb)MSSQLLocalDB
+    * (localdb)\MSSQLLocalDB
     
     * Databases
     
