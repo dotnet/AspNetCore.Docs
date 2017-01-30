@@ -109,8 +109,6 @@ The `Start` method executes asynchronously. To make sure that subsequent lines o
 
 [!code-css[Main](hubs-api-guide-net-client/samples/sample3.css?highlight=1)]
 
-The `HubConnection` class is thread-safe.
-
 <a id="slcrossdomain"></a>
 
 ### Cross-domain connections from Silverlight clients
@@ -210,7 +208,7 @@ If you decorate your Hub class with a `HubName` attribute, use that name.
 
 [!code-csharp[Main](hubs-api-guide-net-client/samples/sample13.cs?highlight=2)]
 
-The proxy object is thread-safe. In fact, if you call `HubConnection.CreateHubProxy` multiple times with the same `hubName`, you get the same cached `IHubProxy` object.
+If you call `HubConnection.CreateHubProxy` multiple times with the same `hubName`, you get the same cached `IHubProxy` object.
 
 <a id="callclient"></a>
 
