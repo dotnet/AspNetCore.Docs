@@ -1,8 +1,8 @@
 ---
 title: Testing in ASP.NET Core | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Testing features of ASP.NET Core.
+keywords: ASP.NET Core, unit testing, integration testing, controllers
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -14,5 +14,5 @@ ms.prod: aspnet-core
 # Testing in ASP.NET Core
 
 - [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-- [Integration testing](integration-testing.md)
-- [Testing controllers](../mvc/controllers/testing.md)
+- [Integration testing](xref:testing/integration-testing)
+- [Testing controllers](xref:mvc/controllers/testing)
