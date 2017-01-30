@@ -55,7 +55,7 @@ Your project is now created, you can use the following commands to get going
    ```
 
 > [!WARNING]
-> .NET Core has transitioned to `.csproj` project files in 1.0-preview3 and later. At this time, generator-aspnet does not generate a `.csproj` project file nor include the `global.json` required to specify the desired SDK version for compatibility. If you are deploying to an Azure App Service or have a more recent .NET Core SDK than 1.0-preview2 installed, see the generator-aspnet [Version Info](https://github.com/OmniSharp/generator-aspnet/wiki/Version-info) and [Issue #836](https://github.com/OmniSharp/generator-aspnet/issues/836) for more information.
+> .NET Core has transitioned to *.csproj* project files in 1.0-preview3 and later. At this time, generator-aspnet does not generate a *.csproj* project file nor include the *global.json* required to specify the desired SDK version for compatibility. If you are deploying to an Azure App Service or have a more recent .NET Core SDK than 1.0-preview2 installed, see the generator-aspnet [Version Info](https://github.com/OmniSharp/generator-aspnet/wiki/Version-info) and [Issue #836](https://github.com/OmniSharp/generator-aspnet/issues/836) for more information.
 >
 
 ## Developing ASP.NET Core Applications on a Mac With Visual Studio Code
