@@ -18,29 +18,35 @@ uid: security/authentication/facebook-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
-*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and sign in. If you don't already have a Facebook account, use the **sign up** link on the login page to create one.
+*  Navigate to the [Facebook for Developers](https://developers.facebook.com/apps) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
-* Tap **My Apps** in the upper right corner:
+* Tap the **+ Add a New App** button in the upper right corner to create a new App ID. (If this is your first app with Facebook, the text of the button will be **Create a New App**.)
 
 ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
-* Tap **+ Add a New App** and fill out the form to create a new app ID:
+* Fill out the form and tap the **Create App ID** button.
 
 ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on **Facebook Login**:
+* The **Product Setup** page is displayed, letting you select the features for your new app. Click **Get Started** on **Facebook Login**.
 
 ![Product Setup page](index/_static/FBProductSetup.png)
 
-* You are presented with the **Client OAuth Settings** page, with some defaults already set:
+* Next, a quick start process begins at the **Choose a Platform** screen. This will help you set up client-side login integration, which isn't covered in this tutorial. 
+
+    To bypass this, click the **Settings** link in the menu at the left.
+
+
+* You are presented with the **Client OAuth Settings** page with some defaults already set.
 
 ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
-* Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`.
+* Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). 
+* Click **Save Changes**.
   
   > [!NOTE]
   > When deploying the site you'll need to register a new public url.
@@ -48,11 +54,11 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
   > [!NOTE]
   > You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
-* Make a note of your `App ID` and your `App Secret` before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
+* Click the **Dashboard** link in the left navigation. 
+    
+    On this page, you'll need to make a note of your `App ID` and your `App Secret`. Later in this tutorial, you will add both into your ASP.NET Core application.
 
-* Tap **Save Changes** to complete the new application configuration.
-
-## Storing Facebook AppId and AppSecret
+## Storing Facebook App ID and AppSecret
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](index.md). Execute the following commands in your project working directory:
 
