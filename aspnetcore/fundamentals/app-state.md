@@ -172,4 +172,4 @@ In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
 
-* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample)
+* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
