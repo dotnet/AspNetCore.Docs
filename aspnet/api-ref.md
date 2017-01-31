@@ -19,7 +19,7 @@ msc.type: content
 
 * [ASP.NET MVC API Reference](https://msdn.microsoft.com/library/mt134468)
 
-* [ASP.NET Web API API Reference](https://msdn.microsoft.com/library/mt134468)
+* [ASP.NET Web API API Reference](https://msdn.microsoft.com/library/mt174857)
 
 * [ASP.NET Web Pages API Reference](https://msdn.microsoft.com/library/hh396384)
 
