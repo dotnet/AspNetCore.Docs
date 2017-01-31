@@ -581,6 +581,9 @@ Razor views are compiled at runtime when the view is invoked. If your app target
 }
 ```
 
+> [!NOTE]
+> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
+
 <a name=razor-customcompilationservice-label></a>
 
 ## Viewing the Razor C# class generated for a view
