@@ -14,7 +14,7 @@ uid: migration/http-modules
 ---
 # Migrating HTTP handlers and modules to ASP.NET Core middleware 
 
-By [Matt Perdeck](http://www.linkedin.com/in/mattperdeck)
+By [Matt Perdeck](https://www.linkedin.com/in/mattperdeck)
 
 This article shows how to migrate existing ASP.NET [HTTP modules and handlers](https://msdn.microsoft.com/library/bb398986.aspx) to ASP.NET Core [middleware](../fundamentals/middleware.md).
 
