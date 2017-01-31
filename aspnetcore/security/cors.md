@@ -71,8 +71,6 @@ The second approach is to define one or more named CORS policies, and then selec
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.
 
-<a name=cors-policy-options></a>
-
 ## Enabling CORS in MVC
 
 You can alternatively use MVC to apply specific CORS per action, per controller, or globally for all controllers. When using MVC to enable CORS the same CORS services are used, but the CORS middleware is not.
