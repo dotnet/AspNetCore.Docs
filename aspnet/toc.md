@@ -1864,3 +1864,4 @@
 ## [ASP.NET Web Deployment - Recommended Resources](whitepapers/aspnet-web-deployment-content-map.md)
 ## [ASP.NET and Web Tools 2012.2 Release Notes](whitepapers/aspnet-and-web-tools-20122-release-notes.md)
 ## [What's New in ASP.NET 4.5 and Visual Studio 2012](whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012.md)
+# [API reference](api-ref.md)
