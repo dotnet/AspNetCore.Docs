@@ -139,8 +139,6 @@ Entity Framework contexts should be added to the services container using the `S
 
 Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using the [options pattern and configuration](configuration.md).
 
-<a name=service-lifetimes-and-registration-options></a>
-
 ## Service Lifetimes and Registration Options
 
 ASP.NET services can be configured with the following lifetimes:
@@ -211,8 +209,6 @@ You should design your services to use dependency injection to get their collabo
 What if you find that your classes tend to have way too many dependencies being injected? This is generally a sign that your class is trying to do too much, and is probably violating SRP - the [Single Responsibility Principle](http://deviq.com/single-responsibility-principle/). See if you can refactor the class by moving some of its responsibilities into a new class. Keep in mind that your `Controller` classes should be focused on UI concerns, so business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](http://deviq.com/separation-of-concerns/).
 
 With regards to data access specifically, you can inject the `DbContext` into your controllers (assuming you've added EF to the services container in `ConfigureServices`). Some developers prefer to use a repository interface to the database rather than injecting the `DbContext` directly. Using an interface to encapsulate the data access logic in one place can minimize how many places you will have to change when your database changes.
-
-<a name=replacing-the-default-services-container></a>
 
 ## Replacing the default services container
 
