@@ -1,4 +1,19 @@
-﻿# ASP.NET overview
+﻿---
+title: "ASP.NET overview | Microsoft Docs"
+author: rick-anderson
+description: "Introduction to ASP.NET, a free framework for creating websites, web applications, and web APIs."
+ms.author: aspnetcontent
+manager: wpickett
+ms.date: 03/12/2010
+ms.topic: article
+ms.assetid: 3a309468-f1ca-4e51-b9c3-536af79d7a8b
+ms.technology: 
+ms.prod: .net-framework
+msc.legacyurl: /aspnet
+msc.type: content
+---
+
+# ASP.NET overview
 
 ASP.NET is a free web framework for building great websites and web applications using HTML, CSS, and JavaScript. You can also create Web APIs and use real-time technologies like Web Sockets.
 
