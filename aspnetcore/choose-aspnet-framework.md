@@ -30,7 +30,7 @@ ASP.NET Core is a new open-source and cross-platform .NET framework for building
 | ASP.NET | ASP.NET Core  |
 |---|---|
 |Build for Windows|Build for Windows, Mac, or Linux|
-|Use [Web Forms](web-forms/index.md), [SignalR](signalr/index.md), [MVC](mvc/index.md), or [Web Pages](web-pages/index.md)|Use [MVC](https://docs.microsoft.com/aspnet/core/mvc/overview), or [Web API](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api)|
+|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|Use [MVC](mvc/overview.md), or [Web API](tutorials/first-web-api.md)|
 |One version per machine  |Multiple versions per machine|
 |Develop with Visual Studio using C#, VB or F#|Develop with Visual Studio or Visual Studio Code using C#|
 |Mature platform |New platform|
@@ -39,5 +39,5 @@ ASP.NET Core is a new open-source and cross-platform .NET framework for building
 
 ## Resources
 
-* [Introduction to ASP.NET](https://docs.microsoft.com/aspnet/core/)
+* [Introduction to ASP.NET](https://docs.microsoft.com/aspnet)
 * [Introduction to ASP.NET Core](index.md)

@@ -35,7 +35,8 @@
 ### [WebListener](fundamentals/servers/weblistener.md)
 ## [Request Features](fundamentals/request-features.md)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
-## [Choosing between .NET Core and .NET Framework runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)
+## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
+## [Choose between .NET Core and .NET Framework runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)
 
 # [MVC](mvc/overview.md)
 ## [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
