@@ -69,7 +69,7 @@ public CharactersController(ICharacterRepository characterRepository, string tit
 
 ## Using Framework-Provided Services
 
-The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](/fundamentals/hosting.md)):
+The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](xref:fundamentals/hosting)):
 
 | Service Type | Lifetime |
 | ----- | ------- |
