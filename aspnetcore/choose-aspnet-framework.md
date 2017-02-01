@@ -37,12 +37,12 @@ ASP.NET is a mature web platform that provides all the services that you require
 |Ultra performance|High performance|
 |[Choose .NET Framework or .NET Core runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
-## Select ASP.NET Core scenario
+## ASP.NET Core scenarios
 
 * [Websites](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/)
 * [APIs](https://docs.microsoft.com/aspnet/core/first-web-api)
 
-## Select ASP.NET scenario
+## ASP.NET scenarios
 
 * [Websites](https://docs.microsoft.com/aspnet/mvc)
 * [APIs](https://docs.microsoft.com/aspnet/web-api)
