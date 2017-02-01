@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/08/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0e85d8fb-08f9-4421-aebd-027841fd5bd8
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/making-websites-with-aspnet

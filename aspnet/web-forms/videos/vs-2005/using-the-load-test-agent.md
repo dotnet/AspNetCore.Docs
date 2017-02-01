@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/08/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4a262984-ab29-4bf7-a8b6-707d66cde011
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/using-the-load-test-agent

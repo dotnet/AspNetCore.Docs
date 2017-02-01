@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: b19f0875-7d3e-4ecf-baa1-a0c693c765b3
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/accordion/databinding-to-an-accordion-vb

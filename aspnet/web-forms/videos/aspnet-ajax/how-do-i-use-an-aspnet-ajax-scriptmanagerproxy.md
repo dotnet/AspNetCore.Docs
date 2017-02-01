@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/01/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: c11935d8-c3df-45d3-aab1-1d90f6599b6d
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-an-aspnet-ajax-scriptmanagerproxy

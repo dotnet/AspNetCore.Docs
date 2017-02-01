@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/12/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: eaece9f5-f80c-428b-b771-5db66d275b7d
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery

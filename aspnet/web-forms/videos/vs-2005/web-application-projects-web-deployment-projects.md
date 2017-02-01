@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/20/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 66d242f5-0306-4df2-8f05-c93e405f9847
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/web-application-projects-web-deployment-projects

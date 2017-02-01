@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2005
 ms.topic: article
-ms.assetid: 
+ms.assetid: 2bb109d2-e299-46ea-9054-fa0263b59165
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/caching

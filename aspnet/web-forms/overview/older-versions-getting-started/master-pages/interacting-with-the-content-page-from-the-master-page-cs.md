@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/11/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3282df5e-516c-4972-8666-313828b90fb5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs

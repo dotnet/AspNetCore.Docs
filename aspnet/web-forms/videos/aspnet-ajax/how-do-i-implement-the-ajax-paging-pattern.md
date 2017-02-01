@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/06/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: deba7d7e-3da2-48a1-8a9e-49c36c4bcc39
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-paging-pattern

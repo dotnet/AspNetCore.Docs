@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/29/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: f8ce88a0-bddb-4f29-8d87-b3af40fc5b61
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/designing-relational-database-tables

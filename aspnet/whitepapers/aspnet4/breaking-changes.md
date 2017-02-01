@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: d601c540-f86b-4feb-890c-20c806b3da6c
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4/breaking-changes

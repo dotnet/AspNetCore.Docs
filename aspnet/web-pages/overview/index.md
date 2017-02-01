@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1a2ed0e8-63da-4110-9896-e2731d86f7c4
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview

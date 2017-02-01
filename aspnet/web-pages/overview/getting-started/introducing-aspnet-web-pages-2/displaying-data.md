@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/28/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: b3a006a0-3ea2-4d45-b833-e20e3a3c0a1a
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displaying-data

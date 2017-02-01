@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/17/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 35b40b8f-2ca8-4ab3-9c19-f361a91a3647
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-vb

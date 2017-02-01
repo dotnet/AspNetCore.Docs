@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: e5b0f6da-635c-461d-8f34-ab815715888a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/begin-editing-the-templates-in-aspnet-dynamic-data-applications

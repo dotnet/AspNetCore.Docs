@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: dcaaaa8d-7dbd-4f5f-be2a-226c2517872a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-use-attribute-validation-in-aspnet-dynamic-data-applications

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/17/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: c18095ae-fe16-4bf9-98cd-460631af021f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-event-handlers-in-aspnet-web-pages-and-controls

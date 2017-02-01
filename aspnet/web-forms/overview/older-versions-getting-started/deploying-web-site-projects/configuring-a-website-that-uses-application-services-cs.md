@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/23/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1e33d1c6-3f9f-4c26-81e2-2a8f8907bb05
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs

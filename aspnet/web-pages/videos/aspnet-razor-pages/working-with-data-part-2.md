@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: f0de3048-de31-4b73-b4fa-a27f6276d17d
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-data-part-2

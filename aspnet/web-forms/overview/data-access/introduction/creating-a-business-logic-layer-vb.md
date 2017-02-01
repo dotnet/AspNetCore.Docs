@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/31/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 142e5181-29ce-4bb9-907b-2a0becf7928b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/creating-a-business-logic-layer-vb

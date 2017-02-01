@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/26/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: ecd34391-958f-410c-849d-cfaa2dd414dd
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-popup-control-extender

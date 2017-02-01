@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: e9dd0075-0273-48b5-ad2c-0b0ec8e1055b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/jquery

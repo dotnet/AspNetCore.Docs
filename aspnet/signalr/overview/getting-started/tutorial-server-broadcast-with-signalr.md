@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/13/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1568247f-60b5-4eca-96e0-e661fbb2b273
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-server-broadcast-with-signalr

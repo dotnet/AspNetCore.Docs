@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/29/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: f86aee1e-958a-4604-a593-dc40a1149239
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/more-structured-query-language

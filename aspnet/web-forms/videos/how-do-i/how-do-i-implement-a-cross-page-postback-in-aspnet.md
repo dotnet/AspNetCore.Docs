@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/10/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: cd88fa45-8f51-48f5-b642-5021acddec40
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-a-cross-page-postback-in-aspnet

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 11425ff3-09fc-4efa-be9a-b53bce503460
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/examining-the-details-and-delete-methods

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/11/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 22fb5270-7685-4f3a-919b-c23e180efe49
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c

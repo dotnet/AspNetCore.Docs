@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/05/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 17dfc331-1186-4240-8abf-f0220c90e081
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-incremental-page-display-pattern

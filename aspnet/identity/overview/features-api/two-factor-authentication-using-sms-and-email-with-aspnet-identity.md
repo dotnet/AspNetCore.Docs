@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/15/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 053e23c4-13c9-40fa-87cb-3e9b0823b31e
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity

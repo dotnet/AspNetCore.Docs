@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: ce83fbc9-ef24-4f59-8e76-7ca1b983bf9a
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/mobile

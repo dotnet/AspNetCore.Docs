@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/22/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: c56355c3-821f-43e2-9058-9499a1d63f80
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-1

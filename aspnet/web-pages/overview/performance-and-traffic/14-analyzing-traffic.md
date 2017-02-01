@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/17/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 360bc6e1-84c5-4b8e-a84c-ea48ab807aa4
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/14-analyzing-traffic

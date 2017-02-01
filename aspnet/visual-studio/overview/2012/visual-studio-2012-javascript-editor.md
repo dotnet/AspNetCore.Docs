@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: b7c029cf-3fe0-4528-beb4-f577514b48ef
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-2012-javascript-editor

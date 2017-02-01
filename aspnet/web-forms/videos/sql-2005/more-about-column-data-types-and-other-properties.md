@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/22/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8fcd3402-1711-4f19-b0cc-b91edfe285fc
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/more-about-column-data-types-and-other-properties

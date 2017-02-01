@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/08/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: e5d0e3e0-5317-412f-a4c8-b0db669fccb8
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/aspnet-and-mobile

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/30/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1cd7525d-de5e-4ab6-94f0-51480d3255d1
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/json-and-xml-serialization

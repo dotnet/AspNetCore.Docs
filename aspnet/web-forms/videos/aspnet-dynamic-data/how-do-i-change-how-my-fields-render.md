@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: f99da654-2148-4e66-867c-6e837b84e9d0
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-change-how-my-fields-render

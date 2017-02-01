@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/30/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: a87af3be-589d-4b0c-846d-4de60a8745c0
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-snippets

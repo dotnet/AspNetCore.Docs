@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/10/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: b61968ac-6d9b-4b75-ab2a-934b609acba4
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/iis7-playlists

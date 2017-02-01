@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 92c70297-4430-4e4e-919a-9c2333a8d09a
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/23/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: a266cc44-f514-4913-9768-5b382380184d
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate

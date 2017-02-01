@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/26/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 2bfd5353-2a35-449e-aeff-0fb94cf10030
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-aspnet_mergeexe-utility-to-merge-assemblies

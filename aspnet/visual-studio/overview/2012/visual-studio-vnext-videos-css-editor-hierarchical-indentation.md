@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/30/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 6e34a1b0-4108-4524-b858-430e742abe44
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-hierarchical-indentation

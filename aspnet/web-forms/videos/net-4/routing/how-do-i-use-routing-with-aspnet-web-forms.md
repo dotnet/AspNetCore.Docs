@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/15/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: a3ab6cd9-8f71-4b73-9336-21c0de078269
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms

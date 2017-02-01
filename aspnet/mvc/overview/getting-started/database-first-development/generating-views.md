@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/29/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 669367cf-8e30-4eb6-821d-10a7d9bb906c
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views

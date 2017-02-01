@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/24/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 576ede31-e83a-4222-8f82-0aabb1dafe6a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information

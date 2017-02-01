@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3cb6c701-7b39-4009-8214-47130021c616
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net-web-forms

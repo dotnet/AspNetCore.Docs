@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/11/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1fa884c0-582e-4dc6-abb6-a5ec70d43ffb
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site

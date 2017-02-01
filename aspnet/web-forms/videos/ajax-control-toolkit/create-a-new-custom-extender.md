@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: dacc2d88-5768-4721-8624-c603e2088670
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/create-a-new-custom-extender

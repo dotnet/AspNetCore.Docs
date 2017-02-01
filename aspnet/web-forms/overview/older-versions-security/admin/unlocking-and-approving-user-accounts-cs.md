@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/01/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5346aab1-9974-489f-a065-ae3883b8a350
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/unlocking-and-approving-user-accounts-cs

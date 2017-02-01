@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 99253c4e-a125-4c21-85e7-a6dd74d93892
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started

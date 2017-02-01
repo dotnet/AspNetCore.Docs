@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/14/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 83267f7d-64d9-41ee-82cf-da91b1bf534d
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-vb

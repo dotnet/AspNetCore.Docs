@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/17/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 243db2ec-8f67-4a5e-a382-4ddcec4b4164
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/http-cookies

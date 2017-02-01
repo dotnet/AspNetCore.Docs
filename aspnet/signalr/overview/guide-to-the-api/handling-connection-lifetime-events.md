@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 03960de2-8d95-4444-9169-4426dcc64913
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events

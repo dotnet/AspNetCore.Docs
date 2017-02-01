@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/01/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 2a7517a0-b88c-4162-ade3-9bf6ca7062fd
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment/using-signalr-with-azure-web-sites

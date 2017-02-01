@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: d4c08844-fe1c-4759-9ec7-66263ba678fb
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/20/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7d061207-22b8-4883-bafa-e89b1e7749ca
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api

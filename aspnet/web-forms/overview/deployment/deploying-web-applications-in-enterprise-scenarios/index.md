@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/16/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8e55d4a3-5f93-42b5-b053-4736c9152f11
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios

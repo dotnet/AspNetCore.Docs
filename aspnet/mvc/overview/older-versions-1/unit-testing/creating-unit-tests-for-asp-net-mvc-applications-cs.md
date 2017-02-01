@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/19/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: d3a270b9-d7b1-47f2-8775-fc3beb518b5c
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-cs

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/01/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 658b149b-d770-46bf-8b4b-4e47cca242f3
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript

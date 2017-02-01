@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5356f9f4-63a5-4481-87a3-78bb1dfc6f0f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet

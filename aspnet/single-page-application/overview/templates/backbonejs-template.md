@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/04/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 00aca413-f067-4108-9bd1-cf21e64a2646
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/backbonejs-template

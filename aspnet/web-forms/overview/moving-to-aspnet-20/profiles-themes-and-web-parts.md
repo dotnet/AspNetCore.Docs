@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2005
 ms.topic: article
-ms.assetid: 
+ms.assetid: 92df4051-77c6-492c-bd34-23d24189cea4
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/profiles-themes-and-web-parts

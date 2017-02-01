@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/27/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5fbfefad-a17a-4c46-8646-f1ccd154cd56
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-containment-in-web-api-22

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/05/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: a610c796-c131-473c-baef-2e6c568cb2a2
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/hub-authorization

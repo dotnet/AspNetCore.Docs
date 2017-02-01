@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/03/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: a2f1c635-0817-4a9a-8c13-d5b5d29727c0
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page

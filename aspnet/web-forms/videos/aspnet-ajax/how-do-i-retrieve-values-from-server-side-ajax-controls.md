@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/21/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9d770bb5-fd76-4ae9-a11b-9783f394a24f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-retrieve-values-from-server-side-ajax-controls

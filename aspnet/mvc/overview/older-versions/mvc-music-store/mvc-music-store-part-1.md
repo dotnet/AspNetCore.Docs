@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/21/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: bd356ca3-5bdb-4067-9dac-c9e9923a86e8
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1

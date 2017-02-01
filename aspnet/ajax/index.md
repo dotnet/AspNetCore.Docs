@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/15/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 42b0bd66-bf2f-4993-8b5a-bac3028201fc
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax

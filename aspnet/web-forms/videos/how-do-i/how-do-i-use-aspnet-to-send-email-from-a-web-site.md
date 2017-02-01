@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 97f7323a-efc6-4e32-9a16-b011ed2a781b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-aspnet-to-send-email-from-a-web-site

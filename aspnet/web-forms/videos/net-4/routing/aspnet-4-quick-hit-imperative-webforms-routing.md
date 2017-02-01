@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/05/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: c78fd810-4309-4d58-afd9-81e9ffa77429
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-imperative-webforms-routing

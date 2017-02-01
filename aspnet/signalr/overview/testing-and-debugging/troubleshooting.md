@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4b559e6c-4fb0-4a04-9812-45cf08ae5779
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging/troubleshooting

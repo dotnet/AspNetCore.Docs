@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 47b7f30e-ae86-46e4-b5a4-e7452093becc
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1

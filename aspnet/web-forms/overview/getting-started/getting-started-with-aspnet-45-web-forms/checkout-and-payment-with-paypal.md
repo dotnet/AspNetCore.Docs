@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 664ec95e-b0c9-4f43-a39f-798d0f2a7e08
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal

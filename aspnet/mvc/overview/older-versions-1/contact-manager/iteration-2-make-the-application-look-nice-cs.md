@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: f1173feb-11ee-4017-8f3f-86599ea6ae13
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs

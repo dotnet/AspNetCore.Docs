@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/23/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: c13785b6-5538-4511-92de-4afdb4a1d0f1
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile

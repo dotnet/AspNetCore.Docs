@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1057d00f-187f-4187-a674-194b6262c3a3
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/creating-a-consistent-look-part-1

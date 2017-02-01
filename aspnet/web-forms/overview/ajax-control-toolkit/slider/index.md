@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: fd7812d1-55d7-4e4a-96c8-1614b375db56
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/08/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 348d1bda-69e0-4cb5-a59f-a104133c2f93
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-use-classes-in-javascript

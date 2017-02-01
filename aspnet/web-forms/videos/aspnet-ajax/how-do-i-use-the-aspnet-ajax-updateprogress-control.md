@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: fadc5c5a-e481-4472-b339-715cc036dc4e
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-updateprogress-control

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/27/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 6dae249f-5ac6-4f6e-bc49-13bcd5a54a70
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana

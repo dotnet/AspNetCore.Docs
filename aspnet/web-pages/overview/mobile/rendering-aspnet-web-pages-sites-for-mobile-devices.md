@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/17/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: f15ab392-c05e-4269-83bf-7c6d2b8c8ec8
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/mobile/rendering-aspnet-web-pages-sites-for-mobile-devices

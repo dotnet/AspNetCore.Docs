@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/14/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: aadc5fa4-8215-4fc7-afd5-bcd2ef879728
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages

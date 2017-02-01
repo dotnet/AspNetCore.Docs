@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/10/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4f08dbcd-ab60-4ad4-8387-795d810cccb6
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/choosing-the-right-programming-model

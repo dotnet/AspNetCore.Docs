@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/16/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: edb30028-1fc4-4730-9d6f-1013b6fd5637
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-styling

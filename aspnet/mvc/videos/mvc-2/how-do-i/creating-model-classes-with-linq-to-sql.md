@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/20/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: d33d89ca-bb2a-4fb2-a0fa-0b423d710acb
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/creating-model-classes-with-linq-to-sql

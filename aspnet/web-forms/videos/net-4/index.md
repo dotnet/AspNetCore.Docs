@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: bac10aee-6731-4a0f-84d7-9eef5e560ae5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4

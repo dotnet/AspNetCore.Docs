@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: a0eb31aa-068b-4214-8a2b-16576a616aca
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/adding-email-to-your-web-site

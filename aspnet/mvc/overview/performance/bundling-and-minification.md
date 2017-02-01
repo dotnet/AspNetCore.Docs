@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/23/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5894dc13-5d45-4dad-8096-136499120f1d
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/bundling-and-minification

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: ce798572-e7dc-44c1-a7fe-a029820e195e
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic

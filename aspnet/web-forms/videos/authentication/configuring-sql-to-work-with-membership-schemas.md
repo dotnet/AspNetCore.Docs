@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/04/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: b3edd71d-b43e-4ccb-93e5-b89bb723312c
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/configuring-sql-to-work-with-membership-schemas

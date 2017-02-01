@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 715a4059-d307-4631-abbb-c789c95d6eb4
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/introduction-to-security

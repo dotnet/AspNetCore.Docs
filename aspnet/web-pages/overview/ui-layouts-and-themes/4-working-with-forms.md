@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: f3f4b8c8-e8f6-4474-ad94-69228a6c01ee
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/4-working-with-forms

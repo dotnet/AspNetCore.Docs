@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8d54180d-f826-4df7-b503-7debf5ed9fb3
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity

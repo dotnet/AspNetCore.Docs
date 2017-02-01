@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8dc90862-97d6-48d1-8bfc-79c70d622474
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/bit-rate-throttling

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 607f4617-380f-41fa-bf46-147e82bb8124
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions

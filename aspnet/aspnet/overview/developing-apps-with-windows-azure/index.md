@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/08/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5b4bd806-ce9b-42e6-81f6-ccf89dc72dc1
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure

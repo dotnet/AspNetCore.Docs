@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/29/2005
 ms.topic: article
-ms.assetid: 
+ms.assetid: be41acae-1e1e-403c-bdd2-28cdcd11a22a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-8-working-with-the-gridview-and-formview

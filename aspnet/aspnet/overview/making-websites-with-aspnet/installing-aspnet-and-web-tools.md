@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/05/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 20c0c1d5-741a-4b58-aa5b-b40d75ed5ca8
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/making-websites-with-aspnet/installing-aspnet-and-web-tools

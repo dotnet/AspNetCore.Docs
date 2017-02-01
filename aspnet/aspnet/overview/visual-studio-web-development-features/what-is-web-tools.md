@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: d950bd5f-8053-4e60-a356-eabd60f4376d
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/visual-studio-web-development-features/what-is-web-tools

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/25/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 6945a637-cab3-4a13-a678-f6d2d83c2587
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-discover-application-changes-prior-to-deployment

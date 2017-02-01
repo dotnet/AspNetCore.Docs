@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: e1efb97e-fe5d-406b-b3a2-dc004305d12e
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/real-time-web-with-aspnet-signalr/signalr-and-the-real-time-web

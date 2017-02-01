@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 32ec9321-7c8c-4b0f-8234-99acb56df6b5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/htmleditor/how-do-i-use-the-html-editor-control-vb

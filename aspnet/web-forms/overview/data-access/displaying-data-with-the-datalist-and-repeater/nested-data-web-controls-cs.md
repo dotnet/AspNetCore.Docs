@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/13/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: ad3cb0ec-26cf-42d7-b81b-184a34ec9f86
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-cs

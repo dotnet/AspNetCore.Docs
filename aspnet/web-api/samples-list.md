@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/18/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8cbd9d7f-7027-4390-b098-cb81a63ecd6f
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/samples-list

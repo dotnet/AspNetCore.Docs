@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4823a186-caaf-4116-a318-c7ff4d955ddc
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-vb

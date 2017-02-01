@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/05/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: adea2a1f-4650-4e3d-8bff-3ff5cd22f895
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-permanent-redirect

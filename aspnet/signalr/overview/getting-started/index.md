@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 2acff246-c74c-4277-b539-35bc42988c6f
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started

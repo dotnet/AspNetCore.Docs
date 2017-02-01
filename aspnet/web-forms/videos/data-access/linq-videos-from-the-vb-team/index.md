@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/24/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 257373bb-eab0-47bc-b5a2-37a9e91666d6
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team

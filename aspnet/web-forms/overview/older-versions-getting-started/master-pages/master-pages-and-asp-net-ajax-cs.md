@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/11/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0c55eb66-ba44-4d49-98e8-5c87fd9b1111
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/master-pages-and-asp-net-ajax-cs

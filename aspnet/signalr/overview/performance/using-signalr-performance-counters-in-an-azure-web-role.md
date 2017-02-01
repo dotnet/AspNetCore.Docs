@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/12/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 2a127d3b-21ed-4cc9-bec0-cdab4e742a25
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role

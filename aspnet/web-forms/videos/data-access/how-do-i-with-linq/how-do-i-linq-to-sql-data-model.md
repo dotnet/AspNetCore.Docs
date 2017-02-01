@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 24282199-9edf-4211-ac6e-f05df68cccbe
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-data-model

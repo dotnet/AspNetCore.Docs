@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/16/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 489b414b-2322-4385-8638-04e08c0b6c90
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment

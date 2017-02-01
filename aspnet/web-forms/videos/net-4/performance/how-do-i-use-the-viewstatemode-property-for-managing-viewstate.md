@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/17/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: e5b1cc5e-fe11-4ede-9e28-af6477277b0c
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/performance/how-do-i-use-the-viewstatemode-property-for-managing-viewstate

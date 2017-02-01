@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0cab7010-e60e-4a18-9750-61068d3a2da3
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-create-nested-master-page-in-visual-studio-2008

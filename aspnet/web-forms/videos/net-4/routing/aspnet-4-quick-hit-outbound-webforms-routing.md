@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 90d79218-505c-4b6d-87f5-a59592d59ccc
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-outbound-webforms-routing

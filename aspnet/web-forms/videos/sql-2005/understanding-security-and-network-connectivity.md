@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5a0df3fa-07d9-4762-b9db-1824dcd8a31a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/understanding-security-and-network-connectivity

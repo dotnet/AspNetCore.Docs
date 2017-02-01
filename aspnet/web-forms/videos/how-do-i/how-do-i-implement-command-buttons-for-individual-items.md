@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/24/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: b883989d-4735-478e-ab56-411a2ed98f73
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-command-buttons-for-individual-items

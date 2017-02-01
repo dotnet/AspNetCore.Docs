@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/22/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 63c42590-08ac-44da-91f8-bd79489b9ecc
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-3-updating

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9086d8a8-7952-4a7e-82a7-724d48178555
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data

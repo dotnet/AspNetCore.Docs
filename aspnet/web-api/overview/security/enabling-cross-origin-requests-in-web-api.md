@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/15/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9b265a5a-6a70-4a82-adce-2d7c56ae8bdd
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api

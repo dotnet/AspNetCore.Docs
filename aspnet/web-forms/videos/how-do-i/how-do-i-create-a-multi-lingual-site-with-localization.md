@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/06/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 93190bb9-83fa-4318-a261-0de41ff72b24
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-multi-lingual-site-with-localization

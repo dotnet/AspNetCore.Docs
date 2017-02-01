@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/09/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7e986ab5-6615-4638-add7-4614ce7b51db
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry

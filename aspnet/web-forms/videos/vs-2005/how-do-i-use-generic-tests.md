@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: e129b2c2-8587-4ff1-b455-7f14cb28bcf9
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-use-generic-tests

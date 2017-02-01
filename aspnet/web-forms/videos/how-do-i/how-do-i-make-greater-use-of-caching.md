@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/16/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 39ad66b4-30f3-48da-b157-b7ffe65b671b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-make-greater-use-of-caching

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: ffad842d-548c-40c6-84c5-10858133e972
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages

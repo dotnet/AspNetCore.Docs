@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 969ab824-1b98-4552-81fe-b60ef5fc6887
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-custom-action-filters

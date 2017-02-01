@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/30/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: c0c084d3-1b12-4de1-b904-30fbbda59a30
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-color-picker

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/19/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: d4b498ef-8e1c-4fa2-9c35-1f32f20bb9b7
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it

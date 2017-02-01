@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7dc21790-5607-467d-a08b-fcf3c80b0174
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix

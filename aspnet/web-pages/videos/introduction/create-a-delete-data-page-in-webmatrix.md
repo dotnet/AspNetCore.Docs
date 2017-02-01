@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3e84d61e-e462-44a1-b3c2-ac8a1f7fcac6
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-a-delete-data-page-in-webmatrix

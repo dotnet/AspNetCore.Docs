@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: f0643c61-c310-4906-a238-dfc86f09b940
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction

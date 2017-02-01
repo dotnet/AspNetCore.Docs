@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/01/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 89a1d2bc-fdfd-4c5c-a3b0-49a08baaf63a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/asp-net-hosting-options-cs

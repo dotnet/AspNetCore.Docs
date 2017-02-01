@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/19/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: aabfeabb-459e-4cfd-b067-44da3bbb291b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-detect-browser-capabilities-in-aspnet-web-pages

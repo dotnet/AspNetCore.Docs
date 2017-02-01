@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 17b67048-c61c-4ac0-a73a-a8079b493253
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-page-inspector

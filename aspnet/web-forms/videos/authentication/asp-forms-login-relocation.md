@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0427dd22-7836-4b69-b2c2-66c765ace34f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/asp-forms-login-relocation

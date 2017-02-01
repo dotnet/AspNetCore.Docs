@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/18/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: bc937e9d-5c14-4fc4-aec7-440da924dd18
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/user-based-authorization-vb

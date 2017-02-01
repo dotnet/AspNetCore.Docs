@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/21/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 22929efd-68c9-4609-b76d-f8ba42fda01e
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/working-with-groups

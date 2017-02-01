@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: afd41278-b4c5-43ee-9845-2b665932dcff
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/accordion

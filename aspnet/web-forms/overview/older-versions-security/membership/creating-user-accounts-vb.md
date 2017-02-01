@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/18/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9ef3e893-bebe-4b13-9fe5-8b71720dd85e
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/creating-user-accounts-vb

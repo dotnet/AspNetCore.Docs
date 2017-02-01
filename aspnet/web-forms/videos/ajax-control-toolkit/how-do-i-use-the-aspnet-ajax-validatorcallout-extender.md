@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/21/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9ece2688-72d3-4ff4-8d6c-c29698c39ae5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender

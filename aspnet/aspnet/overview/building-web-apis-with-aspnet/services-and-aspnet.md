@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: c2428a2e-1f3e-40b2-b4db-1517728e7e7f
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/building-web-apis-with-aspnet/services-and-aspnet

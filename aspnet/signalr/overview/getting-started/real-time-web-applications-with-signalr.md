@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: ba07958c-42e1-4da0-81db-ba6925ed6db0
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/real-time-web-applications-with-signalr

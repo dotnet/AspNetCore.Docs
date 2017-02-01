@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: d5e79470-01f2-4d65-8077-11c3e10a6784
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers

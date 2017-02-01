@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/01/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: ee916787-dbf2-45c5-a1e7-3b2b5862a94b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-tune-web-application-performance-with-profiling

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: a861409b-4ae6-4868-9e09-87edfac3535f
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/running-v1-and-v2-sites-side-by-side

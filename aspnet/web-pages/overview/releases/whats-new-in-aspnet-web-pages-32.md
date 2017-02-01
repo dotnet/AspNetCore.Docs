@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/30/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: a652beff-8e6b-48ad-bfe4-3703f7ccf0a5
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/whats-new-in-aspnet-web-pages-32

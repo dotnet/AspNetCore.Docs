@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 090f5500-1124-49a7-a295-db97ef739c6a
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/publish-a-website-to-the-internet-using-webmatrix

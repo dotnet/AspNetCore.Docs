@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9fb155e0-1379-482c-963d-af7dc0397d76
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results

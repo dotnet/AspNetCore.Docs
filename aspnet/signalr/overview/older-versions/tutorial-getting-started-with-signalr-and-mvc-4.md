@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/29/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: eeef9f73-6de3-49f9-b50b-9af22108f2ce
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4

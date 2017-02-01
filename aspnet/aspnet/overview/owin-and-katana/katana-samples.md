@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/17/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: bec04f5d-2638-4417-b288-97c58c8d6379
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/katana-samples

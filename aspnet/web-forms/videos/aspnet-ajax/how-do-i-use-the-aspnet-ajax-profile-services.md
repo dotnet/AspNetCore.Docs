@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8fc77048-4d1f-42bf-a947-ecc9a02b25c9
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-profile-services

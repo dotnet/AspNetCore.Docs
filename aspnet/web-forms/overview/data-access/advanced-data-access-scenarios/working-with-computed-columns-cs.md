@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/03/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 57459065-ed7c-4dfe-ac9c-54c093abc261
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/working-with-computed-columns-cs

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: b9775f41-352a-4f82-baa6-23e95b342e20
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application

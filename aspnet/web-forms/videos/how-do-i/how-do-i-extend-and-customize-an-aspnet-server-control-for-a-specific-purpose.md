@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/20/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: ed460e6b-8f4e-4fcb-83c4-2495180c1f14
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose

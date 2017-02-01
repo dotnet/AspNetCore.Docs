@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/27/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3a052ced-9cf5-47b8-a400-934f0b687c26
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-vb

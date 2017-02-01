@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: c7e4e1ab-4932-4614-9f53-aaf7c706d498
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/02/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 41423767-0021-47c3-9e53-0021b457c39f
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/basic-authentication

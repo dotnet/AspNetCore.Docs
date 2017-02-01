@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/17/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 03e4b9f5-0fea-4d94-959f-014b2762a301
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-server

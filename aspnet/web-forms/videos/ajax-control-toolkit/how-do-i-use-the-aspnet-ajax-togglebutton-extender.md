@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/01/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3116e9bc-681c-48f9-813e-1bcfcec145da
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-togglebutton-extender

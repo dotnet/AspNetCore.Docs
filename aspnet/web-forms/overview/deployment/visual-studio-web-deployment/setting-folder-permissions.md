@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9715a121-fa55-4f1b-a5d2-fb3f6cd8be8f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/setting-folder-permissions

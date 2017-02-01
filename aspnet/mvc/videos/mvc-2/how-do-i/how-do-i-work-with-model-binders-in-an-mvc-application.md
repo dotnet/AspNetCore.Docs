@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/30/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 55c2fa76-d5b9-43e7-921e-51a9b57dba30
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-work-with-model-binders-in-an-mvc-application

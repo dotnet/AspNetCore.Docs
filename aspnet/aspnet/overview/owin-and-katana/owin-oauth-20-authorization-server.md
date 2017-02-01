@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 20acee16-c70c-41e9-b38f-92bfcf9a4c1c
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server

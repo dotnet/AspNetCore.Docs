@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/08/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: caeb0bcb-b2e3-4c37-a1d5-420bb4e917ac
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks

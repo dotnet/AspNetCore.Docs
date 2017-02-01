@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/26/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: a95daf2f-aae4-4ad5-a142-8c58cc7a056d
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using-the-also-purchased-control

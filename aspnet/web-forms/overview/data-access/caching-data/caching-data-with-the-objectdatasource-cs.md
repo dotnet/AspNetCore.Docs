@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/30/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: bd87413c-8160-4520-a8a2-43b555c4183a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-cs

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/01/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: c0090595-ab3b-4b9b-9e16-7a1891e8cb2f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting

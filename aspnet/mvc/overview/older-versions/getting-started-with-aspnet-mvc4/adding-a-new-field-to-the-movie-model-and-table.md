@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9ef2c4f1-a305-4e0a-9fb8-bfbd9ef331d9
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-new-field-to-the-movie-model-and-table

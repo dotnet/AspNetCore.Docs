@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/30/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 37e005e9-2f1c-4039-b6ef-15612e0fdbc9
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana

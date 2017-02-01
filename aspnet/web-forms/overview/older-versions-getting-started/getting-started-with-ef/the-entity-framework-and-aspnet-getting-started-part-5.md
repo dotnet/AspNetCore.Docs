@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/03/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 24ad4379-3fb2-44dc-ba59-85fe0ffcb2ae
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-5

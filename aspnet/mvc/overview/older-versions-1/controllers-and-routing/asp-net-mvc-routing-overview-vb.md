@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/19/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4bc8d19a-80f1-44b4-adbf-95ed22d691ca
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-vb

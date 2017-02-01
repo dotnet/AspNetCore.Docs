@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/06/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: a56572ba-81c3-47af-826d-941e9c4775ec
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4

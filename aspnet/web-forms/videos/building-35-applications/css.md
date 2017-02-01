@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/30/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 50a55e3b-3f5c-429b-baf9-730221e9ef4c
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/css

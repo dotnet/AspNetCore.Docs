@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3c7ca405-564a-4b27-9085-d3c2ef236dbe
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 561fc945-2506-4549-af92-af92556df266
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/data-controls/the-datapager-control

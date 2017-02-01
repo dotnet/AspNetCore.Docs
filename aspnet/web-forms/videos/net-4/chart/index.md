@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: c7ec18e5-45a1-4c18-b2d9-31f377d23a3f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/chart

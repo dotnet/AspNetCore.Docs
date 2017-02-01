@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/11/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: acd329de-7676-41b4-8638-189f3e1039f7
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/aspnet-dynamic-data-custom-form-formatting

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: df001954-18bf-4550-b03d-43911a0ea186
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-search

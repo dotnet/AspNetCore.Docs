@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/22/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 00bc8b51-32ed-4fd3-9745-be4c2a9c1eaf
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application

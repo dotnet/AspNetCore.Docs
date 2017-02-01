@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/08/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 80db4d9f-6e03-4e1e-bf20-b9a9c794083d
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/building-web-apis-with-aspnet

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 961e525b-7700-469e-8a68-d7010b6fb68c
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website

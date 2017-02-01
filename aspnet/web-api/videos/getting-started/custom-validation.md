@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: f8eadb72-fa15-4537-8c6d-1b120e6d3aab
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/custom-validation

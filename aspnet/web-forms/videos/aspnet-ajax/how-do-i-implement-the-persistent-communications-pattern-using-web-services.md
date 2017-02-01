@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/22/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 424c06cd-6d61-43cd-a1f2-d1a6b62e47b1
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-using-web-services

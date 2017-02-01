@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/29/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 560d2455-ce08-4b2a-900d-7e9ccf82e048
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/what-is-a-database

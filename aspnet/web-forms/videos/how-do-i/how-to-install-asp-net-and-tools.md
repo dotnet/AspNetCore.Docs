@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/10/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 84007aa5-4f60-4417-9cc0-44cb8b7b9323
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-to-install-asp-net-and-tools

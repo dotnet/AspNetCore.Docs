@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/20/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: df1baeef-a737-471f-a6ae-cca54cfb26d4
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client

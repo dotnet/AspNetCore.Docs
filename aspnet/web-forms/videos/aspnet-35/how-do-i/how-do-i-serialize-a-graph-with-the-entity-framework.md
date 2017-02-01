@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: e8b41eed-5423-43d1-a54b-62f04bff371e
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-serialize-a-graph-with-the-entity-framework

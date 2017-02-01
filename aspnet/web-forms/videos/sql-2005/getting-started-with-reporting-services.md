@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/21/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: f348a388-d3a2-4ea8-baf0-be2e6ef8efe1
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/getting-started-with-reporting-services

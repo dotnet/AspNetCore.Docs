@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 24ad086d-865e-433c-9ac9-05f1a553da16
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/introduction

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: dddc8812-a0bc-49f9-aafb-caf2064c2b8c
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc3

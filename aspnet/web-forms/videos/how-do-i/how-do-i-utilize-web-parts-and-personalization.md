@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/16/2006
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1ef94d90-253f-436b-8bf9-1a7f541cc613
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-utilize-web-parts-and-personalization

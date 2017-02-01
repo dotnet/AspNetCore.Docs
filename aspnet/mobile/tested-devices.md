@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/28/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 51b447d5-eaa1-4df1-917c-f4f2746ed62d
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /mobile/tested-devices

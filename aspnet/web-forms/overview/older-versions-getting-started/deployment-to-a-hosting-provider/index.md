@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/29/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 6798c7e4-f08e-4802-9fa5-443f67d5df62
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider

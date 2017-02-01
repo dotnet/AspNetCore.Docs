@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/12/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: c0ea52a3-7497-4204-88c6-91591ac1a6b2
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/videos

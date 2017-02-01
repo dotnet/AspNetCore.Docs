@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/29/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 8d04a9db-fa17-4233-bc74-6c040fd1c17a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-bundling-and-minification

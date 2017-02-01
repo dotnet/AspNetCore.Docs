@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/10/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7958d725-e958-4566-a85b-535eeb985f94
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/recommended-resources-for-mvc

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/27/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0cbd88da-0da6-4605-b222-2835c6478304
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views/dynamic-v-strongly-typed-views

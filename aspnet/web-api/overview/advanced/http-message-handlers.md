@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/13/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9002018b-3aa3-4358-bb1c-fbb5bc751d01
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/http-message-handlers

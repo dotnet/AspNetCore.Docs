@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 73232292-a5fe-4720-82a1-8f6553effd1f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/13/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1488f788-54ca-43ce-bf65-8179ebbe2c7c
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-timer-control

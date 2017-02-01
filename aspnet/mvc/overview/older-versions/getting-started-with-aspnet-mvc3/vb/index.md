@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: c2f134f3-fc6b-4603-823f-d1eabe55bba2
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb

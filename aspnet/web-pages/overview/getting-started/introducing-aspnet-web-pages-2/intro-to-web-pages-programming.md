@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/17/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7526ed45-a97d-4e8a-8301-01324ef0eff9
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming

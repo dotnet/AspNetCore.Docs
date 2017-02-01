@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/09/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0f78aec2-f509-46fa-b20f-d5208425d8ec
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-recommended-resources

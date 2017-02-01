@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/28/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: b1ccc0d3-1fac-4622-ba15-ebf9ad249332
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api

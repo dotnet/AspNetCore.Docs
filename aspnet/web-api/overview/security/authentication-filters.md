@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/25/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: b9882e53-b3ca-4def-89b0-322846973ccb
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/authentication-filters

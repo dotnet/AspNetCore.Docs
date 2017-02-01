@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 673d502f-2c16-4a6f-bb63-dbfd9a77ef47
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/data/5-working-with-data

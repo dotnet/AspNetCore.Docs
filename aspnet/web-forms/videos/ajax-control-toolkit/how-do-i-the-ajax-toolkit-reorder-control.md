@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/21/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1bc7e41a-633c-4ade-ba7a-486c9484a0ba
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-the-ajax-toolkit-reorder-control

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: fc0f145a-ba00-495e-b8aa-a6e8ad4e80f5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/adding-users-to-your-membership-system

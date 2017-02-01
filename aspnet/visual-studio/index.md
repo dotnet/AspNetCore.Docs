@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/25/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7356f644-2b54-4d9f-8863-9d59b9f75532
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio

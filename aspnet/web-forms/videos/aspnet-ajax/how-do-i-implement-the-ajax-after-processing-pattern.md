@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/21/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9a382d8e-ea3a-4fa4-bd24-b56f9051f4db
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-pattern

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/16/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: e39eaa25-83ff-41dc-869d-3818d59a88ae
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53

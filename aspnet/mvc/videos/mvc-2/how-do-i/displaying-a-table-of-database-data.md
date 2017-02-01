@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/20/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 00a12df9-1f89-4fc5-9d43-19a8d5b80392
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data

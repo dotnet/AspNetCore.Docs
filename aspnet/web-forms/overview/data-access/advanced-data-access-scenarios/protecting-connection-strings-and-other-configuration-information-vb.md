@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/03/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: cd17dbe1-c5e1-4be8-ad3d-57233d52cef1
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-vb

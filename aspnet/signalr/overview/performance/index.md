@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: fda81611-b67b-4c62-915e-8adc1924a401
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance

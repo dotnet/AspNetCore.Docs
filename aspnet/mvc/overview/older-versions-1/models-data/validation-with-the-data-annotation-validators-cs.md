@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/29/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 7ca8013e-9dfc-4e33-8336-cdccfd5f9414
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs

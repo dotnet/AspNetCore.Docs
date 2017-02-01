@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: bdea2003-e964-4db5-9092-d56cc7560616
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/side-by-side-with-10

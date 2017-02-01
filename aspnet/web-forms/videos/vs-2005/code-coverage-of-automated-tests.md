@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/23/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: b1a7fbfc-523f-473e-a454-8e6b90099b1e
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/code-coverage-of-automated-tests

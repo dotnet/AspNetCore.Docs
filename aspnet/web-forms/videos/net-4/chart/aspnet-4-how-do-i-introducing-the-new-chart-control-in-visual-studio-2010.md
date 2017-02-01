@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/08/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 77b9f76c-0c38-4525-bf1b-581c19e127ab
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/chart/aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010

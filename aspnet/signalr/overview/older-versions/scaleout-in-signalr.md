@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/29/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3fd9f11c-799b-4001-bd60-1e70cfc61c19
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-in-signalr

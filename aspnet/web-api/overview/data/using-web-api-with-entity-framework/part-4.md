@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/16/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: d2f5710c-23c7-40a5-9cd9-5d0516570cba
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-4

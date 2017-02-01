@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/03/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: bffd7863-f63b-4b23-a13c-372b5492e9fb
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling

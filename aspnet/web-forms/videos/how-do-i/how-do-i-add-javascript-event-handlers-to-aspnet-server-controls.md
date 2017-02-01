@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 4e8d3220-3299-41ad-897b-bbf62e2e667f
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-javascript-event-handlers-to-aspnet-server-controls

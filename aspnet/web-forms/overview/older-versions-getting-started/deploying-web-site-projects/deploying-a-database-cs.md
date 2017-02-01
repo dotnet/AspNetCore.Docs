@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/23/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: ff537a10-9f1f-43fe-9bcb-3dda161ba8f5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-cs

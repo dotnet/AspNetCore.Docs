@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/09/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 666407bb-81de-4319-89ba-0302c382a208
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc4-beta-release-notes

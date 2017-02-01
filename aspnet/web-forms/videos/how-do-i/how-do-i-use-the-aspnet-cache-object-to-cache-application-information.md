@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 098fc90c-6bc1-4de6-978d-8024495097a9
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-aspnet-cache-object-to-cache-application-information

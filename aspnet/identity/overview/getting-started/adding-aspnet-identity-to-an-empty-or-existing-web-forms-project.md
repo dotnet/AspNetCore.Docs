@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 1cbc0ed2-5bd6-4b62-8d34-4c193dcd8b25
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project

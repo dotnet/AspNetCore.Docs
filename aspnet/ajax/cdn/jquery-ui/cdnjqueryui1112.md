@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: b458470f-ed44-4c2d-9c81-f1976daf7fad
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1112

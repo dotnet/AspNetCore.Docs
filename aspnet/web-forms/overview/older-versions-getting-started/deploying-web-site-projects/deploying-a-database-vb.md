@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/23/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 96ac3e69-04c7-4917-ad06-5f8968c3fbf1
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-vb

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/20/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: f50a5cdb-c06a-46ed-aa14-fc5b049dc8dc
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication

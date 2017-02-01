@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 716264ae-ab72-45de-bfc5-53a6237089cf
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security/create-an-aspnet-web-forms-app-with-sms-two-factor-authentication

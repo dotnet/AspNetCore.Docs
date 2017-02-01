@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 90b3a37e-2694-41c4-8b10-d6893b53a9d4
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation

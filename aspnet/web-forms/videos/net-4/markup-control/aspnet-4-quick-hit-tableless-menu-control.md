@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/16/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 5eabcaab-5f95-4052-9a92-f5cf332b35a5
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-tableless-menu-control

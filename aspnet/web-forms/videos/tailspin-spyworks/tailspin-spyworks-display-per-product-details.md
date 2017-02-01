@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/09/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: cc1ae79f-69ff-445a-a789-b5da2b255cb6
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details

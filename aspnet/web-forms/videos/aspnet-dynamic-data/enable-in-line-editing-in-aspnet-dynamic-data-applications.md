@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: a22201df-c031-4505-b3bf-9a0a9667d62b
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/enable-in-line-editing-in-aspnet-dynamic-data-applications

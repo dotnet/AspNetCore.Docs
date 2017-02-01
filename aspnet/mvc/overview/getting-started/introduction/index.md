@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 9afe7454-f1bd-4e81-8ecf-12fe54d080c1
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction

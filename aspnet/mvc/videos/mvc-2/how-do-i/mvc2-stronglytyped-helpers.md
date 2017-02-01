@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/23/2010
 ms.topic: article
-ms.assetid: 
+ms.assetid: 017e87d7-a44e-423a-b3e9-ba44df99388b
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 6b0f1fd7-6768-4549-ae9c-be9131103c4d
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager

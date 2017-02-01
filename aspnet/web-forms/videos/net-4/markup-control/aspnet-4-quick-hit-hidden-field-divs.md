@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/16/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: e0c4fbda-b9f3-4b7e-8c45-1db9d8a45e39
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-hidden-field-divs

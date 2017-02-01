@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0267d31c-892f-49a1-9e7a-3ae8cc12b2ca
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-controller

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
-ms.assetid: 
+ms.assetid: aba1e91b-57cf-4c02-9ab1-5374310be497
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-2012-css-editor

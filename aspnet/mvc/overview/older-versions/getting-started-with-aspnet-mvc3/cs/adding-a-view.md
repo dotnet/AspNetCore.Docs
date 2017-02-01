@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/12/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: abc7c78d-cb09-4a4c-a887-61bc401d40e3
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-view

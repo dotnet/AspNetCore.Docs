@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/17/2013
 ms.topic: article
-ms.assetid: 
+ms.assetid: 3437215a-c4ba-46ed-8378-d61c79c9d38c
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development

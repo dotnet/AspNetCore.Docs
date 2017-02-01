@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/30/2014
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0a2f9f8d-c4e7-4045-89ed-bb4c442c316b
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app

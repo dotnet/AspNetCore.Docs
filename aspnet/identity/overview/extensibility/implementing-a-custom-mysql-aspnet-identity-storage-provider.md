@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2015
 ms.topic: article
-ms.assetid: 
+ms.assetid: 248f5fe7-39ba-40ea-ab1e-71a69b0bd649
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity-storage-provider

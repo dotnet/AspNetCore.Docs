@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/05/2007
 ms.topic: article
-ms.assetid: 
+ms.assetid: b3abd282-840a-42e3-ac27-cddbb22c5e33
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-health-monitoring-for-an-aspnet-application

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/05/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 651c54da-becb-467e-9076-d6ace7456351
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-outputcache-to-cache-an-aspnet-page

@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/16/2009
 ms.topic: article
-ms.assetid: 
+ms.assetid: 0bfd06b1-12d3-4fbb-9779-a82e5eb7fe7d
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs

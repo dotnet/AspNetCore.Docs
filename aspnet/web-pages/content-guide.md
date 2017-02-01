@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/13/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: b558e481-775a-4aa0-bd3b-ad61e530c2d2
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/content-guide

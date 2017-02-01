@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/18/2011
 ms.topic: article
-ms.assetid: 
+ms.assetid: 05e4c88f-5101-4277-a323-b6774d98f69e
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment

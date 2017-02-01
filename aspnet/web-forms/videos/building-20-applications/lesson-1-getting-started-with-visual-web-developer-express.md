@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2005
 ms.topic: article
-ms.assetid: 
+ms.assetid: e9341b0b-1f01-4371-bfe0-0fb7410916a4
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-1-getting-started-with-visual-web-developer-express

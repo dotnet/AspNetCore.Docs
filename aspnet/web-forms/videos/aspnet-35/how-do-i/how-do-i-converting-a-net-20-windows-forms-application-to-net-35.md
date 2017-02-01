@@ -6,7 +6,7 @@ ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
-ms.assetid: 
+ms.assetid: 30274ca7-8dc8-41b2-b5b4-40881046079a
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-converting-a-net-20-windows-forms-application-to-net-35
