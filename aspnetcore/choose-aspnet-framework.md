@@ -37,6 +37,18 @@ ASP.NET Core is a new open-source and cross-platform .NET framework for building
 |High performance|Ultra performance|
 |Use .NET Framework runtime | [Choose .NET Framework or .NET Core runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)|
 
+## Select ASP.NET scenario
+
+| ![Websites icon](choose-aspnet-framework/_static/web.png)| ![Web API icon](choose-aspnet-framework/_static/api.png) | ![Real-time icon](choose-aspnet-framework/_static/realTime.png)  |
+|:-------------------:|:-------------------:|:--------------:|
+| [Websites](https://docs.microsoft.com/aspnet/mvc) | [APIs](https://docs.microsoft.com/aspnet/web-api) | [Real-time](https://docs.microsoft.com/aspnet/signalr) |
+
+## Select ASP.NET Core scenario
+
+| ![Websites icon](choose-aspnet-framework/_static/web.png)| ![Web API icon](choose-aspnet-framework/_static/api.png) |
+|:-------------------:|:-------------------:|
+| [Websites](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/) | [APIs](https://docs.microsoft.com/aspnet/core/first-web-api) |
+
 ## Resources
 
 * [Introduction to ASP.NET](https://docs.microsoft.com/aspnet/overview)
