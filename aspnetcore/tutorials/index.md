@@ -15,16 +15,14 @@ ms.prod: aspnet-core
 
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
-## Building basic websites and web applications
+## Building web applications
 * [Your first ASP.NET Core application on a Mac using Visual Studio Code](your-first-mac-aspnet.md)
-* [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
-
-## Building MVC websites and web applications
 * [Building your first ASP.NET Core MVC app with Visual Studio](first-mvc-app/index.md)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
 * [Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)
+* [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
 * [Building your first web API with ASP.NET Core MVC and Visual Studio](first-web-api.md)
@@ -33,8 +31,8 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Working with data
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) (Entity Framework Core documentation site)
-* [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db) (Entity Framework Core documentation site)
+* [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
+* [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 
 ## Authentication and authorization
 * [Enabling authentication using Facebook, Google and other external providers](../security/authentication/social/index.md)
@@ -48,7 +46,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Building beautiful, responsive sites with Bootstrap](../client-side/bootstrap.md)
 
 ## Testing
-* [Unit Testing in .NET Core using dotnet test](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test) (.NET Core documentation site)
+* [Unit Testing in .NET Core using dotnet test](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
 ## Publishing and deployment
 * [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
