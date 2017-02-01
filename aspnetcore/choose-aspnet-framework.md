@@ -39,5 +39,5 @@ ASP.NET Core is a new open-source and cross-platform .NET framework for building
 
 ## Resources
 
-* [Introduction to ASP.NET](https://docs.microsoft.com/aspnet)
+* [Introduction to ASP.NET](https://docs.microsoft.com/aspnet/overview)
 * [Introduction to ASP.NET Core](index.md)
