@@ -34,34 +34,15 @@ The ASP.NET request pipeline consists of a sequence of request delegates, called
 
 ![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, it's handed back through the prior two middlewares for additional processing after the next() statements each in turn before leaving the application as a response to the client.](middleware/_static/request-delegate-pipeline.png)
 
-Each delegate has the opportunity to perform operations before and after the next delegate. Any delegate can choose to stop passing the request on to the next delegate, and instead handle the request itself. This is referred to as short-circuiting the request pipeline, and is desirable because it allows unnecessary work to be avoided. For example, an authorization middleware might only call the next delegate if the request is authenticated; otherwise it could short-circuit the pipeline and return a "Not Authorized" response. Exception handling delegates need to be called early on in the pipeline, so they are able to catch exceptions that occur in deeper calls within the pipeline.
+Each delegate has the opportunity to perform operations before and after the next delegate. A delegate can decide to not pass a request to the next delegate -- this is referred to as short-circuiting the request pipeline.  Short-circuiting is often desirable because it allows unnecessary work to be avoided. For example, an authorization middleware might only call the next delegate if the request is authenticated; otherwise it could short-circuit the pipeline and return a "Not Authorized" response. Exception handling delegates need to be called early on in the pipeline, so they are able to catch exceptions that occur in later stages of the pipeline.
 
-You can see an example of setting up the request pipeline in the default web site template that ships with Visual Studio. The `Configure` method adds the following middleware components:
-
-1. Error handling (for both development and non-development environments)
-2. Static file server
-3. Authentication
-4. MVC
-
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
-
-In the code above (in non-development environments), `UseExceptionHandler` is the first middleware added to the pipeline, therefore will catch any exceptions that occur in later calls.
-
-The `static file module` provides no authorization checks. Any files served by it, including those under *wwwroot* are publicly available. If you want to serve files based on authorization:
-
-1. Store them outside of *wwwroot* and any directory accessible to the static file middleware.
-
-2. Deliver them through a controller action, returning a `FileResult` where authorization is applied.
-
-A request that is handled by the static file module will short circuit the pipeline. (see [Working with Static Files](static-files.md).) If the request is not handled by the static file module, it's passed on to the `Identity module`, which performs authentication. If the request is not authenticated, the pipeline is short circuited. If the request does not fail authentication, the last stage of this pipeline is called, which is the MVC framework.
-
-The simplest possible ASP.NET application sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline", so much as a single anonymous function that is called in response to every HTTP request.
+The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline", rather a single anonymous function that is called in response to every HTTP request.
 
 [!code-csharp[Main](middleware/sample/Middleware/Startup.cs)]
 
-The first `App.Run` delegate terminates the pipeline. 
+The first [app.Run](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.runextensions) delegate terminates the pipeline. 
 
-You chain multiple request delegates together with ``app.Use``. The `next` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
+You chain multiple request delegates together with [app.Use](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.useextensions). The `next` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
 
 [!code-csharp[Main](middleware/sample/Chain/Startup.cs?name=snippet1)]
 
@@ -72,13 +53,21 @@ You chain multiple request delegates together with ``app.Use``. The `next` param
 
 ## Ordering
 
-With few exceptions, the order middleware components are added in the `Configure` method is the order in which they are invoked on requests, and the reverse order for the response. <!-- what are the exceptions and why? I'm guessing authentication --> This ordering is critical for security, performance, and functionality. In the code below, exception handling must be registered before other middleware components in order to catch exceptions thrown by those components. The static file middleware is called early in the pipeline so it can handle requests and short circuit without going through the remaining components. The authentication middleware (`UseIdentity`) is added before anything that handles requests for secure resources. 
+With few exceptions, the order middleware components are added in the `Configure` method is the order in which they are invoked on requests, and the reverse order for the response. <!-- what are the exceptions and why? I'm guessing authentication --> This ordering is critical for security, performance, and functionality. 
+
+The Configure method (shown below) adds the following middleware components:
+
+1. Error handling (for both development and non-development environments)
+2. Static file server
+3. Authentication
+4. MVC
 
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
     app.UseExceptionHandler("/Home/Error"); // Call first to catch exceptions 
                                             // thrown in the following middleware.
+
     app.UseStaticFiles();                   // Return static files and end pipeline.
 
     app.UseIdentity();                     // Authenticate before you access
@@ -87,6 +76,12 @@ public void Configure(IApplicationBuilder app)
     app.UseMvcWithDefaultRoute();          // Add MVC to the request pipeline.
 }
 ```
+
+In the code above, `UseExceptionHandler` is the first middleware added to the pipeline -- therefore it will catch any exceptions that occur in later calls.
+
+The static file middleware is called early in the pipeline so it can handle requests and short circuit without going through the remaining components. The `static file module` provides no authorization checks. Any files served by it, including those under *wwwroot* are publicly available. See [Working with static files](xref:fundamentals/static-files) for an approach to secure static files.
+
+If the request is not handled by the static file module, it's passed on to the `Identity module`(`app.UseIdentity`), which performs authentication. If the request is not authenticated, the pipeline is short circuited. Authenticated requests are past to the last stage with is the MVC framework.
 
 The following example demonstrates a middleware ordering where requests for static files are  handled by the static file middleware before the response compression middleware. Static files are not compressed with this ordering of the middleware. The MVC responses from [UseMvcWithDefaultRoute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_) can be compressed.
 
@@ -106,8 +101,7 @@ public void Configure(IApplicationBuilder app)
 
 You configure the HTTP pipeline using `Run`, `Map`,  and `Use`. The `Run` method short circuits the pipeline (that is, it will not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run<Middleware>` methods that run at the end of the pipeline. 
 
-`Map*` extensions are used as a convention for branching the pipeline. Branching is based on the request's path or evaluating a predicate. The `Map` extension method is used to match request delegates based on a request's path. `Map` accepts a path and a function that configures a separate middleware pipeline. 
-
+`Map*` extensions are used as a convention for branching the pipeline. Branching is based on the request's path or evaluating a predicate. The [Map](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions) extension method is used to match request delegates based on a request's path. `Map` accepts a path and a function that configures a separate middleware pipeline. 
 
 [!code-csharp[Main](middleware/sample/Chain/StartupMap.cs?name=snippet1)]
 
@@ -119,8 +113,6 @@ The following table shows the requests and responses from `http://localhost:1234
 | localhost:1234/map1 | Map Test 1 |
 | localhost:1234/map2 | Map Test 2 |
 | localhost:1234/map3 | Hello from non-Map delegate.  |
-
-
 
 When `Map` is used, the matched path segment(s) are removed from `HttpRequest.Path` and appended to `HttpRequest.PathBase` for each request.
 
@@ -171,7 +163,7 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 [!code-csharp[Main](middleware/sample/Culture/StartupCulture.cs?name=snippet1)]
 
-Note: The sample code above is used to demonstrate write a middleware component. See [
+Note: The sample code above is used to demonstrate creating a middleware component. See [
 Globalization and localization](xref:fundamentals/localization) for ASP.NET Core's built-in  localization support.
 
 You can test the middleware by passing in the culture, for example `http://localhost:7997/?culture=no`.

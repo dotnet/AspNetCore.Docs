@@ -15,7 +15,7 @@ namespace Chain
             {
                 await context.Response.WriteAsync("Handling request. <p>");
                 await next.Invoke();
-                await context.Response.WriteAsync("Finished handling request.");
+                // Do logging or other work that doesn't write to the Response.
             });
 
             app.Run(async context =>
