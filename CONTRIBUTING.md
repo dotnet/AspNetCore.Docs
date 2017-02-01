@@ -78,7 +78,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
-* In a command-line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
+* In a command-line window, navigate to the appropriate folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
 
    ```
    docfx -t default --serve
@@ -103,7 +103,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
   }
   ```
 
-* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
+* Run **docfx** in the `Docs\aspnet` or `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
 
 ## Voice and tone
 
