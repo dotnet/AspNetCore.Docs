@@ -4,7 +4,7 @@ The document covers the process for contributing to the articles and code sample
 
 ## How to make a simple correction or suggestion
 
-Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by tapping the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you might need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). The ASP.NET documentation team will review the PR and accept it or suggest changes.
+Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by selecting the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you'll need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
 
 ## How to make a more complex submission
 
