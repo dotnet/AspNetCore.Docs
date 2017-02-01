@@ -22,6 +22,7 @@ public class Startup
             await context.Response.WriteAsync("Map Test 2");
         });
     }
+
     public void Configure(IApplicationBuilder app)
     {
         app.Map("/map1", HandleMapTest1);
