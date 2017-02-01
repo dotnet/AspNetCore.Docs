@@ -7,26 +7,20 @@ using Microsoft.AspNetCore.Http;
 #region snippet1
 public class Startup
 {
-    private static void HandleMapTest1(IApplicationBuilder app)
+    private static void HandleBranch(IApplicationBuilder app)
     {
         app.Run(async context =>
         {
-            await context.Response.WriteAsync("Map Test 1");
+            var branchVer = context.Request.Query["branch"];
+            await context.Response.WriteAsync($"Branch used = {branchVer}");
         });
     }
 
-    private static void HandleMapTest2(IApplicationBuilder app)
-    {
-        app.Run(async context =>
-        {
-            await context.Response.WriteAsync("Map Test 2");
-        });
-    }
     public void Configure(IApplicationBuilder app)
     {
-        app.Map("/map1", HandleMapTest1);
-
-        app.Map("/map2", HandleMapTest2);
+        app.MapWhen(context => {
+            return context.Request.Query.ContainsKey("branch");
+        }, HandleBranch);
 
         app.Run(async context =>
         {

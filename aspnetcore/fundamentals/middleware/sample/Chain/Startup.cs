@@ -1,4 +1,4 @@
-﻿//#define PrimarySample
+﻿#define PrimarySample
 #if PrimarySample
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
