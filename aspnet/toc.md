@@ -1,50 +1,4 @@
 # [ASP.NET overview](overview.md)
-## [Making Websites with ASP.NET](aspnet/overview/making-websites-with-aspnet/index.md)
-### [Installing ASP.NET and Web Tools](aspnet/overview/making-websites-with-aspnet/installing-aspnet-and-web-tools.md)
-### [Making Websites with ASP.NET](aspnet/overview/making-websites-with-aspnet/making-websites-with-aspnet.md)
-## [Building Web APIs with ASP.NET](aspnet/overview/building-web-apis-with-aspnet/index.md)
-### [Services and ASP.NET](aspnet/overview/building-web-apis-with-aspnet/services-and-aspnet.md)
-## [Real Time Web with ASP.NET SignalR](aspnet/overview/real-time-web-with-aspnet-signalr/index.md)
-### [SignalR and the Real-Time Web](aspnet/overview/real-time-web-with-aspnet-signalr/signalr-and-the-real-time-web.md)
-## [ASP.NET and Mobile](aspnet/overview/aspnet-and-mobile/index.md)
-### [ASP.NET and Mobile](aspnet/overview/aspnet-and-mobile/aspnet-and-mobile.md)
-## [OWIN and Katana](aspnet/overview/owin-and-katana/index.md)
-### [An Overview of Project Katana](aspnet/overview/owin-and-katana/an-overview-of-project-katana.md)
-### [Getting Started with OWIN and Katana](aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana.md)
-### [Katana Samples](aspnet/overview/owin-and-katana/katana-samples.md)
-### [OWIN Startup Class Detection](aspnet/overview/owin-and-katana/owin-startup-class-detection.md)
-### [Enabling Windows Authentication in Katana](aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana.md)
-### [OWIN Middleware in the IIS Integrated Pipeline](aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipeline.md)
-### [OWIN OAuth 2.0 Authorization Server](aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server.md)
-### [Host OWIN in an Azure Worker Role](aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role.md)
-## [Web Development Best Practices](aspnet/overview/web-development-best-practices/index.md)
-### [What not to do in ASP.NET, and what to do instead](aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead.md)
-### [Async and Await](aspnet/overview/web-development-best-practices/async-and-await.md)
-## [Developing Apps with Windows Azure](aspnet/overview/developing-apps-with-windows-azure/index.md)
-### [Building Real World Cloud Apps with Azure](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/index.md)
-#### [Introduction](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction.md)
-#### [Automate Everything](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md)
-#### [Source Control](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md)
-#### [Continuous Integration and Delivery](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md)
-#### [Web Development Best Practices](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices.md)
-#### [Single Sign-On](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on.md)
-#### [Data Storage Options](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options.md)
-#### [Data Partitioning Strategies](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-partitioning-strategies.md)
-#### [Unstructured Blob Storage](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage.md)
-#### [Design to Survive Failures](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/design-to-survive-failures.md)
-#### [Monitoring and Telemetry](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md)
-#### [Transient Fault Handling](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling.md)
-#### [Distributed Caching](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching.md)
-#### [Queue-Centric Work Pattern](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern.md)
-#### [More Patterns and Guidance](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/more-patterns-and-guidance.md)
-#### [Appendix: The Fix It Sample Application](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application.md)
-### [Hands on Lab: Maintainable Azure Websites: Managing Change and Scale](aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale.md)
-
-
-
-
-
-
 
 # [Web Forms](web-forms/index.md)
 ## [Guidance](web-forms/overview/index.md)
@@ -1844,6 +1798,44 @@
 
 
 
+
+# [Web Development Best Practices](aspnet/overview/web-development-best-practices/index.md)
+## [What not to do in ASP.NET, and what to do instead](aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead.md)
+## [Async and Await](aspnet/overview/web-development-best-practices/async-and-await.md)
+## [Building Real World Cloud Apps with Azure](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/index.md)
+### [Introduction](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction.md)
+### [Automate Everything](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md)
+### [Source Control](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md)
+### [Continuous Integration and Delivery](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md)
+### [Web Development Best Practices](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices.md)
+### [Single Sign-On](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on.md)
+### [Data Storage Options](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options.md)
+### [Data Partitioning Strategies](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-partitioning-strategies.md)
+### [Unstructured Blob Storage](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage.md)
+### [Design to Survive Failures](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/design-to-survive-failures.md)
+### [Monitoring and Telemetry](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry.md)
+### [Transient Fault Handling](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling.md)
+### [Distributed Caching](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching.md)
+### [Queue-Centric Work Pattern](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern.md)
+### [More Patterns and Guidance](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/more-patterns-and-guidance.md)
+### [Appendix: The Fix It Sample Application](aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application.md)
+## [Hands on Lab: Maintainable Azure Websites: Managing Change and Scale](aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale.md)
+
+
+# [OWIN and Katana](aspnet/overview/owin-and-katana/index.md)
+## [An Overview of Project Katana](aspnet/overview/owin-and-katana/an-overview-of-project-katana.md)
+## [Getting Started with OWIN and Katana](aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana.md)
+## [Katana Samples](aspnet/overview/owin-and-katana/katana-samples.md)
+## [OWIN Startup Class Detection](aspnet/overview/owin-and-katana/owin-startup-class-detection.md)
+## [Enabling Windows Authentication in Katana](aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana.md)
+## [OWIN Middleware in the IIS Integrated Pipeline](aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipeline.md)
+## [OWIN OAuth 2.0 Authorization Server](aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server.md)
+## [Host OWIN in an Azure Worker Role](aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role.md)
+
+
+
+
+
 # [Whitepapers](whitepapers/index.md)
 ## [Whitepapers](whitepapers/overview.md)
 ## [ASP.NET 4 and Visual Studio 2010 Web Development Overview](whitepapers/aspnet4/index.md)
@@ -1864,4 +1856,9 @@
 ## [ASP.NET Web Deployment - Recommended Resources](whitepapers/aspnet-web-deployment-content-map.md)
 ## [ASP.NET and Web Tools 2012.2 Release Notes](whitepapers/aspnet-and-web-tools-20122-release-notes.md)
 ## [What's New in ASP.NET 4.5 and Visual Studio 2012](whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012.md)
+
+
+
+
+
 # [API reference](api-ref.md)

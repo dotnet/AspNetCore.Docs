@@ -14,8 +14,8 @@ msc.type: chapter
 ---
 Web Development Best Practices
 ====================
-> Web Development Best Practices
-
 
 - [What not to do in ASP.NET, and what to do instead](what-not-to-do-in-aspnet-and-what-to-do-instead.md)
 - [Async and Await](async-and-await.md)
+- [Building Real World Cloud Apps with Azure](../developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/index.md)
+- [Hands on Lab: Maintainable Azure Websites: Managing Change and Scale](../developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale.md)
