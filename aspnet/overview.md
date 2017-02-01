@@ -17,6 +17,8 @@ msc.type: content
 
 ASP.NET is a free web framework for building great websites and web applications using HTML, CSS, and JavaScript. You can also create Web APIs and use real-time technologies like Web Sockets.
 
+[ASP.NET Core](https://docs.microsoft.com/aspnet/core/) is an alternative to ASP.NET.  See the [guidance on how to choose between ASP.NET and ASP.NET Core](https://docs.microsoft.com/aspnet/core/choose-aspnet-framework).
+
 ## Get started
 
 [Download Visual Studio 2015](https://go.microsoft.com/fwlink/?LinkId=826064), a free IDE for ASP.NET on Windows.
