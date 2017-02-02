@@ -59,6 +59,12 @@ For a request to access *test.png*, configure the static files middleware as fol
 
 A request to `http://<app>/StaticFiles/test.png` will serve the *test.png* file.
 
+`StaticFileOptions()` can set response headers. For example, the code below sets up static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
+
+[!code-csharp[Main](../fundamentals/static-files/sample/StartupAddHeader.cs?name=snippet1)]
+
+![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
+
 ## Static file authorization
 
 The static file module provides **no** authorization checks. Any files served by it, including those under *wwwroot* are publicly available. To serve files based on authorization:

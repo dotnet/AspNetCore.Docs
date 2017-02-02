@@ -17,9 +17,9 @@ namespace StaticFiles
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippet1
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // For the wwwroot folder
 
             app.UseStaticFiles(new StaticFileOptions()
             {
