@@ -30,7 +30,9 @@ This tutorial will teach you the basics of building an ASP.NET Core MVC web app 
 * Install [.NET Core + Visual Studio tooling](http://go.microsoft.com/fwlink/?LinkID=798306)
 
 > [!Note]
-> You can also use Visual Studio 2017 RC for this tutorial. Some of the steps will differ slightly; the differences are called out throughout the tutorial. [Download Visual Studio 2017 RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/). When you begin the installation, Visual Studio allows you to select the optional components to include in the installation. Choose the .NET Core and Docker (Preview) workload.
+> You can also use Visual Studio 2017 RC for this tutorial. Some of the steps will differ slightly; the differences are called out throughout the tutorial. [Download Visual Studio 2017 RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/). Run the installer and select the following workloads:
+ - **ASP.NET and web development** (under **Web & Cloud**)
+ - **.NET Core cross-platfrom development** (under **Other Toolsets**)
 
 ## Create a web app
 
