@@ -32,7 +32,7 @@ This tutorial will teach you the basics of building an ASP.NET Core MVC web app 
 > [!Note]
 > You can also use Visual Studio 2017 RC for this tutorial. Some of the steps will differ slightly; the differences are called out throughout the tutorial. [Download Visual Studio 2017 RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/). Select the following workloads:
  - **ASP.NET and web develpemt** (under **Web & Cloud**)
- - **.NET Core cross-platfrom development** (under **Other Toolsets)
+ - **.NET Core cross-platfrom development** (under **Other Toolsets**)
 
 ## Create a web app
 
