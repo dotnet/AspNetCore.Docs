@@ -226,8 +226,6 @@ The ASP.NET MVC starter web template utilized the ASP.NET Web Optimization Frame
 
 Now that we've configured bundling and minification, all that's left is to change the references to Bootstrap, jQuery, and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See [Bundling and Minification](../client-side/bundling-and-minification.md) for more information.
 
-<a name=solving-http-500-errors></a>
-
 ## Solving HTTP 500 errors
 
 There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. To get a detailed error message, add the following code:

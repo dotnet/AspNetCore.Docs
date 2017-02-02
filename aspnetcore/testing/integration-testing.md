@@ -107,7 +107,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 This code works, but it's far from how you would like to implement this kind of functionality in an ASP.NET Core application, even as simple as this is. Imagine what the `Configure` method would look like if you needed to add this much code to it every time you add another URL endpoint!
 
-One option to consider is adding [MVC](xref:mvc/index) to the application and creating a controller to handle the prime checking. However, assuming you don't currently need any other MVC functionality, that's a bit overkill.
+One option to consider is adding [MVC](../mvc/index.md) to the application and creating a controller to handle the prime checking. However, assuming you don't currently need any other MVC functionality, that's a bit overkill.
 
 You can, however, take advantage of ASP.NET Core [middleware](xref:fundamentals/middleware), which will help us encapsulate the prime checking logic in its own class and achieve better [separation of concerns](http://deviq.com/separation-of-concerns/) in the `Configure` method.
 

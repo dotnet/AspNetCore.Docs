@@ -32,7 +32,7 @@ Session is retained by the server for a limited time after the last request. The
 
 The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. The Redis and SQL Server distributed caches don't require sticky sessions and are the preferred approach to multi-server caching. See [Working with a Distributed Cache](xref:performance/caching/distributed) for more information.
 
-See [Installing and Configuring Session](#installing-and-configuring-session), below for more details.
+See [Configuring Session](#configuring-session) below for more details.
 
 ### TempData
 
@@ -172,4 +172,4 @@ In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
 
-* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample)
+* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
