@@ -59,7 +59,7 @@ For a request to access *test.png*, configure the static files middleware as fol
 
 A request to `http://<app>/StaticFiles/test.png` will serve the *test.png* file.
 
-Using `StaticFileOptions()`, you can also set response headers. For example, you can add a `Cache-Control` header, as you see here making the static files served from the *wwwroot* folder publicly cacheable for 10 minutes (600 seconds):
+`StaticFileOptions()` can set response headers. For example, the code below sets up static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupAddHeader.cs?name=snippet1)]
 
