@@ -19,7 +19,7 @@ ms.prod: aspnet-core
 - [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 - [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
 - [ASP.NET Core on Nano Server](nano-server.md)
-- [ASP.NET Core and Azure Service Fabric](https://azure.microsoft.com/documentation/articles/service-fabric-add-a-web-frontend)
+- [ASP.NET Core and Azure Service Fabric](https://azure.microsoft.com/documentation/articles/service-fabric-add-a-web-frontend/.md)
 - [Creating Backend Services for Native Mobile Applications](../mobile/native-mobile-backend.md)
 - [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 - [ASP.NET Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
