@@ -21,17 +21,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > If you know a great blog post, [stackoverflow](http://stackoverflow.com) thread, or any other link that would be useful, [send us an email](mailto:aspnetue@microsoft.com?subject=Identity recommended resources) with the link or just leave a message at the bottom of this page.
 
 
-- [Getting Started with ASP.NET Identity](#gettingstarted)
-- [New featured Must Read articles](#feat)
-- [Intermediate ASP.NET Identity](#adv)
-- [Videos](#video)
-- [Where to ask questions, request features, report a bug and nightly builds](#samp)
-- [Blog posts on Identity](#blog)
-- [Custom Storage Providers for ASP.NET Identity](#cust)
-- [Additional Identity Resources](#additional)
-- [Q &amp; A (question/answer)](#qand)
-
-<a id="gettingstarted"></a>
 ## Getting Started with ASP.NET Identity
 
 - [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) This tutorial shows you how to write an ASP.NET MVC 5 app with Facebook and Google OAuth 2 authorization. It also shows how to add additional data to the Identity database.
@@ -40,7 +29,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md)
 - [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](../../../mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md)
 
-<a id="feat"></a>
 ## New featured Must Read articles
 
 - [One stop guide to configuring OAuth providers for ASP.NET](http://www.oauthforaspnet.com/)
@@ -50,7 +38,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Thinktecture.IdentityManager as a replacement for the WSAT](http://www.hanselman.com/blog/ThinktectureIdentityManagerAsAReplacementForTheASPNETWebSiteAdministrationTool.aspx)
 - [ASP.NET Identity 2.0: Customizing Users and Roles](http://typecastexception.com/post/2014/06/22/ASPNET-Identity-20-Customizing-Users-and-Roles.aspx)
 
-<a id="adv"></a>
 ## Intermediate ASP.NET Identity
 
 - [Account Confirmation and Password Recovery with ASP.NET Identity](../features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md)
@@ -61,14 +48,12 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - MSDN Magazine[A First Look at ASP.NET Identity](https://msdn.microsoft.com/en-us/magazine/dn605872.aspx) by Dino Esposito
 - [ASP.NET Identity – User Lockout](http://tech.trailmax.info/2014/06/asp-net-identity-user-lockout/)
 
-<a id="samp"></a>
 ## Where to ask questions, request features, report a bug and nightly builds
 
 - For StackOverflow, use the tag [aspnet-identity](http://stackoverflow.com/questions/tagged/asp.net-identity)
 - For the ASP.NET forums, post to the [Security forum](https://forums.asp.net/25.aspx) and add **ASP.NET Identity** to the title.
 - [CodePlex hosting site for ASP.NET Identity](http://aspnetidentity.codeplex.com/) Get nightly builds, request features, open bugs.
 
-<a id="blog"></a>
 ## Blog posts on Identity
 
 - [What is a SecurityStamp in ASP.NET Identity?](http://stackoverflow.com/questions/19487322/what-is-asp-net-identitys-iusersecuritystampstoretuser-interface/19505060#19505060)
@@ -117,7 +102,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Working with Roles in ASP.NET Identity for MVC](http://www.dotnetfunda.com/articles/show/2898/working-with-roles-in-aspnet-identity-for-mvc) by [Sheo Narayan](http://www.dotnetfunda.com/profile/sheonarayan.aspx)
 - [Moving to ASP.NET Identity from ASP.NET Membership](http://webdojo.sharepoint.com/ajmatthews/_layouts/15/start.aspx#/Lists/Posts/Post.aspx?ID=2) by Alistair Matthews
 
-<a id="video"></a>
 ## Videos
 
 - Channel 9 [Securing ASP.NET Applications and Services: Security Facelift for Modern Applications](https://channel9.msdn.com/Events/TechEd/NorthAmerica/2014/DEV-B421#fbid=PhVT9E1WRtr?hashlink=fbid) by Ido Flatow
@@ -129,7 +113,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [ASP.NET One Identity](https://www.youtube.com/watch?v=w8GD-QIusKk) by Ivaylo Kenov of Telerik
 - [Czech ASP.NET Identity](https://www.youtube.com/watch?v=tVbZp5brcpY) In this lecture we will show how to deploy basic authentication, how to add support for external identity providers such as Twitter or Facebook, and how to use one-time passwords (OTP). [ASP.NET Identity je nástupce Membership a Role provider&#367; v ASP.NET, tedy knihovna pro zajišt&#283;ní autentizace uživatel&#367;. V této p&#345;ednášce si ukážeme, jak nasad]
 
-<a id="cust"></a>
 ## Custom Storage Providers for ASP.NET Identity
 
 If you want to write your own provider, read [Overview of Custom Storage Providers for ASP.NET Identity](../extensibility/overview-of-custom-storage-providers-for-aspnet-identity.md) and [Implementing ASP.NET Identity](http://odetocode.com/blogs/scott/archive/2014/01/20/implementing-asp-net-identity.aspx) and then examine the source of one of the OSS projects listed below.
@@ -150,12 +133,10 @@ If you want to write your own provider, read [Overview of Custom Storage Provide
 - Redis: [Redis.AspNet.Identity](https://github.com/aminjam/Redis.AspNet.Identity)
 - T4 Templates to generate EF code for a "database first" user store: [AspNet.Identity.EntityFramework](https://github.com/cbfrank/AspNet.Identity.EntityFramework)
 
-<a id="additional"></a>
 ## Additional ASP.NET Identity Resources
 
 - [Introducing the Yahoo and LinkedIn OAuth security providers for OWIN](http://blog.beabigrockstar.com/introducing-the-yahoo-linkedin-oauth-security-providers-for-owin/) by Jerrie Pelser for Yahoo and LinkedIn instructions.
 
-<a id="qand"></a>
 ## Q&amp;A (question/answer)
 
 - Q: Locked out users who have enabled "remember me" (so they don't have to go through 2FA on that computer/browser) are not locked out. Why and how do I prevent that? Answer [here](http://stackoverflow.com/questions/24312247/locked-out-users-can-login-if-they-have-auth-cookie).

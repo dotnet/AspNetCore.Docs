@@ -29,20 +29,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 To perform the steps in this tutorial, you must have Visual Studio 2013 Update 2 (or later), and a web application created from the ASP.NET Web Application template. The template changed in Update 3. This topic shows how to change the template in Update 2 and Update 3.
 
-This topic contains the following sections:
 
-- [Change the type of the key in the Identity user class](#userclass)
-- [Add customized Identity classes that use the key type](#customclass)
-- [Change the context class and user manager to use the key type](#context)
-- [Change start-up configuration to use the key type](#startup)
-- [For MVC with Update 2, change the AccountController to pass the key type](#mvcupdate2)
-- [For MVC with Update 3, change the AccountController and ManageController to pass the key type](#mvcupdate3)
-- [For Web Forms with Update 2, change Account pages to pass the key type](#webformsupdate2)
-- [For Web Forms with Update 3, change Account pages to pass the key type](#webformsupdate3)
-- [Run application](#run)
-- [Other resources](#other)
-
-<a id="userclass"></a>
 ## Change the type of the key in the Identity user class
 
 In your project created from the ASP.NET Web Application template, specify that the ApplicationUser class uses an integer for the key for user accounts. In IdentityModels.cs, change the ApplicationUser class to inherit from IdentityUser that has a type of **int** for the TKey generic parameter. You also pass the names of three customized class which you have not implemented yet.
@@ -55,7 +42,6 @@ In the **ApplicationUser** class, change the **GenerateUserIdentityAsync** metho
 
 [!code-csharp[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample2.cs?highlight=2)]
 
-<a id="customclass"></a>
 ## Add customized Identity classes that use the key type
 
 The other Identity classes, such as IdentityUserRole, IdentityUserClaim, IdentityUserLogin, IdentityRole, UserStore, RoleStore, are still set up to use a string key. Create new versions of these classes that specify an integer for the key. You do not need to provide much implementation code in these classes, you are primarily just setting int as the key.
@@ -64,7 +50,6 @@ Add the following classes to your IdentityModels.cs file.
 
 [!code-csharp[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample3.cs)]
 
-<a id="context"></a>
 ## Change the context class and user manager to use the key type
 
 In IdentityModels.cs, change the definition of the **ApplicationDbContext** class to use your new customized classes and an **int** for the key, as shown in the highlighted code.
@@ -83,7 +68,6 @@ In the Update 3 template, you must change the ApplicationSignInManager class.
 
 [!code-csharp[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample7.cs?highlight=1)]
 
-<a id="startup"></a>
 ## Change start-up configuration to use the key type
 
 In Startup.Auth.cs, replace the OnValidateIdentity code, as highlighted below. Notice that the getUserIdCallback definition, parses the string value into an integer.
@@ -101,7 +85,6 @@ The remaining changes depend on the type of project you are creating and which u
 - [For Web Forms with Update 2, change Account pages to pass the key type](#webformsupdate2)
 - [For Web Forms with Update 3, change Account pages to pass the key type](#webformsupdate3)
 
-<a id="mvcupdate2"></a>
 ## For MVC with Update 2, change the AccountController to pass the key type
 
 Open the AccountController.cs file. You need to change the following methods.
@@ -132,7 +115,6 @@ Open the AccountController.cs file. You need to change the following methods.
 
 You can now [run the application](#run) and register a new user.
 
-<a id="mvcupdate3"></a>
 ## For MVC with Update 3, change the AccountController and ManageController to pass the key type
 
 Open the AccountController.cs file. You need to change the following method.
@@ -201,7 +183,6 @@ Open the ManageController.cs file. You need to change the following methods.
 
 You can now [run the application](#run) and register a new user.
 
-<a id="webformsupdate2"></a>
 ## For Web Forms with Update 2, change Account pages to pass the key type
 
 For Web Forms with Update 2, you need to change the following pages.
@@ -220,7 +201,6 @@ For Web Forms with Update 2, you need to change the following pages.
 
 You can now [run the application](#run) and register a new user.
 
-<a id="webformsupdate3"></a>
 ## For Web Forms with Update 3, change Account pages to pass the key type
 
 For Web Forms with Update 3, you need to change the following pages.
@@ -257,7 +237,6 @@ For Web Forms with Update 3, you need to change the following pages.
 
 [!code-csharp[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample40.cs?highlight=14-15,29,53)]
 
-<a id="run"></a>
 ## Run application
 
 You have finished all of the required changes to the default Web Application template. Run the application and register a new user. After registering the user, you will notice that the AspNetUsers table has an Id column that is an integer.
@@ -266,7 +245,6 @@ You have finished all of the required changes to the default Web Application tem
 
 If you have previously created the ASP.NET Identity tables with a different primary key, you need to make some additional changes. If possible, just delete the existing database. The database will be re-created with the correct design when you run the web application and add a new user. If deletion is not possible, run code first migrations to change the tables. However, the new integer primary key will not be set up as a SQL IDENTITY property in the database. You must manually set the Id column as an IDENTITY.
 
-<a id="other"></a>
 ## Other resources
 
 - [Overview of Custom Storage Providers for ASP.NET Identity](overview-of-custom-storage-providers-for-aspnet-identity.md)

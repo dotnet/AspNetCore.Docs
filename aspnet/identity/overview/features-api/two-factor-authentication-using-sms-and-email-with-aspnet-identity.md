@@ -21,17 +21,6 @@ by [Hao Kung](https://github.com/HaoK), [Pranav Rastogi](https://github.com/rust
 > This article was written by Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT)), Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Hao Kung, and Suhas Joshi. The NuGet sample was written primarily by Hao Kung.
 
 
-This topic covers the following:
-
-- [Building the Identity sample](#build)
-- [Set up SMS for Two-factor authentication](#SMS)
-- [Enable Two-factor authentication](#enable2)
-- [How to register a Two-factor authentication provider](#reg)
-- [Combine social and local login accounts](#combine)
-- [Account lockout from brute force attacks](#lock)
-
-<a id="build"></a>
-
 ## Building the Identity sample
 
 In this section, you'll use NuGet to download a sample we will work with. Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install Visual Studio [2013 Update 2](https://go.microsoft.com/fwlink/?LinkId=390521) or higher.
@@ -55,8 +44,6 @@ In this section, you'll use NuGet to download a sample we will work with. Start 
 > [!NOTE]
 > Warning: If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls out the changes made.
 
-
-<a id="SMS"></a>
 
 ## Set up SMS for Two-factor authentication
 
@@ -174,14 +161,12 @@ The `SignInAsync` method needs to be called when any change is made to the secur
 
 With the above code changes, you can change your security profile (for example, by changing the state of **Two Factor Enabled**) and you will be logged out in 5 seconds when the `SecurityStampValidator.OnValidateIdentity` method fails. Remove the return line in the `SignInAsync` method, make another security profile change and you will not be logged out. The `SignInAsync` method generates a new security cookie.
 
-<a id="enable2"></a>
 
 ## Enable two-factor authentication
 
 In the sample app, you need to use the UI to enable two-factor authentication (2FA). To enable 2FA, click on your user ID (email alias) in the navigation bar.![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image9.png)  
 Click on enable 2FA.![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image10.png) Log out, then log back in. If you've enabled email (see my [previous tutorial](account-confirmation-and-password-recovery-with-aspnet-identity.md)), you can select the SMS or email for 2FA.![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image11.png) The Verify Code page is displayed where you can enter the code (from SMS or email).![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image12.png) Clicking on the **Remember this browser** check box will exempt you from needing to use 2FA to log on with that computer and browser. Enabling 2FA and clicking on the **Remember this browser** will provide you with strong 2FA protection from malicious users trying to access your account, as long as they don't have access to your computer. You can do this on any private machine you regularly use. By setting **Remember this browser**, you get the added security of 2FA from computers you don't regularly use, and you get the convenience on not having to go through 2FA on your own computers. 
 
-<a id="reg"></a>
 ## How to register a Two-factor authentication provider
 
 When you create a new MVC project, the *IdentityConfig.cs* file contains the following code to register a Two-factor authentication provider:
@@ -210,8 +195,6 @@ You can add more 2FA providers such as QR code generators or you can write you o
 > The 2FA codes are generated using [Time-based One-time Password Algorithm](http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm) and codes are valid for six minutes. If you take more than six minutes to enter the code, you'll get an Invalid code error message.
 
 
-<a id="combine"></a>
-
 ## Combine social and local login accounts
 
 You can combine local and social accounts by clicking on your email link. In the following sequence &quot;RickAndMSFT@gmail.com&quot; is first created as a local login, but you can create the account as a social log in first, then add a local login.
@@ -232,7 +215,6 @@ Clicking on **Pick a password** allows you to add a local log on associated with
 
 ![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image16.png)
 
-<a id="lock"></a>
 
 ## Account lockout from brute force attacks
 
@@ -270,7 +252,6 @@ Once the user posts the 2FA approach, the `HTTP POST SendCode` action method is 
 
 Although you can set account lockout on login password attempt failures, that approach makes your login susceptible to [DOS](http://en.wikipedia.org/wiki/Denial-of-service_attack) lockouts. We recommend you use account lockout only with 2FA. When the `ApplicationUserManager` is created, the sample code sets 2FA lockout and `MaxFailedAccessAttemptsBeforeLockout` to five. Once a user logs in (through local account or social account), each failed attempt at 2FA is stored, and if the maximum attempts is reached, the user is locked out for five minutes (you can set the lock out time with `DefaultAccountLockoutTimeSpan`).
 
-<a id="addRes"></a>
 
 ## Additional Resources
 
