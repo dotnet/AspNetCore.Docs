@@ -24,17 +24,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > 
 > The tutorial also shows how to add profile data for the user, and how to use the Membership API to add roles. This tutorial was written by [Rick Anderson](https://blogs.msdn.com/rickAndy) ( Please follow me on Twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT) ).
 
-
-- [Getting Started](#start)
-- [Creating Your First Application](#1st)
-- [Setting up SSL in the Project](#ssl)
-- [Creating a Google app for OAuth 2 and connecting the app to the project](#goog)
-- [Creating the app in Facebook and connecting the app to the project](#fb)
-- [Examine the Membership Data](#mdb)
-- [Adding Profile Data to the User Class](#ap)
-- [Logging off your App and Logging in With Another Account](#off)
-
-<a id="start"></a>
 ## Getting Started
 
 Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install Visual Studio [2013 Update 3](https://go.microsoft.com/fwlink/?LinkId=390521) or higher. For help with Dropbox, GitHub, Linkedin, Instagram, buffer, salesforce, STEAM, Stack Exchange, Tripit, twitch, Twitter, Yahoo and more, see this [one stop guide](http://www.oauthforaspnet.com/).
@@ -48,7 +37,6 @@ Click **New Project** from the **Start** page, or you can use the menu and selec
 ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image1.png)  
  
 
-<a id="1st"></a>
 ## Creating Your First Application
 
 Click **New Project**, then select **Visual C#** on the left, then **Web** and then select **ASP.NET Web Application**. Name your project "MvcAuth" and then click **OK**.
@@ -83,7 +71,6 @@ Depending on the size of your browser window, you might need to click the naviga
 ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image7.png)  
 ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image8.png) 
 
-<a id="ssl"></a>
 ## Setting up SSL in the Project
 
 To connect to authentication providers like Google and Facebook, you will need to set up IIS-Express to use SSL. It's important to keep using SSL after login and not drop back to HTTP, your login cookie is just as secret as your username and password, and without using SSL you're sending it in clear-text across the wire. Besides, you've already taken the time to perform the handshake and secure the channel (which is the bulk of what makes HTTPS slower than HTTP) before the MVC pipeline is run, so redirecting back to HTTP after you're logged in won't make the current request or future requests much faster.
@@ -114,7 +101,6 @@ To connect to authentication providers like Google and Facebook, you will need t
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image14.png)
 
-<a id="goog"></a>
 ## Creating a Google app for OAuth 2 and connecting the app to the project
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
@@ -159,7 +145,6 @@ To connect to authentication providers like Google and Facebook, you will need t
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image21.png)
 
-<a id="fb"></a>
 ## Creating the app in Facebook and connecting the app to the project
 
 For Facebook OAuth2 authentication, you need to copy to your project some settings from an application that you create in Facebook.
@@ -212,7 +197,6 @@ You are now logged in. You can now register this account with the application.
 
 When you register, an entry is added to the *Users* table of the membership database.
 
-<a id="mdb"></a>
 ## Examine the Membership Data
 
 In the **View** menu, click **Server Explorer**.
@@ -225,7 +209,6 @@ Expand **DefaultConnection (MvcAuth)**, expand **Tables**, right click **AspNetU
 
 ![aspnetusers table data](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image34.png)
 
-<a id="ap"></a>
 ## Adding Profile Data to the User Class
 
 In this section you'll add birth date and home town to the user data during registration, as shown in the following image.
@@ -276,7 +259,6 @@ The `HomeTown` and `BirthDate` fields are shown below.
 
 ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image39.png)
 
-<a id="off"></a>
 ## Logging off your App and Logging in With Another Account
 
 If you log on to your app with Facebook,, and then log out and try to log in again with a different Facebook account (using the same browser), you will be immediately logged in to the previous Facebook account you used. In order to use another account, you need to navigate to Facebook and log out at Facebook. The same rule applies to any other 3rd party authentication provider. Alternatively, you can log in with another account by using a different browser.

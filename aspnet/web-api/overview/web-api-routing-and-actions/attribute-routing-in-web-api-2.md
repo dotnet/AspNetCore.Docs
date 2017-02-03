@@ -22,15 +22,6 @@ The earlier style of routing, called convention-based routing, is still fully su
 
 This topic shows how to enable attribute routing and describes the various options for attribute routing. For an end-to-end tutorial that uses attribute routing, see [Create a REST API with Attribute Routing in Web API 2](create-a-rest-api-with-attribute-routing.md).
 
-- [Why Attribute Routing?](#why)
-- [Enabling Attribute Routing](#enable)
-- [Adding Route Attributes](#add-routes)
-- [Route Prefixes](#prefixes)
-- [Route Constraints](#constraints)
-- [Optional URI Parameters and Default Values](#optional)
-- [Route Names](#route-names)
-- [Route Order](#order)
-
 ## Prerequisites
 
 [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) or [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express)
@@ -39,7 +30,6 @@ Alternatively, use NuGet Package Manager to install the necessary packages. From
 
 `Install-Package Microsoft.AspNet.WebApi.WebHost`
 
-<a id="why"></a>
 ## Why Attribute Routing?
 
 The first release of Web API used *convention-based* routing. In that type of routing, you define one or more route templates, which are basically parameterized strings. When the framework receives a request, it matches the URI against the route template. (For more information about convention-based routing, see [Routing in ASP.NET Web API](routing-in-aspnet-web-api.md).
@@ -77,7 +67,6 @@ In this example, "1" is an order number, but "2013/06/16" specifies a date.
 `/orders/1`  
 `/orders/2013/06/16`
 
-<a id="enable"></a>
 ## Enabling Attribute Routing
 
 To enable attribute routing, call **MapHttpAttributeRoutes** during configuration. This extension method is defined in the **System.Web.Http.HttpConfigurationExtensions** class.
@@ -90,7 +79,6 @@ Attribute routing can be combined with [convention-based](routing-in-aspnet-web-
 
 For more information about configuring Web API, see [Configuring ASP.NET Web API 2](../advanced/configuring-aspnet-web-api.md).
 
-<a id="config"></a>
 ### Note: Migrating From Web API 1
 
 Prior to Web API 2, the Web API project templates generated code like this:
@@ -105,7 +93,6 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 > For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
 
 
-<a id="add-routes"></a>
 ## Adding Route Attributes
 
 Here is an example of a route defined using an attribute:
@@ -150,7 +137,6 @@ For all other HTTP methods, including non-standard methods, use the **AcceptVerb
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample9.cs)]
 
-<a id="prefixes"></a>
 ## Route Prefixes
 
 Often, the routes in a controller all start with the same prefix. For example:
@@ -169,7 +155,6 @@ The route prefix can include parameters:
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample13.cs)]
 
-<a id="constraints"></a>
 ## Route Constraints
 
 Route constraints let you restrict how the parameters in the route template are matched. The general syntax is &quot;{parameter:constraint}&quot;. For example:
@@ -219,7 +204,6 @@ Now you can apply the constraint in your routes:
 
 You can also replace the entire **DefaultInlineConstraintResolver** class by implementing the **IInlineConstraintResolver** interface. Doing so will replace all of the built-in constraints, unless your implementation of **IInlineConstraintResolver** specifically adds them.
 
-<a id="optional"></a>
 ## Optional URI Parameters and Default Values
 
 You can make a URI parameter optional by adding a question mark to the route parameter. If a route parameter is optional, you must define a default value for the method parameter.
@@ -239,7 +223,6 @@ This is almost the same as the previous example, but there is a slight differenc
 
 (In most cases, unless you have custom model binders in your pipeline, the two forms will be equivalent.)
 
-<a id="route-names"></a>
 ## Route Names
 
 In Web API, every route has a name. Route names are useful for generating links, so that you can include a link in an HTTP response.
@@ -248,7 +231,6 @@ To specify the route name, set the **Name** property on the attribute. The follo
 
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample21.cs)]
 
-<a id="order"></a>
 ## Route Order
 
 When the framework tries to match a URI with a route, it evaluates the routes in a particular order. To specify the order, set the **RouteOrder** property on the route attribute. Lower values are evaluated first. The default order value is zero.

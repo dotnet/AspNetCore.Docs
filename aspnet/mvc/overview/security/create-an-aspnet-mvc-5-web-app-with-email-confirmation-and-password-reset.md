@@ -20,17 +20,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > 
 > This tutorial was written by [Rick Anderson](https://blogs.msdn.com/rickAndy) ( Twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT) ).
 
-
-- [Create an ASP.NET MVC app](#createMvc)
-- [Hook up SendGrid](#SG)
-- [Require email confirmation before log in](#require)
-- [Password recovery/reset](#reset)
-- [Resend email confirmation link](#rsend)
-- [Combine social and local login accounts](#combine)
-- [Debug the app](#dbg)
-- [Additional Resources](#addRes)
-
-<a id="createMvc"></a>
 ## Create an ASP.NET MVC app
 
 Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install [Visual Studio 2013 Update 3](https://go.microsoft.com/fwlink/?LinkId=390465) or higher.
@@ -60,7 +49,6 @@ It's a best practice to confirm the email of a new user registration to verify t
 
 You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, a SMS text message or another mechanism. <a id="build"></a>In the sections below, we will enable email confirmation and modify the code to prevent newly registered users from logging in until their email has been confirmed.
 
-<a id="SG"></a>
 ## Hook up SendGrid
 
 Although this tutorial only shows how to add email notification through [SendGrid](http://sendgrid.com/), you can send email using SMTP and other mechanisms (see [additional resources](#addRes)).
@@ -98,7 +86,6 @@ Run the app and click the Register link. Once you submit the registration form, 
 
 Check your email account and click on the link to confirm your email.
 
-<a id="require"></a>
 ## Require email confirmation before log in
 
 Currently once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users to have a confirmed email before they are logged in (authenticated). Update the `HttpPost Register` method with the following highlighted changes:
@@ -125,7 +112,6 @@ Update the *Views\Shared\Error.cshtml* view to display the error message:
 
 Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test with. Run the app and verify you can't log in until you have confirmed your email address. Once you confirm your email address, click the **Contact** link.
 
-<a id="reset"></a>
 ## Password recovery/reset
 
 Remove the comment characters from the `HttpPost ForgotPassword` action method in the account controller:
@@ -138,7 +124,6 @@ Remove the comment characters from the `ForgotPassword` [ActionLink](https://msd
 
 The Log in page will now show a link to reset the password.
 
-<a id="rsend"></a>
 ## Resend email confirmation link
 
 Once a user creates a new local account, they are emailed a confirmation link they are required to use before they can log on. If the user accidently deletes the confirmation email, or the email never arrives, they will need the confirmation link sent again. The following code changes show how to enable this.
@@ -155,7 +140,6 @@ Update the Login method to resend the password when if the user account has not 
 
 [!code-csharp[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample16.cs?highlight=20)]
 
-<a id="combine"></a>
 ## Combine social and local login accounts
 
 You can combine local and social accounts by clicking on your email link. In the following sequence **RickAndMSFT@gmail.com** is first created as a local login, but you can create the account as a social log in first, then add a local login.
@@ -180,7 +164,6 @@ Clicking on **Pick a password** allows you to add a local log on associated with
 
 My tutorial [Account Confirmation and Password Recovery with ASP.NET Identity](../../../identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md) goes into this topic with more details.
 
-<a id="dbg"></a>
 ## Debugging the app
 
 If you don't get an email containing the link:
@@ -190,7 +173,6 @@ If you don't get an email containing the link:
 
 To test the verification link without email, download the [completed sample](https://code.msdn.microsoft.com/MVC-5-with-2FA-email-8f26d952). The confirmation link and confirmation codes will be displayed on the page.
 
-<a id="addRes"></a>
 ## Additional Resources
 
 - [Links to ASP.NET Identity Recommended Resources](../../../identity/overview/getting-started/aspnet-identity-recommended-resources.md)

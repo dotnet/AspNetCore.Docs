@@ -21,33 +21,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > A good place to get your questions answered or to find solutions to problems is in the [ASP.NET MVC forum](https://forums.asp.net/1146.aspx/1?MVC) or on [stackoverflow](http://stackoverflow.com/questions/tagged/mvc+asp.net-mvc).
 
 
-- [Getting Started with ASP.NET MVC](#gettingstarted)
-- [New Featured Content](#newfeatured)
-- [Microsoft Azure](#azure) ( Featuring lots of great videos from //build/ 2014)
-- [Security](#security)
-- [Membership, Authentication](#Membership)
-- [OWIN and Katana](#OWIN)
-- [Data Access in ASP.NET MVC](#dataAccess)
-- [Web Forms to MVC](#WF2MGC)
-- [Performance](#perf)
-- [AngularJS and Knockout](#KO)
-- [jQuery, Ajax, JSON, JavaScript](#jQueryAjaxJSON)
-- [HTML5](#html5)
-- [Routing](#Routing)
-- [Globalization, Internationalization and Localization](#global)
-- [Azure and ASP.NET MVC](#azure)
-- [Mobile](#mobile)
-- [Single Page Application (SPA)](#spa)
-- [Twitter, Facebook](#fb)
-- [Unit Testing, TDD, Repository Pattern and Unit of Work](#tdd)
-- [Best Practices](#best)
-- [Deployment](#deploy)
-- [Rich text Editors for MVC](#RTE)
-- [General](#general)
-- [Best Forum Posts](#posts)
-
-<a id="gettingstarted"></a>
-
 ## Getting Started with ASP.NET MVC
 
 - [Intro to ASP.NET MVC 5](introduction/getting-started.md)
@@ -58,8 +31,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Free 6 hour online course - Developing ASP.NET MVC 4 Web Applications Jump Start](https://weblogs.asp.net/jgalloway/archive/2013/10/09/free-6-hour-online-course-developing-asp-net-mvc-4-web-applications-jump-start.aspx)
 - [Learning MVC - Part 1: Introduction to MVC Architecture and Separation of Concerns](http://www.codeproject.com/Articles/620195/Learning-MVC-Part-1-Introduction-to-MVC-Architectu)
 - Poster: [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md)
-
-<a id="newfeatured"></a>
 
 ## New Featured Content
 
@@ -73,8 +44,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Releasing SocialGoal - Reference Web App for ASP.NET MVC 5, EF 6 Code First, AutoMapper, Autofac, TDD and DDD](https://weblogs.asp.net/shijuvarghese/archive/2014/01/24/releasing-socialgoal-reference-web-app-for-asp-net-mvc-5-ef-6-code-first-automapper-autofac-tdd-and-ddd.aspx)
 - [Building Real-World Cloud Apps with Azure](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction.md)
 - [Detailed ASP.NET MVC Pipeline](http://www.dotnet-tricks.com/Tutorial/mvc/LYHK270114-Detailed-ASP.NET-MVC-Pipeline.html)
-
-<a id="azure"></a>
 
 ## Microsoft Azure
 
@@ -105,8 +74,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     - [Rapidly Detect Application Outages with Application Insights by Vlad Joanovic](https://channel9.msdn.com/Events/Build/2014/3-596)
     - [Azure Web Sites: Architecting Massive-Scale Ready-For-Business Web Apps Yochay Kiriaty](https://channel9.msdn.com/Events/Build/2014/3-626)
     - [Azure SQL Database: Under the Hood Tobias Ternstrom](https://channel9.msdn.com/Events/Build/2014/3-630)
-
-<a id="security"></a>
 
 ## Security
 
@@ -142,8 +109,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Creating a Custom Route Constraint](../older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-cs.md)
 - [Implementing Role Based Menu in ASP.NET MVC 4](http://techbrij.com/role-based-menu-asp-net-mvc)
 
-<a id="Membership"></a>
-
 ## Membership, Authentication
 
 - [Deploy a Secure ASP.NET MVC application with OAuth, Membership and SQL Database](https://blogs.msdn.com/b/webdev/archive/2013/03/12/deploy-a-secure-asp-net-mvc-application-with-oauth-membership-and-sql-database.aspx)
@@ -155,15 +120,10 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - new
 - [ASP.NET Identity and Azure Table Storage](https://blogs.msdn.com/b/stuartleeks/archive/2014/01/15/asp-net-identity-and-windows-azure-table-storage.aspx)
 
-<a id="OWIN"></a>
-
 ## OWIN and Katana
 
 - [Getting started with OWIN and Katana](../../../aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana.md)
 - [A primer on external login providers (social logins) with OWIN/Katana authentication middleware](http://brockallen.com/2014/01/09/a-primer-on-external-login-providers-social-logins-with-owinkatana-authentication-middleware/)
-
-<a id="dataAccess"></a>
-
 ## Data Access in ASP.NET MVC
 
 - [Getting Started with Entity Framework using ASP.NET MVC](getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
@@ -171,8 +131,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Building an ASP.NET MVC4 Application with EF and Web API](http://net.tutsplus.com/tutorials/building-an-asp-net-mvc4-application-with-ef-and-webapi/)
 - [DataList in ASP.NET MVC &amp; KnockoutJS](http://www.devcurry.com/2013/04/datalist-in-aspnet-mvc-knockoutjs.html)
 - [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/)
-
-<a id="WF2MGC"></a>
 
 ## Web Forms to MVC
 
@@ -183,8 +141,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Web Forms to MVC](http://www.davepaquette.com/archive/2013/12/30/so-you-inherited-an-asp-net-web-forms-application.aspx)
 - [Integrating ASP.NET Web Forms and ASP.NET MVC](http://rachelappel.com/integrating-aspnet-web-forms-and-aspnetmvc)
 - [Adopting ASP.NET MVC enhancements in an Existing Web Forms Project](http://www.devcurry.com/2013/05/adopting-aspnet-mvc-enhancements-in.html)
-
-<a id="perf"></a>
 
 ## Performance
 
@@ -219,8 +175,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Sorting a ScriptBundle based on /// reference tags](http://blog.anderson.geek.nz/2013/02/26/sorting-a-scriptbundle-based-on-reference-tags/)
 - [ASP.NET MVC 4 - Making Asynchronous Calls to External Services from an Action Method](http://www.devcurry.com/2013/04/aspnet-mvc-4-making-asynchronous-calls.html)
 
-<a id="KO"></a>
-
 ## AngularJS, Knockout, KnockoutJS
 
 - [Knockout](http://knockoutjs.com/)
@@ -232,8 +186,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Loading KnockoutJS View Models from ASP.Net MVC, for faster page loads](http://lostechies.com/erichexter/2012/11/29/loading-knockout-view-models-from-asp-net-mvc/)
 - [Master-Details view using Knockout and ASP.NET MVC](http://www.devcurry.com/2013/04/master-details-knockout-aspnet-mvc.html)
 - [AngularJS – Post data using the $resource Service in an ASP.NET MVC app](http://www.devcurry.com/2013/07/angularjs-post-data-using-resource.html#.Uegw7CZ8NaQ)
-
-<a id="jQueryAjaxJSON"></a>
 
 ## jQuery, Ajax, JSON, JavaScript
 
@@ -259,16 +211,12 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [ASP.NET MVC Ajax using jQuery – Quick Start sample](http://evolpin.wordpress.com/2011/03/15/asp-net-mvc-ajax-using-jquery-quick-start-sample/)
 - [Creating Cascading DropDownLists using ASP.NET MVC 4 and jQuery](http://www.binaryintellect.net/articles/b58fde6b-415e-454d-985b-d5dc4ad2fca8.aspx)
 
-<a id="html5"></a>
-
 ## HTML5
 
 - [Using the HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC](../older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1.md)
 - [Designing Accessibility with HTML5](https://msdn.microsoft.com/en-us/magazine/jj863135.aspx)
 - [Build Mobile-Friendly HTML5 Forms with ASP.NET MVC 4 and jQuery Mobile](https://msdn.microsoft.com/en-us/magazine/hh848259.aspx)
 - [Integrate HTML5 into Existing ASP.NET Web Forms and MVC Applications](https://msdn.microsoft.com/en-us/magazine/jj129609.aspx)
-
-<a id="Routing"></a>
 
 ## Routing
 
@@ -282,8 +230,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [ASP.NET MVC Routing](http://evolpin.wordpress.com/2011/03/27/asp-net-mvc-routing/)
 - [Strongly typed routing for MVC 4](http://dysphoria.net/2013/03/14/strongly-typed-action-references-in-microsoft-mvc4/)
 
-<a id="global"></a>
-
 ## Globalization, Internationalization and Localization
 
 - [ASP.NET MVC 5 Internationalization](http://afana.me/post/aspnet-mvc-internationalization.aspx)
@@ -294,8 +240,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Internationalization](http://afana.me/post/aspnet-mvc-internationalization.aspx)
 - [Localization](http://adamyan.blogspot.com/2010/02/aspnet-mvc-2-localization-complete.html)
 
-<a id="Azure"></a>
-
 ## Azure and ASP.NET MVC
 
 - [Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/)
@@ -304,8 +248,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Configuration Tips For ASP.NET MVC 4 on a Azure Website](http://odetocode.com/Blogs/scott/archive/2012/08/07/configuration-tips-for-asp-net-mvc-4-on-a-windows.aspx)
 - [Episode 85 - Azure, Windows 8, and MVC 4 Demos](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-85-Windows-Azure-Sample-Content-Review) (video)
 - [Deploying an ASP.NET Website to Azure in Visual Studio 2012 from a Git Repository directly](http://www.dotnetcurry.com/ShowArticle.aspx?ID=881)
-
-<a id="mobile"></a>
 
 ## Mobile
 
@@ -322,8 +264,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [MVC 4 Mobile Friendly Web Applications](http://www.codeproject.com/Articles/455627/MVC4-Mobile-Friendly-Web-Applications)
 - [ASP.NET MVC 4 Mobile](https://channel9.msdn.com/Events/aspConf/aspConf/ASP-NET-MVC-4-Mobile)
 
-<a id="spa"></a>
-
 ## Single Page Application (SPA)
 
 - [A .NET Developer Primer for Single-Page Applications](https://msdn.microsoft.com/en-us/magazine/dn605877.aspx) MSDN Magazine
@@ -332,15 +272,11 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [MVC Single Page Application Template Update for ASP.NET and Web Tools 2012.2 RC](https://blogs.msdn.com/b/webdev/archive/2012/12/19/mvc-single-page-template-update-for-asp-net-and-web-tools-2012-2-rc.aspx)
 - [Inside the ASP.NET Single Page Apps Template](http://www.johnpapa.net/inside-the-asp-net-single-page-apps-template/)
 
-<a id="fb"></a>
-
 ## Twitter, Facebook
 
 - [The new Facebook application template and library for ASP.NET MVC](https://blogs.msdn.com/b/webdev/archive/2012/12/13/the-new-facebook-application-template-and-library-for-asp.net-mvc.aspx)
 - [Twitter.Bootstrap.MVC4](http://lostechies.com/erichexter/2012/12/24/twitter-bootstrap-mvc4-new-release-1-0-71/)
 - [MVC 4: facebook twitter login with oAuth](http://www.dotnetexpertguide.com/2012/08/facebook-twitter-oauth-openid-login-with-aspnet-mvc-4-application.html)
-
-<a id="tdd"></a>
 
 ## Unit Testing, TDD, Repository Pattern and Unit of Work
 
@@ -358,8 +294,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Walkthrough: Using TDD with ASP.NET MVC](https://msdn.microsoft.com/en-us/library/gg416511(v=vs.98).aspx) (MVC 3)
 - [Releasing SocialGoal - Reference Web App for ASP.NET MVC 5, EF 6 Code First, AutoMapper, Autofac, TDD and DDD](https://weblogs.asp.net/shijuvarghese/archive/2014/01/24/releasing-socialgoal-reference-web-app-for-asp-net-mvc-5-ef-6-code-first-automapper-autofac-tdd-and-ddd.aspx)
 
-<a id="best"></a>
-
 ## Best Practices
 
 - [What not to do in ASP.NET, and what to do instead](../../../aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead.md)
@@ -371,13 +305,9 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [ASP.NET MVC Best Practices (Part 1)](https://weblogs.asp.net/rashid/archive/2009/04/01/asp-net-mvc-best-practices-part-1.aspx)
 - [12 ASP.NET MVC Best Practices](http://codeclimber.net.nz/archive/2009/10/27/12-asp.net-mvc-best-practices.aspx)
 
-<a id="deploy"></a>
-
 ## Deployment
 
 - [Web Deployment Content Map for Visual Studio and ASP.NET](../../../whitepapers/aspnet-web-deployment-content-map.md)
-
-<a id="RTE"></a>
 
 ## Rich text Editors for MVC
 
@@ -386,8 +316,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Rich Text Editing with Infragistics HTML Editor in both jQuery and ASP.NET MVC](http://www.infragistics.com/community/blogs/damyan_petev/archive/2012/02/24/rich-text-editing-with-infragistics-html-editor-in-both-jquery-and-asp-net-mvc.aspx)
 - [DevExpress ASP.NET MVC RichEdit Control](https://go.devexpress.com/AjaxControlToolkit_ASP_Resources_MVC_RichEdit.aspx)
 - [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/) by Russell Waite
-
-<a id="general"></a>
 
 ## General
 
@@ -445,8 +373,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Making ASP.NET GridView Responsive With jQuery FooTable](http://techbrij.com/asp-net-gridview-responsive-jquery-footable)
 - [Web Deployment using Visual Studio](../../../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md)
 - [Custom Templates, Data Annotations and UI Hints in ASP.NET MVC](http://www.devcurry.com/2013/04/custom-templates-in-aspnet-mvc.html)
-
-<a id="posts"></a>
 
 ## Forum Posts
 
