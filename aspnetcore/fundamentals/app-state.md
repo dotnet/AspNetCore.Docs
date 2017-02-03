@@ -173,7 +173,8 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
 public class MyAppData
 {
     // Declare properties/methods/etc.
-} ```
+} 
+```
 2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
 3. Consume the data service class in each controller:
 
@@ -186,9 +187,8 @@ public class MyController : Controller
         // store it in a private field/property, etc.
     }
     }
-} ```
-
-
+} 
+```
 
 ### Common errors when working with session
 
