@@ -1,0 +1,1 @@
+INSERT INTO Products(ProductName, UnitPrice) VALUES(@ProductName, @UnitPrice)

@@ -1,0 +1,24 @@
+/*** Styles for ~/BatchData/BatchInsert.aspx tutorial ***/
+.BatchInsertLabel
+{
+    font-weight: bold;
+    text-align: right;
+}
+.BatchInsertHeaderRow td
+{
+    color: White;
+    background-color: #900;
+    padding: 11px;
+}
+.BatchInsertFooterRow td
+{
+    text-align: center;
+    padding-top: 5px;
+}
+.BatchInsertRow
+{
+}
+.BatchInsertAlternatingRow
+{
+    background-color: #fcc;
+}

@@ -1,0 +1,25 @@
+@{
+Layout = "~/_MapLayout.cshtml";
+Assets.AddScript("~/Scripts/jquery-1.6.2.min.js");
+}
+
+<div id="navigation">
+<h3>Map an Address:</h3>
+<form method="post" action="" id="coordinates" style="width: 320px">
+<fieldset>
+  <div>
+	<label for="address">Address:</label>
+	<input style="width: 300px" type="text"  name="address"  value="@Request["address"]"/>
+	<input type="submit" value="Map It!" />
+   </div>
+</fieldset>
+</form>
+</div>
+<div id="content">
+@if(IsPost) {
+var theAddress = Request["address"];
+@Maps.GetGoogleHtml(theAddress,
+	width: "800",
+	height: "800")
+}
+</div>

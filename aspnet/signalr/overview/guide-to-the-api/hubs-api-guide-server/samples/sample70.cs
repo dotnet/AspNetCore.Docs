@@ -1,0 +1,1 @@
+context.Clients.AllExcept(connectionId1, connectionId2).addContosoChatMessageToPage(name, message);

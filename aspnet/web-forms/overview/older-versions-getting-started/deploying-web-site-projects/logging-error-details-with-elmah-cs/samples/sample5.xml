@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+
+  <elmah>
+  <security allowRemoteAccess="1" />
+  
+  ...
+  </elmah>
+
+  ...
+
+  <location path="elmah.axd">
+  <system.web>
+  <authorization>
+  <allow roles="Admin" />
+  <deny users="*" />
+  </authorization>
+  </system.web>  
+  </location>
+</configuration>

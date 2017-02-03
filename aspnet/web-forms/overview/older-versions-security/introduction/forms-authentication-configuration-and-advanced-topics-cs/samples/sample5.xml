@@ -1,0 +1,21 @@
+<configuration> 
+
+  <system.web>
+
+  ... Some markup was removed for brevity ...
+
+  <machineKey
+
+  decryption="AES"
+
+  validation="SHA1"
+
+  decryptionKey="1513F567EE75F7FB5AC0AC4D79E1D9F25430E3E2F1BCDD3370BCFC4EFC97A541"
+
+  validationKey="32CBA563F26041EE5B5FE9581076C40618DCC1218F5F447634EDE8624508A129"
+
+  />
+
+  </system.web>
+
+</configuration>

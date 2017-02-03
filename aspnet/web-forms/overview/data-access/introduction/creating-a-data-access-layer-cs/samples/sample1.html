@@ -1,0 +1,6 @@
+NorthwindTableAdapters.ProductsTableAdapter productsAdapter =
+    new NorthwindTableAdapters.ProductsTableAdapter();
+Northwind.ProductsDataTable products;
+products = productsAdapter.GetProducts();
+foreach (Northwind.ProductsRow productRow in products)
+    Response.Write("Product: " + productRow.ProductName + "<br />");

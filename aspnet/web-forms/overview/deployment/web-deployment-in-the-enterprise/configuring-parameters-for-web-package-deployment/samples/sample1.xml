@@ -1,0 +1,9 @@
+<parameters>
+  <setParameter 
+    name="IIS Web Application Name" 
+    value="Default Web Site/ContactManager.Mvc_deploy" />  
+  <setParameter 
+    name="ApplicationServices-Web.config Connection String" 
+    value="Data Source=DEVWORKSTATION\SQLEXPRESS;Initial Catalog=CMAppServices;
+           Integrated Security=true;" />
+</parameters>

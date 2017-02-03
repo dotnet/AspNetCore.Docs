@@ -1,0 +1,25 @@
+<siteMapNode
+    url="~/PagingSortingDataListRepeater/Default.aspx"
+    title="Paging and Sorting with the DataList and Repeater"
+    description="Paging and Sorting the Data in the DataList and Repeater Controls">
+    <siteMapNode
+        url="~/PagingSortingDataListRepeater/Paging.aspx"
+        title="Paging"
+        description="Learn how to page through the data shown
+                     in the DataList and Repeater controls." />
+    <siteMapNode
+        url="~/PagingSortingDataListRepeater/Sorting.aspx"
+        title="Sorting"
+        description="Sort the data displayed in a DataList or
+                     Repeater control." />
+    <siteMapNode
+        url="~/PagingSortingDataListRepeater/SortingWithDefaultPaging.aspx"
+        title="Sorting with Default Paging"
+        description="Create a DataList or Repeater control that is paged using
+                     default paging and can be sorted." />
+    <siteMapNode
+        url="~/PagingSortingDataListRepeater/SortingWithCustomPaging.aspx"
+        title="Sorting with Custom Paging"
+        description="Learn how to sort the data displayed in a DataList or
+                     Repeater control that uses custom paging." />
+</siteMapNode>

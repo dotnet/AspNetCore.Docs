@@ -1,0 +1,1 @@
+Dim obj As ButtonType = CType(e.Row.FindControl("controlID"), ButtonType)

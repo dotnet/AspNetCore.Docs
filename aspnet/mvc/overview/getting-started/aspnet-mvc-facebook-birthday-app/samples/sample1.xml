@@ -1,0 +1,13 @@
+<configuration>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="Facebook:AppId" value="" />
+    <add key="Facebook:AppSecret" value="" />
+    <add key="Facebook:AppNamespace" value="" />
+    <add key="Facebook:AuthorizationRedirectPath" value="~/Home/Permissions" />
+    <add key="Facebook:VerifyToken:User" value="" />
+  </appSettings>
+  <system.web>

@@ -1,0 +1,8 @@
+<system.webServer>
+    <handlers>
+      <clear/>
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="/*" 
+          verb="*" type="System.Web.Handlers.TransferRequestHandler" 
+          preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+</system.webServer>

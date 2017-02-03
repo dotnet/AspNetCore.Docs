@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analytics Test</title>
+  </head>
+  <body>
+    <h1>Analytics Test Page</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div id="footer">
+      &copy; 2012 MySite
+    </div>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try{
+      var pageTracker = _gat._getTracker("myaccount");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>

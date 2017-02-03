@@ -1,0 +1,3 @@
+<add name="SchoolContext" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=CU_Test;
+      Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\CU_Test.mdf" 
+      providerName="System.Data.SqlClient" />

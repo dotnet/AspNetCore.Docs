@@ -1,0 +1,6 @@
+<connectionStrings>
+    <add name="MusicStoreEntities"
+     connectionString="Data Source=|DataDirectory|MvcMusicStore.sdf"
+     providerName="System.Data.SqlServerCe.4.0"/>
+  </connectionStrings>  
+</configuration>

@@ -1,0 +1,17 @@
+@{
+    string[] teamMembers = {"Matt", "Joanne", "Robert", "Nancy"};
+    <p>The number of names in the teamMembers array: @teamMembers.Length </p>
+    <p>Robert is now in position: @Array.IndexOf(teamMembers, "Robert")</p>
+    <p>The array item at position 2 (zero-based) is @teamMembers[2]</p>
+    <h3>Current order of team members in the list</h3>
+    foreach (var name in teamMembers)
+    {
+        <p>@name</p>
+    }
+    <h3>Reversed order of team members in the list</h3>
+    Array.Reverse(teamMembers);
+    foreach (var reversedItem in teamMembers)
+    {
+        <p>@reversedItem</p>
+    }
+}

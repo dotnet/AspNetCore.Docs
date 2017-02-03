@@ -1,0 +1,7 @@
+<ul class="list-unstyled" data-bind="foreach: books">
+  <li>
+    <strong><span data-bind="text: AuthorName"></span></strong>: <span data-bind="text: Title"></span>
+    <!-- New code -->
+    <small><a href="#" data-bind="click: $parent.getBookDetail">Details</a></small>
+  </li>
+</ul>

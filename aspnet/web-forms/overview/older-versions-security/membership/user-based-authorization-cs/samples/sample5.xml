@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<configuration>
+ <system.web>
+ <authorization>
+ <deny users="?" />
+ </authorization>
+ </system.web>
+
+ <location path="CreatingUserAccounts.aspx">
+ <system.web>
+ <authorization>
+ <allow users="Tito" />
+ <deny users="*" />
+ </authorization>
+ </system.web>
+ </location>
+</configuration>

@@ -1,0 +1,9 @@
+Validation.RequireField("text1");
+Validation.RequireField("text1", "The text1 field is required");
+Validation.RequireFields("text1", "text2", "text3");
+
+Validation.Add("text1", Validation.StringLength(5));
+Validation.Add("textDate", Validation.DateTime("Enter a date"));
+Validation.Add("textCount", Validation.Integer("Enter a number"));
+Validation.Add("textCount",
+Validation.Range(1, 10, "Enter a value between 1 and 10"));

@@ -1,0 +1,1 @@
+<%@Page Language="C#" SomeText="Hello!" Inherits="PageBase" %>

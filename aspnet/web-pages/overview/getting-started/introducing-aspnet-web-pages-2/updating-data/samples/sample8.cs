@@ -1,0 +1,1 @@
+var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3)

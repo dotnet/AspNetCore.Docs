@@ -1,0 +1,12 @@
+<Project ToolsVersion="4.0" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>   
+    <ExcludeFromPackageFolders Include="Internal">
+      <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
+    </ExcludeFromPackageFolders>
+    <ExcludeFromPackageFiles Include="Scripts\jquery-1.4.4-
+vsdoc.js;Scripts\jquery-1.4.4.js;Scripts\jquery-ui.js;Scripts\jquery.unobtrusive-ajax.js;Scripts\jquery.validate-vsdoc.js;Scripts\jquery.validate.js;Scripts\jquery.validate.unobtrusive.js;Scripts\MicrosoftAjax.debug.js;Scripts\MicrosoftMvcValidation.debug.js">
+      <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
+    </ExcludeFromPackageFiles>
+  </ItemGroup>
+</Project>

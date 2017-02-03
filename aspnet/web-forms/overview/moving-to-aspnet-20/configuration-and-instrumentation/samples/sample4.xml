@@ -1,0 +1,25 @@
+<healthMonitoring>
+  <!-- Event Log Provider being added. -->
+  <providers>
+    <add name="EventLogProvider"
+         type="System.Web.Management.EventLogWebEventProvider,
+               System.Web,Version=2.0.0.0,Culture=neutral,
+               PublicKeyToken=b03f5f7f11d50a3a" />
+  </providers>
+  <!-- Event mapping provides a friendly name to the
+events based on the WebBaseErrorEvent class. -->
+  <eventMappings>
+    <add name="All Errors"
+         type="System.Web.Management.WebBaseErrorEvent,
+               System.Web,Version=2.0.0.0,Culture=neutral,
+               PublicKeyToken=b03f5f7f11d50a3a"
+          startEventCode="0" endEventCode="2147483647" />
+  </eventMappings>
+  <!-- Rule tying the "All Errors" event mapping to the EventLog Provider. -->
+  <rules>
+    <add name="All Errors Default" eventName="All Errors"
+         provider="EventLogProvider"
+         profile="Default" minInstances="1"
+         maxLimit="Infinite" minInterval="00:01:00" custom="" />
+  </rules>
+</healthMonitoring>

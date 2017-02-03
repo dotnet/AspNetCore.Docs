@@ -1,0 +1,12 @@
+<providers>
+  <clear />
+
+  <add type="System.Web.Management.SimpleMailWebEventProvider"
+  name="EmailWebEventProvider" buffer="false"
+  from="support@example.com" to="support@example.com"
+  subjectPrefix="Book Reviews Runtime Error: " />
+  
+  <add connectionStringName="ReviewsConnectionString" maxEventDetailsLength="1073741823"
+  buffer="false" name="SqlWebEventProvider"
+  type="System.Web.Management.SqlWebEventProvider" />
+</providers>

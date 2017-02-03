@@ -1,0 +1,6 @@
+<ul>
+    @foreach (var genre in Model)
+    {
+        <li><a href="/Store/Browse?genre=@genre.Name">@genre.Name</a></li>
+    }
+</ul>

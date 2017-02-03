@@ -1,0 +1,11 @@
+{
+  "Items": [
+    { "ID":1,"Name":"Hat","Price":"15","Category":"Apparel" },
+    { "ID":2,"Name":"Socks","Price":"5","Category":"Apparel" },
+
+    // Others not shown
+    
+  ],
+  "NextPageLink": "http://localhost/api/values?$inlinecount=allpages&$skip=10",
+  "Count": 50
+}

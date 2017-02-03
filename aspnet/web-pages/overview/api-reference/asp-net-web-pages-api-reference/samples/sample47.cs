@@ -1,0 +1,1 @@
+if(WebSecurity.Login("username", "password")) { ... }

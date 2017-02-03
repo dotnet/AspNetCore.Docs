@@ -1,0 +1,1 @@
+<asp:ServiceReference InlineScript="true" Path="~/CustomersService.asmx"/>

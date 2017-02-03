@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<xs:schema
+    id="NewDataSet"
+    targetNamespace="http://tempuri.org/data.xsd"
+    xmlns:mstns="http://tempuri.org/data.xsd"
+    xmlns="http://tempuri.org/data.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified">
+    <xs:element name="NewDataSet"
+        msdata:IsDataSet="true"
+        msdata:EnforceConstraints="False">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="Employee">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element
+                                name="Name"
+                                type="xs:string"
+                                minOccurs="0" />
+                            <xs:element
+                                name="Sales"
+                                    type="xs:double"
+                                    minOccurs="0" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

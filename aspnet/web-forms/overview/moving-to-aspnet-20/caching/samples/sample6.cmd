@@ -1,0 +1,1 @@
+aspnet_regsql -S dbase -ed -d Northwind -E -et -t Products

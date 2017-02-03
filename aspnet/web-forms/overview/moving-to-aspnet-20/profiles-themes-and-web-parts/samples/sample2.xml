@@ -1,0 +1,7 @@
+<profile>
+    <properties>
+        <add name="FirstName" />
+        <add name="LastName" />
+        <add name="Age" type="Int32"/>
+    </properties>
+</profile>

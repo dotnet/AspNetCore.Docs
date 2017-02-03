@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Delete a Movie</title>
+</head>
+<body>
+      <h1>Delete a Movie</h1>
+        @Html.ValidationSummary()
+      <p><a href="~/Movies">Return to movie listing</a></p>
+
+      <form method="post">
+        <fieldset>
+        <legend>Movie Information</legend>
+
+        <p><span>Title:</span>
+         <span>@title</span></p>
+
+        <p><span>Genre:</span>
+         <span>@genre</span></p>
+
+        <p><span>Year:</span>
+          <span>@year</span></p>
+
+        <input type="hidden" name="movieid" value="@movieId" />
+        <p><input type="submit" name="buttonDelete" value="Delete Movie" /></p>
+        </fieldset>
+      </form>
+    </body>
+</html>

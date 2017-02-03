@@ -1,0 +1,74 @@
+@using Microsoft.AspNet.Facebook
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+   @Styles.Render("~/Content/css")
+   @Scripts.Render("~/bundles/modernizr")
+   @Scripts.Render("~/bundles/jquery")
+   @Scripts.Render("~/bundles/bootstrap")
+   @Scripts.Render("~/bundles/app")
+</head>
+<body>
+   <script>
+      window.fbAsyncInit = function () {
+         FB.init({
+            appId: '@GlobalFacebookConfiguration.Configuration.AppId', // App ID
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+         });
+      };
+
+      // Load the SDK Asynchronously
+      (function (d) {
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) { return; }
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+      }(document));
+   </script>
+
+   <div id="wrapper">
+      <nav class="navbar navbar-default" role="navigation">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
+               @*<a target="_top" href="@GlobalFacebookConfiguration.Configuration.AppUrl@Url.Action("Index", "Home")" class="navbar-brand">Birthday App</a>*@
+               <a target="_top" href="@ViewBag.AppUrl@Url.Action("Index", "Home")" class="navbar-brand">Birthday App</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                  <li class="active"><a target="_top" href="@ViewBag.AppUrl@Url.Action("Index", "Home")">Home</a></li>
+                  <li><a href="@Url.Action("About", "Home")">About</a></li>
+               </ul>
+               <form class="navbar-form navbar-right" role="search" action="@Url.Action("Search", "Home")" method="get">
+                  <div class="form-group">
+                     <input type="text" class="form-control" name="friendName" placeholder="Friend's name">
+                  </div>
+                  <button type="submit" class="btn btn-default">Search</button>
+               </form>
+            </div><!-- /.navbar-collapse -->
+         </div><!-- /.container-fluid -->
+      </nav>
+      <header id="topHeader">
+         <h1>Birthday App</h1>
+         <h2>Time to buy your friend a birthday present.</h2>
+      </header>
+      @RenderBody()
+      <footer>
+         <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+      </footer>
+   </div>
+   @RenderSection("scripts", required: false)
+</body>
+</html>

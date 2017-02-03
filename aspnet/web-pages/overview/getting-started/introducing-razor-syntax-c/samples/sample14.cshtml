@@ -1,0 +1,15 @@
+@if(IsPost) {
+    // Repeat the previous example, but use <text> tags.
+    <text>
+    The time is: <br /> @DateTime.Now
+    <br/>
+    @DateTime.Now is the <em>current</em> time.
+    </text>
+}
+
+@{
+    var minTemp = 75;
+    <text>It is the month of @DateTime.Now.ToString("MMMM"), and
+    it's a <em>great</em> day! <br /><p>You can go swimming if it's at
+    least @minTemp degrees. </p></text>
+}

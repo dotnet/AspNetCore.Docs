@@ -1,0 +1,23 @@
+<ul id="update-products" data-bind="foreach: products">
+    <li>
+        <div>
+            <div class="item">Product ID</div> <span data-bind="text: $data.Id"></span>
+        </div>
+        <div>
+            <div class="item">Name</div> 
+            <input type="text" data-bind="value: $data.Name"/>
+        </div> 
+        <div>
+            <div class="item">Price ($)</div> 
+            <input type="text" data-bind="value: $data.Price"/>
+        </div>
+        <div>
+            <div class="item">Actual Cost ($)</div> 
+            <input type="text" data-bind="value: $data.ActualCost"/>
+        </div>
+        <div>
+            <input type="button" value="Update" data-bind="click: $root.update"/>
+            <input type="button" value="Delete Item" data-bind="click: $root.remove"/>
+        </div>
+    </li>
+</ul>

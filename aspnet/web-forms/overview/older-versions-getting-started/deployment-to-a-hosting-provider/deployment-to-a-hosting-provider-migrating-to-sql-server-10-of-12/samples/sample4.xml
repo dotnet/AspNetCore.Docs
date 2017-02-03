@@ -1,0 +1,13 @@
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <connectionStrings>
+    <add name="DefaultConnection" 
+         connectionString="Data Source=.\SQLExpress;Initial Catalog=aspnet-Test;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True" 
+         providerName="System.Data.SqlClient"
+         xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+    <add name="SchoolContext" 
+         connectionString="Data Source=.\SQLExpress;Initial Catalog=School-Test;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True" 
+         providerName="System.Data.SqlClient"
+         xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+  </connectionStrings>
+  <!-- appSettings element, comments, and system.web element -->
+</configuration>

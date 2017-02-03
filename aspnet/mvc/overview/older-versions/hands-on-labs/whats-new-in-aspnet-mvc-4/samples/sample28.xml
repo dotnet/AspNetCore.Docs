@@ -1,0 +1,3 @@
+<system.web>
+  <customErrors mode="On"></customErrors>
+  ...

@@ -1,0 +1,11 @@
+<Target Name="DeployAppOffline" 
+        Condition=" '$(EnableAppOffline'!='false' ">
+  <PropertyGroup> 
+    <_Cmd>"$(MSDeployPath)\msdeploy.exe" -verb:sync 
+           -source:contentPath="$(AppOfflineAbsoluteSourcePath)" 
+           -dest:contentPath="$(ContactManagerIisPath)/App_offline.htm",
+            computerName="$(MSDeployComputerName)"
+    </_Cmd>
+  </PropertyGroup>
+  <Exec Command="$(_Cmd)"/> 
+</Target>

@@ -1,0 +1,19 @@
+<div id="order-details" class="float-right" data-bind="if: details()">
+<h2>Order #<span data-bind="text: details().Id"></span></h2>
+<table class="details ui-widget-content">
+    <thead>
+        <tr><td>Item</td><td>Price</td><td>Quantity</td><td>Subtotal</td></tr>
+    </thead>    
+    <tbody data-bind="foreach: details().items">
+        <tr>
+            <td><span data-bind="text: $data.Product"></span></td>
+            <td><span data-bind="text: $data.Price"></span></td>
+            <td><span data-bind="text: $data.Quantity"></span></td>
+            <td>
+                <span data-bind="text: ($data.Price * $data.Quantity).toFixed(2)"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>Total: <span data-bind="text: details().total"></span></p>
+</div>

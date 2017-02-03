@@ -1,0 +1,1 @@
+@GamerCard.GetHtml("joe")

@@ -1,0 +1,11 @@
+<siteMapNode
+    url="~/CustomButtonsDataListRepeater/Default.aspx"
+    title="Adding Custom Buttons to the DataList and Repeater"
+    description="Samples of DataList and Repeater Reports that Include
+                  Buttons for Performing Server-Side Actions">
+    <siteMapNode
+        url="~/CustomButtonsDataListRepeater/CustomButtons.aspx"
+        title="Using Custom Buttons in the DataList and Repeater's Templates"
+        description="Examines how to add custom Buttons, LinkButtons,
+                      or ImageButtons within templates." />
+</siteMapNode>

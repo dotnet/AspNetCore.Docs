@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WebPublishMethod>MSDeploy</WebPublishMethod>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <SiteUrlToLaunchAfterPublish>http://contosou-staging.azurewebsites.net</SiteUrlToLaunchAfterPublish>
+    <ExcludeApp_Data>True</ExcludeApp_Data>
+    <MSDeployServiceURL>waws-prod-bay-001.publish.azurewebsites.windows.net:443</MSDeployServiceURL>
+    <DeployIisAppPath>contosou-staging</DeployIisAppPath>
+    <RemoteSitePhysicalPath />
+    <SkipExtraFilesOnServer>False</SkipExtraFilesOnServer>
+    <MSDeployPublishMethod>WMSVC</MSDeployPublishMethod>
+    <UserName>$contosou-staging</UserName>
+    <_SavePWD>True</_SavePWD>
+    <PublishDatabaseSettings>
+      <Objects xmlns="">
+        <ObjectGroup Name="SchoolContext" Order="1" Enabled="True">
+          <Destination Path="Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User ID=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd" Name="Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd" />
+          <Object Type="DbCodeFirst">
+            <Source Path="DBMigration" DbContext="ContosoUniversity.DAL.SchoolContext, ContosoUniversity.DAL" MigrationConfiguration="ContosoUniversity.DAL.Migrations.Configuration, ContosoUniversity.DAL" Origin="Configuration" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="DefaultConnection" Order="2" Enabled="False">
+          <Destination Path="Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User ID=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd" Name="Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd" />
+          <Object Type="DbDacFx">
+            <PreSource Path="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-ContosoUniversity.mdf;Initial Catalog=aspnet-ContosoUniversity;Integrated Security=True" includeData="False" />
+            <Source Path="$(IntermediateOutputPath)AutoScripts\DefaultConnection_IncrementalSchemaOnly.dacpac" dacpacAction="Deploy" />
+          </Object>
+          <UpdateFrom Type="Web.Config">
+            <Source MatchValue="Data Source=(LocalDb)\v11.0;Integrated Security=SSPI;Initial Catalog=aspnet-ContosoUniversity;AttachDBFilename=|DataDirectory|\aspnet-ContosoUniversity.mdf" MatchAttributes="$(UpdateFromConnectionStringAttributes)" />
+          </UpdateFrom>
+          <Object Type="DbFullSql" Enabled="False">
+            <Source Path="..\aspnet-data-prod.sql" Transacted="False" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <EnableMSDeployBackup>False</EnableMSDeployBackup>
+  </PropertyGroup>
+  <ItemGroup>
+    <MSDeployParameterValue Include="$(DeployParameterPrefix)DefaultConnection-Web.config Connection String">
+      <ParameterValue>Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd</ParameterValue>
+    </MSDeployParameterValue>
+    <MSDeployParameterValue Include="$(DeployParameterPrefix)SchoolContext-Web.config Connection String">
+      <ParameterValue>Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd</ParameterValue>
+    </MSDeployParameterValue>
+  </ItemGroup>
+  <Target Name="CustomCollectFiles">
+    <ItemGroup>
+      <_CustomFiles Include="..\ExtraFiles\**\*" />
+      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
+</Project>

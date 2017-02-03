@@ -1,0 +1,8 @@
+<configuration>
+    <connectionStrings>
+      <add name="LocalSqlServer"
+         connectionString="data source=(local);
+         Integrated Security=SSPI;Initial Catalog=aspnetdb;"  
+         providerName="System.Data.SqlClient" />
+    </connectionStrings>
+</configuration>

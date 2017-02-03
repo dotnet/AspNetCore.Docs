@@ -1,0 +1,15 @@
+<configuration>
+  <appSettings>    
+     <!-- Keys removed for clarity. -->
+  </appSettings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+    <machineKey decryptionKey="Enter decryption Key here" 
+                validation="SHA1" 
+                validationKey="Enter validation Key here" />
+  </system.web>  
+  <runtime>
+     <!-- Keys removed for clarity. -->    
+  </runtime>
+</configuration>

@@ -1,0 +1,1 @@
+Public Event eventName As eventDelegate

@@ -1,0 +1,11 @@
+<authentication mode="Forms">
+
+  <forms
+
+  slidingExpiration="true"
+
+  timeout="60"
+
+  />
+
+</authentication>

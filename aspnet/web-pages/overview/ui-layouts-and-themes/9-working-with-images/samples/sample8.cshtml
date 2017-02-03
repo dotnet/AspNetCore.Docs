@@ -1,0 +1,23 @@
+@{  var imagePath= "";
+    WebImage photo = new WebImage(@"~\Images\Photo3.jpg");
+    if(photo != null){
+        imagePath = @"images\Photo3.jpg";
+        photo.AddTextWatermark("My Watermark", fontColor:"Yellow", fontFamily:
+            "Arial");
+        photo.Save(@"~\" + imagePath);    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Water Mark</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<h1>Adding a Watermark to an Image</h1>
+@if(imagePath != ""){
+  <div class="result">
+    <img src="@imagePath" alt="Image" />
+  </div>
+}
+</body>
+</html>

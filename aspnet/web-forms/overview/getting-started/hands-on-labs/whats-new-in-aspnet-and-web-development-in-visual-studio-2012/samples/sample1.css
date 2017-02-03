@@ -1,0 +1,10 @@
+.main
+{
+  padding: 0px 12px;
+  margin: 12px 8px 8px 8px;
+  min-height: 420px;
+}
+  .main div
+  {
+    border: 0px;
+  }

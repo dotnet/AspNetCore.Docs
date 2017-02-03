@@ -1,0 +1,10 @@
+<!-- Single statement block.  -->
+@{ var theMonth = DateTime.Now.Month; }
+<p>The numeric value of the current month: @theMonth</p>
+
+<!-- Multi-statement block. -->
+@{
+    var outsideTemp = 79;
+    var weatherMessage = "Hello, it is " + outsideTemp + " degrees.";
+}
+<p>Today's weather: @weatherMessage</p>

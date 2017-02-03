@@ -1,0 +1,5 @@
+<configuration>
+  <appSettings>
+    <add key="asp:AdminManagerEnabled" value="false"/>
+  </appSettings>
+</configuration>

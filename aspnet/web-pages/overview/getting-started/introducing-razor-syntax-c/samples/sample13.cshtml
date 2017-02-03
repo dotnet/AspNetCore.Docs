@@ -1,0 +1,7 @@
+@if(IsPost) {
+    // Plain text followed by an unmatched HTML tag and server code.
+    @: The time is: <br /> @DateTime.Now
+    <br/>
+    // Server code and then plain text, matched tags, and more text.
+    @DateTime.Now @:is the <em>current</em> time.
+}

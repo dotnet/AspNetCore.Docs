@@ -1,0 +1,33 @@
+<form name="trip_search" method="post" enctype="multipart/form-data" action="api/upload">
+    <div>
+        <input type="radio" name="trip" value="round-trip"/>
+        Round-Trip
+    </div>
+    <div>
+        <input type="radio" name="trip" value="one-way"/>
+        One-Way
+    </div>
+
+    <div>
+        <input type="checkbox" name="options" value="nonstop" />
+        Only show non-stop flights
+    </div>
+    <div>
+        <input type="checkbox" name="options" value="airports" />
+        Compare nearby airports
+    </div>
+    <div>
+        <input type="checkbox" name="options" value="dates" />
+        My travel dates are flexible
+    </div>
+
+    <div>
+        <label for="seat">Seating Preference</label>
+        <select name="seat">
+            <option value="aisle">Aisle</option>
+            <option value="window">Window</option>
+            <option value="center">Center</option>
+            <option value="none">No Preference</option>
+        </select>
+    </div>
+</form>

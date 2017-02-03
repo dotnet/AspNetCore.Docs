@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    $("#form1").submit(function () {
+        var jqxhr = $.post('api/updates/complex', $('#form1').serialize())
+            .success(function () {
+                var loc = jqxhr.getResponseHeader('Location');
+                var a = $('<a/>', { href: loc, text: loc });
+                $('#message').html(a);
+            })
+            .error(function () {
+                $('#message').html("Error posting the update.");
+            });
+        return false;
+    });
+</script>

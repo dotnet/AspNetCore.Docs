@@ -1,0 +1,16 @@
+<siteMapNode title="Paging and Sorting" url="~/PagingAndSorting/Default.aspx"
+    description="Samples of Reports that Provide Paging and Sorting Capabilities">
+    <siteMapNode url="~/PagingAndSorting/SimplePagingSorting.aspx"
+        title="Simple Paging & Sorting Examples"
+        description="Examines how to add simple paging and sorting support." />
+    <siteMapNode url="~/PagingAndSorting/EfficientPaging.aspx"
+        title="Efficiently Paging Through Large Result Sets"
+        description="Learn how to efficiently page through large result sets." />
+    <siteMapNode url="~/PagingAndSorting/SortParameter.aspx"
+        title="Sorting Data at the BLL or DAL"
+        description="Illustrates how to perform sorting logic in the Business Logic
+        Layer or Data Access Layer." />
+    <siteMapNode url="~/PagingAndSorting/CustomSortingUI.aspx"
+        title="Customizing the Sorting User Interface"
+        description="Learn how to customize and improve the sorting user interface." />
+</siteMapNode>

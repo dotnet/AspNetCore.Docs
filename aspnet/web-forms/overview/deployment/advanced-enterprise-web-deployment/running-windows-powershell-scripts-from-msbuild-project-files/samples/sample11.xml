@@ -1,0 +1,19 @@
+<Target Name="WriteLogEntry" Condition=" '$(WriteLogEntry)'!='false' ">
+  <PropertyGroup>
+    <PowerShellExe Condition=" '$(PowerShellExe)'=='' "> 
+      %WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe
+    </PowerShellExe>
+    <ScriptLocation Condition=" '$(ScriptLocation)'=='' ">
+      C:\Path With Spaces\LogDeploy.ps1
+    </ScriptLocation>
+    <LogFileLocation Condition=" '$(LogFileLocation)'=='' ">
+      C:\Path With Spaces\ContactManagerDeployLog.txt
+    </LogFileLocation>
+  </PropertyGroup>
+  <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted 
+                 -command &quot;&amp; invoke-command -scriptblock { 
+                          &amp;&apos;$(ScriptLocation)&apos; 
+                          &apos;$(LogFileLocation)&apos;  
+                          &apos;$(MSDeployComputerName)&apos;}
+                          &quot;"/>  
+</Target>

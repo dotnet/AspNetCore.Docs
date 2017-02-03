@@ -1,0 +1,7 @@
+<anonymousIdentification enabled="true" />
+<profile>
+    <properties>
+        <add name="FirstName" allowAnonymous="true" />
+        <add name="LastName" allowAnonymous="true" />
+    </properties>
+</profile>

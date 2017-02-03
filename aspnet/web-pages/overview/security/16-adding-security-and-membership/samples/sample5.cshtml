@@ -1,0 +1,11 @@
+@{
+    Layout = "~/_SiteLayout.cshtml";
+    PageData["Title"] = "Administrators only";
+}
+
+@if ( Roles.IsUserInRole("admin")) {
+    <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
+}
+else {
+     Response.Redirect("~/AdminError");
+}
