@@ -1,26 +1,26 @@
-# Contributing to the ASP.NET Core documentation
+# Contributing to the ASP.NET documentation
 
-The document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET Core documentation site](https://docs.asp.net). Contributions may be as simple as typo corrections or as complex as new articles.
+The document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.asp.net). Contributions may be as simple as typo corrections or as complex as new articles.
 
 ## How to make a simple correction or suggestion
 
-Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by tapping the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you might need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). The ASP.NET documentation team will review the PR and accept it or suggest changes.
+Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by selecting the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you'll need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). We will review the PR and accept it or suggest changes.
 
 ## How to make a more complex submission
 
 You'll need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the ASP.NET documentation team before you invest much time. 
+* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the team before you invest much time. 
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
 * Submit a pull request (PR) to master with your changes.
 * If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla2.dotnetfoundation.org/)
 * Respond to PR feedback.
 
-For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET Core repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
+For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
 ## Markdown syntax
 
-Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET Core repo style guide. 
+Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET repo style guide. 
 
 ## Folder structure conventions
 
@@ -30,7 +30,7 @@ For each Markdown file there may be a folder for images and a folder for sample 
 ![description of image for alt attribute](configuration/_static/imagename.png)
 ```
 
-All images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
+**All** images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
 
 ## Code snippets
 
@@ -78,7 +78,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
-* In a command-line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
+* In a command-line window, navigate to the appropriate folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
 
    ```
    docfx -t default --serve
@@ -103,11 +103,11 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
   }
   ```
 
-* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
+* Run **docfx** in the `Docs\aspnet` or `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
 
 ## Voice and tone
 
-Our goal is to write documentation that is easily understandable by the widest possible audience. To that end we have established guidelines for writing style that we ask our contributors to follow. For more information, see [Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) in the .NET Core repo.
+Our goal is to write documentation that is easily understandable by the widest possible audience. To that end we have established guidelines for writing style that we ask our contributors to follow. For more information, see [Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) in the .NET repo.
 
 ## Redirects
 

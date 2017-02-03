@@ -69,8 +69,6 @@ With the exception of the C# `await` keyword implicit expressions must not conta
 <p>@await DoSomething("hello", "world")</p>
 ```
 
-<a name=explicit-razor-expressions></a>
-
 ## Explicit Razor expressions
 
 Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last weeks’ time:

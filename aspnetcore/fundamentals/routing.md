@@ -184,8 +184,6 @@ With the route values `{ controller = Home, action = Index }`, this route will g
 
 For more details about the URL generation process, see [url-generation-reference](#url-generation-reference).
 
-<a name=using-routing-middleware></a>
-
 ## Using Routing Middleware
 
 Add the NuGet package "Microsoft.AspNetCore.Routing".
@@ -260,8 +258,6 @@ Some of these methods such as `MapGet` require a `RequestDelegate` to be provide
 
 The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in the method name. For example, see [MapGet](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L85-L88) and [MapVerb](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L156-L180).
 
-<a name=route-template-reference></a>
-
 ## Route Template Reference
 
 Tokens within curly braces (`{ }`) define *route parameters* which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example `{controller=Home}{action=Index}` would not be a valid route, since there is no literal value between `{controller}` and `{action}`. These route parameters must have a name, and may have additional attributes specified.
@@ -296,8 +292,6 @@ Using a template is generally the simplest approach to routing. Constraints and 
 
 >[!TIP]
 > Enable [Logging](logging.md) to see how the built in routing implementations, such as `Route`, match requests.
-
-<a name=route-constraint-reference></a>
 
 ## Route Constraint Reference
 
@@ -340,8 +334,6 @@ The following table demonstrates some route constraints and their expected behav
 
 >[!TIP]
 > To constrain a parameter to a known set of possible values, you can use a regular expression ( for example `{action:regex(list|get|create)}`. This would only match the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
-
-<a name=url-generation-reference></a>
 
 ## URL Generation Reference
 
