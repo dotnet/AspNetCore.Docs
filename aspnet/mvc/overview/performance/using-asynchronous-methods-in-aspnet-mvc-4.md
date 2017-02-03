@@ -16,8 +16,17 @@ Using Asynchronous Methods in ASP.NET MVC 4
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us). 
-
+> This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us). The following sections are included in this tutorial.
+> 
+> - [How Requests Are Processed by the Thread Pool](#HowRequestsProcessedByTP)
+> - [Choosing Synchronous or Asynchronous Action Methods](#ChoosingSyncVasync)
+> - [The Sample Application](#SampleApp)
+> - [The Gizmos Synchronous Action Method](#GizmosSynch)
+> - [Creating an Asynchronous Gizmos Action Method](#CreatingAsynchGizmos)
+> - [Performing Multiple Operations in Parallel](#Parallel)
+> - [Using a Cancellation Token](#CancelToken)
+> - [Server Configuration for High Concurrency/High Latency Web Service Calls](#ServerConfig)
+> 
 > A complete sample is provided for this tutorial on github   
 >  [https://github.com/RickAndMSFT/Async-ASP.NET/](https://github.com/RickAndMSFT/Async-ASP.NET/)
 
@@ -30,17 +39,17 @@ For more information on the using [await](https://msdn.microsoft.com/en-us/libra
 - [Async/Await FAQ](https://blogs.msdn.com/b/pfxteam/archive/2012/04/12/10293335.aspx)
 - [Visual Studio Asynchronous Programming](https://msdn.microsoft.com/en-us/vstudio/gg316360)
 
-## How Requests Are Processed by the Thread Pool
+## <a id="HowRequestsProcessedByTP"></a>  How Requests Are Processed by the Thread Pool
 
-On the web server, the .NET Framework maintains a pool of threads that are used to service ASP.NET requests. When a request arrives, a thread from the pool is dispatched to process that request. If the request is processed synchronously, the thread that processes the request is busy while the request is being processed, and that thread cannot service another request.
-
+On the web server, the .NET Framework maintains a pool of threads that are used to service ASP.NET requests. When a request arrives, a thread from the pool is dispatched to process that request. If the request is processed synchronously, the thread that processes the request is busy while the request is being processed, and that thread cannot service another request.   
+  
 This might not be a problem, because the thread pool can be made large enough to accommodate many busy threads. However, the number of threads in the thread pool is limited (the default maximum for .NET 4.5 is 5,000). In large applications with high concurrency of long-running requests, all available threads might be busy. This condition is known as thread starvation. When this condition is reached, the web server queues requests. If the request queue becomes full, the web server rejects requests with an HTTP 503 status (Server Too Busy). The CLR thread pool has limitations on new thread injections. If concurrency is bursty (that is, your web site can suddenly get a large number of requests) and all available request threads are busy because of backend calls with high latency, the limited thread injection rate can make your application respond very poorly. Additionally, each new thread added to the thread pool has overhead (such as 1 MB of stack memory). A web application using synchronous methods to service high latency calls where the thread pool grows to the .NET 4.5 default maximum of 5, 000 threads would consume approximately 5 GB more memory than an application able the service the same requests using asynchronous methods and only 50 threads. When you're doing asynchronous work, you're not always using a thread. For example, when you make an asynchronous web service request, ASP.NET will not be using any threads between the **async** method call and the **await**. Using the thread pool to service requests with high latency can lead to a large memory footprint and poor utilization of the server hardware.
 
 ## Processing Asynchronous Requests
 
 In web applications that sees a large number of concurrent requests at start-up or has a bursty load (where concurrency increases suddenly), making these web service calls asynchronous will increase the responsiveness of your application. An asynchronous request takes the same amount of time to process as a synchronous request. For example, if a request makes a web service call that requires two seconds to complete, the request takes two seconds whether it is performed synchronously or asynchronously. However, during an asynchronous call, a thread is not blocked from responding to other requests while it waits for the first request to complete. Therefore, asynchronous requests prevent request queuing and thread pool growth when there are many concurrent requests that invoke long-running operations.
 
-## Choosing Synchronous or Asynchronous Action Methods
+## <a id="ChoosingSyncVasync"></a>  Choosing Synchronous or Asynchronous Action Methods
 
 This section lists guidelines for when to use synchronous or asynchronous action methods. These are just guidelines; examine each application individually to determine whether asynchronous methods help with performance.
 
@@ -63,7 +72,7 @@ In general, use synchronous methods for the following conditions:
   
 Few applications require all action methods to be asynchronous. Often, converting a few synchronous action methods to asynchronous methods provides the best efficiency increase for the amount of work required.
 
-## The Sample Application
+## <a id="SampleApp"></a>  The Sample Application
 
 You can download the sample application from [https://github.com/RickAndMSFT/Async-ASP.NET/](https://github.com/RickAndMSFT/Async-ASP.NET) on the [GitHub](https://github.com/) site. The repository consists of three projects:
 
@@ -71,7 +80,7 @@ You can download the sample application from [https://github.com/RickAndMSFT/Asy
 - *WebAPIpgw*: The ASP.NET MVC 4 Web API project that implements the `Products, Gizmos and Widgets` controllers. It provides the data for the *WebAppAsync* project and the *Mvc4Async* project.
 - *WebAppAsync*: The ASP.NET Web Forms project used in another tutorial.
 
-## The Gizmos Synchronous Action Method
+## <a id="GizmosSynch"></a>  The Gizmos Synchronous Action Method
 
  The following code shows the `Gizmos` synchronous action method that is used to display a list of gizmos. (For this article, a gizmo is a fictional mechanical device.) 
 
@@ -86,7 +95,7 @@ The following image shows the gizmos view from the sample project.
 
 ![Gizmos](using-asynchronous-methods-in-aspnet-mvc-4/_static/image1.png)
 
-## Creating an Asynchronous Gizmos Action Method
+## <a id="CreatingAsynchGizmos"></a>  Creating an Asynchronous Gizmos Action Method
 
 The sample uses the new [async](https://msdn.microsoft.com/en-us/library/hh156513(VS.110).aspx) and [await](https://msdn.microsoft.com/en-us/library/hh156528(VS.110).aspx) keywords (available in .NET 4.5 and Visual Studio 2012) to let the compiler be responsible for maintaining the complicated transformations necessary for asynchronous programming. The compiler lets you write code using the C#'s synchronous control flow constructs and the compiler automatically applies the transformations necessary to use callbacks in order to avoid blocking threads.
 
@@ -126,7 +135,7 @@ The following image shows the asynchronous gizmo view.
 
 The browsers presentation of the gizmos data is identical to the view created by the synchronous call. The only difference is the asynchronous version may be more performant under heavy loads.
 
-## Performing Multiple Operations in Parallel
+## <a id="Parallel"></a>  Performing Multiple Operations in Parallel
 
 Asynchronous action methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous method `PWG`(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous `PWGasync` method takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous `PWG` method is shown in the following code.
 
@@ -140,7 +149,7 @@ The following image shows the view returned from the **PWGasync** method.
 
 ![pwgAsync](using-asynchronous-methods-in-aspnet-mvc-4/_static/image3.png)
 
-## Using a Cancellation Token
+## <a id="CancelToken"></a>  Using a Cancellation Token
 
 Asynchronous action methods returning `Task<ActionResult>`are cancelable, that is they take a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter when one is provided with the [AsyncTimeout](https://msdn.microsoft.com/en-us/library/system.web.mvc.asynctimeoutattribute(VS.108).aspx) attribute. The following code shows the `GizmosCancelAsync` method with a timeout of 150 milliseconds.
 
@@ -152,7 +161,7 @@ The following code shows the GetGizmosAsync overload, which takes a [Cancellatio
 
 In the sample application provided, selecting the *Cancellation Token Demo* link calls the `GizmosCancelAsync` method and demonstrates the cancelation of the asynchronous call.
 
-## Server Configuration for High Concurrency/High Latency Web Service Calls
+## <a id="ServerConfig"></a>  Server Configuration for High Concurrency/High Latency Web Service Calls
 
 To realize the benefits of an asynchronous web application, you might need to make some changes to the default server configuration. Keep the following in mind when configuring and stress testing your asynchronous web application.
 

@@ -28,14 +28,29 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > For information about how to create web projects for Azure Cloud Services or Azure Mobile Services, see [Get Started with Azure Cloud Services and ASP.NET](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-get-started/) and [Creating a Leaderboard App with Azure Mobile Services .NET Backend](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/).
 
 
+This article contains the following sections:
+
+- [Prerequisites](#prerequisites)
+- [Web application projects versus web site projects](#wap)
+- [Overview of web application project creation](#overview)
+- [Visual Studio 2013 Web Project Templates](#vs2013)
+- [Bootstrap in the Visual Studio 2013 web project templates](#bootstrap)
+- [Adding support for additional frameworks](#add)
+- [Authentication methods](#auth)
+- [Organizational account authentication options](#orgauthoptions)
+- [Next steps](#nextsteps)
+
+<a id="prerequisites"></a>
 ## Prerequisites
 
 This article applies to [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566) with [Update 3](https://go.microsoft.com/fwlink/?linkid=397827&amp;clcid=0x409) installed.
 
+<a id="wap"></a>
 ## Web application projects versus web site projects
 
 ASP.NET gives you a choice between two kinds of web projects: *web application projects* and *web site projects*. We recommend web application projects for new development, and this article applies only to web application projects. For more information, see [Web Application Projects versus Web Site Projects in Visual Studio](https://msdn.microsoft.com/en-us/library/dd547590(v=vs.120).aspx) on the MSDN site.
 
+<a id="overview"></a>
 ## Overview of web application project creation
 
 The following steps show how to create a web project:
@@ -67,6 +82,7 @@ The following steps show how to create a web project:
 
     ![Configure authentication dialog](creating-web-projects-in-visual-studio/_static/image7.png)
 
+<a id="azurenewproj"></a>
 ### Create a web app or virtual machine in Azure
 
 Visual Studio includes features that make it easy to work with Azure services for hosting web applications. For example, you can do all of the following right from the Visual Studio IDE:
@@ -90,6 +106,7 @@ For more information about how to use this process for creating Azure resources,
 
 The remainder of this article provides more information about the available templates and their options. The article also introduces Bootstrap, the layout and theming framework used in the templates.
 
+<a id="vs2013"></a>
 ## Visual Studio 2013 Web Project Templates
 
 Visual Studio uses templates to create web projects. A project template can create files and folders in the new project, install NuGet packages, and provide sample code for a rudimentary working application. Templates implement the latest web standards and are intended to demonstrate best practices for how to use ASP.NET technologies as well as give you a jump start on creating your own application.
@@ -110,12 +127,14 @@ For information about how to create projects that target .NET 4, see [Visual Stu
 
 For information about how to create ASP.NET applications for mobile clients, see [Mobile Support in ASP.NET](../../../mobile/index.md).
 
+<a id="empty"></a>
 ### Empty Template
 
 The Empty template provides the bare minimum folders and files for an ASP.NET web app, such as a project file (*.csproj* or .*vbproj*) and a *Web.config* file. You can add support for Web Forms, MVC, and/or Web API by using the check boxes under the **Add folders and core references for:** label.
 
 For the Empty template no authentication options are available. Authentication functionality is implemented in sample applications, and the Empty template does not create a sample application.
 
+<a id="wf"></a>
 ### Web Forms Template
 
 The Web Forms framework provides the following features that let you rapidly build web sites that are rich in UI and data access features:
@@ -138,6 +157,7 @@ The Web Forms template creates a sample Web Forms application that uses [Bootstr
 
 For more information about Web Forms, see [ASP.NET Web Forms](https://asp.net/web-forms). For information about what the Web Forms template does for you, see [Building a basic Web Forms application using Visual Studio 2013](https://blogs.msdn.com/b/webdev/archive/2013/12/19/building-a-basic-web-forms-application-using-visual-studio-2013.aspx).
 
+<a id="mvc"></a>
 ### MVC Template
 
 ASP.NET MVC was designed to facilitate patterns-based development practices such as [test-driven development](http://en.wikipedia.org/wiki/Test-driven_development), [separation of concerns](http://en.wikipedia.org/wiki/Separation_of_concerns), [inversion of control](http://en.wikipedia.org/wiki/Inversion_of_control), and [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection). The framework encourages separating the business logic layer of a web application from its presentation layer. By dividing the application into models (M), views (V), and controllers (C), ASP.NET MVC can make it easier to manage complexity in larger applications.
@@ -152,6 +172,7 @@ The MVC template creates a sample MVC 5 application that uses [Bootstrap](#boots
 
 For more information about MVC, see [ASP.NET MVC](https://asp.net/mvc). For information about how to select the MVC 4 template, see [Visual Studio 2012 templates](#vs2012) later in this article.
 
+<a id="webapi"></a>
 ### Web API Template
 
 The Web API template creates a sample web service based on Web API, including API help pages based on MVC.
@@ -166,6 +187,7 @@ The Web API template creates a sample web service. The following illustrations s
 
 For more information about Web API, see [ASP.NET Web API](https://asp.net/web-api).
 
+<a id="spa"></a>
 ### Single Page Application Template
 
 The Single Page Application (SPA) template creates a sample application that uses JavaScript, HTML 5, and [KnockoutJS](http://knockoutjs.com/) on the client, and ASP.NET Web API on the server.
@@ -184,6 +206,7 @@ For more information about ASP.NET Single Page Applications, and about additiona
 - [Understanding Security Features in the SPA Template for VS2013 RC](https://blogs.msdn.com/b/webdev/archive/2013/09/20/understanding-security-features-in-spa-template.aspx)
 - [Single-Page Applications: Build Modern, Responsive Web Apps with ASP.NET](https://msdn.microsoft.com/en-us/magazine/dn463786.aspx)
 
+<a id="facebook"></a>
 ### Facebook Template
 
 You can install a [Visual Studio extension that provides a Facebook template](https://go.microsoft.com/fwlink/?LinkID=509965&amp;clcid=0x409). This template creates a sample application that is designed to run inside the Facebook web site. It is based on ASP.NET MVC and uses Web API for real-time update functionality.
@@ -192,6 +215,7 @@ No authentication options are available for the Facebook template because Facebo
 
 For more information about ASP.NET Facebook applications, see [Updating the MVC Facebook API](https://blogs.msdn.com/b/webdev/archive/2014/06/10/updating-the-mvc-facebook-api.aspx) and [ASP.NET MVC Facebook Birthday App](../../../mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app.md).
 
+<a id="vs2012"></a>
 ### Visual Studio 2012 Templates
 
 The Visual Studio 2013 web project creation dialog does not provide access to some templates that were available in Visual Studio 2012. If you want to use one of these templates, you can click the Visual Studio 2012 node in the left pane of the Visual Studio New Project dialog box.
@@ -238,6 +262,7 @@ Many Bootstrap themes are available, both free and premium versions. Bootstrap a
 
 If you use the Web Forms designer in Visual Studio, note that the designer doesn't support CSS3, so it doesn't accurately show all the effects of Bootstrap themes or responsive layout changes. However, the Web Forms pages will display correctly when viewed with a browser.
 
+<a id="add"></a>
 ## Adding Support for Additional Frameworks
 
 When you select a template, the check box for the framework(s) used by the template is automatically selected. For example, if you select the **Web Forms** template, the **Web Forms** check box is selected and you can't clear it.
@@ -268,6 +293,7 @@ Installs MVC, Razor, and WebPages NuGet packages, creates empty *App\_Data*, *Co
 
 Installs WebApi and Newtonsoft.Json NuGet packages, creates empty *App\_Data*, *Controllers*, and *Models* folders, creates *App\_Start* folder with *WebApiConfig.cs* file, and creates *Global.asax* file.
 
+<a id="auth"></a>
 ## Authentication Methods
 
 Visual Studio 2013 offers several authentication options for the Web Forms, MVC, and Web API templates:
@@ -279,11 +305,13 @@ Visual Studio 2013 offers several authentication options for the Web Forms, MVC,
 
 ![Configure authentication dialog](creating-web-projects-in-visual-studio/_static/image23.png)
 
+<a id="noauth"></a>
 
 ### No Authentication
 
 If you select **No Authentication**, the sample application will contain no web pages for logging in, no UI indicating who is logged in, no entity classes for a membership database, and no connection string for a membership database.
 
+<a id="indauth"></a>
 ### Individual User Accounts
 
 If you select **Individual User Accounts**, the sample application will be configured to use ASP.NET Identity (formerly known as ASP.NET membership) for user authentication. ASP.NET Identity enables a user to register an account, by creating a username and password on the site or by signing in with social providers such as Facebook, Google, Microsoft Account, or Twitter. The default data store for user profiles in ASP.NET Identity is a SQL Server LocalDB database, which you can deploy to SQL Server or Azure SQL Database for the production site.
@@ -304,16 +332,19 @@ For more information about the Individual User Accounts option, see the followin
 - [Web API - External Authentication Services](../../../web-api/overview/security/external-authentication-services.md)
 - [Adding External Logins to your ASP.NET application in Visual Studio 2013](https://blogs.msdn.com/b/webdev/archive/2013/06/27/adding-external-logins-to-your-asp-net-application-in-visual-studio-2013.aspx)
 
+<a id="orgauth"></a>
 ### Organizational Accounts
 
 If you select **Organizational Accounts**, the sample application will be configured to use Windows Identity Foundation (WIF) for authentication based on user accounts in Azure Active Directory (Azure AD, which includes Office 365) or Windows Server Active Directory. For more information, see [Organizational account authentication options](#orgauthoptions) later in this topic.
 
+<a id="winauth"></a>
 ### Windows Authentication
 
 If you select **Windows Authentication**, the sample application will be configured to use the Windows Authentication IIS module for authentication. The application will display the domain and user ID of the Active directory or local machine account that is logged into Windows but won't include user registration or log-in UI. This option is intended for Intranet web sites.
 
 Alternatively, you can create an Intranet site that uses AD authentication by choosing the [On-Premises option under Organizational Accounts](#orgauthonprem). The On-Premises option uses Windows Identity Foundation (WIF) instead of the Windows Authentication module. Some additional steps are required in order to set up the On-Premises option, but WIF enables features that aren't available with the Windows Authentication module. For example, with WIF you can configure application access in Active Directory and query directory data.
 
+<a id="orgauthoptions"></a>
 ## Organizational account authentication options
 
 The **Configure Authentication** dialog gives you several options for Azure Active Directory (Azure AD, which includes Office 365) or Windows Server Active Directory (AD) account authentication:
@@ -330,6 +361,7 @@ If you want to try one of the Azure AD options but don't have an account yet, [c
 > **Don't enter credentials for a Microsoft account (for example, contoso@hotmail.com) in the sign-in dialog box.**
 
 
+<a id="orgauthsingle"></a>
 ### Cloud - Single Organization Authentication
 
 ![Single Organization Authentication](creating-web-projects-in-visual-studio/_static/image24.png)
@@ -365,6 +397,7 @@ For information about how to create applications that use **Cloud - Single Organ
 
 The tutorials have not yet been updated for Visual Studio 2013; some of what the tutorials direct you to do manually is automated in Visual Studio 2013.
 
+<a id="orgauthmulti"></a>
 ### Cloud - Multi Organization Authentication
 
 ![Multiple organization authentication](creating-web-projects-in-visual-studio/_static/image25.png)
@@ -379,6 +412,7 @@ For information about how to create applications that use **Cloud - Multi Organi
 - [Developing Multi-Tenant Web Applications with Azure AD](https://msdn.microsoft.com/en-us/library/windowsazure/dn151789.aspx) tutorial. The tutorial hasn't yet been updated for Visual Studio 2013; some of what the tutorial directs you to do manually is automated in Visual Studio 2013.
 - [You Have to Sign Up With Your Own Multiple Organizations ASP.NET App Before You Can Sign In](http://www.cloudidentity.com/blog/2013/10/26/you-have-to-sign-up-with-your-own-multiple-organizations-asp-net-app-before-you-can-sign-in/). Blog by Vittorio Bertocci that explains how to resolve a common problem people encounter when creating a project that uses multi-organization authentication.
 
+<a id="orgauthonprem"></a>
 ### On-Premises Organizational Authentication
 
 ![On-premises organizational authentication](creating-web-projects-in-visual-studio/_static/image26.png)
@@ -395,6 +429,7 @@ Enter a URL that points to the metadata document. The metadata document contains
 
 Provide a unique URI that AD can use to identify this application, or leave blank to let Visual Studio create one.
 
+<a id="nextsteps"></a>
 ## Next steps
 
 This document has provided some basic help for creating a new ASP.NET web project in Visual Studio 2013. For more information about using for Visual Studio for web development, see [https://www.asp.net/visual-studio/](../../index.md).
