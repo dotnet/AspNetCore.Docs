@@ -163,6 +163,25 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 
 <a name=appstate-errors></a>
 
+## Application state data
+
+Use [Dependency Injection](xref:fundamentals/dependency-injection) To make data avialable to all users.
+
+1. Define a service containing the data (for example, a class named `MyAppData`).
+2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
+3. Consume the data service class in each controller:
+
+```csharp
+public class MyController : Controller
+{
+    public MyController(MyAppData myService)
+    {
+        // Declare properties/methods/etc.
+    }
+} ```
+
+
+
 ### Common errors when working with session
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
@@ -171,5 +190,6 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
+
 
 * [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
