@@ -1,8 +1,8 @@
 ---
 title: Razor Syntax Reference | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Details Razor syntax
+keywords: ASP.NET Core, Razor
 ms.author: riande
 manager: wpickett
 ms.date: 01/14/2017
@@ -567,7 +567,7 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 
 ## View compilation
 
-Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app. To do this you must set `MvcRazorCompileOnPublish` to true and include a package reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation". The following *.csproj* sample highlights these settings:
+Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app. To do this you must set `MvcRazorCompileOnPublish` to true and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
 [!code-html[Main](razor\sample\MvcRazorCompileOnPublish.csproj?highlight=4,15)]
 
