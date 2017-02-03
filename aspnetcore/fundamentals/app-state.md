@@ -165,7 +165,7 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 
 ## Application state data
 
-Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data avialable to all users.
+Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users.
 
 1. Define a service containing the data (for example, a class named `MyAppData`).
 ```csharp
