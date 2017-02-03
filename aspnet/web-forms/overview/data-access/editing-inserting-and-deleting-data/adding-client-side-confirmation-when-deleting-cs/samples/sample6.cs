@@ -1,0 +1,1 @@
+ButtonType obj = (ButtonType) e.Row.Cells[commandFieldIndex].Controls[controlIndex];

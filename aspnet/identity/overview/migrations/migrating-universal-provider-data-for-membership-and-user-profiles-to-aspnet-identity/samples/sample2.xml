@@ -1,0 +1,6 @@
+<profile defaultProvider="DefaultProfileProvider" enabled="true"
+    inherits="UniversalProviders_ProfileMigrations.Models.AppProfile">
+  <providers>
+    .....
+  </providers>
+</profile>

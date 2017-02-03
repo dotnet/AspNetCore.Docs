@@ -1,0 +1,1 @@
+public virtual OfficeAssignment OfficeAssignment { get; set; }

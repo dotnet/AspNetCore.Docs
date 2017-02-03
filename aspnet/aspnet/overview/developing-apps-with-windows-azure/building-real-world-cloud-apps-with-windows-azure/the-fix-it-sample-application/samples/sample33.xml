@@ -1,0 +1,4 @@
+<appSettings>
+  <add key="StorageAccountName" value="{StorageAccountName}" />
+  <add key="StorageAccountAccessKey" value="{StorageAccountAccessKey}" />
+</appSettings>

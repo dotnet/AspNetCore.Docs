@@ -1,0 +1,7 @@
+<ul>
+    @foreach (var genre in Model)
+    {
+        <li>@Html.ActionLink(genre.Name,
+"Browse", new { genre = genre.Name })</li>
+    }
+</ul>

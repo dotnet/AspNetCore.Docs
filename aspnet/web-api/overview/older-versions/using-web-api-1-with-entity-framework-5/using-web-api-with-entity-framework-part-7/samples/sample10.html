@@ -1,0 +1,7 @@
+<h1>Your Orders</h1>
+<ul id="orders" data-bind="foreach: orders">
+<li class="ui-widget-content">
+    <a href="#" data-bind="click: $root.getDetails">
+        Order # <span data-bind="text: $data.Id"></span></a>
+</li>
+</ul>

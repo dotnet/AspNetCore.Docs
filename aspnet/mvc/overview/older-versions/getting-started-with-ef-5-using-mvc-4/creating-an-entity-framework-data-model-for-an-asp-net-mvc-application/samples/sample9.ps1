@@ -1,0 +1,1 @@
+enable-migrations -contexttypename SchoolContext

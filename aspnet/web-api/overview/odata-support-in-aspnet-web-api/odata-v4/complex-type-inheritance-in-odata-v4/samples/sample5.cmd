@@ -1,0 +1,1 @@
+GET ~/odata/Windows(1)/Shape/NS.Rectangle/LeftTop

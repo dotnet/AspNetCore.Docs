@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+
+  <elmah>
+  <security allowRemoteAccess="0" />
+  
+  <errorLog type="Elmah.SqlErrorLog, Elmah" connectionStringName="ReviewsConnectionString" />
+  </elmah>
+
+  ...
+</configuration>

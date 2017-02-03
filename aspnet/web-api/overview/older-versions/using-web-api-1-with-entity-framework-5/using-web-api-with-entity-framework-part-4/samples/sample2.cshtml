@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="float-left">
+        <ul id="update-products">
+            <li>
+                <div><div class="item">Product ID</div><span></span></div>
+                <div><div class="item">Name</div> <input type="text" /></div> 
+                <div><div class="item">Price ($)</div> <input type="text" /></div>
+                <div><div class="item">Actual Cost ($)</div> <input type="text" /></div>
+                <div>
+                    <input type="button" value="Update" />
+                    <input type="button" value="Delete Item" />
+                </div>
+         </li>
+        </ul>
+    </div>
+
+    <div class="float-right">
+    <h2>Add New Product</h2>
+    <form id="product">
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Contact</legend>
+            @Html.EditorForModel()
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    </form>
+    </div>
+</div>

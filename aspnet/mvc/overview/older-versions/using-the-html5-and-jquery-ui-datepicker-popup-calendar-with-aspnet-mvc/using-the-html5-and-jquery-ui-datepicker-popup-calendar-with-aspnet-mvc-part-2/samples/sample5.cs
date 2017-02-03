@@ -1,0 +1,1 @@
+@String.Format("{0:d}", Model.Date)

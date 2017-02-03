@@ -1,0 +1,18 @@
+<configuration> 
+  <location path="search.aspx"> 
+    <system.web> 
+      <authorization> 
+        <allow roles="admin"/> 
+        <deny users="*"/> 
+      </authorization> 
+    </system.web> 
+  </location> 
+  <location path="search"> 
+    <system.web> 
+      <authorization> 
+        <allow users="*"/> 
+      </authorization> 
+    </system.web> 
+  </location> 
+
+</configuration>

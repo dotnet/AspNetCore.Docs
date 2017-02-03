@@ -1,0 +1,4 @@
+<appSettings>
+  <add key="Environment" value="Dev" />
+  <add key="DatabaseInitializerForType ContosoUniversity.DAL.SchoolContext, ContosoUniversity.DAL" value="ContosoUniversity.DAL.SchoolInitializer, ContosoUniversity.DAL" />
+</appSettings>

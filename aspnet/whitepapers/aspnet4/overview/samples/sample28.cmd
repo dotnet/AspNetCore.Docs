@@ -1,0 +1,1 @@
+aspnet_regbrowsers.exe -I c

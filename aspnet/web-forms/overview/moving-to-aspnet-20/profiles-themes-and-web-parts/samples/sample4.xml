@@ -1,0 +1,13 @@
+<profile>
+    <properties>
+        <group name="Buyers">
+            <add name="FirstName" />
+            <add name="Lastname" />
+            <add name="NumberOfPurchases" type="Int32" />
+        </group>
+        <group name="Prospects">
+            <add name="FirstName" />
+            <add name="Lastname" />
+        </group>
+    </properties>
+</profile>

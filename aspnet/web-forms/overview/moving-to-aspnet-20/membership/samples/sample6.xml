@@ -1,0 +1,16 @@
+<system.web>
+  <authentication mode="Forms"/>
+  <membership
+  defaultProvider="jForumCustomMembershipProvider" >
+    <providers>
+      <add name="jForumCustomMembershipProvider"
+      type="jForumCustomMembershipProvider"
+      requiresQuestionAndAnswer="true"
+      connectionString="Provider=Microsoft.Jet.
+        OLEDB.4.0;Data Source=C:\jForumCustomMembershipProvider\
+        App_Data\Members.mdb;Persist Security
+        Info=False"
+        />
+    </providers>
+  </membership>
+</system.web>

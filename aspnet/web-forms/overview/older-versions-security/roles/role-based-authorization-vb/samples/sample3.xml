@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<configuration>
+     <system.web>
+          <authorization>
+               <allow roles="Administrators" />
+               <deny users="*"/>
+          </authorization>
+
+     </system.web>
+
+     <!-- Allow all users to visit RoleBasedAuthorization.aspx -->
+     <location path="RoleBasedAuthorization.aspx">
+          <system.web>
+               <authorization>
+                    <allow users="*" />
+
+               </authorization>
+          </system.web>
+     </location>
+</configuration>

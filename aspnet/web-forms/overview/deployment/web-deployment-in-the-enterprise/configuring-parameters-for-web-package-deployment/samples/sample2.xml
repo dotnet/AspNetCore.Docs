@@ -1,0 +1,11 @@
+<parameters>
+  <parameter name="ContactService Service Endpoint Address"
+             description="Specify the endpoint URL for the ContactService WCF 
+                          service in the destination environment"
+             defaultValue="http://localhost/ContactManagerService">
+    <parameterEntry kind="XmlFile" scope="Web.config"
+                    match="/configuration/system.serviceModel/client
+                           /endpoint[@name='BasicHttpBinding_IContactService']
+                           /@address" />
+  </parameter>
+</parameters>

@@ -1,0 +1,8 @@
+<Target Name="CustomCollectFiles">
+    <ItemGroup>
+      <_CustomFiles Include="..\ExtraFiles\**\*" />
+      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>

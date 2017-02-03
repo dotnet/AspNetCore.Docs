@@ -1,0 +1,1 @@
+<asp:Label ID="Label1" runat="server" Text='<%# Eval("UnitPrice", "{0:C}") %>'/>

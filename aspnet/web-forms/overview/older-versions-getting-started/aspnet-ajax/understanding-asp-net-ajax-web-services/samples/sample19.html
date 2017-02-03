@@ -1,0 +1,24 @@
+function GetRss()
+{
+     InterfaceTraining.DemoService.GetRssFeed(
+          "http://blogs.interfacett.com/dan-wahlins-blog/rss.xml",
+          OnWSRequestComplete);
+}
+function OnWSRequestComplete(result)
+{
+     if (document.all) //Filter for IE DOM since other browsers are limited
+     {
+          var items = result.selectNodes("//item");
+          for (var i=0;i<items.length;i++)
+          {
+               var title = items[i].selectSingleNode("title").text;
+               var href = items[i].selectSingleNode("link").text;
+               $get("divOutput").innerHTML +=
+               "<a href='" + href + "'>" + title + "</a><br/>";
+          }
+     }
+     else
+     {
+          $get("divOutput").innerHTML = "RSS only available in IE5+";
+     }
+}

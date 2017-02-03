@@ -1,0 +1,10 @@
+<PropertyGroup>   
+  <FullPublishDependsOn>
+     Clean;
+     BuildProjects;      
+     GatherPackagesForPublishing;
+     PublishDbPackages;
+     PublishWebPackages;
+  </FullPublishDependsOn>
+</PropertyGroup>
+<Target Name="FullPublish" DependsOnTargets="$(FullPublishDependsOn)" />

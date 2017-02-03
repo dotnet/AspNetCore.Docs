@@ -1,0 +1,1 @@
+db.Execute(insertQuery, Name, Description, Price);

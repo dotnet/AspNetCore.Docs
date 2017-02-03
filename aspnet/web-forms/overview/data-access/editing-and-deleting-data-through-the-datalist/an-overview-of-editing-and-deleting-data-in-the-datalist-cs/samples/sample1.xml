@@ -1,0 +1,42 @@
+<siteMapNode
+    title="Editing and Deleting with the DataList"
+    description="Samples of Reports that Provide Editing and Deleting Capabilities"
+    url="~/EditDeleteDataList/Default.aspx" >
+    <siteMapNode
+        title="Basics"
+        description="Examines the basics of editing and deleting with the
+                     DataList control."
+        url="~/EditDeleteDataList/Basics.aspx" />
+    <siteMapNode
+        title="Batch Update"
+        description="Examines how to update multiple records at once in a
+                     fully-editable DataList."
+        url="~/EditDeleteDataList/BatchUpdate.aspx" />
+    <siteMapNode
+        title="Error Handling"
+        description="Learn how to gracefully handle exceptions raised during the
+                     data modification workflow."
+        url="~/EditDeleteDataList/ErrorHandling.aspx" />
+    <siteMapNode
+        title="Adding Data Entry Validation"
+        description="Help prevent data entry errors by providing validation."
+        url="~/EditDeleteDataList/UIValidation.aspx" />
+    <siteMapNode
+        title="Customize the User Interface"
+        description="Customize the editing user interfaces."
+        url="~/EditDeleteDataList/CustomizedUI.aspx" />
+    <siteMapNode
+        title="Optimistic Concurrency"
+        description="Learn how to help prevent simultaneous users from
+                     overwritting one another s changes."
+        url="~/EditDeleteDataList/OptimisticConcurrency.aspx" />
+    <siteMapNode
+        title="Confirm On Delete"
+        description="Prompt a user for confirmation when deleting a record."
+        url="~/EditDeleteDataList/ConfirmationOnDelete.aspx" />
+    <siteMapNode
+        title="Limit Capabilities Based on User"
+        description="Learn how to limit the data modification functionality
+                     based on the user s role or permissions."
+        url="~/EditDeleteDataList/UserLevelAccess.aspx" />
+</siteMapNode>

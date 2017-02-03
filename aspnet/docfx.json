@@ -8,7 +8,6 @@
         ],
         "exclude": [
           "**/obj/**",
-          "aspnet/**",
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
           "_site/**"
@@ -19,7 +18,12 @@
       {
         "files": [
           "**/*.png",
-          "**/*.jpg"
+          "**/*.jpg",
+          "**/*.gif",
+          "**/*.pdf",
+          "**/*.exe",
+          "**/*.wmv",
+          "**/*.zip"
         ],
         "exclude": [
           "**/obj/**",

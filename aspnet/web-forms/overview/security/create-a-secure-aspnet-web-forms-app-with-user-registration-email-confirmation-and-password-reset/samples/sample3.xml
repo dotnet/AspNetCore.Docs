@@ -1,0 +1,6 @@
+</connectionStrings>
+   <appSettings>
+      <add key="emailServiceUserName" value="[EmailServiceAccountUserName]" />
+      <add key="emailServicePassword" value="[EmailServiceAccountPassword]" />
+   </appSettings>
+  <system.web>

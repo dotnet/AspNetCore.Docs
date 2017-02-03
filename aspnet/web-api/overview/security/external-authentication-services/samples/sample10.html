@@ -1,0 +1,63 @@
+<!-- ko with: login -->
+<hgroup class="title">
+    <h1>Log in</h1>
+</hgroup>
+<div class="row-fluid">
+    @*<section class="span7">
+        <form>
+            <fieldset class="form-horizontal">
+                <legend>Use a local account to log in.</legend>
+                <ul class="text-error" data-bind="foreach: errors">
+                    <li data-bind="text: $data"></li>
+                </ul>
+                <div class="control-group">
+                    <label for="UserName" class="control-label">User name</label>
+                    <div class="controls">
+                        <input type="text" name="UserName" data-bind="value: userName, hasFocus: true" />
+                        <span class="text-error" data-bind="visible: userName.hasError, text: userName.errorMessage"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Password" class="control-label">Password</label>
+                    <div class="controls">
+                        <input type="password" name="Password" data-bind="value: password" />
+                        <span class="text-error" data-bind="visible: password.hasError, text: password.errorMessage"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox" name="RememberMe" data-bind="checked: rememberMe" />
+                            <label for="RememberMe">Remember me?</label>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions no-color">
+                    <button type="submit" class="btn" data-bind="click: login, disable: loggingIn">Log in</button>
+                </div>
+                <p><a href="#" data-bind="click: register">Register</a> if you don't have a local account.</p>
+            </fieldset>
+        </form>
+    </section>*@
+    <section class="span5">
+        <h2>Log in using another service</h2>
+        <div data-bind="visible: loadingExternalLogin">Loading...</div>
+        <div data-bind="visible: !loadingExternalLogin()">
+            <div class="message-info" data-bind="visible: !hasExternalLogin()">
+                <p>
+                    There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=252166">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
+                </p>
+            </div>
+            <form data-bind="visible: hasExternalLogin">
+                <fieldset class="form-horizontal">
+                    <legend>Use another service to log in.</legend>
+                    <p data-bind="foreach: externalLoginProviders">
+                        <button type="submit" class="btn" data-bind="text: name, attr: { title: 'Log in using your ' + name() + ' account' }, click: login"></button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</div>
+<!-- /ko -->

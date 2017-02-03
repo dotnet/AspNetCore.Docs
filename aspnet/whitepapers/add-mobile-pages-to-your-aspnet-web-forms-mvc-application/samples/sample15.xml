@@ -1,0 +1,5 @@
+<redirect firstRequestOnly="true"
+          mobileHomePageUrl="~/Mobile/Default.aspx"
+          timeout="20"
+          devicesFile="~/App_Data/Devices.dat"
+          mobilePagesRegex="/Mobile/" />

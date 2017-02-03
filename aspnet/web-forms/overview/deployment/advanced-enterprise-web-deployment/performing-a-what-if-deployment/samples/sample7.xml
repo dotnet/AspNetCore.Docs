@@ -1,0 +1,14 @@
+<Target Name="PublishDbPackages" Outputs="%(DbPublishPackages.Identity)">
+  <PropertyGroup>
+    <_DbDeployOrScript></_DbDeployOrScript>
+    <_DbDeployOrScript Condition=" '$(Whatif)'!='true' ">/dd</_DbDeployOrScript>
+    <_Cmd>"$(VsdbCmdExe)" /a:Deploy 
+           /cs:"%(DbPublishPackages.DatabaseConnectionString)" 
+           /p:TargetDatabase=%(DbPublishPackages.TargetDatabase) 
+           /manifest:"%(DbPublishPackages.FullPath)" 
+           /script:"$(_CmDbScriptPath)" 
+           $(_DbDeployOrScript)
+    </_Cmd>
+  </PropertyGroup>
+  <Exec Command="$(_Cmd)"/>
+</Target>

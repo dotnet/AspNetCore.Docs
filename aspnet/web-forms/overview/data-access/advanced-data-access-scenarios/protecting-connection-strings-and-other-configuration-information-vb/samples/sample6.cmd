@@ -1,0 +1,1 @@
+aspnet_regiis.exe -pe section -app virtual_directory -prov provider

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+  
+  <system.web>
+  ...
+
+  <httpHandlers>
+  ...
+
+  <add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" />
+  </httpHandlers>
+  
+  <httpModules>
+  ...
+  
+  <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/>
+  </httpModules>
+
+  ...
+  </system.web>
+
+  ...
+</configuration>

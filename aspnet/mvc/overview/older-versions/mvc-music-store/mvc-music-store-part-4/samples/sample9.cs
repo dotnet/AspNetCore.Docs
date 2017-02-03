@@ -1,0 +1,1 @@
+var example = storeDB.Genres.Single(g => g.Name == "Disco");

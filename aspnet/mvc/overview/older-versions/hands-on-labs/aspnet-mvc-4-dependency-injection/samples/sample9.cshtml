@@ -1,0 +1,10 @@
+@inherits MvcMusicStore.Pages.MyBasePage    
+@{
+    Viewbag.Title = "Browse Albums";
+}
+<div>
+    @this.MessageService.Message
+    <br />
+    <img alt="@this.MessageService.Message" src="@this.MessageService.ImageUrl" />
+</div>
+...

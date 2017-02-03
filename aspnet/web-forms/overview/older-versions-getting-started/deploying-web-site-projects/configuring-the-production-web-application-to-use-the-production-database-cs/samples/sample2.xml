@@ -1,0 +1,13 @@
+<configuration>
+
+    ...
+    <connectionStrings>
+        
+        <add name="ReviewsConnectionString" 
+            connectionString="Data Source=serverName; Initial Catalog=databaseName; 
+            Persist Security Info=True; User ID=username; Password=password"
+            providerName="System.Data.SqlClient" />
+
+    </connectionStrings>
+    ...
+</configuration>

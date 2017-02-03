@@ -1,0 +1,13 @@
+@using Microsoft.Web.Helpers;
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gravatar Example</title>
+    </head>
+    <body>
+        <h1>Gravatar Example</h1>
+        @Gravatar.GetHtml("<Your Gravatar account here>")
+        &nbsp;&nbsp;&nbsp;
+        @Gravatar.GetHtml("<Your Gravatar account here>", 40)
+    </body>
+</html>

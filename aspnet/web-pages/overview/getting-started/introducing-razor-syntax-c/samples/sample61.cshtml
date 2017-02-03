@@ -1,0 +1,10 @@
+@{
+    var myScores = new Dictionary<string, int>();
+    myScores.Add("test1", 71);
+    myScores.Add("test2", 82);
+    myScores.Add("test3", 100);
+    myScores.Add("test4", 59);
+}
+<p>My score on test 3 is: @myScores["test3"]%</p>
+@{myScores["test4"] = 79;}
+<p>My corrected score on test 4 is: @myScores["test4"]%</p>

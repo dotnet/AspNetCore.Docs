@@ -1,0 +1,3 @@
+<appSettings>
+    <add key="Environment" value="Test" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+</appSettings>

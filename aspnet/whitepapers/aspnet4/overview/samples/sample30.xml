@@ -1,0 +1,4 @@
+<system.web> 
+<browserCaps provider="ClassLibrary2.CustomProvider, ClassLibrary2, 
+  Version=1.0.0.0, Culture=neutral" /> 
+</system.web>

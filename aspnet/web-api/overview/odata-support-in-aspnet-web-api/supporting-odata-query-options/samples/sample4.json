@@ -1,0 +1,9 @@
+{
+  "odata.metadata":"http://localhost/$metadata#Products",
+  "value":[
+    { "ID":1,"Name":"Hat","Price":"15","Category":"Apparel" },
+    { "ID":2,"Name":"Socks","Price":"5","Category":"Apparel" },
+    // Others not shown
+  ],
+  "odata.nextLink":"http://localhost/Products?$skip=10"
+}

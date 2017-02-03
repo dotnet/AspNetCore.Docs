@@ -1,0 +1,1 @@
+<%= Html.ActionLink(dinner.Title, "Details", new { id=dinner.DinnerID }) %>

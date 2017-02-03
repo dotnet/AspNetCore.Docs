@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!-- Specifies the interval at which the diagnostics agent polls the storage service for diagnostics configuration changes-->
+<DiagnosticMonitorConfiguration xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration" configurationChangePollInterval="PT1M" overallQuotaInMB="4096">
+  <!--Configure the diagnostics infrastructure logs into which the diagnostics agent log data about itself -->
+  <DiagnosticInfrastructureLogs bufferQuotaInMB="256"  scheduledTransferLogLevelFilter="Warning"   scheduledTransferPeriod="PT5M" />
+  <!-- Configure the capture and persistence of basic log from the WAD trace listener-->
+  <Logs bufferQuotaInMB="100" scheduledTransferLogLevelFilter="Warning" scheduledTransferPeriod="PT5M" />
+  <!-- Configure the capture and persistence of data located in directories on local file system  which are for crash dupmp, failed IIS request logs and IIS logs-->
+  <Directories bufferQuotaInMB="1024" scheduledTransferPeriod="PT5M">
+    <CrashDumps container="wad-crash-dumps" directoryQuotaInMB="128" />
+    <FailedRequestLogs container="wad-frq" directoryQuotaInMB="128"/>
+    <IISLogs container="wad-iis" directoryQuotaInMB="128" />
+    <DataSources>
+      <DirectoryConfiguration container="wad-startup" directoryQuotaInMB="10">
+        <!-- Absolute specifies an absolute path with optional environment expansion -->
+        <Absolute expandEnvironment="true" path="%ROLEROOT%\approot\bin\Startup\Log" />
+      </DirectoryConfiguration>
+    </DataSources>
+  </Directories>
+  <!-- Configure the capture and persistence of performance counters data-->
+  <PerformanceCounters bufferQuotaInMB="256" scheduledTransferPeriod="PT5M">
+    <PerformanceCounterConfiguration  counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\LogicalDisk(*)\% Free Space" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\LogicalDisk(*)\Avg. Disk sec/Transfer" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\Memory\Available Bytes" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\Memory\Available MBytes" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\ASP.NET\Requests Queued" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\ASP.NET\Requests Rejected" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\ASP.NET Applications(__Total__)\Requests/Sec" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\ASP.NET\Request Wait Time" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR Memory(w3wp)\% Time in GC" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR Exceptions(w3wp)\# of Exceps Thrown / sec" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\# of current logical Threads" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\# of current physical Threads" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\Current Queue Length" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\Contention Rate / sec" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR Memory(w3wp)\# Bytes in all Heaps" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR Memory(w3wp)\# GC Handles" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\.NET CLR Memory(w3wp)\# of Pinned Objects" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\TCPV4\Segments Retransmitted/sec" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\TCPV4\Connection Failures" sampleRate="PT10S" />
+    <PerformanceCounterConfiguration  counterSpecifier="\TCPV6\Segments Retransmitted/sec" sampleRate="PT10S" />
+    <!-- comment out to check that addition occurred <PerformanceCounterConfiguration  counterSpecifier="\TCPV6\Connection Failures" sampleRate="PT10S" />-->
+  </PerformanceCounters>
+  <!-- configure the capture and persistence of the Windows event logs -->
+  <WindowsEventLog bufferQuotaInMB="100" scheduledTransferLogLevelFilter="Warning" scheduledTransferPeriod="PT5M">
+    <DataSource name="System!*" />
+    <DataSource name="Application!*"/>
+  </WindowsEventLog>
+</DiagnosticMonitorConfiguration>

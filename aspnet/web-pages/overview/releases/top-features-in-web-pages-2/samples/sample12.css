@@ -1,0 +1,2 @@
+OAuthWebSecurity.RegisterOpenIDClient(BuiltInOpenIDClient.Google);
+OAuthWebSecurity.RegisterOpenIDClient(BuiltInOpenIDClient.Yahoo);

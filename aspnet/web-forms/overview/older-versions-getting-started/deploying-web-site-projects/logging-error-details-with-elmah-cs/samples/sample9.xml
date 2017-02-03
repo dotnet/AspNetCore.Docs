@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+
+  <elmah>
+  ...
+
+  <errorFilter>
+  <test>
+  <equal binding="HttpStatusCode" value="404" type="Int32" />
+  </test>
+  </errorFilter>
+  </elmah>
+
+  ...
+</configuration>

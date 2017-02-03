@@ -1,0 +1,4 @@
+public Configuration()
+{
+    AutomaticMigrationsEnabled = true;
+}

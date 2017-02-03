@@ -1,0 +1,8 @@
+<_Cmd>"$(VsdbCmdExe)" 
+   /a:Deploy 
+   /cs:"%(DbPublishPackages.DatabaseConnectionString)" 
+   /p:TargetDatabase=%(DbPublishPackages.TargetDatabase)             
+   /manifest:"%(DbPublishPackages.FullPath)" 
+   /script:"$(_CmDbScriptPath)" 
+   $(_DbDeployOrScript)
+</_Cmd>

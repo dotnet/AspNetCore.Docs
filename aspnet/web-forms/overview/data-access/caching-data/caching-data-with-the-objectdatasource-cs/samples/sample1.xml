@@ -1,0 +1,19 @@
+<siteMapNode title="Caching" url="~/Caching/Default.aspx" 
+    description="Learn how to use the caching features of ASP.NET 2.0.">
+    <siteMapNode url="~/Caching/ObjectDataSource.aspx" 
+        title="ObjectDataSource Caching" 
+        description="Explore how to cache data directly from the 
+            ObjectDataSource control." />
+    <siteMapNode url="~/Caching/FromTheArchitecture.aspx" 
+        title="Caching in the Architecture" 
+        description="See how to cache data from within the 
+            architecture." />
+    <siteMapNode url="~/Caching/AtApplicationStartup.aspx" 
+        title="Caching Data at Application Startup" 
+        description="Learn how to cache expensive or infrequently-changing 
+            queries at the start of the application." />
+    <siteMapNode url="~/Caching/SqlCacheDependencies.aspx" 
+        title="Using SQL Cache Dependencies" 
+        description="Examine how to have data automatically expire from the 
+            cache when its underlying database data is modified." />
+</siteMapNode>

@@ -1,0 +1,1 @@
+<%@ Master Language="C#" MasterPageFile="~/parent.master" AutoEventWireup="true" CodeFile="child.master.cs" Inherits="child" %> <asp:Content ID="Content1" ContentPlaceHolderID="MainMenuContent" Runat="Server"> <span>From the Child Master.</span> <asp:contentplaceholder id="ChildPlaceHolder1" runat="server" /> </asp:Content>

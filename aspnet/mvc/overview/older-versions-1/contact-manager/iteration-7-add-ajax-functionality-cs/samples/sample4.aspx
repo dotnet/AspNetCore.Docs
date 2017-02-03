@@ -1,0 +1,1 @@
+<%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList"})%>

@@ -1,0 +1,1 @@
+"api/{controller}/public/{category}/{id}"

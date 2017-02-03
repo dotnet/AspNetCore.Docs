@@ -1,0 +1,1 @@
+<connectionStrings> <add name="Northwind" connectionString="Data Source=localhost; Integrated Security=SSPI;Initial Catalog=Northwind;" providerName="System.Data.SqlClient" /> </connectionStrings>

@@ -1,0 +1,4 @@
+<system.web>
+    <compilation debug="true" />
+    <!-- Lines removed for clarity. -->
+</system.web>

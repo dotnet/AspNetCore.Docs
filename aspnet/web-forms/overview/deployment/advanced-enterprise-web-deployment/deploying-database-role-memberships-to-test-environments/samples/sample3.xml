@@ -1,0 +1,11 @@
+<PropertyGroup>
+   <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
+      ContactManager
+   </CmTargetDatabase>
+   <DatabaseServer Condition=" '$(DatabaseServer)'=='' ">
+      TESTDB1
+   </DatabaseServer>
+   <DeployTestDBRoleMemberships Condition="'$(DeployTestDBRoleMemberships)'==''">
+      true
+   </DeployTestDBRoleMemberships>
+</PropertyGroup>

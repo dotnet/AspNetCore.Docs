@@ -1,0 +1,1 @@
+<httpRuntime requestValidationType="Samples.MyValidator, Samples" />

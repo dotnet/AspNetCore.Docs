@@ -1,0 +1,8 @@
+<sharedListeners>
+  <!-- Listener for transport events -->
+  <add name="SignalR-Transports" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRScaleoutLog" />
+  <!-- Listener for scaleout provider events -->
+  <add name="SignalR-Bus" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRTransportLog" />
+  <!-- Listener for hub discovery events -->
+  <add name="SignalR-Init" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRInitLog" />
+</sharedListeners>
