@@ -34,7 +34,7 @@ If you send a GET request to /api/books, it returns JSON like the following:
 
 You can see that the Author property is null, even though the book contains a valid AuthorId. That's because EF is not loading the related Author entities. The trace log of the SQL query confirms this:
 
-[!code-console[Main](part-4/samples/sample3.cmd)]
+[!code-console[Main](part-4/samples/sample3.sql)]
 
 The SELECT statement takes from the Books table, and does not reference the Author table.
 
@@ -72,7 +72,7 @@ When lazy loading is enabled, accessing the `Author` property on `books[0]` caus
 
 Lazy loading requires multiple database trips, because EF sends a query each time it retrieves a related entity. Generally, you want lazy loading disabled for objects that you serialize. The serializer has to read all of the properties on the model, which triggers loading the related entities. For example, here are the SQL queries when EF serializes the list of books with lazy loading enabled. You can see that EF makes three separate queries for the three authors.
 
-[!code-console[Main](part-4/samples/sample10.cmd)]
+[!code-console[Main](part-4/samples/sample10.sql)]
 
 There are still times when you might want to use lazy loading. Eager loading can cause EF to generate a very complex join. Or you might need related entities for a small subset of the data, and lazy loading would be more efficient.
 
