@@ -168,6 +168,11 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data avialable to all users.
 
 1. Define a service containing the data (for example, a class named `MyAppData`).
+```csharp
+public class MyAppData
+{
+    // Declare properties/methods/etc.
+}```
 2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
 3. Consume the data service class in each controller:
 
@@ -176,7 +181,9 @@ public class MyController : Controller
 {
     public MyController(MyAppData myService)
     {
-        // Declare properties/methods/etc.
+        // Do something with the service (read some data from it, 
+        // store it in a private field/property, etc.
+    }
     }
 } ```
 
