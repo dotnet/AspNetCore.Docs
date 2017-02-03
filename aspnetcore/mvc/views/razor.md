@@ -1,8 +1,8 @@
 ---
 title: Razor Syntax Reference | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Details Razor syntax
+keywords: ASP.NET Core, Razor
 ms.author: riande
 manager: wpickett
 ms.date: 01/14/2017
@@ -567,17 +567,9 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 
 ## View compilation
 
-Razor views are compiled at runtime when the view is invoked. If your app targets ASP.NET Core 1.1.0 and you prefer to compile your Razor views and deploy them with your app, make these changes to *project.json*:
+Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app. To do this set `MvcRazorCompileOnPublish` to true and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
-1. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Design" under the "dependencies" section.
-2. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools" under the "tools" section.
-3. Add a postpublish script to invoke the view compiler:
-
-```json
-"scripts": {
-  "postpublish": [ "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%" ]
-}
-```
+[!code-html[Main](razor\sample\MvcRazorCompileOnPublish.csproj?highlight=4,15)]
 
 > [!NOTE]
 > View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
