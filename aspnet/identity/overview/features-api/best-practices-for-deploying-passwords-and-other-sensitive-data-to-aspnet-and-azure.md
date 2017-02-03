@@ -23,6 +23,14 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > On premise settings and PHP is also mentioned.
 
 
+- [Working with passwords in the development environment](#pwd)
+- [Working with connection strings in the development environment](#con)
+- [WebJobs console apps](#wj)
+- [Deploying secrets to Azure](#da)
+- [Notes for On-Premise and PHP](#not)
+- [Additional Resources](#addRes)
+
+<a id="pwd"></a>
 ## Working with passwords in the development environment
 
 Tutorials frequently show sensitive data in source code, hopefully with a caveat that you should never store sensitive data in source code. For example, my [ASP.NET MVC 5 app with SMS and email 2FA](../../../mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md) tutorial shows the following in the *web.config* file:
@@ -43,6 +51,7 @@ The ASP.NET runtime merges the contents of the external file with the markup in 
 > Security - Do not add your *secrets .config* file to your project or check it into source control. By default, Visual Studio sets the `Build Action` to `Content`, which means the file is deployed. For more information see [Why don't all of the files in my project folder get deployed?](https://msdn.microsoft.com/en-us/library/ee942158(v=vs.110).aspx#can_i_exclude_specific_files_or_folders_from_deployment) Although you can use any extension for the *secrets .config* file, it's best to keep it *.config*, as config files are not served by IIS. Notice also that the *AppSettingsSecrets.config* file is two directory levels up from the *web.config* file, so it's completely out of the solution directory. By moving the file out of the solution directory, &quot;git add \*&quot; won't add it to your repository.
 
 
+<a id="con"></a>
 ## Working with connection strings in the development environment
 
 Visual Studio creates new ASP.NET projects that use [LocalDB](https://blogs.msdn.com/b/sqlexpress/archive/2011/07/12/introducing-localdb-a-better-sql-express.aspx). LocalDB was created specifically for the development environment. It doesn't require a password, therefore you need to do anything to prevent secrets from being checked into your source code. Some development teams use the full versions of SQL Server (or other DBMS) that require a password.
@@ -63,12 +72,14 @@ You can use the `configSource` attribute to replace the entire `<connectionStrin
 > **Security Warning on secrets file:** A best practice is to not use production secrets in test and development. Using production passwords in test or development leaks those secrets.
 
 
+<a id="wj"></a>
 ## WebJobs console apps
 
 The *app.config* file used by a console app doesn't support relative paths, but it does support absolute paths. You can use an absolute path to move your secrets out of your project directory. The following markup shows the secrets in the *C:\secrets\AppSettingsSecrets.config* file, and non sensitive data in the *app.config* file.
 
 [!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample5.xml?highlight=2)]
 
+<a id="da"></a>
 ## Deploying secrets to Azure
 
 When you deploy your web app to Azure, the *AppSettingsSecrets.config* file won't be deployed (that's what you want). You could go to the [Azure Management Portal](https://azure.microsoft.com/services/management-portal/) and set them manually, to do that:
@@ -95,6 +106,7 @@ In the script above, ‘Name' is the name of the secret key, such as ‘&quot;FB
 
 DB connection strings are handled similarly to app settings. If you deploy your web app from Visual Studio, the connection string will be configured for you. You can verify this in the portal. The recommended way to set the connection string is with PowerShell. For an example of a PowerShell script the creates a website and database and sets the connection string in the website, download [New-AzureWebsitewithDB.ps1](https://gallery.technet.microsoft.com/scriptcenter/Ultimate-Create-Web-SQL-DB-9e0fdfd3) from the [Azure Script library](https://gallery.technet.microsoft.com/scriptcenter/site/search?f%5B0%5D.Type=RootCategory&amp;f%5B0%5D.Value=WindowsAzure).
 
+<a id="not"></a>
 ## Notes for PHP
 
 Since the key-value pairs for both **app settings** and **connection strings** are stored in environment variables on Azure App Service, developers that use any web app frameworks (such as PHP) can easily retrieve these values. See Stefan Schackow's [Windows Azure Web Sites: How Application Strings and Connection Strings Work](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/) blog post which shows a PHP snippet to read app settings and connection strings.
@@ -103,6 +115,7 @@ Since the key-value pairs for both **app settings** and **connection strings** a
 
 If you are deploying to on-premises web servers, you can help secure secrets by [encrypting the configuration sections of configuration files](https://msdn.microsoft.com/en-us/library/ff647398.aspx). As an alternative, you can use the same approach recommended for Azure Websites: keep development settings in configuration files, and use environment variable values for production settings. In this case, however, you have to write application code for functionality that is automatic in Azure Websites: retrieve settings from environment variables and use those values in place of configuration file settings, or use configuration file settings when environment variables are not found.
 
+<a id="addRes"></a>
 ## Additional Resources
 
 For an example of a PowerShell script that creates a web app + database, sets the connection string + app settings, download [New-AzureWebsitewithDB.ps1](https://gallery.technet.microsoft.com/scriptcenter/Ultimate-Create-Web-SQL-DB-9e0fdfd3) from the [Azure Script library](https://gallery.technet.microsoft.com/scriptcenter/site/search?f%5B0%5D.Type=RootCategory&amp;f%5B0%5D.Value=WindowsAzure). 

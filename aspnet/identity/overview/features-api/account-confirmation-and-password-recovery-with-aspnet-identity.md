@@ -19,7 +19,11 @@ by [Hao Kung](https://github.com/HaoK), [Pranav Rastogi](https://github.com/rust
 > Before doing this tutorial you should first complete [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md). This tutorial contains more details and will show you how to set up email for local account confirmation and allow users to reset their forgotten password in ASP.NET Identity. This article was written by Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT)), Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Hao Kung, and Suhas Joshi. The NuGet sample was written primarily by Hao Kung.
 
 
-A local user account requires the user to create a password for the account, and that password is stored (securely) in the web app. ASP.NET Identity also supports social accounts, which don't require the user to create a password for the app. [Social accounts](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) use a third party (such as Google, Twitter, Facebook or Microsoft) to authenticate users. 
+A local user account requires the user to create a password for the account, and that password is stored (securely) in the web app. ASP.NET Identity also supports social accounts, which don't require the user to create a password for the app. [Social accounts](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) use a third party (such as Google, Twitter, Facebook or Microsoft) to authenticate users. This topic covers the following:
+
+- [Create an ASP.NET MVC app](#createMvc) and explore ASP.NET Identity features.
+- [Building the Identity sample](#build)
+- [Set up email confirmation](#email)
 
 New users register their email alias, which creates a local account.
 
@@ -37,6 +41,7 @@ Clicking the link confirms the account.
 
 ![](account-confirmation-and-password-recovery-with-aspnet-identity/_static/image4.png)
 
+<a id="passwordReset"></a>
 
 ## Password recovery/reset
 
@@ -55,6 +60,7 @@ Clicking the **Reset** button will confirm the password has been reset.
   
 ![](account-confirmation-and-password-recovery-with-aspnet-identity/_static/image8.png)
 
+<a id="createMvc"></a>
 
 ## Create an ASP.NET Web app
 
@@ -129,7 +135,7 @@ The OWIN `AuthenticationManager.SignIn` method passes in the `ClaimsIdentity` an
 
 ## Email confirmation
 
-It's a good idea to confirm the email a new user register with to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent `"bob@example.com"` from registering as `"joe@contoso.com"`. Without email confirmation, `"joe@contoso.com"` could get unwanted email from your app. Suppose Bob accidently registered as `"bib@example.com"` and hadn't noticed it, he wouldn't be able to use password recover because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers, they have many working email aliases they can use to register.In the sample below, the user won't be able to change their password until their account has been confirmed (by them clicking on a confirmation link received on the email account they registered with.) You can apply this work flow to other scenarios, for example sending a link to confirm and reset the password on new accounts created by the administrator, sending the user an email when they have changed their profile and so on. You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, a SMS text message or another mechanism.
+It's a good idea to confirm the email a new user register with to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent `"bob@example.com"` from registering as `"joe@contoso.com"`. Without email confirmation, `"joe@contoso.com"` could get unwanted email from your app. Suppose Bob accidently registered as `"bib@example.com"` and hadn't noticed it, he wouldn't be able to use password recover because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers, they have many working email aliases they can use to register.In the sample below, the user won't be able to change their password until their account has been confirmed (by them clicking on a confirmation link received on the email account they registered with.) You can apply this work flow to other scenarios, for example sending a link to confirm and reset the password on new accounts created by the administrator, sending the user an email when they have changed their profile and so on. You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, a SMS text message or another mechanism. <a id="build"></a>
 
 ## Building a more complete sample
 
@@ -169,6 +175,7 @@ When a user registers a local account, the `HTTP Post Register` method is called
 
 The code above uses the model data to create a new user account using the email and password entered. If the email alias is in the data store, account creation fails and the form is displayed again. The `GenerateEmailConfirmationTokenAsync` method creates a secure confirmation token and stores it in the ASP.NET Identity data store. The [Url.Action](https://msdn.microsoft.com/en-us/library/dd505232(v=vs.118).aspx) method creates a link containing the `UserId` and confirmation token. This link is then emailed to the user, the user can click on the link in their email app to confirm their account.
 
+<a id="email"></a>
 
 ## Set up email confirmation
 
@@ -221,6 +228,7 @@ The following code shows the email confirmation method:
 [!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample12.cs)]
 
  To make your app more secure, ASP.NET Identity supports Two-Factor authentication (2FA). See [ASP.NET Identity 2.0: Setting Up Account Validation and Two-Factor Authorization](http://typecastexception.com/post/2014/04/20/ASPNET-Identity-20-Setting-Up-Account-Validation-and-Two-Factor-Authorization.aspx) by John Atten. Although you can set account lockout on login password attempt failures, that approach makes your login susceptible to [DOS](http://en.wikipedia.org/wiki/Denial-of-service_attack) lockouts. We recommend you use account lockout only with 2FA.  
+<a id="addRes"></a>
 
 ## Additional Resources
 

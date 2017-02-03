@@ -35,7 +35,19 @@ By default, the ASP.NET Identity system stores user information in a SQL Server 
 
 ASP.NET Identity is included by default in many of the Visual Studio 2013 templates. You can get updates to ASP.NET Identity through [Microsoft AspNet Identity EntityFramework NuGet package](http://www.nuget.org/packages/Microsoft.AspNet.Identity.EntityFramework/).
 
+This topic includes the following sections:
 
+- [Understand the architecture](#architecture)
+- [Understand the data that is stored](#data)
+- [Create the data access layer](#dal)
+- [Customize the user class](#user)
+- [Customize the user store](#userstore)
+- [Customize the role class](#role)
+- [Customize the role store](#rolestore)
+- [Reconfigure application to use new storage provider](#reconfigure)
+- [Other implementations of custom storage providers](#other)
+
+<a id="architecture"></a>
 ## Understand the architecture
 
 ASP.NET Identity consists of classes called managers and stores. Managers are high-level classes which an application developer uses to perform operations, such as creating a user, in the ASP.NET Identity system. Stores are lower-level classes that specify how entities, such as users and roles, are persisted. Stores are closely coupled with the persistence mechanism, but managers are decoupled from stores which means you can replace the persistence mechanism without disrupting the entire application.
@@ -48,6 +60,7 @@ To create a customized storage provider for ASP.NET Identity, you have to create
 
 You do not need to customize the manager classes because when creating a new instance of UserManager or RoleManager you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into the existing structure. You will see how to instantiate UserManager and RoleManager with your customized store classes in the section [Reconfigure application to use new storage provider](#reconfigure).
 
+<a id="data"></a>
 ## Understand the data that is stored
 
 To implement a custom storage provider, you must understand the types of data used with ASP.NET Identity, and decide which features are relevant to your application.
@@ -59,6 +72,7 @@ To implement a custom storage provider, you must understand the types of data us
 | User Logins | Information about the external authentication provider (like Facebook) to use when logging in a user. |
 | Roles | Authorization groups for your site. Includes the role Id and role name (like "Admin" or "Employee"). |
 
+<a id="dal"></a>
 ## Create the data access layer
 
 This topic assumes you are familiar with the persistence mechanism that you are going to use and how to create entities for that mechanism. This topic does not provide details about how to create the repositories or data access classes; instead, it provides some suggestions about the design decisions you need to make when working with ASP.NET Identity.
@@ -86,6 +100,7 @@ In the data access classes, you provide code to perform data operations for your
 
 After creating your data access classes, you must create store classes that call the specific methods in the data access layer.
 
+<a id="user"></a>
 ## Customize the user class
 
 When implementing your own storage provider, you must create a user class which is equivalent to the [IdentityUser](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework.identityuser(v=vs.108).aspx) class in the [Microsoft.ASP.NET.Identity.EntityFramework](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework(v=vs.108).aspx) namespace:
@@ -104,6 +119,7 @@ The IdentityUser class implements IUser and contains any additional properties o
 
  For a complete implementation, see [IdentityUser (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/IdentityUser.cs). 
 
+<a id="userstore"></a>
 ## Customize the user store
 
 You also create a UserStore class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore&lt;TUser&gt;](https://msdn.microsoft.com/en-us/library/dn315446(v=vs.108).aspx) class in the [Microsoft.ASP.NET.Identity.EntityFramework](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework(v=vs.108).aspx) namespace. In your UserStore class, you implement the [IUserStore&lt;TUser, TKey&gt;](https://msdn.microsoft.com/en-us/library/dn613276(v=vs.108).aspx) and any of the optional interfaces. You select which optional interfaces to implement based on on the functionality you wish to provide in your application.
@@ -165,6 +181,7 @@ The Microsoft.AspNet.Identity.EntityFramework namespace contains implementations
 
 [!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample6.cs)]
 
+<a id="role"></a>
 ## Customize the role class
 
 When implementing your own storage provider, you must create a role class which is equivalent to the [IdentityRole](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework.identityrole(v=vs.108).aspx) class in the [Microsoft.ASP.NET.Identity.EntityFramework](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework(v=vs.108).aspx) namespace:
@@ -183,6 +200,7 @@ The following example shows an IdentityRole class that uses an integer for the k
 
  For a complete implementation, see [IdentityRole (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/IdentityRole.cs). 
 
+<a id="rolestore"></a>
 ## Customize the role store
 
 You also create a RoleStore class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore&lt;TRole&gt;](https://msdn.microsoft.com/en-us/library/dn468181(v=vs.108).aspx) class in the Microsoft.ASP.NET.Identity.EntityFramework namespace. In your RoleStore class, you implement the [IRoleStore&lt;TRole, TKey&gt;](https://msdn.microsoft.com/en-us/library/dn613266(v=vs.108).aspx) and optionally the [IQueryableRoleStore&lt;TRole, TKey&gt;](https://msdn.microsoft.com/en-us/library/dn613262(v=vs.108).aspx) interface.
@@ -200,6 +218,7 @@ The following example shows a role store class. The TRole generic parameter take
   
  For a complete implementation, see [RoleStore (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/RoleStore.cs) .
 
+<a id="reconfigure"></a>
 ## Reconfigure application to use new storage provider
 
 You have implemented your new storage provider. Now, you must configure your application to use this storage provider. If the default storage provider was included in your project, you must remove the default provider and replace it with your provider.
@@ -225,6 +244,7 @@ You have implemented your new storage provider. Now, you must configure your app
 10. The default project is designed for a user class that has a string value for the key. If your user class has a different type for the key (such as an integer), you must change the project to work with your type. See [Change Primary Key for Users in ASP.NET Identity](change-primary-key-for-users-in-aspnet-identity.md).
 11. If needed, add the connection string to the Web.config file.
 
+<a id="other"></a>
 ## Other resources
 
 - Blog: [Implementing ASP.NET Identity](http://odetocode.com/blogs/scott/archive/2014/01/20/implementing-asp-net-identity.aspx)
