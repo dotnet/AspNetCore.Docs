@@ -15,7 +15,7 @@ namespace WebRole1.SignalRHelper
         {
             if (RoleEnvironment.IsEmulated)
             {
-                string id = RoleEnvironment.CurrentRoleInstance.Id.ToLower();
+                var id = RoleEnvironment.CurrentRoleInstance.Id.ToLower();
                 return string.Format(EmulatorCategoryTemplate, id);
             }
             else
@@ -23,30 +23,28 @@ namespace WebRole1.SignalRHelper
                 var name = RoleEnvironment.CurrentRoleInstance.Role.Name.ToLower();
                 var number = RoleEnvironment.CurrentRoleInstance.Id.Split(new char[] { '_' }).Last();
                 return string.Format(CloudCategoryTemplate, name, number);
-
             }
-
         }
 
         public static void RegisterSignalRPerfCounters()
         {
-            TimeSpan ts = new TimeSpan(0, 0, 10);
+            var ts = new TimeSpan(0, 0, 10);
 
             RoleInstanceDiagnosticManager roleInstanceDiagnosticManager =
-            new RoleInstanceDiagnosticManager(
-            RoleEnvironment.GetConfigurationSettingValue("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString"),
-            RoleEnvironment.DeploymentId,
-            RoleEnvironment.CurrentRoleInstance.Role.Name,
-            RoleEnvironment.CurrentRoleInstance.Id);
+                new RoleInstanceDiagnosticManager(
+                RoleEnvironment.GetConfigurationSettingValue("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString"),
+                RoleEnvironment.DeploymentId,
+                RoleEnvironment.CurrentRoleInstance.Role.Name,
+                RoleEnvironment.CurrentRoleInstance.Id);
 
-            // Get the current diagnostic monitor for the role.
+            // Get the current diagnostic monitor for the role
             var config = roleInstanceDiagnosticManager.GetCurrentConfiguration() ?? DiagnosticMonitor.GetDefaultInitialConfiguration();
 
-            string connectionString = RoleEnvironment.GetConfigurationSettingValue("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString");
-            string deploymentID = RoleEnvironment.DeploymentId;
-            string roleName = RoleEnvironment.CurrentRoleInstance.Role.Name;
+            var connectionString = RoleEnvironment.GetConfigurationSettingValue("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString");
+            var deploymentID = RoleEnvironment.DeploymentId;
+            var roleName = RoleEnvironment.CurrentRoleInstance.Role.Name;
 
-            // Get the DeploymentDiagnosticManager object for your deployment.
+            // Get the DeploymentDiagnosticManager object for your deployment
             DeploymentDiagnosticManager diagManager = new DeploymentDiagnosticManager(connectionString, deploymentID);
 
             var signalRCategoryName = createSignalRCategoryName();
@@ -85,17 +83,17 @@ namespace WebRole1.SignalRHelper
             RegisterCounter("Scaleout Errors/Sec", ts, signalRCategoryName, config);
             RegisterCounter("Scaleout Send Queue Length", ts, signalRCategoryName, config);
 
-            // useful for checking that it is not the category name that is issue
+            // Useful for checking that it isn't the category name that is the issue
             RegisterCounter("Connection Failures", ts, "TCPV6", config);
 
-            // Apply the updated configuration to the diagnostic monitor. 
+            // Apply the updated configuration to the diagnostic monitor
             DiagnosticMonitor.Start("Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString", config);
             return;
         }
 
         public static void RegisterCounter(string counterType, TimeSpan sampleRate, string category, DiagnosticMonitorConfiguration config)
         {
-            var counterSpecifier = "\\" + category + "\\" + counterType;
+            var counterSpecifier = $"\\{category}\\{counterType}";
             config.PerformanceCounters.DataSources.Add(new PerformanceCounterConfiguration()
             {
                 CounterSpecifier = counterSpecifier,
