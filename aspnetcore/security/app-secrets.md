@@ -42,14 +42,12 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 
 * Test the Secret Manager tool by running the following command:
 
-  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
   ```
   dotnet user-secrets -h
      ```
 
 > [!NOTE]
-> When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
+> When any of the tools are defined in the *project.json* file, you must be in the same directory in order to use the tooling commands.
 
 The Secret Manager tool will display usage, options and command help.
 
