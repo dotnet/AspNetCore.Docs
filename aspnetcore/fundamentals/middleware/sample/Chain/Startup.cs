@@ -13,7 +13,7 @@ namespace Chain
         {
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Handling request. <p>");
+                // Do work that doesn't write to the Response.
                 await next.Invoke();
                 // Do logging or other work that doesn't write to the Response.
             });

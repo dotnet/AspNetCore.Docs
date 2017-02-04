@@ -18,9 +18,8 @@ public class Startup
 
     public void Configure(IApplicationBuilder app)
     {
-        app.MapWhen(context => {
-            return context.Request.Query.ContainsKey("branch");
-        }, HandleBranch);
+        app.MapWhen(context => context.Request.Query.ContainsKey("branch"),
+                               HandleBranch);
 
         app.Run(async context =>
         {

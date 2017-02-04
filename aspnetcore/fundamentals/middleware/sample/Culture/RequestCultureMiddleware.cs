@@ -6,11 +6,11 @@ namespace Culture
 {
     public class RequestCultureMiddleware
     {
-        private readonly RequestDelegate next;
+        private readonly RequestDelegate _next;
 
         public RequestCultureMiddleware(RequestDelegate next)
         {
-            this.next = next;
+            _next = next;
         }
 
         public Task Invoke(HttpContext context)
@@ -26,7 +26,7 @@ namespace Culture
             }
 
             // Call the next delegate/middleware in the pipeline
-            return this.next(context);
+            return this._next(context);
         }
     }
 }
