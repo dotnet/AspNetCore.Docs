@@ -9,7 +9,7 @@ namespace WebRole1
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);     //Only needed if "No Authentication" was not selected for the project
+            ConfigureAuth(app); // Only needed if "No Authentication" was not selected for the project
             app.MapSignalR();
             app.MapSignalR<MyPersistentConnection>("/echo");
         }
