@@ -29,7 +29,7 @@ SignalR performance counters are used to monitor your application's performance 
 
 ## Creating an Azure Web Role application that exposes SignalR performance counters
 
-1. Open Visual Studio 2015 with *Administrator* privileges.
+1. Open Visual Studio 2015.
 
 2. In Visual Studio 2015, select **File**, **New**, **Project**.
 
