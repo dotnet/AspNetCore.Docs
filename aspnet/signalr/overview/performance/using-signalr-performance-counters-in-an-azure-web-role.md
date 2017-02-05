@@ -49,7 +49,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    ![Solution Explorer diagnostics.wadcfgx](using-signalr-performance-counters-in-an-azure-web-role/_static/image4.png)
     
-7. Replace the contents of the file with the following code:
+7. Replace the contents of the file with the following configuration and save the file:
 
    [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample1.xml)]
     
