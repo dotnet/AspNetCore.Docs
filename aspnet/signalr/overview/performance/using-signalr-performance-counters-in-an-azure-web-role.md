@@ -110,9 +110,9 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample7.cs)]
     
-23. *[Crank.exe](signalr-connection-density-testing-with-crank.md)* is a connection density testing tool provided with the SignalR codebase. Since Crank requires a **PersistentConnection**, you add one to your site to test. Add a new folder to the **WebRole1** project called *PersistentConnections*. Right-click this folder and select **Add...**, **Class**. Name the new class `MyPersistentConnection` and click **Add**.
+23. *[Crank.exe](signalr-connection-density-testing-with-crank.md)* is a connection density testing tool provided with the SignalR codebase. Since Crank requires a **PersistentConnection**, you add one to your site to test. Add a new folder to the **WebRole1** project called *PersistentConnections*. Right-click this folder and select **Add...**, **Class**. Name the new class file *MyPersistentConnection.cs* and click **Add**.
 
-24. Open *MyPersistentConnection.cs* and replace the contents with the following code:
+24. Visual Studio will open the *MyPersistentConnection.cs* file in the main window. Replace the contents with the following code, then save and close the file:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample8.cs)]
     
