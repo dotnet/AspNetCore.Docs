@@ -31,7 +31,7 @@ SignalR performance counters are used to monitor your application's performance 
 
 1. Open Visual Studio 2015.
 
-2. In Visual Studio 2015, select **File**, **New**, **Project**.
+2. In Visual Studio 2015, select **File &gt; New &gt; Project...**.
 
 3. In the **Templates** pane of the **New Project** window under the **Visual C#** node, select the **Cloud** node and select the **Azure Cloud Service** template. Name the application **SignalRPerfCounters** and click **OK**.
 
