@@ -19,7 +19,7 @@ uid: signalr/overview/performance/using-signalr-performance-counters-in-an-azure
 
 By [Tom FitzMacken](https://github.com/tfitzmac)
 
-SignalR performance counters are used to monitor your application's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *SignalR.exe*, the same tool used for standalone or on-premises applications. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
+SignalR performance counters are used to monitor your application's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *signalr.exe*, the same tool used for standalone or on-premises applications. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
 
 ## Prerequisites
 
@@ -65,7 +65,7 @@ SignalR performance counters are used to monitor your application's performance 
 
 11. In **Solution Explorer**, right-click the *Startup* folder and select **Add &gt; Existing Item...**. In the dialog that appears, select *signalr.exe* and click **Add**.
 
-    ![Add SignalR.exe to project](using-signalr-performance-counters-in-an-azure-web-role/_static/image6.png)
+    ![Add signalr.exe to project](using-signalr-performance-counters-in-an-azure-web-role/_static/image6.png)
     
 12. Right-click on the *Startup* folder you created. Select **Add &gt; New Item...**. Select the **General** node, select **Text File**, and name the new item *SignalRPerfCounterInstall.cmd*. This command file will install the SignalR performance counters into the web role.
 
