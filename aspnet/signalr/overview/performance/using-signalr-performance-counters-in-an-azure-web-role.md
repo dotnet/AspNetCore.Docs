@@ -37,7 +37,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    ![New Cloud Application](using-signalr-performance-counters-in-an-azure-web-role/_static/image1.png)
     
-4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and click the **>** button to add the role to the project. Click **OK**.
+4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and click the **&gt;** button to add the role to the project. Click **OK**.
 
    ![Add ASP.NET Web Role](using-signalr-performance-counters-in-an-azure-web-role/_static/image2.png)
     
@@ -53,31 +53,31 @@ SignalR performance counters are used to monitor your application's performance 
 
    [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample1.xml)]
     
-8. Open the **Package Manager Console** from **Tools > NuGet Package Manager**. Enter the following commands to install the latest version of SignalR and the SignalR utilities package:
+8. Open the **Package Manager Console** from **Tools &gt; NuGet Package Manager**. Enter the following commands to install the latest version of SignalR and the SignalR utilities package:
 
    [!code-powershell[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample2.ps1)]
     
-9. Next, configure the application to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add > New Folder**. Name the new folder *Startup*.
+9. Next, configure the application to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add &gt; New Folder**. Name the new folder *Startup*.
 
    ![Add Startup Folder](using-signalr-performance-counters-in-an-azure-web-role/_static/image5.png)
     
 10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from **&lt;project folder&gt;\SignalRPerfCounters\packages\Microsoft.AspNet.SignalR.Utils.&lt;version&gt;\tools** to the *Startup* folder you created in the previous step.
 
-11. In **Solution Explorer**, right-click the **Startup** folder and select **Add > Existing Item...**. In the dialog that appears, select *signalr.exe* and click **Add**.
+11. In **Solution Explorer**, right-click the **Startup** folder and select **Add &gt; Existing Item...**. In the dialog that appears, select *signalr.exe* and click **Add**.
 
     ![Add SignalR.exe to project](using-signalr-performance-counters-in-an-azure-web-role/_static/image6.png)
     
-12. Right-click on the *Startup* folder you created. Select **Add**, **New Item**. Select the **General** node, select **Text File**, and name the new item *SignalRPerfCounterInstall.cmd*. This command file will install the SignalR performance counters into the web role.
+12. Right-click on the *Startup* folder you created. Select **Add &gt; New Item...**. Select the **General** node, select **Text File**, and name the new item *SignalRPerfCounterInstall.cmd*. This command file will install the SignalR performance counters into the web role.
 
     ![Create SignalR performance counter installation batch file](using-signalr-performance-counters-in-an-azure-web-role/_static/image7.png)
     
-13. Right-click the *SignalR.exe* file and select **Properties**. Set **Copy to Output Directory** to **Copy Always**.
+13. Right-click the *signalr.exe* file and select **Properties**. Set **Copy to Output Directory** to **Copy Always**.
 
     ![Set Copy to Output Directory to Copy Always](using-signalr-performance-counters-in-an-azure-web-role/_static/image8.png)
     
 14. Repeat the previous step for the *SignalRPerfCounterInstall.cmd* file.
 
-15. Open *SignalRPerfCounterInstall.cmd* and enter the following script, then save and close the file. This script executes *SignalR.exe*, which adds the SignalR performance counters to the role instance.
+15. Open *SignalRPerfCounterInstall.cmd* and enter the following script, then save and close the file. This script executes *signalr.exe*, which adds the SignalR performance counters to the role instance.
 
     [!code-console[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample3.cmd)]
     
