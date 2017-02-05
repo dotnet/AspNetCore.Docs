@@ -116,7 +116,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample8.cs)]
     
-25. Using the `Startup` class, you start the SignalR objects when OWIN starts up. Your project already contains a `Startup` class, unless you changed the authentication method when creating the project, in which case you need to create a `Startup` class. Open or create *Startup.cs* and replace the contents with the following code:
+25. Using the `Startup` class, the SignalR objects start when OWIN starts up. Your project already contains a `Startup` class, unless you changed the authentication method when creating the project, in which case you need to create a `Startup` class. Open or create *Startup.cs* and replace the contents with the following code:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample9.cs)]
     
