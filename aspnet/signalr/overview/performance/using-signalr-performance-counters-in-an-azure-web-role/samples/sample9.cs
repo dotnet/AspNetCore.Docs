@@ -2,7 +2,7 @@ using Microsoft.Owin;
 using Owin;
 using WebRole1.PersistentConnections;
 
-[assembly: OwinStartupAttribute(typeof(WebRole1.Startup))]
+[assembly: OwinStartup(typeof(WebRole1.Startup))]
 namespace WebRole1
 {
     public partial class Startup
