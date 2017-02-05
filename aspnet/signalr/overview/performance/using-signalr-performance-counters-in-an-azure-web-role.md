@@ -145,4 +145,4 @@ SignalR performance counters are used to monitor your application's performance 
 
     ![Performance Monitor showing SignalR connections](using-signalr-performance-counters-in-an-azure-web-role/_static/image12.png)
 
-Special thanks to Martin Richard for the [original content](https://blogs.msdn.com/b/mgrichard/archive/2014/01/21/capturing-signalr-2-0-performance-counters-in-azure-using-windows-azure-diagnostics-wad.aspx) for this tutorial.
+Special thanks to [Martin Richard](https://social.msdn.microsoft.com/profile/Martin+Richard) for the original content used in this tutorial.
