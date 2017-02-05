@@ -1,5 +1,5 @@
 ---
-title: Middleware | Microsoft Docs
+title: Middleware in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/middleware
 ---
-# Middleware
+# Middleware in ASP.NET Core
 
 <a name=fundamentals-middleware></a>
 
