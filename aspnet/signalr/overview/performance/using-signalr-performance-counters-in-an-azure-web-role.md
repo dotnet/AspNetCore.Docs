@@ -71,7 +71,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     ![Create SignalR performance counter installation batch file](using-signalr-performance-counters-in-an-azure-web-role/_static/image7.png)
     
-13. Right-click the *signalr.exe* file and select **Properties**. Set **Copy to Output Directory** to **Copy Always**.
+13. Click the *signalr.exe* file in **Solution Explorer**. In the file's **Properties**, set **Copy to Output Directory** to **Copy Always**.
 
     ![Set Copy to Output Directory to Copy Always](using-signalr-performance-counters-in-an-azure-web-role/_static/image8.png)
     
