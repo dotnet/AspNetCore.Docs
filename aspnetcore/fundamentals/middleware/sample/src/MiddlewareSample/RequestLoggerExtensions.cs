@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace MiddlewareSample
 {
+    #region snippet1
     public static class RequestLoggerExtensions
     {
         public static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder)
@@ -9,4 +10,5 @@ namespace MiddlewareSample
             return builder.UseMiddleware<RequestLoggerMiddleware>();
         }
     }
+    #endregion
 }

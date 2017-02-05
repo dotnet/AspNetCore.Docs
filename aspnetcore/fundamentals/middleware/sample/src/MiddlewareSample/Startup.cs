@@ -9,6 +9,7 @@ namespace MiddlewareSample
     public class Startup
     {
         private readonly string _environment;
+        
         public Startup(IHostingEnvironment env)
         {
             _environment = env.EnvironmentName;
@@ -18,6 +19,7 @@ namespace MiddlewareSample
         {
         }
 
+        #region snippet1
         public void Configure(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -30,7 +32,9 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Hello, World, Again!");
             });
         }
+        #endregion
 
+        #region snippet2
         public void ConfigureLogInline(IApplicationBuilder app, ILoggerFactory loggerfactory)
         {
             loggerfactory.AddConsole(minLevel: LogLevel.Information);
@@ -47,9 +51,10 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
         }
+        #endregion
 
-        public void ConfigureLogMiddleware(IApplicationBuilder app,
-            ILoggerFactory loggerfactory)
+        #region snippet6
+        public void ConfigureLogMiddleware(IApplicationBuilder app, ILoggerFactory loggerfactory)
         {
             loggerfactory.AddConsole(minLevel: LogLevel.Information);
 
@@ -60,8 +65,9 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
         }
+        #endregion
 
-
+        #region snippet3
         public void ConfigureEnvironmentOne(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -77,7 +83,9 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
         }
+        #endregion
 
+        #region snippet4
         private static void HandleMapTest(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -89,9 +97,10 @@ namespace MiddlewareSample
         public void ConfigureMapping(IApplicationBuilder app)
         {
             app.Map("/maptest", HandleMapTest);
-
         }
+        #endregion
 
+        #region snippet5
         private static void HandleBranch(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -111,5 +120,6 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
         }
+        #endregion
     }
 }
