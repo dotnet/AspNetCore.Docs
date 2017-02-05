@@ -37,7 +37,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    ![New Cloud Application](using-signalr-performance-counters-in-an-azure-web-role/_static/image1.png)
     
-4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and click the **&gt;** button to add the role to the project. Click **OK**.
+4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and click the **>** button to add the role to the project. Click **OK**.
 
    ![Add ASP.NET Web Role](using-signalr-performance-counters-in-an-azure-web-role/_static/image2.png)
     
@@ -53,7 +53,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample1.xml)]
     
-8. Open the **Library Package Manager Console** from **Tools/Library Package Manager**. Enter the following commands to install the latest version of SignalR and the SignalR utilities package:
+8. Open the **Package Manager Console** from **Tools > NuGet Package Manager**. Enter the following commands to install the latest version of SignalR and the SignalR utilities package:
 
    [!code-powershell[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample2.ps1)]
     
