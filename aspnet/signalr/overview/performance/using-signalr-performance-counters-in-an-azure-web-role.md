@@ -120,7 +120,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample9.cs)]
     
-26. Since you're using Microsoft Azure, where diagnostics is started before the role starts, you add the performance counters dynamically. To do this, create a new folder in the **WebRole1** project called *SignalRHelper*. In this folder, create a new class called `SignalRDiagnosticHelper`. Open this new class and replace the contents with the following code:
+26. Since you're using Microsoft Azure, where diagnostics is started before the role starts, you add the performance counters dynamically. To do this, create a new folder in the **WebRole1** project called *SignalRHelper*. In this folder, create a new class file called `SignalRDiagnosticHelper.cs`. When Visual Studio opens the new class file, replace the contents with the following code:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample10.cs)]
     
