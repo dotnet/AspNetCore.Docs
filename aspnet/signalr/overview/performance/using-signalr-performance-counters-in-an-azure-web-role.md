@@ -24,7 +24,7 @@ SignalR performance counters are used to monitor your application's performance 
 ## Prerequisites
 
 * [Visual Studio 2015](https://www.visualstudio.com/vs/visual-studio-express/)
-* [Microsoft Azure SDK for Visual Studio 2015 (VS2015)](https://azure.microsoft.com/en-us/downloads/)
+* [Microsoft Azure SDK for Visual Studio 2015 (VS2015)](https://azure.microsoft.com/en-us/downloads/) Note: Restart your dev machine after installing the SDK.
 * Microsoft Azure subscription: To sign up for a free Azure trial account, see [Azure Free Trial](https://azure.microsoft.com/free/).
 
 ## Creating an Azure Web Role application that exposes SignalR performance counters
@@ -57,7 +57,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    [!code-powershell[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample2.ps1)]
     
-9. Next, you configure the application to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add...**, **New Folder**. Name the new folder *Startup*.
+9. Next, configure the application to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add...**, **New Folder**. Name the new folder *Startup*.
 
    ![Add Startup Folder](using-signalr-performance-counters-in-an-azure-web-role/_static/image5.png)
     
