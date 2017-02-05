@@ -96,7 +96,7 @@ SignalR performance counters are used to monitor your application's performance 
     
 19. Open `Views/Shared/_Layout.cshtml` and remove the jQuery bundle script from the end of the file.
 
-    [!code-cshtml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample5.cshtml&highlight=9)]
+    [!code-cshtml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample5.cshtml)]
     
 20. Add a JavaScript client that continuously calls the `increment` method on the server. Open `Views/Home/Index.cshtml` and replace the contents with the following code:
 
