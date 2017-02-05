@@ -137,7 +137,7 @@ SignalR performance counters are used to monitor your application's performance 
     
 29. To test your application in the cloud, deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/documentation/articles/cloud-services-how-to-create-deploy/).
 
-30. When connected to the Azure role instance with Remote Desktop Connection, open Server Manager from the taskbar and select **Tools**, **Performance Monitor**.
+30. When connected to the Azure role instance with Remote Desktop Connection, open Server Manager from the taskbar and select **Tools &gt; Performance Monitor**.
 
     ![Open Performance Monitor in Server Manager](using-signalr-performance-counters-in-an-azure-web-role/_static/image11.png)
     
