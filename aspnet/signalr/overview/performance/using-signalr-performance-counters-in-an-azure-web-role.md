@@ -102,7 +102,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-cshtml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample6.cshtml)]
     
-21. Create a new folder in the **WebRole1** project called *Hubs*. Right-click this folder in **Solution Explorer**, select **Web &gt; SignalR**, and select **SignalR Hub Class (v2)**. Name the new hub **MyHub** and click **Add**.
+21. Create a new folder in the **WebRole1** project called *Hubs*. Right-click the *Hubs* folder in **Solution Explorer**, select **Web &gt; SignalR**, and select **SignalR Hub Class (v2)**. Name the new hub **MyHub** and click **Add**.
 
     ![Adding SignalR Hub Class to the Hubs folder in the Add New Item dialog](using-signalr-performance-counters-in-an-azure-web-role/_static/image13.png)
 
