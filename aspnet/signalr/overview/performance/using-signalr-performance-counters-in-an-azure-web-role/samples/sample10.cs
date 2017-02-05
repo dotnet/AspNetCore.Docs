@@ -101,5 +101,4 @@ namespace WebRole1.SignalRHelper
             });
         }
     }
-
 }
