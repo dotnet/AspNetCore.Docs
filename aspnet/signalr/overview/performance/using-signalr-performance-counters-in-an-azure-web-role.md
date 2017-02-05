@@ -41,7 +41,7 @@ SignalR performance counters are used to monitor your application's performance 
 
    ![Add ASP.NET Web Role](using-signalr-performance-counters-in-an-azure-web-role/_static/image2.png)
     
-5. In the **New ASP.NET Web Application - WebRole1** dialog, select the **MVC** template and select **OK**.
+5. In the **New ASP.NET Web Application - WebRole1** dialog, select the **MVC** template and click **OK**.
 
    ![Add MVC and Web API](using-signalr-performance-counters-in-an-azure-web-role/_static/image3.png)
     
