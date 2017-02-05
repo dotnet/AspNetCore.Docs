@@ -131,7 +131,7 @@ SignalR performance counters are used to monitor your application's performance 
 28. Test your application in the Microsoft Azure Emulator by pressing **F5**.
 
     > [!NOTE]
-    > If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in *web.Config* to the following:
+    > If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in *web.config* to the following:
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
     
