@@ -106,7 +106,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     ![Adding SignalR Hub Class to the Hubs folder in the Add New Item dialog](using-signalr-performance-counters-in-an-azure-web-role/_static/image13.png)
 
-22. Open *MyHub.cs* and replace the contents with the following code:
+22. *MyHub.cs* will automatically open in the main window. Replace the contents with the following code:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample7.cs)]
     
