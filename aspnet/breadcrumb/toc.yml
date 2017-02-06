@@ -6,9 +6,45 @@
     tocHref: /aspnet/
     topicHref: /aspnet/index
     items:
-    - name: ASP.NET Home
+    - name: ASP.NET AJAX
+      tocHref: /aspnet/ajax/
+      topicHref: /aspnet/ajax/index
+    - name: ASP.NET
+      tocHref: /aspnet/aspnet/
+      topicHref: /aspnet/aspnet/index
+    - name: ASP.NET Identity
+      tocHref: /aspnet/identity/
+      topicHref: /aspnet/identity/index
+    - name: ASP.NET Mobile
+      tocHref: /aspnet/mobile/
+      topicHref: /aspnet/mobile/index
+    - name: ASP.NET MVC
+      tocHref: /aspnet/mvc/
+      topicHref: /aspnet/mvc/index
+    - name: ASP.NET SignalR
+      tocHref: /aspnet/signalr/
+      topicHref: /aspnet/signalr/index
+    - name: ASP.NET SPA
+      tocHref: /aspnet/single-page-application/
+      topicHref: /aspnet/single-page-application/index
+    - name: ASP.NET and Visual Studio
+      tocHref: /aspnet/visual-studio/
+      topicHref: /aspnet/visual-studio/index
+    - name: ASP.NET Web API
+      tocHref: /aspnet/web-api/
+      topicHref: /aspnet/web-api/index
+    - name: ASP.NET Web Forms
+      tocHref: /aspnet/webforms/
+      topicHref: /aspnet/webforms/index
+    - name: ASP.NET Web Pages
+      tocHref: /aspnet/webpages/
+      topicHref: /aspnet/webpages/index
+    - name: ASP.NET Webhooks
       tocHref: /aspnet/webhooks/
       topicHref: /aspnet/webhooks/index
+    - name: ASP.NET Whitepapers
+      tocHref: /aspnet/whitepapers/
+      topicHref: /aspnet/whitepapers/index
     - name: ASP.NET Core
       tocHref: /aspnet/core/
       topicHref: /aspnet/core/intro
