@@ -126,7 +126,7 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
     
-27. Wait about one minute. Open the **Cloud Explorer** tool window in Visual Studio and expand the path `(Local)\Storage Accounts\(Development)\Tables`. Double-click **WADPerformanceCountersTable**. You should see SignalR counters in the table data.
+27. Wait about one minute. Open the Cloud Explorer tool window in Visual Studio (**View &gt; Cloud Explorer**) and expand the path `(Local)\Storage Accounts\(Development)\Tables`. Double-click **WADPerformanceCountersTable**. You should see SignalR counters in the table data.
     
 28. To test your application in the cloud, update the **ServiceConfiguration.Cloud.cscfg** file and set the `Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString` to a valid Azure Storage account connection string.
 
