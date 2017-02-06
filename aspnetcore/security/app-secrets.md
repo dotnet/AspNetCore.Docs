@@ -36,7 +36,11 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 >[!WARNING]
 > The Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store. It is for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
-### Installing the Secret Manager tool
+### Installing the Secret Manager tool for MSBuild(.csproj) and Visual Studio 2017 editions
+
+
+
+### Installing the Secret Manager tool for project.json and Visual Studio 2015 editions
 
 * Add `Microsoft.Extensions.SecretManager.Tools` to the `tools` section of the *project.json* file and run `dotnet restore`. 
 
