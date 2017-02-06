@@ -119,29 +119,19 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample9.cs)]
     
-26. Since you're using Microsoft Azure, where diagnostics is started before the role starts, you add the performance counters dynamically. To do this, create a new folder in the **WebRole1** project called *SignalRHelper*. In this folder, create a new class file called *SignalRDiagnosticHelper.cs*. When Visual Studio creates and opens the file, replace the contents with the following code:
-
-    [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample10.cs)]
-    
-27. To register the performance counters when the application starts, add the following line to *Global.asax.cs*:
-
-    [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample11.cs?highlight=11)]
-    
-28. Test your application in the Microsoft Azure Emulator by pressing **F5**.
+26. Test your application in the Microsoft Azure Emulator by pressing **F5**.
 
     > [!NOTE]
     > If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in *web.config* to the following:
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
     
-29. To test your application in the cloud, deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/documentation/articles/cloud-services-how-to-create-deploy/).
-
-30. When connected to the Azure role instance with Remote Desktop Connection, open Server Manager from the taskbar and select **Tools &gt; Performance Monitor**.
-
-    ![Open Performance Monitor in Server Manager](using-signalr-performance-counters-in-an-azure-web-role/_static/image11.png)
+27. Wait about one minute. Open the **Cloud Explorer** tool window in Visual Studio and expand the path `(Local)\Storage Accounts\(Development)\Tables`. Double-click **WADPerformanceCountersTable**. You should see SignalR counters in the table data.
     
-31. The following image shows Performance Monitor running in a cloud instance during a connection density test using Crank:
+28. To test your application in the cloud, update the **ServiceConfiguration.Cloud.cscfg** file and set the `Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString` to a valid Azure Storage account connection string.
 
-    ![Performance Monitor showing SignalR connections](using-signalr-performance-counters-in-an-azure-web-role/_static/image12.png)
+29. Deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/documentation/articles/cloud-services-how-to-create-deploy/).
+
+30. Wait a few minutes. In **Cloud Explorer**, locate the storage account you configured above and find the `WADPerformanceCountersTable` table in it. You should see SignalR counters in the table data.
 
 Special thanks to [Martin Richard](https://social.msdn.microsoft.com/profile/Martin+Richard) for the original content used in this tutorial.
