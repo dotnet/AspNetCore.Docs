@@ -12,7 +12,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role
 msc.type: authoredcontent
-uid: signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role
 ---
 
 # Using SignalR performance counters in an Azure Web Role
