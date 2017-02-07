@@ -54,7 +54,7 @@ The Secret Manager tool will display usage, options and command help.
 > [!NOTE]
 > You must be in the same directory of the *.csproj* file to run tools defined in the *.csproj* file.
 
-The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a `UserSecretsId` value in its *project.json* file. The value of `UserSecretsId` is arbitrary, but is generally unique to the project.
+The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a `UserSecretsId` value in its *.csproj* file. The value of `UserSecretsId` is arbitrary, but is generally unique to the project.
 
 Add a `UserSecretsId` for your project in the  *.csproj* file :
 
@@ -98,7 +98,7 @@ The secret manager tool abstracts away the implementation details, such as where
 
 * Mac: `~/.microsoft/usersecrets/<userSecretsId>/secrets.json`
 
-The value of `userSecretsId` comes from the value specified in *project.json*.
+The value of `userSecretsId` comes from the value specified in *.csproj* file.
 
 You should not write code that depends on the location or format of the data saved with the secret manager tool, as these implementation details might change. For example, the secret values are currently *not* encrypted today, but could be someday.
 
