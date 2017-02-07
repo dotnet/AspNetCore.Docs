@@ -512,7 +512,7 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [DetailsView Control QuickStarts](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/ctrlref/data/detailsview.aspx)
 - [Displaying Data with the ListView Control](http://aspnet.4guysfromrolla.com/articles/122607-1.aspx)
 - [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx)
-- [Editing Insert and Deleting Data](../../data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs.md)
+- [Editing Insert and Deleting Data](../../data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs.md#editinsertdelete)
 - [Form Validation in ASP.NET](http://www.4guysfromrolla.com/webtech/090200-1.shtml)
 - [Gathering Custom User Registration Information](https://weblogs.asp.net/scottgu/archive/2006/07/05/Tip_2F00_Trick_3A00_-Gathering-Custom-User-Registration-Information.aspx)
 - [Profiles in ASP.NET 2.0](http://www.odetocode.com/Articles/440.aspx)

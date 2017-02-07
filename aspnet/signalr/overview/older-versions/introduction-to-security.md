@@ -105,7 +105,7 @@ Typically, CSRF attacks are possible against web sites that use cookies for auth
 SignalR takes the following steps to prevent a malicious site from creating valid requests to your SignalR application. These steps are taken by default and do not require any action in your code.
 
 - **Disable cross domain requests**  
- By default, cross domain requests are disabled in a SignalR application to prevent users from calling a SignalR endpoint from an external domain. Any request that comes from an external domain is automatically considered invalid and is blocked. It is recommended that you keep this default behavior; otherwise, a malicious site could trick users into sending commands to your site. If you need to use cross domain requests, see     [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md) .
+ By default, cross domain requests are disabled in a SignalR application to prevent users from calling a SignalR endpoint from an external domain. Any request that comes from an external domain is automatically considered invalid and is blocked. It is recommended that you keep this default behavior; otherwise, a malicious site could trick users into sending commands to your site. If you need to use cross domain requests, see     [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain) .
 - **Pass connection token in query string, not cookie**  
  SignalR passes the connection token as a query string value, instead of as a cookie. By not storing the connection token as a cookie, the connection token is not inadvertently forwarded by the browser when malicious code is encountered. Also, the connection token is not persisted beyond the current connection. Therefore, a malicious user cannot make a request under another user's authentication credentials.
 - **Verify connection token**  
@@ -159,7 +159,7 @@ If you do not want to include all of the hubs and methods in the JavaScript prox
 
 [!code-csharp[Main](introduction-to-security/samples/sample5.cs)]
 
-For more information about the JavaScript proxy files, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md). <a id="exceptions"></a>
+For more information about the JavaScript proxy files, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy). <a id="exceptions"></a>
 
 ### Exceptions
 

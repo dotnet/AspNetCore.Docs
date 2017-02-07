@@ -94,7 +94,7 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample5.cs?highlight=4)]
 
 > [!NOTE]
-> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
+> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md#webhost).
 
 
 <a id="add-routes"></a>
