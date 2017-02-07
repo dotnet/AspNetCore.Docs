@@ -10,8 +10,11 @@
       tocHref: /aspnet/ajax/
       topicHref: /aspnet/ajax/index
     - name: ASP.NET Best Practices
-      tocHref: /aspnet/aspnet/
-      topicHref: /aspnet/aspnet/index
+      tocHref: /aspnet/aspnet/overview/web-development-best-practices/
+      topicHref: /aspnet/aspnet/overview/web-development-best-practices/index
+    - name: OWIN and Katana
+      tocHref: /aspnet/aspnet/overview/owin-and-katana/
+      topicHref: /aspnet/aspnet/overview/owin-and-katana/index
     - name: ASP.NET Identity
       tocHref: /aspnet/identity/
       topicHref: /aspnet/identity/index
