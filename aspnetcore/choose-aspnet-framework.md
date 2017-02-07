@@ -40,7 +40,7 @@ ASP.NET is a mature web platform that provides all the services that you require
 ## ASP.NET Core scenarios
 
 * [Websites](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/)
-* [APIs](https://docs.microsoft.com/aspnet/core/first-web-api)
+* [APIs](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api)
 
 ## ASP.NET scenarios
 
