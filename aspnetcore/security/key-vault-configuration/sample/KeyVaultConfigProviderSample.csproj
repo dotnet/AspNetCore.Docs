@@ -26,9 +26,4 @@
     <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
   </ItemGroup>
 
-  <!-- TODO remove this target when https://github.com/aspnet/AspNetCoreModule/issues/43 is resolved -->
-  <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
-    <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
-  </Target>
-
 </Project>
