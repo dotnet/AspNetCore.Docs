@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core Middleware | Microsoft Docs
 author: rick-anderson
-description: Explains middleware.
-keywords: ASP.NET Core, Middleware
+description: Explains middleware and the request pipeline.
+keywords: ASP.NET Core, Middleware, pipeline, delegate
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
@@ -30,11 +30,11 @@ Request delegates are configured using [Run](https://docs.microsoft.com/en-us/as
 
 ## Creating a middleware pipeline with IApplicationBuilder
 
-The ASP.NET request pipeline consists of a sequence of request delegates, called one after the next, as this diagram shows (the thread of execution follows the black arrows):
+The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the next, as this diagram shows (the thread of execution follows the black arrows):
 
 ![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, it's handed back through the prior two middlewares for additional processing after the next() statements each in turn before leaving the application as a response to the client.](middleware/_static/request-delegate-pipeline.png)
 
-Each delegate has the opportunity to perform operations before and after the next delegate. A delegate can decide to not pass a request to the next delegate -- this is referred to as short-circuiting the request pipeline. Short-circuiting is often desirable because it allows unnecessary work to be avoided. For example, an authorization middleware might only call the next delegate if the request is authenticated; otherwise it could short-circuit the pipeline and return a "Not Authorized" response. Exception handling delegates need to be called early on in the pipeline, so they are able to catch exceptions that occur in later stages of the pipeline.
+Each delegate has the opportunity to perform operations before and after the next delegate. A delegate can decide to not pass a request to the next delegate -- this is referred to as short-circuiting the request pipeline. Short-circuiting is often desirable because it allows unnecessary work to be avoided. For example, the static file middleware can return a request for a static file and short circuit the rest of the pipeline. Exception handling delegates need to be called early on in the pipeline, so they are able to catch exceptions that occur in later stages of the pipeline.
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline", rather a single anonymous function that is called in response to every HTTP request.
 
@@ -58,7 +58,7 @@ The order middleware components are added in the `Configure` method is the order
 
 The Configure method (shown below) adds the following middleware components:
 
-1. Error handling (for both development and non-development environments)
+1. Exception/error handling
 2. Static file server
 3. Authentication
 4. MVC
@@ -128,7 +128,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | localhost:1234 | Hello from non-Map delegate.  |
 | localhost:1234/?branch=master | Branch used = master|
 
-'Map` supports nesting, for example:
+`Map` supports nesting, for example:
 
 ```csharp
 app.Map("/level1", level1App => {
