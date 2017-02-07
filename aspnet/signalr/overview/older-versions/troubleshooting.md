@@ -159,7 +159,7 @@ There are several causes for this issue. Verify all of the following:
 
 ### "500 Internal Server Error"
 
-This is a very generic error that could have a wide variety of causes. The details of the error should appear in the server's event log, or can be found through debugging the server. More detailed error information may be obtained by turning on detailed errors on the server. For more information, see [How to handle errors in the Hub class](../guide-to-the-api/hubs-api-guide-server.md#handleerrors).
+This is a very generic error that could have a wide variety of causes. The details of the error should appear in the server's event log, or can be found through debugging the server. More detailed error information may be obtained by turning on detailed errors on the server. For more information, see [How to handle errors in the Hub class](../guide-to-the-api/hubs-api-guide-server.md#handleErrors).
 
 ### "TypeError: &lt;hubType&gt; is undefined" error
 
