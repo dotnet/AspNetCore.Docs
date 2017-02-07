@@ -14,7 +14,7 @@ uid: security/data-protection/consumer-apis/overview
 ---
 # Consumer APIs overview
 
-The IDataProtectionProvider and IDataProtector interfaces are the basic interfaces through which consumers use the data protection system. They are located in the Microsoft.AspNetCore.DataProtection.Interfaces package.
+The IDataProtectionProvider and IDataProtector interfaces are the basic interfaces through which consumers use the data protection system. They are located in the Microsoft.AspNetCore.DataProtection.Abstractions package.
 
 ## IDataProtectionProvider
 
