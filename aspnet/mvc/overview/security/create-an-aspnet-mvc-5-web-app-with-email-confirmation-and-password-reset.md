@@ -21,15 +21,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > This tutorial was written by [Rick Anderson](https://blogs.msdn.com/rickAndy) ( Twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT) ).
 
 
-- [Create an ASP.NET MVC app](#createMvc)
-- [Hook up SendGrid](#SG)
-- [Require email confirmation before log in](#require)
-- [Password recovery/reset](#reset)
-- [Resend email confirmation link](#rsend)
-- [Combine social and local login accounts](#combine)
-- [Debug the app](#dbg)
-- [Additional Resources](#addRes)
-
 <a id="createMvc"></a>
 ## Create an ASP.NET MVC app
 
