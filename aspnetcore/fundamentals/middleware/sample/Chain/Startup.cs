@@ -20,7 +20,7 @@ namespace Chain
 
             app.Run(async context =>
             {
-                await context.Response.WriteAsync("Hello from 2nd delegate. <p>");
+                await context.Response.WriteAsync("Hello from 2nd delegate.");
             });
         }
     }

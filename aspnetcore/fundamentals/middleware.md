@@ -46,7 +46,6 @@ You chain multiple request delegates together with [app.Use](https://docs.micros
 
 [!code-csharp[Main](middleware/sample/Chain/Startup.cs?name=snippet1)]
 
-
 >[!WARNING]
 >Be careful modifying the `HttpResponse` after invoking `next`, as the response may have already been sent to the client. [HttpResponse.HasStarted](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.httpresponsefeature#Microsoft_AspNetCore_Http_Features_HttpResponseFeature_HasStarted) can be used to check if the headers have been sent yet.
 
@@ -83,7 +82,7 @@ In the code above, `UseExceptionHandler` is the first middleware added to the pi
 
 The static file middleware is called early in the pipeline so it can handle requests and short circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot* are publicly available. See [Working with static files](xref:fundamentals/static-files) for an approach to secure static files.
 
-If the request is not handled by the static file module, it's passed on to the Identity module (`app.UseIdentity`), which performs authentication. Identity does not short circuit unauthenticated requests. Identity authenticates requests, but authorization (and rejection) does not happen until after MVC selects a specific controller and action.
+If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity does not short circuit unauthenticated requests. Identity authenticates requests, but authorization (and rejection) does not happen until after MVC selects a specific controller and action.
 
 The following example demonstrates a middleware ordering where requests for static files are handled by the static file middleware before the response compression middleware. Static files are not compressed with this ordering of the middleware. The MVC responses from [UseMvcWithDefaultRoute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_) can be compressed.
 
@@ -129,7 +128,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | localhost:1234 | Hello from non-Map delegate.  |
 | localhost:1234/?branch=master | Branch used = master|
 
-`Map` can also match multiple segments at once, for example:
+'Map` supports nesting, for example:
 
 ```csharp
 app.Map("/level1", level1App => {
@@ -143,6 +142,12 @@ app.Map("/level1", level1App => {
        });
    });
    ```
+
+`Map` can also match multiple segments at once, for example:
+
+ ```csharp
+app.Map("/level1/level2", HandleMultiSeg);
+```
 
 ## Built-in middleware
 
