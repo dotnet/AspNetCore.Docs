@@ -1,0 +1,16 @@
+@using Microsoft.Web.Helpers;
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Analytics Test</title>
+  </head>
+  <body>
+    <h1>Analytics Test Page</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <div id="footer">
+      &copy; 2012 MySite
+    </div>
+    @Analytics.GetGoogleHtml("myaccount")
+  </body>
+</html>

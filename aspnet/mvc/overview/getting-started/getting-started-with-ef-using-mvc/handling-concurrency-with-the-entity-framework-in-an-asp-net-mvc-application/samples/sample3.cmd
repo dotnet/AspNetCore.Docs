@@ -1,0 +1,2 @@
+Add-Migration RowVersion
+Update-Database

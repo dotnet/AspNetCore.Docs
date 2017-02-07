@@ -1,0 +1,12 @@
+</connectionStrings>
+   <appSettings>
+      <add key="webpages:Version" value="3.0.0.0" />
+      <!-- Markup removed for clarity. -->
+      <!-- SendGrid-->
+      <add key="mailAccount" value="account" />
+      <add key="mailPassword" value="password" />
+      <add key="SMSAccountIdentification" value="My Identification" />
+      <add key="SMSAccountPassword" value="My Password" />
+      <add key="SMSAccountFrom" value="+12065551234" />
+   </appSettings>
+  <system.web>

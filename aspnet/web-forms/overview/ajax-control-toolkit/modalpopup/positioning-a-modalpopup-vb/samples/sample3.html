@@ -1,0 +1,12 @@
+<script type="text/javascript">
+ var id = null;
+ function movePanel() 
+ {
+ var pnl = $get("ModalPanel");
+ if (pnl != null) 
+ {
+ pnl.style.left = "50px";
+ pnl.style.top = "50px";
+ id = setTimeout("movePanel();", 100);
+ }
+ }

@@ -1,0 +1,10 @@
+<system.webServer>
+  <security>
+   <requestFiltering>
+     <fileExtensions>
+       <remove fileExtension=".cshtml" />
+       <add fileExtension=".cshtml" allowed="true" />
+     </fileExtensions>
+    </requestFiltering>
+  </security>
+</system.webServer>

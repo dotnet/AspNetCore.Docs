@@ -1,0 +1,10 @@
+@grid.GetHtml(
+    tableStyle: "grid",
+    headerStyle: "head",
+    alternatingRowStyle: "alt",
+    columns: grid.Columns(
+        grid.Column("Title"),
+        grid.Column("Genre"),
+        grid.Column("Year")
+    )
+)

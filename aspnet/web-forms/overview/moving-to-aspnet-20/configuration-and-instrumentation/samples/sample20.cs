@@ -1,0 +1,1 @@
+health = (HealthMonitoringSection)config.GetSection("system.web/healthMonitoring");

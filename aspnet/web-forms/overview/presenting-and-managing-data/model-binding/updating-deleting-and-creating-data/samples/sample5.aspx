@@ -1,0 +1,1 @@
+<asp:HyperLink NavigateUrl="~/AddStudent" Text="Add New Student" runat="server" />

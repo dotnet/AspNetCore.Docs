@@ -64,7 +64,7 @@ The `UseIISIntegration` method looks for environment variables that ANCM sets, a
 
 ### Don't call UseUrls
 
-ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations like calls to `IWebHostBuilder.UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at http://localhost:5000.
+ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations like calls to `IWebHostBuilder.UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
 
 If you need to set the port number for when you run the app without IIS, you can call `UseURLs`.  When you run without IIS, the port number that you provide to `UseUrls` will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls`.
 

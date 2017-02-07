@@ -1,8 +1,8 @@
 ---
-title: Default Settings | Microsoft Docs
+title: Key management and lifetime | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Describes key management and lifetime.
+keywords: ASP.NET Core, key management, DPAPI, DataProtection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/default-settings
 ---
-# Default Settings
+# Key management and lifetime
 
 <a name=data-protection-default-settings></a>
 
@@ -35,7 +35,7 @@ The developer is always in full control and can override how and where keys are 
 
 ## Key Lifetime
 
-Keys by default have a 90-day lifetime. When a key expires, the system will automatically generate a new key and set the new key as the active key. As long as retired keys remain on the system you will still be able to decrypt any data protected with them. See [key lifetime](../implementation/key-management.md#data-protection-implementation-key-management-expiration) for more information.
+Keys by default have a 90-day lifetime. When a key expires, the system will automatically generate a new key and set the new key as the active key. As long as retired keys remain on the system you will still be able to decrypt any data protected with them. See [key management](../implementation/key-management.md#data-protection-implementation-key-management-expiration) for more information.
 
 ## Default Algorithms
 

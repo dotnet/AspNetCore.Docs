@@ -1,0 +1,4 @@
+foreach (var result in db.Query("SELECT * FROM PRODUCT")) {<p>@result.Name</p>}
+
+foreach (var result = db.Query("SELECT * FROM PRODUCT WHERE Price > @0", 20))
+   { <p>@result.Name</p> }

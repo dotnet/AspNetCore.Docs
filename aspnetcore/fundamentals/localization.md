@@ -1,11 +1,11 @@
-﻿---
+---
 title: Globalization and localization | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 7f275a09-f118-41c9-88d1-8de52d6a5aa1
 ms.technology: aspnet
@@ -96,7 +96,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 [!code-csharp[Main](localization/sample/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
-The runtime doesn't look up localized strings for non-validation attributes. In the code above, "Email" (from `[Display(Name = "Email")]`) will not be localized.
+In ASP.NET Core MVC 1.1.0 and higer, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
 ## Provide localized resources for the languages and cultures you support  
 
@@ -232,7 +232,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 ## Resource file naming
 
-Resources are named for the type of their class minus the default namespace (which is also the name of the assembly). For example, a French resource in the `LocalizationWebsite.Web` project for the class `LocalizationWebsite.Web.Startup` would be named *Startup.fr.resx*. The class `LocalizationWebsite.Web.Controllers.HomeController` would be *Controllers.HomeController.fr.resx*. If for some reason your targeted class is in the same project but not in the base namespace you will need the full type name. For example, in the sample project a type `ExtraNamespace.Tools` would be *ExtraNamespace.Tools.fr.resx*.
+Resources are named for the full type name of their class minus the assembly name. For example, a French resource in the `LocalizationWebsite.Web` project for the class `LocalizationWebsite.Web.Startup` would be named *Startup.fr.resx*. A resource for the class `LocalizationWebsite.Web.Controllers.HomeController` would be named *Controllers.HomeController.fr.resx*. If your targeted class's namespace is not the same as the assembly name you will need the full type name. For example, in the sample project a resource for the type `ExtraNamespace.Tools` would be named *ExtraNamespace.Tools.fr.resx*.
 
 In the sample project, the `ConfigureServices` method sets the `ResourcesPath` to "Resources", so the project relative path for the home controller's French resource file is *Resources/Controllers.HomeController.fr.resx*. Alternatively, you can use folders to organize resource files. For the home controller, the path would be *Resources/Controllers/HomeController.fr.resx*. If you don't use the `ResourcesPath` option, the *.resx* file would go in the project base directory. The resource file for `HomeController` would be named *Controllers.HomeController.fr.resx*. The choice of using the dot or path naming convention depends on how you want to organize your resource files.
 

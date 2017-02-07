@@ -1,8 +1,8 @@
-﻿---
-title: Guidance for Hosting Providers | Microsoft Docs
+---
+title: Guidance for hosting providers | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Documents pertaining to hosting ASP.NET Core applications.
+keywords: ASP.NET Core, hosting
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -11,11 +11,9 @@ ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0babcd
 ms.technology: aspnet
 ms.prod: aspnet-core
 ---
-# Guidance for Hosting Providers
+# Guidance for hosting providers
 
-* [ASP.NET Core Module Configuration Reference](aspnet-core-module.md)
-* [Directory Structure](directory-structure.md)
-* [Application Pools](apppool.md)
-* [Servicing](servicing.md)
-* [Data Protection](dataprotection.md)
-* [🔧 URL rewriting middleware](url-rewriting.md)
+* [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module)
+* [Directory structure](xref:hosting/directory-structure)
+* [Servicing](xref:hosting/servicing)
+* [Data Protection](xref:hosting/dataprotection)

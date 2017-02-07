@@ -1,0 +1,10 @@
+<PropertyGroup>
+  <AppOfflineTemplateFilename   
+    Condition=" '$(AppOfflineTemplateFilename)'=='' ">
+      app_offline-template.htm
+  </AppOfflineTemplateFilename>
+  <AppOfflineSourcePath 
+    Condition=" '$(AppOfflineSourcePath)'==''">
+      $(SourceRoot)ContactManager.Mvc\$(AppOfflineTemplateFilename)
+  </AppOfflineSourcePath>
+</PropertyGroup>

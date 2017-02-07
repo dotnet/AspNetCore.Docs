@@ -35,7 +35,7 @@ Here are set up instructions for some other common OAuth providers. Third-party 
 
 * Set up **Flickr** sign in: [https://www.flickr.com/services/apps/create](https://www.flickr.com/services/apps/create). See [official steps](https://www.flickr.com/services/api/auth.oauth.html).
 
-* Set up **Dribble** sign in: [https://dribbble.com/account/applications/new](https://dribbble.com/account/applications/new). See [official steps](http://developer.dribbble.com/v1/oauth/).
+* Set up **Dribble** sign in: [https://dribbble.com/signup](https://dribbble.com/signup). See [official steps](http://developer.dribbble.com/v1/oauth/).
 
 * Set up **Vimeo** sign in: [https://developer.vimeo.com/apps](https://developer.vimeo.com/apps). See [official steps](https://developer.vimeo.com/api/authentication).
 

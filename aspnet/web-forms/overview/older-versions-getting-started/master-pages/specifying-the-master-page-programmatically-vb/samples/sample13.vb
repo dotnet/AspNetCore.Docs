@@ -1,0 +1,1 @@
+Dim myMasterPage As Site = CType(Page.Master, Site)

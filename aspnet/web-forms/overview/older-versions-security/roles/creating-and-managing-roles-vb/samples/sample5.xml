@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<configuration>
+ <connectionStrings>
+ <add name="SecurityTutorialsConnectionString"
+ connectionString="..."/>
+ </connectionStrings>
+
+ <system.web>
+ ... Additional configuration markup removed for brevity ...
+
+ &nbsp &nbsp<roleManager enabled="true" defaultProvider="SecurityTutorialsSqlRoleProvider">
+ &nbsp &nbsp &nbsp<providers>
+ <add name="SecurityTutorialsSqlRoleProvider"
+ type="System.Web.Security.SqlRoleProvider"
+ applicationName="SecurityTutorials"
+ connectionStringName="SecurityTutorialsConnectionString"/>
+ </providers>
+ </roleManager>
+ <system.web>
+</configuration>

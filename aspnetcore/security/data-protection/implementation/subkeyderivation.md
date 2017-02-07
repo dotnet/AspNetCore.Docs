@@ -37,7 +37,7 @@ Because the AAD is unique for the tuple of all three components, we can use it t
 
 ( K_E, K_H ) = SP800_108_CTR_HMACSHA512(K_M, AAD, contextHeader || keyModifier)
 
-Here, we're calling the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](http://csrc.nist.gov/publications/nistpubs/800-108/sp800-108.pdf), Sec. 5.1) with the following parameters:
+Here, we're calling the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5.1) with the following parameters:
 
 * Key derivation key (KDK) = K_M
 
@@ -68,7 +68,7 @@ Once K_E is generated via the above mechanism, we generate a random 96-bit nonce
 
 ![GCM-mode process and return](subkeyderivation/_static/galoisprocess.png)
 
-*output := keyModifier || nounce || E_gcm (K_E,nounce,data) || authTag*
+*output := keyModifier || nonce || E_gcm (K_E,nonce,data) || authTag*
 
 > [!NOTE]
 > Even though GCM natively supports the concept of AAD, we're still feeding AAD only to the original KDF, opting to pass an empty string into GCM for its AAD parameter. The reason for this is two-fold. First, [to support agility](context-headers.md#data-protection-implementation-context-headers) we never want to use K_M directly as the encryption key. Additionally, GCM imposes very strict uniqueness requirements on its inputs. The probability that the GCM encryption routine is ever invoked on two or more distinct sets of input data with the same (key, nonce) pair must not exceed 2^32. If we fix K_E we cannot perform more than 2^32 encryption operations before we run afoul of the 2^-32 limit. This might seem like a very large number of operations, but a high-traffic web server can go through 4 billion requests in mere days, well within the normal lifetime for these keys. To stay compliant of the 2^-32 probability limit, we continue to use a 128-bit key modifier and 96-bit

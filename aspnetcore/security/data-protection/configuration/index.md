@@ -1,5 +1,5 @@
 ---
-title: Configuration | Microsoft Docs
+title: Configuration in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/index
 ---
-# Configuration
+# Configuration in ASP.NET Core
 
 * [Configuring Data Protection](overview.md)
 

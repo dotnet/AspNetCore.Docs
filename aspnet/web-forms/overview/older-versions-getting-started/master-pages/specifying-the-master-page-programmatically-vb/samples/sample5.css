@@ -1,0 +1,39 @@
+body 
+{
+ font-family: Comic Sans MS, Arial; 
+ font-size: medium; 
+ margin: 0px; 
+} 
+#topContent 
+{ 
+ text-align: center; 
+ background-color: Navy; 
+ color: White; 
+ font-size: x-large;
+ text-decoration: none; 
+ font-weight: bold; 
+ padding: 10px; 
+ height: 50px;
+} 
+#topContent a 
+{ 
+ text-decoration: none; 
+ color: White; 
+} 
+#navContent 
+{ 
+ font-size: small; 
+ text-align: center; 
+} 
+#footerContent 
+{ 
+ padding: 10px; 
+ font-size: 90%; 
+ text-align: center; 
+ border-top: solid 1px black; 
+} 
+#mainContent 
+{ 
+ text-align: left; 
+ padding: 10px;
+}

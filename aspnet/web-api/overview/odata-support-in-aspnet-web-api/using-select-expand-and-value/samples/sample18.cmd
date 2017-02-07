@@ -1,0 +1,1 @@
+GET http://localhost/odata/Products(1)/Name

@@ -1,0 +1,11 @@
+<configuration>
+    <system.web>
+        ... Unrelated configuration settings and comments removed for brevity ...
+        <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        -->
+        <authentication mode="Forms" />
+    </system.web>
+</configuration>

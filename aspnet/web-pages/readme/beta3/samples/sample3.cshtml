@@ -1,0 +1,10 @@
+@helper ThumbnailLink(string imagePath, int width, int height) {
+    string newFileName = "";
+    WebImage thumbnail = new WebImage(imagePath);
+    if(thumbnail != null){
+       thumbnail.Resize(width, height, true, true);
+       newFileName = @"~\thumb_" + Path.GetFileName(thumbnail.FileName);
+       thumbnail.Save(newFileName);   
+    }
+    <a href="@Href(imagePath)"><img src="@Href(newFileName)" /></a>
+}

@@ -1,0 +1,7 @@
+<location path="UserBasedAuthorization.aspx">
+ <system.web>
+ <authorization>
+ <allow users="*" />
+ </authorization>
+ </system.web>
+</location>

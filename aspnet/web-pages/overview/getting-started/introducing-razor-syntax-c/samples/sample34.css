@@ -1,0 +1,4 @@
+@(5 + 13)
+@{ var netWorth = 150000; }
+@{ var newTotal = netWorth * 2; }
+@(newTotal / 2)

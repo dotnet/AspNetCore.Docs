@@ -1,0 +1,17 @@
+<system.webServer>
+
+      <modules>
+
+          <add  name="FormsAuthenticationModule"  type="System.Web.Security.FormsAuthenticationModule" />
+
+          <remove  name="UrlAuthorization" />
+
+          <add  name="UrlAuthorization" type="System.Web.Security.UrlAuthorizationModule"  />
+
+          <remove  name="DefaultAuthentication" />
+
+          <add  name="DefaultAuthentication"  type="System.Web.Security.DefaultAuthenticationModule" />
+
+      </modules>
+
+</system.webServer>

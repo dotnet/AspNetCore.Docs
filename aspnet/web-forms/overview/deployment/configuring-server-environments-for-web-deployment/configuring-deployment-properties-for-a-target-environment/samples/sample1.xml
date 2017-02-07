@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>    
+    <MSDeployComputerName Condition=" '$(MSDeployComputerName)'=='' ">
+      TESTWEB1.fabrikam.net
+    </MSDeployComputerName>
+    <MSDeployAuth Condition=" '$(MSDeployAuth)'=='' ">NTLM</MSDeployAuth>
+    <ContactManagerTargetUrl Condition =" '$(ContactManagerTargetUrl)'=='' ">
+      http://localhost:85/ContactManagerService/ContactService.svc
+    </ContactManagerTargetUrl>
+    <ContactManagerIisPath Condition=" '$(ContactManagerIisPath)'=='' ">
+      DemoSite/ContactManager
+    </ContactManagerIisPath>
+    <ContactManagerServiceIisPath 
+      Condition=" '$(ContactManagerServiceIisPath)'=='' ">
+        DemoSite/ContactManagerService
+    </ContactManagerServiceIisPath>
+    <CmDatabaseConnectionString Condition=" '$(CmDatabaseConnectionString)'=='' ">
+      Data Source=TESTDB1;Integrated Security=true</CmDatabaseConnectionString>
+    <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
+      ContactManager
+    </CmTargetDatabase>
+  </PropertyGroup>  
+</Project>

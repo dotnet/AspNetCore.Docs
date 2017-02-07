@@ -1,0 +1,2 @@
+WebMail.Send("touser@contoso.com", "subject", "body of message",
+    "fromuser@contoso.com");

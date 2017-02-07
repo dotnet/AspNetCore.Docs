@@ -1,0 +1,3 @@
+public SchoolContext() : base("SchoolContext")
+{
+}

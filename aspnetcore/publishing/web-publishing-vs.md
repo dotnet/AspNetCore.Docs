@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/web-publishing-vs
 ---
-# How Web Publishing In Visual Studio Works
+# How web publishing in Visual Studio works
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi)
 

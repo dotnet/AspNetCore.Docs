@@ -1,11 +1,11 @@
-﻿---
+---
 title: Publishing to IIS | Microsoft Docs
-author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+author: guardrex
+description:  Windows Server Internet Information Services (IIS) configuration and deployment of ASP.NET Core applications.
+keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
 ms.author: riande
 manager: wpickett
-ms.date: 11/30/2016
+ms.date: 01/18/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
@@ -58,42 +58,40 @@ Proceed through the **Confirmation** step to install the web server role and ser
 > If you only plan to host self-contained deployments and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
 
 > [!NOTE]
-> If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](../hosting/aspnet-core-module.md#aspnet-core-module-with-iis-shared-configuration).
+> If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:hosting/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
 For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
 
+## Install Web Deploy when publishing with Visual Studio
+
+If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the server. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/en-us/search/result.aspx?q=webdeploy&form=dlc). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+
 ## Application configuration
 
-### Enabling the *IISIntegration* components
+### Enabling the IISIntegration components
 
 Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   var host = new WebHostBuilder()
-     .UseKestrel()
-     .UseContentRoot(Directory.GetCurrentDirectory())
-     .UseIISIntegration()
-     .UseStartup<Startup>()
-     .Build();
-   ```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .UseIISIntegration()
+    .UseStartup<Startup>()
+    .Build();
+```
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
-### Setting *IISOptions* for the *IISIntegration* service
+### Setting IISOptions for the IISIntegration service
 
 To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   services.Configure<IISOptions>(options => {
-     ...
-   });
-   ```
+services.Configure<IISOptions>(options => {
+  ...
+});
+```
 
 | Option | Setting|
 | --- | --- | 
@@ -107,57 +105,63 @@ The *publish-iis* tool can be added to any .NET Core application and will config
 
 To include the *publish-iis* tool in your application, add entries to the *tools* and *scripts* sections of *project.json*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
+```json
+"tools": {
+  "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+},
+"scripts": {
+  "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+}
+```
 
-```none
-
-   "tools": {
-     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-   },
-   "scripts": {
-     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-   }
-   ```
-
-## Deploy the application
+## Configure the website in IIS
 
 1. On the target IIS server, create a folder to contain the application's published folders and files, which are described in [Directory Structure](../hosting/directory-structure.md).
 
 2. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
 
-3. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the [default Visual Studio web publish script](https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1). For information on using Web Deploy, see [Publishing to IIS with Web Deploy using Visual Studio](iis-with-msdeploy.md).
+3. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's deployment folder that you created. Provide the **Binding** configuration and create the website.
 
->[!WARNING]
-> .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS. Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the *web.config* file is never accidently renamed or removed from the deployment.**
+4. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
 
-## Configure the website in IIS
-
-1. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's deployment folder that you created. Provide the **Binding** configuration and create the website.
-
-2. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
-
-> [!NOTE]
-> If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
-
-Open the **Add Website** window.
+5. Open the **Add Website** window.
 
    ![Click Add Website from the Sites contextual menu.](iis/_static/add-website-context-menu-ws2016.png)
 
-Configure the website.
+6. Configure the website.
 
    ![Supply the Site name, physical path, and Host name in the Add Website step.](iis/_static/add-website-ws2016.png)
 
-In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
+7. In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
    ![Select Basic Settings from the contextual menu of the Application Pool.](iis/_static/apppools-basic-settings-ws2016.png)
 
-Set the **.NET CLR version** to **No Managed Code**.
+8. Set the **.NET CLR version** to **No Managed Code**.
 
    ![Set No Managed Code for the .NET CLR Version.](iis/_static/edit-apppool-ws2016.png)
+   
+> [!NOTE]
+> If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
 
-Browse the website.
+## Deploy the application
+Deploy the application to the folder you created on the target IIS server. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
-   ![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
+### Web Deploy with Visual Studio
+Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish Web** dialog.
+
+![Publish dialog page](iis/_static/pub-dialog.png)
+
+### Web Deploy outside of Visual Studio
+You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/en-us/library/dd568996(WS.10).aspx).
+
+### Alternatives to Web Deploy
+If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
+
+## Browse the website
+![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
+   
+>[!WARNING]
+> .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS. Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the *web.config* file is never accidently renamed or removed from the deployment.**
 
 ## Create a Data Protection Registry Hive
 
@@ -167,16 +171,56 @@ For standalone IIS installations, you may use the [Data Protection Provision-Aut
 
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See [Configuring Data Protection](../security/data-protection/configuration/overview.md#data-protection-configuring) for details.
 
->[!WARNING]
+> [!WARNING]
 > Data Protection is used by various ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with the deployment script or in your own code. If you do not configure data protection when using IIS by default the keys will be held in memory and discarded when your application closes or restarts. This will then, for example, invalidate any cookies written by the cookie authentication and users will have to login again.
 
 ## Configuration of sub-applications
 
 When adding applications to an IIS Site's root application, the root application *web.config* file should include the `<handlers>` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the `<handlers>` section. If you repeat the `<handlers>` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
 
-## Configuration of IIS via *web.config*
+## Configuration of IIS with web.config
 
 IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the server level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver) and the [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+
+## Configuration sections of web.config
+
+Unlike .NET Framework applications that are configured with the `<system.web>`, `<appSettings>`, `<connectionStrings>`, and `<location>` elements in *web.config*, ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration).
+
+## Application Pools
+
+When hosting multiple websites on a single server, you should isolate the applications from each other by running each app in its own application pool. The IIS **Add Website** dialog defaults to this behavior. When you provide a **Site name**, the text is automatically transferred to the **Application pool** textbox. A new application pool will be created using the site name when you add the website.
+
+## Application Pool Identity
+
+An application pool identity account allows you to run an application under a unique account without having to create and manage domains or local accounts. On IIS 8.0+, the IIS Admin Worker Process (WAS) will create a virtual account with the name of the new application pool and run the application pool's worker processes under this account by default. In the IIS Management Console, under Advanced Settings for your application pool, ensure that the Identity is set to use **ApplicationPoolIdentity** as shown in the image below.
+
+![Application pool advanced settings dialog](iis/_static/apppool-identity.png)
+
+The IIS management process creates a secure identifier with the name of the application pool in the Windows Security System. Resources can be secured by using this identity; however, this identity is not a real user account and won't show up in the Windows User Management Console.
+
+If you need to grant the IIS worker process elevated access to your application, you will need to modify the Access Control List (ACL) for the directory containing your application.
+
+1. Open Windows Explorer and navigate to the directory.
+
+2. Right click on the directory and click **Properties**.
+
+3. Under the **Security** tab, click the **Edit** button and then the **Add** button.
+
+4. Click the **Locations** button and make sure you select your server.
+
+5. Enter **IIS AppPool\DefaultAppPool** in **Enter the object names to select** textbox.
+
+  ![Select users or groups dialog for the application folder](iis/_static/select-users-or-groups-1.png)
+
+6. Click the **Check Names** button and then click **OK**.
+
+  ![Select users or groups dialog for the application folder](iis/_static/select-users-or-groups-2.png)
+
+You can also do this via a command prompt using **ICACLS** tool:
+
+```console
+ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
+```
 
 ## Troubleshooting tips
 
@@ -188,7 +232,7 @@ One quick way to determine if the application is working properly is to run the 
 
 One way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static files in *wwwroot* using [Static File middleware](../fundamentals/static-files.md). If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error).
 
-When Kestrel starts normally behind IIS but the app won't run on the server after successfully running locally, you can temporarily add an environment variable to *web.config* to set the `ASPNETCORE_ENVIRONMENT` to `Development`. As long as you don't override the environment in app startup, this will allow the [developer exception page](../fundamentals/error-handling.md) to appear when the app is run on the server. Setting the environment variable for `ASPNETCORE_ENVIRONMENT` in this way is only recommended for staging/testing servers that are not exposed to the Internet. Be sure you remove the environment variable from the *web.config* file when finished. For information on setting environment variables via *web.config* for the reverse proxy, see [environmentVariables child element of aspNetCore](../hosting/aspnet-core-module.md#environmentvariables-child-element-of-aspnetcore).
+When Kestrel starts normally behind IIS but the app won't run on the server after successfully running locally, you can temporarily add an environment variable to *web.config* to set the `ASPNETCORE_ENVIRONMENT` to `Development`. As long as you don't override the environment in app startup, this will allow the [developer exception page](../fundamentals/error-handling.md) to appear when the app is run on the server. Setting the environment variable for `ASPNETCORE_ENVIRONMENT` in this way is only recommended for staging/testing servers that are not exposed to the Internet. Be sure you remove the environment variable from the *web.config* file when finished. For information on setting environment variables via *web.config* for the reverse proxy, see [environmentVariables child element of aspNetCore](xref:hosting/aspnet-core-module#setting-environment-variables).
 
 In most cases, enabling application logging will assist in troubleshooting problems with application or the reverse proxy. See [Logging](../fundamentals/logging.md) for more information.
 
@@ -379,7 +423,7 @@ Troubleshooting
 
 * This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to [Directory Structure](../hosting/directory-structure.md), confirm that your application's deployed files and folders are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment.
 
-## Additional resources
+## Resources
 
 * [Introduction to ASP.NET Core](../index.md)
 

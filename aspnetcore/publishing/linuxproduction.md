@@ -122,6 +122,7 @@ An example service file for our application.
     Description=Example .NET Web API Application running on Ubuntu
 
     [Service]
+    WorkingDirectory=/var/aspnetcore/hellomvc
     ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
     RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes

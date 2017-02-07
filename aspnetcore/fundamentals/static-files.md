@@ -1,7 +1,7 @@
 ---
-title: Working with Static Files | Microsoft Docs
+title: Working with static files in ASP.NET Core | Microsoft Docs
 author: rick-anderson
-description: 
+description: Working with Static Files
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/static-files
 ---
-# Working with Static Files
+# Working with static files in ASP.NET Core
 
 <a name=fundamentals-static-files></a>
 
@@ -39,7 +39,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 
 `app.UseStaticFiles();` makes the files in `web root` (*wwwroot* by default) servable. Later I'll show how to make other directory contents servable with `UseStaticFiles`.
 
-You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
+You must include the NuGet package "Microsoft.AspNetCore.StaticFiles".
 
 > [!NOTE]
 > `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`.
@@ -58,6 +58,12 @@ For a request to access *test.png*, configure the static files middleware as fol
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupTwoStaticFiles.cs?highlight=5,6,7,8,9,10&name=snippet1)]
 
 A request to `http://<app>/StaticFiles/test.png` will serve the *test.png* file.
+
+`StaticFileOptions()` can set response headers. For example, the code below sets up static file serving from the *wwwroot* folder and sets the `Cache-Control` header to make them publicly cacheable for 10 minutes (600 seconds):
+
+[!code-csharp[Main](../fundamentals/static-files/sample/StartupAddHeader.cs?name=snippet1)]
+
+![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
 ## Static file authorization
 

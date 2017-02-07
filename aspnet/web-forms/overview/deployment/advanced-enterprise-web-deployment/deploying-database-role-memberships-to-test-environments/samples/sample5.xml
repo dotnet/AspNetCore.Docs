@@ -1,0 +1,16 @@
+<Project ToolsVersion="4.0" 
+         DefaultTargets="FullPublish" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   ...
+   <PropertyGroup>
+      <FullPublishDependsOn>
+         Clean;
+         BuildProjects;
+         GatherPackagesForPublishing;
+         PublishDbPackages;
+         DeployTestDBPermissions;
+         PublishWebPackages;
+      </FullPublishDependsOn>
+   </PropertyGroup>
+   <Target Name="FullPublish" DependsOnTargets="$(FullPublishDependsOn)" />
+</Project>

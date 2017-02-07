@@ -1,0 +1,6 @@
+<configuration>
+...
+  <connectionStrings>
+    <add name="MusicStoreEntities" connectionString="data source=(LocalDb)\v11.0;initial catalog=MvcMusicStore;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\MvcMusicStore.mdf" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+...

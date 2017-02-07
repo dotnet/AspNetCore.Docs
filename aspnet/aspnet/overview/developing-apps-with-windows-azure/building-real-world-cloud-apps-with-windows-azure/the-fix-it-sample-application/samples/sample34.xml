@@ -1,0 +1,4 @@
+<ConfigurationSettings>
+    <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" 
+             value="DefaultEndpointsProtocol=https;AccountName={StorageAccountName};AccountKey={StorageAccountAccessKey}" />
+  </ConfigurationSettings>

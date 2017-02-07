@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+
+  <system.webServer>
+  <validation validateIntegratedModeConfiguration="false"/>
+  <modules>
+  ...
+
+  <add name="Elmah.ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
+  </modules>
+  <handlers>
+  ...
+
+  <add name="Elmah" path="elmah.axd" verb="POST,GET,HEAD" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode" />
+  </handlers>
+  </system.webServer>
+</configuration>

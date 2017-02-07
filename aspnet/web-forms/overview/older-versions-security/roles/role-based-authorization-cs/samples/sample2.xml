@@ -1,0 +1,4 @@
+<authorization>
+     <allow roles="Administrators, Supervisors" />
+     <deny users="*" />
+</authorization>

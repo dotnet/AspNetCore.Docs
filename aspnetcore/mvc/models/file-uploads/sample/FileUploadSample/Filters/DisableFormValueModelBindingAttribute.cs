@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FileUploadSample.Filters
 {
+    #region snippet1
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter
     {
@@ -31,4 +32,5 @@ namespace FileUploadSample.Filters
         {
         }
     }
+    #endregion
 }

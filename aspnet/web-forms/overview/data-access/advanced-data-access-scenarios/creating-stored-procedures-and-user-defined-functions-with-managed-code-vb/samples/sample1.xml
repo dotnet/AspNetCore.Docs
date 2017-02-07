@@ -1,0 +1,6 @@
+<connectionStrings>
+    <add name="NORTHWNDConnectionString" connectionString=
+        "Data Source=localhost\SQLExpress;Initial Catalog=Northwind;
+            Integrated Security=True;Pooling=false"
+        providerName="System.Data.SqlClient" />
+</connectionStrings>

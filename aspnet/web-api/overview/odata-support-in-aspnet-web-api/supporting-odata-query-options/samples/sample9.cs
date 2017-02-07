@@ -1,0 +1,1 @@
+[Queryable(AllowedOrderByProperties="Id")] // comma-separated list of properties

@@ -1,5 +1,5 @@
 ---
-title: Configuration | Microsoft Docs
+title: Configuration in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: Demonstrates the configuration API
 keywords: ASP.NET Core, configuration, JSON
@@ -14,7 +14,7 @@ uid: fundamentals/configuration
 ---
 <a name=fundamentals-configuration></a>
 
-  # Configuration
+  # Configuration in ASP.NET Core
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
 
@@ -43,10 +43,9 @@ The app reads and displays the following configuration settings:
 
 Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, you access the `Configuration` indexer with the corresponding item’s key:
 
+```csharp
+Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
 ```
-   Console.WriteLine(
-     $"option1 = {Configuration["subsection:suboption1"]}");
-   ```
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
@@ -108,11 +107,11 @@ Typical apps won't bind the entire configuration to a single options file. Later
 
 In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptions`.
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup2.cs?name=snippet1&highlight=8-13)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup2.cs?name=snippet1&highlight=9-13)]
 
 You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
 
-Each call to `Configure<TOptions>]` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
+Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
 
 When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 
@@ -196,12 +195,12 @@ You can recursively bind to each object in a class. Consider the following `AppO
 
 The following sample binds to the `AppOptions` class:
 
-[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=18-20)]
+[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=19-20)]
 
 **ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convienent than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
 
-```c#
-    var appConfig = config.GetSection("App").Get<AppOptions>();
+```csharp
+var appConfig = config.GetSection("App").Get<AppOptions>();
 ```
 
 Using the following *appsettings.json* file:
@@ -212,31 +211,30 @@ The program displays `Height 11`.
 
 The following code can be used to unit test the configuration:
 
-```c#
+```csharp
+[Fact]
+public void CanBindObjectTree()
+{
+    var dict = new Dictionary<string, string>
+        {
+            {"App:Profile:Machine", "Rick"},
+            {"App:Connection:Value", "connectionstring"},
+            {"App:Window:Height", "11"},
+            {"App:Window:Width", "11"}
+        };
+    var builder = new ConfigurationBuilder();
+    builder.AddInMemoryCollection(dict);
+    var config = builder.Build();
 
-   [Fact]
-   public void CanBindObjectTree()
-   {
-       var dict = new Dictionary<string, string>
-               {
-                   {"App:Profile:Machine", "Rick"},
-                   {"App:Connection:Value", "connectionstring"},
-                   {"App:Window:Height", "11"},
-                   {"App:Window:Width", "11"}
-               };
-       var builder = new ConfigurationBuilder();
-       builder.AddInMemoryCollection(dict);
-       var config = builder.Build();
+    var options = new AppOptions();
+    config.GetSection("App").Bind(options);
 
-       var options = new AppOptions();
-       config.GetSection("App").Bind(options);
-
-       Assert.Equal("Rick", options.Profile.Machine);
-       Assert.Equal(11, options.Window.Height);
-       Assert.Equal(11, options.Window.Width);
-       Assert.Equal("connectionstring", options.Connection.Value);
-   }
-   ```
+    Assert.Equal("Rick", options.Profile.Machine);
+    Assert.Equal(11, options.Window.Height);
+    Assert.Equal(11, options.Window.Width);
+    Assert.Equal("connectionstring", options.Connection.Value);
+}
+```
 
 <a name=custom-config-providers></a>
 
@@ -260,7 +258,7 @@ Create an class that inherits from [IConfigurationSource](https://docs.microsoft
 
 Create the custom configuration provider by inheriting from [ConfigurationProvider](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.configuration.configurationprovider).  The configuration provider initializes the database when it's empty:
 
-[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18-19,38-39)]
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18-31,38-39)]
 
 The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") are displayed when the sample is run.
 
@@ -270,7 +268,7 @@ You can add an `EFConfigSource` extension method for adding the configuration so
 
 The following code shows how to use the custom `EFConfigProvider`:
 
-[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=20-24)]
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=20-25)]
 
 Note the sample adds the custom `EFConfigProvider` after the JSON provider, so any settings from the database will override settings from the *appsettings.json* file.
 
@@ -281,10 +279,10 @@ Using the following *appsettings.json* file:
 The following is displayed:
 
 ```
-   key1=value_from_ef_1
-   key2=value_from_ef_2
-   key3=value_from_json_3
-   ```
+key1=value_from_ef_1
+key2=value_from_ef_2
+key3=value_from_json_3
+```
 
   ## CommandLine configuration provider
 
@@ -295,43 +293,42 @@ The following sample enables the CommandLine configuration provider last:
 Use the following to pass in configuration settings:
 
 ```
-   dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
-   ```
+dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
+```
 
 Which displays:
 
 ```
-   Hello Bob
-   Left 1234
-   ```
+Hello Bob
+Left 1234
+```
 
 The `GetSwitchMappings` method allows you to use `-` rather than `/` and it strips the leading subkey prefixes. For example:
 
 ```
-
-   dotnet run -MachineName=Bob -Left=7734
-   ```
+dotnet run -MachineName=Bob -Left=7734
+```
 
 Displays:
 
 <!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
 
 ```
-   Hello Bob
-   Left 7734
-   ```
+Hello Bob
+Left 7734
+```
 
 Command-line arguments must include a value (it can be null). For example:
 
 ```
-   dotnet run /Profile:MachineName=
-   ```
+dotnet run /Profile:MachineName=
+```
 
 Is OK, but
 
 ```
-   dotnet run /Profile:MachineName
-   ```
+dotnet run /Profile:MachineName
+```
 
 results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping.
 

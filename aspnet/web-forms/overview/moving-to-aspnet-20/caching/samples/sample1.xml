@@ -1,0 +1,5 @@
+<outputCacheSettings>
+    <outputCacheProfiles>
+        <add name="TwoDay" duration="43200" />
+    </outputCacheProfiles>
+</outputCacheSettings>

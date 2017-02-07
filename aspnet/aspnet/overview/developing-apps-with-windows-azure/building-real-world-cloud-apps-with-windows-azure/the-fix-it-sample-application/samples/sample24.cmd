@@ -1,0 +1,1 @@
+PS C:\Sample Apps\FixIt\Automation> Unblock-File -Path .\*.ps1

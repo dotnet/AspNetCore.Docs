@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/apache-proxy
 ---
-# Using Apache Web Server as a reverse proxy
+# Using Apache web server as a reverse proxy
 
 By [Shayne Boyer](https://www.github.com/spboyer)
 
@@ -91,7 +91,7 @@ Create a configuration file for your app, for this example we'll call it `hellom
     </VirtualHost>
 ```
 
-The *VirtualHost* node, of which there can be multiple in a file or on a server in many files, is set to listen on any IP address using port 80. The next two lines are set to pass all requests received at the root to the machine 127.0.0.1 port 5000 and in reverse. For there to be bi-directional communication, both settings *ProxyPass* and *ProxyPassReverse** are required.
+The *VirtualHost* node, of which there can be multiple in a file or on a server in many files, is set to listen on any IP address using port 80. The next two lines are set to pass all requests received at the root to the machine 127.0.0.1 port 5000 and in reverse. For there to be bi-directional communication, both settings *ProxyPass* and *ProxyPassReverse* are required.
 
 Logging can be configured per VirtualHost using *ErrorLog* and *CustomLog* directives. *ErrorLog* is the location where the server will log errors and *CustomLog* sets the filename and format of log file. In our case this is where request information will be logged. There will be one line for each request.
 
@@ -128,6 +128,7 @@ An example service file for our application.
     Description=Example .NET Web API Application running on CentOS 7
 
     [Service]
+    WorkingDirectory=/var/aspnetcore/hellomvc
     ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
     RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes

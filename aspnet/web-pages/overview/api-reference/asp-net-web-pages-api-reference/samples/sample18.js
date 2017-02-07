@@ -1,0 +1,1 @@
+Request.Files["postedFile"].SaveAs(@"MyPostedFile");

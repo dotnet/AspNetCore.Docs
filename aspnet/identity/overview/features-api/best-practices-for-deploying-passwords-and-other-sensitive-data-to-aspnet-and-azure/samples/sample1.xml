@@ -1,0 +1,17 @@
+</connectionStrings>
+   <appSettings>
+      <add key="webpages:Version" value="3.0.0.0" />
+      <!-- Markup removed for clarity. -->
+      
+      <!-- SendGrid-->
+      <add key="mailAccount" value="account" />
+      <add key="mailPassword" value="my password" />
+      <!-- Twilio-->
+      <add key="TwilioSid" value="My SID" />
+      <add key="TwilioToken" value="My Token" />
+      <add key="TwilioFromPhone" value="+12065551234" />
+
+      <add key="GoogClientID" value="1234.apps.googleusercontent.com" />
+      <add key="GoogClientSecret" value="My GCS" />
+   </appSettings>
+ <system.web>

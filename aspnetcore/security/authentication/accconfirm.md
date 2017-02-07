@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/accconfirm
 ---
-# Account Confirmation and Password Recovery
+# Account confirmation and password recovery
 
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
@@ -72,6 +72,7 @@ services.Configure<MvcOptions>(options =>
     options.Filters.Add(new RequireHttpsAttribute ());
 });
 ```
+ `[services.Configure<MvcOptions>]` requires `[using Microsoft.AspNetCore.Mvc;]`.
 
 Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attribute will redirect all HTTP GET requests to HTTPS GET and will reject all HTTP POSTs. A security best practice is to use HTTPS for all requests.
 
@@ -123,7 +124,7 @@ Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=4&range=58-62)]
+[!code-csharp[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=4&range=62-65)]
 
 ### Configure the `AuthMessageSender` class
 

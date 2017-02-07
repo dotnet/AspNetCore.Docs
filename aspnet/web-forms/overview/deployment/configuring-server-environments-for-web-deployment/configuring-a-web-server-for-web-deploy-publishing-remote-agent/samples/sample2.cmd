@@ -1,0 +1,1 @@
+aspnet_regiis -iru

@@ -1,0 +1,1 @@
+context.Students.AddOrUpdate(p => p.LastName, s)

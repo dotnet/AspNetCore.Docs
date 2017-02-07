@@ -1,0 +1,9 @@
+<configuration>
+ <connectionStrings>
+ <add name="SecurityTutorialsConnectionString" 
+ connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\SecurityTutorials.mdf;Integrated Security=True;User Instance=True" 
+ providerName="System.Data.SqlClient"/>
+ </connectionStrings> 
+ <system.web>
+ ... Configuration markup removed for brevity ...  </system.web>
+</configuration>

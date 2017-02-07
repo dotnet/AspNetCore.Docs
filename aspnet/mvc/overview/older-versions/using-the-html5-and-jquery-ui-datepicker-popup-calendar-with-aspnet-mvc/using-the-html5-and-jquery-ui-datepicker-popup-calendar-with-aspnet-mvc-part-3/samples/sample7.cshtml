@@ -1,0 +1,20 @@
+@model MvcMovie.Models.Address
+
+<fieldset>
+    <legend>Address</legend>
+
+    <div class="display-label">StreetAddress</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StreetAddress)
+    </div>
+
+    <div class="display-label">City</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City)
+    </div>
+
+    <div class="display-label">PostalCode</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostalCode)
+    </div>
+</fieldset>

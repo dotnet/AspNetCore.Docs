@@ -18,3 +18,4 @@ ms.prod: aspnet-core
     *   [In Memory Caching](caching/memory.md)
     *   [Working with a Distributed Cache](caching/distributed.md)
     *   [Response Caching](caching/response.md)
+*   [Response Compression Middleware](response-compression.md)

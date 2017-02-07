@@ -1,0 +1,41 @@
+@{
+    var db = Database.Open("SmallBakery");
+    var selectQueryString = "SELECT * FROM Product ORDER BY Name";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Products</title>
+    <style type="text/css">
+        table, th, td {
+          border: solid 1px #bbbbbb;
+          border-collapse: collapse;
+          padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Small Bakery Products</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var row in db.Query(selectQueryString)) {
+          <tr>
+            <td><a href="@Href("~/UpdateProducts", row.Id)">Edit</a></td>
+            <td>@row.Name</td>
+            <td>@row.Description</td>
+            <td>@row.Price</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+</body>
+</html>

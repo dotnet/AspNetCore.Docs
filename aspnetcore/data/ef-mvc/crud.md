@@ -1,5 +1,5 @@
 ---
-title: Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -43,8 +43,6 @@ In *Controllers/StudentsController.cs*, the action method for the Details view u
 The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the [reading related data](read-related-data.md) tutorial.
 
 The `AsNoTracking` method improves performance in scenarios where the entities returned will not be updated in the current context's lifetime. You'll learn more about `AsNoTracking` at the end of this tutorial.
-> [!NOTE] 
-> The key value that is passed to the `Details` method comes from *route data*.Route data is data that the model binder found in a segment of the URL. For example, the default route specifies controller, action, and id segments:
 
 ### Route data
 
@@ -145,7 +143,7 @@ in ASP.NET Core 1.0, validation messages aren't rendered if `span` elements are 
 [!code-html[](intro/samples/cu/Views/Students/Create.cshtml?range=15-35&highlight=5,12,19)]
 
 > [!NOTE]
-> The 1.0.1 release of the scaffolding tooling generates explicitly closed span tags, but as of September, 2016, the 1.0.1 tooling is not included in the new-project templates. If you want to get the newer version of scaffolding code, you can update project.json to reference the "1.0.0-preview2-update1" release of two NuGet packages:  "Microsoft.VisualStudio.Web.CodeGenerators.Mvc" and "Microsoft.VisualStudio.Web.Codegeneration.Tools".
+> The 1.0.1 release of the scaffolding tooling generates explicitly closed span tags, but as of September, 2016, the 1.0.1 tooling is not included in the new-project templates. If you want to get the newer version of scaffolding code, you can update NuGet packages `Microsoft.VisualStudio.Web.CodeGenerators.Mvc` and `Microsoft.VisualStudio.Web.Codegeneration.Tools` to "1.0.0-preview2-update1".
 
 Run the page by selecting the **Students** tab and clicking **Create New**.
 

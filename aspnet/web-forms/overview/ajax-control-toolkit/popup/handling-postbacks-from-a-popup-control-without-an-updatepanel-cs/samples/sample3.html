@@ -1,0 +1,11 @@
+<script type="text/javascript">
+ function pageLoad()
+ {
+ $get("tbDeparture").onclick = saveTextBox;
+ $get("tbReturn").onclick = saveTextBox;
+ }
+ function saveTextBox()
+ {
+ $get("tbHidden").value = this.id;
+ }
+</script>

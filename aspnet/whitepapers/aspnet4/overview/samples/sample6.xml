@@ -1,0 +1,17 @@
+<sites>
+  <site name="MySite" id="1">
+    <application path="/" 
+      serviceAutoStartEnabled="true"
+      serviceAutoStartProvider="PrewarmMyCache" >
+      <!-- Additional content -->
+    </application>
+  </site>
+
+</sites>
+
+<!-- Additional content -->
+
+<serviceautostartproviders>
+  <add name="PrewarmMyCache"
+    type="MyNamespace.CustomInitialization, MyLibrary" />
+</serviceautostartproviders>

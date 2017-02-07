@@ -1,5 +1,5 @@
 ---
-title: Inheritance - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -52,7 +52,7 @@ TPC and TPH inheritance patterns generally deliver better performance than TPT i
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
 
 > [!TIP] 
-> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, you can restart at the previous tutorial instead of having to go back to the beginning of the whole series.
+> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
 
 ## Create the Person class
 

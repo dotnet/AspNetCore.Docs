@@ -1,0 +1,9 @@
+<caching>
+  <outputCache defaultProvider="AspNetInternalProvider">
+    <providers>
+      <add name="DiskCache"
+          type="Test.OutputCacheEx.DiskOutputCacheProvider, DiskCacheProvider"/>
+    </providers>
+  </outputCache>
+
+</caching>

@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/overview
 ---
-# Views Overview
+# Rendering HTML with views in ASP.NET Core MVC
 
 By [Steve Smith](http://ardalis.com)
 

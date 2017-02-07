@@ -1,0 +1,15 @@
+<authentication mode="Forms">
+
+ <forms
+
+ propertyName1="value1"
+
+ propertyName2="value2"
+
+ ...
+
+ propertyNameN="valueN"
+
+ />
+
+</authentication>

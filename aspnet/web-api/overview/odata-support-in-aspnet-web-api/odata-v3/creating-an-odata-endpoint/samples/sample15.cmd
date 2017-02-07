@@ -1,0 +1,9 @@
+{
+  "d":{
+    "__metadata":{
+      "id":"http://localhost:18285/odata/Products(1)",
+      "uri":"http://localhost:18285/odata/Products(1)",
+      "type":"ProductService.Models.Product"
+    },"ID":1,"Name":"Hat","Price":"15.00","Category":"Apparel"
+  }
+}

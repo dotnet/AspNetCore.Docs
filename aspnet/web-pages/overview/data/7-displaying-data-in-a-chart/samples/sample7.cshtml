@@ -1,0 +1,14 @@
+@using System.Data;
+@{
+    var dataSet = new DataSet();
+    dataSet.ReadXmlSchema(Server.MapPath("~/App_Data/data.xsd"));
+    dataSet.ReadXml(Server.MapPath("~/App_Data/data.xml"));
+    var dataView = new DataView(dataSet.Tables[0]);
+
+    var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("Sales Per Employee")
+        .AddSeries("Default", chartType: "Pie",
+            xValue: dataView, xField: "Name",
+            yValues: dataView, yFields: "Sales")
+        .Write();
+}

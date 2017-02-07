@@ -1,0 +1,7 @@
+#leftColumn
+{
+position: relative;float: left;width: 14em;padding: 2em 1.5em 2em;background: #fff url('images/a1.gif') repeat-y right top;
+    	top: 1px;
+    	left: 0px;
+    	height: 100%;
+}

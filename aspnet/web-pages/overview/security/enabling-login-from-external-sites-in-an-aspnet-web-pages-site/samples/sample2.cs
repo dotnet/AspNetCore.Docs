@@ -1,0 +1,3 @@
+OAuthWebSecurity.RegisterFacebookClient(
+        appId: "",
+        appSecret: "");

@@ -1,0 +1,1 @@
+defaults: new { category = "all" }

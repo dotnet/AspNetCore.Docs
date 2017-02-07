@@ -1,0 +1,19 @@
+<siteMapNode 
+    title="Enhancing the GridView" 
+    url="~/EnhancedGridView/Default.aspx" 
+    description="Augment the user experience of the GridView control.">
+    <siteMapNode 
+        url="~/EnhancedGridView/RadioButtonField.aspx" 
+        title="Selection via a Radio Button Column" 
+        description="Explore how to add a column of radio buttons in the GridView." />
+    <siteMapNode 
+        url="~/EnhancedGridView/CheckBoxField.aspx" 
+        title="Selection via a Checkbox Column" 
+        description="Select multiple records in the GridView by using a column of 
+            checkboxes." />
+    <siteMapNode 
+        url="~/EnhancedGridView/InsertThroughFooter.aspx" 
+        title="Add New Records through the Footer" 
+        description="Learn how to allow users to add new records through the 
+            GridView's footer." />
+</siteMapNode>

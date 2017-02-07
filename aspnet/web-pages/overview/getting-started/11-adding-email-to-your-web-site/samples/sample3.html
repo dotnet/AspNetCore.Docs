@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attach File</title>
+</head>
+<body>
+  <h2>Submit Email with Attachment</h2>
+  <form method="post" action="ProcessFile.cshtml">
+    <div>
+        Your name:
+        <input type="text" name="customerName" />
+    </div>
+
+    <div>
+        Your email address:
+        <input type="text" name="customerEmail" />
+    </div>
+
+    <div>
+        Subject line: <br />
+        <input type="text" size= 30 name="subjectLine" />
+    </div>
+
+    <div>
+        File to attach: <br />
+        <input type="text" size=60 name="fileAttachment" />
+    </div>
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,1 @@
+// Hook the JavaScript function to the onchange event of the dropdown ddlCompany.Attributes["onchange"] = String.Format("javascript:{0}", cbRef);

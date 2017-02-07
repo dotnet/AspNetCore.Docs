@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="NS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Window">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="Shape" Type="BookStore.Shape" />
+      </EntityType>
+      <ComplexType Name="Shape" Abstract="true">
+        <Property Name="HasBorder" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Color" Type="BookStore.Color" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Circle" BaseType="BookStore.Shape">
+        <Property Name="Center" Type="BookStore.Point" />
+        <Property Name="Radius" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Point">
+        <Property Name="X" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Y" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Rectangle" BaseType="BookStore.Shape">
+        <Property Name="LeftTop" Type="BookStore.Point" />
+        <Property Name="Height" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Weight" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="RoundRectangle" BaseType="BookStore.Rectangle">
+        <Property Name="Round" Type="Edm.Double" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Triangle" BaseType="BookStore.Shape">
+        <Property Name="P1" Type="BookStore.Point" />
+        <Property Name="P2" Type="BookStore.Point" />
+        <Property Name="P3" Type="BookStore.Point" />
+      </ComplexType>
+      <EnumType Name="Color">
+        <Member Name="Red" Value="0" />
+        <Member Name="Blue" Value="1" />
+        <Member Name="Green" Value="2" />
+        <Member Name="Yellow" Value="3" />
+      </EnumType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="Windows" EntityType="BookStore.Window" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

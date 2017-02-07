@@ -1,4 +1,4 @@
-﻿---
+---
 title: Enabling Cross-Origin Requests (CORS) | Microsoft Docs
 author: rick-anderson
 description: 
@@ -26,19 +26,19 @@ Two URLs have the same origin if they have identical schemes, hosts, and ports. 
 
 These two URLs have the same origin:
 
-* http://example.com/foo.html
+* `http://example.com/foo.html`
 
-* http://example.com/bar.html
+* `http://example.com/bar.html`
 
 These URLs have different origins than the previous two:
 
-* http://example.net - Different domain
+* `http://example.net` - Different domain
 
-* http://example.com:9000/foo.html - Different port
+* `http://example.com:9000/foo.html` - Different port
 
-* https://example.com/foo.html - Different scheme
+* `https://example.com/foo.html` - Different scheme
 
-* http://www.example.com/foo.html - Different subdomain
+* `http://www.example.com/foo.html` - Different subdomain
 
 > [!NOTE]
 > Internet Explorer does not consider the port when comparing origins.
@@ -59,7 +59,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
 
 [!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
 
-The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
+The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from `http://example.com` and no other origins.
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
@@ -70,8 +70,6 @@ The second approach is to define one or more named CORS policies, and then selec
 [!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample2/Startup.cs?name=snippet_begin)]
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.
-
-<a name=cors-policy-options></a>
 
 ## Enabling CORS in MVC
 
@@ -181,22 +179,22 @@ Credentials require special handling in a CORS request. By default, the browser 
 
 Using XMLHttpRequest directly:
 
-```js
+```javascript
 var xhr = new XMLHttpRequest();
-   xhr.open('get', 'http://www.example.com/api/test');
-   xhr.withCredentials = true;
-   ```
+xhr.open('get', 'http://www.example.com/api/test');
+xhr.withCredentials = true;
+```
 
 In jQuery:
 
-```js
+```jQuery
 $.ajax({
-       type: 'get',
-       url: 'http://www.example.com/home',
-       xhrFields: {
-           withCredentials: true
-       }
-   ```
+  type: 'get',
+  url: 'http://www.example.com/home',
+  xhrFields: {
+    withCredentials: true
+}
+```
 
 In addition, the server must allow the credentials. To allow cross-origin credentials:
 
@@ -224,34 +222,30 @@ The CORS specification introduces several new HTTP headers that enable cross-ori
 
 Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that is making the request:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
 ```
 GET http://myservice.azurewebsites.net/api/test HTTP/1.1
-   Referer: http://myclient.azurewebsites.net/
-   Accept: */*
-   Accept-Language: en-US
-   Origin: http://myclient.azurewebsites.net
-   Accept-Encoding: gzip, deflate
-   User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
-   Host: myservice.azurewebsites.net
-   ```
+Referer: http://myclient.azurewebsites.net/
+Accept: */*
+Accept-Language: en-US
+Origin: http://myclient.azurewebsites.net
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+Host: myservice.azurewebsites.net
+```
 
 If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "*", meaning that any origin is allowed.:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
 ```
 HTTP/1.1 200 OK
-   Cache-Control: no-cache
-   Pragma: no-cache
-   Content-Type: text/plain; charset=utf-8
-   Access-Control-Allow-Origin: http://myclient.azurewebsites.net
-   Date: Wed, 20 May 2015 06:27:30 GMT
-   Content-Length: 12
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: text/plain; charset=utf-8
+Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Date: Wed, 20 May 2015 06:27:30 GMT
+Content-Length: 12
 
-   Test message
-   ```
+Test message
+```
 
 If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.
 
@@ -275,19 +269,17 @@ The rule about request headers applies to headers that the application sets by c
 
 Here is an example of a preflight request:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
 ```
 OPTIONS http://myservice.azurewebsites.net/api/test HTTP/1.1
-   Accept: */*
-   Origin: http://myclient.azurewebsites.net
-   Access-Control-Request-Method: PUT
-   Access-Control-Request-Headers: accept, x-my-custom-header
-   Accept-Encoding: gzip, deflate
-   User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
-   Host: myservice.azurewebsites.net
-   Content-Length: 0
-   ```
+Accept: */*
+Origin: http://myclient.azurewebsites.net
+Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: accept, x-my-custom-header
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+Host: myservice.azurewebsites.net
+Content-Length: 0
+```
 
 The pre-flight request uses the HTTP OPTIONS method. It includes two special headers:
 
@@ -297,17 +289,15 @@ The pre-flight request uses the HTTP OPTIONS method. It includes two special hea
 
 Here is an example response, assuming that the server allows the request:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
 ```
 HTTP/1.1 200 OK
-   Cache-Control: no-cache
-   Pragma: no-cache
-   Content-Length: 0
-   Access-Control-Allow-Origin: http://myclient.azurewebsites.net
-   Access-Control-Allow-Headers: x-my-custom-header
-   Access-Control-Allow-Methods: PUT
-   Date: Wed, 20 May 2015 06:33:22 GMT
-   ```
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Length: 0
+Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Access-Control-Allow-Headers: x-my-custom-header
+Access-Control-Allow-Methods: PUT
+Date: Wed, 20 May 2015 06:33:22 GMT
+```
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.

@@ -1,0 +1,1 @@
+ContactManager.Mvc.deploy.cmd /y /m:TESTWEB1 /g:true

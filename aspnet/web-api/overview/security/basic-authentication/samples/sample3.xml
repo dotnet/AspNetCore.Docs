@@ -1,0 +1,5 @@
+<system.webServer>
+    <modules>
+      <add name="BasicAuthHttpModule" 
+        type="WebHostBasicAuth.Modules.BasicAuthHttpModule, YourAssemblyName"/>
+    </modules>

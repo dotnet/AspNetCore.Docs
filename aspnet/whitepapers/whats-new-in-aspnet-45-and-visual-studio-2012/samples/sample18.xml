@@ -1,0 +1,5 @@
+<configuration>
+  <!-- ... -->
+  <system.web>
+<compilation enablePrefetchOptimization="true" />
+  <!-- ... -->

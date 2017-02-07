@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode url="~/Default.aspx" title="Home" description="Home">
+      <siteMapNode title="Basic Reporting"
+        url="~/BasicReporting/Default.aspx"
+        description="Basic Reporting Samples">
+        <siteMapNode url="~/BasicReporting/SimpleDisplay.aspx"
+         title="Simple Display"
+         description="Displays the complete contents
+          of a database table." />
+        <siteMapNode url="~/BasicReporting/DeclarativeParams.aspx"
+          title="Declarative Parameters"
+          description="Displays a subset of the contents
+            of a database table using parameters." />
+        <siteMapNode url="~/BasicReporting/ProgrammaticParams.aspx"
+         title="Setting Parameter Values"
+         description="Shows how to set parameter values
+          programmatically." />
+      </siteMapNode>
+
+      <siteMapNode title="Filtering Reports"
+       url="~/Filtering/Default.aspx"
+       description="Samples of Reports that Support Filtering">
+        <siteMapNode url="~/Filtering/FilterByDropDownList.aspx"
+          title="Filter by Drop-Down List"
+          description="Filter results using a drop-down list." />
+        <siteMapNode url="~/Filtering/MasterDetailsDetails.aspx"
+         title="Master-Details-Details"
+         description="Filter results two levels down." />
+        <siteMapNode url="~/Filtering/DetailsBySelecting.aspx"
+          title="Details of Selected Row"
+          description="Show detail results for a selected item in a GridView." />
+      </siteMapNode>
+
+      <siteMapNode title="Customized Formatting"
+         url="~/CustomFormatting/Default.aspx"
+         description="Samples of Reports Whose Formats are Customized">
+        <siteMapNode url="~/CustomFormatting/CustomColors.aspx"
+         title="Format Colors"
+         description="Format the grid s colors based
+           on the underlying data." />
+        <siteMapNode
+          url="~/CustomFormatting/GridViewTemplateField.aspx"
+          title="Custom Content in a GridView"
+          description="Shows using the TemplateField to
+          customize the contents of a field in a GridView." />
+        <siteMapNode
+          url="~/CustomFormatting/DetailsViewTemplateField.aspx"
+          title="Custom Content in a DetailsView"
+          description="Shows using the TemplateField to customize
+           the contents of a field in a DetailsView." />
+        <siteMapNode url="~/CustomFormatting/FormView.aspx"
+          title="Custom Content in a FormView"
+          description="Illustrates using a FormView for a
+           highly customized view." />
+        <siteMapNode url="~/CustomFormatting/SummaryDataInFooter.aspx"
+          title="Summary Data in Footer"
+          description="Display summary data in the grids footer." />
+      </siteMapNode>
+
+  </siteMapNode>
+
+</siteMap>

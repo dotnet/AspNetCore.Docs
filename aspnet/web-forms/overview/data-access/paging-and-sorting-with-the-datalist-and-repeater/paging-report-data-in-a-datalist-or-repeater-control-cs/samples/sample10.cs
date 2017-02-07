@@ -1,0 +1,3 @@
+// Display the current page being viewed...
+CurrentPageNumber.Text = string.Format("You are viewing page {0} of {1}...",
+    PageIndex + 1, PageCount);

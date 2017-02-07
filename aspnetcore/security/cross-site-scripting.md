@@ -1,4 +1,4 @@
-﻿---
+---
 title: Preventing Cross-Site Scripting | Microsoft Docs
 author: rick-anderson
 description: 
@@ -24,11 +24,11 @@ At a basic level XSS works by tricking your application into inserting a `<scrip
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings, HTTP headers, even data sourced from a database as an attacker may be able to breach your database even if they cannot breach your application.
 
-2. Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as < and changes them into a safe form like &lt;
+2. Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
 
 3. Before putting untrusted data into an HTML attribute ensure it is HTML attribute encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and '.
 
-4. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example < would be encoded as `\u003C`.
+4. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example &lt; would be encoded as `\u003C`.
 
 5. Before putting untrusted data into a URL query string ensure it is URL encoded.
 
@@ -46,7 +46,7 @@ Take the following Razor view;
    @untrustedInput
    ```
 
-This view outputs the contents of the *untrustedInput* variable. This variable includes some characters which are used in XSS attacks, namely <, " and >. Examining the source shows the rendered output encoded as:
+This view outputs the contents of the *untrustedInput* variable. This variable includes some characters which are used in XSS attacks, namely &lt;, " and &gt;. Examining the source shows the rendered output encoded as:
 
 ```html
 &lt;&quot;123&quot;&gt;

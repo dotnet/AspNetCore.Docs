@@ -1,0 +1,44 @@
+@{
+    var message = "";
+    try{
+        if(IsPost){
+            WebMail.Send(
+                to: Request.Form["emailAddress"],
+                subject: Request.Form["emailSubject"],
+                body:Request.Form["emailBody"]
+           );
+           message = "Email sent!";
+        }
+    }
+    catch(Exception ex){
+        message = "Email could not be sent!";
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8" />
+     <title>Test Email</title>
+  </head>
+  <body>
+    <h1>Test Email</h1>
+    <form method="post">
+      <p>
+        <label for="emailAddress">Email address:</label>
+        <input type="text" name="emailAddress" />
+      </p>
+      <p>
+        <label for="emailSubject">Subject:</label>
+        <input type="text" name="emailSubject" />
+      </p>
+      <p>
+        <label for="emailBody">Text to send:</label><br/>
+        <textarea name="emailBody" rows="6"></textarea>
+      </p>
+    <p><input type="submit" value="Send!" /></p>
+    @if(IsPost){
+        <p>@message</p>
+    }
+    </form>
+  </body>
+</html>

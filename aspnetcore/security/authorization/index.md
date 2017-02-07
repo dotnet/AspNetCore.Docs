@@ -1,5 +1,5 @@
 ---
-title: Authorization | Microsoft Docs
+title: Authorization in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/index
 ---
-# Authorization
+# Authorization in ASP.NET Core : Simple, role, claims-based and custom
 
 * [Introduction](introduction.md)
 
@@ -31,5 +31,3 @@ uid: security/authorization/index
 * [View Based Authorization](views.md)
 
 * [Limiting identity by scheme](limitingidentitybyscheme.md)
-
-* [🔧 Authorization Filters](authorization-filters.md)

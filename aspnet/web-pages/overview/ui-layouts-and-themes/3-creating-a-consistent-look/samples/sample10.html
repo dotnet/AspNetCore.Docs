@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multisection Content</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      @RenderSection("header")
+    </div>
+    <div id="list">
+      @RenderSection("list")
+    </div>
+    <div id="main">
+      @RenderBody()
+    </div>
+    <div id="footer">
+      &copy; 2012 Contoso Pharmaceuticals. All rights reserved.
+    </div>
+  </body>
+</html>

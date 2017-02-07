@@ -1,0 +1,15 @@
+/* Styles to test new editor and display templates.
+----------------------------------------------------------*/
+.loud-1 {
+    font-weight: bold;
+    color: Red;
+}
+.loud-2 {
+    font-size:  2.0em;
+    color:Green;
+}
+.loud-3 {
+    font-style: italic;
+    color: yellow;
+    background-color: blue;
+}

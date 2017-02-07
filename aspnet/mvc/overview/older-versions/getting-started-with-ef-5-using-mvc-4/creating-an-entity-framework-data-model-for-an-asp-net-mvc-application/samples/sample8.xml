@@ -1,0 +1,1 @@
+<add name="SchoolContext" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=ContosoUniversity;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\ContosoUniversity.mdf" providerName="System.Data.SqlClient" />

@@ -1,0 +1,1 @@
+var pathInfo = UrlData[0];

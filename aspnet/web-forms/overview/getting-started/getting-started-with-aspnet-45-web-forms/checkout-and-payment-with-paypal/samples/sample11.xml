@@ -1,0 +1,1 @@
+<add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-WingtipToys;Integrated Security=True" providerName="System.Data.SqlClient" />
