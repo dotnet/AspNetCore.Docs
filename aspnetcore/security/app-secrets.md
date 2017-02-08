@@ -76,9 +76,7 @@ You can also use the Secret Manager tool to list, remove and clear app secrets.
 
 ## Accessing user secrets via configuration
 
-You access Secret Manager secrets through the configuration system. Add the `Microsoft.Extensions.Configuration.UserSecrets` to the *.csproj* file and run `dotnet restore`.
-
-[!code-xml[Main](app-secrets/sample/UserSecrets/csproj.xml?range=11-14&highlight=3)]
+You access Secret Manager secrets through the configuration system. Add the `Microsoft.Extensions.Configuration.UserSecrets` package and run `dotnet restore`.
 
 Add the user secrets configuration source to the `Startup` method:
 
@@ -104,4 +102,4 @@ You should not write code that depends on the location or format of the data sav
 
 ## Additional Resources
 
-* [Configuration](../fundamentals/configuration.md).
+* [Configuration](../fundamentals/configuration.md)
