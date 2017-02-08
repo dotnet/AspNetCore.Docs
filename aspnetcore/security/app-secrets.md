@@ -91,7 +91,7 @@ You access Secret Manager secrets through the configuration system. Add the `Mic
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [2]}} -->
 
 ```none
-  "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
+  "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
    ```
 
 Add the user secrets configuration source to the `Startup` method:
