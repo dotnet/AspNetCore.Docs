@@ -27,7 +27,7 @@ To avoid storing app secrets in code or in local configuration files you store s
 For example, if you create a new ASP.NET Core web app with individual user accounts, it will add a default connection string to the *appsettings.json* file in the project with the key `DefaultConnection`. The default connection string is setup to use LocalDB, which runs in user mode and doesn't require a password. When you deploy your application to a test or production server you can override the `DefaultConnection` key value with an environment variable setting that contains the connection string (potentially with sensitive credentials) for a test or production database server.
 
 >[!WARNING]
-> Environment variables are generally stored in plain text and are not encrypted. If the machine or process is compromised then environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may still be required.
+> Environment variables are generally stored in plain text and are not encrypted. If the machine or process is compromised, then environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may still be required.
 
 ## Secret Manager
 
@@ -41,7 +41,7 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run 
 `dotnet restore`. 
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/csproj.xml?highlight=17)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?highlight=17)]
 
 Test the Secret Manager tool by running the following command:
 
@@ -54,11 +54,11 @@ The Secret Manager tool will display usage, options and command help.
 > [!NOTE]
 > You must be in the same directory of the *.csproj* file to run tools defined in the *.csproj* file.
 
-The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a `UserSecretsId` value in its *.csproj* file. The value of `UserSecretsId` is arbitrary, but is generally unique to the project.
+The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a `UserSecretsId` value in its *.csproj* file. The value of `UserSecretsId` is arbitrary, but is generally unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
 Add a `UserSecretsId` for your project in the  *.csproj* file :
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/csproj.xml?range=7-9&highlight=2)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?range=7-9&highlight=2)]
 
 Use the Secret Manager tool to set a secret. For example, in a command window from the project directory enter the following:
 
