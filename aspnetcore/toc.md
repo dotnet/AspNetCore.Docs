@@ -77,6 +77,7 @@
 ### [🔧 HTML helpers](mvc/views/html-helpers.md)
 ### [Tag helpers](mvc/views/tag-helpers/intro.md)
 #### [Authoring tag helpers](mvc/views/tag-helpers/authoring.md)
+#### [Tag Helpers working with forms](mvc/views/working-with-forms.md)
 ### [Partial views](mvc/views/partial.md)
 ### [Dependency injection into views](mvc/views/dependency-injection.md)
 ### [View components](mvc/views/view-components.md)
