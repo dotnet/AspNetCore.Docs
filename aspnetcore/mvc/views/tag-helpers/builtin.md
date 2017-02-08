@@ -2,16 +2,16 @@
 
 By [Peter Kellner](http://peterkellner.net) 
 
-Microsoft has included 17 Tag Helpers that can be immediately used in .net Core web projects.  These Tag Helpers are complete and production quality and are recommended to be used in projects where appropriate.  In this section we will outline all the built in Tag Helpers along with a sample of each tag helper in use.
+Microsoft has included multiple Tag Helpers that can be immediately used in .net Core web projects.  These Tag Helpers are complete and production quality and are recommended to be used in projects where appropriate.  In this section we will outline all the built in Tag Helpers along with a sample of each tag helper in use.
 
 > [!NOTE]
 > There are other Tag Helpers built in that are not discussed as they are used internally in the Razor view engine.  This includes a tag helper for the ~ character which expands to the root path of the web site (among others).
 
 ## Built in ASP.NET Core Tag Helpers
 
-**[AnchorTagHelper](builtin/resources/AnchorTagHelper.md)**
+**[Anchor Tag Helper](builtin/resources/AnchorTagHelper.md)**
 
-[comment]: **[CacheTagHelper](builtin/resources/AnchorTagHelper.md)**
+**[Cache Tag Helper](builtin/resources/CacheTagHelper.md)**
 
 [comment]: **[DistributedTagHelper](builtin/resources/AnchorTagHelper.md)**
 
@@ -21,7 +21,7 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 [comment]: **[FormTagTagHelper](builtin/resources/FormTagHelper.md)**
 
-[comment]: **[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
+**[Image Tag Helper](builtin/resources/ImageTagHelper.md)**
 
 [comment]: **[InputTagHelper](builtin/resources/InputTagHelper.md)**
 
@@ -39,9 +39,9 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 [comment]: **[ValidationMessageTagHelper](builtin/resources/ValidationMessageTagHelper.md)**
 
-[comment]: **[ValidationSummaryHelper](builtin/resources/ValidationSummaryTagHelper.md)**
-
-<br/>
+[comment]: **[ValidationSummaryTagHelper](builtin/resources/ValidationSummaryTagHelper.md)**  
+  
+  
 
 ## Additional Resources
 
