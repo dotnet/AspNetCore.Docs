@@ -315,7 +315,7 @@ This error will be seen if `MapSignalR` is called twice by your application. Som
 
 ### WebSocket is not used
 
-If you have verified that your server and clients meet the requirements for WebSocket (listed in the [Supported Platforms](../getting-started/supported-platforms.md) document), you will need to enable WebSocket on your server. Instructions for doing this can be found [here](http://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support).
+If you have verified that your server and clients meet the requirements for WebSocket (listed in the [Supported Platforms](../getting-started/supported-platforms.md) document), you will need to enable WebSocket on your server. Instructions for doing this can be found [here](https://www.iis.net/learn/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support).
 
 ### $.connection is undefined
 

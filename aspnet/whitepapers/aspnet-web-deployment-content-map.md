@@ -137,7 +137,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 ## Making sure an application is off-line during deployment
 
 - [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). See the section **Take the application offline during deployment.**
-- [Taking an Application Offline before Publishing](http://www.iis.net/learn/publish/deploying-application-packages/taking-an-application-offline-before-publishing) (IIS.net site). Explains a feature built into Web Deploy 3.0 that automates handling of an app\_offline.htm file. This feature does not work with custom app\_offline.htm files.
+- [Taking an Application Offline before Publishing](https://www.iis.net/learn/publish/deploying-application-packages/taking-an-application-offline-before-publishing) (IIS.net site). Explains a feature built into Web Deploy 3.0 that automates handling of an app\_offline.htm file. This feature does not work with custom app\_offline.htm files.
 - [How to take your web app offline during publishing](http://sedodream.com/2012/01/08/HowToTakeYourWebAppOfflineDuringPublishing.aspx) (Sayed Hashimi's blog). How to automate the process of using a custom app\_offline.htm file.
 - [Web publishing updates for app offline and usechecksum](https://blogs.msdn.com/b/webdev/archive/2013/10/30/web-publishing-updates-for-app-offline-and-usechecksum.aspx) (Microsoft Web Development blog). Another option for automating use of app\_offline.htm file.
 - [Web Deploy 3.5 RTW](https://blogs.iis.net/msdeploy/archive/2013/07/09/webdeploy-3-5-rtw.aspx) (IIS.net site). New feature in Web Deploy 3.5 for custom app\_offline.htm files.
@@ -278,5 +278,5 @@ The following resources provide documentation about Web Deploy, the IIS framewor
 - [PowerShell Scripts for Automating Web Deploy Setup](https://www.iis.net/learn/publish/using-web-deploy/powershell-scripts-for-automating-web-deploy-setup).
 - [Web Deployment Tool](https://go.microsoft.com/fwlink/?LinkId=151481). Top-level table of contents node for Web Deploy documentation on the TechNet site. Includes useful reference information but most of the TechNet pages have not been updated for years.
 - [Microsoft.Web.Deployment Namespace](https://go.microsoft.com/fwlink/?LinkId=148630). API documentation, has not been updated since version 1.0.
-- [The Microsoft Web Deployment Team blog](http://blogs.iis.net/msdeploy/default.aspx).
-- [Publish tab in IIS.net web site](http://www.iis.net/learn/publish).
+- [The Microsoft Web Deployment Team blog](https://blogs.iis.net/msdeploy/default.aspx).
+- [Publish tab in IIS.net web site](https://www.iis.net/learn/publish).

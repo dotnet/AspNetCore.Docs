@@ -119,7 +119,7 @@ SignalR takes the following steps to prevent a malicious site from creating vali
 
 ### Secure Socket Layers (SSL) protocol
 
-The SSL protocol uses encryption to secure the transport of data between a client and server. If your SignalR application transmits sensitive information between the client and server, use SSL for the transport. For more information about setting up SSL, see [How to set up SSL on IIS 7](http://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
+The SSL protocol uses encryption to secure the transport of data between a client and server. If your SignalR application transmits sensitive information between the client and server, use SSL for the transport. For more information about setting up SSL, see [How to set up SSL on IIS 7](https://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
 
 <a id="groupsecurity"></a>
 
