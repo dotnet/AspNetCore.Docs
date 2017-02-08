@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,10 @@ namespace Localization.StarterWeb.Controllers
 
         public TestController(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create(typeof(SharedResource));
-            _localizer2 = factory.Create("SharedResource", location: null);
+            var type = typeof(SharedResource));
+            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
+            _localizer = factory.Create(type);
+            _localizer2 = factory.Create("SharedResource", assemblyName);
         }       
 
         public IActionResult About()

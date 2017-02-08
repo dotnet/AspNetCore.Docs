@@ -14,7 +14,7 @@ uid: fundamentals/localization
 ---
 # Globalization and localization
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), and [Nadeem Afana](https://twitter.com/NadeemAfana)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://twitter.com/NadeemAfana), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
@@ -48,7 +48,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
-[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=6-10)]
+[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=6-12)]
 
 The code above demonstrates each of the two factory create methods.
 
