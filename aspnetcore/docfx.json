@@ -34,7 +34,6 @@
     "externalReference": [],
     "globalMetadata": {
       "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
-      /* Setting navPath and navRel eliminates screen-filling TOC when running local builds using "docfx -t default --serve" */
       "_navPath": "/foo",
       "_navRel": "/foo",
       "searchScope": ["ASP.NET Core"]
