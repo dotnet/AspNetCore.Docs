@@ -1,11 +1,11 @@
 ---
 title: Areas | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Shows how to work with areas.
+keywords: ASP.NET Core, areas, routing, views
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 5e16d5e8-5696-4cb2-8ec7-d36be305c922
 ms.technology: aspnet
@@ -185,13 +185,12 @@ Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeC
 
 ## Publishing Areas
 
-To publish all views of the areas folder, in the `project.json` file include an entry in the `publishOptions`'s `include` node like below:
+To publish all views of the areas folder, in the *.csproj* file include `Areas\**\*.cshtml` n the following markup:
 
-```text
-"publishOptions": {
-     "include": [
-       "Areas/**/*.cshtml",
-       ....
-       ....
-     ]
+```xml
+  <ItemGroup>
+    <Content Update="wwwroot\**\*;**\*.cshtml;Areas\**\*.cshtml;">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
    ```
