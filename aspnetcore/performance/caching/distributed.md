@@ -59,7 +59,7 @@ Removes a cache entry based on its key.
 
 To use the `IDistributedCache` interface:
 
-   1. Add the NuGet packages to your project file.
+   1. Add the required NuGet packages to your project file.
 
    2. Configure the specific implementation of `IDistributedCache` in your `Startup` class's `ConfigureServices` method, and add it to the container there.
 
