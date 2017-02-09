@@ -185,12 +185,4 @@ Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeC
 
 ## Publishing Areas
 
-To publish all views of the areas folder, in the *.csproj* file include `Areas\**\*.cshtml` n the following markup:
-
-```xml
-  <ItemGroup>
-    <Content Update="wwwroot\**\*;**\*.cshtml;Areas\**\*.cshtml;">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-   ```
+All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.
