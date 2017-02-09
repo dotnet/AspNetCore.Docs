@@ -26,7 +26,7 @@ EF Core 1.0 is the latest version of EF but does not yet have all the features o
 
 * [Visual Studio 2015](https://www.visualstudio.com/products/vs-2015-product-editions) with [Update 3](https://www.visualstudio.com/news/releasenotes/vs2015-update3-vs) or later.
 
-* [.NET Core 1.0 with Visual Studio tools](https://go.microsoft.com/fwlink/?LinkId=827545).
+* [.NET Core 1.0 with Visual Studio tools](https://go.microsoft.com/fwlink/?LinkID=798306).
 
 ## Troubleshooting
 
