@@ -217,7 +217,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that you didn't set a **platform** in **buildOptions** that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+Confirm that you didn't set a `<PlatformTarget>` element in *.csproj* that conflicts with the RID. For example, don't specify a `<PlatformTarget>` of **x86** and publish with an RID of **win10-x64**, either by using **dotnet publish -c Release -r win10-x64** or by setting the `<RuntimeIdentifiers>` in your *.csproj* to `win10-x64`. The project will publish without warning or error but fail with the above logged exceptions on the server.
 
 ### URI endpoint wrong or stopped website
 
