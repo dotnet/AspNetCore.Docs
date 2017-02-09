@@ -103,21 +103,7 @@ To configure *IISIntegration* service options, include a service configuration f
 
 ### *publish-iis* tool
 
-The *publish-iis* tool can be added to any .NET Core application and will configure the ASP.NET Core Module by creating or modifying the *web.config* file. The tool runs after publishing with the *dotnet publish* command or publishing with Visual Studio and will configure the *processPath* and *arguments* for you. If you're publishing a *web.config* file by including the file in your project and listing the file in the *publishOptions* section of *project.json*, the tool will not modify other IIS settings you have included in the file.
-
-To include the *publish-iis* tool in your application, add entries to the *tools* and *scripts* sections of *project.json*.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
-
-```none
-
-   "tools": {
-     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-   },
-   "scripts": {
-     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-   }
-   ```
+The *publish-iis* tool is included with "Microsoft.NET.Sdk.Web", that is by including `<Project Sdk="Microsoft.NET.Sdk.Web">` in your *.csproj* file. The *publish-iis* tool will configure the ASP.NET Core Module by creating or modifying the *web.config* file. The tool runs after publishing with the *dotnet publish* command or publishing with Visual Studio. Publishing will configure *processPath* and *arguments*. If you're publishing a *web.config* file by including the file in your project, the tool will not modify IIS settings in your *web.config* file.
 
 ## Deploy the application
 
@@ -231,7 +217,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+* Confirm that you didn't set a **platform** in **buildOptions** that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
 ### URI endpoint wrong or stopped website
 
