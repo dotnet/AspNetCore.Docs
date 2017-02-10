@@ -1,5 +1,5 @@
 ﻿using AngularSample.Models;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace AngularSample.Controllers.Api

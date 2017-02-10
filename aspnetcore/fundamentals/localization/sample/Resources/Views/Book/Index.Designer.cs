@@ -269,11 +269,11 @@ namespace Localization.StarterWeb.Resources.Views.Book {
         }
         
         /// <summary>
-        ///    Looks up a localized string similar to Exécuter des commandes dans votre project.json.
+        ///    Looks up a localized string similar to Exécuter des commandes dans votre bash.
         /// </summary>
         public static string Run_commands_in_your_project_json {
             get {
-                return ResourceManager.GetString("Run commands in your project.json", resourceCulture);
+                return ResourceManager.GetString("Run commands in your bash", resourceCulture);
             }
         }
         
