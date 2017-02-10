@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 2/14/2017
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 1e35d362-0005-4f84-a187-274ca203a787
 ms.technology: aspnet
@@ -34,7 +34,7 @@ Three implementations of `IFileProvider` are available: Physical, Embedded, and 
 
 The `PhysicalFileProvider` provides access to the physical file system. It wraps the `System.IO.File` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a Controller or service's constructor through [dependency injection](dependency-injection.md). The latter approach will typically yield a more flexible and testable solution.
 
-The sample below shows how to create a `PhysicalFileProvider`.  You can then iterate through its directory contents or get a specific file's information by providing a subpath.
+The sample below shows how to create a `PhysicalFileProvider`.
 
 
 ```csharp
@@ -42,6 +42,8 @@ IFileProvider provider = new PhysicalFileProvider(applicationRoot);
 IDirectoryContents contents = provider.GetDirectoryContents(""); // the applicationRoot contents
 IFileInfo fileInfo = provider.GetFileInfo("wwwroot/js/site.js"); // a file under applicationRoot
 ```
+
+You can iterate through its directory contents or get a specific file's information by providing a subpath.
 
 To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
 
