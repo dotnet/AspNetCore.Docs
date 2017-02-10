@@ -93,7 +93,7 @@
 ### [Working with the Application Model](mvc/controllers/application-model.md)
 ### [🔧 Application parts](mvc/advanced/app-parts.md)
 ### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)
-### [🔧 Custom formatters](mvc/advanced/custom-formatters.md)
+### [Custom formatters](mvc/advanced/custom-formatters.md)
 
 # [Testing](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
