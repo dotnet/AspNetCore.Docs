@@ -14,7 +14,7 @@ namespace DistCacheSample
 {
     public class Startup
     {
-       
+
         /// <summary>
         /// Use LocalCache (Memory) in Development
         /// </summary>
@@ -44,14 +44,14 @@ namespace DistCacheSample
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
         {
-          
+
             services.AddDistributedSqlServerCache(options =>
             {
                 options.ConnectionString = @"Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;";
                 options.SchemaName = "dbo";
                 options.TableName = "TestCache";
             });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +60,10 @@ namespace DistCacheSample
         {
             var serverStartTimeString = DateTime.Now.ToString();
             byte[] val = Encoding.UTF8.GetBytes(serverStartTimeString);
-            cache.Set("lastServerStartTime", val);
-            
+            var cacheEntryOptions = new DistributedCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromSeconds(30));
+            cache.Set("lastServerStartTime", val, cacheEntryOptions);
+
             app.UseStartTimeHeader();
 
             app.Run(async (context) =>
@@ -71,5 +73,5 @@ namespace DistCacheSample
             });
         }
     }
- 
+
 }
