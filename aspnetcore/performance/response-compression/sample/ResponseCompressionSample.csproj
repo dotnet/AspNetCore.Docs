@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Content Include="banner.svg;testfile1kb.txt" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
 
   <ItemGroup>
