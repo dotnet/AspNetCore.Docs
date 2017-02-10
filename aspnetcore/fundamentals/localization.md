@@ -48,7 +48,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
-[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=6-12)]
+[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
 The code above demonstrates each of the two factory create methods.
 
@@ -139,7 +139,7 @@ Each language and culture combination (other than the default language) requires
 
 Localization is configured in the `ConfigureServices` method:
 
-[!code-csharp[Main](localization/sample/Startup.cs?highlight=4,7,8&range=44-45,55-61)]
+[!code-csharp[Main](localization/sample/Startup.cs?range=45-49)]
 
 * `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
@@ -151,7 +151,7 @@ Localization is configured in the `ConfigureServices` method:
 
 The current culture on a request is set in the localization [Middleware](middleware.md). The localization middleware is enabled in the `Configure` method of *Startup.cs* file. Note,  the localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvc()`).
 
-[!code-csharp[Main](localization/sample/Startup.cs?range=107-108,136-159)]
+[!code-csharp[Main](localization/sample/Startup.cs?highlight=1-21&range=136-159)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -222,7 +222,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
        options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
        {
-          // My custom request culture logic
+         // My custom request culture logic
          return new ProviderCultureResult("en");
        }));
    });
