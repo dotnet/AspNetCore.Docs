@@ -5,7 +5,7 @@ description: How to use ASP.NET Core integration testing to ensure that an appli
 keywords: ASP.NET Core, integration testing
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 40d534f2-89b3-4b09-9c2c-3494bf9991c9
 ms.technology: aspnet
@@ -40,9 +40,7 @@ To get set up to run integration tests, you'll need to create a test project, ad
 
 ### The Test Host
 
-ASP.NET Core includes a test host that can be added to integration test projects and used to host ASP.NET Core applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use [xUnit](https://xunit.github.io) and the Test Host, as you can see from this excerpt from its *project.json* file:
-
-[!code-json[Main](../testing/integration-testing/sample/test/PrimeWeb.IntegrationTests/project.json?range=6-11&highlight=5)]
+ASP.NET Core includes a test host that can be added to integration test projects and used to host ASP.NET Core applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use [xUnit](https://xunit.github.io) and the Test Host. It uses the `Microsoft.AspNetCore.TestHost` NuGet package.
 
 Once the `Microsoft.AspNetCore.TestHost` package is included in the project, you'll be able to create and configure a `TestServer` in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Core Empty Web template created by Visual Studio.
 
