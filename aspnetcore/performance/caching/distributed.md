@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 2/14/2017
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 870f082d-6d43-453d-b311-45f3aeb4d2c5
 ms.technology: aspnet
@@ -98,7 +98,7 @@ In the sample code, a `RedisCache` implementation is used when the server is con
 
 The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. To create SQL Server table you can use sql-cache tool, the tool creates a table with the name and schema you specify.
 
-To use the sql-cache tool add `SqlConfig.Tools` to the `<ItemGroup>` element of the *.csproj* file and run dotnet restore.
+To use the sql-cache tool, add `SqlConfig.Tools` to the `<ItemGroup>` element of the *.csproj* file and run dotnet restore.
 
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/DistCacheSample.csproj?range=33-35)]
 
