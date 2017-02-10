@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{57C7AF88-2BC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E76FCD00-1929-4A8F-A0DA-D615EBF09B0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularSample", "src\AngularSample\AngularSample.csproj", "{FCF9D7AE-6AE9-43FD-BC27-87B49CDF7B73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularJSSample", "src\AngularJSSample\AngularJSSample.csproj", "{FCF9D7AE-6AE9-43FD-BC27-87B49CDF7B73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

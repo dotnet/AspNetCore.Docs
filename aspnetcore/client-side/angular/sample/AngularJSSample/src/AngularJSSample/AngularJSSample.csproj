@@ -2,8 +2,8 @@
 
   <PropertyGroup>
       <TargetFramework>netcoreapp1.1</TargetFramework>
-    <AssemblyName>AngularSample</AssemblyName>
-    <PackageId>AngularSample</PackageId>
+    <AssemblyName>AngularJSSample</AssemblyName>
+    <PackageId>AngularJSSample</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
