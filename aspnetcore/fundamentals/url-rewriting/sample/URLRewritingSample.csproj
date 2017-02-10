@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Content Include="ApacheModRewrite.txt;IISUrlRewrite.xml;testCert.pfx" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
   
   <ItemGroup>
