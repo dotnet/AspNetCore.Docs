@@ -1,8 +1,8 @@
 ---
-title: Using Angular for Single Page Applications (SPAs) | Microsoft Docs
+title: Using AngularJS for Single Page Applications (SPAs) | Microsoft Docs
 author: rick-anderson
 description: Learn how to build a SPA-style ASP.NET application using AngularJS
-keywords: ASP.NET Core, Angular, SPA
+keywords: ASP.NET Core, AngularJS, SPA
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,10 +12,8 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/angular
 ---
-# Using Angular for Single Page Applications (SPAs)
+# Using AngularJS for Single Page Applications (SPAs)
 
->[!WARNING]
-> This page documents version 1.0.0-rc1 and has not yet been updated for version 1.0.0
 
 By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott Addie](https://scottaddie.com)
 
@@ -29,7 +27,7 @@ In this article, you will learn how to build a SPA-style ASP.NET application usi
 
 AngularJS is not a DOM manipulation library like jQuery, but it uses a subset of jQuery called jQLite. AngularJS is primarily based on declarative HTML attributes that you can add to your HTML tags. You can try AngularJS in your browser using the [Code School website](https://www.codeschool.com/courses/shaping-up-with-angular-js).
 
-This article focuses on Angular 1.X with some notes on where Angular is heading with 2.0.
+This article focuses on AngularJS with some notes on where Angular is heading.
 
 ## Getting started
 
@@ -41,21 +39,21 @@ There are several ways to add AngularJS to your application. If you’re startin
 
 <a name=angular-bower-json></a>
 
-[!code-json[Main](../client-side/angular/sample/AngularSample/src/AngularSample/bower.json?highlight=9)]
+[!code-json[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/bower.json?highlight=9)]
 
 Upon saving the *bower.json* file, Angular will be installed in your project's *wwwroot/lib* folder. Additionally, it will be listed within the `Dependencies/Bower` folder. See the screenshot below.
 
-![Solution Explorer with Angular Project](angular/_static/angular-solution-explorer.png)
+![Solution Explorer with AngularJS Project](angular/_static/angular-solution-explorer.png)
 
 Next, add a `<script>` reference to the bottom of the `<body>` section of your HTML page or *_Layout.cshtml* file, as shown here:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Shared/_Layout.cshtml?highlight=4&range=48-52)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Shared/_Layout.cshtml?highlight=4&range=48-52)]
 
-It's recommended that production applications utilize CDNs for common libraries like Angular. You can reference Angular from one of several CDNs, such as this one:
+It's recommended that production applications utilize CDNs for common libraries like AngularJS. You can reference AngularJS from one of several CDNs, such as this one:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Shared/_Layout.cshtml?highlight=10&range=53-67)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Shared/_Layout.cshtml?highlight=10&range=53-67)]
 
-Once you have a reference to the *angular.js* script file, you're ready to begin using Angular in your web pages.
+Once you have a reference to the *angular.js* script file, you're ready to begin using AngularJS in your web pages.
 
 ## Key components
 
@@ -71,7 +69,7 @@ AngularJS uses [directives](https://docs.angularjs.org/guide/directive) to exten
 
 One of the primitive directives used in all AngularJS applications is the `ng-app` directive, which bootstraps the AngularJS application. This directive can be applied to the `<body>` tag or to a child element of the body. Let's see an example in action. Assuming you're in an ASP.NET project, you can either add an HTML file to the `wwwroot` folder, or add a new controller action and an associated view. In this case, I've added a new `Directives` action method to `HomeController.cs`. The associated view is shown here:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Directives.cshtml?highlight=5,7)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Directives.cshtml?highlight=5,7)]
 
 To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the `ng-app` directive to indicate this page is an AngularJS application. The `{{2+2}}` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application:
 
@@ -105,7 +103,7 @@ AngularJS provides [data binding](https://docs.angularjs.org/guide/databinding) 
 
 Create either an HTML file or a controller action with an accompanying view named `Databinding`. Include the following in the view:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Databinding.cshtml?highlight=8,9,10)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Databinding.cshtml?highlight=8,9,10)]
 
 Notice that you can display model values using either directives or data binding (`ng-bind`). The resulting page should look like this:
 
@@ -117,7 +115,7 @@ Notice that you can display model values using either directives or data binding
 
 Add another view to demonstrate templates, and add the following to it:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Templates.cshtml?highlight=8,9,10)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Templates.cshtml?highlight=8,9,10)]
 
 The template has AngularJS directives like `ng-app`, `ng-init`, `ng-model` and data binding expression syntax to bind the `personName` property. Running in the browser, the view looks like the screenshot below:
 
@@ -133,7 +131,7 @@ If you change the name by typing in the input field, you will see the text next 
 
 The AngularJS expressions in the sample below bind `personName` and a simple JavaScript calculated expression:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Expressions.cshtml?highlight=8,9,10)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Expressions.cshtml?highlight=8,9,10)]
 
 The example running in the browser displays the `personName` data and the results of the calculation:
 
@@ -143,7 +141,7 @@ The example running in the browser displays the `personName` data and the result
 
 Repeating in AngularJS is done via a primitive directive called `ng-repeat`. The `ng-repeat` directive repeats a given HTML element in a view over the length of a repeating data array. Repeaters in AngularJS can repeat over an array of strings or objects. Here is a sample usage of repeating over an array of strings:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters.cshtml?highlight=8,10,11)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Repeaters.cshtml?highlight=8,10,11)]
 
 The [repeat directive](https://docs.angularjs.org/api/ng/directive/ngRepeat) outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
@@ -151,7 +149,7 @@ The [repeat directive](https://docs.angularjs.org/api/ng/directive/ngRepeat) out
 
 Here is an example that repeats over an array of objects. The `ng-init` directive establishes a `names` array, where each element is an object containing first and last names. The `ng-repeat` assignment, `name in names`, outputs a list item for every array element.
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters2.cshtml?highlight=8,9,10,11,13,14)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Repeaters2.cshtml?highlight=8,9,10,11,13,14)]
 
 The output in this case is the same as in the previous example.
 
@@ -171,7 +169,7 @@ Use `$first` in the `ng-repeat` loop to determine whether the current index in y
 
 Below is a sample that shows `$index`, `$even`, `$odd`, `$first`, and `$last` in action:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters3.cshtml?highlight=14,15,16,17,18)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Repeaters3.cshtml?highlight=14,15,16,17,18)]
 
 Here is the resulting output:
 
@@ -186,13 +184,13 @@ Here is the resulting output:
 
 Below is a simple example showing how to set properties on `$scope` within a separate JavaScript file, *scope.js*:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/scope.js?highlight=2,3)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/scope.js?highlight=2,3)]
 
 Observe the `$scope` parameter passed to the controller on line 2. This object is what the view knows about. On line 3, we are setting a property called "name" to "Mary Jane".
 
 What happens when a particular property is not found by the view? The view defined below refers to "name" and "age" properties:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Scope.cshtml?highlight=9,10,14)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Scope.cshtml?highlight=9,10,14)]
 
 Notice on line 9 that we are asking Angular to show the "name" property using expression syntax. Line 10 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age. Missing properties are ignored.
 
@@ -220,11 +218,11 @@ Use the `ng-app` directive to represent an AngularJS module on the page. To use 
 
 Below is a snippet of code that registers a new controller. The `personApp` variable in the snippet references an Angular module, which is defined on line 2.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/controllers.js?highlight=2,5)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/controllers.js?highlight=2,5)]
 
 The view using the `ng-controller` directive assigns the controller name:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Controllers.cshtml?highlight=8,14)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Controllers.cshtml?highlight=8,14)]
 
 The page shows "Mary" and "Jane" that correspond to the `firstName` and `lastName` properties attached to the `$scope` object:
 
@@ -238,15 +236,15 @@ By using the .component() method, development is simplified gaining the function
 
 Below is a snippet of code that registers a new component. The `personApp` variable in the snippet references an Angular module, which is defined on line 2.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/components.js?highlight=2,5,13)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/components.js?highlight=2,5,13)]
 
 The view where we are displaying the custom HTML element.
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/Home/Components.cshtml?highlight=8)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/Home/Components.cshtml?highlight=8)]
 
 The associated template used by component:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/partials/personcomponent.html?highlight=2,3)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/partials/personcomponent.html?highlight=2,3)]
 
 The page shows "Aftab" and "Ansari" that correspond to the `firstName` and `lastName` properties attached to the `vm` object:
 
@@ -258,7 +256,7 @@ The page shows "Aftab" and "Ansari" that correspond to the `firstName` and `last
 
 Below is an example that shows how to use factories in AngularJS:
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/simpleFactory.js?highlight=1)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/simpleFactory.js?highlight=1)]
 
 To call this factory from the controller, pass `personFactory` as a parameter to the `controller` function:
 
@@ -272,29 +270,29 @@ personApp.controller('personController', function($scope,personFactory) {
 
 Below is an end-to-end example using services in AngularJS to interact with an ASP.NET Core Web API endpoint. The example gets data from the Web API and displays the data in a view template. Let's start with the view first:
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/People/Index.cshtml?highlight=5,8,10,17,18,19)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/People/Index.cshtml?highlight=5,8,10,17,18,19)]
 
 In this view, we have an Angular module called `PersonsApp` and a controller called `personController`. We are using `ng-repeat` to iterate over the list of persons. We are referencing three custom JavaScript files on lines 17-19.
 
 The *personApp.js* file is used to register the `PersonsApp` module; and, the syntax is similar to previous examples. We are using the `angular.module` function to create a new instance of the module that we will be working with.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/personApp.js?highlight=3)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personApp.js?highlight=3)]
 
 Let's take a look at *personFactory.js*, below. We are calling the module’s `factory` method to create a factory. Line 12 shows the built-in Angular `$http` service retrieving people information from a web service.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/personFactory.js?highlight=6,7,12)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personFactory.js?highlight=6,7,12)]
 
 In *personController.js*, we are calling the module’s `controller` method to create the controller. The `$scope` object's `people` property is assigned the data returned from the personFactory (line 13).
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/personController.js?highlight=6,7,13)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personController.js?highlight=6,7,13)]
 
 Let's take a quick look at the Web API and the model behind it. The `Person` model is a POCO (Plain Old CLR Object) with `Id`, `FirstName`, and `LastName` properties:
 
-[!code-csharp[Main](angular/sample/AngularSample/src/AngularSample/Models/Person.cs)]
+[!code-csharp[Main](angular/sample/AngularJSSample/src/AngularJSSample/Models/Person.cs)]
 
 The `Person` controller returns a JSON-formatted list of `Person` objects:
 
-[!code-csharp[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Controllers/Api/PersonController.cs?highlight=9,10,19)]
+[!code-csharp[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Controllers/Api/PersonController.cs?highlight=9,10,19)]
 
 Let's see the application in action:
 
@@ -318,23 +316,23 @@ After you install the package, add the script reference (*angular-route.js*) to 
 
 Now let's take the Person App we have been building and add navigation to it. First, we will make a copy of the app by creating a new `PeopleController` action called `Spa` and a corresponding `Spa.cshtml` view by copying the Index.cshtml view in the `People` folder. Add a script reference to `angular-route` (see line 11). Also add a `div` marked with the `ng-view` directive (see line 6) as a placeholder to place views in. We are going to be using several additional *.js* files which are referenced on lines 13-16.
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/People/Spa.cshtml?highlight=6,11,12,13,14,15,16)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/People/Spa.cshtml?highlight=6,11,12,13,14,15,16)]
 
 Let's take a look at *personModule.js* file to see how we are instantiating the module with routing. We are passing `ngRoute` as a library into the module. This module handles routing in our application.
 
-[!code-javascript[Main](angular/sample/AngularSample/src/AngularSample/wwwroot/app/personModule.js)]
+[!code-javascript[Main](angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personModule.js)]
 
 The *personRoutes.js* file, below, defines routes based on the route provider. Lines 4-7 define navigation by effectively saying, when a URL with `/persons` is requested, use a template called `partials/personlist` by working through `personListController`. Lines 8-11 indicate a detail page with a route parameter of `personId`. If the URL doesn't match one of the patterns, Angular defaults to the `/persons` view.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/personRoutes.js?highlight=4,5,6,7,8,9,10,11,13)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personRoutes.js?highlight=4,5,6,7,8,9,10,11,13)]
 
 The `personlist.html` file is a partial view containing only the HTML needed to display person list.
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/partials/personlist.html?highlight=3)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/partials/personlist.html?highlight=3)]
 
 The controller is defined by using the module's `controller` function in *personListController.js*.
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/personListController.js?highlight=1)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/personListController.js?highlight=1)]
 
 If we run this application and navigate to the `people/spa#/persons` URL, we will see:
 
@@ -377,13 +375,13 @@ There are a number of directives in AngularJS that add event-handling capabiliti
 
 Let's look at how the `ng-click` event is wired up. Create a new JavaScript file named *eventHandlerController.js*, and add the following to it:
 
-[!code-javascript[Main](../client-side/angular/sample/AngularSample/src/AngularSample/wwwroot/app/eventHandlerController.js?highlight=5,6,7)]
+[!code-javascript[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/wwwroot/app/eventHandlerController.js?highlight=5,6,7)]
 
 Notice the new `sayName` function in `eventHandlerController` on line 5 above. All the method is doing for now is showing a JavaScript alert to the user with a welcome message.
 
 The view below binds a controller function to an AngularJS event. Line 9 has a button on which the `ng-click` Angular directive has been applied. It calls our `sayName` function, which is attached to the `$scope` object passed to this view.
 
-[!code-html[Main](../client-side/angular/sample/AngularSample/src/AngularSample/Views/People/Events.cshtml?highlight=9)]
+[!code-html[Main](../client-side/angular/sample/AngularJSSample/src/AngularJSSample/Views/People/Events.cshtml?highlight=9)]
 
 The running example demonstrates that the controller's `sayName` function is called automatically when the button is clicked.
 
