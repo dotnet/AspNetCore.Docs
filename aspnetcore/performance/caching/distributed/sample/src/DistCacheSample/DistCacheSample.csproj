@@ -4,16 +4,9 @@
     <TargetFramework>net452</TargetFramework>
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>DistCacheSample</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>DistCacheSample</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot;web.config">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.1" />
@@ -23,9 +16,6 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
