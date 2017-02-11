@@ -113,7 +113,7 @@ Configuration = builder.Build();
 2. Update the app's *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
 3. Run the sample app, which obtains its configuration values from `IConfigurationRoot` with the same name as the secret name.
   * Non-hierarchical Values: The value for `MySecret` is obtained with `config["MySecret"]`.
-  * Hierarchical Values (sections): Use `:` (colon) notation or the `.GetSection()` method.
+  * Hierarchical Values (sections): Use `:` (colon) notation or the `GetSection` extension method.
     * `config["Section:MySecret"]`
     * `config.GetSection("Section")["MySecret"]`
 
