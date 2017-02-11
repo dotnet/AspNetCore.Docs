@@ -25,7 +25,7 @@ To use the provider, add a reference to the [`Microsoft.Extensions.Configuration
 ## Application configuration
 You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you establish a key vault and create a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample app securely loads the secret values into its configuration and displays them in a webpage.
 
-The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file.
+The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault` extension. In the sample app, the extension uses three configuration values loaded from the *appsettings.json* file.
 
 App Setting | Description | Example
 --- | --- | ---
