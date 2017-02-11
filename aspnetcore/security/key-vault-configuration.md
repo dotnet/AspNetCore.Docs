@@ -25,7 +25,7 @@ To use the provider, add a reference to the [`Microsoft.Extensions.Configuration
 ## Application configuration
 You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you establish a key vault and create a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample app securely loads the secret values into its configuration and displays them in a webpage.
 
-The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file.
+The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file.
 
 App Setting | Description | Example
 --- | --- | ---
@@ -35,7 +35,7 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix app names to configuration secrets you've stored in the key vault. This allows you to maintain secrets for multiple apps in one key vault.
+`AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix app names to configuration secrets you've stored in the key vault. This allows you to maintain secrets for multiple apps in one key vault.
 
 Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample app, we create a secret in the key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second app, we create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We want each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
 
@@ -79,7 +79,7 @@ If you implement this approach with the sample application:
 2. The string secret for `KeyVaultConfigProviderSample-ConnectionString` is matched.
 3. The application name `KeyVaultConfigProviderSample` (with the dash) is stripped off and used to load `ConnectionString` with its value into the app's configuration.
 
-You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your app.
+You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your app.
 
 ## Controlling access to the ClientSecret
 Use the [Secret Manager tool](xref:security/app-secrets) to maintain the `ClientSecret` outside of your project source tree. With Secret Manager, you associate app secrets with a specific project and share them across multiple projects.
