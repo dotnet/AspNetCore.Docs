@@ -39,9 +39,9 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-In a web browser, navigate to `http://localhost:5000/api/math/sum?a=4&b=5` and you should see the result `9`.
+In a web browser, navigate to `http://localhost:5000/api/math/sum?a=4&b=5`, you should see the result `9`.
 
-Navigate to the product API (`http://localhost:5000/api/math/product?a=4&b=5`) and it returns `9`, not `20` as you'd expect. We'll fix that later in the tutorial.
+Navigate to the product API (`http://localhost:5000/api/math/product?a=4&b=5`), it returns `9`, not `20` as you'd expect. We'll fix that later in the tutorial.
 
 ## Add `dotnet watch` to a project
 
