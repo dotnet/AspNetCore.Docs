@@ -74,6 +74,7 @@ Configuration = builder.Build();
 The `Load` method is called by a provider algorithm that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the application name prefix from the secret's name and returns the name for loading into the app's configuration name-value pairs.
 
 If you implement this approach with the sample application:
+
 1. The key vault secrets are loaded.
 2. The string secret for `KeyVaultConfigProviderSample-ConnectionString` is matched.
 3. The application name `KeyVaultConfigProviderSample` (with the dash) is stripped off and used to load `ConnectionString` with its value into the app's configuration.
