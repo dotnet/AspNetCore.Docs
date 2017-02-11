@@ -2,6 +2,7 @@ using Microsoft.Owin;
 using Owin;
 using WebRole1.PersistentConnections;
 
+// Marks this class for automatic OWIN startup
 [assembly: OwinStartup(typeof(WebRole1.Startup))]
 namespace WebRole1
 {
