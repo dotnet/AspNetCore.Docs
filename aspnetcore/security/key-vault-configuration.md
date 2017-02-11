@@ -141,7 +141,7 @@ When the application fails to load configuration using the provider, an error me
 * The configuration key (name) is incorrect in the app for the value you're trying to load.
 
 ## Additional resources
-* [Configuration](xref:fundamentals/configuration)
+* <xref:fundamentals/configuration>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-hsm-protected-keys)
