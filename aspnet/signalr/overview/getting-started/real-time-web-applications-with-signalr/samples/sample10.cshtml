@@ -1,0 +1,18 @@
+@section Scripts {
+    ...
+    <script>
+        ...
+
+        var connection = $.hubConnection();
+        var hub = connection.createHubProxy("StatisticsHub");
+        hub.on("updateStatistics", function (statistics) {
+                statisticsData = statistics;
+                $("#correctAnswersCounter").text(statistics.CorrectAnswers);
+                $("#incorrectAnswersCounter").text(statistics.IncorrectAnswers);
+
+                showCharts(statisticsData);
+          });
+
+        connection.start();
+    </script>
+}

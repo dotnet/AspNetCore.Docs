@@ -1,0 +1,3 @@
+<ExcludeFilesFromDeployment>
+    robots.txt
+</ExcludeFilesFromDeployment>

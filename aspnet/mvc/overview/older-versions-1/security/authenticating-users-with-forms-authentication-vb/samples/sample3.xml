@@ -1,0 +1,7 @@
+<connectionStrings>
+
+<!--<add name="ApplicationServices" connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient"/>-->
+
+<add name="ApplicationServices" connectionString="data source=localhost;Integrated Security=SSPI;Initial Catalog=MyProductionDB" />
+
+</connectionStrings>

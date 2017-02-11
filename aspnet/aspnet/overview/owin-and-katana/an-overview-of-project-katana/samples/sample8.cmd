@@ -1,0 +1,1 @@
+Func<IDictionary<string, object>, Task>

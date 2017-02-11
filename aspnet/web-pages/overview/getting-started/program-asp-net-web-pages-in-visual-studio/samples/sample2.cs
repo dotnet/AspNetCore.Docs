@@ -1,0 +1,1 @@
+var myTime = DateTime.Now.TimeOfDay;

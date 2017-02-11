@@ -1,0 +1,12 @@
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+    padding: 0px !important;
+}
+
+li.item span.image-overlay
+{
+    position:relative;
+    left:100px;
+    top:-40px;
+    height:0px;
+    display:block;
+}

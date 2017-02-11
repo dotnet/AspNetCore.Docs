@@ -1,0 +1,1 @@
+<Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">

@@ -1,0 +1,1 @@
+runas.exe /user:SQLDebug "%PROGRAMFILES%\Microsoft Visual Studio 8\Common7\IDE\devenv.exe"

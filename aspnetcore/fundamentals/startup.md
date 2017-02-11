@@ -62,7 +62,7 @@ Looking at each method in the `Startup` class in the order in which they are cal
 
 * In the constructor:  `IHostingEnvironment`, `ILoggerFactory`
 * In the `ConfigureServices` method:  `IServiceCollection`
-* In the `Configure` method:  `IApplicationBuilder`, `IHostingEnvironment`, `ILoggerFactory`
+* In the `Configure` method:  `IApplicationBuilder`, `IHostingEnvironment`, `ILoggerFactory`, `IApplicationLifetime`
 
 ## Additional Resources
 

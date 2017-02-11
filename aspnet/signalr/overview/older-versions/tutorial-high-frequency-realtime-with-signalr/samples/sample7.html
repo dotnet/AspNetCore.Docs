@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR MoveShape Demo</title>
+    <style>
+        #shape {
+            width: 100px;
+            height: 100px;
+            background-color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+<script src="Scripts/jquery-1.6.4.js"></script>
+<script src="Scripts/jquery-ui-1.10.2.js"></script>
+<script src="Scripts/jquery.signalR-1.0.1.js"></script>
+<script src="/signalr/hubs"></script>
+<script>
+ $(function () {
+            var moveShapeHub = $.connection.moveShapeHub,
+            $shape = $("#shape"),
+
+            shapeModel = {
+                left: 0,
+                top: 0
+            };
+
+            moveShapeHub.client.updateShape = function (model) {
+                shapeModel = model;
+                $shape.css({ left: model.left, top: model.top });
+            };
+
+            $.connection.hub.start().done(function () {
+                $shape.draggable({
+                    drag: function () {
+                        shapeModel = $shape.offset();
+                        moveShapeHub.server.updateModel(shapeModel);
+                    }
+                });
+            });
+        });
+</script>
+
+    <div id="shape" />
+</body>
+</html>

@@ -32,7 +32,7 @@ Session is retained by the server for a limited time after the last request. The
 
 The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. The Redis and SQL Server distributed caches don't require sticky sessions and are the preferred approach to multi-server caching. See [Working with a Distributed Cache](xref:performance/caching/distributed) for more information.
 
-See [Installing and Configuring Session](#installing-and-configuring-session), below for more details.
+See [Configuring Session](#configuring-session) below for more details.
 
 ### TempData
 
@@ -163,6 +163,33 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 
 <a name=appstate-errors></a>
 
+## Application state data
+
+Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users.
+
+1. Define a service containing the data (for example, a class named `MyAppData`).
+
+```csharp
+public class MyAppData
+{
+    // Declare properties/methods/etc.
+} 
+```
+2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
+3. Consume the data service class in each controller:
+
+```csharp
+public class MyController : Controller
+{
+    public MyController(MyAppData myService)
+    {
+        // Do something with the service (read some data from it, 
+        // store it in a private field/property, etc.
+    }
+    }
+} 
+```
+
 ### Common errors when working with session
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
@@ -172,4 +199,5 @@ In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
 
-* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample)
+
+* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)

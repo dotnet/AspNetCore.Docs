@@ -1,0 +1,1 @@
+GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => new MyIdProvider());

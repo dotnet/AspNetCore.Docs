@@ -1,0 +1,31 @@
+@{
+  var db = Database.Open("SmallBakery");
+  var ProductId = UrlData[0];
+  if (ProductId.IsEmpty()) {
+    Response.Redirect("~/ListProductsForDelete");
+  }
+  var prod = db.QuerySingle("SELECT * FROM PRODUCT WHERE ID = @0", ProductId);
+  if( IsPost && !ProductId.IsEmpty()) {
+    var deleteQueryString = "DELETE FROM Product WHERE Id=@0";
+    db.Execute(deleteQueryString, ProductId);
+    Response.Redirect("~/ListProductsForDelete");
+  }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Product</title>
+</head>
+<body>
+  <h1>Delete Product - Confirmation</h1>
+  <form method="post" action="" name="form">
+    <p>Are you sure you want to delete the following product?</p>
+
+    <p>Name: @prod.Name <br />
+       Description: @prod.Description <br />
+       Price: @prod.Price</p>
+    <p><input type="submit" value="Delete" /></p>
+  </form>
+</body>
+</html>

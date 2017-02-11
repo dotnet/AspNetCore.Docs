@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<connectionStrings>
+    <add name="ReviewsConnectionString" 
+        connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Reviews.mdf;Integrated 
+        Security=True;User Instance=True"
+        providerName="System.Data.SqlClient" />
+
+</connectionStrings>

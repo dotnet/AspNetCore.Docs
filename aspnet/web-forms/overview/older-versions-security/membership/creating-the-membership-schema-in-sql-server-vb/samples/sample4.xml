@@ -1,0 +1,29 @@
+<configuration>
+ <connectionStrings>
+ <add name="SecurityTutorialsConnectionString" 
+ connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\SecurityTutorials.mdf;Integrated Security=True;User Instance=True" 
+ providerName="System.Data.SqlClient"/>
+ </connectionStrings> 
+ <system.web>
+ <membership defaultProvider="SecurityTutorialsSqlMembershipProvider">
+ <providers>
+ <!-- Add a customized SqlMembershipProvider --> 
+ <add name="SecurityTutorialsSqlMembershipProvider" 
+ type="System.Web.Security.SqlMembershipProvider"
+ connectionStringName="SecurityTutorialsConnectionString"
+ enablePasswordRetrieval="false"
+ enablePasswordReset="true"
+ requiresQuestionAndAnswer="true"
+ applicationName="SecurityTutorials"
+ requiresUniqueEmail="true"
+ passwordFormat="Hashed"
+ maxInvalidPasswordAttempts="5"
+ minRequiredPasswordLength="7"
+ minRequiredNonalphanumericCharacters="1"
+ passwordAttemptWindow="10"
+ passwordStrengthRegularExpression=""/>
+ </providers>
+ </membership>
+ ... Configuration markup removed for brevity ... 
+ </system.web>
+</configuration>

@@ -1,0 +1,1 @@
+GET http://localhost/odata/Products()?$expand=Supplier&$select=Name,Supplier/Name

@@ -1,0 +1,12 @@
+.field-validation-error {
+  font-weight:bold;
+  color:red;
+  background-color:yellow;
+ }
+.validation-summary-errors{
+  border:2px dashed red;
+  color:red;
+  background-color:yellow;
+  font-weight:bold;
+  margin:12px;
+}

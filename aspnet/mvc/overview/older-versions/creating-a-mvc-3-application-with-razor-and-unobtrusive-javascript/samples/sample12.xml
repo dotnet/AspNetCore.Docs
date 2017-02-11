@@ -1,0 +1,4 @@
+<appSettings>
+  <add key="ClientValidationEnabled" value="true"/> 
+  <add key="UnobtrusiveJavaScriptEnabled" value="true"/> 
+ </appSettings>

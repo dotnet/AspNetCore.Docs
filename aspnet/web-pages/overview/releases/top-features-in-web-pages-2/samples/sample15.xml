@@ -1,0 +1,4 @@
+OAuthWebSecurity.RegisterOAuthClient(
+BuiltInOAuthClient.Facebook,
+consumerKey: "",   // for Facebook, consumerKey is called AppID in the SDK
+consumerSecret: "");

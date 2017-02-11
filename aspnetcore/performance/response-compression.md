@@ -23,7 +23,7 @@ Network bandwidth is a limited resource. If you can reduce response payload size
 ## When to use Response Compression Middleware
 Use Response Compression Middleware when you're unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html), [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted directly on [WebListener server](xref:fundamentals/servers/weblistener) or [Kestrel](xref:fundamentals/servers/kestrel). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
 
-## Response Compression
+## Response compression
 Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression. You also shouldn't compress files smaller than about 150-1000 bytes (depends on the file's content and the efficiency of compression), as doing so may produce a compressed file larger than the file itself.
 
 When a client can process compressed content, the client must inform the server of its capabilities by sending the `Accept-Encoding` header with the request. When a server sends compressed content, it must include information in the `Content-Encoding` header on how the compressed response is encoded. Content encoding designations are shown below indicating which ones are supported by the middleware.
@@ -61,7 +61,7 @@ Header | Role
 You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## Package
-To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware is available for projects that target .NET Framework 4.5.1 or .NET Standard 1.3 or higher.
+To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
 
 ## Configuration
 The following highlighted code shows how to enable the Response Compression Middleware with the with the default Gzip compression and for default MIME types.
@@ -108,7 +108,7 @@ You can replace or append MIME types with the Response Compression Middleware op
 
 [!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=5)]
 
-### Custom Providers
+### Custom providers
 You can create custom compression implementations with `ICompressionProvider`. The `EncodingName` represents the content encoding that this `ICompressionProvider` produces. The middleware will use this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
 Using the sample application, the client would submit a request with the `Accept-Encoding: mycustomcompression` header. The middleware will use the custom compression implementation and return the response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.

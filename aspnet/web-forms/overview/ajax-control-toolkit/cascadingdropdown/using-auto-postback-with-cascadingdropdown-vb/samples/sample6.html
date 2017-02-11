@@ -1,0 +1,17 @@
+<script type="text/javascript">
+ function pageLoad()
+ {
+ addAutoPostBack();
+ }
+ function addAutoPostBack()
+ {
+ if ($get("VendorsList").options.length > 0)
+ {
+ $get("VendorsList").setAttribute("onchange","javascript:setTimeout('__doPostBack(\\'VendorsList\\',\\'\\')', 0)");
+ }
+ else
+ {
+ setTimeout("addAutoPostBack()", 500);
+ }
+ }
+</script>

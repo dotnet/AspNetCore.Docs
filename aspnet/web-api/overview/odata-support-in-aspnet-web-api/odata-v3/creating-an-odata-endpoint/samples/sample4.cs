@@ -1,0 +1,1 @@
+config.Routes.MapODataRoute("ODataRoute", "odata", model);

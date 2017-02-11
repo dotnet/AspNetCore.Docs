@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@PageData["Title"]</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      @RenderSection("header")
+    </div>
+      @if (PageData["ShowList"] == true) {
+          <div id="list">
+            @RenderPage("~/Shared/_List.cshtml")
+          </div>
+      }
+    <div id="main">
+      @RenderBody()
+    </div>
+    <div id="footer">
+      <p>&copy; 2012 Contoso Pharmaceuticals. All rights reserved.</p>
+    </div>
+  </body>
+</html>

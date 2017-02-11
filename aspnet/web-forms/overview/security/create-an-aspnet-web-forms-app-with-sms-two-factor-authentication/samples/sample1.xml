@@ -1,0 +1,11 @@
+</connectionStrings>
+  <appSettings>
+    <!-- SendGrid Credentials-->    
+    <add key="emailServiceUserName" value="[EmailServiceAccountUserName]" />
+    <add key="emailServicePassword" value="[EmailServiceAccountPassword]" />
+    <!-- Twilio Credentials-->
+    <add key="SMSSID" value="[SMSServiceAccountSID]" />
+    <add key="SMSAuthToken" value="[SMSServiceAuthorizationToken]" />
+    <add key="SMSPhoneNumber" value="+[SMSPhoneNumber]" />    
+  </appSettings>
+  <system.web>

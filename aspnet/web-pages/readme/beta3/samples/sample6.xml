@@ -1,0 +1,8 @@
+<compilation>
+  <assemblies>
+    <add assembly="Microsoft.WebPages.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+
+    <-- Additional assemblies here. -->
+
+  </assemblies>
+</compilation>

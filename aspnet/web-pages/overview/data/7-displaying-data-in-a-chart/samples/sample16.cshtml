@@ -1,0 +1,21 @@
+@{
+    Chart chartXml;
+    var filePathName = "_ChartFiles/XmlChart.xml";
+    if (File.Exists(Server.MapPath(filePathName))) {
+        chartXml = new Chart(width: 600,
+                             height: 400,
+                             themePath: filePathName);
+    }
+    else {
+        chartXml = new Chart(width: 600,
+                             height: 400);
+        chartXml.AddTitle("Chart Title -- Saved at " + DateTime.Now);
+        chartXml.AddSeries(
+            name: "Employee",
+            axisLabel: "Name",
+            xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+            yValues: new[] { "2", "6", "4", "5", "3" });
+        chartXml.SaveXml(path: filePathName);
+    }
+    chartXml.Write();
+}

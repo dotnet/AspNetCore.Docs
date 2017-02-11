@@ -1,0 +1,1 @@
+GET http://localhost:34701/api/products/1?version=1.5&details=1

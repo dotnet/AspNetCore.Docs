@@ -1,0 +1,32 @@
+h1 {
+    border-bottom: 3px solid #cc9900;
+    font: 2.75em/1.75em Georgia, serif;
+    color: #996600;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    margin: 0;
+    padding: 1em;
+    background-color: #ffffff;
+    font: 75%/1.75em "Trebuchet MS", Verdana, sans-serif;
+    color: #006600;
+}
+
+#list {
+    margin: 1em 0 7em -3em;
+    padding: 1em 0 0 0;
+    background-color: #ffffff;
+    color: #996600;
+    width: 25%;
+    float: left;
+}
+
+#header, #footer {
+    margin: 0;
+    padding: 0;
+    color: #996600;
+}

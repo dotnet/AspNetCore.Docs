@@ -11,7 +11,8 @@
           "**/samples/**",
           "aspnet/**",
           "**/includes/**",
-          "**/aspnet-core-conceptual/**"
+          "**/aspnet-core-conceptual/**",
+          "_site/**"
         ]
       }
     ],

@@ -1,0 +1,1 @@
+<Target Name="PublishDbPackages" Outputs="%(DbPublishPackages.Identity)">

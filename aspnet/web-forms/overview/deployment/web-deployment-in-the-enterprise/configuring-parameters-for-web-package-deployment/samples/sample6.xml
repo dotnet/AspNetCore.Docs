@@ -1,0 +1,31 @@
+<Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">
+  <XmlPoke 
+    XmlInputPath="%(PublishPackages.ParametersXml)"
+    Query="//parameters/setParameter[@name='%(PublishPackages.ConnectionName)']
+           /@value"
+    Value="%(PublishPackages.ConnectionString)"
+    Condition =" '%(PublishPackages.ConnectionName)'!=''" 
+  />
+  <XmlPoke 
+    XmlInputPath="%(PublishPackages.ParametersXml)"
+    Query="//parameters/setParameter
+           [@name='%(PublishPackages.MembershipDBConnectionName)']/@value"
+    Value='%(PublishPackages.MembershipDBConnectionString)'
+    Condition =" '%(PublishPackages.MembershipDBConnectionName)'!=''" 
+  />
+  <XmlPoke 
+    XmlInputPath="%(PublishPackages.ParametersXml)"
+    Query="//parameters/setParameter[@name='IIS Web Application Name']/@value"
+    Value="%(PublishPackages.IisWebAppName)"
+    Condition =" '%(PublishPackages.IisWebAppName)'!=''" 
+  />
+  <XmlPoke 
+    XmlInputPath="%(PublishPackages.ParametersXml)"
+    Query="//parameters/setParameter
+           [@name='%(PublishPackages.ServiceEndpointParamName)']/@value"
+    Value="%(PublishPackages.ServiceEndpointValue)"
+    Condition =" '%(PublishPackages.ServiceEndpointParamName)'!=''" 
+  /> 
+  <!--Execute the .deploy.cmd file--> 
+  ...
+</Target>

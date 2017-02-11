@@ -1,0 +1,3 @@
+<PropertyGroup>
+  <WhatIf Condition=" '$(WhatIf)'=='' ">false</WhatIf>
+</PropertyGroup>

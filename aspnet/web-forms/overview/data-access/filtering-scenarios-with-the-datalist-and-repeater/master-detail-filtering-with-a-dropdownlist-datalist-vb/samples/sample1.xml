@@ -1,0 +1,22 @@
+<siteMapNode
+    title="Master/Detail Reports with the DataList and Repeater"
+    description="Samples of Reports that Use the DataList and Repeater Controls"
+    url="~/DataListRepeaterFiltering/Default.aspx">
+ 
+    <siteMapNode
+        title="Filter by Drop-Down List"
+        description="Filter results using a drop-down list."
+        url="~/DataListRepeaterFiltering/FilterByDropDownList.aspx" />
+ 
+    <siteMapNode
+        title="Master/Detail Across Two Pages"
+        description="Master records on one page, detail records on another."
+        url="~/DataListRepeaterFiltering/CategoryListMaster.aspx" />
+ 
+    <siteMapNode
+        title="Maser/Detail on One Page"
+        description="Master records in the left column, details on the right,
+                     both on the same page."
+        url="~/DataListRepeaterFiltering/CategoriesAndProducts.aspx" />
+ 
+</siteMapNode>

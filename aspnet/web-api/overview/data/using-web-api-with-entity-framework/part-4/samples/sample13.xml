@@ -1,0 +1,14 @@
+<Error>
+  <Message>An error has occurred.</Message>
+  <ExceptionMessage>The 'ObjectContent`1' type failed to serialize the response body for content type 
+    'application/xml; charset=utf-8'.</ExceptionMessage>
+  <ExceptionType>System.InvalidOperationException</ExceptionType>
+  <StackTrace />
+  <InnerException>
+    <Message>An error has occurred.</Message>
+    <ExceptionMessage>Object graph for type 'BookService.Models.Author' contains cycles and cannot be 
+      serialized if reference tracking is disabled.</ExceptionMessage>
+    <ExceptionType>System.Runtime.Serialization.SerializationException</ExceptionType>
+    <StackTrace> ... </StackTrace>
+  </InnerException>
+</Error>

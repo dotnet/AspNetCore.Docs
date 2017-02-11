@@ -1,0 +1,5 @@
+<rules>
+    <add name="All Events"
+      eventName="All Events" provider="WmiWebEventProvider"
+        profile="Critical" />
+</rules>

@@ -1,0 +1,12 @@
+<appSettings>   
+   <!-- SendGrid-->
+   <add key="mailAccount" value="My mail account." />
+   <add key="mailPassword" value="My mail password." />
+   <!-- Twilio-->
+   <add key="TwilioSid" value="My Twilio SID." />
+   <add key="TwilioToken" value="My Twilio Token." />
+   <add key="TwilioFromPhone" value="+12065551234" />
+
+   <add key="GoogClientID" value="1.apps.googleusercontent.com" />
+   <add key="GoogClientSecret" value="My Google client secret." />
+</appSettings>

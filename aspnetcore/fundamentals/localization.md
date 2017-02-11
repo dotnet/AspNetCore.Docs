@@ -1,11 +1,11 @@
-﻿---
+---
 title: Globalization and localization | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 7f275a09-f118-41c9-88d1-8de52d6a5aa1
 ms.technology: aspnet
@@ -14,7 +14,7 @@ uid: fundamentals/localization
 ---
 # Globalization and localization
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), and [Nadeem Afana](https://twitter.com/NadeemAfana)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://twitter.com/NadeemAfana), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
@@ -48,7 +48,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
-[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=6-10)]
+[!code-csharp[Main](localization/sample/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
 The code above demonstrates each of the two factory create methods.
 
@@ -96,7 +96,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 [!code-csharp[Main](localization/sample/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
-The runtime doesn't look up localized strings for non-validation attributes. In the code above, "Email" (from `[Display(Name = "Email")]`) will not be localized.
+In ASP.NET Core MVC 1.1.0 and higer, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
 ## Provide localized resources for the languages and cultures you support  
 
@@ -139,7 +139,7 @@ Each language and culture combination (other than the default language) requires
 
 Localization is configured in the `ConfigureServices` method:
 
-[!code-csharp[Main](localization/sample/Startup.cs?highlight=4,7,8&range=44-45,55-61)]
+[!code-csharp[Main](localization/sample/Startup.cs?range=45-49)]
 
 * `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
@@ -151,7 +151,7 @@ Localization is configured in the `ConfigureServices` method:
 
 The current culture on a request is set in the localization [Middleware](middleware.md). The localization middleware is enabled in the `Configure` method of *Startup.cs* file. Note,  the localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvc()`).
 
-[!code-csharp[Main](localization/sample/Startup.cs?range=107-108,136-159)]
+[!code-csharp[Main](localization/sample/Startup.cs?highlight=1-21&range=136-159)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -222,7 +222,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 
        options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
        {
-          // My custom request culture logic
+         // My custom request culture logic
          return new ProviderCultureResult("en");
        }));
    });

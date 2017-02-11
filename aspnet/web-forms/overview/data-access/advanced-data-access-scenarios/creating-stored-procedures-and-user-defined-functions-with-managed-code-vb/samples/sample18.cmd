@@ -1,0 +1,1 @@
+vbc.exe /t:library /out:ManuallyCreatedDBObjects.dll GetProductsWithPriceGreaterThan.vb

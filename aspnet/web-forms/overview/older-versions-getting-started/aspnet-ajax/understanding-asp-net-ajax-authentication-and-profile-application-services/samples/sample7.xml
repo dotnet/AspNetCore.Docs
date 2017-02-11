@@ -1,0 +1,13 @@
+<profile enabled="true">
+ <properties>
+ <add name="Name" type="System.String"/>
+ <group name="Address">
+ <add name="Line1" type="System.String"/>
+ <add name="Line2" type="System.String"/>
+ <add name="City" type="System.String"/>
+ <add name="State" type="System.String"/>
+ <add name="Zip" type="System.String"/>
+ </group>
+ <add name="BackgroundColor" type="System.Drawing.Color"/>
+ </properties>
+</profile>

@@ -1,0 +1,4 @@
+<add name="MovieDBContext" 
+   connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True" 
+   providerName="System.Data.SqlClient" 
+/>

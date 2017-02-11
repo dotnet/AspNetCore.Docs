@@ -1,0 +1,11 @@
+<ul id="products" data-bind="foreach: products">
+    <li>
+        <div>
+            <span data-bind="text: Name"></span> 
+            <span class="price" data-bind="text: '$' + Price"></span>
+        </div>
+        <div data-bind="if: $parent.loggedIn">
+            <button data-bind="click: addItemToCart">Add to Order</button>
+        </div>
+    </li>
+</ul>

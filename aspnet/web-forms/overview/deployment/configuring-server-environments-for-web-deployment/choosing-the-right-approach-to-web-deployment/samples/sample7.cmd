@@ -1,0 +1,10 @@
+msdeploy.exe 
+  -source:package='…\ContactManager.Mvc.zip' 
+  -dest:auto,
+        computerName='https://STAGEWEB1:8172/MSDeploy.axd?site=DemoSite',
+        userName='FABRIKAM\stagingdeployer',
+        password='Pa$$w0rd',
+        authtype='Basic', 
+  -verb:sync 
+  -setParamFile:"…\ContactManager.Mvc.SetParameters.xml"   
+  -allowUntrusted

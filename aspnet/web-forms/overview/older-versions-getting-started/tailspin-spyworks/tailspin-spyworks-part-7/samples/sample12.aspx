@@ -1,0 +1,1 @@
+<%@ OutputCache Duration="3600" VaryByParam="None" %>

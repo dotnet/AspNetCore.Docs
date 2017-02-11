@@ -1,0 +1,22 @@
+{
+  "odata.metadata":"http://localhost/odata/$metadata#Categories",
+  "value":[
+    {
+      "Products":[
+        {"ID":1,"Name":"Hat","Price":"15.00","CategoryId":1,"SupplierId":"CTSO"},
+        {"ID":2,"Name":"Scarf","Price":"12.00","CategoryId":1,"SupplierId":"CTSO"},
+        {"ID":3,"Name":"Socks","Price":"5.00","CategoryId":1,"SupplierId":"FBRK"}
+      ],
+      "ID":1,
+      "Name":"Apparel"
+    },
+    {
+      "Products":[
+        {"ID":4,"Name":"Yo-yo","Price":"4.95","CategoryId":2,"SupplierId":"WING"},
+        {"ID":5,"Name":"Puzzle","Price":"8.00","CategoryId":2,"SupplierId":"WING"}
+      ],
+      "ID":2,
+      "Name":"Toys"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+$.connection.hub.start().done(init);

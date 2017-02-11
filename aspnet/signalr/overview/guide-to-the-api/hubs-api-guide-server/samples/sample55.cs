@@ -1,0 +1,1 @@
+System.Web.HttpContextBase httpContext = Context.Request.GetHttpContext();

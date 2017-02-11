@@ -1,0 +1,8 @@
+<Target Name="Clean" Condition=" '$(BuildingInTeamBuild)'!='true' ">
+  <Message Text="Cleaning up the output directory [$(OutputRoot)]"/>
+  <ItemGroup>
+     <_FilesToDelete Include="$(OutputRoot)**\*"/>
+  </ItemGroup>
+  <Delete Files="@(_FilesToDelete)"/>
+  <RemoveDir Directories="$(OutputRoot)"/>
+</Target>

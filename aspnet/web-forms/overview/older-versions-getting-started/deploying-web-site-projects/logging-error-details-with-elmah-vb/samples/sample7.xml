@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+  
+  <system.web>
+  ...
+
+  <httpModules>
+  ...
+  
+  <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah"/>
+  <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah"/>
+  </httpModules>
+  </system.web>
+
+  <system.webServer>
+  <validation validateIntegratedModeConfiguration="false"/>
+  <modules>
+  ...
+
+  <add name="Elmah.ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
+  <add name="Elmah.ErrorMail" type="Elmah.ErrorMailModule" preCondition="managedHandler" />
+  </modules>
+  
+  ...
+  </system.webServer>
+</configuration>

@@ -1,0 +1,17 @@
+<% if (Request.IsAuthenticated) { %>
+ 
+    <% if (Model.IsUserRegistered(Context.User.Identity.Name)) { %>       
+
+        <p>You are registred for this event!</p>
+    
+    <% } else {  %>  
+    
+        <p>You are not registered for this event</p>
+        
+    <% }  %>
+    
+<% } else { %>
+ 
+    <a href="/Account/Logon">Logon</a> to RSVP for this event.
+
+<% } %>

@@ -1,0 +1,9 @@
+{
+  "odata.metadata":"http://localhost/$metadata#Products",
+  "odata.count":"50",
+  "value":[
+    { "ID":1,"Name":"Hat","Price":"15","Category":"Apparel" },
+    { "ID":2,"Name":"Socks","Price":"5","Category":"Apparel" },
+    // Others not shown
+  ]
+}

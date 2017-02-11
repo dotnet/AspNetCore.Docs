@@ -43,8 +43,6 @@ In *Controllers/StudentsController.cs*, the action method for the Details view u
 The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the [reading related data](read-related-data.md) tutorial.
 
 The `AsNoTracking` method improves performance in scenarios where the entities returned will not be updated in the current context's lifetime. You'll learn more about `AsNoTracking` at the end of this tutorial.
-> [!NOTE] 
-> The key value that is passed to the `Details` method comes from *route data*.Route data is data that the model binder found in a segment of the URL. For example, the default route specifies controller, action, and id segments:
 
 ### Route data
 

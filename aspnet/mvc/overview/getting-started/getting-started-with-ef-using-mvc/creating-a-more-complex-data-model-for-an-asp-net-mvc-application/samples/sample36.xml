@@ -1,0 +1,2 @@
+<add name="SchoolContext" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=CU_Test;Integrated Security=SSPI;" 
+      providerName="System.Data.SqlClient" />

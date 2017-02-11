@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery from Microsoft AJAX CDN</title>
+</head>
+<body>
+    <button id="btn">Show Message</button>
+ 
+    <div id="message" style="display:none">         
+        <h1>Hello from jQuery!</h1>         
+    </div>
+ 
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <script>
+        // Fallback to loading jQuery from a local path if the CDN is unavailable
+        (window.jQuery || document.write('<script src="/scripts/jquery-1.9.0.min.js"><\/script>'));
+    </script>
+    <script>                
+        function domReady() {
+            $('#btn').click( showMessage );
+        }
+        
+        function showMessage() {
+            $('#message').fadeIn('slow');
+        }
+        
+        $( domReady );
+    </script>
+</body>
+</html>

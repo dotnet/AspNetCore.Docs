@@ -1,0 +1,15 @@
+@section Scripts {
+  <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+  <script type="text/javascript">
+
+    function AppViewModel() {
+        var self = this;
+        self.loggedIn = @(Request.IsAuthenticated ? "true" : "false");
+    }
+
+    $(document).ready(function () {
+        ko.applyBindings(new AppViewModel());
+    });
+
+  </script>
+}

@@ -1,0 +1,9 @@
+@helper Truncate(string
+input, int length)
+ {
+    if (input.Length <= length) {
+        @input
+    } else {
+        @input.Substring(0, length)<text>...</text>
+    }
+}

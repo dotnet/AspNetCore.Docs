@@ -1,0 +1,1 @@
+GET http://localhost/odata/Categories?$expand=Products

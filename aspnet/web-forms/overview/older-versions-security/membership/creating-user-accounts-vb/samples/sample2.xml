@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"> 
+ <siteMapNode url="~/Default.aspx" title="Home"> 
+ <siteMapNode title="Membership">
+ <siteMapNode url="~/Membership/CreatingUserAccounts.aspx" title="Creating User Accounts" /> 
+ <siteMapNode url="~/Membership/UserBasedAuthorization.aspx" title="User-Based Authorization" /> 
+ <siteMapNode url="~/Membership/Guestbook.aspx" title="Storing Additional User Information" /> 
+ </siteMapNode> 
+ </siteMapNode> 
+</siteMap>

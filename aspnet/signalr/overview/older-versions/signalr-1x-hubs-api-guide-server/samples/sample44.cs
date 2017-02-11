@@ -1,0 +1,1 @@
+string connectionID = Context.ConnectionId;

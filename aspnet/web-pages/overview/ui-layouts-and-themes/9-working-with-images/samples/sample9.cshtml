@@ -1,0 +1,27 @@
+@{  var imagePath = "";
+   WebImage WatermarkPhoto = new WebImage(@"~\" +
+        @"\Images\MyCompanyLogo.jpg");
+    WebImage photo = new WebImage(@"~\Images\Photo4.jpg");
+    if(photo != null){
+        imagePath = @"images\Photo4.jpg";
+        photo.AddImageWatermark(WatermarkPhoto, width: 80, height: 20,
+           horizontalAlign:"Center", verticalAlign:"Bottom",
+           opacity:100,  padding:10);
+      photo.Save(@"~\" + imagePath);
+   }
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Watermark</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+  <h1>Using an Image as a Watermark</h1>
+  @if(imagePath != ""){
+    <div class="result">
+      <img src="@imagePath" alt="Image" />
+    </div>
+  }
+</body>
+</html>
