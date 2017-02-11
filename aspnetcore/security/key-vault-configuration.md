@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load application configuration values from Azure Key Vault. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by apps and services. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data.
 
 ## Package
-To use the provider, add a reference to the [`Microsoft.Extensions.Configuration.AzureKeyVault`](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) package. The provider depends on .NET Framework 4.5.1 or .NET Standard 1.5 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
+To use the provider, add a reference to the [`Microsoft.Extensions.Configuration.AzureKeyVault`](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) package. The provider depends on .NET Framework 4.5.1 or .NET Standard 1.5 or higher. This feature is available for applications that target ASP.NET Core 1.1.0 or higher.
 
 ## Application configuration
 You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you establish a key vault and create a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample app securely loads the secret values into its configuration and displays them in a webpage.
@@ -35,9 +35,9 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix app names to configuration secrets you've stored in the key vault. This allows you to maintain secrets for multiple apps in one key vault.
+`AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load configuration values by application, where you prefix app names to configuration secrets you've stored in the key vault. This allows you to maintain secrets for multiple apps in one key vault.
 
-Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample app, we create a secret in the key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second app, we create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We want each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
+Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample app, we create a secret in the key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second app, we create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We want each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below:
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -73,7 +73,7 @@ Configuration = builder.Build();
 
 The `Load` method is called by a provider algorithm that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the app name prefix from the secret's name and returns the name for loading into the app's configuration name-value pairs.
 
-If you implement this approach with the sample application:
+If you implement this approach:
 
 1. The key vault secrets are loaded.
 2. The string secret for `KeyVaultConfigProviderSample-ConnectionString` is matched.
@@ -84,7 +84,7 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 ## Controlling access to the ClientSecret
 Use the [Secret Manager tool](xref:security/app-secrets) to maintain the `ClientSecret` outside of your project source tree. With Secret Manager, you associate app secrets with a specific project and share them across multiple projects.
 
-When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate's private key is managed by the OS. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret). Use the `AddAzureKeyVault` overload that accepts an `X509Certificate2` with this approach.
+When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate's private key is managed by the OS. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret). Use the `AddAzureKeyVault` overload that accepts an `X509Certificate2`.
 
 ```csharp
 var store = new X509Store(StoreLocation.CurrentUser);
