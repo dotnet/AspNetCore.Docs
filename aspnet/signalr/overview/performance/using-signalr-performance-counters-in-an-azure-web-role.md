@@ -1,6 +1,6 @@
 ---
 title: Using SignalR performance counters in an Azure Web Role | Microsoft Docs
-author: tfitzmac
+author: guardrex
 description: How to install and use SignalR performance counters in an Azure Web Role.
 keywords: ASP.NET, signalr, performance counter, azure web role
 ms.author: aspnetcontent
@@ -16,31 +16,31 @@ msc.type: authoredcontent
 
 # Using SignalR performance counters in an Azure Web Role
 
-By [Tom FitzMacken](https://github.com/tfitzmac)
+By [Luke Latham](https://github.com/guardrex)
 
-SignalR performance counters are used to monitor your application's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *signalr.exe*, the same tool used for standalone or on-premises apps. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
+SignalR performance counters are used to monitor your app's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *signalr.exe*, the same tool used for standalone or on-premises apps. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
 
 ## Prerequisites
 
 * [Visual Studio 2015](https://www.visualstudio.com/vs/visual-studio-express/)
-* [Microsoft Azure SDK for Visual Studio 2015 (VS2015)](https://azure.microsoft.com/downloads/) **Note: Restart your dev machine after installing the SDK.**
+* [Microsoft Azure SDK for Visual Studio 2015 (VS2015)](https://azure.microsoft.com/downloads/) **Note: Restart your machine after installing the SDK.**
 * Microsoft Azure subscription: To sign up for a free Azure trial account, see [Azure Free Trial](https://azure.microsoft.com/free/).
 
 ## Creating an Azure Web Role application that exposes SignalR performance counters
 
 1. Open Visual Studio 2015.
 
-2. In Visual Studio 2015, select **File &gt; New &gt; Project...**.
+2. In Visual Studio 2015, select **File &gt; New &gt; Project**.
 
-3. In the **Templates** pane of the **New Project** window under the **Visual C#** node, select the **Cloud** node and select the **Azure Cloud Service** template. Name the application **SignalRPerfCounters** and click **OK**.
+3. In the **Templates** pane of the **New Project** window under the **Visual C#** node, select the **Cloud** node and select the **Azure Cloud Service** template. Name the app **SignalRPerfCounters** and click **OK**.
 
    ![New Cloud Application](using-signalr-performance-counters-in-an-azure-web-role/_static/image1.png)
     
-4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and click the **&gt;** button to add the role to the project. Click **OK**.
+4. In the **New Microsoft Azure Cloud Service** dialog, select **ASP.NET Web Role** and select the **&gt;** button to add the role to the project. Click **OK**.
 
    ![Add ASP.NET Web Role](using-signalr-performance-counters-in-an-azure-web-role/_static/image2.png)
     
-5. In the **New ASP.NET Web Application - WebRole1** dialog, select the **MVC** template and click **OK**.
+5. In the **New ASP.NET Web Application - WebRole1** dialog, select the **MVC** template, and then click **OK**.
 
    ![Add MVC and Web API](using-signalr-performance-counters-in-an-azure-web-role/_static/image3.png)
     
@@ -56,17 +56,17 @@ SignalR performance counters are used to monitor your application's performance 
 
    [!code-powershell[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample2.ps1)]
     
-9. Configure the application to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add &gt; New Folder**. Name the new folder *Startup*.
+9. Configure the app to install the SignalR performance counters into the role instance when it starts up or recycles. In **Solution Explorer**, right-click on the **WebRole1** project and select **Add &gt; New Folder**. Name the new folder *Startup*.
 
    ![Add Startup Folder](using-signalr-performance-counters-in-an-azure-web-role/_static/image5.png)
     
 10. Copy the *signalr.exe* file (added with the **Microsoft.AspNet.SignalR.Utils** package) from **&lt;project folder&gt;\SignalRPerfCounters\packages\Microsoft.AspNet.SignalR.Utils.&lt;version&gt;\tools** to the *Startup* folder you created in the previous step.
 
-11. In **Solution Explorer**, right-click the *Startup* folder and select **Add &gt; Existing Item...**. In the dialog that appears, select *signalr.exe* and click **Add**.
+11. In **Solution Explorer**, right-click the *Startup* folder and select **Add &gt; Existing Item**. In the dialog that appears, select *signalr.exe* and click **Add**.
 
     ![Add signalr.exe to project](using-signalr-performance-counters-in-an-azure-web-role/_static/image6.png)
     
-12. Right-click on the *Startup* folder you created. Select **Add &gt; New Item...**. Select the **General** node, select **Text File**, and name the new item *SignalRPerfCounterInstall.cmd*. This command file will install the SignalR performance counters into the web role.
+12. Right-click on the *Startup* folder you created. Select **Add &gt; New Item**. Select the **General** node, select **Text File**, and name the new item *SignalRPerfCounterInstall.cmd*. This command file will install the SignalR performance counters into the web role.
 
     ![Create SignalR performance counter installation batch file](using-signalr-performance-counters-in-an-azure-web-role/_static/image7.png)
      
@@ -74,14 +74,14 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-console[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample3.cmd)]
     
-14. Click the *signalr.exe* file in **Solution Explorer**. In the file's **Properties**, set **Copy to Output Directory** to **Copy Always**.
+14. Select the *signalr.exe* file in **Solution Explorer**. In the file's **Properties**, set **Copy to Output Directory** to **Copy Always**.
 
     ![Set Copy to Output Directory to Copy Always](using-signalr-performance-counters-in-an-azure-web-role/_static/image8.png)
     
 15. Repeat the previous step for the *SignalRPerfCounterInstall.cmd* file.
 
     
-16. Right-click on the *SignalRPerfCounterInstall.cmd* file and select **Open With...**. In the dialog that appears, select **Binary Editor** and click **OK**.
+16. Right-click on the *SignalRPerfCounterInstall.cmd* file and select **Open With**. In the dialog that appears, select **Binary Editor** and click **OK**.
 
     ![Open with Binary Editor](using-signalr-performance-counters-in-an-azure-web-role/_static/image9.png)
     
@@ -109,20 +109,22 @@ SignalR performance counters are used to monitor your application's performance 
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample7.cs)]
     
-23. *[Crank.exe](signalr-connection-density-testing-with-crank.md)* is a connection density testing tool provided with the SignalR codebase. Since Crank requires a persistent connection, you add one to your site for use when testing. Add a new folder to the **WebRole1** project called *PersistentConnections*. Right-click this folder and select **Add &gt; Class...**. Name the new class file *MyPersistentConnections.cs* and click **Add**.
+23. *[Crank.exe](signalr-connection-density-testing-with-crank.md)* is a connection density testing tool provided with the SignalR codebase. Since Crank requires a persistent connection, you add one to your site for use when testing. Add a new folder to the **WebRole1** project called *PersistentConnections*. Right-click this folder and select **Add &gt; Class**. Name the new class file *MyPersistentConnections.cs* and click **Add**.
 
 24. Visual Studio will open the *MyPersistentConnections.cs* file in the main window. Replace the contents with the following code, then save and close the file:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample8.cs)]
     
-25. Using the `Startup` class, the SignalR objects start when OWIN starts up. Your project already contains a `Startup` class, unless you changed the authentication method when creating the project, in which case you need to create a `Startup` class. Open or create *Startup.cs* and replace the contents with the following code:
+25. Using the `Startup` class, the SignalR objects start when OWIN starts up. Open or create *Startup.cs* and replace the contents with the following code:
 
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample9.cs)]
+    
+    In the code above, the `OwinStartup` attribute marks this class to start OWIN. The `Configuration` method starts SignalR.
     
 26. Test your application in the Microsoft Azure Emulator by pressing **F5**.
 
     > [!NOTE]
-    > If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in *web.config* to the following:
+    > If you encounter a **FileLoadException** at **MapSignalR**, change the binding redirects in *web.config* to the following:
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
     
