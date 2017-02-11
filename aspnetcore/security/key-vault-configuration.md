@@ -23,7 +23,7 @@ This document explains how to use the [Microsoft Azure Key Vault](https://azure.
 To use the provider, add a reference to the [`Microsoft.Extensions.Configuration.AzureKeyVault`](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) package. The provider depends on .NET Framework 4.5.1 or .NET Standard 1.5 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
 
 ## Application configuration
-You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you've established a key vault and created a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample application will securely load the secret values into its configuration and display them in a webpage.
+You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you establish a key vault and create a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample application securely loads the secret values into its configuration and displays them in a webpage.
 
 The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file.
 
@@ -35,9 +35,9 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix application names to configuration secrets you've stored in the key vault. This would allow you to maintain secrets for multiple applications in one key vault.
+`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix application names to configuration secrets you've stored in the key vault. This allows you to maintain secrets for multiple applications in one key vault.
 
-Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample application, we would create a secret in key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second application, we would create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We would like each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
+Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample application, we create a secret in the key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second application, we create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We want each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -71,16 +71,19 @@ builder.AddAzureKeyVault(
 Configuration = builder.Build();
 ```
 
-The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading into the app's configuration name-value pairs.
+The `Load` method is called by a provider algorithm that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the application name prefix from the secret's name and returns the name for loading into the app's configuration name-value pairs.
 
-If you implemented this approach with the sample application, the key vault secrets would be loaded, the string secret for `KeyVaultConfigProviderSample-ConnectionString` would be matched, and the application name `KeyVaultConfigProviderSample` (with the dash) would be stripped off to load `ConnectionString` with its value into the app's configuration.
+If you implement this approach with the sample application:
+1. The key vault secrets are loaded.
+2. The string secret for `KeyVaultConfigProviderSample-ConnectionString` is matched.
+3. The application name `KeyVaultConfigProviderSample` (with the dash) is stripped off and used to load `ConnectionString` with its value into the app's configuration.
 
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your application.
 
 ## Controlling access to the ClientSecret
-To maintain the `ClientSecret` outside of your project tree, you can use the [Secret Manager tool](xref:security/app-secrets), whereby you can associate app secrets with a specific project and share them across multiple projects. However, the Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store.
+Use the [Secret Manager tool](xref:security/app-secrets) to maintain the `ClientSecret` outside of your project source tree. With Secret Manager, you associate app secrets with a specific project and share them across multiple projects.
 
-For environments that support certificates and when developing a .NET Framework app, you can authenticate to Azure Key Vault with an X.509 certificate, whose private key would be managed by the OS. For more information on this approach, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) and use the `AddAzureKeyVault()` overload that accepts an `X509Certificate2`.
+When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate's private key is managed by the OS. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret). Use the `AddAzureKeyVault` overload that accepts an `X509Certificate2` with this approach.
 
 ```csharp
 var store = new X509Store(StoreLocation.CurrentUser);
@@ -116,20 +119,20 @@ Configuration = builder.Build();
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample-output.png)
 
 ## Reloading secrets
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault are not respected by the application until `Reload()` is executed.
+Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault are not respected by the application until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
 ```
 
 ## Disabled and expired secrets
-Disabled and expired secrets throw a `KeyVaultClientException` at runtime. Therefore, it's important that you update your application or replace or update a disabled or expried secret in the key vault before the provider attempts to load or reload a disabled or expired secret.
+Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your app from throwing, replace your app or update the disabled/expired secret.
 
 ## Troubleshooting
-When the application fails to load configuration using the provider, an error message will be written to the [ASP.NET Logging infrastructure](xref:fundamentals/logging). The following general conditions can prevent configuration from loading:
-* The application has not been configured correctly in Azure Active Directory.
+When the application fails to load configuration using the provider, an error message is written to the [ASP.NET Logging infrastructure](xref:fundamentals/logging). The following conditions will prevent configuration from loading:
+* The application isn't configured correctly in Azure Active Directory.
 * The key vault doesn't exist in Azure Key Vault.
-* The application has not been authorized to access the key vault.
+* The application isn't authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
 * The application has the wrong key vault name (`Vault`), Azure AD App Id (`ClientId`), or Azure AD Key (`ClientSecret`).
