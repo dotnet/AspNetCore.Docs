@@ -5,7 +5,7 @@ description: Reference document describing active and inactive IIS modules for A
 keywords: ASP.NET Core, iis, module, reverse-proxy
 ms.author: riande
 manager: wpickett
-ms.date: 01/23/2017
+ms.date: 02/11/2017
 ms.topic: article
 ms.assetid: 492b3a7e-04c5-461b-b96a-38ecee5c64bc
 ms.technology: aspnet
@@ -80,7 +80,7 @@ When using IIS modules with .NET applications, keep in mind that when you intera
 If you have an IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.
 
 ### Module deactivation
-Many modules offer a configuration setting that will allow you to disable it without removing it from the application. This is the simplest and quickest way to deactivate a module. For example, if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the *Child Elements* section of [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver).
+Many modules offer a configuration setting that will allow you to disable them without removing them from the application. This is the simplest and quickest way to deactivate a module. For example if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the *Child Elements* section of [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver).
 
 ```xml
 <configuration>
@@ -91,7 +91,7 @@ Many modules offer a configuration setting that will allow you to disable it wit
 ```
 
 ### Module removal
-If you opt to remove a module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps are outlined below.
+If you opt to remove a module with a setting in *web.config*, you must unlock the module and unlock the `<modules>` section of *web.config* first. The steps are outlined below:
 
 1. Unlock the module at the server level. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module in the list. In the **Actions** sidebar on the right, click **Unlock**. Unlock as many modules as you plan to remove with *web.config* later.
 
@@ -127,11 +127,13 @@ For an IIS installation with the default modules installed, you can use the foll
 </modules>
 ```
 
-You can also remove an IIS module with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command shown below. The example shows how to remove the `DynamicCompressionModule` from the Default Web Site.
+You can also remove an IIS module with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command shown below:
 
 ```console
 Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME
 ```
+
+Here's how to remove the `DynamicCompressionModule` from the Default Web Site:
 
 ```console
 %windir%\system32\inetsrv\appcmd.exe delete module DynamicCompressionModule /app.name:"Default Web Site"
@@ -143,7 +145,7 @@ The only modules required to run an ASP.NET Core application are the Anonymous A
 ![IIS Manager open to Modules with the minimum module configuration shown](iis-modules/_static/modules.png)
 
 ## Resources
-* [Publishing to IIS](xref:publishing/iis)
+* <xref:publishing/iis>
 * [IIS Modules Overview](https://www.iis.net/learn/get-started/introduction-to-iis/iis-modules-overview)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx)
 * [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver)
