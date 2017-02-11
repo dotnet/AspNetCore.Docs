@@ -18,22 +18,18 @@ uid: tutorials/dotnet-watch
 
 By [Victor Hurdugaci](https://twitter.com/victorhurdugaci) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-## Introduction
+`dotnet watch` is a tool that runs a `dotnet` command when source files change.  For example, when a file changes it can compile your code, run tests, or publish your app.
 
-`dotnet watch` is a tool that runs a `dotnet` command when source files change. It can be used to compile, run tests, or publish when code changes.
+In this tutorial we'll use an existing Web API app with two endpoints; one that returns a sum and one that returns a product. The product method contains an intentional bug that we'll fix as part of this tutorial.
 
-In this tutorial we'll use an existing Web API app that calculates the sum and product of two numbers. The sample app contains an intentional bug that we'll fix as part of this tutorial.
+Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web app) and `WebAppTests` (unit tests for the web app).
 
-## Getting started
-
-Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web app) and `WebAppTests` (unit tests for the web app)
-
-In a console, open the WebApp folder and run the following commands:
+In a console, navigate to the WebApp folder and run the following commands:
 
 - `dotnet restore`
 - `dotnet run`
 
-The console output will show messages similar to the ones below, indicating that the app is running and waiting for requests:
+The console output will show messages similar to the following (indicating that the app is running and waiting for requests):
 
 ```bash
 $ dotnet run
@@ -47,7 +43,7 @@ In a web browser, navigate to `http://localhost:5000/api/math/sum?a=4&b=5` and y
 
 Navigate to the product API (`http://localhost:5000/api/math/product?a=4&b=5`) and it returns `9`, not `20` as you'd expect. We'll fix that later in the tutorial.
 
-## Adding `dotnet watch` to a project
+## Add `dotnet watch` to a project
 
 - Add `Microsoft.DotNet.Watcher.Tools` to the *.csproj* file:
  ```xml
@@ -57,11 +53,9 @@ Navigate to the product API (`http://localhost:5000/api/math/product?a=4&b=5`) a
 
 - Run `dotnet restore`.
 
-
 ## Running `dotnet` commands using `dotnet watch`
 
 Any `dotnet` command can be run with `dotnet watch`, for example:
-
 
 | Command | Command with watch |
 | ---- | ----- |
@@ -70,7 +64,7 @@ Any `dotnet` command can be run with `dotnet watch`, for example:
 | dotnet run -f net451 -- --arg1 | dotnet watch run -f net451 -- --arg1 |
 | dotnet test | dotnet watch test |
 
-Run `dotnet watch run` in the `WebApp` folder. The console output will indicate watch started.
+Run `dotnet watch run` in the `WebApp` folder. The console output will indicate `watch` has started.
 
 ## Making changes with `dotnet watch`
 
@@ -91,8 +85,9 @@ Verify `http://localhost:5000/api/math/product?a=4&b=5` returns the correct resu
 ## Running tests using `dotnet watch`
 
 - Change the `Product` method of the `MathController` back to returning the sum and save the file.
-
-- In a command window, naviagate to the `WebAppTests` folder and run `dotnet watch test`. You see output indicating that a test failed adn that watcher is waiting for file changes:
+- In a command window, naviagate to the `WebAppTests` folder.
+- Run `dotnet restore`
+- Run `dotnet watch test`. You see output indicating that a test failed and that watcher is waiting for file changes:
 
  ```bash
  Total tests: 2. Passed: 1. Failed: 1. Skipped: 0.
