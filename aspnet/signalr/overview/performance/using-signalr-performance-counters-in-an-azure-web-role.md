@@ -5,7 +5,7 @@ description: How to install and use SignalR performance counters in an Azure Web
 keywords: ASP.NET, signalr, performance counter, azure web role
 ms.author: aspnetcontent
 manager: wpickett
-ms.date: 02/04/2017
+ms.date: 02/11/2017
 ms.topic: article
 ms.assetid: 2a127d3b-21ed-4cc9-bec0-cdab4e742a25
 ms.technology: dotnet-signalr
@@ -18,7 +18,7 @@ msc.type: authoredcontent
 
 By [Tom FitzMacken](https://github.com/tfitzmac)
 
-SignalR performance counters are used to monitor your application's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *signalr.exe*, the same tool used for standalone or on-premises applications. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
+SignalR performance counters are used to monitor your application's performance in an Azure Web Role. The counters are captured by Microsoft Azure Diagnostics. You install SignalR performance counters on Azure with *signalr.exe*, the same tool used for standalone or on-premises apps. Since Azure roles are transient, you configure an app to install and register SignalR performance counters upon startup.
 
 ## Prerequisites
 
@@ -138,6 +138,6 @@ SignalR performance counters are used to monitor your application's performance 
 
 29. Deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/documentation/articles/cloud-services-how-to-create-deploy/).
 
-30. Wait a few minutes. In **Cloud Explorer**, locate the storage account you configured above and find the `WADPerformanceCountersTable` table in it. You should see SignalR counters in the table data. If you don't see the table, you may need to re-enter your Azure Storage credentials. You may need to click the **Refresh** button to see the table in **Cloud Explorer** or the **Refresh** button on the open table window to see data in the table.
+30. Wait a few minutes. In **Cloud Explorer**, locate the storage account you configured above and find the `WADPerformanceCountersTable` table in it. You should see SignalR counters in the table data. If you don't see the table, you may need to re-enter your Azure Storage credentials. You may need to click the **Refresh** button to see the table in **Cloud Explorer** or click the **Refresh** button on the open table window to see data in the table.
 
 Special thanks to [Martin Richard](https://social.msdn.microsoft.com/profile/Martin+Richard) for the original content used in this tutorial.
