@@ -16,7 +16,7 @@ uid: mvc/extensibility/app-parts
 
 By [Steve Smith](http://ardalis)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/extensibility/app-parts/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample)
 
 An *Application Part* is an abstraction over the resources of an application, from which MVC features like controllers, view components, or tag helpers may be discovered. One example of an application part is an AssemblyPart, which encapsulates an assembly reference and exposes types and compilation references. *Feature providers* work with application parts to populate the features of an ASP.NET Core MVC app. 
 The main use case for application parts is to allow you to configure your app to discover (or avoid loading) MVC features from an assembly.
