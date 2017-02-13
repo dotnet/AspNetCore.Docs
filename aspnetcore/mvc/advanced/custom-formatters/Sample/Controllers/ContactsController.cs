@@ -17,7 +17,7 @@ namespace CustomFormatterDemo.Controllers
         public IContactRepository Contacts { get; set; }
 
 
-        // GET api/values
+        // GET api/contacts
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
@@ -36,7 +36,7 @@ namespace CustomFormatterDemo.Controllers
             return Ok(contact);
         }
 
-        // POST api/values
+        // POST api/contacts
         [HttpPost]
         public IActionResult Post([FromBody]Contact contact)
         {
