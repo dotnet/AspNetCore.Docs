@@ -68,24 +68,32 @@ Specify the type you can deserialize into or serialize from by overriding the `C
 
 [!code-csharp[Main](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=canwritetype)]
 
-For output formatters, in some scenarios you have to override `CanWriteResult` instead of `CanWriteType`. You need to use `CanWriteResult` if your action method returns a model class, and there are derived classes, and you need to know at runtime which derived class was returned by the action.  For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that this only applies when the action method returns a model type; if the action method returns `IActionResult`, the `CanWriteType` method receives the runtime type.
+### The CanWriteResult method
+
+In some scenarios you have to override `CanWriteResult` instead of `CanWriteType`. Use `CanWriteResult` if the following conditions are true:
+
+  * Your action method returns a model class.
+  * There are derived classes which might be returned at runtime.
+  * You need to know at runtime which derived class was returned by the action.  
+
+For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
 
 <a id="read-write"></a>
 ### Override ReadRequestBodyAsync/WriteResponseBodyAsync 
 
-You do the actual work of deserializing or serializing in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`.  The highlighted lines in the following code example show how to get services from the dependency injection container, since you can't get them from constructor parameters.
+You do the actual work of deserializing or serializing in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`.  The highlighted lines in the following example show how to get services from the dependency injection container (you can't get them from constructor parameters).
 
 [!code-csharp[Main](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=writeresponse&highlight=3-4)]
 
 ## How to configure MVC to use a custom formatter
  
-To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection in `MvcOptions`.
+To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
 
 [!code-csharp[Main](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
 ## Next steps
 
-See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample)), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
+See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD
