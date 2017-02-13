@@ -11,8 +11,9 @@ namespace WebApp.Controllers
 
         public static int Product(int a, int b)
         {
-            // We have an intentional bug here
-            // + should be *
+            // We have an intentional bug here.
+            // change to:
+            // return a * b; 
             return a + b; 
         }
     }
