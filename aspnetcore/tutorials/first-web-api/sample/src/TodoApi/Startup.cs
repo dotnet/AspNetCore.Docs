@@ -26,11 +26,7 @@ namespace TodoApi
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvcCore()
-                .AddAuthorization()
-                .AddJsonFormatters()
-                .AddDataAnnotations()
-                .AddCors();
+            services.AddMvc();
 
             services.AddSingleton<ITodoRepository, TodoRepository>();
         }
