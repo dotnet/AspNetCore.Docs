@@ -70,29 +70,6 @@ namespace TodoApi.Controllers
         }
         #endregion
 
-        #region snippet_Patch
-        [HttpPatch("{id}")]
-        public IActionResult Update([FromBody] TodoItem item, long id)
-        {
-            if (item == null)
-            {
-                return BadRequest();
-            }
-
-            var todo = _todoRepository.Find(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            todo.IsComplete = item.IsComplete;
-            todo.Name = item.Name;
-
-            _todoRepository.Update(todo);
-            return new NoContentResult();
-        }
-        #endregion
-
         #region snippet_Delete
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
