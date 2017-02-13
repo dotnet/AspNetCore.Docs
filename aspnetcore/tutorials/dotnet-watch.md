@@ -14,13 +14,12 @@ uid: tutorials/dotnet-watch
 ---
 # Developing ASP.NET Core apps using dotnet watch
 
-<a name=dotnet-watch></a>
 
-By [Victor Hurdugaci](https://twitter.com/victorhurdugaci) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-`dotnet watch` is a tool that runs a `dotnet` command when source files change.  For example, when a file changes it can compile your code, run tests, or publish your app.
+`dotnet watch` is a tool that runs a `dotnet` command when source files change. For example, a file change can trigger compilation, tests, or deployment.
 
-In this tutorial we'll use an existing Web API app with two endpoints; one that returns a sum and one that returns a product. The product method contains an intentional bug that we'll fix as part of this tutorial.
+In this tutorial we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains an bug that we'll fix as part of this tutorial.
 
 Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web app) and `WebAppTests` (unit tests for the web app).
 
@@ -31,7 +30,7 @@ In a console, navigate to the WebApp folder and run the following commands:
 
 The console output will show messages similar to the following (indicating that the app is running and waiting for requests):
 
-```bash
+```console
 $ dotnet run
 Hosting environment: Production
 Content root path: C:/Docs/aspnetcore/tutorials/dotnet-watch/sample/WebApp
@@ -89,7 +88,7 @@ Verify `http://localhost:5000/api/math/product?a=4&b=5` returns the correct resu
 - Run `dotnet restore`
 - Run `dotnet watch test`. You see output indicating that a test failed and that watcher is waiting for file changes:
 
- ```bash
+ ```console
  Total tests: 2. Passed: 1. Failed: 1. Skipped: 0.
  Test Run Failed.
   ```
