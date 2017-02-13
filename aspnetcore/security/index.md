@@ -69,6 +69,7 @@ ms.prod: aspnet-core
         *   [Sharing cookies between applications](data-protection/compatibility/cookie-sharing.md)
         *   [Replacing <machineKey> in ASP.NET](data-protection/compatibility/replacing-machinekey.md)
 *   [Safe storage of app secrets during development](app-secrets.md)
+*   [Azure Key Vault configuration provider](key-vault-configuration.md)
 *   [🔧 Enforcing SSL](enforcing-ssl.md)
 *   [🔧 Anti-Request Forgery](anti-request-forgery.md)
 *   [🔧 Preventing Open Redirect Attacks](open-redirect.md)

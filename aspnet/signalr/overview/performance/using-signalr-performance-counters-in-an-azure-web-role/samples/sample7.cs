@@ -1,5 +1,5 @@
-using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR;
 
 namespace WebRole1.Hubs
 {

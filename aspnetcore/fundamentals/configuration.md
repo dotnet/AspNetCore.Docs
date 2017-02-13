@@ -25,6 +25,7 @@ The configuration API provides a way of configuring an app based on a list of na
 * Environment variables
 * In-memory .NET objects
 * An encrypted user store
+* [Azure Key Vault](xref:security/key-vault-configuration)
 * Custom providers, which you install or create
 
 Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
@@ -349,3 +350,4 @@ results in an exception. An exception will be thrown if you specify a command-li
 * [Working with Multiple Environments](environments.md)
 * [Safe storage of app secrets during development](../security/app-secrets.md)
 * [Dependency Injection](dependency-injection.md)
+* [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
