@@ -52,19 +52,19 @@ namespace CustomFormatterDemo.Formatters
             {
                 try
                 {
-                    await ReadLineAsync("BEGIN:VCARD", reader);
-                    await ReadLineAsync("VERSION:2.1", reader);
+                    await ReadLineAsync("BEGIN:VCARD", reader, context);
+                    await ReadLineAsync("VERSION:2.1", reader, context);
 
-                    var nameLine = await ReadLineAsync("N:", reader);
+                    var nameLine = await ReadLineAsync("N:", reader, context);
                     var split = nameLine.Split(";".ToCharArray());
                     var contact = new Contact() { LastName = split[0].Substring(2), FirstName = split[1] };
 
-                    await ReadLineAsync("FN:", reader);
+                    await ReadLineAsync("FN:", reader, context);
 
-                    var idLine = await ReadLineAsync("UID:", reader);
+                    var idLine = await ReadLineAsync("UID:", reader, context);
                     contact.ID = idLine.Substring(4);
 
-                    await ReadLineAsync("END:VCARD", reader);
+                    await ReadLineAsync("END:VCARD", reader, context);
 
                     return await InputFormatterResult.SuccessAsync(contact);
                 }
@@ -75,12 +75,14 @@ namespace CustomFormatterDemo.Formatters
             }
         }
 
-        private async Task<string> ReadLineAsync(string expectedText, StreamReader reader)
+        private async Task<string> ReadLineAsync(string expectedText, StreamReader reader, InputFormatterContext context)
         {
             var line = await reader.ReadLineAsync();
             if (!line.StartsWith(expectedText))
             {
-                throw new Exception($"Looked for '{expectedText}' and got '{line}'");
+                var errorMessage = $"Looked for '{expectedText}' and got '{line}'";
+                context.ModelState.TryAddModelError(context.ModelName, errorMessage);
+                throw new Exception(errorMessage);
             }
             return line;
         }

@@ -24,7 +24,7 @@ namespace CustomFormatterDemo.Controllers
             return Contacts.GetAll();
         }
 
-        // GET api/values/5
+        // GET api/contacts/{guid}
         [HttpGet("{id}", Name="Get")]
         public IActionResult Get(string id)
         {
@@ -33,41 +33,39 @@ namespace CustomFormatterDemo.Controllers
             {
                 return NotFound();
             }
-            return new ObjectResult(contact);
+            return Ok(contact);
         }
 
         // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody]Contact contact)
         {
-            if (contact == null)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                Contacts.Add(contact);
+                return CreatedAtRoute("Get", new { id = contact.ID }, contact);
             }
-            Contacts.Add(contact);
-            return CreatedAtRoute("Get", new { id = contact.ID }, contact);
+            return BadRequest();
         }
 
-        // PUT api/values/5
+        // PUT api/contacts/{guid}
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody]Contact contact)
         {
-            if (contact == null || id == null || id != contact.ID)
+            if (ModelState.IsValid && id == contact.ID)
             {
-                return BadRequest();
-            }
-
-            var contactToUpdate = Contacts.Get(id);
-            if (contactToUpdate == null)
-            {
+                var contactToUpdate = Contacts.Get(id);
+                if (contactToUpdate != null)
+                {
+                    Contacts.Update(contact);
+                    return new NoContentResult();
+                }
                 return NotFound();
             }
-
-            Contacts.Update(contact);
-            return new NoContentResult();
+            return BadRequest();
         }
 
-        // DELETE api/values/5
+        // DELETE api/contacts/{guid}
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
@@ -78,7 +76,7 @@ namespace CustomFormatterDemo.Controllers
             }
 
             Contacts.Remove(id);
-            return new NoContentResult();
+            return NoContent();
         }
     }
 }
