@@ -2,6 +2,7 @@
 # [Authorization](authorization/toc.md)
 # [Data Protection](data-protection/toc.md)
 # [Safe storage of app secrets during development](app-secrets.md)
+# [Azure Key Vault configuration provider](key-vault-configuration.md)
 # [🔧 Enforcing SSL](enforcing-ssl.md)
 # [🔧 Anti-Request Forgery](anti-request-forgery.md)
 # [🔧 Preventing Open Redirect Attacks](open-redirect.md)
