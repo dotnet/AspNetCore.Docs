@@ -88,7 +88,7 @@ ASP.NET Web API includes support for the following features:
 - **Filters:** ASP.NET Web API supports filters including well-known filters such as the *[Authorize]* attribute. You can author and plug in your own filters for actions, authorization and exception handling.
 - **Query composition:** Use the *[Queryable]* filter attribute on an action that returns *IQueryable* to enable support for querying your web API via the OData query conventions.
 - **Improved testability:** Rather than setting HTTP details in static context objects, web API actions work with instances of *HttpRequestMessage* and *HttpResponseMessage*. Create a unit test project along with your Web API project to get started quickly writing unit tests for your Web API functionality.
-- **Code-based configuration:** ASP.NET Web API configuration is accomplished solely through code, leaving your config files clean. Use the provide service locator pattern to configure extensibility points.
+- **Code-based configuration:** ASP.NET Web API configuration is accomplished solely through code, leaving your config files clean. Use the provided service locator pattern to configure extensibility points.
 - **Improved support for Inversion of Control (IoC) containers:** ASP.NET Web API provides great support for IoC containers through an improved dependency resolver abstraction
 - **Self-host:** Web APIs can be hosted in your own process in addition to IIS while still using the full power of routes and other features of Web API.
 - **Create custom help and test pages:** You now can easily build custom help and test pages for your web APIs by using the new *IApiExplorer* service to get a complete runtime description of your web APIs.
