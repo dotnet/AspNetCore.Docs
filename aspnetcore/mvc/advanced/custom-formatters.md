@@ -68,7 +68,7 @@ Specify the type you can deserialize into or serialize from by overriding the `C
 
 [!code-csharp[Main](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=canwritetype)]
 
-### The CanWriteResult method
+#### The CanWriteResult method
 
 In some scenarios you have to override `CanWriteResult` instead of `CanWriteType`. Use `CanWriteResult` if the following conditions are true:
 
