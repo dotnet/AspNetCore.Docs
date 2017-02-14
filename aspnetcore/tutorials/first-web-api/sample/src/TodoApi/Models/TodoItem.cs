@@ -1,8 +1,13 @@
-﻿namespace TodoApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TodoApi.Models
 {
     public class TodoItem
     {
-        public string Key { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Key { get; set; }
         public string Name { get; set; }
         public bool IsComplete { get; set; }
     }

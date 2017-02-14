@@ -7,23 +7,24 @@ namespace TodoApi.Controllers
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        public TodoController(ITodoRepository todoItems)
+        private readonly ITodoRepository _todoRepository;
+
+        public TodoController(ITodoRepository todoRepository)
         {
-            TodoItems = todoItems;
+            _todoRepository = todoRepository;
         }
-        public ITodoRepository TodoItems { get; set; }
 
         #region snippet_GetAll
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
-            return TodoItems.GetAll();
+            return _todoRepository.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
-        public IActionResult GetById(string id)
+        public IActionResult GetById(long id)
         {
-            var item = TodoItems.Find(id);
+            var item = _todoRepository.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -39,64 +40,47 @@ namespace TodoApi.Controllers
             {
                 return BadRequest();
             }
-            TodoItems.Add(item);
+
+            _todoRepository.Add(item);
+
             return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
         }
         #endregion
 
         #region snippet_Update
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody] TodoItem item)
+        public IActionResult Update(long id, [FromBody] TodoItem item)
         {
             if (item == null || item.Key != id)
             {
                 return BadRequest();
             }
 
-            var todo = TodoItems.Find(id);
+            var todo = _todoRepository.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            TodoItems.Update(item);
-            return new NoContentResult();
-        }
-        #endregion
+            todo.IsComplete = item.IsComplete;
+            todo.Name = item.Name;
 
-        #region snippet_Patch
-        [HttpPatch("{id}")]
-        public IActionResult Update([FromBody] TodoItem item, string id)
-        {
-            if (item == null)
-            {
-                return BadRequest();
-            }
-
-            var todo = TodoItems.Find(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            item.Key = todo.Key;
-
-            TodoItems.Update(item);
+            _todoRepository.Update(todo);
             return new NoContentResult();
         }
         #endregion
 
         #region snippet_Delete
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(long id)
         {
-            var todo = TodoItems.Find(id);
+            var todo = _todoRepository.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            TodoItems.Remove(id);
+            _todoRepository.Remove(id);
             return new NoContentResult();
         }
         #endregion
