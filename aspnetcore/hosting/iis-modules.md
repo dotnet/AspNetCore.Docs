@@ -23,7 +23,7 @@ Module | .NET Core Active | ASP.NET Core Option
 --- | :---: | ---
 **Anonymous Authentication**<br>`AnonymousAuthenticationModule` | Yes | 
 **Basic Authentication**<br>`BasicAuthenticationModule` | Yes | 
-**Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule` | ? | 
+**Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule` | Yes | 
 **CGI**<br>`CgiModule` | No | 
 **Configuration Validation**<br>`ConfigurationValidationModule` | Yes | 
 **HTTP Errors**<br>`CustomErrorModule` | No | [Status Code Pages Middleware](xref:fundamentals/error-handling#configuring-status-code-pages)
