@@ -141,7 +141,7 @@ Set up a route definition that works with your newly created areas. The [🔧 Ro
    });
    ```
 
-Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
+Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
 
 ## Link Generation
 
