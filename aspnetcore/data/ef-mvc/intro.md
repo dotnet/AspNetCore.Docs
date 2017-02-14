@@ -14,7 +14,7 @@ uid: data/ef-mvc/intro
 ---
 # Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio (1 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Damien Bowden](https://twitter.com/damienbod)
+By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Damien Bowden](https://twitter.com/damien_bod)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017.
 
