@@ -50,12 +50,12 @@ Proceed through the **Confirmation** step to install the web server role and ser
 
 ## Install the .NET Core Windows Server Hosting bundle
 
-1. Install the [.NET Core Windows Server Hosting](https://aka.ms/dotnetcore_windowshosting_1_1_0) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md). The module creates the reverse-proxy between IIS and the Kestrel server.
+1. Install the [.NET Core Windows Server Hosting](https://go.microsoft.com/fwlink/?linkid=837808) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md). The module creates the reverse-proxy between IIS and the Kestrel server.
 
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from a command prompt to pick up a change to the system PATH.
 
 > [!NOTE]
-> If you only plan to host self-contained deployments and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+> If you only plan to host self-contained deployments and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.0.3_1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
 
 > [!NOTE]
 > If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:hosting/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
