@@ -116,7 +116,7 @@ C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create "Data Source=(loc
        Table and index were created successfully.
    ```
 
-The created table have the following schema:
+The created table has the following schema:
 
 ![SqlServer Cache Table](distributed/_static/SqlServerCacheTable.png)
 
