@@ -25,15 +25,15 @@ namespace ContosoUniversity.Controllers
         {
             var viewModel = new InstructorIndexData();
             viewModel.Instructors = await _context.Instructors
-                  .Include(i => i.OfficeAssignment)
-                  .Include(i => i.Courses)
+                .Include(i => i.OfficeAssignment)
+                .Include(i => i.Courses)
                     .ThenInclude(i => i.Course)
-                  .Include(i => i.Courses)
+                .Include(i => i.Courses)
                     .ThenInclude(i => i.Course)
                         .ThenInclude(i => i.Department)
-                  .OrderBy(i => i.LastName)
-                  .ToListAsync();
-
+                .OrderBy(i => i.LastName)
+                .ToListAsync();
+            
             if (id != null)
             {
                 ViewData["InstructorID"] = id.Value;
@@ -45,16 +45,19 @@ namespace ContosoUniversity.Controllers
             if (courseID != null)
             {
                 ViewData["CourseID"] = courseID.Value;
-                _context.Enrollments
-                    .Include(i => i.Student)
-                    .Where(c => c.CourseID == courseID.Value).Load();
-                viewModel.Enrollments = viewModel.Courses.Where(
-                    x => x.CourseID == courseID).Single().Enrollments;
+                var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
+                _context.Entry(selectedCourse).Collection(x => x.Enrollments).Load();
+                foreach (Enrollment enrollment in selectedCourse.Enrollments)
+                {
+                    _context.Entry(enrollment).Reference(x => x.Student).Load();
+                }
+                viewModel.Enrollments = selectedCourse.Enrollments;
             }
 
             return View(viewModel);
         }
-        
+
+
         // GET: Instructors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -63,7 +66,8 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -103,6 +107,8 @@ namespace ContosoUniversity.Controllers
             }
             return View(instructor);
         }
+
+
         // GET: Instructors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -140,6 +146,7 @@ namespace ContosoUniversity.Controllers
             }
             ViewData["Courses"] = viewModel;
         }
+
 
         // POST: Instructors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -184,6 +191,7 @@ namespace ContosoUniversity.Controllers
             }
             return View(instructorToUpdate);
         }
+
         private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
         {
             if (selectedCourses == null)
@@ -224,7 +232,8 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var instructor = await _context.Instructors.SingleOrDefaultAsync(m => m.ID == id);
+            var instructor = await _context.Instructors
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -239,10 +248,8 @@ namespace ContosoUniversity.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Instructor instructor = await _context.Instructors
-                .Include(i => i.OfficeAssignment)
                 .Include(i => i.Courses)
                 .SingleAsync(i => i.ID == id);
-
 
             var departments = await _context.Departments
                 .Where(d => d.InstructorID == id)
@@ -254,6 +261,7 @@ namespace ContosoUniversity.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
 
         private bool InstructorExists(int id)
         {
