@@ -15,6 +15,6 @@ ms.prod: aspnet-core
 # Advanced topics for ASP.NET Core MVC
 
 * [Working with the Application Model](../controllers/application-model.md)
-* [🔧 Application parts](app-parts.md)
+* [Application parts](app-parts.md)
 * [🔧 Creating a Custom View Engine](custom-view-engine.md)
 * [🔧 Custom formatters](custom-formatters.md)
