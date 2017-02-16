@@ -1,7 +1,7 @@
 ---
 title: Manage client-side packages with Bower | Microsoft Docs
 author: rick-anderson
-description: Manging client side packages with Bower
+description: Manging client-side packages with Bower
 keywords: ASP.NET Core, bower
 ms.author: riande
 manager: wpickett
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](http://blog.fal
 
 [Bower](https://bower.io/) calls itself "A package manager for the web." For .NET libraries, you still use [NuGet](https://nuget.org) package manager.
 
-New projects created with the ASP.NET Core project templates set up the client build process. [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/) are installed, and Bower is supported.
+New projects created with the ASP.NET Core project templates set up the client-side build process. [jQuery](http://jquery.com/) and [Bootstrap](http://getbootstrap.com/) are installed, and Bower is supported.
 
 Client-side packages are listed in the *bower.json* file. The ASP.NET Core project templates configures *bower.json* with jQuery, jQuery validation, and Bootstrap.
 
@@ -42,9 +42,9 @@ Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSe
 
 ![IntelliSense of bower package explorer](bower/_static/add-package.png)
 
-![bower version intellisense](bower/_static/version-intellisense.png)
+![bower version IntelliSense](bower/_static/version-IntelliSense.png)
 
-Bower uses [semantic versioning](http://semver.org/) to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme \<major>.\<minor>.\<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
+Bower uses [semantic versioning](http://semver.org/) to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme \<major>.\<minor>.\<patch>. IntelliSense simplifies semantic versioning by showing only a few common choices. The top item in the IntelliSense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
 
 Save the *bower.json* file. Visual Studio watches the *bower.json* file for changes. Upon saving, the *bower install* command is executed. See the Output window's **Bower/npm** view for the exact command executed.
 
@@ -70,11 +70,11 @@ Replace the contents of the *Views\Home\About.cshtml* Razor file with the follow
 
 Run the app and navigate to the About view to verify the font-awesome package works.
 
-![show home/lib/app/setting icons](bower/_static/version-intellisense.png)
+![show home/lib/app/setting icons](bower/_static/version-IntelliSense.png)
 
-## Exploring the client build process
+## Exploring the client-side build process
 
-Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. You can what happens to the project structure and the runtime output as each configuration change is made.
+Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. You see can what happens to the project structure and the runtime output as each configuration change is made.
 
 The general steps to use the client-side build process with Bower are:
 
@@ -108,9 +108,9 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 ### Reference packages
 
-In this section you will create an HTML page to verify it can access the deployed packages.
+In this section, you will create an HTML page to verify it can access the deployed packages.
 
-* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default static content cannot be served outside *wwwroot*. See [Working with static files](xref:fundamentals/static-files) for more information.
+* Add a new HTML page named *Index.html* to the *wwwroot* folder. Note: You must add the HTML file to the *wwwroot* folder. By default, static content cannot be served outside *wwwroot*. See [Working with static files](xref:fundamentals/static-files) for more information.
 
  Replace the contents of *Index.html* with the following markup:
 
