@@ -21,7 +21,7 @@ uid: getting-started
     ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
-    dotnet new web
+    dotnet new -t web
     ```
 
 3.  Restore the packages:
