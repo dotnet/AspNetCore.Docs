@@ -3,5 +3,3 @@
 # [Migrating Authentication and Identity](identity.md)
 # [Migrating from ASP.NET Web API](webapi.md)
 # [Migrating HTTP Modules to Middleware](http-modules.md)
-# [Migrating from ASP.NET 5 RC1 to ASP.NET Core 1.0](rc1-to-rtm.md)
-# [Migrating from ASP.NET Core RC2 to ASP.NET Core 1.0](rc2-to-rtm.md)
