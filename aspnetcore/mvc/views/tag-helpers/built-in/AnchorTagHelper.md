@@ -182,7 +182,7 @@ The domain in the example is localhost, but the Anchor Tag Helper uses the websi
 
 - - -
 
-## Additional Resources
+## Resources
 
 * [Areas](xref:mvc/controllers/areas)
 

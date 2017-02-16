@@ -80,7 +80,7 @@ Usage Example:
 
 | Attribute Type 	| Example Value   	|
 |----------------	|----------------	|
-| TimeSpan    | "@TimeSpan.FromSeconds(10)" 	|
+| TimeSpan    | "@TimeSpan.FromSeconds(120)" 	|
 
 
 Sets the length of time from the first request time to cache the contents. 
@@ -88,7 +88,7 @@ Sets the length of time from the first request time to cache the contents.
 Usage Example:
 
 ```html
-<Cache expires-on="@TimeSpan.FromSeconds(10)">
+<Cache expires-on="@TimeSpan.FromSeconds(120)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
 ```
@@ -99,7 +99,7 @@ Usage Example:
 
 | Attribute Type 	| Example Value   	|
 |----------------	|----------------	|
-| TimeSpan    | "@TimeSpan.FromSeconds(5)" 	|
+| TimeSpan    | "@TimeSpan.FromSeconds(60)" 	|
 
 
 Sets the time that a cache entry should be evicted if it has not been accessed.
@@ -107,7 +107,7 @@ Sets the time that a cache entry should be evicted if it has not been accessed.
 Usage Example:
 
 ```html
-<Cache expires-on="@TimeSpan.FromSeconds(5)">
+<Cache expires-sliding="@TimeSpan.FromSeconds(60)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
 ```
@@ -280,12 +280,9 @@ Usage Example:
 </Cache>
 ```
 
-> [!WARNING]
-> The `priority` attribute does not guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion to the Cache Provider. Setting this attribute to `NeverRemove` does not guarantee that the cache will not be evicted. `CacheItemPriority` sets the priority the cache evicts items under memory pressure. See [Additional Resources](#additional-resources) for more information.
-
 The Cache Tag Helper is dependent on the the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it has not been added.
 
-## Additional Resources
+## Resources
 
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>
