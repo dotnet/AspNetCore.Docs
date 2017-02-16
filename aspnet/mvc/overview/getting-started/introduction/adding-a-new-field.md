@@ -119,7 +119,7 @@ Open the *\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column he
 
 Next, open the *\Views\Movies\Create.cshtml* file and add the `Rating` field with the following highlighed markup. This renders a text box so that you can specify a rating when a new movie is created.
 
-[!code-cshtml[Main](adding-a-new-field/samples/sample9.cshtml?highlight=17-21)]
+[!code-cshtml[Main](adding-a-new-field/samples/sample9.cshtml?highlight=9-15)]
 
 You've now updated the application code to support the new `Rating` property.
 
