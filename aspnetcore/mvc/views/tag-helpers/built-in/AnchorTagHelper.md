@@ -12,7 +12,6 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/AnchorTagHelper
 ---
-
 # Anchor Tag Helper
 
 By [Peter Kellner](http://peterkellner.net) 
@@ -182,7 +181,7 @@ The domain in the example is localhost, but the Anchor Tag Helper uses the websi
 
 - - -
 
-## Resources
+## Additional resources
 
 * [Areas](xref:mvc/controllers/areas)
 

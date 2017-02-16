@@ -1,4 +1,5 @@
-﻿title: Anchor Tag Helper | Microsoft Docs
+﻿---
+title: Anchor Tag Helper | Microsoft Docs
 author: Peter Kellner
 description: Shows how to work with Image Tag Helper
 keywords: ASP.NET Core,tag helper
@@ -11,7 +12,6 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/ImageTagHelper
 ---
-
 # ImageTagHelper
 
 By [Peter Kellner](http://peterkellner.net) 
@@ -54,7 +54,7 @@ To activate the Image Tag Helper, the src attribute is required on the `<img>` e
 > [!NOTE]
 >  The Image Tag Helper uses the `Cache` provider on the local web server to store the calculated `Sha512` of a given file. If the file is requested again the `Sha512` does not need to be recalculated.  The Cache is invalidated by a file watcher that is attached to the file when the file's `Sha512` is calculated.
 
-## Resources
+## Additional resources
 
 * <xref:performance/caching/memory>
 
