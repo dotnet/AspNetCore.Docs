@@ -1,5 +1,5 @@
 ---
-title: Replacing <machineKey> in ASP.NET | Microsoft Docs
+title: Replacing \<machineKey\> in ASP.NET | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
-# Replacing <machineKey> in ASP.NET
+# Replacing \<machineKey\> in ASP.NET
 
 <a name=compatibility-replacing-machinekey></a>
 
-The implementation of the <machineKey> element in ASP.NET [is replaceable](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx). This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
+The implementation of the \<machineKey\> element in ASP.NET [is replaceable](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx). This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
 
 ## Package installation
 
