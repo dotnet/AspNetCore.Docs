@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bower Example</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Using the jumbotron style</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" role="button">Stateful button</a>
+        </p>
+    </div>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script>
+        $(".btn").click(function () {
+            $(this).text('loading')
+                .delay(1000)
+                .queue(function () {
+                    $(this).text('reset');
+                    $(this).dequeue();
+                });
+        });
+    </script>
+</body>
+
+</html>
