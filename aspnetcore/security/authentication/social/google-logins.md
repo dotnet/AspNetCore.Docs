@@ -103,7 +103,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 > [!NOTE]
 > Use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
-> `dotnet install Microsoft.AspNetCore.Authentication.Google`
+> `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 
