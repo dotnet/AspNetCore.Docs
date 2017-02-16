@@ -2,8 +2,8 @@
 {
     public class AuthMessageSMSSenderOptions
     {
-        public string SID { get; set; }
-        public string AuthToken { get; set; }
-        public string SendNumber { get; set; }
+        public string Userkey { get; set; }
+        public string Password { get; set; }
+        public string Originator { get; set; }
     }
 }
