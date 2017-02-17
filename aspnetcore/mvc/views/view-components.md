@@ -86,11 +86,13 @@ To use the view component, call `@Component.InvokeAsync("Name of view component"
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
-For ASP.NET Core 1.1 and higher, you can invoke a View Component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+## Invoking a view component as a Tag Helper
+
+For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=38-39)]
 
-Pascal-cased class and method parameters for tag helpers are translated into their [lower kebab case](http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101). The Tag Helper to invoke a View Compoments is `<vc>`. In the sample above, the `PriorityList` class becomes `priority-list`. The parameters to the View Component are passed as arributes in lower kebab case.
+Pascal-cased class and method parameters for tag helpers are translated into their [lower kebab case](http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101). The Tag Helper to invoke a view component is `<vc>`. In the sample above, the `PriorityList` class becomes `priority-list`. The parameters to the view component are passed as arributes in lower kebab case.
 
 ### Invoking a view component directly from a controller
 
