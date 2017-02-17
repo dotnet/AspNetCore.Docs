@@ -21,6 +21,7 @@ namespace ViewComponentSample
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
 
