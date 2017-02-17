@@ -14,12 +14,12 @@ uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS
 
->[!WARNING]
-> This page documents version 1.0.0-beta8 and has not yet been updated for version 1.0.0
+> [!NOTE]
+> This page was successfully tested with VS 2017 RC4 / ASP.NET Core 1.0 and ASP.NET Core 1.1
 
 <a name=security-authentication-2fa></a>
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
 This tutorial will show you how to set up two-factor authentication (2FA) using SMS. ASPSMS is used, but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
