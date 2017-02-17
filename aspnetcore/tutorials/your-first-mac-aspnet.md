@@ -29,14 +29,14 @@ We will be using `yo aspnet` to generate the **Web Application Basic** template,
 Install the necessary yeoman generators and bower using npm.
 
 ```console
-npm install -g yo generator-aspnet bower
-   ```
+npm install -g yo generator-aspnet@0.2.6 bower
+```
 
 Run the ASP.NET Core generator
 
 ```console
 yo aspnet
-   ```
+```
 
 * Select **Web Application Basic [without Membership and Authorization]** and tap Enter
 
