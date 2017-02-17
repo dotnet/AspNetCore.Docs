@@ -1,8 +1,8 @@
 ---
 title: Building projects with Yeoman | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: This article walks through building an ASP.NET Core web application using the Yeoman generator on macOS.
+keywords: ASP.NET Core, Yeoman
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -33,7 +33,7 @@ Note: If you get the error `npm ERR! Please try running this command again as ro
 From a command prompt, install the ASP.NET generator:
 
 ```console
-npm install -g generator-aspnet
+npm install -g generator-aspnet@0.2.6
 ```
 
 > [!NOTE]
