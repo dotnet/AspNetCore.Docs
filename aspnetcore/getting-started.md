@@ -21,8 +21,9 @@ uid: getting-started
     ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
-    dotnet new -t web
+    dotnet new web
     ```
+    Note: This command requires `.NET Core SDK 1.0.0 - RC4` or later.
 
 3.  Restore the packages:
 
