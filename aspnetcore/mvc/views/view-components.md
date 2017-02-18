@@ -5,7 +5,7 @@ description: View Components are intended anywhere you have reusable rendering l
 keywords: ASP.NET Core,view components, partial view
 ms.author: riande
 manager: wpickett
-ms.date: 12/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: ab4705b7-59d7-4f31-bc97-ea7f292fe926
 ms.technology: aspnet
@@ -84,9 +84,32 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 To use the view component, call `@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)` from a view. The parameters will be passed to the `InvokeAsync` method.  The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
-```HTML
-@await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false })
-   ```
+[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+
+## Invoking a view component as a Tag Helper
+
+For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+
+[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+
+Pascal-cased class and method parameters for tag helpers are translated into their [lower kebab case](http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified following as follows:
+
+```html
+<vc:[view-component-name]>
+  parameter1="parameter1 value"
+  parameter1="parameter1 value"
+</vc:[view-component-name]>
+```
+
+The `InvokeAsync` method used in this tutorial:
+
+[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+
+In Tag Helper markup:
+
+[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+
+In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as arributes in lower kebab case.
 
 ### Invoking a view component directly from a controller
 
