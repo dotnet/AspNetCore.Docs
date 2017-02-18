@@ -25,11 +25,11 @@ ASP.NET Core 1.1 includes the following new features:
 - [Azure App Service logging provider](xref:fundamentals/logging#appservice)
 - [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 - [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis)
-- WebListener Server for Windows
+- WebListener Server for Windows - @tdykstra to complete
 
 
 ## Choosing between versions 1.0 and 1.1 of ASP.NET Core
-
+TODO: Dan Roth to complete this section.
 ASP.NET Core follows the [.NET Core Support Lifecycle](https://www.microsoft.com/net/core/support), therefore ASP.NET Core 1.1 follows the .NET Core 1.1 Current support level. 
 
 ## WebListener Server for Windows
