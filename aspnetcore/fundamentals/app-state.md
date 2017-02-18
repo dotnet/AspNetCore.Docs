@@ -38,9 +38,9 @@ See [Configuring Session](#configuring-session) below for more details.
 
 ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [Controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). `TempData` can be used for storing transient data that only needs to be available for a single request after the current request. `TempData` is frequently useful for redirection, when data is needed for more than a single request. `TempData` is built on top of Session State.
 
-### Cookie-based TempData provider (requires ASP.NET Core 1.1.0 and higher)
+## Cookie-based TempData provider 
 
-To enable the  Cookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
+The Cookie-based TempData provider requires ASP.NET Core 1.1.0 or higher. To enable the  Cookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

@@ -1,11 +1,11 @@
 ---
 title: Two-factor authentication with SMS | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Shows how to set up two-factor authentication (2FA) with ASP.NET Core
+keywords: ASP.NET Core, SMS, authentication, 2FA, two-factor authentication, two factor authentication 
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: ff1c22d1-d1f2-4616-84dd-94ba61ec299a
 ms.technology: aspnet
@@ -14,14 +14,9 @@ uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS
 
->[!WARNING]
-> This page documents version 1.0.0-beta8 and has not yet been updated for version 1.0.0
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
-<a name=security-authentication-2fa></a>
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-This tutorial will show you how to set up two-factor authentication (2FA) using SMS. Twilio is used, but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
+This tutorial will show you how to set up two-factor authentication (2FA) using SMS. ASPSMS is used, but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
 ## Create a new ASP.NET Core project
 
@@ -31,28 +26,25 @@ Create a new ASP.NET Core web app with individual user accounts.
 
 After you create the project, follow the instructions in [Account Confirmation and Password Recovery](accconfirm.md) to set up and require SSL.
 
-## Setup up SMS for two-factor authentication with Twilio
+## Setup up SMS for two-factor authentication with ASPSMS
 
-* Create a [Twilio](http://www.twilio.com/) account.
+* Create a [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/) account.
 
-* On the **Dashboard** tab of your Twilio account, note the **Account SID** and **Authentication token**. Note: Tap **Show API Credentials** to see the Authentication token.
+* From your account settings, navigate to **Userkey** and copy it together with your self-defined **Password**. We will later store these values using the secret-manager tool.
+ 
+* Within the **Unlock Originators** Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks). We will later store this value using the secret-manager tool, too.
 
-* On the **Numbers** tab, note the Twilio phone number.
-
-* Install the Twilio NuGet package. From the Package Manager Console (PMC),  enter the following the following command:
+* Install the ASPSMS NuGet package. From the Package Manager Console (PMC), enter the following the following command:
 
    <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
    ```
-   Install-Package Twilio
+   Install-Package ASPSMS
    ```
 
 * Add code in the *Services/MessageServices.cs* file to enable SMS.
 
-[!code-csharp[Main](2fa/sample/WebSMS/src/WebSMS/Services/MessageServices.cs?range=12-39)]
-
-> [!NOTE]
-> Twilio does not yet support [.NET Core](https://microsoft.com/net/core). To use Twilio from your application you need to either target the full .NET Framework or you can call the Twilio REST API to send SMS messages.
+[!code-csharp[Main](2fa/sample/WebSMS/src/WebSMS/Services/MessageServices.cs?range=12-44)]
 
 > [!NOTE]
 > You can remove `//` line comment characters from the `System.Diagnostics.Debug.WriteLine(message);` line to test the application when you can't get SMS messages. A better approach is to use the built in [logging system](../../fundamentals/logging.md).
@@ -65,11 +57,11 @@ We'll use the [Options pattern](../../fundamentals/configuration.md#options-conf
 
 [!code-csharp[Main](2fa/sample/WebSMS/src/WebSMS/Services/AuthMessageSMSSenderOptions.cs?range=3-8)]
 
-Set `SID`, `AuthToken`, and `SendNumber` with the [secret-manager tool](../app-secrets.md). For example:
+Set `Userkey`, `Password`, and `Originator` with the [secret-manager tool](../app-secrets.md). For example:
 
 ```none
-C:/WebSMS/src/WebApplication1>dotnet user-secrets set SID abcdefghi
-info: Successfully saved SID = abcdefghi to the secret store.
+C:/WebSMS/src/WebApp1>dotnet user-secrets set Userkey IT2VHGB23K3
+info: Successfully saved Userkey = IT2VHGB23K3 to the secret store.
 ```
 
 ### Configure startup to use `AuthMessageSMSSenderOptions`
@@ -114,7 +106,7 @@ Add `AuthMessageSMSSenderOptions` to the service container at the end of the `Co
 
 ![Verify Phone Number page](2fa/_static/login2fa4.png)
 
-If you don't get a text message, see [Debugging Twilio](#debugging-twilio).
+If you don't get a text message, see [ASPSMS Sendlog](#aspsms-sendlog).
 
 * The Manage view shows your phone number was added successfully.
 
@@ -146,24 +138,8 @@ We recommend you use account lockout with 2FA. Once a user logs in (through a lo
 
 [!code-csharp[Main](./2fa/sample/WebSMS/src/WebSMS/Startup.cs?highlight=1,2,3,4,5&range=67-77)]
 
-## Debugging Twilio
+## ASPSMS Sendlog
 
-If you're able to use the Twilio API, but you don't get an SMS message, try the following:
+If you don't get an SMS message, log in to the [ASPSMS site](https://www.aspsms.com/en/) and navigate to the **Sendlog** page. You can verify that messages were sent and delivered.
 
-1.  Log in to the Twilio site and navigate to the **Logs** > **SMS & MMS Logs** page. You can verify that messages were sent and delivered.
-
-2.  Use the following code in a console application to test Twilio:
-
-    ```csharp
-    static void Main(string[] args)
-    {
-      string AccountSid = "";
-      string AuthToken = "";
-      var twilio = new Twilio.TwilioRestClient(AccountSid, AuthToken);
-      string FromPhone = "";
-      string toPhone = "";
-      var message = twilio.SendMessage(FromPhone, toPhone, "Twilio Test");
-      Console.WriteLine(message.Sid);
-    }
-    ```
     
