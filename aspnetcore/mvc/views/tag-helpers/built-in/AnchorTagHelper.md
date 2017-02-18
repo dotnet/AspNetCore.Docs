@@ -1,4 +1,4 @@
-﻿---
+---
 title: Anchor Tag Helper | Microsoft Docs
 author: Peter Kellner
 description: Shows how to work with Anchor Tag Helper
@@ -17,9 +17,9 @@ uid: mvc/views/tag-helpers/builtin-th/AnchorTagHelper
 By [Peter Kellner](http://peterkellner.net) 
 
 
-The Anchor Tag Helper enhances the html anchor (`<a ... ></a>`) tag. A new set of attributes are defined that work with the anchor tag. The link generated (on the `href` tag) is based on a combination of these new attributes that work together to form the final URL. That URL can include an optional protocol such as https.
+The Anchor Tag Helper enhances the html anchor (`<a ... ></a>`) tag by adding new attributes. The link generated (on the `href` tag) is created using the new attributes. That URL can include an optional protocol such as https.
 
-The speaker controller used in attribute definitions below is shown here.
+The speaker controller below is used in samples in this document.
 
 <br/>
 **SpeakerController.cs** 
@@ -33,35 +33,43 @@ The speaker controller used in attribute definitions below is shown here.
 
 ### asp-controller
 
-`asp-controller` is used to associate which controller will be used to generate the final URL. The only valid choices are controllers that exist in the current project. To get to a list of all speakers specifying `asp-controller="Speaker"` is required. If only the `asp-controller` and no `asp-action` is specified, the default asp-action will be the name of the the controller method calling this view page.
+`asp-controller` is used to associate which controller will be used to generate the URL. The controllers specified must exist in the current project. The following code lists all speakers: [TODO complete markup]
+`asp-controller="Speaker"` is required.
+
+If the `asp-controller` is specifed and `asp-action` is not, the default asp-action will be the controller method calling the view.
 
 - - -
   
 ### asp-action
 
-`asp-action` is the name of the method in the controller that will be included in the final URL. That is, in the example, if the route to the Speaker Detail page is wanted, then the attribute should be set to `asp-action=Detail`. You should always set `asp-controller` when specifying `asp-action`. If no `asp-action` is specified then the default `asp-controller` will be the current executing controller.
-
+`asp-action` is the name of the action method in the controller that will be included in the final URL. For example, the folowing code gets the route to the Speaker Detail page:
+TODO Complete markup `asp-action=Detail`. 
+ `asp-controller` is required when specifying `asp-action`.
 - - -
   
 ### asp-route-{value}
 
-`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as the parameter to pass into the route. For example, if a tag is created as follows: 
-
+`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as the parameter to pass into the route. The following code:
+[REVIEW - Doesn't this depend on the default route? ]
 `<a  asp-controller="Speaker" asp-action="Detail" asp-route-id-="11">Speaker 11</a>`
 
-the `href` generated will be 
+[REVIEW - consider passing in @model.SpeakerID rather than hard coded values]
+
+generates the following HTML:
 
 `<a href="/Speaker/11">Speaker 11</a>` 
 
-This is because a route was found that matched a single parameter "id" in the ```SpeakerController``` method ```Detail```. If there was no parameter match, say for example you created the tag helper 
+A route was found that matched a single parameter "id" in the ```SpeakerController``` method ```Detail```. 
+
+In the following example, there is no matching parameter:
 
 `<a  asp-controller="Speaker" asp-action="Detail" asp-route-name-="Ronald">Ronald</a>`
 
-you would get generated the html 
+Which generates the following HTML:
 
 `<a href="/Speaker/Detail?Name=Ronald">Ronald</a>`
 
-This is because there was no route found that matched a controller that had a method named `Detail` with one string parameter titled `name`.
+There was no route found that matched a controller that had a method named `Detail` with one string parameter titled `name`.
 
 - - -
 
@@ -76,6 +84,11 @@ This is because there was no route found that matched a controller that had a me
 ### asp-all-route-data
 
 `asp-all-route-data` allows creating on a .NET context (that is, the running C# associated with your Razor view) a dictionary of key value pairs where the key is the parameter name and the value is the value associated with that key. 
+
+Can't you just say:
+`asp-all-route-data` allows creating a dictionary of key value pairs where the key is the parameter name and the value is the value associated with that key.
+
+[If not you need to explain that better in shorter sentences.]
 
 As the example below shows, an inline dictionary is created and the data is passed to the razor view. The data could also be passed in with your model to keep the Razor view simpler.
 
@@ -92,19 +105,19 @@ As the example below shows, an inline dictionary is created and the data is pass
    asp-all-route-data="dict">SpeakerEvals</a>
 ```
 
-The code that this generates looks as follows:
+The code above generates the following HTML:
 
 ```
 http://localhost/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true
 ```
 
-When the link is clicked, this will call the controller method `EvaluationsCurrent` because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
+When the link is clicked, the controller method `EvaluationsCurrent`is called: It is called because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
 
 - - -
 
 ### asp-fragment
 
-`asp-fragment` defines a URL fragment to append to the URL. The Anchor Tag Helper will add the hash character (#) automatically. If you create a tag:
+`asp-fragment` defines a URL fragment to append to the URL. The Anchor Tag Helper will add the hash character (#). If you create a tag:
 
 ```
 <a asp-action="Evaluations" asp-controller="Speaker"  
@@ -124,7 +137,7 @@ Hash tags are useful when doing client side applications. They can be used for e
 
 ### asp-area
 
-`asp-area` sets the area name that ASP.NET Core uses to set the appropriate route. Below are examples of how the area attribute causes a remapping of routes.  Setting `asp-area` to Blogs prefixes the directory Areas/Blogs to the routes of the associated controllers and views for this anchor tag..
+`asp-area` sets the area name that ASP.NET Core uses to set the appropriate route. Below are examples of how the area attribute causes a remapping of routes.  Setting `asp-area` to Blogs prefixes the directory `Areas/Blogs` to the routes of the associated controllers and views for this anchor tag.
 
 * Project name
 
@@ -169,7 +182,7 @@ The generated HTML will include the areas segment and will be as follows:
 
 ### asp-protocol
 
-The `asp-protocol` is for specifying a particular protocol (such as `https`) in your URL. An example Anchor Tag Helper that includes the protocol will look as follows.
+The `asp-protocol` is for specifying a  protocol (such as `https`) in your URL. An example Anchor Tag Helper that includes the protocol will look as follows.
 
 ```<a asp-protocol="https" asp-action="About" asp-controller="Home">About</a>```
 
