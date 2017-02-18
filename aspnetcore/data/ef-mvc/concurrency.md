@@ -151,7 +151,7 @@ The code in the catch block for that exception gets the affected Department enti
 
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?range=164)]
 
-The `Entries` collection will have just one `EntityEntry` object, and you can use that object to get the new values entered by the user abd the current database values.
+The `Entries` collection will have just one `EntityEntry` object.  You can use that object to get the new values entered by the user and the current database values.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?range=165-166)]
 

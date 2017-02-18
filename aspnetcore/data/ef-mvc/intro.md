@@ -102,17 +102,17 @@ Because you used the **Individual User Accounts** option when you created the pr
 
 If you want to add EF Core support to a new project that you create without the **Individual User Accounts** option, install the following NuGet packages:
 
-* The package for the database provider that you want to target. For SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
+* The database provider that you want to target. For SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
 
-* The package for running EF command-line tools in **Package Manager Console**:[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). 
+* The EF tools for **Package Manager Console**:[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). 
 
-* The package for running EF command-line tools at a command prompt: [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
+* The EF command-line tools: [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
 
-  This package is installed by adding it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown.
+  This package is installed by adding it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
 
   [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=30-34&highlight=2)]
   
- (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj** from the context menu.)
+ (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
 
 All of these packages are already installed in the project you created.
 
@@ -129,8 +129,6 @@ In the following sections you'll create a class for each one of these entities.
 ### The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
-
-In the project folder, create a *Models* folder.
 
 In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
 
