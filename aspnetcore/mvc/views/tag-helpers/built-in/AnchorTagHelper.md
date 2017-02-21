@@ -33,43 +33,104 @@ The speaker controller below is used in samples in this document.
 
 ### asp-controller
 
-`asp-controller` is used to associate which controller will be used to generate the URL. The controllers specified must exist in the current project. The following code lists all speakers: [TODO complete markup]
-`asp-controller="Speaker"` is required.
+`asp-controller` is used to associate which controller will be used to generate the URL. The controllers specified must exist in the current project. The following code lists all speakers: 
 
-If the `asp-controller` is specifed and `asp-action` is not, the default asp-action will be the controller method calling the view.
+```
+<a asp-controller="Speaker" asp-action="Index" >All Speakers</a>
+```
+
+The generated URL will be
+
+```
+<a href="/Speaker">All Speakers</a>
+```
+
+If the `asp-controller` is specified and `asp-action` is not, the default asp-action will be the controller method calling the view. 
 
 - - -
   
 ### asp-action
 
-`asp-action` is the name of the action method in the controller that will be included in the final URL. For example, the folowing code gets the route to the Speaker Detail page:
-TODO Complete markup `asp-action=Detail`. 
- `asp-controller` is required when specifying `asp-action`.
+`asp-action` is the name of the action method in the controller that will be included in the final URL. For example, the following code gets the route to the Speaker Detail page:
+
+```
+<a asp-controller="Speaker" asp-action="Detail" >Speaker Detail</a>
+```
+
+The generated URL will be
+
+```
+<a href="/Speaker/Detail">Speaker Detail</a>
+```
+
+If no `asp-controller` attribute is specified, the default controller calling the view will be used.  
+ 
+If the attribute `asp-action` is `Index`, then no action is appended to the URL leading to the default `Index` method being called. The action specified must exist in the controller referenced or defaulted.a
 - - -
   
 ### asp-route-{value}
 
-`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as the parameter to pass into the route. The following code:
-[REVIEW - Doesn't this depend on the default route? ]
-`<a  asp-controller="Speaker" asp-action="Detail" asp-route-id-="11">Speaker 11</a>`
+`asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route is not found, this route prefix will be appended to the generated href as a request parameter and value.  Otherwise it will be substituted in the route template.
 
-[REVIEW - consider passing in @model.SpeakerID rather than hard coded values]
+Assuming you have a controller method defined as follows:
 
-generates the following HTML:
+```csharp
+public IActionResult AnchorTagHelper(string id)
+{
+    var speaker = new SpeakerData()
+    {
+        SpeakerId = 12
+    };      
+    return View(viewName, speaker);
+}
+```
 
-`<a href="/Speaker/11">Speaker 11</a>` 
+and have the default route template defined in your **startup.cs** as follows:
 
-A route was found that matched a single parameter "id" in the ```SpeakerController``` method ```Detail```. 
+```csharp
+app.UseMvc(routes =>
+{
+   routes.MapRoute(
+    name: "default",
+    template: "{controller=Home}/{action=Index}/{id?}");
+});
 
-In the following example, there is no matching parameter:
+```
 
-`<a  asp-controller="Speaker" asp-action="Detail" asp-route-name-="Ronald">Ronald</a>`
+The **cshtml** file that contains the Anchor Tag Helper necessary to use the **speaker** model parameter passed in from the controller to the view is as follows:
 
-Which generates the following HTML:
+```html
+@model SpeakerData
+<!DOCTYPE html>
+<html><body>
+<a asp-controller='Speaker' asp-action='Detail' asp-route-id=@Model.SpeakerId>SpeakerId: @Model.SpeakerId</a>
+<body></html>
+```
 
-`<a href="/Speaker/Detail?Name=Ronald">Ronald</a>`
+The generated html will then be as follows because **id** was found in the default route.
 
-There was no route found that matched a controller that had a method named `Detail` with one string parameter titled `name`.
+```html
+<a href='/Speaker/Detail/12'>SpeakerId: 12</a>
+```
+
+If the route prefix is not part of the routing template found, which is the case with the following **cshtml** file:
+
+```html
+@model SpeakerData
+<!DOCTYPE html>
+<html><body>
+<a asp-controller='Speaker' asp-action='Detail' asp-route-speakerid=@Model.SpeakerId>SpeakerId: @Model.SpeakerId</a>
+<body></html>
+```
+
+The generated html will then be as follows because **speakerid** was not found in the route matched:
+
+
+```html
+<a href='/Speaker/Detail?speakerid=12'>SpeakerId: 12</a>
+```
+
+If either `asp-controller` or `asp-action` are not specified, then the same default processing is followed as is in the `asp-route` attribute.
 
 - - -
 
@@ -83,14 +144,9 @@ There was no route found that matched a controller that had a method named `Deta
 
 ### asp-all-route-data
 
-`asp-all-route-data` allows creating on a .NET context (that is, the running C# associated with your Razor view) a dictionary of key value pairs where the key is the parameter name and the value is the value associated with that key. 
-
-Can't you just say:
 `asp-all-route-data` allows creating a dictionary of key value pairs where the key is the parameter name and the value is the value associated with that key.
 
-[If not you need to explain that better in shorter sentences.]
-
-As the example below shows, an inline dictionary is created and the data is passed to the razor view. The data could also be passed in with your model to keep the Razor view simpler.
+As the example below shows, an inline dictionary is created and the data is passed to the razor view. As an alternative, the data could also be passed in with your model.
 
 ```
 @{
@@ -125,7 +181,6 @@ When the link is clicked, the controller method `EvaluationsCurrent`is called: I
 ```
 
 The generated URL will be
-
 
 ```
 http://localhost/Speaker/Evaluations#SpeakerEvaluations
