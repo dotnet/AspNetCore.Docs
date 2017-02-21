@@ -227,8 +227,7 @@ $.ajax({
 });
 ```
 
-
-## IAntiforgery
+## Using IAntiforgery
 
 `IAntiforgery` provides access to the antiforgery system and is exposed in the `Configure` method of the `Startup` class:
 
@@ -244,21 +243,24 @@ The `IAntiForgeryAdditionalDataProvider` type allows developers to extend the be
 
 ## Fundamentals
 
-UserTokens and Cookies
+CSRF attacks rely on built-in default browser behavior of sending cookies associated with a particular domain with every request to made to that domain. These cookies are stored within the browser and frequently include session cookies for authenticated users. Cookie-based authentication is by far the most popular form of authentication used by web applications. However, token-based authentication systems have been growing in popularity in recent years, especially for SPAs and other "smart client" scenarios.
 
 ### Cookie based authentication
 
 Once a user has authenticated using their username and password, they are issued a token that can be used to identify them and validate that they have been authenticated. The token is stored as a cookie that accompanies every request the client makes. Generating and validating this cookie is done by the OWIN Cookie Authentication middleware. ASP.NET Core provides cookie [middleware](../fundamentals/middleware.md#fundamentals-middleware.md) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`.
 
-When cookie  is used, The authentication cookie is just a container for the forms authentication ticket. The ticket is passed as the value of the forms authentication cookie with each request and is used by forms authentication, on the server, to identify an authenticated user.
+When a cookie is used, The authentication cookie is just a container for the forms authentication ticket. The ticket is passed as the value of the forms authentication cookie with each request and is used by forms authentication, on the server, to identify an authenticated user.
 
-When a user is logged in to a system, a user session is created on the server side and it is stored in the database or in some kind of in-memory storage systems. The system generates a session key that points to the actual session in the database and it is attached to a client side cookie. After that every time when a user asks for a page which needs authorization, the session key in the cookie is finds the appropriate user session in the database. Then the system checks if the user from whom the user session is stored has the privilege to access that page. If it does, then eventually the application takes the user to that page. As you can see we are using cookies to make the application stateful. USERTOKENS Token based authentication on the other hand doesn’t store any kind of session in the database. Instead when a user is logged in he is issued with a token (not antiforgery token). This token is self-contained. It contains all the data that is required to validate the token as well
-as user information through claims. When a user wants to access some authorized pages the token is send to the server with an additional authorization header in form of Bearer {token} (Recall from previous web api applications with single user authentication enabled). This makes the application stateless since in every subsequent request the token is passed in the request for server side validation. One thing to remember is this token is not encrypted rather it is encoded. On the server side the token can be decoded to have the raw information about the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about anything related to XSRF if your token is stored in the local storage. But you have to deal with XSRF if you store it in a cookie.
+When a user is logged in to a system, a user session is created on the server side and is stored in a database or some other persistent store. The system generates a session key that points to the actual session in the data store and it is sent as a client side cookie. After that, the web server will check this session key any time a user requests a resource that requires authorization. The system checks whether the associated user session has the privilege to access the requested resource. If so, the request continues. Otherwise, the request returns as not authorized. In this approach, cookies are used to make the application appear to be stateful, since it is able to "remember" that the user has previously authenticated with the server.
+
+### User tokens
+
+Token based authentication doesn’t store any kind of session on the server or in a server-side data store. Instead when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token as well as user information through claims. When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server side validation. One thing to remember is this token is not *encrypted*; rather it is *encoded*. On the server side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is still an issue if the token is stored in a cookie.
 
 ### Multiple applications are hosted in one domain
 
 Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there is an implicit trust relationship between all hosts under the ``*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests do not necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login XSRF attacks.
 
-  ### Additional Resources
+### Additional Resources
 
 * [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) on [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP).
