@@ -1,5 +1,5 @@
 ---
-title: Session and application state | Microsoft Docs
+title: Session and application state in ASP.NET Core  | Microsoft Docs
 author: rick-anderson
 description: Approaches to preserving application and user (session) state between requests.
 keywords: ASP.NET Core, Application state, session state, querystring, post
@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: fundamentals/app-state
 ---
 
-# Session and application state
+# Session and application state in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
 
@@ -32,7 +32,7 @@ Session is retained by the server for a limited time after the last request. The
 
 The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. The Redis and SQL Server distributed caches don't require sticky sessions and are the preferred approach to multi-server caching. See [Working with a Distributed Cache](xref:performance/caching/distributed) for more information.
 
-See [Installing and Configuring Session](#installing-and-configuring-session), below for more details.
+See [Configuring Session](#configuring-session) below for more details.
 
 ### TempData
 
@@ -86,7 +86,7 @@ Caching provides a means of efficiently storing and retrieving data. It provides
 
 The `Microsoft.AspNetCore.Session` package provides middleware for managing session state. Enabling the session middleware requires the following in `Startup`:
 
-- Add any of the [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implimentation is used as a backing store for session.
+- Add any of the [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session.
 - Call [AddSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions#Microsoft_Extensions_DependencyInjection_SessionServiceCollectionExtensions_AddSession_Microsoft_Extensions_DependencyInjection_IServiceCollection_), which requires NuGet package "Microsoft.AspNetCore.Session".
 - Call [UseSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_).
 
@@ -104,7 +104,7 @@ Attempting to create a new `Session` (that is, no session cookie has been create
 
 The default session provider in ASP.NET Core will only load the session record from the underlying [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) store asynchronously if the [ISession.LoadAsync](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.isession#Microsoft_AspNetCore_Http_ISession_LoadAsync) method is explicitly called **before** calling the `TryGetValue`, `Set` or `Remove` methods. Failure to call `LoadAsync` first will result in the underlying session record being loaded synchronously, which could potentially impact the ability of the app to scale.
 
-If applications wish to enforce this pattern, they could wrap the [DistributedSessionStore[(https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw if the `LoadAsync` method has not been called before calling `TryGetValue`, `Set` or `Remove`, and register the wrapped versions in the services container.
+If applications wish to enforce this pattern, they could wrap the [DistributedSessionStore](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw if the `LoadAsync` method has not been called before calling `TryGetValue`, `Set` or `Remove`, and register the wrapped versions in the services container.
 
 ### Implementation Details
 
@@ -163,6 +163,33 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 
 <a name=appstate-errors></a>
 
+## Application state data
+
+Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users.
+
+1. Define a service containing the data (for example, a class named `MyAppData`).
+
+```csharp
+public class MyAppData
+{
+    // Declare properties/methods/etc.
+} 
+```
+2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
+3. Consume the data service class in each controller:
+
+```csharp
+public class MyController : Controller
+{
+    public MyController(MyAppData myService)
+    {
+        // Do something with the service (read some data from it, 
+        // store it in a private field/property, etc.
+    }
+    }
+} 
+```
+
 ### Common errors when working with session
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
@@ -172,4 +199,5 @@ In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
 
-* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample)
+
+* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)

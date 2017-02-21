@@ -1,0 +1,1 @@
+db.Entry(selectedCourse).Collection(x => x.Enrollments).Load();

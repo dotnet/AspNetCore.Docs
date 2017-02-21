@@ -1,0 +1,1 @@
+<%@ OutputCache CacheProfile="TwoDay" %>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>   
+
+    @{
+        var weekday = DateTime.Now.DayOfWeek;
+        // As a test, add 1 day to the current weekday.
+        if(weekday.ToString() != "Saturday") {
+            // If weekday is not Saturday, simply add one day.
+            weekday = weekday + 1; 
+        }
+        else {
+            // If weekday is Saturday, reset the day to 0, or Sunday.
+            weekday = 0; 
+        }
+        // Convert weekday to a string value for the switch statement.
+        var weekdayText = weekday.ToString(); 
+
+        var greeting = "";
+        
+        switch(weekdayText) 
+        { 
+            case "Monday":
+                greeting = "Ok, it's a marvelous Monday."; 
+                break; 
+            case "Tuesday":
+                greeting = "It's a tremendous Tuesday.";
+                break; 
+            case "Wednesday":
+                greeting = "Wild Wednesday is here!";
+                break; 
+            case "Thursday":
+                greeting = "All right, it's thrifty Thursday.";
+                break;
+            case "Friday":
+                greeting = "It's finally Friday!";
+                break;
+            case "Saturday":
+                greeting = "Another slow Saturday is here.";
+                break;
+            case "Sunday":
+                greeting = "The best day of all: serene Sunday.";
+                break;
+            default:
+                break; 
+        }
+    }
+    
+    <h2>@greeting</h2>
+
+    </body>
+</html>

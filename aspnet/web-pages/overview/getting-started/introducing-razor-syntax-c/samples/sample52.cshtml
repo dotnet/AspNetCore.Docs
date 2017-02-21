@@ -1,0 +1,22 @@
+@{
+    var weekday = "Wednesday";
+    var greeting = "";
+
+    switch(weekday)
+    {
+        case "Monday":
+            greeting = "Ok, it's a marvelous Monday";
+            break;
+        case "Tuesday":
+            greeting = "It's a tremendous Tuesday";
+            break;
+        case "Wednesday":
+            greeting = "Wild Wednesday is here!";
+            break;
+        default:
+            greeting = "It's some other day, oh well.";
+            break;
+    }
+
+    <p>Since it is @weekday, the message for today is: @greeting</p>
+}

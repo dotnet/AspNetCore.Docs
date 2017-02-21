@@ -1,0 +1,1 @@
+<input type="button" id="Button1" runat="server" value="Load date (m-d-y)" />

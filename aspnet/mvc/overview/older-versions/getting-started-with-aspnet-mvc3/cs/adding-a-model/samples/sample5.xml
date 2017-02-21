@@ -1,0 +1,3 @@
+<add name="MovieDBContext" 
+         connectionString="Data Source=|DataDirectory|Movies.sdf" 
+         providerName="System.Data.SqlServerCe.4.0"/>

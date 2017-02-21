@@ -1,0 +1,1 @@
+public partial class Admin_Default : BasePage

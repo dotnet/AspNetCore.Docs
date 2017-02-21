@@ -1,0 +1,1 @@
+public HttpResponseMessage Get([ModelBinder(typeof(GeoPointModelBinder))] GeoPoint location)

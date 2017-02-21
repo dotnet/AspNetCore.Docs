@@ -1,0 +1,1 @@
+BaseMasterPage myMasterPage = Page.Master as BaseMasterPage;

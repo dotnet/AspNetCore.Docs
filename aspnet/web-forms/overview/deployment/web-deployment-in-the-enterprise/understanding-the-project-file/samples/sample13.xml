@@ -1,0 +1,8 @@
+<Target Name="BuildProjects" Condition=" '$(BuildingInTeamBuild)'!='true' ">
+   <MSBuild Projects="@(ProjectsToBuild)"           
+            Properties="OutDir=$(OutputRoot);
+                        Configuration=$(Configuration);
+                        DeployOnBuild=true;
+                        DeployTarget=Package"
+            Targets="Build" />
+</Target>

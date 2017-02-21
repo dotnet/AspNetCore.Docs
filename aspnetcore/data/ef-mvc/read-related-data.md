@@ -1,5 +1,5 @@
 ---
-title: Reading related data - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -57,7 +57,7 @@ Create a controller named CoursesController for the Course entity type, using th
 
 ![Add Courses controller](read-related-data/_static/add-courses-controller.png)
 
-Open *CourseController.cs* and examine the `Index` method. The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
+Open *CoursesController.cs* and examine the `Index` method. The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
 
 Replace the `Index` method with the following code that uses a more appropriate name for the `IQueryable` that returns Course entities (`courses` instead of `schoolContext`):
 

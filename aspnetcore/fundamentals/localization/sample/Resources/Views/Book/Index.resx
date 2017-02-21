@@ -198,8 +198,8 @@
   <data name="Run &amp; Deploy" xml:space="preserve">
     <value>Déployer &amp; Exécuter</value>
   </data>
-  <data name="Run commands in your project.json" xml:space="preserve">
-    <value>Exécuter des commandes dans votre project.json</value>
+  <data name="Run commands in your bash" xml:space="preserve">
+    <value>Exécuter des commandes dans votre bash</value>
   </data>
   <data name="Run your app" xml:space="preserve">
     <value>Exécutez votre application</value>

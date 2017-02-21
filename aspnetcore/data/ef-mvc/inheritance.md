@@ -1,5 +1,5 @@
 ---
-title: Inheritance - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,

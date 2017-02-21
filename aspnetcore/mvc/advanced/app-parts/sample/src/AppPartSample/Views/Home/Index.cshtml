@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Reflection
+@model IEnumerable<TypeInfo>
+
+<h1>Home</h1>
+
+<b>Generic Controllers:</b>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="@item.Name">@item.Name</a></li>
+    }
+</ul>
+
+<b>Plugin Controller:</b>
+<ul>
+    <li><a href="/hello">HelloController</a></li>
+</ul>
+<b>Dependent Library Controller:</b>
+<ul>
+    <li><a href="/nogood">NoGoodController</a> - should 404</li>
+</ul>
+<b>Feature List</b>
+<ul>
+    <li><a asp-controller="Features">List All Features</a></li>
+</ul>

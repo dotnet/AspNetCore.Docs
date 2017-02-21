@@ -1,0 +1,11 @@
+<siteMapNode
+    title="Adding Custom Buttons"
+    description="Samples of Reports that Include Buttons for Performing
+                  Server-Side Actions"
+    url="~/CustomButtons/Default.aspx">
+    <siteMapNode
+        title="Using ButtonFields and Buttons in Templates"
+        description="Examines how to add custom Buttons, LinkButtons,
+                      or ImageButtons as ButtonFields or within templates."
+        url="~/CustomButtons/CustomButtons.aspx" />
+</siteMapNode>

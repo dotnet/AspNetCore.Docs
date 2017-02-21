@@ -1,0 +1,1 @@
+if(IsPost && !Request["buttonDelete"].IsEmpty())

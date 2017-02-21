@@ -1,0 +1,14 @@
+<configuration>
+ ...
+ <system.net>
+ <mailSettings>
+ <smtp deliveryMethod="Network" from="youraddress@example.com">
+ <network
+ host="smtp.example.com"
+ userName="username"
+ password="password"
+ port="25" />
+ </smtp>
+ </mailSettings>
+ </system.net>
+</configuration>

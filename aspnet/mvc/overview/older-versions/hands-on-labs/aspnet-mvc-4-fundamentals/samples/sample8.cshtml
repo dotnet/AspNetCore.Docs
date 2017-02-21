@@ -1,0 +1,26 @@
+...
+<body>
+     <header>
+          <div class="content-wrapper">
+                <div class="float-left">
+                     <p class="site-title">@Html.ActionLink("ASP.NET MVC Music Store", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                     <nav>
+                          <ul id="menu">
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Store", "Index", "Store")</li>
+                          </ul>
+                     </nav>
+                </div>
+          </div>
+     </header>
+     <div id="body">
+          @RenderSection("featured", required: false)
+          <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+          </section>
+     </div>
+     ...
+</body>
+</html>

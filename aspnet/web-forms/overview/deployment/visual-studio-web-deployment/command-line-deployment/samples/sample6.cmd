@@ -1,0 +1,1 @@
+msbuild C:\ContosoUniversity\ContosoUniversity.sln /p:DeployOnBuild=true /p:PublishProfile=Staging /p:Password=hdNSWsbuqno7J5uqnwKafwlfNPt1DSco7J5uqnwKafwlfNPt1DSpKHuYgCco7J5 /p:AllowUntrustedCertificate=true

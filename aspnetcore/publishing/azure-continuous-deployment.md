@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/azure-continuous-deployment
 ---
-# Publishing to an Azure Web App with Continuous Deployment
+# Publishing to an Azure Web App with continuous deployment
 
 By [Erik Reitan](https://github.com/Erikre)
 

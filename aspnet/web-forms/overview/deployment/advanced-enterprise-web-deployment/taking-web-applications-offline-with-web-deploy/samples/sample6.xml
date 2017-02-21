@@ -1,0 +1,10 @@
+<Target Name="DeleteAppOffline" 
+        Condition=" '$(EnableAppOffline'!='false' ">
+  <PropertyGroup> 
+    <_Cmd>"$(MSDeployPath)\msdeploy.exe" -verb:delete 
+           -dest:contentPath="$(ContactManagerIisPath)/App_offline.htm",
+            computerName="$(MSDeployComputerName)"
+    </_Cmd>
+  </PropertyGroup>
+  <Exec Command="$(_Cmd)"/> 
+</Target>

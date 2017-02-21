@@ -1,0 +1,17 @@
+@model dynamic
+           
+@{
+    ViewBag.Title = "IndexNotStonglyTyped";
+}
+
+<h2>Index Not Stongly Typed</h2>
+
+<p>
+ <ul>
+@foreach (var blog in Model) {
+   <li>
+    <a href="@blog.URL">@blog.Name</a>
+   </li>   
+}
+ </ul>
+</p>

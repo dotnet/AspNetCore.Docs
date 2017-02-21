@@ -1,0 +1,1 @@
+Install-Package Microsoft.AspNet.SignalR.SelfHost

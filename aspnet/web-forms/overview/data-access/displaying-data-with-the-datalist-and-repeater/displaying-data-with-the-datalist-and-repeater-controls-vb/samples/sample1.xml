@@ -1,0 +1,24 @@
+<siteMapNode
+    title="Displaying Data with the DataList and Repeater"
+    description="Samples of Reports that Use the DataList and Repeater Controls"
+    url="~/DataListRepeaterBasics/Default.aspx" >
+    <siteMapNode
+        title="Basic Examples"
+        description="Examines the basics for displaying data using the
+                      DataList and Repeater controls."
+        url="~/DataListRepeaterBasics/Basics.aspx"  />
+    <siteMapNode
+        title="Formatting"
+        description="Learn how to format the DataList and the Web controls within
+                      the DataList and Repeater's templates."
+        url="~/DataListRepeaterBasics/Formatting.aspx" />
+    <siteMapNode
+        title="Adjusting the DataList s Layout"
+        description="Illustrates how to alter the DataList's layout, showing
+                      multiple data source records per table row."
+        url="~/DataListRepeaterBasics/RepeatColumnAndDirection.aspx" />
+    <siteMapNode
+        title="Nesting a Repeater within a DataList"
+        description="Learn how to nest a Repeater within the template of a DataList."
+        url="~/DataListRepeaterBasics/NestedControls.aspx" />
+</siteMapNode>

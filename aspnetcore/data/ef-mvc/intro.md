@@ -1,5 +1,5 @@
 ---
-title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio | Microsoft Docs
+title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -20,13 +20,13 @@ The Contoso University sample web application demonstrates how to create ASP.NET
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
 
-EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://ef.readthedocs.io/en/latest/efcore-vs-ef6/index.html).  If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
+EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
 ## Prerequisites
 
 * [Visual Studio 2015](https://www.visualstudio.com/products/vs-2015-product-editions) with [Update 3](https://www.visualstudio.com/news/releasenotes/vs2015-update3-vs) or later.
 
-* [.NET Core 1.0 with Visual Studio tools](https://go.microsoft.com/fwlink/?LinkId=827545).
+* [.NET Core 1.0 with Visual Studio tools](https://go.microsoft.com/fwlink/?LinkID=798306).
 
 ## Troubleshooting
 
@@ -102,7 +102,7 @@ Because you used the **Individual User Accounts** option when you created the pr
 
 If you want to add EF Core support to a new project that you create without the **Individual User Accounts** option, install the following NuGet packages:
 
-* The package for the database provider you want to target. To use SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.efproject.net/en/latest/providers/index.html).
+* The package for the database provider you want to target. To use SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
 
 * The package for the EF command-line tools:   [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/1.0.0-preview2-final). This package is a preview release, so to install it you have to enable preview release installation. After installing the package, you also have to add a reference to it in the `tools` collection in the *project.json* file.
 
@@ -142,7 +142,7 @@ In the *Models* folder, create *Enrollment.cs* and replace the existing code wit
 
 [!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
-The `EnrollmentID` property will be the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using ID without classname makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property will be the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a [later tutorial](inheritance.md), you'll see how using ID without classname makes it easier to implement inheritance in the data model.
 
 The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is nullable. A grade that's null is different from a zero grade -- null means a grade isn't known or hasn't been assigned yet.
 
@@ -162,7 +162,7 @@ In the *Models* folder, create *Course.cs* and replace the existing code with th
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
-We'll say more about the `DatabaseGenerated` attribute in a later tutorial in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
+We'll say more about the `DatabaseGenerated` attribute in a [later tutorial](complex-data-model.md) in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
 
 ## Create the Database Context
 
@@ -202,7 +202,7 @@ The connection string specifies a SQL Server LocalDB database. LocalDB is a ligh
 
 The Entity Framework will create an empty database for you.  In this section, you write a method that is called after the database is created in order to populate it with test data.
 
-Here you'll use the `EnsureCreated` method to automatically create the database. In a later tutorial you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
+Here you'll use the `EnsureCreated` method to automatically create the database. In a [later tutorial](migrations.md) you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.
 
@@ -308,7 +308,7 @@ The amount of code you had to write in order for the Entity Framework to be able
 
 * A property is interpreted as a foreign key property if it's named *<navigation property name><primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named simply *<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
-Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a later tutorial in this series.
+Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a [later tutorial](complex-data-model.md) in this series.
 
 ## Asynchronous code
 

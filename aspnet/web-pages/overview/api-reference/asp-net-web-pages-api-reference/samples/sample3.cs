@@ -1,0 +1,1 @@
+DateTime dt = stringValue.AsDateTime();

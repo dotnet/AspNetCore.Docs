@@ -1,0 +1,42 @@
+@{
+    var total = 0;
+    var totalMessage = "";
+    if(IsPost) {
+
+        // Retrieve the numbers that the user entered.
+        var num1 = Request["text1"];
+        var num2 = Request["text2"];
+
+        // Convert the entered strings into integers numbers and add.
+        total = num1.AsInt() + num2.AsInt();
+        totalMessage = "Total = " + total;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Add Numbers</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      body {background-color: beige; font-family: Verdana, Arial;
+            margin: 50px; }
+      form {padding: 10px; border-style: solid; width: 250px;}
+    </style>
+  </head>
+<body>
+  <p>Enter two whole numbers and then click <strong>Add</strong>.</p>
+  <form action="" method="post">
+    <p><label for="text1">First Number:</label>
+      <input type="text" name="text1" />
+    </p>
+    <p><label for="text2">Second Number:</label>
+      <input type="text" name="text2" />
+    </p>
+    <p><input type="submit" value="Add" /></p>
+  </form>
+
+  <p>@totalMessage</p>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+@using WebApplication3.Models
+@using Microsoft.AspNet.Facebook.Models
+@model MyAppUser
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<article class="intro">
+    <span id="profilePicture">
+        @if (Model.ProfilePicture != null && Model.ProfilePicture.Data != null)
+        {
+            <img src="@Model.ProfilePicture.Data.Url" />
+        }
+    </span>
+    <h3>Welcome @Model.Name</h3>
+    <label>Email: @Model.Email</label>
+</article>
+
+<article id="content">
+    <div class="left">
+        <h4>Friends</h4>
+        @if (Model.Friends != null && Model.Friends.Data != null && Model.Friends.Data.Count > 0)
+        {
+            foreach (var myFriend in @Model.Friends.Data)
+            {
+            <a href="@myFriend.Link" target="_blank">
+                <div class="photoTile">
+                    <label>@myFriend.Name</label>
+                    @if (myFriend.Picture != null && myFriend.Picture.Data != null)
+                    {
+                        <img src="@myFriend.Picture.Data.Url" />
+                    }
+                </div>
+            </a>
+            }
+        }
+        else
+        {
+            <p>No friends found.</p>
+        }
+    </div>
+    <div class="right">
+        <h4>Photos</h4>
+        @if (Model.Photos != null && Model.Photos.Data != null && Model.Photos.Data.Count > 0)
+        {
+            foreach (var photo in @Model.Photos.Data)
+            {
+            <a href="@photo.Link" target="_blank">
+                <div class="photoTile">
+                    <img src="@photo.ThumbnailUrl" />
+                </div>
+            </a>
+            }
+        }
+        else
+        {
+            <p>No photo available.</p>
+        }
+    </div>
+</article>

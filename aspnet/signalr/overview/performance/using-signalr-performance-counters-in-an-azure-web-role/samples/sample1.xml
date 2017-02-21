@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiagnosticsConfiguration xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
+  <PublicConfig>
+    <WadCfg>
+      <DiagnosticMonitorConfiguration overallQuotaInMB="4096">
+        <DiagnosticInfrastructureLogs scheduledTransferLogLevelFilter="Error" />
+        <Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Error" />
+        <Directories scheduledTransferPeriod="PT1M">
+          <IISLogs containerName ="wad-iis-logfiles" />
+          <FailedRequestLogs containerName ="wad-failedrequestlogs" />
+        </Directories>
+        <WindowsEventLog scheduledTransferPeriod="PT1M">
+          <DataSource name="Application!*[System[(Level=1 or Level=2 or Level=3)]]" />
+          <DataSource name="Windows Azure!*[System[(Level=1 or Level=2 or Level=3 or Level=4)]]" />
+        </WindowsEventLog>
+        <CrashDumps containerName="wad-crashdumps" dumpType="Mini">
+          <CrashDumpConfiguration processName="WaIISHost.exe" />
+          <CrashDumpConfiguration processName="WaWorkerHost.exe" />
+          <CrashDumpConfiguration processName="w3wp.exe" />
+        </CrashDumps>
+        <PerformanceCounters scheduledTransferPeriod="PT1M">
+          <PerformanceCounterConfiguration counterSpecifier="\Memory\Available MBytes" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\Web Service(_Total)\ISAPI Extension Requests/sec" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\Web Service(_Total)\Bytes Total/Sec" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\ASP.NET Applications(__Total__)\Requests/Sec" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\ASP.NET Applications(__Total__)\Errors Total/Sec" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Requests Queued" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\ASP.NET\Requests Rejected" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT3M" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(w3wp)\% Time in GC" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Exceptions(w3wp)\# of Exceps Thrown / sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\# of current logical Threads" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\# of current physical Threads" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\Current Queue Length" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR LocksAndThreads(w3wp)\Contention Rate / sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(w3wp)\# Bytes in all Heaps" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(w3wp)\# GC Handles" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(w3wp)\# of Pinned Objects" sampleRate="PT10S" />
+
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connections Connected" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connections Reconnected" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connections Disconnected" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connections Current" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connection Messages Received Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connection Messages Sent Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connection Messages Received/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Connection Messages Sent/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Messages Received Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Messages Received/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Message Bus Messages Received/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Messages Published Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Messages Published/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Subscribers Current" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Subscribers Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Subscribers/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Allocated Workers" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Busy Workers" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Message Bus Topics Current" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: All Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: All/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Hub Resolution Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Hub Resolution/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Hub Invocation Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Hub Invocation/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Tranport Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Errors: Transport/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Streams Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Streams Open" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Streams Buffering" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Errors Total" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Errors/Sec" sampleRate="PT10S" />
+          <PerformanceCounterConfiguration counterSpecifier="\SignalR(*)\Scaleout Send Queue Length" sampleRate="PT10S" />
+        </PerformanceCounters>
+      </DiagnosticMonitorConfiguration>
+    </WadCfg>
+    <StorageAccount></StorageAccount>
+  </PublicConfig>
+  <PrivateConfig>
+    <StorageAccount name="" key="" endpoint="" />
+  </PrivateConfig>
+  <IsEnabled>true</IsEnabled>
+</DiagnosticsConfiguration>

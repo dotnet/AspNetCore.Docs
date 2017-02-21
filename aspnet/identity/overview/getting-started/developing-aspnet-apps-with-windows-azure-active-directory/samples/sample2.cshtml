@@ -1,0 +1,29 @@
+@{
+   var user = "Null User";
+   if (!String.IsNullOrEmpty(User.Identity.Name))
+   {
+      user = User.Identity.Name;
+   }
+
+}
+
+@if (Request.IsAuthenticated)
+{
+    <text>
+         <ul class="nav navbar-nav navbar-right">
+            <li>
+                @*@Html.ActionLink(User.Identity.Name, "UserProfile", "Home", routeValues: null, htmlAttributes: null)*@
+               @Html.ActionLink(user, "UserProfile", "Home", routeValues: null, htmlAttributes: null)
+            </li>
+            <li>
+                @Html.ActionLink("Sign out", "SignOut", "Account")
+            </li>
+        </ul>
+    </text>
+}
+else
+{
+     <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Sign in", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

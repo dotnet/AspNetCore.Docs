@@ -1,0 +1,16 @@
+<div id="cart" class="float-right" data-bind="visible: cart().length > 0">
+<h1>Your Cart</h1>
+    <table class="details ui-widget-content">
+    <thead>
+        <tr><td>Item</td><td>Price</td><td>Quantity</td><td></td></tr>
+    </thead>    
+    <tbody data-bind="foreach: cart">
+        <tr>
+            <td><span data-bind="text: $data.Name"></span></td>
+            <td>$<span data-bind="text: $data.Price"></span></td>
+            <td class="qty"><span data-bind="text: $data.Quantity()"></span></td>
+            <td><a href="#" data-bind="click: removeAllFromCart">Remove</a></td>
+        </tr>
+    </tbody>
+</table>
+<input type="button" data-bind="click: createOrder" value="Create Order"/>

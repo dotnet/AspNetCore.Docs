@@ -1,0 +1,3 @@
+<customErrors mode="RemoteOnly" defaultRedirect="~/ErrorPages/Oops.aspx">
+    <error statusCode="404" redirect="~/ErrorPages/404.aspx" />
+</customErrors>

@@ -1,0 +1,1 @@
+Function MethodName(ByVal current As Integer, ByVal tag As String) As Integer

@@ -1,0 +1,1 @@
+DetailsView1.EnableDynamicData(typeof(Product), new { ProductName = "DefaultName" });

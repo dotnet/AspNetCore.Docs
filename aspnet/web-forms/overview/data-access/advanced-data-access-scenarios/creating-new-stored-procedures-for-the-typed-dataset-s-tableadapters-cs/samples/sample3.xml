@@ -1,0 +1,32 @@
+<siteMapNode url="~/AdvancedDAL/Default.aspx" 
+    title="Advanced DAL Scenarios" 
+    description="Explore a number of advanced Data Access Layer scenarios.">
+    
+    <siteMapNode url="~/AdvancedDAL/NewSprocs.aspx" 
+        title="Creating New Stored Procedures for TableAdapters" 
+        description="Learn how to have the TableAdapter wizard automatically 
+            create and use stored procedures." />
+    <siteMapNode url="~/AdvancedDAL/ExistingSprocs.aspx" 
+        title="Using Existing Stored Procedures for TableAdapters" 
+        description="See how to plug existing stored procedures into a 
+            TableAdapter." />
+    <siteMapNode url="~/AdvancedDAL/JOINs.aspx" 
+        title="Returning Data Using JOINs" 
+        description="Learn how to augment your DataTables to work with data 
+            returned from multiple tables via a JOIN query." />
+    <siteMapNode url="~/AdvancedDAL/AddingColumns.aspx" 
+        title="Adding DataColumns to a DataTable" 
+        description="Master adding new columns to an existing DataTable." />
+    <siteMapNode url="~/AdvancedDAL/ComputedColumns.aspx" 
+        title="Working with Computed Columns" 
+        description="Explore how to work with computed columns when using 
+            Typed DataSets." />
+    <siteMapNode url="~/AdvancedDAL/EncryptingConfigSections.aspx" 
+        title="Protected Connection Strings in Web.config" 
+        description="Protect your connection string information in 
+            Web.config using encryption." />
+    <siteMapNode url="~/AdvancedDAL/ManagedFunctionsAndSprocs.aspx" 
+        title="Creating Managed SQL Functions and Stored Procedures" 
+        description="See how to create SQL functions and stored procedures 
+            using managed code." />
+</siteMapNode>

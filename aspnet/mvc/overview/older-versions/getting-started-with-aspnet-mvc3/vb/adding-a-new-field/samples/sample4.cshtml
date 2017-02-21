@@ -1,0 +1,7 @@
+<div class="editor-label">
+     @Html.LabelFor(Function(model) model.Rating)
+ </div>
+ <div class="editor-field">
+     @Html.EditorFor(Function(model) model.Rating)
+     @Html.ValidationMessageFor(Function(model) model.Rating)
+ </div>

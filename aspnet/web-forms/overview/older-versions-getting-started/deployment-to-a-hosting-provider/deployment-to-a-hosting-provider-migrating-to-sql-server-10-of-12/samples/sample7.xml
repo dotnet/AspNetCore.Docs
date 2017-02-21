@@ -1,0 +1,13 @@
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <connectionStrings>
+    <add name="DefaultConnection" 
+         connectionString="Data Source=vserver01.cytanium.com;Initial Catalog=contosouSchool;User Id=ContosoUniversityUser;Password=Password;MultipleActiveResultSets=True" 
+         providerName="System.Data.SqlClient"
+         xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+    <add name="SchoolContext" 
+         connectionString="Data Source=vserver01.cytanium.com;Initial Catalog=contosouSchool;User Id=ContosoUniversityUser;Password=Password;MultipleActiveResultSets=True" 
+         providerName="System.Data.SqlClient"
+         xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+  </connectionStrings>
+  <!-- appSettings element, comments, and system.web element -->
+</configuration>

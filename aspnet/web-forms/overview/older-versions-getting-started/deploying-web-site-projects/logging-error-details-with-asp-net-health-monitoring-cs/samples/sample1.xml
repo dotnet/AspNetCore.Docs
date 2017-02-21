@@ -1,0 +1,23 @@
+<configuration>
+  <system.web>
+  <healthMonitoring>
+  <eventMappings>
+  <add name="All Errors" type="System.Web.Management.WebBaseErrorEvent,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a" startEventCode="0" endEventCode="2147483647"/>
+
+  <add name="Failure Audits" type="System.Web.Management.WebFailureAuditEvent,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a" startEventCode="0" endEventCode="2147483647"/>
+  </eventMappings>
+
+  <providers>
+  <add name="EventLogProvider" type="System.Web.Management.EventLogWebEventProvider,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a"/>
+
+  <add connectionStringName="LocalSqlServer" maxEventDetailsLength="1073741823" buffer="false" bufferMode="Notification" name="SqlWebEventProvider" type="System.Web.Management.SqlWebEventProvider,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a"/>
+  </providers>
+
+  <rules>
+  <add name="All Errors Default" eventName="All Errors" provider="EventLogProvider" profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:01:00" custom=""/>
+
+  <add name="Failure Audits Default" eventName="Failure Audits" provider="EventLogProvider" profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:01:00" custom=""/>
+  </rules>
+  </healthMonitoring>
+  </system.web>
+</configuration>

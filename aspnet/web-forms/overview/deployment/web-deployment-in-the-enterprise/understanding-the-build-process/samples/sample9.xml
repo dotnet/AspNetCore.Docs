@@ -1,0 +1,18 @@
+<Target Name="GatherPackagesForPublishing">
+   <ItemGroup>
+      <PublishPackages 
+         Include="$(_ContactManagerDest)ContactManager.Mvc.deploy.cmd">
+         <WebPackage>true</WebPackage>
+         <!-- More item metadata -->  
+      </PublishPackages>
+      <PublishPackages 
+         Include="$(_ContactManagerSvcDest)ContactManager.Service.deploy.cmd">
+         <WebPackage>true</WebPackage>
+         <!-- More item metadata -->
+      </PublishPackages>
+      <DbPublishPackages Include="$(_DbDeployManifestPath)">
+         <DbPackage>true</DbPackage>
+         <!-- More item metadata -->
+      </DbPublishPackages>
+   </ItemGroup>
+</Target>

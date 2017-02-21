@@ -1,0 +1,10 @@
+{
+  "odata.metadata":"http://localhost/odata/$metadata#Products&$select=Price,Name",
+  "value":[
+    {"Price":"15.00","Name":"Hat"},
+    {"Price":"12.00","Name":"Scarf"},
+    {"Price":"5.00","Name":"Socks"},
+    {"Price":"4.95","Name":"Yo-yo"},
+    {"Price":"8.00","Name":"Puzzle"}
+  ]
+}

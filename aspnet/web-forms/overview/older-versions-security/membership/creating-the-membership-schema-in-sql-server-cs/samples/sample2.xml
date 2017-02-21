@@ -1,0 +1,5 @@
+<connectionStrings> 
+ <add name="LocalSqlServer" 
+ connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" 
+ providerName="System.Data.SqlClient"/> 
+</connectionStrings>

@@ -1,0 +1,1 @@
+Data Source=.\SQLExpress;Initial Catalog=aspnet-ContosoUniversity;Integrated Security=True

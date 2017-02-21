@@ -33,7 +33,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the identity data and schema to SQL Server using [Entity Framework Core](https://docs.efproject.net).
  
     > [!NOTE]
-    >In Visual Studio, you can view NuGet packages details by selecting **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution**. You also see a list of packages in the dependencies section of the *project.json* file within your project.
+    >In Visual Studio, you can view NuGet packages details by selecting **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution**.
  
     The identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
  
@@ -97,7 +97,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     After stopping the application, view the user database from Visual Studio by selecting **View** -> **SQL Server Object Explorer**. Then, expand the following within the **SQL Server Object Explorer**:
     
-    * (localdb)MSSQLLocalDB
+    * (localdb)\MSSQLLocalDB
     
     * Databases
     

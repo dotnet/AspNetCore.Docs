@@ -1,0 +1,13 @@
+<location path="" inheritInChildApplications="false" >
+  <appSettings />
+  <connectionStrings />
+  <system.web>
+    <!-- Removed for brevity -->
+  </system.web>
+  <system.codedom>
+    <!-- Removed for brevity -->
+  </system.codedom>
+  <system.webServer>
+    <!-- Removed for brevity -->
+</system.webServer>
+</location>

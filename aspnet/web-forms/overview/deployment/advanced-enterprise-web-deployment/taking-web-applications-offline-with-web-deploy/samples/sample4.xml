@@ -1,0 +1,6 @@
+<Target Name="GetAppOfflineAbsolutePath" BeforeTargets="DeployAppOffline">
+  <ConvertToAbsolutePath Paths="$(AppOfflineSourcePath)">
+    <Output TaskParameter="AbsolutePaths"       
+            PropertyName="AppOfflineAbsoluteSourcePath" />
+  </ConvertToAbsolutePath>
+</Target>

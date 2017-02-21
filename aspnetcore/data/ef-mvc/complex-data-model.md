@@ -1,5 +1,5 @@
 ---
-title: Creating a complex data model - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -179,12 +179,12 @@ The `Courses` and `OfficeAssignment` properties are navigation properties.
 An instructor can teach any number of courses, so `Courses` is defined as a collection.
 
 ```csharp
-public ICollection<InstructorCourse> Courses { get; set; }
+public ICollection<CourseAssignment> Courses { get; set; }
 ```
 
 If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated.  You can specify `ICollection<T>` or a type such as `List<T>` or `HashSet<T>`. If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
 
-The reason why these are `InstructorCourse` entities is explained below in the section about many-to-many relationships.
+The reason why these are `CourseAssignment` entities is explained below in the section about many-to-many relationships.
 
 Contoso University business rules state that an instructor can only have at most one office, so the `OfficeAssignment` property holds a single OfficeAssignment entity (which may be null if no office is assigned).
 

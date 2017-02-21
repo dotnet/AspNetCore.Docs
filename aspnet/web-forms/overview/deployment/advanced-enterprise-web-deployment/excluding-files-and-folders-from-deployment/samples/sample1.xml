@@ -1,0 +1,11 @@
+<Project ToolsVersion="4.0" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>   
+    <ExcludeFromPackageFolders Include="[semi-colon-separated folder list]">
+      <FromTarget>[arbitrary metadata value]</FromTarget>
+    </ExcludeFromPackageFolders>
+    <ExcludeFromPackageFiles Include="[semi-colon-separated file list]">
+      <FromTarget>[arbitrary metadata value]</FromTarget>
+    </ExcludeFromPackageFiles>
+  </ItemGroup>
+</Project>

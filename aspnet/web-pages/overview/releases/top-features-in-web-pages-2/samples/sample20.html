@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<title></title>
+<style type="text/css">
+	#navigation {
+		position: absolute;
+		top: 1em;
+		left: 3em;
+		width: 18em;
+	}
+	#content {
+		margin-top: 10em;
+		margin-left: 3em;
+	}
+</style>
+</head>
+<body>
+  @RenderBody()
+
+  @*
+Call the Assets helper to render tags for the Maps helper. For
+releases after Web Pages 2 Beta, call Assets.GetScripts().
+  *@
+  @Assets.GetScripts()
+</body>
+</html>

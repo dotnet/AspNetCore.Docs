@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/overview
 ---
-# Configuring Data Protection
+# Configuring data protection
 
 <a name=data-protection-configuring></a>
 

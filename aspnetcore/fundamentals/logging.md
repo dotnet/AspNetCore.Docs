@@ -1,5 +1,5 @@
 ---
-title: Logging | Microsoft Docs
+title: Logging in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: Introduces the logging framework in ASP.NET Core. Includes a section for each built-in logging provider and links to some popular third-party providers.
 keywords: ASP.NET Core, logging, logging providers, Microsoft.Extensions.Logging, ILogger, ILoggerFactory, LogLevel, WithFilter, TraceSource, EventLog, EventSource, scopes
@@ -324,7 +324,7 @@ loggerFactory.AddDebug()
 <a id="eventsource"></a>
 ### The EventSource provider
 
-The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package does event tracing. On Windows it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform but there are no event collection and display tools yet for Linux or macOS. 
+For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package can implement event tracing. On Windows, it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform, but there are no event collection and display tools yet for Linux or macOS. 
 
 ```csharp
 loggerFactory.AddEventSourceLogger()
@@ -398,7 +398,7 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 <a id="appservice"></a>
 ### The Azure App Service provider
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. 
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
 
 ```csharp
 loggerFactory.AddAzureWebAppDiagnostics();

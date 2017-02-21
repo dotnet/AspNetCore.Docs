@@ -1,0 +1,10 @@
+@model MvcMovie.Models.Person
+
+@{
+    ViewBag.Title = "PersonDetail";
+}
+
+<h2>Person Detail</h2>
+
+@Html.DisplayForModel()
+@Html.DisplayFor( x => x.HomeAddress )

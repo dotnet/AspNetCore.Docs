@@ -1,0 +1,9 @@
+</connectionStrings>
+   <appSettings>
+      <add key="webpages:Version" value="3.0.0.0" />
+      <!-- Markup removed for clarity. -->
+      
+      <add key="mailAccount" value="xyz" />
+      <add key="mailPassword" value="password" />
+   </appSettings>
+  <system.web>

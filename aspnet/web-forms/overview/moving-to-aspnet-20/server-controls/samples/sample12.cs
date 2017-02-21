@@ -1,0 +1,3 @@
+if (!IsPostBack) {
+	SetFocus(txtUserID);
+}

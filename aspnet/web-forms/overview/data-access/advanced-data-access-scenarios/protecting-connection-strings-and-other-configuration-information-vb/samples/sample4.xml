@@ -1,0 +1,8 @@
+<connectionStrings 
+    configProtectionProvider="DataProtectionConfigurationProvider">
+  <EncryptedData>
+    <CipherData>
+      <CipherValue>AQAAANCMnd8BFdERjHoAwE/...zChw==</CipherValue>
+    </CipherData>
+  </EncryptedData>
+</connectionStrings>

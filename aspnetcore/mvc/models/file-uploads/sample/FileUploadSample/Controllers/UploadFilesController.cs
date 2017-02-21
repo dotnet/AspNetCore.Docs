@@ -9,6 +9,7 @@ namespace FileUploadSample.Controllers
 {
     public class UploadFilesController : Controller
     {
+        #region snippet1
         [HttpPost("UploadFiles")]
         public async Task<IActionResult> Post(List<IFormFile> files)
         {
@@ -29,8 +30,10 @@ namespace FileUploadSample.Controllers
             }
 
             // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
 
             return Ok(new { count = files.Count, size, filePath});
         }
+        #endregion
     }
 }

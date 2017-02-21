@@ -1,0 +1,1 @@
+_service.Expect( Function(s) s.CreateContact(contactToCreate) ).Returns(True)

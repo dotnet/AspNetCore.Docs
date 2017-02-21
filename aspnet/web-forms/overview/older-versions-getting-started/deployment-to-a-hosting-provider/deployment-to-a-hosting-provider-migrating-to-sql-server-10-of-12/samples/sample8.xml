@@ -1,0 +1,4 @@
+<connectionStrings>
+  <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-Dev.mdf;MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" />
+  <add name="SchoolContext" connectionString="Data Source=(LocalDb)\v11.0;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\School-Dev.mdf;MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" />
+</connectionStrings>
