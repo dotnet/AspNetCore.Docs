@@ -29,7 +29,7 @@ To install Yeoman run the following command:
 npm install -g yo bower
 ```
 
->[!Note] 
+>[!Note]
 >If you get the error `npm ERR! Please try running this command again as root/Administrator.` on macOS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
 From a command prompt, install the ASP.NET generator:
