@@ -137,10 +137,7 @@ with xref links
 
 ## Next Steps
 
-* [Migrating Authentication and Identity](xref:migration/identity#migration-identity)
-
-* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation)
-
-* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
-
+* [Migrating Authentication and Identity](xref:migration/identity)
+* [Account Confirmation and Password Recovery](accconfirm.md)
+* [Two-factor authentication with SMS](2fa.md)
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)
