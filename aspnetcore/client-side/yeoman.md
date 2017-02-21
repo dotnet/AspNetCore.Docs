@@ -1,11 +1,11 @@
 ---
 title: Building projects with Yeoman | Microsoft Docs
-author: ardalis
-description: 
-keywords: ASP.NET Core,
+author: spboyer
+description: This article walks through creating an ASP.NET Core Web Application using the Yeoman generator.
+keywords: ASP.NET Core, Yeoman, Cross Platform, yo aspnet
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/21/2017
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
 ms.technology: aspnet
@@ -14,21 +14,23 @@ uid: client-side/yeoman
 ---
 # Building projects with Yeoman
 
-By [Steve Smith](http://ardalis.com), [Scott Addie](https://scottaddie.com), [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](http://blog.falafel.com/author/noel-rice/), and [Shayne Boyer](https://twitter.com/spboyer)
-
-[Yeoman](http://yeoman.io/) generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command-line tool [yo](https://github.com/yeoman/yo) works alongside a Yeoman generator. Generators define the technologies that go into a project.
+[Yeoman](http://yeoman.io/) is a project scaffolding system for creating many kinds of applications. Similar to Visual Studio, the Yeoman generator for ASP.NET Core contains a variety of project templates for starting a new web, MVC, or console application.
 
 ## Install Node.js, npm, and Yeoman
 
-To get started with Yeoman install [Node.js](https://nodejs.org/en/). The installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/).
+### Prerequisites
 
-Follow the instructions on [http://yeoman.io/learning/](http://yeoman.io/learning/) to install [yo](https://github.com/yeoman/yo), bower, grunt, and gulp.
+Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/), the installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/).
+
+To install the Yeoman generator run the following command. Bower is also installed for accessing UI components like stylesheets.
+To install Yeoman run the following command:
 
 ```console
 npm install -g yo bower
 ```
 
-Note: If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
+>[!Note] 
+>If you get the error `npm ERR! Please try running this command again as root/Administrator.` on macOS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
 From a command prompt, install the ASP.NET generator:
 
@@ -43,24 +45,19 @@ The `–g` flag installs the generator globally, so that it can be used from any
 
 ## Create an ASP.NET app
 
-Create a directory for your projects
-
-```console
-mkdir src
-cd src
-```
-
 Run the ASP.NET generator for `yo`
 
 ```console
 yo aspnet
 ```
 
-The generator displays a menu. Arrow down to the **Empty Web Application** project and tap **Enter**:
+The generator displays a menu. Arrow down to the **Web Application Basic [without Membership and Authorization]** project and tap **Enter**:
 
 ![Command window: What type of application do you want to create? Menu of application types](yeoman/_static/yeoman-yo-aspnet.png)
 
-Use "EmptyWeb1" for the app name and then tap **Enter**
+Select Bootstrap as the UI Framework and tap **Enter**.
+
+Use "**MyWebApp**" for the app name and then tap **Enter**.
 
 Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands.
 
@@ -70,7 +67,7 @@ The [ASP.NET generator](https://www.npmjs.com/package/generator-aspnet) creates 
 
 ## Restore, build, and run
 
-Follow the suggested commands by changing directories to the `EmptyWeb1` directory. Then run `dotnet restore`.
+Follow the suggested commands by changing directories to the `MyWebApp` directory. Then run `dotnet restore`.
 
 ![Command window](yeoman/_static/dotnet-restore.png)
 
@@ -148,7 +145,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyNamespace
+namespace MyWebApp
 {
     public class Person
     {
