@@ -45,27 +45,33 @@ The generated URL will be
 <a href="/Speaker">All Speakers</a>
 ```
 
-If the `asp-controller` is specified and `asp-action` is not, the default asp-action will be the controller method calling the view. 
+If the `asp-controller` is specified and `asp-action` is not, the default `asp-action` will be the default controller method of the currently executing view.  That is, in the above example, if `asp-action` is left out, and this Anchor Tag Helper generated from the Home index view (**/Home**), the generated markup will be:
+
+
+```html
+<a href="/Home">All Speakers</a>
+```
 
 - - -
   
 ### asp-action
 
-`asp-action` is the name of the action method in the controller that will be included in the final URL. For example, the following code gets the route to the Speaker Detail page:
+`asp-action` is the name of the action method in the controller that will be included in the generated `href`. For example, the following code set the generated `href` to point to the speaker detail page:
 
-```
+```html
 <a asp-controller="Speaker" asp-action="Detail" >Speaker Detail</a>
 ```
 
 The generated URL will be
 
-```
+```html
 <a href="/Speaker/Detail">Speaker Detail</a>
 ```
 
-If no `asp-controller` attribute is specified, the default controller calling the view will be used.  
+If no `asp-controller` attribute is specified, the default controller calling the view executing the current view will be used.  
  
-If the attribute `asp-action` is `Index`, then no action is appended to the URL leading to the default `Index` method being called. The action specified must exist in the controller referenced or defaulted.a
+If the attribute `asp-action` is `Index`, then no action is appended to the URL, leading to the default `Index` method being called. The action specified (or defaulted), must exist in the controller referenced in `asp-controller`.
+
 - - -
   
 ### asp-route-{value}
