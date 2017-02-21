@@ -35,7 +35,7 @@ To start using AngularJS in your ASP.NET application, you must either install it
 
 ### Installation
 
-There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core web application in Visual Studio, you can add AngularJS using the built-in [Bower](bower.md#bower-index) support. Simply open *bower.json*, and add an entry to the `dependencies` property:
+There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core web application in Visual Studio, you can add AngularJS using the built-in [Bower](bower.md) support. Open *bower.json*, and add an entry to the `dependencies` property:
 
 <a name=angular-bower-json></a>
 
