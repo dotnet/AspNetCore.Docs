@@ -58,7 +58,7 @@ Open the *.bowerrc* file under *bower.json*. The `directory` property is set to 
 
 You can use the search box in Solution Explorer to find and display the font-awesome package.
 
-Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development``. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
+Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development`. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
 
 [!code-html[Main](bower\sample\_Layout.cshtml?highlight=4&range=9-13)]
 
