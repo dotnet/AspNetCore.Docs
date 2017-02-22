@@ -45,21 +45,17 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Install the `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` NuGet packages.
 
+
 * Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
   [!code-json[Main](mvc/sample/WebApp1.csproj?range=22-24)]
 
-* `Microsoft.AspNetCore.Mvc` installs the ASP.NET Core MVC framework package.
-
-* `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Working with Static Files](../fundamentals/static-files.md)).
-
-* The `PrepareForPublish` target is needed for acquiring client-side libraries via Bower. We'll talk about that later.
 
 * Open the *Startup.cs* file and change the code to match the following:
 
   [!code-csharp[Main](mvc/sample/Startup.cs?highlight=14,27-34)]
 
-The `UseStaticFiles` extension method adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../fundamentals/startup.md) and [Routing](../fundamentals/routing.md).
+  The `UseStaticFiles` extension method adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../fundamentals/startup.md) and [Routing](../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -194,22 +190,7 @@ View the site in the browser. It should now load correctly, with the expected st
 
 ## Configure Bundling & Minification
 
-The ASP.NET MVC starter web template utilized the ASP.NET Web Optimization Framework for bundling and minification. In ASP.NET Core, this functionality is performed as part of the build process using [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/). To configure it, do the following:
-
-> [!NOTE]
-> If you created the optional *FullAspNetCore* project, copy the *wwwroot/css/site.css* and *wwwroot/js/site.js* files to the *wwwroot* folder in the *WebApp1* project; otherwise, manually create these files. The ASP.NET Core project's *_Layout.cshtml* file will reference these two files.
-
--  Add a *bundleconfig.json* file to the project root with the content below. This file describes how the bundling and minification of JavaScript and CSS files will take place.
-
-  [!code[Main](mvc/sample/bundleconfig.json)]
-
--  Install the `BundlerMinifier.Core` NuGet package
-
--  Open the *.csproj* file and add a `BeforeBuild` target and `DotNetCLIToolReference` as shown in the snippet below. It's this `dotnet bundle` command which will use the `BundlerMinifier.Core` package's features to bundle and minify the static content.
-
-  [!code[Main](mvc/sample/WebApp1.csproj?range=26-32)]
-
-Now that we've configured bundling and minification, all that's left is to change the references to Bootstrap, jQuery, and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See [Bundling and Minification](../client-side/bundling-and-minification.md) for more information.
+For information about how to configure bundling and minification, see [Bundling and Minification](../client-side/bundling-and-minification.md).
 
 ## Solving HTTP 500 errors
 
