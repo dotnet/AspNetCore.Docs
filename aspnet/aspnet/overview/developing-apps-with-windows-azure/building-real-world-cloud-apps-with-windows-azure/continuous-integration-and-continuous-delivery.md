@@ -39,7 +39,7 @@ Automating these processes in Azure is easy. Because you're running everything i
 
 ## Visual Studio Team Services (VSTS)
 
-VSTS provided all the features and aspects of application development from planning to deployment. Here are some key features of VSTS:
+VSTS provides a number of features to assist you with application development from planning to deployment.
 
 - It supports both Git (distributed) and TFVC (centralized) source control.
 - It offers an elastic build service, which means it dynamically creates build servers when they're needed and takes them down when they're done. You can automatically kick off a build when someone checks in source code changes, and you don't have to have allocate and pay for your own build servers that lie idle most of the time. The build service is free as long as you don't exceed a certain number of builds. If you expect to do a high volume of builds, you can pay a little extra for reserved build servers.
@@ -48,9 +48,10 @@ VSTS provided all the features and aspects of application development from plann
 - It supports team room collaboration, which facilitates real-time communication and collaboration for small agile teams.
 - It supports agile project management.
 
-For more information about the continuous integration and delivery features of VSTS, see [https://www.visualstudio.com/team-services/]
 
-If you're looking for a turn-key project management, team collaboration, and source control solution, check out VSO. The service is free for up to 5 users, and you can sign up for it at [https://www.visualstudio.com](https://www.visualstudio.com/). Summary
+For more information on the continuous integration and delivery features of VSTS, see [Visual Studio Team Services](https://www.visualstudio.com/team-services/).
+
+If you're looking for a turn-key project management, team collaboration, and source control solution, check out VSTS. The service is free for up to 5 users, and you can sign up for it at [Visual Studio Team Services](https://www.visualstudio.com/team-services/). Summary
 
 The first three cloud development patterns have been about how to implement a repeatable, reliable, predictable development process with low cycle time. In the [next chapter](web-development-best-practices.md) we start to look at architectural and coding patterns.
 
