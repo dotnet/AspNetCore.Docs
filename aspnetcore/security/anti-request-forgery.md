@@ -14,10 +14,6 @@ uid: security/anti-request-forgery
 
 [Steve Smith](http://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), David Paquette
 
-See this [word document](https://www.dropbox.com/sh/jfmncpp0z79m9mt/AAAAB98zC4J7f9g_l6egU8nta?dl=0) and [Evolving ASP.NET Apps–Cookie Authentication](https://blogs.msdn.microsoft.com/cdndevs/2015/02/18/evolving-asp-net-appscookie-authentication/)
-
-David Paquette gave me permission to copy his blog if we add him to the authors list.
-
 ## What attack does anti-forgery prevent?
 
 Cross-site request forgery (also known as XSRF or CSRF, pronounced *see-surf*) is an attack against web-hosted applications whereby a malicious web site can influence the interaction between a client browser and a web site that trusts that browser. These attacks are made possible because web browsers send authentication tokens automatically with every request to a web site. This form of exploit is also known as a *one-click attack* or as *session riding*, because the attack takes advantage of the user's previously authenticated session.
@@ -203,7 +199,7 @@ context.Response.Cookies.Append("CSRF-TOKEN", tokens.RequestToken,
   new Microsoft.AspNetCore.Http.CookieOptions { HttpOnly = false });
 ```
 
-Then, assuming you construce your script requests to send the token in a header called ``X-CSRF-TOKEN``, configure the antiforgery service to look for this header:
+Then, assuming you construct your script requests to send the token in a header called ``X-CSRF-TOKEN``, configure the antiforgery service to look for this header:
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
 ```c#
@@ -229,17 +225,60 @@ $.ajax({
 
 ## Using IAntiforgery
 
-`IAntiforgery` provides access to the antiforgery system and is exposed in the `Configure` method of the `Startup` class:
+`IAntiforgery` provides access to the antiforgery system and can be requested in the `Configure` method of the `Startup` class. The following example uses middleware from the app's home page to generate an antiforger token and send it in the response as a cookie (using the default Angular naming convention described above):
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
 ```c#
-   public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
+public void Configure(IApplicationBuilder app, 
+    IAntiforgery antiforgery)
+{
+    app.Use(next => context =>
+    {
+        if (
+            string.Equals(context.Request.Path.Value, "/", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(context.Request.Path.Value, "/index.html", StringComparison.OrdinalIgnoreCase))
+        {
+            // We can send the request token as a JavaScript-readable cookie, and Angular will use it by default.
+            var tokens = antiforgery.GetAndStoreTokens(context);
+            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
+                new CookieOptions() { HttpOnly = false });
+        }
+
+        return next(context);
+    });
+    //
+}
 ```
+
+### Options
+
+You can customize various options such as the header and cookie names used by antiforgery when you include it in `ConfigureServices`:
+
+<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
+
+```c#
+services.AddAntiforgery(options => 
+{
+  options.CookieDomain = "mydomain.com";
+  options.CookieName = "X-CSRF-TOKEN-COOKIENAME";
+  options.CookiePath = "Path";
+  options.FormFieldName = "AntiforgeryFieldname";
+  options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+  options.RequireSsl = false;
+  otpions.SuppressXFrameOptionsHeader = false;
+});
+```
+
+<!-- QAfix fix table -->
+https://github.com/aspnet/Antiforgery/blob/dev/src/Microsoft.AspNetCore.Antiforgery/AntiforgeryOptions.cs
+|Option | Description |
+|------ | ----------- |
+|GET /api/todo  | Get all to-do items |
 
 ### IAntiforgeryAdditionalDataProvider
 
-The `IAntiForgeryAdditionalDataProvider` type allows developers to extend the behavior of the anti-XSRF system by round-tripping additional data in each token. The `GetAdditionalData` method is called each time a field token is generated, and the return value is embedded within the generated token. An implementer could return a timestamp, a nonce, or any other value and then call `ValidateAdditionalData` to validate this data when the token is validated.
+The `IAntiForgeryAdditionalDataProvider` type allows developers to extend the behavior of the anti-XSRF system by round-tripping additional data in each token. The `GetAdditionalData` method is called each time a field token is generated, and the return value is embedded within the generated token. An implementer could return a timestamp, a nonce, or any other value and then call `ValidateAdditionalData` to validate this data when the token is validated. The client's username is already embedded in the generated tokens, so there is no need to include this information. If a token includes supplemental data but no `IAntiForgeryAdditionalDataProvider` has been configured, the supplemental data is not validated.
 
 ## Fundamentals
 

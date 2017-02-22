@@ -20,25 +20,24 @@ namespace AngularSample
             services.AddSingleton<TodoRepository>();
         }
 
-        public void Configure(IApplicationBuilder app, 
-            IAntiforgery antiforgery, 
-            IOptions<AntiforgeryOptions> options,
-            TodoRepository repository)
+public void Configure(IApplicationBuilder app, 
+    IAntiforgery antiforgery, 
+    TodoRepository repository)
+{
+    app.Use(next => context =>
+    {
+        if (
+            string.Equals(context.Request.Path.Value, "/", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(context.Request.Path.Value, "/index.html", StringComparison.OrdinalIgnoreCase))
         {
-            app.Use(next => context =>
-            {
-                if (
-                    string.Equals(context.Request.Path.Value, "/", StringComparison.OrdinalIgnoreCase) ||
-                    string.Equals(context.Request.Path.Value, "/index.html", StringComparison.OrdinalIgnoreCase))
-                {
-                    // We can send the request token as a JavaScript-readable cookie, and Angular will use it by default.
-                    var tokens = antiforgery.GetAndStoreTokens(context);
-                    context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
-                        new CookieOptions() { HttpOnly = false });
-                }
+            // We can send the request token as a JavaScript-readable cookie, and Angular will use it by default.
+            var tokens = antiforgery.GetAndStoreTokens(context);
+            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
+                new CookieOptions() { HttpOnly = false });
+        }
 
-                return next(context);
-            });
+        return next(context);
+    });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
