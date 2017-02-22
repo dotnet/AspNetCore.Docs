@@ -5,6 +5,10 @@
 <div class="row">
     <h3>@ViewData["Message"]</h3>
 
+    <p>
+        Each of the forms below has an antiforgery token rendered in it by ASP.NET Core.
+    </p>
+
     <div class="col-md-4">
         <h2>Form 1</h2>
         <form asp-action="SamplePost" method="post">
@@ -34,4 +38,7 @@
             </div>
         </form>
     </div>
+</div>
+<div class="row">
+    <a asp-action="ajax">jQuery Example</a>
 </div>

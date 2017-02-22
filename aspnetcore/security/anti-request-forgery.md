@@ -271,10 +271,16 @@ services.AddAntiforgery(options =>
 ```
 
 <!-- QAfix fix table -->
-https://github.com/aspnet/Antiforgery/blob/dev/src/Microsoft.AspNetCore.Antiforgery/AntiforgeryOptions.cs
-|Option | Description |
-|------ | ----------- |
-|GET /api/todo  | Get all to-do items |
+
+|Option        | Description |
+|------------- | ----------- |
+|CookieDomain  | The domain of the cookie. Defaults to null. |
+|CookieName    | The name of the cookie. If not set, the system will generate a unique name beginning with the `DefaultCookiePrefix` (".AspNetCore.Antiforgery."). |
+|CookiePath    | The path set on the cookie. |
+|FormFieldName | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+|HeaderName    | The name of the header used by the antiforgery system. If null, the system will consider only form data. |
+|RequireSsl    | Specifies whether SSL is required by the antiforgery system. Defaults to `false`. If `true`, non-SSL requests will fail. |
+|SuppressXFrameOptionsHeader  | Specifies whether to suppress generation of the `X-Frame-Options` header. By default the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 ### IAntiforgeryAdditionalDataProvider
 

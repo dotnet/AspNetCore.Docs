@@ -29,6 +29,13 @@ namespace MvcSample.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Antiforgery()
+        {
+            return Content("Successful antiforgery!");
+        }
+
         public IActionResult Error()
         {
             return View();

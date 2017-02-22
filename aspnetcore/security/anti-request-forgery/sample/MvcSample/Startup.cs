@@ -29,6 +29,7 @@ namespace MvcSample
         {
             // Add framework services.
             services.AddMvc();
+            services.AddAntiforgery(options => options.HeaderName= "RequestVerificationToken");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
