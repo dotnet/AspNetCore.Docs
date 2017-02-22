@@ -175,6 +175,8 @@ http://localhost/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true
 
 When the link is clicked, the controller method `EvaluationsCurrent`is called: It is called because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
 
+If any keys in the dictionary match route parameters, those values will be substituted in the route as appropriate and the other non-matching values will be generated as request parameters.
+
 - - -
 
 ### asp-fragment
