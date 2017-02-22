@@ -58,7 +58,7 @@ Open the *.bowerrc* file under *bower.json*. The `directory` property is set to 
 
 You can use the search box in Solution Explorer to find and display the font-awesome package.
 
-Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development``. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
+Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development`. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
 
 [!code-html[Main](bower\sample\_Layout.cshtml?highlight=4&range=9-13)]
 
@@ -87,7 +87,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 * Create a new ASP.NET Core Web app with the **ASP.NET Core Web Application (.NET Core)** template. Select the **Empty** project template and click **OK**.
 
-* In Solution Explorer, right-click the project > **Add New Item** and select **Bower Configuration File***. Note: A *.bowerrc* file is also added.
+* In Solution Explorer, right-click the project > **Add New Item** and select **Bower Configuration File**. Note: A *.bowerrc* file is also added.
 
 * Open *bower.json*, and add jquery and bootstrap to the `dependencies` section. The resulting *bower.json* file will look like the following example. The versions will change over time and may not match the image below.
 
