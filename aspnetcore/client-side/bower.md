@@ -87,7 +87,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 * Create a new ASP.NET Core Web app with the **ASP.NET Core Web Application (.NET Core)** template. Select the **Empty** project template and click **OK**.
 
-* In Solution Explorer, right-click the project > **Add New Item** and select **Bower Configuration File***. Note: A *.bowerrc* file is also added.
+* In Solution Explorer, right-click the project > **Add New Item** and select **Bower Configuration File**. Note: A *.bowerrc* file is also added.
 
 * Open *bower.json*, and add jquery and bootstrap to the `dependencies` section. The resulting *bower.json* file will look like the following example. The versions will change over time and may not match the image below.
 
