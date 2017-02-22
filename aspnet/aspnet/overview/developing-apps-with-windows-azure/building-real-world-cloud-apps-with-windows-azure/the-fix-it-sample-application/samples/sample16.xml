@@ -1,0 +1,10 @@
+<system.webServer>
+     <httpProtocol>
+        <customHeaders>
+           <add name="X-Content-Type-Options" value="nosniff"/>
+        </customHeaders>
+     </httpProtocol>
+     <modules>
+      <remove name="FormsAuthenticationModule" />
+    </modules>
+  </system.webServer>

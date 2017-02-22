@@ -1,0 +1,1 @@
+db.Entry(enrollment).Reference(x => x.Student).Load();

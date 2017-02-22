@@ -1,0 +1,1 @@
+ViewBag.InstructorID = new SelectList(db.Instructors, "ID", "FullName");

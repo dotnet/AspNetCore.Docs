@@ -1,0 +1,218 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization;
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = Localizer["About"];
+    var requestCultureFeature = (IRequestCultureFeature)ViewData["requestCultureFeature"];
+    var requestCulture = (RequestCulture)ViewData["requestCulture"];
+
+}
+<h2>@ViewData["Title"].</h2>
+@ViewData["Message"]
+<p>@Localizer["Use this area to provide additional information."]</p>
+<h1>SL @SharedLocalizer["Hello!"]</h1>
+
+<table>
+    <tr>
+        <th>
+            Winning provider
+        </th>
+        <td>
+            @requestCultureFeature.Provider.GetType().Name;
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Request Culture
+        </th>
+        <td>
+            @requestCulture.Culture.DisplayName (@requestCulture.Culture)
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Request UICulture
+        </th>
+        <td>
+            @requestCulture.UICulture.DisplayName (@requestCulture.UICulture)
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Thread culture
+        </th>
+        <td>
+            @CultureInfo.CurrentCulture.DisplayName (@CultureInfo.CurrentCulture)
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Thread UI culture
+        </th>
+        <td>
+            @CultureInfo.CurrentUICulture.DisplayName (@CultureInfo.CurrentUICulture)
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current date (invariant full)
+        </th>
+        <td>
+            @DateTime.Now.ToString("F", System.Globalization.CultureInfo.InvariantCulture);
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current date (invariant)
+        </th>
+        <td>
+            @DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current date (request full)
+        </th>
+        <td>
+            @DateTime.Now.ToString("F");
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current date (request)
+        </th>
+        <td>
+            @DateTime.Now.ToString();
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current time (invariant)
+        </th>
+        <td>
+            @DateTime.Now.ToString("T", System.Globalization.CultureInfo.InvariantCulture);
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Current time (request)
+        </th>
+        <td>
+            @DateTime.Now.ToString("T");
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Big number 4 (invariant)
+        </th>
+        <td>
+            @{
+
+                string msg = (Math.Pow(2, 42) + 0.42).ToString("N", CultureInfo.InvariantCulture);
+            }
+            @msg
+
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Big number (request)
+        </th>
+        <td>
+            @{
+                msg = (Math.Pow(2, 42) + 0.42).ToString("N");
+            }
+            @msg
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Negative big number (invariant)
+        </th>
+        <td>
+            @{
+
+                msg = (-Math.Pow(2, 42) + 0.42).ToString("N", CultureInfo.InvariantCulture);
+            }
+            @msg
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Negative big number (request)
+        </th>
+        <td>
+            @{
+
+                msg = (-Math.Pow(2, 42) + 0.42).ToString("N");
+            }
+            @msg
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Money (invariant)
+        </th>
+        <td>
+            @{
+
+                msg = (2199.50).ToString("C", CultureInfo.InvariantCulture);
+            }
+            @msg
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Money(request)
+        </th>
+        <td>
+            @{
+                msg = (2199.50).ToString("C");
+            }
+            @msg
+    </tr>
+    <tr>
+        <th>
+            Negative Money(invariant)
+        </th>
+        <td>
+            @{
+
+                msg = (-2199.50).ToString("C", CultureInfo.InvariantCulture);
+            }
+            @msg
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Negative Money(request)
+        </th>
+        <td>
+            @{
+                msg = (-2199.50).ToString("C");
+            }
+            @msg
+        </td>
+    </tr>
+</table>

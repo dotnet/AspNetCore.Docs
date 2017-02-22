@@ -1,0 +1,1 @@
+Data Source=vserver01.cytanium.com;Initial Catalog=contosouSchool;User Id=ContosoUniversityUser;Password=Password;

@@ -1,0 +1,3 @@
+<FunctionImport Name="CheckOut" IsBindable="true">
+    <Parameter Name="bindingParameter" Type="ProductsService.Models.Product" />
+</FunctionImport>

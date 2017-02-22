@@ -1,0 +1,1 @@
+hubConnection.Error += ex => Console.WriteLine("SignalR error: {0}", ex.Message);

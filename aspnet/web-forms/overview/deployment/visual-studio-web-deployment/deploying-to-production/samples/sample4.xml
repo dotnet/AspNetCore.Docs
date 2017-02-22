@@ -1,0 +1,30 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WebPublishMethod>MSDeploy</WebPublishMethod>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <SiteUrlToLaunchAfterPublish>http://contosou-staging.azurewebsites.net</SiteUrlToLaunchAfterPublish>
+    <ExcludeApp_Data>True</ExcludeApp_Data>
+    <MSDeployServiceURL>waws-prod-bay-001.publish.azurewebsites.windows.net:443</MSDeployServiceURL>
+    <DeployIisAppPath>contosou-staging</DeployIisAppPath>
+    <RemoteSitePhysicalPath />
+    <SkipExtraFilesOnServer>True</SkipExtraFilesOnServer>
+    <MSDeployPublishMethod>WMSVC</MSDeployPublishMethod>
+    <UserName>[username]</UserName>
+    <_SavePWD>True</_SavePWD>
+    <PublishDatabaseSettings>
+      <!-- database settings removed -->
+    </PublishDatabaseSettings>
+    <ExcludeFilesFromDeployment>
+        robots.txt
+    </ExcludeFilesFromDeployment>
+  </PropertyGroup>
+  <ItemGroup>
+    <MSDeployParameterValue Include="$(DeployParameterPrefix)DefaultConnection-Web.config Connection String">
+      <ParameterValue>Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd</ParameterValue>
+    </MSDeployParameterValue>
+    <MSDeployParameterValue Include="$(DeployParameterPrefix)SchoolContext-Web.config Connection String">
+      <ParameterValue>Data Source=tcp:sk0264hvc9.database.windows.net,1433;Initial Catalog=ContosoUniversity-staging;User Id=CU-staging-admin@sk0264hvc9;Password=Pas$w0rd</ParameterValue>
+    </MSDeployParameterValue>
+  </ItemGroup>
+</Project>

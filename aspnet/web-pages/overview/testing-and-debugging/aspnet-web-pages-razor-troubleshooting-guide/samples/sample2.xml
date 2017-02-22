@@ -1,0 +1,11 @@
+<configuration>
+
+  <!-- other setting -->
+
+  <appSettings>
+    <add key="enableSimpleMembership" value="true" />
+  </appSettings>
+
+  <!-- other settings -->
+
+</configuration>

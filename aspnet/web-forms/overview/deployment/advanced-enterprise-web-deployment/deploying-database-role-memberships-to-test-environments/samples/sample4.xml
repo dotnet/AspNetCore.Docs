@@ -1,0 +1,20 @@
+<PropertyGroup>
+   <SqlCmdExe Condition=" '$(SqlCmdExe)'=='' ">
+      C:\Program Files\Microsoft SQL Server\100\Tools\Binn\sqlcmd.exe
+   </SqlCmdExe>
+</PropertyGroup>
+
+<Target Name="DeployTestDBPermissions" 
+        Condition=" '$(DeployTestDBRoleMemberships)'=='true' AND 
+                    '$(Whatif)'!='true' ">
+   <PropertyGroup>
+     <SqlScript>
+        $(SourceRoot)ContactManager.Database\Scripts\Test\AddRoleMemberships.sql
+     </SqlScript>
+     <_Cmd>"$(SqlCmdExe)" -S "$(DatabaseServer)" 
+                          -d "$(CmTargetDatabase)" 
+                          -i "$(SqlScript)"
+     </_Cmd>
+   </PropertyGroup>
+   <Exec Command="$(_Cmd)" ContinueOnError="false" />
+</Target>

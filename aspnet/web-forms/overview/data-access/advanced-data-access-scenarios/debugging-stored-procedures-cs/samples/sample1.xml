@@ -1,0 +1,6 @@
+<connectionStrings>
+    <add name="NORTHWNDConnectionString" connectionString=
+        "Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\NORTHWND.MDF;
+            Integrated Security=True;User Instance=True;Pooling=false"
+        providerName="System.Data.SqlClient" />
+</connectionStrings>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+  <configuration>
+   <system.web>
+    <compilation targetFramework="4.0" /> 
+   </system.web>
+  </configuration>

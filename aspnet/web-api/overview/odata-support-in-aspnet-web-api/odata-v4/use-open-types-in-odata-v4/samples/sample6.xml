@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="MyApp.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Book" OpenType="true">
+        <Key>
+          <PropertyRef Name="ISBN" />
+        </Key>
+        <Property Name="ISBN" Type="Edm.String" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="Press" Type="MyApp.Models.Press" />
+      </EntityType>
+      <EntityType Name="Customer">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="Address" Type="MyApp.Models.Address" />
+      </EntityType>
+      <ComplexType Name="Press" OpenType="true">
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="Category" Type="MyApp.Models.Category" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Address">
+        <Property Name="City" Type="Edm.String" />
+        <Property Name="Street" Type="Edm.String" />
+      </ComplexType>
+      <EnumType Name="Category">
+        <Member Name="Book" Value="0" />
+        <Member Name="Magazine" Value="1" />
+        <Member Name="EBook" Value="2" />
+      </EnumType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="Books" EntityType="MyApp.Models.Book" />
+        <EntitySet Name="Customers" EntityType="MyApp.Models.Customer" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

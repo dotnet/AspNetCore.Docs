@@ -1,0 +1,8 @@
+@if (HttpContext.Current.IsDebuggingEnabled)
+{
+    @Html.RenderEmber()
+}
+else
+{
+    @Scripts.Render("~/bundles/templates")
+}

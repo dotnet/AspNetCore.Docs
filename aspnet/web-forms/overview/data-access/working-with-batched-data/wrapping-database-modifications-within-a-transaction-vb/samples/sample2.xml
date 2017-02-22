@@ -1,0 +1,23 @@
+<siteMapNode title="Working with Batched Data" 
+    url="~/BatchData/Default.aspx" 
+    description="Learn how to perform batch operations as opposed to 
+                 per-row operations.">
+    
+    <siteMapNode title="Adding Support for Transactions" 
+        url="~/BatchData/Transactions.aspx" 
+        description="See how to extend the Data Access Layer to support 
+                     database transactions." />
+    <siteMapNode title="Batch Updating" 
+        url="~/BatchData/BatchUpdate.aspx" 
+        description="Build a batch updating interface, where each row in a 
+                      GridView is editable." />
+    <siteMapNode title="Batch Deleting" 
+        url="~/BatchData/BatchDelete.aspx" 
+        description="Explore how to create an interface for batch deleting 
+                     by adding a CheckBox to each GridView row." />
+    <siteMapNode title="Batch Inserting" 
+        url="~/BatchData/BatchInsert.aspx" 
+        description="Examine the steps needed to create a batch inserting 
+                     interface, where multiple records can be created at the 
+                     click of a button." />
+</siteMapNode>

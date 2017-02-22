@@ -1,0 +1,16 @@
+NorthwindTableAdapters.SuppliersTableAdapter suppliersAdapter =
+    new NorthwindTableAdapters.SuppliersTableAdapter();
+// Get all of the suppliers
+Northwind.SuppliersDataTable suppliers =
+  suppliersAdapter.GetSuppliers();
+// Enumerate the suppliers
+foreach (Northwind.SuppliersRow supplier in suppliers)
+{
+    Response.Write("Supplier: " + supplier.CompanyName);
+    Response.Write("<ul>");
+    // List the products for this supplier
+    Northwind.ProductsDataTable products = supplier.GetProducts();
+    foreach (Northwind.ProductsRow product in products)
+        Response.Write("<li>" + product.ProductName + "</li>");
+    Response.Write("</ul><p> </p>");
+}

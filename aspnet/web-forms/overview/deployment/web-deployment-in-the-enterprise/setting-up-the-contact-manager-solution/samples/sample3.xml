@@ -1,0 +1,8 @@
+<connectionStrings>
+  <add name="ContactManagerContext" 
+       connectionString="Data Source=.\SQLExpress;
+                         Initial Catalog=ContactManager;
+                         Integrated Security=true;
+                         multipleactiveresultsets=true"
+       providerName="System.Data.SqlClient" />
+</connectionStrings>

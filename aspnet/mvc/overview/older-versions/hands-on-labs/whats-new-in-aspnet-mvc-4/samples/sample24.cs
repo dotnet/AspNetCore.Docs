@@ -1,0 +1,3 @@
+public async Task<ActionResult> Index(CancellationToken cancellationToken)
+{
+    ...

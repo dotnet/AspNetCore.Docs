@@ -1,0 +1,21 @@
+@{
+  var backgroundColor = PageData["MyBackground"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <link type="text/css" href="/Styles/Site.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="header">
+    Using the _PageStart.cshtml file
+  </div>
+  <div id="main" style="background-color:@backgroundColor">
+    @RenderBody()
+  </div>
+<div id="footer">
+  &copy; 2012 Contoso. All rights reserved
+</div>
+</body>
+</html>

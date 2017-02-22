@@ -1,0 +1,1 @@
+https://[server name]:8172/MSDeploy.axd

@@ -1,0 +1,6 @@
+<PropertyGroup>    
+   <ServerName>FABRIKAM\TEST1</ServerName>
+   <ConnectionString>
+     Data Source=FABRIKAM\TESTDB;InitialCatalog=ContactManager,...
+   </ConnectionString>
+</PropertyGroup>

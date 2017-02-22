@@ -1,0 +1,1 @@
+ClientScriptManager cm = Page.ClientScript; if(!cm.IsClientScriptIncludeRegistered("jsfunc")) { cm.RegisterClientScriptInclude(this.GetType(), "jsfunc", "/scripts/jsfunctions.js"); }

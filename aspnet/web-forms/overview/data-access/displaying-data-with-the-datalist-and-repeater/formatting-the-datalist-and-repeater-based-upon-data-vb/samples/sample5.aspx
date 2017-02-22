@@ -1,0 +1,1 @@
+<%# MethodName(inputParameter1, inputParameter2, ...) %>

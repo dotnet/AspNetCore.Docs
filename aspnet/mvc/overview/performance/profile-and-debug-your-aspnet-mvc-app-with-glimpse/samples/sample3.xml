@@ -1,0 +1,8 @@
+<glimpse defaultRuntimePolicy="On" endpointBaseUri="~/Glimpse.axd">
+    <runtimePolicies>
+      <ignoredTypes>
+        <add type="Glimpse.AspNet.Policy.LocalPolicy, Glimpse.AspNet"/>
+      </ignoredTypes>
+    </runtimePolicies>
+  </glimpse>
+</configuration>

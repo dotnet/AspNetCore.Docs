@@ -1,0 +1,1 @@
+RedirectPermanent("/newpath/foroldcontent.aspx");

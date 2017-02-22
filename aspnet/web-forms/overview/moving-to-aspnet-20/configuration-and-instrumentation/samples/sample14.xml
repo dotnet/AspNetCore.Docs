@@ -1,0 +1,5 @@
+<authorization>
+    <deny users="?"/>
+</authorization>
+
+<identity impersonate="true"/>

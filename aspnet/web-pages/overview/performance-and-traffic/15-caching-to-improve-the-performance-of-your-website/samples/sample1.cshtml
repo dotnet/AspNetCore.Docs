@@ -1,0 +1,32 @@
+@{
+    var cacheItemKey = "CachedTime";
+    var cacheHit = true;
+    var time = WebCache.Get(cacheItemKey);
+
+    if (time == null) {
+        cacheHit = false;
+    }
+
+    if (cacheHit == false) {
+        time = @DateTime.Now;
+        WebCache.Set(cacheItemKey, time, 1, false);
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebCache Helper Sample</title>
+</head>
+<body>
+    <div>
+        @if (cacheHit) {
+            @:Found the time data in the cache.
+        } else {
+            @:Did not find the time data in the cache.
+        }
+    </div>
+    <div>
+        This page was cached at @time.
+    </div>
+</body>
+</html>

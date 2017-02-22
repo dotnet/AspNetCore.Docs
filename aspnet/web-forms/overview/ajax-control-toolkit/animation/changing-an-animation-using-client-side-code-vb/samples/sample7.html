@@ -1,0 +1,9 @@
+<script type="text/javascript">
+ function pageLoad() 
+ {
+ var ae = $find("ae");
+ var animation = '{"AnimationName":"Sequence","AnimationChildren":[{"AnimationName":"EnableAction","Enabled":"false","AnimationChildren":[]},{"AnimationName":"Parallel","AnimationChildren":[{"AnimationName":"FadeOut","Duration":"1.5","Fps":"24","AnimationTarget":"Panel1","AnimationChildren":[]},{"AnimationName":"Resize","Width":"1000","Height":"150","Unit":"px","AnimationTarget":"Panel1","AnimationChildren":[]}]}]}';
+ ae.set_OnClick(animation);
+ ae.OnClick();
+ }
+</script>

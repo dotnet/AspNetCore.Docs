@@ -1,0 +1,1 @@
+Dim myMasterPage As BaseMasterPage = CType(Page.Master, BaseMasterPage)

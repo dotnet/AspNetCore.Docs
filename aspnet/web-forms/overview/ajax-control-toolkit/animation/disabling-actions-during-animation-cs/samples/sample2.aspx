@@ -1,0 +1,1 @@
+<input type="button" ID="Button1" runat="server" Value="Launch Animation" />

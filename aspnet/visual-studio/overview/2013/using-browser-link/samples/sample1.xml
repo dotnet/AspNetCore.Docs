@@ -1,0 +1,9 @@
+<configuration>
+  <system.webServer>    
+    <handlers>
+      <add name="Browser Link for HTML" path="*.html" verb="*" 
+           type="System.Web.StaticFileHandler, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 
+           resourceType="File" preCondition="integratedMode" />
+    </handlers>
+  </system.webServer>    
+</configuration>

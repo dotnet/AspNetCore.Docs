@@ -1,0 +1,5 @@
+<appSettings>
+    <add key="webpages:Version" value="1.0.0.0"/>
+    <add key="ClientValidationEnabled" value="true"/>
+    <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
+</appSettings>

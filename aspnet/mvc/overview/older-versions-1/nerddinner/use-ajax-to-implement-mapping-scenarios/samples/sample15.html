@@ -1,0 +1,46 @@
+function callbackUpdateMapDinners(layer, resultsArray, places, hasMore, VEErrorMessage) {
+
+    $("#dinnerList").empty();
+    clearMap();
+    var center = map.GetCenter();
+
+    $.post("/Search/SearchByLocation", { latitude: center.Latitude, 
+                                         longitude: center.Longitude },     
+    function(dinners) {
+        $.each(dinners, function(i, dinner) {
+
+            var LL = new VELatLong(dinner.Latitude, 
+                                   dinner.Longitude, 0, null);
+
+            var RsvpMessage = "";
+
+            if (dinner.RSVPCount == 1)
+                RsvpMessage = "" + dinner.RSVPCount + "RSVP";
+            else
+                RsvpMessage = "" + dinner.RSVPCount + "RSVPs";
+
+            // Add Pin to Map
+            LoadPin(LL, '<a href="/Dinners/Details/' + dinner.DinnerID + '">'
+                        + dinner.Title + '</a>',
+                        "<p>" + dinner.Description + "</p>" + RsvpMessage);
+
+            //Add a dinner to the <ul> dinnerList on the right
+            $('#dinnerList').append($('<li/>')
+                            .attr("class", "dinnerItem")
+                            .append($('<a/>').attr("href",
+                                      "/Dinners/Details/" + dinner.DinnerID)
+                            .html(dinner.Title))
+                            .append(" ("+RsvpMessage+")"));
+        });
+
+        // Adjust zoom to display all the pins we just added.
+        map.SetMapView(points);
+
+        // Display the event's pin-bubble on hover.
+        $(".dinnerItem").each(function(i, dinner) {
+            $(dinner).hover(
+                function() { map.ShowInfoBox(shapes[i]); },
+                function() { map.HideInfoBox(shapes[i]); }
+            );
+        });
+    }, "json");

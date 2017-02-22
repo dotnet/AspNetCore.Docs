@@ -1,0 +1,1 @@
+modelBuilder.EntitySet<Product>("Products");

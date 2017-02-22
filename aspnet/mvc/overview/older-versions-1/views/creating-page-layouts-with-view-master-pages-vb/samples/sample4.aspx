@@ -1,0 +1,2 @@
+<%@ page title="Super Great Website" language="VB" masterpagefile="~/Views/Shared/Site.Master"
+            autoeventwireup="true" codebehind="Index.aspx.vb" inherits="MvcApplication1.Views.Home.Index"%>

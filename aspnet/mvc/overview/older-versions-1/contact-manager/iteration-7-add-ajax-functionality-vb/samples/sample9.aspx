@@ -1,0 +1,1 @@
+<%= Ajax.ActionLink(item.Name, "Index", New With { .id = item.Id }, New AjaxOptions With { .UpdateTargetId = "divContactList", .OnBegin = "beginContactList", .OnSuccess = "successContactList", .OnFailure = "failureContactList" }, New With { .groupid = item.Id })%>

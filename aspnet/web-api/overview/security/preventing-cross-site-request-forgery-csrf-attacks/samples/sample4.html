@@ -1,0 +1,20 @@
+<script>
+    @functions{
+        public string TokenHeaderValue()
+        {
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + ":" + formToken;                
+        }
+    }
+
+    $.ajax("api/values", {
+        type: "post",
+        contentType: "application/json",
+        data: {  }, // JSON data goes here
+        dataType: "json",
+        headers: {
+            'RequestVerificationToken': '@TokenHeaderValue()'
+        }
+    });
+</script>

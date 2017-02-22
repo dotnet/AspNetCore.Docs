@@ -1,0 +1,7 @@
+<configuration>
+  <!-- Settings -->
+  <system.web>
+    <trust level="Medium" />
+    <!-- Settings -->
+  </system.web>
+</configuration>

@@ -1,0 +1,5 @@
+<connectionStrings>
+  <add name="DefaultConnection"
+    providerName="MySql.Data.MySqlClient"
+    connectionString="[Insert your ConnectionString from Azure here]"/>
+</connectionStrings>

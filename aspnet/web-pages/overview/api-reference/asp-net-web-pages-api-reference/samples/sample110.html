@@ -1,0 +1,27 @@
+<head>
+  <script
+    src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js">
+  </script>
+  <script
+    src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
+  </script>
+  <script
+    src="~/Scripts/jquery.validate.unobtrusive.js">
+  </script>
+
+  <style>
+    input-validation-error{ /* style rules  */ }
+    field-validation-error{ /* style rules  */ }
+    validation-summary-errors{ /* style rules  */ }
+    field-validation-valid{ /* style rules  */ }
+    input-validation-valid{ /* style rules  */ }
+    validation-summary-valid{ /* style rules  */ }
+  </style>
+</head>
+
+...
+
+<input
+    type="text"
+    name="firstName"
+    @Validation.For("firstName") @Validation.ClassFor("firstName")  />

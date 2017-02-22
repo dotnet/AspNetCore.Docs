@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+    <add name="Pubs"
+    connectionString="Data Source=(local);
+      Initial Catalog=pubs;Integrated Security=true;"
+    providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <system.web>
+    <caching>
+      <sqlCacheDependency enabled = "true" pollTime = "60000" >
+        <databases>
+          <add name="pubs" connectionStringName = "pubs" pollTime = "9000000" />
+        </databases>
+      </sqlCacheDependency>
+    </caching>
+  </system.web>
+</configuration>

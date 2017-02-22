@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    $(function () {
+        var chat = $.connection.sampleHub;
+        $.connection.hub.start().done(function () {
+            $('#logoutbutton').click(function () {
+                chat.connection.stop();
+                $.ajax({
+                    url: "Services/SampleWebService.svc/LogOut",
+                    type: "POST"
+                }).done(function () {
+                    chat.connection.start();
+                });
+            });
+        });
+    });
+</script>

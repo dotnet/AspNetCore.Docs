@@ -1,0 +1,25 @@
+<siteMapNode 
+    title="Working with Binary Data" 
+    url="~/BinaryData/Default.aspx" 
+    description="Extend the data model to include collecting binary data.">
+    
+    <siteMapNode 
+        title="Uploading Files" 
+        url="~/BinaryData/FileUpload.aspx" 
+        description="Examine the different ways to store binary data on the 
+                     web server and see how to accept uploaded files from users 
+                     with the FileUpload control." />
+    <siteMapNode 
+        title="Display or Download Binary Data" 
+        url="~/BinaryData/DisplayOrDownloadData.aspx" 
+        description="Let users view or download the captured binary data." />
+    <siteMapNode 
+        title="Adding New Binary Data" 
+        url="~/BinaryData/UploadInDetailsView.aspx" 
+        description="Learn how to augment the inserting interface to 
+                     include a FileUpload control." />
+    <siteMapNode 
+        title="Updating and Deleting Existing Binary Data" 
+        url="~/BinaryData/UpdatingAndDeleting.aspx" 
+        description="Learn how to update and delete existing binary data." />
+</siteMapNode>

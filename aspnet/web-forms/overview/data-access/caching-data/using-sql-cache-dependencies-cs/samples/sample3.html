@@ -1,0 +1,6 @@
+/* For SQL Server authentication... */
+aspnet_regsql.exe -S <i>server</i>
+-U <i>user</i> -P <i>password</i> -d <i>database</i> -t <i>tableName</i> -et
+/* For Windows Authentication... */
+aspnet_regsql.exe -S <i>server</i>
+-E -d <i>database</i> -t <i>tableName</i> -et

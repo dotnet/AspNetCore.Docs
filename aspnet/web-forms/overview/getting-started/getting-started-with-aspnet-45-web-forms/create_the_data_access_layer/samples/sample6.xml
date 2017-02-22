@@ -1,0 +1,7 @@
+<connectionStrings>
+<add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WingtipToys-20131119102907.mdf;Initial Catalog=aspnet-WingtipToys-20131119102907;Integrated Security=True"
+providerName="System.Data.SqlClient" />
+<add name="WingtipToys"
+connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\wingtiptoys.mdf;Integrated Security=True"
+providerName="System.Data.SqlClient" />
+</connectionStrings>

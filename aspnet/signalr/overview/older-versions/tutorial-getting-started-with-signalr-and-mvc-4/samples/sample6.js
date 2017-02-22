@@ -1,0 +1,1 @@
+var chat = $.connection.chatHub;

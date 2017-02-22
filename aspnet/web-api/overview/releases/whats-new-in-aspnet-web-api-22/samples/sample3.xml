@@ -1,0 +1,13 @@
+<Function Name="GetAllConventionCustomers" 
+ReturnType="Collection(WebStack.QA.Test.OData.UnboundOperation.ConventionCustomer)" 
+IsComposable="true" />
+<Function Name="GetAllConventionCustomers" 
+ReturnType="Collection(WebStack.QA.Test.OData.UnboundOperation.ConventionCustomer)" 
+IsComposable="true">
+<Parameter Name="CustomerName" Type="Edm.String" FixedLength="false" 
+Unicode="false" />
+</Function>
+...
+<FunctionImport Name="GetAllConventionCustomers" 
+Function="WebStack.QA.Test.OData.UnboundOperation.GetAllConventionCustomers" 
+EntitySet="ConventionCustomers" IncludeInServiceDocument="true" />

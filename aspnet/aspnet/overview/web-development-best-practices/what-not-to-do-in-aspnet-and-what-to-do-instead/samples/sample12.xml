@@ -1,0 +1,3 @@
+<system.web>
+    <httpRuntime TargetFramework="4.5" />
+</system.web>

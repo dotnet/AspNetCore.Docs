@@ -1,0 +1,1 @@
+app.UseStageMarker(PipelineStage.Authorize);

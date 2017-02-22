@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+   <add
+     name="SQLServerConnectionString"
+     connectionString= "server=myServer;database=myDatabase;uid=username;pwd=password"
+     providerName="System.Data.SqlClient" />
+  </connectionStrings>
+</configuration>

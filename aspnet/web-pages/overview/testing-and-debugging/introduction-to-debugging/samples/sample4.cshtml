@@ -1,0 +1,33 @@
+@{
+    var weekday = DateTime.Now.DayOfWeek;
+    var weekdayText = weekday.ToString(); 
+
+    var greeting = "";
+        
+    switch(weekdayText) 
+    { 
+        case "Monday":
+            greeting = "Ok, it's a marvelous Monday."; 
+            break; 
+        case "Tuesday":
+            greeting = "It's a tremendous Tuesday.";
+            break; 
+        case "Wednesday":
+            greeting = "Wild Wednesday is here!";
+            break; 
+        case "Thursday":
+            greeting = "All right, it's thrifty Thursday.";
+            break;
+        case "Friday":
+            greeting = "It's finally Friday!";
+            break;
+        case "Saturday":
+            greeting = "Another slow Saturday is here.";
+            break;
+        case "Sunday":
+            greeting = "The best day of all: serene Sunday.";
+            break;
+        default:
+            break; 
+    }
+}

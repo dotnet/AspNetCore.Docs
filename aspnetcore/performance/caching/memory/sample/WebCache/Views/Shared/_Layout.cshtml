@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <div>
+        <h2>Scenarios</h2>
+        <ul>
+            <li><a asp-area="" asp-controller="Home" asp-action="CacheGet">Basic cache operations</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="GetCallbackEntry">Cache entry with eviction callback</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="GetDependentEntries">Dependent cache entries</a></li>
+        </ul>
+    </div>
+    @RenderBody()
+</body>
+</html>

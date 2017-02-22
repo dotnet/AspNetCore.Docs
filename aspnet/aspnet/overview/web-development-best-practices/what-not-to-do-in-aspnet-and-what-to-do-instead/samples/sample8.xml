@@ -1,0 +1,6 @@
+<authentication mode="Forms">
+  <forms loginUrl="member_login.aspx"
+    cookieless="UseCookies"
+    requireSSL="true"
+    path="/MyApplication" />
+</authentication>

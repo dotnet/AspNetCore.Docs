@@ -1,0 +1,1 @@
+DELETE http://host/Suppliers(1)/Products/$ref?$id=http://host/Products(1)

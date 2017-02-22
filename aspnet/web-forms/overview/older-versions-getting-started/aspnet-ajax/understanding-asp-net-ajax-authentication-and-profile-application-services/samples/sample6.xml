@@ -1,0 +1,9 @@
+<system.web.extensions>
+ <scripting>
+ <webServices>
+ <profileService enabled="true"
+ readAccessProperties= Name,Address,BackgroundColor 
+ writeAccessProperties= BackgroundColor />
+ </webServices>
+ </scripting>
+</system.web.extensions>

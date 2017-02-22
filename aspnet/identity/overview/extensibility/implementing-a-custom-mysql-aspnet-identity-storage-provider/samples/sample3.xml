@@ -1,0 +1,3 @@
+<add name="DefaultConnection" connectionString="Database=IdentityMySQLDatabase;
+Data Source=<DataSource>;User Id=<UserID>;Password=<Password>"
+providerName="MySql.Data.MySqlClient" />

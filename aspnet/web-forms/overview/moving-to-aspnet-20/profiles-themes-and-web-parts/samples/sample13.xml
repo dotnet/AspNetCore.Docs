@@ -1,0 +1,4 @@
+<system.web>
+    <pages theme="CoolTheme" />
+    ...
+</system.web>

@@ -1,0 +1,4 @@
+<siteMapNode 
+    title="Customizing the Site Map" url="~/SiteMapProvider/Default.aspx" 
+    description="Learn how to create a custom provider that retrieves the site map 
+                 from the Northwind database." />

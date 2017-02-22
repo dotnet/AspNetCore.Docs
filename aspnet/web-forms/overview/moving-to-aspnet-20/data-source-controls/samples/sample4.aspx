@@ -1,0 +1,1 @@
+<asp:AccessDataSource id="AccessDataSource1" runat="server" DataFile="~/App_Data/Northwind.mdb"> </asp:AccessDataSource>

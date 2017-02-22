@@ -1,0 +1,40 @@
+﻿@using System
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model FileUploadSample.ViewModels.ProfileEditViewModel
+
+<h1>Edit Profile</h1>
+<div class="row">
+    <section>
+        <form asp-controller="Profile" asp-action="Save" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvatarFile" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input type="file" name="AvatarFile" class="form-control" />
+                    <span asp-validation-for="AvatarFile" class="text-danger"></span>
+                    @if (!String.IsNullOrEmpty(Model.AvatarPath))
+                    {
+                        <img src="/uploads/@Model.AvatarPath" class="img-thumbnail" />
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-default">Save</button>
+                </div>
+            </div>
+            <p>
+                <a asp-action="Index">Return to Profile</a>
+            </p>
+        </form>
+    </section>
+</div>

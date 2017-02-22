@@ -1,0 +1,1 @@
+<asp:Button ID="btnDelete" runat="Server" OnClientClick="VerifyDeletion('a.txt');" Text="Delete" />

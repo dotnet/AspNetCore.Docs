@@ -1,0 +1,1 @@
+<add name="appdb" connectionString="Server=tcp:####.database.windows.net,1433;Database=appdb;User ID=####;Password=####;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" providerName="System.Data.SqlClient" />

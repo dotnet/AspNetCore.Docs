@@ -1,0 +1,10 @@
+@{
+    var db = Database.Open("SmallBakery");
+    var data = db.Query("SELECT Name, Price FROM Product");
+    var myChart = new Chart(width: 600,
+                        height: 400,
+                        theme: ChartTheme.Green)
+        .AddTitle("Product Sales")
+        .DataBindTable(data, "Name")
+        .Write();
+}

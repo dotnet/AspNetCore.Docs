@@ -1,0 +1,10 @@
+{
+  "BookId": 1,
+  "Title": "Midnight Rain",
+  "Genre": "Fantasy",
+  "PublishDate": "2000-12-16T00:00:00",
+  "Description": "A former architect battles an evil sorceress.",
+  "Price": 14.95,
+  "AuthorId": 1,
+  "Author": null
+}

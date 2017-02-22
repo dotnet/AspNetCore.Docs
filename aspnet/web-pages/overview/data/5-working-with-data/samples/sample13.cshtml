@@ -1,0 +1,75 @@
+@{
+    Validation.RequireField("Name", "Product name is required.");
+    Validation.RequireField("Description", "Product description is required.");
+    Validation.RequireField("Price", "Product price is required.");
+
+    var Name = "";
+    var Description = "";
+    var Price = Decimal.Zero;
+
+    var ProductId  = UrlData[0];
+    if (ProductId.IsEmpty()) {
+         Response.Redirect("~/EditProducts");
+    }
+
+    var db = Database.Open("SmallBakery");
+
+    if (IsPost && Validation.IsValid()) {
+        var updateQueryString =
+            "UPDATE Product SET Name=@0, Description=@1, Price=@2 WHERE Id=@3" ;
+        Name = Request["Name"];
+        Description = Request["Description"];
+        Price = Request["Price"].AsDecimal();
+        db.Execute(updateQueryString, Name, Description, Price, ProductId);
+        Response.Redirect(@Href("~/EditProducts"));
+    }
+    else {
+        var selectQueryString = "SELECT * FROM Product WHERE Id=@0";
+
+        var row = db.QuerySingle(selectQueryString, ProductId);
+        Name = row.Name;
+        Description = row.Description;
+        Price = row.Price;
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Products</title>
+  <style type="text/css">
+     label { float: left; width: 8em; text-align: right;
+             margin-right: 0.5em;}
+     fieldset { padding: 1em; border: 1px solid; width: 35em;}
+     legend { padding: 2px 4px;  border: 1px solid; font-weight: bold;}
+     .validation-summary-errors {font-weight:bold; color:red; font-size:11pt;}
+  </style>
+</head>
+<body>
+  <h1>Update Product</h1>
+   @Html.ValidationSummary("Errors with your submission:")
+   <form method="post" action="">
+     <fieldset>
+       <legend>Update Product</legend>
+       <div>
+         <label>Name:</label>
+         <input name="Name" type="text" size="50" value="@Name" />
+       </div>
+       <div>
+         <label>Description:</label>
+         <input name="Description" type="text" size="50"
+            value="@Description" />
+       </div>
+       <div>
+          <label>Price:</label>
+          <input name="Price" type="text" size="50" value="@Price" />
+       </div>
+       <div>
+          <label>&nbsp;</label>
+          <input type="submit" value="Update" class="submit" />
+       </div>
+    </fieldset>
+  </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<script>
+  addCount(1);
+  document.getElementById('count').innerHTML = getCount();
+
+  function getCount() {
+    var storage = window.localStorage;
+    if (!storage.pageLoadCount)
+      storage.pageLoadCount = 0;
+
+    return storage.pageLoadCount;
+  }
+
+  function addCount(value) {
+    window.localStorage.pageLoadCount = parseInt(getCount(), 10) + value;
+  }
+
+  ...   
+</script>

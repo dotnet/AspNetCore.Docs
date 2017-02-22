@@ -1,0 +1,1 @@
+PS C:\Temp\FixIt\Automation> C:\Temp\FixIt\Automation\New-AzureWebsiteEnv.ps1 -Name fixitdemo -SqlDatabasePassword Pas$w0rd

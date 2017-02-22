@@ -1,0 +1,18 @@
+<!-- ko if:detail() -->
+
+<div class="col-md-4">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Detail</h2>
+  </div>
+  <table class="table">
+    <tr><td>Author</td><td data-bind="text: detail().AuthorName"></td></tr>
+    <tr><td>Title</td><td data-bind="text: detail().Title"></td></tr>
+    <tr><td>Year</td><td data-bind="text: detail().Year"></td></tr>
+    <tr><td>Genre</td><td data-bind="text: detail().Genre"></td></tr>
+    <tr><td>Price</td><td data-bind="text: detail().Price"></td></tr>
+  </table>
+</div>
+</div>
+
+<!-- /ko -->

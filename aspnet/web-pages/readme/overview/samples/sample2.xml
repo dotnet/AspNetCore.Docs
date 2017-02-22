@@ -1,0 +1,6 @@
+<system.net>
+  <defaultProxy>
+    <proxy autoDetect="False" 
+       proxyaddress="[proxy URL]"/>
+  </defaultProxy>
+</system.net>

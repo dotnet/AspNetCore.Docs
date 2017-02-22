@@ -1,0 +1,18 @@
+<ItemGroup>
+   <Reference Include="Microsoft.CSharp" />
+   <Reference Include="System.Runtime.Serialization" />
+   <Reference Include="System.ServiceModel" />
+   ...
+</ItemGroup>
+<ItemGroup>
+   <Compile Include="Controllers\AccountController.cs" />
+   <Compile Include="Controllers\ContactsController.cs" />
+   <Compile Include="Controllers\HomeController.cs" />
+   ...
+</ItemGroup>
+<ItemGroup>
+   <Content Include="Content\Custom.css" />
+   <Content Include="CreateDatabase.sql" />
+   <Content Include="DropDatabase.sql" />
+   ...
+</ItemGroup>

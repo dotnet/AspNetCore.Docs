@@ -1,0 +1,17 @@
+INSERT INTO AspNetUsers(Id,UserName,PasswordHash,SecurityStamp,EmailConfirmed,
+PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,
+ApplicationId,LoweredUserName,MobileAlias,IsAnonymous,LastActivityDate,LegacyPasswordHash,
+MobilePIN,Email,LoweredEmail,PasswordQuestion,PasswordAnswer,IsApproved,IsLockedOut,CreateDate,
+LastLoginDate,LastPasswordChangedDate,LastLockoutDate,FailedPasswordAttemptCount,
+FailedPasswordAnswerAttemptWindowStart,FailedPasswordAnswerAttemptCount,FailedPasswordAttemptWindowStart,Comment)
+SELECT aspnet_Users.UserId,aspnet_Users.UserName,(aspnet_Membership.Password+'|'+CAST(aspnet_Membership.PasswordFormat as varchar)+'|'+aspnet_Membership.PasswordSalt),NewID(),
+'true',NULL,'false','true',aspnet_Membership.LastLockoutDate,'true','0',
+aspnet_Users.ApplicationId,aspnet_Users.LoweredUserName,
+aspnet_Users.MobileAlias,aspnet_Users.IsAnonymous,aspnet_Users.LastActivityDate,aspnet_Membership.Password,
+aspnet_Membership.MobilePIN,aspnet_Membership.Email,aspnet_Membership.LoweredEmail,aspnet_Membership.PasswordQuestion,aspnet_Membership.PasswordAnswer,
+aspnet_Membership.IsApproved,aspnet_Membership.IsLockedOut,aspnet_Membership.CreateDate,aspnet_Membership.LastLoginDate,aspnet_Membership.LastPasswordChangedDate,
+aspnet_Membership.LastLockoutDate,aspnet_Membership.FailedPasswordAttemptCount, aspnet_Membership.FailedPasswordAnswerAttemptWindowStart,
+aspnet_Membership.FailedPasswordAnswerAttemptCount,aspnet_Membership.FailedPasswordAttemptWindowStart,aspnet_Membership.Comment
+FROM aspnet_Users
+LEFT OUTER JOIN aspnet_Membership ON aspnet_Membership.ApplicationId = aspnet_Users.ApplicationId 
+AND aspnet_Users.UserId = aspnet_Membership.UserId;

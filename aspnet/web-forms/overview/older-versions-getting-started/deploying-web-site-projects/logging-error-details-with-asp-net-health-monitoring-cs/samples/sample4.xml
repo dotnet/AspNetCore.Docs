@@ -1,0 +1,9 @@
+<rules>
+  <clear />
+
+  <add name="All Errors To E-Mail" eventName="All Errors" provider="EmailWebEventProvider"
+  profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
+
+  <add name="All Errors To Database" eventName="All Errors" provider="SqlWebEventProvider"
+  profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
+</rules>

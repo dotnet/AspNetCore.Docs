@@ -1,0 +1,1 @@
+var myHubProxy = $.connection.contosoChatHub

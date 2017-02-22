@@ -1,0 +1,16 @@
+div.images ul li img
+{
+  padding-top: 50px;
+  padding-right: 15px;
+  width: 150px;
+  ...
+}
+
+div.images ul li img:hover
+{
+  -moz-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(-15deg);
+}
