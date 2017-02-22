@@ -45,11 +45,13 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Install the `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` NuGet packages.
 
+  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Working with Static Files](../fundamentals/static-files.md)).
 
 * Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
   [!code-json[Main](mvc/sample/WebApp1.csproj?range=22-24)]
 
+  The `PrepareForPublish` target is needed for acquiring client-side libraries via Bower. We'll talk about that later.
 
 * Open the *Startup.cs* file and change the code to match the following:
 
