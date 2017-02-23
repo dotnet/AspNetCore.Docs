@@ -18,6 +18,12 @@
             @Html.DisplayFor(model => model.CourseID)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Credits)
         </dt>
         <dd>
@@ -28,12 +34,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Department.Name)
-        </dd>
-                <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
         </dd>
     </dl>
     

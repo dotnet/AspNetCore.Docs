@@ -8,13 +8,13 @@ using ContosoUniversity.Data;
 namespace ContosoUniversity.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20160913211335_ColummFirstName")]
-    partial class ColummFirstName
+    [Migration("20170215224853_MaxLengthOnNames")]
+    partial class MaxLengthOnNames
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ContosoUniversity.Models.Course", b =>
@@ -58,11 +58,10 @@ namespace ContosoUniversity.Migrations
                     b.Property<DateTime>("EnrollmentDate");
 
                     b.Property<string>("FirstMidName")
-                        .HasColumnName("FirstName")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("LastName")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.HasKey("ID");
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
 {
-    public partial class ColumnFirstName : Migration
+    public partial class ColummFirstName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

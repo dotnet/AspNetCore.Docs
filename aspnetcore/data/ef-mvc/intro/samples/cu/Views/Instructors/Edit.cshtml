@@ -16,24 +16,23 @@
             <label asp-for="LastName" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="FirstMidName" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="FirstMidName" class="form-control" />
-                <span asp-validation-for="FirstMidName" class="text-danger" />
+                <span asp-validation-for="FirstMidName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="HireDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="HireDate" class="form-control" />
-                <span asp-validation-for="HireDate" class="text-danger" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
             </div>
         </div>
-        @* <snippet_OA>  *@
         <div class="form-group">
             <label asp-for="OfficeAssignment.Location" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -41,9 +40,6 @@
                 <span asp-validation-for="OfficeAssignment.Location" class="text-danger" />
             </div>
         </div>
-        @* </snippet_OA>  *@
-
-        @* <snippet_Courses>  *@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <table>
@@ -71,8 +67,6 @@
                 </table>
             </div>
         </div>
-        @* </snippet_Courses>  *@
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

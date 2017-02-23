@@ -7,16 +7,9 @@ namespace ContosoUniversity.Migrations
 {
     public partial class Inheritance : Migration
     {
+        #region snippet_Up
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_CourseAssignment_Instructor_InstructorID",
-                table: "CourseAssignment");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Department_Instructor_InstructorID",
-                table: "Department");
-
             migrationBuilder.DropForeignKey(
                 name: "FK_Enrollment_Student_StudentID",
                 table: "Enrollment");
@@ -40,6 +33,11 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.DropTable(
                 name: "Student");
 
+            migrationBuilder.CreateIndex(
+                 name: "IX_Enrollment_StudentID",
+                 table: "Enrollment",
+                 column: "StudentID");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Enrollment_Person_StudentID",
                 table: "Enrollment",
@@ -47,12 +45,8 @@ namespace ContosoUniversity.Migrations
                 principalTable: "Person",
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.CreateIndex(
-                 name: "IX_Enrollment_StudentID",
-                 table: "Enrollment",
-                 column: "StudentID");
         }
+        #endregion
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
