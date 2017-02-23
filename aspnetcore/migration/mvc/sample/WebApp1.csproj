@@ -12,7 +12,6 @@
     <Content Include="wwwroot\js\site.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BundlerMinifier.Core" Version="2.3.327" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
