@@ -172,7 +172,7 @@ Add the following method to the `BooksController` class.
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample13.cs)]
 
-If you request `/api/books/1/detail`, the response looks like this:
+If you request `/api/books/1/details`, the response looks like this:
 
 [!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample14.json)]
 
