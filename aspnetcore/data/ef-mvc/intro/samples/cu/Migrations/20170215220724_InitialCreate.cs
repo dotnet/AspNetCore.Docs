@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -88,7 +89,6 @@ namespace ContosoUniversity.Migrations
     }
 }
 #if Truncate
-    //#region snippet_Truncate
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -118,5 +118,4 @@ namespace ContosoUniversity.Migrations
             // Additional code not shown
         }
     }
-    //#endregion
 #endif

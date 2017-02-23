@@ -2,10 +2,10 @@
 title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10 | Microsoft Docs
 author: tdykstra
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
+keywords: ASP.NET Core, Entity Framework Core, sort, filter, paging, grouping
 ms.author: tdykstra
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: e6c1ff3c-5673-43bf-9c2d-077f6ada1f29
 ms.technology: aspnet
@@ -17,7 +17,7 @@ uid: data/ef-mvc/sort-filter-page
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.11 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial, you implemented a set of web pages for basic CRUD operations for Student entities. In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping.
 
@@ -56,9 +56,9 @@ The method uses LINQ to Entities to specify the column to sort by. The code crea
 
 ### Add column heading hyperlinks to the Student Index view
 
-Replace the code in *Views/Students/Index.cshtml*, with the following code to rearrange the column order and add column heading hyperlinks. The changed lines are highlighted.
+Replace the code in *Views/Students/Index.cshtml*, with the following code to add column heading hyperlinks. The changed lines are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22,32,38)]
+[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
 
 This code uses the information in `ViewData` properties to set up hyperlinks with the appropriate query string values.
 
@@ -87,7 +87,7 @@ You've added a `searchString` parameter to the `Index` method. The search string
 
 In *Views/Student/Index.cshtml*, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a **Search** button.
 
-[!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=10-23&highlight=5-13)]
+[!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
 This code uses the `<form>` [tag helper](https://docs.asp.net/en/latest/mvc/views/tag-helpers/intro.html) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action does not result in an update.
 
@@ -166,7 +166,7 @@ The `PaginatedList.CreateAsync` method takes a page number. The two question mar
 
 In *Views/Students/Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,30,33,61-79)]
+[!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
 
 The `@model` statement at the top of the page specifies that the view now gets a `PaginatedList<T>` object instead of a `List<T>` object.
 

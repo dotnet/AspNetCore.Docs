@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10 | Microsoft Docs
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
+keywords: ASP.NET Core, Entity Framework Core, related data, joins
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 67bd162b-bfb7-4750-9e7f-705228b5288c
 ms.technology: aspnet
@@ -17,7 +17,7 @@ uid: data/ef-mvc/update-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
 
@@ -57,17 +57,17 @@ The HttpGet `Edit` method sets the selected item, based on the ID of the departm
 
 The HttpPost methods for both `Create` and `Edit` also include code that sets the selected item when they redisplay the page after an error. This ensures that when the page is redisplayed to show the error message, whatever department was selected stays selected.
 
-### Add eager loading to Details and Delete methods
+### Add .AsNoTracking to Details and Delete methods
 
-To enable the Course Details and Delete pages to display department data, open `CoursesController.cs` and add eager loading for department data, as shown below. Also add `AsNoTracking` to optimize performance.
+To optimize performance of the Course Details and Delete pages, add `AsNoTracking` calls in the `Details` and HttpGet `Delete` methods.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=9,10&name=snippet_Details)]
+[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=10&name=snippet_Details)]
 
-[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=9,10&name=snippet_DeleteGet)]
+[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?highlight=10&name=snippet_DeleteGet)]
 
 ### Modify the Course views
 
-In *Views/Courses/Create.cshtml*, add a field for the course ID before the **Credits** field:
+In *Views/Courses/Create.cshtml*, add a field for the course ID before the **Title** field:
 
 [!code-html[Main](intro/samples/cu/Views/Courses/Create.cshtml?range=15-21)]
 
@@ -85,9 +85,9 @@ Also in *Views/Courses/Edit.cshtml*, add a course number field before the Credit
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
-In *Views/Course/Delete.cshtml*, add a course number field at the top and a department name field before the title field.
+In *Views/Courses/Delete.cshtml*, add a course number field at the top and change department ID to department name.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Details.cshtml?highlight=2,3,4,5,6,7,14,15,16,17,18,19&range=13-38)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Details.cshtml?highlight=2-7,24&range=13-38)]
 
 In *Views/Course/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
 
@@ -195,7 +195,7 @@ Next, add the code that's executed when the user clicks **Save**. Replace the `E
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=3,12,13,25&name=snippet_EditPostCourses)]
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=1-31)]
 
 The method signature is now different from the HttpGet `Edit` method, so the method name changes from `EditPost` back to `Edit`.
 
@@ -203,17 +203,17 @@ Since the view doesn't have a collection of Course entities, the model binder ca
 
 If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `Courses` navigation property with an empty collection and returns:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=3,4,5,6,7)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=3-7)]
 
 The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the view. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
 
 If the check box for a course was selected but the course isn't in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=14,15,16,17,18,19,20&name=snippet_UpdateCourses)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=14-20&name=snippet_UpdateCourses)]
 
 If the check box for a course wasn't selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=21,22,23,24,25,26,27,28,29&name=snippet_UpdateCourses)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=21-29&name=snippet_UpdateCourses)]
 
 ### Update the Instructor views
 
@@ -222,7 +222,7 @@ In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of che
 > [!NOTE] 
 > Open the file in a text editor such as Notepad to make this change.  If you use Visual Studio, line breaks will be changed in a way that breaks the code.  If that happens, fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. After editing the file in a text editor, you can open it in Visual Studio, highlight the block of new code, and press Tab twice to line up the new code with the existing code.
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=47-73)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=43-69)]
 
 This code creates an HTML table that has three columns. In each column is a check box followed by a caption that consists of the course number and title. The check boxes all have the same name ("selectedCourses"), which informs the model binder that they are to be treated as a group. The value attribute of each check box is set to the value of `CourseID`. When the page is posted, the model binder passes an array to the controller that consists of the `CourseID` values for only the check boxes which are selected.
 
@@ -234,8 +234,6 @@ Run the Instructor Index page, and click **Edit** on an instructor to see the **
 
 Change some course assignments and click Save. The changes you make are reflected on the Index page.
 
-![Instructor Index page with courses](update-related-data/_static/instructor-index-courses.png)
-
 > [!NOTE] 
 > The approach taken here to edit instructor course data works well when there is a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
 
@@ -243,7 +241,7 @@ Change some course assignments and click Save. The changes you make are reflecte
 
 In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=5-7,9,10,11,12&name=snippet_DeleteConfirmed)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=5-7,9-12&name=snippet_DeleteConfirmed)]
 
 This code makes the following changes:
 
@@ -255,7 +253,7 @@ This code makes the following changes:
 
 In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14,15,16,17,18,19,20,21,22)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22)]
 
 This code is similar to what you saw for the `Edit` methods except that initially no courses are selected. The HttpGet `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 

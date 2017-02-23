@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core MVC with EF Core - Migrations - 4 of 10 | Microsoft Docs
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application.
+keywords: ASP.NET Core, Entity Framework Core, migrations
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 81f6c9c2-a819-4f3a-97a4-4b0503b56c26
 ms.technology: aspnet
@@ -17,7 +17,7 @@ uid: data/ef-mvc/migrations
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In this tutorial, you start using the EF Core migrations feature for managing data model changes. In later tutorials, you'll add more migrations as you change the data model.
 
@@ -31,7 +31,7 @@ This method of keeping the database in sync with the data model works well until
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
 
-[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
+[!code-json[Main](intro/samples/cu/appsettings2.json?range=1-4)]
 
 This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
 
@@ -50,7 +50,7 @@ Save your changes and build the project. Then open a command window and navigate
 
   ![Open in File Explorer menu item](migrations/_static/open-in-file-explorer.png)
 
-* Hold down the Shift key and right-click the project folder in File Explorer, then choose Open command window here from the context menu.
+* Hold down the Shift key and right-click the project folder in File Explorer, then choose **Open command window here** from the context menu.
 
   ![Open command window](migrations/_static/open-command-window.png)
 
@@ -64,13 +64,13 @@ dotnet ef migrations add InitialCreate -c SchoolContext
 
 You see output like the following in the command window:
 
-```text
-C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add InitialCreate -c SchoolContext
-Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
+```console
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
 
-Done.
-
-To undo this action, use 'dotnet ef migrations remove'
+Time Elapsed 00:00:15.63
+Done. To undo this action, use 'ef migrations remove'
 ```
 
 You have to include the `-c SchoolContext` parameter to specify the database context class, because the project has two context classes (the other one is for ASP.NET Identity).
@@ -79,7 +79,7 @@ You have to include the `-c SchoolContext` parameter to specify the database con
 
 When you executed the `migrations add` command, EF generated the code that will create the database from scratch. This code is in the *Migrations* folder, in the file named *<timestamp>_InitialCreate.cs*. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets, and the `Down` method deletes them, as shown in the following example.
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20160726224716_InitialCreate.cs?range=92-120)]
+[!code-csharp[Main](intro/samples/cu/Migrations/20170215220724_InitialCreate.cs?range=92-120)]
 
 Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, Migrations calls the `Down` method.
 
@@ -106,9 +106,11 @@ dotnet ef database update -c SchoolContext
 The output from the command is similar to the `migrations add` command.
 
 ```text
-C:\ContosoUniversity\src\ContosoUniversity>dotnet ef database update -c SchoolContext
-Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
 
+Time Elapsed 00:00:17.34
 Done.
 ```
 
@@ -122,9 +124,11 @@ Run the application to verify that everything still works the same as before.
 
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
-The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. In this preview version of the tooling, the CLI commands are more stable than the PMC cmdlets, so this tutorial shows how to use the .NET Core CLI commands.
+The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
-For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
+For information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
+
+For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
 
 ## Summary
 
