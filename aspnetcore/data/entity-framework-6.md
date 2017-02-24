@@ -1,9 +1,9 @@
 ---
 title: Getting Started with ASP.NET Core and Entity Framework 6 | Microsoft Docs
-author: rick-anderson
+author: tdykstra
 description: This article shows how to use Entity Framework 6 in an ASP.NET Core application.
 keywords: ASP.NET Core, Entity Framework, EF 6
-ms.author: riande
+ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
@@ -24,13 +24,13 @@ To use Entity Framework 6, your project has to compile against the full .NET Fra
 
 The recommended way to use Entity Framework 6 in an ASP.NET Core application is to put the EF6 context and model classes in a class library project that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample [Visual Studio solution with EF6 and ASP.NET Core projects](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
 
-It's not feasible to put an EF6 context in an ASP.NET Core project because .NET Core projects in Visual Studio 2017 don't support all of the functionality that EF6 commands such as *Enable-Migrations* require.
+You can't put an EF6 context in an ASP.NET Core project because .NET Core projects don't support all of the functionality that EF6 commands such as *Enable-Migrations* require.
 
 Regardless of project type in which you locate your EF6 context, only EF6 command-line tools work with an EF6 context. For example, `Scaffold-DbContext` is only available in Entity Framework Core. If you need to do reverse engineering of a database into an EF6 model, see [Code First to an Existing Database](https://msdn.microsoft.com/en-us/jj200620).
 
 ## Reference full framework and EF6 in the ASP.NET Core project
 
-Your ASP.NET Core project has to reference the full .NET framework and EF6. For example, the *.csproj* file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
+Your ASP.NET Core project needs to reference the full .NET framework and EF6. For example, the *.csproj* file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]
 
