@@ -62,7 +62,6 @@ Tap "Yes" to add the build and debug assets.
 
 ![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
-
 Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` in Visual Studio Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
@@ -172,5 +171,4 @@ Looking at the Deployment Details in the Azure Portal, you can see the logs and 
 ## Additional resources
 
 * [Visual Studio Code](https://code.visualstudio.com)
-* [Building Projects with Yeoman](../client-side/yeoman.md)
 * [Fundamentals](../fundamentals/index.md)
