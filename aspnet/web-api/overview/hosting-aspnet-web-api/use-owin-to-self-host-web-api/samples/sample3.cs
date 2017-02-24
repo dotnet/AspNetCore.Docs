@@ -20,9 +20,8 @@ namespace OwinSelfhostSample
 
                 Console.WriteLine(response); 
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result); 
+                Console.ReadLine(); 
             } 
-
-            Console.ReadLine(); 
         } 
     } 
  }
