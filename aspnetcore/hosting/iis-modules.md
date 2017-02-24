@@ -5,7 +5,7 @@ description: Reference document describing active and inactive IIS modules for A
 keywords: ASP.NET Core, iis, module, reverse-proxy
 ms.author: riande
 manager: wpickett
-ms.date: 02/11/2017
+ms.date: 02/24/2017
 ms.topic: article
 ms.assetid: 492b3a7e-04c5-461b-b96a-38ecee5c64bc
 ms.technology: aspnet
@@ -49,7 +49,6 @@ Module | .NET Core Active | ASP.NET Core Option
 **Static Compression**<br>`StaticCompressionModule` | No | [Response Compression Middleware](xref:performance/response-compression)
 **Static Content**<br>`StaticFileModule` | No | [Static File Middleware](xref:fundamentals/static-files)
 **Token Caching**<br>`TokenCacheModule` | Yes | 
-**Custom Tracing**<br>`TracingModule` | ? | https://github.com/aspnet/AspNetCoreModule#65
 **URI Caching**<br>`UriCacheModule` | Yes | 
 **URL Authorization**<br>`UrlAuthorizationModule` | Yes | [ASP.NET Core Identity](xref:security/authentication/identity)
 **Windows Authentication**<br>`WindowsAuthenticationModule` | Yes | 
