@@ -14,16 +14,15 @@ uid: client-side/yeoman
 ---
 # Building projects with Yeoman
 
-[Yeoman](http://yeoman.io/) is a project scaffolding system for creating many kinds of applications. Similar to Visual Studio, the Yeoman generator for ASP.NET Core contains a variety of project templates for starting a new web, MVC, or console application.
+[Yeoman](http://yeoman.io/) is a project scaffolding system for creating many kinds of applications. The Yeoman generator for ASP.NET Core contains a variety of project templates for starting a new web, MVC, or console application.
 
 ## Install Node.js, npm, and Yeoman
 
 ### Prerequisites
 
-Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/), the installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/).
+Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/). The installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Bower is also required for installing UI components like stylesheets.
 
-To install the Yeoman generator run the following command. Bower is also installed for accessing UI components like stylesheets.
-To install Yeoman run the following command:
+To install Yeoman and Bower run the following command:
 
 ```console
 npm install -g yo bower
