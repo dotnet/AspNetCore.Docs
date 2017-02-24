@@ -22,9 +22,9 @@ To setup your development machine download and install [.NET Core](https://micro
 
 ## Scaffolding applications using dotnet new
 
-We will be using `dotnet new` to generate a new web application using the "Empty Web Template". Create a working directory for your project called _firstmacapp_ and change the directory to the newly created folder.
+We will be using `dotnet new` to generate a new web application using the "Empty Web Template". Create a working directory for your project called *firstmacapp* . cd to *firstmacapp*.
 
-Start Visual Studio Code and open the _firstmacapp_ folder. Press Ctrl + '`' (the back-quote character) to open an embedded terminal in VS Code. (Alternatively, you can use a separate terminal window, if you prefer).
+Start Visual Studio Code and open the *firstmacapp* folder. Press Ctrl + '`' (the back-quote character) to open an embedded terminal in VS Code. Alternatively, use a separate terminal window.
 
 Run the `dotnet new` command to create a new web application, passing the `mvc` parameter as the template type.
 
@@ -42,19 +42,19 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 * Startup.cs : [Startup Class](../fundamentals/startup.md) - class configures the request pipeline that handles all requests made to the application.
 * Program.cs : [Program Class](../fundamentals/) that contains the Main entry point of the application.
 * firstmacapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
-* appsettings.json / appsettings.Development.json : Environment base app settings configuration file. [See Configuration](../fundamentals/configuration).
+* appsettings.json / appsettings.Development.json : Environment base app settings configuration file. [See Configuration](xref:fundamentals/configuration).
 * bower.json : Bower package dependencies for the project.
 * .bowerrc : Bower configuration file which defines where to install the components when Bower downloads the assets.
 * bundleconfig.json : configuration files for bundling and minifying front-end JavaScript and CSS assets.
-* Views : Contains the Razor views for the Controllers as well as Shared Views. Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
-* Controllers : Contains MVC Controllers, initially _HomeController.cs_. Controllers are Classes that handle browser requests, retrieve model data, and then specify view templates that return a response to the browser.
+* Views : Contains the Razor views. Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
+* Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
 * wwwroot : Web application root folder.
 
-For more on the MVC pattern see [What is the MVC pattern?](../mvc/overview).
+For more on the MVC pattern see [What is the MVC pattern?](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
-Select the _Program.cs_ file and Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
+Select the _Program.cs_ file and Visual Studio Code will prompt to restore the needed project dependencies and add build and debug dependencies.
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
