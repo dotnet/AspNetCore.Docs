@@ -515,31 +515,7 @@ You can also add it to your Visual Studio project by adding it to the "dependenc
 }
 ```
 
-Then, to get the stylesheet added to the wwwroot folder, modify *gulpfile.js* as follows:
-
-```javascript
-gulp.task("copy", ["clean"], function () {
-  var bower = {
-    "angular": "angular/angular*.{js,map}",
-    "bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
-    "bootstrap-touch-carousel": "bootstrap-touch-carousel/dist/**/*.{js,css}",
-    "hammer.js": "hammer.js/hammer*.{js,map}",
-    "jquery": "jquery/jquery*.{js,map}",
-    "jquery-validation": "jquery-validation/jquery.validate.js",
-    "jquery-validation-unobtrusive": "jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-    "font-awesome": "Font-Awesome/**/*.{css,otf,eot,svg,ttf,woff,wof2}"
-  };
-
-  for (var destinationDir in bower) {
-    gulp.src(paths.bower + bower[destinationDir])
-      .pipe(gulp.dest(paths.lib + destinationDir));
-  }
-});
-```
-
-Once this is in place (and saved), running the 'copy' task in **Task Runner Explorer** copies the Font Awesome fonts and css files to `/lib/font-awesome`.
-
-Once you have a reference to it on a page, you can add icons to your application by simply applying Font Awesome classes, typically prefixed with "fa-", to your inline HTML elements (such as `<span>` or `<i>`).  As a very simple example, you can add icons to simple lists and menus using code like this:
+Once you have a reference to Font Awesome on a page, you can add icons to your application by applying Font Awesome classes, typically prefixed with "fa-", to your inline HTML elements (such as `<span>` or `<i>`).  For example, you can add icons to simple lists and menus using code like this:
 
 ```html
 <!DOCTYPE html>
