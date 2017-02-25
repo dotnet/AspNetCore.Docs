@@ -20,43 +20,6 @@ In this section you'll add some classes for managing movies in a database. These
 
 You’ll use a .NET Framework data-access technology known as the [Entity Framework Core](http://ef.readthedocs.org/) to define and work with these data model classes. Entity Framework Core (often referred to as **EF** Core) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development.
 
-## Create a new project with individual user accounts
-
-In the current version of the ASP.NET Core MVC tools for Visual Studio, scaffolding a model is only supported when you create a new project with individual user accounts. We hope to have this fixed in the next tooling update. Until that's fixed, you'll need to create a new project with the same name. Because the project has the same name, you'll need to create it in another directory.
-
-From the Visual Studio **Start** page, tap **New Project**.
-
-
-Alternatively, you can use the menus to create a new project. Tap **File > New > Project**.
-
-![File menu: New Project](start-mvc/_static/alt_new_project.png)
-
-Complete the **New Project** dialog:
-
-* In the left pane, tap **Web**
-
-* In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
-
-* Change the location to a different directory from the previous project you created or you'll get an error
-
-* Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
-
-* Tap **OK**
-
-![New Project dialog](start-mvc/_static/new_project2.png)
-
-> [!WARNING]
-> You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
-
-In the **New ASP.NET Core Web Application - MvcMovie** dialog:
-
-* tap **Web Application**
-
-* tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK**
-
-![New ASP.NET Web Application dialog with Web Application project template selected from ASP.NET Core Templates panel](start-mvc/_static/p4.png)
-
-![Change Authentication dialog with Individual User Accounts selected](adding-model/_static/indiv.png)
 
 Follow the instructions in [Change the title and menu link in the layout file](adding-view.md#change-title-link-reference-label) so you can tap the **MvcMovie** link to invoke the Movie controller. We'll scaffold the movies controller in this tutorial.
 

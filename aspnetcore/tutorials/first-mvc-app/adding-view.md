@@ -1,11 +1,11 @@
 ---
 title: Adding a view | Microsoft Docs
 author: rick-anderson
-description: 
+description: Adding a view to a simple ASP.NET Core MVC app
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/04/2017
 ms.topic: article
 ms.assetid: 6942432b-bac0-41e6-9ad7-cad313abf4db
 ms.technology: aspnet
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you're going to modify the `HelloWorldController` class to use Razor view template files to cleanly encapsulate the process of generating HTML responses to a client.
 
-You'll create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension, and provide an elegant way to create HTML output using C#. Razor seamlessly blends C# and HTML, minimizing the number of characters and keystrokes required when writing a view template, and enables a fast, fluid coding workflow.
+You'll create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension. They provide an elegant way to create HTML output using C#.
 
 Currently the `Index` method returns a string with a message that is hard-coded in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
@@ -44,7 +44,7 @@ The `Index` method above returns a View object. It uses a view template to gener
 
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
-[!code-HTML[Main](start-mvc/sample/src/MvcMovie/Views/HelloWorld/Index.cshtml)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/HelloWorld/Index.cshtml)]
 
 Navigate to `http://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much work; it simply ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file to use, MVC defaulted to using the *Index.cshtml* view file in the */Views/HelloWorld* folder. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
@@ -54,11 +54,11 @@ If your browser window is small (for example on a mobile device), you might need
 
 ![Browser window highlighting the Bootstrap navigation button](adding-view/_static/1.png)
 
-## Changing views and layout pages
+### Changing views and layout pages
 
 Tap on the menu links (**MvcMovie**, **Home**, **About**). Each page shows the same menu layout. The menu layout is implemented in the *Views/Shared/_Layout.cshtml* file. Open the *Views/Shared/_Layout.cshtml* file.
 
-[Layout](../../mvc/views/layout.md) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, "wrapped" in the layout page. For example, if you select the **About** link, the **Views/Home/About.cshtml** view is rendered inside the `RenderBody` method.
+[Layout](xref:mvc/views/layout.md) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, "wrapped" in the layout page. For example, if you select the **About** link, the **Views/Home/About.cshtml** view is rendered inside the `RenderBody` method.
 
 <a name=change-title-link-reference-label></a>
 
@@ -66,7 +66,7 @@ Tap on the menu links (**MvcMovie**, **Home**, **About**). Each page shows the s
 
 Change the contents of the title element. Change the anchor text in the layout template to "Movie App" and the controller from `Home` to `Movies` as highlighted below:
 
-[!code-html[Main](start-mvc/sample/src/MvcMovie/Views/Shared/_Layout.html?highlight=6,29)]
+[!code-html[Main](start-mvc/sample/MvcMovie/Views/Shared/_Layout.html?highlight=7,31)]
 
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
