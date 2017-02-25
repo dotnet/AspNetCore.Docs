@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>dnx451</TargetFramework>
+    <AssemblyName>WebSMS</AssemblyName>
+    <PackageId>WebSMS</PackageId>
+    <UserSecretsId>aspnet5-WebSMS-776ec804-8a8d-4075-8dd6-edd717970496</UserSecretsId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**\*;node_modules;bower_components" />
+    <EmbeddedResource Remove="wwwroot\**\*;node_modules;bower_components" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework.Commands" Version="7.0.0-beta8" />
+    <PackageReference Include="EntityFramework.SqlServer" Version="7.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.Cookies" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.Facebook" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.Google" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.MicrosoftAccount" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Authentication.Twitter" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Diagnostics" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Diagnostics.Entity" Version="7.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="3.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.IISPlatformHandler" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="6.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Mvc.TagHelpers" Version="6.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Server.Kestrel" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.StaticFiles" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.AspNet.Tooling.Razor" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Configuration.Abstractions" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Configuration.Json" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Configuration.UserSecrets" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Logging" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Logging.Console" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.Logging.Debug" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.Framework.SecretManager" Version="1.0.0-beta7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.1" />
+  </ItemGroup>
+
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+    <Exec Command="npm install" />
+    <Exec Command="bower install" />
+    <Exec Command="gulp clean" />
+    <Exec Command="gulp min" />
+  </Target>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'dnx451' ">
+    <PackageReference Include="Twilio" Version="4.1.0" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>
