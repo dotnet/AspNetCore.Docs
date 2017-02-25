@@ -26,7 +26,6 @@ In the current version of the ASP.NET Core MVC tools for Visual Studio, scaffold
 
 From the Visual Studio **Start** page, tap **New Project**.
 
-![Visual Studio Start Page](start-mvc/_static/new_project.png)
 
 Alternatively, you can use the menus to create a new project. Tap **File > New > Project**.
 
