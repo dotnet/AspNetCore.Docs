@@ -138,7 +138,7 @@ This tutorial shows how to add email notification through [SendGrid](https://sen
 >SendGrid.NetCore package is a prerelease version , to install it is necessary to use -Pre option on Install-Package.
 
 * Follow the instructions [Create a SendGrid account](https://azure.microsoft.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/#create-a-sendgrid-account) to register for a free SendGrid account.
-
+* Using Classic Microsoft Azure Portal and Blade Microsoft Azure Portal for account creation requires your SendGridKey to be set to Password value, not API KEY for the services.
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid
 
 [!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Services/MessageServices.cs?range=13-53)]
