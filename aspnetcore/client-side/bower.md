@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bower
 ---
-# Manage client-side packages with Bower
+# Manage client-side packages with Bower in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](http://blog.falafel.com/author/noel-rice/), and [Scott Addie](https://scottaddie.com) 
 
