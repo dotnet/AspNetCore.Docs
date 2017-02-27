@@ -11,6 +11,7 @@ ms.assetid: 25595059-4fac-4785-8152-f88590e3169b
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/working-with-forms
+ms.custom: H1Hack27Feb2017
 ---
 # Introduction to using tag helpers in forms in ASP.NET Core
 
