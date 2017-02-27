@@ -1,8 +1,8 @@
 ---
-title: Replacing \<machineKey\> in ASP.NET | Microsoft Docs
+title: Replacing `<machineKey>` in ASP.NET | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Replacing `<machineKey>` in ASP.NET
+keywords: ASP.NET Core, security, `<machineKey>` 
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
-# Replacing \<machineKey\> in ASP.NET
+# Replacing `<machineKey>` in ASP.NET
 
 <a name=compatibility-replacing-machinekey></a>
 
-The implementation of the \<machineKey\> element in ASP.NET [is replaceable](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx). This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
+The implementation of the `<machineKey>` element in ASP.NET [is replaceable](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx). This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
 
 ## Package installation
 
@@ -25,14 +25,14 @@ The implementation of the \<machineKey\> element in ASP.NET [is replaceable](htt
 
 To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb. This will instantiate the data protection system using the [default configuration](../configuration/default-settings.md#data-protection-default-settings) settings.
 
-When you install the package, it inserts a line into Web.config that tells ASP.NET to use it for [most cryptographic operations](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx), including forms authentication, view state, and calls to MachineKey.Protect. The line that's inserted reads as follows.
+When you install the package, it inserts a line into *Web.config* that tells ASP.NET to use it for [most cryptographic operations](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx), including forms authentication, view state, and calls to MachineKey.Protect. The line that's inserted reads as follows.
 
 ```xml
 <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
 ```
 
 >[!TIP]
-> You can tell if the new data protection system is active by inspecting fields like __VIEWSTATE, which should begin with "CfDJ8" as in the below example. "CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.
+> You can tell if the new data protection system is active by inspecting fields like `__VIEWSTATE`, which should begin with "CfDJ8" as in the example below. "CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.
 
 ```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk..." />
@@ -67,9 +67,9 @@ namespace DataProtectionDemo
 ```
 
 >[!TIP]
-> You can also use <machineKey applicationName="my-app" ... /> in place of an explicit call to SetApplicationName. This is a convenience mechanism to avoid forcing the developer to create a DataProtectionStartup-derived type if all they wanted to configure was setting the application name.
+> You can also use `<machineKey applicationName="my-app" ... />` in place of an explicit call to SetApplicationName. This is a convenience mechanism to avoid forcing the developer to create a DataProtectionStartup-derived type if all they wanted to configure was setting the application name.
 
-To enable this custom configuration, go back to Web.config and look for the <appSettings> element that the package install added to the config file. It will look like the below.
+To enable this custom configuration, go back to Web.config and look for the `<appSettings>` element that the package install added to the config file. It will look like the following markup:
 
 ```xml
 <appSettings>
