@@ -1,5 +1,5 @@
 ---
-title: Formatting Response Data | Microsoft Docs
+title: Formatting response data in ASP.NET Core MVC | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/formatting
 ---
-# Formatting Response Data
+# Introduction to formatting response data in ASP.NET Core MVC
 
 By [Steve Smith](http://ardalis.com)
 
