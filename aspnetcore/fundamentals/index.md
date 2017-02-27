@@ -1,5 +1,5 @@
 ---
-title: Fundamentals | Microsoft Docs
+title: ASP.NET Core fundamentals | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 ---
 
-# Fundamentals
+# ASP.NET Core fundamentals overview
 
 An ASP.NET Core app is simply a console app that creates a web server in its `Main` method:
 
