@@ -11,8 +11,9 @@ ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/angular
+ms.custom: H1Hack27Feb2017
 ---
-# Using AngularJS for Single Page Applications (SPAs)
+# Using AngularJS for Single Page Applications (SPAs) with ASP.NET Core
 
 
 By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott Addie](https://scottaddie.com)

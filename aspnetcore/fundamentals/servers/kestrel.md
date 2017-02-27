@@ -11,8 +11,9 @@ ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/servers/kestrel
+ms.custom: H1Hack27Feb2017
 ---
-# Kestrel web server implementation in ASP.NET Core
+# Introduction to Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
