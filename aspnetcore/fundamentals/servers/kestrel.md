@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/servers/kestrel
 ---
-# Kestrel web server implementation in ASP.NET Core
+# Introduction to Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
