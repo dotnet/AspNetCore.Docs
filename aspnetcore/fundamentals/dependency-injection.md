@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/dependency-injection
 ---
-# Dependency Injection in ASP.NET Core
+# Introduction to Dependency Injection in ASP.NET Core
 
 <a name=fundamentals-dependency-injection></a>
 
