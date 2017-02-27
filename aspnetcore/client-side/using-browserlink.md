@@ -11,6 +11,7 @@ ms.assetid: 11813d4c-3f8a-445a-b23b-e4a57d001abc
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/using-browserlink
+ms.custom: H1Hack27Feb2017
 ---
 # Introduction to Browser Link in ASP.NET Core 
 
