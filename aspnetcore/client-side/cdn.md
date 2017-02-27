@@ -1,7 +1,7 @@
 ---
 title: 🔧 Working with a Content Delivery Network (CDN) | Microsoft Docs
 author: rick-anderson
-description: Leearn how to work with a Content Delivery Network (CDN) in ASP.NET Core.
+description: Learn how to work with a Content Delivery Network (CDN) in ASP.NET Core.
 keywords: ASP.NET Core, CDN
 ms.author: riande
 manager: wpickett
