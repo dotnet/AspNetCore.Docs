@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/owin
 ---
-# Open Web Interface for .NET (OWIN)
+# Introduction to Open Web Interface for .NET (OWIN)
 
 By [Steve Smith](http://ardalis.com) and  [Rick Anderson](https://twitter.com/RickAndMSFT)
 
