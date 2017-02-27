@@ -11,6 +11,7 @@ ms.assetid: 4661af33-34c5-4d71-93a0-8c7632f43580
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/servers/aspnet-core-module
+ms.custom: H1Hack27Feb2017
 ---
 # Introduction to ASP.NET Core Module
 
