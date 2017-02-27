@@ -1,5 +1,5 @@
 ---
-title: Authoring Tag Helpers | Microsoft Docs
+title: Authoring Tag Helpers in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/authoring
 ---
-# Authoring Tag Helpers
+# Introduction to authoring Tag Helpers in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
