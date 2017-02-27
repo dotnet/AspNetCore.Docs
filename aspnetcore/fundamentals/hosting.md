@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/hosting
 ---
-# Hosting in ASP.NET Core
+# Introduction to hosting in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
