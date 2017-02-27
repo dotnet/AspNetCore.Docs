@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/angular
 ---
-# Using AngularJS for Single Page Applications (SPAs)
+# Using AngularJS for Single Page Applications (SPAs) with ASP.NET Core
 
 
 By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott Addie](https://scottaddie.com)
