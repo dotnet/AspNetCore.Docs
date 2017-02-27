@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/static-files
 ---
-# Working with static files in ASP.NET Core
+# Introduction to working with static files in ASP.NET Core
 
 <a name=fundamentals-static-files></a>
 
