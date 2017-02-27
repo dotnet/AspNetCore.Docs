@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/using-gulp
 ---
-# Using Gulp in ASP.NET Core 
+# Introduction to using Gulp in ASP.NET Core 
 
 <a name=using-gulp></a>
 
