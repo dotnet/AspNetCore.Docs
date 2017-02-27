@@ -1,5 +1,5 @@
 ---
-title: In memory caching | Microsoft Docs
+title: In-memory caching in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: Shows how to cache data in-memory.
 keywords: ASP.NET Core, cache, in-memory, performance
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/memory
 ---
-# In memory caching
+# Introduction to in-memory caching in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](http://ardalis.com)
 
