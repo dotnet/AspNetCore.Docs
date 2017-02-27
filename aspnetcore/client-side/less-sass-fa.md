@@ -1,5 +1,5 @@
 ---
-title: Styling applications with Less, Sass, and Font Awesome | Microsoft Docs
+title: Less, Sass, and Font Awesome in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: Learn how to use Less, Sass, and Font Awesome in ASP.NET Core applications.
 keywords: ASP.NET Core, Less, Sass, Font Awesome, preprocessors
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/less-sass-fa
 ---
-# Styling applications with Less, Sass, and Font Awesome
+# Introduction to styling applications with Less, Sass, and Font Awesome in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 

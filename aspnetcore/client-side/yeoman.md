@@ -1,5 +1,5 @@
 ---
-title: Building projects with Yeoman | Microsoft Docs
+title: Building projects with Yeoman in ASP.NET Core | Microsoft Docs
 author: spboyer
 description: This article walks through building an ASP.NET Core web application using the Yeoman generator on macOS.
 keywords: ASP.NET Core, Yeoman, Cross Platform, yo aspnet
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: client-side/yeoman
 ---
-# Building projects with Yeoman
+# Introduction to building projects with Yeoman in ASP.NET Core
 
 [Yeoman](http://yeoman.io/) is a project scaffolding system for creating many kinds of applications. The Yeoman generator for ASP.NET Core contains a variety of project templates for starting a new web, MVC, or console application.
 
