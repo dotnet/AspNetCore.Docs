@@ -1,5 +1,5 @@
 ---
-title: Manage client-side packages with Bower | Microsoft Docs
+title: Using Bower in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: Manging client-side packages with Bower
 keywords: ASP.NET Core, bower
