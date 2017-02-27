@@ -11,6 +11,7 @@ ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/app-state
+ms.custom: H1Hack27Feb2017
 ---
 
 # Introduction to session and application state in ASP.NET Core
