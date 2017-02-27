@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/logging
 ---
-# Logging in ASP.NET Core
+# Introduction to Logging in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra)
 
