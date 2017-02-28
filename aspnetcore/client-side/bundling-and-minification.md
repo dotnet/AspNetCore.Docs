@@ -1,11 +1,11 @@
 ---
 title: Bundling and minification in ASP.NET Core | Microsoft Docs
-author: rick-anderson
+author: spboyer
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, Bundling and Minification, CSS, JavaScript, Minify, BuildBundlerMinifier
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/28/2017
 ms.topic: article
 ms.assetid: d54230f9-8e5f-4861-a29c-1d3a14e0b0d9
 ms.technology: aspnet
@@ -13,11 +13,6 @@ ms.prod: aspnet-core
 uid: client-side/bundling-and-minification
 ---
 # Bundling and minification in ASP.NET Core
-
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Erik Reitan](https://github.com/Erikre), and [Daniel Roth](https://github.com/danroth27)
 
 Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads. Used together, bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files).
 
