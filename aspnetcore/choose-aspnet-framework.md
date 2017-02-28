@@ -30,7 +30,7 @@ ASP.NET is a mature web platform that provides all the services that you require
 | ASP.NET Core | ASP.NET |
 |---|---|
 |Build for Windows, Mac, or Linux|Build for Windows|
-|Use [MVC](mvc/overview.md), or [Web API](tutorials/first-web-api.md)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
+|Use [MVC](mvc/overview.md), or [Web API](tutorials/first-web-api.md)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/en-us/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
 |Develop with Visual Studio or Visual Studio Code using C#|Develop with Visual Studio using C#, VB or F#|
 |New platform|Mature platform|
