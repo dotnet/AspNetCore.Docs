@@ -16,6 +16,7 @@ ASP.NET MVC Guidance
 ====================
 - [Getting Started](getting-started/index.md)
 - [UI, Layouts, and Themes](views/index.md)
+- [Security, Authentication, and Authorization](security/index.md)
 - [Deployment](deployment/index.md)
 - [Performance](performance/index.md)
 - [Internationalization and Advanced Topics](advanced/index.md)
