@@ -206,7 +206,8 @@ Pass a list of URLs to the `Start` method and it will listen on the URLs specifi
 var urls = new List<string>() {
     "http://*:5000",
     "http://localhost:5001"
-    };
+};
+
 var host = new WebHostBuilder()
     .UseKestrel()
     .UseStartup<Startup>()
