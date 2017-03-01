@@ -169,7 +169,7 @@ footer
 
 Add the relative path to `bundleconfig.json`.
 
-[!code-json[bundleconfig.json](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig.json?highlight=9&range=4-11))]
+[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig.json?highlight=7&range=4-11))]
 
 > [!NOTE]
 > Alternatively, the globbing pattern could be used - `"inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]` which gets all css files and excludes the minified file pattern.
@@ -203,7 +203,7 @@ Right click the `bundleconfig.json` and select **Convert to Gulp...**.
 
 The `gulpfile.js` produced reads the `bundlconfig.json` file for the configuration, therefore it can continue to be used for the inputs/outputs and settings.
 
-[!code-json[gulpfile.js](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js))]
+[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
 
 This will generate the `gulpfile.js` and install the necessary npm packages. To enable Gulp when the project builds add the following to the *.csproj file.
 
