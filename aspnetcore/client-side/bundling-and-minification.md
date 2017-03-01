@@ -169,7 +169,7 @@ footer
 
 Add the relative path to `bundleconfig.json`.
 
-[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig.json?highlight=7&range=4-11))]
+[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig2.json?highlight=6&range=2-8))]
 
 > [!NOTE]
 > Alternatively, the globbing pattern could be used - `"inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]` which gets all css files and excludes the minified file pattern.
@@ -197,7 +197,7 @@ If your app bundling and minification workflow requires additional processes suc
 > [!NOTE]
 > Conversion option only available in Visual Studio 2015 or 2017.
 
-Right click the `bundleconfig.json` and select **Convert to Gulp...**.
+Right click the `bundleconfig.json` and select **Convert to Gulp...**. This will generate the `gulpfile.js` and install the necessary npm packages.
 
 ![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
 
@@ -205,7 +205,7 @@ The `gulpfile.js` produced reads the `bundlconfig.json` file for the configurati
 
 [!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
 
-This will generate the `gulpfile.js` and install the necessary npm packages. To enable Gulp when the project builds add the following to the *.csproj file.
+To enable Gulp when the project builds, add the following to the *.csproj file.
 
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
