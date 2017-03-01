@@ -132,10 +132,6 @@ In *Models/Student.cs*, replace the code you added earlier with the following co
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,25-31)]
 
-### The Table attribute
-
-As you saw in the first tutorial, by default tables are named after the `DbSet` property name.  The property name is for a collection, so it is typically plural ("Students"), but many developers and DBAs prefer to use the singular form ("Student") for table names. This attribute specifies the name that EF will use for the table in the database that stores Student entities.
-
 ### The Required attribute
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute is not needed for non-nullable types such as value types (DateTime, int, double, float, etc.). Types that can't be null are automatically treated as required fields.
@@ -189,7 +185,7 @@ The reason why these are `CourseAssignment` entities is explained below in the s
 Contoso University business rules state that an instructor can only have at most one office, so the `OfficeAssignment` property holds a single OfficeAssignment entity (which may be null if no office is assigned).
 
 ```csharp
-public virtual OfficeAssignment OfficeAssignment { get; set; }
+public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
 ## Create the OfficeAssignment entity
@@ -206,17 +202,12 @@ There's a one-to-zero-or-one relationship  between the Instructor and the Office
 
 ```csharp
 [Key]
-[ForeignKey("Instructor")]
 public int InstructorID { get; set; }
 ```
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something other than classnameID or ID.
 
 By default EF treats the key as non-database-generated because the column is for an identifying relationship.
-
-### The ForeignKey attribute
-
-When there is a one-to-zero-or-one relationship or a one-to-one relationship between two entities (such as between OfficeAssignment and Instructor), EF might not be able to work out which end of the relationship is the principal and which end is dependent.  One-to-one relationships have a reference navigation property in each class to the other class. The `ForeignKey` attribute can be applied to the dependent class to establish the relationship.
 
 ### The Instructor navigation property
 
@@ -301,7 +292,7 @@ A department may or may not have an administrator, and an administrator is alway
 
 ```csharp
 public int? InstructorID { get; set; }
-public virtual Instructor Administrator { get; set; }
+public Instructor Administrator { get; set; }
 ```
 
 A department may have many courses, so there's a Courses navigation property:
