@@ -169,7 +169,7 @@ footer
 
 Add the relative path to `bundleconfig.json`.
 
-[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig2.json?highlight=6&range=2-8))]
+[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig2.json))]
 
 > [!NOTE]
 > Alternatively, the globbing pattern could be used - `"inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]` which gets all css files and excludes the minified file pattern.
