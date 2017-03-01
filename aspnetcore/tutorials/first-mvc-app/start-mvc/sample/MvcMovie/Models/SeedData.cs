@@ -1,10 +1,9 @@
-﻿//#define First
+﻿#define First
 #if First
 // Seed without Rating
 #region snippet_1 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcMovie.Data;
 using System;
 using System.Linq;
 
@@ -14,8 +13,8 @@ namespace MvcMovie.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new ApplicationDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
+            using (var context = new MvcMovieContext(
+                serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>()))
             {
                 // Look for any movies.
                 if (context.Movie.Any())

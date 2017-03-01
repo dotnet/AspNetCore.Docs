@@ -58,6 +58,7 @@ namespace MvcMovie
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            #region snippet_seed
             app.UseStaticFiles();
             #region snippet_1
             app.UseMvc(routes =>
@@ -67,6 +68,9 @@ namespace MvcMovie
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             #endregion
+
+            SeedData.Initialize(app.ApplicationServices);
         }
     }
 }
+#endregion
