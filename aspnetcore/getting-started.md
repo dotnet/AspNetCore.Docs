@@ -21,7 +21,7 @@ uid: getting-started
     ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
-    dotnet new web
+    dotnet new -t web
     ```
     Note: This command requires `.NET Core SDK 1.0.0 - RC4` or later.
 
