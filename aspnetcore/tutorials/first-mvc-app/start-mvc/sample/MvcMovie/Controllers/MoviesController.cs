@@ -1,11 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+//#define snippet_1stSearch
+//#define snippet_SearchID
+#define snippet_SearchGenre
+
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MvcMovie.Controllers
 {
@@ -16,12 +20,6 @@ namespace MvcMovie.Controllers
         public MoviesController(MvcMovieContext context)
         {
             _context = context;
-        }
-
-        // GET: Movies
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Movie.ToListAsync());
         }
 
         #region snippet_details
@@ -150,5 +148,106 @@ namespace MvcMovie.Controllers
         {
             return _context.Movie.Any(e => e.ID == id);
         }
+#if snippet_1stSearch
+        // First Search
+        #region snippet_1stSearch
+
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #endregion
+        // End first Search
+#endif
+
+#if snippet_SearchID
+        // Search ID 
+        #region snippet_SearchID
+        public async Task<IActionResult> Index(string id)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+        #region snippet_SearchNull
+            if (!String.IsNullOrEmpty(id))
+            {
+                movies = movies.Where(s => s.Title.Contains(id));
+            }
+        #endregion
+
+            return View(await movies.ToListAsync());
+        }
+        #endregion
+        // End search ID
+#endif
+
+#if SearchPost
+        // Search Post
+        #region snippet_SearchPost
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        #endregion
+        // End SP
+#endif
+
+#if snippet_SearchGenre
+        // Search by genre.
+        #region snippet_SearchGenre
+        // Requires using Microsoft.AspNetCore.Mvc.Rendering;
+        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        {
+            #region snippet_LINQ
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.Movie
+                                            orderby m.Genre
+                                            select m.Genre;
+            #endregion
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            var movieGenreVM = new MovieGenreViewModel();
+            movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            movieGenreVM.movies = await movies.ToListAsync();
+
+            return View(movieGenreVM);
+        }
+        #endregion
+#endif
     }
 }
