@@ -20,7 +20,7 @@ In this section you'll add search capability to the `Index` action method that l
 
 Update the `Index` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
 
@@ -149,11 +149,11 @@ The `SelectList` of genres is created by projecting the distinct genres (we don'
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
    ```
 
-## Adding search by genre to the Index view
+### Adding search by genre to the Index view
 
 Update `Index.cshtml` as follows:
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,27,41)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,28,31,34,37,40,46)]
 
 Test the app by searching by genre, by movie title, and by both.
 

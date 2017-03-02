@@ -115,9 +115,12 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        #region snippet_delete
+        #region snippet_delete2
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            #endregion
             if (id == null)
             {
                 return NotFound();
@@ -133,16 +136,19 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        #region snippet_delete3
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            #endregion
             var movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
             _context.Movie.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
         private bool MovieExists(int id)
         {
@@ -151,8 +157,6 @@ namespace MvcMovie.Controllers
 #if snippet_1stSearch
         // First Search
         #region snippet_1stSearch
-
-
         public async Task<IActionResult> Index(string searchString)
         {
             var movies = from m in _context.Movie
@@ -165,19 +169,6 @@ namespace MvcMovie.Controllers
 
             return View(await movies.ToListAsync());
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
         // End first Search
 #endif
