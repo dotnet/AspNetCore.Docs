@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: security/authentication/identity
 ---
 # Introduction to Identity

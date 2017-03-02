@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4be1b12c-b74e-44ff-826b-99ce86e8d464
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: mvc/views/partial
 ---
 # Partial Views

@@ -8,7 +8,7 @@ manager: wpickett
 ms.date: 01/07/2017
 ms.topic: article
 ms.assetid: f9267eab-2762-42ac-1638-4a25d2c9d67c
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2e4
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 ---
 # Client-Side development in ASP.NET Core
 

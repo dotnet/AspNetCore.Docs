@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4eb7e52f-5665-41a4-a3e3-e348d07337f2
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: mvc/controllers/application-model
 ---
 # Working with the Application Model

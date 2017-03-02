@@ -9,7 +9,7 @@ ms.date: 10/27/2016
 ms.topic: article
 ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: fundamentals/servers/kestrel
 ms.custom: H1Hack27Feb2017
 ---

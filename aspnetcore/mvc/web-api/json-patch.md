@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 8fc40c28-7935-4611-8b7a-b4b952a46d90
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: mvc/web-api/json-patch
 ---
 

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1c501638-114a-4cd3-ad39-0a5790b4e764
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: index
 ---
 # Introduction to ASP.NET Core

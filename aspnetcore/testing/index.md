@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 2159536c-ebf7-4ebd-ba85-9cc6a335a295
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 ---
 # Testing in ASP.NET Core
 

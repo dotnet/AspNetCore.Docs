@@ -9,7 +9,7 @@ ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: fundamentals/app-state
 ms.custom: H1Hack27Feb2017
 ---

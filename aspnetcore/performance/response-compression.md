@@ -9,7 +9,7 @@ ms.date: 01/22/2017
 ms.topic: article
 ms.assetid: de621887-c5c9-4ac8-9efd-f5cc0457a134
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: performance/response-compression
 ---
 # Response Compression Middleware

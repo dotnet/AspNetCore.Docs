@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f85371b7-44cc-4592-ac8b-7029bdced911
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: security/app-secrets
 ---
 # Safe storage of app secrets during development

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 471112e9-2c33-454b-96fc-32916102ce73
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: client-side/using-grunt
 ---
 # Using Grunt in ASP.NET Core 

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0141b1ed-7746-46bf-8c26-59726dcd7ae3
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: hosting/servicing
 ---
 # Servicing
