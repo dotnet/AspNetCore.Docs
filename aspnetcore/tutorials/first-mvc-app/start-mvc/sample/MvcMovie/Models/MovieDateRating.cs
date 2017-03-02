@@ -18,6 +18,4 @@ namespace MvcMovie.Models
     }
 
 }
-
-
 #endif

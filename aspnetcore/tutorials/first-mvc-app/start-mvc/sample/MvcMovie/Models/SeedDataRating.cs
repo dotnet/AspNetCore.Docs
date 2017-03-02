@@ -1,9 +1,8 @@
-﻿//#define SeedRating 
+﻿#define SeedRating 
 #if SeedRating
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcMovie.Data;
 using System;
 using System.Linq;
 
@@ -22,6 +21,7 @@ namespace MvcMovie.Models
                 }
 
                 context.Movie.AddRange(
+                #region snippet1
                      new Movie
                      {
                          Title = "When Harry Met Sally",
@@ -30,7 +30,7 @@ namespace MvcMovie.Models
                          Rating = "R",
                          Price = 7.99M
                      },
-                     // Add another movie.
+                #endregion
                      new Movie
                      {
                          Title = "Ghostbusters ",

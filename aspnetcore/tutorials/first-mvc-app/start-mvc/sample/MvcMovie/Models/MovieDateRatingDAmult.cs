@@ -1,9 +1,11 @@
-﻿/*
+﻿//#define COMBINED
+#if COMBINED
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcMovie.Models
 {
+    #region snippet1
     public class Movie
     {
         public int ID { get; set; }
@@ -23,9 +25,6 @@ namespace MvcMovie.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$"), StringLength(5)]
         public string Rating { get; set; }
     }
-
-
-
-
+    #endregion
 }
-*/
+#endif
