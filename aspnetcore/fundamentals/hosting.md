@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/hosting
 ms.custom: H1Hack27Feb2017
 ---

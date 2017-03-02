@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5fb6625c-173a-4feb-8380-73c9844dc23c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authorization/dependencyinjection
 ---
 # Dependency Injection in requirement handlers

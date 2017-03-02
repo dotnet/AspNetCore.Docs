@@ -9,7 +9,7 @@ ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/facebook-logins
 ---
 # Configuring Facebook authentication

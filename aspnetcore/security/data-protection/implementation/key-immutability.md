@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fc911ae3-feca-4ffe-8b43-362bc632fe04
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-immutability
 ---
 # Key Immutability and changing settings

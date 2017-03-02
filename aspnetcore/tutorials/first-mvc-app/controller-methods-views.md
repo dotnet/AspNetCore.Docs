@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: c7313211-b271-4adf-bab8-8e72603cc0ce
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 # Controller methods and views

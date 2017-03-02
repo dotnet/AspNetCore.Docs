@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a6a556ed-ba59-4107-9358-44cf20e5931b
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authorization/introduction
 ---
 # Introduction

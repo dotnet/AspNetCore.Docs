@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b67c3d4a-f2bf-4132-a48b-4b0d599d7981
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: data/ef-mvc/intro
 ---
 # Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio (1 of 10)

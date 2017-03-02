@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3b6a32f2-5af9-4ede-9b7f-17ab300526d0
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mobile/native-mobile-backend
 ---
 # Creating Backend Services for Native Mobile Applications

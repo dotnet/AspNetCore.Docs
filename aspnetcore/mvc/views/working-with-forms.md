@@ -9,7 +9,7 @@ ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 25595059-4fac-4785-8152-f88590e3169b
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/working-with-forms
 ms.custom: H1Hack27Feb2017
 ---
