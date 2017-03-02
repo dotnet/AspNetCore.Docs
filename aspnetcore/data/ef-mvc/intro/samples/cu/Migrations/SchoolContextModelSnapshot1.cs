@@ -24,14 +24,10 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<int>("Credits");
 
-                    b.Property<int>("DepartmentID");
-
                     b.Property<string>("Title")
                         .HasAnnotation("MaxLength", 50);
 
                     b.HasKey("CourseID");
-
-                    b.HasIndex("DepartmentID");
 
                     b.ToTable("Course");
                 });
