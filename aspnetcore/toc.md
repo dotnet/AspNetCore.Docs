@@ -1,4 +1,4 @@
-﻿# [Introduction](index.md)
+# [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
 

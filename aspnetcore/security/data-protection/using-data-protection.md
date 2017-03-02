@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 39b7a73c-29d4-4137-b311-49529adcf3cb
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/using-data-protection
 ---
 # Getting Started with the Data Protection APIs

@@ -9,7 +9,7 @@ ms.date: 11/18/2016
 ms.topic: article
 ms.assetid: 5de0c8f7-50ce-4e2c-b3d4-a1bd9fdfcff5
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: hosting/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference

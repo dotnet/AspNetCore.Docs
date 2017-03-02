@@ -9,7 +9,7 @@ ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/middleware
 ---
 # ASP.NET Core Middleware Fundamentals

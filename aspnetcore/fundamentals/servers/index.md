@@ -9,7 +9,7 @@ ms.date: 10/27/2016
 ms.topic: article
 ms.assetid: dba74f39-58cd-4dee-a061-6d15f7346959
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core

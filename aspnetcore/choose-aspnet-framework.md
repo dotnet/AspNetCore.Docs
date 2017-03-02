@@ -8,7 +8,7 @@ ms.date: 03/12/2010
 ms.topic: article
 ms.assetid: f0d17abf-3c69-413e-87fc-30780805e33f
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 msc.legacyurl: /learn
 msc.type: content
 ---

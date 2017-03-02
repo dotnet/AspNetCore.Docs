@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: eedd3ea9-4da8-41ca-8080-45cdbc28f480
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 # Contoso University sample app
 
 Contoso University demonstrates how to use Entity Framework Core 1.0 in an
