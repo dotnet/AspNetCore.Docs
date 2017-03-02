@@ -69,7 +69,7 @@ The `WebHostBuilder` provides methods for setting most of the available configur
 ```csharp
 new WebHostBuilder()
     .UseSetting("applicationName", "MyApp")
-   ```
+```
 
 ### Host Configuration Values
 
@@ -203,7 +203,8 @@ using (host)
 Pass a list of URLs to the `Start` method and it will listen on the URLs specified:
 
 ```csharp
-var urls = new List<string>() {
+var urls = new List<string>()
+{
     "http://*:5000",
     "http://localhost:5001"
 };
