@@ -1,4 +1,4 @@
-﻿#define MovieNoEF
+﻿//#define MovieNoEF
 #if MovieNoEF
 #region snippet_1
 using System;

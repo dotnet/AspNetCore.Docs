@@ -1,4 +1,4 @@
-﻿//#define AddDate 
+﻿#define AddDate 
 #if AddDate
 #region snippet_1
 using System;

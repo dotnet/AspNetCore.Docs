@@ -11,7 +11,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    #region snippet_1
+#region snippet_1
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -20,14 +20,14 @@ namespace MvcMovie.Controllers
         {
             _context = context;
         }
-        #endregion
-        #region snippet_index
+#endregion
+#region snippet_index
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-        #endregion
+#endregion
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -69,6 +69,7 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+#region snippet_edit1
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -84,7 +85,8 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-
+#endregion
+#region snippet_edit2
         // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -119,7 +121,7 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-
+#endregion
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

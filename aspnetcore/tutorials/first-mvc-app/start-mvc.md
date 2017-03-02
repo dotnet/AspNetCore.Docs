@@ -5,7 +5,7 @@ description: Getting started with ASP.NET Core MVC and Visual Studio
 keywords: ASP.NET Core, MVC
 ms.author: riande
 manager: wpickett
-ms.date: 02/24/2017
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 1d18b589-e3fd-4dc6-bde6-fb0f41998d78
 ms.technology: aspnet

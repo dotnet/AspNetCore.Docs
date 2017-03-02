@@ -26,6 +26,7 @@ In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Fol
 
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=6-8)]
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
 
 In addition to the properties you'd expect to model a movie, the `ID` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**odel to our **M**VC app.
