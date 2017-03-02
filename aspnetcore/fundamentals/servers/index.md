@@ -36,6 +36,8 @@ If you expose your application to the Internet, we recommend that you use IIS, N
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits. For more information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
+You can't use IIS, Nginx, or Apache without Kestrel. ASP.NET Core was designed to use an in-process web server so that it can behave consistently across platforms. IIS and other servers dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using an in-process web server such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to each server, you just set up the server to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be pretty much the same no matter where you deploy.
+
 ### IIS with Kestrel
 
 When you use IIS or IIS Express as a reverse proxy for ASP.NET Core, the ASP.NET Core application runs in a process separate from the IIS worker process. In the IIS process, a special IIS module runs to coordinate the reverse proxy relationship.  This is the *ASP.NET Core Module*. The primary functions of the ASP.NET Core Module are to start the ASP.NET Core application, restart it when it crashes, and forward HTTP traffic to it. For more information, see [ASP.NET Core Module](aspnet-core-module.md). 
