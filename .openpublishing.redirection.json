@@ -2,7 +2,7 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/fundamentals/servers/overview.md", 
-        "redirect_url": /aspnet/core/fundamentals/servers/index, 
+        "redirect_url": "/aspnet/core/fundamentals/servers/index", 
         "redirect_document_id": true 
     }, 
     { 
