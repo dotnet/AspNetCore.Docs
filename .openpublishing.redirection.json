@@ -8,7 +8,7 @@
     { 
         "source_path": "aspnetcore/intro.md",
         "redirect_url": "/aspnet/core", 
-        "redirect_document_id": true 
+        "redirect_document_id": false 
     } 
   ] 
 }
