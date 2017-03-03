@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5ac13589-3837-4b4d-8abe-81f843942120
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
 # Replacing `<machineKey>` in ASP.NET

@@ -9,7 +9,7 @@ ms.date: 10/27/2016
 ms.topic: article
 ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/servers/weblistener
 ---
 # WebListener web server implementation in ASP.NET Core

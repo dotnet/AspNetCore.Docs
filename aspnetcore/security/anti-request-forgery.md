@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 43844a0f-d6d3-44d0-8ced-597c33d4c52d
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/anti-request-forgery
 ---
 # 🔧 Anti-Request Forgery

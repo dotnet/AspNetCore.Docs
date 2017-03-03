@@ -9,7 +9,7 @@ ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: df7c43da-280e-4df6-86cb-eecec8f12bfc
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: client-side/bower
 ms.custom: H1Hack27Feb2017
 ---

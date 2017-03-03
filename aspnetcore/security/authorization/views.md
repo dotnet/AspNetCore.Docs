@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 24ce40d8-9b83-4bae-9d4c-a66350fcc8f8
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authorization/views
 ---
 # View Based Authorization

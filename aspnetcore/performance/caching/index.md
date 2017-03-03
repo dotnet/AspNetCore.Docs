@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1e73cf62-8862-4341-8816-83be1a3edc96
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: performance/caching/index
 ---
 # Caching

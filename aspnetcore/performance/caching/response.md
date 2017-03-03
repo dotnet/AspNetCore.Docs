@@ -8,7 +8,7 @@ manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: performance/caching/response
 ---
 # Response Caching
