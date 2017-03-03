@@ -29,8 +29,8 @@ ASP.NET Core 1.1 includes the following new features:
 - [WebSockets support](#websockets-support)
 
 ## Choosing between versions 1.0 and 1.1 of ASP.NET Core
-TODO: Dan Roth to complete this section.
-ASP.NET Core follows the [.NET Core Support Lifecycle](https://www.microsoft.com/net/core/support), therefore ASP.NET Core 1.1 follows the .NET Core 1.1 Current support level. 
+
+ASP.NET Core 1.1 has more features than 1.0. In general, we recommend you use the latest version.
 
 ## WebSockets support
 
