@@ -201,6 +201,11 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file. Navigate to the `Todo` controller we just created `http://localhost:port/api/todo`.
 
+> [!NOTE]
+> If you are attempting to use IIS Express (default) and the application does not display in your browser, check to make sure that your Main function in Program.cs includes ```csharp .UseIISIntegration()```
+
+[!code-csharp[Main](first-web-api/sample/src/TodoApi/Program.cs)]
+
 ## Implement the other CRUD operations
 
 We'll add `Create`, `Update`, and `Delete` methods to the controller. These are variations on a theme, so I'll just show the code and highlight the main differences. Build the project after adding or changing code.
