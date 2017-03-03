@@ -87,7 +87,7 @@ What's really nice about this approach is that neither the controller nor the `C
 
 When you need to change validation logic, you can do so in exactly one place by adding validation attributes to the model (in this example, the `Movie` class). You won't have to worry about different parts of the application being inconsistent with how the rules are enforced — all validation logic will be defined in one place and used everywhere. This keeps the code very clean, and makes it easy to maintain and evolve. And it means that that you'll be fully honoring the DRY principle.
 
-## Using DataType Attributes
+### Using DataType Attributes
 
 Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
@@ -130,7 +130,7 @@ The following code shows combining attributes on one line:
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
-## Additional resources
+### Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)

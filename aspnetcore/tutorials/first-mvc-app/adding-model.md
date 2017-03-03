@@ -26,7 +26,6 @@ In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Fol
 
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=6-8)]
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
 
 In addition to the properties you'd expect to model a movie, the `ID` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**odel to our **M**VC app.
@@ -75,7 +74,8 @@ If you run the app and click on the **Mvc Movie** link, you'll get an error simi
 
 ```text
 An unhandled exception occurred while processing the request.
-SqlException: Cannot open database "MvcMovieContext-<GUID removed>" requested by the login. The login failed.
+SqlException: Cannot open database "MvcMovieContext-<GUID removed>" 
+requested by the login. The login failed.
 Login failed for user Rick
 ```
 
@@ -103,7 +103,7 @@ Note: The version numbers shown above were correct at the time of writing.
   dotnet ef database update
   ```
   
-## dotnet ef commands
+### dotnet ef commands
 
 * `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
 * `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
@@ -127,10 +127,6 @@ Notes:
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateFormat.cs?name=snippet_1&highlight=2,10)]
 
-* You can change the `ReleaseDate` label text from the default property name to `Release Date`. To accomplish this, add the highlighted code below.
-
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDisplayName.cs?name=snippet_1&highlight=2,10)] 
-
 We'll talk about `DataAnnotations` later in the tutorial.
 
 Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. You are then redirected to the */Movies* URL, where you can see the newly created movie in the listing.
@@ -143,9 +139,9 @@ Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete*
 
 Open the *Startup.cs* file and examine `ConfigureServices`:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=6-8)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7-8)]
 
-The movie database context is added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
+The code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
@@ -157,15 +153,13 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 <a name=strongly-typed-models-keyword-label></a>
 
-## Strongly typed models and the @model keyword
+### Strongly typed models and the @model keyword
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
 MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) in Visual Studio (VS). The scaffolding mechanism in VS used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
-
-start-mvc/sample/MvcMovie/Controllers/MoviesController.cs
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]
 

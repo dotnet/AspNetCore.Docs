@@ -1,4 +1,5 @@
-﻿#define VD
+﻿//#define VD
+#define Second
 
 #if FIRST
 #region snippet_1
@@ -48,6 +49,8 @@ namespace MvcMovie.Controllers
         // 
         // GET: /HelloWorld/Welcome/ 
         #region snippet_2
+        // GET: /HelloWorld/Welcome/ 
+        // Requires using System.Text.Encodings.Web;
         public string Welcome(string name, int numTimes = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
@@ -77,12 +80,12 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-        #region snippet_3
+#region snippet_3
         public string Welcome(string name, int ID = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
-        #endregion
+#endregion
 
     }
 }
@@ -98,12 +101,12 @@ namespace MvcMovie.Controllers
     {
         // 
         // GET: /HelloWorld/ 
-        #region snippet_4
+#region snippet_4
         public IActionResult Index()
         {
             return View();
         }
-        #endregion
+#endregion
 // 
         // GET: /HelloWorld/Welcome/ 
 

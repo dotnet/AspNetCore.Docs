@@ -51,5 +51,7 @@ Another common work around for methods that have identical names and signatures 
 public async Task<IActionResult> Delete(int id, bool notUsed)
 ```
 
+Thanks for completing this introduction to ASP.NET Core MVC. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
+
 >[!div class="step-by-step"]
 [Previous](validation.md)
