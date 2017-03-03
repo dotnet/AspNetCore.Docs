@@ -17,6 +17,7 @@ msc.type: chapter
 > How to deploy ASP.NET MVC projects to a server.
 
 - [Web Deployment Overview for Visual Studio and ASP.NET](https://msdn.microsoft.com/library/dd394698)
+- [Migrating ASP.NET MVC Applications to Windows Containers](docker-aspnetmvc.md)
 - [Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Azure)](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md)
 - [ASP.NET Web Deployment using Visual Studio](../../../web-forms/overview/deployment/visual-studio-web-deployment/index.md)
 - [ASP.NET 4 - Enterprise Deployment Introduction](../../../web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/index.md)
