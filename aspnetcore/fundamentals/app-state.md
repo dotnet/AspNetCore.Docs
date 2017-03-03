@@ -5,7 +5,7 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
-ms.date: 01/14/2017
+ms.date: 03/14/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
@@ -16,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 # Introduction to session and application state in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com)  and [Diana LaRose](https://github.com/DianaLaRose)
 
 HTTP is a stateless protocol. A  web server treats each HTTP request as an independent request and does not retain user values from previous requests. This article discusses different ways to preserve application and session state between requests. 
 
