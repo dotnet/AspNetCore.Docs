@@ -1,7 +1,7 @@
 ---
 title: Adding a model | Microsoft Docs
 author: rick-anderson
-description: 
+description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -28,7 +28,7 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Nam
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
 
-In addition to the properties you'd expect to model a movie, the `ID` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**odel to our **M**VC app.
+In addition to the properties you'd expect to model a movie, the `ID` field is required by the database for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**odel to our **M**VC app.
 
 ## Scaffolding a controller
 
@@ -193,7 +193,7 @@ This `@model` directive allows you to access the movie that the controller passe
 
 Examine the *Index.cshtml* view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MC1.cs?name=snippet_index&highlight=1)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MC1.cs?name=snippet_index)]
 
 When you created the movies controller, Visual Studio automatically included the following `@model` statement at the top of the *Index.cshtml* file:
 

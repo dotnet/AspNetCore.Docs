@@ -1,7 +1,7 @@
 ---
 title: Adding a controller | Microsoft Docs
 author: rick-anderson 
-description: Adding a controller to a simple ASP.NET Core MVC app
+description: How to add a controller to a simple ASP.NET Core MVC app
 keywords: ASP.NET Core, MVC
 ms.author: riande
 manager: wpickett
@@ -32,6 +32,7 @@ We'll be covering all these concepts in this tutorial series and show you how to
 
 ![Contextual menu](adding-controller/_static/add_controller.png)
 
+* Select **MVC Controller Class**
 * In the **Add New Item** dialog, enter **HelloWorldController**.
 
 ![Add MVC controller and name it](adding-controller/_static/ac.png)

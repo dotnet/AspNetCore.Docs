@@ -29,33 +29,35 @@ Install Visual Studio Community 2017. Select the Community download. Skip this s
 
 Run the installer and select the following workloads:
  - **ASP.NET and web development** (under **Web & Cloud**)
- - **.NET Core cross-platfrom development** (under **Other Toolsets**)
+ - **.NET Core cross-platform development** (under **Other Toolsets**)
 
 ![**ASP.NET and web development** (under **Web & Cloud**)](start-mvc/_static/web_workload.png)
 
-![**.NET Core cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
+![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
 
 ## Create a web app
 
-From the Visual Studio, select  **File > New > Project**.
+From Visual Studio, select  **File > New > Project**.
 
 ![File > New > Project](start-mvc/_static/alt_new_project.png)
 
 Complete the **New Project** dialog:
 
-* In the left pane, select **.NET Core**
-* In the center pane, select **ASP.NET Core Web Application (.NET Core)**
+* In the left pane, tap **.NET Core**
+* In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
+* Verify **Authentication** is set to **No Authentication**
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
-* Select **OK**
+* Tap **OK**
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
-* In the version selector drop down box select **ASP.NET Core 1.1**
-* Select **Web Application**
-* Select **OK**.
+* In the version selector drop-down box tap **ASP.NET Core 1.1**
+* Tap **Web Application**
+* Keep the default **No Authentication**
+* Tap **OK**.
 
 ![New ASP.NET Core web app](start-mvc/_static/p3.png)
 
@@ -79,7 +81,7 @@ The default template gives you working **Home, About** and **Contact** links. Th
 
 ![navigation icon in upper right](start-mvc/_static/2.png)
 
-If you were running in debug mode, select **Shift-F5** to stop debugging.
+If you were running in debug mode, tap **Shift-F5** to stop debugging.
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 

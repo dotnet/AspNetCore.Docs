@@ -119,7 +119,7 @@ Our little bit of "data" (in this case the "Hello from our View Template!" messa
 
 ## Passing Data from the Controller to the View
 
-Controller actions are invoked in response to an incoming URL request. A controller class is where you write the code that handles the incoming browser requests. The controller retrieves data from a datasource and decides what type of response to send back to the browser. View templates can be used from a controller to generate and format an HTML response to the browser.
+Controller actions are invoked in response to an incoming URL request. A controller class is where you write the code that handles the incoming browser requests. The controller retrieves data from a data source and decides what type of response to send back to the browser. View templates can be used from a controller to generate and format an HTML response to the browser.
 
 Controllers are responsible for providing the data required in order for a view template to render a response. A best practice: View templates should **not** perform business logic or interact with a database directly. Rather, a view template should work only with the data that's provided to it by the controller. Maintaining this "separation of concerns" helps keep your code clean, testable, and maintainable.
 
