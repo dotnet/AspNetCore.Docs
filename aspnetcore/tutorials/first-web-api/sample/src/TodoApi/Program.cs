@@ -10,6 +10,7 @@ namespace TodoApi
 {
     public class Program
     {
+        #region snippet_program_main
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
@@ -21,5 +22,6 @@ namespace TodoApi
 
             host.Run();
         }
+        #endregion
     }
 }
