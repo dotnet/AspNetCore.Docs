@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a New Field | Microsoft Docs
 author: rick-anderson
 description: 
@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 16efbacf-fe7b-4b41-84b0-06a1574b95c2
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/new-field
 ---
 # Adding a New Field

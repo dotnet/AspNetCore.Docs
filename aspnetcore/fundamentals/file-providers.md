@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1e35d362-0005-4f84-a187-274ca203a787
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core

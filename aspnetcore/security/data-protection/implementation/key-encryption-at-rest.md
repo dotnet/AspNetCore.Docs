@@ -1,4 +1,4 @@
-﻿---
+---
 title: Key Encryption At Rest | Microsoft Docs
 author: rick-anderson
 description: 
@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f2bbbf4e-0945-43ce-be59-8bf19e448798
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key Encryption At Rest

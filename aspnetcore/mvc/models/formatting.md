@@ -1,18 +1,19 @@
 ---
-title: Formatting Response Data | Microsoft Docs
+title: Formatting response data in ASP.NET Core MVC | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Learn how to format response data in ASP.NET Core MVC.
+keywords: ASP.NET Core, response data, IOutputFormatter, IActionResult
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: c056df45-d013-4826-91a1-4a092bae1ea5
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/models/formatting
+ms.custom: H1Hack27Feb2017
 ---
-# Formatting Response Data
+# Introduction to formatting response data in ASP.NET Core MVC
 
 By [Steve Smith](http://ardalis.com)
 

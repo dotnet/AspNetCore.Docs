@@ -1,18 +1,19 @@
-﻿---
-title: Model Validation | Microsoft Docs
+---
+title: Model validation in ASP.NET Core MVC | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Introduces model validation in ASP.NET Core MVC.
+keywords: ASP.NET Core, MVC, validation
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3a8676dd-7ed8-4a05-bca2-44e288ab99ee
 ms.technology: aspnet
-ms.prod: aspnet-core 
+ms.prod: asp.net-core 
 uid:  mvc/models/validation
+ms.custom: H1Hack27Feb2017
 ---
-# Model Validation
+# Introduction to model validation in ASP.NET Core MVC
 
 By [Rachel Appel](http://github.com/rachelappel)
 

@@ -9,7 +9,7 @@ ms.date: 11/04/2016
 ms.topic: article
 ms.assetid: 50922cf1-ca58-4006-9236-99b7ff2dd0cf
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/nano-server
 ---
 # ASP.NET Core with IIS on Nano Server

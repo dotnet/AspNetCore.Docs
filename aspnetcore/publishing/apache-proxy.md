@@ -9,7 +9,7 @@ ms.date: 10/19/2016
 ms.topic: article
 ms.assetid: fa9b0cb7-afb3-4361-9e7e-33afffeaca0c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: publishing/apache-proxy
 ---
 # Using Apache web server as a reverse proxy

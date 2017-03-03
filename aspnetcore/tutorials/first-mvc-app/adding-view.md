@@ -9,7 +9,7 @@ ms.date: 03/04/2017
 ms.topic: article
 ms.assetid: 6942432b-bac0-41e6-9ad7-cad313abf4db
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/adding-view
 ---
 # Adding a view

@@ -9,7 +9,7 @@ ms.date: 02/08/2017
 ms.topic: article
 ms.assetid: 1fb6fdc2-e199-4469-9012-b909d1913422
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/models/custom-formatters
 ---
 # Custom formatters in ASP.NET Core MVC web APIs
