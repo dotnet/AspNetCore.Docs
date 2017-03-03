@@ -204,7 +204,7 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 > [!NOTE]
 > If you're attempting to use IIS Express (default) and the application does not display in your browser, confirm that your `Main` method in *Program.cs* includes `.UseIISIntegration()`:
 
-[!code-csharp[Main](first-web-api/sample/src/TodoApi/Program.cs)]
+> [!code-csharp[Main](first-web-api/sample/src/TodoApi/Program.cs?name=snippet_program_main&highlight=6)]
 
 ## Implement the other CRUD operations
 
