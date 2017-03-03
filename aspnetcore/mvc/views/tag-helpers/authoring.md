@@ -13,7 +13,7 @@ ms.prod: asp.net-core
 uid: mvc/views/tag-helpers/authoring
 ms.custom: H1Hack27Feb2017
 ---
-# Authoring Tag Helpers in ASP.NET Core
+# Authoring Tag Helpers in ASP.NET Core, a walk through with samples
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
