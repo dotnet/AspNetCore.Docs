@@ -5,7 +5,7 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
-ms.date: 01/14/2017
+ms.date: 03/14/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
@@ -16,28 +16,26 @@ ms.custom: H1Hack27Feb2017
 
 # Introduction to session and application state in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com)  and [Diana LaRose](https://github.com/DianaLaRose)
 
-HTTP is a stateless protocol; the Web server treats each HTTP request as an independent request. The server retains no knowledge of variable values that were used in previous requests. This article discusses various approaches to preserving application and user (session) state between requests. 
-
-Application state, unlike session state, applies to all users and sessions.
+HTTP is a stateless protocol. A  web server treats each HTTP request as an independent request and does not retain user values from previous requests. This article discusses different ways to preserve application and session state between requests. 
 
 ## Session state
 
-Session state is a feature in ASP.NET Core you can enable that allows you to save and store user data while the user browses your web app. Session data is stored in dictionary on the server and persists data across requests from a browser. A session ID is stored on the client in a cookie. The session ID cookie is sent to server with each request, and the server uses the session ID to fetch the session data. The session ID cookie is per browser, you cannot share session across browsers. Session cookies have no specified timeout, they are deleted when the browser session ends. If a cookie is received for an expired session, then a new session is created using the same Session cookie.
+Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app. Consisting of a dictionary or hash table on the server, session state persists data across requests from a browser. The session data is backed by a cache.
 
-Session is retained by the server for a limited time after the last request. The default session timeout is 20 minutes, but you can configure session time out. The session data is backed by a cache. Session is ideal for storing user state that is specific to a particular session but which doesn’t need to be persisted permanently. Data is deleted from the backing store either when you call `Session.Clear` or when the session expires in the data store. The server does not know when the browser is closed or the Session cookie is deleted.
+ASP.NET Core maintains session state by giving the client a cookie that contains the session ID, which is sent to the server with each request. The server uses the session ID to fetch the session data. Because the session cookie is specific to the browser, you cannot share sessions across browsers. Session cookies are deleted only when the browser session ends. If a cookie is received for an expired session, a new session that uses the same session cookie  is created. 
+
+The server retains a session for a limited time after the last request. You can either set the session timeout or use the default value of 20 minutes.  Session state is ideal for storing user data that is specific to a particular session but doesn’t need to be persisted permanently. Data is deleted from the backing store either when you call `Session.Clear` or when the session expires in the data store. The server does not know when the browser is closed or the session cookie is deleted.
 
 > [!WARNING]
-> Sensitive data should never be stored in session. You can’t guarantee the client will close the browser and clear their session cookie (and some browsers keep them alive across windows). Consequently, you can’t assume that a session is restricted to a single user, the next user may continue with the same session.
+> Do not store sensitive data in session. The client might not close the browser and clear their session cookie (and some browsers keep session cookies alive across windows). Also, a session might not be restricted to a single user; the next user might continue with the same session.
 
-The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. The Redis and SQL Server distributed caches don't require sticky sessions and are the preferred approach to multi-server caching. See [Working with a Distributed Cache](xref:performance/caching/distributed) for more information.
-
-See [Configuring Session](#configuring-session) below for more details.
+The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don't require sticky sessions. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed). For details on setting up service providers, see [Configuring Session](#configuring-session) later in this article.
 
 ### TempData
 
-ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [Controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). `TempData` can be used for storing transient data that only needs to be available for a single request after the current request. `TempData` is frequently useful for redirection, when data is needed for more than a single request. `TempData` is built on top of Session State.
+ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data for only a single request after the current one.`TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is built on top of session state. 
 
 ## Cookie-based TempData provider 
 
