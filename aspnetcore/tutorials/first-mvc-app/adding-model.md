@@ -20,7 +20,7 @@ In this section you'll add some classes for managing movies in a database. These
 
 You’ll use a .NET Framework data-access technology known as the [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core) to define and work with these data model classes. Entity Framework Core (often referred to as **EF** Core) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development.
 
-### Adding data model classes
+## Adding data model classes
 
 In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
@@ -30,7 +30,7 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Nam
 
 In addition to the properties you'd expect to model a movie, the `ID` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**odel to our **M**VC app.
 
-### Scaffolding a controller
+## Scaffolding a controller
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
 
@@ -79,7 +79,7 @@ requested by the login. The login failed.
 Login failed for user Rick
 ```
 
-### Add EF tooling
+## Add EF tooling
 
 - In Solution Explorer, right click the **MvcMovie** project > **Edit MvcMovie.csproj**.
 
@@ -91,7 +91,7 @@ Login failed for user Rick
 
 Note: The version numbers shown above were correct at the time of writing.
 
-### Update the database
+## Update the database
 
 * Open a command prompt and navigate to the project directory (*your_path*/MvcMovie/src/MvcMovie). You can find the path by selecting the *Startup.cs* file in Solution Explorer and viewing the `Full Path` property in the **Properties** window.
 
@@ -103,14 +103,14 @@ Note: The version numbers shown above were correct at the time of writing.
   dotnet ef database update
   ```
   
-### dotnet ef commands
+## dotnet ef commands
 
 * `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
 * `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
 * `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/<date-time>_Initial.cs* file containing the migration commands to add (or drop) the *Movie* table to the database
 * `dotnet ef database update`  Updates the database with the migration we just created
 
-### Test the app
+## Test the app
 
 Notes: 
 
@@ -135,7 +135,7 @@ Tapping **Create** causes the form to be posted to the server, where the movie i
 
 Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete** links, which are all functional.
 
-### Examining the Generated Code
+## Examining the Generated Code
 
 Open the *Startup.cs* file and examine `ConfigureServices`:
 
@@ -153,7 +153,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 <a name=strongly-typed-models-keyword-label></a>
 
-### Strongly typed models and the @model keyword
+## Strongly typed models and the @model keyword
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
@@ -211,7 +211,7 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
-### Additional resources
+## Additional resources
 
 * [Tag Helpers](../../mvc/views/tag-helpers/index.md)
 

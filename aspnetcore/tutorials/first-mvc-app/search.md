@@ -123,7 +123,7 @@ The following markup shows the change to the `form` tag:
 <form asp-controller="Movies" asp-action="Index" method="get">
    ```
 
-### Adding Search by Genre
+## Adding Search by Genre
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
@@ -149,7 +149,7 @@ The `SelectList` of genres is created by projecting the distinct genres (we don'
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
    ```
 
-### Adding search by genre to the Index view
+## Adding search by genre to the Index view
 
 Update `Index.cshtml` as follows:
 

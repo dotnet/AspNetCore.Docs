@@ -20,7 +20,7 @@ In this section you'll use [Entity Framework](http://docs.efproject.net/en/lates
 
 When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
 
-### Adding a Rating Property to the Movie Model
+## Adding a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 

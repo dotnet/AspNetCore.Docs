@@ -18,13 +18,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user creates or edits a movie.
 
-### Keeping things DRY
+## Keeping things DRY
 
 One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
 The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-### Adding validation rules to the movie model
+## Adding validation rules to the movie model
 
 Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation attributes that you apply declaratively to any class or property. (It also contains formatting attributes like `DataType` that help with formatting and don't provide any validation.)
 
@@ -36,7 +36,7 @@ The validation attributes specify behavior that you want to enforce on the model
 
 Having validation rules automatically enforced by ASP.NET helps make your app more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
-### Validation Error UI in MVC
+## Validation Error UI in MVC
 
 Run the app and navigate to the Movies controller.
 
@@ -53,7 +53,7 @@ A significant benefit is that you didn't need to change a single line of code in
 
 The form data is not sent to the server until there are no client side validation errors. You can verify this by putting a break point in the `HTTP Post` method, by using the [Fiddler tool](http://www.telerik.com/fiddler) , or the [F12 Developer tools](https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/).
 
-### How Validation Occurs in the Create View and Create Action Method
+## How Validation Occurs in the Create View and Create Action Method
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The follow code shows the two `Create` methods.
 
@@ -87,7 +87,7 @@ What's really nice about this approach is that neither the controller nor the `C
 
 When you need to change validation logic, you can do so in exactly one place by adding validation attributes to the model (in this example, the `Movie` class). You won't have to worry about different parts of the application being inconsistent with how the rules are enforced — all validation logic will be defined in one place and used everywhere. This keeps the code very clean, and makes it easy to maintain and evolve. And it means that that you'll be fully honoring the DRY principle.
 
-### Using DataType Attributes
+## Using DataType Attributes
 
 Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
@@ -130,7 +130,7 @@ The following code shows combining attributes on one line:
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
-### Additional resources
+## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
 * [Globalization and localization](xref:fundamentals/localization)

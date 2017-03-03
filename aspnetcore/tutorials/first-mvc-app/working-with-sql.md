@@ -26,7 +26,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration) system reads t
 
 When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See [Configuration](xref:fundamentals/configuration) for more information.
 
-### SQL Server Express LocalDB
+## SQL Server Express LocalDB
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine that is targeted for program development. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB database creates "\*.mdf" files in the *C:/Users/\<user\>* directory.
 
@@ -48,7 +48,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
   ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
-### Seed the database
+## Seed the database
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
