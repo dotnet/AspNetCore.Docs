@@ -1,11 +1,11 @@
 ---
 title: Adding Search | Microsoft Docs
 author: rick-anderson
-description: 
+description: Shows how to add search to simple ASP.NET Core MVC app
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: d69e5529-8ef6-4628-855d-200206d962b9
 ms.technology: aspnet
@@ -20,7 +20,7 @@ In this section you'll add search capability to the `Index` action method that l
 
 Update the `Index` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
 
@@ -29,23 +29,15 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-The query is *only* defined at this point, it **has not** been run against the database.
+The query is *only* defined at this point, it has **not** been run against the database.
 
-If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string, using the following code:
+If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3]}} -->
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchNull)]
 
-```csharp
-if (!String.IsNullOrEmpty(searchString))
-{
-    movies = movies.Where(s => s.Title.Contains(searchString));
-}
-```
+The `s => s.Title.Contains()` code above is a [Lambda Expression](http://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method or `Contains` (used in the code above). LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/en-us/library/bb738633.aspx).
 
-The `s => s.Title.Contains()` code above is a [Lambda Expression](http://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method or `Contains` used in the code above. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/en-us/library/bb738633.aspx).
-
-> [!NOTE]
-> The [Contains](http://msdn.microsoft.com/en-us/library/bb155125.aspx) method is run on the database, not the c# code above. On the database, [Contains](http://msdn.microsoft.com/en-us/library/bb155125.aspx) maps to [SQL LIKE](http://msdn.microsoft.com/en-us/library/ms179859.aspx), which is case insensitive.
+Note: The [Contains](http://msdn.microsoft.com/en-us/library/bb155125.aspx) method is run on the database, not in the c# code shown above. On the database, [Contains](http://msdn.microsoft.com/en-us/library/bb155125.aspx) maps to [SQL LIKE](http://msdn.microsoft.com/en-us/library/ms179859.aspx), which is case insensitive.
 
 Navigate to `/Movies/Index`. Append a query string such as `?searchString=ghost` to the URL. The filtered movies are displayed.
 
@@ -53,7 +45,7 @@ Navigate to `/Movies/Index`. Append a query string such as `?searchString=ghost`
 
 If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in *Startup.cs*.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
 
 You can quickly rename the `searchString` parameter to `id` with the **rename** command. Right click on `searchString` **> Rename**.
 
@@ -69,11 +61,11 @@ Change the parameter to `id` and all occurrences of `searchString` change to `id
 
 The previous `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
 
 The updated `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_SearchID)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_SearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -81,11 +73,11 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_1stSearch)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_1stSearch)]
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=11,12,13,14,15,16&range=4-21)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=11,12,13,14,15,16&range=4-21)]
 
 The HTML `<form>` tag uses the [Form Tag Helper](../../mvc/views/working-with-forms.md), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
@@ -95,7 +87,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_SearchPost)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_SearchPost)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
@@ -135,27 +127,21 @@ The following markup shows the change to the `form` tag:
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Models/MovieGenreViewModel.cs)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieGenreViewModel.cs)]
 
 The movie-genre view model will contain:
 
-   * a list of movies
-
-   * a `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
-
-   * `movieGenre`, which contains the selected genre
+   * A list of movies.
+   * A `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
+   * `movieGenre`, which contains the selected genre.
 
 Replace the `Index` method in `MoviesController.cs` with the following code:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-```csharp
-IQueryable<string> genreQuery = from m in _context.Movie
-                                   orderby m.Genre
-                                   select m.Genre;
-   ```
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
@@ -167,7 +153,7 @@ movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Update `Index.cshtml` as follows:
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,27,41)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,28,31,34,37,40,46)]
 
 Test the app by searching by genre, by movie title, and by both.
 

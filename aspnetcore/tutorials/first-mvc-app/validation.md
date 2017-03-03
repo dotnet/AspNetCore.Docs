@@ -1,11 +1,11 @@
 ---
 title: Adding Validation | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: How to add validation to a simple ASP.NET Core app.
+keywords: ASP.NET Core, validation, DataAnnotations
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: edbed483-6858-4f19-8082-3ac7d2752986
 ms.technology: aspnet
@@ -16,15 +16,13 @@ uid: tutorials/first-mvc-app/validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie.
+In this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user creates or edits a movie.
 
 ## Keeping things DRY
 
 One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
-The validation support provided by MVC and Entity Framework Core Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
-
-Let's look at how you can take advantage of this validation support in the movie app.
+The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
 ## Adding validation rules to the movie model
 
@@ -32,7 +30,7 @@ Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation 
 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-[!code-none[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDA.cs?highlight=5,12,13,14,17,18,21,22&range=9-32)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they are applied to. The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. The `RegularExpression` attribute is used to limit what characters can be input. In the code above, `Genre` and `Rating` must use only letters (white space, numbers and special characters are not allowed). The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length. Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
 
@@ -57,9 +55,9 @@ The form data is not sent to the server until there are no client side validatio
 
 ## How Validation Occurs in the Create View and Create Action Method
 
-You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows the two `Create` methods.
+You might wonder how the validation UI was generated without any updates to the code in the controller or views. The follow code shows the two `Create` methods.
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=56-76)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
 
 The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (The `[HttpPost]` version) calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second `Create` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST `Create` method `ModelState.IsValid` detecting any validation errors.
 
@@ -81,9 +79,9 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 Below is portion of the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml?highlight=9,10,17,18,13&range=9-35)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml)]
 
-The [Input Tag Helper](../../mvc/views/working-with-forms.md) consumes the [DataAnnotations](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](../../mvc/views/working-with-forms.md) displays a validation errors. See [Validation](../../mvc/models/validation.md) for more information.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) consumes the [DataAnnotations](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
 What's really nice about this approach is that neither the controller nor the `Create` view template knows anything about the actual validation rules being enforced or about the specific error messages displayed. The validation rules and the error strings are specified only in the `Movie` class. These same validation rules are automatically applied to the `Edit` view and any other views templates you might create that edit your model.
 
@@ -93,7 +91,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&range=16-19,25-27)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `DataType` attributes only provide hints for the view engine to format the data (and supply attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email. You can use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that is more specific than the database intrinsic type, they are not validation attributes. In this case we only want to keep track of the date, not the time. The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`, and a date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers can understand. The
 `DataType` attributes do **not** provide any validation.
@@ -128,19 +126,16 @@ You will need to disable jQuery date validation to use the `Range` attribute wit
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDAmult.cs?highlight=5,8,11,14,17&range=7-25)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
 ## Additional resources
 
-* [Working with Forms](../../mvc/views/working-with-forms.md)
-
-* [Globalization and localization](../../fundamentals/localization.md)
-
-* [Introduction to Tag Helpers](../../mvc/views/tag-helpers/intro.md)
-
-* [Authoring Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
+* [Working with Forms](xref:mvc/views/working-with-forms)
+* [Globalization and localization](xref:fundamentals/localization)
+* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
+* [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring)
 
 >[!div class="step-by-step"]
 [Previous](new-field.md)
