@@ -9,7 +9,7 @@ ms.date: 12/30/2016
 ms.topic: article
 ms.assetid: e6130638-c410-4161-9921-b658ce988bd1
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core

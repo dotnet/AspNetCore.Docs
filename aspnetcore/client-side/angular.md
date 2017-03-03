@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: client-side/angular
 ms.custom: H1Hack27Feb2017
 ---

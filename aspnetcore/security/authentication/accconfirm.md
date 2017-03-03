@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery

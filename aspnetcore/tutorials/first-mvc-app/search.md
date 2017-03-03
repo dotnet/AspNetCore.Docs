@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d69e5529-8ef6-4628-855d-200206d962b9
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/search
 ---
 # Adding Search

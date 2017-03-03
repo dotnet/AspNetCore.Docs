@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b20e3b23-1c51-47bf-adac-91b5048567e0
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: client-side/knockout
 ---
 # Knockout.js MVVM Framework in ASP.NET Core

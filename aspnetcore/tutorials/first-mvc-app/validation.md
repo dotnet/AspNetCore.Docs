@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding Validation | Microsoft Docs
 author: rick-anderson
 description: 
@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: edbed483-6858-4f19-8082-3ac7d2752986
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/validation
 ---
 # Adding validation

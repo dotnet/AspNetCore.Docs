@@ -8,7 +8,7 @@ manager: wpickett
 ms.date: 02/11/2017
 ms.topic: article
 ms.assetid: 0292bdae-b3ed-4637-bd67-19b9bb8b65cb
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider

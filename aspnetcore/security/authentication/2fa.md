@@ -9,7 +9,7 @@ ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: ff1c22d1-d1f2-4616-84dd-94ba61ec299a
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS

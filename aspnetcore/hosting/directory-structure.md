@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e55eb131-d42e-4bf6-b130-fd626082243c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: hosting/directory-structure
 ---
 # Directory structure

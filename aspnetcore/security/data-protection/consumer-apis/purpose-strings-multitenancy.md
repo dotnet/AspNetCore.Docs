@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 9d18c287-e0e6-4541-b09c-7fed45c902d9
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
 ---
 # Purpose hierarchy and multi-tenancy in ASP.NET Core

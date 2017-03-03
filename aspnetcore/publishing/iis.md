@@ -9,7 +9,7 @@ ms.date: 01/18/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: publishing/iis
 ---
 # Publishing to IIS
