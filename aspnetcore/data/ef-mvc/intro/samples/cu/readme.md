@@ -12,8 +12,8 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 # Contoso University sample app
 
-Contoso University demonstrates how to use Entity Framework Core 1.0 in an
-ASP.NET Core MVC 1.0 web application.
+Contoso University demonstrates how to use Entity Framework Core 1.1 in an
+ASP.NET Core MVC 1.1 web application.
 
 ## Build it from scratch
 
