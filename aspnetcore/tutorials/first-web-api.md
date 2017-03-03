@@ -53,7 +53,7 @@ The following diagram shows the basic design of the app.
 
 * To keep the tutorial simple, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see [Building your first ASP.NET Core MVC app with Visual Studio](first-mvc-app/index.md).
 
-## Create the project
+### Create the project
 
 Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
@@ -65,15 +65,15 @@ In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
-## Add support for Entity Framework Core
+### Add support for Entity Framework Core
 
-Add support for Entity Framework Core. In order to use Entity Framework Core as a database for our project, we need to install the relevant NuGet packages. In this case we will use the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add the highlighted `PackageReference`:
 
 [!code-xml[Main](first-web-api/sample/src/TodoApi/TodoApi.csproj?highlight=17)]
 
-## Add a model class
+### Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
@@ -90,7 +90,7 @@ Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/src/TodoApi/Models/TodoItem.cs)]
 
-## Create the database context
+### Create the database context
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
