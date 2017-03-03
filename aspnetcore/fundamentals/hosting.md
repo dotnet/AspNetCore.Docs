@@ -49,15 +49,15 @@ A minimal implementation of configuring a host (and an ASP.NET Core app) would i
 
 ```csharp
 var host = new WebHostBuilder()
-       .UseKestrel()
-       .Configure(app =>
-       {
-           app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
-       })
-       .Build();
+    .UseKestrel()
+    .Configure(app =>
+    {
+        app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+    })
+    .Build();
 
-   host.Run();
-   ```
+host.Run();
+```
 
 > [!NOTE]
 > When setting up a host, you can provide `Configure` and `ConfigureServices` methods, instead of or in addition to specifying a `Startup` class (which must also define these methods - see [Application Startup](startup.md)). Multiple calls to `ConfigureServices` will append to one another; calls to `Configure` or `UseStartup` will replace previous settings.
@@ -69,7 +69,7 @@ The `WebHostBuilder` provides methods for setting most of the available configur
 ```csharp
 new WebHostBuilder()
     .UseSetting("applicationName", "MyApp")
-   ```
+```
 
 ### Host Configuration Values
 
@@ -159,64 +159,66 @@ Use [Configuration](configuration.md) to set configuration values to be used by 
 
 ```csharp
 public static void Main(string[] args)
-   {
-     var config = new ConfigurationBuilder()
-       .AddCommandLine(args)
-       .AddJsonFile("hosting.json", optional: true)
-       .Build();
+{
+    var config = new ConfigurationBuilder()
+        .AddJsonFile("hosting.json", optional: true)
+        .AddCommandLine(args)
+        .Build();
 
-     var host = new WebHostBuilder()
-       .UseConfiguration(config)
-       .UseKestrel()
-       .Configure(app =>
-       {
-         app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
-       })
-     .Build();
+    var host = new WebHostBuilder()
+        .UseConfiguration(config)
+        .UseKestrel()
+        .Configure(app =>
+        {
+            app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+        })
+        .Build();
 
-     host.Run();
-   }
-   ```
+    host.Run();
+}
+```
 
 In the example above, command-line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from a command prompt:
 
 ```console
 dotnet run --urls "http://*:5000"
-   ```
+```
 
 The `Run` method starts the web app and blocks the calling thread until the host is shutdown.
 
 ```csharp
 host.Run();
-   ```
+```
 
 You can run the host in a non-blocking manner by calling its `Start` method:
 
 ```csharp
 using (host)
-   {
-     host.Start();
-     Console.ReadLine();
-   }
-   ```
+{
+    host.Start();
+    Console.ReadLine();
+}
+```
 
 Pass a list of URLs to the `Start` method and it will listen on the URLs specified:
 
 ```csharp
-var urls = new List<string>() {
-     "http://*:5000",
-     "http://localhost:5001"
-     };
-   var host = new WebHostBuilder()
-     .UseKestrel()
-     .UseStartup<Startup>()
-     .Start(urls.ToArray());
+var urls = new List<string>()
+{
+    "http://*:5000",
+    "http://localhost:5001"
+};
 
-   using (host)
-   {
-     Console.ReadLine();
-   }
-   ```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup<Startup>()
+    .Start(urls.ToArray());
+
+using (host)
+{
+    Console.ReadLine();
+}
+```
 
 ### Ordering Importance
 
@@ -226,15 +228,15 @@ You can override any of these environment variable values by specifying configur
 
 ```csharp
 var config = new ConfigurationBuilder()
-   .AddCommandLine(args)
-   .Build();
+    .AddCommandLine(args)
+    .Build();
 
-   var host = new WebHostBuilder()
-       .UseUrls("http://*:1000") // default URL
-       .UseConfiguration(config) // override from command line
-       .UseKestrel()
-       .Build();
-   ```
+var host = new WebHostBuilder()
+    .UseUrls("http://*:1000") // default URL
+    .UseConfiguration(config) // override from command line
+    .UseKestrel()
+    .Build();
+```
 
 ## Additional resources
 
