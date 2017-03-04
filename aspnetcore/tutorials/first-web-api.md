@@ -22,8 +22,7 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 ASP.NET Core has built-in support for MVC building Web APIs. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline.
 
-> [!NOTE]
-> If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](../migration/webapi.md)
+Note: If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](xref:migration/webapi)
 
 ## Overview
 
@@ -57,11 +56,11 @@ The following diagram shows the basic design of the app.
 
 Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
-Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi`, clear **Host in the cloud**, and tap **OK**.
+Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi`, and tap **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
-In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Tap **OK**.
+In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Do **not** check **Enable Docker Support**. Tap **OK**. 
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
