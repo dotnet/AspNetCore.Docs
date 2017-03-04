@@ -159,7 +159,7 @@ html
 | String            | "Make"   	            |
 |                   | "Make,Model" |
 
-Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when they change. 
+Accepts a single header value or a comma-separated list of header values that trigger a cache refresh when the route data parameter value(s) change. 
 Usage Example:
 
 *Startup.cs* 
