@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TodoApi.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace TodoApi
 {
@@ -14,7 +14,7 @@ namespace TodoApi
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -24,13 +24,16 @@ namespace TodoApi
 
         // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet_AddSingleton
+        // requires using TodoApi.Models; and
+        // using Microsoft.EntityFrameworkCore;
         public void ConfigureServices(IServiceCollection services)
         {
+            // requires using Microsoft.EntityFrameworkCore;
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase());
 
             // Add framework services.
             services.AddMvc();
-
+            
             services.AddSingleton<ITodoRepository, TodoRepository>();
         }
         #endregion
