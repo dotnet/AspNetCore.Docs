@@ -153,6 +153,8 @@ new WebHostBuilder()
     .UseWebRoot("public")
 ```
 
+### Overriding Configuration
+
 Use [Configuration](configuration.md) to set configuration values to be used by the host. These values may be subsequently overridden. This is specified using `UseConfiguration`.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3, 4, 5, 6, 9]}} -->
