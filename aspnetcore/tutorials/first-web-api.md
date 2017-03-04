@@ -22,8 +22,7 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 ASP.NET Core has built-in support for MVC building Web APIs. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline.
 
-> [!NOTE]
-> If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](../migration/webapi.md)
+Note: If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](xref:migration/webapi)
 
 ## Overview
 
@@ -57,11 +56,11 @@ The following diagram shows the basic design of the app.
 
 Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
-Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi`, clear **Host in the cloud**, and tap **OK**.
+Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi`, and tap **OK**.
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
-In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Tap **OK**.
+In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Do **not** check **Enable Docker Support**. Tap **OK**. 
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
@@ -200,8 +199,6 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 ### Launch the app
 
 In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file. Navigate to the `Todo` controller we just created `http://localhost:port/api/todo`.
-
-Note: If the browser doesn't display data, verify that that the `Main` method in *Program.cs* includes `UseIISIntegration`. If you selected **Enable Docker Support** when you created the web app, `UseIISIntegration` will not be added to `Main`.
 
 ## Implement the other CRUD operations
 
