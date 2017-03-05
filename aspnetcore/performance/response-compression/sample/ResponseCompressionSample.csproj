@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netcoreapp1.1</TargetFrameworks>
-    <OutputType>Exe</OutputType>
     <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
