@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 000175e2-10fc-43dd-bfc2-51e004b97b44
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
 ---
 # Limiting the lifetime of protected payloads

@@ -1,18 +1,19 @@
 ---
 title: Dependency Injection in ASP.NET Core | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Learn how ASP.NET Core implements dependency injection and how to use it.
+keywords: ASP.NET Core, dependency injection, di
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fccd69be-7ad1-47fb-b203-b3633b6b9a9b
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/dependency-injection
+ms.custom: H1Hack27Feb2017
 ---
-# Dependency Injection in ASP.NET Core
+# Introduction to Dependency Injection in ASP.NET Core
 
 <a name=fundamentals-dependency-injection></a>
 

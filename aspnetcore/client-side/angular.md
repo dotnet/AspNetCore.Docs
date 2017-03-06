@@ -9,10 +9,11 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: client-side/angular
+ms.custom: H1Hack27Feb2017
 ---
-# Using AngularJS for Single Page Applications (SPAs)
+# Using AngularJS for Single Page Applications (SPAs) with ASP.NET Core
 
 
 By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott Addie](https://scottaddie.com)
@@ -35,7 +36,7 @@ To start using AngularJS in your ASP.NET application, you must either install it
 
 ### Installation
 
-There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core web application in Visual Studio, you can add AngularJS using the built-in [Bower](bower.md#bower-index) support. Simply open *bower.json*, and add an entry to the `dependencies` property:
+There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core web application in Visual Studio, you can add AngularJS using the built-in [Bower](bower.md) support. Open *bower.json*, and add an entry to the `dependencies` property:
 
 <a name=angular-bower-json></a>
 

@@ -9,7 +9,7 @@ ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: a89a8433-8b0e-4795-a73a-82114d27e233
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/razor
 ---
 # Razor syntax

@@ -9,10 +9,11 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/logging
+ms.custom: H1Hack27Feb2017
 ---
-# Logging in ASP.NET Core
+# Introduction to Logging in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra)
 

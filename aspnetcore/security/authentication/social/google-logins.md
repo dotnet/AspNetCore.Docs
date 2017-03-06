@@ -9,7 +9,7 @@ ms.date: 11/2/2016
 ms.topic: article
 ms.assetid: 8BA389D6-0911-4415-A818-C7B3F5B5CC8D
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/google-logins
 ---
 # Configuring Google authentication

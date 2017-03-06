@@ -45,7 +45,7 @@ Click the right arrow and choose the service tier you want. For this demo we'll 
 
 Click the right arrow, confirm the "purchase," and New Relic now shows up as an Add-on in the portal.
 
-![Review purhase](monitoring-and-telemetry/_static/image3.png)
+![Review purchase](monitoring-and-telemetry/_static/image3.png)
 
 ![New Relic add-on in management portal](monitoring-and-telemetry/_static/image4.png)
 

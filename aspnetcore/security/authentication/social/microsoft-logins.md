@@ -9,7 +9,7 @@ ms.date: 11/2/2016
 ms.topic: article
 ms.assetid: 66DB4B94-C78C-4005-BA03-3D982B87C268
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/microsoft-logins
 ---
 # Configuring Microsoft Account authentication

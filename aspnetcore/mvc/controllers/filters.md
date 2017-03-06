@@ -9,7 +9,7 @@ ms.date: 12/12/2016
 ms.topic: article
 ms.assetid: 531bda08-aa5b-4471-8f08-96add22c8683
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/controllers/filters
 ---
 
@@ -268,6 +268,9 @@ Exception filters do not have two events (for before and after) - they only impl
 Exception filters handle unhandled exceptions that occur in controller creation, [model binding](../models/model-binding.md), action filters, or action methods. They won't catch exceptions that occur in Resource filters, Result filters, or MVC Result execution.
 
 To handle an exception, set the `ExceptionContext.ExceptionHandled` property to true or write a response. This stops propagation of the exception. Note that an Exception filter can't turn an exception into a "success". Only an Action filter can do that.
+
+> [!NOTE]
+> In ASP.NET 1.1, the response is not sent if you set `ExceptionHandled` to true **and** write a response. In that scenario, ASP.NET Core 1.0 does send the response, and ASP.NET Core 1.1.2 will return to the 1.0 behavior. For more information, see [issue #5594](https://github.com/aspnet/Mvc/issues/5594) in the GitHub repository. 
 
 Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
