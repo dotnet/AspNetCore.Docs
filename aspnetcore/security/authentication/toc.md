@@ -1,4 +1,5 @@
 # [Introduction to Identity](identity.md)
+# [Configure Identity](identity-configuration.md)
 # [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 ## [Facebook authentication](social/facebook-logins.md)
 ## [Twitter authentication](social/twitter-logins.md)
