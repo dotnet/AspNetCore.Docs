@@ -1,5 +1,5 @@
 ﻿---
-title: Anchor Tag Helper | Microsoft Docs
+title: Cache Tag Helper | Microsoft Docs
 author: Peter Kellner
 description: Shows how to work with Cache Tag Helper
 keywords: ASP.NET Core,tag helper

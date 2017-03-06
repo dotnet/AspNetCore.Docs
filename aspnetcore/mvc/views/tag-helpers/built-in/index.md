@@ -13,9 +13,9 @@ Microsoft has included multiple Tag Helpers that can be immediately used in .net
 
 **[Cache Tag Helper](CacheTagHelper.md)**
 
-[comment]: **[DistributedTagHelper](builtin-th/AnchorTagHelper.md)**
+**[Distributed Cache Tag Helper](DistributedCacheTagHelper.md)**
 
-[comment]: **[EnvironmentTagHelper](builtin-th/EnvironmentTagHelper.md)**
+**[Environment Tag Helper](EnvironmentTagHelper.md)**
 
 [comment]: **[FormActionTagHelper](builtin-th/FormActionTagHelper.md)**
 
