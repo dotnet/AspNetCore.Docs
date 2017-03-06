@@ -13,7 +13,7 @@ namespace ContosoUniversity.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ContosoUniversity.Models.Course", b =>
@@ -25,7 +25,7 @@ namespace ContosoUniversity.Migrations
                     b.Property<int>("DepartmentID");
 
                     b.Property<string>("Title")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.HasKey("CourseID");
 
@@ -34,7 +34,7 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("Course");
                 });
 
-            modelBuilder.Entity("ContosoUniversity.Models.CourseInstructor", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.CourseAssignment", b =>
                 {
                     b.Property<int>("CourseID");
 
@@ -42,11 +42,9 @@ namespace ContosoUniversity.Migrations
 
                     b.HasKey("CourseID", "InstructorID");
 
-                    b.HasIndex("CourseID");
-
                     b.HasIndex("InstructorID");
 
-                    b.ToTable("CourseInstructor");
+                    b.ToTable("CourseAssignment");
                 });
 
             modelBuilder.Entity("ContosoUniversity.Models.Department", b =>
@@ -60,7 +58,7 @@ namespace ContosoUniversity.Migrations
                     b.Property<int?>("InstructorID");
 
                     b.Property<string>("Name")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -100,12 +98,9 @@ namespace ContosoUniversity.Migrations
                     b.Property<int>("InstructorID");
 
                     b.Property<string>("Location")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.HasKey("InstructorID");
-
-                    b.HasIndex("InstructorID")
-                        .IsUnique();
 
                     b.ToTable("OfficeAssignment");
                 });
@@ -121,11 +116,11 @@ namespace ContosoUniversity.Migrations
                     b.Property<string>("FirstMidName")
                         .IsRequired()
                         .HasColumnName("FirstName")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.HasKey("ID");
 
@@ -164,7 +159,7 @@ namespace ContosoUniversity.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ContosoUniversity.Models.CourseInstructor", b =>
+            modelBuilder.Entity("ContosoUniversity.Models.CourseAssignment", b =>
                 {
                     b.HasOne("ContosoUniversity.Models.Course", "Course")
                         .WithMany("Instructors")

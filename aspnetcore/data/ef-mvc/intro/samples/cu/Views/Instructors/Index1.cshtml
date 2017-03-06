@@ -1,4 +1,3 @@
-@* <snippet_Instructors> *@
 @model ContosoUniversity.Models.SchoolViewModels.InstructorIndexData
 
 @{
@@ -60,72 +59,68 @@
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
             </tr>
-        }
+           }
     </tbody>
 </table>
-@* </snippet_Instructors> *@
 
-@* </snippet_Courses> *@
 @if (Model.Courses != null)
 {
     <h3>Courses Taught by Selected Instructor</h3>
-        <table class="table">
-            <tr>
-                <th></th>
-                <th>Number</th>
-                <th>Title</th>
-                <th>Department</th>
-            </tr>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Department</th>
+        </tr>
 
-            @foreach (var item in Model.Courses)
+        @foreach (var item in Model.Courses)
+        {
+            string selectedRow = "";
+            if (item.CourseID == (int?)ViewData["CourseID"])
             {
-                string selectedRow = "";
-                if (item.CourseID == (int?)ViewData["CourseID"])
-                {
-                    selectedRow = "success";
-                }
-                <tr class="@selectedRow">
-                    <td>
-                        @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
-                    </td>
-                    <td>
-                        @item.CourseID
-                    </td>
-                    <td>
-                        @item.Title
-                    </td>
-                    <td>
-                        @item.Department.Name
-                    </td>
-                </tr>
+                selectedRow = "success";
             }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
+                </td>
+                <td>
+                    @item.CourseID
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Department.Name
+                </td>
+            </tr>
+        }
 
-        </table>
+    </table>
 }
-@* </snippet_Courses> *@
 
-@* <snippet_Enrollments> *@
 @if (Model.Enrollments != null)
 {
     <h3>
         Students Enrolled in Selected Course
     </h3>
-        <table class="table">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
             <tr>
-                <th>Name</th>
-                <th>Grade</th>
+                <td>
+                    @item.Student.FullName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
             </tr>
-            @foreach (var item in Model.Enrollments)
-            {
-                <tr>
-                    <td>
-                        @item.Student.FullName
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Grade)
-                    </td>
-                </tr>
-            }
-        </table>
+        }
+    </table>
 }
-@* </snippet_Enrollments> *@
+
