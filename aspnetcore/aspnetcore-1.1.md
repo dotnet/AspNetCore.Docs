@@ -21,7 +21,7 @@ ASP.NET Core 1.1 includes the following new features:
 - [Response Caching Middleware](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/middleware)
 - [View Components as Tag Helpers](xref:mvc/views/view-components#invoking-a-view-component-as-a-tag-helper)
 - [Middleware as MVC filters](xref:mvc/controllers/filters#using-middleware-in-the-filter-pipeline)
-- [Cookie-based TempData provider](xref:fundamentals/app-state#cookie-based-tempData-provider )
+- [Cookie-based TempData provider](xref:fundamentals/app-state#cookie-based-tempdata-provider )
 - [Azure App Service logging provider](xref:fundamentals/logging#appservice)
 - [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 - [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis)
