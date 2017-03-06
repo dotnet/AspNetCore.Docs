@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 391bcaad-205f-43e4-badc-fa592d6f79f3
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: security/authorization/simple
 ---
 # Simple Authorization
@@ -22,52 +22,52 @@ For example, the following code limits access to the `AccountController` to any 
 
 ```csharp
 [Authorize]
-   public class AccountController : Controller
+public class AccountController : Controller
+{
+   public ActionResult Login()
    {
-       public ActionResult Login()
-       {
-       }
-
-       public ActionResult Logout()
-       {
-       }
    }
-   ```
+
+   public ActionResult Logout()
+   {
+   }
+}
+```
 
 If you want to apply authorization to an action rather than the controller simply apply the `AuthorizeAttribute` attribute to the action itself;
 
 ```csharp
 public class AccountController : Controller
+{
+   public ActionResult Login()
    {
-       public ActionResult Login()
-       {
-       }
-
-       [Authorize]
-       public ActionResult Logout()
-       {
-       }
    }
-   ```
+
+   [Authorize]
+   public ActionResult Logout()
+   {
+   }
+}
+```
 
 Now only authenticated users can access the logout function.
 
-You can also use the `AllowAnonymousAttribute` attribute to allow access by non-authenticated users to individual actions; for example
+You can also use the `AllowAnonymousAttribute` attribute to allow access by non-authenticated users to individual actions; for example:
 
 ```csharp
 [Authorize]
-   public class AccountController : Controller
-   {
-       [AllowAnonymous]
-       public ActionResult Login()
-       {
-       }
+public class AccountController : Controller
+{
+    [AllowAnonymous]
+    public ActionResult Login()
+    {
+    }
 
-       public ActionResult Logout()
-       {
-       }
-   }
-   ```
+    public ActionResult Logout()
+    {
+    }
+}
+```
 
 This would allow only authenticated users to the `AccountController`, except for the `Login` action, which is accessible by everyone, regardless of their authenticated or unauthenticated / anonymous status.
 
