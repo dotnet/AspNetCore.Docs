@@ -33,13 +33,15 @@ The server retains a session for a limited time after the last request. You can 
 
 The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don't require sticky sessions. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed). For details on setting up service providers, see [Configuring Session](#configuring-session) later in this article.
 
+The remainder of this section describes the options for storing user data.
+
 ### TempData
 
 ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data for only a single request after the current one.`TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is built on top of session state. 
 
 ## Cookie-based TempData provider 
 
-The Cookie-based TempData provider requires ASP.NET Core 1.1.0 or higher. To enable the  Cookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
+In ASP.NET Core 1.1 and higher, you can use the cookie-based TempData provider to store a user's TempData in a cookie. To enable the  cdookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -51,19 +53,17 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The cookie-based TempData provider does not use Session; data is stored in a cookie on the client. The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). The cookie is encrypted and chunked, so the single cookie size limit does not apply. See [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
+The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed, because compressing encryped data can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
 
-The cookie data is not compressed. Using compression with encryption can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
+
 
 ### Query strings
 
-State from one request can be provided to another request by adding values to the new request's query string. Query strings should never be used with sensitive data. It is also best used with small amounts of data.
-
-Query strings are useful for capturing state in a persistent manner, allowing links with embedded state to be created and shared through email or social networks. However, no assumption can be made about the user making the request, since URLs with query strings can easily be shared. Care must also be taken to avoid [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks. An attacker could trick a user into visiting a malicious site while authenticated. CSRF are a major form of vulnerability that can be used to steal user data from your app, or take malicious actions on the behalf of the user. Any preserved application or session state needs to protect against CSRF attacks. See [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md)
+You can pass a limited amount of data from one request to another by adding it to the new request’s query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason,  you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick  users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on the behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on protecting app or session state from CSRF attacks, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md)
 
 ### Post data and hidden fields
 
-Data can be saved in hidden form fields and posted back on the next request. This is common in multi-page forms.  It’s insecure in that the client can tamper with the data so the server must always revalidate it.
+Data can be saved in hidden form fields and posted back on the next request. This is common in multipage forms. However, because the  client can potentially tamper with the data, the server must always revalidate it. 
 
 ### Cookies
 
