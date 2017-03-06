@@ -53,7 +53,7 @@ The following diagram shows the basic design of the app.
 
 ### Create the project
 
-From the Visual Studio **File** menu, > **New** > **Project**.
+From Visual Studio, select **File** menu, > **New** > **Project**.
 
 Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi` and select **OK**.
 
@@ -85,7 +85,7 @@ Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
-* The `[Key]` data-annotation denotes the property `Key` is a unique identifier.
+* The `[Key]` data annotation denotes the property, `Key`, is a unique identifier.
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).
 * `DatabaseGeneratedOption.Identity` specifies the database should generate integer keys when a row is inserted. 
 
