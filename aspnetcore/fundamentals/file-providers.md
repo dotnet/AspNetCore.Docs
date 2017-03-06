@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 1e35d362-0005-4f84-a187-274ca203a787
 ms.technology: aspnet
@@ -34,15 +34,16 @@ Three implementations of `IFileProvider` are available: Physical, Embedded, and 
 
 The `PhysicalFileProvider` provides access to the physical file system. It wraps the `System.IO.File` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a Controller or service's constructor through [dependency injection](dependency-injection.md). The latter approach will typically yield a more flexible and testable solution.
 
-To create a `PhysicalFileProvider`, simply instantiate it, passing it a physical path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
+The sample below shows how to create a `PhysicalFileProvider`.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 IFileProvider provider = new PhysicalFileProvider(applicationRoot);
 IDirectoryContents contents = provider.GetDirectoryContents(""); // the applicationRoot contents
 IFileInfo fileInfo = provider.GetFileInfo("wwwroot/js/site.js"); // a file under applicationRoot
 ```
+
+You can iterate through its directory contents or get a specific file's information by providing a subpath.
 
 To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
 
@@ -62,9 +63,9 @@ The result:
 
 ### EmbeddedFileProvider
 
-The `EmbeddedFileProvider` is used to access files embedded in assemblies. In .NET Core, you embed files in an assembly by specifying them in `buildOptions` in the *project.json* file:
+The `EmbeddedFileProvider` is used to access files embedded in assemblies. In .NET Core, you embed files in an assembly with the `<EmbeddedResource>` element in the *.csproj* file:
 
-[!code-json[Main](file-providers/sample/src/FileProviderSample/project.json?highlight=4-7&range=42-49)]
+[!code-json[Main](file-providers/sample/src/FileProviderSample/FileProviderSample.csproj?range=13-18)]
 
 You can use [globbing patterns](#globbing-patterns) when specifying files to embed in the assembly. These patterns can be used to match one or more files.
 
@@ -138,9 +139,9 @@ File system paths use wildcard patterns called *globbing patterns*. These simple
 
    Matches all files with `.txt` extension in a specific directory.
 
-**`directory/*/project.json`**
+**`directory/*/bower.json`**
 
-   Matches all `project.json` files in directories exactly one level below the `directory` directory.
+   Matches all `bower.json` files in directories exactly one level below the `directory` directory.
 
 **<code>directory/&#42;&#42;/&#42;.txt</code>**
 
