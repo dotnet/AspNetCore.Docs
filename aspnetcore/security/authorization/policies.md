@@ -208,16 +208,14 @@ For example the previous `BadgeEntryHandler` could be rewritten as follows;
 
 ```csharp
 services.AddAuthorization(options =>
-    {
-        options.AddPolicy("BadgeEntry",
-                          policy => policy.RequireAssertion(context =>
-                                  context.User.HasClaim(c =>
-                                     (c.Type == ClaimTypes.BadgeId ||
-                                      c.Type == ClaimTypes.TemporaryBadgeId)
-                                      && c.Issuer == "https://microsoftsecurity"));
-                          }));
-    }
- }
+{
+    options.AddPolicy("BadgeEntry",
+                      policy => policy.RequireAssertion(context =>
+                              context.User.HasClaim(c =>
+                                  (c.Type == ClaimTypes.BadgeId ||
+                                  c.Type == ClaimTypes.TemporaryBadgeId)
+                                  && c.Issuer == "https://microsoftsecurity")));
+});
 ```
 
 ## Accessing MVC Request Context In Handlers
@@ -235,6 +233,6 @@ var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.Authorizat
 
 if (mvcContext != null)
 {
-    // Examine MVC specific things like routing data.
+    // Examine MVC-specific things like routing data.
 }
 ```
