@@ -18,6 +18,12 @@
             @Html.DisplayFor(model => model.CourseID)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Credits)
         </dt>
         <dd>
@@ -29,13 +35,8 @@
         <dd>
             @Html.DisplayFor(model => model.Department.Name)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>    
+    </dl>
+    
     <form asp-action="Delete">
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |

@@ -1,80 +1,69 @@
 ---
 title: Build an ASP.NET Core app on a Mac Using Visual Studio Code | Microsoft Docs
-author: ardalis
-description: This article will walk you through creating your first web application on a Mac using the Yeoman generator for ASP.NET Core and Visual Studio Code
+author: spboyer
+description: This article will walk you through creating your first web application on a Mac using the dotnet CLI for ASP.NET Core and Visual Studio Code
 keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/22/2017
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/your-first-mac-aspnet
 ---
-# Your First ASP.NET Core Application on a Mac Using Visual Studio Code
-
-By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shayne Boyer](https://twitter.com/spboyer)
+# Your first ASP.NET Core application on a Mac using Visual Studio Code
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 
-## Setting Up Your Development Environment
+## Setting up your development environment
 
-To setup your development machine download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp). Node.js and npm is also required. If not already installed visit [nodejs.org](https://nodejs.org/en/download/package-manager/#osx).
+To setup your development machine download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-## Scaffolding Applications Using Yeoman
+## Scaffolding applications using dotnet new
 
-We will be using `yo aspnet` to generate the **Web Application Basic** template, you may follow the full instructions in [Building Projects with Yeoman](../client-side/yeoman.md) to create an ASP.NET Core project which show an **Empty Web** for reference.
+We will be using `dotnet new` to generate a new web application using the "Empty Web Template". Create a working directory for your project called *firstmacapp* . cd to *firstmacapp*.
 
-Install the necessary yeoman generators and bower using npm.
+Start Visual Studio Code and open the *firstmacapp* folder. Press Ctrl + '`' (the back-quote character) to open an embedded terminal in VS Code. Alternatively, use a separate terminal window.
+Run the `dotnet new` command to create a new web application, passing the `mvc` parameter as the template type.
 
 ```console
-npm install -g yo generator-aspnet@0.2.6 bower
+dotnet new mvc
 ```
 
-Run the ASP.NET Core generator
+When the CLI command completes; the following output and files are produced.
 
 ```console
-yo aspnet
+Content generation time: 79.6691 ms
+The template "Empty ASP.NET Core Web Application" created successfully.
 ```
 
-* Select **Web Application Basic [without Membership and Authorization]** and tap Enter
+* Startup.cs : [Startup Class](../fundamentals/startup.md) - class configures the request pipeline that handles all requests made to the application.
+* Program.cs : [Program Class](../fundamentals/index.md) that contains the Main entry point of the application.
+* firstmacapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
+* appsettings.json / appsettings.Development.json : Environment base app settings configuration file. [See Configuration](xref:fundamentals/configuration).
+* bower.json : Bower package dependencies for the project.
+* .bowerrc : Bower configuration file which defines where to install the components when Bower downloads the assets.
+* bundleconfig.json : configuration files for bundling and minifying front-end JavaScript and CSS assets.
+* Views : Contains the Razor views. Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
+* Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
+* wwwroot : Web application root folder.
 
-* Select Bootstrap (3.3.6) as the UI framework and tap Enter
+For more on the MVC pattern see [What is the MVC pattern?](xref:mvc/overview).
 
-* Use "MyFirstApp" for the app name and tap Enter
+## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
-When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
+Select the _Program.cs_ file and Visual Studio Code will prompt to restore the needed project dependencies and add build and debug dependencies.
 
-```console
-Your project is now created, you can use the following commands to get going
-       cd "MyFirstApp"
-       dotnet restore
-       dotnet build (optional, build will also happen with it's run)
-       dotnet run
-   ```
-
-## Developing ASP.NET Core Applications on a Mac With Visual Studio Code
-
-* Start **Visual Studio Code**
-
-* Tap **File > Open** and navigate to your ASP.NET Core app
-
-![File menu](your-first-mac-aspnet/_static/file-open.png)
-
-When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
-
-![Info messages: 1. There are unresolved dependencies from project.json. Please execute the restore command to continue. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/dependencies-restore.png)
+![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
 Tap "Yes" to add the build and debug assets.
 
 ![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
-Tap "Restore" to restore the project dependencies. Alternately, you can enter `⌘⇧P` in Visual Studio Code and then type `dot` as shown:
+Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` in Visual Studio Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
-
-You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃` where you can execute these commands without leaving the editor.
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
 
@@ -100,13 +89,11 @@ Code's editor has a ton of great features. You'll notice unused using statements
 
 More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
-## Running Locally Using Kestrel
+## Running locally using Kestrel
 
-The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
+The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server.
 
-  `"Microsoft.AspNetCore.Server.Kestrel":`
-
-### Using Visual Studio Code Debugger
+### Using Visual Studio Code debugger
 
 If you chose to have the debug and build assets added to the project:
 
@@ -180,8 +167,7 @@ Looking at the Deployment Details in the Azure Portal, you can see the logs and 
 
 ![Azure Portal for web application: Deployment Details](your-first-mac-aspnet/_static/deployment.png)
 
-## Additional Resources
+## Additional resources
 
 * [Visual Studio Code](https://code.visualstudio.com)
-* [Building Projects with Yeoman](../client-side/yeoman.md)
 * [Fundamentals](../fundamentals/index.md)

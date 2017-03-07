@@ -242,7 +242,7 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | Resources/Controllers/HomeController.fr.resx  | Path |
 |    |     |
 
-Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Book/About.cshtml* view could be either of the following:
+Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
 
 * Resources/Views/Home/About.fr.resx
 

@@ -1028,6 +1028,7 @@
 #### [XSRF/CSRF Prevention in ASP.NET MVC and Web Pages](mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md)
 #### [Preventing Open Redirection Attacks (C#)](mvc/overview/security/preventing-open-redirection-attacks.md)
 ### [Deployment](mvc/overview/deployment/index.md)
+#### [Migrating ASP.NET MVC Applications to Windows Containers](mvc/overview/deployment/docker-aspnetmvc.md)
 ### [Performance](mvc/overview/performance/index.md)
 #### [Profile and debug your ASP.NET MVC app with Glimpse](mvc/overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
 #### [Using Asynchronous Methods in ASP.NET MVC 4](mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md)
