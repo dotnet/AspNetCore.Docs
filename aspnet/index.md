@@ -679,6 +679,26 @@ description:
                                     </div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="https://docs.microsoft.com/aspnet/mvc/overview/deployment/docker-aspnetmvc">
+                                    <div class="cardSize">
+                                        <div class="cardPadding">
+                                            <div class="card">
+                                                <div class="cardImageOuter">
+                                                    <div class="cardImage bgdAccent1">
+                                                        <img src="/media/hubs/aspnet/aspnet-tutorials-5.svg" alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="cardText">
+                                                    <h3>Migrating ASP.NET MVC Applications to Windows Containers</h3>
+                                                    <p>Learn how to take an existing ASP.NET MVC application and run it in a Windows Docker Container .</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET docs and samples</a></p>

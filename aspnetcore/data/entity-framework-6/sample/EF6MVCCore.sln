@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26222.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MVCCore", "MVCCore\MVCCore.xproj", "{BDC5D7CC-5EE7-438F-9D59-DDAC6E936B28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore", "MVCCore\MVCCore.csproj", "{BDC5D7CC-5EE7-438F-9D59-DDAC6E936B28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF6", "EF6\EF6.csproj", "{10B9484D-5293-48BA-868D-6CA5B21BC6B9}"
 EndProject

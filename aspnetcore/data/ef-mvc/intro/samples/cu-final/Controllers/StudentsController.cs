@@ -16,7 +16,18 @@ namespace ContosoUniversity.Controllers
 
         public StudentsController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
+            var courseList = new List<string>();
+            var departments = _context.Departments;
+            foreach (Department d in departments)
+            {
+                _context.Entry(d).Collection(p => p.Courses).Load();
+                foreach (Course c in d.Courses)
+                {
+                    courseList.Add(d.Name + c.Title);
+                }
+            }
+
         }
 
         // GET: Students
@@ -67,6 +78,9 @@ namespace ContosoUniversity.Controllers
             int pageSize = 3;
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
         }
+
+
+
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -100,8 +114,7 @@ namespace ContosoUniversity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("EnrollmentDate,FirstMidName,LastName")] Student student)
+        public async Task<IActionResult> Create([Bind("LastName,FirstMidName,EnrollmentDate")] Student student)
         {
             try
             {
@@ -197,6 +210,7 @@ namespace ContosoUniversity.Controllers
             return View(student);
         }
 
+
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -222,6 +236,7 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
         }
+
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.ID == id);

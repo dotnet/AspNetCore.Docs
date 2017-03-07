@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10 | Microsoft Docs
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
+keywords: ASP.NET Core, Entity Framework Core, data annotations
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
 ms.technology: aspnet
@@ -17,7 +17,7 @@ uid: data/ef-mvc/complex-data-model
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorials you worked with a simple data model that was composed of three entities. In this tutorial you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules.
 
@@ -55,7 +55,7 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 
 * By default, the browser will render data using the correct format based on your locale.
 
-For more information, see the [\<input> tag helper documentation](https://docs.asp.net/en/latest/mvc/views/working-with-forms.html#the-input-tag-helper).
+For more information, see the [\<input> tag helper documentation](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Run the Students Index page again and notice that times are no longer displayed for the enrollment dates. The same will be true for any view that uses the Student model.
 
@@ -86,7 +86,7 @@ dotnet ef migrations add MaxLengthOnNames -c SchoolContext
 dotnet ef database update -c SchoolContext
 ```
 
-The `migrations add` command creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
+The `migrations add` command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
 
 The timestamp prefixed to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the update-database command, and then all of the migrations are applied in the order in which they were created.
 
@@ -131,10 +131,6 @@ Before you applied the first two migrations, the name columns were of type nvarc
 In *Models/Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,25-31)]
-
-### The Table attribute
-
-As you saw in the first tutorial, by default tables are named after the `DbSet` property name.  The property name is for a collection, so it is typically plural ("Students"), but many developers and DBAs prefer to use the singular form ("Student") for table names. This attribute specifies the name that EF will use for the table in the database that stores Student entities.
 
 ### The Required attribute
 
@@ -189,7 +185,7 @@ The reason why these are `CourseAssignment` entities is explained below in the s
 Contoso University business rules state that an instructor can only have at most one office, so the `OfficeAssignment` property holds a single OfficeAssignment entity (which may be null if no office is assigned).
 
 ```csharp
-public virtual OfficeAssignment OfficeAssignment { get; set; }
+public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
 ## Create the OfficeAssignment entity
@@ -206,17 +202,12 @@ There's a one-to-zero-or-one relationship  between the Instructor and the Office
 
 ```csharp
 [Key]
-[ForeignKey("Instructor")]
 public int InstructorID { get; set; }
 ```
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something other than classnameID or ID.
 
 By default EF treats the key as non-database-generated because the column is for an identifying relationship.
-
-### The ForeignKey attribute
-
-When there is a one-to-zero-or-one relationship or a one-to-one relationship between two entities (such as between OfficeAssignment and Instructor), EF might not be able to work out which end of the relationship is the principal and which end is dependent.  One-to-one relationships have a reference navigation property in each class to the other class. The `ForeignKey` attribute can be applied to the dependent class to establish the relationship.
 
 ### The Instructor navigation property
 
@@ -301,7 +292,7 @@ A department may or may not have an administrator, and an administrator is alway
 
 ```csharp
 public int? InstructorID { get; set; }
-public virtual Instructor Administrator { get; set; }
+public Instructor Administrator { get; set; }
 ```
 
 A department may have many courses, so there's a Courses navigation property:
@@ -431,19 +422,13 @@ dotnet ef migrations add ComplexDataModel -c SchoolContext
 You get a warning about possible data loss.
 
 ```text
-C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add ComplexDataModel -c SchoolContext
-Project ContosoUniversity (.NETCoreApp,Version=v1.0) will be compiled because Input items removed from last build
-Compiling ContosoUniversity for .NETCoreApp,Version=v1.0
-Compilation succeeded.
+Build succeeded.
     0 Warning(s)
     0 Error(s)
-Time elapsed 00:00:02.9907258
 
+Time Elapsed 00:00:11.58
 An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
-
-Done.
-
-To undo this action, use 'dotnet ef migrations remove'
+Done. To undo this action, use 'ef migrations remove'
 ```
 
 If you tried to run the `database update` command at this point (don't do it yet), you would get the following error:
@@ -454,9 +439,15 @@ Sometimes when you execute migrations with existing data, you need to insert stu
 
 To make this migration work with existing data you have to change the code to give the new column a default value, and create a stub department named "Temp" to act as the default department. As a result, existing Course rows will all be related to the "Temp" department after the `Up` method runs.
 
-Open the *<timestamp>_ComplexDataModel.cs* file. Comment out the line of code that adds the DepartmentID column to the Course table, and add before it the following code (the commented lines are also shown):
+* Open the *<timestamp>_ComplexDataModel.cs* file. 
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20160727184013_ComplexDataModel.cs?name=snippet_DefaultDepartment)]
+* Comment out the line of code that adds the DepartmentID column to the Course table.
+
+  [!code-csharp[Main](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+
+* Add the following highlighted code after the code that creates the Department table:
+
+  [!code-csharp[Main](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 In a production application, you would write code or scripts to add Department rows and relate Course rows to the new Department rows. You would then no longer need the "Temp" department or the default value on the Course.DepartmentID column.
 
