@@ -71,7 +71,8 @@ namespace WebApp1.Controllers
                 {
                     if (!await _userManager.IsEmailConfirmedAsync(user))
                     {
-                        ModelState.AddModelError(string.Empty, "You must have a confirmed email to log in.");
+                        ModelState.AddModelError(string.Empty, 
+                                      "You must have a confirmed email to log in.");
                         return View(model);
                     }
                 }
@@ -137,9 +138,9 @@ namespace WebApp1.Controllers
                     var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account",
                         new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                        $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
+                $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
 
-                    // Comment out following line to prevent a newly user from being automatically logged on.
+                    // Comment out following line to prevent a new user automatically logged on.
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
