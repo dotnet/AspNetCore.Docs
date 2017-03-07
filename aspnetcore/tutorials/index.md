@@ -16,7 +16,7 @@ ms.prod: asp.net-core
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
-* [Your first ASP.NET Core application on a Mac using Visual Studio Code](your-first-mac-aspnet.md)
+* [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building your first ASP.NET Core MVC app with Visual Studio](first-mvc-app/index.md)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
