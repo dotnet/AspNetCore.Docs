@@ -30,7 +30,7 @@ Here is an example of a CSRF attack:
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
 5. The request runs on the server with the user's authentication context, and can do anything that an authenticated user is allowed to do.
 
-Although this example requires the user to click the form button, the malicious page could just as easily run a script that sends an AJAX request. Moreover, using SSL does not prevent a CSRF attack, because the malicious site can send an "https://" request.
+Although this example requires the user to click the form button, the malicious page could just as easily run a script that submits the form automatically. Moreover, using SSL does not prevent a CSRF attack, because the malicious site can send an "https://" request.
 
 Typically, CSRF attacks are possible against web sites that use cookies for authentication, because browsers send all relevant cookies to the destination web site. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user logs in with Basic or Digest authentication. the browser automatically sends the credentials until the session ends.
 
