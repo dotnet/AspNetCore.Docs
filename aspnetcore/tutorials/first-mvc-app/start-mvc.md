@@ -21,6 +21,8 @@ This tutorial will teach you the basics of building an ASP.NET Core MVC web app 
 > [!NOTE]
 > See [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../your-first-mac-aspnet.md) for a Mac tutorial.
 
+For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
+
 ## Install Visual Studio and .NET Core
 
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
