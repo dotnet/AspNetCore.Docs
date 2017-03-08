@@ -11,6 +11,7 @@ namespace MvcMovie.Models
         public int ID { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Title { get; set; }
 
         #region snippet2
@@ -30,6 +31,7 @@ namespace MvcMovie.Models
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [StringLength(5)]
+        [Required]
         public string Rating { get; set; }
     }
 #endregion
