@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Rewrite;
-
 using WebApp1.Data;
 using WebApp1.Models;
 using WebApp1.Services;
@@ -37,8 +36,8 @@ namespace WebApp1
 
         // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet1
-        // RequireHttpsAttribute requires using Microsoft.AspNetCore.Mvc;
         #region snippet2
+        // Requires using Microsoft.AspNetCore.Mvc;
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MvcOptions>(options =>
@@ -52,9 +51,9 @@ namespace WebApp1
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
-            {
-                config.SignIn.RequireConfirmedEmail = true;
-            })
+                {
+                    config.SignIn.RequireConfirmedEmail = true;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -70,6 +69,7 @@ namespace WebApp1
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippet_AddRedirectToHttps
+        // Requires using Microsoft.AspNetCore.Rewrite;
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

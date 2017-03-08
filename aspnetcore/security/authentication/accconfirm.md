@@ -1,8 +1,8 @@
 ---
 title: Account Confirmation and Password Recovery | Microsoft Docs
 author: rick-anderson
-description: Shows how to build an ASP.NET Core app with email confirmation and password reset support
-keywords: ASP.NET Core, password reset, email confirmation
+description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
+keywords: ASP.NET Core, password reset, email confirmation, security
 ms.author: riande
 manager: wpickett
 ms.date: 03/14/2017
@@ -18,14 +18,13 @@ uid: security/authentication/accconfirm
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset support.
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset.
 
 ## Create a New ASP.NET Core Project
 
 The tutorial requires Visual Studio 2017 or higher.
 
-* In Visual Studio, create a New Project (from the Start Page, or  **File > New > Project**)
-* Select **Web Application**.
+* In Visual Studio, create a New Web Application Project.
 * Select **Change Authentication** and set to **Individual User Accounts**.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
@@ -47,7 +46,7 @@ You might want to use this email again in the next step, when the app sends a co
 
 In this section we'll set up and require SSL in our project.
 
-   * In solution explorer, right click the project and select **Properties**.
+   * In Solution Explorer, right click the project and select **Properties**.
    * On the left pane, select **Debug**.
    * Check **Enable SSL**
    * Copy the SSL URL and paste it into the **App URL**
@@ -56,13 +55,11 @@ In this section we'll set up and require SSL in our project.
 
 * Add the following code to `ConfigureServices` in `Startup`:
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=3-6)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-)]
 
-The highlighted code above requires all requests to the app use `HTTPS`.
+The highlighted code above requires all requests to the app use `HTTPS`. HTTP requests will be ignored. The following highlighted code redirects all HTTP requests to HTTPS:
 
-Add the following highlighted code to redirect all HTTP request to HTTPS:
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=6-7)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=6-)]
 
 See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
 
@@ -78,7 +75,7 @@ Update `ConfigureServices` to require a confirmed email:
 
 ### Configure email provider
 
-We'll use the [Options pattern](xref:fundamentals/configuration#options-config-objects) to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
+In this tutorial we'll be using SendGrid to send email. You'll need a SendGrid account and key to send email. We'll use the [Options pattern](xref:fundamentals/configuration#options-config-objects) to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
 
 Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
@@ -104,8 +101,6 @@ The contents of the *secrets.json* file are not encrypted. The *secrets.json* fi
 
 ### Configure startup to use `AuthMessageSenderOptions`
 
-Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
-
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
@@ -114,11 +109,9 @@ Add `AuthMessageSenderOptions` to the service container at the end of the `Confi
 
 This tutorial shows how to add email notification through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
 
-* Install the SendGrid.NetCore NuGet package. From the Package Manager Console,  enter the following the following command:
+* Install the `SendGrid` NuGet package. From the Package Manager Console,  enter the following the following command:
 
-  `Install-Package SendGrid -Pre`
-
-  Note: SendGrid is a prerelease version. You must use the `-Pre` option.
+  `Install-Package SendGrid`
 
 * See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
@@ -135,14 +128,15 @@ The template already has the code for account confirmation and password recovery
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=19-25&name=snippet_Register)]
 
 Note: We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
->
-> ```csharp
-> //await _signInManager.SignInAsync(user, isPersistent: false);
-> ```
+
+
+```csharp 
+//await _signInManager.SignInAsync(user, isPersistent: false);
+```
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=14-23&name=snippet_ForgotPassword)]
 
 Uncomment the markup in *Views/Account/ForgotPassword.cshtml*:
 
@@ -174,7 +168,7 @@ In this section, run the web app and show the account confirmation and password 
 * Enter the email you used to register the account.
 * An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
 
-## Require email confirmation before login
+## Prevent login at registration
 
 With the current templates, once a user completes the registration form, they are logged in (authenticated). You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in. Update the `[HttpPost] Login` action in the *AccountController.cs* file with the following highlighted changes.
 
