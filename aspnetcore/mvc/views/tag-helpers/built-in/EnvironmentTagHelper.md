@@ -1,6 +1,6 @@
 ﻿---
 title: Environment Tag Helper | Microsoft Docs
-author: Peter Kellner
+author: pkellner
 description: ASP.Net Core Environment Tag Helper defined including all properties
 keywords: ASP.NET Core,tag helper
 ms.author: riande
@@ -13,10 +13,6 @@ ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper
 ---
 # Environment Tag Helper
-
-NOTETOSELF:
-EnvironmentName Staging,Development,Production
-HostingEnvironment.EnvironmentName
 
 By [Peter Kellner](http://peterkellner.net) 
 

@@ -1,6 +1,6 @@
 ﻿---
 title: Distributed Cache Tag Helper | Microsoft Docs
-author: Peter Kellner
+author: pkellner
 description: Shows how to work with Cache Tag Helper
 keywords: ASP.NET Core,tag helper
 ms.author: riande
