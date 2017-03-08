@@ -1,8 +1,8 @@
 ---
-title: Build an ASP.NET Core app on a Mac Using Visual Studio Code | Microsoft Docs
+title: Build an ASP.NET Core app on a Mac or Linux using Visual Studio Code | Microsoft Docs
 author: spboyer
 description: This article will walk you through creating your first web application on a Mac using the dotnet CLI for ASP.NET Core and Visual Studio Code
-keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code
+keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux
 ms.author: riande
 manager: wpickett
 ms.date: 02/22/2017
@@ -12,9 +12,9 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/your-first-mac-aspnet
 ---
-# Your first ASP.NET Core application on a Mac using Visual Studio Code
+# Build an ASP.NET Core app on a Mac or Linux using Visual Studio Code
 
-This article will show you how to write your first ASP.NET Core application on a Mac.
+This article will show you how to write your first ASP.NET Core application on macOS or Linux.
 
 ## Setting up your development environment
 
@@ -22,9 +22,9 @@ To setup your development machine download and install [.NET Core](https://micro
 
 ## Scaffolding applications using dotnet new
 
-We will be using `dotnet new` to generate a new web application using the "Empty Web Template". Create a working directory for your project called *firstmacapp* . cd to *firstmacapp*.
+We will be using `dotnet new` to generate a new web application using the "Empty Web Template". Create a working directory for your project called *firstapp* . cd to *firstapp*.
 
-Start Visual Studio Code and open the *firstmacapp* folder. Press Ctrl + '`' (the back-quote character) to open an embedded terminal in VS Code. Alternatively, use a separate terminal window.
+Start Visual Studio Code and open the *firstapp* folder. Press Ctrl + '\`' (the back-quote character) to open an embedded terminal in VS Code. Alternatively, use a separate terminal window.
 Run the `dotnet new` command to create a new web application, passing the `mvc` parameter as the template type.
 
 ```console
@@ -40,7 +40,7 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 
 * Startup.cs : [Startup Class](../fundamentals/startup.md) - class configures the request pipeline that handles all requests made to the application.
 * Program.cs : [Program Class](../fundamentals/index.md) that contains the Main entry point of the application.
-* firstmacapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
+* firstapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
 * appsettings.json / appsettings.Development.json : Environment base app settings configuration file. [See Configuration](xref:fundamentals/configuration).
 * bower.json : Bower package dependencies for the project.
 * .bowerrc : Bower configuration file which defines where to install the components when Bower downloads the assets.
@@ -61,7 +61,7 @@ Tap "Yes" to add the build and debug assets.
 
 ![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
-Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` in Visual Studio Code and then type `.NET` as shown:
+Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in Visual Studio Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
@@ -85,7 +85,7 @@ The Search viewlet allows you to quickly search within the folder structure, sea
 
 The Debug viewlet supports interactive debugging of applications.
 
-Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as `⌘KC` to comment a block of code, and `⌘KU` to uncomment.
+Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` or `Ctrl + .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them.
 
 More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
@@ -117,7 +117,7 @@ Your default browser will automatically launch and navigate to `http://localhost
 
 * Navigate to `http://localhost:5000`
 
-* To stop the web server enter `⌃+C`.
+* To stop the web server enter `⌃+C` or `Ctrl+C`.
 
 ## Publishing to Azure
 
