@@ -69,7 +69,7 @@ Let's modify the example slightly so that you can pass some parameter informatio
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
-The code above uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). It also uses [Interpolated Strings](https://msdn.microsoft.com/en-us/library/dn961160.aspx).
+The code above uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). It also uses [Interpolated Strings](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings).
 
 In Visual Studio, in non-debug mode (Ctrl+F5), you don't need to build the app after changing  code. Just save the file, refresh your browser and you can see the changes.
 
