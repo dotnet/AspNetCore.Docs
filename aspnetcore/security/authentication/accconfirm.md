@@ -40,7 +40,7 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 
 Note the `EmailConfirmed` field is `False`.
 
-You might want to use this email again in the next step, when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
+You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
 ## Require SSL
 
@@ -125,7 +125,7 @@ The template already has the code for account confirmation and password recovery
 *  Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
 *  Uncomment the code to enable account confirmation.
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=19-25&name=snippet_Register)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16-25&name=snippet_Register)]
 
 Note: We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
 
@@ -136,7 +136,7 @@ Note: We're also preventing a newly registered user from being automatically log
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=14-23&name=snippet_ForgotPassword)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
 
 Uncomment the markup in *Views/Account/ForgotPassword.cshtml*:
 
