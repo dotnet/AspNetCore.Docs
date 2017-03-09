@@ -121,7 +121,7 @@ Your default browser will automatically launch and navigate to `http://localhost
 
 ## Publishing to Azure
 
-Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on [Microsoft Azure](http://azure.microsoft.com).
+VS Code provides Git integration to push updates to production, hosted on [Microsoft Azure](http://azure.microsoft.com).
 
 ### Initialize Git
 
