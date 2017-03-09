@@ -5,7 +5,7 @@ description: This article will walk you through creating your first web applicat
 keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux
 ms.author: riande
 manager: wpickett
-ms.date: 02/22/2017
+ms.date: 03/09/2017
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
 ms.technology: aspnet
@@ -49,7 +49,7 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 * Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
 * wwwroot : Web application root folder.
 
-For more on the MVC pattern see [What is the MVC pattern?](xref:mvc/overview).
+For more information see [What is the MVC pattern](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
