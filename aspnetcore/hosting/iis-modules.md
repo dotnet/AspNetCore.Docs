@@ -5,7 +5,7 @@ description: Reference document describing active and inactive IIS modules for A
 keywords: ASP.NET Core, iis, module, reverse-proxy
 ms.author: riande
 manager: wpickett
-ms.date: 02/24/2017
+ms.date: 03/08/2017
 ms.topic: article
 ms.assetid: 492b3a7e-04c5-461b-b96a-38ecee5c64bc
 ms.technology: aspnet
@@ -73,7 +73,7 @@ UrlRoutingModule-4.0 | No | [ASP.NET Core  Identity](xref:security/authenticatio
 WindowsAuthentication | No | 
 
 ## IIS Manager application changes
-When using IIS modules with .NET applications, keep in mind that when you interact with the IIS Manager to configure settings that you're directly changing the *web.config* file of the app. If you later deploy a *web.config* with the app, any changes you made in the IIS Manager on the server will be overwritten by the settings in the deployed *web.config* file. After you've made changes to an app's *web.config* on the server, mirror those changes in your project's *web.config* immediately.
+When you use IIS Manager to configure settings, you're directly changing the *web.config* file of the app. If you deploy your app and include *web.config*, any changes you made with IIS Manger will be overwritten by the deployed *web.config file*. Therefore if you make changes to the server's *web.config* file, copy the updated *web.config* file to your local project immediately.
 
 ## Disabling IIS modules
 If you have an IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.
@@ -144,7 +144,7 @@ The only modules required to run an ASP.NET Core application are the Anonymous A
 ![IIS Manager open to Modules with the minimum module configuration shown](iis-modules/_static/modules.png)
 
 ## Resources
-* <xref:publishing/iis>
+* [Publishing to IIS](xref:publishing/iis)
 * [IIS Modules Overview](https://www.iis.net/learn/get-started/introduction-to-iis/iis-modules-overview)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx)
 * [IIS `<system.webServer>`](https://www.iis.net/configreference/system.webserver)
