@@ -65,7 +65,7 @@ Tap "Restore" to restore the project dependencies. Alternately, you can run `dot
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
-If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
+VS Code provides a streamlined, clean interface for working with files and a productive coding enviromment. 
 
 In the left navigation bar, there are five icons, representing four viewlets:
 
