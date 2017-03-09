@@ -107,7 +107,7 @@ Note: The version numbers shown above were correct at the time of writing.
 
 * `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
 * `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
-* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/<date-time>_Initial.cs* file containing the migration commands to add (or drop) the *Movie* table to the database
+* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add (or drop) the *Movie* table to the database
 * `dotnet ef database update`  Updates the database with the migration we just created
 
 ## Test the app
