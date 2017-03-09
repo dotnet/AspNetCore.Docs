@@ -97,7 +97,7 @@ This Hands-On Lab is comprised by the following exercises:
 1. [Exercise 1: Creating MusicStore ASP.NET MVC Web Application Project](#Exercise1)
 2. [Exercise 2: Creating a Controller](#Exercise2)
 3. [Exercise 3: Passing parameters to a Controller](#Exercise3)
-4. [Exercise 4: Adding Ajax for Searching Activities](#Exercise4)
+4. [Exercise 4: Creating a View](#Exercise4)
 5. [Exercise 5: Creating a View Model](#Exercise5)
 6. [Exercise 6: Using parameters in View](#Exercise6)
 7. [Exercise 7: A lap around ASP.NET MVC 4 New Template](#Exercise7)
