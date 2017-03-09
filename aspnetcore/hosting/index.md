@@ -14,6 +14,7 @@ ms.prod: asp.net-core
 # Guidance for hosting providers
 
 * [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module)
+* [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
 * [Directory structure](xref:hosting/directory-structure)
 * [Servicing](xref:hosting/servicing)
 * [Data Protection](xref:hosting/dataprotection)
