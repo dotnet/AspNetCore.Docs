@@ -111,7 +111,7 @@ Estimated time to complete this lab: **30 minutes**.
 <a id="Exercise_1_Injecting_a_Controller"></a>
 ### Exercise 1: Injecting a Controller
 
-In this exercise, you will learn how to use Dependency Injection in ASP.NET MVC Controllers by integrating Unity using a NuGet Package. For that reason, you will include services into your MvcMusicStore controllers to separate the logic from the data access. The services will create a new dependence in the controller constructor, which will be resolved using Dependency Injection with the help of **Unity**.
+In this exercise, you will learn how to use Dependency Injection in ASP.NET MVC Controllers by integrating Unity using a NuGet Package. For that reason, you will include services into your MvcMusicStore controllers to separate the logic from the data access. The services will create a new dependency in the controller constructor, which will be resolved using Dependency Injection with the help of **Unity**.
 
 This approach will show you how to generate less coupled applications, which are more flexible and easier to maintain and test. You will also learn how to integrate ASP.NET MVC with Unity.
 
