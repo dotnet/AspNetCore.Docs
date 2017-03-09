@@ -445,7 +445,7 @@ In this task, you will enable site tracking. To do that, you will register the f
 
     [!code-xml[Main](aspnet-mvc-4-dependency-injection/samples/sample23.xml)]
 2. Open **Bootstrapper.cs** at project root.
-3. Add a reference to the Filters namespace.
+3. Add a reference to the **MvcMusicStore.Filters** namespace.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Bootstrapper Adding Namespaces*)
 
