@@ -153,7 +153,7 @@ In this task you will create a custom filter attribute class that will contain t
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex1-LoggingActions*)
 
-    [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample3.cs)]
+    [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample3.cs#Highlight)]
 
     > [!NOTE]
     > **OnActionExecuting** method is using **Entity Framework** to add a new ActionLog register. It creates and fills a new entity instance with the context information from **filterContext**.
