@@ -1,6 +1,4 @@
-private static 
-
-IUnityContainer BuildUnityContainer()
+private static IUnityContainer BuildUnityContainer()
 {
 	var container = new UnityContainer();
 
@@ -9,8 +7,8 @@ IUnityContainer BuildUnityContainer()
 
 	container.RegisterInstance<IMessageService>(new MessageService
 	{
-		 Message = "You are welcome to our Web Camps Training Kit!",
-		 ImageUrl = "/Content/Images/webcamps.png"
+		Message = "You are welcome to our Web Camps Training Kit!",
+		ImageUrl = "/Content/Images/webcamps.png"
 	});
 
 	container.RegisterType<IViewPageActivator, CustomViewPageActivator>(new InjectionConstructor(container));
