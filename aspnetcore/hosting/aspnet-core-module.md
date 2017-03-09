@@ -5,7 +5,7 @@ description: How to configure the ASP.NET Core Module for hosting ASP.NET Core a
 keywords: ASP.NET Core, ancm, core module, iis, stdout logging, environment variable, env var, subapplication, subapp, appoffline, app_offline, 502, schema
 ms.author: riande
 manager: wpickett
-ms.date: 11/18/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 5de0c8f7-50ce-4e2c-b3d4-a1bd9fdfcff5
 ms.technology: aspnet
@@ -14,50 +14,41 @@ uid: hosting/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
 
-By [Luke Latham](https://github.com/GuardRex), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
+By [Luke Latham](https://github.com/GuardRex), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This document provides details on how to configure the ASP.NET Core Module for hosting ASP.NET Core applications. For an introduction to the ASP.NET Core Module and installation instructions, see the [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module).
 
 ## Configuration via web.config
 
-The ASP.NET Core Module is configured via a site or application *web.config* file and has its own `aspNetCore` configuration section within `system.webServer`. Here's an example *web.config* file with placeholders for values that `publish-iis` tooling will provide when the project is published.
+The ASP.NET Core Module is configured via a site or application *web.config* file and has its own `aspNetCore` configuration section within `system.webServer`. Here's an example *web.config* file that the `Microsoft.NET.Sdk.Web` SDK will provide when the project is published for a [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/#framework-dependent-deployments-fdd) with placeholders for the `processPath` and `arguments`:
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-    <!--
-        Configure your application settings in appsettings.json. 
-        Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
-    -->
-    <system.webServer>
-        <handlers>
-            <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
-        </handlers>
-        <aspNetCore processPath="%LAUNCHER_PATH%" 
-            arguments="%LAUNCHER_ARGS%" 
-            stdoutLogEnabled="false" 
-            stdoutLogFile=".\logs\aspnetcore-stdout" 
-            forwardWindowsAuthToken="false" />
-    </system.webServer>
+  <system.webServer>
+    <handlers>
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+    </handlers>
+    <aspNetCore processPath="%LAUNCHER_PATH%" 
+        arguments="%LAUNCHER_ARGS%" 
+        stdoutLogEnabled="false" 
+        stdoutLogFile=".\logs\stdout" />
+  </system.webServer>
 </configuration>
 ```
 
-As shown in the example below for deployment to the [Azure App Service](https://azure.microsoft.com/services/app-service/), *publish-iis* tooling will provide the values required for `processPath`, `arguments`, and the `stdoutLogFile` path for the destination environment. For more information on the `publish-iis` tool, see [Publishing to IIS](xref:publishing/iis). See [Configuration of sub-applications](xref:publishing/iis#configuration-of-sub-applications) for an important note pertaining to the configuration of *web.config* files in sub-applications.
+The *web.config* example below is for a [self-contained deployment](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/#self-contained-deployments-scd) to the [Azure App Service](https://azure.microsoft.com/services/app-service/). For more information, see [Publishing to IIS](xref:publishing/iis). See [Configuration of sub-applications](xref:publishing/iis#configuration-of-sub-applications) for an important note pertaining to the configuration of *web.config* files in sub-applications.
 
 ```xml
 <configuration>
-    <!--
-        Configure your application settings in appsettings.json. 
-        Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
-    -->
-    <system.webServer>
-        <handlers>
-            <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
-        </handlers>
-        <aspNetCore processPath=".\MyApp.exe" 
-            stdoutLogEnabled="false" 
-            stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout" 
-            forwardWindowsAuthToken="false" />
-    </system.webServer>
+  <system.webServer>
+    <handlers>
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+    </handlers>
+    <aspNetCore processPath=".\MyApp.exe" 
+        stdoutLogEnabled="false" 
+        stdoutLogFile="\\?\%home%\LogFiles\stdout" />
+  </system.webServer>
 </configuration>
 ```
 
@@ -73,7 +64,7 @@ As shown in the example below for deployment to the [Azure App Service](https://
 | requestTimeout | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module will wait for a response from the process listening on %ASPNETCORE_PORT%.</p><p>The default value is "00:02:00".</p> |
 | stdoutLogEnabled | <p>Optional Boolean attribute.</p><p>If true, **stdout** and **stderr** for the process specified in **processPath** will be redirected to the file specified in **stdoutLogFile**.</p><p>The default value is false.</p> |
 | stdoutLogFile | <p>Optional string attribute.</p><p>Specifies the relative or absolute file path for which **stdout** and **stderr** from the process specified in **processPath** will be logged. Relative paths are relative to the root of the site. Any path starting with '.' will be relative to the site root and all other paths will be treated as absolute paths. A timestamp and the file extension will automatically be added to the filename provided. Any folders provided in the path must exist in order for the module to create the log file.</p><p>The default value is `aspnetcore-stdout`.</p> |
-| forwardWindowsAuthToken | true or false.</p><p>If true, the token will be forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It is the responsibility of that process to call CloseHandle on this token per request.</p><p>The default value is false.</p> |
+| forwardWindowsAuthToken | true or false.</p><p>If true, the token will be forwarded to the child process listening on %ASPNETCORE_PORT% as a header 'MS-ASPNETCORE-WINAUTHTOKEN' per request. It is the responsibility of that process to call CloseHandle on this token per request.</p><p>The default value is true.</p> |
 | disableStartUpErrorPage | true or false.</p><p>If true, the **502.5 - Process Failure** page will be suppressed, and the 502 status code page configured in your *web.config* will take precedence.</p><p>The default value is false.</p> |
 
 ### Setting environment variables
@@ -84,13 +75,13 @@ The example below sets two environment variables. `ASPNETCORE_ENVIRONMENT` will 
 
 ```xml
 <aspNetCore processPath="dotnet"
-        arguments=".\MyApp.dll"
-        stdoutLogEnabled="false"
-        stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout">
-    <environmentVariables>
-        <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
-        <environmentVariable name="CONFIG_DIR" value="f:\application_config" />
-    </environmentVariables>
+      arguments=".\MyApp.dll"
+      stdoutLogEnabled="false"
+      stdoutLogFile="\\?\%home%\LogFiles\stdout">
+  <environmentVariables>
+    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
+    <environmentVariable name="CONFIG_DIR" value="f:\application_config" />
+  </environmentVariables>
 </aspNetCore>
 ```
 
@@ -116,7 +107,7 @@ Here's a sample `aspNetCore` element that configures `stdout` logging. The `stdo
 <aspNetCore processPath="dotnet"
     arguments=".\MyApp.dll"
     stdoutLogEnabled="true"
-    stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout">
+    stdoutLogFile="\\?\%home%\LogFiles\stdout">
 </aspNetCore>
 ```
 
