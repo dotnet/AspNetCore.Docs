@@ -337,7 +337,7 @@ Up to now your solution has the following elements:
 - An intermediate class -**MyBaseClass**- that has dependency injection declared for the service interface.
 - A service - **MessageService** - and its interface **IMessageService**.
 - A custom dependency resolver for Unity - **UnityDependencyResolver** - that deals with service retrieval.
-- A View Page activator - \*\*CustomViewPageActivator \*\* that creates the page.
+- A View Page activator - **CustomViewPageActivator** - that creates the page.
 
 To inject **Browse** View, you will now register the custom dependency resolver in the Unity container.
 
