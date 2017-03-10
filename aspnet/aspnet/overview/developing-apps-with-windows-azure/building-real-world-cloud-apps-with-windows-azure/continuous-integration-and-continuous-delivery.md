@@ -53,7 +53,7 @@ For more information on the continuous integration and delivery features of VSTS
 
 If you're looking for a turn-key project management, team collaboration, and source control solution, check out VSTS. The service is free for up to 5 users, and you can sign up for it at [Visual Studio Team Services](https://www.visualstudio.com/team-services/).
 
-Summary
+## Summary
 
 The first three cloud development patterns have been about how to implement a repeatable, reliable, predictable development process with low cycle time. In the [next chapter](web-development-best-practices.md) we start to look at architectural and coding patterns.
 
