@@ -97,7 +97,7 @@ Pascal-cased class and method parameters for tag helpers are translated into the
 ```html
 <vc:[view-component-name]>
   parameter1="parameter1 value"
-  parameter1="parameter1 value"
+  parameter2="parameter2 value"
 </vc:[view-component-name]>
 ```
 
