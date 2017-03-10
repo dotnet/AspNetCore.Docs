@@ -9,5 +9,5 @@ public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         Console.WriteLine(String.Format("Client {0} timed out .", Context.ConnectionId));
     }
             
-    return base.OnDisconnected();
+    return base.OnDisconnected(stopCalled);
 }
