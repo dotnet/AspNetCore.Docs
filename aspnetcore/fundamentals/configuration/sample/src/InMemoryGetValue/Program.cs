@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
 public class Program
 {   
-    static public IConfigurationRoot Configuration { get; set; }
+    public static IConfigurationRoot Configuration { get; set; }
     public static void Main(string[] args = null)
     {
         var dict = new Dictionary<string, string>
