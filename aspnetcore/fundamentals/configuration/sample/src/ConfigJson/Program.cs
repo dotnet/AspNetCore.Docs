@@ -9,7 +9,7 @@ using System.IO;
 
 public class Program
 {
-    static public IConfigurationRoot Configuration { get; set; }
+    public static IConfigurationRoot Configuration { get; set; }
     public static void Main(string[] args = null)
     {
         var builder = new ConfigurationBuilder()

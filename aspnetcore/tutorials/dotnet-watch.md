@@ -5,7 +5,7 @@ description: Shows how to use dotnet watch.
 keywords: ASP.NET Core, using dotnet watch
 ms.author: riande
 manager: wpickett
-ms.date: 02/14/2017
+ms.date: 03/09/2017
 ms.topic: article
 ms.assetid: 563ffb3f-d369-4aa5-bf0a-7300b4e7832c
 ms.technology: aspnet
@@ -95,3 +95,9 @@ Verify `http://localhost:5000/api/math/product?a=4&b=5` returns the correct resu
 - Fix the `Product` method code so it returns the product. Save the file.
 
 `dotnet watch` detects the file change and reruns the tests. The console output will show the tests passed.
+
+## dotnet-watch in GitHub
+
+dotnet-watch is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/dev/src/Microsoft.DotNet.Watcher.Tools).
+
+The [MSBuild section](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md#msbuild) of the [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md) explains how dotnet-watch can be configured from the MSBuild project file being watched. The [dotnet-watch ReadMe](https://github.com/aspnet/DotNetTools/blob/dev/src/Microsoft.DotNet.Watcher.Tools/README.md) contains information on dotnet-watch not covered in this tutorial.

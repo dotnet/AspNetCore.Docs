@@ -9,7 +9,7 @@ using System.Web.Http;
 
 public class SessionIdHandler : DelegatingHandler
 {
-    static public string SessionIdToken = "session-id";
+    public static string SessionIdToken = "session-id";
 
     async protected override Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)

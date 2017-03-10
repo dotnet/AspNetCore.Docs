@@ -1,11 +1,9 @@
-public class 
-
-FilterProvider : IFilterProvider
+public class FilterProvider : IFilterProvider
 {
-    private IUnityContainer container;
+	private IUnityContainer container;
 
-    public FilterProvider(IUnityContainer container)
-    {
-        this.container = container;
-    }
+	public FilterProvider(IUnityContainer container)
+	{
+		this.container = container;
+	}
 }

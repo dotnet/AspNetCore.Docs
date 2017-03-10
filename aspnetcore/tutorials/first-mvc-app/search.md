@@ -153,7 +153,7 @@ movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Update `Index.cshtml` as follows:
 
-[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,28,31,34,37,40,46)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37)]
 
 Test the app by searching by genre, by movie title, and by both.
 
