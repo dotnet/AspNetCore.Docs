@@ -7,9 +7,9 @@ using System.Linq;
 // Add NuGet  <package id="Microsoft.Extensions.Configuration.CommandLine"
 public class Program
 {
-    static public IConfigurationRoot Configuration { get; set; }
+    public static IConfigurationRoot Configuration { get; set; }
 
-    static public Dictionary<string, string> GetSwitchMappings(
+    public static Dictionary<string, string> GetSwitchMappings(
     IReadOnlyDictionary<string, string> configurationStrings)
     {
         return configurationStrings.Select(item =>

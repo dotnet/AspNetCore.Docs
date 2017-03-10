@@ -24,7 +24,7 @@ public class Program
           ["AppConfiguration:MainWindow:Top"] = "5",
           ["AppConfiguration:MainWindow:Left"] = "11",
       };
-    static public IConfiguration Configuration { get; set; }
+    public static IConfiguration Configuration { get; set; }
     public static void Main(string[] args = null)
     {
         var builder = new ConfigurationBuilder();
