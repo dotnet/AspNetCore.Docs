@@ -7,3 +7,7 @@
 # [Publish to a Linux Production Environment using nginx](linuxproduction.md)
 # [Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment](vsts-continuous-deployment.md)
 # [Using Apache Web Server on CentOS as a reverse-proxy](apache-proxy.md)
+# [ASP.NET Core on Nano Server](../tutorials/nano-server.md)
+## [ASP.NET Core and Azure Service Fabric](https://azure.microsoft.com/en-us/documentation/articles/service-fabric-add-a-web-frontend)
+
+
