@@ -86,5 +86,7 @@ namespace TodoApi.Controllers
             return new NoContentResult();
         }
         #endregion
+        #region snippet_end
     }
 }
+#endregion
