@@ -134,7 +134,7 @@ In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **N
 
 Replace the generated code with the following:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController1.cs?name=snippet_todo1)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
 
 
 This defines an empty controller class. In the next sections, we'll add methods to implement the API.
