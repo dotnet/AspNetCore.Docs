@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#region snippet_todo1
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 
@@ -13,6 +14,7 @@ namespace TodoApi.Controllers
         {
             _todoRepository = todoRepository;
         }
+        #endregion
 
         #region snippet_GetAll
         [HttpGet]
@@ -84,5 +86,7 @@ namespace TodoApi.Controllers
             return new NoContentResult();
         }
         #endregion
+        #region snippet_end
     }
 }
+#endregion
