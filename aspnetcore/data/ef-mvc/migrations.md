@@ -29,23 +29,13 @@ This method of keeping the database in sync with the data model works well until
 
 ## Entity Framework Core NuGet packages for migrations
 
-To add EF Core migrations support to a project, install packages for the EF Core tools.
+To work with migrations, you can use the **Package Manager Console** (PMC) or the command-line interface (CLI).  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
-* Install the design-time functionality for SQL Server, [Microsoft.EntityFrameworkCore.SqlServer.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.Design). You can use the **Package Manager Console** or the **NuGet Package Manager** GUI to install this package.
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers in this example were current when the tutorial was written.)
 
-  ```
-  Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design
-  ```
-
-  This automatically installs the dependency `Microsoft.EntityFrameworkCore.Relational.Design`. 
-
-* Install the EF tools for the command-line interface (CLI): [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
-
-  To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
-
-  [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
+[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
   
-  (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
+(You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
 
 ## Change the connection string
 
@@ -140,16 +130,17 @@ Run the application to verify that everything still works the same as before.
 
 ![Students Index page](migrations/_static/students-index.png)
 
+<a id="pmc"></a>
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
-If you want to use the PMC commands, install the EF tools for **Package Manager Console**,
-[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). Unlike the CLI tools, you don't have to edit *.csproj* file for this package; you can use the **Package Manager Console** or the **NuGet Package Manager** GUI.
+If you want to use the PMC commands, install the
+[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI.
 
-For information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
+For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
 
-For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
+For more information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
 
 ## Summary
 
