@@ -89,13 +89,11 @@ Code's editor has a ton of great features. You'll notice unused using statements
 
 More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
-## Running locally using Kestrel
+## Using Visual Studio Code debugger
 
 The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server.
 
-### Using Visual Studio Code debugger
-
-If you chose to have the debug and build assets added to the project:
+Run the app in the debugger:
 
 * Tap the Debug icon in the View Bar on the left pane
 
