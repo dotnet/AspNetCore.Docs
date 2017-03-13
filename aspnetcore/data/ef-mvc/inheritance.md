@@ -89,7 +89,7 @@ dotnet ef migrations add Inheritance -c SchoolContext
 Run the `database update` command:.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
@@ -125,7 +125,7 @@ This code takes care of the following database update tasks:
 Run the `database update` command again:
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)

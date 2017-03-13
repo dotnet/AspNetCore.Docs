@@ -1,4 +1,4 @@
-﻿using System;
+﻿m;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,7 +40,6 @@ namespace ContosoUniversity
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippet_ConfigureSignature
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SchoolContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

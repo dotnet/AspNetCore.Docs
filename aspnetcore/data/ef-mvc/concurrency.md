@@ -103,8 +103,8 @@ By adding a property you changed the database model, so you need to do another m
 Save your changes and build the project, and then enter the following commands in the command window:
 
 ```console
-dotnet ef migrations add RowVersion -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add RowVersion
+dotnet ef database update
 ```
 
 ## Create a Departments controller and views

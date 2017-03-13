@@ -82,8 +82,8 @@ The database model has now changed in a way that requires a change in the databa
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands:
 
 ```console
-dotnet ef migrations add MaxLengthOnNames -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add MaxLengthOnNames
+dotnet ef database update
 ```
 
 The `migrations add` command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
@@ -111,8 +111,8 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
 ```console
-dotnet ef migrations add ColummFirstName -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add ColummFirstName
+dotnet ef database update
 ```
 
 In **SQL Server Object Explorer**, open the Student table designer by double-clicking the **Student** table.
@@ -370,7 +370,7 @@ It's common to name a join entity `EntityName1EntityName2`, which in this case w
 
 ## Update the database context
 
-Add the following highlighted code to the *Data/SchoolContext.cs*:
+Add the following highlighted code to the *Data/SchoolContext.cs* file:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -416,7 +416,7 @@ As you saw in the first tutorial, most of this code simply creates new entity ob
 Save your changes and build the project. Then open the command window in the project folder and enter the `migrations add` command (don't do the update-database command yet):
 
 ```console
-dotnet ef migrations add ComplexDataModel -c SchoolContext
+dotnet ef migrations add ComplexDataModel
 ```
 
 You get a warning about possible data loss.
@@ -469,13 +469,13 @@ Save your change to *appsettings.json*.
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 > ```console
-> dotnet ef database drop -c SchoolContext
+> dotnet ef database drop
 > ```
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 Run the app to cause the `DbInitializer.Initialize` method to run and populate the new database.

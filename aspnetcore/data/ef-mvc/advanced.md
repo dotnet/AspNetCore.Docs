@@ -209,7 +209,7 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 To delete a database by using the CLI, run the `database drop` CLI command:
 
 ```console
-dotnet ef database drop -c SchoolContext
+dotnet ef database drop
 ```
 
 ### Error locating SQL Server instance

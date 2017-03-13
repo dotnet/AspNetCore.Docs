@@ -27,6 +27,26 @@ When you develop a new application, your data model changes frequently, and each
 
 This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production it is usually storing data that you want to keep, and you don't want to lose everything each time you make a change such as adding a new column. The EF Core Migrations feature solves this problem by enabling EF to update the database schema instead of creating  a new database.
 
+## Entity Framework Core NuGet packages for migrations
+
+To add EF Core migrations support to a project, install packages for the EF Core tools.
+
+* Install the design-time functionality for SQL Server, [Microsoft.EntityFrameworkCore.SqlServer.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.Design). You can use the **Package Manager Console** or the **NuGet Package Manager** GUI to install this package.
+
+  ```
+  Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design
+  ```
+
+  This automatically installs the dependency `Microsoft.EntityFrameworkCore.Relational.Design`. 
+
+* Install the EF tools for the command-line interface (CLI): [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
+
+  To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
+
+  [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
+  
+  (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
+
 ## Change the connection string
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
@@ -38,7 +58,7 @@ This change sets up the project so that the first migration will create a new da
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 > ```console
-> dotnet ef database drop -c SchoolContext
+> dotnet ef database drop
 > ```
 > The following section explains how to run CLI commands.
 
@@ -59,7 +79,7 @@ Before you enter a command, stop IIS Express for the site, or you may get an err
 After you have stopped IIS Express, enter the following command in the command window:
 
 ```console
-dotnet ef migrations add InitialCreate -c SchoolContext
+dotnet ef migrations add InitialCreate
 ```
 
 You see output like the following in the command window:
@@ -72,8 +92,6 @@ Build succeeded.
 Time Elapsed 00:00:15.63
 Done. To undo this action, use 'ef migrations remove'
 ```
-
-You have to include the `-c SchoolContext` parameter to specify the database context class, because the project has two context classes (the other one is for ASP.NET Identity).
 
 ## Examine the Up and Down methods
 
@@ -100,7 +118,7 @@ Because this code has to reflect the database state after the latest migration, 
 In the command window, enter the following command to create the database and tables in it.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 The output from the command is similar to the `migrations add` command.
@@ -125,6 +143,9 @@ Run the application to verify that everything still works the same as before.
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
+
+If you want to use the PMC commands, install the EF tools for **Package Manager Console**,
+[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). Unlike the CLI tools, you don't have to edit *.csproj* file for this package; you can use the **Package Manager Console** or the **NuGet Package Manager** GUI.
 
 For information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
 

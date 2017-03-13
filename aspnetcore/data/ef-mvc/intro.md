@@ -98,34 +98,34 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install packages for an EF Core database provider and the EF Core command-line tools. (You'll start using command-line tools in the [Migrations](migrations.md) tutorial.)
+To add EF Core support to a project, install packages 
 
-You can use the **Package Manager Console** or the **NuGet Package Manager** GUI to install packages, except as noted.
-
-* Install the database provider for SQL Server,  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This automatically installs `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`.
+* Install the database provider for SQL Server,  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
   ```
   Install-Package Microsoft.EntityFrameworkCore.SqlServer
   ```
+  
+  This automatically installs `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`. For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
 
-  For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
-
-* Install the design-time functionality for SQL Server, [Microsoft.EntityFrameworkCore.SqlServer.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.Design). This automatically installs `Microsoft.EntityFrameworkCore.Relational.Design`. 
+* Install the design-time functionality for SQL Server, [Microsoft.EntityFrameworkCore.SqlServer.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.Design).
 
   ```
   Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design
   ```
 
-* Install the EF tools for the Visual Studio **Package Manager Console**, 
+  This automatically installs `Microsoft.EntityFrameworkCore.Relational.Design`. 
+
+* Install the EF tools for **Package Manager Console**, 
 [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). 
 
-* Install the EF tools for the .NET command-line interface (CLI): [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
+* Install the EF tools for the command-line interface (CLI): [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
 
-  This package is installed by adding it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
+  To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
 
   [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
   
- (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
+  (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
 
 ## Create the data model
 
