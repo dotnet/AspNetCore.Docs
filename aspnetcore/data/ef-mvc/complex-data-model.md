@@ -348,6 +348,8 @@ Each relationship line has a 1 at one end and an asterisk (*) at the other, indi
 
 If the Enrollment table didn't include grade information, it would only need to contain the two foreign keys CourseID and StudentID. In that case, it would be a many-to-many join table without payload (or a pure join table) in the database. The Instructor and Course entities have that kind of many-to-many relationship, and your next step is to create an entity class to function as a join table without payload.
 
+(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see the [discussion in the EF Core GitHub repository](https://github.com/aspnet/EntityFramework/issues/1368).) 
+
 ## The CourseAssignment entity
 
 A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and `CourseAssignment` is the entity that represents that table.
