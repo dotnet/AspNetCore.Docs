@@ -5,7 +5,7 @@ description: An introduction to response compression with instructions on how to
 keywords: ASP.NET Core, performance, response compression, gzip, accept-encoding, middleware
 ms.author: riande
 manager: wpickett
-ms.date: 01/22/2017
+ms.date: 03/13/2017
 ms.topic: article
 ms.assetid: de621887-c5c9-4ac8-9efd-f5cc0457a134
 ms.technology: aspnet
@@ -61,7 +61,7 @@ Header | Role
 You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## Package
-To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
+To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or later. This feature is available for apps that target ASP.NET Core 1.1.0 or later.
 
 ## Configuration
 The following highlighted code shows how to enable the Response Compression Middleware with the with the default Gzip compression and for default MIME types.
@@ -130,26 +130,10 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 [!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet1)]
 
 ## Middlware issue when behind an Nginx reverse-proxy
-
 When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
 ## Working with IIS dynamic compression
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
-
-To deactivate dynamic compression module, add a `<urlCompression>` element to your *web.config* file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
-
-[!code-xml[Main](response-compression/sample/web.config?highlight=8)]
-
-If you opt to remove the module with *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the section shown below to your *web.config* file to remove the module from the application. Doing this won't affect your use of the module in other applications on the server.
-```xml
-<configuration>
-  <system.webServer> 
-    <modules> 
-      <remove name="DynamicCompressionModule" /> 
-    </modules> 
-  </system.webServer> 
-</configuration>
-```
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. For more information, see [Disabling IIS modules](hosting/iis-modules#disabling-iis-modules).
 
 ## Troubleshooting
 Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
