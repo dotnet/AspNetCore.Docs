@@ -53,15 +53,11 @@ For more information see [The MVC pattern](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
-Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to restore the needed project dependencies and add build/debug dependencies.
+Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to restore the needed project dependencies and add build/debug dependencies. Tap **Yes** to add the build and debug assets and then tap **Restore** to restore the project dependencies.
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
-Tap **Yes** to add the build and debug assets.
-
-![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
-
-Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in VS Code and then type `.NET` as shown:
+For **Restore**,  alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in VS Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
