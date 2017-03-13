@@ -83,6 +83,8 @@ Time Elapsed 00:00:15.63
 Done. To undo this action, use 'ef migrations remove'
 ```
 
+If you see an error message such as *No executable found matching command "dotnet-ef"*, see [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
+
 ## Examine the Up and Down methods
 
 When you executed the `migrations add` command, EF generated the code that will create the database from scratch. This code is in the *Migrations* folder, in the file named *<timestamp>_InitialCreate.cs*. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets, and the `Down` method deletes them, as shown in the following example.

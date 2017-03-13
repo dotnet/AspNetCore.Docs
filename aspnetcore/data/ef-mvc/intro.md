@@ -98,34 +98,13 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install packages 
+To add EF Core support to a project, install the database provider that you want to target. For SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
-* Install the database provider for SQL Server,  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
-
-  ```
-  Install-Package Microsoft.EntityFrameworkCore.SqlServer
-  ```
+```
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+```
   
-  This automatically installs `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`. For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
-
-* Install the design-time functionality for SQL Server, [Microsoft.EntityFrameworkCore.SqlServer.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.Design).
-
-  ```
-  Install-Package Microsoft.EntityFrameworkCore.SqlServer.Design
-  ```
-
-  This automatically installs `Microsoft.EntityFrameworkCore.Relational.Design`. 
-
-* Install the EF tools for **Package Manager Console**, 
-[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). 
-
-* Install the EF tools for the command-line interface (CLI): [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
-
-  To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
-
-  [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
-  
-  (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
+This package provides run-time support. It includes `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational` as dependencies. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
 
 ## Create the data model
 
