@@ -57,7 +57,7 @@ Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to 
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
-Tap "Yes" to add the build and debug assets.
+Tap **Yes** to add the build and debug assets.
 
 ![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
