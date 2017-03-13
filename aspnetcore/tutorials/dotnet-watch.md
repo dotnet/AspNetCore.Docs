@@ -47,8 +47,9 @@ Navigate to the product API (`http://localhost:5000/api/math/product?a=4&b=5`), 
 - Add `Microsoft.DotNet.Watcher.Tools` to the *.csproj* file:
  ```xml
  <ItemGroup>
- <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0-msbuild3-final" />
- </ItemGroup> ```
+   <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+ </ItemGroup> 
+ ```
 
 - Run `dotnet restore`.
 
