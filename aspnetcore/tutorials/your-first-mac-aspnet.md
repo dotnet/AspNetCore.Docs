@@ -53,7 +53,7 @@ For more information see [The MVC pattern](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
-Select _Program.cs_. Visual Studio Code (VS Code) will prompt to restore the needed project dependencies and add build/debug dependencies.
+Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to restore the needed project dependencies and add build/debug dependencies.
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
