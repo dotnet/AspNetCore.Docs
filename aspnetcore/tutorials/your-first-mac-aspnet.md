@@ -49,7 +49,7 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 * Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
 * wwwroot : Web application root folder.
 
-For more information see [What is the MVC pattern](xref:mvc/overview).
+For more information see [The MVC pattern](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
