@@ -2,7 +2,7 @@
 title: Build an ASP.NET Core app on a Mac or Linux using Visual Studio Code | Microsoft Docs
 author: spboyer
 description: This article will walk you through creating your first web application on a Mac using the dotnet CLI for ASP.NET Core and Visual Studio Code
-keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux
+keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux, VS Code
 ms.author: riande
 manager: wpickett
 ms.date: 03/09/2017
@@ -61,7 +61,7 @@ Tap "Yes" to add the build and debug assets.
 
 ![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
-Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in Visual Studio Code and then type `.NET` as shown:
+Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in VS Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
@@ -79,17 +79,17 @@ The Explorer viewlet provides folder navigation and a view of the files you have
 
 The Search viewlet allows you to search the folder tree of files you have open. The search is for filenames and file contents.
 
-*Code* will integrate with Git if it is installed on your system. You can easily initialize a new repository, make commits, and push changes from the Git viewlet.
+*VS Code* will integrate with Git if it is installed on your system. You can initialize a new repository, make commits, and push changes from the Git viewlet.
 
 ![GIT sidebar indicating 'This workspace isn't yet under git source control' with an 'Initialize git repository' button](your-first-mac-aspnet/_static/vscode-git.png)
 
 The Debug viewlet supports interactive debugging of applications.
 
-Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` or `Ctrl + .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them.
+VS Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` or `Ctrl + .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them.
 
 More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
-## Using Visual Studio Code debugger
+## Using the VS Code debugger
 
 The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server.
 
