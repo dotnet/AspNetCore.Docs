@@ -140,8 +140,8 @@ When the application fails to load configuration using the provider, an error me
 * The Azure AD Key (`ClientSecret`) is expired.
 * The configuration key (name) is incorrect in the app for the value you're trying to load.
 
-There is an exception of type `System.TypeLoadException` thrown during startup while running on top of `.NET 4.6.2`:
-* Add a NuGet reference to the package for `System.Net.Http` version >= 4.3.1
+`System.TypeLoadException` exception during startup using `.NET 4.6.x`:
+* Add a NuGet reference to the package for `System.Net.Http` version 4.3.1 or later.
 
 ## Additional resources
 * <xref:fundamentals/configuration>
