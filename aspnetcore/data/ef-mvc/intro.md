@@ -98,13 +98,13 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. For SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
+To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
 ```
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
   
-This package provides run-time support. It includes `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational` as dependencies. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
+This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
 ## Create the data model
 
@@ -190,11 +190,13 @@ To register `SchoolContext` as a service, open *Startup.cs*, and add the highlig
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file.
 
+Add `using` statements for `ContosoUniversity.Data`  and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
+
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings&highlight=1,4)]
+
 Open the *appsettings.json* file and add a connection string as shown in the following example.
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
-
-Add `using` statements for `ContosoUniversity.Data`  and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 
 ### SQL Server Express LocalDB
 
