@@ -199,19 +199,19 @@ Next, add the code that's executed when the user clicks **Save**. Replace the `E
 
 The method signature is now different from the HttpGet `Edit` method, so the method name changes from `EditPost` back to `Edit`.
 
-Since the view doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the whitelisting overload and `Courses` isn't in the include list.
+Since the view doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the whitelisting overload and `CourseAssignments` isn't in the include list.
 
-If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `Courses` navigation property with an empty collection and returns:
+If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=3-7)]
 
 The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the view. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
 
-If the check box for a course was selected but the course isn't in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
+If the check box for a course was selected but the course isn't in the `Instructor.CourseAssignments` navigation property, the course is added to the collection in the navigation property.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=14-20&name=snippet_UpdateCourses)]
 
-If the check box for a course wasn't selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
+If the check box for a course wasn't selected, but the course is in the `Instructor.CourseAssignments` navigation property, the course is removed from the navigation property.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=21-29&name=snippet_UpdateCourses)]
 
@@ -245,7 +245,7 @@ In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert th
 
 This code makes the following changes:
 
-* Does eager loading for the `Courses` navigation property.  You have to include this or EF won't know about related `CourseAssignment` entities and won't delete them.  To avoid needing to read them here you could configure cascade delete in the database.
+* Does eager loading for the `CourseAssignments` navigation property.  You have to include this or EF won't know about related `CourseAssignment` entities and won't delete them.  To avoid needing to read them here you could configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
@@ -257,32 +257,32 @@ In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, 
 
 This code is similar to what you saw for the `Edit` methods except that initially no courses are selected. The HttpGet `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 
-The HttpPost `Create` method adds each selected course to the `Courses` navigation property before it checks for validation errors and adds the new instructor to the database. Courses are added even if there are model errors so that when there are model errors (for an example, the user keyed an invalid date), and the page is redisplayed with an error message, any course selections that were made are automatically restored.
+The HttpPost `Create` method adds each selected course to the `CourseAssignments` navigation property before it checks for validation errors and adds the new instructor to the database. Courses are added even if there are model errors so that when there are model errors (for an example, the user keyed an invalid date), and the page is redisplayed with an error message, any course selections that were made are automatically restored.
 
-Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
+Notice that in order to be able to add courses to the `CourseAssignments` navigation property you have to initialize the property as an empty collection:
 
 ```csharp
-instructor.Courses = new List<CourseAssignment>();
+instructor.CourseAssignments = new List<CourseAssignment>();
 ```
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
 ```csharp
-private ICollection<CourseAssignment> _courses;
-public ICollection<CourseAssignment> Courses
+private ICollection<CourseAssignment> _courseAssignments;
+public ICollection<CourseAssignment> CourseAssignments
 {
     get
     {
-        return _courses ?? (_courses = new List<CourseAssignment>());
+        return _courseAssignments ?? (_courseAssignments = new List<CourseAssignment>());
     }
     set
     {
-        _courses = value;
+        _courseAssignments = value;
     }
 }
 ```
 
-If you modify the `Courses` property in this way, you can remove the explicit property initialization code in the controller.
+If you modify the `CourseAssignments` property in this way, you can remove the explicit property initialization code in the controller.
 
 In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
 

@@ -168,14 +168,14 @@ You can put multiple attributes on one line, so you could also write the `HireDa
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### The Courses and OfficeAssignment navigation properties
+### The CourseAssignments and OfficeAssignment navigation properties
 
-The `Courses` and `OfficeAssignment` properties are navigation properties.
+The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
-An instructor can teach any number of courses, so `Courses` is defined as a collection.
+An instructor can teach any number of courses, so `CourseAssignments` is defined as a collection.
 
 ```csharp
-public ICollection<CourseAssignment> Courses { get; set; }
+public ICollection<CourseAssignment> CourseAssignments { get; set; }
 ```
 
 If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated.  You can specify `ICollection<T>` or a type such as `List<T>` or `HashSet<T>`. If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
@@ -258,10 +258,10 @@ A course can have any number of students enrolled in it, so the `Enrollments` na
 public ICollection<Enrollment> Enrollments { get; set; }
 ```
 
-A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection:
+A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection (the type `CourseAssignment` is explained [later](#many-to-many-relationships):
 
 ```csharp
-public ICollection<Instructor> Instructors { get; set; }
+public ICollection<CourseAssignment> Instructors { get; set; }
 ```
 
 ## Create the Department entity
