@@ -2,10 +2,10 @@
 title: Build an ASP.NET Core app on a Mac or Linux using Visual Studio Code | Microsoft Docs
 author: spboyer
 description: This article will walk you through creating your first web application on a Mac using the dotnet CLI for ASP.NET Core and Visual Studio Code
-keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux
+keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux, VS Code
 ms.author: riande
 manager: wpickett
-ms.date: 02/22/2017
+ms.date: 03/09/2017
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
 ms.technology: aspnet
@@ -49,23 +49,19 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 * Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
 * wwwroot : Web application root folder.
 
-For more on the MVC pattern see [What is the MVC pattern?](xref:mvc/overview).
+For more information see [The MVC pattern](xref:mvc/overview).
 
 ## Developing ASP.NET Core applications on a Mac with Visual Studio Code
 
-Select the _Program.cs_ file and Visual Studio Code will prompt to restore the needed project dependencies and add build and debug dependencies.
+Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to restore the needed project dependencies and add build/debug dependencies. Tap **Yes** to add the build and debug assets and then tap **Restore** to restore the project dependencies.
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 
-Tap "Yes" to add the build and debug assets.
-
-![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
-
-Tap "Restore" to restore the project dependencies. Alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in Visual Studio Code and then type `.NET` as shown:
+For **Restore**,  alternately, you can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in VS Code and then type `.NET` as shown:
 
 ![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
-If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
+VS Code provides a streamlined, clean interface for working with files and a productive coding enviromment. 
 
 In the left navigation bar, there are five icons, representing four viewlets:
 
@@ -75,27 +71,25 @@ In the left navigation bar, there are five icons, representing four viewlets:
 * Debug
 * Extensions
 
-The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
+The Explorer viewlet provides folder navigation and a view of the files you have open. It displays a badge to indicate files with unsaved changes. You can create new folders and files in the viewlet. You can select **Save All** from a menu option that appears on mouse over.
 
-The Search viewlet allows you to quickly search within the folder structure, searching filenames as well as contents.
+The Search viewlet allows you to search the folder tree of files you have open. The search is for filenames and file contents.
 
-*Code* will integrate with Git if it is installed on your system. You can easily initialize a new repository, make commits, and push changes from the Git viewlet.
+*VS Code* will integrate with Git if it is installed on your system. You can initialize a new repository, make commits, and push changes from the Git viewlet.
 
 ![GIT sidebar indicating 'This workspace isn't yet under git source control' with an 'Initialize git repository' button](your-first-mac-aspnet/_static/vscode-git.png)
 
 The Debug viewlet supports interactive debugging of applications.
 
-Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` or `Ctrl + .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them.
+VS Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using `⌘ .` or `Ctrl + .` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them.
 
 More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
-## Running locally using Kestrel
+## Using the VS Code debugger
 
 The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server.
 
-### Using Visual Studio Code debugger
-
-If you chose to have the debug and build assets added to the project:
+Run the app in the debugger:
 
 * Tap the Debug icon in the View Bar on the left pane
 
@@ -121,7 +115,7 @@ Your default browser will automatically launch and navigate to `http://localhost
 
 ## Publishing to Azure
 
-Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on [Microsoft Azure](http://azure.microsoft.com).
+VS Code provides Git integration to push updates to production, hosted on [Microsoft Azure](http://azure.microsoft.com).
 
 ### Initialize Git
 
