@@ -132,10 +132,9 @@ In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **N
 ![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new-project.png)
 
 
-Replace the generated code with the following:
+Replace the generated code with the following (and add closing braces):
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
-[!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_end)]
 
 This defines an empty controller class. In the next sections, we'll add methods to implement the API.
 
