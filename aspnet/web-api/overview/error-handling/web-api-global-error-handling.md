@@ -116,7 +116,7 @@ The following below produces a custom error response to clients, including an em
 
 ## Registering Exception Filters
 
-If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, which is located in the App\_Start folder:
+If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, in the *App/_Start* folder:
 
 [!code-csharp[Main](exception-handling/samples/sample7.cs?highlight=5)]
 
