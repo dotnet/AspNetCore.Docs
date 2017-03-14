@@ -181,7 +181,7 @@ Rename *Views\Home\AllTags.Mobile.cshtml* and *Views\Home\AllTags.iPhone.cshtml*
 
 Install the *jQuery.Mobile.MVC* NuGet package by doing this:
 
-1. From the **Tools** menu, select **Package Manager Console**, and then select **Library Package Manager**.
+1. From the **Tools** menu, select **Library Package Manager**, and then select **Package Manager Console**.
 
     [![p3_packageMgr](aspnet-mvc-4-mobile-features/_static/image20.png)](aspnet-mvc-4-mobile-features/_static/image19.png)
 2. In the **Package Manager Console**, enter `Install-Package jQuery.Mobile.MVC -version 1.0.0`
