@@ -234,9 +234,9 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
 * In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and select **Add**.
 
-![Add dependencies](intro/_static/add-depend.png)
+  ![Add dependencies](intro/_static/add-depend.png)
 
-Visual Studio adds the dependencies needed to scaffold a controller. A *ScaffoldingReadMe.txt* file is created which you can delete.
+  Visual Studio adds the dependencies needed to scaffold a controller. A *ScaffoldingReadMe.txt* file is created which you can delete.
 
 * Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 
@@ -256,9 +256,9 @@ Visual Studio adds the dependencies needed to scaffold a controller. A *Scaffold
 
   * Click **Add**.
 
-![Scaffold Student](intro/_static/scaffold-student.png)
+  ![Scaffold Student](intro/_static/scaffold-student.png)
 
-When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
+  When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
 (The scaffolding engine can also create the database context for you if you don't create it manually first as you did earlier for this tutorial. You can specify a new context class in the **Add Controller** box by clicking the plus sign to the right of **Data context class**.  Visual Studio will then create your `DbContext` class as well as the controller and views.)
 
