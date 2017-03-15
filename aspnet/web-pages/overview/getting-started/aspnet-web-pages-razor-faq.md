@@ -16,8 +16,9 @@ ASP.NET Web Pages (Razor) FAQ
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
-> [!NOTE]
-> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](../program-asp-net-web-pages-in-visual-studio.md) or [Visual Studio Code](https://code.visualstudio.com/).
+
 
 > This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix.
 > 

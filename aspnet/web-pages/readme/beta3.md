@@ -18,9 +18,6 @@ Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
 
 9 November 2010
 
-> [!NOTE]
-> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
-
 ## Contents
 
 - [Overview](#Overview)

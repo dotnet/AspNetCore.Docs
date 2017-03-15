@@ -16,9 +16,6 @@ ASP.NET Web Pages 2 Developer Preview ReadMe
 ====================
 by [Microsoft](https://github.com/microsoft)
 
-> [!NOTE]
-> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
-
 ## ASP.NET Web Pages 2 Developer Preview ReadMe
 
 14 September 2011

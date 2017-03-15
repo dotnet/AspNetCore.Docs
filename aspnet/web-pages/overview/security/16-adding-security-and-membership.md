@@ -16,10 +16,6 @@ Adding Security and Membership to an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
-
-> [!NOTE]
-> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
-
 > This article explains how to secure an ASP.NET Web Pages (Razor) website so that some of the pages are available only to people who log in. (You'll also see how to create pages that anyone can access.)
 > 
 > **What you'll learn:** 

@@ -15,8 +15,8 @@ msc.type: content
 WebMatrix Content Guide
 ====================
 
-> [!NOTE]
-> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](../program-asp-net-web-pages-in-visual-studio.md) or [Visual Studio Code](https://code.visualstudio.com/).
 
 WebMatrix is a set of tools that provides an easy way to build Web sites for Microsoft Windows. It includes IIS Express (a development web server), ASP.NET (a web programming framework), and SQL Server Compact (an embedded database). To see a quick tour of WebMatrix, see [WebMatrix Overview](https://www.microsoft.com/web/webmatrix/). To review the top WebMatrix features, see [WebMatrix Features](https://www.microsoft.com/web/webmatrix/features/).
 
