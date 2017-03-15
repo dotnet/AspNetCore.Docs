@@ -236,7 +236,7 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
   ![Add dependencies](intro/_static/add-depend.png)
 
-  Visual Studio adds the dependencies needed to scaffold a controller. A *ScaffoldingReadMe.txt* file is created which you can delete.
+  Visual Studio adds the dependencies needed to scaffold a controller, including a package with design-time EF functionality (`Microsoft.EntityFrameworkCore.Design`). A package that is needed only for scaffolding a DbContext from an existing database is also included (`Microsoft.EntityFrameworkCore.SqlServer.Design`). A *ScaffoldingReadMe.txt* file is created which you can delete.
 
 * Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 

@@ -83,7 +83,7 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 Save your changes and build the project. Then open the command window in the project folder and enter the following command:
 
 ```console
-dotnet ef migrations add Inheritance -c SchoolContext
+dotnet ef migrations add Inheritance
 ```
 
 Run the `database update` command:.
