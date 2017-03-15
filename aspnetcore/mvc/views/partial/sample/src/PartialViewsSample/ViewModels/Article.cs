@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace PartialViewsSample.ViewModels
@@ -10,6 +10,6 @@ namespace PartialViewsSample.ViewModels
 
         public string Title { get; set; }
 
-        public List<ArticleSection> Sections { get; set; } = new List<ArticleSection>();
+        public List<ArticleSection> Sections { get; } = new List<ArticleSection>();
     }
 }
