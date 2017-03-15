@@ -5,7 +5,7 @@ description: In this tutorial you'll update related data by updating foreign key
 keywords: ASP.NET Core, Entity Framework Core, related data, joins
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 67bd162b-bfb7-4750-9e7f-705228b5288c
 ms.technology: aspnet

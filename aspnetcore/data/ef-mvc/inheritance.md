@@ -5,7 +5,7 @@ description: This tutorial will show you how to implement inheritance in the dat
 keywords: ASP.NET Core, Entity Framework Core, inheritance
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
 ms.technology: aspnet
