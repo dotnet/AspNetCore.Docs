@@ -1,6 +1,8 @@
 ﻿using AngularSample.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace AngularSample.Controllers.Api
 {
@@ -16,7 +18,11 @@ namespace AngularSample.Controllers.Api
                 new Person { Id = 1, FirstName = "Bob", LastName = "Parker" }
             };
 
-            return Json(people);
+            // force the Json serializer to keep the case of the model properties
+            var serializerSettings = new JsonSerializerSettings();
+            serializerSettings.ContractResolver = new DefaultContractResolver();
+
+            return Json(people, serializerSettings);
         }
     }
 }
