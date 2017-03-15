@@ -11,6 +11,7 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 msc.type: authoredcontent
+uid: aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 ---
 Programming ASP.NET Web Pages (Razor) Using Visual Studio
 ====================
