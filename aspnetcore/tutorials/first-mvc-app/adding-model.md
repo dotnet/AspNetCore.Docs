@@ -5,7 +5,7 @@ description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/14/2017
 ms.topic: article
 ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.technology: aspnet
@@ -93,7 +93,7 @@ Note: The version numbers shown above were correct at the time of writing.
 
 ## Update the database
 
-* Open a command prompt and navigate to the project directory (*your_path*/MvcMovie/src/MvcMovie). You can find the path by selecting the *Startup.cs* file in Solution Explorer and viewing the `Full Path` property in the **Properties** window.
+* Open a command prompt and navigate to the project directory. You can find the path by selecting the *Startup.cs* file in Solution Explorer and viewing the `Full Path` property in the **Properties** window.
 
 * Run the following commands in the command prompt:
 
