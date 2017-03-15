@@ -16,7 +16,7 @@ uid: fundamentals/request-features
 
 By [Steve Smith](http://ardalis.com)
 
-Individual web server features related to how HTTP requests and responses are handled have been factored into separate interfaces. These abstractions are used by individual server implementations and middleware to create and modify the application's hosting pipeline.
+Web server features related to how HTTP requests and responses are handled have been factored into interfaces. These interfaces are used by server implementations and middleware to create and modify the application's hosting pipeline.
 
 ## Feature interfaces
 
