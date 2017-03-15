@@ -81,7 +81,7 @@ There's already a hidden field (`<input type="hidden">`) for the course number i
 
 In *Views/Courses/Delete.cshtml*, add a course number field at the top and change department ID to department name.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=2-7&range=13-32)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
 In *Views/Course/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
 
@@ -153,7 +153,7 @@ The code does the following:
 
 In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button :
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=37-43)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=36-42)]
 
 Run the page (select the **Instructors** tab and then click **Edit** on an instructor). Change the **Office Location** and click **Save**.
 
@@ -280,7 +280,7 @@ If you modify the `CourseAssignments` property in this way, you can remove the e
 
 In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=36-70)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=35-69)]
 
 Also in *Create.cshtml*, you might notice that the scaffolder has placed the hire date field between the first and last name fields. You can rearrange those fields to a more logical order if you prefer.  the same issue applies to the order of fields on the Edit, Details, and Delete pages.
 
