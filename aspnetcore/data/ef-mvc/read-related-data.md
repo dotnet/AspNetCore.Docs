@@ -129,7 +129,7 @@ The code begins by creating an instance of the view model and putting in it the 
 
 Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
 
-The `Include` for `CourseAssignments` and `ThenInclude` for `Course` are repeated because you need both `Enrollments` and `Department` properties from the `Course` entity. Once you've called `ThenInclude` on `Course` to get `Enrollments`, another `ThenInclude` would get properties in `Enrollments`, not in `Course`. So you have to start over with `Include` for `CourseAssignments` and `ThenInclude` for `Course` in order to get the second property that you want from `Course`.
+`CourseAssignments` and `Course` are repeated because you need two properties from `Course`. Another `ThenInclude` after `Student` would get properties in `Student`. So you have to start over with `Include` for `CourseAssignments` in order to get the second property that you want from `Course`.
 
 The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
