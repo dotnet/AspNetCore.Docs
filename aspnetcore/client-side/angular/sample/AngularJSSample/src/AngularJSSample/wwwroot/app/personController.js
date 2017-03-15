@@ -9,10 +9,15 @@
     function personController($scope, personFactory) {
         $scope.people = [];
 
-        personFactory.getPeople().success(function (data) {
-            $scope.people = data;
-        }).error(function (error) {
-            // log errors
-        });
+        personFactory.getPeople().then(
+            // callback function for successful http request
+            function success(response) {
+                $scope.people = response.data;
+            },
+            // callback function for error in http request
+            function error(response) {
+                // log errors
+            }
+        );
     }
 })();
