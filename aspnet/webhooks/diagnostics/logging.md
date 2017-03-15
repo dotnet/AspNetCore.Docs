@@ -11,7 +11,7 @@ ms.technology:
 ms.prod: .net-framework
 uid: webhooks/diagnostics/logging
 ---
-# Logging
+# ASP.NET WebHooks logging
 
 Microsoft ASP.NET WebHooks uses logging as a way of reporting issues and problems. By default logs are written using [System.Diagnostics.Trace](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace) where they can be manged using [Trace Listeners](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracelistener.aspx) like any other log stream.
 

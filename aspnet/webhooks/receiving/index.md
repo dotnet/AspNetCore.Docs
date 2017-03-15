@@ -11,7 +11,7 @@ ms.technology:
 ms.prod: .net-framework
 uid: webhooks/receiving/index
 ---
-# Receiving and processing WebHooks in ASP.NET
+# ASP.NET WebHooks - receiving and processing
 
 * [WebHook Receivers](receivers.md)
 * [Processing WebHooks](handlers.md)

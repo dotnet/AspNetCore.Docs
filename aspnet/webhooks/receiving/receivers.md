@@ -11,7 +11,7 @@ ms.technology:
 ms.prod: .net-framework
 uid: webhooks/receiving/receivers
 ---
-# WebHook Receivers
+# ASP.NET WebHooks receivers
 
 Receiving WebHooks depends on who the sender is. Sometimes there are additional steps registering a WebHook verifying that the subscriber is really listening. Some WebHooks provide a push-to-pull model where the HTTP POST request only contains a reference to the event information which is then to be retrieved independently. Often the security model varies quite a bit.
 
