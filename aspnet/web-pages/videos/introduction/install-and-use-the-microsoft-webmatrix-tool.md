@@ -17,7 +17,7 @@ Install and Use the Microsoft WebMatrix Tool
 by [Advaiya](https://twitter.com/Advaiyasolns)
 
 > [!NOTE] 
-> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](../program-asp-net-web-pages-in-visual-studio.md) or [Visual Studio Code](https://code.visualstudio.com/).
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
 
 
 Part 1 introduces you to WebMatrix and how you can install and use it.
