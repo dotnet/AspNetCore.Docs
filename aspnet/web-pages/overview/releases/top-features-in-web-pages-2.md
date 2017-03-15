@@ -16,6 +16,9 @@ The Top Features in ASP.NET Web Pages 2
 ====================
 by [Microsoft](https://github.com/microsoft)
 
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 > This article provides an overview of the top new features in the ASP.NET Web Pages 2 RC, a lightweight web programming framework that is included with [Microsoft WebMatrix 2 RC](https://www.microsoft.com/web/).
 > 
 > **What's included:** 

@@ -16,6 +16,9 @@ WebMatrix Readme
 ====================
 13 January 2011
 
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 ## Contents
 
 > [!NOTE]

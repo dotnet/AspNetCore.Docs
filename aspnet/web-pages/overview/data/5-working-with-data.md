@@ -16,6 +16,9 @@ Introduction to Working with a Database in ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 > This article describes how to use Microsoft WebMatrix tools to create a database in an ASP.NET Web Pages (Razor) website, and how to create pages that let you display, add, edit, and delete data.
 > 
 > **What you'll learn:** 

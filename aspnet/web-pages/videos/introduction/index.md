@@ -16,6 +16,8 @@ Introduction to Web Pages Videos
 ====================
 > Which videos you can view to learn the basics about Web Pages and WebMatrix.
 
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
 
 - [5 Minute Intro to ASP.NET Web Pages](5-minute-introduction-to-aspnet-web-pages.md)
 - [Install and Use the Microsoft WebMatrix Tool](install-and-use-the-microsoft-webmatrix-tool.md)

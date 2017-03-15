@@ -14,6 +14,10 @@ msc.type: categoryindex
 ---
 ASP.NET Web Pages
 ====================
+
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 - [Guidance](overview/index.md)
 
     - [Getting Started](overview/getting-started/index.md)

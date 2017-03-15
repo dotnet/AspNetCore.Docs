@@ -14,6 +14,10 @@ msc.type: book
 ---
 Videos
 ====================
+
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 - [Introduction](introduction/index.md)
 
     - [5 Minute Intro to ASP.NET Web Pages](introduction/5-minute-introduction-to-aspnet-web-pages.md)

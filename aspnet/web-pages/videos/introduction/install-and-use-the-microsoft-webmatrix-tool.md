@@ -16,6 +16,9 @@ Install and Use the Microsoft WebMatrix Tool
 ====================
 by [Advaiya](https://twitter.com/Advaiyasolns)
 
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 Part 1 introduces you to WebMatrix and how you can install and use it.
 
 [&#9654; Watch video (2 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/install-and-use-the-microsoft-webmatrix-tool)

@@ -14,6 +14,10 @@ msc.type: content
 ---
 WebMatrix and Web Pages Video Training from Pluralsight
 ====================
+
+> [!NOTE]
+> We recommend [Visual Studio Code](http://code.visualstudio.com/). VS Code is a free, open-source alternative to WebMatrix.
+
 ### Videos
 
 - [Introducing WebMatrix](https://pluralsight.com/training/Player?author=matt-milner&name=webmatrix-introduction-m1&mode=live&clip=0&course=webmatrix-introduction)
