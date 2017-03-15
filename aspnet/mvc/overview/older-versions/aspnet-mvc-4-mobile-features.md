@@ -368,7 +368,7 @@ Choose the **An Overview of the MS Web Stack of Love** link.
 
 The default desktop view is fine, but you can improve it.
 
-Copy the *Views\Home\SessionByCode.cshtml* to *Views\Home\SessionByCode.cshtml* and replace the contents of the *Views\Home\SessionByCode.Mobile.cshtml* file with the following markup:
+Copy the *Views\Home\SessionByCode.cshtml* to *Views\Home\SessionByCode.Mobile.cshtml* and replace the contents of the *Views\Home\SessionByCode.Mobile.cshtml* file with the following markup:
 
 [!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample25.cshtml)]
 
