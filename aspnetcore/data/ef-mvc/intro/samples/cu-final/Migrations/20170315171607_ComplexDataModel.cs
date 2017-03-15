@@ -9,6 +9,11 @@ namespace ContosoUniversity.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "FirstMidName",
+                table: "Student",
+                newName: "FirstName");
+
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
@@ -27,7 +32,6 @@ namespace ContosoUniversity.Migrations
                 oldMaxLength: 50,
                 oldNullable: true);
 
-            #region snippet_CommentOut
             migrationBuilder.AlterColumn<string>(
                 name: "Title",
                 table: "Course",
@@ -35,13 +39,12 @@ namespace ContosoUniversity.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldNullable: true);
-                        
+
             //migrationBuilder.AddColumn<int>(
             //    name: "DepartmentID",
             //    table: "Course",
             //    nullable: false,
             //    defaultValue: 0);
-            #endregion
 
             migrationBuilder.CreateTable(
                 name: "Instructor",
@@ -82,7 +85,6 @@ namespace ContosoUniversity.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            #region snippet_CreateDefaultValue
             migrationBuilder.CreateTable(
                 name: "Department",
                 columns: table => new
@@ -114,7 +116,6 @@ namespace ContosoUniversity.Migrations
                 table: "Course",
                 nullable: false,
                 defaultValue: 1);
-            #endregion
 
             migrationBuilder.CreateTable(
                 name: "OfficeAssignment",
@@ -184,6 +185,11 @@ namespace ContosoUniversity.Migrations
                 name: "DepartmentID",
                 table: "Course");
 
+            migrationBuilder.RenameColumn(
+                name: "FirstName",
+                table: "Student",
+                newName: "FirstMidName");
+
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
@@ -193,7 +199,7 @@ namespace ContosoUniversity.Migrations
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
-                name: "FirstName",
+                name: "FirstMidName",
                 table: "Student",
                 maxLength: 50,
                 nullable: true,

@@ -1,13 +1,9 @@
 @model ContosoUniversity.Models.Department
-
 @{
     ViewData["Title"] = "Delete";
 }
-
 <h2>Delete</h2>
-
 <p class="text-danger">@ViewData["ConcurrencyErrorMessage"]</p>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Department</h4>
@@ -38,7 +34,7 @@
             @Html.DisplayFor(model => model.Administrator.FullName)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="DepartmentID" />
         <input type="hidden" asp-for="RowVersion" />

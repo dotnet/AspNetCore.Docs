@@ -7,7 +7,6 @@ namespace ContosoUniversity.Migrations
 {
     public partial class Inheritance : Migration
     {
-        #region snippet_Up
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -46,7 +45,6 @@ namespace ContosoUniversity.Migrations
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Cascade);
         }
-        #endregion
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {

@@ -20,6 +20,6 @@ namespace ContosoUniversity.Models
 
         public Department Department { get; set; }
         public ICollection<Enrollment> Enrollments { get; set; }
-        public ICollection<CourseAssignment> Instructors { get; set; }
+        public ICollection<CourseAssignment> CourseAssignments { get; set; }
     }
 }

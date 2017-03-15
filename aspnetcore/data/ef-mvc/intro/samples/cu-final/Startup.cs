@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ContosoUniversity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ContosoUniversity.Data;
 
 namespace ContosoUniversity
 {
@@ -27,7 +23,6 @@ namespace ContosoUniversity
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        #region snippet_SchoolContext
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -36,16 +31,12 @@ namespace ContosoUniversity
 
             services.AddMvc();
         }
-        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet_ConfigureSignature
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SchoolContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            #endregion
 
             if (env.IsDevelopment())
             {
@@ -59,7 +50,6 @@ namespace ContosoUniversity
 
             app.UseStaticFiles();
 
-            #region snippet_RouteAndSeed
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -68,7 +58,6 @@ namespace ContosoUniversity
             });
 
             DbInitializer.Initialize(context);
-            #endregion
         }
     }
 }
