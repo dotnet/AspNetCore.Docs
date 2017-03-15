@@ -33,7 +33,7 @@ To work with migrations, you can use the **Package Manager Console** (PMC) or th
 
 The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers in this example were current when the tutorial was written.)
 
-[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=21-24&highlight=3)]
+[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=23-26&highlight=3)]
   
 (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
 
@@ -60,13 +60,11 @@ Save your changes and build the project. Then open a command window and navigate
 
   ![Open in File Explorer menu item](migrations/_static/open-in-file-explorer.png)
 
-* Hold down the Shift key and right-click the project folder in File Explorer, then choose **Open command window here** from the context menu.
+* Enter "cmd" in the address bar and press Enter.
 
   ![Open command window](migrations/_static/open-command-window.png)
 
-Before you enter a command, stop IIS Express for the site, or you may get an error message: "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" To stop the site, find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**.
-
-After you have stopped IIS Express, enter the following command in the command window:
+Enter the following command in the command window:
 
 ```console
 dotnet ef migrations add InitialCreate
@@ -83,7 +81,9 @@ Time Elapsed 00:00:15.63
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-If you see an error message such as *No executable found matching command "dotnet-ef"*, see [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
+If you see an error message *No executable found matching command "dotnet-ef"*, see [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
+
+If you see an error message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*", find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**.
 
 ## Examine the Up and Down methods
 
@@ -140,7 +140,7 @@ Run the application to verify that everything still works the same as before.
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
 If you want to use the PMC commands, install the
-[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI.
+[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit the *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI.
 
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
 
