@@ -20,7 +20,7 @@ This article explains the benefits of using bundling and minification, including
 
 ## Overview
 
-In ASP.NET Core apps, there are options for bundling and minifying client-side resources. The core templates for MVC provide an out of the box solution using a configuration file and BuildBundlerMinifier NuGet package. Third party tools, such as [Gulp](using-gulp.md) and [Grunt](using-grunt.md) are also avaiable to accomplish the same tasks should your processes require additional workflow or complexities. By using design-time bundling and minification, the minified files are created prior to the application’s deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it’s important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+In ASP.NET Core apps, there are multiple options for bundling and minifying client-side resources. The core templates for MVC provide an out of the box solution using a configuration file and BuildBundlerMinifier NuGet package. Third party tools, such as [Gulp](using-gulp.md) and [Grunt](using-grunt.md) are also available to accomplish the same tasks should your processes require additional workflow or complexities. By using design-time bundling and minification, the minified files are created prior to the application’s deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it’s important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 Bundling and minification primarily improve the first page request load time. Once a web page has been requested, the browser caches the assets (JavaScript, CSS and images) so bundling and minification won’t provide any performance boost when requesting the same page, or pages on the same site requesting the same assets. If you don’t set the expires header correctly on your assets, and you don’t use bundling and minification, the browsers freshness heuristics will mark the assets stale after a few days and the browser will require a validation request for each asset. In this case, bundling and minification provide a performance increase even after the first page request.
 
@@ -116,7 +116,7 @@ Build the project and the *bundleconfig.json* is included in the build process t
 
 ### Visual Studio Code or Command Line
 
-Visual Studio and the extension drives the process and using GUI gestures, however the same capabilities are available with the `dotnet` CLI and BuildBundlerMinifier NuGet Package.
+Visual Studio and the extension drive the bundling and minification process using GUI gestures, however the same capabilities are available with the `dotnet` CLI and BuildBundlerMinifier NuGet Package.
 
 Add the NuGet package to your project:
 
@@ -151,7 +151,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 ## Adding files
 
-In this example, an additional css file is added called `custom.css` and configured for bundling and minification with `site.css`, resulting in a single `site.min.css`.
+In this example, an additional CSS file is added called `custom.css` and configured for bundling and minification with `site.css`, resulting in a single `site.min.css`.
 
 custom.css
 
@@ -195,7 +195,7 @@ This environment tag will render the bundled and minified CSS files only when ru
 If your app bundling and minification workflow requires additional processes such as image processing, cache busting or CDN assest processing etc., then you can convert the Bundle and Minify process to Gulp.
 
 > [!NOTE]
-> Conversion option only available in Visual Studio 2015 or 2017.
+> Conversion option only available in Visual Studio 2017.
 
 Right click the `bundleconfig.json` and select **Convert to Gulp...**. This will generate the `gulpfile.js` and install the necessary npm packages.
 
@@ -216,9 +216,6 @@ To enable Gulp when the project builds, add the following to the *.csproj file.
 ## Additional resources
 
 * [Using Gulp](using-gulp.md)
-
 * [Using Grunt](using-grunt.md)
-
 * [Working with Multiple Environments](../fundamentals/environments.md)
-
 * [Tag Helpers](../mvc/views/tag-helpers/index.md)
