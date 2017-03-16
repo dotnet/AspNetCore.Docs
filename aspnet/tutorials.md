@@ -1,7 +1,7 @@
 ---
-title: "ASP.NET WebHooks debugging | Microsoft Docs"
-author: rick-anderson
-description: "How to debug ASP.NET WebHooks."
+title: ASP.NET tutorials | Microsoft Docs
+author: tdykstra
+description: A list of step-by-step guides for developing ASP.NET applications.
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/17/2012
