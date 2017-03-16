@@ -83,9 +83,9 @@ Notice the second `Edit` action method is preceded by the `[HttpPost]` attribute
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/MC1.cs?name=snippet_edit2&highlight=4)]
 
-The `HttpPostAttribute` attribute specifies that this `Edit` method can be invoked *only* for `POST` requests. You could apply the `[HttpGet]` attribute to the first edit method, but that's not necessary because `[HttpGet]` is the default.
+The `HttpPost` attribute specifies that this `Edit` method can be invoked *only* for `POST` requests. You could apply the `[HttpGet]` attribute to the first edit method, but that's not necessary because `[HttpGet]` is the default.
 
-The `ValidateAntiForgeryTokenAttribute` attribute is used to [prevent forgery of a request](xref:security/anti-request-forgery) and is paired up with an anti-forgery token generated in the edit view file (*Views/Movies/Edit.cshtml*). The edit view file generates the anti-forgery token with the [Form Tag Helper](xref:mvc/views/working-with-forms).
+The `ValidateAntiForgeryToken` attribute is used to [prevent forgery of a request](xref:security/anti-request-forgery) and is paired up with an anti-forgery token generated in the edit view file (*Views/Movies/Edit.cshtml*). The edit view file generates the anti-forgery token with the [Form Tag Helper](xref:mvc/views/working-with-forms).
 
 [!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
