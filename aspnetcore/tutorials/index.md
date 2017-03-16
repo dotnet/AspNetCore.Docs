@@ -1,9 +1,9 @@
 ---
-title: Tutorials | Microsoft Docs
-author: rick-anderson
-description: 
+title: ASP.NET Core tutorials | Microsoft Docs
+author: tdykstra
+description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
 keywords: ASP.NET Core,
-ms.author: riande
+ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
@@ -11,7 +11,7 @@ ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
 ms.technology: aspnet
 ms.prod: asp.net-core
 ---
-# Tutorials
+# ASP.NET Core tutorials
 
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
