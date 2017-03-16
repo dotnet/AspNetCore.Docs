@@ -139,7 +139,7 @@ The parameter "All" provides an option label. If you inspect that choice in your
 
 You can also set an option to be selected by default. If you wanted "Comedy" as your default option, you would change the code in the Controller like so:
 
-ViewBag.movieGenre = new SelectList(GenreLst, "Comedy");
+[!code-cshtml[Main](adding-search/samples/sample17.cshtml)]
 
 Run the application and browse to */Movies/Index*. Try a search by genre, by movie name, and by both criteria.
 
