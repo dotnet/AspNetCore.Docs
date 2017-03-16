@@ -5,7 +5,7 @@ description: In this tutorial you add more entities and relationships and custom
 keywords: ASP.NET Core, Entity Framework Core, data annotations
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
 ms.technology: aspnet
@@ -82,8 +82,8 @@ The database model has now changed in a way that requires a change in the databa
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands:
 
 ```console
-dotnet ef migrations add MaxLengthOnNames -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add MaxLengthOnNames
+dotnet ef database update
 ```
 
 The `migrations add` command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
@@ -111,8 +111,8 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
 ```console
-dotnet ef migrations add ColummFirstName -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add ColummFirstName
+dotnet ef database update
 ```
 
 In **SQL Server Object Explorer**, open the Student table designer by double-clicking the **Student** table.
@@ -168,14 +168,14 @@ You can put multiple attributes on one line, so you could also write the `HireDa
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### The Courses and OfficeAssignment navigation properties
+### The CourseAssignments and OfficeAssignment navigation properties
 
-The `Courses` and `OfficeAssignment` properties are navigation properties.
+The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
-An instructor can teach any number of courses, so `Courses` is defined as a collection.
+An instructor can teach any number of courses, so `CourseAssignments` is defined as a collection.
 
 ```csharp
-public ICollection<CourseAssignment> Courses { get; set; }
+public ICollection<CourseAssignment> CourseAssignments { get; set; }
 ```
 
 If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated.  You can specify `ICollection<T>` or a type such as `List<T>` or `HashSet<T>`. If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
@@ -258,10 +258,10 @@ A course can have any number of students enrolled in it, so the `Enrollments` na
 public ICollection<Enrollment> Enrollments { get; set; }
 ```
 
-A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection:
+A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection (the type `CourseAssignment` is explained [later](#many-to-many-relationships):
 
 ```csharp
-public ICollection<Instructor> Instructors { get; set; }
+public ICollection<CourseAssignment> Instructors { get; set; }
 ```
 
 ## Create the Department entity
@@ -348,9 +348,9 @@ Each relationship line has a 1 at one end and an asterisk (*) at the other, indi
 
 If the Enrollment table didn't include grade information, it would only need to contain the two foreign keys CourseID and StudentID. In that case, it would be a many-to-many join table without payload (or a pure join table) in the database. The Instructor and Course entities have that kind of many-to-many relationship, and your next step is to create an entity class to function as a join table without payload.
 
-## The CourseAssignment entity
+(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see the [discussion in the EF Core GitHub repository](https://github.com/aspnet/EntityFramework/issues/1368).) 
 
-A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and `CourseAssignment` is the entity that represents that table.
+## The CourseAssignment entity
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
@@ -358,19 +358,19 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/CourseAssignment.cs)]
 
+### Join entity names
+
+A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and it has to be represented by an entity set. It's common to name a join entity `EntityName1EntityName2`, which in this case would be `CourseInstructor`. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked through Ratings. For this relationship, `CourseAssignment` is a better choice than `CourseInstructor`.
+
 ### Composite key
 
 Since the foreign keys are not nullable and together uniquely identify each row of the table, there is no need for a separate primary key. The *InstructorID* and *CourseID* properties should function as a composite primary key. The only way to identify composite primary keys to EF is by using the *fluent API* (it can't be done by using attributes). You'll see how to configure the composite primary key in the next section.
 
 The composite key ensures that while you can have multiple rows for one course, and multiple rows for one instructor, you can't have multiple rows for the same instructor and course. The `Enrollment` join entity defines its own primary key, so duplicates of this sort are possible. To prevent such duplicates, you could add a unique index on the foreign key fields, or configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](https://docs.efproject.net/en/latest/modeling/indexes.html).
 
-### Join entity names
-
-It's common to name a join entity `EntityName1EntityName2`, which in this case would be `CourseInstructor`. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later.
-
 ## Update the database context
 
-Add the following highlighted code to the *Data/SchoolContext.cs*:
+Add the following highlighted code to the *Data/SchoolContext.cs* file:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -416,7 +416,7 @@ As you saw in the first tutorial, most of this code simply creates new entity ob
 Save your changes and build the project. Then open the command window in the project folder and enter the `migrations add` command (don't do the update-database command yet):
 
 ```console
-dotnet ef migrations add ComplexDataModel -c SchoolContext
+dotnet ef migrations add ComplexDataModel
 ```
 
 You get a warning about possible data loss.
@@ -469,13 +469,13 @@ Save your change to *appsettings.json*.
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 > ```console
-> dotnet ef database drop -c SchoolContext
+> dotnet ef database drop
 > ```
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 Run the app to cause the `DbInitializer.Initialize` method to run and populate the new database.

@@ -5,7 +5,7 @@ description: This tutorial will show you how to implement inheritance in the dat
 keywords: ASP.NET Core, Entity Framework Core, inheritance
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
 ms.technology: aspnet
@@ -83,13 +83,13 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 Save your changes and build the project. Then open the command window in the project folder and enter the following command:
 
 ```console
-dotnet ef migrations add Inheritance -c SchoolContext
+dotnet ef migrations add Inheritance
 ```
 
 Run the `database update` command:.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
@@ -125,7 +125,7 @@ This code takes care of the following database update tasks:
 Run the `database update` command again:
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)

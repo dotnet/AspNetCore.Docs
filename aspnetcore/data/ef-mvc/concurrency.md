@@ -5,7 +5,7 @@ description: This tutorial shows how to handle conflicts when multiple users upd
 keywords: ASP.NET Core, Entity Framework Core, concurrency
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 15e79e15-bda5-441d-80c7-8032a2628605
 ms.technology: aspnet
@@ -103,8 +103,8 @@ By adding a property you changed the database model, so you need to do another m
 Save your changes and build the project, and then enter the following commands in the command window:
 
 ```console
-dotnet ef migrations add RowVersion -c SchoolContext
-dotnet ef database update -c SchoolContext
+dotnet ef migrations add RowVersion
+dotnet ef database update
 ```
 
 ## Create a Departments controller and views

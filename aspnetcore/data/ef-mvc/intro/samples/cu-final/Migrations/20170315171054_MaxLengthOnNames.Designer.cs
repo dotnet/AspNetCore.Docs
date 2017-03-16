@@ -1,5 +1,4 @@
-﻿#if Truncate
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -8,11 +7,11 @@ using ContosoUniversity.Data;
 
 namespace ContosoUniversity.Migrations
 {
-#region snippet_Truncate
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20170315171054_MaxLengthOnNames")]
+    partial class MaxLengthOnNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -31,7 +30,43 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("Course");
                 });
 
-            // Additional code for Enrollment and Student tables not shown
+            modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
+                {
+                    b.Property<int>("EnrollmentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CourseID");
+
+                    b.Property<int?>("Grade");
+
+                    b.Property<int>("StudentID");
+
+                    b.HasKey("EnrollmentID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("Enrollment");
+                });
+
+            modelBuilder.Entity("ContosoUniversity.Models.Student", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("EnrollmentDate");
+
+                    b.Property<string>("FirstMidName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Student");
+                });
 
             modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
                 {
@@ -47,6 +82,4 @@ namespace ContosoUniversity.Migrations
                 });
         }
     }
-    #endregion
 }
-#endif
