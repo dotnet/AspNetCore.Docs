@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core, Entity Framework Core, tutorial
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: b67c3d4a-f2bf-4132-a48b-4b0d599d7981
 ms.technology: aspnet
@@ -33,10 +33,10 @@ EF Core 1.1 is the latest version of EF but does not yet have all the features o
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](advanced.md#common-errors). If you don't find what you need there, you can post questions to the [ASP.NET Entity Framework forum](http://forums.asp.net/1227.aspx), the [Entity Framework forum](http://social.msdn.microsoft.com/forums/en-US/adodotnetentityframework/threads/), or StackOverflow.com for [ASP.NET Core](http://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](http://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](advanced.md#common-errors). If you don't find what you need there, you can post a question to StackOverflow.com for  [ASP.NET Core](http://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](http://stackoverflow.com/questions/tagged/entity-framework-core).
 
 > [!TIP] 
-> This is a series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems and need to start over, you can start from the previous tutorial instead of going back to the beginning of the whole series.
+> This is a series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems, you can start over from the previous tutorial instead of going back to the beginning of the whole series.
 
 ## The Contoso University web application
 
@@ -68,14 +68,11 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Select **ASP.NET 1.1** and the **Web Application** template.
 
-* Set **Authentication** to **Individual User Accounts**.
+* Make sure **Authentication** is set to **No Authentication**.
 
 * Click **OK**
 
   ![New ASP.NET Project dialog](intro/_static/new-aspnet.png)
-
-> [!NOTE]
-> Make sure the **Authentication** setting is **Individual User Accounts**. You won't be using authentication in this tutorial, but this setting automates some set-up tasks that you'd have to do manually otherwise.
 
 ## Set up the site style
 
@@ -89,7 +86,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=7,31,37-40,50)]
+[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=7,31,37-40,49)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -101,23 +98,13 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-Because you used the **Individual User Accounts** option when you created the project, support for EF Core has already been installed.
+To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
-If you want to add EF Core support to a new project that you create without the **Individual User Accounts** option, install the following NuGet packages:
-
-* The database provider that you want to target. For SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
-
-* The EF tools for **Package Manager Console**:[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools). 
-
-* The EF command-line tools: [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). 
-
-  This package is installed by adding it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers shown were current when the tutorial was written.)
-
-  [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=30-34&highlight=2)]
+```
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+```
   
- (You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
-
-All of these packages are already installed in the project you created.
+This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
 ## Create the data model
 
@@ -132,6 +119,8 @@ In the following sections you'll create a class for each one of these entities.
 ### The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
+
+In the project folder, create a folder named *Models*.
 
 In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
 
@@ -197,11 +186,17 @@ ASP.NET Core implements [dependency injection](../../fundamentals/dependency-inj
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=1-2)]
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=4-5)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file. The connection string is highlighted in the following *appsettings.json* example.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file.
 
-[!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-3)]
+Add `using` statements for `ContosoUniversity.Data`  and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
+
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings&highlight=1,4)]
+
+Open the *appsettings.json* file and add a connection string as shown in the following example.
+
+[!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
 ### SQL Server Express LocalDB
 
@@ -237,6 +232,14 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
 * Right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 
+* In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and select **Add**.
+
+  ![Add dependencies](intro/_static/add-depend.png)
+
+  Visual Studio adds the dependencies needed to scaffold a controller, including a package with design-time EF functionality (`Microsoft.EntityFrameworkCore.Design`). A package that is needed only for scaffolding a DbContext from an existing database is also included (`Microsoft.EntityFrameworkCore.SqlServer.Design`). A *ScaffoldingReadMe.txt* file is created which you can delete.
+
+* Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
+
 * In the **Add Scaffold** dialog box:
 
   * Select **MVC controller with views, using Entity Framework**.
@@ -253,9 +256,9 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
   * Click **Add**.
 
-![Scaffold Student](intro/_static/scaffold-student.png)
+  ![Scaffold Student](intro/_static/scaffold-student.png)
 
-When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
+  When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
 (The scaffolding engine can also create the database context for you if you don't create it manually first as you did earlier for this tutorial. You can specify a new context class in the **Add Controller** box by clicking the plus sign to the right of **Data context class**.  Visual Studio will then create your `DbContext` class as well as the controller and views.)
 

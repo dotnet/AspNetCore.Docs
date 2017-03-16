@@ -5,7 +5,7 @@ ASP.NET Core MVC web application.
 
 ## Build it from scratch
 
-You can build the application by following the steps in [a series of tutorials](https://docs.microsoft.com/aspnet/core/data/ef-mvc/intro).
+You can build the application by following the steps in [a series of tutorials](https://docs.asp.net/en/latest/data/ef-mvc/intro.html).
 
 ## Download it
 

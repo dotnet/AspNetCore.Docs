@@ -5,7 +5,7 @@ description: In this tutorial you'll read and display related data -- that is, d
 keywords: ASP.NET Core, Entity Framework Core, related data, joins
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 71fec30f-8ea7-4ca8-96e3-d2e26c5be44e
 ms.technology: aspnet
@@ -123,27 +123,19 @@ Replace the Index method with the following code to do eager loading of related 
 
 The method accepts optional route data (`id`) and a query string parameter (`courseID`) that provide the ID values of the selected instructor and selected course. The parameters are provided by the **Select** hyperlinks on the page.
 
-The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.Courses` navigation property. Within the `Courses` property, the `Enrollments` and `Department` properties are loaded, and within each `Enrollment` entity the `Student` property is loaded.
+The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.CourseAssignments` navigation properties. Within the `CourseAssignments` property, the `Courrse` property is loaded, and within that, the `Enrollments` and `Department` properties are loaded, and within each `Enrollment` entity the `Student` property is loaded.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52)]
 
 Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
 
-The reason for
-```csharp
-.Include(i => i.Courses).ThenInclude(i => i.Course)
-```
-is that `Courses` is the navigation property for the `CourseAssignment` join entity (it doesn't have `Course` entities), so you still have to get the `Course` entity out of the join entity which has both `Course` and `Instructor`.
+`CourseAssignments` and `Course` are repeated because you need two properties from `Course`. Another `ThenInclude` after `Student` would get properties in `Student`. So you have to start over with `Include` for `CourseAssignments` in order to get the second property that you want from `Course`.
 
-The `Enrollments` property does have `Enrollment` entities, so you can go directly from `Enrollments` to `Student`, which is a navigation property in the `Enrollment` entity.
-
-`Courses` is included twice because you need multiple properties at the second `Include` level. That is, from the `Course` entity you want both `Enrollments` and `Department`. But once you've called `ThenInclude` on `Course` to get `Enrollments`, another `ThenInclude` would get you properties in `Enrollments`, not in `Course`. So you have to start over with `.Include` for `Courses` in order to get the second property that you want from `Course`.
-
-The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `Courses` navigation property.
+The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=54-60)]
 
-The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `Courses` property. The `Courses` property contains `CourseInstructor` entities, from which you want only the related Course entities.
+The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `CourseAssignments` property. The `CourseAssignments` property contains `CourseAssignment` entities, from which you want only the related `Course` entities.
 
 You use the `Single` method on a collection when you know the collection will have only one item. The Single method throws an exception if the collection passed to it is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. However, in this case that would still result in an exception (from trying to find a `Courses` property on a null reference), and the exception message would less clearly indicate the cause of the problem. When you call the `Single` method, you can also pass in the Where condition instead of calling the `Where` method separately:
 
@@ -226,7 +218,7 @@ Run the page and select an instructor. Then select a course to see the list of e
 
 ## Explicit loading
 
-When you retrieved the list of instructors in *InstructorsController.cs*, you specified eager loading for the `Courses` navigation property.
+When you retrieved the list of instructors in *InstructorsController.cs*, you specified eager loading for the `CourseAssignments` navigation property.
 
 Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it's requested. To see an example of how to do explicit loading, replace the `Index` method with the following code, which removes eager loading for Enrollments and loads that property explicitly. The code changes are highlighted.
 

@@ -15,7 +15,7 @@ namespace ContosoUniversity.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ContosoUniversity.Models.Course", b =>
@@ -24,8 +24,7 @@ namespace ContosoUniversity.Migrations
 
                     b.Property<int>("Credits");
 
-                    b.Property<string>("Title")
-                        .HasAnnotation("MaxLength", 50);
+                    b.Property<string>("Title");
 
                     b.HasKey("CourseID");
 

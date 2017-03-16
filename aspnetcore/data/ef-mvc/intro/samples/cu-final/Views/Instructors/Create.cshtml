@@ -39,7 +39,6 @@
                 <span asp-validation-for="OfficeAssignment.Location" class="text-danger" />
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <table>
@@ -59,7 +58,7 @@
                                            name="selectedCourses"
                                            value="@course.CourseID"
                                            @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
-                                           @course.CourseID @:  @course.Title
+                                        @course.CourseID @:  @course.Title
                                     @:</td>
                             }
                             @:</tr>
@@ -67,7 +66,6 @@
                 </table>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

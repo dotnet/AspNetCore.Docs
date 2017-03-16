@@ -28,7 +28,6 @@ namespace ContosoUniversity.Controllers
             return View(await courses.ToListAsync());
         }
 
-
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -56,7 +55,6 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-
         // POST: Courses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -73,7 +71,6 @@ namespace ContosoUniversity.Controllers
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
-
 
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -93,7 +90,6 @@ namespace ContosoUniversity.Controllers
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
         }
-
 
         // POST: Courses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -139,7 +135,6 @@ namespace ContosoUniversity.Controllers
             ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
         }
 
-
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -170,10 +165,17 @@ namespace ContosoUniversity.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        private bool CourseExists(int id)
+        {
+            return _context.Courses.Any(e => e.CourseID == id);
+        }
+
         public IActionResult UpdateCourseCredits()
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> UpdateCourseCredits(int? multiplier)
@@ -188,9 +190,5 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        private bool CourseExists(int id)
-        {
-            return _context.Courses.Any(e => e.CourseID == id);
-        }
     }
 }

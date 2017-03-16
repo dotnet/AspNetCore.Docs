@@ -5,7 +5,7 @@ description: This tutorial introduces several topics that are useful to be aware
 keywords: ASP.NET Core, Entity Framework Core, raw sql, examine sql, repository pattern, unit of work pattern, automatic change detection, existing database
 ms.author: tdykstra
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 92a2986a-d005-4ff6-9559-6657fd466bb7
 ms.technology: aspnet
@@ -155,9 +155,9 @@ If you're tracking a large number of entities and you call one of these methods 
 _context.ChangeTracker.AutoDetectChangesEnabled = false;
 ```
 
-## Entity Framework Core source code
+## Entity Framework Core source code and development plans
 
-The source code for Entity Framework Core is available at [https://github.com/aspnet/EntityFramework](https://github.com/aspnet/EntityFramework). Besides source code, you can get nightly builds, issue tracking, feature specs, design meeting notes, and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
+The source code for Entity Framework Core is available at [https://github.com/aspnet/EntityFramework](https://github.com/aspnet/EntityFramework). Besides source code, you can get nightly builds, issue tracking, feature specs, design meeting notes, [the roadmap for future development](https://github.com/aspnet/EntityFramework/wiki/Roadmap), and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
 
 Although the source code is open, Entity Framework Core is fully supported as a Microsoft product. The Microsoft Entity Framework team keeps control over which contributions are accepted and tests all code changes to ensure the quality of each release.
 
@@ -209,7 +209,7 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 To delete a database by using the CLI, run the `database drop` CLI command:
 
 ```console
-dotnet ef database drop -c SchoolContext
+dotnet ef database drop
 ```
 
 ### Error locating SQL Server instance

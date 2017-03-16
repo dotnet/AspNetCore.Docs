@@ -2,12 +2,9 @@
 
 #if Intro
 #region snippet_Intro
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Models;
+using System;
+using System.Linq;
 
 namespace ContosoUniversity.Data
 {

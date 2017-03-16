@@ -1,11 +1,8 @@
 @model ContosoUniversity.Models.Department
-
 @{
     ViewData["Title"] = "Create";
 }
-
 <h2>Create</h2>
-
 <form asp-action="Create">
     <div class="form-horizontal">
         <h4>Department</h4>
@@ -47,11 +44,9 @@
         </div>
     </div>
 </form>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

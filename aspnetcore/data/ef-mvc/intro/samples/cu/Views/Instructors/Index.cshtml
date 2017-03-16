@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     @{
-                        foreach (var course in item.Courses)
+                        foreach (var course in item.CourseAssignments)
                         {
                             @course.Course.CourseID @:  @course.Course.Title <br />
                         }
