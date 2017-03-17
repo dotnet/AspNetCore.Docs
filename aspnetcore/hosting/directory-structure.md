@@ -5,7 +5,7 @@ description: The directory structure of published ASP.NET Core applications.
 keywords: ASP.NET Core, directory structure
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: e55eb131-d42e-4bf6-b130-fd626082243c
 ms.technology: aspnet
@@ -27,9 +27,12 @@ In ASP.NET Core, the application directory, *publish*, is comprised of applicati
 The contents of the *publish* directory represents the *content root path*, also called the *application base path*, of the deployment. Whatever name is given to the *publish* directory in the deployment, its location serves as the server's physical path to the hosted application. The *wwwroot* directory, if present, only contains static assets. The *logs* directory may be included in the deployment by creating it in the project and adding the `<Target>` element shown below to your *.csproj* file or by physically creating the directory on the server.
 
 ```xml
-  <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
-    <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
-  </Target>
+<Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
+  <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
+  <MakeDir Directories="$(PublishUrl)Logs" Condition="!Exists('$(PublishUrl)Logs')" />
+</Target>
 ```
+
+The first `<MakeDir>` element, which uses the `PublishDir` property, is used by the dotnet CLI to determine the target location for the publish operation. The second `<MakeDir>` element, which uses the `PublishUrl` property, is used by Visual Studio to determine the target location. Visual Studio uses the `PublishUrl` property for compatibility with non-.NET Core projects.
 
 The deployment directory requires Read/Execute permissions, while the *logs* directory requires Read/Write permissions. Additional directories where assets will be written require Read/Write permissions.
