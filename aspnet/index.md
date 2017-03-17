@@ -577,7 +577,7 @@ description:
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials</p>
+                                    <p>Featured tutorials | [View all ASP.NET tutorials](https://docs.microsoft.com/aspnet/tutorials/)</p>
                                 </div>
                             </li>
                             <li>
