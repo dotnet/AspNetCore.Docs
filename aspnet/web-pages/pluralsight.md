@@ -14,6 +14,10 @@ msc.type: content
 ---
 WebMatrix and Web Pages Video Training from Pluralsight
 ====================
+
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+
 ### Videos
 
 - [Introducing WebMatrix](https://pluralsight.com/training/Player?author=matt-milner&name=webmatrix-introduction-m1&mode=live&clip=0&course=webmatrix-introduction)
