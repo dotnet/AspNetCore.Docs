@@ -16,7 +16,6 @@ Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
 ====================
 > Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
 
-
 9 November 2010
 
 ## Contents

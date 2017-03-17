@@ -14,6 +14,10 @@ msc.type: book
 ---
 Videos
 ====================
+
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+
 - [Introduction](introduction/index.md)
 
     - [5 Minute Intro to ASP.NET Web Pages](introduction/5-minute-introduction-to-aspnet-web-pages.md)

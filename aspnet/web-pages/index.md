@@ -14,6 +14,10 @@ msc.type: categoryindex
 ---
 ASP.NET Web Pages
 ====================
+
+> [!NOTE] 
+> WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+
 - [Guidance](overview/index.md)
 
     - [Getting Started](overview/getting-started/index.md)
