@@ -48,7 +48,6 @@ Complete the **New Project** dialog:
 
 * In the left pane, tap **.NET Core**
 * In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
-* Verify **Authentication** is set to **No Authentication**
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
 * Tap **OK**
 
