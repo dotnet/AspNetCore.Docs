@@ -1,8 +1,17 @@
 ---
-uid: index
+title: "ASP.NET WebHooks Overview | Microsoft Docs"
+author: rick-anderson
+description: "An introduction to ASP.NET WebHooks."
+ms.author: aspnetcontent
+manager: wpickett
+ms.date: 01/17/2012
+ms.topic: article
+ms.assetid: 5e2843f0-f499-448f-a712-33d4e9858321
+ms.technology: 
+ms.prod: .net-framework
+uid: webhooks/index
 ---
-
-# Overview of ASP.NET WebHooks
+# ASP.NET WebHooks overview
 
 WebHooks is a lightweight HTTP pattern providing a simple pub/sub model for wiring together Web APIs and SaaS services. When an event happens in a service, a notification is sent in the form of an HTTP POST request to registered subscribers. The POST request contains information about the event which makes it possible for the receiver to act accordingly.
 
@@ -18,7 +27,7 @@ The two parts can be used together or apart depending on your scenario. If you o
 
 The code targets ASP.NET Web API 2 and ASP.NET MVC 5 and is available as [OSS on GitHub](https://github.com/aspnet/WebHooks).
 
-  ## WebHooks Overview
+## WebHooks Overview
 
 WebHooks is a pattern which means that it varies how it is used from service to service but the basic idea is the same. You can think of WebHooks as a simple pub/sub model where a user can subscribe to events happening elsewhere. The event notifications are propagated as HTTP POST requests containing information about the event itself.
 

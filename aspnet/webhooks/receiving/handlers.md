@@ -1,7 +1,17 @@
 ---
-uid: receiving/handlers
+title: "ASP.NET WebHooks handlers | Microsoft Docs"
+author: rick-anderson
+description: "How to handle requests in ASP.NET WebHooks."
+ms.author: aspnetcontent
+manager: wpickett
+ms.date: 01/17/2012
+ms.topic: article
+ms.assetid: a55b0d20-9c90-4bd3-a471-20da6f569f0c
+ms.technology: 
+ms.prod: .net-framework
+uid: webhooks/receiving/handlers
 ---
-# Processing WebHooks
+# ASP.NET WebHooks handlers
 
 Once WebHooks requests has been validated by a WebHook receiver, it is ready to be processed by user code. This is where *handlers* come in. Handlers derive from the [IWebHookHandler](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/WebHookHandler.cs) interface but typically uses the [WebHookHandler](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/WebHookHandler.cs) class instead of deriving directly from the interface.
 

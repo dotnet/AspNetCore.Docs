@@ -1,15 +1,17 @@
 ---
-title: Receiving and processing WebHooks in ASP.NET | Microsoft Docs
+title: "ASP.NET WebHooks - receiving and processing | Microsoft Docs"
 author: rick-anderson
+description: "Articles about receiving and processing WebHooks in ASP.NET"
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 281c6de8-c47c-4c74-b982-d8748f0f8ee61d974d06-cabf-4d38-8f60-b9854a32c911
-ms.prod: webhooks
+ms.assetid: b22046f9-c7a1-4d46-a80c-c7d2e35aad3b
+ms.technology: 
+ms.prod: .net-framework
 uid: webhooks/receiving/index
 ---
-# Receiving and processing WebHooks in ASP.NET
+# ASP.NET WebHooks - receiving and processing
 
 * [WebHook Receivers](receivers.md)
 * [Processing WebHooks](handlers.md)
