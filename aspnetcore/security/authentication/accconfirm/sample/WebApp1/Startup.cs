@@ -35,6 +35,8 @@ namespace WebApp1
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // The snippets in here are used by aspnetcore/security/enforcing-ssl.md
+        // Any changes to this file should be checked against that doc.
         #region snippet1
         #region snippet2
         // Requires using Microsoft.AspNetCore.Mvc;

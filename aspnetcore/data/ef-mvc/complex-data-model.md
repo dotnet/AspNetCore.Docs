@@ -258,10 +258,10 @@ A course can have any number of students enrolled in it, so the `Enrollments` na
 public ICollection<Enrollment> Enrollments { get; set; }
 ```
 
-A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection (the type `CourseAssignment` is explained [later](#many-to-many-relationships):
+A course may be taught by multiple instructors, so the `CourseAssignments` navigation property is a collection (the type `CourseAssignment` is explained [later](#many-to-many-relationships):
 
 ```csharp
-public ICollection<CourseAssignment> Instructors { get; set; }
+public ICollection<CourseAssignment> CourseAssignments { get; set; }
 ```
 
 ## Create the Department entity

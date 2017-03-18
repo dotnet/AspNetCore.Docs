@@ -42,26 +42,10 @@ Note the `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
-## Require SSL
 
-In this section we'll set up and require SSL in our project.
+## Require SSL and setup IIS Express for SSL
 
-   * In Solution Explorer, right click the project and select **Properties**.
-   * On the left pane, select **Debug**.
-   * Check **Enable SSL**
-   * Copy the SSL URL and paste it into the **App URL**
-
-![Debug tab of web application properties](accconfirm/_static/ssl.png)
-
-* Add the following code to `ConfigureServices` in `Startup`:
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet2&highlight=4-)]
-
-The highlighted code above requires all requests to the app use `HTTPS`. HTTP requests will be ignored. The following highlighted code redirects all HTTP requests to HTTPS:
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=6-)]
-
-See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
+See [Enforcing SSL](xref:security/enforcing-ssl).
 
 ## Require email confirmation
 
