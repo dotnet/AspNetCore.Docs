@@ -46,7 +46,7 @@ The development machine must be running
 
 - [Windows 10 Anniversary Update](https://www.microsoft.com/en-us/software-download/windows10/) (or higher) or [Windows Server 2016](https://www.microsoft.com/en-us/cloud-platform/windows-server) (or higher).
 - [Docker for Windows](https://docs.docker.com/docker-for-windows/) - version Stable 1.13.0 or 1.12 Beta 26 (or newer versions)
-- [Visual Studio 2015](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx).
+- [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx).
 
 > [!IMPORTANT]
 > If you are using Windows Server 2016, follow the
@@ -70,7 +70,7 @@ profile will put all the assets in one directory tree that you copy to your targ
 
 1. Right click on the web project in Visual Studio, and select **Publish**.
 1. Click the **Custom profile button**, and then select **File System** as the method.
-1. Choose the directory. By convention, the downloaded sample uses `bin/PublishOutput`.
+1. Choose the directory. By convention, the downloaded sample uses `bin\Release\PublishOutput`.
 
 ![Publish Connection][publish-connection]
 
@@ -104,34 +104,22 @@ The Dockerfile that creates your image looks like this:
 
 FROM microsoft/aspnet
 
-# Next, this Dockerfile creates a directory for your application
-RUN mkdir C:\randomanswers
-
-# configure the new site in IIS.
-RUN powershell -NoProfile -Command \
-    Import-module IISAdministration; \
-    New-IISSite -Name "ASPNET" -PhysicalPath C:\randomanswers -BindingInformation "*:8000:"
-
-# This instruction tells the container to listen on port 8000.
-EXPOSE 8000
-
 # The final instruction copies the site you published earlier into the container.
-ADD containerImage/ /randomanswers
+COPY ./bin/Release/PublishOutput/ .
 ```
 
-There is no `ENTRYPOINT` command in this Dockerfile. You don't need one.
-The base image ensures that IIS starts when the container starts.
+There is no `ENTRYPOINT` command in this Dockerfile. You don't need one. When running Windows Server with IIS, the IIS process is the entrypoint, which is configured to start in the aspnet base image.
 
 Run the Docker build command to create the image that
 runs your ASP.NET app. To do this, open a PowerShell
-window and type the following command in the solution directory:
+window in the directory of your project and type the following command in the solution directory:
 
 ```console
 docker build -t mvcrandomanswers .
 ```
 
 This command will build the new image using the instructions in your
-Dockerfile. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
+Dockerfile, naming (-t tagging) the image as mvcrandomanswers. This may include pulling the base image from [Docker Hub](http://hub.docker.com),
 and then adding your app to that image.
 
 Once that command completes, you can run the `docker images` command
@@ -139,7 +127,7 @@ to see information on the new image:
 
 ```console
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-mvcrandomanswers              latest              86838648aab6        2 minutes ago       8.104 GB
+mvcrandomanswers              latest              86838648aab6        2 minutes ago       10.1 GB
 ```
 
 The IMAGE ID will be different on your machine. Now, let's run the app.
@@ -149,14 +137,13 @@ The IMAGE ID will be different on your machine. Now, let's run the app.
 Start a container by executing the following `docker run` command:
 
 ```console
-docker run -d -p 8000:8000 --name randomanswers mvcrandomanswers
+docker run -d --name randomanswers mvcrandomanswers
 ```
 
 The `-d` argument tells Docker to start the image in detached mode. That
 means the Docker image runs disconnected from the current shell.
 
-The `-p 8000:8000` argument tells Docker how to map incoming ports. In this
-example, we're using port 8000 on both the host and the container.
+In many docker examples, you may see -p to map the container and host ports. The default aspnet image has already configured the container to listen on port 80 and expose it. 
 
 The `--name randomanswers` gives a name to the running container. You can use
 this name instead of the container ID in most commands.
@@ -166,7 +153,7 @@ The `mvcrandomanswers` is the name of the image to start.
 ## Verify in the browser
 
 > [!NOTE]
-> With the current release, you can't browse to `http://localhost`.
+> With the current Windows Container release, you can't browse to `http://localhost`.
 > This is a known behavior in WinNAT, and it will
 > be resolved in the future. Until that is addressed, you need to use
 > the IP address of the container.
@@ -179,7 +166,7 @@ docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" randomanswers
 172.31.194.61
 ```
 
-Connect to the running container using the IPv4 address and the configured port (8000), `http://172.31.194.61:8000`
+Connect to the running container using the IPv4 address, `http://172.31.194.61`
 in the example shown. Type that URL into your browser, and you should see the running site.
 
 > [!NOTE]
