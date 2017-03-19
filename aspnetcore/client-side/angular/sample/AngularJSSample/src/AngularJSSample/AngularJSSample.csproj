@@ -3,8 +3,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <AssemblyName>AngularJSSample</AssemblyName>
     <PackageId>AngularJSSample</PackageId>
-	<RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
-	<PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,20 +30,18 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0-msbuild3-final">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="BundlerMinifier.Core" Version="2.2.301" />
   </ItemGroup>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-     <Exec Command="npm install" />
+    <Exec Command="npm install" />
     <Exec Command="bower install" />
     <Exec Command="gulp clean" />
     <Exec Command="gulp min" />
   </Target>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.2.301" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0-msbuild3-final" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
   </ItemGroup>
-  
+
 </Project>
