@@ -20,17 +20,17 @@ This article explains the benefits of using bundling and minification, including
 
 ## Overview
 
-In ASP.NET Core apps, there are multiple options for bundling and minifying client-side resources. The core templates for MVC provide an out of the box solution using a configuration file and BuildBundlerMinifier NuGet package. Third party tools, such as [Gulp](using-gulp.md) and [Grunt](using-grunt.md) are also available to accomplish the same tasks should your processes require additional workflow or complexities. By using design-time bundling and minification, the minified files are created prior to the application’s deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it’s important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+In ASP.NET Core apps, there are multiple options for bundling and minifying client-side resources. The core templates for MVC provide an out-of-the-box solution using a configuration file and BuildBundlerMinifier NuGet package. Third party tools, such as [Gulp](using-gulp.md) and [Grunt](using-grunt.md) are also available to accomplish the same tasks should your processes require additional workflow or complexities. By using design-time bundling and minification, the minified files are created prior to the application’s deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it’s important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
-Bundling and minification primarily improve the first page request load time. Once a web page has been requested, the browser caches the assets (JavaScript, CSS and images) so bundling and minification won’t provide any performance boost when requesting the same page, or pages on the same site requesting the same assets. If you don’t set the expires header correctly on your assets, and you don’t use bundling and minification, the browsers freshness heuristics will mark the assets stale after a few days and the browser will require a validation request for each asset. In this case, bundling and minification provide a performance increase even after the first page request.
+Bundling and minification primarily improve the first page request load time. Once a web page has been requested, the browser caches the assets (JavaScript, CSS and images) so bundling and minification won’t provide any performance boost when requesting the same page, or pages on the same site requesting the same assets. If you don’t set the expires header correctly on your assets, and you don’t use bundling and minification, the browser's freshness heuristics will mark the assets stale after a few days and the browser will require a validation request for each asset. In this case, bundling and minification provide a performance increase even after the first page request.
 
 ### Bundling
 
-Bundling is a feature that makes it easy to combine or bundle multiple files into a single file. Because bundling combines multiple files into a single file, it reduces the number of requests to the server that is required to retrieve and display a web asset, such as a web page. You can create CSS, JavaScript and other bundles. Fewer files, means fewer HTTP requests from your browser to the server or from the service providing your application. This results in improved first page load performance.
+Bundling is a feature that makes it easy to combine or bundle multiple files into a single file. Because bundling combines multiple files into a single file, it reduces the number of requests to the server that are required to retrieve and display a web asset, such as a web page. You can create CSS, JavaScript and other bundles. Fewer files means fewer HTTP requests from your browser to the server or from the service providing your application. This results in improved first page load performance.
 
 ### Minification
 
-Minification performs a variety of different code optimizations to reduce the size of requested assets (such as CSS, image, JavaScript files). Common results of minification include removing unnecessary white space and comments, and shortening variable names to one character.
+Minification performs a variety of different code optimizations to reduce the size of requested assets (such as CSS, images, JavaScript files). Common results of minification include removing unnecessary white space and comments, and shortening variable names to one character.
 
 Consider the following JavaScript function:
 
@@ -73,16 +73,16 @@ Load Time (MS) | 885 | 2360 | 167%
 
 The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers that they apply on requests. The load time shows a big improvement, however this example was run locally. You will get greater gains in performance when using bundling and minification with assets transferred over a network.
 
-## Using Bundling and minification in a project
+## Using bundling and minification in a project
 
-The MVC project template provides a *bundleconfig.json* connfiguration file which defines the options for each bundle. By default, a single bundle configuration is defined for the custom JavaScript (wwwroot/js/site.js) and Stylesheet (www/css/style.css) files.
+The MVC project template provides a `bundleconfig.json` configuration file which defines the options for each bundle. By default, a single bundle configuration is defined for the custom JavaScript (`wwwroot/js/site.js`) and Stylesheet (`wwwroot/css/site.css`) files.
 
 [!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig.json)]
 
 Bundle options include:
 
-* outputFileName - name of the bundle file to output. Can contain a relative path from the bundleconfig.json file. **required**
-* inputFiles - array of files to bundle together. These are relative paths to the confifiguration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
+* outputFileName - name of the bundle file to output. Can contain a relative path from the `bundleconfig.json` file. **required**
+* inputFiles - array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
 * minify - minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
   * Configuration options are available per output file type.
     * [CSS Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
@@ -93,7 +93,7 @@ Bundle options include:
 
 ### Visual Studio 2015 / 2017
 
-Open *bundleconfig.json* in Visual Studio, if your environment does not have the extension installed; a prompt is presented suggesting that there is one that could assist with this file type.
+Open `bundleconfig.json` in Visual Studio, if your environment does not have the extension installed; a prompt is presented suggesting that there is one that could assist with this file type.
 
 ![BuildBundlerMinifier Extension Suggestion](../client-side/bundling-and-minification/_static/bundler-extension-suggestion.png)
 
@@ -101,9 +101,9 @@ Select View Extensions, and install the **Bundler & Minifier** extension (Requir
 
 ![BuildBundlerMinifier Extension Suggestion](../client-side/bundling-and-minification/_static/view-extension.png)
 
-When the restart is complete you need to configure build to run the processes of minifying and bundling the client side assets. Right click the *bundleconfig.json* file and select *Enable bundle on build...*.
+When the restart is complete, you need to configure the build to run the processes of minifying and bundling the client-side assets. Right-click the `bundleconfig.json` file and select *Enable bundle on build...*.
 
-Build the project and the *bundleconfig.json* is included in the build process to produce the output files based on the configuration.
+Build the project, and the `bundleconfig.json` is included in the build process to produce the output files based on the configuration.
 
 ```console
 1>------ Build started: Project: BuildBundlerMinifierExample, Configuration: Debug Any CPU ------
@@ -116,7 +116,7 @@ Build the project and the *bundleconfig.json* is included in the build process t
 
 ### Visual Studio Code or Command Line
 
-Visual Studio and the extension drive the bundling and minification process using GUI gestures, however the same capabilities are available with the `dotnet` CLI and BuildBundlerMinifier NuGet Package.
+Visual Studio and the extension drive the bundling and minification process using GUI gestures; however, the same capabilities are available with the `dotnet` CLI and BuildBundlerMinifier NuGet package.
 
 Add the NuGet package to your project:
 
@@ -180,7 +180,7 @@ Build the application and if you open `site.min.css`, you'll now notice that con
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug.
 
-You can specify which scripts and CSS files to include in your pages using the environment tag helper in your layout pages(See [Tag Helpers](../mvc/views/tag-helpers/index.md)). The environment tag helper will only render its contents when running in specific environments. See [Working with Multiple Environments](../fundamentals/environments.md) for details on specifying the current environment.
+You can specify which scripts and CSS files to include in your pages using the environment tag helper in your layout pages (see [Tag Helpers](../mvc/views/tag-helpers/index.md)). The environment tag helper will only render its contents when running in specific environments. See [Working with Multiple Environments](../fundamentals/environments.md) for details on specifying the current environment.
 
 The following environment tag will render the unprocessed CSS files when running in the `Development` environment:
 
@@ -192,7 +192,7 @@ This environment tag will render the bundled and minified CSS files only when ru
 
 ## Consuming bundleconfig.json from Gulp
 
-If your app bundling and minification workflow requires additional processes such as image processing, cache busting or CDN assest processing etc., then you can convert the Bundle and Minify process to Gulp.
+If your app bundling and minification workflow requires additional processes such as image processing, cache busting, CDN assest processing, etc., then you can convert the Bundle and Minify process to Gulp.
 
 > [!NOTE]
 > Conversion option only available in Visual Studio 2017.
@@ -201,7 +201,7 @@ Right click the `bundleconfig.json` and select **Convert to Gulp...**. This will
 
 ![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
 
-The `gulpfile.js` produced reads the `bundlconfig.json` file for the configuration, therefore it can continue to be used for the inputs/outputs and settings.
+The `gulpfile.js` produced reads the `bundleconfig.json` file for the configuration, therefore it can continue to be used for the inputs/outputs and settings.
 
 [!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
 
