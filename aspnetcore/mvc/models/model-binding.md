@@ -91,6 +91,31 @@ MVC contains several attributes that you can use to direct its default model bin
 
 Attributes are very helpful tools when you need to override the default behavior of model binding.
 
+Below Example shows how to use the From* attributes
+
+If I send a Get request to http://localhost:5000/api/products/5?test=foo, with x-test in Http header set to bar, I should get customerHeader = bar, customQueryString = foo, controllerName = Products and config.value should be an instance of MyCustomConfig I configured for DI.
+
+For the PUT method, it will look for parameter id from the route and product from Http request Body.
+
+<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
+
+```
+[Route("api/[controller]")]
+public class ProductsController : Controller
+{
+   [HttpGet("{id}")]
+   public Product Get(int id, 
+                      [FromHeader(Name = "x-test"] string customerHeader, 
+                      [FromQuery(Name = "test")] string customQueryString,
+                      [FromRoute(Name = "controller")] string controllerName,
+                      [FromServices] IOptions<MyCustomConfig> config) { ...  }
+   
+   [HttpPut("{id}"]
+   public void Put(int id, [FromBody] Product product){ .. }
+}
+```
+
+
 ## Binding formatted data from the request body
 
 Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a `JsonInputFormatter` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.
