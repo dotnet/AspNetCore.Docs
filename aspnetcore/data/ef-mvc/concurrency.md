@@ -209,7 +209,7 @@ In *DepartmentController.cs*, replace the HttpGet `Delete` method with the follo
 
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,14-17,21-29)]
 
-The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true, an error message is sent to the view using `ViewData`.
+The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends sends an error message to the view using `ViewData`.  
 
 Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with the following code:
 
