@@ -181,7 +181,13 @@ services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 
 ### JavaScript
 
-The implementation for non-AngularJS JavaScript is very similar. As above, you should generate the token on the server and send it to the client in a cookie:
+Using JavaScript with views, you can create the token using a service from within your view. To do so, you inject the `Microsoft.AspNetCore.Antiforgery.IAntiforgery` service into the view and call `GetAndStoreTokens`, as shown:
+
+[!code-csharp[Main](anti-request-forgery/sample/MvcSample/Views/Home/Ajax.cshtml?highlight=4-10,24)]
+
+This approach eliminates the need to deal directly with setting cookies from the server or reading them from the client.
+
+JavaScript can also access tokens provided in cookies, and then use the cookie's contents to create a header with the token's value, as shown below.
 
 ```c#
 context.Response.Cookies.Append("CSRF-TOKEN", tokens.RequestToken, 
@@ -209,9 +215,6 @@ $.ajax({
     }
 });
 ```
-
-[View sample](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/anti-request-forgery/sample/MvcSample/Views/Home/Ajax.cshtml).
-
 
 ## Configuring Antiforgery
 
@@ -245,7 +248,6 @@ public void Configure(IApplicationBuilder app,
 ### Options
 
 You can customize [antiforgery options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions#fields_summary) in `ConfigureServices`:
-
 
 ```c#
 services.AddAntiforgery(options => 
@@ -296,7 +298,11 @@ Token based authentication doesn’t store any kind of session on the server or 
 
 ### Multiple applications are hosted in one domain
 
-Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there is an implicit trust relationship between all hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests do not necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login XSRF attacks.
+Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there is an implicit trust relationship between all hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests do not necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login CSRF attacks.
+
+> [!NOTE]
+> You should only host live and preproduction apps in domains you fully control, rather than shared domains like `azurewebsites.net` or `cloudapp.net`. This will better protect your app's users from session hijacking and/or CSRF attacks.
+
 
 ### Additional Resources
 
