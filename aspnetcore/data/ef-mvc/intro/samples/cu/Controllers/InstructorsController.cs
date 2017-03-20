@@ -38,6 +38,7 @@ namespace ContosoUniversity.Controllers
         public async Task<IActionResult> Index(int? id, int? courseID)
         {
             var viewModel = new InstructorIndexData();
+            #region snippet_ThenInclude
             viewModel.Instructors = await _context.Instructors
                   .Include(i => i.OfficeAssignment)
                   .Include(i => i.CourseAssignments)
@@ -50,7 +51,8 @@ namespace ContosoUniversity.Controllers
                   .AsNoTracking()
                   .OrderBy(i => i.LastName)
                   .ToListAsync();
-
+            #endregion
+            
             if (id != null)
             {
                 ViewData["InstructorID"] = id.Value;
