@@ -8,6 +8,7 @@ using ContosoUniversity.Data;
 using ContosoUniversity.Models.SchoolViewModels;
 using System.Data.Common;
 
+
 namespace ContosoUniversity.Controllers
 {
     public class HomeController : Controller

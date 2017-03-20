@@ -101,4 +101,4 @@ If there are still no matches, the content negotiator simply picks the first for
 
 ## Selecting a Character Encoding
 
-After a formatter is selected, the content negotiator chooses the best character encoding. by looking at the **SupportedEncodings** property on the formatter, and matching it against the Accept-Charset header in the request (if any).
+After a formatter is selected, the content negotiator chooses the best character encoding by looking at the **SupportedEncodings** property on the formatter, and matching it against the Accept-Charset header in the request (if any).

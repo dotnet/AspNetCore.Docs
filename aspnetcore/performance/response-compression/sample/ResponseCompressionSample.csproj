@@ -3,28 +3,17 @@
   <PropertyGroup>
     <TargetFrameworks>net451;netcoreapp1.1</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <!-- TODO remove rid when https://github.com/dotnet/sdk/issues/396 is resolved -->
-    <RuntimeIdentifier Condition="'$(TargetFramework)'!='netcoreapp1.1'">win7-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="banner.svg;testfile1kb.txt" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-    <EmbeddedResource Include="compiler\resources\**\*" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
   </ItemGroup>
-  
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
-  </ItemGroup>
-
-  <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
-    <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
-  </Target>
 
 </Project>

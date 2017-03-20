@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 512c6ba7-88ec-47e4-a656-6b30350b34e6
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/extensibility/misc-apis
 ---
 # Miscellaneous APIs

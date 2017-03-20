@@ -1,18 +1,11 @@
-﻿# [Introduction](index.md)
+# [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
-
-# [Tutorials](tutorials/index.md)
 ## [Your first ASP.NET Core application on a Mac using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
 ## [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
-## [Building your first Web API with ASP.NET Core MVC using Visual Studio](tutorials/first-web-api.md)
-## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
-## [Deploy an ASP.NET Core web app to Azure using Visual Studio](tutorials/publish-to-azure-webapp-using-vs.md)
-## [ASP.NET Core on Nano Server](tutorials/nano-server.md)
-## [ASP.NET Core and Azure Service Fabric](https://azure.microsoft.com/en-us/documentation/articles/service-fabric-add-a-web-frontend)
-## [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 ## [Developing ASP.NET Core applications using dotnet watch](tutorials/dotnet-watch.md)
-## [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
+
+# [Tutorials](tutorials/index.md)
 
 # [Fundamentals](fundamentals/index.md)
 ## [Application Startup](fundamentals/startup.md)
@@ -67,7 +60,6 @@
 ### [Routing to controller actions](mvc/controllers/routing.md)
 ### [Model binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
-### [Working with forms](mvc/views/working-with-forms.md)
 ### [File uploads](mvc/models/file-uploads.md)
 ### [Dependency injection into controllers](mvc/controllers/dependency-injection.md)
 ### [Testing controllers](mvc/controllers/testing.md)
@@ -77,6 +69,7 @@
 ### [🔧 HTML helpers](mvc/views/html-helpers.md)
 ### [Tag helpers](mvc/views/tag-helpers/intro.md)
 #### [Authoring tag helpers](mvc/views/tag-helpers/authoring.md)
+#### [Using tag helpers in forms](mvc/views/working-with-forms.md)
 ### [Partial views](mvc/views/partial.md)
 ### [Dependency injection into views](mvc/views/dependency-injection.md)
 ### [View components](mvc/views/view-components.md)
@@ -85,7 +78,7 @@
 ### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 ### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 ### [Formatting response data](mvc/models/formatting.md)
-#### [🔧 Custom formatters](mvc/advanced/custom-formatters.md)
+#### [Custom formatters](mvc/advanced/custom-formatters.md)
 ### [🔧 Support resource updates with JSON patch](mvc/web-api/json-patch.md)
 ## [Filters](mvc/controllers/filters.md)
 ## [Areas](mvc/controllers/areas.md)
@@ -93,7 +86,7 @@
 ### [Working with the Application Model](mvc/controllers/application-model.md)
 ### [🔧 Application parts](mvc/advanced/app-parts.md)
 ### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)
-### [🔧 Custom formatters](mvc/advanced/custom-formatters.md)
+### [Custom formatters](mvc/advanced/custom-formatters.md)
 
 # [Testing](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
@@ -127,6 +120,7 @@
 
 # [API Reference](/aspnet/core/api/)
 
-# [Release notes](https://github.com/aspnet/home/releases)
+# [What's new](aspnetcore-1.1.md)
+## [All release notes](https://github.com/aspnet/home/releases)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)

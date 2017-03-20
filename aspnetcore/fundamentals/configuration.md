@@ -9,7 +9,7 @@ ms.date: 11/29/2016
 ms.topic: article
 ms.assetid: b3a5984d-e172-42eb-8a48-547e4acb6806
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/configuration
 ---
 <a name=fundamentals-configuration></a>
@@ -25,6 +25,7 @@ The configuration API provides a way of configuring an app based on a list of na
 * Environment variables
 * In-memory .NET objects
 * An encrypted user store
+* [Azure Key Vault](xref:security/key-vault-configuration)
 * Custom providers, which you install or create
 
 Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
@@ -165,7 +166,7 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](configuration/sample/src/InMemory/MyWindow.cs)]
 
-Configuration values are returned as strings, but binding enables the construction of objects. Bindling allows you to retrieve POCO objects or even entire object graphs. The following sample shows how to bind to the `MyWindow` class and use the options pattern with a ASP.NET Core MVC app:
+Configuration values are returned as strings, but binding enables the construction of objects. Binding allows you to retrieve POCO objects or even entire object graphs. The following sample shows how to bind to `MyWindow` and use the options pattern with a ASP.NET Core MVC app:
 
 [!code-csharp[Main](configuration/sample/src/WebConfigBind/MyWindow.cs)]
 
@@ -252,7 +253,7 @@ Add a `ConfigurationContext` to store and access the configured values:
 
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs?name=snippet1)]
 
-Create an class that inherits from [IConfigurationSource](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
+Create an class that implements [IConfigurationSource](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
 
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs?highlight=7)]
 
@@ -349,3 +350,4 @@ results in an exception. An exception will be thrown if you specify a command-li
 * [Working with Multiple Environments](environments.md)
 * [Safe storage of app secrets during development](../security/app-secrets.md)
 * [Dependency Injection](dependency-injection.md)
+* [Azure Key Vault configuration provider](xref:security/key-vault-configuration)

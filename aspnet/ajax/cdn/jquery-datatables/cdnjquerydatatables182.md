@@ -14,7 +14,7 @@ msc.type: content
 ---
 jQuery DataTables 1.8.2
 ====================
-The following files for the jQuery DataTables plubin are hosted on the CDN:
+The following files for the jQuery DataTables plugins are hosted on the CDN:
 
 - http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.js
 - http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js

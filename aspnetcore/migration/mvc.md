@@ -2,21 +2,21 @@
 title: Migrating From ASP.NET MVC to ASP.NET Core MVC | Microsoft Docs
 author: ardalis
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, MVC, migrating
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/07/2017
 ms.topic: article
 ms.assetid: 3155cc9e-d0c9-424b-886c-35c0ec6f9f4e
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: migration/mvc
 ---
 # Migrating From ASP.NET MVC to ASP.NET Core MVC
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), and [Scott Addie](https://scottaddie.com)
 
-This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/index.md). In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies. Additional articles cover migrating configuration and identity code found in many ASP.NET MVC projects.
+This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md). In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies. Additional articles cover migrating configuration and identity code found in many ASP.NET MVC projects.
 
 > [!NOTE]
 > The version numbers in the samples might not be current. You may need to update your projects accordingly.
@@ -43,25 +43,21 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-Open the *project.json* file.
+* Install the `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` NuGet packages.
 
-* Add `Microsoft.AspNetCore.Mvc` and `Microsoft.AspNetCore.StaticFiles` to the `dependencies` property:
+  `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Working with Static Files](../fundamentals/static-files.md)).
 
-* Add the `prepublish` line to the `scripts` section:
+* Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
-[!code-json[Main](mvc/samples/WebApp1/src/WebApp1/project.json?range=49)]
+  [!code-json[Main](mvc/sample/WebApp1.csproj?range=22-24)]
 
-* `Microsoft.AspNetCore.Mvc` installs the ASP.NET Core MVC framework package.
-
-* `Microsoft.AspNetCore.StaticFiles` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see [Working with Static Files](../fundamentals/static-files.md)).
-
-* The `scripts/prepublish` line is needed for acquiring client-side libraries via Bower. We'll talk about that later.
+  The `PrepareForPublish` target is needed for acquiring client-side libraries via Bower. We'll talk about that later.
 
 * Open the *Startup.cs* file and change the code to match the following:
 
-[!code-csharp[Main](mvc/samples/WebApp1/src/WebApp1/Startup.cs?highlight=14,27-35)]
+  [!code-csharp[Main](mvc/sample/Startup.cs?highlight=14,27-34)]
 
-The `UseStaticFiles` extension method adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../fundamentals/startup.md) and [Routing](../fundamentals/routing.md).
+  The `UseStaticFiles` extension method adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../fundamentals/startup.md) and [Routing](../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -86,8 +82,6 @@ The project structure is shown below:
 ![Solution Explorer showing files and folders of WebApp1](mvc/_static/project-structure-controller-view.png)
 
 Replace the contents of the *Views/Home/Index.cshtml* file with the following:
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
 ```html
 <h1>Hello world!</h1>
@@ -143,16 +137,11 @@ In the new project, we'll add support for Bootstrap (and other client-side libra
 
 * Add a [Bower](http://bower.io/) configuration file named *bower.json* to the project root (Right-click on the project, and then **Add > New Item > Bower Configuration File**). Add [Bootstrap](http://getbootstrap.com/) and [jQuery](https://jquery.com/) to the file (see the highlighted lines below).
 
-[!code-json[Main](mvc/samples/WebApp1/src/WebApp1/bower.json?highlight=5-6)]
+  [!code-json[Main](mvc/sample/bower.json?highlight=5-6)]
 
 Upon saving the file, Bower will automatically download the dependencies to the *wwwroot/lib* folder. You can use the **Search Solution Explorer** box to find the path of the assets:
 
 ![jquery assets shown in the Solution Explorer search results](mvc/_static/search.png)
-
-> [!NOTE]
-> *bower.json* is not visible in **Solution Explorer**. You can display the hidden *.json* files by selecting the project in **Solution Explorer** and then tapping the **Show All Files** icon. You won't see **Show All Files** unless the project is selected.
-
-![Solution Explorer display of files and folders with Show All Files option enabled](mvc/_static/show_all_files.png)
 
 See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more information.
 
@@ -164,7 +153,7 @@ See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more i
 
 * Create a *Views/Shared* folder.
 
-* *Optional:* Copy *_ViewImports.cshtml* from the old MVC project's *Views* folder into the ASP.NET Core project's *Views* folder. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](../mvc/views/tag-helpers/index.md). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
+* *Optional:* Copy *_ViewImports.cshtml* from the *FullAspNetCore* MVC project's *Views* folder into the ASP.NET Core project's *Views* folder. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](../mvc/views/tag-helpers/index.md). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
 
 * Copy the *_Layout.cshtml* file from the old ASP.NET MVC project's *Views/Shared* folder into the ASP.NET Core project's *Views/Shared* folder.
 
@@ -182,24 +171,20 @@ Open *_Layout.cshtml* file and make the following changes (the completed code is
 
 The replacement CSS link:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 ```
 
 The replacement script tags:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 ```
 
-The updated _Layout.cshtml file is shown below:
+The updated *_Layout.cshtml* file is shown below:
 
-[!code-html[Main](mvc/samples/WebApp1/src/WebApp1/Views/Shared/_Layout.cshtml?highlight=7,26,38,39)]
+[!code-html[Main](mvc/sample/Views/Shared/_Layout.cshtml?highlight=7,27,39-40)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -207,30 +192,11 @@ View the site in the browser. It should now load correctly, with the expected st
 
 ## Configure Bundling & Minification
 
-The ASP.NET MVC starter web template utilized the ASP.NET Web Optimization Framework for bundling and minification. In ASP.NET Core, this functionality is performed as part of the build process using [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/). To configure it, do the following:
-
-> [!NOTE]
-> If you created the optional *FullAspNetCore* project, copy the *wwwroot/css/site.css* and *wwwroot/js/site.js* files to the *wwwroot* folder in the *WebApp1* project; otherwise, manually create these files. The ASP.NET Core project's *_Layout.cshtml* file will reference these two files.
-
--  Add a *bundleconfig.json* file to the project root with the content below. This file describes how the bundling and minification of JavaScript and CSS files will take place.
-
-[!code[Main](mvc/samples/WebApp1/src/WebApp1/bundleconfig.json)]
-
--  Add a `BundlerMinifier.Core` NuGet package entry to the `tools` section of *project.json* ^[1]:
-
-[!code[Main](mvc/samples/WebApp1/src/WebApp1/project.json?range=15-18)]
-
--  Add a `precompile` script to *project.json*'s `scripts` section. It should resemble the snippet below. It's this `dotnet bundle` command which will use the `BundlerMinifier.Core` package's features to bundle and minify the static content.
-
-[!code[Main](mvc/samples/WebApp1/src/WebApp1/project.json?range=48)]
-
-Now that we've configured bundling and minification, all that's left is to change the references to Bootstrap, jQuery, and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See [Bundling and Minification](../client-side/bundling-and-minification.md) for more information.
+For information about how to configure bundling and minification, see [Bundling and Minification](../client-side/bundling-and-minification.md).
 
 ## Solving HTTP 500 errors
 
 There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in your project, you'll get a HTTP 500 error. To get a detailed error message, add the following code:
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [3, 4, 5, 6]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

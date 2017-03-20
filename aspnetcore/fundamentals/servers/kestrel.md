@@ -9,14 +9,15 @@ ms.date: 10/27/2016
 ms.topic: article
 ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/servers/kestrel
+ms.custom: H1Hack27Feb2017
 ---
-# Kestrel web server implementation in ASP.NET Core
+# Introduction to Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-Kestrel is a cross-platform [web server for ASP.NET Core](overview.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core new project templates. 
+Kestrel is a cross-platform [web server for ASP.NET Core](index.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core new project templates. 
 
 Kestrel supports the following features:
 

@@ -9,10 +9,11 @@ ms.date: 11/30/2016
 ms.topic: article
 ms.assetid: 4db51023-c8a6-4119-bbbe-3917e272c260
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/error-handling
+ms.custom: H1Hack27Feb2017
 ---
-# Error Handling in ASP.NET Core
+# Introduction to Error Handling in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 

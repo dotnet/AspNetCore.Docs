@@ -67,6 +67,7 @@ namespace ContosoUniversity.Controllers
             int pageSize = 3;
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
         }
+
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -222,6 +223,7 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
         }
+
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.ID == id);

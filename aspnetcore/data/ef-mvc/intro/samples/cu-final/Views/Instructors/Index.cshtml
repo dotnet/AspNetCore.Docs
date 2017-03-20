@@ -1,11 +1,8 @@
 @model ContosoUniversity.Models.SchoolViewModels.InstructorIndexData
-
 @{
     ViewData["Title"] = "Instructors";
 }
-
 <h2>Instructors</h2>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -46,7 +43,7 @@
                 </td>
                 <td>
                     @{
-                        foreach (var course in item.Courses)
+                        foreach (var course in item.CourseAssignments)
                         {
                             @course.Course.CourseID @:  @course.Course.Title <br />
                         }
@@ -59,9 +56,10 @@
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
             </tr>
-                        }
+            }
     </tbody>
 </table>
+
 
 @if (Model.Courses != null)
 {
@@ -73,7 +71,6 @@
             <th>Title</th>
             <th>Department</th>
         </tr>
-
         @foreach (var item in Model.Courses)
         {
             string selectedRow = "";
@@ -96,7 +93,6 @@
                 </td>
             </tr>
         }
-
     </table>
 }
 

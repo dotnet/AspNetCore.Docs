@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: edb4a776-f2ac-4502-8c26-0a66d3a3874c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/extensibility/core-crypto
 ---
 # Core cryptography extensibility

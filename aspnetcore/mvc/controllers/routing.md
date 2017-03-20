@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 26250a4d-bf62-4d45-8549-26801cf956e9
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/controllers/routing
 ---
 # Routing to Controller Actions
@@ -288,7 +288,7 @@ public class MyDemoController : Controller
 ```
 
 > [!NOTE]
-> The route templates above don't define route parameters for `action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
+> The route templates above don't define route parameters for `action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already associated with an action, it wouldn't make sense to parse the action name from the URL.
 
 Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
 

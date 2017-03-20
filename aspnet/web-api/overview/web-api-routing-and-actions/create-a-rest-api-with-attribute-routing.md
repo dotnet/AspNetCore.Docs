@@ -157,7 +157,7 @@ Then add **[Route]** attributes to the controller actions, as follows:
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample12.cs?highlight=1,7)]
 
-The route template for each controller method is the prefix plus the string specified in the **Route** attribute. For the `GetBook` method, the route template includes the parameterized string &quot;{id:int}&quot;, which matches if the URI segment contains an integet value.
+The route template for each controller method is the prefix plus the string specified in the **Route** attribute. For the `GetBook` method, the route template includes the parameterized string &quot;{id:int}&quot;, which matches if the URI segment contains an integer value.
 
 | Method | Route Template | Example URI |
 | --- | --- | --- |
@@ -172,7 +172,7 @@ Add the following method to the `BooksController` class.
 
 [!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample13.cs)]
 
-If you request `/api/books/1/detail`, the response looks like this:
+If you request `/api/books/1/details`, the response looks like this:
 
 [!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample14.json)]
 

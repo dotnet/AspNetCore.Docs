@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b355a48e-a15c-4d58-b69c-899763613a97
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/models/model-binding
 ---
 # Model Binding
@@ -99,7 +99,7 @@ Request data can come in a variety of formats including JSON, XML and many other
 > There can be at most one parameter per action decorated with `[FromBody]`. The ASP.NET Core MVC run-time delegates the responsibility of reading the request stream to the formatter. Once the request stream is read for a parameter, it's generally not possible to read the request stream again for binding other `[FromBody]` parameters.
 
 > [!NOTE]
-> The `JsonInputFormatter` is the default formatter and it is based off of [Json.NET](http://www.newtonsoft.com/json).
+> The `JsonInputFormatter` is the default formatter and is based on [Json.NET](http://www.newtonsoft.com/json).
 
 ASP.NET selects input formatters based on the [Content-Type](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html) header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the *Startup.cs* file, but you may first have to obtain a reference to `Microsoft.AspNetCore.Mvc.Formatters.Xml` using NuGet. Your startup code should look something like this:
 

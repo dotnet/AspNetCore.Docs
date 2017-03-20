@@ -1,11 +1,8 @@
 @model IEnumerable<ContosoUniversity.Models.Department>
-
 @{
     ViewData["Title"] = "Departments";
 }
-
 <h2>Departments</h2>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -19,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Budget)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Administrator)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                @Html.DisplayNameFor(model => model.Administrator)
             </th>
             <th></th>
         </tr>
@@ -38,10 +35,10 @@
                     @Html.DisplayFor(modelItem => item.Budget)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Administrator.FullName)
+                    @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
+                    @Html.DisplayFor(modelItem => item.Administrator.FullName)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.DepartmentID">Edit</a> |

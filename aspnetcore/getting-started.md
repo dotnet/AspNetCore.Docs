@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: getting-started
 ---
 # Getting Started with ASP.NET Core
@@ -21,7 +21,7 @@ uid: getting-started
     ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
-    dotnet new -t web
+    dotnet new web
     ```
 
 3.  Restore the packages:

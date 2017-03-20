@@ -2,23 +2,24 @@
 title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10 | Microsoft Docs
 author: tdykstra
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, Entity Framework Core, CRUD, create, read, update, delete
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 6e1cd570-40f1-4b24-8b6e-7d2d27758f18
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: data/ef-mvc/crud
 ---
 # Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial (2 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
+
 > [!NOTE] 
 > It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about repositories with EF, see [the last tutorial in this series](advanced.md).
 
@@ -78,11 +79,11 @@ In the following Razor code, `studentID` doesn't match a parameter in the defaul
 
 Open *Views/Students/Details.cshtml*. Each field is displayed using `DisplayNameFor` and `DisplayFor` helper, as shown in the following example:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=14-19&highlight=2,5)]
+[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
 After the last field and immediately before the closing `</dl>` tag, add the following code to display a list of enrollments:
 
-[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=34-55)]
+[!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=31-52)]
 
 If code indentation is wrong after you paste the code, press CTRL-K-D to correct it.
 
@@ -106,12 +107,12 @@ Other than the `Bind` attribute, the try-catch block is the only change you've m
 
 The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forgery (CSRF) attacks. The token is automatically injected into the view by the [FormTagHelper](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.TagHelpers/FormTagHelper.cs) and is included when the form is submitted by the user. The token is validated by the `ValidateAntiForgeryToken` attribute. For more information about CSRF, see [🔧 Anti-Request Forgery](../../security/anti-request-forgery.md).
 
+<a id="overpost"></a>
 ### Security note about overposting
 
 The `Bind` attribute that the scaffolded code includes on the `Create` method is one way to protect against overposting in create scenarios. For example, suppose the Student entity includes a `Secret` property that you don't want this web page to set.
 
 ```csharp
-
 public class Student
 {
     public int ID { get; set; }
@@ -134,16 +135,9 @@ You can prevent overposting in edit scenarios by reading the entity from the dat
 
 An alternative way to prevent overposting that is preferred by many developers is to use view models rather than entity classes with model binding. Include only the properties you want to update in the view model. Once the MVC model binder has finished, copy the view model properties to the entity instance, optionally using a tool such as AutoMapper. Use `_context.Entry` on the entity instance to set its state to `Unchanged`, and then set `Property("PropertyName").IsModified` to true on each entity property that is included in the view model. This method works in both edit and create scenarios.
 
-### Modify the Create view
+### Test the Create page
 
 The code in *Views/Students/Create.cshtml* uses `label`, `input`, and `span` (for validation messages) tag helpers for each field.
-
-in ASP.NET Core 1.0, validation messages aren't rendered if `span` elements are self-closing, but scaffolding creates them as self-closing. To enable validation, convert the validation `span` tags from self-closing to explicit closing tags. (Remove the "/" before the closing angle bracket, and add `</span>`.) The changes are highlighted in the following example.
-
-[!code-html[](intro/samples/cu/Views/Students/Create.cshtml?range=15-35&highlight=5,12,19)]
-
-> [!NOTE]
-> The 1.0.1 release of the scaffolding tooling generates explicitly closed span tags, but as of September, 2016, the 1.0.1 tooling is not included in the new-project templates. If you want to get the newer version of scaffolding code, you can update NuGet packages `Microsoft.VisualStudio.Web.CodeGenerators.Mvc` and `Microsoft.VisualStudio.Web.Codegeneration.Tools` to "1.0.0-preview2-update1".
 
 Run the page by selecting the **Students** tab and clicking **Create New**.
 
@@ -211,8 +205,6 @@ If you want to avoid the read-first approach, but you also want the SQL UPDATE s
 
 ### Test the Edit page
 
-The HTML and Razor code in *Views/Students/Edit.cshtml* is similar to what you saw in *Create.cshtml*. The only change required is to convert the `<span>` elements to use explicit closing tags.
-
 Run the application and select the **Students** tab, then click an **Edit** hyperlink.
 
 ![Students edit page](crud/_static/student-edit.png)
@@ -253,7 +245,7 @@ If the entity has related data that should also be deleted, make sure that casca
 
 In *Views/Student/Delete.cshtml*, add an error message between the h2 heading and the h3 heading, as shown in the following example:
 
-[!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=8-10&highlight=2)]
+[!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
 Run the page by selecting the **Students** tab and clicking a **Delete** hyperlink:
 
@@ -269,7 +261,7 @@ In *Startup.cs* you call the [AddDbContext extension method](https://github.com/
 
 ## Handling Transactions
 
-By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/en-us/ef/core/saving/transactions).
+By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/ef/core/saving/transactions).
 
 ## No-tracking queries
 
@@ -292,4 +284,3 @@ You now have a complete set of pages that perform simple CRUD operations for Stu
 >[!div class="step-by-step"]
 [Previous](intro.md)
 [Next](sort-filter-page.md)  
-

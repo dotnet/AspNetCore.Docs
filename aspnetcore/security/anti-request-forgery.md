@@ -5,8 +5,9 @@ ms.author: riande
 manager: wpickett
 ms.date: 2/14/2017
 ms.topic: article
-ms.assetid: 0960728b-a977-4807-81aa-7a5d73bfbacd
-ms.prod: aspnet-core
+ms.assetid: 43844a0f-d6d3-44d0-8ced-597c33d4c52d
+ms.technology: aspnet
+ms.prod: asp.net-core
 uid: security/anti-request-forgery
 ---
 

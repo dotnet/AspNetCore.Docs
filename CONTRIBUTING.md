@@ -1,6 +1,6 @@
 # Contributing to the ASP.NET documentation
 
-The document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.asp.net). Contributions may be as simple as typo corrections or as complex as new articles.
+This document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET documentation site](https://docs.microsoft.com/aspnet/). Contributions may be as simple as typo corrections or as complex as new articles.
 
 ## How to make a simple correction or suggestion
 
@@ -111,12 +111,4 @@ Our goal is to write documentation that is easily understandable by the widest p
 
 ## Redirects
 
-If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  To set up a redirect, create a file that has the redirect target URL as shown below, and put it in the original file's location. 
-
-```
----
-redirect_url: /aspnet/core/location-of-target-for-redirect
----
-```
-
-For an example, see the [redirect file](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/sociallogins.md) that redirects `/security/authentication/sociallogins` to `/security/authentication/social/index`.
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  Add redirects to the [master redirect file](https://github.com/aspnet/Docs/blob/master/.openpublishing.redirection.json).

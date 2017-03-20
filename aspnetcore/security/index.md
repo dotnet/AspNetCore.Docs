@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe012345
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 ---
 # Security
 
@@ -69,6 +69,7 @@ ms.prod: aspnet-core
         *   [Sharing cookies between applications](data-protection/compatibility/cookie-sharing.md)
         *   [Replacing <machineKey> in ASP.NET](data-protection/compatibility/replacing-machinekey.md)
 *   [Safe storage of app secrets during development](app-secrets.md)
+*   [Azure Key Vault configuration provider](key-vault-configuration.md)
 *   [🔧 Enforcing SSL](enforcing-ssl.md)
 *   [🔧 Anti-Request Forgery](anti-request-forgery.md)
 *   [🔧 Preventing Open Redirect Attacks](open-redirect.md)

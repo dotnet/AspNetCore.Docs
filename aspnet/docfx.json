@@ -35,7 +35,12 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": { "breadcrumb_path": "/aspnet/breadcrumb/toc.json" },
+    "globalMetadata": {
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "_navPath": "/foo",
+      "_navRel": "/foo",
+      "searchScope": ["ASP.NET"]
+    },
     "fileMetadata": {},
     "template": [],
     "dest": "_site"

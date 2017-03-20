@@ -1,24 +1,27 @@
-﻿---
+---
 title: Publish to a Linux Production Environment | Microsoft Docs
-description: Describes how to setup nginx as a reverse proxy on Ubuntu 14.04 to forward HTTP traffic to an ASP.NET Core web application running on Kestrel. 
+description: Describes how to setup nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web application running on Kestrel. 
 keywords: ASP.NET, .NET, Linux, nginx, Ubuntu, Reverse Proxy
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/20/2017
 ms.topic: article
 ms.assetid: 1c33e576-33de-481a-8ad3-896b94fde0e3
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: publishing/linuxproduction
 ---
 # Publish to a Linux Production Environment
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 14.04 Server.
+In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 16.04 Server.
+
+> [!NOTE]
+> For Ubuntu 14.04 supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
 
 We will take an existing ASP.NET Core application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
 
@@ -26,7 +29,7 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 
 ## Prerequisites
 
-1. Access to an Ubuntu 14.04 Server with a standard user account with sudo privilege.
+1. Access to an Ubuntu 16.04 Server with a standard user account with sudo privilege.
 
 2. An existing ASP.NET Core application.
 

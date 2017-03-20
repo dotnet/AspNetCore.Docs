@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4be1b12c-b74e-44ff-826b-99ce86e8d464
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/partial
 ---
 # Partial Views
@@ -113,7 +113,7 @@ You can pass an instance of `ViewDataDictionary` and a view model to a partial v
 
 The following view specifies a view model of type `Article`. `Article` has an `AuthorName` property that is passed to a partial view named *AuthorPartial*, and a property of type `List<ArticleSection>`, which is passed (in a loop) to a partial devoted to rendering that type:
 
-[!code-html[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?highlight=2,5,10)]
+[!code-html[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?highlight=3,6,11)]
 
 The *AuthorPartial* (which in this case is in the */Views/Shared* folder):
 

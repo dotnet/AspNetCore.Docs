@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 95790927-2bfe-445e-b1fd-429c2c7030ce
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/cross-site-scripting
 ---
 # Preventing Cross-Site Scripting
@@ -219,7 +219,7 @@ Safe list ranges are specified as Unicode code charts, not languages. The [Unico
 > [!NOTE]
 > Customization of the safe list only affects encoders sourced via DI. If you directly access an encoder via `System.Text.Encodings.Web.*Encoder.Default` then the default, Basic Latin only safelist will be used.
 
-## Where encoding should take place?
+## Where should encoding take place?
 
 The general accepted practice is that encoding takes place at the point of output and encoded values should never be stored in a database. Encoding at the point of output allows you to change the use of data, for example, from HTML to a query string value. It also enables you to easily search your data without having to encode values before searching and allows you to take advantage of any changes or bug fixes made to encoders.
 

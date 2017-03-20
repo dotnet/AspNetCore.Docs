@@ -11,6 +11,13 @@
     <h4>Instructor</h4>
     <hr />
     <dl class="dl-horizontal">
+        <input type="hidden" asp-for="ID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FirstMidName)
         </dt>
@@ -22,12 +29,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.HireDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
         </dd>
     </dl>
     

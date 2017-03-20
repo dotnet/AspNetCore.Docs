@@ -1,15 +1,15 @@
 ---
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10 | Microsoft Docs
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: This tutorial introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Core.
+keywords: ASP.NET Core, Entity Framework Core, raw sql, examine sql, repository pattern, unit of work pattern, automatic change detection, existing database
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 92a2986a-d005-4ff6-9559-6657fd466bb7
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: data/ef-mvc/advanced
 ---
 
@@ -49,9 +49,9 @@ To verify that the new code works correctly, select the **Departments** tab and 
 
 Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. You got the data from the Students entity set (`_context.Students`) and used LINQ to project the results into a list of `EnrollmentDateGroup` view model objects. Suppose you want to write the SQL itself rather than using LINQ. To do that you need to run a SQL query that returns something other than entity objects. In EF Core 1.0, one way to do that is write ADO.NET code and get the database connection from EF.
 
-In HomeController.cs, replace the LINQ statement in the `About` method with ADO.NET code, as shown in the following highlighted code:
+In *HomeController.cs*, replace the `About` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseRawSQL&highlight=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32)]
+[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseRawSQL&highlight=3-32)]
 
 Add a using statement:
 
@@ -85,7 +85,7 @@ In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with th
 
 [!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits)`. Enter a number in the text box:
+Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Course/UpdateCourseCredits)`. Enter a number in the text box:
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
@@ -94,8 +94,6 @@ Click **Update**. You see the number of rows affected:
 ![Update Course Credits page rows affected](advanced/_static/update-credits-rows-affected.png)
 
 Click **Back to List** to see the list of courses with the revised number of credits.
-
-![Courses Index page](advanced/_static/courses-index.png)
 
 For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql).
 
@@ -109,20 +107,18 @@ Run the application in debug mode, and go to the Details page for a student.
 
 Go to the **Output** window showing debug output, and you see the query:
 
-```text
-
-Microsoft.EntityFrameworkCore.Storage.Internal
-.RelationalCommandBuilderFactory:Information:
-Executed DbCommand (9ms) [Parameters=[@__id_0='?'],
-CommandType='Text', CommandTimeout='30']
+```
+Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory:Information: Executed DbCommand (225ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
 SELECT [e].[EnrollmentID], [e].[CourseID], [e].[Grade], [e].[StudentID], [c].[CourseID], [c].[Credits], [c].[DepartmentID], [c].[Title]
 FROM [Enrollment] AS [e]
+INNER JOIN (
+    SELECT DISTINCT TOP(2) [s].[ID]
+    FROM [Person] AS [s]
+    WHERE ([s].[Discriminator] = N'Student') AND ([s].[ID] = @__id_0)
+    ORDER BY [s].[ID]
+) AS [s0] ON [e].[StudentID] = [s0].[ID]
 INNER JOIN [Course] AS [c] ON [e].[CourseID] = [c].[CourseID]
-WHERE EXISTS (
-    SELECT TOP(2) 1
-    FROM [Student] AS [s]
-    WHERE ([s].[ID] = @__id_0) AND ([e].[StudentID] = [s].[ID]))
-ORDER BY [e].[StudentID]
+ORDER BY [s0].[ID]
 ```
 
 You'll notice something here that might surprise you: the SQL selects up to 2 rows (`TOP(2)`). The `SingleOrDefaultAsync` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the `SingleOrDefault` method is the same as if 2 rows match.
@@ -139,9 +135,9 @@ Many developers write code to implement the repository and unit of work patterns
 
 * EF includes features for implementing TDD without writing repository code.
 
-For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
+For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 
@@ -159,22 +155,23 @@ If you're tracking a large number of entities and you call one of these methods 
 _context.ChangeTracker.AutoDetectChangesEnabled = false;
 ```
 
-## Entity Framework Core source code
+## Entity Framework Core source code and development plans
 
-The source code for Entity Framework Core is available at [https://github.com/aspnet/EntityFramework](https://github.com/aspnet/EntityFramework). Besides source code, you can get nightly builds, issue tracking, feature specs, design meeting notes, and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
+The source code for Entity Framework Core is available at [https://github.com/aspnet/EntityFramework](https://github.com/aspnet/EntityFramework). Besides source code, you can get nightly builds, issue tracking, feature specs, design meeting notes, [the roadmap for future development](https://github.com/aspnet/EntityFramework/wiki/Roadmap), and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
 
 Although the source code is open, Entity Framework Core is fully supported as a Microsoft product. The Microsoft Entity Framework team keeps control over which contributions are accepted and tests all code changes to ensure the quality of each release.
 
 ## Reverse engineer from existing database
 
-To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.efproject.net/en/latest/platforms/aspnetcore/existing-db.html).
+To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
 ## Summary
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. For more information about how to work with data using the Entity Framework, see the [EF documentation](https://docs.microsoft.com/ef/).
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. For more information about how to work with data using the Entity Framework Core, see the [EF documentation](https://docs.microsoft.com/ef/core).
 
-For information about how to deploy your web application after you've built it, see [Publishing and deployment](https://docs.asp.net/en/latest/publishing/index.html).
-For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.asp.net/).
+For information about how to deploy your web application after you've built it, see [Publishing and deployment](../../publishing/index.md).
+For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.microsoft.com/en-us/aspnet/core/).
+
 ## Acknowledgments
 
 Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan Miller, Diego Vega, and other members of the Entity Framework team assisted with code reviews and helped debug issues that arose while we were writing code for the tutorials.
@@ -185,7 +182,7 @@ Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan 
 
 Error message:
 
-> Cannot open 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' for writing -- 'The process cannot access the file 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' because it is being used by another process.
+> Cannot open '...bin\Debug\netcoreapp1.0\ContosoUniversity.dll' for writing -- 'The process cannot access the file '...\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' because it is being used by another process.
 
 Solution:
 
@@ -212,7 +209,7 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 To delete a database by using the CLI, run the `database drop` CLI command:
 
 ```console
-dotnet ef database drop -c SchoolContext
+dotnet ef database drop
 ```
 
 ### Error locating SQL Server instance

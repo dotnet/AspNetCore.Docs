@@ -140,6 +140,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
+                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -274,6 +275,7 @@ description:
                             <li class="fullSpan">
                                 <div class="container footer">
                                     <p><a href="https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md">Contribute to ASP.NET Core docs and samples</a></p>
+                                    <p><a href="https://docs.microsoft.com/en-us/dotnet/articles/project-json">Find Visual Studio 2015/project.json version of the documentation</a></p>
                                 </div>
                             </li>
                         </ul>
@@ -575,7 +577,7 @@ description:
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
-                                    <p>Featured tutorials</p>
+                                    <p>Featured tutorials | [View all ASP.NET tutorials](https://docs.microsoft.com/aspnet/tutorials/)</p>
                                 </div>
                             </li>
                             <li>
@@ -673,6 +675,26 @@ description:
                                                     <h3>Getting Started with Entity Framework 6 Code First using MVC 5</h3>
                                                     <p>The basics of using Entity Framework 6 to display and edit data in an
                                                         ASP.NET MVC 5 application.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.microsoft.com/aspnet/mvc/overview/deployment/docker-aspnetmvc">
+                                    <div class="cardSize">
+                                        <div class="cardPadding">
+                                            <div class="card">
+                                                <div class="cardImageOuter">
+                                                    <div class="cardImage bgdAccent1">
+                                                        <img src="/media/hubs/aspnet/aspnet-tutorials-5.svg" alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="cardText">
+                                                    <h3>Migrating ASP.NET MVC Applications to Windows Containers</h3>
+                                                    <p>Learn how to take an existing ASP.NET MVC application and run it in a Windows Docker Container .</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f9d95e88-4d7e-4d0c-a8e1-47de1128d505
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/cors
 ---
 # Enabling Cross-Origin Requests (CORS)

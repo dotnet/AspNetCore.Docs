@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/identity
 ---
 # Introduction to Identity
@@ -137,10 +137,7 @@ with xref links
 
 ## Next Steps
 
-* [Migrating Authentication and Identity](xref:migration/identity#migration-identity)
-
-* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation)
-
-* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
-
+* [Migrating Authentication and Identity](xref:migration/identity)
+* [Account Confirmation and Password Recovery](accconfirm.md)
+* [Two-factor authentication with SMS](2fa.md)
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)

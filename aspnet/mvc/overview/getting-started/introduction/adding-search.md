@@ -135,11 +135,11 @@ The parameter "movieGenre" provides the key for the `DropDownList` helper to fin
 
 [!code-csharp[Main](adding-search/samples/sample16.cs?highlight=10)]
 
-The parameter "All" provides the item in the list to be preselected. Had we used the following code:
+The parameter "All" provides an option label. If you inspect that choice in your browser, you'll see that its "value" attribute is empty. Since our controller only filters `if` the string is not `null` or empty, submitting an empty value for `movieGenre` shows all genres.
+
+You can also set an option to be selected by default. If you wanted "Comedy" as your default option, you would change the code in the Controller like so:
 
 [!code-cshtml[Main](adding-search/samples/sample17.cshtml)]
-
-And we had a movie with a "Comedy" genre in our database, "Comedy" would be preselected in the dropdown list. Because we don't have a movie genre "All", there is no "All" in the `SelectList`, so when we post back without making a slection, the `movieGenre` query string value is empty.
 
 Run the application and browse to */Movies/Index*. Try a search by genre, by movie name, and by both criteria.
 
