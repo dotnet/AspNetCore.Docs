@@ -129,11 +129,11 @@ The code begins by creating an instance of the view model and putting in it the 
 
 Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
 
-`CourseAssignments` and `Course` are repeated because you need two properties from `Course`. After you call `Include` on the `Instructors` entity set to get `Instructor.CourseAssignments`, you have to call `ThenInclude` three times to get `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
+The code repeats `CourseAssignments` and `Course` because you need two properties from `Course`. The first string of `ThenInclude` calls gets `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52&highlight=3-6)]
 
-At that point in the fluent API call, another `ThenInclude` would be for navigation properties of `Student`, which you don't need. But calling `Include` starts over with `Instructor` properties, so you go through the chain again, this time specifying `Course.Department` insstead of `Course.Enrollments`.
+At that point in the code, another `ThenInclude` would be for navigation properties of `Student`, which you don't need. But calling `Include` starts over with `Instructor` properties, so you have to go through the chain again, this time specifying `Course.Department` instead of `Course.Enrollments`.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52&highlight=7-9)]
 
