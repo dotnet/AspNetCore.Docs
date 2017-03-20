@@ -25,7 +25,7 @@ Routing functionality is responsible for mapping an incoming request to a route 
 
 ## Routing basics
 
-Routing uses *routes* (implementations of `IRouter`) to:
+Routing uses *routes* (implementations of [IRouter](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.routing.irouter) to:
 
 * map incoming requests to *route handlers*
 
