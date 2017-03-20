@@ -125,17 +125,17 @@ The method accepts optional route data (`id`) and a query string parameter (`cou
 
 The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.CourseAssignments` navigation properties. Within the `CourseAssignments` property, the `Course` property is loaded, and within that, the `Enrollments` and `Department` properties are loaded, and within each `Enrollment` entity the `Student` property is loaded.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_EagerLoading&range=4-15)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52)]
 
 Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
 
 `CourseAssignments` and `Course` are repeated because you need two properties from `Course`. After you call `Include` on the `Instructors` entity set to get `Instructor.CourseAssignments`, you have to call `ThenInclude` three times to get `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_EagerLoading&range=4-15&highlight=3-6)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52&highlight=3-6)]
 
 At that point in the fluent API call, another `ThenInclude` would be for navigation properties of `Student`, which you don't need. But calling `Include` starts over with `Instructor` properties, so you go through the chain again, this time specifying `Course.Department` insstead of `Course.Enrollments`.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_EagerLoading&range=4-15&highlight=7-9)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=41-52&highlight=7-9)]
 
 The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
