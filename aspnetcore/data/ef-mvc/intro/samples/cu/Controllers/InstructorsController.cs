@@ -1,6 +1,6 @@
 #define ExplicitLoading // or EagerLoading or ScaffoldedCode
 #define EditCourses // or EditOfficeAssignment
-
+// Note that the tutorial uses range for snippets inside the EagerLoading snippet, so any dropped or added lines before that point will require changes in reading-related-data.md
 using System;
 using System.Collections.Generic;
 using System.Linq;
