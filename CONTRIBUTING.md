@@ -32,6 +32,8 @@ For each Markdown file there may be a folder for images and a folder for sample 
 
 **All** images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
 
+Markdown file names and image file names should be all lower case.
+
 ## Code snippets
 
 Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
