@@ -84,7 +84,7 @@ In the following Razor code, `studentID` doesn't match a parameter in the defaul
 This generates the following HTML if `item.ID` is 6:
 
 ```html
-<a href="/Students/Edit?studentID=1006">Edit</a>
+<a href="/Students/Edit?studentID=6">Edit</a>
 ```
 
 For more information about tag helpers, see [Tag helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
