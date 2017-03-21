@@ -195,9 +195,9 @@ This environment tag will render the bundled and minified CSS files only when ru
 If your app bundling and minification workflow requires additional processes such as image processing, cache busting, CDN assest processing, etc., then you can convert the Bundle and Minify process to Gulp.
 
 > [!NOTE]
-> Conversion option only available in Visual Studio 2017.
+> Conversion option only available in Visual Studio 2015 and 2017.
 
-Right click the `bundleconfig.json` and select **Convert to Gulp...**. This will generate the `gulpfile.js` and install the necessary npm packages.
+Right-click the `bundleconfig.json` and select **Convert to Gulp...**. This will generate the `gulpfile.js` and install the necessary npm packages.
 
 ![Convert to Gulp](../client-side/bundling-and-minification/_static/convert-togulp.png)
 
@@ -205,12 +205,20 @@ The `gulpfile.js` produced reads the `bundleconfig.json` file for the configurat
 
 [!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
 
-To enable Gulp when the project builds, add the following to the *.csproj file.
+To enable Gulp when the project builds in Visual Studio 2017, add the following to the *.csproj file:
 
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
     <Exec Command="gulp min" />
 </Target>
+```
+
+To enable Gulp when the project builds in Visual Studio 2015, add the following to the `project.json` file:
+
+```json
+"scripts": {
+    "precompile": "gulp min"
+}
 ```
 
 ## Additional resources

@@ -29,7 +29,7 @@ A tag helper is any class that implements the `ITagHelper` interface. However, w
 
 2. Create a folder to hold the Tag Helpers called *TagHelpers*. The *TagHelpers* folder is *not* required, but it is a reasonable convention. Now let's get started writing some simple tag helpers.
 
-## Starting the email Tag Helper
+## A minimal Tag Helper
 
 In this section we will write a tag helper that updates an email tag. For example:
 
@@ -82,10 +82,9 @@ That is, an anchor tag that makes this an email link. You might want to do this 
 
 4.  Run the app and use your favorite browser to view the HTML source so you can verify that the email tags are replaced with anchor markup (For example, `<a>Support</a>`). *Support* and *Marketing* are rendered as a links, but they don't have an `href` attribute to make them functional. We'll fix that in the next section.
 
-> [!NOTE]
-> Like HTML tags and attributes, tags, class names and attributes in Razor, and C# are not case-sensitive.
+Note: Like HTML tags and attributes, tags, class names and attributes in Razor, and C# are not case-sensitive.
 
-## A working email Tag Helper
+## SetAttribute and SetContent
 
 In this section, we'll update the `EmailTagHelper` so that it will create a valid anchor tag for email. We'll update it to take information from a Razor view (in the form of a `mail-to` attribute) and use that in generating the anchor.
 
@@ -117,7 +116,7 @@ That approach works for the attribute "href" as long as it doesn't currently exi
     
     With a self-closing email tag helper, the output would be `<a href="mailto:Rick@contoso.com" />`. Self-closing anchor tags are not valid HTML, so you wouldn't want to create one, but you might want to create a tag helper that is self-closing. Tag helpers set the type of the `TagMode` property after reading a tag.
     
-### An asynchronous email helper
+### ProcessAsync
 
 In this section we'll write an asynchronous email helper.
 
@@ -137,7 +136,7 @@ In this section we'll write an asynchronous email helper.
 
 3.  Run the app and verify that it generates valid email links.
 
-## The bold Tag Helper
+### RemoveAll, PreContent.SetHtmlContent and PostContent.SetHtmlContent
 
 1.  Add the following `BoldTagHelper` class to the *TagHelpers* folder.
 
@@ -177,7 +176,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
 [HtmlTargetElement("MyBold")]
    ```
 
-## Web site information Tag Helper
+## Passing a model to a Tag Helper
 
 1.  Add a *Models* folder.
 
