@@ -65,6 +65,7 @@
 ### [Testing controllers](mvc/controllers/testing.md)
 ## [Rendering HTML with views](mvc/views/overview.md)
 ### [Razor syntax](mvc/views/razor.md)
+### [View compilation](mvc/views/view-compilation.md)
 ### [Layout](mvc/views/layout.md)
 ### [🔧 HTML helpers](mvc/views/html-helpers.md)
 ### [Tag helpers](mvc/views/tag-helpers/intro.md)

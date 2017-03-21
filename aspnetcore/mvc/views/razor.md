@@ -565,15 +565,6 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 * namespace
 * class
 
-## View compilation
-
-Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app. To do this set `MvcRazorCompileOnPublish` to true and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
-
-[!code-html[Main](razor\sample\MvcRazorCompileOnPublish.csproj?highlight=4,15)]
-
-> [!NOTE]
-> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
-
 <a name=razor-customcompilationservice-label></a>
 
 ## Viewing the Razor C# class generated for a view
@@ -589,3 +580,6 @@ Override the `ICompilationService` added by MVC with the above class;
 Set a break point on the `Compile` method of `CustomCompilationService` and view `compilationContent`.
 
 ![Text Visualizer view of compilationContent](razor/_static/tvr.png)
+
+> [!NOTE]
+> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
