@@ -8,9 +8,12 @@
 @Model.PublicationDate
 
 @*Loop over the Sections and pass in a section and additional ViewData
-to the strongly typed Views\Articles\ArticleSection.cshtml partial view.*@
-@foreach (var section in Model.Sections)
-{
-    @Html.Partial("ArticleSection", section, 
-        new ViewDataDictionary (this.ViewData){ { "Article", Model } })
+    to the strongly typed Views\Articles\ArticleSection.cshtml partial view.*@
+@{ var index = 0;
+    @foreach (var section in Model.Sections)
+    {
+        @Html.Partial("ArticleSection", section,
+                    new ViewDataDictionary(this.ViewData) { { "index", index } })
+        index++;
+    }
 }
