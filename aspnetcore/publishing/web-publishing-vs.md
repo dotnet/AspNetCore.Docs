@@ -1,5 +1,5 @@
 ---
-title: Web publishing with MSBuild, dotnet publish and Visual Studio 2017 | Microsoft Docs
+title: Web publishing with MSBuild and Visual Studio 2017 | Microsoft Docs
 author: rick-anderson
 description: Explains web publishing in Visual Studio.
 keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish
@@ -13,13 +13,13 @@ ms.prod: asp.net-core
 uid: publishing/web-publishing-vs
 ---
 
-# Web publishing with MSBuild, dotnet publish and Visual Studio 2017
+# Web publishing with MSBuild and Visual Studio 2017
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This article focuses on using Visual Studio 2017 to create publish profiles. The publish profiles created with Visual Studio can be run from the CLI (`dotnet publish`), the command line, MSBuild and Visual Studio 2017.
+This article focuses on using Visual Studio 2017 to create publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio 2017.
 
-The following *.csproj* file was created with the command `dotnet new mvc`
+The following *.csproj* file was created with the command `dotnet new mvc`:
 
 ``` xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -46,31 +46,29 @@ For example, when building a web project with the *.csproj* above (and Visual St
 
 The *.targets* file adds the ASP.NET publish extensions. This file will then import other *.targets* and *.props* files.
 
-When you publish (in Visual Studio or the command line), the following high level actions are performed:
+When MSBuild or Visual Studio loads a project, the following high level actions are performed:
 
-1.  Compute project items (REVIEW how does this differ from step 3)
-2.  Build project
-3.  Compute files to publish
-4.  Publish files to destination
+* Build project
+* Compute files to publish
+* Publish files to destination
 
 ### Compute project items
 
-(REVIEW: original says ", when the project is loaded the project items are computed" - I changed this to When you publish. When the project is loaded by what? )
-When you publish, the project items (files) are computed. Each file in the project is added to an `<Item>` element (REVIEW, where is this file?). The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled. 
+When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled. 
 
-The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. ( wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files the *wwwroot* folder **and** subfolders.) If you need to explicitly place a file into an `<Item>` element you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files). (Review - how would I add *../ReadMe2.md* to *.csproj*?
+The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. ( wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files the *wwwroot* folder **and** subfolders.) If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files). 
 
-When you select the **Publish** button in Visual Studio: REVIEW: Or when you publish from command line?
+When you select the **Publish** button in Visual Studio or when you publish from command line:
 
 - The properties/items are computed (the files that are needed to build).
-- NuGet packages are restored.  (REVIEW: is that right?)
+- Visual Studio only: NuGet packages are restored.  (Restore needs to be explicit by the user on the CLI.)
 - The project builds.
 - The publish items are computed (the files that are needed to publish).
 - The project is published. (The computed files are copied to the publish destination.)
 
 ## Simple command line publishing
 
-This section works on all .NET Core supported platfroms and doesn't require Visual Studio. In the samples below, the `dotnet publish` command is run from the project directory (which contains the *.csproj* file). If you're not in the project folder, you can explictly pass in the project file path. For example:
+This section works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the `dotnet publish` command is run from the project directory (which contains the *.csproj* file). If you're not in the project folder, you can explicitly pass in the project file path. For example:
 
 ```console
 dotnet publish  c:/webs/web1
@@ -143,7 +141,8 @@ The Publish wizard supports the following publish targets:
 
 See [What publishing options are right for me?](https://docs.microsoft.com/visualstudio/ide/not-in-toc/web-publish-options) for more information.
 
-When you create a publish profile with Visual Studio, a *Properties/PublishProfiles/\<publish name>.pubxml* MSBuild file is created. This *.pubxml* file is a MSBuild file and contains publish configuration settings. You can change this file to customize the  publish process. This file is read by the publishing process. (REVIEW: doc says you can customize the build AND publish properties but I only see publish properties.  Elements like <LastUsedBuildConfiguration> are not build elements, - isn't that the last know vaule of Configuration used by build? That doesn't impact what is built. See http://stackoverflow.com/questions/31167215 ) This file should generally not be checked into source control. (REVIEW: Why not? - where do you store it?? - it doesn't contain sensitive info)
+When you create a publish profile with Visual Studio, a *Properties/PublishProfiles/\<publish name>.pubxml* MSBuild file is created. This *.pubxml* file is a MSBuild file and contains publish configuration settings. You can change this file to customize the build and publish process. This file is read by the publishing process. `<LastUsedBuildConfiguration>` is special because it’s a global property and shouldn’t be in any file that’s imported in the build. See [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx) for more info.
+The *.pubxml* file should not be checked into source control because it depends on the *.user* file. The *.user* file should never be checked into source control because it can contain sensitive information and it's only valid for one user and machine.
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level and stored in the *Properties/PublishProfiles/\<publish name>.pubxml.user* file. Because this file can contain sensitive information, it should **not** be checked into source control.
 
@@ -183,7 +182,7 @@ The easiest way to publish with MSDeploy is to first create a publish profile in
 
 In the following sample, I created an ASP.NET Core web app ( using `dotnet new mvc`) and added an Azure publish profile with Visual Studio. 
 
-You run `msbuild` from a **Developer Command Prompt for VS 2017**. The Developer Command Prompt will have the correct *msbuild.exe* in it's path and set some MSBuild variables.
+You run `msbuild` from a **Developer Command Prompt for VS 2017**. The Developer Command Prompt will have the correct *msbuild.exe* in its path and set some MSBuild variables.
 
 MSBuild uses the following syntax:
 
@@ -206,7 +205,7 @@ msbuild "C:\Webs\Web1\Web1.csproj" /p:DeployOnBuild=true
 
 ## Excluding files 
 
-When publishing ASP.NET Core web apps, the build artifacts and contents of the *wwwroot* folder are included. `msbuild` supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element markup will exclude all text (*.txt*) files from the *wwwroot/content* folder and all it's subfolders.
+When publishing ASP.NET Core web apps, the build artifacts and contents of the *wwwroot* folder are included. `msbuild` supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element markup will exclude all text (*.txt*) files from the *wwwroot/content* folder and all its subfolders.
 
 ```xml
 <ItemGroup>
@@ -311,7 +310,7 @@ The builtin `BeforePublish` and `AfterPublish` targets can be used to execute a 
 </Target>
 ```
 
-(REVIEW: that doesn't seem very useful, anything more useful? - the word doc states: There are some additional examples in the readme.md file in the websdk repository https://github.com/aspnet/websdk. - but I couldn't find any )
+(Review: The above is perfer for showing before/after commands. Do we have a more complex sample we can point to? - if not that's OK).
 
 ## The Kudu service 
 
