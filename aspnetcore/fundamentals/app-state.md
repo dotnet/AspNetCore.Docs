@@ -41,7 +41,7 @@ ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/
 
 ## Cookie-based TempData provider 
 
-In ASP.NET Core 1.1 and higher, you can use the cookie-based TempData provider to store a user's TempData in a cookie. To enable the  cdookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
+In ASP.NET Core 1.1 and higher, you can use the cookie-based TempData provider to store a user's TempData in a cookie. To enable the  cookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
