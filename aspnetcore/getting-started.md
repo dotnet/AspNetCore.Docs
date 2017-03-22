@@ -23,6 +23,8 @@ uid: getting-started
     cd aspnetcoreapp
     dotnet new web
     ```
+    
+    Note: If you get an error running `dotnet new web` or you must run  `dotnet new -t web`, you'll need to upgrade to the current version of .NET Core. Install [.NET Core](https://microsoft.com/net/core)
 
 3.  Restore the packages:
 
