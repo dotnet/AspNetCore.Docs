@@ -18,11 +18,8 @@ namespace AngularSample.Controllers.Api
                 new Person { Id = 1, FirstName = "Bob", LastName = "Parker" }
             };
 
-            // force the Json serializer to keep the case of the model properties
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new DefaultContractResolver();
-
-            return Json(people, serializerSettings);
+            // default behavior will convert fields in model to camelCase in Json object
+            return Json(people);
         }
     }
 }
