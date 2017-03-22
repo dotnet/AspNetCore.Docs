@@ -69,7 +69,7 @@ In the Index page, hyperlink URLs are created by tag helper statements in the Ra
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
 ```
 
-This generates the following HTML if `item.ID` is 6:
+This generates the following HTML when `item.ID` is 6:
 
 ```html
 <a href="/Students/Edit/6">Edit</a>
@@ -81,7 +81,7 @@ In the following Razor code, `studentID` doesn't match a parameter in the defaul
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
 ```
 
-This generates the following HTML if `item.ID` is 6:
+This generates the following HTML when `item.ID` is 6:
 
 ```html
 <a href="/Students/Edit?studentID=6">Edit</a>
