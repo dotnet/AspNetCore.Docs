@@ -63,10 +63,16 @@ The last part of the URL ("?courseID=2021") is a query string value. The model b
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 ```
 
-In the Index page, hyperlink URLs are created by tag helper statements in the Razor view. In the following Razor code, the id parameter matches the default route, so `id` is added to the route data.
+In the Index page, hyperlink URLs are created by tag helper statements in the Razor view. In the following Razor code, the `id` parameter matches the default route, so `id` is added to the route data.
 
 ```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+```
+
+This generates the following HTML when `item.ID` is 6:
+
+```html
+<a href="/Students/Edit/6">Edit</a>
 ```
 
 In the following Razor code, `studentID` doesn't match a parameter in the default route, so it's added as a query string.
@@ -74,6 +80,14 @@ In the following Razor code, `studentID` doesn't match a parameter in the defaul
 ```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
 ```
+
+This generates the following HTML when `item.ID` is 6:
+
+```html
+<a href="/Students/Edit?studentID=6">Edit</a>
+```
+
+For more information about tag helpers, see [Tag helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
 ### Add enrollments to the Details view
 
