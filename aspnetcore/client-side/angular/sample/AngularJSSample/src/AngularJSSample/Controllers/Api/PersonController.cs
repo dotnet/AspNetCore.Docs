@@ -16,6 +16,7 @@ namespace AngularSample.Controllers.Api
                 new Person { Id = 1, FirstName = "Bob", LastName = "Parker" }
             };
 
+            // default behavior will convert fields in model to camelCase in Json object
             return Json(people);
         }
     }

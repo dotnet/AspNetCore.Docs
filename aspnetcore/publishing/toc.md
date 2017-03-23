@@ -1,5 +1,5 @@
 # [Publishing to IIS](iis.md)
-# [How Web Publishing In Visual Studio Works](web-publishing-vs.md)
+# [Web publishing with MSBuild and Visual Studio 2017](web-publishing-vs.md)
 # [Deploy an ASP.NET Core web app to Azure using Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md)
 # [Publishing to an Azure Web App with Continuous Deployment](azure-continuous-deployment.md)
 # [🔧 Publishing to a Windows Virtual Machine on Azure](azure-windows-vm.md)
