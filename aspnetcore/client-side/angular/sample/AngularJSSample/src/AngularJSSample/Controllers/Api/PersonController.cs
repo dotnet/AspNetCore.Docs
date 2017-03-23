@@ -1,8 +1,6 @@
 ﻿using AngularSample.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace AngularSample.Controllers.Api
 {
