@@ -1,8 +1,8 @@
 ---
-title: Web publishing with MSBuild and Visual Studio 2017 | Microsoft Docs
+title: Web publishing with MSBuild and Visual Studio | Microsoft Docs
 author: rick-anderson
 description: Explains web publishing in Visual Studio.
-keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish
+keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish, Visual Studio 2017
 ms.author: riande
 manager: wpickett
 ms.date: 03/14/2017
@@ -13,7 +13,7 @@ ms.prod: asp.net-core
 uid: publishing/web-publishing-vs
 ---
 
-# Web publishing with MSBuild and Visual Studio 2017
+# Web publishing with MSBuild and Visual Studio
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
