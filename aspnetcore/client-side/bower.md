@@ -71,8 +71,6 @@ Replace the contents of the *Views\Home\About.cshtml* Razor file with the follow
 
 Run the app and navigate to the About view to verify the font-awesome package works.
 
-![show home/lib/app/setting icons](bower/_static/version-IntelliSense.png)
-
 ## Exploring the client-side build process
 
 Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. You see can what happens to the project structure and the runtime output as each configuration change is made.
