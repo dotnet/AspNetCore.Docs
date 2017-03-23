@@ -24,7 +24,7 @@ uid: getting-started
     dotnet new web
     ```
     
-    Note: If you get an error running `dotnet new web` or you must run  `dotnet new -t web`, you'll need to upgrade to the current version of .NET Core. Install [.NET Core](https://microsoft.com/net/core)
+    Note: Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
 
 3.  Restore the packages:
 
