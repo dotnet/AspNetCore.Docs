@@ -46,7 +46,7 @@ The default location for `MSBuildSDKsPath` (with Visual Studio 2017 Enterprise) 
 
 `"Microsoft.NET.Sdk.Web"` depends on:
 
-* *Microsoft.NET.Sdk.Web.ProjectSystem* 
+* *Microsoft.NET.Sdk.Web.ProjectSystem*
 * *Microsoft.NET.Sdk.Publish*
 
 Which causes the following `props` and `targets` to be imported:
@@ -66,9 +66,9 @@ When MSBuild or Visual Studio loads a project, the following high level actions 
 
 ### Compute project items
 
-When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled. 
+When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled.
 
-The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. [wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files the *wwwroot* folder **and** subfolders.) If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files). 
+The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. [wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files in the *wwwroot* folder **and** subfolders. If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files).
 
 When you select the **Publish** button in Visual Studio or when you publish from command line:
 
@@ -85,7 +85,7 @@ This section works on all .NET Core supported platforms and doesn't require Visu
 ```console
 dotnet publish  c:/webs/web1
 ```
- 
+
 Run the following commands to create and publish a web app:
 
 ```console
@@ -114,7 +114,7 @@ The following command specifies a `Release` build and the publishing directory:
 dotnet publish -c Release -o C:/MyWebs/test
 ```
 
-The `dotnet publish` command calls `MSBuild` which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to `MSBuild`. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`. 
+The `dotnet publish` command calls `MSBuild` which invokes the `Publish` target. Any parameters passed to `dotnet publish` are passed to `MSBuild`. The `-c` parameter maps to the `Configuration` MSBuild property. The `-o` parameter maps to `OutputPath`.
 
 You can pass MSBuild properties using either of the following formats:
 
@@ -133,7 +133,7 @@ This section uses Visual Studio 2017 and higher to create publishing profiles. O
 
 Publish profiles can simplify the publishing process. You can have multiple publish profiles. To create a publish profile in Visual Studio, right click on the project in Solution Explore and select **Publish**. Alternatively, you can select **Publish     \<project name>** from the build menu. The **Publish** tab of the application capacities page is displayed. If the project doesn't contain a publish profile, the following page is displayed:
 
-![The **Publish** tab of the application capacities page showing Azure, IIS, FTB, Folder with Azure selected. Also shows create new and Select Exiting radio buttons](web-publishing-vs/_static/az.png)  
+![The **Publish** tab of the application capacities page showing Azure, IIS, FTB, Folder with Azure selected. Also shows create new and Select Exiting radio buttons](web-publishing-vs/_static/az.png)
 
 When **Folder** is selected, the **Publish** button creates a folder publish profile and publishes.
 
@@ -158,9 +158,9 @@ The *.pubxml* file should not be checked into source control because it depends 
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level and stored in the *Properties/PublishProfiles/\<publish name>.pubxml.user* file. Because this file can contain sensitive information, it should **not** be checked into source control.
 
-For an overview of how to publish a web app on ASP.NET Core see [Publishing and Deployment](index.md). [Publishing and Deployment](index.md) is an open source project at https://github.com/aspnet/websdk. 
+For an overview of how to publish a web app on ASP.NET Core see [Publishing and Deployment](index.md). [Publishing and Deployment](index.md) is an open source project at https://github.com/aspnet/websdk.
 
-Currently `dotnet publish` doesn’t have the ability to use publish profiles. To use publish profiles, use `dotnet build`. `dotnet build` invokes MSBuild on the project. Alternatively, call `msbuild` directly. 
+Currently `dotnet publish` doesn’t have the ability to use publish profiles. To use publish profiles, use `dotnet build`. `dotnet build` invokes MSBuild on the project. Alternatively, call `msbuild` directly.
 
 Set the following MSBuild properties when using a publish profile:
 
@@ -192,7 +192,7 @@ As previously mentioned, you can publish using `dotnet publish` or the `msbuild`
 
 The easiest way to publish with MSDeploy is to first create a publish profile in Visual Studio 2017 and use the profile from the command line.
 
-In the following sample, I created an ASP.NET Core web app ( using `dotnet new mvc`) and added an Azure publish profile with Visual Studio. 
+In the following sample, I created an ASP.NET Core web app ( using `dotnet new mvc`) and added an Azure publish profile with Visual Studio.
 
 You run `msbuild` from a **Developer Command Prompt for VS 2017**. The Developer Command Prompt will have the correct *msbuild.exe* in its path and set some MSBuild variables.
 
@@ -215,7 +215,7 @@ msbuild "C:\Webs\Web1\Web1.csproj" /p:DeployOnBuild=true
  /p:Password="<password removed>"
 ```
 
-## Excluding files 
+## Excluding files
 
 When publishing ASP.NET Core web apps, the build artifacts and contents of the *wwwroot* folder are included. `msbuild` supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element markup will exclude all text (*.txt*) files from the *wwwroot/content* folder and all its subfolders.
 
@@ -257,11 +257,11 @@ If you added the following `<MsDeploySkipRules>` markup, those files would not b
     <ObjectName>filePath</ObjectName>
     <AbsolutePath>Views\\Home\\About2.cshtml</AbsolutePath>
   </MsDeploySkipRules>
-  
+
   <MsDeploySkipRules Include="CustomSkipFile">
     <ObjectName>filePath</ObjectName>
     <AbsolutePath>Views\\Home\\About3.cshtml</AbsolutePath>
-  </MsDeploySkipRules>    
+  </MsDeploySkipRules>
 </ItemGroup>
 ```
 
@@ -322,12 +322,12 @@ The builtin `BeforePublish` and `AfterPublish` targets can be used to execute a 
 </Target>
 ```
 
-## The Kudu service 
+## The Kudu service
 
 To view the files on your Azure Web App, use the [kudu service](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). Append the `scm` token to the name or your Web App. For example:
 
 | URL               | Result|
-| ----------------- | ------------ | 
+| ----------------- | ------------ |
 | `http://mysite.azurewebsites.net/` | Web App |
 | `http://mysite.scm.azurewebsites.net/` | Kudu sevice |
 
@@ -335,6 +335,6 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 
 ## Additional resources
 
-- [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy)  (msdeploy) simplifies deployment of Web applications and Web sites to IIS servers. 
+- [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy)  (msdeploy) simplifies deployment of Web applications and Web sites to IIS servers.
 
 - [https://github.com/aspnet/websdk](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
