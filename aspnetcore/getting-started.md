@@ -23,6 +23,8 @@ uid: getting-started
     cd aspnetcoreapp
     dotnet new web
     ```
+    
+    Note: Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
 
 3.  Restore the packages:
 
