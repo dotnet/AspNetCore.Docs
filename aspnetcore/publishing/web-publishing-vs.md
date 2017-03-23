@@ -42,7 +42,7 @@ The `Sdk` attribute in the `<Project>` element (in the first line) of the markup
 * Imports the `props` file from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.Props* at the beginning.
 * Imports the targets file from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* at the end.
 
-The default location for `MSBuildSDKsPath` (with Visual Studio 2017 Enterprise) is the **%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks* folder.
+The default location for `MSBuildSDKsPath` (with Visual Studio 2017 Enterprise) is the *%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks* folder.
 
 `"Microsoft.NET.Sdk.Web"` depends on:
 
@@ -68,7 +68,7 @@ When MSBuild or Visual Studio loads a project, the following high level actions 
 
 When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled. 
 
-The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. ( wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files the *wwwroot* folder **and** subfolders.) If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files). 
+The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. [wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files the *wwwroot* folder **and** subfolders.) If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files). 
 
 When you select the **Publish** button in Visual Studio or when you publish from command line:
 
@@ -319,7 +319,7 @@ The builtin `BeforePublish` and `AfterPublish` targets can be used to execute a 
   </Target>
   <Target Name="CustomActionsAfterPublish" AfterTargets="AfterPublish">
     <Message Text="Inside AfterPublish" Importance="high" />
-  </Target>
+</Target>
 ```
 
 ## The Kudu service 
