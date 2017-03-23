@@ -35,6 +35,9 @@ The web server can cache responses by adding the response caching middleware. Se
 
 The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
 
+>[!WARNING]
+> Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that does not change based on a user's identity, or whether a user is logged in.
+
 `VaryByQueryKeys string[]` (requires ASP.NET Core 1.1.0 and higher): When set, the response caching middleware will vary the stored response by the values of the given list of query keys. The response caching middleware must be enabled to set the `VaryByQueryKeys` property, otherwise a runtime exception will be thrown. There is no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the following sequence:
 
 | Request          | Result |
