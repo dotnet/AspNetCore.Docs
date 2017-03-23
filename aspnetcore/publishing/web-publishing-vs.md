@@ -37,14 +37,26 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
 </Project>
 ```
 
-The `Sdk` attribute in the `<Project>` element (in the first line) of the markup above automatically imports a *.targets* file into the build process. Using the *.csproj* file above, the *Microsoft.NET.Sdk.Publish.MSDeploy.targets* file will be imported for the `TargetFramework` specified. `netcoreapp1.1` and `netcoreapp1.0` both specify `netstandard1.0`. (REVIEW - is that correct?)
+The `Sdk` attribute in the `<Project>` element (in the first line) of the markup above does the following:
 
-(Review Doc says *Microsoft.NET.Sdk.Web.ProjectSystem.targets* file will be imported for the `TargetFramework` specified. but it's actually the Microsoft.NET.Sdk.Publish.MSDeploy.targets file)
+* Imports the `props` file from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.Props* at the beginning.
+* Imports the targets file from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets* at the end.
 
-For example, when building a web project with the *.csproj* above (and Visual Studio 2017 Enterprise), the following targets file will be imported:
-  *%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks\Microsoft.NET.Sdk.Publish\build\netstandard1.0\PublishTargets\Microsoft.NET.Sdk.Publish.MSDeploy.targets*
+The default location for `MSBuildSDKsPath` (with Visual Studio 2017 Enterprise) is the **%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks* folder.
 
-The *.targets* file adds the ASP.NET publish extensions. This file will then import other *.targets* and *.props* files.
+`"Microsoft.NET.Sdk.Web"` depends on:
+
+* *Microsoft.NET.Sdk.Web.ProjectSystem* 
+* *Microsoft.NET.Sdk.Publish*
+
+Which causes the following `props` and `targets` to be imported:
+
+* $(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.Props
+* $(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.targets
+* $(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.Props
+* $(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.targets
+
+Publish targets will again import the right set of targets based on the publish method used.
 
 When MSBuild or Visual Studio loads a project, the following high level actions are performed:
 
@@ -302,15 +314,13 @@ The markup can be added to the *.csproj* file or the publish profile. If it's ad
 The builtin `BeforePublish` and `AfterPublish` targets can be used to execute a target before or after the publish target. The following markup can be added to the publish profile to log messages to the console output before and after publishing:
 
 ``` xml
-<Target Name="BeforePublish">
-  <Message Text="Inside BeforePublish" Importance="high" />
-</Target>
-<Target Name="AfterPublish">
-  <Message Text="Inside AfterPublish" Importance="high" />
-</Target>
+<Target Name="CustomActionsBeforePublish" BeforeTargets="BeforePublish">
+    <Message Text="Inside BeforePublish" Importance="high" />
+  </Target>
+  <Target Name="CustomActionsAfterPublish" AfterTargets="AfterPublish">
+    <Message Text="Inside AfterPublish" Importance="high" />
+  </Target>
 ```
-
-(Review: The above is perfer for showing before/after commands. Do we have a more complex sample we can point to? - if not that's OK).
 
 ## The Kudu service 
 
