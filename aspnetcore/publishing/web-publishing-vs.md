@@ -240,9 +240,9 @@ The following `<MsDeploySkipRules>` element markup exludes all files from the *w
 
 `<MsDeploySkipRules>`  will not delete the *skip* targets from the deployment site. `<Content>` targeted files and folders will be deleted from the deployment site. For example, suppose you had deployed a web app with the following files:
 
-- *Views/Home/About1.cshtml
-- *Views/Home/About2.cshtml
-- *Views/Home/About3.cshtml
+- *Views/Home/About1.cshtml*
+- *Views/Home/About2.cshtml*
+- *Views/Home/About3.cshtml*
 
 If you added the following `<MsDeploySkipRules>` markup, those files would not be deleted on the deployment site.
 
