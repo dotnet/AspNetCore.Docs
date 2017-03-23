@@ -203,7 +203,7 @@ Right-click the `bundleconfig.json` and select **Convert to Gulp...**. This will
 
 The `gulpfile.js` produced reads the `bundleconfig.json` file for the configuration, therefore it can continue to be used for the inputs/outputs and settings.
 
-[!code-javascript[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
+[!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/gulpfile.js)]
 
 To enable Gulp when the project builds in Visual Studio 2017, add the following to the *.csproj file:
 
