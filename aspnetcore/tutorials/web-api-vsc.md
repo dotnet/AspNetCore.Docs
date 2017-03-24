@@ -91,7 +91,7 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 
 Add a `TodoItem` class with the following code:
 
-[!code-csharp[Main](first-web-api/sampleTodoApi/Models/TodoItem.cs)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
 * The `[Key]` data annotation denotes the property, `Key`, is a unique identifier.
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).
