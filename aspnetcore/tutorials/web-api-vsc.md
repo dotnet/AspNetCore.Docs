@@ -22,8 +22,6 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 ASP.NET Core has built-in support for MVC building Web APIs. 
 
-Note: If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](xref:migration/webapi)
-
 ## Overview
 
 Here is the API that you’ll create:  
@@ -93,7 +91,7 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 
 Add a `TodoItem` class with the following code:
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Models/TodoItem.cs)]
+[!code-csharp[Main](first-web-api/sampleTodoApi/Models/TodoItem.cs)]
 
 * The `[Key]` data annotation denotes the property, `Key`, is a unique identifier.
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).

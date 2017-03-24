@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-web-api
 ---
-<!-- WARNING: The images in this doc are used by uid: tutorials/web-api-vsc. If you change any images in this tutorial, update uid: tutorials/web-api-vsc -->
+<!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
 # Building Your First Web API with ASP.NET Core MVC and Visual Studio
 
