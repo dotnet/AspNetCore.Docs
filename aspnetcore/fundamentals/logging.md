@@ -65,7 +65,7 @@ info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
       Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 243.2636ms
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
       Request finished in 628.9188ms 404
-````
+```
 
 Here's an example of what you see in the Debug window if you run the sample application from Visual Studio in debug mode and go to URL `http://localhost:55070/api/todo/0`:
 
