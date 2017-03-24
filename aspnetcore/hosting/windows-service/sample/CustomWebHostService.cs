@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreService
@@ -39,7 +40,7 @@ namespace AspNetCoreService
 
         public CustomWebHostService(IWebHost host) : base(host)
         {
-            _logger = host.Services.GetService(typeof(ILogger<CustomWebHostService>)) as ILogger;
+            _logger = host.Services.GetRequiredService<ILogger<CustomWebHostService>>();
         }
 
         protected override void OnStarting(string[] args)
