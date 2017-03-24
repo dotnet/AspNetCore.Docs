@@ -59,11 +59,11 @@ Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Stu
 
 From a console, run the following commands:
 
-    ``` console
-    mkdir TodoApi
-    cd TodoApi
-    dotnet new webapi
-    ```
+```console
+mkdir TodoApi
+cd TodoApi
+dotnet new webapi
+```
 
 Open the *TodoApi* folder in Visual Studio Code (VS Code). 
 
@@ -105,7 +105,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 Add a `TodoContext` class in the *Models* folder:
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Models/TodoContext.cs)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
 ## Add a repository class
 
@@ -113,13 +113,13 @@ A *repository* is an object that encapsulates the data layer. The *repository* c
 
 Defining a repository interface named `ITodoRepository`:
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Models/ITodoRepository.cs)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Models/ITodoRepository.cs)]
 
 This interface defines basic CRUD operations.
 
 Add a `TodoRepository` class that implements `ITodoRepository`:
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Models/TodoRepository.cs)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoRepository.cs)]
 
 Build the app to verify you don't have any compiler errors.
 
@@ -133,13 +133,13 @@ In order to inject the repository into the controller, we need to register it wi
 
 In the `ConfigureServices` method, add the highlighted code:
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=11)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=11)]
 
 ## Add a controller
 
 In the *Controllers* folder, create a class named `TodoController`. Add the following (and add closing braces):
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
 
 This defines an empty controller class. In the next sections, we'll add methods to implement the API.
 
@@ -147,7 +147,7 @@ This defines an empty controller class. In the next sections, we'll add methods 
 
 To get to-do items, add the following methods to the `TodoController` class.
 
-[!code-csharp[Main](web-api-vsc/sample/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
 
 These methods implement the two GET methods:
 
