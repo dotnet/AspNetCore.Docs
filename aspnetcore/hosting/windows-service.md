@@ -56,7 +56,7 @@ This section explains the minimum changes required to set up an existing ASP.NET
   sc start servicename
   ```
 
-  For example, if you published to *C:\Svc* and the name of your app is AspNetCoreService, the `binPath` value would be `C:\MyService\AspNetCoreService.exe`.
+  For example, if you published to *C:\Svc* and the name of your app is AspNetCoreService, the `binPath` value would be `C:\Svc\AspNetCoreService.exe`.
 
   ![Console window create and start example](windows-service/_static/create-start.png)
 
