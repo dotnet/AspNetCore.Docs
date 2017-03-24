@@ -33,6 +33,9 @@ Configure the application to use the middleware when processing requests. The sa
 
 The Response Caching Middleware only caches 200 (OK) server responses. Any other responses, including [error pages](xref:fundamentals/error-handling), will be ignored by the middleware.
 
+>[!WARNING]
+> Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determine if a response is cacheable.
+
 ## Options
 The middleware offers two options for controlling response caching.
 
@@ -92,7 +95,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The request must result in a 200 (OK) response from the server.
 * The request method must be GET or HEAD.
 * Terminal middleware, such as Static File Middleware, must not process the response prior to the Response Caching Middleware.
-* The Authorization header must not be present.
+* The `Authorization` header must not be present.
 * `Cache-Control` header parameters must be valid, and the response must be marked `public` and not marked `private`.
 * The `Pragma: no-cache` header/value must not be present if the `Cache-Control` header is not present, as the `Cache-Control` header overrides the `Pragma` header when present.
 * The `Set-Cookie` header must not be present.
