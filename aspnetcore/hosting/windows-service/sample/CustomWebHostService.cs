@@ -1,4 +1,4 @@
-﻿#define NoLogging // or Logging
+﻿#define Logging // or NoLogging
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;

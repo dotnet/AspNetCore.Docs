@@ -1,7 +1,9 @@
-﻿#define ServiceOnly // or ServiceOrConsole or HandleStopStart
+﻿#define HandleStopStart // or ServiceOnly ServiceOrConsole
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace AspNetCoreService
 {
@@ -11,9 +13,12 @@ namespace AspNetCoreService
         #region ServiceOnly
         public static void Main(string[] args)
         {
+            var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+            var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+
             var host = new WebHostBuilder()
             .UseKestrel()
-            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseContentRoot(pathToContentRoot)
             .UseIISIntegration()
             .UseStartup<Startup>()
             .UseApplicationInsights()
