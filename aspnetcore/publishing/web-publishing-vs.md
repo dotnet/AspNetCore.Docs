@@ -308,6 +308,15 @@ The following markup can be used to include an *images* folder outside the proje
 
 The markup can be added to the *.csproj* file or the publish profile. If it's added to the *.csproj* file, it will be included in each publish profile in the project.
 
+The following highlighted markup shows how to:
+
+* Copy a file from outside the project into the *wwwroot* folder.
+* Exclude the *wwwroot\Content* folder.
+* Exclude *Views\Home\About2.cshtml*.
+
+[!code-xml[Main](web-publishing-vs/sample/FolderProfile2.pubxml?highlight=21-29)]
+
+See the [WebSDK Readme](https://github.com/aspnet/websdk) for more deployment samples.
 
 ### Run a target before or after publishing
 
