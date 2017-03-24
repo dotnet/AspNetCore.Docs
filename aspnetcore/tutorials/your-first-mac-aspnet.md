@@ -16,7 +16,7 @@ uid: tutorials/your-first-mac-aspnet
 
 This article will show you how to write your first ASP.NET Core application on macOS or Linux.
 
-### Setting up your development environment
+## Setting up your development environment
 
 Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
