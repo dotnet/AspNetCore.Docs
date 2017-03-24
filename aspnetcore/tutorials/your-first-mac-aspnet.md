@@ -18,7 +18,7 @@ This article will show you how to write your first ASP.NET Core application on m
 
 ## Setting up your development environment
 
-To setup your development machine download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
 ## Scaffolding applications using dotnet new
 
