@@ -56,9 +56,14 @@ This section explains the minimum changes required to set up an existing ASP.NET
   sc start servicename
   ```
 
-  For example, if you published to *C:\MyService* and the name of your app is AspNetCoreService, the `binPath` value would be `C:\MyService\AspNetCoreService.exe`.
+  For example, if you published to *C:\Svc* and the name of your app is AspNetCoreService, the `binPath` value would be `C:\MyService\AspNetCoreService.exe`.
+
+  ![Console window create and start example](windows-service/_static/create-start.png)
 
   When these commands finish, you can browse to same path as when you run as a console app (by default, `http://localhost:5000`)
+
+  ![Running in a service](windows-service/_static/running-in-service.png)
+
 
 ## Provide a way to run outside of a service
 
@@ -82,7 +87,7 @@ If you want to handle `OnStarting`, `OnStarted`, and `OnStopping` events, make t
 
   [!code-csharp[](windows-service/sample/Program.cs?name=HandleStopStart&highlight=26)]
 
-If your custom `WebHostService` code needs to get a service from dependency injection (such as a logger), you can get it from the `Services` property of the base class.
+If your custom `WebHostService` code needs to get a service from dependency injection (such as a logger), you can get it from the `Services` property of `IWebHost`.
 
 [!code-csharp[](windows-service/sample/CustomWebHostService.cs?name=Logging&highlight=7)]
 
