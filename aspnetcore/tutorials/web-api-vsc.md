@@ -16,8 +16,6 @@ uid: tutorials/web-api-vsc
 
 By [Mike Wasson](https://github.com/mikewasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
-
 In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial.
 
 ASP.NET Core has built-in support for MVC building Web APIs. 
@@ -32,8 +30,8 @@ Here is the API that you’ll create:
 |GET /api/todo  | Get all to-do items | None | Array of to-do items|
 |GET /api/todo/{id}  | Get an item by ID | None | To-do item|
 |POST /api/todo | Add a new item | To-do item  | To-do item |
-|PUT /api/todo/{id} | Update an existing item &nbsp;  | To-do item |
-|DELETE /api/todo/{id}  &nbsp;  &nbsp; | Delete an item &nbsp;  &nbsp;  | None. No request body-  | None|
+|PUT /api/todo/{id} | Update an existing item &nbsp;  | To-do item |  None |
+|DELETE /api/todo/{id}  &nbsp;  &nbsp; | Delete an item &nbsp;  &nbsp;  | None  | None|
      
 <br>     
     
@@ -49,11 +47,11 @@ The following diagram shows the basic design of the app.
 
 * To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database. 
 
-### Set up your development environment
+## Set up your development environment
 
 Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-### Create the project
+## Create the project
 
 From a console, run the following commands:
 
@@ -63,27 +61,27 @@ cd TodoApi
 dotnet new webapi
 ```
 
-Open the *TodoApi* folder in Visual Studio Code (VS Code). 
+Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startup.cs* file.
 
 - Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'TodoApi'. Add them?"
-- Select **Restore** to the **Info** message "There are unsresolved dependencies".
+- Select **Restore** to the **Info** message "There are unresolved dependencies".
 
 ![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](web-api-vsc/_static/vsc_restore.png)
 
-Press ^F5 to build and run the program. In a browser naviage to http://localhost:5000/api/values . The following is displayed:
+Press **Debug** to build and run the program. In a browser naviage to http://localhost:5000/api/values . The following is displayed:
 
 `["value1","value2"]`
 
-### Add support for Entity Framework Core
+## Add support for Entity Framework Core
 
 Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
-[!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=13-15)]
+[!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
-Run `dotnet restore` to download and install the EF Core InMemory DB provider. You can run `dotnet restore` from the terminal or enter `⌘⇧P` or `Ctrl+Shift+P` in VS Code and then type **.NET**. Select **.NET: Restore Packages**.
+Run `dotnet restore` to download and install the EF Core InMemory DB provider. You can run `dotnet restore` from the terminal or enter `⌘⇧P` in VS Code and then type **.NET**. Select **.NET: Restore Packages**.
 
 
-### Add a model class
+## Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
@@ -97,7 +95,7 @@ Add a `TodoItem` class with the following code:
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).
 * `DatabaseGeneratedOption.Identity` specifies the database should generate integer keys when a row is inserted. 
 
-### Create the database context
+## Create the database context
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
@@ -119,19 +117,19 @@ Add a `TodoRepository` class that implements `ITodoRepository`:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoRepository.cs)]
 
-Build the app to verify you don't have any compiler errors.
+Press **Debug** to build the app to verify you don't have any compiler errors.
 
-## Register the repository
+## Register the repository and EF in-memory database
 
 By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of instantiating a `TodoRepository` inside the controller we will inject an `ITodoRepository` using the built-in support in ASP.NET Core for [dependency injection](xref:fundamentals/dependency-injection).
 
 This approach makes it easier to unit test your controllers. Unit tests should inject a mock or stub version of `ITodoRepository`. That way, the test narrowly targets the controller logic and not the data access layer.
 
-In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. 
+In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. The code below also registers the in-memory database.
 
 In the `ConfigureServices` method, add the highlighted code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=11)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=1,2,5,9)]
 
 ## Add a controller
 
@@ -173,7 +171,7 @@ The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each me
 
 * Take the template string in the controller’s route attribute,  `[Route("api/[controller]")]`
 * Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is not case sensitive.
-* If the `[HttpGet]` attribute has a template string, append that to the path. This sample doesn't use a template string.
+* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. See [Attribute routing with Http[Verb] attributes](https://review.docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing#attribute-routing-with-httpverb-attributes) for more information.
 
 In the `GetById` method:
 
@@ -199,7 +197,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
   
 ### Launch the app
 
-In VS Code, press CTRL+F5 to launch the app. Navigate to  http://localhost:port/api/todo   (The `Todo` controller we just created).
+In VS Code, press CTRL+F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
 
 ## Implement the other CRUD operations
 
@@ -259,14 +257,8 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 ## Next steps
 
-* To learn about creating a backend for a native mobile app, see [Creating Backend Services for Native Mobile Applications](xref:mobile/native-mobile-backend).
-
 * [Routing to Controller Actions](xref:mvc/controllers/routing)
-
 * For information about deploying your API, see [Publishing and Deployment](../publishing/index.md).
-
 * [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample)
-
 * [Postman](https://www.getpostman.com/)
-
 * [Fiddler](http://www.fiddler2.com/fiddler2/)
