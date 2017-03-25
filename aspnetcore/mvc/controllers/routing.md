@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/14/2017
 ms.topic: article
 ms.assetid: 26250a4d-bf62-4d45-8549-26801cf956e9
 ms.technology: aspnet
@@ -317,8 +317,6 @@ For a URL path like `/products` the `ProductsApi.ListProducts` action will be ex
 
 Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In this example, `id` is required as part of the URL path.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 public class ProductsApiController : Controller
 {
@@ -329,7 +327,19 @@ public class ProductsApiController : Controller
 
 The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
 
-This route attribute also defines a *route name* of `Products_List`. Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
+## Route Name
+
+The following code  defines a *route name* of `Products_List`:
+
+```csharp
+public class ProductsApiController : Controller
+{
+   [HttpGet("/products/{id}", Name = "Products_List")]
+   public IActionResult GetProduct(int id) { ... }
+}
+```
+
+Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
 
 > [!NOTE]
 > Contrast this with the conventional *default route*, which defines the `id` parameter as optional (`{id?}`). This ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
