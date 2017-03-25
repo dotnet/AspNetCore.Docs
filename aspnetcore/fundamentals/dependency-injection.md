@@ -254,6 +254,10 @@ public class DefaultModule : Module
 
 At runtime, Autofac will be used to resolve types and inject dependencies. [Learn more about using Autofac and ASP.NET Core](http://docs.autofac.org/en/latest/integration/aspnetcore.html).
 
+### Thread safety
+
+Singleton services need to be thread safe. If a singleton service has a dependency on a transient service, the transient service may also need to be thread safe depending how it’s used by the singleton.
+
 ## Recommendations
 
 When working with dependency injection, keep the following recommendations in mind:
