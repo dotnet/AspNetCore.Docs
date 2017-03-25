@@ -48,6 +48,9 @@ Although this example requires the user to click the form button, the malicious 
 
 Typically, CSRF attacks are possible against web sites that use cookies for authentication, because browsers send all relevant cookies to the destination web site. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user logs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
+> [!NOTE]
+> In this context, *session* refers to the client-side session during which the user is authenticated. It is unrelated to server-side sessions or [session middleware](xref:fundamentals/app-state).
+
 Users can guard against CSRF vulnerabilities by:
 * Logging off of web sites when they have finished using them
 * Clearing their browser's cookies periodically
@@ -56,7 +59,7 @@ However, CSRF vulnerabilities are fundamentally a problem with the web app, not 
 
 ## How does ASP.NET Core MVC address CSRF?
 
-The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's session to the client. The client must send back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's session, the request should be rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). ASP.NET Core MVC will generate Antiforgery Tokens by default on all forms it generates. The following two examples of view logic will generate antiforgery tokens automatically:
+The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's identity to the client. The client must send back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's identity, the request should be rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). ASP.NET Core MVC will generate Antiforgery Tokens by default on all forms it generates. The following two examples of view logic will generate antiforgery tokens automatically:
 
 ```html
 <form asp-controller="Manage" asp-action="ChangePassword" method="post">
