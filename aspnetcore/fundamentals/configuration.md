@@ -164,8 +164,6 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](configuration/sample/src/InMemory/Program.cs)]
 
-[!code-csharp[Main](configuration/sample/src/InMemory/MyWindow.cs)]
-
 Configuration values are returned as strings, but binding enables the construction of objects. Binding allows you to retrieve POCO objects or even entire object graphs. The following sample shows how to bind to `MyWindow` and use the options pattern with a ASP.NET Core MVC app:
 
 [!code-csharp[Main](configuration/sample/src/WebConfigBind/MyWindow.cs)]
