@@ -61,13 +61,13 @@ You can use the search box in Solution Explorer to find and display the font-awe
 
 Open the *Views\Shared\_Layout.cshtml* file and add the font-awesome CSS file to the environment [Tag Helper](xref:mvc/views/tag-helpers/intro) for `Development`. From Solution Explorer, drag and drop *font-awesome.css* inside the `<environment names="Development">` element.
 
-[!code-html[Main](bower\sample\_Layout.cshtml?highlight=4&range=9-13)]
+[!code-html[Main](bower/sample/_Layout.cshtml?highlight=4&range=9-13)]
 
 In a production app you would add *font-awesome.min.css* to the environment tag helper for `Staging,Production`.
 
 Replace the contents of the *Views\Home\About.cshtml* Razor file with the following markup:
 
-[!code-html[Main](bower\sample\About.cshtml)]
+[!code-html[Main](bower/sample/About.cshtml)]
 
 Run the app and navigate to the About view to verify the font-awesome package works.
 
@@ -90,7 +90,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 
 * Open *bower.json*, and add jquery and bootstrap to the `dependencies` section. The resulting *bower.json* file will look like the following example. The versions will change over time and may not match the image below.
 
-[!code-json[Main](bower\sample\bower.json?highlight=5,6)]
+[!code-json[Main](bower/sample/bower.json?highlight=5,6)]
 
 * Save the *bower.json* file.
 
