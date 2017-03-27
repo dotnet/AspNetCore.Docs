@@ -15,9 +15,9 @@ uid: hosting/windows-service
 
 # Host an ASP.NET Core app in a Windows Service
 
-If you're hosting your app on Windows without using IIS, and you run the app as a console application, someone will have to log in and start it manually after every reboot.  To solve that problem, you can run in a [Windows Service](https://msdn.microsoft.com/library/d56de412). This article shows how to do that.
+The recommended approach to hosting an ASP.NET Core app on Windows **without** IIS is to run it in a [Windows Service](https://msdn.microsoft.com/library/d56de412). That way it can automatically start after reboots and crashes, without waiting for someone to log in.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) See the [Next Steps](#next-steps) section for instructions on how to run it.
 
 ## Prerequisites
 
@@ -45,18 +45,19 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 * Publish the application to a folder.
 
-  Use [dotnet publish](https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish) or a Visual Studio publish profile that publishes to a folder.
+  Use [dotnet publish](https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish) or a [Visual Studio publish profile](xref:publishing/web-publishing-vs) that publishes to a folder.
 
 * Test by creating and starting the service.
 
-  Open an administrator command prompt window to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool:
+  Open an administrator command prompt window to use the [sc.exe](https://technet.microsoft.com/library/bb490995) command-line tool to create and start a service.  
+  
+  If you name your service MyService, you publish your app to `c:\svc`, and the app itself is named AspNetCoreService, the commands would look like this:
 
   ```console
-  sc create servicename binPath="path\to\yourapp.exe"
-  sc start servicename
+  sc create MyService binPath="C:\Svc\AspNetCoreService.exe"
+  sc start MyService
   ```
-
-  For example, if you published to *C:\Svc* and the name of your app is AspNetCoreService, the `binPath` value would be `C:\Svc\AspNetCoreService.exe`.
+  The `binPath` value is the path to your app's executable, including the executable filename itself.
 
   ![Console window create and start example](windows-service/_static/create-start.png)
 
@@ -67,7 +68,7 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
 ## Provide a way to run outside of a service
 
-It's easier to test when you're running outside of a service, so it's customary to add code that calls `host.RunAsService` only under certain conditions.  For example, you could run as a console app if you get a `--console` command-line argument or if the debugger is attached.
+It's easier to test and debug when you're running outside of a service, so it's customary to add code that calls `host.RunAsService` only under certain conditions.  For example, you could run as a console app if you get a `--console` command-line argument or if the debugger is attached.
 
 [!code-csharp[](windows-service/sample/Program.cs?name=ServiceOrConsole)]
 
@@ -93,13 +94,19 @@ If your custom `WebHostService` code needs to get a service from dependency inje
 
 ## Next steps
 
-The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  If you publish it to *c:\svc* (as in the included publish profile), you can run it in a service by entering these commands from an administrator window:
+The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  To run it in a service, do the following steps:
 
-```console
-sc create servicename binPath="c:\svc\aspnetcoreservice.exe"
-sc start servicename
-```
+* Publish to *c:\svc* (as in the included Visual Studio publish profile)
 
-Then go to `http://localhost:5000` to verify that it's running.
+* Open an administrator window.
 
-If it doesn't start up as expected when running in a service, a quick way to make error messages accessible is to add a logging provider such as the [Windows EventLog provider](xref:fundamentals/logging#eventlog).
+* Enter the following commands:
+
+  ```console
+  sc create MyService binPath="c:\svc\aspnetcoreservice.exe"
+  sc start MyService
+  ```
+
+  * In a browser, go to http://localhost:5000 to verify that it's running.
+
+If the app doesn't start up as expected when running in a service, a quick way to make error messages accessible is to add a logging provider such as the [Windows EventLog provider](xref:fundamentals/logging#eventlog).
