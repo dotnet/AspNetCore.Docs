@@ -141,7 +141,7 @@ In this section we'll add another Startup class. You can add multiple OWIN start
  The command window will show: 
 
     [!code-console[Main](owin-startup-class-detection/samples/sample20.cmd)]
-4. Launch a browser with the URL `http://localhost:5000/`. zz  
+4. Launch a browser with the URL `http://localhost:5000/`.  
   
     ![](owin-startup-class-detection/_static/image8.png)  
   
