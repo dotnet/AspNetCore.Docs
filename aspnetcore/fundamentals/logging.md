@@ -103,7 +103,7 @@ This is equivalent to calling `CreateLogger` with the fully qualified type name 
 
 ## Log level
 
-Each time you write a log, you specify its [LogLevel](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/LogLevel/index.html). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
+Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
 
 In the following code example, the names of the methods specify the log level:
 
