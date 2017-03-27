@@ -32,7 +32,9 @@ namespace TodoApi
 
             services.AddMvc();
             
-            services.AddSingleton<ITodoRepository, TodoRepository>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
+            //services.AddSingleton<ITodoRepository, TodoRepository>();
+
         }
         #endregion
 

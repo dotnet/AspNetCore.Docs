@@ -11,7 +11,9 @@ namespace TodoApi.Models
         public TodoRepository(TodoContext context)
         {
             _context = context;
-            Add(new TodoItem { Name = "Item1" });
+
+            if( _context.TodoItems.Count() == 0)
+                Add(new TodoItem { Name = "Item1" });
         }
 
         public IEnumerable<TodoItem> GetAll()
