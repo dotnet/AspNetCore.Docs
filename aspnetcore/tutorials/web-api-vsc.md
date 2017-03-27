@@ -1,30 +1,24 @@
 ---
-title: Build a web API with ASP.NET Core MVC and Visual Studio | Microsoft Docs
+title: Create a Web API app on Mac or Linux  | Microsoft Docs
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC and Visual Studio
-keywords: ASP.NET Core, WebAPI, Web API, REST
+description: Build a web API with ASP.NET Core MVC and Visual Studio Code
+keywords: ASP.NET Core, WebAPI, Web API, REST, Mac, Linux
 ms.author: riande
 manager: wpickett
 ms.date: 03/14/2017
 ms.topic: article
-ms.assetid: 830b4af5-ed14-423e-9f59-764a6f13a8f6
+ms.assetid: 830b4bf5-dd14-423e-9f59-764a6f13a8f6
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: tutorials/first-web-api
+uid: tutorials/web-api-vsc
 ---
-<!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
-
-# Building Your First Web API with ASP.NET Core MVC and Visual Studio
+# Create a Web API app on Mac or Linux with Visual Studio Code 
 
 By [Mike Wasson](https://github.com/mikewasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
 
 In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial.
 
 ASP.NET Core has built-in support for MVC building Web APIs. 
-
-Note: If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](xref:migration/webapi)
 
 ## Overview
 
@@ -53,37 +47,47 @@ The following diagram shows the basic design of the app.
 
 * To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database. 
 
-### Create the project
+## Set up your development environment
 
-From Visual Studio, select **File** menu, > **New** > **Project**.
+Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi` and select **OK**.
+## Create the project
 
-![New project dialog](first-web-api/_static/new-project.png)
+From a console, run the following commands:
 
-In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Select **OK**. Do **not** select **Enable Docker Support**.
+```console
+mkdir TodoApi
+cd TodoApi
+dotnet new webapi
+```
 
-![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
+Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startup.cs* file.
 
-### Add support for Entity Framework Core
+- Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'TodoApi'. Add them?"
+- Select **Restore** to the **Info** message "There are unresolved dependencies".
 
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](web-api-vsc/_static/vsc_restore.png)
 
-Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add the highlighted `PackageReference`:
+Press **Debug** to build and run the program. In a browser naviage to http://localhost:5000/api/values . The following is displayed:
 
-[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=12)]
+`["value1","value2"]`
 
-### Add a model class
+## Add support for Entity Framework Core
+
+Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+
+[!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
+
+Run `dotnet restore` to download and install the EF Core InMemory DB provider. You can run `dotnet restore` from the terminal or enter `⌘⇧P` in VS Code and then type **.NET**. Select **.NET: Restore Packages**.
+
+
+## Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
-Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+Add a folder named *Models*. You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
-Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
-
-Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoItem` and select **Add**.
-
-Replace the generated code with:
+Add a `TodoItem` class with the following code:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
@@ -91,11 +95,11 @@ Replace the generated code with:
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).
 * `DatabaseGeneratedOption.Identity` specifies the database should generate integer keys when a row is inserted. 
 
-### Create the database context
+## Create the database context
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
-Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoContext` and select **Add**.
+Add a `TodoContext` class in the *Models* folder:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
@@ -103,7 +107,7 @@ Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > 
 
 A *repository* is an object that encapsulates the data layer. The *repository* contains logic for retrieving and mapping data to an entity model. Create the repository code in the *Models* folder.
 
-Defining a repository interface named `ITodoRepository`. Use the class template (**Add New Item**  > **Class**).
+Defining a repository interface named `ITodoRepository`:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/ITodoRepository.cs)]
 
@@ -113,9 +117,9 @@ Add a `TodoRepository` class that implements `ITodoRepository`:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoRepository.cs)]
 
-Build the app to verify you don't have any compiler errors.
+Press **Debug** to build the app to verify you don't have any compiler errors.
 
-## Register the repository
+## Register the repository and EF in-memory database
 
 By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of instantiating a `TodoRepository` inside the controller we will inject an `ITodoRepository` using the built-in support in ASP.NET Core for [dependency injection](xref:fundamentals/dependency-injection).
 
@@ -129,12 +133,7 @@ In the `ConfigureServices` method, add the highlighted code:
 
 ## Add a controller
 
-In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web  API Controller Class** template. Name the class `TodoController`.
-
-![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new-project.png)
-
-
-Replace the generated code with the following (and add closing braces):
+In the *Controllers* folder, create a class named `TodoController`. Add the following (and add closing braces):
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
 
@@ -198,7 +197,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
   
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file. Navigate to the `Todo` controller we just created `http://localhost:port/api/todo`.
+In VS Code, press CTRL+F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
 
 ## Implement the other CRUD operations
 
