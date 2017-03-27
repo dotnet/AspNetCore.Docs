@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/performance-and-caching/index
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to cache site content for faster performance."

@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/getting-started/real-time-web-applications-with-signalr
 title: "Hands On Lab: Real-Time Web Applications with SignalR | Microsoft Docs"
 author: rick-anderson
 description: "Real-time Web applications feature the ability to push server-side content to the connected clients as it happens, in real-time. For ASP.NET developers, ASP...."

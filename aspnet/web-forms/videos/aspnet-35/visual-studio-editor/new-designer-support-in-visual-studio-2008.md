@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-editor/new-designer-support-in-visual-studio-2008
 title: "New Designer Support in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate several of the new designer features in Visual Studio 2008."

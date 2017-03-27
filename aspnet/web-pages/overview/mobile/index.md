@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/mobile/index
 title: "Mobile | Microsoft Docs"
 author: rick-anderson
 description: "How to work with Mobile devices in ASP.NET Web Pages applications."

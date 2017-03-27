@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-implement-error-handling-when-sending-email-with-aspnet
 title: "[How Do I:] Implement Error Handling when Sending Email with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "Chris Pels shows how to implement error handling when sending an email with ASP.NET. He creates an ASP.NET web page to send email, shows how to configure &lt..."

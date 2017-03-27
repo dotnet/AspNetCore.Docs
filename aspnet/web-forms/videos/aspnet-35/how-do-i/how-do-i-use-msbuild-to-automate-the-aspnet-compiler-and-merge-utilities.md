@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities
 title: "[How Do I:] Use MSBuild to Automate the ASP.NET Compiler and Merge Utilities | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create an MSBuild project that orchestrates the execution of the aspnet_compiler and aspnet_merge utilities for an ASP...."

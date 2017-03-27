@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/music-store/mvc-music-store-part-3-views-and-viewmodels
 title: "MVC Music Store Part 3: Views and ViewModels | Microsoft Docs"
 author: jongalloway
 description: "Jon continues the MVC Music Store tutorial with an introduction to Views, ViewModels, and MasterPages."

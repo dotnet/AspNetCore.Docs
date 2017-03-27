@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-and-web-tools-20122
 title: "ASP.NET and Web Tools 2012.2 | Microsoft Docs"
 author: jongalloway
 description: "Meet the new ASP.NET and Web Tools 2012.2 release! This release includes a pile of great new features, including project templates, web tooling, and more. Jo..."

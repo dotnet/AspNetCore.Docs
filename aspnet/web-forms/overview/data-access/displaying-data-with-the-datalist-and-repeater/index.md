@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/index
 title: "Displaying Data with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show alternative ways to display data by using the DataList and Repeater controls."

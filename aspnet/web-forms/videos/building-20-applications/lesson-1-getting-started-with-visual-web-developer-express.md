@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-20-applications/lesson-1-getting-started-with-visual-web-developer-express
 title: "[Lesson 1:] Getting Started with Visual Web Developer Express | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will begin to get familiar with Visual Web Developer Express Edition, and look at the workflow involved in using the program to build dyn..."

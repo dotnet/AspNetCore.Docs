@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/code-coverage-of-automated-tests
 title: "Code Coverage of Automated Tests | Microsoft Docs"
 author: rick-anderson
 description: "This video demonstrates how to use code coverage as a metric for determining how effective our testing is of an ASP.NET Web application. After a test has com..."

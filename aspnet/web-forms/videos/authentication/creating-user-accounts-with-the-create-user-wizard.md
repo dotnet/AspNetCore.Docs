@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/creating-user-accounts-with-the-create-user-wizard
 title: "Creating User Accounts with the Create User Wizard | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner shows how to create users with the Create User Wizard that comes with the Login Control Collection in ASP.NET and Visual Studio. F..."

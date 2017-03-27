@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/use-viewdata-and-implement-viewmodel-classes
 title: "Use ViewData and Implement ViewModel Classes | Microsoft Docs"
 author: microsoft
 description: "Step 6 shows how enable support for richer form editing scenarios, and also discusses two approaches that can be used to pass data from controllers to views:..."

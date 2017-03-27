@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/getting-started/aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider
 title: "ASP.NET Identity: Using MySQL Storage with an EntityFramework MySQL Provider (C#) | Microsoft Docs"
 author: maumar
 description: "This tutorial shows you how to replace the default data storage mechanism for ASP.NET Identity with EntityFramework (SQL client provider) with a MySQL provid..."

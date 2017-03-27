@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/conference-presentations/index
 title: "Talks | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 1 Talks"

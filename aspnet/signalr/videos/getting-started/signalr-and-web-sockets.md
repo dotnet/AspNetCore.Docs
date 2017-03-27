@@ -1,4 +1,5 @@
 ---
+uid: signalr/videos/getting-started/signalr-and-web-sockets
 title: "SignalR and Web Sockets | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman introduces SignalR and Web Sockets."

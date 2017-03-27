@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/releases/index
 title: "Web Pages Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in each ASP.NET Web Pages release."

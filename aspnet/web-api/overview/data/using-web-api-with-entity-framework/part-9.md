@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-9
 title: "Add a New Item to the Database | Microsoft Docs"
 author: MikeWasson
 description: ""

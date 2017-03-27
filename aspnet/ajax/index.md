@@ -1,4 +1,5 @@
 ---
+uid: ajax/index
 title: "ASP.NET Ajax : Enhanced Interactivity and Responsiveness | Microsoft Docs"
 author: rick-anderson
 description: "Add Ajax functionality to your ASP.NET applications with jQuery or the Ajax Control Toolkit. Improve the performance of your Ajax applications with the Micro..."

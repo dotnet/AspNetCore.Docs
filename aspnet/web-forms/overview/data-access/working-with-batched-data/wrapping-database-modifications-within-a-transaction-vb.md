@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/working-with-batched-data/wrapping-database-modifications-within-a-transaction-vb
 title: "Wrapping Database Modifications within a Transaction (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial is the first of four that looks at updating, deleting, and inserting batches of data. In this tutorial we learn how database transactions allow..."

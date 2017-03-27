@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/aspnet-ajax/adonet-data-services-with-aspnet-ajax-support
 title: "ADO.NET Data Services with ASP.NET AJAX Support | Microsoft Docs"
 author: GrabYourPitchforks
 description: "Find out how ADO.NET Data Services can be integrated with ASP.NET AJAX support seamlessly. ADP.NET Data Services technology is available in the ASP.NET 3.5 E..."

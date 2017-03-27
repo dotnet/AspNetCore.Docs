@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-a-custom-provider-for-logging-health-monitoring-events
 title: "[How Do I:] Create a Custom Provider for Logging Health Monitoring Events | Microsoft Docs"
 author: rick-anderson
 description: "Chris Pels shows how to create a custom provider for the ASP.NET heath monitoring system, which records health monitoring events to a text-based log file. Le..."

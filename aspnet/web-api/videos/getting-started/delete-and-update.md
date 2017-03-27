@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/getting-started/delete-and-update
 title: "ASP.NET Web API, Part 3: Delete and Update | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"

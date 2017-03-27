@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/index
 title: "Tailspin Spyworks | Microsoft Docs"
 author: rick-anderson
 description: "How to use new features in ASP.NET 4 to build an online store, including shopping, checkout, and administration."

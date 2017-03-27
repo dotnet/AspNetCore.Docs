@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
 title: "Iteration #7 – Add Ajax functionality (C#) | Microsoft Docs"
 author: microsoft
 description: "In the seventh iteration, we improve the responsiveness and performance of our application by adding support for Ajax."

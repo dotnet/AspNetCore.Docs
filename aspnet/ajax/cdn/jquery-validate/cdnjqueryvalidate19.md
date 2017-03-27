@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-validate/cdnjqueryvalidate19
 title: "jquery.validate version 1.9 | Microsoft Docs"
 author: rick-anderson
 description: ""

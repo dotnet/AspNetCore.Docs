@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/introduction-to-managing-and-running-tests-with-team-system
 title: "Introduction to Managing and Running Tests with Team System | Microsoft Docs"
 author: rick-anderson
 description: "In this video we see how you can manage all or your various test cases using the test management capabilities of Visual Studio Team System. We will also see..."

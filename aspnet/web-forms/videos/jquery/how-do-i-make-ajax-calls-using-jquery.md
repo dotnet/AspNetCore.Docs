@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/jquery/how-do-i-make-ajax-calls-using-jquery
 title: "How Do I: Make Ajax Calls Using jQuery? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to make Ajax calls using the jQuery library. A sample web site is created that contains a simple web service which returns..."

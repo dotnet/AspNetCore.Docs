@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/index
 title: "Working with Data in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How to program CRUD (create, read, update, delete) operations in Web API."

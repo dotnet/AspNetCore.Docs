@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/building-the-ef5-mvc4-chapter-downloads
 title: "Building the Chapter Downloads for the EF 5 MVC 4 Tutorials | Microsoft Docs"
 author: Rick-Anderson
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."

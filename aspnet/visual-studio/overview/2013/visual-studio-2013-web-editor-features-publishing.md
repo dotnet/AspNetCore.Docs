@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-publishing
 title: "Visual Studio 2013 Web Editor Features - Publishing | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman overviews the web publishing features in Visual Studio 2013."

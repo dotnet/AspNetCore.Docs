@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-vb
 title: "Implementing Optimistic Concurrency with the SqlDataSource (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we review the essentials of optimistic concurrency control and then explore how to implement it using the SqlDataSource control."

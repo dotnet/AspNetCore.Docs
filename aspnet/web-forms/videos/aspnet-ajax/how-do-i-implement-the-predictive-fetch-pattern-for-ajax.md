@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-predictive-fetch-pattern-for-ajax
 title: "[How Do I:] Implement the Predictive Fetch Pattern for AJAX? | Microsoft Docs"
 author: JoeStagner
 description: "Demonstrates an implementation of the Predictive Fetch pattern for AJAX, where the AJAX engine uses the current state of the user's interaction to predict wh..."

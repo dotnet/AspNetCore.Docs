@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 title: "Getting Started with OWIN and Katana | Microsoft Docs"
 author: MikeWasson
 description: ""

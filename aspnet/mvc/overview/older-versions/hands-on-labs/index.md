@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/hands-on-labs/index
 title: "ASP.NET MVC 4 Hands On Labs | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to develop with ASP.NET MVC with these Hands On Labs"

@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/adding-email-to-your-web-site
 title: "Adding Email to Your Web Site | Microsoft Docs"
 author: JoeStagner
 description: "Adding Email to Your Web Site (Part 1)"

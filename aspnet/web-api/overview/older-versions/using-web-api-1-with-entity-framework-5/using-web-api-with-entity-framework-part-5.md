@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-5
 title: "Part 5: Creating a Dynamic UI with Knockout.js | Microsoft Docs"
 author: MikeWasson
 description: ""

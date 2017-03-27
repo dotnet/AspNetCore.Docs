@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/choosing-the-right-programming-model
 title: "Choosing the Right Programming Model | Microsoft Docs"
 author: shanselman
 description: "Microsoft's Scott Hanselman gives you the information you need to decide if ASP.NET Web Forms, ASP.NET MVC, or ASP.NET Web Pages is right for you."

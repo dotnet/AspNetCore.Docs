@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/mvc2-html-encoding
 title: "MVC2 - Html Encoding | Microsoft Docs"
 author: microsoft
 description: "In this video you will learn how to use the new HTML Encoding shortcut syntax in ASP.NET to guard against script injection, and to use the MvcHtmlString when..."

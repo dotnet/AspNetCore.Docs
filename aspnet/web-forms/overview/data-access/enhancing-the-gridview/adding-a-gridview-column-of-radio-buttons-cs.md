@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-cs
 title: "Adding a GridView Column of Radio Buttons (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at how to add a column of radio buttons to a GridView control to provide the user with a more intuitive way of selecting a single row of..."

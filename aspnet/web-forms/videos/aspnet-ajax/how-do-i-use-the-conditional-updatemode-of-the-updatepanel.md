@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-use-the-conditional-updatemode-of-the-updatepanel
 title: "[How Do I:] Use the Conditional UpdateMode of the UpdatePanel? | Microsoft Docs"
 author: JoeStagner
 description: "The ASP.NET AJAX UpdatePanel includes an UpdateMode property that may be set to 'Always' or 'Conditional'. The default is Always, in which case the UpdatePan..."

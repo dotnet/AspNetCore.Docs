@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/roles/index
 title: "ASP.NET 3.5 - Roles | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series describes how to create and delete roles, how to assign users to roles, and how to authorize by role."

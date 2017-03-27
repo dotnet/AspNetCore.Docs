@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/hottowel-template
 title: "Hot Towel template | Microsoft Docs"
 author: madskristensen
 description: "HotTowel template"

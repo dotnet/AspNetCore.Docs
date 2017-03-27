@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/getting-started/supported-platforms
 title: "Supported Platforms | Microsoft Docs"
 author: pfletcher
 description: "This article describes what clients and servers are supported by SignalR."

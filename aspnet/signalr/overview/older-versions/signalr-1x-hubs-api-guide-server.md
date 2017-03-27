@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/signalr-1x-hubs-api-guide-server
 title: "ASP.NET SignalR Hubs API Guide - Server (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This document provides an introduction to programming the server side of the ASP.NET SignalR Hubs API for SignalR version 1.1, with code samples demonstratin..."

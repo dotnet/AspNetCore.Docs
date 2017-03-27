@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-editor/intellisense-for-jscript-and-aspnet-ajax
 title: "IntelliSense for Jscript and ASP.NET AJAX | Microsoft Docs"
 author: rick-anderson
 description: "This video provides an overview of the new Intellisense features for JavaScript in Visual Studio 2008 including core JavaScript methods, external .js files i..."

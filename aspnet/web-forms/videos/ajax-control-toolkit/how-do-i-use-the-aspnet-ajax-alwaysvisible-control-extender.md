@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender
 title: "[How Do I:] Use the ASP.NET AJAX AlwaysVisible Control Extender? | Microsoft Docs"
 author: JoeStagner
 description: "See how easy it is to anchor a page element to a position on screen, where it remains always visible no matter how far the user may scroll the document. The..."

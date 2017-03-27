@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/combo-box
 title: "Combo Box | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate how to use the new Combo Box control from the Microsoft AJAX Control Toolkit."

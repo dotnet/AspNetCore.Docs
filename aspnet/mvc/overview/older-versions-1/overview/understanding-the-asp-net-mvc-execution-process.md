@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/overview/understanding-the-asp-net-mvc-execution-process
 title: "Understanding the ASP.NET MVC Execution Process | Microsoft Docs"
 author: microsoft
 description: "Learn how the ASP.NET MVC framework processes a browser request step-by-step."

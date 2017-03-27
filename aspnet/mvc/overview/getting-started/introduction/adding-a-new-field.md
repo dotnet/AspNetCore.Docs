@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-a-new-field
 title: "Adding a New Field | Microsoft Docs"
 author: Rick-Anderson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/index
 title: "ASP.NET 4.5 | Microsoft Docs"
 author: rick-anderson
 description: "About new Web Forms features introduced in ASP.NET 4.5."

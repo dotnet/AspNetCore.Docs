@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/index
 title: "ASP.NET MVC Guidance | Microsoft Docs"
 author: rick-anderson
 description: ""

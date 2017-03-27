@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/index
 title: "Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio 2012"

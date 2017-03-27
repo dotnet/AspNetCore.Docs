@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-cs
 title: "Adding Dynamic Content to a Cached Page (C#) | Microsoft Docs"
 author: microsoft
 description: "Learn how to mix dynamic and cached content in the same page. Post-cache substitution enables you to display dynamic content, such as banner advertisements o..."

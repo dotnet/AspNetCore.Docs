@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website
 title: "Caching Data in an ASP.NET Web Pages (Razor) Site for Better Performance | Microsoft Docs"
 author: tfitzmac
 description: "You can speed up your website by having it store - that is, cache - the results of data that ordinarily would take considerable time to retrieve or process a..."

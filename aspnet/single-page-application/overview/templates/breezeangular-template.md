@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/breezeangular-template
 title: "Breeze/Angular template | Microsoft Docs"
 author: madskristensen
 description: "Breeze/Angular Single Page Application template"

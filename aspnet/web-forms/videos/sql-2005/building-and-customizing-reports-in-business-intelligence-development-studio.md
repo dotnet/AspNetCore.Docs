@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/building-and-customizing-reports-in-business-intelligence-development-studio
 title: "Building and Customizing Reports in Business Intelligence Development Studio | Microsoft Docs"
 author: microsoft
 description: "Building on the previous lesson, we dive into building reports from scratch and modifying the reports that were created using the wizards and designers. We a..."

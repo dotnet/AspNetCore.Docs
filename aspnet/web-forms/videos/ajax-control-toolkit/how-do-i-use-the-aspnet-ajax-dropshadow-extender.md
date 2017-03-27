@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropshadow-extender
 title: "[How Do I:] Use the ASP.NET AJAX DropShadow Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Discover how to improve the presentation of ASP.NET sites by using the AJAX DropShadow extender control to add opaque, rounded-corner drop shadows to areas o..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-vb
 title: "Configuring the Data Access Layer's Connection- and Command-Level Settings (VB) | Microsoft Docs"
 author: rick-anderson
 description: "The TableAdapters within a Typed DataSet automatically take care of connecting to the database, issuing commands, and populating a DataTable with the results..."

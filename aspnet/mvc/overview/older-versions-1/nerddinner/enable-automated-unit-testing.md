@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/enable-automated-unit-testing
 title: "Enable Automated Unit Testing | Microsoft Docs"
 author: microsoft
 description: "Step 12 shows how to develop a suite of automated unit tests that verify our NerdDinner functionality, and which will give us the confidence to make changes..."

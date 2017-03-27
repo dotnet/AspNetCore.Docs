@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/index
 title: "Visual Studio 2013 | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio 2013"

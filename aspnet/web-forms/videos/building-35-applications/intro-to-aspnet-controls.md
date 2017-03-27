@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/intro-to-aspnet-controls
 title: "Intro to ASP.NET Controls | Microsoft Docs"
 author: JoeStagner
 description: "Controls driven development can really increase your development productivity. This video provides a basic introduction to the standard ASP.NET controls."

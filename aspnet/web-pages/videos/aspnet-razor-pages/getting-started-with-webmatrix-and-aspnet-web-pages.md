@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages
 title: "Getting Started with WebMatrix and ASP.NET Web Pages | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Getting Started with WebMatrix and ASP.NET Web Pages tutorial"

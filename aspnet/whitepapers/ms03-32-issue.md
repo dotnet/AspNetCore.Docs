@@ -1,4 +1,5 @@
 ---
+uid: whitepapers/ms03-32-issue
 title: "Fix for 'Server Application Unavailable' Error after Applying Security Update for IE | Microsoft Docs"
 author: rick-anderson
 description: "This paper describes the patch that fixes an issue with the MS03-32 Security Update for Internet Explorer that affects ASP.NET 1.0 applications running on Wi..."

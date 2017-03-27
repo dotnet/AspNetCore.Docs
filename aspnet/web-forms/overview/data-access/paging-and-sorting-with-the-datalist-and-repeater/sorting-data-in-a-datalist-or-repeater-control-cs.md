@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-cs
 title: "Sorting Data in a DataList or Repeater Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll examine how to include sorting support in the DataList and Repeater, as well as how to construct a DataList or Repeater whose data can..."

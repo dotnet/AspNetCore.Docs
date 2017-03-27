@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
 title: "Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application (2 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page
 title: "[How Do I]: Add Client Script Event Handlers Controls on an ASP.NET Page? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to add client script events to controls on an ASP.NET page. First, several ASP.NET controls are added to the page and an e..."

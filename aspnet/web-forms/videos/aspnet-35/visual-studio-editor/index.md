@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-editor/index
 title: "Visual Studio Editor | Microsoft Docs"
 author: rick-anderson
 description: "This video series shows you new features of the Visual Studio 2008 editor, including enhanced support for JavaScript and CSS."

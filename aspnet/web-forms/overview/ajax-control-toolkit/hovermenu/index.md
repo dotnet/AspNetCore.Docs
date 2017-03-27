@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/hovermenu/index
 title: "HoverMenu | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the HoverMenu control, which displays a popup when users hold the mouse pointer over an element."

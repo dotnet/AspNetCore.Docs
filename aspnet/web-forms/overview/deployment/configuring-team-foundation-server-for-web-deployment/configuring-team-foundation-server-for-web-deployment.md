@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment
 title: "Configuring Team Foundation Server for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This tutorial will show you how to configure Team Foundation Server (TFS) 2010 to build solutions and deploy web content to various target environments. This..."

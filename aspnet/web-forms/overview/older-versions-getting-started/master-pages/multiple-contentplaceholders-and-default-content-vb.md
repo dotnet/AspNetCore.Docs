@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/multiple-contentplaceholders-and-default-content-vb
 title: "Multiple ContentPlaceHolders and Default Content (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to add multiple content place holders to a master page as well as how to specify default content in the content place holders."

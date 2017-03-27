@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app
 title: "ASP.NET MVC Facebook Birthday App | Microsoft Docs"
 author: kirthik
 description: "This tutorial will teach you how to build a Facebook app by using an MVC 5 NuGet package and Visual Studio 2013."

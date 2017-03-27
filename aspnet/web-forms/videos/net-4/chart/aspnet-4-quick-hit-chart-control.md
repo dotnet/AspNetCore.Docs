@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/chart/aspnet-4-quick-hit-chart-control
 title: "ASP.NET 4 "Quick Hit" - Chart Control | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn how to use the ASP.NET Chart Control to create simple, intuitive, and visually compelling charts."

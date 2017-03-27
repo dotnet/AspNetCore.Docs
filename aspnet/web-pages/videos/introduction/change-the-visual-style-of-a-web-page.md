@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/change-the-visual-style-of-a-web-page
 title: "Change the Visual Style of a Web Page | Microsoft Docs"
 author: rick-anderson
 description: "Part 3 gets you started with CSS and style sheets so you can make your page more beautiful."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/unit-testing/creating-unit-tests-for-asp-net-mvc-applications-vb
 title: "Creating Unit Tests for ASP.NET MVC Applications (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to create unit tests for controller actions. In this tutorial, Stephen Walther demonstrates how to test whether a controller action returns a parti..."

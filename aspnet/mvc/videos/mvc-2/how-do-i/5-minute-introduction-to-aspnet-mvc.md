@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/5-minute-introduction-to-aspnet-mvc
 title: "5 Minute Introduction to ASP.NET MVC | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman presents a 5 minute introduction to ASP.NET MVC."

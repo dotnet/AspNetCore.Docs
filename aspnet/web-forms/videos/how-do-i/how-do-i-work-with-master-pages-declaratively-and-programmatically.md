@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-work-with-master-pages-declaratively-and-programmatically
 title: "[How Do I:] Work with Master Pages Declaratively and Programmatically | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show several aspects of defining and using master pages in an ASP.NET web site. First, see how to create master pages declarati..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-20-applications/lesson-6-working-with-stylesheets-and-master-pages
 title: "[Lesson 6:] Working with Stylesheets and Master Pages | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will begin to learn how style sheets and MasterPages can be used to maintain a consistent appearance for all pages in a web application."

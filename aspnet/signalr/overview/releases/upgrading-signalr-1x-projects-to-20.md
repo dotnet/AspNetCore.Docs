@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/releases/upgrading-signalr-1x-projects-to-20
 title: "Upgrading SignalR 1.x Projects to version 2 | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to upgrade an existing SignalR 1.x project to SignalR 2.x, and how to troubleshoot issues that may arise during the upgrade process...."

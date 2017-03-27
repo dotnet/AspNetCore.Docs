@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-a-full-featured-customer-login-portal
 title: "[How Do I:] Create a Full-Featured Customer Login Portal? | Microsoft Docs"
 author: microsoft
 description: "Follow along through the creation of a fictitious customer portal to learn about master pages, themes, membership, roles, site navigation, user profiles, and..."

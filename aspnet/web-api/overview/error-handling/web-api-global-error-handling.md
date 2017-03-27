@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/error-handling/web-api-global-error-handling
 title: "Global Error Handling in ASP.NET Web API 2 | Microsoft Docs"
 author: davidmatson
 description: ""

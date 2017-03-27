@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/views/dynamic-v-strongly-typed-views
 title: "Dynamic v. Strongly Typed Views | Microsoft Docs"
 author: Rick-Anderson
 description: ""

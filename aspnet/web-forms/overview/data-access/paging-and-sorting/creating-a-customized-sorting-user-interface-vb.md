@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-vb
 title: "Creating a Customized Sorting User Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When displaying a long list of sorted data, it can be very helpful to group related data by introducing separator rows. In this tutorial we'll see how to cre..."

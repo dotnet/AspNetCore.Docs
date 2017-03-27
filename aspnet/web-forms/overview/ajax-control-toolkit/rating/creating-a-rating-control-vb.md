@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-vb
 title: "Creating a Rating Control (VB) | Microsoft Docs"
 author: wenz
 description: "Many websites, from e-commerce to community sites, offer their users to rate articles or items. This usually requires some coding effort, but we do have the..."

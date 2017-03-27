@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-cs
 title: "Efficiently Paging Through Large Amounts of Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "The default paging option of a data presentation control is unsuitable when working with large amounts of data, as its underlying data source control retriev..."

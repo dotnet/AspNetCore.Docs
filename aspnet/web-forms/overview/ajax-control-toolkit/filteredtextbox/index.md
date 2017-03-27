@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/filteredtextbox/index
 title: "FilteredTextBox | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the FilteredTextBox control, which lets you specify which characters are allowed in user input."

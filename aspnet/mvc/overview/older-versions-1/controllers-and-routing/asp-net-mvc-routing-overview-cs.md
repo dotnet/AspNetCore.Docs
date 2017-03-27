@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-cs
 title: "ASP.NET MVC Routing Overview (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther shows how the ASP.NET MVC framework maps browser requests to controller actions."

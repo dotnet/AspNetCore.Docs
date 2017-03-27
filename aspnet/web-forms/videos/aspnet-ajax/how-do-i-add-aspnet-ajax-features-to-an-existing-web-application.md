@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-add-aspnet-ajax-features-to-an-existing-web-application
 title: "[How Do I:] Add ASP.NET AJAX Features to an Existing Web Application? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how easily you add Microsoft ASP.NET AJAX functionality to an existing ASP.NET application. This video shows that there is no need to change your serve..."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper
 title: "Examining  how  ASP.NET MVC scaffolds the DropDownList Helper | Microsoft Docs"
 author: Rick-Anderson
 description: ""

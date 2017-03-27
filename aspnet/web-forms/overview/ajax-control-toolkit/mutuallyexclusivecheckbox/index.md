@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox/index
 title: "MutuallyExclusiveCheckbox | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the MutuallyExclusiveCheckbox control to create check boxes that work like radio buttons (mutually exclusive) but that can be..."

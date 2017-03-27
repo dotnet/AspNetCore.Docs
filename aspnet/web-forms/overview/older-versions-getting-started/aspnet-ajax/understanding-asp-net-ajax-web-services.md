@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
 title: "Understanding ASP.NET AJAX Web Services | Microsoft Docs"
 author: scottcate
 description: "Web Services are an integral part of the .NET framework that provide a cross-platform solution for exchanging data between distributed systems. Although Web..."

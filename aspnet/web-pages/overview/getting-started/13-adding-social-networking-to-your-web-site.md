@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site
 title: "Adding Social Networking to ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "This chapter explains how to integrate your site with social networking services. In this chapter, you'll learn how to let people bookmark/link your website..."

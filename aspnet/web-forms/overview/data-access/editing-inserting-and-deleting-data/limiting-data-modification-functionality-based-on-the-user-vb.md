@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-vb
 title: "Limiting Data Modification Functionality Based on the User (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In a web application that allows users to edit data, different user accounts may have different data-editing privileges. In this tutorial we'll examine how t..."

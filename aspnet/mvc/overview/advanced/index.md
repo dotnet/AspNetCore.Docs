@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/advanced/index
 title: "ASP.NET MVC Advanced Topics | Microsoft Docs"
 author: rick-anderson
 description: "Advanced topics for programming ASP.NET MVC, including accessibility, extensibility, and internationalization."

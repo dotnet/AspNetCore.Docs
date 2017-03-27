@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-validate/index
 title: "jQuery Validate | Microsoft Docs"
 author: rick-anderson
 description: ""

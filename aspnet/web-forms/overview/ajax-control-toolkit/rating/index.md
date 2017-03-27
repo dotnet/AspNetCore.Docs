@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/rating/index
 title: "Rating | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the Rating control to let users enter ratings for articles or items."

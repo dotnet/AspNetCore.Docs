@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-incremental-page-display-pattern
 title: "[How Do I:] Implement the AJAX Incremental Page Display Pattern? | Microsoft Docs"
 author: JoeStagner
 description: "Traditionally when a Web page is requested, the user must wait while the entire page is retrieved from the server after which the complete page appears sudde..."

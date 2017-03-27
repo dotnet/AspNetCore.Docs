@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part2
 title: "Adding a Controller | Microsoft Docs"
 author: shanselman
 description: "An updated version if this tutorial is available here using Visual Studio 2013. The new tutorial uses ASP.NET MVC 5, which provides many improvements over t..."

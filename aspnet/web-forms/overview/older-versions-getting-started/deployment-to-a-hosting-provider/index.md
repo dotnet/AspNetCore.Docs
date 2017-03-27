@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/index
 title: "ASP.NET 4 - Web Deployment with SQL Server Compact using Visual Studio | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series shows how to make an ASP.NET web application that uses SQL Server Compact available over the internet by deploying it to a third-party h..."

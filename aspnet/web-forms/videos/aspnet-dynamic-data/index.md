@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/index
 title: "ASP.NET Dynamic Data | Microsoft Docs"
 author: rick-anderson
 description: "How to use ASP.NET Dynamic Data to create scaffolded applications that automatically know how to perform data access."

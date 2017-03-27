@@ -1,4 +1,5 @@
 ---
+uid: tutorials
 title: ASP.NET tutorials | Microsoft Docs
 author: tdykstra
 description: A list of step-by-step guides for developing ASP.NET applications.

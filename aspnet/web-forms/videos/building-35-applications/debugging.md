@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/debugging
 title: "Debugging | Microsoft Docs"
 author: JoeStagner
 description: "Description: Visual Web Developer offers a rich debugging experience for beginners and expert developer alike. In this video Joe will tour you through the VW..."

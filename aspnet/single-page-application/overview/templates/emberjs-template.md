@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/emberjs-template
 title: "EmberJS template | Microsoft Docs"
 author: xqiu
 description: "EmberJS template"

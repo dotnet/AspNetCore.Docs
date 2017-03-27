@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-cs
 title: "How do I use the ComboBox Control? (C#) | Microsoft Docs"
 author: microsoft
 description: "ComboBox is an ASP.NET AJAX control that combines the flexibility of a TextBox with a list of options from which users can choose."

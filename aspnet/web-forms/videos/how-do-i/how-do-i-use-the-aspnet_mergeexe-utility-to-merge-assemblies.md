@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-the-aspnet_mergeexe-utility-to-merge-assemblies
 title: "[How Do I:] Use the aspnet_merge.exe Utility to Merge Assemblies | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to use the aspnet_merge.exe utility to combine assemblies that have been compiled using the aspnet_compiler.exe utilit..."

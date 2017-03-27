@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-designer/index
 title: "Visual Studio Designer | Microsoft Docs"
 author: rick-anderson
 description: "This video illustrates enhanced features in Visual Studio 2008 for working with master pages."

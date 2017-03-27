@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-24-finis
 title: "ASP.NET MVC Storefront Part 24: Finis | Microsoft Docs"
 author: robconery
 description: "This is the last episode in the MVC Storefront series and this might seem a bit odd. It’s definitely not the last screencast I’ll do with respect to ASP.NET..."

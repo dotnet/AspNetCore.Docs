@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/index
 title: "General IIS Tips | Microsoft Docs"
 author: rick-anderson
 description: "How to configure IIS to work with ASP.NET applications."

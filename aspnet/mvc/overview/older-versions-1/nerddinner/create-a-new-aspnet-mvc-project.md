@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project
 title: "Create a New ASP.NET MVC Project | Microsoft Docs"
 author: microsoft
 description: "Step 1 shows you how to put the basic NerdDinner application structure in place."

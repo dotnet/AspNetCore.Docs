@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-a-tfs-build-server-for-web-deployment
 title: "Configuring a TFS Build Server for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to prepare a Team Foundation Server (TFS) build server to build and deploy your solutions using Team Build and the Internet Informat..."

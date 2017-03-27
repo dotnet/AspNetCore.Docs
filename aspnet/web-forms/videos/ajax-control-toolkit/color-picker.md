@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/color-picker
 title: "Color Picker | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate how to use the new Color Picker control from the Microsoft AJAX Control Toolkit."

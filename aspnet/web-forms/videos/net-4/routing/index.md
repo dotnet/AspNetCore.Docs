@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/routing/index
 title: "Routing | Microsoft Docs"
 author: rick-anderson
 description: "This video shows you how to create intuitive and SEO-friendly URLs for your Web Forms applications."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/index
 title: "Custom Button Actions with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to add buttons to the DataList and Repeater controls to add custom functionality."

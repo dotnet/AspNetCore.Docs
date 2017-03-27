@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/working-with-batched-data/index
 title: "Working with Batched Data | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials look at updating, deleting, and inserting batches of data using transactions."

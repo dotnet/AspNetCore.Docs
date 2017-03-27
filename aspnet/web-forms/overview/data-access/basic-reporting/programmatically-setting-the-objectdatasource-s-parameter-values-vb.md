@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb
 title: "Programmatically Setting the ObjectDataSource's Parameter Values (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at adding a method to our DAL and BLL that accepts a single input parameter and returns data. The example will set this parameter..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-maskededit-controls
 title: "[How Do I:] Use the ASP.NET AJAX MaskedEdit Controls? | Microsoft Docs"
 author: JoeStagner
 description: "The ASP.NET AJAX Control Toolkit provides the MaskedEdit control and the MaskedEditValidator control which work together to prompt, style, and validate the d..."

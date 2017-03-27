@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity
 title: "Two-factor authentication using SMS and email with ASP.NET Identity | Microsoft Docs"
 author: HaoK
 description: "This tutorial will show you how to set up Two-factor authentication (2FA) using SMS and email. This article was written by Rick Anderson ( @RickAndMSFT ), Pr..."

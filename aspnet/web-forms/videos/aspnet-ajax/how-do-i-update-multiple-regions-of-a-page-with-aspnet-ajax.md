@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-update-multiple-regions-of-a-page-with-aspnet-ajax
 title: "[How Do I:] Update Multiple Regions of a Page with ASP.NET AJAX? | Microsoft Docs"
 author: scottgolightly
 description: "In this video we learn that the ASP.NET AJAX UpdatePanel control provides two properties that you may use to update multiple regions of a Web page in respons..."

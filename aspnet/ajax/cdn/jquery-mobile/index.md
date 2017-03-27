@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-mobile/index
 title: "jQuery Mobile | Microsoft Docs"
 author: rick-anderson
 description: ""

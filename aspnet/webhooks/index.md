@@ -1,4 +1,5 @@
 ---
+uid: webhooks/index
 title: "ASP.NET WebHooks Overview | Microsoft Docs"
 author: rick-anderson
 description: "An introduction to ASP.NET WebHooks."

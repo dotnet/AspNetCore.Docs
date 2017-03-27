@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/chart/index
 title: "Chart | Microsoft Docs"
 author: rick-anderson
 description: "This set of videos shows how to use the ASP.NET Chart control to create visually compelling data display."

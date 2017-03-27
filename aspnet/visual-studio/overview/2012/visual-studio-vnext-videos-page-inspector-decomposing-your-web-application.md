@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-vnext-videos-page-inspector-decomposing-your-web-application
 title: "Visual Studio vNext Videos: Page Inspector - Decomposing your Web Application | Microsoft Docs"
 author: gabosom
 description: "In this video, Jorge Gabuardi Gonzalez shows how to use the Page Inspector in Visual Studio vNext to troubleshoot HTML and styles in your ASP.NET application..."

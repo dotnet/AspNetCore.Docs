@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c
 title: "How to Implement Custom Field Validation with Imperative Logic in VB or C# | Microsoft Docs"
 author: JoeStagner
 description: "In this video we will build on the declarative field validation we implemented in our previous Dynamic Data Video and add custom programming logic to our val..."

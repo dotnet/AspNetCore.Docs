@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-intro-ui-and-edm
 title: "Tailspin Spyworks - Intro UI and EDM | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner kicks off the Tailspin Spyworks sample Web Forms application by implementing the default template."

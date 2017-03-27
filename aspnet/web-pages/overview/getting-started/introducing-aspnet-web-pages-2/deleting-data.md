@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data
 title: "Introducing ASP.NET Web Pages - Deleting Database Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to delete an individual database entry. It assumes you have completed the series through Updating Database Data in ASP.NET Web Pa..."

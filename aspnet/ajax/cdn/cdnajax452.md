@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/cdnajax452
 title: "ASP.NET Web Forms and Ajax 4.5.2 | Microsoft Docs"
 author: rick-anderson
 description: ""

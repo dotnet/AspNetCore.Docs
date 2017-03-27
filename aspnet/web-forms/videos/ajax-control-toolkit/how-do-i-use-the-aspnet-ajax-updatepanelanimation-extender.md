@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-updatepanelanimation-extender
 title: "[How Do I:] Use the ASP.NET AJAX UpdatePanelAnimation Extender? | Microsoft Docs"
 author: JoeStagner
 description: "By adding animation to a partial-page update we can inform the user when an update is occuring, and when it has finished. The UpdatePanelAnimation extender a..."

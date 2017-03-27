@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/data-controls/index
 title: "Data Controls | Microsoft Docs"
 author: rick-anderson
 description: "This set of videos explores how to use new data control features with ASP.NET 3.5"

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-support-in-visual-studio-2008
 title: "ASP.NET AJAX Support in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "You will get a quick overview of the inclusion of ASP.NET AJAX into Visual Studio 2008 (Orcas) and .NET 3.5. This will be demonstrated by using Visual Studio..."

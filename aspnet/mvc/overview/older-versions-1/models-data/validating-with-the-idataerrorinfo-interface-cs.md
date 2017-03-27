@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-cs
 title: "Validating with the IDataErrorInfo Interface (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther shows you how to display custom validation error messages by implementing the IDataErrorInfo interface in a model class."

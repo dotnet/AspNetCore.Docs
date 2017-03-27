@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-export-data-to-a-comma-delimited-csv-file-for-an-application-like-excel
 title: "[How Do I:] Export Data to a Comma Delimited (CSV) File for an Application Like Excel | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to take data from a database or other source and export it to a comma delimited file that can be used in an application li..."

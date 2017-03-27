@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/manually-installing-web-packages
 title: "Manually Installing Web Packages | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to manually import a web deployment package into Internet Information Services (IIS). The topic Building and Packaging Web Applicati..."

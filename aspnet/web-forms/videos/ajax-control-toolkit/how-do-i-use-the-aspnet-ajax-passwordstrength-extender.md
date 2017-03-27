@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-passwordstrength-extender
 title: "[How Do I:] Use the ASP.NET AJAX PasswordStrength Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how the PasswordStrength extender control provides immediate and dynamic feedback to users about the strength of their chosen passwords. The feedback c..."

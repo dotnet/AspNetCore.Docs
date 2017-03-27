@@ -1,4 +1,5 @@
 ---
+uid: signalr/videos/getting-started/index
 title: "ASP.NET SignalR Videos | Microsoft Docs"
 author: rick-anderson
 description: "These videos give you background and application examples for using SignalR to add real-time functionality to web applications."

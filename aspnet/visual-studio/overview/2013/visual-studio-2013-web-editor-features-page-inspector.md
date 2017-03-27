@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-page-inspector
 title: "Visual Studio 2013 Web Editor Features - Page Inspector | Microsoft Docs"
 author: shanselman
 description: "Scott Hansleman shows how the Page Inspector feature in Visual Studio 2013 allows you to work interactively with the rendered page markup, fully integrated w..."

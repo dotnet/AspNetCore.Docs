@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/feature-specific-delegated-management
 title: "Feature Specific Delegated Management | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates how to work with remotely administering SPECFIC web site features with IIS7 remote / delegated administration."

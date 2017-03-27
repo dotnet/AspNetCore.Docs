@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-test-environment-for-web-deployment
 title: "Scenario: Configuring a Test Environment for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for developer or test environments and explains the tasks you need to complete in order to set up a si..."

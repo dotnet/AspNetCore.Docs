@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-vb
 title: "Performing Batch Updates (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create a fully-editable DataList where all of its items are in edit mode and whose values can be saved by clicking an 'Update All' button on the..."

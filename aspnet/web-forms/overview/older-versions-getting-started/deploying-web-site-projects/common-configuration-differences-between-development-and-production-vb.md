@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/common-configuration-differences-between-development-and-production-vb
 title: "Common Configuration Differences Between Development and Production (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In earlier tutorials we deployed our website by copying all of the pertinent files from the development environment to the production environment. However, i..."

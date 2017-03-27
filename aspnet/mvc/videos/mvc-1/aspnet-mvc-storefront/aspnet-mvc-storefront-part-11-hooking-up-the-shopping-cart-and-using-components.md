@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-11-hooking-up-the-shopping-cart-and-using-components
 title: "ASP.NET MVC Storefront Part 11: Hooking Up The Shopping Cart and Using Components | Microsoft Docs"
 author: robconery
 description: "In this episode I hook the site up to the shopping cart and run some tests on my Controllers. I also build a Component with a little-known feature of MVC, th..."

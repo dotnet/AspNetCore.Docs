@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
 title: "Enabling Full-Text Search in your Text Data | Microsoft Docs"
 author: microsoft
 description: "Full-Text search allows you to save large portions of text - even Microsoft Word documents, or other file formats - into your database and perform complex qu..."

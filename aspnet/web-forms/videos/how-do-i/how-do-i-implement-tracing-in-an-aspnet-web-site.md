@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-implement-tracing-in-an-aspnet-web-site
 title: "[How Do I:]  Implement Tracing in an ASP.NET Web Site? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show you how to implement tracing in an ASP.NET web site to monitor or measure the performance and to diagnose errors. Learn ho..."

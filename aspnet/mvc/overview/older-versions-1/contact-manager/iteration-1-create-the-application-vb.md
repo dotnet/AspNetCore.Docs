@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
 title: "Iteration #1 – Create the Application (VB) | Microsoft Docs"
 author: microsoft
 description: "In the first iteration, we create the Contact Manager in the simplest way possible. We add support for basic database operations: Create, Read, Update, and D..."

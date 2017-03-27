@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience
 title: "ASP.NET MVC Storefront Part 18: Creating An Experience | Microsoft Docs"
 author: robconery
 description: "In this episode I work on pulling all of the technical pieces together to form a coherent 'experience' for the shopper."

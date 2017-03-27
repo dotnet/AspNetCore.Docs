@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-entity-framework-scaffolding-and-migrations
 title: "ASP.NET MVC 4 Entity Framework Scaffolding and Migrations | Microsoft Docs"
 author: rick-anderson
 description: "If you are familiar with ASP.NET MVC 4 controller methods, or have completed the &quot;Helpers, Forms and Validation&quot; Hands-On lab, you should be aware..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/adding-users-to-your-membership-system
 title: "Adding Users to Your Membership System | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner shows you how to add new users to the membership repository."

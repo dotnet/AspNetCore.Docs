@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix
 title: "Create an Edit Data Page in WebMatrix | Microsoft Docs"
 author: rick-anderson
 description: "Part 7 builds on this to show you how you can have a page to edit your database, and see the changes updated automatically."

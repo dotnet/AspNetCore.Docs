@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/error-handling/exception-handling
 title: "Exception Handling in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

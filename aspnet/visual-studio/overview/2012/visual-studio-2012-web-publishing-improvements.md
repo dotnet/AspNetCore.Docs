@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-2012-web-publishing-improvements
 title: "Visual Studio 2012 Web Publishing Improvements | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates the new web publishing features in Visual Studio 2012."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-vb
 title: "Creating a Site-Wide Layout Using Master Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show master page basics. Namely, what are master pages, how does one create a master page, what are content place holders, how does one cr..."

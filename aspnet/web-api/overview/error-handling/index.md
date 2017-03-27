@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/error-handling/index
 title: "Error Handling in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How to handle exceptions in ASP.NET Web API."

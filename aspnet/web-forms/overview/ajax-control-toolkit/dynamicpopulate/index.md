@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/dynamicpopulate/index
 title: "DynamicPopulate | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the DynamicPopulate control, which calls a web service and displays the resulting value in a control on the page."

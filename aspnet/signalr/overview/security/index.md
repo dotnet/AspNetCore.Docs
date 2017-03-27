@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/security/index
 title: "SignalR Security | Microsoft Docs"
 author: rick-anderson
 description: "Understanding and handling security issues in SignalR applications."

@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/advanced/index
 title: "SignalR Advanced Topics | Microsoft Docs"
 author: rick-anderson
 description: "SignalR documentation - advanced topics."

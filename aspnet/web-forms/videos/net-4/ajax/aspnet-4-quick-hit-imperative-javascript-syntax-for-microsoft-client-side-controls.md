@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/ajax/aspnet-4-quick-hit-imperative-javascript-syntax-for-microsoft-client-side-controls
 title: "ASP.NET 4 "Quick Hit" - Imperative JavaScript Syntax for Microsoft Client Side Controls | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn the imperative JavaScript syntax for Microsoft client side controls."

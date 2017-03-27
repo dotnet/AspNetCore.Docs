@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-debugging-capabilities
 title: "Understanding ASP.NET AJAX Debugging Capabilities | Microsoft Docs"
 author: scottcate
 description: "The ability to debug code is a skill that every developer should have in their arsenal regardless of the technology they're using. While many developers are..."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5
 title: "Part 5: Edit Forms and Templating | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 5 covers Edit Forms and Templating."

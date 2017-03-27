@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/data/7-displaying-data-in-a-chart
 title: "Displaying Data in a Chart with ASP.NET Web Pages (Razor) | Microsoft Docs"
 author: microsoft
 description: "This chapter explains how to display data in a chart. In the previous chapters, you learned how to display data manually and in a grid. This chapter explains..."

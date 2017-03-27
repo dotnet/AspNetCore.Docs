@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-build-a-custom-aspnet-ajax-server-control
 title: "[How Do I:] Build a Custom ASP.NET AJAX Server Control? | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create a custom Web server control with ASP.NET AJAX functionality using the AJAX extensions in the Microsoft AJAX Library. This video walks you..."

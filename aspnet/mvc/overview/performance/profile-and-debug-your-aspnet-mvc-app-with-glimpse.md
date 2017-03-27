@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse
 title: "Profile and debug your ASP.NET MVC app with Glimpse | Microsoft Docs"
 author: Rick-Anderson
 description: "Glimpse is a thriving and growing family of open source NuGet packages that provides detailed performance, debugging and diagnostic information for ASP.NET a..."

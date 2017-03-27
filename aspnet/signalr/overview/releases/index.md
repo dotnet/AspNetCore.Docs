@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/releases/index
 title: "SignalR Releases | Microsoft Docs"
 author: rick-anderson
 description: "Information about SignalR releases and how to upgrade from earlier to later releases."

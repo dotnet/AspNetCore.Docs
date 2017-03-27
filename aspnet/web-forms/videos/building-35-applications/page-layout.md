@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/page-layout
 title: "Page Layout | Microsoft Docs"
 author: JoeStagner
 description: "Tables or StyleSheets? Relative Positioning or Absolute? This video will demonstrate the features of Visual Web developer that support the developing with yo..."

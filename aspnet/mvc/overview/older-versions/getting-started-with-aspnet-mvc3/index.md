@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/index
 title: "Getting Started with ASP.NET MVC3 | Microsoft Docs"
 author: rick-anderson
 description: "The basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express."

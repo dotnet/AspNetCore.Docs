@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/api-reference/index
 title: "API Reference | Microsoft Docs"
 author: rick-anderson
 description: "API Reference documentation for ASP.NET Web Pages."

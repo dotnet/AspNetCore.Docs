@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-modalpopup-extender-control
 title: "[How Do I:] Use the ASP.NET AJAX ModalPopup Extender Control? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how to use the ASP.NET AJAX ModalPopup extender control that comes with the ASP.NET AJAX Control Toolkit. In this video the ModalPopup extender is used..."
