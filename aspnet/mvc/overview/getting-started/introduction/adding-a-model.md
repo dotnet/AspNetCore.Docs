@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-a-model
 title: "Adding a Model | Microsoft Docs"
 author: Rick-Anderson
 description: ""

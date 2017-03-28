@@ -1,4 +1,5 @@
 ---
+uid: identity/index
 title: "ASP.NET Identity | Microsoft Docs"
 author: rick-anderson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application
 title: "Maximizing Performance with the Entity Framework 4.0 in an ASP.NET 4 Web Application | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."

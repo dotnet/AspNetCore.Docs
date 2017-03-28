@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/caching-data/caching-data-at-application-startup-cs
 title: "Caching Data at Application Startup (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In any Web application some data will be frequently used and some data will be infrequently used. We can improve the performance of our ASP.NET application b..."

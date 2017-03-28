@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/index
 title: "How Do I | Microsoft Docs"
 author: rick-anderson
 description: "This multi-part video series shows you how to take advantage of new features in ASP.NET 3.5 and Visual Studio 2008."

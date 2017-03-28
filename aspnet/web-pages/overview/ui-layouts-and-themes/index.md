@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/ui-layouts-and-themes/index
 title: "UI, Layouts, and Themes | Microsoft Docs"
 author: rick-anderson
 description: "How to customize the site UI in an ASP.NET Web Pages application."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-vb
 title: "Using the FormView's Templates (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Unlike the DetailsView, the FormView is not composed of fields. Instead, the FormView is rendered using templates. In this tutorial we'll examine using the F..."

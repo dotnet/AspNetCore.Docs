@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-ui/index
 title: "jQuery UI | Microsoft Docs"
 author: rick-anderson
 description: ""

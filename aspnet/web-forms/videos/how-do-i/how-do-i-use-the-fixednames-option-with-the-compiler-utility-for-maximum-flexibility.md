@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-the-fixednames-option-with-the-compiler-utility-for-maximum-flexibility
 title: "[How Do I:] Use the Fixednames Option with the Compiler Utility for Maximum Flexibility | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to use the fixednames option with the aspnet_compiler.exe utility to produce a consistent file names in compilation ou..."

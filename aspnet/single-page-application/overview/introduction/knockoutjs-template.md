@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/introduction/knockoutjs-template
 title: "Single Page Application: KnockoutJS template | Microsoft Docs"
 author: MikeWasson
 description: "Knockout template"

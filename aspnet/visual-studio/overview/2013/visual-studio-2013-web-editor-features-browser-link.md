@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-browser-link
 title: "Visual Studio 2013 Web Editor Features - Browser Link | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates Browser Link in Visual Studio 2013, which allows for two-way communication between Visual Studio and multiple connected browsers..."

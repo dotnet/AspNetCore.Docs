@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-vb
 title: "Creating a Route Constraint (VB) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how you can control how browser requests match routes by creating route constraints with regular expressions."

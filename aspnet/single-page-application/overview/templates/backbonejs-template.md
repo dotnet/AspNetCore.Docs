@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/backbonejs-template
 title: "Backbone Template | Microsoft Docs"
 author: madskristensen
 description: "Backbone.js SPA Template"

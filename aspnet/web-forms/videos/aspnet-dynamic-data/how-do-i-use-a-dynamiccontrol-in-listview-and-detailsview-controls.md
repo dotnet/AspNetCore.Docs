@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls
 title: "How Do I Use a DynamicControl in ListView and DetailsView Controls? | Microsoft Docs"
 author: shanselman
 description: "This video compares the same application written twice, once with Dynamic Data and once without. In the process, you add DynamicControl objects to ListView a..."

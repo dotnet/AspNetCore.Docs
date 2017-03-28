@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-7
 title: "Create the View (UI) | Microsoft Docs"
 author: MikeWasson
 description: ""

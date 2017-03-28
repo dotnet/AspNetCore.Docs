@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-learn-the-tips-and-tricks-of-experts
 title: "[How Do I:] Learn the Tips and Tricks of Experts? | Microsoft Docs"
 author: microsoft
 description: "View tips and tricks including encrypting sensitive information stored in the web.config file, posting content to a different page, simplifying complex URLs..."

@@ -1,4 +1,5 @@
 ---
+uid: web-pages/content-guide
 title: "WebMatrix Content Guide | Microsoft Docs"
 author: rick-anderson
 description: ""

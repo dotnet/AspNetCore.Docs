@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/maintainable-azure-websites-managing-change-and-scale
 title: "Hands on Lab: Maintainable Azure Websites: Managing Change and Scale | Microsoft Docs"
 author: rick-anderson
 description: "Microsoft Azure makes it easy to build and deploy websites to production. But you’re not done when your application is live, you’re just getting started! You..."

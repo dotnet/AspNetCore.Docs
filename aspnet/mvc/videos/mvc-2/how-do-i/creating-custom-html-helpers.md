@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/creating-custom-html-helpers
 title: "Creating Custom HTML Helpers | Microsoft Docs"
 author: StephenWalther
 description: "Create new HTML Helpers to make it easier to generate view content. Stephen Walther demonstrates two simple methods of creating new HTML Helpers."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/index
 title: "Getting Started with ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET Web Forms ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model. A design surface and hund..."

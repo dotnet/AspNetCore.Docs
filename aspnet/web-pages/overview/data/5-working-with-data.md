@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/data/5-working-with-data
 title: "Introduction to Working with a Database in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "This chapter describes how to access data from a database and display it using ASP.NET Web Pages."

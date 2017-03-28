@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-cascading-style-sheets-in-visual-studio-2008
 title: "[How Do I:] Cascading Style Sheets in Visual Studio 2008 | Microsoft Docs"
 author: rick-anderson
 description: "In this video we will review the improved tools for creating external Cascading Style Sheets. CSS are vital to any well designed web site and Visual Studio 2..."

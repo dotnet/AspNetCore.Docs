@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-html5
 title: "Visual Studio 2013 Web Editor Features - HTML5 | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman overviews HTML5 features in the Visual Studio web developer tools."

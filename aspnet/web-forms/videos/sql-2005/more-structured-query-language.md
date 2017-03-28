@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/more-structured-query-language
 title: "More Structured Query Language | Microsoft Docs"
 author: microsoft
 description: "SQL Server beginners will discover more SQL statements like sub-select and learn stored procedures and their counterparts in C# and VB methods."

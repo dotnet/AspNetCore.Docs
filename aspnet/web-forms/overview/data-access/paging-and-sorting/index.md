@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting/index
 title: "Paging and Sorting | Microsoft Docs"
 author: rick-anderson
 description: "In these tutorials you add some initial sorting and paging functionality to data reports."

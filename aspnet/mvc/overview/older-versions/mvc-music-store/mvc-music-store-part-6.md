@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6
 title: "Part 6: Using Data Annotations for Model Validation | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 6 covers Using Data Annotations for Model V..."

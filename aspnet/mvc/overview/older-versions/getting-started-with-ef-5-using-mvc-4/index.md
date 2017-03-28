@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/index
 title: "Getting Started with EF 5 using MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "The basics of using Entity Framework 5 to display and edit data in an ASP.NET MVC 4 application."

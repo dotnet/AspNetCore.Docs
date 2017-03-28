@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-2012-javascript-editor
 title: "Visual Studio 2012 JavaScript Editor | Microsoft Docs"
 author: shanselman
 description: ""

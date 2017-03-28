@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/precompiling-your-website-vb
 title: "Precompiling Your Website (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio offers ASP.NET developers two types of projects: Web Application Projects (WAPs) and Web Site Projects (WSPs). One of the key differences betwe..."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/how-do-i-use-httpverbs-attributes-in-an-mvc-application
 title: "How Do I: Use HttpVerbs Attributes in an MVC Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the HttpVerbs attributes to control access to MVC actions. First, a sample application is created with a default co..."

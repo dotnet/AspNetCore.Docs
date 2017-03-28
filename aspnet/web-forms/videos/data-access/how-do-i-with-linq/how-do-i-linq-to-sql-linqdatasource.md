@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-linqdatasource
 title: "[How Do I:] LINQ to SQL: LinqDataSource | Microsoft Docs"
 author: scottstanfield
 description: "The new asp:LinqDataSource control .NET 3.5 makes binding to UI elements easy. In fact, no code was written or harmed in the making of this video. Query, upd..."

@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw
 title: "ASP.NET and Web Tools 2012.2 Release Notes | Microsoft Docs"
 author: rick-anderson
 description: "Release notes for ASP.NET and Web Tools 2012.2."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-the-ftpwebrequest-class-to-create-an-ftp-connection-to-a-ftp-server
 title: "[How Do I:] Use the FtpWebRequest Class to Create an FTP Connection to a FTP Server | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the FtpWebRequest class to create an FTP connection and transfer a file. First, create a simple .aspx form to selec..."

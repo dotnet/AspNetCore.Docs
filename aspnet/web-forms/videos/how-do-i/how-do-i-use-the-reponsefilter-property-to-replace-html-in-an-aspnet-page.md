@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-the-reponsefilter-property-to-replace-html-in-an-aspnet-page
 title: "[How Do I:] Use the Reponse.Filter Property to Replace HTML in an ASP.NET Page | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the Reponse.Filter property to intercept and alter the HTML being sent to a page. First, a sample page is created w..."

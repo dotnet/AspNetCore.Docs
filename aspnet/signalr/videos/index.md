@@ -1,4 +1,5 @@
 ---
+uid: signalr/videos/index
 title: "ASP.NET SignalR Videos | Microsoft Docs"
 author: rick-anderson
 description: ""

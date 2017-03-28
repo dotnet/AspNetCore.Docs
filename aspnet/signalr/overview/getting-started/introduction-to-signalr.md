@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/getting-started/introduction-to-signalr
 title: "Introduction to SignalR | Microsoft Docs"
 author: pfletcher
 description: "This article describes what SignalR is, and some of the solutions it was designed to create."

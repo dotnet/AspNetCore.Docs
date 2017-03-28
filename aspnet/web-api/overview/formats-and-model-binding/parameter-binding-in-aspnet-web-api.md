@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
 title: "Parameter Binding in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

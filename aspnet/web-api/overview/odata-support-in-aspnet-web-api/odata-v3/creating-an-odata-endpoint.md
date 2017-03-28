@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v3/creating-an-odata-endpoint
 title: "Creating an OData v3 Endpoint with Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "The Open Data Protocol (OData) is a data access protocol for the web. OData provides a uniform way to structure data, query the data, and manipulate the data..."

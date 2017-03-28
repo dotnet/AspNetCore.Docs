@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/visual-studio-2010/index
 title: "General VS 2010 Tips | Microsoft Docs"
 author: rick-anderson
 description: "Features of Visual Studio 2010, including those specifically for working with ASP.NET."

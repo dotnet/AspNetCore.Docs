@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/dynamicpopulate/dynamically-populating-a-control-cs
 title: "Dynamically Populating a Control (C#) | Microsoft Docs"
 author: wenz
 description: "The DynamicPopulate control in the ASP.NET AJAX Control Toolkit calls a web service (or page method) and fills the resulting value into a target control on t..."

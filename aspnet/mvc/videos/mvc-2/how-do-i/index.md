@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/index
 title: "How-Do-I | Microsoft Docs"
 author: rick-anderson
 description: "Videos in this section cover ASP.NET MVC, including how to build 'The Storefront' - an entire e-commerce application from start to finish."

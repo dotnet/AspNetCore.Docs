@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/migrating/index
 title: "Migrating | Microsoft Docs"
 author: rick-anderson
 description: "Migrating to ASP.NET"

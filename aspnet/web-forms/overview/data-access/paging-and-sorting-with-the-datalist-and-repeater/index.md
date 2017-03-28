@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/index
 title: "Paging and Sorting with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to add paging support to the DataList or Repeater control to create a very flexible UI for paging and sorting."

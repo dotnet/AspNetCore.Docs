@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/aspnet-scaffolding-overview
 title: "ASP.NET Scaffolding in Visual Studio 2013 | Microsoft Docs"
 author: tfitzmac
 description: "ASP.NET Scaffolding is a new feature that is included in Visual Studio 2013."

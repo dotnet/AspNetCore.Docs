@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-2-the-repository-pattern
 title: "ASP.NET MVC Storefront Part 2: The Repository Pattern | Microsoft Docs"
 author: robconery
 description: "Rob Conery walks through Repository implementation and writes out the first main set of unit tests. He will also structure up the initial service layer metho..."

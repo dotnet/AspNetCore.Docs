@@ -1,4 +1,5 @@
 ---
+uid: web-api/index
 title: "ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Download ASP.NET MVC 4 and build HTTP services that reach a broad range of clients."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/performance/index
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "This video series covers new ways to optimize Web Forms pages in ASP.NET 4."

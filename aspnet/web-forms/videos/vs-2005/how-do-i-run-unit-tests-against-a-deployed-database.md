@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/how-do-i-run-unit-tests-against-a-deployed-database
 title: "[How Do I:] Run Unit Tests against a Deployed Database? | Microsoft Docs"
 author: pjhacker
 description: "If your ASP.NET application is configured to deploy a database along with the Web site, how can you verify that a valid database instance has been deployed?..."

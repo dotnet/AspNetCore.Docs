@@ -1,4 +1,5 @@
 ---
+uid: mobile/tested-devices
 title: "ASP.NET Mobile Controls Tested Devices | Microsoft Docs"
 author: rick-anderson
 description: "The following devices and browsers have been tested with the Microsoft Mobile Internet Toolkit v1.0 and ASP.NET mobile controls. Microsoft Mobile Internet To..."

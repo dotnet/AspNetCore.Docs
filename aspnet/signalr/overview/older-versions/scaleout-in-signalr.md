@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/scaleout-in-signalr
 title: "Introduction to Scaleout in SignalR 1.x | Microsoft Docs"
 author: MikeWasson
 description: ""

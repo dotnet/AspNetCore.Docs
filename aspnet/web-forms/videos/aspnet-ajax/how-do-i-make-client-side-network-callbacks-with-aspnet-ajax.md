@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-make-client-side-network-callbacks-with-aspnet-ajax
 title: "[How Do I:] Make Client-Side Network Callbacks with ASP.NET AJAX? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we see how Microsoft ASP.NET AJAX helps web developers make network callbacks directly from client-side script code. We see also how an ASP.NET..."

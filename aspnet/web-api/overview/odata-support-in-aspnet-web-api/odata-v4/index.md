@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/index
 title: "Supporting OData v4 in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Use ASP.NET Web API to create endpoints that support OData Version 4."

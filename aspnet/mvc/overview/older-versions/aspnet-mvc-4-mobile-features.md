@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/aspnet-mvc-4-mobile-features
 title: "ASP.NET MVC 4 Mobile Features | Microsoft Docs"
 author: Rick-Anderson
 description: "There is now an MVC 5 version of this tutorial with code samples at Deploy an ASP.NET MVC 5 Mobile Web Application on Azure Web Sites ."

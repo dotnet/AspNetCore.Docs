@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-css
 title: "Visual Studio 2013 Web Editor Features - CSS | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates CSS editing features in Visual Studio 2013 and the Visual Studio Web Essentials extension."

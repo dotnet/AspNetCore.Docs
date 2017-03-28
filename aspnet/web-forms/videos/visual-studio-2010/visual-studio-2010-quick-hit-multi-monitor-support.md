@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-multi-monitor-support
 title: "Visual Studio 2010 "Quick Hit" - Multi-Monitor Support | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn about Visual Studio's support of multiple monitor scenarios to improve your use of screen real-estate, and optimize your overall..."

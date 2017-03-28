@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/using-oauth-providers-with-mvc
 title: "Using OAuth Providers with MVC 4 | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to build an ASP.NET MVC 4 web application that enables users to log in with credentials from an external provider, such as Facebo..."

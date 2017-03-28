@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-mutuallyexclusive-checkbox-extender
 title: "[How Do I:] Use the ASP.NET AJAX MutuallyExclusive Checkbox Extender? | Microsoft Docs"
 author: JoeStagner
 description: "The MutuallyExclusive control from the ASP.NET AJAX Control Toolkit enables the developer to configure a number of check boxes as mutually exclusive, which e..."

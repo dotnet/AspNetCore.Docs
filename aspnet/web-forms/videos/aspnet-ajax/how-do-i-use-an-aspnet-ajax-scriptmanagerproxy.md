@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-use-an-aspnet-ajax-scriptmanagerproxy
 title: "[How Do I:] Use an ASP.NET AJAX ScriptManagerProxy? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how a ScriptManagerProxy enables a content page to pass references to the ScriptManager placed on its ASP.NET master page, allowing each content page t..."

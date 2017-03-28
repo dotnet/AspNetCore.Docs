@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/advanced/aspnet-web-forms-connection-resiliency-and-command-interception
 title: "ASP.NET Web Forms Connection Resiliency and Command Interception | Microsoft Docs"
 author: Erikre
 description: "This tutorial describes how to modify a sample application to support connection resiliency and command interception."

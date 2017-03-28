@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-final-check-out
 title: "Tailspin Spyworks - Final Check Out | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner places the customer's order during the final check out process for the Tailspin Spyworks sample Web Forms application."

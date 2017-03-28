@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6
 title: "Part 6: Creating Product and Order Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit
 title: "[How Do I:] Get Started with the ASP.NET AJAX Control Toolkit? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how to extend your ASP.NET AJAX applications using the ASP.NET AJAX Control Toolkit. This video starts with the very basics, including downloading and..."

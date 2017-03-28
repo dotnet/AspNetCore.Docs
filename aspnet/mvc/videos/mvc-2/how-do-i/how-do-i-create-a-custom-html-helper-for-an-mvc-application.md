@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/how-do-i-create-a-custom-html-helper-for-an-mvc-application
 title: "How Do I: Create a Custom HTML Helper for an MVC Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create a custom HtmlHelper that is not available in the standard set in an MVC application. First, a sample MVC applica..."

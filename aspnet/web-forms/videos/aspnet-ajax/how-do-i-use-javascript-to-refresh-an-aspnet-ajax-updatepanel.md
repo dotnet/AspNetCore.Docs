@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-use-javascript-to-refresh-an-aspnet-ajax-updatepanel
 title: "[How Do I:] Use JavaScript to Refresh an ASP.NET AJAX UpdatePanel? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we learn two different ways of using JavaScript logic to refresh the content of an ASP.NET AJAX UpdatePanel control. The first way is to add a..."

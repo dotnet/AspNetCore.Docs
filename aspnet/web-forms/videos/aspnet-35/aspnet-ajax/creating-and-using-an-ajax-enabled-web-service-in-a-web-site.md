@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/aspnet-ajax/creating-and-using-an-ajax-enabled-web-service-in-a-web-site
 title: "Creating and Using an AJAX-enabled Web Service in a Web Site | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio 2008 lets you create ASP.NET custom Web services that you can access from client scripts. This walkthrough will demonstrate how to create an AJ..."

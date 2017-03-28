@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-cycle/cdnjquerycycle299
 title: "jQuery Cycle 2.99 | Microsoft Docs"
 author: rick-anderson
 description: ""

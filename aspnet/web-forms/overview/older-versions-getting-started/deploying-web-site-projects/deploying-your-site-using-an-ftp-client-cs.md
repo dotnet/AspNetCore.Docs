@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-an-ftp-client-cs
 title: "Deploying Your Site Using an FTP Client (C#) | Microsoft Docs"
 author: rick-anderson
 description: "The simplest way to deploy an ASP.NET application is to manually copy the necessary files from the development environment to the production environment. Thi..."

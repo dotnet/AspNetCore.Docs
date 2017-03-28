@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs
 title: "Configuring a Website that Uses Application Services (C#) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET version 2.0 introduced a series of application services, which are part of the .NET Framework and serve as a suite of building block services that yo..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/master-pages
 title: "Master Pages | Microsoft Docs"
 author: microsoft
 description: "One of the key components to a successful Web site is a consistent look and feel. In ASP.NET 1.x, developers used user controls to replicate common page elem..."

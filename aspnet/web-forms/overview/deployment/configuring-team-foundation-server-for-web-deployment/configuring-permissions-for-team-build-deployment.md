@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment
 title: "Configuring Permissions for Team Build Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to configure permissions to enable your build server to deploy content to web servers and database servers as part of an automated b..."

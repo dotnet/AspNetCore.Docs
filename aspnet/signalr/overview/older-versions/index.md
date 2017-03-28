@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/index
 title: "SignalR Older Versions | Microsoft Docs"
 author: rick-anderson
 description: "Documentation that pertains to earlier versions of SignalR."

@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/11-adding-email-to-your-web-site
 title: "Sending Email from an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This chapter explains how to send an automated email message from a website."

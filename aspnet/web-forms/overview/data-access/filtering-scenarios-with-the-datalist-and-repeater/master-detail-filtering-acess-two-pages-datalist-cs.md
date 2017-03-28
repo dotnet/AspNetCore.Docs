@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-cs
 title: "Master/Detail Filtering Across Two Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we look at how to separate a master/detail report across two pages. In the 'master' page we use a Repeater control to render a list of categ..."

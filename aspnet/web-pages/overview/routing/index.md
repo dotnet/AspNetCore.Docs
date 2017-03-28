@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/routing/index
 title: "Routing | Microsoft Docs"
 author: rick-anderson
 description: "How to customize the URLs used by a Web Pages application."

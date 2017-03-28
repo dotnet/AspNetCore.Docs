@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/understanding-views-view-data-and-html-helpers
 title: "Understanding Views, View Data, and HTML Helpers | Microsoft Docs"
 author: microsoft
 description: "What is an ASP.NET MVC View and how does it differ from a HTML page? In this tutorial, Stephen Walther introduces you to Views and demonstrates how you can t..."

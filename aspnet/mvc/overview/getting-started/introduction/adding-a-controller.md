@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-a-controller
 title: "Adding a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: ""

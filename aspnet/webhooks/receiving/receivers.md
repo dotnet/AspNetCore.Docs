@@ -1,4 +1,5 @@
 ---
+uid: webhooks/receiving/receivers
 title: "ASP.NET WebHooks receivers | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET WebHooks receivers"

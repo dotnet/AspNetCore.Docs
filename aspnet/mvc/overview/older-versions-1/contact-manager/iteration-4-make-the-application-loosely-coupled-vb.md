@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb
 title: "Iteration #4 – Make the application loosely coupled (VB) | Microsoft Docs"
 author: microsoft
 description: "In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For..."

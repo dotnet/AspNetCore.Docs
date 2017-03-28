@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1
 title: "Displaying Data in a Chart (Part 1) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Displaying Data in a Chart tutorial (Part 1)"

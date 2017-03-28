@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-vb
 title: "An Overview of Inserting, Updating, and Deleting Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to map an ObjectDataSource's Insert(), Update(), and Delete() methods to the methods of BLL classes, as well as how to configu..."

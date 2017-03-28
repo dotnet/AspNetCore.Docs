@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/index
 title: "ASP.NET AJAX | Microsoft Docs"
 author: rick-anderson
 description: "Ways to work with ASP.NET AJAX to create highly responsive pages, even if you're not a JavaScript expert."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet
 title: "[Migrating from] Classic ASP to ASP.NET | Microsoft Docs"
 author: microsoft
 description: "Are you planning to migrate from classic ASP to Microsoft ASP.NET 2.0? This webcast series walks you through the important architectural design consideration..."

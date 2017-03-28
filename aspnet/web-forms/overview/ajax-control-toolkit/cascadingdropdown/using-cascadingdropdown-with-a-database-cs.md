@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs
 title: "Using CascadingDropDown with a Database (C#) | Microsoft Docs"
 author: wenz
 description: "The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList control so that changes in one DropDownList loads associated values in anoth..."

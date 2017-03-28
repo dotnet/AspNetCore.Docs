@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/ajax-style-services-with-microsoft-visual-web-developer-2008
 title: "AJAX Style Services with Microsoft Visual Web Developer 2008 | Microsoft Docs"
 author: JoeStagner
 description: "AJAX means different things to different people. This video shows you the basics of writing AJAX style services (and client side consumers) in Visual Web Dev..."

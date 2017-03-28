@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-templates/index
 title: "jQuery Templates | Microsoft Docs"
 author: rick-anderson
 description: ""

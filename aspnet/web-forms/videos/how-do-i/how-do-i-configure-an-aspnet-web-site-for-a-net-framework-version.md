@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-configure-an-aspnet-web-site-for-a-net-framework-version
 title: "[How Do I:] Configure an ASP.NET Web Site for a .NET Framework Version | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to configure an ASP.NET web site to use a specific version of ASP.NET/.NET Framework. First see how to identify what v..."

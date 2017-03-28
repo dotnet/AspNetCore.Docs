@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4
 title: "What's New in ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of the ASP.NET and..."

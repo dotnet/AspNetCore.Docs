@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure
 title: "Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial shows how your code can securely store and access secure information. The most important point is you should never store passwords or other sen..."

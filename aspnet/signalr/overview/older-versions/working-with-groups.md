@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/working-with-groups
 title: "Working with Groups in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to persist group membership information with the Hub API."

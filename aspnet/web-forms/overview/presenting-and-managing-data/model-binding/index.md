@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/presenting-and-managing-data/model-binding/index
 title: "Model Binding and Web Forms in Visual Studio 2013 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with data using Model Binding and Web Forms."

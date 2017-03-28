@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/getting-started/authorization
 title: "ASP.NET Web API, Part 6: Authorization | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"

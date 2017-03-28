@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/aspnet-mvc-controllers-overview-cs
 title: "ASP.NET MVC Controller Overview (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther introduces you to ASP.NET MVC controllers. You learn how to create new controllers and return different types of action res..."

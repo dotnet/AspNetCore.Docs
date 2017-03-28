@@ -1,4 +1,5 @@
 ---
+uid: web-pages/readme/beta3
 title: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme | Microsoft Docs"
 author: rick-anderson
 description: "Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme"

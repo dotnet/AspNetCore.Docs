@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-vb
 title: "Using SQL Cache Dependencies (VB) | Microsoft Docs"
 author: rick-anderson
 description: "The simplest caching strategy is to allow cached data to expire after a specified period of time. But this simple approach means that the cached data maintai..."

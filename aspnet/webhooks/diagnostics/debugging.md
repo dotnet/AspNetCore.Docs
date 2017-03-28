@@ -1,4 +1,5 @@
 ---
+uid: webhooks/diagnostics/debugging
 title: "ASP.NET WebHooks debugging | Microsoft Docs"
 author: rick-anderson
 description: "How to debug ASP.NET WebHooks."

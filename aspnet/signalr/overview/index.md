@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/index
 title: "SignalR Guidance | Microsoft Docs"
 author: rick-anderson
 description: ""

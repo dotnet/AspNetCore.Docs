@@ -1,4 +1,5 @@
 ---
+uid: webhooks/diagnostics/logging
 title: "ASP.NET WebHooks logging | Microsoft Docs"
 author: rick-anderson
 description: "How to do logging in ASP.NET WebHooks."

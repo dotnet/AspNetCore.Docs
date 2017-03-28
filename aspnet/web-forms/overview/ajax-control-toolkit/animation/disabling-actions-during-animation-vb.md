@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/disabling-actions-during-animation-vb
 title: "Disabling Actions during Animation (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. It also supports action..."

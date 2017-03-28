@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-server-environments-for-web-deployment
 title: "Configuring Server Environments for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This tutorial will show you how to set up server environments to support one-click, or automated, website deployment and publishing in various different scen..."

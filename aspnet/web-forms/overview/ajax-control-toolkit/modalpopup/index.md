@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/modalpopup/index
 title: "ModalPopup | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the ModalPopup control, which lets you create the equivalent of a modal dialog box."

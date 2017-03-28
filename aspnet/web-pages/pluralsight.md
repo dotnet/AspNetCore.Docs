@@ -1,4 +1,5 @@
 ---
+uid: web-pages/pluralsight
 title: "WebMatrix and Web Pages Video Training from Pluralsight | Microsoft Docs"
 author: rick-anderson
 description: "WebMatrix &amp; Web Pages Training from Pluralsight This in-depth course will get you up and running with WebMatrix and ASP.NET Web Pages. It covers everythi..."

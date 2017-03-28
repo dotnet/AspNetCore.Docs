@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-3/mvc-3-razor-view-engine
 title: "MVC 3 - Razor View Engine | Microsoft Docs"
 author: jongalloway
 description: "In this video you will learn the basics of the new Razor view engine included in ASP.NET MVC 3."

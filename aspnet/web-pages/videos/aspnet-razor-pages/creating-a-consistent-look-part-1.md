@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/creating-a-consistent-look-part-1
 title: "Creating a Consistent Look (Part 1) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Creating a Consistent Look tutorial (part 1)"

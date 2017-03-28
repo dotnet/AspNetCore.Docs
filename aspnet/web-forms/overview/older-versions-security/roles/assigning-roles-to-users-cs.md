@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/roles/assigning-roles-to-users-cs
 title: "Assigning Roles to Users (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build two ASP.NET pages to assist with managing what users belong to what roles. The first page will include facilities to see what..."

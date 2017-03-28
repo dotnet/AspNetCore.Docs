@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/accessing-your-models-data-from-a-controller
 title: "Accessing Your Model's Data from a Controller | Microsoft Docs"
 author: Rick-Anderson
 description: ""

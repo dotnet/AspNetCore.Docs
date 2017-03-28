@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/database-driven-site-maps/index
 title: "Database-Driven Site Maps | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial explains how to build a site map dynamically based on information in the database."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-master-pages-and-site-navigation
 title: "[How Do I:] Use Master Pages and Site Navigation? | Microsoft Docs"
 author: microsoft
 description: "Create a web site with a consistent layout and design across all its pages using ASP.NET 2.0 MasterPages. See how easy it is to add navigation to a web site..."

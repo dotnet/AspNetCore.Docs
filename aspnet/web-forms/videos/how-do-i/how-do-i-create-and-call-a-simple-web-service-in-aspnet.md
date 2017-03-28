@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-and-call-a-simple-web-service-in-aspnet
 title: "[How Do I:] Create and Call a Simple Web Service in ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create a web service in ASP.NET and then call the service from another ASP.NET web site. First, learn how to create..."

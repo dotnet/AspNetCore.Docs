@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/scenario-configuring-a-production-environment-for-web-deployment
 title: "Scenario: Configuring a Production Environment for Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes a typical web deployment scenario for a production environment and explains the tasks you need to complete in order to set up a similar..."

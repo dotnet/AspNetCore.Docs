@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance
 title: "Security Guidance for ASP.NET Web API 2 OData | Microsoft Docs"
 author: MikeWasson
 description: ""

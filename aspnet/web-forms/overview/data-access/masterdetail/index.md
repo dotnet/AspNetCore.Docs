@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/masterdetail/index
 title: "Master/Detail | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to display master records in a drop-down list and details in a GridView control."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/ajax/aspnet-4-quick-hit-ajax-data-templates
 title: "ASP.NET 4 "Quick Hit" - AJAX Data Templates | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn how to use client templates to display database records with the DataView control."

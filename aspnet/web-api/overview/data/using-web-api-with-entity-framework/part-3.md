@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-3
 title: "Use Code First Migrations to Seed the Database | Microsoft Docs"
 author: MikeWasson
 description: ""

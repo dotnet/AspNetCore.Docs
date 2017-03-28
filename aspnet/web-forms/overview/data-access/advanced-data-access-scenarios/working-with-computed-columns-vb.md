@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/working-with-computed-columns-vb
 title: "Working with Computed Columns (VB) | Microsoft Docs"
 author: rick-anderson
 description: "When creating a database table, Microsoft SQL Server allows you to define a computed column whose value is calculated from an expression that usually referen..."

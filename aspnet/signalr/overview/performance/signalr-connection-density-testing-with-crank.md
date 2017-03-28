@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/performance/signalr-connection-density-testing-with-crank
 title: "SignalR Connection Density Testing with Crank | Microsoft Docs"
 author: tfitzmac
 description: "SignalR Connection Density Testing with Crank"

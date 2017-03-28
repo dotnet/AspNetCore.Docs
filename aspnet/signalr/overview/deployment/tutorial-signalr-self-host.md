@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/deployment/tutorial-signalr-self-host
 title: "Tutorial: SignalR Self-Host | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to create a self-hosted SignalR 2 server, and how to connect to it with a JavaScript client. Software versions used in the tutorial V..."

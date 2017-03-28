@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/aspnet-mvc-how-10-minute-technical-video-for-developers
 title: "ASP.NET MVC: How? 10 minute technical video for developers | Microsoft Docs"
 author: robconery
 description: "A short overview of what it's like to work with ASP.NET MVC."

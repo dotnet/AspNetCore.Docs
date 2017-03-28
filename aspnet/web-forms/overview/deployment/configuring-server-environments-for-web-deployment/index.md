@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/index
 title: "ASP.NET 4 - Enterprise Deployment Series 2 Configuring Servers | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show you how to set up server environments to support one-click, or automated, website deployment and publishing in various different scen..."

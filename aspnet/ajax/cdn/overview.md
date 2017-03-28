@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/overview
 title: "Microsoft Ajax Content Delivery Network | Microsoft Docs"
 author: rick-anderson
 description: ""

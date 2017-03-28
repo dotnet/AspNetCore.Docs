@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-6
 title: "Create the JavaScript Client | Microsoft Docs"
 author: MikeWasson
 description: ""

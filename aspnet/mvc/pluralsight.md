@@ -1,4 +1,5 @@
 ---
+uid: mvc/pluralsight
 title: "MVC Video Training from Pluralsight | Microsoft Docs"
 author: rick-anderson
 description: "MVC Video Training from Pluralsight This free video training will get you up and running with ASP.NET MVC. It covers everything from setting up a development..."

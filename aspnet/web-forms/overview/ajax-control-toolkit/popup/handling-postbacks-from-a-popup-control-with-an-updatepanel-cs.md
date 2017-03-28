@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs
 title: "Handling Postbacks from A Popup Control With an UpdatePanel (C#) | Microsoft Docs"
 author: wenz
 description: "The PopupControl extender in the AJAX Control Toolkit offers an easy way to trigger a popup when any other control is activated. Special care has to be taken..."

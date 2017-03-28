@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule
 title: "[How Do I:] Handle Application Events using an HttpModule? | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to create an HttpModule that handles application events during the processing of a page request. The sample module will write information to a log..."

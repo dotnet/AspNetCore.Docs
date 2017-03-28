@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/create-a-web-interface-in-webmatrix
 title: "Create a Web Interface in WebMatrix | Microsoft Docs"
 author: rick-anderson
 description: "Part 6 shows you how to build a page that allows your users to add data to your database, so your site can render it."

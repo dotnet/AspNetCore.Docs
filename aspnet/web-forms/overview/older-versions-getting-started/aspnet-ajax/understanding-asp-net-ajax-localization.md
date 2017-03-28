@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-localization
 title: "Understanding ASP.NET AJAX Localization | Microsoft Docs"
 author: scottcate
 description: "Localization is the process of designing and integrating support for a specific language and culture into an application or an application component. The Mic..."

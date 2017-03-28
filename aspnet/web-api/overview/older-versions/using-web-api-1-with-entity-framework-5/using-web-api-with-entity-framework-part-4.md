@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-4
 title: "Part 4: Adding an Admin View | Microsoft Docs"
 author: MikeWasson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up
 title: "NerdDinner Wrap Up | Microsoft Docs"
 author: microsoft
 description: "This is the conclusion of the NerdDinner tutorial, and provides you with information on how to learn more."

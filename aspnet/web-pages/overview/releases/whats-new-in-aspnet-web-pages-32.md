@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 title: "What's New in ASP.NET Web Pages 3.2 | Microsoft Docs"
 author: microsoft
 description: ""

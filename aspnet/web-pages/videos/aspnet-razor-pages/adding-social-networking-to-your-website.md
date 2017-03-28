@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/adding-social-networking-to-your-website
 title: "Adding Social Networking to Your Website | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Adding Social Networking to Your Website tutorial"

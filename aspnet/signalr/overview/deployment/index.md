@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/deployment/index
 title: "SignalR Deployment and Hosting | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy and host SignalR applications."

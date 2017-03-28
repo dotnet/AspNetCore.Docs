@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-a-dropdownlist-vb
 title: "Master/Detail Filtering With a DropDownList (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to display the master records in a DropDownList control and the details of the selected list item in a GridView."

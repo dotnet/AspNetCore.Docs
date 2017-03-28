@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-validation-to-the-model
 title: "Adding Validation to the Model (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "Creating a Controller"

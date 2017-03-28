@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/data-controls/the-datapager-control
 title: "The DataPager Control | Microsoft Docs"
 author: JoeStagner
 description: "Generally the DataPager control is used with the ListView control. The ListView control is data driven. First create a ListView control and provide it some d..."

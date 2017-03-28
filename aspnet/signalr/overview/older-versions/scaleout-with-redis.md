@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/scaleout-with-redis
 title: "SignalR Scaleout with Redis (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""

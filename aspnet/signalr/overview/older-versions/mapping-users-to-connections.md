@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/mapping-users-to-connections
 title: "Mapping SignalR Users to Connections in SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This topic shows how to retain information about users and their connections."

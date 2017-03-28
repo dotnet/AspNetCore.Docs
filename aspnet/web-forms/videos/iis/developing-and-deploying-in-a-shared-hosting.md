@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/developing-and-deploying-in-a-shared-hosting
 title: "Developing and Deploying In a Shared Hosting | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces developing ASP.NET applications in a shared hosting environment by demonstrating &quot;Live Editing&quot; and &quot;Remote Publication&..."

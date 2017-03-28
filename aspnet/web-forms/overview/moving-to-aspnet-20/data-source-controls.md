@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/data-source-controls
 title: "Data Source Controls | Microsoft Docs"
 author: microsoft
 description: "The DataGrid control in ASP.NET 1.x marked a great improvement in data access in Web applications. However, it wasn’t as user-friendly as it could have been...."

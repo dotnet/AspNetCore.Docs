@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-4/aspnet-mvc-4
 title: "ASP.NET MVC 4 | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates the new features in ASP.NET MVC 4."

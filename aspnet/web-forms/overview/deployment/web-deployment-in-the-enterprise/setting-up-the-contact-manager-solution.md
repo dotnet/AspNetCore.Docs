@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-the-contact-manager-solution
 title: "Setting Up the Contact Manager Solution | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to download and configure the Contact Manager solution to run locally on a developer workstation."

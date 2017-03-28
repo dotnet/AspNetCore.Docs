@@ -1,4 +1,5 @@
 ---
+uid: whitepapers/mvc3-release-notes
 title: "ASP.NET MVC 3 | Microsoft Docs"
 author: rick-anderson
 description: ""

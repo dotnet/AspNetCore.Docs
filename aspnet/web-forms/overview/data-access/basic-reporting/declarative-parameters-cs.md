@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/basic-reporting/declarative-parameters-cs
 title: "Declarative Parameters (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll illustrate how to use a parameter set to a hard-coded value to select the data to display in a DetailsView control."

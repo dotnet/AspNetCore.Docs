@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-datatables/cdnjquerydatatables182
 title: "jQuery DataTables 1.8.2 | Microsoft Docs"
 author: rick-anderson
 description: ""

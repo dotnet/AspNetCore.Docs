@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/more-about-column-data-types-and-other-properties
 title: "More about Column Data Types and Other Properties | Microsoft Docs"
 author: microsoft
 description: "SQL Server beginners will explore data integrity, learn which data types to use for what, and avoid common data type pitfalls."

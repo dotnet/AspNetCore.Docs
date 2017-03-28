@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-vnext-videos-page-inspector-introduction
 title: "Visual Studio vNext Videos: Page Inspector - Introduction | Microsoft Docs"
 author: gabosom
 description: "In this video, Jorge Gabuardi Gonzalez introduces the Page Inspector in Visual Studio vNext"

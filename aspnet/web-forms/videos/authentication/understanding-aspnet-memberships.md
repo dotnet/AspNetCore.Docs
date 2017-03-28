@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/understanding-aspnet-memberships
 title: "Understanding ASP.NET Memberships | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner looks at working with the built-in providers, available to ASP.NET developers, for membership. For additional information about thi..."

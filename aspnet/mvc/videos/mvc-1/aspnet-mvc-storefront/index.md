@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/index
 title: "ASP.NET MVC Storefront | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC Storefront Starter Kit"

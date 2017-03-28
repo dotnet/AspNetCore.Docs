@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/migrating/interop-between-php-and-the-windows-platform
 title: "Interop between PHP and the Windows Platform | Microsoft Docs"
 author: microsoft
 description: "In this webcast, you will learn about building and running PHP applications on the Microsoft Windows Server operating systems."

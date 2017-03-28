@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/accordion/databinding-to-an-accordion-cs
 title: "Databinding to an Accordion (C#) | Microsoft Docs"
 author: wenz
 description: "The Accordion control in the AJAX Control Toolkit provides multiple panes and allows the user to display one of them at a time. Panels are usually declared w..."

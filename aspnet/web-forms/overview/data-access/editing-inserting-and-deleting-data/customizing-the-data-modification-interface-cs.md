@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs
 title: "Customizing the Data Modification Interface (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to customize the interface of an editable GridView, by replacing the standard TextBox and CheckBox controls with alternati..."

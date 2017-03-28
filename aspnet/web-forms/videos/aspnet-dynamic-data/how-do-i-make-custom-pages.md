@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/how-do-i-make-custom-pages
 title: "How Do I Make Custom Pages? | Microsoft Docs"
 author: shanselman
 description: "In this video, you learn how to make a custom page for some tables, while other pages use standard functionality."

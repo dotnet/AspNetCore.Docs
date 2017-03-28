@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-event-handlers-in-aspnet-web-pages-and-controls
 title: "[How Do I:] Event Handlers in ASP.NET Web Pages and Controls | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create event handlers for ASP.NET web pages and web server controls. First, learn how to create page level events f..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/adonet-data-services/data-access-layers-in-aspnet-applications
 title: "Data Access Layers in ASP.NET Applications | Microsoft Docs"
 author: JoeStagner
 description: "In this video, part 1 of 3, Joe Stagner creates a data access layer using a typed data set for a simple ASP.NET application. For additional information about..."

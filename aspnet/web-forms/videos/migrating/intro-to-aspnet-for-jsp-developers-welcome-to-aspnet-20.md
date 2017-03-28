@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20
 title: "Intro to ASP.NET for JSP Developers: Welcome to ASP.NET 2.0 | Microsoft Docs"
 author: microsoft
 description: "This session focuses on the basic background necessary to understand ASP.NET and how ASP.NET integrates with the .NET Framework and Microsoft IIS."

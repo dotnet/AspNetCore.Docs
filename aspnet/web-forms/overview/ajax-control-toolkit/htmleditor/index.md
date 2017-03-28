@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/htmleditor/index
 title: "HTMLEditor | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the HTMLEditor control, which provides a rich editor and WYSIWYG or source editing of HTML content."

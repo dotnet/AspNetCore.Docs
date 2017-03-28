@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-filteredtextbox-extender
 title: "[How Do I:] Use the ASP.NET AJAX FilteredTextbox Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how the handy ASP.NET AJAX FilteredTextbox extender allows the developer to define which characters the user may enter in a text box control."

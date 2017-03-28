@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/music-store/index
 title: "Music Store | Microsoft Docs"
 author: rick-anderson
 description: "Build the ASP.NET MVC Music Store sample application"

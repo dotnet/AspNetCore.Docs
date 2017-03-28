@@ -1,4 +1,5 @@
 ---
+uid: webhooks/diagnostics/index
 title: "ASP.NET WebHooks Diagnostics | Microsoft Docs"
 author: rick-anderson
 description: "Articles about ASP.NET WebHooks Diagnostics"

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3
 title: "Part 3: Views and ViewModels | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 3 covers Views and ViewModels."

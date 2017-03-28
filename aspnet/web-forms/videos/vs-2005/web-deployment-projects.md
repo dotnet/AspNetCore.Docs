@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/web-deployment-projects
 title: "Web Deployment Projects | Microsoft Docs"
 author: BradleyBartz
 description: "Bradley Bartz and Richard Ersek show how the Web Deployment Projects provide additional functionality for building and deploying web site applications create..."

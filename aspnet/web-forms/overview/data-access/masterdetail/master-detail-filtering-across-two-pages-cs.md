@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-across-two-pages-cs
 title: "Master/Detail Filtering Across Two Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll implement this pattern by using a GridView to list the suppliers in the database. Each supplier row in the GridView will contain a Vie..."

@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/create-a-delete-data-page-in-webmatrix
 title: "Create a Delete Data Page in WebMatrix | Microsoft Docs"
 author: rick-anderson
 description: "Part 8 finishes off the application by showing you how to create a delete page for your data."

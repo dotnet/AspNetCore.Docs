@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/using-a-singleton-in-an-odata-endpoint-in-web-api-22
 title: "Create a Singleton in OData v4 Using Web API 2.2 | Microsoft Docs"
 author: rick-anderson
 description: "This topic shows how to define a singleton in an OData endpoint in Web API 2.2."

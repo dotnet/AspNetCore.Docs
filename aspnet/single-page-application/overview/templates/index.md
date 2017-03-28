@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/index
 title: "Templates | Microsoft Docs"
 author: rick-anderson
 description: "Introduction to using Single Page Application templates"

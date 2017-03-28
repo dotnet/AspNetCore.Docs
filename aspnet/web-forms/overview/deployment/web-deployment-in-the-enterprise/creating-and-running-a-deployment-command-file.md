@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file
 title: "Creating and Running a Deployment Command File | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to build a command file that will let you run a deployment using Microsoft Build Engine (MSBuild) project files as a single-step, re..."

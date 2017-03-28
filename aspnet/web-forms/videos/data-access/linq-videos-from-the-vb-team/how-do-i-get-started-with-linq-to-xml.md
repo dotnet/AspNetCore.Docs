@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-get-started-with-linq-to-xml
 title: "[How Do I:] Get Started with LINQ to XML? | Microsoft Docs"
 author: bethmassi
 description: "Visual Basic developers will learn how to work with XML in Visual Basic using XML literals, embedded expressions and XML axis properties to create, query and..."

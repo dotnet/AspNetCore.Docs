@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/migrations/index
 title: "Migrating to ASP.NET Identity | Microsoft Docs"
 author: rick-anderson
 description: "Migration to ASP.NET Identity from other membership providers"
