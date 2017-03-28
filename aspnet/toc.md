@@ -980,7 +980,7 @@
 
 
 
-# [MVC](mvc/index.md)
+# MVC
 ## [Guidance](mvc/overview/index.md)
 ### [Getting Started](mvc/overview/getting-started/index.md)
 #### [ Getting Started with ASP.NET MVC 5 ](mvc/overview/getting-started/introduction/index.md)
