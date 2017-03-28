@@ -63,7 +63,7 @@ This section explains the minimum changes required to set up an existing ASP.NET
 
   ![Console window create and start example](windows-service/_static/create-start.png)
 
-  When these commands finish, you can browse to same path as when you run as a console app (by default, `http://localhost:5000`)
+  When these commands finish, you can browse to the same path as when you run as a console app (by default, `http://localhost:5000`)
 
   ![Running in a service](windows-service/_static/running-in-service.png)
 
