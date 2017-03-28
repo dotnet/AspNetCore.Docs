@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/getting-started/aspnet-web-api
 title: "ASP.NET Web API | Microsoft Docs"
 author: shanselman
 description: "Debugging"

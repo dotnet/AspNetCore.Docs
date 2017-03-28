@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/updating-data
 title: "Introducing ASP.NET Web Pages - Updating Database Data | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to update (change) an existing database entry when you use ASP.NET Web Pages (Razor). It assumes you have completed the series th..."

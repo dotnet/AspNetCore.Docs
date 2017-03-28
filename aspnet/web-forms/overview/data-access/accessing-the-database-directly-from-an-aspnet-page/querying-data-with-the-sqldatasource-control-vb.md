@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb
 title: "Querying Data with the SqlDataSource Control (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In the preceding tutorials we used the ObjectDataSource control to fully separate the presentation layer from the Data Access layer. Starting with this tutor..."

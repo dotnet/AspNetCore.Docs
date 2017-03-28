@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/numericupdown/index
 title: "NumericUpDown | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the NumericUpDown control, which lets users select a value using up and down arrows."

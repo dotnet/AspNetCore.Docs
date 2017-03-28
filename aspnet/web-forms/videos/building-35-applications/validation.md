@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/validation
 title: "Validation | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe will demonstrate the use of the FormValidation controls in ASP.NET Using Microsoft Visual Web Developer."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb
 title: "Creating a Custom AJAX Control Toolkit Control Extender (VB) | Microsoft Docs"
 author: microsoft
 description: "Custom Extenders enable you to customize and extend the capabilities of ASP.NET controls without having to create new classes."

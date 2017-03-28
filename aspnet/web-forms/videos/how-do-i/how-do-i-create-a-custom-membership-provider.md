@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-a-custom-membership-provider
 title: "[How Do I:] Create a Custom Membership Provider? | Microsoft Docs"
 author: rick-anderson
 description: "A Membership Provider allows a web application to store and retrieve membership data for a user, and the standard ASP.NET Membership Provider uses pre-define..."

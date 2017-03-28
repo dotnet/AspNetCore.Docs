@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-send-email-asynchronously-with-aspnet
 title: "[How Do I:] Send Email Asynchronously with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "In this video, Chris Pels shows how to use the System.Net.Mail classes in ASP.NET to send an asynchronous email message. First, see how to configure a web si..."

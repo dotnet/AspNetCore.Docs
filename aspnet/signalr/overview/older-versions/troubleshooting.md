@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/troubleshooting
 title: "SignalR Troubleshooting (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This article describes common issues with developing SignalR applications."

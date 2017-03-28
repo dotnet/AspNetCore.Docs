@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-templates/cdnjquerytemplatesbeta1
 title: "jQuery Templates Beta 1 | Microsoft Docs"
 author: rick-anderson
 description: ""

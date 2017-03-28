@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui
 title: "Adding a New Category to the DropDownList using jQuery UI | Microsoft Docs"
 author: Rick-Anderson
 description: ""

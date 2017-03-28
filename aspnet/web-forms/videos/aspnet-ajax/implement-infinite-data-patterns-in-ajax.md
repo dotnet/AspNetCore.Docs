@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/implement-infinite-data-patterns-in-ajax
 title: "Implement Infinite Data Patterns in AJAX | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will show you how to implement what I refer to as the infinite data pattern for AJAX."

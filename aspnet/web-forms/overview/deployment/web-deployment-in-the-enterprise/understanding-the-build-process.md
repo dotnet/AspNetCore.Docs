@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process
 title: "Understanding the Build Process | Microsoft Docs"
 author: jrjlee
 description: "This topic provides a walkthrough of an enterprise-scale build and deployment process. The approach described in this topic uses custom Microsoft Build Engin..."

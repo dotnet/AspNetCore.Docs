@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering
 title: "Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 3: Sorting and Filtering | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series builds on the Contoso University web application that is created by the Getting Started with the Entity Framework 4.0 tutorial series. I..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/connecting-your-web-application-to-sql-server-2005-express-edition
 title: "Connecting your Web Application to SQL Server 2005 Express Edition | Microsoft Docs"
 author: microsoft
 description: "SQL Server beginners will walkthrough the entire workflow of creating a database driven Web application and use visual tools to quickly create an administrat..."

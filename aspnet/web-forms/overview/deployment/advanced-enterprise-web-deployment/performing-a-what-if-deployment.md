@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/performing-a-what-if-deployment
 title: "Performing a "What If" Deployment | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to perform 'what if' (or simulated) deployments using the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) and V..."

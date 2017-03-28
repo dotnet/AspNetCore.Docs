@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-cycle/index
 title: "jQuery Cycle | Microsoft Docs"
 author: rick-anderson
 description: ""

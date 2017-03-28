@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/dropshadow/index
 title: "DropShadow | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the DropShadow control, which draws a drop shadow behind a panel."

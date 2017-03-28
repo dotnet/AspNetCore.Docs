@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-7
 title: "Part 7: Creating the Main Page | Microsoft Docs"
 author: MikeWasson
 description: ""

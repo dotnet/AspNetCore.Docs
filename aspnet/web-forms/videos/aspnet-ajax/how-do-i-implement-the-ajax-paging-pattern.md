@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-paging-pattern
 title: "[How Do I:] Implement the AJAX Paging Pattern? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we see how to use ASP.NET AJAX to implement the paging pattern, which enables the ASP.NET application to present a large amount of data as bein..."

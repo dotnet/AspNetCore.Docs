@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/masterdetail/master-detail-filtering-with-two-dropdownlists-vb
 title: "Master/Detail Filtering With Two DropDownLists (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial expands the master/detail relationship to add a third layer, using two DropDownList controls to select the desired parent and grandparent recor..."

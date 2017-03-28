@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-2
 title: "Add Models and Controllers | Microsoft Docs"
 author: MikeWasson
 description: ""

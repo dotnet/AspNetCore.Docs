@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/index
 title: "Animation | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to create animations using the Animation control and animation framework."

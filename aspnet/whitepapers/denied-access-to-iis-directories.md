@@ -1,4 +1,5 @@
 ---
+uid: whitepapers/denied-access-to-iis-directories
 title: "ASP.NET Denied Access to IIS Directories | Microsoft Docs"
 author: rick-anderson
 description: "This whitepaper describes what you must do if a request to your ASP.NET application returns the error, “Denied Access to DirectoryName directory. Failed to s..."

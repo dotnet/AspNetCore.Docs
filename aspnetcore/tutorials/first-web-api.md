@@ -12,6 +12,8 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-web-api
 ---
+<!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
+
 # Building Your First Web API with ASP.NET Core MVC and Visual Studio
 
 By [Mike Wasson](https://github.com/mikewasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -34,8 +36,8 @@ Here is the API that you’ll create:
 |GET /api/todo  | Get all to-do items | None | Array of to-do items|
 |GET /api/todo/{id}  | Get an item by ID | None | To-do item|
 |POST /api/todo | Add a new item | To-do item  | To-do item |
-|PUT /api/todo/{id} | Update an existing item &nbsp;  | To-do item |
-|DELETE /api/todo/{id}  &nbsp;  &nbsp; | Delete an item &nbsp;  &nbsp;  | None. No request body-  | None|
+|PUT /api/todo/{id} | Update an existing item &nbsp;  | To-do item |  None |
+|DELETE /api/todo/{id}  &nbsp;  &nbsp; | Delete an item &nbsp;  &nbsp;  | None  | None|
      
 <br>     
     
@@ -69,7 +71,7 @@ Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef
 
 Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add the highlighted `PackageReference`:
 
-[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=1&range=14-15)]
+[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
 ### Add a model class
 
@@ -119,11 +121,11 @@ By defining a repository interface, we can decouple the repository class from th
 
 This approach makes it easier to unit test your controllers. Unit tests should inject a mock or stub version of `ITodoRepository`. That way, the test narrowly targets the controller logic and not the data access layer.
 
-In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. 
+In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. The code below also registers the in-memory database.
 
 In the `ConfigureServices` method, add the highlighted code:
 
-[!code-csharp[Main](first-web-api/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=11)]
+[!code-csharp[Main](first-web-api/sample/TodoApi/Startup.cs?name=snippet_AddSingleton&highlight=1,2,5,9)]
 
 ## Add a controller
 
@@ -170,7 +172,7 @@ The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each me
 
 * Take the template string in the controller’s route attribute,  `[Route("api/[controller]")]`
 * Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is not case sensitive.
-* If the `[HttpGet]` attribute has a template string, append that to the path. This sample doesn't use a template string.
+* If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. See [Attribute routing with Http[Verb] attributes](https://review.docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing#attribute-routing-with-httpverb-attributes) for more information.
 
 In the `GetById` method:
 
@@ -256,14 +258,8 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 ## Next steps
 
-* To learn about creating a backend for a native mobile app, see [Creating Backend Services for Native Mobile Applications](xref:mobile/native-mobile-backend).
-
 * [Routing to Controller Actions](xref:mvc/controllers/routing)
-
 * For information about deploying your API, see [Publishing and Deployment](../publishing/index.md).
-
 * [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample)
-
 * [Postman](https://www.getpostman.com/)
-
 * [Fiddler](http://www.fiddler2.com/fiddler2/)

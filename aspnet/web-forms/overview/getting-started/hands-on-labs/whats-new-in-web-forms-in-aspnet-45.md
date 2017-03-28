@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45
 title: "What's New in Web Forms in ASP.NET 4.5 | Microsoft Docs"
 author: rick-anderson
 description: "The new version of ASP.NET Web Forms introduces a number of improvements focused on improving user experience when working with data. In previous versions of..."

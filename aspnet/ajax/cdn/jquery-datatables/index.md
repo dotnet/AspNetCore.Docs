@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-datatables/index
 title: "jQuery DataTables | Microsoft Docs"
 author: rick-anderson
 description: ""

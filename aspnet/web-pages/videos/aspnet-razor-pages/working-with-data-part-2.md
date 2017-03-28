@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/working-with-data-part-2
 title: "Working with Data (Part 2) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Data tutorial (Part 2)"

@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-4/using-page-inspector-in-aspnet-mvc
 title: "Using Page Inspector in ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "The videos explores the usage of Page Inspector in ASP.NET MVC web applications. Read the tutorial"

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005
 title: "[How Do I:] Debug ASP.NET AJAX Applications Using Visual Studio 2005? | Microsoft Docs"
 author: scottgolightly
 description: "In this video we learn how to use Visual Studio 2005 to debug ASP.NET AJAX applications. We are shown how the ScriptManager is used to access the JavaScript..."

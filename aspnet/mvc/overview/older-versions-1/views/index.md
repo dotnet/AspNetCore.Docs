@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/views/index
 title: "ASP.NET MVC Views | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials provides a brief introduction to ASP.NET MVC views, view data, and HTML helpers."

@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/performance/signalr-performance
 title: "SignalR Performance | Microsoft Docs"
 author: pfletcher
 description: "SignalR Performance"

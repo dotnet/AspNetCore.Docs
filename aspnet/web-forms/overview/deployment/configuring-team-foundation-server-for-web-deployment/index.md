@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/index
 title: "ASP.NET 4 - Enterprise Deployment Series 3 Configuring TFS | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show you how to configure Team Foundation Server (TFS) 2010 to build solutions and deploy web content to various target environments."

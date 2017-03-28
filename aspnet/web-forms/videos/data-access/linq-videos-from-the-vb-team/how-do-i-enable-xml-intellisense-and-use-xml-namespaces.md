@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-enable-xml-intellisense-and-use-xml-namespaces
 title: "[How Do I:] Enable XML IntelliSense and Use XML Namespaces? | Microsoft Docs"
 author: bethmassi
 description: "Visual Basic developers will learn how to enable XML IntelliSense using schemas and how XML namespaces are used when querying and creating XML documents."

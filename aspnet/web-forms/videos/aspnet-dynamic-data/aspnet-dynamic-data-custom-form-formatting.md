@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/aspnet-dynamic-data-custom-form-formatting
 title: "ASP.NET Dynamic Data Custom Form Formatting | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will gain some insight on how you can configure the visual aesthetics of a Dynamic Data application down to the very specifics of each fiel..."

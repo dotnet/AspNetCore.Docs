@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-get-started-with-linq
 title: "[How Do I:] Get Started with LINQ? | Microsoft Docs"
 author: bethmassi
 description: "Visual Basic programmers will learn how to write simple LINQ queries over objects by navigating files on the file system."

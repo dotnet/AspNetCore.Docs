@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/asp-forms-login-relocation
 title: "ASP Forms Login Relocation | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner uses the previous code example to continue customizing the ASP.NET authentication by relocating and renaming the login functionality of the ASP.N..."

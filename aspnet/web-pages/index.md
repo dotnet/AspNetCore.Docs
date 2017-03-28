@@ -1,4 +1,5 @@
 ---
+uid: web-pages/index
 title: "ASP.NET Web Pages | Microsoft Docs"
 author: rick-anderson
 description: "Download WebMatrix & learn how to quickly build web pages in a lightweight way to combine server code with HTML."

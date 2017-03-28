@@ -31,7 +31,7 @@ Run the `dotnet new` command to create a new web application, passing the `mvc` 
 dotnet new mvc
 ```
 
-When the CLI command completes; the following output and files are produced.
+If you get an error running `dotnet new mvc`, install the latest [.NET Core](https://microsoft.com/net/core). When the CLI command completes; the following output and files are produced.
 
 ```console
 Content generation time: 79.6691 ms

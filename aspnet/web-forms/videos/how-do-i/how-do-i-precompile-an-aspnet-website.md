@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-precompile-an-aspnet-website
 title: "[How Do I:] Precompile an ASP.NET Website | Microsoft Docs"
 author: rick-anderson
 description: "Chris Pels shows how to precompile an ASP.NET website, which increases first-run performance and strengthens application security."

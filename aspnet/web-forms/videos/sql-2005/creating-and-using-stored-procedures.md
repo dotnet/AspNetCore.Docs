@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/creating-and-using-stored-procedures
 title: "Creating and Using Stored Procedures | Microsoft Docs"
 author: microsoft
 description: "This video expands on the topic of Stored Procedures which was introduced several lessons ago. In this video we explain the basic syntax to create and update..."

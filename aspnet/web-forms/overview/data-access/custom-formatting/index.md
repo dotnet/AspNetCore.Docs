@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/custom-formatting/index
 title: "Custom Formatting | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials look at how to customize data display during data binding by using event handlers in the GridView, DetailsView, and FormView controls."

@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/getting-started/your-first-web-api
 title: "ASP.NET Web API, Part 1: Your First Web API | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"

@@ -1,4 +1,5 @@
 ---
+uid: webhooks/receiving/index
 title: "ASP.NET WebHooks - receiving and processing | Microsoft Docs"
 author: rick-anderson
 description: "Articles about receiving and processing WebHooks in ASP.NET"

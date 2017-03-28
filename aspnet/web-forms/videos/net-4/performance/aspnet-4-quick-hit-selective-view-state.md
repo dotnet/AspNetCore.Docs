@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/performance/aspnet-4-quick-hit-selective-view-state
 title: "ASP.NET 4 "Quick Hit" - Selective View State | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn about the ViewStateMode property that lets you disable view state by default and then enable it only for the controls that requi..."

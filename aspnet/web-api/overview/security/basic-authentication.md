@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/security/basic-authentication
 title: "Basic Authentication in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes using Basic Authentication in ASP.NET Web API."

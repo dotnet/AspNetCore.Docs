@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/index
 title: "LINQ Videos from the VB Team | Microsoft Docs"
 author: rick-anderson
 description: "These videos provide over an hour and half of content focused on the new LINQ language features of Visual Basic 9.0 included in Visual Studio 2008."

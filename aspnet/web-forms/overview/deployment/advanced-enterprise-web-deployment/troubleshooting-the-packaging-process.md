@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process
 title: "Troubleshooting the Packaging Process | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how you can collect detailed information about the packaging process by using the EnablePackageProcessLoggingAndAssert property in the M..."

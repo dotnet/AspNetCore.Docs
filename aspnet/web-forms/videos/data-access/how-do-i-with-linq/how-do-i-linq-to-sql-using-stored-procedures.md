@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-using-stored-procedures
 title: "[How Do I:] LINQ to SQL: Using Stored Procedures | Microsoft Docs"
 author: scottstanfield
 description: "Using existing stored procedures and functions is easy with LINQ. We simply drag the stored procedures onto the O/R mapping surface and call them from the ge..."

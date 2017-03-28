@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-pass-information-from-one-page-to-another-using-a-query-string
 title: "[How Do I:] Pass Information From One Page to Another Using a Query String | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how information can be passed from one page to another using a query string. First, see how to construct a query string in..."

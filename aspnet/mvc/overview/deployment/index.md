@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/deployment/index
 title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy ASP.NET MVC projects to a server."

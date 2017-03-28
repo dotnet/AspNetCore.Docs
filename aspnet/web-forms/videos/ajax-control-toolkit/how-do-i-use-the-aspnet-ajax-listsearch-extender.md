@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-listsearch-extender
 title: "[How Do I:] Use the ASP.NET AJAX ListSearch Extender? | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the use of the ListSearch extender control from the ASP.NET AJAX Control Toolkit. The ListSearch extender enhances DropDownList and L..."

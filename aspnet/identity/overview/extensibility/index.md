@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/extensibility/index
 title: "ASP.NET Identity Extensibility | Microsoft Docs"
 author: rick-anderson
 description: "Extensibility"

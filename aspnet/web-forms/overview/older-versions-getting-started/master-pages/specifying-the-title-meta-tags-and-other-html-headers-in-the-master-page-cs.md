@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-cs
 title: "Specifying the Title, Meta Tags, and Other HTML Headers in the Master Page (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Looks at different techniques for defining assorted &lt;head&gt; elements in the Master Page from the content page."

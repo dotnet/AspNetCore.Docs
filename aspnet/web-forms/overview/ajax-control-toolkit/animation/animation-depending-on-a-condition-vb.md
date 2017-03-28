@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-vb
 title: "Animation Depending On a Condition (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. Whether an animation is..."

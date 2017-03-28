@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/getting-started
 title: "Getting Started with ASP.NET MVC 5 | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here using Visual Studio 2015. The new tutorial uses ASP.NET Core MVC 6, which provides many improvem..."

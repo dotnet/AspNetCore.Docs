@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/working-with-binary-files/index
 title: "Working with Binary Files | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to let users upload binary files (like Word or PDF documents) to the server, where they can be stored in folders or in the database."

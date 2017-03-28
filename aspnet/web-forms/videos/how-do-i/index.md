@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/index
 title: "How Do I? | Microsoft Docs"
 author: rick-anderson
 description: "How to perform a variety of common tasks."

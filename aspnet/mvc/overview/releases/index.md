@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/releases/index
 title: "Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in recent MVC releases."

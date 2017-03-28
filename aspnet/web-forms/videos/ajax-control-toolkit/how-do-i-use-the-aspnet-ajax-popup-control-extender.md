@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-popup-control-extender
 title: "[How Do I:] Use the ASP.NET AJAX Popup Control Extender? | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the use of the Popup control extender that ships with the ASP.NET AJAX Control Toolkit. Learn how to extend a TextBox control so that..."

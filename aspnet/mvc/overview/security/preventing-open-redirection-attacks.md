@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/security/preventing-open-redirection-attacks
 title: "Preventing Open Redirection Attacks (C#) | Microsoft Docs"
 author: jongalloway
 description: "This tutorial explains how you can prevent open redirection attacks in your ASP.NET MVC applications. This tutorial discusses the changes that have been made..."

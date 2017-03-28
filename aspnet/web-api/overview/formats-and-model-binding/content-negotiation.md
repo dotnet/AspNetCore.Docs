@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/content-negotiation
 title: "Content Negotiation in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes how ASP.NET Web API implements HTTP content negotiation."

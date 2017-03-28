@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/getting-started-with-aspnet-web-api/action-results
 title: "Action Results in Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-multiple-file-uploads-in-aspnet-1
 title: "[How Do I:]  Multiple File Uploads in ASP.NET 1 | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will elaborate on uploading multiple files to an ASP.NET application."

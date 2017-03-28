@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-validation
 title: "Adding Validation | Microsoft Docs"
 author: Rick-Anderson
 description: ""

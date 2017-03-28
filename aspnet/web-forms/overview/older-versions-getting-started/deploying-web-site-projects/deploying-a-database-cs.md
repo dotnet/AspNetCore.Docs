@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-a-database-cs
 title: "Deploying a Database (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Deploying an ASP.NET web application entails getting the necessary files and resources from the development environment to the production environment. For da..."

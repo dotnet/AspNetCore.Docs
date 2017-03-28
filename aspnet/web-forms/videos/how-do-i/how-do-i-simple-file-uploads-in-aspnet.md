@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-simple-file-uploads-in-aspnet
 title: "[How Do I:]  Simple File Uploads in ASP.NET | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate, using ASP.NET, uploading a single file from the client machine to your server. This will be the first in a series of upload..."

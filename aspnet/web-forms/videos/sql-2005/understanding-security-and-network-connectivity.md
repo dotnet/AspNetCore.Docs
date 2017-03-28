@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/understanding-security-and-network-connectivity
 title: "Understanding Security and Network Connectivity | Microsoft Docs"
 author: microsoft
 description: "SQL Server beginners will learn to differentiate between SQL Server database files and SQL Server processes. Explore scenarios for connecting to SQL Server E..."

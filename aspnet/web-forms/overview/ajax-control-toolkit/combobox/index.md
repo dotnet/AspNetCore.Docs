@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/combobox/index
 title: "ComboBox | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the ComboBox control, which combines the flexibility of a text box with a list of options that users can choose from."

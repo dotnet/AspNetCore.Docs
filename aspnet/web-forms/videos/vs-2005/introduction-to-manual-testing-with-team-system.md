@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/introduction-to-manual-testing-with-team-system
 title: "Introduction to Manual Testing with Team System | Microsoft Docs"
 author: rick-anderson
 description: "In this video we see how you can create and run your manual test cases for your applications by using the manual testing features of Visual Studio Team Syste..."

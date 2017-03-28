@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/sql-2005/designing-relational-database-tables
 title: "Designing Relational Database Tables | Microsoft Docs"
 author: microsoft
 description: "Why are relational databases the most popular? SQL Server beginners will learn to differentiate between primary and foreign keys, design relational database..."

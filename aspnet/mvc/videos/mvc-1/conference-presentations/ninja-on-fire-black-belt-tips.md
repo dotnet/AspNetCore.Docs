@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/conference-presentations/ninja-on-fire-black-belt-tips
 title: "Ninja on Fire Black Belt Tips | Microsoft Docs"
 author: Haacked
 description: "See a walkthrough of several tips and tricks for getting the most out of the ASP.NET MVC framework."

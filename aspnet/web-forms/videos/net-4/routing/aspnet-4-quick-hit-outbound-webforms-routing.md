@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/routing/aspnet-4-quick-hit-outbound-webforms-routing
 title: "ASP.NET 4 "Quick Hit" - Outbound WebForms Routing | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will see how to use the routing mechanism to dynamically create an outbound URL based on input from the user."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/how-do-i-work-with-data-in-aspnet-mvc-partial-views
 title: "How Do I: Work with Data in ASP.NET MVC Partial Views? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to organize and pass data to partial views in an MVC application. A sample MVC application is created that contains domain..."

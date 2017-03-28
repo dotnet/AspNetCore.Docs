@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/confirmbutton/index
 title: "ConfirmButton | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the ConfirmButton control, which displays a Yes/No popup when the user clicks a button."

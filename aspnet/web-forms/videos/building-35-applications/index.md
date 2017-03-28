@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/index
 title: "Building 3.5 Applications | Microsoft Docs"
 author: rick-anderson
 description: "The basics of creating ASP.NET Web Forms applications."

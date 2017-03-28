@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/introduction/other-libraries
 title: "Know a library other than Knockout? | Microsoft Docs"
 author: madskristensen
 description: "Know a library other than Knockout?"

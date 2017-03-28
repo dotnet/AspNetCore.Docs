@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-21-order-manager-and-personalization
 title: "ASP.NET MVC Storefront Part 21: Order Manager and Personalization | Microsoft Docs"
 author: robconery
 description: "In this episode I create the Order Manager page and talk about various issues relating to order fulfillment. In addition I introduce personalization features..."

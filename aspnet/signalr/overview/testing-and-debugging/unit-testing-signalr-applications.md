@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/testing-and-debugging/unit-testing-signalr-applications
 title: "Unit Testing SignalR Applications | Microsoft Docs"
 author: pfletcher
 description: "This article describes how to use the Unit Testing features of SignalR 2.0."

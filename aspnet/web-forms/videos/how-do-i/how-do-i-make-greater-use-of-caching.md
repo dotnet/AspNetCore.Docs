@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-make-greater-use-of-caching
 title: "[How Do I:] Make Greater use of Caching? | Microsoft Docs"
 author: microsoft
 description: "Watch a demonstration of Partial-Page Output Caching, followed by an overview of the Cache API that demonstrates how to efficiently bind a data presentation..."

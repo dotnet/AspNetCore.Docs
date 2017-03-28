@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-add-javascript-event-handlers-to-aspnet-server-controls
 title: "[How Do I:] Add JavaScript Event Handlers to ASP.NET Server Controls | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to interface JavaScript methods with ASP.NET server controls to provide client side functionality for the server contr..."

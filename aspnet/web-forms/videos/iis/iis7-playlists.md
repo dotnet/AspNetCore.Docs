@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/iis7-playlists
 title: "IIS7 Playlists | Microsoft Docs"
 author: JoeStagner
 description: "If you're hosting media files on your web site, play lists will let you define sequences for your media and optionally prevent users from skipping parts of t..."

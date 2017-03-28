@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete
 title: "ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete | Microsoft Docs"
 author: robconery
 description: "Rob finishes up the initial iteration of the site and work on Controller Tests as well."

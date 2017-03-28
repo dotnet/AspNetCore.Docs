@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/the-effects-of-caching
 title: "The Effects of Caching | Microsoft Docs"
 author: rick-anderson
 description: "Nearly every Web application today needs to access data from a database, but this common operation can have a real impact on the overall performance of the a..."

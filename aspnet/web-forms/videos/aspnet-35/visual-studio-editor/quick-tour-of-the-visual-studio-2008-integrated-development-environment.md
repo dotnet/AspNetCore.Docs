@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-editor/quick-tour-of-the-visual-studio-2008-integrated-development-environment
 title: "Quick Tour of the Visual Studio 2008 Integrated Development Environment | Microsoft Docs"
 author: rick-anderson
 description: "Take a tour of the new features and changes to the IDE in Visual Studio 2008. See the updated web page editor, WPF form designer, CSS editor, and more."

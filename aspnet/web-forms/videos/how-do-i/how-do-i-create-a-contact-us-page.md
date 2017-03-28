@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-a-contact-us-page
 title: "[How Do I:] Create a "Contact Us" Page? | Microsoft Docs"
 author: microsoft
 description: "Build a web page to collect information from the user with the Wizard control, validate that information, and use the System.Net.Mail classes to send a confi..."

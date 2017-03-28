@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/improvements-in-visual-studio-2005
 title: "Improvements in Visual Studio 2005 | Microsoft Docs"
 author: microsoft
 description: "Visual Studio 2005 provides Web application developers with a long list of improvements and enhancements to Web projects."

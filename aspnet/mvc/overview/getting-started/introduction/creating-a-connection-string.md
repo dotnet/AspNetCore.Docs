@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/creating-a-connection-string
 title: "Creating a Connection String and Working with SQL Server LocalDB | Microsoft Docs"
 author: Rick-Anderson
 description: ""

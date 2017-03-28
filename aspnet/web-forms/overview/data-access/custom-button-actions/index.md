@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/custom-button-actions/index
 title: "Custom Button Actions | Microsoft Docs"
 author: rick-anderson
 description: "This short set of tutorials shows how to add buttons to the GridView or DetailsView control that can perform any actions that your application needs."

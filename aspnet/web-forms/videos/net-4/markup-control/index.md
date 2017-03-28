@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/markup-control/index
 title: "Markup Control | Microsoft Docs"
 author: rick-anderson
 description: "This video series demonstrates improvements to controls for Web Forms pages in ASP.NET 4."

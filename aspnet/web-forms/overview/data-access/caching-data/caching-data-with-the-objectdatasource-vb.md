@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-vb
 title: "Caching Data with the ObjectDataSource (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Caching can mean the difference between a slow and a fast Web application. This tutorial is the first of four that take a detailed look at caching in ASP.NET..."

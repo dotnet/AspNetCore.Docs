@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/index
 title: "Introduction to Web Pages Videos | Microsoft Docs"
 author: rick-anderson
 description: "Which videos you can view to learn the basics about Web Pages and WebMatrix."

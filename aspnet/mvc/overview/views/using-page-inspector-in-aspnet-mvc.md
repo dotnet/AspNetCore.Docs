@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/views/using-page-inspector-in-aspnet-mvc
 title: "Using Page Inspector in ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "Page Inspector in Visual Studio 2012 is a web development tool with an integrated browser. Select any element in the integrated browser, and Page Inspector i..."

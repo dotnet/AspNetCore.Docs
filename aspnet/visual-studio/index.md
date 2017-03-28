@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/index
 title: "Visual Studio | Microsoft Docs"
 author: rick-anderson
 description: ""

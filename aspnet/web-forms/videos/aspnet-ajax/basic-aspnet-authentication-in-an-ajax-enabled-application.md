@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/basic-aspnet-authentication-in-an-ajax-enabled-application
 title: "Basic ASP.NET Authentication in an AJAX Enabled Application | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate authentication in your AJAX enable web application using basic ASP.NET forms based authentication."

@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/using-browser-link
 title: "Using Browser Link in Visual Studio 2013 | Microsoft Docs"
 author: MikeWasson
 description: ""

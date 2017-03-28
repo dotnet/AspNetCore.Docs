@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-accordion-control
 title: "[How Do I:] Use the ASP.NET AJAX Accordion Control? | Microsoft Docs"
 author: JoeStagner
 description: "Learn how the ASP.NET AJAX Accordion control makes efficient use of screen real-estate by enabling the smooth animated transition between different content p..."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/views/index
 title: "ASP.NET MVC UI, Layouts, and Themes | Microsoft Docs"
 author: rick-anderson
 description: "The Razor syntax and how to use it in views (the V in MVC) to display information."

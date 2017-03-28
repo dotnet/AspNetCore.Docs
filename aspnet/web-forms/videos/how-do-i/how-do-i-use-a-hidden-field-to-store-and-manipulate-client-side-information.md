@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information
 title: "[How Do I:] Use a Hidden Field to Store and Manipulate Client-Side Information | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to use a hidden field as one approach to simple state management on an ASP.NET page and for communicating client side..."

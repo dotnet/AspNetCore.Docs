@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/performance/index
 title: "SignalR Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to maximize the performance of SignalR applications."

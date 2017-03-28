@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/urls-in-master-pages-cs
 title: "URLs in Master Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Addresses how URLs in the master page can break due to the master page file being in a different relative directory than the content page. Looks at rebasing..."

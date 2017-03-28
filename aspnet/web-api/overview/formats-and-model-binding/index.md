@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/index
 title: "Serialization and Model Binding in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How ASP.NET Web API binds HTTP messages to domain models, and how to work with media formats in Web API."

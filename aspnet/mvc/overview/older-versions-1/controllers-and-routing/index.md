@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/index
 title: "Controllers and Routing | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial set, you learn about ASP.NET routing, which maps browser requests to ASP.NET MVC controller actions."

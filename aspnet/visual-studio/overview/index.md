@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/index
 title: "Visual Studio Overview | Microsoft Docs"
 author: rick-anderson
 description: ""

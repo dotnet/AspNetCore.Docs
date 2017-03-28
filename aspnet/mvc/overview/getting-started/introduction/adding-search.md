@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-search
 title: "Search | Microsoft Docs"
 author: Rick-Anderson
 description: ""

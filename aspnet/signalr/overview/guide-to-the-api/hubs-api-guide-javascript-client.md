@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/guide-to-the-api/hubs-api-guide-javascript-client
 title: "ASP.NET SignalR Hubs API Guide - JavaScript Client | Microsoft Docs"
 author: pfletcher
 description: "This document provides an introduction to using the Hubs API for SignalR version 2 in JavaScript clients, such as browsers and Windows Store (WinJS) applicat..."

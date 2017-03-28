@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-a-model
 title: "Adding a Model (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."

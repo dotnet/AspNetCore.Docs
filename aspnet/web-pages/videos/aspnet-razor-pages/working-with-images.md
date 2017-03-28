@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/working-with-images
 title: "Working with Images | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Images tutorial"

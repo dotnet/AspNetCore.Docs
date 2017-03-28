@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory
 title: "Developing ASP.NET Apps with Azure Active Directory | Microsoft Docs"
 author: Rick-Anderson
 description: "Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on Azure. You can use Azure Authenti..."

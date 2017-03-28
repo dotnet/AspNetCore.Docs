@@ -1,4 +1,5 @@
 ---
+uid: whitepapers/aspnet-mvc2-upgrade-notes
 title: "Upgrading an ASP.NET MVC 1.0 Application to ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes both how to upgrade manually and with a wizard an ASP.NET MVC 1.0 Application to ASP.NET MVC 2. This document is also available for d..."

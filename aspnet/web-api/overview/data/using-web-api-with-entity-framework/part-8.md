@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-8
 title: "Display Item Details | Microsoft Docs"
 author: MikeWasson
 description: ""

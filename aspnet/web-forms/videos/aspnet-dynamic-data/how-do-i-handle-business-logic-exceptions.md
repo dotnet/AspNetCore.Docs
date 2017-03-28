@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/how-do-i-handle-business-logic-exceptions
 title: "How do I Handle Business Logic Exceptions? | Microsoft Docs"
 author: shanselman
 description: "This video shows you how to add validation to the data model. You will be able to see how that validation logic is reflected in the UI."

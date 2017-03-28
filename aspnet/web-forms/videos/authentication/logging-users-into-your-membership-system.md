@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/logging-users-into-your-membership-system
 title: "Logging Users Into Your Membership System | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner shows how to log our users into the ASP.NET membership system."

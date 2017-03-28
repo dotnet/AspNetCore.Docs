@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/web-development-best-practices/index
 title: "Web Development Best Practices | Microsoft Docs"
 author: rick-anderson
 description: "Web Development Best Practices"

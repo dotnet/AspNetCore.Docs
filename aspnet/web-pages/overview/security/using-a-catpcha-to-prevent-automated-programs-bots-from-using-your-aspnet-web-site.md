@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/security/using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site
 title: "Using a CAPTCHA to Prevent Bots from Using Your ASP.NET Web Razor) Site | Microsoft Docs"
 author: microsoft
 description: "This article explains how to use ReCaptcha (a security measure) to prevent automated programs (bots) from performing tasks in an ASP.NET Web Pages (Razor) we..."

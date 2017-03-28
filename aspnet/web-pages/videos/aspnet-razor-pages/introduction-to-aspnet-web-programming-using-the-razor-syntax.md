@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax
 title: "Introduction to ASP.NET Web Programming Using the Razor Syntax | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Introduction to ASP.NET Web Programming Using the Razor Syntax tutorial"

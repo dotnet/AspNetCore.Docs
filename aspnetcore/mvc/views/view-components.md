@@ -27,7 +27,7 @@ New to ASP.NET Core MVC, view components are similar to partial views, but they 
 * Can have parameters and business logic
 * Is typically invoked from a layout page
 
-View Components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as:
+View components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as:
 
 * Dynamic navigation menus
 * Tag cloud (where it queries the database)
@@ -37,11 +37,11 @@ View Components are intended anywhere you have reusable rendering logic that is 
 * Sidebar content on a typical blog
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A `view component` consists of two parts, the class (typically derived from  [ViewComponent](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A view component consists of two parts: the class (typically derived from [ViewComponent](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 ## Creating a view component
 
-This section contains the high level requirements to create a view component. Later in the article we'll examine each step in detail and create a view component.
+This section contains the high-level requirements to create a view component. Later in the article, we'll examine each step in detail and create a view component.
 
 ### The view component class
 
@@ -61,10 +61,10 @@ A view component class:
 
 ### View component methods
 
-A view component defines its logic in an `InvokeAsync` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
+A view component defines its logic in an `InvokeAsync` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
 
 * Define an *`InvokeAsync`* method that returns an `IViewComponentResult`
-* Typically initializes a model and passes it to a view by calling the `ViewComponent`  `View` method
+* Typically initializes a model and passes it to a view by calling the `ViewComponent` `View` method
 * Parameters come from the calling method, not HTTP, there is no model binding
 * Are not reachable directly as an HTTP endpoint, they are invoked from your code (usually in a view). A view component never handles a request
 * Are overloaded on the signature rather than any details from the current HTTP request
@@ -82,7 +82,7 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 ## Invoking a view component
 
-To use the view component, call `@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)` from a view. The parameters will be passed to the `InvokeAsync` method.  The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
+To use the view component, call `@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)` from a view. The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
@@ -92,12 +92,12 @@ For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helpe
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
-Pascal-cased class and method parameters for tag helpers are translated into their [lower kebab case](http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified following as follows:
+Pascal-cased class and method parameters for Tag Helpers are translated into their [lower kebab case](http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
 ```html
-<vc:[view-component-name]>
+<vc:[view-component-name]
   parameter1="parameter1 value"
-  parameter2="parameter2 value"
+  parameter2="parameter2 value">
 </vc:[view-component-name]>
 ```
 
@@ -109,7 +109,7 @@ In Tag Helper markup:
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
-In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as arributes in lower kebab case.
+In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in lower kebab case.
 
 ### Invoking a view component directly from a controller
 
@@ -127,7 +127,7 @@ In this example, the view component is called directly from the controller:
 
 ### Add a ViewComponent class
 
-Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class.
+Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
 
 [!code-csharp[Main](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
@@ -135,7 +135,7 @@ Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
 * Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime will use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
-* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could have named the class `XYZ`,  and  applied the  `ViewComponent` attribute:
+* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could have named the class `XYZ` and applied the `ViewComponent` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
@@ -145,7 +145,7 @@ Notes on the code:
 * The `[ViewComponent]` attribute above tells the view component selector to use the name `PriorityList` when looking for the views associated with the component, and to use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
-* The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and  `maxPriority` parameters.
+* The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
 
 ### Create the view component Razor view
 
@@ -156,9 +156,9 @@ Notes on the code:
 * Create a *Views/Shared/Components/PriorityList/Default.cshtml* Razor view:
   [!code-html[Main](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
     
-   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller specific view folder (for example *Views/Todo/Components/PriorityList/Default.cshtml)*.
+   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/Todo/Components/PriorityList/Default.cshtml)*.
     
-    If the view component is controller specific, you can add it to the controller specific folder (*Views/Todo/Components/PriorityList/Default.cshtml*).
+    If the view component is controller-specific, you can add it to the controller-specific folder (*Views/Todo/Components/PriorityList/Default.cshtml*).
 
 * Add a `div` containing a call to the priority list component to the bottom of the *Views/Todo/index.cshtml* file:
 
@@ -186,7 +186,7 @@ Copy the *Views/Shared/Components/PriorityList/Default.cshtml* file to a view na
 
 [!code-html[Main](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-Update *Views/TodoList/Index.cshtml*
+Update *Views/TodoList/Index.cshtml*:
 
 <!-- Views/TodoList/Index.cshtml is never imported, so change to test tutorial -->
 
@@ -222,16 +222,14 @@ If the PVC view is not rendered, verify you are calling the view component with 
 
 ### Avoiding magic strings
 
-If you want compile time safety you can replace the hard coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
+If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 
-[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10,14&range=4-34)]
+[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=11&range=4-34)]
 
-Add a `using` statement to your Razor view file and use the `nameof` operator:
+Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
 
 ## Additional Resources
 
 * [Dependency injection into views](dependency-injection.md)
-
-* `ViewComponent`

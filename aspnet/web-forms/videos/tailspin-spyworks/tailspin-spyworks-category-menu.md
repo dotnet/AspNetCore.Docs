@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-category-menu
 title: "Tailspin Spyworks - Category Menu | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner builds the category menu for the Tailspin Spyworks sample Web Forms application."

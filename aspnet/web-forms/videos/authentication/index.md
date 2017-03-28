@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/index
 title: "Authentication | Microsoft Docs"
 author: rick-anderson
 description: "How to implement and manage security (authentication) in an ASP.NET application."

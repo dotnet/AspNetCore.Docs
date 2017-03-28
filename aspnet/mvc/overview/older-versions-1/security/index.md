@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/security/index
 title: "Security | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial set covers how to password protect some pages in your ASP.NET MVC application and how to create and manage users and roles."

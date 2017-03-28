@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments
 title: "Deploying Membership Databases to Enterprise Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic explains the key considerations and challenges you'll need to overcome when you provision ASP.NET application services databases (more common..."

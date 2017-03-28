@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/hands-on-labs/whats-new-in-aspnet-and-web-development-in-visual-studio-2012
 title: "What's New in ASP.NET and Web Development in Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "The new version of Visual Studio introduces a number of enhancements focused on improving the experience and performance when working with Web technologies...."

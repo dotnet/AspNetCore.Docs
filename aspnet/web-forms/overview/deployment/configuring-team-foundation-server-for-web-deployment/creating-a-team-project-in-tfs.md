@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-team-project-in-tfs
 title: "Creating a Team Project in TFS | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to create a new team project in Team Foundation Server (TFS) 2010."

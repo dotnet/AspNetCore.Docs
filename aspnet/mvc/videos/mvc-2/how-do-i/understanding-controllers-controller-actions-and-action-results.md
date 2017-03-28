@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results
 title: "Understanding Controllers, Controller Actions, and Action Results | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther introduces you to ASP.NET MVC controllers. You learn how to create new controllers and return different types of action res..."

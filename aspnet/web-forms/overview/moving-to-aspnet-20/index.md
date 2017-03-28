@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/moving-to-aspnet-20/index
 title: "Older Versions - ASP.NET 2.0 | Microsoft Docs"
 author: rick-anderson
 description: "How to migrate ASP.NET 1.x applications to ASP.NET 2.0."

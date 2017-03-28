@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-send-templated-emails-for-health-monitoring-events-in-aspnet
 title: "[How Do I:] Send Templated Emails for Health Monitoring Events in ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the TemplatedEmailWebEventProvider to send emails when health monitoring events occur that utilize a template for t..."

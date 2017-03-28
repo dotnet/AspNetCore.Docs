@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-vb
 title: "Forms Authentication Configuration and Advanced Topics (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine the various forms authentication settings and see how to modify them through the forms element. This will entail a detailed..."

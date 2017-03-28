@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/5-minute-introduction-to-aspnet-web-forms
 title: "Intro to ASP.NET Web Forms | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman presents a 5 minute introduction to ASP.NET Web Forms."

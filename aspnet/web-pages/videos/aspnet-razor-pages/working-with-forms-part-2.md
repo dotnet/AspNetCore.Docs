@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/working-with-forms-part-2
 title: "Working with Forms (Part 2) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Forms tutorial (Part 2)"

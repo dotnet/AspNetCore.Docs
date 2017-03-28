@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-3
 title: "Part 3: Creating an Admin Controller | Microsoft Docs"
 author: MikeWasson
 description: ""

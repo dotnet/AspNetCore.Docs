@@ -1,4 +1,5 @@
 ---
+uid: webhooks/receiving/handlers
 title: "ASP.NET WebHooks handlers | Microsoft Docs"
 author: rick-anderson
 description: "How to handle requests in ASP.NET WebHooks."

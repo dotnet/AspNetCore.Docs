@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/introduction/5-minute-introduction-to-aspnet-web-pages
 title: "5 Minute Introduction to ASP.NET Web Pages | Microsoft Docs"
 author: microsoft
 description: ""

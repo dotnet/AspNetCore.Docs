@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/introduction-to-unit-testing-with-team-system
 title: "Introduction to Unit Testing with Team System | Microsoft Docs"
 author: rick-anderson
 description: "In this video we see how the unit testing features of Visual Studio Team System integrate unit testing directly into the Visual Studio IDE."

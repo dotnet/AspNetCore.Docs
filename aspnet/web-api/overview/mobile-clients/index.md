@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/mobile-clients/index
 title: "Web API and Mobile Clients | Microsoft Docs"
 author: rick-anderson
 description: "Using ASP.NET Web API to reach native mobile clients."

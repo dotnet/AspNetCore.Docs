@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/seo/index
 title: "SEO | Microsoft Docs"
 author: rick-anderson
 description: "This video describes new features for Search Engine Optimization (SEO) in ASP.NET 4."

@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/working-with-video
 title: "Working with Video | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Video tutorial"

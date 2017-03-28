@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/getting-started-with-aspnet-web-api/index
 title: "Getting Started with ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET Web API ASP.NET Web API is a framework that makes it easy to build HTTP services that reach a broad range of clients, including browsers..."

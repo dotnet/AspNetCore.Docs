@@ -28,13 +28,13 @@ namespace TodoApi
         // using Microsoft.EntityFrameworkCore;
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using Microsoft.EntityFrameworkCore;
             services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase());
 
-            // Add framework services.
             services.AddMvc();
             
-            services.AddSingleton<ITodoRepository, TodoRepository>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
+            //services.AddSingleton<ITodoRepository, TodoRepository>();
+
         }
         #endregion
 

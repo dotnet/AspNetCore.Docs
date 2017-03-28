@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/index
 title: "ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 2"

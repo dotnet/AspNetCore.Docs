@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-45-web-forms-model-binding
 title: "ASP.NET 4.5 Web Forms Model Binding | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates the model binding features in ASP.NET 4.5"

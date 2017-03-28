@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/form-basics
 title: "Introducing ASP.NET Web Pages - HTML Form Basics | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you the basics of how to create an input form and how to handle the user's input when you use ASP.NET Web Pages (Razor). And now that you..."

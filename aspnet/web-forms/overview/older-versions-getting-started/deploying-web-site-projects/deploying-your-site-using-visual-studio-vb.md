@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/deploying-web-site-projects/deploying-your-site-using-visual-studio-vb
 title: "Deploying Your Site Using Visual Studio (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio includes tools for deploying a website. Learn more about these tools in this tutorial."

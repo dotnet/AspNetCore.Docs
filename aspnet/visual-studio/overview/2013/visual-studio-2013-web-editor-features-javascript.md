@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2013/visual-studio-2013-web-editor-features-javascript
 title: "Visual Studio 2013 Web Editor Features - JavaScript | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman explains the JavaScript editor features in Visual Studio 2013."

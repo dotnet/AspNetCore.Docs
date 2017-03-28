@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/advanced/httpclient-message-handlers
 title: "HttpClient Message Handlers in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

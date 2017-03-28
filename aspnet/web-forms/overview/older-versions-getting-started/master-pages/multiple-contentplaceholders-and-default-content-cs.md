@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/multiple-contentplaceholders-and-default-content-cs
 title: "Multiple ContentPlaceHolders and Default Content (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to add multiple content place holders to a master page as well as how to specify default content in the content place holders."

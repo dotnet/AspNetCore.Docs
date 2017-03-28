@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/index
 title: "Videos | Microsoft Docs"
 author: rick-anderson
 description: ""

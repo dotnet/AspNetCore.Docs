@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript
 title: "Creating a MVC 3 Application with Razor and Unobtrusive JavaScript | Microsoft Docs"
 author: microsoft
 description: "The User List sample web application demonstrates how simple it is to create ASP.NET MVC 3 applications using the Razor view engine. The sample application s..."

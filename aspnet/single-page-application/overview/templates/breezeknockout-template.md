@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/templates/breezeknockout-template
 title: "Breeze/Knockout template | Microsoft Docs"
 author: madskristensen
 description: "Breeze/Knockout Single Page Application template"

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/reorderlist/using-postbacks-with-reorderlist-cs
 title: "Using Postbacks with ReorderList (C#) | Microsoft Docs"
 author: wenz
 description: "The ReorderList control in the AJAX Control Toolkit provides a list that can be reordered by the user via drag and drop. Whenever the list is reordered, a po..."

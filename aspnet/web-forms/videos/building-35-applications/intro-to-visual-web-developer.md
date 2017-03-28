@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/intro-to-visual-web-developer
 title: "Intro to Visual Web Developer | Microsoft Docs"
 author: JoeStagner
 description: "Microsoft Visual Web Developer is the FREE version of Visual Studio for developing ASP.NET applications. This video will show how to get and install it and t..."

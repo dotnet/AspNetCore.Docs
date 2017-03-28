@@ -1,4 +1,5 @@
 ---
+uid: webhooks/receiving/dependencies
 title: "ASP.NET WebHooks receiver dependencies | Microsoft Docs"
 author: rick-anderson
 description: "Receiver dependencies and dependency injection in ASP.NET WebHooks."

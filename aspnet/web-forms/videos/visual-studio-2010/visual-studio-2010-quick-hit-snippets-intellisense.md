@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-snippets-intellisense
 title: "Visual Studio 2010 "Quick Hit" - Snippets IntelliSense | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn about Visual Studio's snippet support of HTML, ASP.NET markup and JavaScript."

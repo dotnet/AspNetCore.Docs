@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/performance/bundling-and-minification
 title: "Bundling and Minification | Microsoft Docs"
 author: Rick-Anderson
 description: "Bundling and minification are two techniques you can use in ASP.NET 4.5 to improve request load time. Bundling and minification improves load time by reducin..."

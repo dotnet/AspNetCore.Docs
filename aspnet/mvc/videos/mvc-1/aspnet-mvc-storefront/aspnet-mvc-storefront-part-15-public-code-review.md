@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-15-public-code-review
 title: "ASP.NET MVC Storefront Part 15: Public Code review | Microsoft Docs"
 author: robconery
 description: "In this episode Rob Conery does a public code review of the Storefront Application based on user feedback. Rob Conery has documented each step in the develop..."

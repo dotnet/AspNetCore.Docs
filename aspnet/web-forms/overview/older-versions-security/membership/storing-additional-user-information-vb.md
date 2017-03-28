@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/membership/storing-additional-user-information-vb
 title: "Storing Additional User Information (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will answer this question by building a very rudimentary guestbook application. In doing so, we will look at different options for modeli..."

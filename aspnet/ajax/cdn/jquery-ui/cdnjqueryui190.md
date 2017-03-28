@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-ui/cdnjqueryui190
 title: "jQuery UI 1.9.0 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""

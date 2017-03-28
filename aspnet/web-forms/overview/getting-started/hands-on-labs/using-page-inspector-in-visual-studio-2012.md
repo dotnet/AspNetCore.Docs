@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012
 title: "Using Page Inspector in Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "In this Hands-on Lab, you will discover a new tool to find and fix web page issues in Visual Studio - the Page Inspector. Page Inspector is a new tool that b..."

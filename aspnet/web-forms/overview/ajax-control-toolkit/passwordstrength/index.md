@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/passwordstrength/index
 title: "PasswordStrength | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to PasswordStrength control to check how strong a password is as a user creates it."

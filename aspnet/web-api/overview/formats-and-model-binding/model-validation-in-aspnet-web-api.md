@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
 title: "Model Validation in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

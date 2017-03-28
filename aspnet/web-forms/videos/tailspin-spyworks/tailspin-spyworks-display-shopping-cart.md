@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-shopping-cart
 title: "Tailspin Spyworks - Display Shopping Cart | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner shows how to display the shopping cart in the Tailspin Spyworks sample Web Forms application."

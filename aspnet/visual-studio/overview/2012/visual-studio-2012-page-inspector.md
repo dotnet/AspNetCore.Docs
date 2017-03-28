@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-2012-page-inspector
 title: "Visual Studio 2012 Page Inspector | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates the Visual Studio 2012 Page Inspector."

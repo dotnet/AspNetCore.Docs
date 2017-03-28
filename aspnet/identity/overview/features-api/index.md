@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/features-api/index
 title: "ASP.NET Identity Features & API | Microsoft Docs"
 author: rick-anderson
 description: "Features & API"

@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-7-routing-and-ui-work
 title: "ASP.NET MVC Storefront Part 7: Routing and UI Work | Microsoft Docs"
 author: robconery
 description: "Rob talks with Scott Hanselman about how to setup Routing, and then he implements the user interface."

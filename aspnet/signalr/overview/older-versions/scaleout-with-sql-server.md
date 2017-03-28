@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/scaleout-with-sql-server
 title: "SignalR Scaleout with SQL Server (SignalR 1.x) | Microsoft Docs"
 author: MikeWasson
 description: ""

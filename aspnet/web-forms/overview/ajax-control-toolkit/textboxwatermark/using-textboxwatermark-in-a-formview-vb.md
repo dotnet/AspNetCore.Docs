@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-vb
 title: "Using TextBoxWatermark in a FormView (VB) | Microsoft Docs"
 author: wenz
 description: "The TextBoxWatermark control in the AJAX Control Toolkit extends a text box so that a text is displayed within the box. When a user clicks into the box, it i..."

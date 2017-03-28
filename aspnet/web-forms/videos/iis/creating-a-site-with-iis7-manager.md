@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/creating-a-site-with-iis7-manager
 title: "Creating a Site with IIS7 Manager | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the provisioning process for new web sites with IIS7."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/index
 title: "Contact Manager | Microsoft Docs"
 author: rick-anderson
 description: "How to build an entire Contact Management application from start to finish."

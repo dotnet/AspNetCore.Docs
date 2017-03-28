@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/dependency-injection
 title: "Dependency Injection in SignalR 1.x | Microsoft Docs"
 author: MikeWasson
 description: ""

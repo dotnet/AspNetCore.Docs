@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview
 title: "Enterprise Web Deployment: Scenario Overview | Microsoft Docs"
 author: jrjlee
 description: "This set of tutorials uses a sample solution with a realistic level of complexity, together with a fictional enterprise deployment scenario, to provide a ref..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/jquery/index
 title: "jQuery | Microsoft Docs"
 author: rick-anderson
 description: "How to use jQuery features in ASP.NET pages."

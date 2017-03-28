@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-2-filtering
 title: "ASP.NET vNext Videos: Model Binding Part 2 - Filtering | Microsoft Docs"
 author: DamianEdwards
 description: "In this video, Damian Edwards continues the demonstration of model binding by explaining filtering."
