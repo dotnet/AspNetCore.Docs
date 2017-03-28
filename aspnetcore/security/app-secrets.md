@@ -41,15 +41,15 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 ### Installing the Secret Manager tool 
 
 Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run 
-`dotnet restore`. 
+`dotnet restore`.
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?highlight=17)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?highlight=21)]
 
 Test the Secret Manager tool by running the following command:
 
 ```
 dotnet user-secrets -h
-     ```
+```
 
 The Secret Manager tool will display usage, options and command help.
 
@@ -58,7 +58,7 @@ The Secret Manager tool will display usage, options and command help.
 
 The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a `UserSecretsId` value in its *.csproj* file. The value of `UserSecretsId` is arbitrary, but is generally unique to the project. Developers typically generate a GUID for the `UserSecretsId`.
 
-Add a `UserSecretsId` for your project in the  *.csproj* file :
+Add a `UserSecretsId` for your project in the *.csproj* file:
 
 [!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?range=7-9&highlight=2)]
 
@@ -66,13 +66,13 @@ Use the Secret Manager tool to set a secret. For example, in a command window fr
 
 ```
 dotnet user-secrets set MySecret ValueOfMySecret
-     ```
+```
 
 You can run the secret manager tool from other directories, but you must use the `--project` option to pass in the path to the *.csproj* file:
  
 ```
 dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\webapp1
-   ```
+```
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.
 
