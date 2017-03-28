@@ -68,7 +68,7 @@ Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startu
 
 ![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](web-api-vsc/_static/vsc_restore.png)
 
-Press **Debug** to build and run the program. In a browser naviage to http://localhost:5000/api/values . The following is displayed:
+Press **Debug** (F5) to build and run the program. In a browser navigate to http://localhost:5000/api/values . The following is displayed:
 
 `["value1","value2"]`
 
@@ -78,7 +78,7 @@ Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](h
 
 [!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
-Run `dotnet restore` to download and install the EF Core InMemory DB provider. You can run `dotnet restore` from the terminal or enter `⌘⇧P` in VS Code and then type **.NET**. Select **.NET: Restore Packages**.
+Run `dotnet restore` to download and install the EF Core InMemory DB provider. You can run `dotnet restore` from the terminal or enter `⌘⇧P` (macOS) or `Ctrl+Shift+P` (Linux) in VS Code and then type **.NET**. Select **.NET: Restore Packages**.
 
 
 ## Add a model class
@@ -117,7 +117,7 @@ Add a `TodoRepository` class that implements `ITodoRepository`:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoRepository.cs)]
 
-Press **Debug** to build the app to verify you don't have any compiler errors.
+Press **Debug** (F5) to build the app to verify you don't have any compiler errors.
 
 ## Register the repository and EF in-memory database
 
@@ -197,7 +197,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
   
 ### Launch the app
 
-In VS Code, press CTRL+F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
+In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
 
 ## Implement the other CRUD operations
 
@@ -261,4 +261,3 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 * For information about deploying your API, see [Publishing and Deployment](../publishing/index.md).
 * [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample)
 * [Postman](https://www.getpostman.com/)
-* [Fiddler](http://www.fiddler2.com/fiddler2/)
