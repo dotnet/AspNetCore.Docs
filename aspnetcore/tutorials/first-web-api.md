@@ -26,6 +26,8 @@ ASP.NET Core has built-in support for MVC building Web APIs.
 
 Note: If you are porting an existing Web API app to ASP.NET Core, see [Migrating from ASP.NET Web API](xref:migration/webapi)
 
+See [Create a Web API app on Mac or Linux with Visual Studio Code](xref:tutorials/web-api-vsc) for the  cross-platform platform version of this tutorial.
+
 ## Overview
 
 Here is the API that you’ll create:  
