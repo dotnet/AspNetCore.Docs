@@ -26,38 +26,11 @@ ASP.NET Core 1.1 includes the following new features:
 - [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
 - [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis)
 - [WebListener Server for Windows](xref:fundamentals/servers/weblistener)
-- [WebSockets support](#websockets-support)
+- [WebSockets support](xref:fundamentals/websockets)
 
 ## Choosing between versions 1.0 and 1.1 of ASP.NET Core
 
 ASP.NET Core 1.1 has more features than 1.0. In general, we recommend you use the latest version.
-
-## WebSockets support
-
-A new middleware component provides WebSockets support in ASP.NET Core 1.1. Install the [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Microsoft.AspNetCore.WebSockets/) package, and add code to the `Configure` method of the `Startup` class:
-
-```
-app.UseWebSockets();
-```
-
-Your project will then have access to a `WebSockets` property on the `HttpContext` object.  You can write your own middleware for the pipeline to interpret and interact with the requests handed to your application by a websocket.  You could add this middleware to your configured pipeline with code like the following:
-
-```
-app.Use(async (context, next) =>
-{
-  if (context.WebSockets.IsWebSocketRequest)
-  {
-    var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-    await DoSomethingCool(context, webSocket);
-  }
-  else
-  {
-    await next();
-  }
-});
-```
-
-The websocket object has `SendAsync` and `ReceiveAsync` methods.  For samples, see the  [WebSockets repository](https://github.com/aspnet/WebSockets/tree/dev/samples).
 
 ## Additional Information
 
