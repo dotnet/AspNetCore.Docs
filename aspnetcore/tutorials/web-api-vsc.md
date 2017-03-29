@@ -71,6 +71,8 @@ Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startu
 - Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'TodoApi'. Add them?"
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
 
+<!-- uid: tutorials/first-mvc-app-xplat/start-mvc uses the pic below. If you change it, make sure it's consistent -->
+
 ![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](web-api-vsc/_static/vsc_restore.png)
 
 Press **Debug** (F5) to build and run the program. In a browser navigate to http://localhost:5000/api/values . The following is displayed:

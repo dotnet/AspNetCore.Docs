@@ -7,10 +7,10 @@ ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
 ms.topic: article
-ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
+ms.assetid: e04b6665-1638-4d99-1636-d666c4634666
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: tutorials/first-mvc-app/adding-controller
+uid: tutorials/first-mvc-app-xplat/adding-controller
 ---
 # Adding a controller
 
@@ -28,26 +28,25 @@ The MVC pattern helps you create apps that separate the different aspects of the
 
 We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The MVC project currently contains folders for the *Controllers* and *Views*. A *Models* folder will be added in a later step.
 
-* In **Solution Explorer**, right-click **Controllers > Add > New Item**
+* In **VS Code**, select the **EXPLORER** icon and then  control-click (right-click) **Controllers > New File**
 
-![Contextual menu](adding-controller/_static/add_controller.png)
+ ![Contextual menu](adding-controller/_static/new_file.png)
 
-* Select **MVC Controller Class**
-* In the **Add New Item** dialog, enter **HelloWorldController**.
-
-![Add MVC controller and name it](adding-controller/_static/ac.png)
+* Name the file *HelloWorldController.cs*
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string.  Note the comments preceding each method.
 
 The first comment states this is an [HTTP GET](http://www.w3schools.com/tags/ref_httpmethods.asp) method that is invoked by appending "/HelloWorld/" to the base URL. The second comment specifies an [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate `HTTP POST` methods.
 
-Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, `http://localhost:5000/HelloWorld` is used, but you'll have to replace *5000* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
+Run the app and navigate to http://localhost:5000/HelloWorld
 
-![Browser window showing an application response of This is my default action](adding-controller/_static/hell1.png)
+The `Index` method returns a string. You told the system to return some HTML, and it did!
+
+![Browser window showing an application response of This is my default action](../first-mvc-app/adding-controller/_static/hell1.png)
 
 MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](../../mvc/controllers/routing.md) used by MVC uses a format like this to determine what code to invoke:
 
@@ -55,48 +54,49 @@ MVC invokes controller classes (and the action methods within them) depending on
 
 You set the format for routing in the *Startup.cs* file.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
 When you run the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
-The first URL segment determines the controller class to run. So `localhost:xxxx/HelloWorld` maps to the `HelloWorldController` class. The second part of the URL segment determines the action method on the class. So `localhost:xxxx/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that we only had to browse to `localhost:xxxx/HelloWorld` and the `Index` method was called by default. This is because `Index` is the default method that will be called on a controller if a method name is not explicitly specified. The third part of the URL segment ( `id`) is for route data. We'll see route data later on in this tutorial.
+The first URL segment determines the controller class to run. So `localhost:5000/HelloWorld` maps to the `HelloWorldController` class. The second part of the URL segment determines the action method on the class. So `localhost:5000/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that we only had to browse to `localhost:5000/HelloWorld` and the `Index` method was called by default. This is because `Index` is the default method that will be called on a controller if a method name is not explicitly specified. The third part of the URL segment ( `id`) is for route data. We'll see route data later on in this tutorial.
 
-Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs and returns the string "This is the Welcome action method...". For this URL, the controller is `HelloWorld` and `Welcome` is the action method. We haven't used the `[Parameters]` part of the URL yet.
+Browse to http://localhost:5000/HelloWorld/Welcome
+The `Welcome` method runs and returns the string "This is the Welcome action method...". For this URL, the controller is `HelloWorld` and `Welcome` is the action method. We haven't used the `[Parameters]` part of the URL yet.
 
-![Browser window showing an application response of This is the Welcome action method](adding-controller/_static/welcome.png)
+![Browser window showing an application response of This is the Welcome action method](../first-mvc-app/adding-controller/_static/welcome.png)
 
 Let's modify the example slightly so that you can pass some parameter information  from the URL to the controller (for example, `/HelloWorld/Welcome?name=Scott&numtimes=4`).  Change the `Welcome` method  to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
 The code above uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). It also uses [Interpolated Strings](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings).
 
-In Visual Studio, in non-debug mode (Ctrl+F5), you don't need to build the app after changing  code. Just save the file, refresh your browser and you can see the changes.
+Run the app and browse to:
 
-Run your app and browse to:
+   http://localhost:5000/HelloWorld/Welcome?name=Rick&numtimes=4
 
-   `http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+You can try different values for `name` and `numtimes` in  the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in  the URL. The MVC [model binding](../../mvc/models/model-binding.md) system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See [Model Binding](../../mvc/models/model-binding.md) for more information.
-
-![Browser window showing an application response of Hello Rick, NumTimes is: 4](adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is: 4](../first-mvc-app/adding-controller/_static/rick4.png)
 
 In the sample above, the URL segment (`Parameters`) is not used, the `name` and `numTimes` parameters are passed as [query strings](http://en.wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
 
 Replace the `Welcome` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
 Run the app and enter the following URL:  `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
 
-![Browser window showing an application response of Hello Rick, ID: 3](adding-controller/_static/rick_routedata.png)
+![Browser window showing an application response of Hello Rick, ID: 3](../first-mvc-app/adding-controller/_static/rick_routedata.png)
 
 This time the third URL segment  matched the route parameter `id`. The `Welcome`  method contains a parameter  `id` that matched the URL template in the `MapRoute` method. The trailing `?`  (in `id?`) indicates the `id` parameter is optional.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
-In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.
+In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response.
 
+<!--
 >[!div class="step-by-step"]
 [Previous](start-mvc.md)
-[Next](adding-view.md)  
+[Next Adding a View](adding-view.md)  
+-->
