@@ -16,7 +16,7 @@ uid: tutorials/first-mvc-app-xplat/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code).
+This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code). The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information.  
 
 ## Install VS Code and .NET Core
 
@@ -51,8 +51,6 @@ VS Code starts the [Kestrel](xref:fundamentals/servers/kestrel) web server and r
 The default template gives you working **Home, About** and **Contact** links. The browser image above doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
 
 ![navigation icon in upper right](../first-mvc-app/start-mvc/_static/2.png)
-
-See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 

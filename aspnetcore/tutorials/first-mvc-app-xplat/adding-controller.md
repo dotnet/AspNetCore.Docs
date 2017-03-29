@@ -28,9 +28,9 @@ The MVC pattern helps you create apps that separate the different aspects of the
 
 We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The MVC project currently contains folders for the *Controllers* and *Views*. A *Models* folder will be added in a later step.
 
-* In **VS Code**, select the **explorer** icon and then  control-click (right-click) **Controllers > New File**
+* In **VS Code**, select the **EXPLORER** icon and then  control-click (right-click) **Controllers > New File**
 
-![Contextual menu](adding-controller/_static/new_file.png)
+ ![Contextual menu](adding-controller/_static/new_file.png)
 
 * Name the file *HelloWorldController.cs*
 
@@ -93,10 +93,10 @@ This time the third URL segment  matched the route parameter `id`. The `Welcome`
 
 [!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
-In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.
+In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response.
 
 <!--
 >[!div class="step-by-step"]
 [Previous](start-mvc.md)
-[Next](adding-view.md)  
+[Next Adding a View](adding-view.md)  
 -->
