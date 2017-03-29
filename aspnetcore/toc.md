@@ -14,7 +14,6 @@
 ## [Routing](fundamentals/routing.md)
 ## [URL Rewriting Middleware](fundamentals/url-rewriting.md)
 ## [Error Handling](fundamentals/error-handling.md)
-## [WebSockets](fundamentals/websockets.md)
 ## [Globalization and localization](fundamentals/localization.md)
 ## [Configuration](fundamentals/configuration.md)
 ## [Logging](fundamentals/logging.md)
