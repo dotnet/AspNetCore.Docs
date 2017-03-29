@@ -37,13 +37,9 @@ If you get an error running `dotnet new mvc`, install the latest [.NET Core](htt
 Content generation time: 79.6691 ms
 The template "Empty ASP.NET Core Web Application" created successfully.
 ```
-<!-- the ~ format is perferred but not working on DocFX. It does work on OPS build.
-
+<!-- the ~ format is perferred but not working on DocFX. It does work on OPS. See bug https://mseng.visualstudio.com/DefaultCollection/VSChina/_workitems#_a=edit&id=959814
 [!INCLUDE[template files](~/includes/template-files.md)]
-
 -->
-[!INCLUDE[template files](~/includes/template-files.md)]
-
 
 [!INCLUDE[template files](../includes/template-files.md)]
 
