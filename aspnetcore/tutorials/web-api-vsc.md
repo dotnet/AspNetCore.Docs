@@ -225,11 +225,12 @@ The `CreatedAtRoute` method returns a 201 response, which is the standard respon
 * Select the **raw** radio button
 * Set the type to JSON
 * In the key-value editor, enter a Todo item such as
-```JSON
+```json
 {
 	"name":"walk dog",
 	"isComplete":true
-}```
+}
+```
 
 * Select **Send**
 
