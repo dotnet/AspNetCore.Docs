@@ -25,7 +25,7 @@ Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.N
 
 ## Serving static files
 
-Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../index.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
+Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 

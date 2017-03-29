@@ -51,9 +51,9 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 
 For more information see [The MVC pattern](xref:mvc/overview).
 
-## Developing ASP.NET Core applications on a Mac with Visual Studio Code
+## Developing ASP.NET Core applications on a Mac and Linux with Visual Studio Code
 
-Open the project folder in Visual Studio Code (VS Code). VS Code will prompt to restore the needed project dependencies and add build/debug dependencies. Tap **Yes** to add the build and debug assets and then tap **Restore** to restore the project dependencies.
+Open the project folder in Visual Studio Code (VS Code) and select the *Startup.cs* file.. VS Code will prompt to restore the needed project dependencies and add build/debug dependencies. Tap **Yes** to add the build and debug assets and then tap **Restore** to restore the project dependencies.
 
 ![Info messages: 2. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/debug-add-items-prompt.png)
 

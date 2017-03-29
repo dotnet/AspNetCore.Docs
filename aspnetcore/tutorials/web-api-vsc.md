@@ -12,17 +12,17 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/web-api-vsc
 ---
-# Create a Web API app on Mac or Linux with Visual Studio Code 
+# Create a Web API app on Mac or Linux with Visual Studio Code
 
 By [Mike Wasson](https://github.com/mikewasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial.
+In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial. 
 
-ASP.NET Core has built-in support for MVC building Web APIs. 
+ASP.NET Core has built-in support for MVC building Web APIs.
 
 ## Overview
 
-Here is the API that you’ll create:  
+Here is the API that you’ll create:
 
 
 |API | Description    | Request body    | Response body   |
@@ -32,9 +32,9 @@ Here is the API that you’ll create:
 |POST /api/todo | Add a new item | To-do item  | To-do item |
 |PUT /api/todo/{id} | Update an existing item &nbsp;  | To-do item |  None |
 |DELETE /api/todo/{id}  &nbsp;  &nbsp; | Delete an item &nbsp;  &nbsp;  | None  | None|
-     
-<br>     
-    
+
+<br>
+
 The following diagram shows the basic design of the app.
 
 ![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
@@ -45,11 +45,14 @@ The following diagram shows the basic design of the app.
 
 * A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller.
 
-* To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database. 
+* To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database.
 
 ## Set up your development environment
 
-Download and install [.NET Core](https://microsoft.com/net/core) and [Visual Studio Code](https://code.visualstudio.com) with the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+Download and install:
+- [.NET Core](https://microsoft.com/net/core)
+- [VS Code](https://code.visualstudio.com)
+- VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 
 ## Create the project
 
@@ -72,6 +75,8 @@ Press **Debug** (F5) to build and run the program. In a browser navigate to http
 
 `["value1","value2"]`
 
+See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Code.
+
 ## Add support for Entity Framework Core
 
 Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
@@ -93,7 +98,7 @@ Add a `TodoItem` class with the following code:
 
 * The `[Key]` data annotation denotes the property, `Key`, is a unique identifier.
 * `[DatabaseGenerated` specifies the database will generate the key (rather than the application).
-* `DatabaseGeneratedOption.Identity` specifies the database should generate integer keys when a row is inserted. 
+* `DatabaseGeneratedOption.Identity` specifies the database should generate integer keys when a row is inserted.
 
 ## Create the database context
 
@@ -194,7 +199,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 * Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult`
 
-  
+
 ### Launch the app
 
 In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/todo   (The `Todo` controller we just created).
@@ -219,12 +224,13 @@ The `CreatedAtRoute` method returns a 201 response, which is the standard respon
 * Select the **Body** radio button
 * Select the **raw** radio button
 * Set the type to JSON
-* In the key-value editor, enter a Todo item such as 
-```JSON
+* In the key-value editor, enter a Todo item such as
+```json
 {
 	"name":"walk dog",
 	"isComplete":true
-}```
+}
+```
 
 * Select **Send**
 
@@ -254,6 +260,17 @@ public IActionResult GetById(string id)
 The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmd.png)
+
+## Visual Studio Code help
+
+- [Getting started](https://code.visualstudio.com/docs)
+- [Debugging](https://code.visualstudio.com/docs/editor/debugging)
+- [Integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
+- [Keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
+
+  - [Mac keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832143)
+  - [Linux keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832144)
+  - [Windows keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832145)
 
 ## Next steps
 
