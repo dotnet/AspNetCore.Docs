@@ -20,6 +20,8 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 ASP.NET Core has built-in support for MVC building Web APIs.
 
+See [Build a web API with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-web-api) for a version of this tutorial that uses Visual Studio.
+
 ## Overview
 
 Here is the API that you’ll create:
