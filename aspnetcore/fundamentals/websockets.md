@@ -31,7 +31,7 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
   * Linux
   * macOS
 
-   Exception: if your app runs on Windows with Kestrel and IIS, or with WebListener, the OS must be Windows 8 / Windows Server 2012 or later
+   Exception: If your app runs on Windows with IIS, or with WebListener, you must use Windows 8 / Windows Server 2012 or later
 
 * For supported browsers, see http://caniuse.com/#feat=websockets.
 

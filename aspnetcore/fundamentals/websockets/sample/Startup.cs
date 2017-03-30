@@ -79,12 +79,6 @@ namespace EchoApp
             WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             while (!result.CloseStatus.HasValue)
             {
-                string content = "<<binary>>";
-                if (result.MessageType == WebSocketMessageType.Text)
-                {
-                    content = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                }
-
                 await webSocket.SendAsync(new ArraySegment<byte>(buffer, 0, result.Count), result.MessageType, result.EndOfMessage, CancellationToken.None);
 
                 result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
