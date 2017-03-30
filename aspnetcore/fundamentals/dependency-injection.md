@@ -218,20 +218,25 @@ The container will call `Dispose` for `IDisposable` types it creates. However, i
 Example:
 
 ```csharp
-// Assume Service1, Service2, and Service3 each implement IDisposable
+// Services implement IDisposable:
+public class Service1 : IDisposable {}
+public class Service2 : IDisposable {}
+public class Service3 : IDisposable {}
 
-// container will create the instance(s) of these types and will dispose them
-services.AddScoped<Service1>();
-services.AddSingleton<Service2>();
+public void ConfigureServices(IServiceCollection services)
+{
+    // container will create the instance(s) of these types and will dispose them
+    services.AddScoped<Service1>();
+    services.AddSingleton<Service2>();
 
-// container did not create instance so it will NOT dispose it
-services.AddSingleton<Service3>(new Service3());
-services.AddSingleton(new Service3());
+    // container did not create instance so it will NOT dispose it
+    services.AddSingleton<Service3>(new Service3());
+    services.AddSingleton(new Service3());
+}
 ```
 
 > [!NOTE]
 > In version 1.0, the container called dispose on *all* `IDisposable` objects, including those it did not create.
-
 
 ## Replacing the default services container
 
