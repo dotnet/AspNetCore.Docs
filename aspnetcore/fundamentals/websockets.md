@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: fundamentals/websockets
 ---
 
-# H1: Introduction to WebSockets in ASP.NET Core
+# Introduction to WebSockets in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
