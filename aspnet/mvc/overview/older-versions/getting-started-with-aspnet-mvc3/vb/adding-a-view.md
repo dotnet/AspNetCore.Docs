@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/adding-a-view
 title: "Adding a View (VB) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, which is..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-table-free-templated-controls
 title: "ASP.NET 4 "Quick Hit" – Table Free Templated Controls | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn about the RenderOuterTable property for templated controls, which allows you to control whether or not the outer table is render..."

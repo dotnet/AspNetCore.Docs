@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/creating-model-classes-with-linq-to-sql
 title: "Creating Model Classes with LINQ to SQL | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to create data access classes by taking advantage of Microsoft LINQ to SQL. In this video tutorial, you learn how to use a LINQ to SQL DataContext..."

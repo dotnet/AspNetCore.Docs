@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/advanced/dependency-injection
 title: "Dependency Injection in SignalR | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For information about earlier versions of..."

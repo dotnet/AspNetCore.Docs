@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropdown-control
 title: "[How Do I:] Use the ASP.NET AJAX DropDown Control? | Microsoft Docs"
 author: JoeStagner
 description: "With the DropDown control extender from the ASP.NET AJAX Control Toolkit, you can present the user with a drop-down list of options that trigger a partial-pa..."

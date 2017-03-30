@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/getting-started-with-the-next-version-of-aspnet
 title: "Getting Started with the Next Version of ASP.NET | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman introduces you to the upcoming features in the next version of ASP.NET."

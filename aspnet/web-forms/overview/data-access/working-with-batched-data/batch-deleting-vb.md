@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/working-with-batched-data/batch-deleting-vb
 title: "Batch Deleting (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to delete multiple database records in a single operation. In the User Interface Layer we build upon an enhanced GridView created in an earlier tut..."

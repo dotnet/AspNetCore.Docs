@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/visual-studio-web-deployment/index
 title: "ASP.NET Web Deployment using Visual Studio | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series shows how to make an ASP.NET web application that uses SQL Server (not SQL Server Compact) available over the internet by deploying it t..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-cs
 title: "Formatting the DataList and Repeater Based Upon Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll step through examples of how we format the appearance of the DataList and Repeater controls, either by using formatting functions with..."

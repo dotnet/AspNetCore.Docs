@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/intellisense
 title: "IntelliSense | Microsoft Docs"
 author: JoeStagner
 description: "IntelliSense is a valuable Visual Studio feature for both learning .NET programming as well as accelerating your coding efficiency. This video will introduce..."

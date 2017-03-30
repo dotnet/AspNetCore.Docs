@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/advanced/http-cookies
 title: "HTTP Cookies in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

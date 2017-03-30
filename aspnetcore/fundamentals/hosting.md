@@ -1,18 +1,19 @@
 ---
 title: Hosting in ASP.NET Core| Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Introduction to web hosts in ASP.NET Core.
+keywords: ASP.NET Core, web host, IWebHost
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/hosting
+ms.custom: H1Hack27Feb2017
 ---
-# Hosting in ASP.NET Core
+# Introduction to hosting in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
@@ -48,15 +49,15 @@ A minimal implementation of configuring a host (and an ASP.NET Core app) would i
 
 ```csharp
 var host = new WebHostBuilder()
-       .UseKestrel()
-       .Configure(app =>
-       {
-           app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
-       })
-       .Build();
+    .UseKestrel()
+    .Configure(app =>
+    {
+        app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+    })
+    .Build();
 
-   host.Run();
-   ```
+host.Run();
+```
 
 > [!NOTE]
 > When setting up a host, you can provide `Configure` and `ConfigureServices` methods, instead of or in addition to specifying a `Startup` class (which must also define these methods - see [Application Startup](startup.md)). Multiple calls to `ConfigureServices` will append to one another; calls to `Configure` or `UseStartup` will replace previous settings.
@@ -68,7 +69,7 @@ The `WebHostBuilder` provides methods for setting most of the available configur
 ```csharp
 new WebHostBuilder()
     .UseSetting("applicationName", "MyApp")
-   ```
+```
 
 ### Host Configuration Values
 
@@ -125,7 +126,7 @@ new WebHostBuilder()
 
 **Server URLs** `string`
 
-Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. The prefixes are interpreted by the configured server; supported formats will vary between servers.
+Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. The prefixes are interpreted by the configured server; supported formats will vary between servers.
 
 ```csharp
 new WebHostBuilder()
@@ -152,70 +153,74 @@ new WebHostBuilder()
     .UseWebRoot("public")
 ```
 
+### Overriding Configuration
+
 Use [Configuration](configuration.md) to set configuration values to be used by the host. These values may be subsequently overridden. This is specified using `UseConfiguration`.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3, 4, 5, 6, 9]}} -->
 
 ```csharp
 public static void Main(string[] args)
-   {
-     var config = new ConfigurationBuilder()
-       .AddCommandLine(args)
-       .AddJsonFile("hosting.json", optional: true)
-       .Build();
+{
+    var config = new ConfigurationBuilder()
+        .AddJsonFile("hosting.json", optional: true)
+        .AddCommandLine(args)
+        .Build();
 
-     var host = new WebHostBuilder()
-       .UseConfiguration(config)
-       .UseKestrel()
-       .Configure(app =>
-       {
-         app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
-       })
-     .Build();
+    var host = new WebHostBuilder()
+        .UseConfiguration(config)
+        .UseKestrel()
+        .Configure(app =>
+        {
+            app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+        })
+        .Build();
 
-     host.Run();
-   }
-   ```
+    host.Run();
+}
+```
 
 In the example above, command-line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from a command prompt:
 
 ```console
 dotnet run --urls "http://*:5000"
-   ```
+```
 
 The `Run` method starts the web app and blocks the calling thread until the host is shutdown.
 
 ```csharp
 host.Run();
-   ```
+```
 
 You can run the host in a non-blocking manner by calling its `Start` method:
 
 ```csharp
 using (host)
-   {
-     host.Start();
-     Console.ReadLine();
-   }
-   ```
+{
+    host.Start();
+    Console.ReadLine();
+}
+```
 
 Pass a list of URLs to the `Start` method and it will listen on the URLs specified:
 
 ```csharp
-var urls = new List<string>() {
-     "http://*:5000",
-     "http://localhost:5001"
-     };
-   var host = new WebHostBuilder()
-     .UseKestrel()
-     .UseStartup<Startup>()
-     .Start(urls.ToArray());
+var urls = new List<string>()
+{
+    "http://*:5000",
+    "http://localhost:5001"
+};
 
-   using (host)
-   {
-     Console.ReadLine();
-   }
-   ```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup<Startup>()
+    .Start(urls.ToArray());
+
+using (host)
+{
+    Console.ReadLine();
+}
+```
 
 ### Ordering Importance
 
@@ -225,15 +230,15 @@ You can override any of these environment variable values by specifying configur
 
 ```csharp
 var config = new ConfigurationBuilder()
-   .AddCommandLine(args)
-   .Build();
+    .AddCommandLine(args)
+    .Build();
 
-   var host = new WebHostBuilder()
-       .UseUrls("http://*:1000") // default URL
-       .UseConfiguration(config) // override from command line
-       .UseKestrel()
-       .Build();
-   ```
+var host = new WebHostBuilder()
+    .UseUrls("http://*:1000") // default URL
+    .UseConfiguration(config) // override from command line
+    .UseKestrel()
+    .Build();
+```
 
 ## Additional resources
 

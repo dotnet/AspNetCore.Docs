@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/building-and-packaging-web-application-projects
 title: "Building and Packaging Web Application Projects | Microsoft Docs"
 author: jrjlee
 description: "When you want to deploy a web application project to a remote server environment, your first task is to build the project and generate a web deployment packa..."

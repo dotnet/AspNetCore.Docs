@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-implement-an-httpmodule
 title: "[How Do I:] Implement an HttpModule? | Microsoft Docs"
 author: scottgolightly
 description: "In this video Scott Golightly shows how to implement a simple HttpModule that uses the BeginRequest and EndRequest events to store some data about the reques..."

@@ -1,4 +1,5 @@
 ---
+uid: entity-framework
 title: "Entity Framework | Microsoft Docs"
 author: rick-anderson
 description: ""

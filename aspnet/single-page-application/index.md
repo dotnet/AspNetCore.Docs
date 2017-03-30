@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/index
 title: "ASP.NET Single Page Application | Microsoft Docs"
 author: rick-anderson
 description: "Download ASP.NET Fall 2012 Update and have a better end-to-end experience for building applications with significant client-side interactions using JavaScrip..."

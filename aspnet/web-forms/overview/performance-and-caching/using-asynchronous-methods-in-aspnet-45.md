@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45
 title: "Using Asynchronous Methods in ASP.NET 4.5 | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial will teach you the basics of building an asynchronous ASP.NET Web Forms application using Visual Studio Express 2012 for Web, which is a free..."

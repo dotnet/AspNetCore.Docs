@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/models-data/index
 title: "Models (Data) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial series, you learn how to use ASP.NET MVC with the Microsoft Entity Framework. Over the course of this tutorial, you build a web application..."

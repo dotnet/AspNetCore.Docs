@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/working-with-files
 title: "Working with Files | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Files tutorial"

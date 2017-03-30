@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/index
 title: "ASP.NET MVC Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET MVC ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and that g..."

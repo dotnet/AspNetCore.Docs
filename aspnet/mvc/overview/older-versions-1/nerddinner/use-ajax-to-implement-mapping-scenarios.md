@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
 title: "Use AJAX to Implement Mapping Scenarios | Microsoft Docs"
 author: microsoft
 description: "Step 11 shows how to integrate AJAX mapping support into our NerdDinner application, enabling users who are creating, editing or viewing dinners to see the l..."

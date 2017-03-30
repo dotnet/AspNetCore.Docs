@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-control-state-to-persist-information-for-a-custom-web-server-control
 title: "[How Do I:] Use Control State to Persist Information for a Custom Web Server Control | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to store information related to a custom web server control in the control state which is independent of the ViewState..."

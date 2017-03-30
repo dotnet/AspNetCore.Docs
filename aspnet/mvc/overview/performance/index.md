@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/performance/index
 title: "ASP.NET MVC Performance | Microsoft Docs"
 author: rick-anderson
 description: "Resources for optimizing performance of ASP.NET MVC applications."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results
 title: "[How Do I:] Publish and Analyze Test Results? | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Team System enables you to chart changes in a project's code quality as the project progresses. This video provides instructions on how to publ..."

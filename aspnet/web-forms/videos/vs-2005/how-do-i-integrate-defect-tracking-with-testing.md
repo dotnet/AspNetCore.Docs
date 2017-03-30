@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/how-do-i-integrate-defect-tracking-with-testing
 title: "[How Do I:] Integrate Defect Tracking with Testing? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we take a look at the integration points between the Testing Framework of Visual Studio Team System and the Work Item Tracking System."

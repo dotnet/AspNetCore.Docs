@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-ui/cdnjqueryui185
 title: "jQuery UI 1.8.5 | Microsoft Docs"
 author: rick-anderson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/testing-and-debugging/index
 title: "SignalR Testing and Debugging | Microsoft Docs"
 author: rick-anderson
 description: "How to test and debug SignalR applications."

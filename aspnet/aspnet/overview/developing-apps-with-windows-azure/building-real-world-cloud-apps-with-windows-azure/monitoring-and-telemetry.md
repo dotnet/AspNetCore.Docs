@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/monitoring-and-telemetry
 title: "Monitoring and Telemetry (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
@@ -45,7 +46,7 @@ Click the right arrow and choose the service tier you want. For this demo we'll 
 
 Click the right arrow, confirm the "purchase," and New Relic now shows up as an Add-on in the portal.
 
-![Review purhase](monitoring-and-telemetry/_static/image3.png)
+![Review purchase](monitoring-and-telemetry/_static/image3.png)
 
 ![New Relic add-on in management portal](monitoring-and-telemetry/_static/image4.png)
 

@@ -1,18 +1,19 @@
 ---
-title: Introduction to Tag Helpers | Microsoft Docs
+title: Tag Helpers in ASP.NET Core | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Learn what tag helpers are and how to use them in ASP.NET Core.
+keywords: ASP.NET Core, tag helpers
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 7a47f0b9-dd1e-4d25-97ec-2346a5d3ce2c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/tag-helpers/intro
+ms.custom: H1Hack27Feb2017
 ---
-# Introduction to Tag Helpers
+# Introduction to Tag Helpers in ASP.NET Core 
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -234,7 +235,7 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 * Web Server controls include automatic browser detection. Tag Helpers have no knowledge of the browser.
 
-* Multiple Tag Helpers can act on the same element (see [Avoiding Tag Helper conflicts](http://mvc.readthedocs.org/en/latest/views/tag-helpers/authoring.html#avoiding-tag-helper-conflicts) ) while you typically can't compose Web Server controls.
+* Multiple Tag Helpers can act on the same element (see [Avoiding Tag Helper conflicts](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/authoring#avoiding-tag-helper-conflicts) ) while you typically can't compose Web Server controls.
 
 * Tag Helpers can modify the tag and content of HTML elements that they're scoped to, but don't directly modify anything else on a page. Web Server controls have a less specific scope and can perform actions that affect other parts of your page; enabling unintended side effects.
 

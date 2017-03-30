@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods
 title: "Examining the Details and Delete Methods | Microsoft Docs"
 author: Rick-Anderson
 description: ""

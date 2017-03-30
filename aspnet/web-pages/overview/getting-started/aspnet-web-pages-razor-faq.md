@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/aspnet-web-pages-razor-faq
 title: "ASP.NET Web Pages (Razor) FAQ | Microsoft Docs"
 author: tfitzmac
 description: "This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix. Software versions used in the tutorial ASP.NET Web Pages (R..."
@@ -16,6 +17,9 @@ ASP.NET Web Pages (Razor) FAQ
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
 
+> > [!NOTE] 
+> > WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use [Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) or [Visual Studio Code](https://code.visualstudio.com/).
+>
 > This article lists some frequently asked questions about ASP.NET Web Pages (Razor) and WebMatrix.
 > 
 > ## Software versions used in the tutorial

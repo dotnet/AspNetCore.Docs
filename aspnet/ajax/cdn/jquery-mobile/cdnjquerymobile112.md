@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-mobile/cdnjquerymobile112
 title: "jQuery Mobile 1.1.2 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""

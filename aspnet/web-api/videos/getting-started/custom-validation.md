@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/getting-started/custom-validation
 title: "ASP.NET Web API, Part 5: Custom Validation | Microsoft Docs"
 author: jongalloway
 description: "Note: This video contains information from a pre-release version of ASP.NET Web API"

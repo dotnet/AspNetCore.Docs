@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2
 title: "Attribute Routing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""

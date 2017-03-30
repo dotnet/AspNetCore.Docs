@@ -1,4 +1,5 @@
 ---
+uid: single-page-application/overview/introduction/index
 title: "Introduction to ASP.NET Single Page Application | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET Single Page Application ASP.NET Single Page Application (SPA) helps you build applications that include significant client-side interacti..."

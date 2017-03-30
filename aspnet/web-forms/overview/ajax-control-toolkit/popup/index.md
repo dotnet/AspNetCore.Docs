@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/popup/index
 title: "Popup | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the Popup control to display a popup when any other control is activated."

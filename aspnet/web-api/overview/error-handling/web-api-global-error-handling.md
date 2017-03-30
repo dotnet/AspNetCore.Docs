@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/error-handling/web-api-global-error-handling
 title: "Global Error Handling in ASP.NET Web API 2 | Microsoft Docs"
 author: davidmatson
 description: ""
@@ -113,6 +114,12 @@ The exception logger below send exception data to configured Trace sources (incl
 The following below produces a custom error response to clients, including an email address for contacting support.
 
 [!code-csharp[Main](web-api-global-error-handling/samples/sample7.cs)]
+
+## Registering Exception Filters
+
+If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, in the *App/_Start* folder:
+
+[!code-csharp[Main](exception-handling/samples/sample7.cs?highlight=5)]
 
 ## Appendix: Base Class Details
 

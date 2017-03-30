@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/index
 title: "Building Real World Cloud Apps with Azure | Microsoft Docs"
 author: rick-anderson
 description: "Building Real World Cloud Apps with Azure"

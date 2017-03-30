@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-color-picker
 title: "Visual Studio vNext Videos: CSS Editor Color Picker | Microsoft Docs"
 author: madskristensen
 description: "In this video, Mads Kristensen demonstrates the Color Picker in the Visual Studio vNext CSS editor which shows colors in the current spreadsheet and provides..."

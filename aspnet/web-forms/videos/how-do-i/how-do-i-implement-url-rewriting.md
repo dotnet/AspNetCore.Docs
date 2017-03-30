@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-implement-url-rewriting
 title: "[How Do I:] Implement URL Rewriting? | Microsoft Docs"
 author: scottgolightly
 description: "In this video Scott Golightly shows how to create an ASP.NET HttpModule to 'rewrite' the URL when a request for a web page comes in. You may want to rewrite..."

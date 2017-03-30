@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/advanced/calling-a-web-api-from-a-net-client
 title: "Calling a Web API From a .NET Client (C#) | Microsoft Docs"
 author: MikeWasson
 description: ""

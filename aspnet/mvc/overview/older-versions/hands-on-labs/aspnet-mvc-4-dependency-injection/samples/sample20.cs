@@ -1,8 +1,6 @@
 namespace MvcMusicStore.Filters
 {
-     public class FilterProvider : 
-
-IFilterProvider
-     {
-     }
+	public class FilterProvider : IFilterProvider
+	{
+	}
 }

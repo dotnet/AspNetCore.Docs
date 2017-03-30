@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/paging-report-data-in-a-datalist-or-repeater-control-cs
 title: "Paging Report Data in a DataList or Repeater Control (C#) | Microsoft Docs"
 author: rick-anderson
 description: "While neither the DataList nor Repeater offer automatic paging or sorting support, this tutorial shows how to add paging support to the DataList or Repeater,..."

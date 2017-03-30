@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/membership/index
 title: "ASP.NET 3.5 - Membership | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series examines techniques for using the built-in membership (security) system to create user accounts and configure authorization rules."

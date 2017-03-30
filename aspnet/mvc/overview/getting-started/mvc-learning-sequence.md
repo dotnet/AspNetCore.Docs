@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/mvc-learning-sequence
 title: "MVC recommended tutorials and articles | Microsoft Docs"
 author: Rick-Anderson
 description: "This page contains links to ASP.NET MVC tutorials and a suggested sequence to follow them."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/index
 title: "Getting Started with Entity Framework 6 Database First Using MVC 5 | Microsoft Docs"
 author: rick-anderson
 description: "This series shows how to use Database First development for creating an MVC 5 application with Entity Framework"

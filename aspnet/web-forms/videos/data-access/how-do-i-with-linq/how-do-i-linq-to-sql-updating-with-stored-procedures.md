@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures
 title: "How Do I: LINQ to SQL: Updating with Stored Procedures | Microsoft Docs"
 author: scottstanfield
 description: "Override the generated ORM update/delete/insert logic with your own through stored procedures. The video also shows in detail how to use the SQL Profiler to..."

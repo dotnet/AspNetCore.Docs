@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-cs
 title: "Fighting Bots (C#) | Microsoft Docs"
 author: wenz
 description: "Automated bots plaster weblogs and other websites with spam, submitting comment forms without any user interaction. The NoBot control in the ASP.NET AJAX Con..."

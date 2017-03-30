@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/creating-user-accounts-programmatically
 title: "Creating User Accounts Programmatically | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner demonstrates how to create a custom create user web form programmatically while not using the Create User wizard. For additional i..."

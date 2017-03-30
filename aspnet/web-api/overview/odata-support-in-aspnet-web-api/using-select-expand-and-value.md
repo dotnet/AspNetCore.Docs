@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
 title: "Using $select, $expand, and $value in ASP.NET Web API 2 OData | Microsoft Docs"
 author: MikeWasson
 description: ""

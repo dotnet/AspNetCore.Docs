@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/editor-control
 title: "Editor Control | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate how to use the new Editor WYSIWYG Editor control from the Microsoft AJAX Control Toolkit."

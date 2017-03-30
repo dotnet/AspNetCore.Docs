@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/debugging-stored-procedures-vb
 title: "Debugging Stored Procedures (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Professional and Team System editions allow you to set breakpoints and step in to stored procedures within SQL Server, making debugging stored..."

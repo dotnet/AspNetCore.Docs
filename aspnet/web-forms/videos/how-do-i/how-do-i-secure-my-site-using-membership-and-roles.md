@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-secure-my-site-using-membership-and-roles
 title: "[How Do I:] Secure my Site using Membership and Roles? | Microsoft Docs"
 author: microsoft
 description: "Learn how to secure a web site using the new Membership and Roles features of ASP.NET 2.0. Topics include user registration, password recovery, and restricti..."

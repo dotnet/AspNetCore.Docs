@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/aspnet-mvc-2-areas
 title: "ASP.NET MVC 2 - Areas | Microsoft Docs"
 author: jongalloway
 description: "In this video you will learn how to use the Areas feature to make it easier to organize larger ASP.NET MVC applications by breaking them into different funct..."

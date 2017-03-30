@@ -1,4 +1,5 @@
 ---
+uid: web-api/samples-list
 title: "Web API Samples List | Microsoft Docs"
 author: rick-anderson
 description: ""

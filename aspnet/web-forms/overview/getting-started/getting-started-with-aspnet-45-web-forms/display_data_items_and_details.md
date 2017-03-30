@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/display_data_items_and_details
 title: "Display Data Items and Details | Microsoft Docs"
 author: Erikre
 description: "This tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Express 2013 for We..."

@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/security/working-with-ssl-in-web-api
 title: "Working with SSL in Web API | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to use SSL with ASP.NET Web API, including using SSL client certificates."

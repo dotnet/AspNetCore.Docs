@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/your-first-scaffold-and-what-is-dynamic-data
 title: "Your First Scaffold and What is Dynamic Data? | Microsoft Docs"
 author: shanselman
 description: "In this short introduction, you create a complete Dynamic Data application in minutes using scaffolding, and in the process learn about Dynamic Data."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/creating-a-custom-route-constraint-cs
 title: "Creating a Custom Route Constraint (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther demonstrates how you can create a custom route constraint. We implement a simple custom constraint that prevents a route from being matched w..."

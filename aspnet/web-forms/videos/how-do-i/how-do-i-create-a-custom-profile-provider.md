@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-a-custom-profile-provider
 title: "[How Do I:] Create a Custom Profile Provider? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we learn how to create a custom profile provider to store and retrieve data associated with a user profile in SQL Server tables separate from t..."

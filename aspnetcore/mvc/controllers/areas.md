@@ -1,15 +1,15 @@
 ---
 title: Areas | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Shows how to work with areas.
+keywords: ASP.NET Core, areas, routing, views
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 5e16d5e8-5696-4cb2-8ec7-d36be305c922
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/controllers/areas
 ---
 # Areas
@@ -124,7 +124,7 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
    }
    ```
 
-Set up a route definition that works with your newly created areas. The [🔧 Routing to Controller Actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the highlighted route definition below.
+Set up a route definition that works with your newly created areas. The [Routing to Controller Actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the `areaRoute` named route definition below.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4, 5, 6]}} -->
 
@@ -137,11 +137,11 @@ Set up a route definition that works with your newly created areas. The [🔧 Ro
 
      routes.MapRoute(
          name: "default",
-         template: "{controller=Home}/{action=Index}");
+         template: "{controller=Home}/{action=Index}/{id?}");
    });
    ```
 
-Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
+Browsing to `http://<yourApp>/products`, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
 
 ## Link Generation
 
@@ -185,13 +185,4 @@ Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeC
 
 ## Publishing Areas
 
-To publish all views of the areas folder, in the `project.json` file include an entry in the `publishOptions`'s `include` node like below:
-
-```text
-"publishOptions": {
-     "include": [
-       "Areas/**/*.cshtml",
-       ....
-       ....
-     ]
-   ```
+All `*.cshtml` and `wwwroot/**` files are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj* file.

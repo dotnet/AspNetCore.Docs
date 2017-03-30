@@ -5,11 +5,11 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 02/14/2017
 ms.topic: article
 ms.assetid: 870f082d-6d43-453d-b311-45f3aeb4d2c5
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: performance/caching/distributed
 ---
 # Working with a distributed cache
@@ -59,7 +59,7 @@ Removes a cache entry based on its key.
 
 To use the `IDistributedCache` interface:
 
-   1. Specify the dependencies needed in *project.json*.
+   1. Add the required NuGet packages to your project file.
 
    2. Configure the specific implementation of `IDistributedCache` in your `Startup` class's `ConfigureServices` method, and add it to the container there.
 
@@ -98,9 +98,9 @@ In the sample code, a `RedisCache` implementation is used when the server is con
 
 The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. To create SQL Server table you can use sql-cache tool, the tool creates a table with the name and schema you specify.
 
-To use sql-cache tool add SqlConfig.Tools to the tools section of the project.json file and run dotnet restore.
+To use the sql-cache tool, add `SqlConfig.Tools` to the `<ItemGroup>` element of the *.csproj* file and run dotnet restore.
 
-[!code-csharp[Main](./distributed/sample/src/DistCacheSample/project.json?highlight=6&range=14-20)]
+[!code-csharp[Main](./distributed/sample/src/DistCacheSample/DistCacheSample.csproj?range=23-25)]
 
 Test SqlConfig.Tools by running the following command
 
@@ -116,7 +116,7 @@ C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create "Data Source=(loc
        Table and index were created successfully.
    ```
 
-The created table have the following schema:
+The created table has the following schema:
 
 ![SqlServer Cache Table](distributed/_static/SqlServerCacheTable.png)
 

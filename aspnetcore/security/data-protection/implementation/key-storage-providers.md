@@ -9,7 +9,7 @@ ms.date: 1/14/2017
 ms.topic: article
 ms.assetid: 423e0a79-2f34-44c4-aaf3-146a53c39251
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers

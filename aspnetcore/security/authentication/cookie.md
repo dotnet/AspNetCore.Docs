@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 2bdcbf95-8d9d-4537-a4a0-a5ee439dcb62
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/cookie
 ---
 # Using Cookie Middleware without ASP.NET Core Identity
@@ -58,7 +58,7 @@ To create a cookie holding your user information you must construct a [ClaimsPri
 
    ```csharp
    await HttpContext.Authentication.SignInAsync("MyCookieMiddlewareInstance", principal);
-      ```
+   ```
 
 This will create an encrypted cookie and add it to the current response. The `AuthenticationScheme` specified during [configuration](xref:security/authentication/cookie#security-authentication-cookie-middleware-configuring) must also be used when calling `SignInAsync`.
 
@@ -165,7 +165,7 @@ await HttpContext.Authentication.SignInAsync(
        });
    ```
 
-This code snippet will create an identity and corresponding cookie which will be survive through browser closures. Any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options) will still be honored, if the cookie expires whilst the browser is closed the browser will clear it once it is restarted.
+This code snippet will create an identity and corresponding cookie which will survive through browser closures. Any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options) will still be honored, if the cookie expires whilst the browser is closed the browser will clear it once it is restarted.
 
 <a name=security-authentication-absolute-expiry></a>
 
@@ -181,6 +181,6 @@ await HttpContext.Authentication.SignInAsync(
        });
    ```
 
-This code snippet will create an identity and corresponding cookie which will be last for 20 minutes. This ignores any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options).
+This code snippet will create an identity and corresponding cookie which will last for 20 minutes. This ignores any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options).
 
 The ExpiresUtc and IsPersistent properties are mutually exclusive.

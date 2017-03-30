@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-dynamic-data/enable-in-line-editing-in-aspnet-dynamic-data-applications
 title: "Enable In-Line Editing in ASP.NET Dynamic Data Applications | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate using URL Routing to enable In-Line editing in your ASP.NET Dynamic Data Application."

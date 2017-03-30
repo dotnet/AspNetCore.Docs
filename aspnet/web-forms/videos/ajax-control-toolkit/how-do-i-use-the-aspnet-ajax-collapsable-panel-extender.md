@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-collapsable-panel-extender
 title: "[How Do I:] Use the ASP.NET AJAX Collapsable Panel Extender? | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn how to use the ASP.NET AJAX Collapsable Panel Extender to allow the user to dynamically show or hide content on a web page."

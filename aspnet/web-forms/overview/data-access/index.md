@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/index
 title: "Older Versions - Data Access | Microsoft Docs"
 author: rick-anderson
 description: "How to perform a variety of data-related tasks using ASP.NET Web Forms data controls."

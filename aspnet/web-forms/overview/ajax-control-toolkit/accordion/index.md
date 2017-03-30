@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/accordion/index
 title: "Accordion | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the Accordion control, which contains multiple panes and lets users display one of them at a time."

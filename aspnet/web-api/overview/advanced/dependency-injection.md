@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/advanced/dependency-injection
 title: "Dependency Injection in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial shows how to inject dependencies into your ASP.NET Web API controller. Software versions used in the tutorial Web API 2 Unity Application Block..."
@@ -105,7 +106,7 @@ The following code registers the `IProductRepository` interface with Unity and t
 
 [!code-csharp[Main](dependency-injection/samples/sample9.cs)]
 
-## Dependenecy Scope and Controller Lifetime
+## Dependency Scope and Controller Lifetime
 
 Controllers are created per request. To manage object lifetimes, **IDependencyResolver** uses the concept of a *scope*.
 

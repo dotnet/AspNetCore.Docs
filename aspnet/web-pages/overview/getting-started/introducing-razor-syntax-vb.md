@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/introducing-razor-syntax-vb
 title: "Introduction to ASP.NET Web Programming Using the Razor Syntax (Visual Basic) | Microsoft Docs"
 author: tfitzmac
 description: "This appendix gives you an overview of programming with ASP.NET Web pages in Visual Basic, using the Razor syntax."

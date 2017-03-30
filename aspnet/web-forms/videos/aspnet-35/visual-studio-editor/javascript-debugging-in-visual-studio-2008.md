@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/visual-studio-editor/javascript-debugging-in-visual-studio-2008
 title: "JavaScript Debugging in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "Using an existing web application, I will show you how to use Visual Studio 2008 to debug JavaScript in a web application."

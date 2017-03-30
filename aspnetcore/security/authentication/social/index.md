@@ -9,7 +9,7 @@ ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/social/index
 ---
 

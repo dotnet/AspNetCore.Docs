@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging
 title: "ASP.NET MVC Storefront Part 20: Logging | Microsoft Docs"
 author: robconery
 description: "In this episode I plug in logging - something that probably should have been implemented sooner."

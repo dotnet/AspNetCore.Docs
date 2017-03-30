@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers
 title: "MVC Music Store Part 2: Controllers | Microsoft Docs"
 author: jongalloway
 description: "Jon continues the MVC Music Store tutorial by creating some basic controller actions."

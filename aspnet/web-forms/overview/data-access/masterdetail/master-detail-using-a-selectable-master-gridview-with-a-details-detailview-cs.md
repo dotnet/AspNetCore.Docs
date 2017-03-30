@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-cs
 title: "Master/Detail Using a Selectable Master GridView with a Details DetailView (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will have a GridView whose rows include the name and price of each product along with a Select button. Clicking the Select button for a particu..."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-hovermenu-extender
 title: "[How Do I:] Use the ASP.NET AJAX HoverMenu Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Discover how to use the HoverMenu extender control to create a context-sensitive menu that appears whenever the user hovers the mouse over an element of a we..."

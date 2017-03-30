@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-3-pipes-and-filters
 title: "ASP.NET MVC Storefront Part 3: Pipes and Filters | Microsoft Docs"
 author: robconery
 description: "Rob Conery discusses the feedback from Parts 1 and 2, and then dive into the Pipes and Filters implementation on the IQueryable repository."

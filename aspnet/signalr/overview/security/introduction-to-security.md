@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/security/introduction-to-security
 title: "Introduction to SignalR Security | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."

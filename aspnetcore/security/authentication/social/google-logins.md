@@ -9,7 +9,7 @@ ms.date: 11/2/2016
 ms.topic: article
 ms.assetid: 8BA389D6-0911-4415-A818-C7B3F5B5CC8D
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/google-logins
 ---
 # Configuring Google authentication
@@ -103,7 +103,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 > [!NOTE]
 > Use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
-> `dotnet install Microsoft.AspNetCore.Authentication.Google`
+> `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 

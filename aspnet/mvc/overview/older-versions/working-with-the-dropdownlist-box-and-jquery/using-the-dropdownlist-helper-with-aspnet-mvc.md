@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc
 title: "Using the DropDownList Helper with ASP.NET MVC | Microsoft Docs"
 author: Rick-Anderson
 description: ""

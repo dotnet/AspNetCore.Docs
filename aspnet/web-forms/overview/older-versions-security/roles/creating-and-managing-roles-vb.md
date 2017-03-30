@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/roles/creating-and-managing-roles-vb
 title: "Creating and Managing Roles (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial examines the steps necessary for configuring the Roles framework. Following that, we will build web pages to create and delete roles."

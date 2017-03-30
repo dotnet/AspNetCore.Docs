@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-2012-css-editor
 title: "Visual Studio 2012 CSS Editor | Microsoft Docs"
 author: shanselman
 description: ""

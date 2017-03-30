@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/web-development-best-practices/async-and-await
 title: "Async and Await | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman shows how to use Async and Await support in ASP.NET 4.5."

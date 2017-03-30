@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-10
 title: "Publish the App to Azure Azure App Service | Microsoft Docs"
 author: MikeWasson
 description: ""

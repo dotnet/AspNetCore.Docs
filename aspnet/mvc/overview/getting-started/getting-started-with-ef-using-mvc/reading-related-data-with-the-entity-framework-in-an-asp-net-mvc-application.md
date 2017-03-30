@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/getting-started-with-ef-using-mvc/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
 title: "Reading Related Data with the Entity Framework in an ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "/ajax/tutorials/using-ajax-control-toolkit-controls-and-control-extenders-vb"

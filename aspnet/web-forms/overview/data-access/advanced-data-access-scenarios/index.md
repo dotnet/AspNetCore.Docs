@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/index
 title: "Advanced Data Access Scenarios | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials cover how to work with stored procedures and computed columns, how to use joins with database tables, and how to encrypt data connection info..."

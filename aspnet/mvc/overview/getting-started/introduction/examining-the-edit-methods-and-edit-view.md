@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view
 title: "Examining the Edit Methods and Edit View | Microsoft Docs"
 author: Rick-Anderson
 description: ""

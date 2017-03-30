@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 706a11bb-bf6e-4e91-930b-e3f4e71d04a0
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/data-protection/implementation/index
 ---
 # Implementation

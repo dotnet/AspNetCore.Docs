@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/introduction/adding-a-view
 title: "Adding a View | Microsoft Docs"
 author: Rick-Anderson
 description: ""

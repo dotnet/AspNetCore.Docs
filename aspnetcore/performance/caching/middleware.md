@@ -5,10 +5,10 @@ description: Configuration and use of Response Caching Middleware in ASP.NET Cor
 keywords: ASP.NET Core, response caching, caching, ResponseCache, ResponseCaching, Cache-Control, VaryByQueryKeys, middleware
 ms.author: riande
 manager: wpickett
-ms.date: 01/07/2017
+ms.date: 03/13/2017
 ms.topic: article
 ms.assetid: f9267eab-2762-42ac-1638-4a25d2c9d67c
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware
@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/
 This document provides details on how to configure the Response Caching Middleware in ASP.NET Core applications. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](response.md).
 
 ## Package
-To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
+To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or later. This feature is available for apps that target ASP.NET Core 1.1.0 or later.
 
 ## Configuration
 In `ConfgureServices`, add the middleware to your service collection.
@@ -32,6 +32,9 @@ Configure the application to use the middleware when processing requests. The sa
 [!code-csharp[Main](middleware/sample/Startup.cs?name=snippet2)]
 
 The Response Caching Middleware only caches 200 (OK) server responses. Any other responses, including [error pages](xref:fundamentals/error-handling), will be ignored by the middleware.
+
+>[!WARNING]
+> Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
 
 ## Options
 The middleware offers two options for controlling response caching.
@@ -92,7 +95,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The request must result in a 200 (OK) response from the server.
 * The request method must be GET or HEAD.
 * Terminal middleware, such as Static File Middleware, must not process the response prior to the Response Caching Middleware.
-* The Authorization header must not be present.
+* The `Authorization` header must not be present.
 * `Cache-Control` header parameters must be valid, and the response must be marked `public` and not marked `private`.
 * The `Pragma: no-cache` header/value must not be present if the `Cache-Control` header is not present, as the `Cache-Control` header overrides the `Pragma` header when present.
 * The `Set-Cookie` header must not be present.

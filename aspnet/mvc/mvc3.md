@@ -1,4 +1,5 @@
 ---
+uid: mvc/mvc3
 title: "ASP.NET MVC 3 | Microsoft Docs"
 author: rick-anderson
 description: "(includes April 2011 Tools Update) ASP.NET MVC 3 is a framework for building scalable, standards-based web applications using well-established design pattern..."

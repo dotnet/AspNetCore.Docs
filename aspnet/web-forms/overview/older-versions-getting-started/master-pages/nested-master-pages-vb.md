@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-vb
 title: "Nested Master Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Shows how to nest one master page within another."

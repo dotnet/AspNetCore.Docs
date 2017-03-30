@@ -9,7 +9,7 @@ ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: E5931607-31C0-4B20-B416-85E3550F5EA8
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/twitter-logins
 ---
 # Configuring Twitter authentication
@@ -68,7 +68,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 > [!NOTE]
 > Use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
-> `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
+> `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
 Add the Twitter middleware in the `Configure` method in `Startup.cs`:
 

@@ -1,4 +1,5 @@
 ---
+uid: whitepapers/aspnet-web-deployment-content-map
 title: "ASP.NET Web Deployment - Recommended Resources | Microsoft Docs"
 author: rick-anderson
 description: "This topic provides links to documentation resources about how to deploy (publish) ASP.NET web applications to IIS by using Visual Studio 2010, Visual Web De..."

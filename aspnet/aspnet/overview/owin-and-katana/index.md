@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/owin-and-katana/index
 title: "OWIN and Katana | Microsoft Docs"
 author: rick-anderson
 description: "Katana is a flexible set of components for building and hosting Open Web Interface for .NET (OWIN)-based web applications."

@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-vb
 title: "Iteration #5 – Create unit tests (VB) | Microsoft Docs"
 author: microsoft
 description: "In the fifth iteration, we make our application easier to maintain and modify by adding unit tests. We mock our data model classes and build unit tests for o..."

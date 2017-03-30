@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details
 title: "Tailspin Spyworks - Display Per Product Details | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner displays the product details in the Tailspin Spyworks sample Web Forms application."

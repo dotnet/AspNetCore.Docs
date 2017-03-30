@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/index
 title: "Editing, Inserting, and Deleting Data | Microsoft Docs"
 author: rick-anderson
 description: "In these tutorials you see how to map methods of the ObjectDataSource control to BLL methods, and how to configure the GridView, DetailsView, and FormView co..."

@@ -1,10 +1,10 @@
 @model PaginatedList<ContosoUniversity.Models.Student>
 
 @{
-    ViewData["Title"] = "Students";
+    ViewData["Title"] = "Index";
 }
 
-<h2>Students</h2>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,8 +13,8 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default btn" /> |
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>
     </div>
@@ -24,10 +24,10 @@
     <thead>
         <tr>
             <th>
-                First Name
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>
+                First Name
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Enrollment Date</a>
@@ -40,10 +40,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)

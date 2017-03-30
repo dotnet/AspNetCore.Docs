@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/performance-and-traffic/index
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to cache content for faster performance and how to measure site traffic."

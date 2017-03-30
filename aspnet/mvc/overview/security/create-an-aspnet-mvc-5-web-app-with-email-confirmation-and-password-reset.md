@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
 title: "Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial shows you how to build an ASP.NET MVC 5 web app with email confirmation and password reset using the ASP.NET Identity membership system. You ca..."

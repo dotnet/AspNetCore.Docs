@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-save-and-load-view-state-information-for-a-custom-web-server-control
 title: "[How Do I:] Save and Load View State Information for a Custom Web Server Control | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to persist and restore information in the ViewState of a custom user control. First, learn how to persist simple value..."

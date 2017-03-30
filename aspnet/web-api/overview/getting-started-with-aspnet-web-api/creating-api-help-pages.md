@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/getting-started-with-aspnet-web-api/creating-api-help-pages
 title: "Creating Help Pages for ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
 title: "Routing Conventions in ASP.NET Web API 2 Odata | Microsoft Docs"
 author: MikeWasson
 description: "This article describes the routing conventions that Web API uses for OData endpoints."

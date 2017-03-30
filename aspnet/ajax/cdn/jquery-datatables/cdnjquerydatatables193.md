@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-datatables/cdnjquerydatatables193
 title: "jQuery DataTables 1.9.3 | Microsoft Docs"
 author: rick-anderson
 description: ""
@@ -14,7 +15,7 @@ msc.type: content
 ---
 jQuery DataTables 1.9.3
 ====================
-The following files for the jQuery DataTables plubin are hosted on the CDN:
+The following files for the jQuery DataTables plugins are hosted on the CDN:
 
 - http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.js
 - http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js

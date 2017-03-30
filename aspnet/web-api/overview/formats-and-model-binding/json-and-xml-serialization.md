@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/json-and-xml-serialization
 title: "JSON and XML Serialization in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""

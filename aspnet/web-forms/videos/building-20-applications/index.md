@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-20-applications/index
 title: "Building 2.0 Applications | Microsoft Docs"
 author: rick-anderson
 description: "Building ASP.NET 2.0 Applications"

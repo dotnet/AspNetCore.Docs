@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-client-library-controls
 title: "[How Do I:] Use the ASP.NET AJAX Client Library Controls? | Microsoft Docs"
 author: JoeStagner
 description: "Demonstrates the client-side programming experience using scripts and controls from the ASP.NET AJAX client library. The client controls add actions, behavio..."

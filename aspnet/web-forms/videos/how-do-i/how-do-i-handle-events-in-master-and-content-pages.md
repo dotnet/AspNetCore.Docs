@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-handle-events-in-master-and-content-pages
 title: "[How Do I:] Handle Events in Master and Content Pages | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how events are handled in master and individual content pages. Even though the end result of a master and individual conte..."

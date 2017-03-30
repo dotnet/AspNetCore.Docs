@@ -1,4 +1,5 @@
 ---
+uid: visual-studio/overview/2012/visual-studio-vnext-videos-css-editor-snippets
 title: "Visual Studio vNext Videos: CSS Snippets | Microsoft Docs"
 author: madskristensen
 description: "In this video, Mads Kristensen demonstrates an improvement in the Visual Studio vNext CSS editor which adds some useful snippets for CSS3 transforms, media q..."

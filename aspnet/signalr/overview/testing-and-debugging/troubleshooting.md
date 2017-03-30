@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/testing-and-debugging/troubleshooting
 title: "SignalR Troubleshooting | Microsoft Docs"
 author: pfletcher
 description: "This article describes common issues with developing SignalR applications."

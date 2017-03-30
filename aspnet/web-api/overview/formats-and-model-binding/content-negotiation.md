@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/formats-and-model-binding/content-negotiation
 title: "Content Negotiation in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes how ASP.NET Web API implements HTTP content negotiation."
@@ -101,4 +102,4 @@ If there are still no matches, the content negotiator simply picks the first for
 
 ## Selecting a Character Encoding
 
-After a formatter is selected, the content negotiator chooses the best character encoding. by looking at the **SupportedEncodings** property on the formatter, and matching it against the Accept-Charset header in the request (if any).
+After a formatter is selected, the content negotiator chooses the best character encoding by looking at the **SupportedEncodings** property on the formatter, and matching it against the Accept-Charset header in the request (if any).

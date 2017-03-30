@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/testing-and-debugging/index
 title: "Testing and Debugging | Microsoft Docs"
 author: rick-anderson
 description: "How to test and debug ASP.NET Web Pages applications."

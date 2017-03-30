@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-13-dependency-injection
 title: "ASP.NET MVC Storefront Part 13: Dependency Injection | Microsoft Docs"
 author: robconery
 description: "This is a joint development session with Jeremy Miller of CodeBetter/StructureMap, where he shows me the ins and outs of Dependency Injection."

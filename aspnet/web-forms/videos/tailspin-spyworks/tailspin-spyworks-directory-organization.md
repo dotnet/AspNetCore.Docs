@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-directory-organization
 title: "Tailspin Spyworks - Directory Organization | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner modifies the default directory structure for the Tailspin Spyworks sample Web Forms application."

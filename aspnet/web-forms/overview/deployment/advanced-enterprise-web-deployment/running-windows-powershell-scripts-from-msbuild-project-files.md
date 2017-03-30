@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/advanced-enterprise-web-deployment/running-windows-powershell-scripts-from-msbuild-project-files
 title: "Running Windows PowerShell Scripts from MSBuild Project Files | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to run a Windows PowerShell script as part of a build and deployment process. You can run a script locally (in other words, on the b..."

@@ -1,11 +1,8 @@
 @model IEnumerable<ContosoUniversity.Models.Course>
-
 @{
     ViewData["Title"] = "Courses";
 }
-
 <h2>Courses</h2>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -16,10 +13,10 @@
                 @Html.DisplayNameFor(model => model.CourseID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Credits)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Credits)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Department)
@@ -35,10 +32,10 @@
                     @Html.DisplayFor(modelItem => item.CourseID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Credits)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.Credits)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Department.Name)

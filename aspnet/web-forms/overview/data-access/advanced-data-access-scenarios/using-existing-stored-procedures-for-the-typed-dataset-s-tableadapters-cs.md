@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs
 title: "Using Existing Stored Procedures for the Typed DataSet's TableAdapters (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to use the TableAdapter Wizard to generate new stored procedures. In this tutorial we learn how the same TableAdapter..."

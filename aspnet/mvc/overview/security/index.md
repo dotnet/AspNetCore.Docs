@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/security/index
 title: "Security, Authentication, and Authorization with ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "How to make an ASP.NET site more secure, and how to implement authentication and authorization."

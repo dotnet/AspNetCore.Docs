@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/nerddinner/introducing-the-nerddinner-tutorial
 title: "Introducing the NerdDinner Tutorial | Microsoft Docs"
 author: shanselman
 description: "The best way to learn a new framework is to build something with it. This tutorial walks through how to build a small, but complete, application using ASP.NE..."

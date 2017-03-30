@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/older-versions/signalr-1x-hubs-api-guide-net-client
 title: "ASP.NET SignalR Hubs API Guide - .NET Client (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This document provides an introduction to using the Hubs API for SignalR version 2 in .NET clients, such as Windows Store (WinRT), WPF, Silverlight, and cons..."

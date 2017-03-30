@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-skins-with-css-for-a-flexible-and-maintainable-aspnet-web-site
 title: "[How Do I:] Use Skins with CSS for a Flexible and Maintainable ASP.NET Web Site | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create skins for ASP.NET server controls and then incorporate CSS styles to control the appearance of the skinned contr..."

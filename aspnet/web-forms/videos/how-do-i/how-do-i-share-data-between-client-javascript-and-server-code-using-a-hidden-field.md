@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-share-data-between-client-javascript-and-server-code-using-a-hidden-field
 title: "[How Do I:] Share Data Between Client JavaScript and Server Code Using a Hidden Field | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to share data in between JavaScript and server-side code by using a hidden field in an ASP.NET page. Next, learn how t..."

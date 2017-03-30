@@ -1,4 +1,5 @@
 ---
+uid: web-api/videos/index
 title: "ASP.NET Web API Videos | Microsoft Docs"
 author: rick-anderson
 description: ""

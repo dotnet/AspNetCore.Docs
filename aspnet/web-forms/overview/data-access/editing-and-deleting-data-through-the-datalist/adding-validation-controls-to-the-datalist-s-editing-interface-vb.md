@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb
 title: "Adding Validation Controls to the DataList's Editing Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how easy it is to add validation controls to the DataList's EditItemTemplate in order to provide a more foolproof editing user int..."

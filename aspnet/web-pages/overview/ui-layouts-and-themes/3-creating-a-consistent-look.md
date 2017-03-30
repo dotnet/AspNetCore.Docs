@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look
 title: "Creating a Consistent Layout in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "To make it more efficient to create web pages for your site, you can create reusable blocks of content (like headers and footers) for your website, and you c..."

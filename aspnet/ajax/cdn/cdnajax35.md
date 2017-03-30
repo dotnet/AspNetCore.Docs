@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/cdnajax35
 title: "ASP.NET Ajax 3.5 | Microsoft Docs"
 author: rick-anderson
 description: ""

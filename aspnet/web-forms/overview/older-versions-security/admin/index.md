@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/admin/index
 title: "ASP.NET 3.5 - Security Administration | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series shows you one way to create an administration page that lets you manage users and roles."

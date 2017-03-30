@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/core/index
 title: "Core | Microsoft Docs"
 author: rick-anderson
 description: "This video series explores core improvements in ASP.NET 4 like auto-start, clean configuration files, and HTML encoding."

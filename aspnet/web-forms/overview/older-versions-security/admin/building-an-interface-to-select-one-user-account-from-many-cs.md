@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-security/admin/building-an-interface-to-select-one-user-account-from-many-cs
 title: "Building an Interface to Select One User Account from Many (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build a user interface with a paged, filterable grid. In particular, our user interface will consist of a series of LinkButtons for..."

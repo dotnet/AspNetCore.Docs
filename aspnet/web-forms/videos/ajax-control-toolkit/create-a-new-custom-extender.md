@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/create-a-new-custom-extender
 title: "Create a New Custom Extender | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe demonstrates how to use the AJAX Control Toolkit to create a new custom AJAX Control Extender."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/how-do-i-create-my-own-bug-work-item
 title: "[How Do I:] Create My Own Bug Work Item? | Microsoft Docs"
 author: rick-anderson
 description: "This video demonstrates how to create your own Bug Work Item definition for use in Visual Studio Team System. We see how a Work Item is defined by an XML fil..."

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a New Field | Microsoft Docs
 author: rick-anderson
 description: 
@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 16efbacf-fe7b-4b41-84b0-06a1574b95c2
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/new-field
 ---
 # Adding a New Field
@@ -18,13 +18,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you'll use [Entity Framework](http://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html) Code First Migrations to add a new field to the model and migrate that change to the database.
 
-When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
+When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
 
 ## Adding a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
 
 Build the app (Ctrl+Shift+B).
 
@@ -38,15 +38,15 @@ You also need to update the view templates in order to display, create and edit 
 
 Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/IndexGenreRating.cshtml?highlight=16,37&range=24-61)]
+[!code-HTML[Main](start-mvc/sample/MvcMovie/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](../../mvc/views/tag-helpers/intro.md).
+Update the */Views/Movies/Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
 The app won't work until we update the DB to include the new field. If you run it now, you'll get the following `SqlException`:
 
-![Browser window showing an Internal Server Error: Sql Exception: Invalid column name Rating. There are pending model changes for Application DB Context. Scaffold a new migration for these changes and apply them to the database from the command line: dotnet ef migrations add (migration name) or dotnet ef database update.](new-field/_static/se.png)
+`SqlException: Invalid column name 'Rating'.`
 
 You're seeing this error because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.)
 
@@ -62,7 +62,7 @@ For this tutorial, we'll use Code First Migrations.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Models/SeedDataRating.cs?highlight=6&range=25-32)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
 
 Build the solution then open a command prompt. Enter the following commands:
 

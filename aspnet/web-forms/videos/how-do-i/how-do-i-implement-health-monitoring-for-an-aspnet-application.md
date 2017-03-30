@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-implement-health-monitoring-for-an-aspnet-application
 title: "[How Do I:]  Implement Health Monitoring for an ASP.NET Application? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to implement health monitoring to get detailed run-time information for an ASP.NET application. Learn the powerful and..."

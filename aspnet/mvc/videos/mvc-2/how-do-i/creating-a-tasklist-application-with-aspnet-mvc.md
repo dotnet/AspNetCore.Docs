@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/creating-a-tasklist-application-with-aspnet-mvc
 title: "Creating a Tasklist Application with ASP.NET MVC | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther builds an entire ASP.NET MVC application from start to finish. This tutorial is a great introduction for people who are new to the ASP.NET MV..."

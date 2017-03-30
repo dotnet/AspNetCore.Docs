@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-create-excel-spreadsheets-using-linq-to-xml
 title: "[How Do I:] Create Excel Spreadsheets using LINQ to XML? | Microsoft Docs"
 author: bethmassi
 description: "Visual Basic developers will learn how to query their SQL Server database in order to easily create Excel spreadsheets directly in the Visual Basic editor us..."

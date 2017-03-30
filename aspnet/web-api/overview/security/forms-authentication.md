@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/security/forms-authentication
 title: "Forms Authentication in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes using Forms Authentication in ASP.NET Web API."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-building-applications
 title: "Intro to ASP.NET for JSP Developers: Building Applications | Microsoft Docs"
 author: microsoft
 description: "This webcast looks at both the similarities and differences between building a Web application in ASP.NET 2.0 and building one using Java."

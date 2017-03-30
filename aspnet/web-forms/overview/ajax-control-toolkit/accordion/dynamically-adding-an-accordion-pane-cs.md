@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/accordion/dynamically-adding-an-accordion-pane-cs
 title: "Dynamically Adding An Accordion Pane (C#) | Microsoft Docs"
 author: wenz
 description: "The Accordion control in the AJAX Control Toolkit provides multiple panes and allows the user to display one of them at a time. Panels are usually declared w..."

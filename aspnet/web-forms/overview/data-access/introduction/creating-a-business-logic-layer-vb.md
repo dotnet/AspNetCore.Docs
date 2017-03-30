@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/introduction/creating-a-business-logic-layer-vb
 title: "Creating a Business Logic Layer (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to centralize your business rules into a Business Logic Layer (BLL) that serves as an intermediary for data exchange between t..."

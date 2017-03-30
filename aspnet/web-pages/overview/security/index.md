@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/security/index
 title: "Security | Microsoft Docs"
 author: rick-anderson
 description: "How to add login capabilities to an ASP.NET Web Pages application, and how to help protect the application from bots."

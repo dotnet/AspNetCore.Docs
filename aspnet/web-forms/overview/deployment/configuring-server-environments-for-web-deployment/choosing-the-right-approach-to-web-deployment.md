@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment
 title: "Choosing the Right Approach to Web Deployment | Microsoft Docs"
 author: jrjlee
 description: "When you work with the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) 2.0 or later, there are three main approaches you can use to get..."

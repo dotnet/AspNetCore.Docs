@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/implement-the-registration-verification-pattern
 title: "Implement the Registration Verification Pattern | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner extends the registration process in an ASP.NET application by adding an email verification step."

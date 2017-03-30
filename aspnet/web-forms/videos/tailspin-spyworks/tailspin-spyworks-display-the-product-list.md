@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-the-product-list
 title: "Tailspin Spyworks - Display the Product List | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner shows how to display the product list in the Tailspin Spyworks sample Web Forms application."

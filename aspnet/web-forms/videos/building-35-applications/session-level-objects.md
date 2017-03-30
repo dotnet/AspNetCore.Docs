@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/building-35-applications/session-level-objects
 title: "Session Level Objects | Microsoft Docs"
 author: JoeStagner
 description: "This video will introduce Session Level Events and Objects and compare their use with their Application and Page level equivalents."

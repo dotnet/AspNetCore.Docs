@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 title: "Getting Started with OWIN and Katana | Microsoft Docs"
 author: MikeWasson
 description: ""
@@ -24,7 +25,7 @@ This tutorial uses [Visual Studio 2013 Release Candidate](https://go.microsoft.c
 
 ## Host OWIN in IIS
 
-In this section, we'll host OWIN in IIS. This option gives you the flexibility and composabity of an OWIN pipeline together with the mature feature set of IIS. Using this option, the OWIN application runs in the ASP.NET request pipeline.
+In this section, we'll host OWIN in IIS. This option gives you the flexibility and composability of an OWIN pipeline together with the mature feature set of IIS. Using this option, the OWIN application runs in the ASP.NET request pipeline.
 
 First, create a new ASP.NET Web Application project. (In Visual Studio 2012, use the ASP.NET Empty Web Application project type.)
 

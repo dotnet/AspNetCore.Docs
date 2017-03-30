@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-ui/cdnjqueryui1113
 title: "jQuery UI 1.11.3 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""

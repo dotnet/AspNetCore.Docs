@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/control-extenders
 title: "Control Extenders | Microsoft Docs"
 author: JoeStagner
 description: "Watch this video to understand the difference between Controls and AJAX Control Extenders and how to use those extenders in your applications."

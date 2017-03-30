@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/security/16-adding-security-and-membership
 title: "Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This chapter shows you how to secure your website so that some of the pages are available only to people who log in. (You'll also see how to create pages tha..."

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: getting-started
 ---
 # Getting Started with ASP.NET Core
@@ -21,8 +21,10 @@ uid: getting-started
     ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
-    dotnet new -t web
+    dotnet new web
     ```
+    
+    Note: Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
 
 3.  Restore the packages:
 

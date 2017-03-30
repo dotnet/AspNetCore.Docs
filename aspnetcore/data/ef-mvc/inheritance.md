@@ -1,15 +1,15 @@
 ---
 title: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10 | Microsoft Docs
 author: tdykstra
-description: 
-keywords: ASP.NET Core,
+description: This tutorial will show you how to implement inheritance in the data model, using Entity Framework Core in an ASP.NET Core application.
+keywords: ASP.NET Core, Entity Framework Core, inheritance
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/15/2017
 ms.topic: article
 ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: data/ef-mvc/inheritance
 ---
 
@@ -17,7 +17,7 @@ uid: data/ef-mvc/inheritance
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.
 
@@ -83,22 +83,22 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 Save your changes and build the project. Then open the command window in the project folder and enter the following command:
 
 ```console
-dotnet ef migrations add Inheritance -c SchoolContext
+dotnet ef migrations add Inheritance
 ```
 
 Run the `database update` command:.
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
 
-    The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_CourseAssignment_Person_InstructorID". The conflict occurred in database "ContosoUniversity09133", table "dbo.Person", column 'ID'.
+> The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_CourseAssignment_Person_InstructorID". The conflict occurred in database "ContosoUniversity09133", table "dbo.Person", column 'ID'.
 
 Open *Migrations<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Migrations/20160817215858_Inheritance.cs?name=snippet_Up)]
+[!code-csharp[Main](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
 This code takes care of the following database update tasks:
 
@@ -125,7 +125,7 @@ This code takes care of the following database update tasks:
 Run the `database update` command again:
 
 ```console
-dotnet ef database update -c SchoolContext
+dotnet ef database update
 ```
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)

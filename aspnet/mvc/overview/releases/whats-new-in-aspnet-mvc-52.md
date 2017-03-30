@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/releases/whats-new-in-aspnet-mvc-52
 title: "What’s New in ASP.NET MVC 5.2 | Microsoft Docs"
 author: microsoft
 description: ""

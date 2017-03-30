@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/data/using-web-api-with-entity-framework/part-5
 title: "Create Data Transfer Objects (DTOs) | Microsoft Docs"
 author: MikeWasson
 description: ""

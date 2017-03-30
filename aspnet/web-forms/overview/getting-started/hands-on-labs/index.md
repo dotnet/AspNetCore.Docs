@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/getting-started/hands-on-labs/index
 title: "Visual Studio 2012 Hands On Labs | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to develop with ASP.NET Web Forms with these Hands On Labs"

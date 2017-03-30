@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/dropshadow/manipulating-dropshadow-properties-from-client-code-cs
 title: "Manipulating DropShadow Properties from Client Code (C#) | Microsoft Docs"
 author: wenz
 description: "Customizing the DataList's Editing Interface"

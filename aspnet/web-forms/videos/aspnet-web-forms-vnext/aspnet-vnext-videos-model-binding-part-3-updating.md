@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-3-updating
 title: "ASP.NET vNext Videos: Model Binding Part 3 - Updating | Microsoft Docs"
 author: DamianEdwards
 description: "In this video, Damian Edwards completes the review of model binding by demonstrating how data is updated."

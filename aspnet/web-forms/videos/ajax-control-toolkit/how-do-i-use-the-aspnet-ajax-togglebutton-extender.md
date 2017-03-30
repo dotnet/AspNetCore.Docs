@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-togglebutton-extender
 title: "[How Do I:] Use the ASP.NET AJAX ToggleButton Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Demonstrates using the ToggleButton extender control to modify the behavior and appearance of the standard ASP.NET CheckBox control to enhance the user inter..."

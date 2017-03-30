@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-perform-group-and-aggregate-queries
 title: "[How Do I:] Perform Group and Aggregate Queries? | Microsoft Docs"
 author: bethmassi
 description: "Visual Basic programmers will learn how to perform group and aggregate queries over business object collections and how to display them in related grids."

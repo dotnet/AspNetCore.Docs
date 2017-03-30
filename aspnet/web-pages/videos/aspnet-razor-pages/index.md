@@ -1,4 +1,5 @@
 ---
+uid: web-pages/videos/aspnet-razor-pages/index
 title: "ASP.NET Razor Pages | Microsoft Docs"
 author: rick-anderson
 description: "Which videos you can view to drill down into Web Pages and WebMatrix."

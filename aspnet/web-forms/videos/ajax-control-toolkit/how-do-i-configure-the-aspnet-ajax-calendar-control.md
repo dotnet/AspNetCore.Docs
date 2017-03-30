@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-configure-the-aspnet-ajax-calendar-control
 title: "[How Do I:] Configure the ASP.NET AJAX Calendar Control? | Microsoft Docs"
 author: JoeStagner
 description: "In this video we see a demonstration of the variety of options available to configure the appearance and the behavior of the Calendar extender control from t..."

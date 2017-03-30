@@ -1,4 +1,5 @@
 ---
+uid: identity/overview/getting-started/index
 title: "Getting Started with ASP.NET Identity | Microsoft Docs"
 author: rick-anderson
 description: "The ASP.NET Identity system is designed to replace the previous ASP.NET Membership and Simple Membership systems. It includes profile support, OAuth integrat..."

@@ -9,14 +9,14 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d1fbd23c-2ff9-4216-b908-0201ff3afb7c
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
-Individual web server features related to how HTTP requests and responses are handled have been factored into separate interfaces. These abstractions are used by individual server implementations and middleware to create and modify the application's hosting pipeline.
+Web server features related to how HTTP requests and responses are handled have been factored into interfaces. These interfaces are used by server implementations and middleware to create and modify the application's hosting pipeline.
 
 ## Feature interfaces
 

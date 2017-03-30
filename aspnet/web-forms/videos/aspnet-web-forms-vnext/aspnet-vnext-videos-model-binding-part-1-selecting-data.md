@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-1-selecting-data
 title: "ASP.NET vNext Videos: Model Binding Part 1 - Selecting Data | Microsoft Docs"
 author: DamianEdwards
 description: "In this video, Damian Edwards begins a look at model binding by demonstrating data selection."

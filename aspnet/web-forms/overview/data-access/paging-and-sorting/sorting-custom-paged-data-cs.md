@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/paging-and-sorting/sorting-custom-paged-data-cs
 title: "Sorting Custom Paged Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In the previous tutorial we learned how to implement custom paging when presentating data on a web page. In this tutorial we see how to extend the preceding..."

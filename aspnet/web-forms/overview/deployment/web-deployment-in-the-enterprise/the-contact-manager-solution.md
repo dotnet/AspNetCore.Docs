@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/the-contact-manager-solution
 title: "The Contact Manager Solution | Microsoft Docs"
 author: jrjlee
 description: "This series of tutorials uses a sample solution&#x2014;the Contact Manager solution&#x2014;to represent an enterprise-scale application with a realistic leve..."

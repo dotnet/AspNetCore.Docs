@@ -1,82 +1,51 @@
 ---
 title: Account Confirmation and Password Recovery | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
+keywords: ASP.NET Core, password reset, email confirmation, security
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 03/14/2017
 ms.topic: article
 ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: security/authentication/accconfirm
 ---
 # Account confirmation and password recovery
-
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
 <a name=security-authentication-account-confirmation></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset support.
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset.
 
 ## Create a New ASP.NET Core Project
 
-> [!NOTE]
-> The tutorial requires Visual Studio 2015 updated 2 and ASP.NET Core RC2 or higher.
+The tutorial requires Visual Studio 2017 or higher.
 
-* In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**)
+* In Visual Studio, create a New Web Application Project.
+* Select **Change Authentication** and set to **Individual User Accounts**.
 
-![New Project dialog](accconfirm/_static/new-project.png)
+![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
 
-* Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**
+Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
-![New Web Application dialog](accconfirm/_static/select-project.png)
+## View the Identity database
 
-Run the app and then click on the **Register** link and register a user. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
-
-In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)MSSQLLocalDB(SQL Server 12)**. Right click on **dbo.AspNetUsers** > **View Data**:
+* From the **View** menu, select **SQL Server Object Explorer** (SSOX). 
+* Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right click on **dbo.AspNetUsers** > **View Data**:
 
 ![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
 
-![AspNetUsers table data](accconfirm/_static/au.png)
-
 Note the `EmailConfirmed` field is `False`.
 
-Right-click on the row and from the context menu, select **Delete**. You might want to use this email again in the next step, when the app sends a confirmation email. Deleting the email alias now will make it easier in the following steps.
+You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
-## Require SSL
 
-In this section we'll set up our Visual Studio project to use SSL and our project to require SSL.
+## Require SSL and setup IIS Express for SSL
 
-### Enable SSL in Visual Studio
-
-   * In solution explorer, right click the project and select **Properties**
-
-   * On the left pane, tap **Debug**
-
-   * Check **Enable SSL**
-
-   * Copy the SSL URL and paste it into the **App URL**
-
-![Debug tab of web application properties](accconfirm/_static/ssl.png)
-
-* Add the following code to `ConfigureServices` in `Startup`:
-
-```csharp
-services.Configure<MvcOptions>(options =>
-{
-    options.Filters.Add(new RequireHttpsAttribute ());
-});
-```
- `[services.Configure<MvcOptions>]` requires `[using Microsoft.AspNetCore.Mvc;]`.
-
-Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attribute will redirect all HTTP GET requests to HTTPS GET and will reject all HTTP POSTs. A security best practice is to use HTTPS for all requests.
-
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Controllers/HomeController.cs?range=9-10&highlight=1)]
+See [Enforcing SSL](xref:security/enforcing-ssl).
 
 ## Require email confirmation
 
@@ -86,128 +55,110 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update `ConfigureServices` to require a confirmed email:
 
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=11&name=snippet1)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=13-16)]
 
 ### Configure email provider
 
-We'll use the [Options pattern](../../fundamentals/configuration.md#options-config-objects) to access the user account and key settings. For more information, see [configuration](../../fundamentals/configuration.md#fundamentals-configuration).
+In this tutorial we'll be using SendGrid to send email. You'll need a SendGrid account and key to send email. We'll use the [Options pattern](xref:fundamentals/configuration#options-config-objects) to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
 
-   * Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
+Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Services/AuthMessageSenderOptions.cs?range=8-12)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
 ```none
-C:\WebApplication3\src\WebApplication3>dotnet user-secrets set SendGridUser RickAndMSFT
+C:\WebAppl\src\WebApp1>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
+On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId> directory.
 
-[!code-json[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/project.json?highlight=3&range=1-6)]
+The contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the `SendGridKey` value has been removed.)
 
-At this time, the contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the sensitive keys have been removed.)
-
-```json
-{
-  "SendGridUser": "RickAndMSFT",
-  "SendGridKey": "",
-  "Authentication:Facebook:AppId": "",
-  "Authentication:Facebook:AppSecret": ""
-}
-```
+  ```json
+  {
+    "SendGridUser": "RickAndMSFT",
+    "SendGridKey": "<key removed>"
+  }
+  ```
 
 ### Configure startup to use `AuthMessageSenderOptions`
 
-Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
-
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=4&range=62-65)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
 
-### Configure the `AuthMessageSender` class
+### Configure the AuthMessageSender class
 
 This tutorial shows how to add email notification through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
 
-* Install the SendGrid.NetCore NuGet package. From the Package Manager Console,  enter the following the following command:
+* Install the `SendGrid` NuGet package. From the Package Manager Console,  enter the following the following command:
 
-    `Install-Package SendGrid.NetCore -Pre`
+  `Install-Package SendGrid`
 
->[!NOTE]
->SendGrid.NetCore package is a prerelease version , to install it is necessary to use -Pre option on Install-Package.
+* See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
+* Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
 
-* Follow the instructions [Create a SendGrid account](https://azure.microsoft.com/en-us/documentation/articles/sendgrid-dotnet-how-to-send-email/#create-a-sendgrid-account) to register for a free SendGrid account.
-
-* Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid
-
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Services/MessageServices.cs?range=13-53)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Services/MessageServices.cs)]
 
 ## Enable account confirmation and password recovery
 
 The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
 
 *  Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
-
 *  Uncomment the code to enable account confirmation.
 
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Controllers/AccountController.cs?highlight=17-21&range=113-142)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16-25&name=snippet_Register)]
 
-> [!NOTE]
-> We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
->
-> ```csharp
-> //await _signInManager.SignInAsync(user, isPersistent: false);
-> ```
+Note: We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
+
+
+```csharp 
+//await _signInManager.SignInAsync(user, isPersistent: false);
+```
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Controllers/AccountController.cs?highlight=17-21&range=272-297)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
 
-Uncomment the highlighted `ForgotPassword` from in the *Views/Account/ForgotPassword.cshtml* view file.
+Uncomment the markup in *Views/Account/ForgotPassword.cshtml*:
 
-[!code-html[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Views/Account/ForgotPassword.cshtml?highlight=11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27)]
+[!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml)]
 
 ## Register, confirm email, and reset password
 
 In this section, run the web app and show the account confirmation and password recovery flow.
 
-* Run the application and register a new user
+* Run the app and register a new user
 
-![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
+ ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
 
 * Check your email for the account confirmation link. If you don't get the email notification:
 
   * Check the SendGrid web site to verify your sent mail messages.
-
   * Check your spam folder.
-
   * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-
   * In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
 
 * Click the link to confirm your email.
-
 * Log in with your email and password.
-
 * Log off.
 
 ### Test password reset
 
-* Login and select **Forgot your password?**
-
+* If you're logged in, select **Logout**.  
+* Select the **Log in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
-
 * An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
 
-## Require email confirmation before login
+## Prevent login at registration
 
 With the current templates, once a user completes the registration form, they are logged in (authenticated). You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in. Update the `[HttpPost] Login` action in the *AccountController.cs* file with the following highlighted changes.
 
-[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Controllers/AccountController.cs?highlight=11-20&range=51-96)]
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=11-21&name=snippet_Login)]
 
-> [!NOTE]
-> A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 ## Combine social and local login accounts
 

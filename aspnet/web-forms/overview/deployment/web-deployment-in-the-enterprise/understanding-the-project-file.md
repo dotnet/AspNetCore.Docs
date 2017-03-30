@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file
 title: "Understanding the Project File | Microsoft Docs"
 author: jrjlee
 description: "Microsoft Build Engine (MSBuild) project files lie at the heart of the build and deployment process. This topic starts with a conceptual overview of MSBuild..."

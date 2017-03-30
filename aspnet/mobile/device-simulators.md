@@ -1,4 +1,5 @@
 ---
+uid: mobile/device-simulators
 title: "Simulate Popular Mobile Devices for Testing | Microsoft Docs"
 author: rick-anderson
 description: "You can download emulators for popular mobile devices and browsers by following these links"

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs
 title: "An Overview of Editing and Deleting Data in the DataList (C#) | Microsoft Docs"
 author: rick-anderson
 description: "While the DataList lacks built-in editing and deleting capabilities, in this tutorial we'll see how to create a DataList that supports editing and deleting o..."

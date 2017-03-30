@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/recommended-resources-for-mvc
 title: "MVC Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, stackoverflow thread or any other link that would be..."

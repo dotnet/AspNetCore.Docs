@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 title: "Supporting OData Query Options in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""

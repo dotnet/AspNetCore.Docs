@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/index
 title: "ASP.NET 3.5 | Microsoft Docs"
 author: rick-anderson
 description: "How to build ASP.NET 3.5 applications, with an emphasis on new features."

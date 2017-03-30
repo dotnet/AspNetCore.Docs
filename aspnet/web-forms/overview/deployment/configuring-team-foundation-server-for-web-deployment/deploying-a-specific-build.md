@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build
 title: "Deploying a Specific Build | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to deploy web packages and database scripts from a specific previous build to a new destination, like a staging or production enviro..."

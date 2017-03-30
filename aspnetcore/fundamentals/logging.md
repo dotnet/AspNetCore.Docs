@@ -9,10 +9,11 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: fundamentals/logging
+ms.custom: H1Hack27Feb2017
 ---
-# Logging in ASP.NET Core
+# Introduction to Logging in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -64,7 +65,7 @@ info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
       Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 243.2636ms
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
       Request finished in 628.9188ms 404
-````
+```
 
 Here's an example of what you see in the Debug window if you run the sample application from Visual Studio in debug mode and go to URL `http://localhost:55070/api/todo/0`:
 
@@ -102,7 +103,7 @@ This is equivalent to calling `CreateLogger` with the fully qualified type name 
 
 ## Log level
 
-Each time you write a log, you specify its [LogLevel](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/LogLevel/index.html). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
+Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
 
 In the following code example, the names of the methods specify the log level:
 

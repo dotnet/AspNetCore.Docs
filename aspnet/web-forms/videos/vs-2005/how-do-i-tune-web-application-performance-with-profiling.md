@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/how-do-i-tune-web-application-performance-with-profiling
 title: "[How Do I:] Tune Web Application Performance with Profiling? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we learn that Visual Studio Team System provides two methods of profiling a Web application: Sampling and Instrumentation. Instrumentation inje..."

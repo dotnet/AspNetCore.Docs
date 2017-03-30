@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-9-the-shopping-cart
 title: "ASP.NET MVC Storefront Part 9: The Shopping Cart | Microsoft Docs"
 author: robconery
 description: "Rob Conery cooks up a simple cart system so he can spike."

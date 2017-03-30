@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/getting-started/index
 title: "SignalR Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET SignalR ASP.NET SignalR is a new library for ASP.NET developers that makes developing real-time web functionality easy. SignalR allows bi..."

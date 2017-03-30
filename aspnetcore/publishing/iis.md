@@ -5,11 +5,11 @@ description:  Windows Server Internet Information Services (IIS) configuration a
 keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
 ms.author: riande
 manager: wpickett
-ms.date: 01/18/2017
+ms.date: 03/13/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: publishing/iis
 ---
 # Publishing to IIS
@@ -22,13 +22,15 @@ The following operating systems are supported:
 
 * Windows 7 and newer
 
-* Windows Server 2008 R2 and newer*
+* Windows Server 2008 R2 and newer&#8224;
 
-*Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to [ASP.NET Core on Nano Server](../tutorials/nano-server.md) for specific instructions.
+&#8224;Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to [ASP.NET Core with IIS on Nano Server](xref:tutorials/nano-server) for specific instructions.
+
+[WebListener server](xref:fundamentals/servers/weblistener) will not work in a reverse-proxy configuration with IIS. You must use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
 ## IIS configuration
 
-Enable the **Web Server (IIS)** server role and establish role services.
+Enable the **Web Server (IIS)** role and establish role services.
 
 ### Windows desktop operating systems
 
@@ -50,27 +52,25 @@ Proceed through the **Confirmation** step to install the web server role and ser
 
 ## Install the .NET Core Windows Server Hosting bundle
 
-1. Install the [.NET Core Windows Server Hosting](https://aka.ms/dotnetcore_windowshosting_1_1_0) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md). The module creates the reverse-proxy between IIS and the Kestrel server.
+1. Install the [.NET Core Windows Server Hosting](https://go.microsoft.com/fwlink/?linkid=837808) bundle on the hosting system. The bundle will install the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates the reverse-proxy between IIS and the Kestrel server. Note: If the system doesn't have an Internet connection, obtain and install the *[Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.com/download/details.aspx?id=53840)* before installing the .NET Core Windows Server Hosting bundle.
 
-2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from a command prompt to pick up a change to the system PATH.
+2. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt to pick up a change to the system PATH.
 
 > [!NOTE]
-> If you only plan to host self-contained deployments and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+> If you only plan to host [self-contained deployments](https://docs.microsoft.com/dotnet/articles/core/deploying/) and thus don't require the .NET Core runtime on the system, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.0.3_1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
 
 > [!NOTE]
 > If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:hosting/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
-For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
-
 ## Install Web Deploy when publishing with Visual Studio
 
-If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the server. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/en-us/search/result.aspx?q=webdeploy&form=dlc). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the hosting system. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/search/result.aspx?q=webdeploy&form=dlc). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
 
 ## Application configuration
 
 ### Enabling the IISIntegration components
 
-Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*.
+Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*. Note that code calling *.UseIISIntegration()* does not affect code portability.
 
 ```csharp
 var host = new WebHostBuilder()
@@ -80,8 +80,6 @@ var host = new WebHostBuilder()
     .UseStartup<Startup>()
     .Build();
 ```
-
-Note that code calling *.UseIISIntegration()* does not affect code portability.
 
 ### Setting IISOptions for the IISIntegration service
 
@@ -99,24 +97,15 @@ services.Configure<IISOptions>(options => {
 | ForwardClientCertificate | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` will be populated. |
 | ForwardWindowsAuthentication | If true, authentication middleware will attempt to authenticate using platform handler windows authentication. If false, authentication middleware won’t be added. |
 
-### *publish-iis* tool
+### web.config
 
-The *publish-iis* tool can be added to any .NET Core application and will configure the ASP.NET Core Module by creating or modifying the *web.config* file. The tool runs after publishing with the *dotnet publish* command or publishing with Visual Studio and will configure the *processPath* and *arguments* for you. If you're publishing a *web.config* file by including the file in your project and listing the file in the *publishOptions* section of *project.json*, the tool will not modify other IIS settings you have included in the file.
+The *web.config* file configures the ASP.NET Core Module and provides other IIS configuration. Creating, transforming, and publishing *web.config* is handled by `Microsoft.NET.Sdk.Web`, which is included when you set your project's SDK at the top of your *.csproj* file, `<Project Sdk="Microsoft.NET.Sdk.Web">`.
 
-To include the *publish-iis* tool in your application, add entries to the *tools* and *scripts* sections of *project.json*.
+If you don't have a *web.config* file in the project when you publish with *dotnet publish* or with Visual Studio publish, the file is created for you in published output. If you have the file in your project, it's transformed with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to published output. The transformation doesn't touch IIS configuration settings that you've included in the file.
 
-```json
-"tools": {
-  "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-},
-"scripts": {
-  "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-}
-```
+## Deploy the application
 
-## Configure the website in IIS
-
-1. On the target IIS server, create a folder to contain the application's published folders and files, which are described in [Directory Structure](../hosting/directory-structure.md).
+1. On the target IIS system, create a folder to contain the application's published folders and files, which are described in [Directory Structure](xref:hosting/directory-structure).
 
 2. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
 
@@ -144,18 +133,18 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 > If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
 
 ## Deploy the application
-Deploy the application to the folder you created on the target IIS server. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
+Deploy the application to the folder you created on the target IIS system. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
 ### Web Deploy with Visual Studio
-Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish Web** dialog.
+Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish Web** dialog.
 
 ![Publish dialog page](iis/_static/pub-dialog.png)
 
 ### Web Deploy outside of Visual Studio
-You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/en-us/library/dd568996(WS.10).aspx).
+You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/library/dd568996(WS.10).aspx).
 
 ### Alternatives to Web Deploy
-If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
+If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the hosting system, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
 
 ## Browse the website
 ![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
@@ -169,7 +158,7 @@ Data Protection keys used by ASP.NET applications are stored in registry hives e
 
 For standalone IIS installations, you may use the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) for each application pool used with an ASP.NET Core application. The keys will be persisted in the registry.
 
-In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See [Configuring Data Protection](../security/data-protection/configuration/overview.md#data-protection-configuring) for details.
+In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See [Configuring Data Protection](xref:security/data-protection/configuration/overview#data-protection-configuring) for details.
 
 > [!WARNING]
 > Data Protection is used by various ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with the deployment script or in your own code. If you do not configure data protection when using IIS by default the keys will be held in memory and discarded when your application closes or restarts. This will then, for example, invalidate any cookies written by the cookie authentication and users will have to login again.
@@ -180,7 +169,7 @@ When adding applications to an IIS Site's root application, the root application
 
 ## Configuration of IIS with web.config
 
-IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the server level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver) and the [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the system level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver), [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules).
 
 ## Configuration sections of web.config
 
@@ -188,7 +177,7 @@ Unlike .NET Framework applications that are configured with the `<system.web>`, 
 
 ## Application Pools
 
-When hosting multiple websites on a single server, you should isolate the applications from each other by running each app in its own application pool. The IIS **Add Website** dialog defaults to this behavior. When you provide a **Site name**, the text is automatically transferred to the **Application pool** textbox. A new application pool will be created using the site name when you add the website.
+When hosting multiple websites on a single system, you should isolate the applications from each other by running each app in its own application pool. The IIS **Add Website** dialog defaults to this behavior. When you provide a **Site name**, the text is automatically transferred to the **Application pool** textbox. A new application pool will be created using the site name when you add the website.
 
 ## Application Pool Identity
 
@@ -206,7 +195,7 @@ If you need to grant the IIS worker process elevated access to your application,
 
 3. Under the **Security** tab, click the **Edit** button and then the **Add** button.
 
-4. Click the **Locations** button and make sure you select your server.
+4. Click the **Locations** button and make sure you select your system.
 
 5. Enter **IIS AppPool\DefaultAppPool** in **Enter the object names to select** textbox.
 
@@ -224,19 +213,19 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
 
 ## Troubleshooting tips
 
-To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and enable `stdout` logging. The **ASP.NET Core Module** log will be found on the path provided in the *stdoutLogFile* attribute of the `<aspNetCore>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set *stdoutLogEnabled="true"*. Applications that use the *publish-iis* tooling to create the *web.config* file will default the *stdoutLogEnabled* setting to *false*, so you must manually provide the file or modify the file in order to enable `stdout` logging.
+To diagnose problems with IIS deployments, study browser output, examine the system's **Application** log through **Event Viewer**, and enable `stdout` logging. The **ASP.NET Core Module** log will be found on the path provided in the *stdoutLogFile* attribute of the `<aspNetCore>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set *stdoutLogEnabled="true"*. Applications that use the `Microsoft.NET.Sdk.Web` SDK to create the *web.config* file will default the *stdoutLogEnabled* setting to *false*, so you must manually provide the *web.config* file or modify the file in order to enable `stdout` logging.
 
 Several of the common errors do not appear in the browser, Application Log, and ASP.NET Core Module Log until the module *startupTimeLimit* (default: 120 seconds) and *startupRetryCount* (default: 2) have passed. Therefore, wait a full six minutes before deducing that the module has failed to start a process for the application.
 
-One quick way to determine if the application is working properly is to run the application directly on Kestrel. If the application was published as a framework-dependent deployment, execute **dotnet my_application.dll** in the deployment folder. If the application was published as a self-contained deployment, run the application's executable directly from a command prompt, **my_application.exe**, in the deployment folder. If Kestrel is listening on default port 5000, you should be able to browse the application at `http://localhost:5000/`. If the application responds normally at the Kestrel endpoint address, the problem is more likely related to the IIS-ASP.NET Core Module-Kestrel configuration and less likely within the application itself.
+One quick way to determine if the application is working properly is to run the application directly on Kestrel. If the application was published as a framework-dependent deployment, execute **dotnet my_application.dll** in the deployment folder, which is the IIS physical path to the application. If the application was published as a self-contained deployment, run the application's executable directly from a command prompt, **my_application.exe**, in the deployment folder. If Kestrel is listening on default port 5000, you should be able to browse the application at `http://localhost:5000/`. If the application responds normally at the Kestrel endpoint address, the problem is more likely related to the IIS-ASP.NET Core Module-Kestrel configuration and less likely within the application itself.
 
-One way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static files in *wwwroot* using [Static File middleware](../fundamentals/static-files.md). If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error).
+One way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static files in *wwwroot* using [Static File middleware](xref:fundamentals/static-files). If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error).
 
-When Kestrel starts normally behind IIS but the app won't run on the server after successfully running locally, you can temporarily add an environment variable to *web.config* to set the `ASPNETCORE_ENVIRONMENT` to `Development`. As long as you don't override the environment in app startup, this will allow the [developer exception page](../fundamentals/error-handling.md) to appear when the app is run on the server. Setting the environment variable for `ASPNETCORE_ENVIRONMENT` in this way is only recommended for staging/testing servers that are not exposed to the Internet. Be sure you remove the environment variable from the *web.config* file when finished. For information on setting environment variables via *web.config* for the reverse proxy, see [environmentVariables child element of aspNetCore](xref:hosting/aspnet-core-module#setting-environment-variables).
+When Kestrel starts normally behind IIS but the app won't run on the system after successfully running locally, you can temporarily add an environment variable to *web.config* to set the `ASPNETCORE_ENVIRONMENT` to `Development`. As long as you don't override the environment in app startup, this will allow the [developer exception page](xref:fundamentals/error-handling) to appear when the app is run on the system. Setting the environment variable for `ASPNETCORE_ENVIRONMENT` in this way is only recommended for staging/testing systems that are not exposed to the Internet. Be sure you remove the environment variable from the *web.config* file when finished. For information on setting environment variables via *web.config* for the reverse proxy, see [environmentVariables child element of aspNetCore](xref:hosting/aspnet-core-module#setting-environment-variables).
 
-In most cases, enabling application logging will assist in troubleshooting problems with application or the reverse proxy. See [Logging](../fundamentals/logging.md) for more information.
+In most cases, enabling application logging will assist in troubleshooting problems with application or the reverse proxy. See [Logging](xref:fundamentals/logging) for more information.
 
-Our last troubleshooting tip pertains to apps that fail to run after upgrading either the .NET Core SDK on the development machine or package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. You can fix most of these issues by deleting the `bin` and `obj` folders in the project, clearing package caches at `%UserProfile%\.nuget\packages\` and `%LocalAppData%\Nuget\v3-cache`, restoring the project, and confirming that your prior deployment on the server has been completely deleted prior to re-deploying the app.
+Our last troubleshooting tip pertains to apps that fail to run after upgrading either the .NET Core SDK on the development machine or package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. You can fix most of these issues by deleting the `bin` and `obj` folders in the project, clearing package caches at `%UserProfile%\.nuget\packages\` and `%LocalAppData%\Nuget\v3-cache`, restoring the project, and confirming that your prior deployment on the system has been completely deleted prior to re-deploying the app.
 
 >[!TIP]
 > A convenient way to clear package caches is to obtain the `NuGet.exe` tool from [NuGet.org](https://www.nuget.org/), add it to your system PATH, and execute `nuget locals all -clear` from a command prompt.
@@ -249,13 +238,13 @@ The following is not a complete list of errors. Should you encounter an error no
 
 * **Installer Exception:** 0x80072efd or 0x80072f76 - Unspecified error
 
-* **Installer Log Exception\*:** Error 0x80072efd or 0x80072f76: Failed to execute EXE package
+* **Installer Log Exception&#8224;:** Error 0x80072efd or 0x80072f76: Failed to execute EXE package
 
-  \*The log is located at C:\Users\\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{timestamp}.log.
+  &#8224;The log is located at C:\Users\\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{timestamp}.log.
 
 Troubleshooting:
 
-* If the server does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840). If the installer fails, you may not receive the .NET Core runtime required to host framework-dependent deployments. If you plan to host framework-dependent deployments, confirm that the runtime is installed in Programs &amp; Features. You may obtain a runtime installer from [.NET Downloads](https://www.microsoft.com/net/download/core). After installing the runtime, restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* If the system does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, you may not receive the .NET Core runtime required to host framework-dependent deployments. If you plan to host framework-dependent deployments, confirm that the runtime is installed in Programs &amp; Features. You may obtain a runtime installer from [.NET Downloads](https://www.microsoft.com/net/download/core). After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 ### OS upgrade removed the 32-bit ASP.NET Core Module
 
@@ -275,7 +264,11 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+* Confirm that the application runs locally on Kestrel. A process failure might be the result of a problem within the application. For more information, see [Troubleshooting tips](#troubleshooting-tips).
+
+* Confirm that you didn't set a `<PlatformTarget>` in your *.csproj* that conflicts with the RID. For example, don't specify a `<PlatformTarget>` of `x86` and publish with an RID of `win10-x64`, either by using *dotnet publish -c Release -r win10-x64* or by setting the `<RuntimeIdentifiers>` in your *.csproj* to `win10-x64`. The project will publish without warning or error but fail with the above logged exceptions on the system.
+
+* If this exception occurs for an Azure Apps deployment when upgrading an application and deploying newer assemblies, manually delete all files from the prior deployment. Lingering incompatible assemblies can result in a `System.BadImageFormatException` exception when deploying an upgraded app.
 
 ### URI endpoint wrong or stopped website
 
@@ -297,7 +290,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that you have enabled the proper server role and features. See [IIS Configuration](#iis-configuration).
+* Confirm that you have enabled the proper role and features. See [IIS Configuration](#iis-configuration).
 
 ### Incorrect website physical path or application missing
 
@@ -311,7 +304,7 @@ Troubleshooting:
 
 * Check the IIS website **Basic Settings** and the physical application folder. Confirm that the application is in the folder at the IIS website **Physical path**.
 
-### Incorrect server role, module not installed, or incorrect permissions
+### Incorrect role, module not installed, or incorrect permissions
 
 * **Browser:** 500.19 Internal Server Error - The requested page cannot be accessed because the related configuration data for the page is invalid.
 
@@ -321,13 +314,13 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that you have enabled the proper server role. See [IIS Configuration](#iis-configuration).
+* Confirm that you have enabled the proper role. See [IIS Configuration](#iis-configuration).
 
 * Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle).
 
 * Make sure that the **Application Pool > Process Model > Identity** is set to **ApplicationPoolIdentity** or your custom identity has the correct permissions to access the application's deployment folder.
 
-### Incorrect *processPath*, missing PATH variable, hosting bundle not installed, server/IIS not restarted, VC++ Redistributable not installed, or *dotnet.exe* access violation
+### Incorrect processPath, missing PATH variable, hosting bundle not installed, system/IIS not restarted, VC++ Redistributable not installed, or dotnet.exe access violation
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
@@ -337,6 +330,8 @@ Troubleshooting:
 
 Troubleshooting:
 
+* Confirm that the application runs locally on Kestrel. A process failure might be the result of a problem within the application. For more information, see [Troubleshooting tips](#troubleshooting-tips).
+
 * Check the *processPath* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is *dotnet* for a framework-dependent deployment or *.\my_application.exe* for a self-contained deployment.
 
 * For a framework-dependent deployment, *dotnet.exe* might not be accessible via the PATH settings. Confirm that *C:\Program Files\dotnet\* exists in the System PATH settings.
@@ -345,13 +340,13 @@ Troubleshooting:
 
 * You may have deployed a framework-dependent deployment and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
-* You may have deployed a framework-dependent deployment without installing the .NET Core runtime on the server. If you are attempting to deploy a framework-dependent deployment and have not installed the .NET Core runtime, run the **.NET Core Windows Server Hosting bundle installer** on the server. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle). If you are attempting to install the .NET Core runtime on a server without an Internet connection, obtain the runtime from [.NET Downloads](https://www.microsoft.com/net/download/core) and run the hosting bundle installer from an administrator command prompt to only install the module using **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**. Complete the installation by restarting the server or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* You may have deployed a framework-dependent deployment without installing the .NET Core runtime on the hosting system. If you're attempting to deploy a framework-dependent deployment and have not installed the .NET Core runtime, run the **.NET Core Windows Server Hosting bundle installer** on the system. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle). If you are attempting to install the .NET Core runtime on a system without an Internet connection, obtain the runtime from [.NET Downloads](https://www.microsoft.com/net/download/core) and run the hosting bundle installer from an administrator command prompt to only install the module using **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
-* You may have deployed a framework-dependent deployment and installed .NET Core without restarting the server/IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
+* You may have deployed a framework-dependent deployment and installed .NET Core without restarting the system/IIS. Either restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
-* You may have deployed a framework-dependent deployment and the *Microsoft Visual C++ 2015 Redistributable (x64)* is not installed on the server. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
+* You may have deployed a framework-dependent deployment and the *Microsoft Visual C++ 2015 Redistributable (x64)* is not installed on the system. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840).
 
-### Incorrect *arguments* of *<aspNetCore>* element
+### Incorrect arguments of \<aspNetCore\> element
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
@@ -361,7 +356,9 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Examine the *arguments* attribute on the *<aspNetCore>* element in *web.config* to confirm that it is either (a) *.\my_applciation.dll* for a framework-dependent deployment; or (b) not present, an empty string (*arguments=""*), or a list of your application's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment.
+* Confirm that the application runs locally on Kestrel. A process failure might be the result of a problem within the application. For more information, see [Troubleshooting tips](#troubleshooting-tips).
+
+* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is either (a) *.\my_applciation.dll* for a framework-dependent deployment; or (b) not present, an empty string (*arguments=""*), or a list of your application's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment.
 
 ### Missing .NET Framework version
 
@@ -373,7 +370,9 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Install the .NET Framework version missing from the server.
+* Install the .NET Framework version missing from the system.
+
+* For a framework-dependent deployment, confirm that you have the correct runtime installed on the system. For example if you upgrade a project from 1.0 to 1.1, deploy to the hosting system, and receive this exception, ensure you install the 1.1 framework on the hosting system.
 
 ### Stopped Application Pool
 
@@ -397,9 +396,11 @@ Troubleshooting
 
 Troubleshooting
 
+* Confirm that the application runs locally on Kestrel. A process failure might be the result of a problem within the application. For more information, see [Troubleshooting tips](#troubleshooting-tips).
+
 * Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method on the application's *WebHostBuilder()*.
 
-### Sub-application includes a `<handlers>` section
+### Sub-application includes a \<handlers\> section
 
 * **Browser:** HTTP Error 500.19 - Internal Server Error
 
@@ -421,12 +422,18 @@ Troubleshooting
 
 Troubleshooting
 
-* This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to [Directory Structure](../hosting/directory-structure.md), confirm that your application's deployed files and folders are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment.
+* This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to [Directory Structure](xref:hosting/directory-structure), confirm that your application's deployed files and folders are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment. For more information, see [Troubleshooting tips](#troubleshooting-tips).
 
 ## Resources
+
+* [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module)
+
+* [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
+
+* [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
 
 * [Introduction to ASP.NET Core](../index.md)
 
 * [The Official Microsoft IIS Site](http://www.iis.net/)
 
-* [Microsoft TechNet Library: Windows Server](https://technet.microsoft.com/en-us/library/bb625087.aspx)
+* [Microsoft TechNet Library: Windows Server](https://technet.microsoft.com/library/bb625087.aspx)

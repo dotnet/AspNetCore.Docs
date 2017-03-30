@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/advanced/custom-mvc-templates
 title: "Custom MVC Template | Microsoft Docs"
 author: joeloff
 description: "Create a template as a VSIX extension."

@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 title: "Use OWIN to Self-Host ASP.NET Web API 2 | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to host ASP.NET Web API in a console application, using OWIN to self-host the Web API framework. Open Web Interface for .NET (OWIN) d..."

@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3bfc8a31-c187-45d0-aa29-8942a5df6292
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: publishing/vsts-continuous-deployment
 ---
 # Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment
@@ -102,6 +102,8 @@ This tutorial assumes you already have the following:
 ![Build tab](vsts-continuous-deployment/_static/web-app-deployment.png)
 
 ## Use VSTS Release
+
+See [Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment](https://www.visualstudio.com/en-us/docs/build/get-started/aspnet-4-ci-cd-azure-automatic), which shows how to configure a continuous delivery (CD) workflow for [Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/app-service-changes-existing-services/) using Visual Studio Team Services. Azure Continuous Delivery in Team Services simplifies setting up a robust deployment pipeline to publish updates for your app to Azure App Service. The pipeline can be configured from the Azure portal to build, run tests, deploy to a staging slot,  and then deploy to production.
 
 VSTS Release management can alternatively be used to manage the release pipeline from the VSTS build. We require a small change to the build pipeline and setup of the release process.
 

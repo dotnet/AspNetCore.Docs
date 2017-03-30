@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/movie-database/index
 title: "Movie Database | Microsoft Docs"
 author: rick-anderson
 description: "How to build a Movie database application in 15 minutes."

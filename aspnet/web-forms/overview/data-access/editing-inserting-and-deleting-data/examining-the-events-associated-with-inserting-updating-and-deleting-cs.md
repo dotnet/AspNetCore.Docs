@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-cs
 title: "Examining the Events Associated with Inserting, Updating, and Deleting (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll examine using the events that occur before, during, and after an insert, update, or delete operation of an ASP.NET data Web control. W..."

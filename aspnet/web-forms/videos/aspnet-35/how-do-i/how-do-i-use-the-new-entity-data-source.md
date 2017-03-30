@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-use-the-new-entity-data-source
 title: "[How Do I:] Use the New Entity Data Source | Microsoft Docs"
 author: divega
 description: "In this introductory video Diego Vega will show you how to use the Entity Data Source in an ASP.NET Application."

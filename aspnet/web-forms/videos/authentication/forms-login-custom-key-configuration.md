@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/forms-login-custom-key-configuration
 title: "Forms Login Custom Key Configuration | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner will examine the machine key setting in your ASP.NET application. For more information on this demo, a tutorial is located here ."

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/authentication/how-to-change-the-forms-authentication-properties
 title: "How to Change the Forms Authentication Properties | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner utilizes the previous code example to demonstrate how to change the authentication period for the ASP.NET application. For more information on th..."

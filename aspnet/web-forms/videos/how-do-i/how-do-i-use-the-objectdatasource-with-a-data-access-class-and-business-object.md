@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object
 title: "[How Do I:] Use the ObjectDataSource with a Data Access Class and Business Object | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to use the ObjectDataSource as the intermediate layer between data bound user interface elements and a custom data acc..."

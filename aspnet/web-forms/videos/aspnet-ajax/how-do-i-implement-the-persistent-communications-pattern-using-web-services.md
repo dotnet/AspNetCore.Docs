@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-using-web-services
 title: "[How Do I:] Implement the Persistent Communications Pattern using Web Services? | Microsoft Docs"
 author: JoeStagner
 description: "In a traditional Web site the browser and the server do not maintain an ongoing communication, but communicate only in response to the user performing an act..."

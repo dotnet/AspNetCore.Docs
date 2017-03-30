@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/how-do-i/how-do-i-create-and-use-application-level-events-in-aspnet
 title: "[How Do I:]  Create and Use Application Level Events in ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create an Application Class File (Global.asax) that contains application level event handlers such as Application_S..."

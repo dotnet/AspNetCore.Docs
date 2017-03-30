@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/textboxwatermark/index
 title: "TextBoxWatermark | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the TextBoxWatermark control to display a text box with a message that disappears when users start typing in it."

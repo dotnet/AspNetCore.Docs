@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/vs-2005/index
 title: "Visual Studio 2005 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with Visual Studio 2005, Team System, and add-ins to perform testing, deployment, and other tasks."

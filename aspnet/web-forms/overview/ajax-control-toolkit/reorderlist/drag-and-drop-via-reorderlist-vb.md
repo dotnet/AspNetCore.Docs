@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/reorderlist/drag-and-drop-via-reorderlist-vb
 title: "Drag and Drop via ReorderList (VB) | Microsoft Docs"
 author: wenz
 description: "/data-access/tutorials/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb"

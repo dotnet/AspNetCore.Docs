@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-vb
 title: "Using AJAX Control Toolkit Controls and Control Extenders (VB) | Microsoft Docs"
 author: microsoft
 description: "Learn how to add AJAX Control Toolkit controls and extenders to your ASP.NET pages."

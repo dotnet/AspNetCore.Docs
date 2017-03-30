@@ -1,15 +1,15 @@
 ---
 title: Razor Syntax Reference | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Details Razor syntax
+keywords: ASP.NET Core, Razor
 ms.author: riande
 manager: wpickett
 ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: a89a8433-8b0e-4795-a73a-82114d27e233
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/razor
 ---
 # Razor syntax
@@ -565,23 +565,6 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 * namespace
 * class
 
-## View compilation
-
-Razor views are compiled at runtime when the view is invoked. If your app targets ASP.NET Core 1.1.0 and you prefer to compile your Razor views and deploy them with your app, make these changes to *project.json*:
-
-1. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Design" under the "dependencies" section.
-2. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools" under the "tools" section.
-3. Add a postpublish script to invoke the view compiler:
-
-```json
-"scripts": {
-  "postpublish": [ "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%" ]
-}
-```
-
-> [!NOTE]
-> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
-
 <a name=razor-customcompilationservice-label></a>
 
 ## Viewing the Razor C# class generated for a view
@@ -597,3 +580,6 @@ Override the `ICompilationService` added by MVC with the above class;
 Set a break point on the `Compile` method of `CustomCompilationService` and view `compilationContent`.
 
 ![Text Visualizer view of compilationContent](razor/_static/tvr.png)
+
+> [!NOTE]
+> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`

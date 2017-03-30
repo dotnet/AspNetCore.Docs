@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-4/index
 title: "ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 4"

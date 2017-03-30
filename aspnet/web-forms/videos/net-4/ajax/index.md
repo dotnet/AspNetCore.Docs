@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/net-4/ajax/index
 title: "Ajax | Microsoft Docs"
 author: rick-anderson
 description: "This video series shows the new features in ASP.NET 4 for JavaScript and jQuery support."

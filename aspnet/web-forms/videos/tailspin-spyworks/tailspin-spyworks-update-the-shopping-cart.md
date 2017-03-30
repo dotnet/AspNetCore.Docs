@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/tailspin-spyworks/tailspin-spyworks-update-the-shopping-cart
 title: "Tailspin Spyworks - Update the Shopping Cart | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner updates the shopping cart for the Tailspin Spyworks sample Web Forms application."

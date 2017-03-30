@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/getting-started/tutorial-server-broadcast-with-signalr
 title: "Tutorial: Server Broadcast with SignalR 2 | Microsoft Docs"
 author: tdykstra
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR 2 to provide server broadcast functionality. Server broadcast means that commun..."

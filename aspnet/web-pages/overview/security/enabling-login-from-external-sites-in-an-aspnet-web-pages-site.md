@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/security/enabling-login-from-external-sites-in-an-aspnet-web-pages-site
 title: "Logging In Using External Sites in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This article explains how to log in to your ASP.NET Web Pages (Razor) site using Facebook, Google, Twitter, Yahoo, and other sites — that is, how to support..."
@@ -32,7 +33,6 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > 
 > - ASP.NET Web Pages (Razor) 2
 > - WebMatrix 3
-
 
 ASP.NET Web Pages includes support for [OAuth](http://oauth.net/) and [OpenID](http://openid.net/) providers. Using these providers, you can let users log into your site using their existing credentials from Facebook, Twitter, Microsoft, and Google. For example, to log in using a Facebook account, users can just choose a Facebook icon, which redirects them to the Facebook login page where they enter their user information. They can then associate the Facebook login with their account on your site. A related enhancement to the Web Pages membership features is that users can associate multiple logins (including logins from social networking sites) with a single account on your website.
 

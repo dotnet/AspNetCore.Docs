@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/how-do-i/aspnet-mvc-2-render-action
 title: "ASP.NET MVC 2 - Render Action | Microsoft Docs"
 author: jongalloway
 description: "In this video you'll learn how to use Html.RenderAction to write the results of a Controller Action to a View. We'll look at how Html.RenderAction differs fr..."

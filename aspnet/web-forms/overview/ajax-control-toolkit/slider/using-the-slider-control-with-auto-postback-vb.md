@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/slider/using-the-slider-control-with-auto-postback-vb
 title: "Using the Slider Control With Auto-Postback (VB) | Microsoft Docs"
 author: wenz
 description: "The Slider control in the AJAX Control Toolkit provides a graphical slider that can be controlled using the mouse. It is possible to make the slider autopost..."

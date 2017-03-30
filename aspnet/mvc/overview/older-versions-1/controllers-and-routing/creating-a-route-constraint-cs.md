@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs
 title: "Creating a Route Constraint (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how you can control how browser requests match routes by creating route constraints with regular expressions."

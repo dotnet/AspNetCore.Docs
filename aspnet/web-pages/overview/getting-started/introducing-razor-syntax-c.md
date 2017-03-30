@@ -1,4 +1,5 @@
 ---
+uid: web-pages/overview/getting-started/introducing-razor-syntax-c
 title: "Introduction to ASP.NET Web Programming Using the Razor Syntax (C#) | Microsoft Docs"
 author: tfitzmac
 description: "This chapter gives you an overview of programming with ASP.NET Web Pages using the Razor syntax. ASP.NET is Microsoft's technology for running dynamic web pa..."

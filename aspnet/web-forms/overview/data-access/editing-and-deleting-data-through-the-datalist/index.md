@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/index
 title: "Editing and Deleting Data Through the DataList | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials show how to tweak the DataList control so that it lets uses modify data."

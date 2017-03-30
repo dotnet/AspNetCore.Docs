@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/advanced/sending-html-form-data-part-1
 title: "Sending HTML Form Data in ASP.NET Web API: Form-urlencoded Data | Microsoft Docs"
 author: MikeWasson
 description: ""

@@ -2,14 +2,11 @@
 
 #if Intro
 #region snippet_Intro
+using ContosoUniversity.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using ContosoUniversity.Data;
 
-namespace ContosoUniversity.Models
+namespace ContosoUniversity.Data
 {
     public static class DbInitializer
     {
@@ -87,9 +84,9 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 
-namespace ContosoUniversity.Models
+namespace ContosoUniversity.Data
 {
     public static class DbInitializer
     {
@@ -164,7 +161,7 @@ namespace ContosoUniversity.Models
                     StartDate = DateTime.Parse("2007-09-01"),
                     InstructorID  = instructors.Single( i => i.LastName == "Kapoor").ID }
             };
-                
+
             foreach (Department d in departments)
             {
                 context.Departments.Add(d);

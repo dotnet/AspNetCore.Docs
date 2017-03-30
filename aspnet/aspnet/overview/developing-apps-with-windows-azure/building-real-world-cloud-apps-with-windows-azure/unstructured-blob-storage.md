@@ -1,4 +1,5 @@
 ---
+uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage
 title: "Unstructured Blob Storage (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."

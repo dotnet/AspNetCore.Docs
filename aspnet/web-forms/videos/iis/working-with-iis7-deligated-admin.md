@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/iis/working-with-iis7-deligated-admin
 title: "Working with IIS7 Delegated Admin | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces the exciting new remote management functionality built for the IIS7 manager. It illustrates both server and client configuration as wel..."

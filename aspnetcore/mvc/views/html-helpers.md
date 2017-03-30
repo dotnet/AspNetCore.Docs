@@ -9,7 +9,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 2d90dd5d-3f2d-47d5-9fc4-4e0513cf0f92
 ms.technology: aspnet
-ms.prod: aspnet-core
+ms.prod: asp.net-core
 uid: mvc/views/html-helpers
 ---
 # 🔧 HTML Helpers

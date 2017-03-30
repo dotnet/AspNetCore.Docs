@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-master-page-from-the-content-page-cs
 title: "Interacting with the Master Page from the Content Page (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Examines how to call methods, set properties, etc. of the Master Page from code in the Content Page."

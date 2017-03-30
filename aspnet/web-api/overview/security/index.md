@@ -1,4 +1,5 @@
 ---
+uid: web-api/overview/security/index
 title: "Security, Authentication, and Authorization in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Security issues for Web API."

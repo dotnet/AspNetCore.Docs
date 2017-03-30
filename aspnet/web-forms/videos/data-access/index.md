@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/data-access/index
 title: "Data Access | Microsoft Docs"
 author: rick-anderson
 description: "How to create a Data Access Layer (DAL)."

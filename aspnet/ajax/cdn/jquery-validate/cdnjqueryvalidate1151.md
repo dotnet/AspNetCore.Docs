@@ -1,4 +1,5 @@
 ---
+uid: ajax/cdn/jquery-validate/cdnjqueryvalidate1151
 title: "jQuery Validation 1.15.1 | Microsoft Docs"
 author: rick-anderson
 description: ""

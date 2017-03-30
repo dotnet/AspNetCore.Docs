@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/index
 title: "ASP.NET MVC For the Rest of Us | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC For the Rest of Us"

@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-get-started-with-the-entity-framework
 title: "[How Do I:] Get Started with the Entity Framework | Microsoft Docs"
 author: adjames
 description: "In this introductory video, Alex James will show you how to build a simple Entity Data Model in a short amount of time."

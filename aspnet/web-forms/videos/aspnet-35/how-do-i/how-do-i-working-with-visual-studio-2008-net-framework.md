@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/aspnet-35/how-do-i/how-do-i-working-with-visual-studio-2008-net-framework
 title: "[How Do I:] Working with Visual Studio 2008 .NET Framework | Microsoft Docs"
 author: rick-anderson
 description: "In this video I will show you how to use Visual Studio 2008 to work with various versions of the .NET framework. This is called multi-targeting. I will also..."

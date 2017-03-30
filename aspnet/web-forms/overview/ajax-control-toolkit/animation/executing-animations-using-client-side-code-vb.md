@@ -1,4 +1,5 @@
 ---
+uid: web-forms/overview/ajax-control-toolkit/animation/executing-animations-using-client-side-code-vb
 title: "Executing Animations Using Client-Side Code (VB) | Microsoft Docs"
 author: wenz
 description: "The Animation control in the ASP.NET AJAX Control Toolkit is not just a control but a whole framework to add animations to a control. The animation execution..."

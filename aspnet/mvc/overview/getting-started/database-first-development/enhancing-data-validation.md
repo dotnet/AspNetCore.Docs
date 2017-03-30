@@ -1,4 +1,5 @@
 ---
+uid: mvc/overview/getting-started/database-first-development/enhancing-data-validation
 title: "EF Database First with ASP.NET MVC: Enhancing Data Validation | Microsoft Docs"
 author: tfitzmac
 description: "Using MVC, Entity Framework, and ASP.NET Scaffolding, you can create a web application that provides an interface to an existing database. This tutorial seri..."

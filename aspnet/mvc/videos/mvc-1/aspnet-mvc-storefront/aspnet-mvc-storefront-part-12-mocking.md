@@ -1,4 +1,5 @@
 ---
+uid: mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-12-mocking
 title: "ASP.NET MVC Storefront Part 12: Mocking | Microsoft Docs"
 author: robconery
 description: "In this episode I implement mocking so I can test my Authentication action for my UserController."

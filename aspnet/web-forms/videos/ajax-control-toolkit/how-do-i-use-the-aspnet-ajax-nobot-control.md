@@ -1,4 +1,5 @@
 ---
+uid: web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-nobot-control
 title: "[How Do I:] Use the ASP.NET AJAX NoBot Control? | Microsoft Docs"
 author: JoeStagner
 description: "The NoBot control from the ASP.NET AJAX Control Toolkit helps prevent certain types of unauthorized access to your Web applications. In this video we see how..."

@@ -1,4 +1,5 @@
 ---
+uid: signalr/overview/guide-to-the-api/index
 title: "SignalR Guide to the API | Microsoft Docs"
 author: rick-anderson
 description: "Documentation on how to use the SignalR Hubs API. For authorization API, see the Security tab."
