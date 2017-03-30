@@ -37,19 +37,11 @@ If you get an error running `dotnet new mvc`, install the latest [.NET Core](htt
 Content generation time: 79.6691 ms
 The template "Empty ASP.NET Core Web Application" created successfully.
 ```
+<!-- the ~ format is perferred but not working on DocFX. It does work on OPS. See bug https://mseng.visualstudio.com/DefaultCollection/VSChina/_workitems#_a=edit&id=959814
+[!INCLUDE[template files](~/includes/template-files.md)]
+-->
 
-* Startup.cs : [Startup Class](../fundamentals/startup.md) - class configures the request pipeline that handles all requests made to the application.
-* Program.cs : [Program Class](../fundamentals/index.md) that contains the Main entry point of the application.
-* firstapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
-* appsettings.json / appsettings.Development.json : Environment base app settings configuration file. [See Configuration](xref:fundamentals/configuration).
-* bower.json : Bower package dependencies for the project.
-* .bowerrc : Bower configuration file which defines where to install the components when Bower downloads the assets.
-* bundleconfig.json : configuration files for bundling and minifying front-end JavaScript and CSS assets.
-* Views : Contains the Razor views. Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
-* Controllers : Contains MVC Controllers, initially *HomeController.cs*. Controllers are classes that handle browser requests.
-* wwwroot : Web application root folder.
-
-For more information see [The MVC pattern](xref:mvc/overview).
+[!INCLUDE[template files](../includes/template-files.md)]
 
 ## Developing ASP.NET Core applications on a Mac and Linux with Visual Studio Code
 
