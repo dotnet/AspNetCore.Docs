@@ -1,18 +1,3 @@
----
-title: Template files | Microsoft Docs
-author: rick-anderson
-description: Template file include
-keywords: ASP.NET Core, MVC
-ms.author: riande
-manager: wpickett
-ms.date: 03/29/2017
-ms.topic: include
-ms.assetid: 1638b589-e3fd-1638-bde6-fb0f41998FFF
-ms.technology: aspnet
-ms.prod: asp.net-core
-uid: includes/template-files
----
-
 * Startup.cs : [Startup Class](../fundamentals/startup.md) - class configures the request pipeline that handles all requests made to the application.
 * Program.cs : [Program Class](../fundamentals/index.md) that contains the Main entry point of the application.
 * firstapp.csproj : [Project file](https://docs.microsoft.com/en-us/dotnet/articles/core/preview3/tools/csproj) MSBuild Project file format for ASP.NET Core applications. Contains Project to Project references, NuGet References and other project related items.
