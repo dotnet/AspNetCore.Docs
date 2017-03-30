@@ -160,7 +160,20 @@ app.Run(async (context) =>
 });
 ```
 
-Note: Keys into `Items` are simple strings. If you are developing middleware that must work across many applications, consider giving your keys a prefix with a unique identifier to avoid key collisions (for example, "MyComponent.isVerified" instead of "isVerified").
+Note: If you are developing middleware that must work across many applications, ensure your keys are unique to avoid key collisions. The best practice is to use a unique `object` as a key, where the key is private or public as needed.  For example:
+
+```C#
+public class MyClass {
+    private static readonly object _isVerifiedKey = new object();
+
+    app.Use(async (context, next) =>
+    {
+        // perform some verification
+        context.Items[_isVerifiedKey] = true;
+        await next.Invoke();
+    });
+}
+```
 
 <a name=appstate-errors></a>
 
