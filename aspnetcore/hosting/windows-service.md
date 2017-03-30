@@ -98,7 +98,7 @@ If your custom `WebHostService` code needs to get a service from dependency inje
 
 The [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  To run it in a service, do the following steps:
 
-* Publish to *c:\svc* (as in the included Visual Studio publish profile)
+* Publish to *c:\svc*.
 
 * Open an administrator window.
 

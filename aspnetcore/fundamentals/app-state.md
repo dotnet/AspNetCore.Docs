@@ -16,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 # Introduction to session and application state in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com),  and [Diana LaRose](https://github.com/DianaLaRose)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com), and [Diana LaRose](https://github.com/DianaLaRose)
 
 HTTP is a stateless protocol. A  web server treats each HTTP request as an independent request and does not retain user values from previous requests. This article discusses different ways to preserve application and session state between requests. 
 
@@ -54,8 +54,6 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed, because compressing encryped data can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
-
-
 
 ### Query strings
 
@@ -138,7 +136,7 @@ The following sample shows how to set and get a serializable object:
 
 ## Working with HttpContext.Items
 
-The `HttpContext` abstraction provides support for a simple dictionary collection of type `IDictionary<object, object>`, called `Items`. This collection is available from the start of an *HttpRequest* and is discarded at the end of each request. You can access it by  assigning a value to a keyed entry, or by requesting the value for a particular key.
+The `HttpContext` abstraction provides support for a dictionary collection of type `IDictionary<object, object>`, called `Items`. This collection is available from the start of an *HttpRequest* and is discarded at the end of each request. You can access it by  assigning a value to a keyed entry, or by requesting the value for a particular key.
 
 In the sample below, [Middleware](middleware.md) adds `isVerified` to the `Items` collection.
 
@@ -156,11 +154,39 @@ Later in the pipeline, another middleware could access it:
 ```csharp
 app.Run(async (context) =>
 {
-    await context.Response.WriteAsync("Verified request? " + context.Items["isVerified"]);
+    await context.Response.WriteAsync("Verified request? " + 
+        context.Items["isVerified"]);
 });
 ```
 
-Note: Keys into `Items` are simple strings. If you are developing middleware that must work across many applications, consider giving your keys a prefix with a unique identifier to avoid key collisions (for example, "MyComponent.isVerified" instead of "isVerified").
+For middleware that will only be used by a single app, `string` keys are acceptable. However, middleware that will be shared between applications should use unique object keys to avoid any chance of key collisions. If you are developing middleware that must work across multiple applications, use a unique object key defined in your middleware class as shown below:
+
+```csharp
+public class SampleMiddleware
+{
+    public static readonly object SampleKey = new Object();
+
+    public async Task Invoke(HttpContext httpContext)
+    {
+        httpContext.Items[SampleKey] = "some value";
+        // additional code omitted
+    }
+}
+```
+
+Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
+
+```csharp
+public class HomeController : Controller
+{
+    public IActionResult Index()
+    {
+        string value = HttpContext.Items[SampleMiddleware.SampleKey];
+    }
+}
+```
+
+This approach also has the advantage of eliminating repetition of "magic strings" in multiple places in the code.
 
 <a name=appstate-errors></a>
 
@@ -176,7 +202,7 @@ public class MyAppData
     // Declare properties/methods/etc.
 } 
 ```
-2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`.
+2. Add the service class to `ConfigureServices` (for example `services.AddSingleton<MyAppData>();`).
 3. Consume the data service class in each controller:
 
 ```csharp
@@ -186,7 +212,6 @@ public class MyController : Controller
     {
         // Do something with the service (read some data from it, 
         // store it in a private field/property, etc.
-    }
     }
 } 
 ```

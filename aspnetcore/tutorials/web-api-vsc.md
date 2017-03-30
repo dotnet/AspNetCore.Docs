@@ -20,6 +20,8 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 ASP.NET Core has built-in support for MVC building Web APIs.
 
+See [Build a web API with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-web-api) for a version of this tutorial that uses Visual Studio.
+
 ## Overview
 
 Here is the API that you’ll create:
@@ -68,6 +70,8 @@ Open the *TodoApi* folder in Visual Studio Code (VS Code) and select the *Startu
 
 - Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'TodoApi'. Add them?"
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
+
+<!-- uid: tutorials/first-mvc-app-xplat/start-mvc uses the pic below. If you change it, make sure it's consistent -->
 
 ![VS Code with Warn Required assets to build and debug are missing from 'TodoApi'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](web-api-vsc/_static/vsc_restore.png)
 

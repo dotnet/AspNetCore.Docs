@@ -32,7 +32,7 @@ Each configuration value maps to a string key. There’s built-in binding suppor
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 
-  ## Simple configuration
+## Simple configuration
 
 The following console app uses the JSON configuration provider:
 
@@ -46,6 +46,12 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 
 ```csharp
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
+```
+
+To work with arrays in JSON-formatted configuration sources, use a zero-based array index as part of the colon-separated string used to retrieve the value. For instance, to get the name of the first item in the `wizards` array shown above, use the following code:
+
+```csharp
+Console.Write($"{Configuration["wizards:0:Name"]}, ");
 ```
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
