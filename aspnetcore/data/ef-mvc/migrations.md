@@ -31,11 +31,11 @@ This method of keeping the database in sync with the data model works well until
 
 To work with migrations, you can use the **Package Manager Console** (PMC) or the command-line interface (CLI).  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. (The version numbers in this example were current when the tutorial was written.)
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
 
 [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=23-26&highlight=3)]
-  
-(You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.)
+  
+(The version numbers in this example were current when the tutorial was written.) 
 
 ## Change the connection string
 
@@ -140,7 +140,7 @@ Run the application to verify that everything still works the same as before.
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
 If you want to use the PMC commands, install the
-[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit the *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI.
+[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit the *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI. Note that this is not the same package as the one you install for the CLI: its name ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). 
 
