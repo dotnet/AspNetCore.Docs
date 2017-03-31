@@ -37,11 +37,11 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
 
 ## When to use it
 
-Use WebSockets when you need to work directly with a socket connection. A typical reason is a need for best possible performance for real-time games.
+Use WebSockets when you need to work directly with a socket connection. For example, you might need the best possible performance for a real-time game.
 
-[ASP.NET SignalR](https://docs.microsoft.com/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer application model for real-time functionality, but SignalR does not run on ASP.NET Core. A Core version of SignalR is under development; to follow its progress, see the [GitHub repository for SignalR Core](https://github.com/aspnet/SignalR).
+[ASP.NET SignalR](https://docs.microsoft.com/aspnet/signalr/overview/getting-started/introduction-to-signalr) provides a richer application model for real-time functionality, but it runs only on ASP.NET, not ASP.NET Core. A Core version of SignalR is under development; to follow its progress, see the [GitHub repository for SignalR Core](https://github.com/aspnet/SignalR).
 
-If you don't want to wait for SignalR Core, you can use WebSockets directly now. But you might have to develop features that SignalR would provide, such as these:
+If you don't want to wait for SignalR Core, you can use WebSockets directly now. But you might have to develop features that SignalR would provide, such as:
 
 * Support for a broader range of browser versions by using automatic fallback to alternative transport methods.
 * Automatic reconnection when a connection drops.
@@ -50,9 +50,10 @@ If you don't want to wait for SignalR Core, you can use WebSockets directly now.
 
 ## How to use it
 
-### Install the package
-
-Install [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Microsoft.AspNetCore.WebSockets/).
+* Install the [Microsoft.AspNetCore.WebSockets](https://www.nuget.org/packages/Microsoft.AspNetCore.WebSockets/) package.
+* Configure the middleware.
+* Accept WebSocket requests.
+* Send and receive messages.
 
 ### Configure the middleware
 
@@ -63,11 +64,11 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class.
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client, to ensure proxies keep the connection open.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Only a very advanced user would need to change this, for performance tuning based on the size of their data.
+* `ReceiveBufferSize` - The size of the buffer used to receive data. Only advanced users would need to change this, for performance tuning based on the size of their data.
 
 [!code-csharp[](websockets/sample/Startup.cs?name=UseWebSocketsOptions)]
 
-### Accept a WebSocket request
+### Accept WebSocket requests
 
 Somewhere later in the request life cycle (later in the `Configure` method or in an MVC action, for example) check if it's a WebSocket request and accept the WebSocket request.
 
@@ -81,7 +82,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 The `AcceptWebSocket` method upgrades the TCP connection to a WebSocket connection and gives you a [WebSocket](https://docs.microsoft.com/dotnet/core/api/system.net.websockets.websocket) object. Use the WebSocket object to send and receive messages.
 
-The code shown earlier that accepts the WebSocket request passes the WebSocket object to an Echo method; here's the Echo method. The code receives a message and immediately sends back the same message. It stays in a loop doing that until the client closes the connection. 
+The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method; here's the `Echo` method. The code receives a message and immediately sends back the same message. It stays in a loop doing that until the client closes the connection. 
 
 [!code-csharp[](websockets/sample/Startup.cs?name=Echo)]
 
