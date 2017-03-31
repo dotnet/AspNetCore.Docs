@@ -1,5 +1,5 @@
 ---
-title: Deploy ASP.NET Core to Linux using Apache | Microsoft Docs
+title: Publish ASP.NET Core to Linux using Apache | Microsoft Docs
 description: Describes setting up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web application running on Kestrel.
 keywords: ASP.NET Core, Apache, CentOS, Reverse Proxy, Linux, mod_proxy, httpd, hosting
 author: spboyer
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/apache-proxy
 ---
-# Deploy an ASP.NET Core app to Linux using Apache web server as a reverse proxy
+# Publish an ASP.NET Core app to Linux using Apache web server as a reverse proxy
 
 By [Shayne Boyer](https://www.github.com/spboyer)
 

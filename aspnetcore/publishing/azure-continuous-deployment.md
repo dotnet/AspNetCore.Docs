@@ -1,5 +1,5 @@
 ---
-title: Publish to Azure with continuous deployment | Microsoft Docs
+title: Publish ASP.NET Core to Azure with continuous deployment | Microsoft Docs
 author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using continuous deployment.
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/azure-continuous-deployment
 ---
-# Publish to an Azure Web App with continuous deployment
+# Publish ASP.NET Core to an Azure Web App with continuous deployment using Visual Studio
 
 By [Erik Reitan](https://github.com/Erikre)
 
