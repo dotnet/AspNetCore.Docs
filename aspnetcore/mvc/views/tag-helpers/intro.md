@@ -115,7 +115,10 @@ The `@tagHelperPrefix` directive allows you to specify a tag prefix string to en
 
 The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelperPrefix`.
 
-## IntelliSense support for Tag Helpers
+## IntelliSense support for Tag Helpers in Visual Studio 2017
+
+> [!NOTE]
+> You must install the [Razor Language Service extension](https://aka.ms/razorlangsvc) for IntelliSense to work with Tag Helpers. See [ASP.NET Core Known Issues](https://github.com/aspnet/Tooling/blob/master/known-issues-vs2017.md#aspnet-core-known-issues) for more information. 
 
 When you create a new ASP.NET web app in Visual Studio, it adds the NuGet package "Microsoft.AspNetCore.Razor.Tools". This is the package that adds Tag Helper tooling.
 
