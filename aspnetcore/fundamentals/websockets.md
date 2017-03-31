@@ -80,7 +80,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 ### Send and receive messages
 
-The `AcceptWebSocket` method upgrades the TCP connection to a WebSocket connection and gives you a [WebSocket](https://docs.microsoft.com/dotnet/core/api/system.net.websockets.websocket) object. Use the WebSocket object to send and receive messages.
+The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and gives you a [WebSocket](https://docs.microsoft.com/dotnet/core/api/system.net.websockets.websocket) object. Use the WebSocket object to send and receive messages.
 
 The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method; here's the `Echo` method. The code receives a message and immediately sends back the same message. It stays in a loop doing that until the client closes the connection. 
 
