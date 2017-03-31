@@ -32,7 +32,7 @@ We've finally added a **M**odel to our **M**VC app.
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
 - Update the *Startup.cs* file and add two usings:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1?highlight=1,2)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
 
 - Add the database context to the *Startup.cs* file:
 
