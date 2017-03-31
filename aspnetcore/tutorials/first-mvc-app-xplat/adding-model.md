@@ -30,6 +30,10 @@ We've finally added a **M**odel to our **M**VC app.
    [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
 
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
+- Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
+
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
+   
 - Update the *Startup.cs* file and add two usings:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
@@ -37,10 +41,6 @@ We've finally added a **M**odel to our **M**VC app.
 - Add the database context to the *Startup.cs* file:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=5-7)]
-
-- Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
-
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
 
 - Add a database connection string to the *appsettings.json* file:
 
