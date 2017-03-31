@@ -50,12 +50,12 @@ We've finally added a **M**odel to our **M**VC app.
 
 ### Scaffold the MovieController
 
-- Open a terminal window in the project folder and run the following commands:
+Open a terminal window in the project folder and run the following commands:
 
- ```console
- dotnet restore
- dotnet aspnet-codegenerator controller -name MovieController  -m Movie -dc MvcMovieContext
- ```
+```console
+dotnet restore
+dotnet aspnet-codegenerator controller -name MovieController  -m Movie -dc MvcMovieContext
+```
 
 The scaffolding engine creates the following:
 
