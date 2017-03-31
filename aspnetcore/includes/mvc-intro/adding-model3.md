@@ -1,6 +1,6 @@
 ## Add initial migration and update the database
 
-* Open a command prompt and navigate to the project directory. You can find the path by selecting the *Startup.cs* file in Solution Explorer and viewing the `Full Path` property in the **Properties** window.
+* Open a command prompt and navigate to the project directory. (The directory containing the *Startup.cs* file).
 
 * Run the following commands in the command prompt:
 
@@ -18,8 +18,6 @@
 * `dotnet ef database update`  Updates the database with the migration we just created
 
 ## Test the app
-
-Notes: 
 
 * Run the app and tap the **Mvc Movie** link.
 * Tap the **Create New** link and create a movie.
@@ -42,13 +40,13 @@ Tapping **Create** causes the form to be posted to the server, where the movie i
 
 Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete** links, which are all functional.
 
-## Examining the Generated Code
+## Dependency Injection
 
 Open the *Startup.cs* file and examine `ConfigureServices`:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7-8)]
 
-The code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
+The highligted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
@@ -64,13 +62,13 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) in Visual Studio (VS). The scaffolding mechanism in VS used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx). The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]
 
-The `id` parameter is generally passed as route data, for example `http://localhost:1234/movies/details/1` sets:
+The `id` parameter is generally passed as route data. For example `http://localhost:5000/movies/details/1` sets:
 
 * The controller to the `movies` controller (the first URL segment).
 * The action to `details` (the second URL segment).

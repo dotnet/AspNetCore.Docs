@@ -5,7 +5,7 @@ description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 03/14/2017
+ms.date: 03/30/2017
 ms.topic: article
 ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.technology: aspnet
@@ -58,7 +58,6 @@ Complete the **Add Controller** dialog:
 
 ![Add Controller dialog](adding-model/_static/add_controller2.png)
 
-
 The scaffolding engine creates the following:
 
 * A movies controller (*Controllers/MoviesController.cs*)
@@ -99,7 +98,7 @@ You now have a database and pages to display, edit, update and delete data. In t
 * [Globalization and localization](xref:fundamentals/localization)
 
 >[!div class="step-by-step"]
-[Previous](adding-view.md)
+[Previous Adding a View](adding-view.md)
 <!--
-[Next](working-with-sql.md)  
+[Next Working with SQL](working-with-sql.md)  
 -->

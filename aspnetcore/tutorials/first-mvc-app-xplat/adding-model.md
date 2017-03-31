@@ -17,24 +17,22 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
+   [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
-
-In addition to the properties you'd expect to model a movie, the `ID` field is required by the database for the primary key. Build the project. Build the app to verify you don't have any errors.
+In addition to the properties you'd expect to model a movie, the `ID` field is required by the database for the primary key. Build the app to verify you don't have any errors.
 
 We've finally added a **M**odel to our **M**VC app.
 
 ## Prepare the project for scaffolding
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
-
              
    [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
 
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
-- Update the *Startup.cs* file and two usings:
+- Update the *Startup.cs* file and add two usings:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1?highlight=1,2)]
 
 - Add the database context to the *Startup.cs* file:
 
@@ -59,6 +57,22 @@ We've finally added a **M**odel to our **M**VC app.
  dotnet aspnet-codegenerator controller -name MovieController  -m Movie -dc MvcMovieContext
  ```
 
+The scaffolding engine creates the following:
+
+* A movies controller (*Controllers/MoviesController.cs*)
+* Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
+
+Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
+
+If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
+
+```text
+An unhandled exception occurred while processing the request.
+SqlException: Cannot open database "MvcMovieContext" 
+requested by the login. The login failed.
+Login failed for user Rick
+```
+
 ### Clean up the scaffolding
 
 - Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
@@ -66,12 +80,12 @@ We've finally added a **M**odel to our **M**VC app.
 - Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Remove the following  code:
 
  ```html
-    @{
+  @{
       Layout = null;
   }
  ```
 
-   The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor file which we'll use in each view. *Views/Shared/_Layout.cshtml* is automatically imported into each view with the *Views/_ViewStart.cshtml* Razor view file:
+   The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file which we'll use in each view. *Views/Shared/_Layout.cshtml* is automatically imported into each view with the *Views/_ViewStart.cshtml* Razor view file:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
 
@@ -86,7 +100,7 @@ You now have a database and pages to display, edit, update and delete data. In t
 * [Globalization and localization](xref:fundamentals/localization)
 
 >[!div class="step-by-step"]
-[Previous](adding-view.md)
+[Previous Adding a View](adding-view.md)
 <!--
-[Next](working-with-sql.md)  
+[Next Working with SQL](working-with-sql.md)  
 -->
