@@ -326,14 +326,31 @@ The following table demonstrates some route constraints and their expected behav
 >[!WARNING]
 > Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
->[!TIP]
-> Regular expressions use delimiters and tokens similar to those used by Routing and the C# language, and so those tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/en-us/library/aa691090(v=vs.71).aspx)). The `{` and `}` characters need to be escaped by doubling them to escape the Routing parameter delimiter characters. The resulting regular expression is `^\\d{{3}}-\\d{{2}}-\\d{{4}}$`.
+## Regular expressions 
 
->[!TIP]
-> Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string) to ensure that the regular expression must match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not desirable. For example, the regular expression `[a-z]{2}` will match the strings `hello` and `123abc456` because each contains a sequence of two lowercase characters somewhere in the string. However, the regular expression `^[a-z]{2}$` will match neither `hello` or `123abc456` because it matches only exactly a sequence of two lowercase characters, for example, `MZ`. Refer to [.NET Framework Regular Expressions](https://msdn.microsoft.com/en-us/library/hs600312(v=vs.110).aspx) for more information on regular expression syntax.
+The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](https://msdn.microsoft.com/en-us/library/system.text.regularexpressions.regexoptions(v=vs.110).aspx) for a description of these members.
 
->[!TIP]
-> To constrain a parameter to a known set of possible values, you can use a regular expression ( for example `{action:regex(list|get|create)}`. This would only match the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/en-us/library/aa691090(v=vs.71).aspx)). The `{` and `}` characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
+
+| Expression               | Note |
+| ----------------- | ------------ | 
+| `^\d{3}-\d{2}-\d{4}$` | Regular expression |
+| `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  |
+
+Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
+
+| Expression               | String | Match | Comment |
+| ----------------- | ------------ |  ------------ |  ------------ | 
+| `[a-z]{2}` | hello | yes | substring matches |
+| `[a-z]{2}` | 123abc456 | yes | substring matches |
+| `[a-z]{2}` | mz | yes | matches expression |
+| `[a-z]{2}` | MZ | yes | not case sensitive |
+| `^[a-z]{2}$` |  hello | no | see `^` and `$` above |
+| `^[a-z]{2}$` |  123abc456 | no | see `^` and `$` above |
+
+Refer to [.NET Framework Regular Expressions](https://msdn.microsoft.com/en-us/library/hs600312(v=vs.110).aspx) for more information on regular expression syntax.
+
+To constrain a parameter to a known set of possible values, use a regular expression. For example `{action:regex(list|get|create)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
 ## URL Generation Reference
 

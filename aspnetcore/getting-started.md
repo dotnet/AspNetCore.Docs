@@ -18,23 +18,25 @@ uid: getting-started
 
 2.  Create a new .NET Core project:
 
-    ```console
+    ```terminal
     mkdir aspnetcoreapp
     cd aspnetcoreapp
     dotnet new web
     ```
     
-    Note: Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
+    Notes: 
+    - On macOC and Linux, open a terminal window. On Windows, open a command prompt.
+    - Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
 
 3.  Restore the packages:
 
-    ```console
+    ```terminal
     dotnet restore
     ```
 
 4.  Run the app  (the `dotnet run` command will build the app when it's out of date):
 
-    ```console
+    ```terminal
     dotnet run
     ```
 
