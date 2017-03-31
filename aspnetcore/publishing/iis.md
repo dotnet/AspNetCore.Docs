@@ -1,5 +1,5 @@
 ---
-title: Publishing to IIS | Microsoft Docs
+title: Publishing ASP.NET Core to IIS | Microsoft Docs
 author: guardrex
 description:  Windows Server Internet Information Services (IIS) configuration and deployment of ASP.NET Core applications.
 keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/iis
 ---
-# Publishing to IIS
+# Publishing ASP.NET Core to IIS
 
 By [Luke Latham](https://github.com/GuardRex) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
@@ -87,7 +86,7 @@
 ## [Areas](mvc/controllers/areas.md)
 ## [Advanced](mvc/advanced/index.md)
 ### [Working with the Application Model](mvc/controllers/application-model.md)
-### [🔧 Application parts](mvc/advanced/app-parts.md)
+### [Application parts](mvc/advanced/app-parts.md)
 ### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 
@@ -111,23 +110,23 @@
 
 # [Mobile](mobile/toc.md)
 
-# [Hosting and Deployment](publishing/index.md)
-## [Set up a Windows hosting environment and deploy to it](publishing/windows/index.md)
-### [Publishing to IIS](publishing/iis.md)
-#### [ASP.NET Core Module Configuration Reference](hosting/aspnet-core-module.md)
-### [Hosting in a Windows service](publishing/windows/windows-service.md)
-### [Directory structure](hosting/directory-structure.md)
-## [Set up a Linux hosting environment and deploy to it](publishing/linux/index.md)
-### [Publish to a Linux Production Environment using nginx](publishing/linuxproduction.md)
-### [Using Apache Web Server on CentOS as a reverse proxy](publishing/apache-proxy.md)
-## [Set up a Docker hosting environment and deploy to it](publishing/docker/index.md)
-### [Building Docker Images for .NET Core Applications](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/building-net-docker-images)
-### [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker)
+# [Hosting and Deployment](xref:publishing/index)
+## [Deploy to Windows IIS](xref:publishing/iis)
+### [Directory structure](xref:hosting/directory-structure)
+### [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
+### [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
+### [Data protection](xref:hosting/dataprotection
+## [Host in a Windows service](xref:publishing/windows/windows-service)
+## [Deploy to Linux using nginx](xref:publishing/linuxproduction)
+## [Deploy to Linux using Apache](xref:publishing/apache-proxy)
+## [Deploy to Docker](publishing/docker)
+### [Building Docker Images](https://docs.microsoft.com/dotnet/articles/core/docker/building-net-docker-images)
+### [Visual Studio Tools for Docker](https://docs.microsoft.com/dotnet/articles/core/docker/visual-studio-tools-for-docker)
 ### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
-## [Deploy an ASP.NET Core web app to Azure using Visual Studio](tutorials/publish-to-azure-webapp-using-vs.md)
-## [Continuous deployment to an Azure Web App using VSTS](publishing/vsts-continuous-deployment.md)
-## [Continuous deployment to an Azure Web App using Visual Studio](publishing/azure-continuous-deployment.md)
-## [How Web Publishing In Visual Studio Works](publishing/web-publishing-vs.md)
+## [Deploy to Azure using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+## [Continuous deployment to Azure using VSTS](xref:publishing/vsts-continuous-deployment)
+## [Continuous deployment to Azure using Visual Studio](publishing/xref:azure-continuous-deployment)
+## [Publishing with MSBuild and Visual Studio](xref:publishing/web-publishing-vs)
 
 # [Security](security/toc.md)
 

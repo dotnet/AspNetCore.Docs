@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: hosting/directory-structure
 ---
-# Directory structure
+# Directory structure of ASP.NET Core apps
 
 By [Luke Latham](https://github.com/GuardRex)
 
