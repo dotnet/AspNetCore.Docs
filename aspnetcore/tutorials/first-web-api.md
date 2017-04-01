@@ -73,7 +73,7 @@ Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef
 
 Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add the highlighted `PackageReference`:
 
-[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=12)]
+[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=14)]
 
 ### Add a model class
 
