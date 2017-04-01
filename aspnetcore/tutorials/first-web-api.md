@@ -133,7 +133,7 @@ In the `ConfigureServices` method, add the highlighted code:
 
 In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web  API Controller Class** template. Name the class `TodoController`.
 
-![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new-project.png)
+![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new_controller.png)
 
 
 Replace the generated code with the following (and add closing braces):
