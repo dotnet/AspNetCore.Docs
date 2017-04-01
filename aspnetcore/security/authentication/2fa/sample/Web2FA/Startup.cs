@@ -37,7 +37,7 @@ namespace Web2FA
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-#region snippet1
+        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -50,12 +50,20 @@ namespace Web2FA
 
             services.AddMvc();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+            });
+
+            #region snippet1
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.Configure<SMSoptions>(Configuration);
         }
-#endregion
+        #endregion
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
