@@ -35,7 +35,7 @@ In the **Add MVC Dependencies** dialog, select **Minimal Dependencies**, and sel
 
 ![view of above step](adding-model/_static/add_depend.png)
 
-Visual Studio adds the dependencies needed to scaffold a controller, but the controller itself is not created in this first step, only the required dependencies are added to the project. The next invoke of **> Add > Controller** detects this and proceeds to create the controller, as shown below. Also, a *ScaffoldingReadMe.txt* file is created, which you can delete.  
+Visual Studio adds the dependencies needed to scaffold a controller, but the controller itself is not created in this step. The next invoke of **> Add > Controller** creates the controller. 
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
 
