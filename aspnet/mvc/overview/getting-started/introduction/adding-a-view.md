@@ -81,7 +81,7 @@ When we first created the *Views\HelloWorld\Index.cshtml* file, it contained the
 
 [!code-cshtml[Main](adding-a-view/samples/sample4.cshtml)]
 
-The Razor code above is explicted setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The *[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
+The Razor code above is explicitly setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The *[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
 
 [!code-cshtml[Main](adding-a-view/samples/sample5.cshtml?highlight=1-3)]
 
