@@ -38,13 +38,13 @@ Most of the built-in Tag Helpers target existing HTML elements and provide serve
 
 ```html
 <label asp-for="Email"></label>
-   ```
+```
 
 Generates the following HTML:
 
 ```html
 <label for="Email">Email</label>
-   ```
+```
 
 The `asp-for` attribute is made available by the `For` property in the `LabelTagHelper`. See [Authoring Tag Helpers](authoring.md) for more information.
 
@@ -101,7 +101,7 @@ You can disable a Tag Helper at the element level with the Tag Helper opt-out ch
 
 ```csharp
 <!span asp-validation-for="Email" class="text-danger"></!span>
-   ```
+```
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
@@ -164,13 +164,13 @@ Tag Helpers attach to HTML elements in Razor views, while [HTML Helpers](http://
 
 ```html
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
-   ```
+```
 
 The at (`@`) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) can't help. The last argument:
 
 ```html
 new {@class="caption"}
-   ```
+```
 
 Is an anonymous object used to represent attributes. Because **class** is a reserved keyword in C#, you use the `@` symbol to force C# to interpret "@class=" as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
 
@@ -188,21 +188,19 @@ IntelliSense helps you write the entire line. The `LabelTagHelper` also defaults
 
 generates:
 
+```html
+<label class="caption" for="FirstName">First Name</label>
+```
 
-   ```html
-   <label class="caption" for="FirstName">First Name</label>
-      ```
-
-The  camel-cased to sentence-cased content is not used if you add content to the `<label>`. For example:
+The camel-cased to sentence-cased content is not used if you add content to the `<label>`. For example:
 
 ![image](intro/_static/1stName.png)
 
 generates:
 
-
-   ```html
-   <label class="caption" for="FirstName">Name First</label>
-      ```
+```html
+<label class="caption" for="FirstName">Name First</label>
+```
 
 The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the legacy ASP.NET 4.5.x MVC template included with Visual Studio 2015.
 
@@ -212,7 +210,7 @@ The Visual Studio editor displays C# code with a grey background. For example, t
 
 ```html
 @Html.AntiForgeryToken()
-   ```
+```
 
 is displayed with a grey background. Most of the markup in the Register view is C#. Compare that to the equivalent approach using Tag Helpers:
 
