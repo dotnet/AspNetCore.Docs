@@ -82,7 +82,13 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 ## Invoking a view component
 
-To use the view component, call `@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)` from a view. The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
+To use the view component, call the following inside a view:
+
+```html
+@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)
+```
+
+The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
 [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
@@ -207,14 +213,14 @@ If the PVC view is not rendered, verify you are calling the view component with 
    <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
    ```
-    An unhandled exception occurred while processing the request.
-    InvalidOperationException: The view 'Components/PriorityList/Default' was not found. The following locations were searched:
-    /Views/ToDo/Components/PriorityList/Default.cshtml
-    /Views/Shared/Components/PriorityList/Default.cshtml
-    EnsureSuccessful
-      ```
+   An unhandled exception occurred while processing the request.
+   InvalidOperationException: The view 'Components/PriorityList/Default' was not found. The following locations were searched:
+   /Views/ToDo/Components/PriorityList/Default.cshtml
+   /Views/Shared/Components/PriorityList/Default.cshtml
+   EnsureSuccessful
+   ```
 
-* Copy *Views/Todo/Components/PriorityList/1Default.cshtml* to *Views/Shared/Components/PriorityList/Default.cshtml.
+* Copy *Views/Todo/Components/PriorityList/1Default.cshtml* to *Views/Shared/Components/PriorityList/Default.cshtml*.
 * Add some markup to the *Shared* Todo view component view to indicate the view is from the *Shared* folder.
 * Test the **Shared** component view.
 
@@ -224,7 +230,7 @@ If the PVC view is not rendered, verify you are calling the view component with 
 
 If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 
-[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=11&range=4-34)]
+[!code-csharp[Main](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
 Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
