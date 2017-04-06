@@ -76,7 +76,8 @@ Fix the bug in the `Product` method of the `MathController` so it returns the pr
 public static int Product(int a, int b)
 {
   return a * b;
-} ```
+} 
+```
 
 Save the file. The console output will show messages indicating that `dotnet watch` detected a file change and restarted the app.
 
