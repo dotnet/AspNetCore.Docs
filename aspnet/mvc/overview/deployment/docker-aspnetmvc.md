@@ -106,7 +106,7 @@ The Dockerfile that creates your image looks like this:
 FROM microsoft/aspnet
 
 # The final instruction copies the site you published earlier into the container.
-COPY ./bin/Release/PublishOutput/ .
+COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 ```
 
 There is no `ENTRYPOINT` command in this Dockerfile. You don't need one. When running Windows Server with IIS, the IIS process is the entrypoint, which is configured to start in the aspnet base image.
