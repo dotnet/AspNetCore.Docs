@@ -1,7 +1,7 @@
 ---
-title: Publish ASP.NET Core to Docker | Microsoft Docs
+title: Host ASP.NET Core in Docker containers | Microsoft Docs
 author: rick-anderson
-description: 
+description: Links to resources for learning how to host ASP.NET Core apps in Docker containers.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/docker
 ---
-# Publish an ASP.NET Core app to Docker
+# Host ASP.NET Core in Docker containers
 
 The following articles are available for learning about hosting ASP.NET Core apps in Docker.
 

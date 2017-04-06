@@ -1,7 +1,7 @@
 ﻿---
-title: Hosting set-up and deployment for ASP.NET Core | Microsoft Docs
+title: Hosting and deployment for ASP.NET Core | Microsoft Docs
 author: rick-anderson
-description: 
+description: Links to resources for learning how to set up hosting environments and deploy ASP.NET Core apps to them.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -12,23 +12,23 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/index
 ---
-# Hosting environment set-up and deployment of ASP.NET apps
+# Hosting and deployment of ASP.NET apps
 
 The following articles are available for learning about how to set up hosting environments and deploy ASP.NET Core applications.
 
-* [Deploy to Windows IIS](xref:publishing/iis)
-  * [Directory structure](xref:hosting/directory-structure)
-  * [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
+* [Host on Windows with IIS](xref:publishing/iis)
   * [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
-  * [Data protection](xref:hosting/dataprotection)
-* [Deploy to a Windows service](xref:hosting/windows-service)
-* [Deploy to Linux using nginx](xref:publishing/linuxproduction)
-* [Deploy to Linux using Apache](xref:publishing/apache-proxy)
-* [Deploy to Docker](xref:publishing/docker)
+  * [IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
+* [Host in a Windows service](xref:hosting/windows-service)
+* [Host on Linux with Nginx](xref:publishing/linuxproduction)
+* [Host on Linux with Apache](xref:publishing/apache-proxy)
+* [Host in Docker](xref:publishing/docker)
   * [Building Docker Images](https://docs.microsoft.com/dotnet/articles/core/docker/building-net-docker-images)
   * [Visual Studio Tools for Docker](https://docs.microsoft.com/dotnet/articles/core/docker/visual-studio-tools-for-docker)
   * [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
-* [Deploy to Azure using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-* [Continuous deployment to Azure using VSTS](xref:publishing/vsts-continuous-deployment)
-* [Continuous deployment to Azure using Visual Studio](xref:publishing/azure-continuous-deployment)
-* [Deploy with MSBuild and Visual Studio](xref:publishing/web-publishing-vs)
+* [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+* [Continuous deployment to Azure with Visual Studio and Git](xref:publishing/azure-continuous-deployment)
+* [Continuous deployment to Azure with VSTS](xref:publishing/vsts-continuous-deployment)
+* [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
+* [Directory structure](xref:hosting/directory-structure)
+* [Data protection](xref:hosting/dataprotection)

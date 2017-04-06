@@ -1,7 +1,7 @@
 ---
-title: Data Protection in ASP.NET Core | Microsoft Docs
+title: Data protection in ASP.NET Core | Microsoft Docs
 author: rick-anderson
-description: 
+description: An overview of how to configure Data Protection on a server to enable developers to use data protection.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
