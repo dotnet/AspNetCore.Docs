@@ -1,5 +1,5 @@
 ---
-title: Hosting ASP.NET Core on Windows with IIS | Microsoft Docs
+title: Host ASP.NET Core on Windows with IIS | Microsoft Docs
 author: guardrex
 description:  Windows Server Internet Information Services (IIS) configuration and deployment of ASP.NET Core applications.
 keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/iis
 ---
-# Hosting ASP.NET Core on Windows with IIS
+# Host ASP.NET Core on Windows with IIS
 
 By [Luke Latham](https://github.com/GuardRex) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
