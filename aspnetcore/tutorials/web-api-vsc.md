@@ -186,7 +186,7 @@ In the `GetById` method:
 
 ```csharp
 [HttpGet("{id}", Name = "GetTodo")]
-public IActionResult GetById(string id)
+public IActionResult GetById(long id)
 ```
 
 `"{id}"` is a placeholder variable for the ID of the `todo` item. When `GetById` is invoked, it assigns the value of "{id}" in the URL to the method's `id` parameter.
