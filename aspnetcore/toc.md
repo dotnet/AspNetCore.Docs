@@ -126,7 +126,6 @@
 ## [Continuous deployment to Azure with VSTS](xref:publishing/vsts-continuous-deployment)
 ## [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
 ## [Directory structure](xref:hosting/directory-structure)
-## [Data protection](xref:hosting/dataprotection)
 
 # [Security](security/toc.md)
 

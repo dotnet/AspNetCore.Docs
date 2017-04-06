@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/apache-proxy
 ---
-# Host ASP.NET Core on Linux with Apache web server as a reverse proxy
+# Set up a hosting environment for ASP.NET Core on Linux with Apache, and deploy to it
 
 By [Shayne Boyer](https://www.github.com/spboyer)
 

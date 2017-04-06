@@ -14,7 +14,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/linuxproduction
 ---
-# Host ASP.NET Core on Linux with Nginx
+# Set up a hosting environment for ASP.NET Core on Linux with Nginx, and deploy to it
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
