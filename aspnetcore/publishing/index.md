@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/index
 ---
-# Hosting and deployment of ASP.NET apps
+# Hosting and deployment of ASP.NET Core apps
 
 The following articles are available for learning about how to set up hosting environments and deploy ASP.NET Core applications.
 
