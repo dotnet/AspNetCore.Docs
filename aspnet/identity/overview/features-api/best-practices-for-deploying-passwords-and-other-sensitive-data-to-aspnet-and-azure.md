@@ -55,7 +55,7 @@ The ASP.NET runtime merges the contents of the external file with the markup in 
 <a id="con"></a>
 ## Working with connection strings in the development environment
 
-Visual Studio creates new ASP.NET projects that use [LocalDB](https://blogs.msdn.com/b/sqlexpress/archive/2011/07/12/introducing-localdb-a-better-sql-express.aspx). LocalDB was created specifically for the development environment. It doesn't require a password, therefore you need to do anything to prevent secrets from being checked into your source code. Some development teams use the full versions of SQL Server (or other DBMS) that require a password.
+Visual Studio creates new ASP.NET projects that use [LocalDB](https://blogs.msdn.com/b/sqlexpress/archive/2011/07/12/introducing-localdb-a-better-sql-express.aspx). LocalDB was created specifically for the development environment. It doesn't require a password, therefore you don't need to do anything to prevent secrets from being checked into your source code. Some development teams use the full versions of SQL Server (or other DBMS) that require a password.
 
 You can use the `configSource` attribute to replace the entire `<connectionStrings>` markup. Unlike the `<appSettings>``file` attribute that merges the markup, the `configSource` attribute replaces the markup. The following markup shows the `configSource` attribute in the *web.config* file:
 

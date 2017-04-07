@@ -24,6 +24,4 @@ Add an `Index` view for the `HelloWorldController`.
 
 >[!div class="step-by-step"]
 [Previous](adding-controller.md)
-<!--
 [Next](adding-model.md)
--->

@@ -14,7 +14,7 @@ uid: mvc/views/partial
 ---
 # Partial Views
 
-By [Steve Smith](http://ardalis.com) [Maher JENDOUBI](https://twitter.com/maherjend) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Smith](http://ardalis.com), [Maher JENDOUBI](https://twitter.com/maherjend), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core MVC supports partial views, which are useful when you have reusable parts of web pages you want to share between different views.
 
@@ -101,7 +101,7 @@ You can also pass a model into a partial view. This can be the page's view model
 
 You can pass an instance of `ViewDataDictionary` and a view model to a partial view:
 
-[!code-html[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?range=14-15)]
+[!code-html[Main](partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml?range=15-16)]
 
 The markup below shows the *Views/Articles/Read.cshtml* view which contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. You can pass new `ViewData` dictionary while retaining the existing `ViewData` if you use the constructor overload of the `ViewDataDictionary` highlighted below:
 

@@ -99,7 +99,7 @@ A *string* is a sequence of characters that are treated as text. To specify a st
 
 [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample5.cshtml)]
 
-If the string that you want to display contains a backslash character (\) or double quotation marks ( `"` ), use a *verbatim string literal* that's prefixed with the `@` operator. (In C#, the \ character has special meaning unless you use a verbatim string literal.)
+If the string that you want to display contains a backslash character ( `\` ) or double quotation marks ( `"` ), use a *verbatim string literal* that's prefixed with the `@` operator. (In C#, the \ character has special meaning unless you use a verbatim string literal.)
 
 [!code-html[Main](introducing-razor-syntax-c/samples/sample6.html)]
 

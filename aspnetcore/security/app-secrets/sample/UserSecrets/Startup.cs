@@ -30,7 +30,7 @@ namespace UserSecrets
 
         public void Configure(IApplicationBuilder app)
         {
-            var result = string.IsNullOrEmpty(_testSecret) ? "Null " : "Not Null";
+            var result = string.IsNullOrEmpty(_testSecret) ? "Null" : "Not Null";
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync($"Secret is {result}");

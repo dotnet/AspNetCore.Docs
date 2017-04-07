@@ -49,7 +49,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the *.csproj* file (right-click the project in **Solution Explorer** and select **Edit WebApp1.csproj**) and add a `PrepareForPublish` target:
 
-  [!code-json[Main](mvc/sample/WebApp1.csproj?range=22-24)]
+  [!code-xml[Main](mvc/sample/WebApp1.csproj?range=21-23)]
 
   The `PrepareForPublish` target is needed for acquiring client-side libraries via Bower. We'll talk about that later.
 

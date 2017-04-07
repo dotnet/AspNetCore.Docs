@@ -103,7 +103,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 * Add the `Microsoft.AspNetCore.StaticFiles` NuGet package to the project.
 * Enable static files to be served with the [Static file middleware](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) middleware. Add a call to [UseStaticFiles](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
 
-[!code-csharp[Main](bower\sample\Startup.cs?highlight=9)]
+[!code-csharp[Main](bower/sample/Startup.cs?highlight=9)]
 
 ### Reference packages
 
@@ -113,7 +113,7 @@ In this section, you will create an HTML page to verify it can access the deploy
 
  Replace the contents of *Index.html* with the following markup:
 
-[!code-html[Main](bower\sample\Index.html)]
+[!code-html[Main](bower/sample/Index.html)]
 
 * Run the app and navigate to `http://localhost:<port>/Index.html`. Alternatively, with *Index.html* opened, press `Ctrl+Shift+W`. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.
 

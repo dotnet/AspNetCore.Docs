@@ -19,7 +19,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https
 
 `dotnet watch` is a tool that runs a `dotnet` command when source files change. For example, a file change can trigger compilation, tests, or deployment.
 
-In this tutorial we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains an bug that we'll fix as part of this tutorial.
+In this tutorial we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains a bug that we'll fix as part of this tutorial.
 
 Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web app) and `WebAppTests` (unit tests for the web app).
 
@@ -76,7 +76,8 @@ Fix the bug in the `Product` method of the `MathController` so it returns the pr
 public static int Product(int a, int b)
 {
   return a * b;
-} ```
+} 
+```
 
 Save the file. The console output will show messages indicating that `dotnet watch` detected a file change and restarted the app.
 

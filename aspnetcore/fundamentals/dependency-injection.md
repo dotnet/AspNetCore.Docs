@@ -156,7 +156,7 @@ Scoped lifetime services are created once per request.
 
 Singleton lifetime services are created the first time they are requested (or when `ConfigureServices` is run if you specify an instance there) and then every subsequent request will use the same instance. If your application requires singleton behavior, allowing the services container to manage the service's lifetime is recommended instead of implementing the singleton design pattern and managing your object's lifetime in the class yourself.
 
-Services can be registered with the container in several ways. We have already seen how to register a service implementation with a given type by specifying the concrete type to use. In addition, a factory can be specified, which will then be used to create the instance on demand. The third approach is to directly specify the instance of the type to use, in which case the container will never attempt to create an instance.
+Services can be registered with the container in several ways. We have already seen how to register a service implementation with a given type by specifying the concrete type to use. In addition, a factory can be specified, which will then be used to create the instance on demand. The third approach is to directly specify the instance of the type to use, in which case the container will never attempt to create an instance (nor will it dispose of the instance).
 
 To demonstrate the difference between these lifetime and registration options, consider a simple interface that represents one or more tasks as an *operation* with a unique identifier, `OperationId`. Depending on how we configure the lifetime for this service, the container will provide either the same or different instances of the service to the requesting class. To make it clear which lifetime is being requested, we will create one type per lifetime option:
 
@@ -210,6 +210,33 @@ You should design your services to use dependency injection to get their collabo
 What if you find that your classes tend to have way too many dependencies being injected? This is generally a sign that your class is trying to do too much, and is probably violating SRP - the [Single Responsibility Principle](http://deviq.com/single-responsibility-principle/). See if you can refactor the class by moving some of its responsibilities into a new class. Keep in mind that your `Controller` classes should be focused on UI concerns, so business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](http://deviq.com/separation-of-concerns/).
 
 With regards to data access specifically, you can inject the `DbContext` into your controllers (assuming you've added EF to the services container in `ConfigureServices`). Some developers prefer to use a repository interface to the database rather than injecting the `DbContext` directly. Using an interface to encapsulate the data access logic in one place can minimize how many places you will have to change when your database changes.
+
+### Disposing of services
+
+The container will call `Dispose` for `IDisposable` types it creates. However, if you add an instance to the container yourself, it will not be disposed.
+
+Example:
+
+```csharp
+// Services implement IDisposable:
+public class Service1 : IDisposable {}
+public class Service2 : IDisposable {}
+public class Service3 : IDisposable {}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    // container will create the instance(s) of these types and will dispose them
+    services.AddScoped<Service1>();
+    services.AddSingleton<Service2>();
+
+    // container did not create instance so it will NOT dispose it
+    services.AddSingleton<Service3>(new Service3());
+    services.AddSingleton(new Service3());
+}
+```
+
+> [!NOTE]
+> In version 1.0, the container called dispose on *all* `IDisposable` objects, including those it did not create.
 
 ## Replacing the default services container
 

@@ -68,6 +68,8 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Select **ASP.NET 1.1** and the **Web Application** template.
 
+  **Note:** This tutorial requires ASP.NET Core 1.1 and EF Core 1.1 or later -- make sure that **ASP.NET Core 1.0** is not selected.
+
 * Make sure **Authentication** is set to **No Authentication**.
 
 * Click **OK**
