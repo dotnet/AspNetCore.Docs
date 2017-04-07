@@ -1,6 +1,21 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/hosting/dataprotection.md", 
+        "redirect_url": "/aspnet/core/publishing/iis", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/hosting/servicing.md", 
+        "redirect_url": "https://docs.microsoft.com/dotnet/articles/core/versions/servicing", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/hosting/index.md", 
+        "redirect_url": "/aspnet/core/publishing/", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/fundamentals/servers/overview.md", 
         "redirect_url": "/aspnet/core/fundamentals/servers/", 
         "redirect_document_id": false 
