@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
-<!--
+
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
 * Add a folder named *Models*.
@@ -28,7 +28,7 @@ We've finally added a **M**odel to our **M**VC app.
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=15-)]
 
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
@@ -43,36 +43,32 @@ We've finally added a **M**odel to our **M**VC app.
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=5-7)]
 
-- Add a database connection string to the *appsettings.json* file:
-
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/appsettings.json?highlight=7-)]
-
 - Build and run the project to verify there are no errors.
 
-### Scaffold the MovieController
+## Scaffold the MovieController
 
 Open a terminal window in the project folder and run the following commands:
 
 ```console
 dotnet restore
-dotnet aspnet-codegenerator controller -name MovieController  -m Movie -dc MvcMovieContext
+dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
 ```
 
 The scaffolding engine creates the following:
 
-* A movies controller (*Controllers/MoviesController.cs*)
+* A movies controller (*MoviesController.cs*)
 * Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
 
 Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
 If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
 
-```text
-An unhandled exception occurred while processing the request.
-SqlException: Cannot open database "MvcMovieContext" 
-requested by the login. The login failed.
-Login failed for user Rick
 ```
+SqliteException: SQLite Error 1: 'no such table: Movie'.
+Microsoft.Data.Sqlite.Interop.MarshalEx.ThrowExceptionForRC(int rc, Sqlite3Handle db)
+```
+
+We'll fix that after we clean up the scaffolding code.
 
 ### Clean up the scaffolding
 
@@ -104,5 +100,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 [Previous Adding a View](adding-view.md)
 <!--
 [Next Working with SQL](working-with-sql.md)  
--->
 -->

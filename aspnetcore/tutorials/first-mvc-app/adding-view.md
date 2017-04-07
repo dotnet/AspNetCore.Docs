@@ -35,6 +35,4 @@ uid: tutorials/first-mvc-app/adding-view
 
 >[!div class="step-by-step"]
 [Previous](adding-controller.md)
-<!--
 [Next](adding-model.md)
--->
