@@ -140,7 +140,7 @@ Behind the scenes, Web Apps in Azure App Service provides a lot of architectural
 
 ![Deployment service](introduction/_static/image5.png)
 
-When a user hits the web site, they don't hit the IIS VMs directly, they go through [Application Request Routing (ARR)](http://www.iis.net/downloads/microsoft/application-request-routing) load balancers. You can use these with your own servers, but the advantage here is that they're set up for you automatically. They use a smart heuristic that takes into account factors such as session affinity, queue depth in IIS, and CPU usage on each machine to direct traffic to the VMs that host your web site.
+When a user hits the web site, they don't hit the IIS VMs directly, they go through [Application Request Routing (ARR)](https://www.iis.net/downloads/microsoft/application-request-routing) load balancers. You can use these with your own servers, but the advantage here is that they're set up for you automatically. They use a smart heuristic that takes into account factors such as session affinity, queue depth in IIS, and CPU usage on each machine to direct traffic to the VMs that host your web site.
 
 ![ARR load balancer](introduction/_static/image6.png)
 

@@ -91,7 +91,7 @@ Next, you need to add all of the necessary assembly references to the class libr
     1. System.Web.dll
     2. System.Web.Extensions.dll
     3. System.Design.dll
-    4. System.Web.Extensions.Design.<wbr />dll
+    4. System.Web.Extensions.Design.dll
 4. Select the Browse tab.
 5. Add a reference to the AjaxControlToolkit.dll assembly. This assembly is located in the folder where you downloaded the AJAX Control Toolkit.
 
@@ -146,7 +146,7 @@ The client-side component of a control extender is called a behavior. The actual
 
 [!code-javascript[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample3.js)]
 
-The JavaScript file in Listing 3 contains a client-side class named DisabledButtonBehavior. This class, like its server-side twin, includes two properties named TargetButtonID and DisabledText which you can access using get\_TargetButtonID/set\_<wbr />TargetButtonID and get\_DisabledText/set\_<wbr />DisabledText.
+The JavaScript file in Listing 3 contains a client-side class named DisabledButtonBehavior. This class, like its server-side twin, includes two properties named TargetButtonID and DisabledText which you can access using get\_TargetButtonID/set\_TargetButtonID and get\_DisabledText/set\_DisabledText.
 
 The initialize() method associates a keyup event handler with the target element for the behavior. Each time you type a letter into the TextBox associated with this behavior, the keyup handler executes. The keyup handler either enables or disables the Button depending on whether the TextBox associated with the behavior contains any text.
 

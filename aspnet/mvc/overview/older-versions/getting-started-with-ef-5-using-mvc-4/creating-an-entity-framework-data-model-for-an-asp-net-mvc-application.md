@@ -50,7 +50,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > 
 > ## Acknowledgments
 > 
-> See the last tutorial in the series for [acknowledgments and a note about VB](advanced-entity-framework-scenarios-for-an-mvc-web-application.md).
+> See the last tutorial in the series for [acknowledgments and a note about VB](advanced-entity-framework-scenarios-for-an-mvc-web-application.md#acknowledgments).
 > 
 > ## Original version of the tutorial
 > 
@@ -249,7 +249,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     This code assumes that last names are unique. If you manually add a student with a duplicate last name, you'll get the following exception the next time you perform a migration.
 
-    <font color="red" class="LucidaCon">  Sequence contains more than one element</font>
+    Sequence contains more than one element
 
     For more information about the `AddOrUpdate` method, see [Take care with EF 4.3 AddOrUpdate Method](http://thedatafarm.com/blog/data-access/take-care-with-ef-4-3-addorupdate-method/) on Julie Lerman's blog.
 

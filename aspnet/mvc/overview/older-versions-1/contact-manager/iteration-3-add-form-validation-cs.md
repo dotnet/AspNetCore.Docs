@@ -58,7 +58,7 @@ In this iteration, we add the validation logic directly to the controller action
 
 In this iteration, to keep things simple, we write all of the validation code by hand. Instead of writing the validation code ourselves, we could take advantage of a validation framework. For example, you can use the Microsoft Enterprise Library Validation Application Block (VAB) to implement the validation logic for your ASP.NET MVC application. To learn more about the Validation Application Block, see:
 
-[<u>http://msdn.microsoft.<wbr>com/en-us/library/dd203099.<wbr>aspx</u>](https://msdn.microsoft.com/en-us/library/dd203099.aspx)
+[*http://msdn.microsoft.com/en-us/library/dd203099.aspx*](https://msdn.microsoft.com/en-us/library/dd203099.aspx)
 
 ## Adding Validation to the Create View
 
@@ -96,7 +96,7 @@ Right now, the Create view never displays validation error messages because we h
 
 The modified Create() method in Listing 2 contains a new section that validates the properties of the Contact class before the new contact is inserted into the database.
 
-**Listing 2 - Controllers\ContactController.<wbr />cs (Create with validation)**
+**Listing 2 - Controllers\ContactController.cs (Create with validation)**
 
 [!code-csharp[Main](iteration-3-add-form-validation-cs/samples/sample3.cs)]
 
@@ -113,7 +113,7 @@ After the validation rules are executed, the IsValid property of ModelState is c
 
 > [!NOTE] 
 > 
-> I got the regular expressions for validating the phone number and email address from the regular expression repository at [<u>http://regexlib.com</u>](http://regexlib.com)
+> I got the regular expressions for validating the phone number and email address from the regular expression repository at [*http://regexlib.com*](http://regexlib.com)
 
 
 ## Adding Validation Logic to the Edit Action
@@ -122,7 +122,7 @@ The Edit() action updates a Contact. The Edit() action needs to perform exactly 
 
 The modified Contact controller class is contained in Listing 3. This class has a new ValidateContact() method that is called within both the Create() and Edit() actions.
 
-**Listing 3 - Controllers\ContactController.<wbr />cs**
+**Listing 3 - Controllers\ContactController.cs**
 
 [!code-csharp[Main](iteration-3-add-form-validation-cs/samples/sample4.cs)]
 
