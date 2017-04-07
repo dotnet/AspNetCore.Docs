@@ -61,7 +61,7 @@ I decided to not use a template from the ASP.NET MVC Design gallery for the Cont
 
 The ASP.NET MVC Design Gallery is a free resource provided by Microsoft. The ASP.NET MVC Gallery is located at the following address:
 
-[http://www.ASP.net/mvc/gallery](http://www.ASP.net/mvc/gallery)
+[https://www.asp.net/mvc/gallery](https://www.asp.net/mvc/gallery)
 
 The ASP.NET MVC Design Gallery hosts a collection of free website designs that were created specifically for using in an ASP.NET MVC project. Designs are uploaded by members of the community. Visitors to the Gallery can vote for their favorite designs (see Figure 2).
 
@@ -110,7 +110,7 @@ The ASP.NET MVC Design Gallery has a good selection of different design styles. 
 
 However, you might need to create a completely unique design for your website. In that case, it makes sense to work with a website design company. I decided to take this approach for the design for the Contact Manager application.
 
-I zipped up the Contact Manager from Iteration #1 and sent the project to the design company. They did not own Visual Studio (shame on them!), but that didn t present a problem. They were able to download Microsoft Visual Web Developer for free from the [http://www.ASP.net](http://www.ASP.net) website and open the Contact Manager application in Visual Web Developer. In a couple of days, they had produced the design in Figure 7.
+I zipped up the Contact Manager from Iteration #1 and sent the project to the design company. They did not own Visual Studio (shame on them!), but that didn t present a problem. They were able to download Microsoft Visual Web Developer for free from the [https://www.asp.net](https://www.asp.net) website and open the Contact Manager application in Visual Web Developer. In a couple of days, they had produced the design in Figure 7.
 
 
 [![The New Project dialog box](iteration-2-make-the-application-look-nice-vb/_static/image7.jpg)](iteration-2-make-the-application-look-nice-vb/_static/image13.png)

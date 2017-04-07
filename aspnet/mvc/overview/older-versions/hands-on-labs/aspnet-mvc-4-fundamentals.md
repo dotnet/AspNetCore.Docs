@@ -597,7 +597,7 @@ In this task, you will create a View template that will use a StoreIndexViewMode
 
     *Add View Dialog*
 
-    The **\Views\Store\Index.cshtml** View template file is created and opened. Based on the information provided to the **Add View** dialog in the last step, the View template will expect a **StoreIndexViewModel** instance as the data to use to generate an HTML response. You will notice that the template inherits a **ViewPage<musicstore.viewmodels.storeindexviewmodel></musicstore.viewmodels.storeindexviewmodel>** in C#.
+    The **\Views\Store\Index.cshtml** View template file is created and opened. Based on the information provided to the **Add View** dialog in the last step, the View template will expect a **StoreIndexViewModel** instance as the data to use to generate an HTML response. You will notice that the template inherits a `ViewPage<musicstore.viewmodels.storeindexviewmodel>` in C#.
 
 <a id="Ex5Task5"></a>
 

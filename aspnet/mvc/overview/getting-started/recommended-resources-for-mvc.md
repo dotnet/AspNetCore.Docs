@@ -20,33 +20,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, [stackoverflow](http://stackoverflow.com/) thread or any other link that would be useful, send [me](mailto:aspnetue@microsoft.com?subject=Great ASP.NET MVC link) an email with the link. The links provided here are updated periodically. You can find older (but in many cases still relevant) ASP.NET MVC links on the [MSDN content map](https://msdn.microsoft.com/en-us/library/gg416514(v=vs.108).aspx).
 > 
 > A good place to get your questions answered or to find solutions to problems is in the [ASP.NET MVC forum](https://forums.asp.net/1146.aspx/1?MVC) or on [stackoverflow](http://stackoverflow.com/questions/tagged/mvc+asp.net-mvc).
-
-
-- [Getting Started with ASP.NET MVC](#gettingstarted)
-- [New Featured Content](#newfeatured)
-- [Microsoft Azure](#azure) ( Featuring lots of great videos from //build/ 2014)
-- [Security](#security)
-- [Membership, Authentication](#Membership)
-- [OWIN and Katana](#OWIN)
-- [Data Access in ASP.NET MVC](#dataAccess)
-- [Web Forms to MVC](#WF2MGC)
-- [Performance](#perf)
-- [AngularJS and Knockout](#KO)
-- [jQuery, Ajax, JSON, JavaScript](#jQueryAjaxJSON)
-- [HTML5](#html5)
-- [Routing](#Routing)
-- [Globalization, Internationalization and Localization](#global)
-- [Azure and ASP.NET MVC](#azure)
-- [Mobile](#mobile)
-- [Single Page Application (SPA)](#spa)
-- [Twitter, Facebook](#fb)
-- [Unit Testing, TDD, Repository Pattern and Unit of Work](#tdd)
-- [Best Practices](#best)
-- [Deployment](#deploy)
-- [Rich text Editors for MVC](#RTE)
-- [General](#general)
-- [Best Forum Posts](#posts)
-
 <a id="gettingstarted"></a>
 
 ## Getting Started with ASP.NET MVC

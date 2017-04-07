@@ -22,7 +22,7 @@ by [Robert McMurray](https://github.com/rmcmurray)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Internet Information Services (IIS)](http://www.iis.net/) (version 7 or later)
+> - [Internet Information Services (IIS)](https://www.iis.net/) (version 7 or later)
 > - [Web API](../../index.md) (version 1 or 2)
 
 

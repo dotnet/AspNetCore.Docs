@@ -29,18 +29,6 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > For information about how to create web projects for Azure Cloud Services or Azure Mobile Services, see [Get Started with Azure Cloud Services and ASP.NET](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-get-started/) and [Creating a Leaderboard App with Azure Mobile Services .NET Backend](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/).
 
 
-This article contains the following sections:
-
-- [Prerequisites](#prerequisites)
-- [Web application projects versus web site projects](#wap)
-- [Overview of web application project creation](#overview)
-- [Visual Studio 2013 Web Project Templates](#vs2013)
-- [Bootstrap in the Visual Studio 2013 web project templates](#bootstrap)
-- [Adding support for additional frameworks](#add)
-- [Authentication methods](#auth)
-- [Organizational account authentication options](#orgauthoptions)
-- [Next steps](#nextsteps)
-
 <a id="prerequisites"></a>
 ## Prerequisites
 

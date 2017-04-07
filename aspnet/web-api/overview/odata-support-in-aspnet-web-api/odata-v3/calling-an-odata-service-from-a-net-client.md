@@ -149,7 +149,7 @@ Here is the corresponding OData request:
 
 ### Select ($select) and Expand ($expand)
 
-To include related entities, use the **DataServiceQuery<t>.Expand</t>** method. For example, to include the `Supplier` for each `Product`:
+To include related entities, use the `DataServiceQuery<t>.Expand` method. For example, to include the `Supplier` for each `Product`:
 
 [!code-csharp[Main](calling-an-odata-service-from-a-net-client/samples/sample13.cs)]
 

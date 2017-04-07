@@ -23,14 +23,6 @@ The earlier style of routing, called convention-based routing, is still fully su
 
 This topic shows how to enable attribute routing and describes the various options for attribute routing. For an end-to-end tutorial that uses attribute routing, see [Create a REST API with Attribute Routing in Web API 2](create-a-rest-api-with-attribute-routing.md).
 
-- [Why Attribute Routing?](#why)
-- [Enabling Attribute Routing](#enable)
-- [Adding Route Attributes](#add-routes)
-- [Route Prefixes](#prefixes)
-- [Route Constraints](#constraints)
-- [Optional URI Parameters and Default Values](#optional)
-- [Route Names](#route-names)
-- [Route Order](#order)
 
 ## Prerequisites
 
@@ -103,7 +95,7 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 [!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample5.cs?highlight=4)]
 
 > [!NOTE]
-> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
+> For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md#webhost).
 
 
 <a id="add-routes"></a>

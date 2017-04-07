@@ -316,7 +316,7 @@ Solution
 
 One cause of this problem is validation errors when the `Seed` method runs. See [Seeding and Debugging Entity Framework (EF) DBs](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) for tips on debugging the `Seed` method.
 
-### <h23>HTTP 500.19 error</h23>
+### HTTP 500.19 error
 
 Error Message:
 

@@ -84,7 +84,7 @@ Because test-driven development is driven by unit tests, we focus initially on w
 
 ## Creating User Stories
 
-When practicing test-driven development, you always start by writing a test. This immediately raises the question: How do you decide what test to write first? To answer this question, you should write a set of [*<u>user stories</u>*](http://en.wikipedia.org/wiki/User_stories).
+When practicing test-driven development, you always start by writing a test. This immediately raises the question: How do you decide what test to write first? To answer this question, you should write a set of [*user stories*](http://en.wikipedia.org/wiki/User_stories).
 
 A user story is a very brief (usually one sentence) description of a software requirement. It should be a non-technical description of a requirement written from a user perspective.
 
@@ -118,7 +118,7 @@ Create a new unit test by right-clicking the Controllers folder in the ContactMa
 
 Our first unit test is contained in Listing 1. This test verifies that the Index() method of the Group controller returns a set of Groups. The test verifies that a collection of Groups is returned in view data.
 
-**Listing 1 - Controllers\<wbr />GroupControllerTest.vb**
+**Listing 1 - Controllers\GroupControllerTest.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample1.vb)]
 
@@ -150,7 +150,7 @@ Now we can move on to the second user story. We need to be able to create new co
 
 The test in Listing 4 verifies that calling the Create() method with a new Group adds the Group to the list of Groups returned by the Index() method. In other words, if I create a new group then I should be able to get the new Group back from the list of Groups returned by the Index() method.
 
-**Listing 4 - Controllers\<wbr />GroupControllerTest.vb**
+**Listing 4 - Controllers\GroupControllerTest.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample4.vb)]
 
@@ -172,7 +172,7 @@ This requirement was not stated explicitly in the user story. However, it is rea
 
 Listing 6 contains a new test that expresses this intention. This test verifies that attempting to create a Group without supplying a name results in a validation error message in model state.
 
-**Listing 6 - Controllers\<wbr />GroupControllerTest.vb**
+**Listing 6 - Controllers\GroupControllerTest.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample6.vb)]
 
@@ -206,11 +206,11 @@ Listing 11 contains a new FakeContactManagerRepository class that implements the
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample9.vb)]
 
-**Listing 10 - Controllers\<wbr />ContactManagerService.vb**
+**Listing 10 - Controllers\ContactManagerService.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample10.vb)]
 
-**Listing 11 - Controllers\<wbr />FakeContactManagerRepository.<wbr />vb**
+**Listing 11 - Controllers\FakeContactManagerRepository.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample11.vb)]
 
@@ -222,7 +222,7 @@ Modifying the IContactManagerRepository interface requires use to implement the 
 
 Finally, these changes to the design of our application require us to make some modifications to our unit tests. We now need to use the FakeContactManagerRepository when performing the unit tests. The updated GroupControllerTest class is contained in Listing 12.
 
-**Listing 12 - Controllers\<wbr />GroupControllerTest.vb**
+**Listing 12 - Controllers\GroupControllerTest.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample13.vb)]
 
@@ -304,7 +304,7 @@ After you complete these steps, your data model will represent both the Contacts
 
 Next, we need to implement our repository class. Over the course of this iteration, we added several new methods to the IContactManagerRepository interface while writing code to satisfy our unit tests. The final version of the IContactManagerRepository interface is contained in Listing 14.
 
-**Listing 14 - Models\<wbr />IContactManagerRepository.vb**
+**Listing 14 - Models\IContactManagerRepository.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample14.vb)]
 
@@ -314,7 +314,7 @@ We haven t actually implemented any of the methods related to working with conta
 
 The stub methods enabled us to compile our application and pass the unit tests. However, now it is time to actually implement these methods. The final version of the EntityContactManagerRepository class is contained in Listing 13.
 
-**Listing 13 - Models\<wbr />EntityContactManagerRepository<wbr />.vb**
+**Listing 13 - Models\EntityContactManagerRepository.vb**
 
 [!code-vb[Main](iteration-6-use-test-driven-development-vb/samples/sample16.vb)]
 

@@ -26,15 +26,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > The tutorial also shows how to add profile data for the user, and how to use the Membership API to add roles. This tutorial was written by [Rick Anderson](https://blogs.msdn.com/rickAndy) ( Please follow me on Twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT) ).
 
 
-- [Getting Started](#start)
-- [Creating Your First Application](#1st)
-- [Setting up SSL in the Project](#ssl)
-- [Creating a Google app for OAuth 2 and connecting the app to the project](#goog)
-- [Creating the app in Facebook and connecting the app to the project](#fb)
-- [Examine the Membership Data](#mdb)
-- [Adding Profile Data to the User Class](#ap)
-- [Logging off your App and Logging in With Another Account](#off)
-
 <a id="start"></a>
 ## Getting Started
 

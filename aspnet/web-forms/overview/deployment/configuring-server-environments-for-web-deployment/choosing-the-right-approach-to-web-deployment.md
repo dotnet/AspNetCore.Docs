@@ -48,7 +48,7 @@ When you install Web Deploy using the default settings on a destination server, 
 
 
 > [!NOTE]
-> You can replace [*server*<u>]</u> with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
+> You can replace [*server*] with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
 
 
 Server administrators can deploy web packages from a remote location, like a developer machine or a build server, by specifying this endpoint address. For example, suppose Matt Hink at Fabrikam, Inc. has built the ContactManager.Mvc web application project on his developer machine. The build process generates a web package, together with a *.deploy.cmd* file that contains the Web Deploy commands required to install the package. If Matt is a server administrator on the TESTWEB1 server, he can deploy the web application to the test web server by running this command on his developer machine:
@@ -102,7 +102,7 @@ By default, the remote agent exposes an HTTP endpoint at this address:
 
 
 > [!NOTE]
-> You can replace [*server*<u>]</u> with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
+> You can replace [*server*] with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
 
 
 The big advantage of the Web Deploy Handler over the remote agent, and the temp agent, is that you can configure IIS to allow non-administrator users to deploy applications and content to specific IIS websites. The Web Deploy Handler also supports basic authentication, so you can provide alternative credentials as parameters in your Web Deploy commands. The major drawback is that the Web Deploy Handler is initially a lot more complicated to set up and configure.
