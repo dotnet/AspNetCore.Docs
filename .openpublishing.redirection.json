@@ -2,7 +2,7 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/hosting/dataprotection.md", 
-        "redirect_url": "/aspnet/core/publishing/iis#create-a-data-protection-registry-hive", 
+        "redirect_url": "/aspnet/core/publishing/iis", 
         "redirect_document_id": false 
     }, 
     {   
