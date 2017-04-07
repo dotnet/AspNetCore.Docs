@@ -90,7 +90,15 @@ Note: The version numbers shown above were correct at the time of writing.
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
-You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
+### Update the database
+
+*Open a command prompt and navigate to the project directory (where the *Startup.cs* file is located).
+*Run the following commands:
+
+  ```dotnet ef migrations add Initial
+     dotnet ef database update```
+
+Test the app. Create some movies. Test the edit, details and delete links. You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
 ### Additional resources
 
