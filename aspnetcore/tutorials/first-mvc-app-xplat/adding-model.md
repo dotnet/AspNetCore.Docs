@@ -12,7 +12,6 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
-<!--
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
 * Add a folder named *Models*.
@@ -104,5 +103,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 [Previous Adding a View](adding-view.md)
 <!--
 [Next Working with SQL](working-with-sql.md)  
--->
 -->
