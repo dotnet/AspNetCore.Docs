@@ -90,8 +90,6 @@ Note: The version numbers shown above were correct at the time of writing.
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
-You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
-
 ### Additional resources
 
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
