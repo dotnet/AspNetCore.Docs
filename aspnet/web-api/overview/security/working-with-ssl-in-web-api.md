@@ -26,7 +26,7 @@ To set up SSL in IIS 7 or later:
 - Create or get a certificate. For testing, you can create a self-signed certificate.
 - Add an HTTPS binding.
 
-For details, see [How to Set Up SSL on IIS 7](http://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
+For details, see [How to Set Up SSL on IIS 7](https://www.iis.net/learn/manage/configuring-security/how-to-set-up-ssl-on-iis).
 
 For local testing, you can enable SSL in IIS Express from Visual Studio. In the Properties window, set **SSL Enabled** to **True**. Note the value of **SSL URL**; use this URL for testing HTTPS connections.
 

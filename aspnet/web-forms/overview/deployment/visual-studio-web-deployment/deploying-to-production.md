@@ -162,7 +162,7 @@ Now that you have created a web app and database for the staging environment, yo
 ### Configure a publish profile transform for the environment indicator
 
 > [!NOTE]
-> This section shows how to set up a Web.config transform for the environment indicator. Because the indicator is in the `<appSettings>` element, you have another alternative for specifying the transformation when you're deploying to Azure App Service. For more information, see [Specifying Web.config settings in Azure](web-config-transformations.md).
+> This section shows how to set up a Web.config transform for the environment indicator. Because the indicator is in the `<appSettings>` element, you have another alternative for specifying the transformation when you're deploying to Azure App Service. For more information, see [Specifying Web.config settings in Azure](web-config-transformations.md#watransforms).
 
 
 1. In **Solution Explorer**, expand **Properties**, and then expand **PublishProfiles**.

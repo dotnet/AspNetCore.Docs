@@ -84,7 +84,7 @@ The following list shows the steps that SignalR uses to decide which transport t
     - The client supports WebSocket
     - The server supports WebSocket
 
-    If any of these criteria are not met, Long Polling will be used. For more information on cross-domain connections, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md).
+    If any of these criteria are not met, Long Polling will be used. For more information on cross-domain connections, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
 4. If JSONP is not configured and the connection is not cross-domain, WebSocket will be used if both the client and server support it.
 5. If either the client or server do not support WebSocket, Server Sent Events is used if it is available.
 6. If Server Sent Events is not available, Forever Frame is attempted.

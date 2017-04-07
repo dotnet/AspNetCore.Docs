@@ -67,9 +67,9 @@ One aspect of cookies is their expiration, which is the date and time at which t
 
 ### The Scope of Forms Authentication
 
-The FormsAuthenticationModule is managed code that is part of the ASP.NET runtime. Prior to version 7 of Microsoft's [Internet Information Services (IIS)](http://www.iis.net/) web server, there was a distinct barrier between IIS's HTTP pipeline and the ASP.NET runtime's pipeline. In short, in IIS 6 and earlier, the FormsAuthenticationModule only executes when a request is delegated from IIS to the ASP.NET runtime. By default, IIS processes static content itself - like HTML pages and CSS and image files - and only hands off requests to the ASP.NET runtime when a page with an extension of .aspx, .asmx, or .ashx is requested.
+The FormsAuthenticationModule is managed code that is part of the ASP.NET runtime. Prior to version 7 of Microsoft's [Internet Information Services (IIS)](https://www.iis.net/) web server, there was a distinct barrier between IIS's HTTP pipeline and the ASP.NET runtime's pipeline. In short, in IIS 6 and earlier, the FormsAuthenticationModule only executes when a request is delegated from IIS to the ASP.NET runtime. By default, IIS processes static content itself - like HTML pages and CSS and image files - and only hands off requests to the ASP.NET runtime when a page with an extension of .aspx, .asmx, or .ashx is requested.
 
-IIS 7, however, allows for integrated IIS and ASP.NET pipelines. With a few configuration settings you can setup IIS 7 to invoke the FormsAuthenticationModule for *all* requests. Furthermore, with IIS 7 you can define URL authorization rules for files of any type. For more information, see [Changes Between IIS6 and IIS7 Security](https://www.iis.net/learn/get-started/whats-new-in-iis-7/changes-in-security-between-iis-60-and-iis-7-and-above), [Your Web Platform Security](https://www.iis.net/learn/get-started/whats-new-in-iis-7/iis7-and-above-security-improvements), and [Understanding IIS7 URL Authorization](http://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization).
+IIS 7, however, allows for integrated IIS and ASP.NET pipelines. With a few configuration settings you can setup IIS 7 to invoke the FormsAuthenticationModule for *all* requests. Furthermore, with IIS 7 you can define URL authorization rules for files of any type. For more information, see [Changes Between IIS6 and IIS7 Security](https://www.iis.net/learn/get-started/whats-new-in-iis-7/changes-in-security-between-iis-60-and-iis-7-and-above), [Your Web Platform Security](https://www.iis.net/learn/get-started/whats-new-in-iis-7/iis7-and-above-security-improvements), and [Understanding IIS7 URL Authorization](https://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/URL-Authorization/Understanding-IIS7-URL-Authorization).
 
 Long story short, in versions prior to IIS 7, you can only use forms authentication to protect resources handled by the ASP.NET runtime. Likewise, URL authorization rules are only applied to resources handled by the ASP.NET runtime. But with IIS 7 it is possible to integrate the FormsAuthenticationModule and UrlAuthorizationModule into IIS's HTTP pipeline, thereby extending this functionality to all requests.
 
@@ -453,7 +453,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [Changes Between IIS6 and IIS7 Security](http://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/Changes-between-IIS6-and-IIS7-Security)
+- [Changes Between IIS6 and IIS7 Security](https://www.iis.net/articles/view.aspx/IIS7/Managing-IIS7/Configuring-Security/Changes-between-IIS6-and-IIS7-Security)
 - [Login ASP.NET Controls](https://msdn.microsoft.com/en-us/library/d51ttbhx.aspx)
 - [Professional ASP.NET 2.0 Security, Membership, and Role Management](http://www.wrox.com/WileyCDA/WroxTitle/productCd-0764596985.html) (ISBN: 978-0-7645-9698-8)
 - [The &lt;authentication&gt; Element](https://msdn.microsoft.com/en-us/library/532aee0e.aspx)

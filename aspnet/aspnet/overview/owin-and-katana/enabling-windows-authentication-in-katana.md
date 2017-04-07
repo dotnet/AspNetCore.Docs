@@ -67,7 +67,7 @@ When you run the application from Visual Studio, IIS Express will require the us
 
 The WWW-Authenticate headers in this response indicate that the server supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) protocol, which uses either Kerberos or NTLM.
 
-Later, when you deploy the application to a server, follow [these steps](http://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication) to enable Windows Authentication in IIS on that server.
+Later, when you deploy the application to a server, follow [these steps](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication) to enable Windows Authentication in IIS on that server.
 
 ## Windows Authentication in HttpListener
 

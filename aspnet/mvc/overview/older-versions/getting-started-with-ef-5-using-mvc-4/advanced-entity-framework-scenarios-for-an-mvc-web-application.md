@@ -23,7 +23,7 @@ by [Tom Dykstra](https://github.com/tdykstra)
 > 
 > > [!NOTE] 
 > > 
-> > If you run into a problem you can't resolve, [download the completed chapter](building-the-ef5-mvc4-chapter-downloads.md) and try to reproduce your problem. You can generally find the solution to the problem by comparing your code to the completed code. For some common errors and how to solve them, see  Errors and Workarounds.
+> > If you run into a problem you can't resolve, [download the completed chapter](building-the-ef5-mvc4-chapter-downloads.md) and try to reproduce your problem. You can generally find the solution to the problem by comparing your code to the completed code. For some common errors and how to solve them, see [Errors and Workarounds.](advanced-entity-framework-scenarios-for-an-mvc-web-application.md#errors)
 
 
 In the previous tutorial you implemented the repository and unit of work patterns. This tutorial covers the following topics:
@@ -310,7 +310,7 @@ Solution:
 
 One cause of this problem is validation errors when the `Seed` method runs. See [Seeding and Debugging Entity Framework (EF) DBs](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) for tips on debugging the `Seed` method.
 
-### <h23>HTTP 500.19 error</h23>
+### HTTP 500.19 error
 
 Error Message:
 

@@ -31,12 +31,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > 
 > A Visual Web Developer project with C# source code is available to accompany this topic. [Download the C# version](https://code.msdn.microsoft.com/Introduction-to-MVC-3-10d1b098). If you prefer Visual Basic, switch to the [Visual Basic version](../vb/intro-to-aspnet-mvc-3.md) of this tutorial.
 
-
-<style type="text/css">
-
-.auto-style1 {border-width: 0px;
-}</style>
-
 In this section, you'll create a new `MoviesController` class and write code that retrieves the movie data and displays it in the browser using a view template. Be sure to build your application before proceeding.
 
 Right-click the *Controllers* folder and create a new `MoviesController` controller. Select the following options:

@@ -84,15 +84,15 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
 
 1. Install the Nuget packages needed for ASP.NET Identity:
 
-    - <tt>Microsoft.AspNet.Identity.EntityFramework</tt>
-    - <tt>Microsoft.AspNet.Identity.Owin</tt>
-    - <tt>Microsoft.Owin.Host.SystemWeb</tt>
-    - <tt>Microsoft.Owin.Security.Facebook</tt>
-    - <tt>Microsoft.Owin.Security.Google</tt>
-    - <tt>Microsoft.Owin.Security.MicrosoftAccount</tt>
-    - <tt>Microsoft.Owin.Security.Twitter</tt>
+    - Microsoft.AspNet.Identity.EntityFramework
+    - Microsoft.AspNet.Identity.Owin
+    - Microsoft.Owin.Host.SystemWeb
+    - Microsoft.Owin.Security.Facebook
+    - Microsoft.Owin.Security.Google
+    - Microsoft.Owin.Security.MicrosoftAccount
+    - Microsoft.Owin.Security.Twitter
 
- More information on managing Nuget packages can be found     [here](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)
+ More information on managing Nuget packages can be found [here](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)
 2. To work with existing data in the table, we need to create model classes which map back to the tables and hook them up in the Identity system. As part of the Identity contract, the model classes should either implement the interfaces defined in the Identity.Core dll or can extend the existing implementation of these interfaces available in Microsoft.AspNet.Identity.EntityFramework. We will be using the existing classes for role, user logins and user claims. We need to use a custom user for our sample. Right click on the project and create new folder 'IdentityModels'. Add a new 'User' class as shown below:
 
     [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample5.cs)]

@@ -17,18 +17,9 @@ Using Asynchronous Methods in ASP.NET MVC 4
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us). The following sections are included in this tutorial.
-> 
-> - [How Requests Are Processed by the Thread Pool](#HowRequestsProcessedByTP)
-> - [Choosing Synchronous or Asynchronous Action Methods](#ChoosingSyncVasync)
-> - [The Sample Application](#SampleApp)
-> - [The Gizmos Synchronous Action Method](#GizmosSynch)
-> - [Creating an Asynchronous Gizmos Action Method](#CreatingAsynchGizmos)
-> - [Performing Multiple Operations in Parallel](#Parallel)
-> - [Using a Cancellation Token](#CancelToken)
-> - [Server Configuration for High Concurrency/High Latency Web Service Calls](#ServerConfig)
-> 
-> A complete sample is provided for this tutorial on github   
+> This tutorial will teach you the basics of building an asynchronous ASP.NET MVC Web application using [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us), which is a free version of Microsoft Visual Studio. You can also use [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us).
+
+> A complete sample is provided for this tutorial on github
 >  [https://github.com/RickAndMSFT/Async-ASP.NET/](https://github.com/RickAndMSFT/Async-ASP.NET/)
 
 

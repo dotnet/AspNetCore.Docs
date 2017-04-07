@@ -106,10 +106,9 @@ The login page is shown below:
 
 ![](owin-oauth-20-authorization-server/_static/image1.png)
 
-Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/rfc6749#section-4.1) section now. <style type="text/css">
-.auto-style1 {border-style: solid;border-width: 2px;width: 88%;
-}
-</style> **Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/en-us/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
+Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/rfc6749#section-4.1) section now. 
+
+**Provider** (in the table below) is [OAuthAuthorizationServerOptions](https://msdn.microsoft.com/en-us/library/microsoft.owin.security.oauth.oauthauthorizationserveroptions(v=vs.111).aspx).Provider, which is of type `OAuthAuthorizationServerProvider`, which contains all OAuth server events. 
 
 | Flow steps from Authorization Code Grant section | Sample download performs these steps with: |
 | --- | --- |
