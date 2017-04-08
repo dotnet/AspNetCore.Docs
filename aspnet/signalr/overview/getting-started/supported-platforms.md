@@ -24,7 +24,7 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 > Please leave feedback on how you liked this tutorial and what we could improve in the comments at the bottom of the page. If you have questions that are not directly related to the tutorial, you can post them to the [ASP.NET SignalR forum](https://forums.asp.net/1254.aspx/1?ASP+NET+SignalR) or [StackOverflow.com](http://stackoverflow.com/).
 
 
-SignalR is supported under a variety of server and client configurations. In addition, each transport option has a set of requirements of its own; if the system requirements for a transport are not available, SignalR will gracefully failover to other transports. For more information on the transports that SignalR supports, see [Transports and Fallbacks](introduction-to-signalr.md).
+SignalR is supported under a variety of server and client configurations. In addition, each transport option has a set of requirements of its own; if the system requirements for a transport are not available, SignalR will gracefully failover to other transports. For more information on the transports that SignalR supports, see [Transports and Fallbacks](introduction-to-signalr.md#transports).
 
 ## Server system requirements
 

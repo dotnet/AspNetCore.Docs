@@ -68,7 +68,7 @@ In SignalR, every message is sent through a message bus. A message bus implement
 
 Each server instance connects to the backplane through the bus. When a message is sent, it goes to the backplane, and the backplane sends it to every server. When a server gets a message from the backplane, it puts the message in its local cache. The server then delivers messages to clients from its local cache.
 
-For each client connection, the client's progress in reading the message stream is tracked using a cursor. (A cursor represents a position in the message stream.) If a client disconnects and then reconnects, it asks the bus for any messages that arrived after the client's cursor value. The same thing happens when a connection uses [long polling](../getting-started/introduction-to-signalr.md). After a long poll request completes, the client opens a new connection and asks for messages that arrived after the cursor.
+For each client connection, the client's progress in reading the message stream is tracked using a cursor. (A cursor represents a position in the message stream.) If a client disconnects and then reconnects, it asks the bus for any messages that arrived after the client's cursor value. The same thing happens when a connection uses [long polling](../getting-started/introduction-to-signalr.md#transports). After a long poll request completes, the client opens a new connection and asks for messages that arrived after the cursor.
 
 The cursor mechanism works even if a client is routed to a different server on reconnect. The backplane is aware of all the servers, and it doesn't matter which server a client connects to.
 

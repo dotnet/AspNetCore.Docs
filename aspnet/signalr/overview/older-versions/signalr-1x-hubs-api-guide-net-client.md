@@ -85,7 +85,7 @@ Before you can establish a connection, you have to create a `HubConnection` obje
 > For JavaScript clients you have to register at least one event handler before calling the `Start` method to establish the connection. This is not necessary for .NET clients. For JavaScript clients, the generated proxy code automatically creates proxies for all Hubs that exist on the server, and registering a handler is how you indicate which Hubs your client intends to use. But for a .NET client you create Hub proxies manually, so SignalR assumes that you will be using any Hub that you create a proxy for.
 
 
-The sample code uses the default "/signalr" URL to connect to your SignalR service. For information about how to specify a different base URL, see [ASP.NET SignalR Hubs API Guide - Server - The /signalr URL](../guide-to-the-api/hubs-api-guide-server.md).
+The sample code uses the default "/signalr" URL to connect to your SignalR service. For information about how to specify a different base URL, see [ASP.NET SignalR Hubs API Guide - Server - The /signalr URL](../guide-to-the-api/hubs-api-guide-server.md#signalrurl).
 
 The `Start` method executes asynchronously. To make sure that subsequent lines of code don't execute until after the connection is established, use `await` in an ASP.NET 4.5 asynchronous method or `.Wait()` in a synchronous method. Don't use `.Wait()` in a WinRT client.
 
@@ -152,7 +152,7 @@ The [Microsoft.AspNet.SignalR.Client.Transports](https://msdn.microsoft.com/en-u
 
 The ForeverFrame transport is not included in this list because it is used only by browsers.
 
-For information about how to check the transport method in server code, see [ASP.NET SignalR Hubs API Guide - Server - How to get information about the client from the Context property](../guide-to-the-api/hubs-api-guide-server.md). For more information about transports and fallbacks, see [Introduction to SignalR - Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports).
+For information about how to check the transport method in server code, see [ASP.NET SignalR Hubs API Guide - Server - How to get information about the client from the Context property](../guide-to-the-api/hubs-api-guide-server.md#contextproperty). For more information about transports and fallbacks, see [Introduction to SignalR - Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports).
 
 <a id="httpheaders"></a>
 

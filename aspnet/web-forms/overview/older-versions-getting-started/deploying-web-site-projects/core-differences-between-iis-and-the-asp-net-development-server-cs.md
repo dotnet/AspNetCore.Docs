@@ -132,7 +132,7 @@ Happy Programming!
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
 - [ASP.NET Integration with IIS 7.0](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis)
-- [Using ASP.NET Forums Authentication With All Types of Content on IIS 7](http://blogs.iis.net/bills/archive/2007/05/19/using-asp-net-forms-authentication-with-all-types-of-content-with-iis7-video.aspx) (Video)
+- [Using ASP.NET Forums Authentication With All Types of Content on IIS 7](https://blogs.iis.net/bills/archive/2007/05/19/using-asp-net-forms-authentication-with-all-types-of-content-with-iis7-video.aspx) (Video)
 - [Web Servers in Visual Web Developer](https://msdn.microsoft.com/en-us/library/58wxa9w5.aspx)
 
 >[!div class="step-by-step"]

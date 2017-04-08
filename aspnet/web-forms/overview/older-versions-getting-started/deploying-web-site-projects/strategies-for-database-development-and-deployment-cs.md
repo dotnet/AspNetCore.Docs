@@ -74,7 +74,7 @@ Maintaining your change log in prose is, admittedly, not very sophisticated and 
 
 The primary drawback of maintaining the change log in prose is the lack of automation. Ideally, implementing the database changes to the production database at deploy-time would be as easy as clicking a button to execute a script rather than having to manually perform a list of instructions. Such automation is possible by maintaining a change log that contains those SQL commands used to alter the data model.
 
-The SQL syntax includes a number of statements for creating and modifying various database objects. For example, the [<u>CREATE TABLE</u><u> statement</u>](https://msdn.microsoft.com/en-us/library/ms174979.aspx), when executed, creates a new table with the specified columns and constraints. The [<u>ALTER TABLE</u><u> statement</u>](https://msdn.microsoft.com/en-us/library/ms190273.aspx) modifies an existing table, adding, removing, or modifying its columns or constraints. There are also statements to create, modify, and drop indexes, views, user-defined functions, stored procedures, triggers, and other database objects.
+The SQL syntax includes a number of statements for creating and modifying various database objects. For example, the [*CREATE TABLE statement*](https://msdn.microsoft.com/en-us/library/ms174979.aspx), when executed, creates a new table with the specified columns and constraints. The [*ALTER TABLE statement*](https://msdn.microsoft.com/en-us/library/ms190273.aspx) modifies an existing table, adding, removing, or modifying its columns or constraints. There are also statements to create, modify, and drop indexes, views, user-defined functions, stored procedures, triggers, and other database objects.
 
 Returning to our earlier example, image that during development of an already-deployed application you add a new column to the `Employees` table, remove a column from the `Orders` table, and add a new table (`ProductCategories`). Such actions would result in a change log file with the following SQL commands:
 
@@ -88,7 +88,7 @@ Documenting database changes in prose is easy, but implementing the changes requ
 
 A database comparison tool compares the schema or data of two databases and displays a summary report showing you how the databases differ. Then, with the click of a button, you can generate the SQL commands for synchronizing one or more database objects. In a nutshell, you can use a database comparison tool to compare the development and production databases at deploy-time, generating a file that contains the SQL commands that, when executed, will apply the changes to the production database s schema so that it mirrors the development database s schema.
 
-There are a variety of third-party database comparison tools offered by many different vendors. One such example is [<u>SQL Compare</u>](http://www.red-gate.com/products/SQL_Compare/), by [<u>Red Gate Software</u>](http://www.red-gate.com/). Let s walk through the process of using SQL Compare to compare and synchronize the development and production databases schemas.
+There are a variety of third-party database comparison tools offered by many different vendors. One such example is [*SQL Compare*](http://www.red-gate.com/products/SQL_Compare/), by [*Red Gate Software*](http://www.red-gate.com/). Let s walk through the process of using SQL Compare to compare and synchronize the development and production databases schemas.
 
 > [!NOTE]
 > At the time of this writing the current version of SQL Compare was version 7.1, with the Standard Edition costing $395. You can follow along by downloading a free 14-day trial.
@@ -103,7 +103,7 @@ When SQL Compare starts the Comparison Projects dialog box opens, showing the sa
 
 
 > [!NOTE]
-> If your development environment database is a SQL Express Edition database file in the `App_Data` folder of your website you will need to register the database in the SQL Server Express database server in order to select it from the dialog box shown in Figure 1. The easiest way to accomplish this is to open SQL Server Management Studio (SSMS), connect to the SQL Server Express database server, and attach the database. If you do not have SSMS installed on your computer you can download and install the free [<u>SQL Server 2008 Management Studio Basic version</u>](https://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en).
+> If your development environment database is a SQL Express Edition database file in the `App_Data` folder of your website you will need to register the database in the SQL Server Express database server in order to select it from the dialog box shown in Figure 1. The easiest way to accomplish this is to open SQL Server Management Studio (SSMS), connect to the SQL Server Express database server, and attach the database. If you do not have SSMS installed on your computer you can download and install the free [*SQL Server 2008 Management Studio Basic version*](https://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en).
 
 
 In addition to selecting the databases to compare, you can also specify a variety of comparison settings from the Options tab. One option you may want to turn on is the "Ignore constraint and index names." Recall that in the preceding tutorial we added the application services database objects to the development and production databases. If you used the `aspnet_regsql.exe` tool to create these objects on the production database then you will find that the primary key and unique constraint names differ between the development and production databases. Consequently, SQL Compare will flag all of the application services tables as differing. You can either leave the "Ignore constraint and index names" unchecked and synchronize the constraint names, or instruct SQL Compare to ignore these differences.
@@ -134,7 +134,7 @@ After reviewing the differences and selecting which objects you want to synchron
 Database comparison tools like Red Gate Software s SQL Compare make applying the changes to the development database schema to the production database as easy as point and click.
 
 > [!NOTE]
-> SQL Compare compares and synchronizes two databases *schemas*. Unfortunately, it does not compare and synchronize the data within two databases tables. Red Gate Software does offer a product named [<u>SQL Data Compare</u>](http://www.red-gate.com/products/SQL_Data_Compare/) that compares and synchronizes the data between two databases, but it is a separate product from SQL Compare and costs another $395.
+> SQL Compare compares and synchronizes two databases *schemas*. Unfortunately, it does not compare and synchronize the data within two databases tables. Red Gate Software does offer a product named [*SQL Data Compare*](http://www.red-gate.com/products/SQL_Data_Compare/) that compares and synchronizes the data between two databases, but it is a separate product from SQL Compare and costs another $395.
 
 
 ## Taking the Application Offline During Deployment
@@ -143,7 +143,7 @@ As we ve seen throughout these tutorials, deployment is a process that involves 
 
 When deploying a website it is best to take the web application "offline" until deployment has completed. Taking the application offline (and bringing it back up once the deployment process has finished) is as easy as uploading a file and then deleting it. Starting with ASP.NET 2.0, the mere presence of a file named `app_offline.htm` in the application s root directory takes the entire website "offline." Any request to an ASP.NET page on that site is automatically responded with the contents of the `app_offline.htm` file. Once that file is removed, the application comes back online.
 
-Taking an application offline during deployment, then, is as simple as uploading an `app_offline.htm` file to the production environment s root directory prior to beginning the deployment process and then deleting it (or renaming it to something else) once deployment is complete. For more information on this technique refer to John Peterson s article, Taking an [<u>ASP.NET Application Offline</u>](http://www.15seconds.com/issue/061207.htm).
+Taking an application offline during deployment, then, is as simple as uploading an `app_offline.htm` file to the production environment s root directory prior to beginning the deployment process and then deleting it (or renaming it to something else) once deployment is complete. For more information on this technique refer to John Peterson s article, Taking an [*ASP.NET Application Offline*](http://www.15seconds.com/issue/061207.htm).
 
 ## Summary
 

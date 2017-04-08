@@ -169,7 +169,7 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 [!code-javascript[Main](enabling-signalr-tracing/samples/sample10.js?highlight=2)]
 
-When tracing is enabled, the JavaScript client logs events to the browser console. To access the browser console, see [Monitoring Transports](../getting-started/introduction-to-signalr.md).
+When tracing is enabled, the JavaScript client logs events to the browser console. To access the browser console, see [Monitoring Transports](../getting-started/introduction-to-signalr.md#MonitoringTransports).
 
 The following screenshot shows a SignalR JavaScript client with tracing enabled. It shows connection and hub invocation events in the browser console:
 
