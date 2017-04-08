@@ -41,7 +41,7 @@ We've finally added a **M**odel to our **M**VC app.
 
 - Add the database context to the *Startup.cs* file:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=5-7)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
 - Build and run the project to verify there are no errors.
 
@@ -49,7 +49,7 @@ We've finally added a **M**odel to our **M**VC app.
 
 Open a terminal window in the project folder and run the following commands:
 
-```console
+```none
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
 ```
@@ -61,6 +61,12 @@ The scaffolding engine creates the following:
 
 Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
+You can run the following command to get help on the scaffolding engine:
+
+```none
+dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
+```
+
 If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
 
 ```
@@ -70,22 +76,49 @@ Microsoft.Data.Sqlite.Interop.MarshalEx.ThrowExceptionForRC(int rc, Sqlite3Handl
 
 We'll fix that after we clean up the scaffolding code.
 
-### Clean up the scaffolding
+## Clean up the scaffolding
 
-- Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
+Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
 
-- Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Remove the following  code:
+### Clean up the views
 
- ```html
-  @{
-      Layout = null;
-  }
- ```
+Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Replace the following Razor markup:
 
-   The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file which we'll use in each view. *Views/Shared/_Layout.cshtml* is automatically imported into each view with the *Views/_ViewStart.cshtml* Razor view file:
+```html
+@{
+   Layout = null;
+}
+```
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
+with
 
+```html
+@{
+   ViewData["Title"] = "<Name of Action/View>";
+}
+```
+
+Where `<Name of Action/View>` is the name of the view (also the name of the action which returns the view. For example, in the *Views\Details.cshtml* view:
+
+```html
+@{
+   ViewData["Title"] = "Details";
+}
+```
+
+The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file. The layout file is used by default in each view unless you set `Layout = null;`:
+
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
+
+The *Views/Shared/_Layout.cshtml* includes the following markup:
+
+```html<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Movie App</title>
+```
+
+The `ViewData["Title"]` is passed from the view to the layout file. When the view is rendered, the HTML title will be set to the value passed from the view.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
