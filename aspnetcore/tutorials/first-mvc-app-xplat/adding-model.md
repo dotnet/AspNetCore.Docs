@@ -28,9 +28,9 @@ We've finally added a **M**odel to our **M**VC app.
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=15-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
 
-- Select **Restore** to the **Info** message "There are unresolved dependencies".
+- Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
