@@ -5,7 +5,7 @@ description: Working with Static Files
 keywords: ASP.NET Core, static files, static assets, HTML, CSS, JavaScript
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 4/07/2017
 ms.topic: article
 ms.assetid: e32245c7-4eee-4831-bd2e-915dbf9f5f70
 ms.technology: aspnet
@@ -170,7 +170,7 @@ If no default named files are in the *MyStaticFiles* directory, http://\<app>/St
 > [!NOTE]
 > `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://\<app>/StaticFiles without the trailing slash and cause a client side redirect to http://\<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
 
-### FileExtensionContentTypeProvider
+## FileExtensionContentTypeProvider
 
 The `FileExtensionContentTypeProvider` class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
 
@@ -189,7 +189,7 @@ The following code enables serving unknown types and will render the unknown fil
 With the code above, a request for a file with an unknown content type will be returned as an image.
 
 >[!WARNING]
-> Enabling `ServeUnknownFileTypes` is a security risk and using it is discouraged.  `FileExtensionContentTypeProvider`  (explained below) provides a safer alternative to serving files with non-standard extensions.
+> Enabling `ServeUnknownFileTypes` is a security risk and using it is discouraged.  `FileExtensionContentTypeProvider`  (explained above) provides a safer alternative to serving files with non-standard extensions.
 
 ### Considerations
 

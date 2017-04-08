@@ -1,5 +1,5 @@
 ---
-title: Directory structure | Microsoft Docs
+title: ASP.NET Core directory structure | Microsoft Docs
 author: guardrex
 description: The directory structure of published ASP.NET Core applications.
 keywords: ASP.NET Core, directory structure
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: hosting/directory-structure
 ---
-# Directory structure
+# Directory structure of published ASP.NET Core apps
 
 By [Luke Latham](https://github.com/GuardRex)
 
@@ -33,6 +33,6 @@ The contents of the *publish* directory represents the *content root path*, also
 </Target>
 ```
 
-The first `<MakeDir>` element, which uses the `PublishDir` property, is used by the dotnet CLI to determine the target location for the publish operation. The second `<MakeDir>` element, which uses the `PublishUrl` property, is used by Visual Studio to determine the target location. Visual Studio uses the `PublishUrl` property for compatibility with non-.NET Core projects.
+The first `<MakeDir>` element, which uses the `PublishDir` property, is used by the .NET Core CLI to determine the target location for the publish operation. The second `<MakeDir>` element, which uses the `PublishUrl` property, is used by Visual Studio to determine the target location. Visual Studio uses the `PublishUrl` property for compatibility with non-.NET Core projects.
 
 The deployment directory requires Read/Execute permissions, while the *logs* directory requires Read/Write permissions. Additional directories where assets will be written require Read/Write permissions.

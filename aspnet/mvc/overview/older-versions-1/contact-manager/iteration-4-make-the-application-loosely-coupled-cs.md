@@ -77,13 +77,13 @@ Implementing the Repository pattern requires us to complete the following two st
 
 First, we need to create an interface that describes all of the data access methods that we need to perform. The IContactManagerRepository interface is contained in Listing 1. This interface describes five methods: CreateContact(), DeleteContact(), EditContact(), GetContact, and ListContacts().
 
-**Listing 1 - Models\<wbr />IContactManagerRepositiory.cs**
+**Listing 1 - Models\IContactManagerRepositiory.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample1.cs)]
 
-Next, we need to create a concrete class that implements the IContactManagerRepository interface. Because we are using the Microsoft Entity Framework to access the database, we'll create a new class named EntityContactManagerRepository<wbr />. This class is contained in Listing 2.
+Next, we need to create a concrete class that implements the IContactManagerRepository interface. Because we are using the Microsoft Entity Framework to access the database, we'll create a new class named EntityContactManagerRepository. This class is contained in Listing 2.
 
-**Listing 2 - Models\<wbr />EntityContactManagerRepository<wbr />.cs**
+**Listing 2 - Models\EntityContactManagerRepository.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample2.cs)]
 
@@ -93,9 +93,9 @@ You might wonder why we need to bother with an interface. Why do we need to crea
 
 With one exception, the remainder of our application will interact with the interface and not the concrete class. Instead of calling the methods exposed by the EntityContactManagerRepository class, we'll call the methods exposed by the IContactManagerRepository interface.
 
-That way, we can implement the interface with a new class without needing to modify the remainder of our application. For example, at some future date, we might want to implement an DataServicesContactManagerRepo<wbr />sitory class that implements the IContactManagerRepository interface. The DataServicesContactManagerRepo<wbr />sitory class might use ADO.NET Data Services to access a database instead of the Microsoft Entity Framework.
+That way, we can implement the interface with a new class without needing to modify the remainder of our application. For example, at some future date, we might want to implement an DataServicesContactManagerRepository class that implements the IContactManagerRepository interface. The DataServicesContactManagerRepository class might use ADO.NET Data Services to access a database instead of the Microsoft Entity Framework.
 
-If our application code is programmed against the IContactManagerRepository interface instead of the concrete EntityContactManagerRepository class then we can switch concrete classes without modifying any of the rest of our code. For example, we can switch from the EntityContactManagerRepository class to the DataServicesContactManagerRepo<wbr />sitory class without modifying our data access or validation logic.
+If our application code is programmed against the IContactManagerRepository interface instead of the concrete EntityContactManagerRepository class then we can switch concrete classes without modifying any of the rest of our code. For example, we can switch from the EntityContactManagerRepository class to the DataServicesContactManagerRepository class without modifying our data access or validation logic.
 
 Programming against interfaces (abstractions) instead of concrete classes makes our application more resilient to change.
 
@@ -110,7 +110,7 @@ Now that we have migrated our data access code to a separate Repository class, w
 
 The modified Contact controller is contained in Listing 3.
 
-**Listing 3 - Controllers\ContactController.<wbr />cs**
+**Listing 3 - Controllers\ContactController.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample3.cs)]
 
@@ -131,11 +131,11 @@ Constructor Dependency injection also makes the Contact controller class very te
 
 You might have noticed that our validation logic is still mixed up with our controller logic in the modified controller class in Listing 3. For the same reason that it is a good idea to isolate our data access logic, it is a good idea to isolate our validation logic.
 
-To fix this problem, we can create a separate [<u>service layer</u>](http://martinfowler.com/eaaCatalog/serviceLayer.html). The service layer is a separate layer that we can insert between our controller and repository classes. The service layer contains our business logic including all of our validation logic.
+To fix this problem, we can create a separate [*service layer*](http://martinfowler.com/eaaCatalog/serviceLayer.html). The service layer is a separate layer that we can insert between our controller and repository classes. The service layer contains our business logic including all of our validation logic.
 
 The ContactManagerService is contained in Listing 4. It contains the validation logic from the Contact controller class.
 
-**Listing 4 - Models\ContactManagerService.<wbr />cs**
+**Listing 4 - Models\ContactManagerService.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample4.cs)]
 
@@ -145,13 +145,13 @@ Notice, furthermore, that the ContactManagerService implements the IContactManag
 
 The IContactManagerService interface is contained in Listing 5.
 
-**Listing 5 - Models\IContactManagerService.<wbr />cs**
+**Listing 5 - Models\IContactManagerService.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample5.cs)]
 
 The modified Contact controller class is contained in Listing 6. Notice that the Contact controller no longer interacts with the ContactManager repository. Instead, the Contact controller interacts with the ContactManager service. Each layer is isolated as much as possible from other layers.
 
-**Listing 6 - Controllers\ContactController.<wbr />cs**
+**Listing 6 - Controllers\ContactController.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample6.cs)]
 
@@ -167,11 +167,11 @@ A controller uses a ModelStateDictionary named ModelState to represent validatio
 
 The Decorator pattern enables you to wrap an existing class in a new class in order to implement an interface. Our Contact Manager project includes the ModelStateWrapper class contained in Listing 7. The ModelStateWrapper class implements the interface in Listing 8.
 
-**Listing 7 - Models\Validation\<wbr />ModelStateWrapper.cs**
+**Listing 7 - Models\Validation\ModelStateWrapper.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample7.cs)]
 
-**Listing 8 - Models\Validation\<wbr />IValidationDictionary.cs**
+**Listing 8 - Models\Validation\IValidationDictionary.cs**
 
 [!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample8.cs)]
 

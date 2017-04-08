@@ -35,9 +35,10 @@ namespace MvcMovie
             services.AddMvc();
 
             services.AddDbContext<MvcMovieContext>(options =>
+            #endregion
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
-        #endregion
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

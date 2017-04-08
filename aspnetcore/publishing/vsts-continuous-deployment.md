@@ -1,7 +1,7 @@
 ---
-title: Publish an ASP.NET Core app to Azure using VSTS | Microsoft Docs
+title: Continuous deployment to Azure with VSTS | Microsoft Docs
 author: rick-anderson
-description: 
+description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using continuous deployment with VSTS.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/vsts-continuous-deployment
 ---
-# Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment
+# Continuous deployment to Azure for ASP.NET Core, with VSTS
 
 By [Damien Pontifex](https://github.com/DamienPontifex)
 
-This tutorial shows you how to create an ASP.NET Core web app using Visual Studio and deploy it from Visual Studio to Azure App Service using continuous deployment.
+This tutorial shows you how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using continuous deployment with VSTS.
    
 > [!NOTE]
 > To complete this tutorial, you need a Microsoft Azure account. If you don't have an account, you can [activate your MSDN subscriber benefits](http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) or [sign up for a free trial](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F). You will also need a Visual Studio Team Services account. If you don't have an account, you can [sign up for free](https://www.visualstudio.com/products/visual-studio-team-services-vs).

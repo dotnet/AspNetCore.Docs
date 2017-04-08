@@ -180,7 +180,7 @@ The bundling and minification framework enables you to reduce the number of HTTP
 <a id="_Toc303253822"></a>
 ### Enabling Logins from Facebook and Other Sites Using OAuth and OpenID
 
-The default templates in ASP.NET MVC 4 Internet Project template now includes support for OAuth and OpenID login using the DotNetOpenAuth library. For information on configuring an OAuth or OpenID provider, see [OAuth/OpenID Support for WebForms, MVC and WebPages](https://blogs.msdn.com/b/webdev/archive/2012/08/15/oauth-openid-support-for-webforms-mvc-and-webpages.aspx) and the [OAuth and OpenID feature documentation in ASP.NET Web Pages](../web-pages/overview/releases/top-features-in-web-pages-2.md).
+The default templates in ASP.NET MVC 4 Internet Project template now includes support for OAuth and OpenID login using the DotNetOpenAuth library. For information on configuring an OAuth or OpenID provider, see [OAuth/OpenID Support for WebForms, MVC and WebPages](https://blogs.msdn.com/b/webdev/archive/2012/08/15/oauth-openid-support-for-webforms-mvc-and-webpages.aspx) and the [OAuth and OpenID feature documentation in ASP.NET Web Pages](../web-pages/overview/releases/top-features-in-web-pages-2.md#oauthsetup).
 
 <a id="_Toc303253806"></a>
 ## Upgrading an ASP.NET MVC 3 Project to ASP.NET MVC 4

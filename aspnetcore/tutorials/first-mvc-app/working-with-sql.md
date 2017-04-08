@@ -78,9 +78,6 @@ Test the app
 
     ![Contextual menu](working-with-sql/_static/stopIIS.png)
 
-    > [!Note]
-    > In Visual Studio 2017 RC you don't need to stop IIS Express.
-
    * If you were running VS in non-debug mode, press F5 to run in debug mode
    * If you were running VS in debug mode, stop the debugger and press F5
    

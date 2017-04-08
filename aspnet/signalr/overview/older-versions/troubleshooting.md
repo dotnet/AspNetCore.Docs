@@ -35,7 +35,7 @@ This document contains the following sections.
 
 This section describes possible causes for a method call between client and server to fail without a meaningful error message. In a SignalR application, the server has no information about the methods that the client implements; when the server invokes a client method, the method name and parameter data are sent to the client, and the method is executed only if it exists in the format that the server specified. If no matching method is found on the client, nothing happens, and no error message is raised on the server.
 
-To further investigate client methods not getting called, you can turn on logging before the calling the start method on the hub to see what calls are coming from the server. To enable logging in a JavaScript application, see [How to enable client-side logging (JavaScript client version)](../guide-to-the-api/hubs-api-guide-javascript-client.md). To enable logging in a .NET client application, see [How to enable client-side logging (.NET Client version)](../guide-to-the-api/hubs-api-guide-net-client.md).
+To further investigate client methods not getting called, you can turn on logging before the calling the start method on the hub to see what calls are coming from the server. To enable logging in a JavaScript application, see [How to enable client-side logging (JavaScript client version)](../guide-to-the-api/hubs-api-guide-javascript-client.md#logging). To enable logging in a .NET client application, see [How to enable client-side logging (.NET Client version)](../guide-to-the-api/hubs-api-guide-net-client.md#logging).
 
 ### Misspelled method, incorrect method signature, or incorrect hub name
 
@@ -117,7 +117,7 @@ When using the full version of IIS on a client operating system like Windows 7, 
 
 ### Cross-domain connection not set up properly
 
-If a cross-domain connection (a connection for which the SignalR URL is not in the same domain as the hosting page) is not set up correctly, the connection may fail without an error message. For information on how to enable cross-domain communication, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md).
+If a cross-domain connection (a connection for which the SignalR URL is not in the same domain as the hosting page) is not set up correctly, the connection may fail without an error message. For information on how to enable cross-domain communication, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain).
 
 ### Connection using NTLM (Active Directory) not working in .NET client
 
@@ -145,26 +145,26 @@ This error will also be seen if a connection stops while SignalR objects are sti
 
 ### "301 Moved Permanently" or "302 Moved Temporarily" error
 
-This error may be seen if the project contains a folder called SignalR, which will interfere with the automatically-created proxy. To avoid this error, do not use a folder called `SignalR` in your application, or turn automatic proxy generation off. See [The Generated Proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md) for more details.
+This error may be seen if the project contains a folder called SignalR, which will interfere with the automatically-created proxy. To avoid this error, do not use a folder called `SignalR` in your application, or turn automatic proxy generation off. See [The Generated Proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy) for more details.
 
 ### "403 Forbidden" error in .NET or Silverlight client
 
-This error may occur in cross-domain environments where cross-domain communication is not properly enabled. For information on how to enable cross-domain communication, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md). To establish a cross-domain connection in a Silverlight client, see [Cross-domain connections from Silverlight clients](../guide-to-the-api/hubs-api-guide-net-client.md).
+This error may occur in cross-domain environments where cross-domain communication is not properly enabled. For information on how to enable cross-domain communication, see [How to establish a cross-domain connection](../guide-to-the-api/hubs-api-guide-javascript-client.md#crossdomain). To establish a cross-domain connection in a Silverlight client, see [Cross-domain connections from Silverlight clients](../guide-to-the-api/hubs-api-guide-net-client.md#slcrossdomain).
 
 ### "404 Not Found" error
 
 There are several causes for this issue. Verify all of the following:
 
-- **Hub proxy address reference not formatted correctly:** This error is commonly seen if the reference to the generated hub proxy address is not formatted correctly. Verify that the reference to the hub address is made properly. See [How to reference the dynamically generated proxy](../guide-to-the-api/hubs-api-guide-javascript-client.md) for details.
+- **Hub proxy address reference not formatted correctly:** This error is commonly seen if the reference to the generated hub proxy address is not formatted correctly. Verify that the reference to the hub address is made properly. See [How to reference the dynamically generated proxy](../guide-to-the-api/hubs-api-guide-javascript-client.md#dynamicproxy) for details.
 - **Adding routes to application before adding the hub route:** If your application uses other routes, verify that the first route added is the call to `MapHubs`.
 
 ### "500 Internal Server Error"
 
-This is a very generic error that could have a wide variety of causes. The details of the error should appear in the server's event log, or can be found through debugging the server. More detailed error information may be obtained by turning on detailed errors on the server. For more information, see [How to handle errors in the Hub class](../guide-to-the-api/hubs-api-guide-server.md).
+This is a very generic error that could have a wide variety of causes. The details of the error should appear in the server's event log, or can be found through debugging the server. More detailed error information may be obtained by turning on detailed errors on the server. For more information, see [How to handle errors in the Hub class](../guide-to-the-api/hubs-api-guide-server.md#handleErrors).
 
 ### "TypeError: &lt;hubType&gt; is undefined" error
 
-This error will result if the call to `MapHubs` is not made properly. See [How to register the SignalR route and configure SignalR options](../guide-to-the-api/hubs-api-guide-server.md) for more information.
+This error will result if the call to `MapHubs` is not made properly. See [How to register the SignalR route and configure SignalR options](../guide-to-the-api/hubs-api-guide-server.md#route) for more information.
 
 ### JsonSerializationException was unhandled by user code
 
@@ -176,7 +176,7 @@ This error may occur if the client does not support the transports that SignalR 
 
 ### "JavaScript Hub proxy generation has been disabled."
 
-This error will occur if `DisableJavaScriptProxies` is set while also including a reference to the dynamically generated proxy at `signalr/hubs`. For more information on creating the proxy manually, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md).
+This error will occur if `DisableJavaScriptProxies` is set while also including a reference to the dynamically generated proxy at `signalr/hubs`. For more information on creating the proxy manually, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md#genproxy).
 
 ### "The connection ID is in the incorrect format" or "The user identity cannot change during an active SignalR connection" error
 
@@ -248,7 +248,7 @@ This is a known issue, described [here](https://github.com/SignalR/SignalR/issue
 
 ### Reference to Hub instance is null
 
-Since a hub instance is created for each connection, you can't create an instance of a hub in your code yourself. To call methods on a hub from outside the hub itself, see [How to call client methods and manage groups from outside the Hub class](../guide-to-the-api/hubs-api-guide-server.md) for how to obtain a reference to the hub context.
+Since a hub instance is created for each connection, you can't create an instance of a hub in your code yourself. To call methods on a hub from outside the hub itself, see [How to call client methods and manage groups from outside the Hub class](../guide-to-the-api/hubs-api-guide-server.md#callfromoutsidehub) for how to obtain a reference to the hub context.
 
 ### HTTPContext.Current.Session is null
 

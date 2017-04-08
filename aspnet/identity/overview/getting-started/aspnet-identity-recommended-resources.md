@@ -44,7 +44,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 <a id="feat"></a>
 ## New featured Must Read articles
 
-- [One stop guide to configuring OAuth providers for ASP.NET](http://www.oauthforaspnet.com/)
 - [Walkthrough: ASP.NET MVC Identity with Microsoft Account Authentication](http://www.benday.com/2014/02/25/walkthrough-asp-net-mvc-identity-with-microsoft-account-authentication/) by [Benjamin Day](http://www.benday.com/about/)
 - [ASP.NET Identity 2.0 Extending Identity Models and Using Integer Keys Instead of Strings](http://typecastexception.com/post/2014/07/13/ASPNET-Identity-20-Extending-Identity-Models-and-Using-Integer-Keys-Instead-of-Strings.aspx)
 - [AngularJS Token Authentication using ASP.NET Web API 2, Owin, and Identity](http://bitoftech.net/2014/06/09/angularjs-token-authentication-using-asp-net-web-api-2-owin-asp-net-identity/)

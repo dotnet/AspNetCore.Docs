@@ -1,5 +1,5 @@
 ---
-title: Web publishing with MSBuild and Visual Studio | Microsoft Docs
+title: Create publish profiles for Visual Studio and MSBuild | Microsoft Docs
 author: rick-anderson
 description: Explains web publishing in Visual Studio.
 keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish, Visual Studio 2017
@@ -13,7 +13,7 @@ ms.prod: asp.net-core
 uid: publishing/web-publishing-vs
 ---
 
-# Web publishing with MSBuild and Visual Studio
+# Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -21,7 +21,7 @@ This article focuses on using Visual Studio 2017 to create publish profiles. The
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
-``` xml
+```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>

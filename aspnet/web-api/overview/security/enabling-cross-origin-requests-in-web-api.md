@@ -28,20 +28,6 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > - Web API 2.2
 
 
-- [Introduction](#intro)
-- [Create the WebService Project](#create-webapi-project)
-- [Create the WebClient Project](#create-client)
-- [Enable CORS in Web API](#enable-cors)
-- [How CORS Works](#how-it-works)
-- [Scope Rules for [EnableCors]](#scope)
-- [Set the Allowed Origins](#allowed-origins)
-- [Set the Allowed HTTP Methods](#allowed-methods)
-- [Set the Allowed Request Headers](#allowed-request-headers)
-- [Set the Allowed Response Headers](#allowed-response-headers)
-- [Passing Credentials in Cross-Origin Requests](#credentials)
-- [Custom CORS Policy Providers](#cors-policy-providers)
-- [Browser Support](#browser-support)
-
 <a id="intro"></a>
 ## Introduction
 

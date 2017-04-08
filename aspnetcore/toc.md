@@ -86,7 +86,7 @@
 ## [Areas](mvc/controllers/areas.md)
 ## [Advanced](mvc/advanced/index.md)
 ### [Working with the Application Model](mvc/controllers/application-model.md)
-### [🔧 Application parts](mvc/advanced/app-parts.md)
+### [Application parts](mvc/advanced/app-parts.md)
 ### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 
@@ -110,9 +110,22 @@
 
 # [Mobile](mobile/toc.md)
 
-# [Publishing and Deployment](publishing/toc.md)
-
-# [Guidance for Hosting Providers](hosting/toc.md)
+# [Hosting and deployment](xref:publishing/index)
+## [Host on Windows with IIS](xref:publishing/iis)
+### [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
+### [IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
+## [Host in a Windows service](xref:hosting/windows-service)
+## [Host on Linux with Nginx](xref:publishing/linuxproduction)
+## [Host on Linux with Apache](xref:publishing/apache-proxy)
+## [Host in Docker](xref:publishing/docker)
+### [Building Docker Images](https://docs.microsoft.com/dotnet/articles/core/docker/building-net-docker-images)
+### [Visual Studio Tools for Docker](https://docs.microsoft.com/dotnet/articles/core/docker/visual-studio-tools-for-docker)
+### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
+## [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+## [Continuous deployment to Azure with Visual Studio and Git](xref:publishing/azure-continuous-deployment)
+## [Continuous deployment to Azure with VSTS](xref:publishing/vsts-continuous-deployment)
+## [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
+## [Directory structure](xref:hosting/directory-structure)
 
 # [Security](security/toc.md)
 

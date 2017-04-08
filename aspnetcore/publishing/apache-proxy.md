@@ -1,6 +1,6 @@
 ---
-title: Using Apache Web Server as a reverse proxy | Microsoft Docs
-description: Describes setting up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web application running on Kestrel.
+title: Host ASP.NET Core on Linux with Apache | Microsoft Docs
+description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web application running on Kestrel.
 keywords: ASP.NET Core, Apache, CentOS, Reverse Proxy, Linux, mod_proxy, httpd, hosting
 author: spboyer
 ms.author: spboyer
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: publishing/apache-proxy
 ---
-# Using Apache web server as a reverse proxy
+# Set up a hosting environment for ASP.NET Core on Linux with Apache, and deploy to it
 
 By [Shayne Boyer](https://www.github.com/spboyer)
 

@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
-<!--
+
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
 * Add a folder named *Models*.
@@ -30,7 +30,7 @@ We've finally added a **M**odel to our **M**VC app.
              
    [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
 
-- Select **Restore** to the **Info** message "There are unresolved dependencies".
+- Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
@@ -41,55 +41,84 @@ We've finally added a **M**odel to our **M**VC app.
 
 - Add the database context to the *Startup.cs* file:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=5-7)]
-
-- Add a database connection string to the *appsettings.json* file:
-
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/appsettings.json?highlight=7-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
 - Build and run the project to verify there are no errors.
 
-### Scaffold the MovieController
+## Scaffold the MovieController
 
 Open a terminal window in the project folder and run the following commands:
 
-```console
+```none
 dotnet restore
-dotnet aspnet-codegenerator controller -name MovieController  -m Movie -dc MvcMovieContext
+dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
 ```
 
 The scaffolding engine creates the following:
 
-* A movies controller (*Controllers/MoviesController.cs*)
+* A movies controller (*MoviesController.cs*)
 * Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
 
 Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
-If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
+You can run the following command to get help on the scaffolding engine:
 
-```text
-An unhandled exception occurred while processing the request.
-SqlException: Cannot open database "MvcMovieContext" 
-requested by the login. The login failed.
-Login failed for user Rick
+```none
+dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
 ```
 
-### Clean up the scaffolding
+If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
 
-- Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
+```
+SqliteException: SQLite Error 1: 'no such table: Movie'.
+Microsoft.Data.Sqlite.Interop.MarshalEx.ThrowExceptionForRC(int rc, Sqlite3Handle db)
+```
 
-- Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Remove the following  code:
+We'll fix that after we clean up the scaffolding code.
 
- ```html
-  @{
-      Layout = null;
-  }
- ```
+## Clean up the scaffolding
 
-   The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file which we'll use in each view. *Views/Shared/_Layout.cshtml* is automatically imported into each view with the *Views/_ViewStart.cshtml* Razor view file:
+Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
+### Clean up the views
 
+Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Replace the following Razor markup:
+
+```html
+@{
+   Layout = null;
+}
+```
+
+with
+
+```html
+@{
+   ViewData["Title"] = "<Name of Action/View>";
+}
+```
+
+Where `<Name of Action/View>` is the name of the view (also the name of the action which returns the view. For example, in the *Views\Details.cshtml* view:
+
+```html
+@{
+   ViewData["Title"] = "Details";
+}
+```
+
+The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file. The layout file is used by default in each view unless you set `Layout = null;`:
+
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
+
+The *Views/Shared/_Layout.cshtml* includes the following markup:
+
+```html<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Movie App</title>
+```
+
+The `ViewData["Title"]` is passed from the view to the layout file. When the view is rendered, the HTML title will be set to the value passed from the view.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
@@ -104,5 +133,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 [Previous Adding a View](adding-view.md)
 <!--
 [Next Working with SQL](working-with-sql.md)  
--->
 -->

@@ -21,9 +21,9 @@ by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://githu
 > 
 > The article assumes you already have some knowledge of SignalR and connection lifetime events. For an introduction to SignalR, see [Introduction to SignalR](../getting-started/introduction-to-signalr.md). For lists of connection lifetime events, see the following resources:
 > 
-> - [How to handle connection lifetime events in the Hub class](hubs-api-guide-server.md)
-> - [How to handle connection lifetime events in JavaScript clients](hubs-api-guide-javascript-client.md)
-> - [How to handle connection lifetime events in .NET clients](hubs-api-guide-net-client.md)
+> - [How to handle connection lifetime events in the Hub class](hubs-api-guide-server.md#connectionlifetime)
+> - [How to handle connection lifetime events in JavaScript clients](hubs-api-guide-javascript-client.md#connectionlifetime)
+> - [How to handle connection lifetime events in .NET clients](hubs-api-guide-net-client.md#connectionlifetime)
 > 
 > ## Software versions used in this topic
 > 

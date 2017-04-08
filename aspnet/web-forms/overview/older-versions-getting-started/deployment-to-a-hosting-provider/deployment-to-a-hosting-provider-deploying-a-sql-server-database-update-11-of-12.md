@@ -157,7 +157,7 @@ I would like to thank the following people who made significant contributions to
 - [Alberto Poblacion, MVP &amp; MCT, Spain](https://mvp.support.microsoft.com/profile/Alberto)
 - Jarod Ferguson, Data Platform Development MVP, United States
 - Harsh Mittal, Microsoft
-- [Kristina Olson, Microsoft](http://blogs.iis.net/krolson/default.aspx)
+- [Kristina Olson, Microsoft](https://blogs.iis.net/krolson/default.aspx)
 - [Mike Pope, Microsoft](http://www.mikepope.com/blog/DisplayBlog.aspx)
 - Mohit Srivastava, Microsoft
 - [Raffaele Rialdi, Italy](http://www.iamraf.net/)

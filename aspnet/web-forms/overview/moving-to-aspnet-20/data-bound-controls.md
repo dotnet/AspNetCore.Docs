@@ -46,7 +46,27 @@ The AdRotator control allows you to display a graphic banner on a Web page that 
 
 AdRotator controls use either an XML file or a table in a database for data. The following attributes are used in XML files to configure the AdRotator control.
 
-<dl><dt><strong class="action">ImageUrl</strong> </dt><dd>The URL of an image to display for the ad.</dd><dt><strong class="action">NavigateUrl </strong></dt><dd>The URL that the user should be taken to when the ad is clicked. This should be URL encoded.</dd><dt><strong class="action">AlternateText</strong></dt><dd>The alternate text that is displayed in a tooltip and read by screen readers. Also displays when the image specified by ImageUrl is not available.</dd><dt><strong class="action">Keyword</strong></dt><dd>Defines a keyword that can be used when using keyword filtering. If specified, only those ads with a keyword matching the keyword filter will be displayed.</dd><dt><strong class="action">Impressions</strong></dt><dd>A weighting number that determines how often a particular ad is likely to appear. It is relative to the impression of other ads in the same file. The maximum value of the collective impressions for all ads in an XML file is 2,048,000,000 1.</dd><dt><strong class="action">Height</strong></dt><dd>The height of the ad in pixels.</dd><dt><strong class="action">Width</strong></dt><dd>The width of the ad in pixels.</dd></dl>
+### ImageUrl
+The URL of an image to display for the ad.
+
+### NavigateUrl
+The URL that the user should be taken to when the ad is clicked. This should be URL encoded.
+
+### AlternateText
+The alternate text that is displayed in a tooltip and read by screen readers. Also displays when the image specified by ImageUrl is not available.
+
+### Keyword
+Defines a keyword that can be used when using keyword filtering. If specified, only those ads with a keyword matching the keyword filter will be displayed.
+
+### Impressions
+A weighting number that determines how often a particular ad is likely to appear. It is relative to the impression of other ads in the same file. The maximum value of the collective impressions for all ads in an XML file is 2,048,000,000 1.
+
+### Height
+The height of the ad in pixels.
+
+### Width
+The width of the ad in pixels.
+
 
 > [!NOTE]
 > The Height and Width attributes override the height and width for the AdRotator control itself.

@@ -36,7 +36,7 @@ namespace MvcMovie
             services.AddMvc();
 
             services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+                    options.UseSqlite("Data Source=MvcMovie.db"));
   
         }
         #endregion

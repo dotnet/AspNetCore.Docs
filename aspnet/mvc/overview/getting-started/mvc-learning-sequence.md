@@ -17,16 +17,6 @@ MVC recommended tutorials and articles
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> This page contains links to ASP.NET MVC tutorials and a suggested sequence to follow them.
-
-
-- [Getting Started](#pwd)
-- [Working with data](#con)
-- [Security](#wj)
-- [Azure](#da)
-- [Performance and Debugging](#perf)
-- [Additional Resources](#addRes)
-
 <a id="pwd"></a>
 ## Getting Started
 
