@@ -9,22 +9,22 @@ using MvcMovie.Models;
 
 namespace MvcMovie
 {
-    public class MovieController : Controller
+    public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
 
-        public MovieController(MvcMovieContext context)
+        public MoviesController(MvcMovieContext context)
         {
             _context = context;    
         }
 
-        // GET: Movie
+        // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
 
-        // GET: Movie/Details/5
+        // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +42,13 @@ namespace MvcMovie
             return View(movie);
         }
 
-        // GET: Movie/Create
+        // GET: Movies/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movie/Create
+        // POST: Movies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +64,7 @@ namespace MvcMovie
             return View(movie);
         }
 
-        // GET: Movie/Edit/5
+        // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace MvcMovie
             return View(movie);
         }
 
-        // POST: Movie/Edit/5
+        // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +115,7 @@ namespace MvcMovie
             return View(movie);
         }
 
-        // GET: Movie/Delete/5
+        // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +133,7 @@ namespace MvcMovie
             return View(movie);
         }
 
-        // POST: Movie/Delete/5
+        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
