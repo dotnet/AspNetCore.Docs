@@ -97,6 +97,4 @@ Note: The version numbers shown above were correct at the time of writing.
 
 >[!div class="step-by-step"]
 [Previous Adding a View](adding-view.md)
-<!--
 [Next Working with SQL](working-with-sql.md)  
--->
