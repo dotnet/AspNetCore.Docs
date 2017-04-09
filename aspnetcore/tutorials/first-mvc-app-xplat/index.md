@@ -20,13 +20,15 @@ This series of tutorials will teach you the basics of building an ASP.NET Core M
 2. [Adding a controller](adding-controller.md)
 3. [Adding a view](adding-view.md)
 4. [Adding a model](adding-model.md)
+5. [Working with SQLite](working-with-sql.md)
+6. [Controller methods and views](controller-methods-views.md)
 
 This is a work in progress. See the [Visual Studio versions ](xref:tutorials/first-mvc-app/index) of the remaining tutorials.
 
 <!--
 
-5. [Working with SQL Server LocalDB](working-with-sql.md)
-6. [Controller methods and views](controller-methods-views.md)
+
+
 7. [Adding Search](search.md)
 8. [Adding a New Field](new-field.md)
 9. [Adding Validation](validation.md)
