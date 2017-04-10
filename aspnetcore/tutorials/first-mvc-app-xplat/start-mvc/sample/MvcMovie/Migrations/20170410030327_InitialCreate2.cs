@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MvcMovie.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +16,7 @@ namespace MvcMovie.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Genre = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
+                    Rating = table.Column<string>(nullable: true),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },

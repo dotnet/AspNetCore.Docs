@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using MvcMovie.Models;
 
 namespace MvcMovie.Migrations
@@ -21,6 +23,8 @@ namespace MvcMovie.Migrations
                     b.Property<string>("Genre");
 
                     b.Property<decimal>("Price");
+
+                    b.Property<string>("Rating");
 
                     b.Property<DateTime>("ReleaseDate");
 
