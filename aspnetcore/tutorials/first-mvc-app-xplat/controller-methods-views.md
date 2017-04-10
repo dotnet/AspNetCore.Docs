@@ -36,6 +36,4 @@ Build and run the app.
 
 >[!div class="step-by-step"]
 [Previous](working-with-sql.md)
-<!--
 [Next](search.md)  
--->

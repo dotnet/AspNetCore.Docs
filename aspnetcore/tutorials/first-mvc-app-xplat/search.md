@@ -19,7 +19,11 @@ Note: SQLlite is case sensitive, so you'll need to search for "Ghost" and not "g
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/search2.md)]
 
-Change the `<form>` tag in the *Views\movie\Index.cshtml* Razor view to specify `get`:
+Change the `<form>` tag in the *Views\movie\Index.cshtml* Razor view to specify `method="get"`:
+
+```html
+<form asp-controller="Movies" asp-action="Index" method="get">
+```
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/search3.md)]
 
