@@ -60,6 +60,4 @@ The app shows the seeded data.
 
 >[!div class="step-by-step"]
 [Previous](adding-model.md)
-<!--
-[Next](controller-methods-views.md)  
--->
+[Next](controller-methods-views.md)
