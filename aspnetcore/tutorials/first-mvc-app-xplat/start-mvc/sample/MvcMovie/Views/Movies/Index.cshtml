@@ -1,5 +1,9 @@
 @model IEnumerable<MvcMovie.Models.Movie>
 
+    @{
+    ViewData["Title"] = "Index";
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -11,6 +15,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
