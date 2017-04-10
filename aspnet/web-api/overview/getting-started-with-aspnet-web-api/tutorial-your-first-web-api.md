@@ -88,7 +88,7 @@ The scaffolding creates a file named ProductsController.cs in the Controllers fo
 ![](tutorial-your-first-web-api/_static/image8.png)
 
 > [!NOTE]
-> You don't need to put your contollers into a folder named Controllers. The folder name is just a convenient way to organize your source files.
+> You don't need to put your controllers into a folder named Controllers. The folder name is just a convenient way to organize your source files.
 
 
 If this file is not open already, double-click the file to open it. Replace the code in this file with the following:
