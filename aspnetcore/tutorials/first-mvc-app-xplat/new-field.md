@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: 1638bacf-fe7b-4b41-84b0-06a1574b7734
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: tutorials/first-mvc-app/new-field
+uid: tutorials/first-mvc-app-xplat/new-field
 ---
 # Adding a New Field
 
