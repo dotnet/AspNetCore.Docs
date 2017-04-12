@@ -51,7 +51,7 @@ Open a terminal window in the project folder and run the following commands:
 
 ```none
 dotnet restore
-dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout 
 ```
 
 The scaffolding engine creates the following:
@@ -61,64 +61,48 @@ The scaffolding engine creates the following:
 
 Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
-You can run the following command to get help on the scaffolding engine:
+### Ensure the database exits
 
-```none
-dotnet aspnet-codegenerator controller -name MoviesController  -m Movie -dc MvcMovieContext
-```
+We'll use the `EnsureCreated` method to make sure the database exits. `EnsureCreated` is an alternative to migrations. If the database doesn't exit, it's created using the model. It's used for testing and early in the development cycle, when it's most productive to drop and recreate the db when the model changes. You should remove the `EnsureCreated` call from your app before you deploy to production.
 
-If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
+Create a *Models\DBinitialize.cs* file and add the following code:
 
-```
-SqliteException: SQLite Error 1: 'no such table: Movie'.
-Microsoft.Data.Sqlite.Interop.MarshalEx.ThrowExceptionForRC(int rc, Sqlite3Handle db)
-```
+<!-- todo - replace this with code import -->
 
-We'll fix that after we clean up the scaffolding code.
+```c#
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
-## Clean up the scaffolding
-
-Move the `MovieController.cs` file to the *Controlers* folder. By convention, controllers are in the this folder.
-
-### Clean up the views
-
-Remove the `Layout` markup in each of the Razor view files in the *Views/Movie* folder. Replace the following Razor markup:
-
-```html
-@{
-   Layout = null;
+namespace MvcMovie.Models
+{
+    public static class DBinitialize
+    {
+        public static void EnsureCreated(IServiceProvider serviceProvider)
+        {
+            var context = new MvcMovieContext(
+                serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>());
+            context.Database.EnsureCreated();
+        }
+    }
 }
 ```
 
-with
+Call the `EnsureCreated` method from the `Configure` method in the *Startup.cs* file. Add the call to the end of the method:
 
-```html
-@{
-   ViewData["Title"] = "<Name of Action/View>";
+<!-- todo - replace this with code import -->
+
+```c#
+    app.UseMvc(routes =>
+    {
+        routes.MapRoute(
+            name: "default",
+            template: "{controller=Home}/{action=Index}/{id?}");
+    });
+
+    DBinitialize.EnsureCreated(app.ApplicationServices);
 }
 ```
-
-Where `<Name of Action/View>` is the name of the view (also the name of the action which returns the view. For example, in the *Views\Details.cshtml* view:
-
-```html
-@{
-   ViewData["Title"] = "Details";
-}
-```
-
-The `dotnet new mvc` generated code includes the *Views/Shared/_Layout.cshtml* Razor layout file. The layout file is used by default in each view unless you set `Layout = null;`:
-
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Views/_ViewStart.cshtml)]
-
-The *Views/Shared/_Layout.cshtml* includes the following markup:
-
-```html<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Movie App</title>
-```
-
-The `ViewData["Title"]` is passed from the view to the layout file. When the view is rendered, the HTML title will be set to the value passed from the view.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
