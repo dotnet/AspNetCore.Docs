@@ -12,17 +12,13 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/new-field
 ---
-# Adding a New Field
+# Adding a new field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+This tutorial will add a new field to the `Movies` table. We'll drop the database and create a new one when we change the schema (add a new field). This workflow works well early in development when we don't have any production data to perserve.
 
-This tutorial will add a new field to the `Movies` table. One option is to use [EF Code First Migrations](http://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html) to add a new field to the model and migrate that change to the database - but SQLlite does not support many migration schema operations, so only very simply migrations are possible. See [SQLite Limitations](https://docs.microsoft.com/ef/core/providers/sqlite/limitations) for more information.
-
-For this tutorial we'll drop our database and create a new one when we change the schema. This workflow works well early in development when we don't have any production data to perserve.
-
-See [Migrations limitations workaround](https://docs.microsoft.com/ef/core/providers/sqlite/limitations?branch=Rick-Anderson-patch-3#migrations-limitations-workaround) for one approch to using migrations with SQLite.
+Once your app is deployed and you have data that you need to perserve, you can't drop your DB when you need to change the schema. Entity Framework [Code First Migrations](http://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html) allows you to update your schema and migrate the database without losing data. Migrations is a popular feature when using SQL Server, but SQLlite does not support many migration schema operations, so only very simply migrations are possible. See [SQLite Limitations](https://docs.microsoft.com/ef/core/providers/sqlite/limitations) for more information.
 
 ## Adding a Rating Property to the Movie Model
 
@@ -58,24 +54,13 @@ There are a few approaches to resolving the error:
 
 3. Use Code First Migrations to update the database schema.
 
-For this tutorial, we'll drop and re-create the database when the schema changes.
+For this tutorial, we'll drop and re-create the database when the schema changes. Run the following command from a terminal to drop the db:
 
-- Delete the *MvcMovie.db* SQLite database file.
-- Delete all the files from the *Migrations* folder.
+`dotnet ef database drop`
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
 [!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
-
-Build the solution then open a command prompt. Enter the following commands:
-
-```console
-dotnet ef migrations add InitialCreate2
-dotnet ef database update
-```
-
-The `migrations add` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. 
-
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 

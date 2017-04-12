@@ -1,13 +1,10 @@
 @model MvcMovie.Models.Movie
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Edit";
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
+<h2>Edit</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
@@ -55,5 +52,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-</body>
-</html>

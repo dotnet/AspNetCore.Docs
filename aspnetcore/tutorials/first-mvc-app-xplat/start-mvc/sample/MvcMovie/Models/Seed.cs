@@ -15,6 +15,7 @@ namespace MvcMovie.Models
             using (var context = new MvcMovieContext(
                 serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>()))
             {
+                context.Database.EnsureCreated();
                 if (context.Movie.Any())
                 {
                     return;   // DB has been seeded
@@ -36,7 +37,7 @@ namespace MvcMovie.Models
                          Title = "Ghostbusters ",
                          ReleaseDate = DateTime.Parse("1984-3-13"),
                          Genre = "Comedy",
-                         Rating = "G",
+                     Rating = "G",
                          Price = 8.99M
                      },
 
