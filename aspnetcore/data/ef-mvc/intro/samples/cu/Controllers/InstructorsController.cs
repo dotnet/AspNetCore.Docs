@@ -96,10 +96,10 @@ namespace ContosoUniversity.Controllers
             {
                 ViewData["CourseID"] = courseID.Value;
                 var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
-                _context.Entry(selectedCourse).Collection(x => x.Enrollments).Load();
+                await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
                 {
-                    _context.Entry(enrollment).Reference(x => x.Student).Load();
+                    await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
                 }
                 viewModel.Enrollments = selectedCourse.Enrollments;
             }
