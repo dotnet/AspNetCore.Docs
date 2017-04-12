@@ -169,10 +169,7 @@ To reverse engineer a data model including entity classes from an existing datab
 
 This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. 
 
-For more information about Entity Framework, see the following resources:
-
-* [Entity Framework Core documentation](https://docs.microsoft.com/ef/core)
-* [Entity Framework Core in Action book](https://www.manning.com/books/entity-framework-core-in-action)
+For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
 For information about how to deploy your web application after you've built it, see [Publishing and deployment](../../publishing/index.md).
 
