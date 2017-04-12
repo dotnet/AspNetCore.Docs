@@ -115,6 +115,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 
 >[!div class="step-by-step"]
 [Previous Adding a View](adding-view.md)
-<!--
-[Next Working with SQL](working-with-sql.md)  
--->
+[Next Working with SQLlite](working-with-sql.md)

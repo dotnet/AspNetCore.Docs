@@ -54,15 +54,17 @@ namespace MvcMovie
             }
 
             app.UseStaticFiles();
-
+#region snippet_seed
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Movies}/{action=Index}/{id?}");
             });
-             SeedData.Initialize(app.ApplicationServices);
-
+             
+            DBinitialize.EnsureCreated(app.ApplicationServices);
+            SeedData.Initialize(app.ApplicationServices);
         }
+                    #endregion
     }
 }

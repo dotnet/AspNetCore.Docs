@@ -29,6 +29,4 @@ Change the `<form>` tag in the *Views\movie\Index.cshtml* Razor view to specify 
 
 >[!div class="step-by-step"]
 [Previous](controller-methods-views.md)
-<!--
 [Next](new-field.md)  
--->
