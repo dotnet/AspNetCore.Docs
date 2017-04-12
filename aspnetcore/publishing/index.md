@@ -34,7 +34,7 @@ In addition to *.exe* and *.dll* files, the *publish* folder for an ASP.NET Core
 
 ## Set up a process manager
 
-An ASP.NET Core app is a console app that has to be started when a server boots and restarted after it crashes. To automate starts and restarts you need a process manager. The most common process managers for ASP.NET Core are [Nginx](xref:publishing/linuxproduction) and [Apache](xref:publishing/apache-proxy) on Linux, and [IIS](xref:publishing/iis) and [Windows Service](xref:hosting/windows-service) on Windows.
+An ASP.NET Core app is a console app that has to be started when a server boots and restarted after crashes. To automate starts and restarts you need a process manager. The most common process managers for ASP.NET Core are [Nginx](xref:publishing/linuxproduction) and [Apache](xref:publishing/apache-proxy) on Linux, and [IIS](xref:publishing/iis) and [Windows Service](xref:hosting/windows-service) on Windows.
 
 ## Set up a reverse proxy
 
@@ -42,7 +42,7 @@ If your app uses the [Kestrel](xref:fundamentals/servers/kestrel) web server and
 
 ## Using Visual Studio and MSBuild to automate deployment
 
-Deployment often requires other tasks besides copying the output from `dotnet publish` to a server.  Visual Studio uses MSBuild for web deployment, and you can customize MSBuild to do many other tasks during deployment. For more information, see [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs) and the [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) book.
+Deployment often requires other tasks besides copying the output from `dotnet publish` to a server. For example, you might need to copy additional files to the deployment destination, or exclude some files that `dotnet publish` puts in the *publish* folder. Visual Studio uses MSBuild for web deployment, and you can customize MSBuild to do many other tasks during deployment. For more information, see [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs) and the [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) book.
 
 You can deploy directly from Visual Studio to Azure App Service by using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs) or by using [built-in Git support](xref:publishing/azure-continuous-deployment). For continuous deployment to Azure App Service, you can use [Visual Studio Team Services](xref:publishing/vsts-continuous-deployment).
 
