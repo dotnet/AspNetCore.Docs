@@ -51,7 +51,7 @@ Open a terminal window in the project folder and run the following commands:
 
 ```none
 dotnet restore
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout 
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
 
 The scaffolding engine creates the following:
