@@ -1,22 +1,3 @@
-## Add initial migration and update the database
-
-* Open a command prompt and navigate to the project directory. (The directory containing the *Startup.cs* file).
-
-* Run the following commands in the command prompt:
-
-  ```console
-  dotnet restore
-  dotnet ef migrations add Initial
-  dotnet ef database update
-  ```
-  
-## dotnet ef commands
-
-* `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
-* `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
-* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add (or drop) the *Movie* table to the database
-* `dotnet ef database update`  Updates the database with the migration we just created
-
 ## Test the app
 
 * Run the app and tap the **Mvc Movie** link.
