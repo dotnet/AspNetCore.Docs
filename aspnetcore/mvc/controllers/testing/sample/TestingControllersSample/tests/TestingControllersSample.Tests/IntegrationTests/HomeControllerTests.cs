@@ -26,7 +26,7 @@ namespace TestingControllersSample.Tests.IntegrationTests
             var response = await _client.GetAsync("/");
 
             // Assert
-            //response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             Console.WriteLine(responseString);
             Assert.True(responseString.Contains(testSession.Name));
