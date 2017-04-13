@@ -17,5 +17,5 @@ uid: tutorials/first-mvc-app-xplat/validation
 
 >[!div class="step-by-step"]
 [Previous Adding a New Field](new-field.md)
-[Next Examining the Details and Delete methods](xref:first ASP.NET Core MVC app with Visual Studio Code)  
+[Next Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)  
 
