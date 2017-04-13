@@ -37,7 +37,7 @@ You can replace some parts of the process with your own custom behaviors. In thi
 
 A route template looks similar to a URI path, but it can have placeholder values, indicated with curly braces:
 
-[!code-powershell[Main](routing-and-action-selection/samples/sample1.ps1)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample1.ps1)]
 
 When you create a route, you can provide default values for some or all of the placeholders:
 
@@ -45,7 +45,7 @@ When you create a route, you can provide default values for some or all of the p
 
 You can also provide constraints, which restrict how a URI segment can match a placeholder:
 
-[!code-javascript[Main](routing-and-action-selection/samples/sample3.js)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample3.js)]
 
 The framework tries to match the segments in the URI path to the template. Literals in the template must match exactly. A placeholder matches any value, unless you specify constraints. The framework does not match other parts of the URI, such as the host name or the query parameters. The framework selects the first route in the route table that matches the URI.
 
