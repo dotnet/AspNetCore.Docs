@@ -16,13 +16,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="compiler\resources\**\*" />
-
-    <!--
-      Work around https://github.com/Microsoft/vstest/issues/196. Execute tests with assemblies in the bin folder, not
-      a temporary location. Unable to find the web site project folders otherwise.
-    -->
+    <Content Include="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
+  
+  <!-- https://github.com/NuGet/Home/issues/4412. -->
+  <Target Name="CopyDepsFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+    <ItemGroup>
+      <DepsFilePaths Include="$([System.IO.Path]::ChangeExtension('%(_ResolvedProjectReferencePaths.FullPath)', '.deps.json'))" />
+    </ItemGroup>
+
+    <Copy SourceFiles="%(DepsFilePaths.FullPath)" DestinationFolder="$(OutputPath)" Condition="Exists('%(DepsFilePaths.FullPath)')" />
+  </Target>
+
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TestingControllersSample\TestingControllersSample.csproj" />
