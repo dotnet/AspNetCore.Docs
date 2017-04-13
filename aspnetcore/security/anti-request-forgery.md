@@ -25,7 +25,7 @@ An example of a CSRF attack:
 
 2. The server authenticates the user and issues a response that includes an authentication cookie.
 
-3. The user visits a malacious site.
+3. The user visits a malicious site.
 
    This malicious site contains the following HTML form:
 
