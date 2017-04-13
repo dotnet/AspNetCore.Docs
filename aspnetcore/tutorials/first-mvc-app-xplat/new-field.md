@@ -70,6 +70,4 @@ Run the app and verify you can create/edit/display movies with a `Rating` field.
 
 >[!div class="step-by-step"]
 [Previous](search.md)
-<!--
 [Next](validation.md)  
--->

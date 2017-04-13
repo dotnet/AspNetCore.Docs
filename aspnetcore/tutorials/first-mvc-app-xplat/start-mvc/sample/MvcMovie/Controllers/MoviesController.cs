@@ -1,10 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MvcMovie.Controllers
 {
@@ -14,8 +15,37 @@ namespace MvcMovie.Controllers
 
         public MoviesController(MvcMovieContext context)
         {
-            _context = context;
+            _context = context;    
         }
+
+        // GET: Movies
+      // Requires using Microsoft.AspNetCore.Mvc.Rendering;
+public async Task<IActionResult> Index(string movieGenre, string searchString)
+{
+    // Use LINQ to get list of genres.
+    IQueryable<string> genreQuery = from m in _context.Movie
+                                    orderby m.Genre
+                                    select m.Genre;
+
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s => s.Title.Contains(searchString));
+    }
+
+    if (!String.IsNullOrEmpty(movieGenre))
+    {
+        movies = movies.Where(x => x.Genre == movieGenre);
+    }
+
+    var movieGenreVM = new MovieGenreViewModel();
+    movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+    movieGenreVM.movies = await movies.ToListAsync();
+
+    return View(movieGenreVM);
+}
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -42,10 +72,11 @@ namespace MvcMovie.Controllers
         }
 
         // POST: Movies/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("ID,Title,ReleaseDate,Genre,Price, Rating")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +108,7 @@ namespace MvcMovie.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]Movie movie)
         {
             if (id != movie.ID)
             {
@@ -110,7 +141,6 @@ namespace MvcMovie.Controllers
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-
             if (id == null)
             {
                 return NotFound();
@@ -140,36 +170,6 @@ namespace MvcMovie.Controllers
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.ID == id);
-        }
-
-
-        // Requires using Microsoft.AspNetCore.Mvc.Rendering;
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
-        {
-
-            // Use LINQ to get list of genres.
-            IQueryable<string> genreQuery = from m in _context.Movie
-                                            orderby m.Genre
-                                            select m.Genre;
-
-            var movies = from m in _context.Movie
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.Title.Contains(searchString));
-            }
-
-            if (!String.IsNullOrEmpty(movieGenre))
-            {
-                movies = movies.Where(x => x.Genre == movieGenre);
-            }
-
-            var movieGenreVM = new MovieGenreViewModel();
-            movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            movieGenreVM.movies = await movies.ToListAsync();
-
-            return View(movieGenreVM);
         }
     }
 }
