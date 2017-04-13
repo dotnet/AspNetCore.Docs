@@ -1,7 +1,7 @@
 ---
 title: Building your first ASP.NET Core MVC app with Visual Studio | Microsoft Docs
 author: rick-anderson
-description: 
+description: Index page for first ASP.NET Core MVC app with Visual Studio Code
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/index
 ---
-# Building your first ASP.NET Core MVC app with Visual Studio
+# Building your first ASP.NET Core MVC app with Visual Studio Code
 
 This series of tutorials will teach you the basics of building an ASP.NET Core MVC web app using Visual Studio.
 
@@ -25,14 +25,4 @@ This series of tutorials will teach you the basics of building an ASP.NET Core M
 7. [Adding Search](search.md)
 8. [Adding a New Field](new-field.md)
 9. [Adding Validation](validation.md)
-
-This is a work in progress. See the [Visual Studio versions ](xref:tutorials/first-mvc-app/index) of the remaining tutorials.
-
-<!--
-
-
-
-
-
-10. [Examining the Details and Delete methods](details.md)
--->
+10. [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)
