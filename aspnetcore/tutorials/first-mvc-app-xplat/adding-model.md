@@ -51,7 +51,7 @@ Open a terminal window in the project folder and run the following commands:
 
 ```none
 dotnet restore
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout 
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
 
 The scaffolding engine creates the following:
@@ -115,6 +115,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 
 >[!div class="step-by-step"]
 [Previous Adding a View](adding-view.md)
-<!--
-[Next Working with SQL](working-with-sql.md)  
--->
+[Next Working with SQLlite](working-with-sql.md)

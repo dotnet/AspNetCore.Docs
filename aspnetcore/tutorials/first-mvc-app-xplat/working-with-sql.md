@@ -48,7 +48,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
 
 ### Test the app
 

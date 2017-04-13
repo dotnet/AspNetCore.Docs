@@ -1,13 +1,10 @@
 @model MvcMovie.Models.Movie
 
-<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Create";
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
+<h2>Create</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
@@ -43,6 +40,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="Rating" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -54,5 +58,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-</body>
-</html>
