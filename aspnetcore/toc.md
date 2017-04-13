@@ -135,7 +135,7 @@
 
 # [API Reference](/aspnet/core/api/)
 
-# [What's new](aspnetcore-1.1.md)
-## [All release notes](https://github.com/aspnet/home/releases)
+# [1.1 Release notes](aspnetcore-1.1.md)
+## [Earlier release notes](https://github.com/aspnet/home/releases)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
