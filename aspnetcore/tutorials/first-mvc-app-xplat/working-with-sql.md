@@ -59,5 +59,5 @@ The app shows the seeded data.
 ![MVC Movie application open browser showing movie data](../../tutorials/first-mvc-app/working-with-sql/_static/m55.png)
 
 >[!div class="step-by-step"]
-[Previous](adding-model.md)
-[Next](controller-methods-views.md)
+[Previous - Add a model](adding-model.md)
+[Next - Controller methods and views](controller-methods-views.md)

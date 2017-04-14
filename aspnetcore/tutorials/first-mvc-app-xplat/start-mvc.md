@@ -27,7 +27,7 @@ Download and install:
 
 ## Create a web app with dotnet
 
-From a console, run the following commands:
+From a terminal, run the following commands:
 
 ```console
 mkdir MvcMovie
@@ -42,7 +42,7 @@ Open the *MvcMovie* folder in Visual Studio Code (VS Code) and select the *Start
 
 ![VS Code with Warn Required assets to build and debug are missing from 'MvcMovie'. Add them? Don't ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close](../web-api-vsc/_static/vsc_restore.png)
 
-Press **Debug** (F5) to build and run the program. http://localhost:5000/ is displayed in your browser.
+Press **Debug** (F5) to build and run the program.
 
 ![running app](../first-mvc-app/start-mvc/_static/1.png)
 
@@ -66,4 +66,4 @@ In the next part of this tutorial, we'll learn about MVC and start writing some 
   - [Windows keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832145)
 
 >[!div class="step-by-step"]
-[Next](adding-controller.md)
+[Next - Add a controller](adding-controller.md)

@@ -85,7 +85,7 @@ Replace the `Welcome` method with the following code:
 
 [!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-Run the app and enter the following URL:  `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL:  `http://localhost:5000/HelloWorld/Welcome/3?name=Rick`
 
 ![Browser window showing an application response of Hello Rick, ID: 3](../first-mvc-app/adding-controller/_static/rick_routedata.png)
 
@@ -96,5 +96,5 @@ This time the third URL segment  matched the route parameter `id`. The `Welcome`
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response.
 
 >[!div class="step-by-step"]
-[Previous](start-mvc.md)
-[Next Adding a View](adding-view.md)  
+[Previous - Add a controller](start-mvc.md)
+[Next - Add a view](adding-view.md)  
