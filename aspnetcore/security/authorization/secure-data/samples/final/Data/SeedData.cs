@@ -40,7 +40,7 @@ namespace ContactManager.Data
 
             return user.Id;
         }
-
+#region snippet1
         public static void SeedDB(ApplicationDbContext context, string uid)
         {
             if (context.Contact.Any())
@@ -56,8 +56,10 @@ namespace ContactManager.Data
                     City = "Redmond",
                     State = "WA",
                     Zip = "10999",
+                    OwnerID = uid,
                     Email = "debra@example.com"
                 },
+#endregion
              new Contact
              {
                  Name = "Thorsten Weinrich",
@@ -65,6 +67,7 @@ namespace ContactManager.Data
                  City = "Redmond",
                  State = "WA",
                  Zip = "10999",
+                 OwnerID = uid,
                  Email = "thorsten@example.com"
              },
              new Contact
@@ -74,6 +77,7 @@ namespace ContactManager.Data
                  City = "Redmond",
                  State = "WA",
                  Zip = "10999",
+                 OwnerID = uid,
                  Email = "yuhong@example.com"
              },
              new Contact
@@ -83,6 +87,7 @@ namespace ContactManager.Data
                  City = "Redmond",
                  State = "WA",
                  Zip = "10999",
+                 OwnerID = uid,
                  Email = "jon@example.com"
              },
              new Contact
@@ -92,6 +97,7 @@ namespace ContactManager.Data
                  City = "Redmond",
                  State = "WA",
                  Zip = "10999",
+                 OwnerID = uid,
                  Email = "diliana@example.com"
              }
              );

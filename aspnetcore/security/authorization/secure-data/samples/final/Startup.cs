@@ -40,6 +40,8 @@ namespace ContactManager
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet_defaultPolicy
+        #region snippet_SSL 
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -55,7 +57,7 @@ namespace ContactManager
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            #region snippet_SSL 
+
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
@@ -63,11 +65,8 @@ namespace ContactManager
             });
             #endregion
 
-
-            #region snippet_defaultPolicy
             // requires using Microsoft.AspNetCore.Authorization;
             // and using Microsoft.AspNetCore.Mvc.Authorization;
-
             // Default authentication policy will require authenticated user.
             services.AddMvc(config =>
             {
@@ -94,7 +93,9 @@ services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
 */
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        #region snippetUserPW
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -114,8 +115,6 @@ services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
 
             app.UseIdentity();
 
-            // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -123,9 +122,18 @@ services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // Set password with the Secret Manager tool.
+            // dotnet user-secrets set SeedUserPW <pw>
+            var testUserPw = Configuration["SeedUserPW"];
+
+            if (String.IsNullOrEmpty(testUserPw))
+            {
+                throw new System.Exception("Use secrets manager/environment to set SeedUserPW");
+            }
+
             try
             {
-                SeedData.Initialize(app.ApplicationServices, "").Wait();
+                SeedData.Initialize(app.ApplicationServices, testUserPw).Wait();
             }
             catch
             {
@@ -134,6 +142,8 @@ services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
                       "> dotnet ef database update"
                       + "\nIf that doesn't work, comment out SeedData and register a new user");
             }
+
         }
+        #endregion
     }
 }

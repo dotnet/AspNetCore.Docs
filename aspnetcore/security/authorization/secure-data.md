@@ -52,125 +52,61 @@ Run the app, tap the **ContactManager** link, and verify you can create, edit, a
 
 We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model :
 
-[!code-csharp[Main](secure-data/samples/final/Models/Contact.cs?name=snippet1)]
-
+[!code-csharp[Main](secure-data/samples/final/Models/Contact.cs?name=snippet1&highlight=5-6)]
 
 `OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](../authentication/identity.md) database.
 
 Scaffold a new migration and update the database:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
+```console
+dotnet ef migrations add userID
+dotnet ef database update
+ ```
 
-````none
-
-   dotnet ef migrations add userID
-   dotnet ef database update
-   ````
-
-<a name=create-secure-data-require-ssl-label></a>
-
-  ### Require SSL and authenticated users
+  ## Require SSL and authenticated users
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/RequireHttpsAttribute/index.html.md#Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.md) authorization filter that requires all requests use HTTPS:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=17-21)]
 
-````c#
-
-   services.Configure<MvcOptions>(options =>
-   {
-       options.Filters.Add(new RequireHttpsAttribute());
-   });
-
-   ````
+If you're using Visual Studio, [Set up IIS Express for SSL/HTTPS](xref:security/enforcing-ssl#set-up-iis-express-for-sslhttps)
 
 Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   // Default authentication policy will require authenticated user.
-   services.AddMvc(config =>
-   {
-       var policy = new AuthorizationPolicyBuilder()
-                        .RequireAuthenticatedUser()
-                        .Build();
-       config.Filters.Add(new AuthorizeFilter(policy));
-   });
-
-   ````
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_defaultPolicy&highlight=23-)]
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
+<!-- TODO add link to middleware showing how to rediret HTTP to HTTPS -->
+
   ## Configure the test account
 
-The `SeedData` class creates a test user account. Use the  [Secret Manager tool](../app-secrets.md) to set a password for the account. Do this from the project directory (the directory containing *Program.cs*).
+The `SeedData` class creates a test user account. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for the account. Do this from the project directory (the directory containing *Program.cs*).
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
-
-````none
-
-   dotnet user-secrets set SeedUserPW <PW>
-   ````
+```console
+dotnet user-secrets set SeedUserPW <PW>
+```
 
 Update `Configure` to use the test password:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   // Set password with the Secret Manager tool.
-   // dotnet user-secrets set SeedUserPW <pw>
-   var testUserPw = Configuration["SeedUserPW"];
-
-   if (String.IsNullOrEmpty(testUserPw))
-   {
-       throw new System.Exception("Use secrets manager/environment to set SeedUserPW");
-   }
-
-   try
-   {
-       SeedData.Initialize(app.ApplicationServices, testUserPw).Wait();
-   }
-   catch
-   {
-       throw new System.Exception("You need to update the DB "
-           + "\nPM > Update - Database " + "\n or \n" +
-             "> dotnet ef database update"
-             + "\nIf that doesn't work, comment out SeedData and register a new user");
-   }
-
-   ````
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippetUserPW&highlight=29-40)]
 
 Add the test accounts user ID to the seed data. Only one contact is shown, add the user ID to all contacts:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Data/SeedData.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9]}, "names": []} -->
+[!code-csharp[Main](secure-data/samples/final/Data/SeedData.cs?name=snippet1&highlight=16)]
 
-````c#
+Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
 
-       new Contact
-       {
-           Name = "Debra Garcia",
-           Address = "1234 Main St",
-           City = "Redmond",
-           State = "WA",
-           Zip = "10999",
-           Email = "debra@example.com",
-           OwnerID = uid
-       },
-
-   ````
-
-Delete all the records in the `Contact` table and restart the app to seed the database. If you're using Visual Studio you might need to stop IIS Express to force the seed initializer to run.
-
-  ### Resource based authorization
+## Resource based authorization
 
 * Create an *Authorization* folder for the handlers and classes we will create to implement authorization.
 
 * Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
+C:\csprojNew\3\Docs\aspnetcore\security\authorization\secure-data\samples\final\Authorization\ContactIsOwnerAuthorizationHandler.cs 
+zz
+
+[!code-csharp[Main](secure-data/samples/Data/SeedData.cs?name=snippet1&highlight=16)]
 
 ````c#
 
