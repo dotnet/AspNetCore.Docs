@@ -14,7 +14,7 @@ By default, Identity requires very secure passwords who have to contains upperca
 
 ## Application's cookie settings
 
-With the same philosophy of the password's policy, all the settings about the application's cookie can be change in the startup class.
+With the same philosophy of the password's policy, all the settings about the application's cookie can be changed in the startup class.
 
 [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=2&range=72-80)]
 

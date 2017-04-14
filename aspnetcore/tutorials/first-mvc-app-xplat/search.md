@@ -28,5 +28,5 @@ Change the `<form>` tag in the *Views\movie\Index.cshtml* Razor view to specify 
 [!INCLUDE[adding-model](../../includes/mvc-intro/search3.md)]
 
 >[!div class="step-by-step"]
-[Previous](controller-methods-views.md)
-[Next](new-field.md)  
+[Previous - Controller methods and views](controller-methods-views.md)
+[Next - Add a field](new-field.md)  

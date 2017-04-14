@@ -69,7 +69,5 @@ Add the `Rating` field to the `Edit`, `Details`, and `Delete` view.
 Run the app and verify you can create/edit/display movies with a `Rating` field. templates.
 
 >[!div class="step-by-step"]
-[Previous](search.md)
-<!--
-[Next](validation.md)  
--->
+[Previous - Add search](search.md)
+[Next - Add validation](validation.md)  

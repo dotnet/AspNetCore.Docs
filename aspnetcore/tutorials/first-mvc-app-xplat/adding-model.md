@@ -61,7 +61,7 @@ The scaffolding engine creates the following:
 
 Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
-### Ensure the database exits
+### Ensure the database exists
 
 We'll use the `EnsureCreated` method to make sure the database exits. `EnsureCreated` is an alternative to migrations. If the database doesn't exit, it's created using the model. It's used for testing and early in the development cycle, when it's most productive to drop and recreate the db when the model changes. You should remove the `EnsureCreated` call from your app before you deploy to production.
 
@@ -114,5 +114,5 @@ You now have a database and pages to display, edit, update and delete data. In t
 * [Globalization and localization](xref:fundamentals/localization)
 
 >[!div class="step-by-step"]
-[Previous Adding a View](adding-view.md)
-[Next Working with SQLlite](working-with-sql.md)
+[Previous - Add a view](adding-view.md)
+[Next - Working with SQLite](working-with-sql.md)
