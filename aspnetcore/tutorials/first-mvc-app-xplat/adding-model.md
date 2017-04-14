@@ -63,7 +63,7 @@ Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Creat
 
 ### Ensure the database exists
 
-We'll use the `EnsureCreated` method to make sure the database exits. `EnsureCreated` is an alternative to migrations. If the database doesn't exit, it's created using the model. It's used for testing and early in the development cycle, when it's most productive to drop and recreate the db when the model changes. You should remove the `EnsureCreated` call from your app before you deploy to production.
+We'll use the `EnsureCreated` method to make sure the database exists. `EnsureCreated` is an alternative to migrations. If the database doesn't exist, it's created using the model. It's used for testing and early in the development cycle, when it's most productive to drop and recreate the db when the model changes. You should remove the `EnsureCreated` call from your app before you deploy to production.
 
 Create a *Models\DBinitialize.cs* file and add the following code:
 
