@@ -103,55 +103,9 @@ Delete all the records in the `Contact` table and restart the app to seed the da
 
 * Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
-C:\csprojNew\3\Docs\aspnetcore\security\authorization\secure-data\samples\final\Authorization\ContactIsOwnerAuthorizationHandler.cs 
 zz
 
-[!code-csharp[Main](secure-data/samples/Data/SeedData.cs?name=snippet1&highlight=16)]
-
-````c#
-
-   using System.Threading.Tasks;
-   using ContactManager.Models;
-   using Microsoft.AspNetCore.Authorization;
-   using Microsoft.AspNetCore.Authorization.Infrastructure;
-   using Microsoft.AspNetCore.Identity;
-
-   namespace ContactManager.Authorization
-   {
-       public class ContactIsOwnerAuthorizationHandler 
-                   : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
-       {
-           UserManager<ApplicationUser> _userManager;
-
-           public ContactIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager)
-           {
-               _userManager = userManager;
-           }
-
-           protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-                                                OperationAuthorizationRequirement requirement, 
-                                                Contact resource)
-           {
-               if (context.User == null)
-               {
-                   return Task.FromResult(0);
-               }
-
-               if (resource == null)
-               {
-                   return Task.FromResult(0);
-               }
-
-               if (resource.OwnerID == _userManager.GetUserId(context.User))
-               {
-                   context.Succeed(requirement);
-               }
-               return Task.FromResult(0);
-           }
-       }
-   }
-
-   ````
+[!code-csharp[Main](secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
 
