@@ -13,29 +13,29 @@ ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-xplat/adding-model
 ---
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
+[!INCLUDE[adding-model1](../../includes/mvc-intro/adding-model1.md)]
 
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
-   [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
+   [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
-In addition to the properties you'd expect to model a movie, the `ID` field is required by the database for the primary key. Build the app to verify you don't have any errors.
+The `ID` field is required by the database for the primary key. 
 
-We've finally added a **M**odel to our **M**VC app.
+Build the app to verify you don't have any errors, and you've finally added a **M**odel to your **M**VC app.
 
 ## Prepare the project for scaffolding
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,15-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,16-17,20-23)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
    
-- Update the *Startup.cs* file and add two usings:
+- Open the *Startup.cs* file and add two usings:
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
 
@@ -43,27 +43,33 @@ We've finally added a **M**odel to our **M**VC app.
 
    [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
-- Build and run the project to verify there are no errors.
+  This tells Entity Framework which model classes are included in the data model. You're defining one *entity set* of Movie objects, which will be represented in the database as a Movie table.
+
+- Build the project to verify there are no errors.
 
 ## Scaffold the MovieController
 
 Open a terminal window in the project folder and run the following commands:
 
-```none
+```
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
 
 The scaffolding engine creates the following:
 
-* A movies controller (*MoviesController.cs*)
-* Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
+* A movies controller (*Controllers/MoviesController.cs*)
+* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/\*.cshtml*)
 
-Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
+The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-### Ensure the database exists
+### Create the database
 
-We'll use the `EnsureCreated` method to make sure the database exists. `EnsureCreated` is an alternative to migrations. If the database doesn't exist, it's created using the model. It's used for testing and early in the development cycle, when it's most productive to drop and recreate the db when the model changes. You should remove the `EnsureCreated` call from your app before you deploy to production.
+You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
+
+This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model later, you just drop the database, and the next time the app runs, EF Core creates a new database to match your new data model.
+
+This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
 
 Create a *Models\DBinitialize.cs* file and add the following code:
 
