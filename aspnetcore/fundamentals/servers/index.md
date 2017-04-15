@@ -30,7 +30,7 @@ Kestrel is the web server that is included by default in ASP.NET Core new-projec
 
 ![Kestrel to internal network](overview/_static/kestrel-to-internal.png)
 
-If you expose your application to the Internet, we recommend that you use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.
+If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.
 
 ![Kestrel to Internet](overview/_static/kestrel-to-internet.png)
 
