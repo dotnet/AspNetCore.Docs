@@ -111,7 +111,7 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
 ```console
-dotnet ef migrations add ColummFirstName
+dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
 
