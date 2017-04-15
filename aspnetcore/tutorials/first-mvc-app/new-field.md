@@ -74,6 +74,7 @@ Note: If you get the error message `No executable found matching command "dotnet
 
 - Verify you're in the project folder (which contains the *.csproj* file).
 - Verify the *.csproj* file contains the "Microsoft.EntityFrameworkCore.Tools.DotNet" NuGet package.
+- See [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
 
 The `migrations add` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step.
 
