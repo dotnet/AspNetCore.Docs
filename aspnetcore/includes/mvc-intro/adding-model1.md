@@ -1,6 +1,6 @@
 # Adding a model
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
 
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**odel" part of the **M**VC app.
 
