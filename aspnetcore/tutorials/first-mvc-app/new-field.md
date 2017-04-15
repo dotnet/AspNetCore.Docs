@@ -64,7 +64,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
 
-Build the solution then open a command prompt in the solution folder. Enter the following commands:
+Build the solution then open a command prompt in the project folder. Enter the following commands:
 
 ```console
 dotnet ef migrations add Rating
