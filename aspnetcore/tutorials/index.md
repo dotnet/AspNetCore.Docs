@@ -16,10 +16,10 @@ ms.prod: asp.net-core
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
-* [Introduction to ASP.NET Core MVC on Mac or Linux ](first-mvc-app-xplat/index.md)
+* [Introduction to ASP.NET Core MVC on macOS, Linux or Windows](first-mvc-app-xplat/index.md)
 * [Introduction to ASP.NET Core MVC with Visual Studio](first-mvc-app/index.md)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
+* [Your first ASP.NET Core application on a macOS or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
 * [Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)
@@ -27,7 +27,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web APIs
 * [Building your first web API with ASP.NET Core MVC and Visual Studio](first-web-api.md)
-* [Create a Web API app on Mac or Linux with Visual Studio Code ](web-api-vsc.md)
+* [Create a Web API app on macOS or Linux with Visual Studio Code ](web-api-vsc.md)
 * [ASP.NET Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
 * [Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)
 
