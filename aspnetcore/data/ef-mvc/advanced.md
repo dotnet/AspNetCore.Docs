@@ -170,7 +170,7 @@ To reverse engineer a data model including entity classes from an existing datab
 
 The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ code by hard-coding column names in a `switch` statement. With two columns to choose from, this works fine, but if you have many columns the code could get verbose. To solve that problem, you can create extension methods for the `OrderBy` and `OrderByDescending` methods that let you pass in the name of the property as a string. To try out this approach add a *DynamicLinqExtensions.cs* file in the project folder and replace the template code with the code shown here.  Then replace the `Index` method in the `StudentsController` with the following code.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/DynamicLinqExtensions.cs)]
+[!code-csharp[Main](intro/samples/cu/DynamicLinqExtensions.cs)]
 
 [!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DynamicLinq)]
 
