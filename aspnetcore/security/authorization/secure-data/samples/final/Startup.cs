@@ -15,6 +15,7 @@ using ContactManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using ContactManager.Authorization;
 
 namespace ContactManager
 {
@@ -42,6 +43,8 @@ namespace ContactManager
         // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet_defaultPolicy
         #region snippet_SSL 
+        #region snippet_ContactIsOwnerAuthorizationHandler
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -77,21 +80,21 @@ namespace ContactManager
             });
             #endregion
 
-            /*
+            // Authorization handlers.
+            // requires using ContactManager.Authorization;
+            services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+            #endregion
 
-// Authorization handlers.
-#region snippet_AddScoped
-services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
-#endregion
+            #region snippet_ContactRoleAuthorizationHandler
+            services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
+            #endregion
 
-#region snippet_ContactRoleAuthorizationHandler
-services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
-#endregion
-
-// ContactHasOne requires EF.
-services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
-*/
+            #region snippet_ContactHasOneAuthorizationHandler
+            // ContactHasOne requires EF.
+            services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
         }
+        #endregion
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippetUserPW
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,

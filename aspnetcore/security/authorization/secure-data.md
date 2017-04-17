@@ -103,21 +103,13 @@ Delete all the records in the `Contact` table and restart the app to seed the da
 
 * Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
-zz
-
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the `ContactIsOwner` handler with the service collection so it will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
-
-   ````
+[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_ContactIsOwnerAuthorizationHandler&highlight=29-33)]
 
 Update the `ContactsController` constructor to resolve the `IAuthorizationService` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the `Identity` `UserManager` service:
 
