@@ -27,16 +27,15 @@ The build-in model binding supports simple types such as strings, integers, floa
 - Input is encoded as a Base64 string and must be decoded prior to being mapped to a model
 - Input represents a key that can be used to look up model data from a data store; binder must fetch data based on key and pass result as action argument(s)
 
-
 ## The solution
 
 Both of these problems can be solved with custom model binders. A custom model binder for working with byte arrays already exists in ASP.NET Core MVC; a binder that fetches results from a data store does not. You will see how to create one in this article.
 
 ## Working with the ByteArrayModelBinder
 
-## Implementing a Custom Model Binder
+## Implementing a custom model binder
 
-## Recommendations and Best Practices
+## Recommendations and best practices
 
 
 > [!NOTE]
