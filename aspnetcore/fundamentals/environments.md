@@ -78,7 +78,7 @@ To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is start
 
 **Command line**
 ```
-set ASPNETCORE_ENVIRONMENT="Development"
+set ASPNETCORE_ENVIRONMENT=Development
 ```
 **PowerShell**
 ```
