@@ -27,7 +27,7 @@ Open the *Startup.cs* file and examine `ConfigureServices`:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7-8)]
 
-The highligted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
+The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
