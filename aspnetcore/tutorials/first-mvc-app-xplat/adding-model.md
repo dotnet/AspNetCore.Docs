@@ -70,7 +70,7 @@ The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upd
 
 You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
 
-This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model later, you just drop the database, and the next time the app runs, EF Core creates a new database to match your new data model.
+This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model, you drop the database. The next time the app runs, EF Core creates a new database to match your new data model.
 
 This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
 
