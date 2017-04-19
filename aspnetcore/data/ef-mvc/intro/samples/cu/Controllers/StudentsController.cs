@@ -190,11 +190,11 @@ namespace ContosoUniversity.Controllers
 
             if (descending)
             {
-                students = students.OrderByDescending(sortOrder, typeof(Object));
+                students = students.OrderByDescending(e => EF.Property<object>(e, sortOrder));
             }
             else
             {
-                students = students.OrderBy(sortOrder, typeof(Object));
+                students = students.OrderBy(e => EF.Property<object>(e, sortOrder));
             }
        
             int pageSize = 3;
