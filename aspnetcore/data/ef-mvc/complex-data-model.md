@@ -104,8 +104,6 @@ In the *Student.cs* file, add a `using` statement for `System.ComponentModel.Dat
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
-Save your changes and build the project.
-
 The addition of the `Column` attribute changes the model backing the `SchoolContext`, so it won't match the database.
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
