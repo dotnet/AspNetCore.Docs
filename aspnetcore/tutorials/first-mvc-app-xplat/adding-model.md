@@ -28,7 +28,7 @@ Build the app to verify you don't have any errors, and you've finally added a **
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,16-17,20-23)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,17-18,21-)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
