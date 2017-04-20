@@ -16,7 +16,7 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            if (context.User.IsInRole(requirement.Name))
+            if (context.User.IsInRole(Constants.OperationRolePrefix + requirement.Name))
             {
                 context.Succeed(requirement);
             }

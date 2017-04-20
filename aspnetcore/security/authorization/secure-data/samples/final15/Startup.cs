@@ -75,6 +75,11 @@ namespace ContactManager
             });
             #endregion
 
+            services.AddAuthorization(options =>
+            {
+
+            });
+
             // Authorization handlers.
             #region snippet_AddScoped
             services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();

@@ -22,7 +22,7 @@ namespace ContactManager.Data
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
                 var uid = await CreateTestUser(serviceProvider, testUserPw);
-                await CreateCanDeleteRole(serviceProvider, uid, Constants.canDelete);
+                await CreateCanDeleteRole(serviceProvider, uid, Constants.OperationRolePrefix + Constants.DeleteOperationName);
                 SeedDB(context, uid);
             }
         }

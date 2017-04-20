@@ -104,7 +104,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB, 
-                                        ContactOperationsRequirements.Update);
+                                        ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -134,7 +134,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB,
-                                        ContactOperationsRequirements.Update);
+                                        ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -184,7 +184,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Delete);
+                                        ContactOperations.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -201,7 +201,7 @@ namespace ContactManager.Controllers
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Delete);
+                                        ContactOperations.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
