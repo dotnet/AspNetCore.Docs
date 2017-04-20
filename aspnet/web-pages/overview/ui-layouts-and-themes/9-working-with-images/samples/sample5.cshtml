@@ -1,0 +1,47 @@
+@{  
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+    var imageThumbPath  = "";
+
+    if(IsPost){
+        photo = WebImage.GetImageFromRequest();
+        if(photo != null){
+             newFileName = Guid.NewGuid().ToString() + "_" +
+                 Path.GetFileName(photo.FileName);
+             imagePath = @"images\" + newFileName;
+             photo.Save(@"~\" + imagePath);
+
+            imageThumbPath = @"images\thumbs\" + newFileName;
+            photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
+               preventEnlarge: true);
+            photo.Save(@"~\" + imageThumbPath);        }
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resizing Image</title>
+</head>
+<body>
+<h1>Thumbnail Image</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    <fieldset>
+      <legend> Creating Thumbnail Image </legend>
+      <label for="Image">Image</label>
+      <input type="file" name="Image" />
+      <br/>
+      <input type="submit" value="Submit" />
+    </fieldset>
+  </form>
+    @if(imagePath != ""){
+    <div class="result">
+        <img src="@imageThumbPath" alt="Thumbnail image" />
+        <a href="@Html.AttributeEncode(imagePath)" target="_Self">
+            View full size
+        </a>
+    </div>
+
+    }
+</body>
+</html>

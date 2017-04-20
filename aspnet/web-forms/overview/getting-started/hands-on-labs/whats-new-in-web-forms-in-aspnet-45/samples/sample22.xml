@@ -1,0 +1,5 @@
+<configuration>
+  ...
+  <appSettings>
+    <add key="aspnet:uselegacysynchronizationcontext" value="false" />
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="WebForms"/>

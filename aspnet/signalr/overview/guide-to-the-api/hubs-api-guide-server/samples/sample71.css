@@ -1,0 +1,1 @@
+context.Clients.Group(groupName).addContosoChatMessageToPage(name, message);

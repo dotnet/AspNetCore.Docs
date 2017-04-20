@@ -1,0 +1,1 @@
+_mockRepository = New Mock(Of IContactManagerRepository)()

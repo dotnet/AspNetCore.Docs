@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="ODataComplexTypeInheritanceSample" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <ComplexType Name="Shape" Abstract="true">
+        <Property Name="HasBorder" Type="Edm.Boolean" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Polygon" BaseType="ODataComplexTypeInheritanceSample.Shape">
+        <Property Name="Vertexes" Type="Collection(ODataComplexTypeInheritanceSample.Point)" />
+      </ComplexType>
+      <ComplexType Name="Point">
+        <Property Name="X" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Y" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Circle" BaseType="ODataComplexTypeInheritanceSample.Shape">
+        <Property Name="Center" Type="ODataComplexTypeInheritanceSample.Point" />
+        <Property Name="Radius" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <EntityContainer Name="Container">
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,9 @@
+@Ajax.ActionLink("Click me", "AjaxAction", new AjaxOptions { UpdateTargetId = "foo", OnBegin = "OnClick" })
+
+<script>
+    function OnClick(jqXHR) {
+        if ($(this).hasClass("foo")) {
+            jqXHR.setRequestHeader("custom-header", "value");
+        }
+    }
+</script>

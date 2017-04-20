@@ -1,0 +1,1 @@
+msbuild C:\ContosoUniversity\ContosoUniversity.sln /p:DeployOnBuild=true /p:PublishProfile=C:\ContosoUniversity\ContosoUniversity\Properties\PublishProfiles\Test.pubxml

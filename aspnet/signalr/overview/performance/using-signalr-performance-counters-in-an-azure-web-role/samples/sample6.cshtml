@@ -1,0 +1,66 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+<script src="~/signalr/hubs" type="text/javascript"></script>
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <p>
+                Hello World!
+            </p>
+            <div style="font-size:large;">
+                My Counter: <span id="counter"></span>
+            </div>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix"></section>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var hub = $.connection.myHub;
+
+    hub.client.sendResult = function (x) {
+      console.log('sendResult(' + x + ')');
+      $("#counter").text(x);
+      window.setTimeout(function () {
+        hub.server.increment(x);
+      }, 1000);
+    };
+
+    $.connection.hub.connected = function () {};
+    $.connection.hub.disconnected = function () {};
+
+    $.connection.hub.stateChanged(function (change) {
+      console.log('new State' + change.newState);
+      if (change.newState === $.signalR.connectionState.disconnected) {
+        $.connection.hub.start();
+      }
+      if (change.newState === $.signalR.connectionState.reconnecting) {
+        console.log('Re-connecting');
+      } else if (change.newState === $.signalR.connectionState.connected) {
+        console.log('The server is online');
+      }
+    });
+
+    $.connection.hub.error(function (error) {
+      console.log('error ' + error);
+    });
+    
+    $.connection.hub.logging = true;
+    
+    $.connection.hub.reconnected(function () {
+      console.log('Reconnected');
+      hub.server.increment(0);
+    });
+
+    $.connection.hub.start().done(function () {
+      console.log('hub started');
+      hub.server.increment(0);
+    });
+  });
+</script>

@@ -1,0 +1,1 @@
+<%@ MasterType VirtualPath="~/Site.master" %>

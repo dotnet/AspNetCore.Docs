@@ -1,0 +1,39 @@
+@model List<SampleFacebookBirthdayApp.Models.Product>
+
+@{
+  ViewBag.Title = "Buy Presents";
+  string friendName = ViewBag.FriendName;
+}
+
+<article class="intro">
+  <label>Buy birthday presents for @friendName</label>
+</article>
+  <div class="container-fluid">
+    @foreach (var present in Model)
+    {
+      <div class="row-fluid">
+        <div class="span3">
+          @if (@present.Image != null)
+          {
+            <img src="@present.Image.Sizes.Large.Url" />
+          }
+          else
+          {
+            <p>Picture not available</p>
+          }
+        </div>
+        <div class="span9">
+          <dl>
+            <dt>@present.Name</dt>
+            <dd>@present.Description</dd>
+            <dt>Price</dt>
+            <dd class="price">@present.PriceLabel</dd>
+          </dl>
+          <a class="btn btn-success" target="_blank" href="@present.ClickUrl">
+            <i class="icon-shopping-cart"></i>
+            Buy it
+          </a>
+        </div>
+      </div>
+    }
+  </div>

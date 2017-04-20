@@ -1,0 +1,1 @@
+departmentEntityToBeInserted.Person = context.People.Single(p => p.PersonID == Convert.ToInt32(administratorsDropDownList.SelectedValue));

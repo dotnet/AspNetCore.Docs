@@ -1,0 +1,3 @@
+<ExcludeFromPackageFolders Include="Internal">
+  <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
+</ExcludeFromPackageFolders>

@@ -1,0 +1,28 @@
+...
+          <div class="editor-label">
+                <label for="Price">Price</label>
+          </div>
+          <div class="editor-field">
+                <input class="text-box single-line" id="Price" name="Price" type="text" value="" />
+                <span class="field-validation-valid" id="Price_validationMessage"></span>
+          </div>
+
+          <div class="editor-label">
+                <label for="AlbumArtUrl">Album Art URL</label>
+          </div>
+          <div class="editor-field">
+                <input class="text-box single-line" id="AlbumArtUrl" name="AlbumArtUrl" type="text" value="" />
+                <span class="field-validation-valid" id="AlbumArtUrl_validationMessage"></span>
+          </div>
+
+          <p>
+                <input type="submit" value="Create" />
+          </p>
+     </fieldset>
+</form><script type="text/javascript">
+//<![CDATA[
+if (!window.mvcClientValidationMetadata) { window.mvcClientValidationMetadata = []; }
+window.mvcClientValidationMetadata.push({"Fields":[{"FieldName":"GenreId","ReplaceValidationMessageContents":true,"ValidationMessageId":"GenreId_validationMessage","ValidationRules":[{"ErrorMessage":"The Genre field is required.","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Genre must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"ArtistId","ReplaceValidationMessageContents":true,"ValidationMessageId":"ArtistId_validationMessage","ValidationRules":[{"ErrorMessage":"The Artist field is required.","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Artist must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"Title","ReplaceValidationMessageContents":true,"ValidationMessageId":"Title_validationMessage","ValidationRules":[{"ErrorMessage":"An Album Title is required","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Title must be a string with a minimum length of 2 and a maximum length of 160.","ValidationParameters":{"min":2,"max":160},"ValidationType":"length"}]},{"FieldName":"Price","ReplaceValidationMessageContents":true,"ValidationMessageId":"Price_validationMessage","ValidationRules":[{"ErrorMessage":"Price must be between 0.01 and 100.00","ValidationParameters":{"min":0.01,"max":100},"ValidationType":"range"},{"ErrorMessage":"Price is required","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Price must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"AlbumArtUrl","ReplaceValidationMessageContents":true,"ValidationMessageId":"AlbumArtUrl_validationMessage","ValidationRules":[{"ErrorMessage":"The field Album Art URL must be a string with a maximum length of 1024.","ValidationParameters":{"max":1024},"ValidationType":"length"}]}],"FormId":"form0","ReplaceValidationSummary":false,"ValidationSummaryId":"validationSummary"});
+//]]>
+</script>
+...

@@ -1,0 +1,6 @@
+<siteMapNode title="Roles">
+ <siteMapNode url="~/Roles/ManageRoles.aspx" title="Manage Roles"/>
+ <siteMapNode url="~/Roles/UsersAndRoles.aspx" title="Users and Roles" />
+ <siteMapNode url="~/Roles/CreateUserWizardWithRoles.aspx" title="Create Account (with Roles)" />
+ <siteMapNode url="~/Roles/RoleBasedAuthorization.aspx" title="Role-Based Authorization" />
+</siteMapNode>

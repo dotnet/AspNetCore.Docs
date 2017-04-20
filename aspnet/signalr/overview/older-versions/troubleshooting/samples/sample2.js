@@ -1,0 +1,1 @@
+var myHub = $.connection.MyHub;

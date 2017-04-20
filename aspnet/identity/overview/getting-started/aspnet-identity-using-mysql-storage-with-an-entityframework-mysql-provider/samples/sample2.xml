@@ -1,0 +1,15 @@
+<entityFramework>
+  <providers>
+    <provider invariantName="MySql.Data.MySqlClient"
+      type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity"/> 
+  </providers>
+</entityFramework>
+<system.data>
+  <DbProviderFactories>
+    <remove invariant="MySql.Data.MySqlClient"></remove>
+    <add name="MySQL Data Provider"
+      invariant="MySql.Data.MySqlClient"
+      description=".Net Framework Data Provider for MySQL"
+      type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.7.2.0"/>
+  </DbProviderFactories>
+</system.data>

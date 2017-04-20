@@ -1,0 +1,39 @@
+@using SampleFacebookBirthdayApp.Models
+@using Microsoft.AspNet.Facebook.Models
+@using Microsoft.AspNet.Facebook
+
+@model IList<MyAppUserFriend>
+
+<table class="table">
+  @foreach (var friend in Model)
+  {
+    <tr>
+      <td>
+        <a target="_blank" href="@friend.Link">
+          <div class="photoTile">
+            <label>@friend.Name</label>
+            @if (friend.Picture != null && friend.Picture.Data != null)
+            {
+              <img class="img-polaroid" src="@friend.Picture.Data.Url" />
+            }
+          </div>
+        </a>
+      </td>
+      <td>
+        <label>@friend.Birthday</label>
+      </td>
+      <td>
+          <a target="_top" href="@GlobalFacebookConfiguration.Configuration.AppUrl@Url.Action("RecommendGifts", new { friendId = friend.Id })" class="btn btn-success" role="button">
+              @if (friend.Gender == "male")
+              {
+                  <span>Buy him a present</span>
+              }
+              else
+              {
+                  <span>Buy her a present</span>
+              }
+          </a>
+      </td>
+    </tr>
+  }
+</table>

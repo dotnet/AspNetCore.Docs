@@ -1,0 +1,24 @@
+<script type= text/javascript >
+ <!--
+ Sys.WebForms.PageRequestManager.getInstance().add_EndRequest(Request_End);
+ function Request_End(sender, args)
+ {
+ if (args.get_error() != undefined)
+ {
+ var errorMessage =  ;
+ if (args.get_response().get_statusCode() ==  200 )
+ {
+ errorMessage = args.get_error().message;
+ }
+ else
+ {
+ // the server wasn't the problem...
+ errorMessage =  An unknown error occurred... ;
+ }
+ // do something with the errorMessage here.
+ // now make sure the system knows we handled the error.
+ args.set_errorHandled(true);
+ }
+ }
+ // -->
+</script>

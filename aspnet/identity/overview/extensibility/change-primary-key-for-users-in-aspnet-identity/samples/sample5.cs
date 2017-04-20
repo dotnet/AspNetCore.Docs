@@ -1,0 +1,4 @@
+public ApplicationDbContext() 
+    : base("DefaultConnection") 
+{ 
+}

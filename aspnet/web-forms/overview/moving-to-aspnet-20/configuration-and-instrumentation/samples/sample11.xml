@@ -1,0 +1,6 @@
+<add name="mySimple-mailWebEventProvider"
+     type="System.Web.Management.Simple-mailWebEventProvider"
+     to="e-mail@foo.com" from="e-mail@foo.com"
+     maxMessagesPerNotification="1" maxEventsPerMessage="10"
+     buffer="true" bufferMode="Critical Notification"
+     subjectPrefix="Web Events"/>

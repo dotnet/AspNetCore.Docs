@@ -1,0 +1,9 @@
+<configuration>
+  <connectionStrings>
+    <add name="MovieDBContext" 
+         connectionString="Data Source=|DataDirectory|Movies.sdf" 
+         providerName="System.Data.SqlServerCe.4.0"/>
+    <add name="ApplicationServices"
+         connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>

@@ -1,0 +1,7 @@
+<configuration>
+  <system.web>
+    <customErrors mode="On" defaultRedirect="ErrorPage.aspx?handler=customErrors%20section%20-%20Web.config">
+      <error statusCode="404" redirect="ErrorPage.aspx?msg=404&amp;handler=customErrors%20section%20-%20Web.config"/>
+    </customErrors>
+  </system.web>
+</configuration>

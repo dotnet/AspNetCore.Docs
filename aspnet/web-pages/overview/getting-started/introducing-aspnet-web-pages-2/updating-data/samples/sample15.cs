@@ -1,0 +1,1 @@
+Request.QueryString["ID"].IsInt()

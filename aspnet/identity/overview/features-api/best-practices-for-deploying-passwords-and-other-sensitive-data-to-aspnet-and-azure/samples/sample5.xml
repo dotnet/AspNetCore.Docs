@@ -1,0 +1,7 @@
+<configuration>
+  <appSettings file="C:\secrets\AppSettingsSecrets.config">
+    <add key="TwitterMaxThreads" value="24" />
+    <add key="StackOverflowMaxThreads" value="24" />
+    <add key="MaxDaysForPurge" value="30" />
+  </appSettings>
+</configuration>

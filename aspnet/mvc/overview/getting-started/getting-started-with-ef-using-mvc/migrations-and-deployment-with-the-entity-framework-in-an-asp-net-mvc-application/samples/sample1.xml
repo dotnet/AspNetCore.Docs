@@ -1,0 +1,15 @@
+<entityFramework>
+  <!--<contexts>
+    <context type="ContosoUniversity.DAL.SchoolContext, ContosoUniversity">
+      <databaseInitializer type="ContosoUniversity.DAL.SchoolInitializer, ContosoUniversity" />
+    </context>
+  </contexts>-->
+  <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+    <parameters>
+      <parameter value="v11.0" />
+    </parameters>
+  </defaultConnectionFactory>
+  <providers>
+    <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+  </providers>
+</entityFramework>

@@ -1,0 +1,1 @@
+MSBuild.exe [Path to your project].[csproj/vbproj] /T:Package

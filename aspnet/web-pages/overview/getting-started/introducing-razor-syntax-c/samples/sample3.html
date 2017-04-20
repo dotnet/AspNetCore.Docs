@@ -1,0 +1,11 @@
+<!-- Single-statement block -->
+@{ var theMonth = DateTime.Now.Month; }
+
+<!-- Multi-statement block -->
+@{
+    var outsideTemp = 79;
+    var weatherMessage = "Hello, it is " + outsideTemp + " degrees.";
+}
+
+<!-- Inline expression, so no semicolon -->
+<p>Today's weather: @weatherMessage</p>

@@ -1,0 +1,5 @@
+{{view Ember.Checkbox checkedBinding="isDone"}}
+
+{{view App.TodoItemEditView valueBinding="title" class="required" disabledBinding="isDone"}}
+
+<a href="#" {{action "deleteTodo" on="click" target="view"}}>X</a>

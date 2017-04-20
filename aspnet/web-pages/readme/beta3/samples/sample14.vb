@@ -1,0 +1,2 @@
+Dim engine As SqlCeEngine = New SqlCeEngine("Data Source=Northwind.sdf;Password=<enterStrongPasswordHere>;")
+engine.Compact("Data Source=Northwind.sdf;encryption mode=ppc2003 compatibility;Password=<enterStrongPasswordHere>;")

@@ -1,0 +1,1 @@
+if(WebSecurity.IsConfirmed("joe@contoso.com")) { ... }

@@ -1,0 +1,202 @@
+---
+uid: web-forms/overview/data-access/index
+title: "Older Versions - Data Access | Microsoft Docs"
+author: rick-anderson
+description: "How to perform a variety of data-related tasks using ASP.NET Web Forms data controls."
+ms.author: aspnetcontent
+manager: wpickett
+ms.date: 10/05/2011
+ms.topic: article
+ms.assetid: cf54a6fb-a362-4481-b967-c158b98092f7
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/overview/data-access
+msc.type: chapter
+---
+Older Versions - Data Access
+====================
+> How to perform a variety of data-related tasks using ASP.NET Web Forms data controls.
+
+
+- [Introduction](introduction/index.md)
+
+    - [Creating a Data Access Layer (C#)](introduction/creating-a-data-access-layer-cs.md)
+    - [Creating a Business Logic Layer (C#)](introduction/creating-a-business-logic-layer-cs.md)
+    - [Master Pages and Site Navigation (C#)](introduction/master-pages-and-site-navigation-cs.md)
+    - [Creating a Data Access Layer (VB)](introduction/creating-a-data-access-layer-vb.md)
+    - [Creating a Business Logic Layer (VB)](introduction/creating-a-business-logic-layer-vb.md)
+    - [Master Pages and Site Navigation (VB)](introduction/master-pages-and-site-navigation-vb.md)
+- [Basic Reporting](basic-reporting/index.md)
+
+    - [Displaying Data With the ObjectDataSource (C#)](basic-reporting/displaying-data-with-the-objectdatasource-cs.md)
+    - [Declarative Parameters (C#)](basic-reporting/declarative-parameters-cs.md)
+    - [Programmatically Setting the ObjectDataSource's Parameter Values (C#)](basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-cs.md)
+    - [Displaying Data With the ObjectDataSource (VB)](basic-reporting/displaying-data-with-the-objectdatasource-vb.md)
+    - [Declarative Parameters (VB)](basic-reporting/declarative-parameters-vb.md)
+    - [Programmatically Setting the ObjectDataSource's Parameter Values (VB)](basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb.md)
+- [Master/Detail](masterdetail/index.md)
+
+    - [Master/Detail Filtering With a DropDownList (C#)](masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md)
+    - [Master/Detail Filtering With Two DropDownLists (C#)](masterdetail/master-detail-filtering-with-two-dropdownlists-cs.md)
+    - [Master/Detail Filtering Across Two Pages (C#)](masterdetail/master-detail-filtering-across-two-pages-cs.md)
+    - [Master/Detail Using a Selectable Master GridView with a Details DetailView (C#)](masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-cs.md)
+    - [Master/Detail Filtering With a DropDownList (VB)](masterdetail/master-detail-filtering-with-a-dropdownlist-vb.md)
+    - [Master/Detail Filtering With Two DropDownLists (VB)](masterdetail/master-detail-filtering-with-two-dropdownlists-vb.md)
+    - [Master/Detail Filtering Across Two Pages (VB)](masterdetail/master-detail-filtering-across-two-pages-vb.md)
+    - [Master/Detail Using a Selectable Master GridView with a Details DetailView (VB)](masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md)
+- [Custom Formatting](custom-formatting/index.md)
+
+    - [Custom Formatting Based Upon Data (C#)](custom-formatting/custom-formatting-based-upon-data-cs.md)
+    - [Using TemplateFields in the GridView Control (C#)](custom-formatting/using-templatefields-in-the-gridview-control-cs.md)
+    - [Using TemplateFields in the DetailsView Control (C#)](custom-formatting/using-templatefields-in-the-detailsview-control-cs.md)
+    - [FormView's Templates (C#)](custom-formatting/using-the-formview-s-templates-cs.md)
+    - [Displaying Summary Information in the GridView's Footer (C#)](custom-formatting/displaying-summary-information-in-the-gridview-s-footer-cs.md)
+    - [Custom Formatting Based Upon Data (VB)](custom-formatting/custom-formatting-based-upon-data-vb.md)
+    - [Using TemplateFields in the GridView Control (VB)](custom-formatting/using-templatefields-in-the-gridview-control-vb.md)
+    - [Using TemplateFields in the DetailsView Control (VB)](custom-formatting/using-templatefields-in-the-detailsview-control-vb.md)
+    - [FormView's Templates (VB)](custom-formatting/using-the-formview-s-templates-vb.md)
+    - [Displaying Summary Information in the GridView's Footer (VB)](custom-formatting/displaying-summary-information-in-the-gridview-s-footer-vb.md)
+- [Editing, Inserting, and Deleting Data](editing-inserting-and-deleting-data/index.md)
+
+    - [Overview of Inserting, Updating, and Deleting Data (C#)](editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-cs.md)
+    - [Examining the Events Associated with Inserting, Updating, and Deleting (C#)](editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-cs.md)
+    - [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page (C#)](editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md)
+    - [Adding Validation Controls to the Editing and Inserting Interfaces (C#)](editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-cs.md)
+    - [Customizing the Data Modification Interface (C#)](editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs.md)
+    - [Implementing Optimistic Concurrency (C#)](editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs.md)
+    - [Adding Client-Side Confirmation When Deleting (C#)](editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs.md)
+    - [Limiting Data Modification Functionality Based on the User (C#)](editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-cs.md)
+    - [Overview of Inserting, Updating, and Deleting Data (VB)](editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-vb.md)
+    - [Examining the Events Associated with Inserting, Updating, and Deleting (VB)](editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-vb.md)
+    - [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page (VB)](editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md)
+    - [Adding Validation Controls to the Editing and Inserting Interfaces (VB)](editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md)
+    - [Customizing the Data Modification Interface (VB)](editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb.md)
+    - [Implementing Optimistic Concurrency (VB)](editing-inserting-and-deleting-data/implementing-optimistic-concurrency-vb.md)
+    - [Adding Client-Side Confirmation When Deleting (VB)](editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-vb.md)
+    - [Limiting Data Modification Functionality Based on the User (VB)](editing-inserting-and-deleting-data/limiting-data-modification-functionality-based-on-the-user-vb.md)
+- [Paging and Sorting](paging-and-sorting/index.md)
+
+    - [Paging and Sorting Report Data (C#)](paging-and-sorting/paging-and-sorting-report-data-cs.md)
+    - [Efficiently Paging Through Large Amounts of Data (C#)](paging-and-sorting/efficiently-paging-through-large-amounts-of-data-cs.md)
+    - [Sorting Custom Paged Data (C#)](paging-and-sorting/sorting-custom-paged-data-cs.md)
+    - [Creating a Customized Sorting User Interface (C#)](paging-and-sorting/creating-a-customized-sorting-user-interface-cs.md)
+    - [Paging and Sorting Report Data (VB)](paging-and-sorting/paging-and-sorting-report-data-vb.md)
+    - [Efficiently Paging Through Large Amounts of Data (VB)](paging-and-sorting/efficiently-paging-through-large-amounts-of-data-vb.md)
+    - [Sorting Custom Paged Data (VB)](paging-and-sorting/sorting-custom-paged-data-vb.md)
+    - [Creating a Customized Sorting User Interface (VB)](paging-and-sorting/creating-a-customized-sorting-user-interface-vb.md)
+- [Custom Button Actions](custom-button-actions/index.md)
+
+    - [Adding and Responding to Buttons to a GridView (C#)](custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-cs.md)
+    - [Adding and Responding to Buttons to a GridView (VB)](custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb.md)
+- [Displaying Data with the DataList and Repeater](displaying-data-with-the-datalist-and-repeater/index.md)
+
+    - [Displaying Data with the DataList and Repeater Controls (C#)](displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-cs.md)
+    - [Formatting the DataList and Repeater Based Upon Data (C#)](displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-cs.md)
+    - [Showing Multiple Records per Row with the DataList Control (C#)](displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-cs.md)
+    - [Nested Data Web Controls (C#)](displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-cs.md)
+    - [Displaying Data with the DataList and Repeater Controls (VB)](displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-vb.md)
+    - [Formatting the DataList and Repeater Based Upon Data (VB)](displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-vb.md)
+    - [Showing Multiple Records per Row with the DataList Control (VB)](displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb.md)
+    - [Nested Data Web Controls (VB)](displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-vb.md)
+- [Filtering Scenarios with the DataList and Repeater](filtering-scenarios-with-the-datalist-and-repeater/index.md)
+
+    - [Master/Detail Filtering With a DropDownList (C#)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-cs.md)
+    - [Master/Detail Filtering Across Two Pages (C#)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-cs.md)
+    - [Master/Detail Using a Bulleted List of Master Records with a Details DataList (C#)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)
+    - [Master/Detail Filtering With a DropDownList (VB)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-with-a-dropdownlist-datalist-vb.md)
+    - [Master/Detail Filtering Across Two Pages (VB)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-filtering-acess-two-pages-datalist-vb.md)
+    - [Master/Detail Using a Bulleted List of Master Records with a Details DataList (VB)](filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb.md)
+- [Editing and Deleting Data Through the DataList](editing-and-deleting-data-through-the-datalist/index.md)
+
+    - [Overview of Editing and Deleting Data in the DataList (C#)](editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md)
+    - [Performing Batch Updates (C#)](editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs.md)
+    - [Handling BLL- and DAL-Level Exceptions (C#)](editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-cs.md)
+    - [Adding Validation Controls to the DataList's Editing Interface (C#)](editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-cs.md)
+    - [Customizing the DataList's Editing Interface (C#)](editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-cs.md)
+    - [Overview of Editing and Deleting Data in the DataList (VB)](editing-and-deleting-data-through-the-datalist/an-overview-of-editing-and-deleting-data-in-the-datalist-vb.md)
+    - [Performing Batch Updates (VB)](editing-and-deleting-data-through-the-datalist/performing-batch-updates-vb.md)
+    - [Handling BLL- and DAL-Level Exceptions (VB)](editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-vb.md)
+    - [Adding Validation Controls to the DataList's Editing Interface (VB)](editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb.md)
+    - [Customizing the DataList's Editing Interface (VB)](editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-vb.md)
+- [Paging and Sorting with the DataList and Repeater](paging-and-sorting-with-the-datalist-and-repeater/index.md)
+
+    - [Paging Report Data in a DataList or Repeater Control (C#)](paging-and-sorting-with-the-datalist-and-repeater/paging-report-data-in-a-datalist-or-repeater-control-cs.md)
+    - [Sorting Data in a DataList or Repeater Control (C#)](paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-cs.md)
+    - [Paging Report Data in a DataList or Repeater Control (VB)](paging-and-sorting-with-the-datalist-and-repeater/paging-report-data-in-a-datalist-or-repeater-control-vb.md)
+    - [Sorting Data in a DataList or Repeater Control (VB)](paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb.md)
+- [Custom Button Actions with the DataList and Repeater](custom-button-actions-with-the-datalist-and-repeater/index.md)
+
+    - [Custom Buttons in the DataList and Repeater (C#)](custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-cs.md)
+    - [Custom Buttons in the DataList and Repeater (VB)](custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-vb.md)
+- [Accessing the Database Directly from an ASP.NET Page](accessing-the-database-directly-from-an-aspnet-page/index.md)
+
+    - [Querying Data with the SqlDataSource Control (C#)](accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-cs.md)
+    - [Using Parameterized Queries with the SqlDataSource (C#)](accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs.md)
+    - [Inserting, Updating, and Deleting Data with the SqlDataSource (C#)](accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)
+    - [Implementing Optimistic Concurrency with the SqlDataSource (C#)](accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-cs.md)
+    - [Querying Data with the SqlDataSource Control (VB)](accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb.md)
+    - [Using Parameterized Queries with the SqlDataSource (VB)](accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-vb.md)
+    - [Inserting, Updating, and Deleting Data with the SqlDataSource (VB)](accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-vb.md)
+    - [Implementing Optimistic Concurrency with the SqlDataSource (VB)](accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-vb.md)
+- [Enhancing the GridView](enhancing-the-gridview/index.md)
+
+    - [Adding a GridView Column of Radio Buttons (C#)](enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-cs.md)
+    - [Adding a GridView Column of Checkboxes (C#)](enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-cs.md)
+    - [Inserting a New Record from the GridView's Footer (C#)](enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-cs.md)
+    - [Adding a GridView Column of Radio Buttons (VB)](enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb.md)
+    - [Adding a GridView Column of Checkboxes (VB)](enhancing-the-gridview/adding-a-gridview-column-of-checkboxes-vb.md)
+    - [Inserting a New Record from the GridView's Footer (VB)](enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-vb.md)
+- [Working with Binary Files](working-with-binary-files/index.md)
+
+    - [Uploading Files (C#)](working-with-binary-files/uploading-files-cs.md)
+    - [Displaying Binary Data in the Data Web Controls (C#)](working-with-binary-files/displaying-binary-data-in-the-data-web-controls-cs.md)
+    - [Including a File Upload Option When Adding a New Record (C#)](working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs.md)
+    - [Updating and Deleting Existing Binary Data (C#)](working-with-binary-files/updating-and-deleting-existing-binary-data-cs.md)
+    - [Uploading Files (VB)](working-with-binary-files/uploading-files-vb.md)
+    - [Displaying Binary Data in the Data Web Controls (VB)](working-with-binary-files/displaying-binary-data-in-the-data-web-controls-vb.md)
+    - [Including a File Upload Option When Adding a New Record (VB)](working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-vb.md)
+    - [Updating and Deleting Existing Binary Data (VB)](working-with-binary-files/updating-and-deleting-existing-binary-data-vb.md)
+- [Caching Data](caching-data/index.md)
+
+    - [Caching Data with the ObjectDataSource (C#)](caching-data/caching-data-with-the-objectdatasource-cs.md)
+    - [Caching Data in the Architecture (C#)](caching-data/caching-data-in-the-architecture-cs.md)
+    - [Caching Data at Application Startup (C#)](caching-data/caching-data-at-application-startup-cs.md)
+    - [Using SQL Cache Dependencies (C#)](caching-data/using-sql-cache-dependencies-cs.md)
+    - [Caching Data with the ObjectDataSource (VB)](caching-data/caching-data-with-the-objectdatasource-vb.md)
+    - [Caching Data in the Architecture (VB)](caching-data/caching-data-in-the-architecture-vb.md)
+    - [Caching Data at Application Startup (VB)](caching-data/caching-data-at-application-startup-vb.md)
+    - [Using SQL Cache Dependencies (VB)](caching-data/using-sql-cache-dependencies-vb.md)
+- [Database-Driven Site Maps](database-driven-site-maps/index.md)
+
+    - [Building a Custom Database-Driven Site Map Provider (C#)](database-driven-site-maps/building-a-custom-database-driven-site-map-provider-cs.md)
+    - [Building a Custom Database-Driven Site Map Provider (VB)](database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb.md)
+- [Working with Batched Data](working-with-batched-data/index.md)
+
+    - [Wrapping Database Modifications within a Transaction (C#)](working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs.md)
+    - [Batch Updating (C#)](working-with-batched-data/batch-updating-cs.md)
+    - [Batch Deleting (C#)](working-with-batched-data/batch-deleting-cs.md)
+    - [Batch Inserting (C#)](working-with-batched-data/batch-inserting-cs.md)
+    - [Wrapping Database Modifications within a Transaction (VB)](working-with-batched-data/wrapping-database-modifications-within-a-transaction-vb.md)
+    - [Batch Updating (VB)](working-with-batched-data/batch-updating-vb.md)
+    - [Batch Deleting (VB)](working-with-batched-data/batch-deleting-vb.md)
+    - [Batch Inserting (VB)](working-with-batched-data/batch-inserting-vb.md)
+- [Advanced Data Access Scenarios](advanced-data-access-scenarios/index.md)
+
+    - [Creating New Stored Procedures for the Typed DataSet's TableAdapters (C#)](advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)
+    - [Using Existing Stored Procedures for the Typed DataSet's TableAdapters (C#)](advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md)
+    - [Updating the TableAdapter to Use JOINs (C#)](advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-cs.md)
+    - [Adding Additional DataTable Columns (C#)](advanced-data-access-scenarios/adding-additional-datatable-columns-cs.md)
+    - [Working with Computed Columns (C#)](advanced-data-access-scenarios/working-with-computed-columns-cs.md)
+    - [Configuring the Data Access Layer's Connection- and Command-Level Settings (C#)](advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-cs.md)
+    - [Protecting Connection Strings and Other Configuration Information (C#)](advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-cs.md)
+    - [Debugging Stored Procedures (C#)](advanced-data-access-scenarios/debugging-stored-procedures-cs.md)
+    - [Creating Stored Procedures and User-Defined Functions with Managed Code (C#)](advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-cs.md)
+    - [Creating New Stored Procedures for the Typed DataSet's TableAdapters (VB)](advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
+    - [Using Existing Stored Procedures for the Typed DataSet's TableAdapters (VB)](advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md)
+    - [Updating the TableAdapter to Use JOINs (VB)](advanced-data-access-scenarios/updating-the-tableadapter-to-use-joins-vb.md)
+    - [Adding Additional DataTable Columns (VB)](advanced-data-access-scenarios/adding-additional-datatable-columns-vb.md)
+    - [Working with Computed Columns (VB)](advanced-data-access-scenarios/working-with-computed-columns-vb.md)
+    - [Configuring the Data Access Layer's Connection- and Command-Level Settings (VB)](advanced-data-access-scenarios/configuring-the-data-access-layer-s-connection-and-command-level-settings-vb.md)
+    - [Protecting Connection Strings and Other Configuration Information (VB)](advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-vb.md)
+    - [Debugging Stored Procedures (VB)](advanced-data-access-scenarios/debugging-stored-procedures-vb.md)
+    - [Creating Stored Procedures and User-Defined Functions with Managed Code (VB)](advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.md)

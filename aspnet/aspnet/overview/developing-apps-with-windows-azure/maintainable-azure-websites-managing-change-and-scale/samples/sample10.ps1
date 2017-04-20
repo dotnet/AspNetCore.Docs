@@ -1,0 +1,1 @@
+Update-Database -Verbose -ConnectionString "[YOUR-CONNECTION-STRING]" -ConnectionProviderName "System.Data.SqlClient"

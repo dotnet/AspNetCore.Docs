@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="title">
+        <h1> Conference (Mobile)</h1>
+    </div>
+    <div id="menucontainer">
+        <ul id="menu">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Date", "AllDates", "Home")</li>
+            <li>@Html.ActionLink("Speaker", "AllSpeakers", "Home")</li>
+            <li>@Html.ActionLink("Tag", "AllTags", "Home")</li>
+        </ul>
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,12 @@
+<connectionStrings>
+  <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\MyFixItMembership.mdf;Initial Catalog=MyFixItMembership;Integrated Security=True" providerName="System.Data.SqlClient" />
+  <add name="appdb" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\MyFixItTasks.mdf;Initial Catalog=aspnet-MyFixItTasks;Integrated Security=True" providerName="System.Data.SqlClient" />
+</connectionStrings>
+<appSettings>
+  <add key="webpages:Version" value="3.0.0.0" />
+  <add key="webpages:Enabled" value="false" />
+  <add key="ClientValidationEnabled" value="true" />
+  <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+  <add key="StorageAccountName" value="fixitdemostorage" />
+  <add key="StorageAccountAccessKey" value="[accesskeyvalue]" />
+</appSettings>

@@ -1,0 +1,1 @@
+IEnumerable<Department> GetDepartmentsByAdministrator(Int32 administrator);

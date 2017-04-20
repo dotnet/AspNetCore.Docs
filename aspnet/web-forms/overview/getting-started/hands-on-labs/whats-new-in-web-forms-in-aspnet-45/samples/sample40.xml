@@ -1,0 +1,1 @@
+<add key="aspnet:UseTaskFriendlySynchronizationContext" value="true"/>

@@ -1,0 +1,29 @@
+/* flip transformation */
+.flip-container div.front {
+    -moz-transform: perspective(2000px) rotateY(0deg);
+    -webkit-transform: perspective(2000px) rotateY(0deg);
+    -o-transform: perspective(2000px) rotateY(0deg);
+    transform: perspective(2000px) rotateY(0deg);
+}
+
+    .flip-container div.front.flip {
+        -moz-transform: perspective(2000px) rotateY(179.9deg);
+        -webkit-transform: perspective(2000px) rotateY(179.9deg);
+        -o-transform: perspective(2000px) rotateY(179.9deg);
+        transform: perspective(2000px) rotateY(179.9deg);
+    }
+
+.flip-container div.back {
+    -moz-transform: perspective(2000px) rotateY(-180deg);
+    -webkit-transform: perspective(2000px) rotateY(-180deg);
+    -o-transform: perspective(2000px) rotateY(-180deg);
+    transform: perspective(2000px) rotateY(-180deg);
+}
+
+    .flip-container div.back.flip {
+        -moz-transform: perspective(2000px) rotateY(0deg);
+        -webkit-transform: perspective(2000px) rotateY(0deg);
+        -ms-transform: perspective(2000px) rotateY(0);
+        -o-transform: perspective(2000px) rotateY(0);
+        transform: perspective(2000px) rotateY(0);
+    }

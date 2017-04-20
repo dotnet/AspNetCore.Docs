@@ -1,0 +1,1 @@
+Clients.Users(new string[] { "myUser", "myUser2" }).broadcastMessage(name, message);

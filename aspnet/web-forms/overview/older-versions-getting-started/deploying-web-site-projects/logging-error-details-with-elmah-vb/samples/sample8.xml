@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<configuration>
+  ...
+
+  <elmah>
+  ...
+
+  <errorMail from="support@example.com"
+  to="support@example.com"
+  subject="Book Reviews Runtime Error"
+  async="true" />
+  </elmah>
+
+  ...
+</configuration>

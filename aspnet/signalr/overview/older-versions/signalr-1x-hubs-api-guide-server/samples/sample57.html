@@ -1,0 +1,80 @@
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <connectionStrings>
+    <add name="SignalRSamples" connectionString="Data Source=(local);Initial Catalog=SignalRSamples;Integrated Security=SSPI;Asynchronous Processing=True;" />
+    <add name="SignalRSamplesWithMARS" connectionString="Data Source=(local);Initial Catalog=SignalRSamples;Integrated Security=SSPI;Asynchronous Processing=True;MultipleActiveResultSets=true;" />
+  </connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true" />
+  </system.webServer>
+  <system.diagnostics>
+    <sources>
+      <source name="SignalR.SqlMessageBus">
+        <listeners>
+          <add name="SignalR-Bus" />
+        </listeners>
+      </source>
+     <source name="SignalR.ServiceBusMessageBus">
+        <listeners>
+            <add name="SignalR-Bus" />
+        </listeners>
+     </source>
+     <source name="SignalR.ScaleoutMessageBus">
+        <listeners>
+            <add name="SignalR-Bus" />
+        </listeners>
+      </source>
+      <source name="SignalR.Transports.WebSocketTransport">
+        <listeners>
+          <add name="SignalR-Transports" />
+        </listeners>
+      </source>
+      <source name="SignalR.Transports.ServerSentEventsTransport">
+          <listeners>
+              <add name="SignalR-Transports" />
+          </listeners>
+      </source>
+      <source name="SignalR.Transports.ForeverFrameTransport">
+          <listeners>
+              <add name="SignalR-Transports" />
+          </listeners>
+      </source>
+      <source name="SignalR.Transports.LongPollingTransport">
+        <listeners>
+            <add name="SignalR-Transports" />
+        </listeners>
+      </source>
+      <source name="SignalR.Transports.TransportHeartBeat">
+        <listeners>
+            <add name="SignalR-Transports" />
+        </listeners>
+      </source>
+    </sources>
+    <switches>
+      <add name="SignalRSwitch" value="Verbose" />
+    </switches>
+    <sharedListeners>
+      <add name="SignalR-Transports" 
+           type="System.Diagnostics.TextWriterTraceListener" 
+           initializeData="transports.log.txt" />
+        <add name="SignalR-Bus"
+           type="System.Diagnostics.TextWriterTraceListener"
+           initializeData="bus.log.txt" />
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+  </entityFramework>
+</configuration>

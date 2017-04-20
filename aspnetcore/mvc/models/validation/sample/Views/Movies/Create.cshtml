@@ -1,0 +1,95 @@
+@model Movie
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Movie</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReleaseDate" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Genre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Genre" asp-items="@(Html.GetEnumSelectList<Genre>())" class="form-control"></select>
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Preorder" />
+                    <label asp-for="Preorder"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+    $(function () {
+        jQuery.validator.addMethod('classicmovie',
+            function (value, element, params) {
+                // Get element value. Classic genre has value '0'.
+                var genre = $(params[0]).val(),
+                    year = params[1],
+                    date = new Date(value);
+                if (genre && genre.length > 0 && genre[0] === '0') {
+                    // Since this is a classic movie, invalid if release date is after given year.
+                    return date.getFullYear() <= year;
+                }
+
+                return true;
+            });
+
+        jQuery.validator.unobtrusive.adapters.add('classicmovie',
+            [ 'element', 'year' ],
+            function (options) {
+                var element = $(options.form).find('select#Genre')[0];
+                options.rules['classicmovie'] = [element, parseInt(options.params['year'])];
+                options.messages['classicmovie'] = options.message;
+            });
+    }(jQuery));
+    </script>
+}

@@ -1,0 +1,15 @@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        LoadMap();
+    });
+
+    $("#search").click(function(evt) {
+        var where = jQuery.trim($("#Location").val());
+        if (where.length < 1) 
+            return;
+
+        FindDinnersGivenLocation(where);
+    });
+
+</script>

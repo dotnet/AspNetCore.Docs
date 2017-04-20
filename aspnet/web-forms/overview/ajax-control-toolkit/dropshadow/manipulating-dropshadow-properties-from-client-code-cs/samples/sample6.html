@@ -1,0 +1,14 @@
+<script type="text/javascript">
+ function changeOpacity(delta) 
+ {
+ var dse = $find("dse1");
+ var o = dse.get_Opacity();
+ o += delta;
+ o = Math.round(10 * o) / 10;
+ if (o <= 1.0 && o >= 0.0) 
+ {
+ dse.set_Opacity(o);
+ $get("txtOpacity").firstChild.nodeValue = o;
+ }
+ }
+</script>

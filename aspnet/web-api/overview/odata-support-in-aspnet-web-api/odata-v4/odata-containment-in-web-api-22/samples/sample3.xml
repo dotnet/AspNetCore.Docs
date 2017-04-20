@@ -1,0 +1,11 @@
+<EntityType Name="Account">   
+  <Key>     
+    <PropertyRef Name="AccountID" />   
+  </Key>   
+  <Property Name="AccountID" Type="Edm.Int32" Nullable="false" />   
+  <Property Name="Name" Type="Edm.String" />   
+  <NavigationProperty 
+    Name="PayinPIs" 
+    Type="Collection(ODataContrainmentSample.PaymentInstrument)" 
+    ContainsTarget="true" /> 
+</EntityType>

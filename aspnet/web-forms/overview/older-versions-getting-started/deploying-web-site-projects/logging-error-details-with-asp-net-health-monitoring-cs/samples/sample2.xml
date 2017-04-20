@@ -1,0 +1,29 @@
+<configuration>
+  ...
+  <system.web>
+  ...
+  <healthMonitoring enabled="true">
+  <eventMappings>
+  <clear />
+
+  <add name="All Errors" type="System.Web.Management.WebBaseErrorEvent"
+  startEventCode="0" endEventCode="2147483647" />
+  </eventMappings>
+
+  <providers>
+  <clear />
+
+  <add connectionStringName="ReviewsConnectionString" maxEventDetailsLength="1073741823"
+  buffer="false" name="SqlWebEventProvider"
+  type="System.Web.Management.SqlWebEventProvider" />
+  </providers>
+
+  <rules>
+  <clear />
+
+  <add name="All Errors Default" eventName="All Errors" provider="SqlWebEventProvider"
+  profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
+  </rules>
+  </healthMonitoring>
+  </system.web>
+</configuration>

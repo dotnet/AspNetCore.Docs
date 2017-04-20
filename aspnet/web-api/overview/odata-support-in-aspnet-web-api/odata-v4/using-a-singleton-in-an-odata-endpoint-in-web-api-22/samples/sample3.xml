@@ -1,0 +1,8 @@
+<EntityContainer Name="Container"> 
+  <EntitySet Name="Employees" EntityType="ODataSingletonSample.Employee"> 
+    <NavigationPropertyBinding Path="Company" Target="Umbrella"/> 
+  </EntitySet> 
+  <Singleton Name="Umbrella" Type="ODataSingletonSample.Company"> 
+    <NavigationPropertyBinding Path="Employees" Target="Employees"/> 
+  </Singleton> 
+</EntityContainer>

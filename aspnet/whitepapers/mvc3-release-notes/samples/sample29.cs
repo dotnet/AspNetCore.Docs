@@ -1,0 +1,1 @@
+DependencyResolver.SetResolver(myResolver);

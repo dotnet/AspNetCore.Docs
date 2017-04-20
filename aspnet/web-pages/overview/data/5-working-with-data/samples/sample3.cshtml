@@ -1,0 +1,66 @@
+@{
+    Validation.RequireField("Name", "Product name is required.");
+    Validation.RequireField("Description", "Product description is required.");
+    Validation.RequireField("Price", "Product price is required.");
+
+    var db = Database.Open("SmallBakery");
+    var Name = Request.Form["Name"];
+    var Description = Request.Form["Description"];
+    var Price = Request.Form["Price"];
+
+    if (IsPost && Validation.IsValid()) {
+        // Define the insert query. The values to assign to the
+        // columns in the Product table are defined as parameters
+        // with the VALUES keyword.
+        if(ModelState.IsValid) {
+            var insertQuery = "INSERT INTO Product (Name, Description, Price) " +
+                "VALUES (@0, @1, @2)";
+            db.Execute(insertQuery, Name, Description, Price);
+            // Display the page that lists products.
+            Response.Redirect("~/ListProducts");
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Add Products</title>
+ <style type="text/css">
+    label {float:left; width: 8em; text-align: right;
+           margin-right: 0.5em;}
+    fieldset {padding: 1em; border: 1px solid; width: 50em;}
+    legend {padding: 2px 4px; border: 1px solid; font-weight:bold;}
+    .validation-summary-errors {font-weight:bold; color:red;
+           font-size: 11pt;}
+ </style>
+</head>
+<body>
+ <h1>Add New Product</h1>
+
+ @Html.ValidationSummary("Errors with your submission:")
+
+ <form method="post" action="">
+   <fieldset>
+     <legend>Add Product</legend>
+     <div>
+       <label>Name:</label>
+       <input name="Name" type="text" size="50" value="@Name" />
+     </div>
+     <div>
+       <label>Description:</label>
+       <input name="Description" type="text" size="50"
+           value="@Description" />
+     </div>
+     <div>
+       <label>Price:</label>
+       <input name="Price" type="text" size="50" value="@Price" />
+     </div>
+     <div>
+       <label>&nbsp;</label>
+       <input type="submit" value="Insert" class="submit" />
+     </div>
+   </fieldset>
+ </form>
+</body>
+</html>

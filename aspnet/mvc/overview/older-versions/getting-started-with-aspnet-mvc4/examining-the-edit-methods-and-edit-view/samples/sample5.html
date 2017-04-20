@@ -1,0 +1,42 @@
+<form action="/Movies/Edit/4" method="post">    <fieldset>
+        <legend>Movie</legend>
+
+        <input data-val="true" data-val-number="The field ID must be a number." data-val-required="The ID field is required." id="ID" name="ID" type="hidden" value="4" />
+
+        <div class="editor-label">
+            <label for="Title">Title</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" id="Title" name="Title" type="text" value="Rio Bravo" />
+            <span class="field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="editor-label">
+            <label for="ReleaseDate">ReleaseDate</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" data-val="true" data-val-date="The field ReleaseDate must be a date." data-val-required="The ReleaseDate field is required." id="ReleaseDate" name="ReleaseDate" type="text" value="4/15/1959 12:00:00 AM" />
+            <span class="field-validation-valid" data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="editor-label">
+            <label for="Genre">Genre</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" id="Genre" name="Genre" type="text" value="Western" />
+            <span class="field-validation-valid" data-valmsg-for="Genre" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="editor-label">
+            <label for="Price">Price</label>
+        </div>
+        <div class="editor-field">
+            <input class="text-box single-line" data-val="true" data-val-number="The field Price must be a number." data-val-required="The Price field is required." id="Price" name="Price" type="text" value="2.99" />
+            <span class="field-validation-valid" data-valmsg-for="Price" data-valmsg-replace="true"></span>
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+</form>

@@ -1,0 +1,8 @@
+<Target Name="DeployDatabase">     
+   <PropertyGroup>      
+      <_Cmd>
+         Add your VSDBCMD command here
+      </_Cmd>
+   </PropertyGroup>
+   <Exec Command="$(_Cmd)"/> 
+ </Target>

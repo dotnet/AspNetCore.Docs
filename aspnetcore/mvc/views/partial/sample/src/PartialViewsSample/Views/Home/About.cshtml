@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@await Html.PartialAsync("AuthorPartial")
+@Html.Partial("AuthorPartial")
+@{
+    Html.RenderPartial("AuthorPartial");
+}
+
+@* Render a full view *@
+@Html.Partial("Contact")
+
+@* RenderPartialAsync *@
+@{
+    await Html.RenderPartialAsync("AuthorPartial");
+}

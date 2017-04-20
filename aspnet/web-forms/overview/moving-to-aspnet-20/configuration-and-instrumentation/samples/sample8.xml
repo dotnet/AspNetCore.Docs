@@ -1,0 +1,4 @@
+<add name="All Errors"
+    eventName="All Errors"
+    provider="MySqlWebEventProvider"
+    profile="Critical"/>

@@ -1,0 +1,1 @@
+var myConnection = $.connection('/echo');
