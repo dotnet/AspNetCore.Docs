@@ -170,6 +170,7 @@ namespace ContosoUniversity.Controllers
 
             var students = from s in _context.Students
                            select s;
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.Contains(searchString)
