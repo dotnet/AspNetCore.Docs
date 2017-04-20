@@ -165,9 +165,16 @@ Although the source code is open, Entity Framework Core is fully supported as a 
 
 To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
+<a id="dynamic-linq">
+## Use dynamic LINQ to simplify sort selection code
+
+The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ code by hard-coding column names in a `switch` statement. With two columns to choose from, this works fine, but if you have many columns the code could get verbose. To solve that problem, you can use the `EF.Property` method to specify the name of the property as a string. To try out this approach, replace the `Index` method in the `StudentsController` with the following code.
+
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DynamicLinq)]
+
 ## Next steps
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. 
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application.
 
 For more information about EF Core, see the [Entity Framework Core documentation](https://docs.microsoft.com/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 

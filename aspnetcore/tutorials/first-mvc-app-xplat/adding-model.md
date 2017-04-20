@@ -28,7 +28,7 @@ Build the app to verify you don't have any errors, and you've finally added a **
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,16-17,20-23)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,17-18,21-)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
@@ -70,7 +70,7 @@ The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upd
 
 You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
 
-This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model later, you just drop the database, and the next time the app runs, EF Core creates a new database to match your new data model.
+This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model, you drop the database. The next time the app runs, EF Core creates a new database to match your new data model.
 
 This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
 
