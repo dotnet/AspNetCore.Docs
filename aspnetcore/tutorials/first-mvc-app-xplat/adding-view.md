@@ -23,5 +23,5 @@ Add an `Index` view for the `HelloWorldController`.
 [!INCLUDE[adding-view2](../../includes/mvc-intro/adding_view2.md)]
 
 >[!div class="step-by-step"]
-[Previous](adding-controller.md)
-[Next](adding-model.md)
+[Previous - Add a controller](adding-controller.md)
+[Next - Add a model](adding-model.md)

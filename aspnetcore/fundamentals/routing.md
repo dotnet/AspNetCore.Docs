@@ -70,8 +70,7 @@ The primary inputs to `GetVirtualPath` are:
 
 Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it is possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to get services or additional data associated with the current context.
 
->[!TIP]
-> Think of `Values` as being a set of overrides for the `AmbientValues`. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
+Tip: Think of `Values` as being a set of overrides for the `AmbientValues`. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
 The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL as well as the some additional properties that should be set by the route.
 
@@ -87,8 +86,7 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
-> [!NOTE]
-> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Routing to Controller Actions](../mvc/controllers/routing.md).
+Note: `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Routing to Controller Actions](../mvc/controllers/routing.md).
 
 This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
 
@@ -129,8 +127,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{id?}");
 ```
 
->[!TIP]
-> The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.
+Tip: The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.
 
 This example demonstrates a few more features:
 
@@ -164,8 +161,7 @@ This template will match a URL path like `/en-US/Products/5` and will extract th
 
 The `Route` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path.
 
->[!TIP]
-> To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the `Route` class.
+Tip: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the `Route` class.
 
 This example uses a basic ASP.NET MVC style route:
 
@@ -179,8 +175,7 @@ With the route values `{ controller = Products, action = List }`, this route wil
 
 With the route values `{ controller = Home, action = Index }`, this route will generate the URL `/`. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
 
->[!TIP]
-> An app using ASP.NET MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
+Tip: An app using ASP.NET MVC should use `UrlHelper` to generate URLs instead of calling into routing directly.
 
 For more details about the URL generation process, see [url-generation-reference](#url-generation-reference).
 
@@ -290,8 +285,7 @@ The following table demonstrates some route templates and their behavior.
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
->[!TIP]
-> Enable [Logging](logging.md) to see how the built in routing implementations, such as `Route`, match requests.
+Tip: Enable [Logging](logging.md) to see how the built in routing implementations, such as `Route`, match requests.
 
 ## Route Constraint Reference
 

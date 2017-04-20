@@ -19,11 +19,11 @@ In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Fol
 
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1&highlight=7)]
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
-In addition to the properties you'd expect to model a movie, the `ID` field is required by the database for the primary key. Build the project. Build the app to verify you don't have any errors.
+The `ID` field is required by the database for the primary key. 
 
-We've finally added a **M**odel to our **M**VC app.
+Build the project to verify you don't have any errors, and you've finally added a **M**odel to your **M**VC app.
 
 ## Scaffolding a controller
 
@@ -58,23 +58,23 @@ Complete the **Add Controller** dialog:
 
 ![Add Controller dialog](adding-model/_static/add_controller2.png)
 
-The scaffolding engine creates the following:
-
 * A movies controller (*Controllers/MoviesController.cs*)
-* Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
+* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/\*.cshtml*)
 
-Scaffolding automatically created the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views for you. The automatic creation of CRUD action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
+The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
 If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
 
-```text
+```
 An unhandled exception occurred while processing the request.
 SqlException: Cannot open database "MvcMovieContext-<GUID removed>" 
 requested by the login. The login failed.
 Login failed for user Rick
 ```
 
-## Add EF tooling
+You need to create the database, and you'll use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
+
+## Add EF tooling for Migrations
 
 - In Solution Explorer, right click the **MvcMovie** project > **Edit MvcMovie.csproj**.
 
@@ -98,18 +98,20 @@ Note: The version numbers shown above were correct at the time of writing.
   dotnet ef database update
   ```
   
-## dotnet ef commands
+### dotnet ef commands
 
 * `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
 * `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
-* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add (or drop) the *Movie* table to the database
-* `dotnet ef database update`  Updates the database with the migration we just created
+* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter after "add" is a name that you assign to the migration. Here you're naming the migration "Initial" because it's the initial database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add the *Movie* table to the database.
+* `dotnet ef database update`  Updates the database with the migration we just created.
+
+You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app/new-field) tutorial.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
-### Additional resources
+## Additional resources
 
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
