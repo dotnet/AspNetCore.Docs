@@ -43,8 +43,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 [!code-csharp[Main](../fundamentals/localization/sample/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-> [!NOTE]
-> You generally want to only localize text and not HTML.
+Note: You generally want to only localize text and not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -80,8 +79,9 @@ A French resource file could contain the following:
 
 The rendered view would contain the HTML markup from the resource file.
 
-> [!NOTE]
-> You generally want to only localize text and not HTML.
+Notes:
+- View localization requires the "Localization.AspNetCore.TagHelpers" NuGet package.
+- You generally want to only localize text and not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
