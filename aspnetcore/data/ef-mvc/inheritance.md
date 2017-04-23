@@ -96,7 +96,7 @@ The command will fail at this point because you have existing data that migratio
 
 > The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_CourseAssignment_Person_InstructorID". The conflict occurred in database "ContosoUniversity09133", table "dbo.Person", column 'ID'.
 
-Open *Migrations<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
+Open *Migrations\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
