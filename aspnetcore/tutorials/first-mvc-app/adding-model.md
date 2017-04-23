@@ -84,7 +84,9 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 [!code-xml[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?range=22-25&highlight=3)] 
 
-Save your changes. Note: The version numbers shown above were correct at the time of writing.
+Note: The version numbers shown above were correct at the time of writing.
+
+Save your changes. 
 
 ## Add initial migration and update the database
 
