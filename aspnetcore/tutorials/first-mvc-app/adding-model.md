@@ -86,6 +86,8 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 Note: The version numbers shown above were correct at the time of writing.
 
+Save your changes. 
+
 ## Add initial migration and update the database
 
 * Open a command prompt and navigate to the project directory. (The directory containing the *Startup.cs* file).
