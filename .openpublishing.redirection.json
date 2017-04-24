@@ -2,7 +2,7 @@
   "redirections": [ 
     {   
         "source_path": "aspnetcore/client-side/cdn.md", 
-        "redirect_url": "/aspnet/core//client-side/", 
+        "redirect_url": "/aspnet/core/client-side/", 
         "redirect_document_id": false 
     }, 
     {   
