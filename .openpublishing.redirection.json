@@ -31,8 +31,8 @@
         "redirect_document_id": false 
     }, 
     {   
-        "source_path": "aspnetcore/mvc/advanced/custom-view-engine.md", 
-        "redirect_url": "/aspnet/core/mvc/advanced/", 
+        "source_path": "aspnetcore/mvc/views/custom-view-engine.md", 
+        "redirect_url": "/aspnet/core/mvc/views/", 
         "redirect_document_id": false 
     }, 
     {   
