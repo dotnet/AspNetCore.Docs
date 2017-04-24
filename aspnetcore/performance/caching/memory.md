@@ -84,7 +84,7 @@ The following sample shows how to expire a cache entry if a dependent entry expi
 
 Using a `CancellationTokenSource` allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` block will inherit triggers and expiration settings.
 
-### Addition notes
+### Additional notes
 
 - When using a callback to repopulate a cache item:
 
