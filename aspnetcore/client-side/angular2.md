@@ -3,9 +3,9 @@
 
 By [Fiyaz Hasan](http://fiyazhasan.me/)
 
-In this article, you will learn how to build a SPA-style ASP.NET with Angular using SpaServices.
+In this article, you will learn how to build a SPA-style ASP.NET with Angular using [SpaServices](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices).
 
-## Using SpaServices for ASP.NET Core
+## Using SpaServices with ASP.NET Core
 
 SPAs (Single-Page Applications) are very popular these days and also great for rich end user experience when it comes to building web applications. But integrating client side SPA frameworks such as Angular / React with server-side framework like ASP.NET Core can be challenging. To ease up the process of integration and keep the client side and server side in-harmony with each other, ASP.NET Core team shipped [SpaServices](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices) as a Nuget package which can be used while building applications using SPA frameworks. 
 
