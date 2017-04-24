@@ -6,6 +6,6 @@
 # [Using Angular for Single Page Applications (SPAs)](angular.md)
 # [Styling applications with Less, Sass, and Font Awesome](less-sass-fa.md)
 # [Bundling and minification](bundling-and-minification.md)
-# [🔧 Working with a Content Delivery Network (CDN)](cdn.md)
+<!--# [🔧 Working with a Content Delivery Network (CDN)](cdn.md)-->
 # [Building Projects with Yeoman](yeoman.md)
 # [Using Browser Link](using-browserlink.md)
