@@ -129,7 +129,7 @@ This changes the heading to "Departments" deletes the RowVersion column, and sho
 
 ## Update the Edit methods in the Departments controller
 
-In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, also add eager loading for the Administrator.
+In both the HttpGet `Edit` method and the `Details` method, add `AsNoTracking`. In the HttpGet `Edit` method, add eager loading for the Administrator.
 
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EagerLoading&highlight=2,3)]
 
