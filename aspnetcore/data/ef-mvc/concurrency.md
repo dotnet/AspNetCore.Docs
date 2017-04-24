@@ -43,7 +43,7 @@ The alternative to pessimistic concurrency is optimistic concurrency. Optimistic
 
 ![Changing budget to 0](concurrency/_static/change-budget.png)
 
-Before Jane clicks **Save**, John visits the same page and changes the Start Date field from 9/1/2007 to 8/8/2013.
+Before Jane clicks **Save**, John visits the same page and changes the Start Date field from 9/1/2007 to 9/1/2013.
 
 ![Changing start date to 2013](concurrency/_static/change-date.png)
 
@@ -61,7 +61,7 @@ Some of the options include the following:
 
 * You can let John's change overwrite Jane's change.
 
-     The next time someone browses the English department, they'll see 8/8/2013 and the restored $350,000.00 value. This is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) As noted in the introduction to this section, if you don't do any coding for concurrency handling, this will happen automatically.
+     The next time someone browses the English department, they'll see 9/1/2013 and the restored $350,000.00 value. This is called a *Client Wins* or *Last in Wins* scenario. (All values from the client take precedence over what's in the data store.) As noted in the introduction to this section, if you don't do any coding for concurrency handling, this will happen automatically.
 
 * You can prevent John's change from being updated in the database.
 
