@@ -16,5 +16,3 @@ ms.prod: asp.net-core
 
 * [Working with the Application Model](../controllers/application-model.md)
 * [Application parts](app-parts.md)
-* [🔧 Creating a Custom View Engine](custom-view-engine.md)
-* [🔧 Custom formatters](custom-formatters.md)
