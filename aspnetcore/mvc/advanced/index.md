@@ -16,3 +16,4 @@ ms.prod: asp.net-core
 
 * [Working with the Application Model](../controllers/application-model.md)
 * [Application parts](app-parts.md)
+* [Custom formatters](custom-formatters.md)
