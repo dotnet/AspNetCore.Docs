@@ -47,7 +47,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 [!code-csharp[Main](middleware/sample/Chain/Startup.cs?name=snippet1)]
 
 >[!WARNING]
-> Do not call `next` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
+> Do not call `next.Invoke` after the response has been sent to the client. Changes to `HttpResponse` after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling `next`:
 > - May cause a protocol violation. For example, writing more than the stated `content-length`) 
 > - May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
