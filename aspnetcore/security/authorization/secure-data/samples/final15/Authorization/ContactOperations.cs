@@ -12,7 +12,7 @@ namespace ContactManager.Authorization
         public static OperationAuthorizationRequirement Read = new OperationAuthorizationRequirement { Name = Constants.ReadOperationName };  
         public static OperationAuthorizationRequirement Update = new OperationAuthorizationRequirement { Name = Constants.UpdateOperationName }; 
         public static OperationAuthorizationRequirement Delete = new OperationAuthorizationRequirement { Name = Constants.DeleteOperationName };
-        public static OperationAuthorizationRequirement ContainsOne = new OperationAuthorizationRequirement { Name = Constants.ContainsOne };
+        
     }
 
     public class Constants
@@ -22,10 +22,13 @@ namespace ContactManager.Authorization
         public static readonly string UpdateOperationName = "Update";
         public static readonly string DeleteOperationName = "Delete";
 
-        public static readonly string OperationRolePrefix = "can";
+        public static readonly string ContactAdministratorsRole = "ContactAdministrators";
+        public static readonly string ContactUsersRole = "ContactUsers";
+        public static readonly string ContactAdminPolicy = "ContactAdminPolicy";
+        public static readonly string ContactUserPolicy = "ContactUserPolicy";
+        public static readonly string ContactGuestPolicy = "ContactGuestPolicy";
 
-        public static readonly string ContainsOne = "ContainsOne";
+        
     }
 }
 
-// operations are not permission, permissions are what grant operations

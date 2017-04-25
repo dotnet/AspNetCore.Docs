@@ -64,33 +64,43 @@ namespace ContactManager
             });
             #endregion
 
-            #region snippet_defaultPolicy
-            // Default authentication policy will require authenticated user.
-            services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                                 .RequireAuthenticatedUser()
-                                 .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            });
-            #endregion
-
+            
             services.AddAuthorization(options =>
             {
+                options.AddPolicy(
+                Constants.ContactAdminPolicy,
+                authBuilder =>
+                {
+                    authBuilder.RequireRole(Constants.ContactAdministratorsRole);
+                });
+
+                options.AddPolicy(
+                Constants.ContactUserPolicy,
+                authBuilder =>
+                {
+                    authBuilder.RequireRole(Constants.ContactUsersRole, Constants.ContactAdministratorsRole);
+                });
+
+                options.AddPolicy(
+                Constants.ContactGuestPolicy,
+                authBuilder =>
+                {
+                    authBuilder.RequireAuthenticatedUser();
+                });
+
 
             });
 
             // Authorization handlers.
             #region snippet_AddScoped
-            services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
             #endregion
 
             #region snippet_ContactRoleAuthorizationHandler
-            services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ContactAdministratorsAuthorizationHandler>();
             #endregion
 
-            // ContactHasOne requires EF.
-            services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

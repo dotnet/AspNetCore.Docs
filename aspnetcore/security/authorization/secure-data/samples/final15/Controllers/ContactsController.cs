@@ -32,6 +32,7 @@ namespace ContactManager.Controllers
         #endregion
 
         // GET: Contacts
+        [Authorize(Policy = "ContactGuestPolicy")]
         public async Task<IActionResult> Index(int? id)
         {
             var viewName = id == null ? "Index" : $"Index{id}";
@@ -40,6 +41,7 @@ namespace ContactManager.Controllers
         }
 
         // GET: Contacts/Details/5
+        [Authorize(Policy = "ContactGuestPolicy")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,6 +59,7 @@ namespace ContactManager.Controllers
         }
 
         // GET: Contacts/Create
+        [Authorize(Policy = "ContactUserPolicy")]
         public IActionResult Create()
         {
             //return View();
@@ -74,9 +77,17 @@ namespace ContactManager.Controllers
         // POST: Contacts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Create(
                     [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
         {
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Create);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
+
             if (ModelState.IsValid)
             {
                 contact.OwnerID = _userManager.GetUserId(User);
@@ -90,6 +101,7 @@ namespace ContactManager.Controllers
 
         // GET: Contacts/Edit/5
         #region snippet_Edit
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +129,7 @@ namespace ContactManager.Controllers
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Edit(int id, 
             [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
         {
@@ -170,6 +183,7 @@ namespace ContactManager.Controllers
 
         // GET: Contacts/Delete/5
         #region snippet_Delete
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -196,6 +210,7 @@ namespace ContactManager.Controllers
         // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);

@@ -10,10 +10,10 @@ namespace ContactManager.Authorization
                 : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
     {
         UserManager<ApplicationUser> _userManager;
-
+        
         public ContactIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager)
         {
-            _userManager = userManager;
+            _userManager = userManager;  
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
@@ -28,6 +28,15 @@ namespace ContactManager.Authorization
             if (resource == null)
             {
                 return Task.FromResult(0);
+            }
+
+            if(requirement.Name == Constants.CreateOperationName)
+            {
+                if (context.User.IsInRole(Constants.ContactUsersRole))
+                {
+                    context.Succeed(requirement);
+                    return Task.FromResult(0);
+                }
             }
 
             if (resource.OwnerID == _userManager.GetUserId(context.User))

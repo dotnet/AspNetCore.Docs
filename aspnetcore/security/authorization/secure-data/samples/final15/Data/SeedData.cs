@@ -21,15 +21,21 @@ namespace ContactManager.Data
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
-                var uid = await CreateTestUser(serviceProvider, testUserPw);
-                await CreateCanDeleteRole(serviceProvider, uid, Constants.OperationRolePrefix + Constants.DeleteOperationName);
-                SeedDB(context, uid);
+                // for sample purposes we are seeding 2 users both with the same password coming from config/usersecret
+                // admin user can do anything
+                var adminUid = await EnsureAdminUser(serviceProvider, testUserPw);
+                await EnsureAdminRole(serviceProvider, adminUid, Constants.ContactAdministratorsRole);
+
+                // allowed user can create and edit contacts that they create
+                var uid = await EnsureAllowedUser(serviceProvider, testUserPw);
+                await EnsureUserRole(serviceProvider, uid, Constants.ContactUsersRole);
+                SeedDB(context, adminUid);
             }
         }
         #endregion
-        private static async Task<string> CreateTestUser(IServiceProvider serviceProvider, string testUserPw)
+        private static async Task<string> EnsureAdminUser(IServiceProvider serviceProvider, string testUserPw)
         {
-            const string SeedUserName = "test@example.com";
+            const string SeedUserName = "admin@contoso.com";
 
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
@@ -43,23 +49,59 @@ namespace ContactManager.Data
             return user.Id;
         }
 
-        #region snippet_CreateCanDeleteRole
-        private static async Task<IdentityResult> CreateCanDeleteRole(IServiceProvider serviceProvider,
-                                                                       string uid, string canDeleteRole)
+        private static async Task<string> EnsureAllowedUser(IServiceProvider serviceProvider, string testUserPw)
+        {
+            const string SeedUserName = "user@contoso.com";
+
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+
+            var user = await userManager.FindByNameAsync(SeedUserName);
+            if (user == null)
+            {
+                user = new ApplicationUser { UserName = SeedUserName };
+                await userManager.CreateAsync(user, testUserPw);
+            }
+
+            return user.Id;
+        }
+
+        #region snippet_CreateRoles
+        private static async Task<IdentityResult> EnsureAdminRole(IServiceProvider serviceProvider,
+                                                                       string uid, string adminRole)
         {
             IdentityResult IR = null;
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
 
-            if (!await roleManager.RoleExistsAsync(canDeleteRole))
+            if (!await roleManager.RoleExistsAsync(adminRole))
             {
-                IR = await roleManager.CreateAsync(new IdentityRole(canDeleteRole));
+                IR = await roleManager.CreateAsync(new IdentityRole(adminRole));
             }
 
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByIdAsync(uid);
 
-            IR = await userManager.AddToRoleAsync(user, canDeleteRole);
+            IR = await userManager.AddToRoleAsync(user, adminRole);
+
+            return IR;
+        }
+
+        private static async Task<IdentityResult> EnsureUserRole(IServiceProvider serviceProvider,
+                                                                       string uid, string userRole)
+        {
+            IdentityResult IR = null;
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+
+            if (!await roleManager.RoleExistsAsync(userRole))
+            {
+                IR = await roleManager.CreateAsync(new IdentityRole(userRole));
+            }
+
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+
+            var user = await userManager.FindByIdAsync(uid);
+
+            IR = await userManager.AddToRoleAsync(user, userRole);
 
             return IR;
         }
