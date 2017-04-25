@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using CustomModelBindingSample.Data;
+using CustomModelBindingSample.Binders;
 
 namespace CustomModelBindingSample
 {
@@ -26,13 +27,18 @@ namespace CustomModelBindingSample
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region callout
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase());
-            // Add framework services.
-            services.AddMvc();
+
+            services.AddMvc(options =>
+            {
+                // add custom binder to beginning of collection
+                options.ModelBinderProviders.Insert(0, new AuthorEntityBinderProvider());
+            });
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, 

@@ -8,7 +8,7 @@ namespace CustomModelBindingSample.Controllers
     [Route("api/[controller]")]
     public class BoundAuthorsController : Controller
     {
-        // GET: api/authors/get/1
+        // GET: api/boundauthors/1
         [HttpGet("{id}")]
         public IActionResult GetById(Author author)
         {
@@ -24,6 +24,16 @@ namespace CustomModelBindingSample.Controllers
                 }
                 return BadRequest(ModelState);
             }
+            return Ok(author);
+        }
+
+        // GET: api/boundauthors/get/1
+        [HttpGet("get/{authorId}")]
+        public IActionResult GetById2(Author author)
+        {
+            // this example works with the AuthorEntityBinderProvider
+            // you must remove the ModelBinder attribute from Author
+            // for this provider to work
             return Ok(author);
         }
     }

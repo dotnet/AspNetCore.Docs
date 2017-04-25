@@ -22,9 +22,16 @@ namespace CustomModelBindingSample.Binders
                 throw new ArgumentNullException(nameof(bindingContext));
             }
 
-            // get the value of the appropriate argument
+            // specify a default argument name if none is set
+            var modelName = bindingContext.ModelName;
+            if(string.IsNullOrEmpty(modelName))
+            {
+                modelName = "authorId";
+            }
+
+            // attempt to fetch the value of the argument by name
             var valueProviderResult = 
-                bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+                bindingContext.ValueProvider.GetValue(modelName);
 
             // check if no matching argument exists
             if (valueProviderResult == ValueProviderResult.None)
@@ -32,7 +39,7 @@ namespace CustomModelBindingSample.Binders
                 return TaskCache.CompletedTask;
             }
 
-            bindingContext.ModelState.SetModelValue(bindingContext.ModelName,
+            bindingContext.ModelState.SetModelValue(modelName,
                 valueProviderResult);
 
             var value = valueProviderResult.FirstValue;
