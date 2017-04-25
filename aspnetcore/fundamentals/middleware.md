@@ -56,7 +56,7 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 
 
 >- Calling `next` may send the response to the client. Changes made to the `HttpResponse` after calling `next` will be lost if the response has been sent. Use [HttpResponse.HasStarted](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.httpresponsefeature#Microsoft_AspNetCore_Http_Features_HttpResponseFeature_HasStarted) to check whether the headers have been sent.
->- Do **not** call `next.Invoke` after calling a `write` method. A middleware component either produces a response or calls `next.Invoke`, but not both.
+>- Do **not** call `next.Invoke` after calling a `Write` method. A middleware component either produces a response or calls `next.Invoke`, but not both.
 
 ## Ordering
 
