@@ -53,11 +53,6 @@ You can chain multiple request delegates together with [app.Use](https://docs.mi
 >
 > [HttpResponse.HasStarted](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.httpresponsefeature#Microsoft_AspNetCore_Http_Features_HttpResponseFeature_HasStarted) is a useful hint to indicate if headers have been sent and/or the body has been written to.
 
-
-
->- Calling `next` may send the response to the client. Changes made to the `HttpResponse` after calling `next` will be lost if the response has been sent. Use [HttpResponse.HasStarted](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.httpresponsefeature#Microsoft_AspNetCore_Http_Features_HttpResponseFeature_HasStarted) to check whether the headers have been sent.
->- Do **not** call `next.Invoke` after calling a `Write` method. A middleware component either produces a response or calls `next.Invoke`, but not both.
-
 ## Ordering
 
 The order that middleware components are added in the `Configure` method defines the order in which they are invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.
