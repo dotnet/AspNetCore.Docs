@@ -37,7 +37,7 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 
 Run `dotnet publish` from your dev environment to package your application into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to `http://<serveraddress>:<port>` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
+Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app, for example by running `dotnet yourapp.dll`, and then navigate to `http://<serveraddress>:<port>` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
 
 > [!NOTE]
 > You can use [Yeoman](../client-side/yeoman.md) to create a new ASP.NET Core application for a new project.
