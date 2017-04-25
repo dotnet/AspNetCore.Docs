@@ -17,13 +17,31 @@ namespace CustomModelBindingSample.Controllers
             _env = env;
         }
 
+        #region post1
         // POST: api/image
         [HttpPost]
-        public void Post([ModelBinder(BinderType = typeof(ByteArrayModelBinder))]byte[] file, string filename)
+        public void Post(byte[] file, string filename)
         {
             string filePath = Path.Combine(_env.ContentRootPath, "wwwroot/images/upload", filename);
             if (System.IO.File.Exists(filePath)) return;
             System.IO.File.WriteAllBytes(filePath, file);
         }
+        #endregion
+
+        #region post2
+        [HttpPost("Profile")]
+        public void SaveProfile(ProfileViewModel model)
+        {
+            string filePath = Path.Combine(_env.ContentRootPath, "wwwroot/images/upload", model.FileName);
+            if (System.IO.File.Exists(model.FileName)) return;
+            System.IO.File.WriteAllBytes(filePath, model.File);
+        }
+
+        public class ProfileViewModel
+        {
+            public byte[] File { get; set; }
+            public string FileName { get; set; }
+        }
+        #endregion
     }
 }
