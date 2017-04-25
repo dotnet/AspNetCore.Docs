@@ -1,6 +1,41 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/client-side/cdn.md", 
+        "redirect_url": "/aspnet/core/client-side/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/performance/measuring.md", 
+        "redirect_url": "/aspnet/core/performance/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/authentication/oauth2.md", 
+        "redirect_url": "/aspnet/core/security/authentication/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/security/open-redirect.md", 
+        "redirect_url": "/aspnet/core/security/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/mvc/views/html-helpers.md", 
+        "redirect_url": "/aspnet/core/mvc/views/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/mvc/web-api/json-patch.md", 
+        "redirect_url": "/aspnet/core/mvc/web-api/", 
+        "redirect_document_id": false 
+    }, 
+    {   
+        "source_path": "aspnetcore/mvc/views/custom-view-engine.md", 
+        "redirect_url": "/aspnet/core/mvc/views/", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/hosting/dataprotection.md", 
         "redirect_url": "/aspnet/core/publishing/iis", 
         "redirect_document_id": false 

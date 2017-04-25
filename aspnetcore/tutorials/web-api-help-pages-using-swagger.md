@@ -45,14 +45,13 @@ You can add Swashbuckle with any of the following approaches:
 * From the Package Manager Console:
 
 ```bash
-Install-Package Swashbuckle.AspNetCore -Pre
+Install-Package Swashbuckle.AspNetCore
    ```
 
 * In Visual Studio:
 
      * Right click your project in Solution Explorer > Manage NuGet Packages
      * Enter Swashbuckle.AspNetCore in the search box
-     * Check "Include prerelease"
      * Set the Package source to nuget.org
      * Tap the Swashbuckle.AspNetCore package and then tap Install
 
