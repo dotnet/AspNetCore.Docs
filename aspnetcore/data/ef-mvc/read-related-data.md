@@ -161,7 +161,7 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 ### Modify the Instructor Index view
 
-In *Views/Instructor/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
+In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,18-19,41-54,56)]
 
