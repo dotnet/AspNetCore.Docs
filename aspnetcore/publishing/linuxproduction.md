@@ -20,8 +20,7 @@ By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 16.04 Server.
 
-> [!NOTE]
-> For Ubuntu 14.04 supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
+Note: For Ubuntu 14.04 supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
 
 We will take an existing ASP.NET Core application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
 
@@ -35,12 +34,13 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 
 ## Copy over your app
 
-Run `dotnet publish` from your dev environment to package your application into a self-contained directory that can run on your server.
+Run `dotnet publish` from your dev environment to package your app into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to `http://<serveraddress>:<port>` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
-
-> [!NOTE]
-> You can use [Yeoman](../client-side/yeoman.md) to create a new ASP.NET Core application for a new project.
+Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Test your app, for example:
+ - From the command line, run  `dotnet yourapp.dll`
+ - In a browser, navigate to `http://<serveraddress>:<port>` to verify you app works on Linux. 
+ 
+Note: You can use [Yeoman](../client-side/yeoman.md) to create a new ASP.NET Core application for a new project.
 
 ## Configure a reverse proxy server
 
@@ -59,15 +59,15 @@ Because requests are forwarded by reverse-proxy, use `ForwardedHeaders` middlewa
 Add `UseForwardedHeaders` to `Configure` before calling `app.UseFacebookAuthentication` or similar:
 
 ```csharp
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 ```
 
 ### Install Nginx
 
-```
+```bash
 sudo apt-get install nginx
 ```
 
@@ -115,60 +115,60 @@ Nginx is now setup to forward requests made to `http://localhost:80` on to the A
 Create the service definition file 
 
 ```bash
-    sudo nano /etc/systemd/system/kestrel-hellomvc.service
+sudo nano /etc/systemd/system/kestrel-hellomvc.service
 ```
 
 An example service file for our application.
 
-```text
+```ini
 [Unit]
-    Description=Example .NET Web API Application running on Ubuntu
+Description=Example .NET Web API Application running on Ubuntu
 
-    [Service]
-    WorkingDirectory=/var/aspnetcore/hellomvc
-    ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
-    Restart=always
-    RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
-    SyslogIdentifier=dotnet-example
-    User=www-data
-    Environment=ASPNETCORE_ENVIRONMENT=Production 
+[Service]
+WorkingDirectory=/var/aspnetcore/hellomvc
+ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+Restart=always
+RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=dotnet-example
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production 
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 ```
 
 > [!NOTE]
-> **User** -- If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 
 ```bash
-    systemctl enable kestrel-hellomvc.service
+systemctl enable kestrel-hellomvc.service
 ```
 
 Start the service and verify that it is running.
 
 ```
-    systemctl start kestrel-hellomvc.service
-    systemctl status kestrel-hellomvc.service
+systemctl start kestrel-hellomvc.service
+systemctl status kestrel-hellomvc.service
 
-    ● kestrel-hellomvc.service - Example .NET Web API Application running on Ubuntu
-        Loaded: loaded (/etc/systemd/system/kestrel-hellomvc.service; enabled)
-        Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
-    Main PID: 9021 (dotnet)
-        CGroup: /system.slice/kestrel-hellomvc.service
-                └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+● kestrel-hellomvc.service - Example .NET Web API Application running on Ubuntu
+    Loaded: loaded (/etc/systemd/system/kestrel-hellomvc.service; enabled)
+    Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
+Main PID: 9021 (dotnet)
+    CGroup: /system.slice/kestrel-hellomvc.service
+            └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
 With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the **Server** still shows the ASP.NET Core application being served by Kestrel.
 
 ```text
-    HTTP/1.1 200 OK
-    Date: Tue, 11 Oct 2016 16:22:23 GMT
-    Server: Kestrel
-    Keep-Alive: timeout=5, max=98
-    Connection: Keep-Alive
-    Transfer-Encoding: chunked
+HTTP/1.1 200 OK
+Date: Tue, 11 Oct 2016 16:22:23 GMT
+Server: Kestrel
+Keep-Alive: timeout=5, max=98
+Connection: Keep-Alive
+Transfer-Encoding: chunked
 ```
 
 ### Viewing logs
@@ -176,13 +176,13 @@ With the reverse proxy configured and Kestrel managed through systemd, the web a
 Since the web application using Kestrel is managed using systemd, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by systemd. To view the `kestrel-hellomvc.service` specific items, use the following command.
 
 ```bash
-    sudo journalctl -fu kestrel-hellomvc.service
+sudo journalctl -fu kestrel-hellomvc.service
 ```
 
 For further filtering, time options such as `--since today`, `--until 1 hour ago` or a combination of these can reduce the amount of entries returned.
 
 ```bash
-    sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
+sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
 ```
 
 ## Securing our application
@@ -267,7 +267,7 @@ Clickjacking is a malicious technique to collect an infected user's clicks. Clic
 Edit the nginx.conf file.
 
 ```bash
-    sudo nano /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 ```
 
 Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
@@ -279,7 +279,7 @@ This header prevents Internet Explorer from MIME-sniffing a response away from t
 Edit the nginx.conf file.
 
 ```bash
-    sudo nano /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 ```
 
 Add the the line `add_header X-Content-Type-Options "nosniff"` and save the file, then restart Nginx.
