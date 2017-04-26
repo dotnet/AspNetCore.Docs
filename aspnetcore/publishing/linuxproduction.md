@@ -20,8 +20,7 @@ By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 16.04 Server.
 
-> [!NOTE]
-> For Ubuntu 14.04 supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
+Note: For Ubuntu 14.04 supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
 
 We will take an existing ASP.NET Core application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
 
@@ -37,7 +36,7 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 
 Run `dotnet publish` from your dev environment to package your app into a self-contained directory that can run on your server.
 
-Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Run your app, for example:
+Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Test your app, for example:
  - From the command line, run  `dotnet yourapp.dll`
  - In a browser, navigate to `http://<serveraddress>:<port>` to verify you app works on Linux. 
  
