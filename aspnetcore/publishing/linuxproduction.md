@@ -35,12 +35,13 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 
 ## Copy over your app
 
-Run `dotnet publish` from your dev environment to package your application into a self-contained directory that can run on your server.
+Run `dotnet publish` from your dev environment to package your app into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app, for example by running `dotnet yourapp.dll`, and then navigate to `http://<serveraddress>:<port>` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
-
-> [!NOTE]
-> You can use [Yeoman](../client-side/yeoman.md) to create a new ASP.NET Core application for a new project.
+Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Run your app, for example:
+ - From the command line, run  `dotnet yourapp.dll`
+ - In a browser, navigate to `http://<serveraddress>:<port>` to verify you app works on Linux. 
+ 
+Note: You can use [Yeoman](../client-side/yeoman.md) to create a new ASP.NET Core application for a new project.
 
 ## Configure a reverse proxy server
 
