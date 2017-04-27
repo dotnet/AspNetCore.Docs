@@ -27,7 +27,7 @@ namespace CustomModelBindingSample.Controllers
 
         // GET: api/boundauthors/get/1
         #region demo2
-        [HttpGet("get/{id}")]
+        [HttpGet("get/{authorId}")]
         public IActionResult GetById2(Author author)
         {
             // this example works with the AuthorEntityBinderProvider
