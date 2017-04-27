@@ -70,7 +70,7 @@ The simplest approach is to use the `ModelBinderAttribute`. With this attribute,
 
 The `AuthorEntityBinder` takes in an instance of `AppDbContext`. After confirming the expected input (in this case, "id", as specified in the attribute above) is present, it casts it to an integer and uses it to retrieve the associated entity. If successful, the result is set on the binding context. If model binding fails, the argument passed to the action method is set to `null`.
 
-[!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo&highlight=2)]
+[!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
 
 > Note:
 > The preceding example's default model name logic can be omitted if you always specify the `Name` on the `ModelBinderAttribute`.

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CustomModelBindingSample.Binders
 {
+    #region demo
     public class AuthorEntityBinder : IModelBinder
     {
         private readonly AppDbContext _db;
@@ -15,6 +16,7 @@ namespace CustomModelBindingSample.Binders
         {
             _db = db;
         }
+
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
             if (bindingContext == null)
@@ -24,10 +26,10 @@ namespace CustomModelBindingSample.Binders
 
             // specify a default argument name if none is set
             var modelName = bindingContext.ModelName;
-            //if (string.IsNullOrEmpty(modelName))
-            //{
-            //    modelName = "authorId";
-            //}
+            if (string.IsNullOrEmpty(modelName))
+            {
+                modelName = "authorId";
+            }
 
             // attempt to fetch the value of the argument by name
             var valueProviderResult =
@@ -65,4 +67,5 @@ namespace CustomModelBindingSample.Binders
             return TaskCache.CompletedTask;
         }
     }
+    #endregion
 }
