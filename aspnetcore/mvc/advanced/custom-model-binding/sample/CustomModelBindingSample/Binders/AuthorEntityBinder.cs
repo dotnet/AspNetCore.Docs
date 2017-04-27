@@ -24,8 +24,8 @@ namespace CustomModelBindingSample.Binders
                 throw new ArgumentNullException(nameof(bindingContext));
             }
 
-            // specify a default argument name if none is set
-            var modelName = bindingContext.ModelName;
+            // specify a default argument name if none is set by ModelBinderAttribute
+            var modelName = bindingContext.BinderModelName;
             if (string.IsNullOrEmpty(modelName))
             {
                 modelName = "authorId";

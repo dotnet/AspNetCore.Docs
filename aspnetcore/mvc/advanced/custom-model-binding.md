@@ -68,21 +68,17 @@ The simplest approach is to use the `ModelBinderAttribute`. With this attribute,
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Data/Author.cs?highlight=10)]
 
-The `AuthorEntityBinder` takes in an instance of `AppDbContext`. After confirming the expected input (in this case, "id", as specified in the attribute above) is present, it casts it to an integer and uses it to retrieve the associated entity. If successful, the result is set on the binding context. If model binding fails, the argument passed to the action method is set to `null`.
+The `AuthorEntityBinder` takes in an instance of `AppDbContext`. After confirming the expected input ("authorId" by default, or set using another `ModelBinderAttribute`) is present, it casts it to an integer and uses it to retrieve the associated entity. If successful, the result is set on the binding context. If model binding fails due to the input being the wrong type, a model state error is added. Otherwise, if no record is found for the id specified, the argument passed to the action method is set to `null`.
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
-
-> Note:
-> The preceding example's default model name logic can be omitted if you always specify the `Name` on the `ModelBinderAttribute`.
 
 The `AuthorEntityBinder` allows action methods to use the `Author` entity directly:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-Using this approach, both the controller and action method are simplified compared to performing the same work in the controller, since the `AppDbContext` is no longer required by the action or controller.
+In this example, since the name of the argument is not the default `authorId`, it's specified on the parameter using `ModelBinderAttribute`. Note that both the controller and action method are simplified compared to looking up the entity in the action method, since the `AppDbContext` is no longer required by the action or controller.
 
-> Note:
-> You can also apply the `ModelBinderAttribute` to individual model properties or to action method parameters to specify a certain model binder for just that type or action.
+You can apply the `ModelBinderAttribute` to individual model properties (such as on a viewmodel) or to action method parameters to specify a certain model binder or model name for just that type or action.
 
 ### Implementing a ModelBinderProvider
 

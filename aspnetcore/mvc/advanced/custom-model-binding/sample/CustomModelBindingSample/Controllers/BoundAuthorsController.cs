@@ -11,7 +11,7 @@ namespace CustomModelBindingSample.Controllers
         // GET: api/boundauthors/1
         #region demo1
         [HttpGet("{id}")]
-        public IActionResult GetById(Author author)
+        public IActionResult GetById([ModelBinder(Name = "id")]Author author)
         {
             if (author == null)
             {
