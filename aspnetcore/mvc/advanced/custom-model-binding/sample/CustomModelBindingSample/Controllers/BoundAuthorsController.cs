@@ -9,26 +9,25 @@ namespace CustomModelBindingSample.Controllers
     public class BoundAuthorsController : Controller
     {
         // GET: api/boundauthors/1
+        #region demo1
         [HttpGet("{id}")]
         public IActionResult GetById(Author author)
         {
+            if (author == null)
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
-                if (ModelState
-                    .Any(s => s.Key == "id" &&
-                         s.Value.Errors
-                            .Any(e => e.ErrorMessage.Contains("not found"))
-                        ))
-                {
-                    return NotFound();
-                }
                 return BadRequest(ModelState);
             }
             return Ok(author);
         }
+        #endregion
 
         // GET: api/boundauthors/get/1
-        [HttpGet("get/{authorId}")]
+        #region demo2
+        [HttpGet("get/{id}")]
         public IActionResult GetById2(Author author)
         {
             // this example works with the AuthorEntityBinderProvider
@@ -36,5 +35,6 @@ namespace CustomModelBindingSample.Controllers
             // for this provider to work
             return Ok(author);
         }
+        #endregion
     }
 }

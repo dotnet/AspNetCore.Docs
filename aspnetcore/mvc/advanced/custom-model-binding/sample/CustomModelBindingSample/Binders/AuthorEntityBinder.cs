@@ -24,13 +24,13 @@ namespace CustomModelBindingSample.Binders
 
             // specify a default argument name if none is set
             var modelName = bindingContext.ModelName;
-            if(string.IsNullOrEmpty(modelName))
-            {
-                modelName = "authorId";
-            }
+            //if (string.IsNullOrEmpty(modelName))
+            //{
+            //    modelName = "authorId";
+            //}
 
             // attempt to fetch the value of the argument by name
-            var valueProviderResult = 
+            var valueProviderResult =
                 bindingContext.ValueProvider.GetValue(modelName);
 
             // check if no matching argument exists
@@ -43,32 +43,25 @@ namespace CustomModelBindingSample.Binders
                 valueProviderResult);
 
             var value = valueProviderResult.FirstValue;
-            
+
             // check if the argument is null or empty
             if (string.IsNullOrEmpty(value))
             {
                 return TaskCache.CompletedTask;
             }
 
-            try
-            {
-                var model = _db.Authors.Find(int.Parse(value));
-                if(model == null)
-                {
-                    bindingContext.ModelState.TryAddModelError(
-                                        bindingContext.ModelName,
-                                        "Author not found.");
-                    return TaskCache.CompletedTask;
-                }
-                bindingContext.Result = ModelBindingResult.Success(model);
-            }
-            catch (Exception ex)
+            int id = 0;
+            if (!int.TryParse(value, out id))
             {
                 bindingContext.ModelState.TryAddModelError(
-                                    bindingContext.ModelName,
-                                    ex,
-                                    bindingContext.ModelMetadata);
+                                        bindingContext.ModelName,
+                                        "Author Id must be an integer.");
+                return TaskCache.CompletedTask;
             }
+
+            // model will be null if not found
+            var model = _db.Authors.Find(int.Parse(value));
+            bindingContext.Result = ModelBindingResult.Success(model);
             return TaskCache.CompletedTask;
         }
     }

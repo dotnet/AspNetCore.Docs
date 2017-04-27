@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomModelBindingSample.Data
 {
-    [ModelBinder(BinderType = typeof(AuthorEntityBinder), Name ="id")]
+    //[ModelBinder(BinderType = typeof(AuthorEntityBinder), Name ="id")]
     public class Author
     {
         public int Id { get; set; }
