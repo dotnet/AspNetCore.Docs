@@ -234,6 +234,14 @@ services.Configure<RequestLocalizationOptions>(options =>
    {
        var supportedCultures = new[]
        {
+           // Your application culture is already configured in service, 
+           // so you don't need to add your current culture here.
+           // Example - If your application is in en-US and you want your application to support both en-US and fr
+           // then you just need to add below code
+           
+           new CultureInfo("fr")
+           
+           // Else if your application is in en-AU and you want your application to support en-AU, en-US and fr then add below code
            new CultureInfo("en-US"),
            new CultureInfo("fr")
        };
