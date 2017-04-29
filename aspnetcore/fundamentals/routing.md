@@ -210,7 +210,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
 
     routeBuilder.MapRoute(
         "Track Package Route",
-        "package/{operation:regex(^track|create|detonate$)}/{id:int}");
+        "package/{operation:regex(^(track|create|detonate)$)}/{id:int}");
 
     routeBuilder.MapGet("hello/{name}", context =>
     {
@@ -344,7 +344,7 @@ Regular expressions used in routing will often start with the `^` character (mat
 
 Refer to [.NET Framework Regular Expressions](https://msdn.microsoft.com/en-us/library/hs600312(v=vs.110).aspx) for more information on regular expression syntax.
 
-To constrain a parameter to a known set of possible values, use a regular expression. For example `{action:regex(list|get|create)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+To constrain a parameter to a known set of possible values, use a regular expression. For example `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "^(list|get|create)$" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
 ## URL Generation Reference
 
