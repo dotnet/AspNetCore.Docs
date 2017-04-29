@@ -68,13 +68,6 @@ namespace ContactManager
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(
-                Constants.ContactAdminPolicy,
-                authBuilder =>
-                {
-                    authBuilder.RequireRole(Constants.ContactAdministratorsRole);
-                });
-
-                options.AddPolicy(
                 Constants.ContactUserPolicy,
                 authBuilder =>
                 {
