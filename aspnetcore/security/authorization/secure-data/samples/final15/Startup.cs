@@ -78,7 +78,7 @@ namespace ContactManager
                 Constants.ContactUserPolicy,
                 authBuilder =>
                 {
-                    authBuilder.RequireRole(Constants.ContactUsersRole, Constants.ContactAdministratorsRole);
+                    authBuilder.RequireAuthenticatedUser();
                 });
 
                 options.AddPolicy(
@@ -100,7 +100,9 @@ namespace ContactManager
             services.AddSingleton<IAuthorizationHandler, ContactAdministratorsAuthorizationHandler>();
             #endregion
 
-            
+            services.AddSingleton<IAuthorizationHandler, ContactManagerAuthorizationHandler>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

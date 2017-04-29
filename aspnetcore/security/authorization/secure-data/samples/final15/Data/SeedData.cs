@@ -27,8 +27,8 @@ namespace ContactManager.Data
                 await EnsureAdminRole(serviceProvider, adminUid, Constants.ContactAdministratorsRole);
 
                 // allowed user can create and edit contacts that they create
-                var uid = await EnsureAllowedUser(serviceProvider, testUserPw);
-                await EnsureUserRole(serviceProvider, uid, Constants.ContactUsersRole);
+                var uid = await EnsureManagerUser(serviceProvider, testUserPw);
+                await EnsureManagerRole(serviceProvider, uid, Constants.ContactManagersRole);
                 SeedDB(context, adminUid);
             }
         }
@@ -49,9 +49,9 @@ namespace ContactManager.Data
             return user.Id;
         }
 
-        private static async Task<string> EnsureAllowedUser(IServiceProvider serviceProvider, string testUserPw)
+        private static async Task<string> EnsureManagerUser(IServiceProvider serviceProvider, string testUserPw)
         {
-            const string SeedUserName = "user@contoso.com";
+            const string SeedUserName = "manager@contoso.com";
 
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
@@ -86,7 +86,7 @@ namespace ContactManager.Data
             return IR;
         }
 
-        private static async Task<IdentityResult> EnsureUserRole(IServiceProvider serviceProvider,
+        private static async Task<IdentityResult> EnsureManagerRole(IServiceProvider serviceProvider,
                                                                        string uid, string userRole)
         {
             IdentityResult IR = null;
