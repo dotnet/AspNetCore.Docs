@@ -16,6 +16,6 @@ uid: tutorials/first-mvc-app-xplat/validation
 [!INCLUDE[validation](../../includes/mvc-intro/validation.md)]
 
 >[!div class="step-by-step"]
-[Previous Adding a New Field](new-field.md)
-[Next Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)  
+[Previous - Add a field](new-field.md)
+[Next - Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)  
 

@@ -25,9 +25,9 @@ The `MvcMovieContext` object handles the task of connecting to the database and 
 
 The [SQLite](https://www.sqlite.org/) website states:
 
-  SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.
+> SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.
 
-There are many third party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](http://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a LiveFyre comment on what you like about it.
+There are many third party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](http://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
 
 ![DB Browser for SQLite showing movie db](working-with-sql/_static/dbb.png)
 
@@ -59,5 +59,5 @@ The app shows the seeded data.
 ![MVC Movie application open browser showing movie data](../../tutorials/first-mvc-app/working-with-sql/_static/m55.png)
 
 >[!div class="step-by-step"]
-[Previous](adding-model.md)
-[Next](controller-methods-views.md)
+[Previous - Add a model](adding-model.md)
+[Next - Controller methods and views](controller-methods-views.md)

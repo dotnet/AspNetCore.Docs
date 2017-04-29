@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace ContactManager.Authorization
 {
-    public class ContactRoleAuthorizationHandler
+    public class ContactAdministratorsAuthorizationHandler
                     : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
@@ -15,8 +15,8 @@ namespace ContactManager.Authorization
             {
                 return Task.FromResult(0);
             }
-
-            if (context.User.IsInRole(requirement.Name))
+            // administrators can do anything
+            if (context.User.IsInRole(Constants.ContactAdministratorsRole))
             {
                 context.Succeed(requirement);
             }

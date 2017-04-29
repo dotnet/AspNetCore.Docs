@@ -1,4 +1,5 @@
 @model ContactManager.Models.Contact
+@using ContactManager.Authorization;
 
 @{
     ViewData["Title"] = "Details";
@@ -10,6 +11,18 @@
     <h4>Contact</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
@@ -23,18 +36,6 @@
             @Html.DisplayFor(model => model.City)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.State)
         </dt>
         <dd>
@@ -46,8 +47,34 @@
         <dd>
             @Html.DisplayFor(model => model.Zip)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
     </dl>
 </div>
+@if (Model.Status != ContactStatus.Approved)
+{
+    @if (await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Approve))
+    {
+        <form asp-action="Approve" asp-controller="Contacts" style="display:inline;">
+            <input type="hidden" name="id" value="@Model.ContactId" />
+            <button type="submit" class="btn btn-xs btn-success">Approve</button>
+        </form>
+    }  
+}
+@if (Model.Status != ContactStatus.Rejected)
+{
+    @if (await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Reject))
+    {
+        <form asp-action="Reject" asp-controller="Contacts" style="display:inline;">
+            <input type="hidden" name="id" value="@Model.ContactId" />
+            <button type="submit" class="btn btn-xs btn-danger">Reject</button>
+        </form>
+    }
+}
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ContactId">Edit</a> |
     <a asp-action="Index">Back to List</a>

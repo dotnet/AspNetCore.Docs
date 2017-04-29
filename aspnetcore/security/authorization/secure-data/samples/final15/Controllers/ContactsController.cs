@@ -14,6 +14,7 @@ using ContactManager.Authorization;
 namespace ContactManager.Controllers
 {
     #region snippet_ContactsController
+    [Authorize(Policy = "ContactUserPolicy")]
     public class ContactsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -60,7 +61,7 @@ namespace ContactManager.Controllers
         public IActionResult Create()
         {
             //return View();
-            return View(new Contact
+            return View(new ContactEditViewModel
             {
                 Address = "123 N 456 E",
                 City = "GF",
@@ -75,16 +76,32 @@ namespace ContactManager.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-                    [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+                    [Bind("ContactId,Address,City,Email,Name,State,Zip")] ContactEditViewModel editModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                contact.OwnerID = _userManager.GetUserId(User);
-                _context.Add(contact);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return View(editModel);
             }
-            return View(contact);
+
+            var contact = new Contact();
+            contact.Address = editModel.Address;
+            contact.City = editModel.City;
+            contact.Email = editModel.Email;
+            contact.Name = editModel.Name;
+            contact.State = editModel.State;
+            contact.Zip = editModel.Zip;
+            contact.OwnerID = _userManager.GetUserId(User);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Create);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
+            
+            _context.Add(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+            
         }
         #endregion
 
@@ -104,13 +121,22 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB, 
-                                        ContactOperationsRequirements.Update);
+                                        ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
 
-            return View(contactDB);
+            var editModel = new ContactEditViewModel();
+            editModel.ContactId = contactDB.ContactId;
+            editModel.Address = contactDB.Address;
+            editModel.City = contactDB.City;
+            editModel.Email = contactDB.Email;
+            editModel.Name = contactDB.Name;
+            editModel.State = contactDB.State;
+            editModel.Zip = contactDB.Zip;
+
+            return View(editModel);
         }
 
         // Make ContactViewModel -- might need multiple viewModeles
@@ -118,53 +144,56 @@ namespace ContactManager.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, 
-            [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+            [Bind("ContactId,Address,City,Email,Name,State,Zip")] ContactEditViewModel editModel)
         {
             // Why is this here? Scaffolding??
-            if (id != contact.ContactId)
+            if (id != editModel.ContactId)
             {
                 return NotFound();
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return View(editModel);
             }
 
             // Fetch Contact from DB to get OwnerID.
-            var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-            if (contactDB == null)
+            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB,
-                                        ContactOperationsRequirements.Update);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
-            // Review with EF - should I copy changed fields to contactDB and update
-            // rather that what I'm doing here.
-            contact.OwnerID = contactDB.OwnerID;
-            _context.Entry(contactDB).State = EntityState.Detached;
-
-            if (ModelState.IsValid)
+            
+            contact.Address = editModel.Address;
+            contact.City = editModel.City;
+            contact.Email = editModel.Email;
+            contact.Name = editModel.Name;
+            contact.State = editModel.State;
+            contact.Zip = editModel.Zip;
+            
+            if(contact.Status == ContactStatus.Approved)
             {
-                try
-                {
-                    _context.Update(contact);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ContactExists(contact.ContactId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
+                // if the contact is updated after approval, 
+                // and the user cannot approve set the status back to submitted
+                var canApprove = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Approve);
+
+                if(!canApprove) contact.Status = ContactStatus.Submitted;
             }
-            return View(contact);
+            
+            _context.Update(contact);
+            await _context.SaveChangesAsync();
+           
+            return RedirectToAction("Index");
+            
+            
         }
         #endregion
 
@@ -184,13 +213,22 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Delete);
+                                        ContactOperations.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
 
-            return View(contact);
+            var editModel = new ContactEditViewModel();
+            editModel.ContactId = contact.ContactId;
+            editModel.Address = contact.Address;
+            editModel.City = contact.City;
+            editModel.Email = contact.Email;
+            editModel.Name = contact.Name;
+            editModel.State = contact.State;
+            editModel.Zip = contact.Zip;
+
+            return View(editModel);
         }
 
         // POST: Contacts/Delete/5
@@ -201,7 +239,7 @@ namespace ContactManager.Controllers
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Delete);
+                                        ContactOperations.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -212,6 +250,41 @@ namespace ContactManager.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Approve);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
+            contact.Status = ContactStatus.Approved;
+            _context.Contact.Update(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reject(int id)
+        {
+            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperations.Reject);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
+            contact.Status = ContactStatus.Rejected;
+            _context.Contact.Update(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
         private bool ContactExists(int id)
         {
