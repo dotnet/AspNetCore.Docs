@@ -32,7 +32,7 @@ namespace ContactManager.Controllers
         #endregion
 
         // GET: Contacts
-        [Authorize(Policy = "ContactGuestPolicy")]
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Index(int? id)
         {
             var viewName = id == null ? "Index" : $"Index{id}";
@@ -41,7 +41,7 @@ namespace ContactManager.Controllers
         }
 
         // GET: Contacts/Details/5
-        [Authorize(Policy = "ContactGuestPolicy")]
+        [Authorize(Policy = "ContactUserPolicy")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

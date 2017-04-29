@@ -81,14 +81,7 @@ namespace ContactManager
                     authBuilder.RequireAuthenticatedUser();
                 });
 
-                options.AddPolicy(
-                Constants.ContactGuestPolicy,
-                authBuilder =>
-                {
-                    authBuilder.RequireAuthenticatedUser();
-                });
-
-
+              
             });
 
             // Authorization handlers.
