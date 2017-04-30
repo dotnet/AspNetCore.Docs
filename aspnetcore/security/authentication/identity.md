@@ -77,7 +77,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
 4.  Log off.
  
-    Clicking the **Log off** link calls the `LogOff` action in the account controller.
+    Clicking the **Log off** link calls the `LogOut` action in the account controller.
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?highlight=5&range=131-138)]
  
