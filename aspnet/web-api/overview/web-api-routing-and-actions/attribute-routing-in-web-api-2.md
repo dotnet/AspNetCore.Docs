@@ -63,7 +63,7 @@ In this example, "1" is an order number, but "pending" maps to a collection.
 `/orders/1`  
 `/orders/pending`
 
-**Mulitple parameter types**
+**Multiple parameter types**
 
 In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
