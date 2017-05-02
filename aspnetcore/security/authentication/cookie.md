@@ -147,7 +147,7 @@ The `CookieAuthenticationOptions` class comes with various configuration options
 
 * **ExpireTimeSpan** - the `TimeSpan` after which the cookie will expire. This is added to the current date and time to create the expiry date for the cookie.
 
-* **SlidingExpiration** - a flag indicating if the cookie expiration date will be reset when the more than half of the `ExpireTimeSpan` interval has passed. The new expiry date will be moved forward to be the current date plus the `ExpireTimespan`. An [absolute expiry time](xref:security/authentication/cookie#security-authentication-absolute-expiry) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiry can improve the security of your application by limiting the amount of time for which the authentication cookie is valid.
+* **SlidingExpiration** - a flag indicating if the cookie expiration date will be reset when more than half of the `ExpireTimeSpan` interval has passed. The new expiry date will be moved forward to be the current date plus the `ExpireTimespan`. An [absolute expiry time](xref:security/authentication/cookie#security-authentication-absolute-expiry) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiry can improve the security of your application by limiting the amount of time for which the authentication cookie is valid.
 
 ## Persistent cookies and absolute expiry times
 
