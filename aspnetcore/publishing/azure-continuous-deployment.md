@@ -39,7 +39,7 @@ This tutorial assumes you have already installed the following:
 
 2. From the **File** menu, select **New** > **Project**.
 
-3. Select the **ASP.NET Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **Web**. Name the project `SampleWebAppDemo`. Select the **Add to source control** option and click **OK**.
+3. Select the **ASP.NET Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **Web**. Name the project `SampleWebAppDemo`. Select the **Create new Git respository** option and click **OK**.
 
    ![New Project dialog](azure-continuous-deployment/_static/01-new-project.png)
 
@@ -47,9 +47,6 @@ This tutorial assumes you have already installed the following:
 
    ![New ASP.NET Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
 
-5. From the **Choose Source Control** dialog box, select **Git** as the source control system for the new project.
-
-   ![Choose Source Control dialog](azure-continuous-deployment/_static/03-source-control.png)
 
 ### Running the web app locally
 

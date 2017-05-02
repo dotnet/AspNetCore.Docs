@@ -62,8 +62,6 @@ With ASP.NET Core you gain the following foundational improvements:
 
 * [Tag Helpers](mvc/views/tag-helpers/intro.md) enable server-side code to participate in creating and rendering HTML elements in Razor files
 
-* You can create HTTP services with full support for content negotiation using custom or built-in formatters (JSON, XML)
-
 * [Model Binding](mvc/models/model-binding.md) automatically maps data from HTTP requests to action method parameters
 
 * [Model Validation](mvc/models/validation.md) automatically performs client and server side validation
