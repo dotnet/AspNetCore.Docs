@@ -24,18 +24,17 @@ namespace CustomModelBindingSample.Binders
                 throw new ArgumentNullException(nameof(bindingContext));
             }
 
-            // specify a default argument name if none is set by ModelBinderAttribute
+            // Specify a default argument name if none is set by ModelBinderAttribute
             var modelName = bindingContext.BinderModelName;
             if (string.IsNullOrEmpty(modelName))
             {
                 modelName = "authorId";
             }
 
-            // attempt to fetch the value of the argument by name
+            // Try to fetch the value of the argument by name
             var valueProviderResult =
                 bindingContext.ValueProvider.GetValue(modelName);
 
-            // check if no matching argument exists
             if (valueProviderResult == ValueProviderResult.None)
             {
                 return TaskCache.CompletedTask;
@@ -46,7 +45,7 @@ namespace CustomModelBindingSample.Binders
 
             var value = valueProviderResult.FirstValue;
 
-            // check if the argument is null or empty
+            // Check if the argument value is null or empty
             if (string.IsNullOrEmpty(value))
             {
                 return TaskCache.CompletedTask;
@@ -61,8 +60,8 @@ namespace CustomModelBindingSample.Binders
                 return TaskCache.CompletedTask;
             }
 
-            // model will be null if not found
-            var model = _db.Authors.Find(int.Parse(value));
+            // Model will be null if not found
+            var model = _db.Authors.Find(id);
             bindingContext.Result = ModelBindingResult.Success(model);
             return TaskCache.CompletedTask;
         }

@@ -16,19 +16,19 @@ uid: mvc/advanced/custom-model-binding
 
 By [Steve Smith](http://ardalis.com)
 
-Model binding allows controller actions to work directly with model types, passed in as method arguments, rather than HTTP requests. Repetitive mapping between incoming request data and application models is consolidated into model binders. Developers can extend the built-in model binding functionality by implementing custom model binders.
+Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-model-binding/)
 
-## The problem
+## Default model binder limitations
 
-The default model binding supports most of the common data types in the framework. The built-in model binders should support most of developers' needs. However, the default model binders expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key and pass the result as the action's argument.
+The default model binders support most of the common .NET Core data types and should meet most developers` needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
-Model binding uses specific definitions for the types it operates on. A *simple type* is a type that should be converted from a single string in the input. A *complex type* is a type that should be converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. It's recommended to create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
+## Model binding review
 
-## The solution
+Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommended you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
 
-Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. For example, the [ByteArrayModelBinder](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinder) can be used to convert base64-encoded strings into byte arrays, for storage as files or database BLOB fields.
+Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the [ByteArrayModelBinder](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinder) which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
 ### Working with the ByteArrayModelBinder
 
@@ -40,9 +40,28 @@ A small portion of the encoded string is shown in the following image:
 
 ![dotnet bot encoded](custom-model-binding/images/encoded-bot.png "dotnet bot encoded")
 
-Your ASP.NET Core MVC app can accept base64-encoded strings as inputs and use the `ByteArrayModelBinder` to convert these inputs into a byte array. The `ByteArrayModelBinder` is configured to work with `byte[]` arguments through the `ByteArrayModelBinderProvider`, which implements `IModelBinderProvider`. When creating your own custom model binder, you can implement your own `IModelBinderProvider` type, or use the `ModelBinderAttribute`.
+ASP.NET Core MVC can take a base64-encoded strings and use a `ByteArrayModelBinder` to convert it into a byte array. The [ByteArrayModelBinderProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinderprovider) which implements [IModelBinderProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.imodelbinderprovider) maps `byte[]` arguments to `ByteArrayModelBinder`:
 
-The following example demonstrates how to accept and save a `byte[]` array that uses the `ByteArrayModelBinder`:
+```csharp
+public IModelBinder GetBinder(ModelBinderProviderContext context)
+{
+    if (context == null)
+    {
+        throw new ArgumentNullException(nameof(context));
+    }
+
+    if (context.Metadata.ModelType == typeof(byte[]))
+    {
+        return new ByteArrayModelBinder();
+    }
+
+    return null;
+}
+```
+
+When creating your own custom model binder, you can implement your own `IModelBinderProvider` type, or use the [ModelBinderAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinderattribute).
+
+The following example shows how to use `ByteArrayModelBinder` to convert a base64-encoded string to a `byte[]` and save the result to a file:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Controllers/ImageController.cs?name=post1&highlight=3)]
 
@@ -50,59 +69,66 @@ You can POST a base64-encoded string to this api method using a tool like [Postm
 
 ![postman](custom-model-binding/images/postman.png "postman")
 
-The model binder will work equally well with a viewmodel instead of individual action arguments:
+As long as the binder can bind request data to appropriately named properties or arguments, model binding will succeed. The following example shows how to use `ByteArrayModelBinder` with a view model:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Controllers/ImageController.cs?name=post2&highlight=2)]
 
-As long as the binder can bind request data to appropriately named properties or arguments, model binding will succeed.
+## Custom model binder sample
 
-## Implementing a custom model binder
+In this section we'll implement a custom model binder that:
 
-You can implement your own custom model binder that:
-
-- Converts incoming request data into properly-typed keys.
+- Converts incoming request data into strongly typed key arguments.
 - Uses Entity Framework Core to fetch the associated entity.
 - Passes the associated entity as an argument to the action method.
 
-The simplest approach is to use the `ModelBinderAttribute`. With this attribute, you specify the name of the input that is bound and the type of the `IModelBinderProvider` that it should use. The `ModelBinderAttribute` is applied to the type that should use the model binder:
+The following sample uses the `ModelBinder` attribute on the `Author` model:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Data/Author.cs?highlight=10)]
 
-The `AuthorEntityBinder` takes in an instance of `AppDbContext`. After confirming the expected input ("authorId" by default, or set using another `ModelBinderAttribute`) is present, it casts it to an integer and uses it to retrieve the associated entity. If successful, the result is set on the binding context. If model binding fails due to the input being the wrong type, a model state error is added. Otherwise, if no record is found for the id specified, the argument passed to the action method is set to `null`.
+In the preceding code, the `ModelBinder` attribute specifies the type of `IModelBinderProvider` that should be used to bind `Author` action parameters. 
+
+The `AuthorEntityBinder` is used to bind an `Author` parameter by fetching the entity from a data source using Entity Framework Core and an `authorId`:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinder.cs?name=demo)]
 
-The `AuthorEntityBinder` allows action methods to use the `Author` entity directly:
+The following code shows how to use the `AuthorEntityBinder` in an action method:
+
+[!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo2&highlight=2)]
+
+The `ModelBinder` attribute can be used to apply the `AuthorEntityBinder` to parameters that do not use default conventions:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-In this example, since the name of the argument is not the default `authorId`, it's specified on the parameter using `ModelBinderAttribute`. Note that both the controller and action method are simplified compared to looking up the entity in the action method, since the `AppDbContext` is no longer required by the action or controller.
+In this example, since the name of the argument is not the default `authorId`, it's specified on the parameter using `ModelBinder` attribute. Note that both the controller and action method are simplified compared to looking up the entity in the action method. The logic to fetch the author using Entity Framework Core is moved to the model binder. This can be considerable simplification when you have several methods that bind to the author model, and can help you to follow the [DRY principle](http://deviq.com/don-t-repeat-yourself/).
 
-You can apply the `ModelBinderAttribute` to individual model properties (such as on a viewmodel) or to action method parameters to specify a certain model binder or model name for just that type or action.
+You can apply the `ModelBinder` attribute to individual model properties (such as on a viewmodel) or to action method parameters to specify a certain model binder or model name for just that type or action.
 
 ### Implementing a ModelBinderProvider
 
-Instead of applying an attribute, you can implement [IModelBinderProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.imodelbinderprovider). This is how the built-in framework binders are implemented. Note that when you specify the type your binder operates on, you specify the type of argument it produces, not the input your binder accepts. The following binder provider would work for the `AuthorEntityBinder` implemented above, and when added to MVC's collection of providers, would eliminate the need for the `ModelBinderAttribute` on `Author`.
+Instead of applying an attribute, you can implement `IModelBinderProvider`. This is how the built-in framework binders are implemented. When you specify the type your binder operates on, you specify the type of argument it produces, **not** the input your binder accepts. The following binder provider works with the `AuthorEntityBinder`. When it's added to MVC's collection of providers, you don't need to use the `ModelBinder` attribute on `Author` or `Author` typed parameters.
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Binders/AuthorEntityBinderProvider.cs?highlight=17-20)]
 
 > Note:
-> The example above returns a `BinderTypeModelBinder`, which acts as a factory for model binders and provides dependency injection for them. Use it if your model binder requires services from DI.
+> The preceding code returns a `BinderTypeModelBinder`. `BinderTypeModelBinder` acts as a factory for model binders and provides dependency injection (DI). The `AuthorEntityBinder` requires DI to access EF Core. Use `BinderTypeModelBinder` if your model binder requires services from DI.
 
-In order to configure MVC to use a custom model binder provider, you add it in `ConfigureServices`. When evaluating model binders, the collection of providers is examined in order. The first provider that returns a binder is used. Below you can see the default model binders, in order:
+To use a custom model binder provider, add it in `ConfigureServices`:
+
+[!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Startup.cs?name=callout&highlight=5-9)]
+
+When evaluating model binders, the collection of providers is examined in order. The first provider that returns a binder is used.
+
+The following image shows the default model binders from the debugger.
 
 ![default model binders](custom-model-binding/images/default-model-binders.png "default model binders")
 
-Adding your provider to the end of the collection may result in it never being called. In this example, the custom provider is added to the beginning of the collection to ensure it is used for `Author` action arguments.
+Adding your provider to the end of the collection may result in a built-in model binder being called before your custom binder has a chance. In this example, the custom provider is added to the beginning of the collection to ensure it is used for `Author` action arguments.
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Startup.cs?name=callout&highlight=5-9)]
 
 ## Recommendations and best practices
 
-Model binders should not attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](/mvc/controllers/filters.md) or logic within the action method itself should handle the failure.
-
-Typically, you don't need to write your own provider.
-
-Custom model binders are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-
-While model binders can be used to convert a string into a custom type, a [`TypeConverter`](https://msdn.microsoft.com/en-us/library/ayybcxe5.aspx) is usually a better option.
+Custom model binders:
+- Should not attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](/mvc/controllers/filters.md) or logic within the action method itself should handle the failure.
+- Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
+- Typically should not be used to convert a string into a custom type, a [`TypeConverter`](https://msdn.microsoft.com/en-us/library/ayybcxe5.aspx) is usually a better option.
