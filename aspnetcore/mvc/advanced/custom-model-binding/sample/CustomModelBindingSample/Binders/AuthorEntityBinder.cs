@@ -54,13 +54,15 @@ namespace CustomModelBindingSample.Binders
             int id = 0;
             if (!int.TryParse(value, out id))
             {
+                // Non-integer arguments result in model state errors
                 bindingContext.ModelState.TryAddModelError(
                                         bindingContext.ModelName,
                                         "Author Id must be an integer.");
                 return TaskCache.CompletedTask;
             }
 
-            // Model will be null if not found
+            // Model will be null if not found, including for 
+            // out of range id values (0, -3, etc.)
             var model = _db.Authors.Find(id);
             bindingContext.Result = ModelBindingResult.Success(model);
             return TaskCache.CompletedTask;
