@@ -54,7 +54,7 @@ With ASP.NET Core you gain the following foundational improvements:
 
 ## Build web UI and web APIs using ASP.NET Core MVC
 
-* You can build HTTP services that reach a broad range of clients, including browsers and mobile devices.  ASP.NET Core is an ideal platform for building web APIs and RESTful apps on .NET Core. See [Building web APIs](aspnetcore/tutorials/index.md#building-web-apis).  
+* You can build HTTP services that reach a broad range of clients, including browsers and mobile devices.  ASP.NET Core is an ideal platform for building web APIs and RESTful apps on .NET Core. See [Building web APIs](aspnet/core/tutorials/index.md#building-web-apis).  
 * You can build HTTP services that support multiple formats and have full support for content negotiation. See [Formatting Response Data](mvc/models/formatting.md)
 
 * You can create well-factored and testable web apps that follow the Model-View-Controller (MVC) pattern. See [MVC](mvc/index.md) and [Testing](testing/index.md).
