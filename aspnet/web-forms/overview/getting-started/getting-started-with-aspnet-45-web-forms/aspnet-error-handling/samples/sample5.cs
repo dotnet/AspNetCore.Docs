@@ -18,7 +18,7 @@ namespace WingtipToys.Logic
     {
       // Include logic for logging exceptions
       // Get the absolute path to the log file
-      string logFile = "App_Data/ErrorLog.txt";
+      string logFile = "~/App_Data/ErrorLog.txt";
       logFile = HttpContext.Current.Server.MapPath(logFile);
 
       // Open the log file for append and write the log
