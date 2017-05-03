@@ -43,7 +43,7 @@ In Visual Studio, create a new Windows console application and paste in the foll
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample1.cs)]
 
-This code provides the skeleton for the application. The `Main``RunAsync` method and blocks until it completes. The reason for this approach is that most **HttpClient** methods are async, because they perform network I/O. All of the async tasks will be done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should never block the UI thread.
+This code provides the skeleton for the application. The `Main` `RunAsync` method and blocks until it completes. The reason for this approach is that most **HttpClient** methods are async, because they perform network I/O. All of the async tasks will be done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should never block the UI thread.
 
 <a id="InstallClientLib"></a>
 ## Install the Web API Client Libraries
