@@ -310,11 +310,9 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
     A new event handler is created and displayed in teh code-behind file named *FirstWebPage.aspx.cs*.
 2. Finish the [SelectionChanged](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selectionchanged.aspx) event handler with the following code.
 
-**C#**
 
     [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
 
-**VB**
 
     [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
 
