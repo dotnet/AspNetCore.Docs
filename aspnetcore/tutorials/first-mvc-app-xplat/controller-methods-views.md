@@ -35,5 +35,5 @@ Build and run the app.
 [!INCLUDE[adding-model](../../includes/mvc-intro/controller-methods-views.md)]
 
 >[!div class="step-by-step"]
-[Previous](working-with-sql.md)
-[Next](search.md)  
+[Previous - Working with SQLite](working-with-sql.md)
+[Next - Add search](search.md)  

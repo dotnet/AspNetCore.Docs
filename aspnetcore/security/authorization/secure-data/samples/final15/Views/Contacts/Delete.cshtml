@@ -1,4 +1,4 @@
-@model ContactManager.Models.Contact
+@model ContactManager.Models.ContactEditViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,6 +12,18 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd>
@@ -22,18 +34,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.State)
@@ -47,11 +47,12 @@
         <dd>
             @Html.DisplayFor(model => model.Zip)
         </dd>
+
     </dl>
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             <a asp-action="Index">Back to List</a>
         </div>
     </form>

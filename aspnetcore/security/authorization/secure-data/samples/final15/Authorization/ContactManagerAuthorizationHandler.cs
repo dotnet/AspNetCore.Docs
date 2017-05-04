@@ -6,18 +6,17 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ContactManager.Authorization
 {
-    public class ContactIsOwnerAuthorizationHandler 
-                : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
+    public class ContactManagerAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
     {
         UserManager<ApplicationUser> _userManager;
-        
-        public ContactIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager)
+
+        public ContactManagerAuthorizationHandler(UserManager<ApplicationUser> userManager)
         {
-            _userManager = userManager;  
+            _userManager = userManager;
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-                                             OperationAuthorizationRequirement requirement, 
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+                                             OperationAuthorizationRequirement requirement,
                                              Contact resource)
         {
             if (context.User == null)
@@ -30,15 +29,17 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            // normal users cannot change approve or reject, only managers and admins can do that
-            if(requirement.Name != Constants.ApproveOperationName && requirement.Name != Constants.RejectOperationName)
+            // managers can approve or reject
+            if (requirement.Name == Constants.ApproveOperationName || requirement.Name == Constants.RejectOperationName)
             {
-                if (resource.OwnerID == _userManager.GetUserId(context.User))
+                if (context.User.IsInRole(Constants.ContactManagersRole))
                 {
                     context.Succeed(requirement);
+                    return Task.FromResult(0);
                 }
             }
             
+
             return Task.FromResult(0);
         }
     }
