@@ -114,3 +114,7 @@ public void ConfigureServices(IServiceCollection services)
    ```
 
 Code in the *Startup.cs* file contains a `ConfigureServices` method with a `services` argument you can use to build up services for your ASP.NET app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The `options` argument passed into the `AddMvc` method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the `Consumes` attribute to controller classes or action methods to work with the format you want.
+
+### Custom Model Binding
+
+You can extend model binding by writing your own custom model binders. Learn more about [custom model binding](../advanced/custom-model-binding.md).
