@@ -102,6 +102,8 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
+To install the package, enter the following command in **Package Manager Console (PMC)**. (From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.)
+
 ```
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
