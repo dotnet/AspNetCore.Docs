@@ -219,7 +219,7 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 In *Models/Course.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,21,23)]
+[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
 The course entity has a foreign key property `DepartmentID` which points to the related Department entity and it has a `Department` navigation property.
 
