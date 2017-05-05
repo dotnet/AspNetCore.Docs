@@ -391,7 +391,7 @@ In this tutorial you're using the fluent API only for database mapping that you 
 
 Some developers prefer to use the fluent API exclusively so that they can keep their entity classes "clean." You can mix attributes and fluent API if you want, and there are a few customizations that can only be done by using fluent API, but in general the recommended practice is to choose one of these two approaches and use that consistently as much as possible. If you do use both, note that wherever there is a conflict, Fluent API overrides attributes.
 
-For more information about attributes vs. fluent API, see [Methods of configuration](https://ef.readthedocs.io/en/latest/modeling/index.html#methods-of-configuration).
+For more information about attributes vs. fluent API, see [Methods of configuration](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration).
 
 ## Entity Diagram Showing Relationships
 
