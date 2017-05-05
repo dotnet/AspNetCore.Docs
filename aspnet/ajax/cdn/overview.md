@@ -1090,6 +1090,11 @@ The following ASP.NET MVC JavaScript files are hosted on this CDN:
 
 The following ASP.NET SignalR JavaScript files are hosted on this CDN:
 
+#### ASP.NET SignalR 2.2.2
+
+- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.min.js
+- http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.2.js
+
 #### ASP.NET SignalR 2.2.1
 
 - http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.min.js

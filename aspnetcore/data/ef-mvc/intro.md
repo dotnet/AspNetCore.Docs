@@ -102,6 +102,8 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
 
+To install the package, enter the following command in **Package Manager Console (PMC)**. (From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.)
+
 ```
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
@@ -166,7 +168,7 @@ We'll say more about the `DatabaseGenerated` attribute in a [later tutorial](com
 
 ## Create the Database Context
 
-The main class that coordinates Entity Framework functionality for a given data model is the database context class. You create this class by deriving from the `System.Data.Entity.DbContext` class. In your code you specify which entities are included in the data model. You can also customize certain Entity Framework behavior. In this project, the class is named `SchoolContext`.
+The main class that coordinates Entity Framework functionality for a given data model is the database context class. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class. In your code you specify which entities are included in the data model. You can also customize certain Entity Framework behavior. In this project, the class is named `SchoolContext`.
 
 In the project folder, create a folder named *Data*.
 
