@@ -143,7 +143,7 @@ This code adds a `page` parameter, a current sort order parameter, and a current
 
 The first time the page is displayed, or if the user hasn't clicked a paging or sorting link, all the parameters will be null. If a paging link is clicked, the `page` variable will contain the page number to display.
 
-`A ViewBag` property provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging:
+A `ViewBag` property provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging:
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
@@ -159,7 +159,7 @@ The `ToPagedList` method takes a page number. The two question marks represent t
 
 ### Add Paging Links to the Student Index View
 
-In *Views\Student\Index.cshtml*, replace the existing code with the following code. the changes are highlighted.
+In *Views\Student\Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cshtml?highlight=1-3,6,9,14,17,24,30,55-56,58-59)]
 
