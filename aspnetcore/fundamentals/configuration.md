@@ -128,6 +128,8 @@ In the following code, a third `IConfigureOptions<TOptions>` service is added to
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Startup3.cs?name=snippet1&highlight=16-17)]
 
+Note: This extension method requires the `Microsoft.Extensions.Options.ConfigurationExtensions` NuGet package.
+
 Using the following *appsettings.json* file:
 
 [!code-json[Main](configuration/sample/src/UsingOptions/appsettings.json)]

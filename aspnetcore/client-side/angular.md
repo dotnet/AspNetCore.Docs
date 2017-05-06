@@ -26,7 +26,7 @@ In this article, you will learn how to build a SPA-style ASP.NET application usi
 
 [AngularJS](http://angularjs.org/) is a modern JavaScript framework from Google commonly used to work with Single Page Applications (SPAs). AngularJS is open sourced under MIT license, and the development progress of AngularJS can be followed on [its GitHub repository](https://github.com/angular/angular.js). The library is called Angular because HTML uses angular-shaped brackets.
 
-AngularJS is not a DOM manipulation library like jQuery, but it uses a subset of jQuery called jQLite. AngularJS is primarily based on declarative HTML attributes that you can add to your HTML tags. You can try AngularJS in your browser using the [Code School website](https://www.codeschool.com/courses/shaping-up-with-angular-js).
+AngularJS is not a DOM manipulation library like jQuery, but it uses a subset of jQuery called jQLite. AngularJS is primarily based on declarative HTML attributes that you can add to your HTML tags. You can try AngularJS in your browser using the [Code School website](https://www.codeschool.com/courses/shaping-up-with-angular-js) or  [W3Schools website](https://www.w3schools.com/angular/).
 
 This article focuses on AngularJS with some notes on where Angular is heading.
 

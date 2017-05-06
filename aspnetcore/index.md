@@ -52,11 +52,11 @@ With ASP.NET Core you gain the following foundational improvements:
 
 * Open source and community focused
 
-## Build web UI and web APIs using ASP.NET Core MVC
+## Build web APIs and web UI using ASP.NET Core MVC
+
+* You can build HTTP services that reach a broad range of clients, including browsers and mobile devices.  Support for [multiple data formats and content negotiation](mvc/models/formatting.md) is built-in. ASP.NET Core is an ideal platform for building web APIs and RESTful apps on .NET Core. See [Building web APIs](tutorials/index.md#building-web-apis).  
 
 * You can create well-factored and testable web apps that follow the Model-View-Controller (MVC) pattern. See [MVC](mvc/index.md) and [Testing](testing/index.md).
-
-* You can build HTTP services that support multiple formats and have full support for content negotiation. See [Formatting Response Data](mvc/models/formatting.md)
 
 * [Razor](http://www.asp.net/web-pages/overview/getting-started/introducing-razor-syntax-c) provides a productive language to create [Views](mvc/views/index.md)
 
