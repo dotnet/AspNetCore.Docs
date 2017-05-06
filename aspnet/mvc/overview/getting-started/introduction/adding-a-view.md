@@ -59,7 +59,7 @@ Alternatively, run the application and browse to the `HelloWorld` controller (`h
 
 ![](adding-a-view/_static/image6.png)
 
-Looks pretty good. However, notice that the browser's title bar shows &quot;Index My ASP.NET Appli" and the big link on the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
+Looks pretty good. However, notice that the browser's title bar shows &quot;Index - My ASP.NET Appli" and the big link on the top of the page says "Application name." Depending on how small you make your browser window, you might need to click the three bars in the upper right to see the to the **Home**, **About**, **Contact**, **Register** and **Log in** links.
 
 ## Changing Views and Layout Pages
 
@@ -119,7 +119,7 @@ Return to the *HelloWorldController.cs* file and change the `Welcome` method to 
 
 [!code-csharp[Main](adding-a-view/samples/sample8.cs)]
 
-Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
+Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with Layout (Razor)**.
   
 ![](adding-a-view/_static/image10.png)   
   
