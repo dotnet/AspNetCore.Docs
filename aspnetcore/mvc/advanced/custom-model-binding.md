@@ -40,7 +40,7 @@ A small portion of the encoded string is shown in the following image:
 
 ![dotnet bot encoded](custom-model-binding/images/encoded-bot.png "dotnet bot encoded")
 
-Follow the instructions in the [sample's README](custom-model-binding/sample/CustomModelBindingSample/README.md) to convert the base64-encoded string into a file.
+Follow the instructions in the [sample's README](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/sample/CustomModelBindingSample/README.md) to convert the base64-encoded string into a file.
 
 ASP.NET Core MVC can take a base64-encoded strings and use a `ByteArrayModelBinder` to convert it into a byte array. The [ByteArrayModelBinderProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinderprovider) which implements [IModelBinderProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.imodelbinderprovider) maps `byte[]` arguments to `ByteArrayModelBinder`:
 

@@ -66,7 +66,7 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Wait for the **New ASP.NET Core Web Application (.NET Core)** dialog to appear
 
-* Select **ASP.NET 1.1** and the **Web Application** template.
+* Select **ASP.NET Core 1.1** and the **Web Application** template.
 
   **Note:** This tutorial requires ASP.NET Core 1.1 and EF Core 1.1 or later -- make sure that **ASP.NET Core 1.0** is not selected.
 
