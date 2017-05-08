@@ -207,7 +207,7 @@ namespace ContosoUniversity.Controllers
         private void PopulateAssignedCourseData(Instructor instructor)
         {
             var allCourses = _context.Courses;
-            var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.Course.CourseID));
+            var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.CourseID));
             var viewModel = new List<AssignedCourseData>();
             foreach (var course in allCourses)
             {
@@ -306,6 +306,8 @@ namespace ContosoUniversity.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            UpdateInstructorCourses(selectedCourses, instructorToUpdate);
+            PopulateAssignedCourseData(instructorToUpdate);
             return View(instructorToUpdate);
         }
         #endregion
