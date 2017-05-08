@@ -157,6 +157,7 @@ namespace ContosoUniversity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            PopulateAssignedCourseData(instructor);
             return View(instructor);
         }
         #endregion
