@@ -193,8 +193,8 @@ services.AddSwaggerGen(c =>
 		Title = "ToDo API",
 		Description = "A simple example ASP.NET Core Web API",
 		TermsOfService = "None",
-		Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "http://twitter.com/spboyer"},
-		License = new License { Name = "Use under LICX", Url = "http://url.com" }
+		Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer"},
+		License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
 	});
 });
 ```
