@@ -75,7 +75,7 @@ A French resource file could contain the following:
 
 | Key | Value |
 | ----- | ------ |
-| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0}!</b>` |
+| `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b> ` |
 
 The rendered view would contain the HTML markup from the resource file.
 
