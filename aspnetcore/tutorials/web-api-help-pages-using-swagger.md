@@ -218,6 +218,11 @@ Configure Swagger to use the generated XML file.
 
 In the code above, ApplicationBasePath gets the base path of the app, which is needed to set the full path to the XML comments. `TodoApi.xml` only works for this example, the name of the generated XML comments file is based on the name of your application.
 
+> [!NOTE]
+> For Linux or Mac operating systems, In the code above, `options.IncludeXmlComments(basePath + "\\TodoApi.xml");` must be change to this :`options.IncludeXmlComments(basePath + "/TodoApi.xml");`(**"\"**->**"/"**). Otherwise, you will get an error like this:"Unhandled Exception: System.IO.FileNotFoundException: Could not find file 'TodoApi.xml'".
+
+
+
 Adding the triple slash comments to the method enhances the Swagger UI by adding the description to the header of the section.
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Delete_Method&highlight=2)]
