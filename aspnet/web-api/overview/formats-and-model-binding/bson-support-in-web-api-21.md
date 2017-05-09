@@ -23,7 +23,7 @@ Web API 2.1 introduces support for BSON. This topic shows how to use BSON in you
 
 [BSON](http://bsonspec.org/) is a binary serialization format. "BSON" stands for "Binary JSON", but BSON and JSON are serialized very differently. BSON is "JSON-like", because objects are represented as name-value pairs, similar to JSON. Unlike JSON, numeric data types are stored as bytes, not strings
 
-The BSON was designed to be lightweight, easy to scan, and fast to encode/decode.
+BSON was designed to be lightweight, easy to scan, and fast to encode/decode.
 
 - BSON is comparable in size to JSON. Depending on the data, a BSON payload may be smaller or larger than a JSON payload. For serializing binary data, such as an image file, BSON is smaller than JSON, because the binary data does is not base64-encoded.
 - BSON documents are easy to scan because elements are prefixed with a length field, so a parser can skip elements without decoding them.
