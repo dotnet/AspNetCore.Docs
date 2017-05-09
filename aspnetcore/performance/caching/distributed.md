@@ -102,6 +102,9 @@ To use the sql-cache tool, add `SqlConfig.Tools` to the `<ItemGroup>` element of
 
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/DistCacheSample.csproj?range=23-25)]
 
+> [!NOTE]
+> When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
+
 Test SqlConfig.Tools by running the following command
 
 ```none
