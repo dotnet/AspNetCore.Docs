@@ -71,11 +71,11 @@ Once the requisite modules are imported, the tasks can be specified. Here there 
 
 ```javascript
 gulp.task("clean:js", function (cb) {
-  rimraf(paths.concatJsDest, cb);
+  return rimraf(paths.concatJsDest, cb);
 });
 
 gulp.task("clean:css", function (cb) {
-  rimraf(paths.concatCssDest, cb);
+  return rimraf(paths.concatCssDest, cb);
 });
 
 gulp.task("clean", ["clean:js", "clean:css"]);
@@ -136,11 +136,11 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
     paths.concatCssDest = paths.webroot + "css/site.min.css";
     
     gulp.task("clean:js", function (cb) {
-      rimraf(paths.concatJsDest, cb);
+      return rimraf(paths.concatJsDest, cb);
     });
     
     gulp.task("clean:css", function (cb) {
-      rimraf(paths.concatCssDest, cb);
+      return rimraf(paths.concatCssDest, cb);
     });
     
     gulp.task("clean", ["clean:js", "clean:css"]);
