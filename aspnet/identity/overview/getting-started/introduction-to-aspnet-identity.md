@@ -119,7 +119,10 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
   
  When the user clicks the **Register** button, the `Register` action of the Account controller creates the user by calling the ASP.NET Identity API, as highlighted below:
 
+    // BROKEN CODE SAMPLE
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample1.cs?highlight=8-9)]
+    //
+    
 4. Log in.  
  If the user was successfully created, she is logged in by the `SignInAsync` method.  
 
@@ -130,8 +133,11 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
  The highlighted code above in the `SignInAsync` method generates a [ClaimsIdentity](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsidentity.aspx). Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage.  
   
  The highlighted code below in the `SignInAsync` method signs in the user by using the AuthenticationManager from OWIN and calling `SignIn` and passing in the ClaimsIdentity.  
-
+    
+    // BROKEN CODE SAMPLE
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample4.cs?highlight=8-11)]
+    //
+    
 5. Log off.  
  Clicking the **Log off** link calls the LogOff action in the account controller. 
 
