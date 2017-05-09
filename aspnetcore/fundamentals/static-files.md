@@ -124,7 +124,7 @@ The following code enables static files and the default file to be served, but d
 
 ```csharp
 app.UseFileServer();
-   ```
+ ```
 
 The following code enables static files, default files and  directory browsing:
 
