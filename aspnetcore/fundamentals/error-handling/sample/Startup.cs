@@ -37,22 +37,22 @@ namespace ErrorHandlingSample
             }
             #endregion
 
-#if StatusCodePages
+            #if StatusCodePages
             #region snippet_StatusCodePages
             app.UseStatusCodePages(async context =>
             {
                 context.HttpContext.Response.ContentType = "text/plain";
                 await context.HttpContext.Response.WriteAsync(
-                    "Status code page, status code: " + 
+                    "Status code page, status code: " +
                     context.HttpContext.Response.StatusCode);
             });
             #endregion
-#endif
-#if StatusCodePagesWithRedirect
+            #endif
+            #if StatusCodePagesWithRedirect
             #region snippet_StatusCodePagesWithRedirect
             app.UseStatusCodePagesWithRedirects("/error/{0}");
             #endregion
-#endif
+            #endif
 
             app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
 
@@ -67,13 +67,13 @@ namespace ErrorHandlingSample
                     var path = context.Request.Path.ToString();
                     if (path.Length > 1)
                     {
-                        builder.AppendLine("Status Code: " + 
+                        builder.AppendLine("Status Code: " +
                             HtmlEncoder.Default.Encode(path.Substring(1)) + "<br />");
                     }
                     var referrer = context.Request.Headers["referer"];
                     if (!string.IsNullOrEmpty(referrer))
                     {
-                        builder.AppendLine("Return to <a href=\"" + 
+                        builder.AppendLine("Return to <a href=\"" +
                             HtmlEncoder.Default.Encode(referrer) + "\">" +
                             WebUtility.HtmlEncode(referrer) + "</a><br />");
                     }
