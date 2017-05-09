@@ -24,28 +24,28 @@ For example, if you wanted to use ASP.NET's logging infrastructure you would to 
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
-   {
-       ILogger _logger;
+{
+    ILogger _logger;
 
-       public LoggingAuthorizationHandler(ILoggerFactory loggerFactory)
-       {
-           _logger = loggerFactory.CreateLogger(this.GetType().FullName);
-       }
+    public LoggingAuthorizationHandler(ILoggerFactory loggerFactory)
+    {
+        _logger = loggerFactory.CreateLogger(this.GetType().FullName);
+    }
 
-       protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MyRequirement requirement)
-       {
-           _logger.LogInformation("Inside my handler");
-           // Check if the requirement is fulfilled.
-           return Task.CompletedTask;
-       }
-   }
-   ```
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MyRequirement requirement)
+    {
+        _logger.LogInformation("Inside my handler");
+        // Check if the requirement is fulfilled.
+        return Task.CompletedTask;
+    }
+}
+```
 
 You would register the handler with `services.AddSingleton()`:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
-   ```
+```
 
 An instance of the handler will be created when your application starts, and DI will inject the registered `ILoggerFactory` into your constructor.
 

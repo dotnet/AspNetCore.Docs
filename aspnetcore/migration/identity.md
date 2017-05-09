@@ -55,9 +55,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NewMvc6Project.Models
 {
-  public class ApplicationUser : IdentityUser
-  {
-  }
+    public class ApplicationUser : IdentityUser
+    {
+    }
 }
 ```
 
@@ -71,18 +71,18 @@ using Microsoft.Data.Entity;
 
 namespace NewMvc6Project.Models
 {
-  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-  {
-    public ApplicationDbContext()
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-      Database.EnsureCreated();
-    }
+        public ApplicationDbContext()
+        {
+            Database.EnsureCreated();
+        }
 
-    protected override void OnConfiguring(DbContextOptions options)
-    {
-      options.UseSqlServer();
+        protected override void OnConfiguring(DbContextOptions options)
+        {
+            options.UseSqlServer();
+        }
     }
-  }
 }
 ```
 
