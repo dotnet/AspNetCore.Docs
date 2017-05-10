@@ -13,7 +13,6 @@ ms.prod: asp.net-core
 ---
 # Performance
 
-*   [🔧 Measuring Application Performance](measuring.md)
 *   [Caching](caching/index.md)
     *   [In Memory Caching](caching/memory.md)
     *   [Working with a Distributed Cache](caching/distributed.md)

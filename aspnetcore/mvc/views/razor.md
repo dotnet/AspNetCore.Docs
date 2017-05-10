@@ -327,7 +327,7 @@ You can use any of the following looping statements:
 
 ### Compound `@using`
 
-In C# a using statement is used to ensure an object is disposed. In Razor this same mechanism can be used to create [HTML helpers](html-helpers.md) that contain additional content. For instance, we can utilize [🔧 HTML Helpers](html-helpers.md) to render a form tag with the `@using` statement:
+In C# a using statement is used to ensure an object is disposed. In Razor this same mechanism can be used to create HTML helpers that contain additional content. For instance, we can utilize HTML Helpers to render a form tag with the `@using` statement:
 
 ```none
 @using (Html.BeginForm())
