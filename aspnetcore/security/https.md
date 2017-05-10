@@ -90,4 +90,30 @@ Once the `certificate.pfx` file has been generated configure the HTTPS certifica
 
 You will also need to specify the passphrase for the certificate by setting the “Certificates:HTTPS:Password” config property. Passwords should not be stored in plain text. See [Safe Storage of App Secrets During Development](app-secrets.md) for appropriate handling of the certificate passphrase.
 
-On macOS you can [add the certificate to your keychain](https://support.apple.com/kb/PH20129?locale=en_US) and [change its trust settings](https://support.apple.com/kb/PH20127?locale=en_US&viewlocale=en_US) so that it is trusted for HTTPS during development.
+On macOS you can [add the certificate to your keychain](https://support.apple.com/kb/PH20129?locale=en_US) and [change its trust settings](https://support.apple.com/kb/PH20127?locale=en_US&viewlocale=en_US) so that it is trusted for HTTPS during development. To add the certificate to your keychain (the equivalent of the `CurrentUser/My` store on Windows) run the following command:
+
+```bash
+security import certificate.pfx -k ~/Library/Keychains/login.keychain-db
+```
+
+And then to trust the certificate:
+
+```bash
+security add-trusted-cert localhost.cer
+```
+
+You can then configure your app to use this certificate in development like this:
+
+```json
+{
+  "Certificates": {
+    "HTTPS": {
+      "Source": "Store",
+      "StoreLocation": "CurrentUser",
+      "StoreName": "My",
+      "Subject": "CN=localhost",
+      "AllowInvalid": true
+    }
+  }
+}
+```
