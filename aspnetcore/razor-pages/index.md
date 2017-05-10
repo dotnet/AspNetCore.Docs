@@ -1,6 +1,20 @@
-## Introduction to Razor Pages
+---
+title: Introduction to Razor Pages in ASP.NET Core | Microsoft Docs
+author: Rick-Anderson
+description: Overview of Razor Pages in ASP.NET Core | Microsoft Docs
+keywords: ASP.NET Core, Razor Pages
+ms.author: riande
+manager: wpickett
+ms.date: 05/10/2017
+ms.topic: article
+ms.assetid: 30e4104c-0124-477b-86b3-beb7b34ed3f6
+ms.technology: aspnet
+ms.prod: asp.net-core
+uid: razor-pages/index
+---
+## Introduction to Razor Pages in ASP.NET Core
 
-Razor Pages is a new feature to ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
+Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 
