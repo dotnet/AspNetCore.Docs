@@ -18,7 +18,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 
-### Getting started
+## Getting started
 
 Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
 
@@ -58,7 +58,6 @@ Consider  a basic page:
 The preceeding code looks a lot like a regular Razor view file. What makes it different is the new `@page` directive. Using `@page` makes this file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
 
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Pages path and the matching URL:
-
 
 | File name and path               | matching URL |
 | ----------------- | ------------ | 
@@ -131,7 +130,7 @@ The *MyApp/Pages/Contact.cshtml* file:
 </html>
 ```
 
-The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. You most frequently use an `OnGet` handler to initialize any state a needed to show the HTML and `OnPost` to handle form submissions. The `Async` naming suffix is optional, it's often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
+The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. You most frequently use an `OnGet` handler to initialize any state a needed to show the HTML and `OnPost` to handle form submissions. The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
 
 The basic flow of `OnPostAsync` is:
 
@@ -145,13 +144,13 @@ When the submitted form has validation errors, the`OnPostAsync` handler method c
 
 The `Contact` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Contacts.Name" />`) and accept the input.
 
-Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With ༖༗, you get a view model automatically. 
+Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
 
-Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views - this generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`)  properties are set before handler methods run.
+Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views - this generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
-### Introducing PageModel
+## Introducing PageModel
 
 You could write this form by partitioning the view code and the handler method into separate files. The view code:
 
@@ -215,11 +214,11 @@ namespace MyApp.Pages
 }
 ```
 
-By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change,  add constructor injection for all your  injected (`@inject`) properties.
+By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change is to add constructor injection for all your injected (`@inject`) properties.
 
 Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
 
-### Using the view engine
+## Using the view engine
 
 Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cstml* all work in the same way they do for conventional Razor views. 
 
@@ -255,11 +254,11 @@ Add a *_ViewImports.cshtml* file:
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 ```
 
-The `@namespace` directive is a new feature that controls the namespace of the generated code. The `@namespace` directive allows us to get rid of `@using` directives from the page. The `@namespace` directive works by computing the difference in folders between your view code and the `_ViewImports.cshtml` where it appears. Because the Customer.cshtml is also in the MyApp/Pages folder, it will have the namespace `MyApp.Pages`. If the path was  *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
+The `@namespace` directive is a new feature that controls the namespace of the generated code. The `@namespace` directive allows us to get rid of `@using` directives from the page. The `@namespace` directive works by computing the difference in folders between your view code and the `_ViewImports.cshtml` where it appears. Because the *Customer.cshtml* file is also in the *MyApp/Pages* folder, it will have the namespace `MyApp.Pages`. If the path was  *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
 
 `@namespace` also works for conventional Razor views.
 
-Here's what the page looks like after simplication:
+Here's what the page looks like after simplification:
 
 *MyApp/Pages/Contact.chsml*
 
@@ -298,7 +297,7 @@ Here's what the page looks like after simplication:
 </div>
 ```
 
-### URL generation for Pages
+## URL generation for Pages
 
 Let's suppose we want to do something more useful than showing the same page again when the visitor submits their contact information. We can use `RedirectToPage("/Index")` to redirect to the `Index` page.
 
@@ -376,14 +375,13 @@ The page name is just the path to the page from the root *MyApp/Pages* folder (i
 
 URL generation for pages supports relative names. From *MyApp/Pages/Contact.cshtml*, you could also redirect to *MyApp/Pages/Index.cshtml* using `RedirectToPage("Index")` or `RedirectToPage("./Index")`. These are both *relative names*. The provided string is *combined* with the page name of the current page to compute the name of the destination page. You can also use the directory traversal `..` operator. 
 
-Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can you rename that folder. All the links still work (because they didn't include the folder name).
-
+Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
 Since we have another page here, we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is now cookies. A session provider is no longer required by default.
 
 ### Using multiple handlers
 
-Let's update this form to support multiple operations. A visitor to the site can either join the mailing list, or ask for a free quote.
+Let's update this form to support multiple operations. A visitor to the site can either join the mailing list or ask for a free quote.
 
 If you want one page to handle multiple logical actions, you can use *named handler methods*. Any text in the name after `On<Verb>` and before `Async` (if present) in the method name is considered a handler name. The handler methods in the following example have the handler names `JoinMailingList` and `RequestQuote`:
 
@@ -426,7 +424,7 @@ The form in this example has two submit buttons, each using the new `FormActionT
 
 In this case, the URL path that submits to `OnPostJoinMailingListAsync` is `/Contact?handler=JoinMailingList` and the URL path that submits to `OnPostRequestQuoteAsync` is `/Contact?handler=RequestQuote`.
 
-### Customizing Routing
+## Customizing Routing
 
 If you don't like seeing `?handler=RequestQuote` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
 
