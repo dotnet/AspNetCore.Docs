@@ -187,7 +187,7 @@ The code in the `PopulateAssignedCourseData` method reads through all Course ent
 
 Next, add the code that's executed when the user clicks **Save**. Replace the `EditPost` method with the following code, and add a new method that updates the `Courses` navigation property of the Instructor entity.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=3,12,13,25&name=snippet_EditPostCourses)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=3,12,13,25,39-40&name=snippet_EditPostCourses)]
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=1-31)]
 
@@ -247,7 +247,7 @@ This code makes the following changes:
 
 In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22,29)]
 
 This code is similar to what you saw for the `Edit` methods except that initially no courses are selected. The HttpGet `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 

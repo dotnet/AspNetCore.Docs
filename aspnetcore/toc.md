@@ -90,6 +90,8 @@
 <!--### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)-->
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 
+# [Razor Pages](razor-pages/index.md)
+
 # [Testing](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration testing](testing/integration-testing.md)

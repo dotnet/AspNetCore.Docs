@@ -27,7 +27,7 @@ Open the *Startup.cs* file and examine `ConfigureServices`:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7-8)]
 
-The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container.
+The highlighted code above shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container. The line following `services.AddDbContext<MvcMovieContext>(options =>` is not shown (see your code). It specifies the database to use and the connection string. `=>` is a [lambda operator](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/operators/lambda-operator).
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 

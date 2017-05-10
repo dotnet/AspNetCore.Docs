@@ -18,7 +18,7 @@ namespace ContosoUniversity.Controllers
 
         public InstructorsController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: Instructors
@@ -102,6 +102,7 @@ namespace ContosoUniversity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            PopulateAssignedCourseData(instructor);
             return View(instructor);
         }
 
@@ -129,7 +130,7 @@ namespace ContosoUniversity.Controllers
         private void PopulateAssignedCourseData(Instructor instructor)
         {
             var allCourses = _context.Courses;
-            var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.Course.CourseID));
+            var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.CourseID));
             var viewModel = new List<AssignedCourseData>();
             foreach (var course in allCourses)
             {
@@ -184,6 +185,8 @@ namespace ContosoUniversity.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            UpdateInstructorCourses(selectedCourses, instructorToUpdate);
+            PopulateAssignedCourseData(instructorToUpdate);
             return View(instructorToUpdate);
         }
 
