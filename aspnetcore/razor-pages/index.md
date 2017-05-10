@@ -59,9 +59,6 @@ The preceeding code looks a lot like a regular Razor view file. What makes it di
 
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Pages path and the matching URL:
 
-<!-- Review: Can I add:
-The name *Page* for the folder is arbitray but used by convention.
--->
 
 | File name and path               | matching URL |
 | ----------------- | ------------ | 
@@ -69,13 +66,11 @@ The name *Page* for the folder is arbitray but used by convention.
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
 
+The runtime looks for Razor Pages files in the *Pages* folder by default.
+
 ### Writing a basic form
 
 The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic 'contact us' form for the `Contact` model:
-
-<!-- REVIEW Original:
-For these examples the  model class, and a database/`DbContext` is set up.
--->
 
 For the examples on this page, the `DbContext` is initialized in the *Startup.cs** file.
 
@@ -467,33 +462,3 @@ public class Startup
 ```
 
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
-
-### Our philosophy for Razor Pages
-
-We think that Razor Pages is a good way to lower the overhead of MVC for simple page-centric scenarios. We're interested in your feedback and experiences trying it out.
-
-We are trying to:
-
-* Make dynamic HTML and forms with ASP.NET Core easier. For example, reduce the number of files and concepts required to display "Hello World" in a page, build a CRUD form, etc.
-* Reduce the number of files and folder-structure required for page-focused MVC scenarios.
-<!-- REVIEW What is PRG -->
-* Simplify the code required to implement common page-focused patterns, for example, dynamic pages, CRUD forms, PRG, etc.
-* Allow straightforward migration to and from traditional MVC organization.
-* Enable the ability to return non-HTML responses when necessary, for example, 404s.
-* Share the existing MVC features as much as possible:
-
-  - MVC's model binding and validation
-  - Filters
-  - Action Results
-  - HTML Helpers and Tag Helpers
-  - Existing Razor features like `@inherits`, `@model`, `@inject`
-  - Layouts & partials
-  - *_ViewStart.cshtml* and *_ViewImports.cshtml*
-
-We are not trying to:
-
-* Create a scripted page framework to compete with PHP, etc.
-<!-- REVIEW What is DSL? -->
-* Hide C# with a DSL in Razor or otherwise.
-* Create new Razor Pages primitives that don't work in controllers.
-* Create undue burdens for the ASP.NET team with regards to forking our user-base, tooling support, etc.
