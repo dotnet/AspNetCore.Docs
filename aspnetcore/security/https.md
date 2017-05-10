@@ -1,25 +1,25 @@
 ---
-title: Setting up HTTPS for development
-author: ???
-description: Shows how to setup HTTPS for development
+title: Setting up HTTPS for development in ASP.NET Core
+author: Rick-Anderson
+description: Shows how to set up HTTPS for development in ASP.NET Core 2.0.
 keywords: ASP.NET Core, SSL, HTTPS
 ms.author: riande
 manager: wpickett
-ms.date: 03/19/2017
+ms.date: 05/10/2017
 ms.topic: article
-ms.assetid: ???
+ms.assetid: 94f2f1a4-7d46-45e2-a085-a57916e41724
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/https
 ---
-# Setting up HTTPS for development
+# Setting up HTTPS for development in ASP.NET Core
 
 > [!NOTE] 
 > This topic applies to ASP.NET Core 2.0 Preview 1
 
 You can configure your application to use HTTPS during development to simulate HTTPS in your production environment. Enabling HTTPS may be required to enable integration with various identity providers (like [Azure AD](https://azure.microsoft.com/en-us/services/active-directory) and [Azure AD B2C](https://azure.microsoft.com/en-us/services/active-directory-b2c)).
 
-On Windows if you’ve installed Visual Studio or IIS Express then the IIS Express Development Certificate will be added to your LocalMachine certificate store. You can update your project properties in Visual Studio to use this certificate when running behind IIS Express.
+On Windows if you’ve installed Visual Studio or IIS Express, the IIS Express Development Certificate will be in your LocalMachine certificate store. You can update your project properties in Visual Studio to use this certificate when running behind IIS Express.
 
 ![Debug tab of web application properties](enforcing-ssl/_static/ssl.png)
 
@@ -40,7 +40,7 @@ You can also configure Kestrel to listen over HTTPS by configuring an endpoint w
 
 ```
 
-For development you can use the IIS Express Development Certificate if it is available, or create a new certificate for development purposes. The development certificate should be configured in the `appsettings.Development.json` file so that it is not used when in production:
+For development you can use the IIS Express Development Certificate if it is available, or create a new certificate for development purposes. The development certificate should be configured in the `appsettings.Development.json` file so that it is not used in production:
 
 ```json
 {
@@ -56,9 +56,9 @@ For development you can use the IIS Express Development Certificate if it is ava
 }
 ```
 
-An app with this configuration running in production will throw an exception saying "No certificate named 'HTTPS' found in configuration for the current environment (Production)". To switch the [environment](~/fundamentals/environments) to `Development` set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development`.
+An app with this configuration running in production will throw an exception saying "No certificate named 'HTTPS' found in configuration for the current environment (Production)". To switch the [environment](~/fundamentals/environments) to `Development`, set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development`.
 
-If you do not have the IIS Express Development Certificate installed, then you can create a development certificate yourself. On Windows you can create a development certificate and add it to the trusted root store for the current user by running the following PowerShell commands in an elevated prompt:
+If you do not have the IIS Express Development Certificate installed, you can create a development certificate yourself. On Windows you can create a development certificate and add it to the trusted root store for the current user by running the following PowerShell commands in an elevated prompt:
 
 ```powershell
 $cert = New-SelfSignedCertificate -Subject localhost -DnsName localhost -FriendlyName "ASP.NET Core Development" -KeyUsage DigitalSignature -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.1") 
@@ -75,7 +75,7 @@ openssl req -new -x509 -newkey rsa:2048 -keyout localhost.key -out localhost.cer
 openssl pkcs12 -export -out certificate.pfx -inkey localhost.key -in certificate.crt
 ```
 
-Once the `certificate.pfx` file has been generated configure the HTTPS certificate in your `appsettings.Development.json` file:
+Once the `certificate.pfx` file has been generated, configure the HTTPS certificate in your `appsettings.Development.json` file:
 
 ```json
 {

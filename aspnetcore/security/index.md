@@ -75,3 +75,4 @@ ms.prod: asp.net-core
 *   [🔧 Preventing Open Redirect Attacks](open-redirect.md)
 *   [Preventing Cross-Site Scripting](cross-site-scripting.md)
 *   [Enabling Cross-Origin Requests (CORS)](cors.md)
+*   [Setting up HTTPS for development](https.md)
