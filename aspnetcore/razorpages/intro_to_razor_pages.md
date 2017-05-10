@@ -2,13 +2,13 @@
 
 Razor Pages is a new feature to ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-Razor Pages is included in version 2.0.0 of ASP.NET Core. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3.
+Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 
-### Getting Started
+### Getting started
 
-Razor Pages is on by default by MVC. If you are using a typical *Startup.cs* like the following, Razor Pages is enabled:
+Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* like the following, Razor Pages is enabled:
 
-```
+```c#
 public class Startup
 {
     public void ConfigureServices(IServiceCollections services)
@@ -27,7 +27,7 @@ All of the new Razor Pages types and features are included in the `Microsoft.Asp
 
 Consider  a basic page:
 
-```
+```html
 @page
 
 @{
@@ -41,9 +41,13 @@ Consider  a basic page:
 </html>
 ```
 
-This looks a lot like a regular Razor view file. What makes it different is the new `@page` directive. Using `@page` makes this file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must occur first where it is used, as it affects the behavior of other Razor constructs.
+This looks a lot like a regular Razor view file. What makes it different is the new `@page` directive. Using `@page` makes this file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page, it affects the behavior of other Razor constructs.
 
-The associations of URL paths to pages is determined by the page's location in the file system. The following table shows a Razor Pages file path and the matching URL:
+The associations of URL paths to pages is determined by the page's location in the file system. The following table shows a Razor Pages path and the matching URL:
+
+<!-- Review: Can I add:
+The name *Page* for the folder is arbitray but used by convention.
+-->
 
 | File name and path               | mathching URL |
 | ----------------- | ------------ | 
@@ -51,15 +55,19 @@ The associations of URL paths to pages is determined by the page's location in t
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
 
-### Writing a Simple Form
+### Writing a basic form
 
-The new Razor Pages features are designed to make common patterns used with web browsers simple. Consider a page that implements a basic 'contact us' form for a simple model:
+The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic 'contact us' form for the `Contact` model:
 
+<!-- REVIEW Original:
 For these examples the  model class, and a database/`DbContext` is set up.
+-->
 
-The *MyApp/Contact.cs* file which contains the `Contact` model:
+For the examples on this page, the `DbContext` is initialized in the *Startup.cs** file.
 
-```
+The *MyApp/Contact.cs* file:
+
+```c#
 using System.ComponentModel.DataAnnotations;
 
 namespace MyApp 
@@ -77,7 +85,7 @@ namespace MyApp
 
 The *MyApp/Pages/Contact.cshtml* file:
 
-```
+```html
 @page
 @using MyApp
 @using Microsoft.AspNetCore.Mvc.RazorPages
@@ -122,13 +130,13 @@ The basic flow of `OnPostAsync` is:
 1. If there are no errors, save the data and redirect -
 1. Else, show the page again with the validation errors.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirctToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceeding sample it redirects back to the same URL as the current page (`/Contact`).
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirctToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceeding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
 
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
 The `Contact` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Contacts.Name" />`) and accept the input.
 
-Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With `Pages` you get getting a view model automatically. 
+Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With `Pages` you get a view model automatically. 
 
 Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views - this generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`)  properties will be set before handler methods run.
 
@@ -139,7 +147,8 @@ You don't have to write any code for antiforgery validation. Antiforgery token g
 You could write this form by partitioning the the view code and the handler method into separate files. The view code:
 
 *MyApp/Pages/Contact.chsml*
-```
+
+```html
 @page
 @using MyApp
 @using MyApp.Pages
@@ -160,11 +169,11 @@ You could write this form by partitioning the the view code and the handler meth
 </html>
 ```
 
-A  a 'code-behind' for the view code:
+The `PageModel` class, a 'code-behind' file for the view code:
 
 *MyApp/Pages/Contact.cshtml.cs*
 
-```
+```c#
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -199,11 +208,11 @@ namespace MyApp.Pages
 
 By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change,  add constructor injection for all of your  injected (`@inject`) properties.
 
-Using a `PageModel` supports unit testing, but will require you to write an explicit constructor and class. Pages without `PageModel`s have support runtime compilation, which can be an advantage in development.
+Using a `PageModel` supports unit testing, but will require you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
 
-### Using the View Engine
+### Using the view engine
 
-Pages work with all of the features of the Razor view engine. That is: layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cstml* all work in the same ways they do for conventional Razor views. 
+Pages work with all of the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cstml* all work in the same way they do for conventional Razor views. 
 
 Let's declutter this page by taking advantage of some of those features. 
 
@@ -211,7 +220,7 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 
 *MyApp/Pages/_Layout.chsml*
 
-```
+```html
 <html>
     ...
 </html>
@@ -219,25 +228,25 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 
 *MyApp/Pages/_ViewStart.chsml*
 
-```
+```html
 @{ Layout = "_Layout"; }
 ```
 
-Notice that we  placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any page.
+Note that we  placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any page.
 
-View search from a page also will include the *MyApp/Views/Shared* folder. Layouts, templates, and partials you're using with MVC controllers and conventional Razor views 'just work'.
+View search from a page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views 'just work'.
 
 Add a *_ViewImports.cshtml* file:
 
 *MyApp/Pages/_ViewImports.chsml*
 
-```
+```c#
 @namespace MyApp.Pages
 @using Microsoft.AspNetCore.Mvc.RazorPages
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 ```
 
-The `@namespace` directive is a new feature that will control the namespace of the generated code. The `@namespace` directive allows us to get rid of `@using` directives from the page. The `@namespace` directive works by computing the different in folders between your view code and the `_ViewImports.cshtml` where it appears. Because our *Customer.cshtml* is also in the *MyApp/Pages* folder it will have the namespace `MyApp.Pages`. If the path was  *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
+The `@namespace` directive is a new feature that will control the namespace of the generated code. The `@namespace` directive allows us to get rid of `@using` directives from the page. The `@namespace` directive works by computing the difference in folders between your view code and the `_ViewImports.cshtml` where it appears. Because the *Customer.cshtml* is also in the *MyApp/Pages* folder it will have the namespace `MyApp.Pages`. If the path was  *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
 
 `@namespace` also works for conventional Razor views.
 
@@ -245,7 +254,7 @@ Here's what the page looks like after simplication:
 
 *MyApp/Pages/Contact.chsml*
 
-```
+```html
 @page
 @inject ApplicationDbContext Db
 
@@ -280,9 +289,9 @@ Here's what the page looks like after simplication:
 </div>
 ```
 
-### URL Generation for Pages
+### URL generation for Pages
 
-Let's suppose we want to do something more useful than showing the same page again when the visitor submits their contact information. We can use `RedirectToPage(...)` to redirect to other pages in a few useful ways.
+Let's suppose we want to do something more useful than showing the same page again when the visitor submits their contact information. We can use `RedirectToPage("/Index")` to redirect to the `Index` page.
 
 This example adds a confirmation message and redirects back to the home page:
 
@@ -329,8 +338,9 @@ This example adds a confirmation message and redirects back to the home page:
 </div>
 ```
 
-**MyApp/Pages/Index.chsml**
-```
+*MyApp/Pages/Index.chsml*
+
+```html
 @page
 
 @functions {
@@ -349,7 +359,6 @@ This example adds a confirmation message and redirects back to the home page:
         <p>Hi, welcome to our website!</p>
     </div>
 </div>
-
 ```
 
 We've  added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is the name of the page we just added, and can be used with `Url.Page(...)`, `<a asp-page="..." />` or `RedirectToPage`.
@@ -363,7 +372,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 Since we have another page here we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controlers and pages. In 2.0.0, the default storage for temp data is now cookies. A session provider is no longer required by default.
 
-### Using Multiple Handlers
+### Using multiple handlers
 
 Let's update this form to support multiple operations. A visitor to the site can either join the mailing list, or ask for a free quote.
 
@@ -371,7 +380,7 @@ If you want one page to handle multiple logical actions you can use *named handl
 
 *MyApp/Pages/Contact.chsml*
 
-```
+```html
 @page
 @inject ApplicationDbContext Db
 
@@ -424,11 +433,11 @@ This route will now put the handler name in the URL path instead of the query st
 You can use `@page` to add additional segments and parameters to a page's route, whatever's there will be **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
 
 
-### Configuration and Settings
+### Configuration and settings
 
 Use the extension method `AddRazorPagesOptions` on the MVC builder to configure advanced options such as the following example:
 
-```
+```c#
 public class Startup
 {
     public void ConfigureServices(IServiceCollections services)
@@ -445,22 +454,21 @@ public class Startup
 
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
-## Razor Pages: A Manifesto
+### Our philosophy for Razor Pages
 
-We think that Razor Pages is a good way to lower the overhead of MVC for simple page-centric scenarios. We're of course interested in your feedback and experiences trying it out.
-
-A few more words about our philosophy for Razor Pages. 
+We think that Razor Pages is a good way to lower the overhead of MVC for simple page-centric scenarios. We're interested in your feedback and experiences trying it out.
 
 We are trying to:
 
-* Make dynamic HTML and forms with ASP.NET Core easier. For example, how many files and concepts required to print Hello World in a page, build a CRUD form, etc.
+* Make dynamic HTML and forms with ASP.NET Core easier. For example, reduce the number of files and concepts required to display "Hello World" in a page, build a CRUD form, etc.
 * Reduce the number of files and folder-structure required for page-focused MVC scenarios.
-*Simplify the code required to implement common page-focused patterns, e.g. dynamic pages, CRUD forms, PRG, etc.
-*Allow straightforward migration to and from traditional MVC organization.
+<!-- REVIEW What is PRG -->
+* Simplify the code required to implement common page-focused patterns, for example, dynamic pages, CRUD forms, PRG, etc.
+* Allow straightforward migration to and from traditional MVC organization.
 * Enable the ability to return non-HTML responses when necessary, for example, 404s.
-*Share the existing MVC features as much as possible:
+* Share the existing MVC features as much as possible:
 
-  - MVC's Model Binding and Validation
+  - MVC's model binding and validation
   - Filters
   - Action Results
   - HTML Helpers and Tag Helpers
@@ -471,6 +479,7 @@ We are trying to:
 We are not trying to:
 
 * Create a scripted page framework to compete with PHP, etc.
+<!-- REVIEW What is DSL? -->
 * Hide C# with a DSL in Razor or otherwise.
 * Create new Razor Pages primitives that don't work in controllers.
 * Create undue burdens for the ASP.NET team with regards to forking our user-base, tooling support, etc.
