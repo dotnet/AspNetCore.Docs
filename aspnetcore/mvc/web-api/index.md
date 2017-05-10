@@ -18,5 +18,5 @@ ms.prod: asp.net-core
 * [ASP.NET Web API Help Pages using Swagger](../../tutorials/web-api-help-pages-using-swagger.md)
 * [Creating backend services for native mobile applications](../../mobile/native-mobile-backend.md)
 * [Formatting response data](../models/formatting.md)
-* [🔧 Custom formatters](../advanced/custom-formatters.md)
-* [🔧 Support resource updates with JSON patch](json-patch.md)
+* [Custom formatters](../advanced/custom-formatters.md)
+
