@@ -58,13 +58,26 @@ namespace ContactManager
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             #region snippet_SSL 
+            // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(new RequireHttpsAttribute());
             });
             #endregion
 
-            
+            #region snippet_defaultPolicy
+            // requires using Microsoft.AspNetCore.Authorization;
+            // and using Microsoft.AspNetCore.Mvc.Authorization;
+            // Default authentication policy will require authenticated user.
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+            #endregion
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(
@@ -78,7 +91,7 @@ namespace ContactManager
             });
 
             // Authorization handlers.
-            #region snippet_AddScoped
+            #region snippet_ContactIsOwnerAuthorizationHandler
             services.AddSingleton<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
             #endregion
 
@@ -91,17 +104,13 @@ namespace ContactManager
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -120,14 +129,15 @@ namespace ContactManager
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            #region snippet_SeedUserPW
+            #region snippetUserPW
             // Set password with the Secret Manager tool.
             // dotnet user-secrets set SeedUserPW <pw>
             var testUserPw = Configuration["SeedUserPW"];
 
             if (String.IsNullOrEmpty(testUserPw))
             {
-                throw new System.Exception("Use secrets manager/environment to set SeedUserPW");
+                throw new System.Exception("Use secrets manager/environment to set SeedUserPW \n" +
+                                           "dotnet user-secrets set SeedUserPW <pw>");
             }
 
             try

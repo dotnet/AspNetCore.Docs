@@ -106,7 +106,7 @@ namespace ContactManager.Data
             return IR;
         }
         #endregion
-
+        #region snippet1
         public static void SeedDB(ApplicationDbContext context, string uid)
         {
             if (context.Contact.Any())
@@ -126,6 +126,7 @@ namespace ContactManager.Data
                     Email = "debra@example.com",
                     OwnerID = uid
                 },
+            #endregion
             #endregion
                 new Contact
                 {

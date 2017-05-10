@@ -52,7 +52,7 @@ Run the app, tap the **ContactManager** link, and verify you can create, edit, a
 
 We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model :
 
-[!code-csharp[Main](secure-data/samples/final/Models/Contact.cs?name=snippet1&highlight=5-6)]
+[!code-csharp[Main](secure-data/samples/final15/Models/Contact.cs?name=snippet1&highlight=5-6)]
 
 `OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](../authentication/identity.md) database.
 
@@ -67,13 +67,13 @@ dotnet ef database update
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/RequireHttpsAttribute/index.html.md#Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.md) authorization filter that requires all requests use HTTPS:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=17-21)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_SSL&highlight=1)]
 
 If you're using Visual Studio, [Set up IIS Express for SSL/HTTPS](xref:security/enforcing-ssl#set-up-iis-express-for-sslhttps)
 
 Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_defaultPolicy&highlight=23-)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_defaultPolicy&highlight=2-)]
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
@@ -89,11 +89,11 @@ dotnet user-secrets set SeedUserPW <PW>
 
 Update `Configure` to use the test password:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippetUserPW&highlight=29-40)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippetUserPW&highlight=2)]
 
 Add the test accounts user ID to the seed data. Only one contact is shown, add the user ID to all contacts:
 
-[!code-csharp[Main](secure-data/samples/final/Data/SeedData.cs?name=snippet1&highlight=16)]
+[!code-csharp[Main](secure-data/samples/final15/Data/SeedData.cs?name=snippet1&highlight=16)]
 
 Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
 
@@ -103,17 +103,15 @@ Delete all the records in the `Contact` table and restart the app to seed the da
 
 * Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
-[!code-csharp[Main](secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the `ContactIsOwner` handler with the service collection so it will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_ContactIsOwnerAuthorizationHandler&highlight=29-33)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_ContactIsOwnerAuthorizationHandler&highlight=1-2)]
 
 Update the `ContactsController` constructor to resolve the `IAuthorizationService` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the `Identity` `UserManager` service:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Controllers/ContactsController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [4, 5, 9, 10, 13, 14]}, "names": []} -->
 
 ````c#
 
@@ -137,7 +135,6 @@ Update the `ContactsController` constructor to resolve the `IAuthorizationServic
 
 Add the `ContactOperationsRequirements` class to the *Authorization* folder to contain the requirements our app supports:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Authorization/ContactOperationsRequirements.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -175,7 +172,6 @@ Add the `ContactOperationsRequirements` class to the *Authorization* folder to c
 
 Update the `HTTP POST Create` method to add the user ID to the `Contact` model:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Controllers/ContactsController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9]}, "names": []} -->
 
 ````c#
 
@@ -199,7 +195,6 @@ Update the `HTTP POST Create` method to add the user ID to the `Contact` model:
 
 Update both `Edit` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the `[Authorize]` attribute as we don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Controllers/ContactsController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [14, 15, 16, 17, 18, 19, 35, 36, 37, 38, 39, 40, 28]}, "names": []} -->
 
 ````c#
 
@@ -284,7 +279,6 @@ Update both `Edit` methods to use the authorization handler to verify the user o
 
 Update both `Delete` methods to use the authorization handler to verify the user owns the contact.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Controllers/ContactsController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [14, 15, 16, 17, 18, 19, 31, 32, 33, 34, 35, 36]}, "names": []} -->
 
 ````c#
 
@@ -338,8 +332,6 @@ Update both `Delete` methods to use the authorization handler to verify the user
 
 Add the `AccessDenied` method to the `AccountController`. This method will be invoked when we call `ChallengeResult`.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Controllers/AccountController.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
 ````c#
 
    //
@@ -355,7 +347,6 @@ Add the `AccessDenied` method to the `AccountController`. This method will be in
 
 Add the *Views/Account/AccessDenied.cshtml* Razor view:
 
-<!-- literal_block {"xml:space": "preserve", "language": "html", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Views/Account/AccessDenied.cshtml", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````html
 
@@ -381,7 +372,6 @@ Currently the UI shows edit and delete links for data the user cannot modify. We
 
 Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Views/_ViewImports.cshtml", "highlight_args": {"linenostart": 1, "hl_lines": [7, 8]}, "names": []} -->
 
 ````none
 
@@ -398,15 +388,12 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it w
 
 Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edit and delete links for the users data:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Views/Contacts/Index.cshtml", "highlight_args": {"linenostart": 1}, "names": []} -->
-
 ````none
 
    @using ContactManager.Authorization;
 
    ````
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Views/Contacts/Index.cshtml", "highlight_args": {"linenostart": 1, "hl_lines": [6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17]}, "names": []} -->
 
 ````none
 
@@ -445,7 +432,6 @@ Log out of the "[test@example.com](mailto:test@example.com)" browser session or 
 
 Update `SeedData` to create and call the "canDelete" role:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Data/SeedData.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -471,7 +457,6 @@ Update `SeedData` to create and call the "canDelete" role:
 
    ````
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Data/SeedData.cs", "highlight_args": {"linenostart": 1, "hl_lines": [7]}, "names": []} -->
 
 ````c#
 
@@ -490,7 +475,6 @@ Update `SeedData` to create and call the "canDelete" role:
 
 Create a new class called `ContactRoleAuthorizationHandler` for the role handler to validate the user is in the specified role:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Authorization/ContactRoleAuthorizationHandler.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -527,7 +511,6 @@ Then, if we have the "Admin" role, you'd have two handlers for the requirement/o
 
 Add the role authorization handler to the service container in `ConfigureServices`.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -542,8 +525,6 @@ Test the app and verify the "[test@example.com](mailto:test@example.com)" user c
 The `ContactRoleAuthorizationHandler` allowed us to add an administrator that can delete user data without changing the UI code or the controller code. We were able to do this because we wrote the handlers to OR evaluate; any handler that succeeds allows the requirement to be met. This is typical for authorization handlers.
 
 You could write a handler that fails the requirements, even if the other handlers succeed. For example, consider the following handler that fails if the contact address doesn't contain "1":
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Authorization/ContactNotOneAuthorizationHandler.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -585,8 +566,6 @@ You could write a handler that fails the requirements, even if the other handler
 
 If you applied this handler to the **Details** link, addresses without a "1" would not display the **Details** link.
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/final/Views/Contacts/Index2.cshtml", "highlight_args": {"linenostart": 1}, "names": []} -->
-
 ````none
 
        @* Has 1 filter *@
@@ -612,7 +591,6 @@ See reference<!-- {"refid": "secure-data-add-resources-label", "dupnames": [], "
 
 * Add the following `Contact` model:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/starter/Models/Contact.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -638,7 +616,6 @@ See reference<!-- {"refid": "secure-data-add-resources-label", "dupnames": [], "
 
 * Update the **ContactManager** anchor in the *Views/Shared/_Layout.cshtml* file from `asp-controller="Home"` to `asp-controller="Contacts"` so tapping the **ContactManager** link will invoke the Contacts controller. The original markup:
 
-<!-- literal_block {"xml:space": "preserve", "language": "html", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
 ````html
 
@@ -647,8 +624,6 @@ See reference<!-- {"refid": "secure-data-add-resources-label", "dupnames": [], "
 
 The updated markup:
 
-<!-- literal_block {"xml:space": "preserve", "language": "html", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
-
 ````html
 
    <a asp-area="" asp-controller="Contacts" asp-action="Index" class="navbar-brand">ContactManager</a>
@@ -656,7 +631,6 @@ The updated markup:
 
 * Scaffold the initial migration and update the database
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
 ````none
 
@@ -669,8 +643,6 @@ The updated markup:
   ## Seed the database
 
 Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, you can copy the *SeedData.cs* file to the *Data* folder of the starter project.
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/starter/Data/SeedData.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
@@ -778,7 +750,6 @@ Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, 
 
 Add the highlighted code to the end of the `Configure` method in the *Startup.cs* file:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/security/authorization/secure-data/samples/starter/Startup.cs", "highlight_args": {"linenostart": 1, "hl_lines": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101]}, "names": []} -->
 
 ````c#
 
