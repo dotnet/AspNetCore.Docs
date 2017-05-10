@@ -58,7 +58,7 @@ For development you can use the IIS Express Development Certificate if it is ava
 
 An app with this configuration running in production will throw an exception saying "No certificate named 'HTTPS' found in configuration for the current environment (Production)". To switch the [environment](~/fundamentals/environments) to `Development` set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development`.
 
-If you do not have the IIS Express Development Certificate installed, then you can create a development certificate yourself. On Windows you can create a development certificate add it to the trusted root store for the current user by running the following PowerShell commands in an elevated prompt:
+If you do not have the IIS Express Development Certificate installed, then you can create a development certificate yourself. On Windows you can create a development certificate and add it to the trusted root store for the current user by running the following PowerShell commands in an elevated prompt:
 
 ```powershell
 $cert = New-SelfSignedCertificate -Subject localhost -DnsName localhost -FriendlyName "ASP.NET Core Development" -KeyUsage DigitalSignature -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.1") 
