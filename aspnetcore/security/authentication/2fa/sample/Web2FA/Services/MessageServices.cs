@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
-
+// Twilio Begin
+// using Twilio;
+// using Twilio.Rest.Api.V2010.Account;
+// using Twilio.Types;
+// Twilio End
 
 namespace Web2FA.Services
 {
@@ -27,20 +28,37 @@ namespace Web2FA.Services
 
         public Task SendSmsAsync(string number, string message)
         {
-            // Plug in your SMS service here to send a text message.
-            // Your Account SID from twilio.com/console
-            var accountSid = Options.accountSid;
-            // Your Auth Token from twilio.com/console
-            var authToken = Options.authToken;
+            // Twilio begin
+            // // Plug in your SMS service here to send a text message.
+            // // Your Account SID from twilio.com/console
+            // var accountSid = Options.SMSAccountIdentification;
+            // // Your Auth Token from twilio.com/console
+            // var authToken = Options.SMSAccountPassword;
+            // var 
 
-            TwilioClient.Init(accountSid, authToken);
+            // TwilioClient.Init(accountSid, authToken);
 
-            var msg = MessageResource.Create(
-              to: new PhoneNumber(number),
-              from: new PhoneNumber("+1(808) 201-1433"),
-              body: message);
+            // var msg = MessageResource.Create(
+            //   to: new PhoneNumber(number),
+            //   from: new PhoneNumber(Options.SMSAccountFrom),
+            //   body: message);
+            // return Task.FromResult(0);
+            // Twilio End
 
-            return Task.FromResult(0);
+            // ASPSMS Begin
+            // ASPSMS.SMS SMSSender = new ASPSMS.SMS();
+
+            // SMSSender.Userkey = Options.SMSAccountIdentification;
+            // SMSSender.Password = Options.SMSAccountPassword;
+            // SMSSender.Originator = Options.SMSAccountFrom;
+
+            // SMSSender.AddRecipient(number);
+            // SMSSender.MessageData = message;
+
+            // SMSSender.SendTextSMS();
+
+            // return Task.FromResult(0);
+            // ASPSMS End
         }
     }
 }
