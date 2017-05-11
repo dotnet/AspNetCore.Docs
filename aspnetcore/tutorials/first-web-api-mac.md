@@ -1,7 +1,7 @@
 ---
-title: Create a Web API with ASP.NET Core MVC and Visual Studio on macOS | Microsoft Docs
+title: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac | Microsoft Docs
 author: rick-anderson
-description: Create a Web API with ASP.NET Core MVC and Visual Studio on macOS
+description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 keywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS
 ms.author: riande
 manager: wpickett
@@ -14,9 +14,11 @@ uid: tutorials/first-web-api-mac
 ---
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
-# Create a Web API with ASP.NET Core MVC and Visual Studio on macOS
+# Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 
 By [Mike Wasson](https://github.com/mikewasson) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+This tutorial will teach you the basics of building an ASP.NET Core MVC Web API using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/).
 
 HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
 
@@ -49,11 +51,11 @@ The following diagram shows the basic design of the app.
 
 * The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use [Postman](https://www.getpostman.com/) to test the app.
 
-* A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
+* A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes, also know as Plain Old C# Object (POCOs).
 
 * A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller.
 
-* To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database.
+* To keep the tutorial simple, the app doesn’t use a persistent database. Instead, it stores to-do items in an in-memory database. See [Introduction to ASP.NET Core MVC on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a database.
 
 ### Create the project
 
@@ -69,7 +71,10 @@ Enter **TodoApi** for the **Project Name**, and then select Create.
 
 Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
-* From the **Project** menu, select **Add NuGet Packages**.
+* From the **Project** menu, select **Add NuGet Packages**. 
+
+  *  Alternately, you can right-click **Dependencies**, and then select **Add Packages**.
+
 * Enter `EntityFrameworkCore.InMemory` in the search box.
 * Select `Microsoft.EntityFrameworkCore.InMemory`, and then select **Add Package**.
 
@@ -81,7 +86,7 @@ Add a folder named *Models*. In Solution Explorer, right-click the project. Sele
 
 Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
-Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New File > Empty Class**. Name the class `TodoItem`, and then select **New**.
+Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New File > General > Empty Class**. Name the class `TodoItem`, and then select **New**.
 
 Replace the generated code with:
 
@@ -157,7 +162,7 @@ HTTP/1.1 200 OK
    Date: Thu, 18 Jun 2015 20:51:10 GMT
    Content-Length: 82
 
-   [{"Key":"4f67d7c5-a2a9-4aae-b030-16003dd829ae","Name":"Item1","IsComplete":false}]
+   [{"Key":"1","Name":"Item1","IsComplete":false}]
    ```
 
 Later in the tutorial I'll show how you can view the HTTP response using [Postman](https://www.getpostman.com/).
@@ -194,7 +199,20 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.  Change the URL to http://localhost:port/api/values`. The `ValuesController` data will be displayed. Navigate to the `Todo` controller we just created `http://localhost:port/api/todo`.
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number. You get an HTTP 404 (Not Found) error.  Change the URL to `http://localhost:port/api/values`. The `ValuesController` data will be displayed:
+
+```
+["value1","value2"]
+```
+
+Navigate to the `Todo` controller at`http://localhost:port/api/todo`:
+
+```
+[{"key":1,"name":"Item1","isComplete":false}]
+```
+
+<!-- review: why do they need to close the browser? -->
+Stop the debugger. From the menu,  **Run > Stop**. Close the brower window.
 
 ## Implement the other CRUD operations
 
@@ -209,6 +227,9 @@ This is an HTTP POST method, indicated by the [`[HttpPost]`](https://docs.asp.ne
 The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ### Use Postman to send a Create request
+
+* Start the app (**Run > Start With Debugging**).
+* Start Postman.
 
 ![Postman console](first-web-api/_static/pmc.png)
 
