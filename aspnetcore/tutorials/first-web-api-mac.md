@@ -84,6 +84,8 @@ A model is an object that represents the data in your application. In this case,
 
 Add a folder named *Models*. In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
+![new folder](first-web-api-mac/_static/folder.png)
+
 Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
 Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New File > General > Empty Class**. Name the class `TodoItem`, and then select **New**.
@@ -264,6 +266,14 @@ public IActionResult GetById(string id)
 [!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
 `Update` is similar to `Create`, but uses HTTP PUT. The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
+
+```json
+{
+  "key": 1,
+  "name": "walk dog",
+  "isComplete": true
+}
+```
 
 ![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
 
