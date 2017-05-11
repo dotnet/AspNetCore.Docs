@@ -66,8 +66,8 @@ namespace ContactManager
             #endregion
 
             #region snippet_defaultPolicy
-            // requires using Microsoft.AspNetCore.Authorization;
-            // and using Microsoft.AspNetCore.Mvc.Authorization;
+            // requires: using Microsoft.AspNetCore.Authorization;
+            //           using Microsoft.AspNetCore.Mvc.Authorization;
             // Default authentication policy will require authenticated user.
             services.AddMvc(config =>
             {

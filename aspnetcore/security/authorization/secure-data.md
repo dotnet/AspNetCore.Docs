@@ -6,12 +6,14 @@ manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: abeb2f8e-dfbf-4398-a04c-338a613a65bc
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/secure-data
 ---
-  # Create an app with user data protected by authorization
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+# Create an app with user data protected by authorization
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 This tutorial shows how to create a web app with user data protected by authorization. Authenticated users can read all the contacts but can only edit their own contacts.  A user in the administrator role can delete any contact.
 
@@ -54,7 +56,7 @@ We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID 
 
 [!code-csharp[Main](secure-data/samples/final15/Models/Contact.cs?name=snippet1&highlight=5-6)]
 
-`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](../authentication/identity.md) database.
+`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database.
 
 Scaffold a new migration and update the database:
 
@@ -69,7 +71,7 @@ In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttp
 
 [!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_SSL&highlight=1)]
 
-If you're using Visual Studio, [Set up IIS Express for SSL/HTTPS](xref:security/enforcing-ssl#set-up-iis-express-for-sslhttps)
+If you're using Visual Studio, see [Set up IIS Express for SSL/HTTPS](xref:security/enforcing-ssl#set-up-iis-express-for-sslhttps). To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
 Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
@@ -77,9 +79,9 @@ Set the default authentication policy to require users to be authenticated. You 
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
-<!-- TODO add link to middleware showing how to rediret HTTP to HTTPS -->
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet1&highlight=3,7)]
 
-  ## Configure the test account
+## Configure the test account
 
 The `SeedData` class creates a test user account. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for the account. Do this from the project directory (the directory containing *Program.cs*).
 
@@ -775,6 +777,13 @@ Add the highlighted code to the end of the `Configure` method in the *Startup.cs
    ````
 
 Test that the app seeded the database. The seed method will not run if there are any rows in the contact DB.
+
+### Create the resources for the tutorial
+
+* Create a folder named *Authorization*.
+* Copy the *Authorization\ContactOperations.cs* file from the completed project download, or copy the following code:
+
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactOperations.cs1)]
 
 <a name=secure-data-add-resources-label></a>
 

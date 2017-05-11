@@ -69,7 +69,7 @@ namespace ContactManager
             #endregion
 
             // requires using Microsoft.AspNetCore.Authorization;
-            // and using Microsoft.AspNetCore.Mvc.Authorization;
+            //      using Microsoft.AspNetCore.Mvc.Authorization;
             // Default authentication policy will require authenticated user.
             services.AddMvc(config =>
             {

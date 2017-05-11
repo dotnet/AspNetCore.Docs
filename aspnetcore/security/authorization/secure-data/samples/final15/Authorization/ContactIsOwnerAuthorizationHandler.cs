@@ -30,8 +30,10 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            // normal users cannot change approve or reject, only managers and admins can do that
-            if(requirement.Name != Constants.ApproveOperationName && requirement.Name != Constants.RejectOperationName)
+            // Normal users cannot change approve or reject.
+            // Only managers and admins can approve or reject.
+            if (requirement.Name != Constants.ApproveOperationName && 
+               requirement.Name != Constants.RejectOperationName)
             {
                 if (resource.OwnerID == _userManager.GetUserId(context.User))
                 {

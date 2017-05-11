@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region snippet1
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ContactManager.Controllers
@@ -10,6 +11,7 @@ namespace ContactManager.Controllers
         {
             return View();
         }
+#endregion
 
         public IActionResult About()
         {
