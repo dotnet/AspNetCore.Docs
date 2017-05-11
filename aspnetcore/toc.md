@@ -44,6 +44,7 @@
 ### [Adding a New Field](tutorials/first-mvc-app/new-field.md)
 ### [Adding Validation](tutorials/first-mvc-app/validation.md)
 ### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+## [Create a Web API with ASP.NET Core MVC and Visual Studio for Mac](tutorials/first-web-api-mac.md)
 ## [Building your first Web API with ASP.NET Core MVC](tutorials/first-web-api.md)
 ## [Getting started with ASP.NET Core MVC and Entity Framework Core](data/ef-mvc/index.md)
 ### [Getting started](data/ef-mvc/intro.md)
