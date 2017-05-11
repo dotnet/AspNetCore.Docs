@@ -213,6 +213,7 @@ If the check box for a course wasn't selected, but the course is in the `Instruc
 
 In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of check boxes by adding the following code immediately after the `div` elements for the **Office** field and before the `div` element for the **Save** button.
 
+<a id="notepad"></a>
 > [!NOTE] 
 > Open the file in a text editor such as Notepad to make this change.  If you use Visual Studio, line breaks will be changed in a way that breaks the code.  If that happens, fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. After editing the file in a text editor, you can open it in Visual Studio, highlight the block of new code, and press Tab twice to line up the new code with the existing code.
 
@@ -278,11 +279,9 @@ public ICollection<CourseAssignment> CourseAssignments
 
 If you modify the `CourseAssignments` property in this way, you can remove the explicit property initialization code in the controller.
 
-In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
+In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, this will work better if you [do it in a text editor such as Notepad](#notepad).
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=35-69)]
-
-Also in *Create.cshtml*, you might notice that the scaffolder has placed the hire date field between the first and last name fields. You can rearrange those fields to a more logical order if you prefer.  the same issue applies to the order of fields on the Edit, Details, and Delete pages.
 
 Test by running the **Create** page and adding an instructor. 
 
