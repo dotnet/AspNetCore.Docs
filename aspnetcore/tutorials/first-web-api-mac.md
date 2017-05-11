@@ -57,11 +57,12 @@ The following diagram shows the basic design of the app.
 
 ### Create the project
 
-From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next >**.
+From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next**.
 
 ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
 Enter **TodoApi** for the **Project Name**, and then select Create.
+
 ![config dialog](first-web-api-mac/_static/2.png)
 
 ### Add support for Entity Framework Core
@@ -69,14 +70,14 @@ Enter **TodoApi** for the **Project Name**, and then select Create.
 Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 * From the **Project** menu, select **Add NuGet Packages**.
-* Enter `EntityFrameworkCore.InMemory`` in the search box.
+* Enter `EntityFrameworkCore.InMemory` in the search box.
 * Select `Microsoft.EntityFrameworkCore.InMemory`, and then select **Add Package**.
 
 ### Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
-Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+Add a folder named *Models*. In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
 Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
