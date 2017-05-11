@@ -87,6 +87,7 @@
 ## [Advanced](mvc/advanced/index.md)
 ### [Working with the Application Model](mvc/controllers/application-model.md)
 ### [Application parts](mvc/advanced/app-parts.md)
+### [Custom Model Binding](mvc/advanced/custom-model-binding.md)
 <!--### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)-->
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 
