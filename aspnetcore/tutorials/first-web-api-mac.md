@@ -57,7 +57,7 @@ The following diagram shows the basic design of the app.
 
 ### Create the project
 
-From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next > **.
+From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next >**.
 
 ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
