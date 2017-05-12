@@ -230,7 +230,7 @@ Learn more about [Authorization](../../security/authorization/index.md).
 
 *Resource filters* implement either the `IResourceFilter` or `IAsyncResourceFilter` interface, and their execution wraps most of the filter pipeline. (Only [Authorization filters](#authorization-filters) run before them.) Resource filters are especially useful if you need to short-circuit most of the work a request is doing. For example, a caching filter can avoid the rest of the pipeline if the response is already in the cache.
 
-The [short circuiting resource filter](#short-circuiting-resource-filter) shown earlier is one example of a resource filter. Another example is [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/dev/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs), which prevents model binding from accessing the form data. It's useful for cases where you know that you're going to receive large file uploads and want to prevent the form from being read into memory.
+The [short circuiting resource filter](#short-circuiting-resource-filter) shown earlier is one example of a resource filter. Another example is [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/1.1.1/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs), which prevents model binding from accessing the form data. It's useful for cases where you know that you're going to receive large file uploads and want to prevent the form from being read into memory.
 
 ## Action filters
 
