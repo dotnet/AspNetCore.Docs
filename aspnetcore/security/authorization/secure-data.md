@@ -79,7 +79,7 @@ Set the default authentication policy to require users to be authenticated. You 
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
-[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet1&highlight=3,7)]
+[!code-csharp[Main](secure-data/samples/final15/Controllers/HomeController.cs?name=snippet1&highlight=3,7)]
 
 ## Configure the test account
 
@@ -101,9 +101,7 @@ Delete all the records in the `Contact` table and restart the app to seed the da
 
 ## Resource based authorization
 
-* Create an *Authorization* folder for the handlers and classes we will create to implement authorization.
-
-* Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
+Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* folder. The ContactIsOwnerAuthorizationHandler will verify the user acting on the resource owns the resource.
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
@@ -783,7 +781,7 @@ Test that the app seeded the database. The seed method will not run if there are
 * Create a folder named *Authorization*.
 * Copy the *Authorization\ContactOperations.cs* file from the completed project download, or copy the following code:
 
-[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactOperations.cs1)]
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactOperations.cs)]
 
 <a name=secure-data-add-resources-label></a>
 
