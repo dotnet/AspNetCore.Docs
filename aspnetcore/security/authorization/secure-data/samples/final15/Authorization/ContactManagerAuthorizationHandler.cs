@@ -40,8 +40,7 @@ namespace ContactManager.Authorization
                     context.Succeed(requirement);
                     return Task.FromResult(0);
                 }
-            }
-            
+            }            
 
             return Task.FromResult(0);
         }

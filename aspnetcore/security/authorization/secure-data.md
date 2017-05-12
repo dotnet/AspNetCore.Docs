@@ -99,17 +99,31 @@ Add the test accounts user ID to the seed data. Only one contact is shown, add t
 
 Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
 
-## Resource based authorization
+## Create owner, manager, and administrator authorization handlers
 
-Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* folder. The ContactIsOwnerAuthorizationHandler will verify the user acting on the resource owns the resource.
+Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` will verify the user acting on the resource owns the resource.
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
+The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter.
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the `ContactIsOwner` handler with the service collection so it will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Create a `ContactManagerAuthorizationHandler` class in the  *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve content changes (new or changed) can be visible to other users.
 
-[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_ContactIsOwnerAuthorizationHandler&highlight=1-2)]
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactManagerAuthorizationHandler.cs)]
+
+Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
+
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
+
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=AuthorizationHandlers)]
+
+The complete `ConfigureServices`:
+
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=ConfigureServices)]
+
+### Update the Contacts controller
 
 Update the `ContactsController` constructor to resolve the `IAuthorizationService` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the `Identity` `UserManager` service:
 

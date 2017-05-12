@@ -41,6 +41,7 @@ namespace ContactManager
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        #region ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -78,6 +79,7 @@ namespace ContactManager
             });
             #endregion
 
+            // Review: Where is this explained in the article?
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(
@@ -85,24 +87,22 @@ namespace ContactManager
                 authBuilder =>
                 {
                     authBuilder.RequireAuthenticatedUser();
-                });
-
-              
+                });              
             });
 
+            #region AuthorizationHandlers
             // Authorization handlers.
-            #region snippet_ContactIsOwnerAuthorizationHandler
-            services.AddSingleton<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, 
+                                  ContactIsOwnerAuthorizationHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, 
+                                  ContactAdministratorsAuthorizationHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, 
+                                  ContactManagerAuthorizationHandler>();
             #endregion
-
-            #region snippet_ContactRoleAuthorizationHandler
-            services.AddSingleton<IAuthorizationHandler, ContactAdministratorsAuthorizationHandler>();
-            #endregion
-
-            services.AddSingleton<IAuthorizationHandler, ContactManagerAuthorizationHandler>();
-
-
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -147,7 +147,7 @@ namespace ContactManager
             catch
             {
                 throw new System.Exception("You need to update the DB "
-                    + "\nPM > Update - Database " + "\n or \n" +
+                    + "\nPM > Update-Database " + "\n or \n" +
                       "> dotnet ef database update"
                       + "\nIf that doesn't work, comment out SeedData and register a new user");
             }

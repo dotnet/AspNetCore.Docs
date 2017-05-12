@@ -142,7 +142,6 @@ namespace ContactManager.Controllers
             return View(editModel);
         }
 
-        // Make ContactViewModel -- might need multiple viewModeles
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -183,7 +182,7 @@ namespace ContactManager.Controllers
             
             if(contact.Status == ContactStatus.Approved)
             {
-                // if the contact is updated after approval, 
+                // If the contact is updated after approval, 
                 // and the user cannot approve set the status back to submitted
                 var canApprove = await _authorizationService.AuthorizeAsync(User, contact,
                                         ContactOperations.Approve);
@@ -195,8 +194,6 @@ namespace ContactManager.Controllers
             await _context.SaveChangesAsync();
            
             return RedirectToAction("Index");
-            
-            
         }
         #endregion
 
