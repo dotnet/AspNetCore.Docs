@@ -1,3 +1,4 @@
+# [Community OSS authentication options](community.md)
 # [Introduction to Identity](identity.md)
 # [Configure Identity](identity-configuration.md)
 # [Enabling authentication using Facebook, Google and other external providers](social/index.md)
