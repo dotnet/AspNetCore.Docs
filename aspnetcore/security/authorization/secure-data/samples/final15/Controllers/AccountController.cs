@@ -47,16 +47,13 @@ namespace ContactManager.Controllers
             return View();
         }
 
-        #region snippet_AccessDenied
         //
         // GET /Account/AccessDenied
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult AccessDenied()
         {
             return View();
         }
-        #endregion
 
         //
         // POST: /Account/Login

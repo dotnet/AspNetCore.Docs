@@ -16,9 +16,10 @@ namespace ContactManager.Authorization
             _userManager = userManager;  
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-                                             OperationAuthorizationRequirement requirement, 
-                                             Contact resource)
+        protected override Task 
+            HandleRequirementAsync(AuthorizationHandlerContext context, 
+                                   OperationAuthorizationRequirement requirement, 
+                                   Contact resource)
         {
             if (context.User == null)
             {
@@ -30,10 +31,9 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            // Normal users cannot change approve or reject.
-            // Only managers and admins can approve or reject.
+            // Review: Add comment
             if (requirement.Name != Constants.ApproveOperationName && 
-               requirement.Name != Constants.RejectOperationName)
+                requirement.Name != Constants.RejectOperationName)
             {
                 if (resource.OwnerID == _userManager.GetUserId(context.User))
                 {

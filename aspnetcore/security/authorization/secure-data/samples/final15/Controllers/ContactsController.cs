@@ -13,7 +13,7 @@ using ContactManager.Authorization;
 
 namespace ContactManager.Controllers
 {
-    #region snippet_ContactsController
+    #region snippet_ContactsControllerCtor
     [Authorize(Policy = "ContactUserPolicy")]
     public class ContactsController : Controller
     {
@@ -76,7 +76,8 @@ namespace ContactManager.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-                    [Bind("ContactId,Address,City,Email,Name,State,Zip")] ContactEditViewModel editModel)
+                            [Bind("ContactId,Address,City,Email,Name,State,Zip")]
+                            ContactEditViewModel editModel)
         {
             if (!ModelState.IsValid)
             {
@@ -91,8 +92,9 @@ namespace ContactManager.Controllers
             contact.State = editModel.State;
             contact.Zip = editModel.Zip;
             contact.OwnerID = _userManager.GetUserId(User);
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperations.Create);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                        User, contact,
+                                                        ContactOperations.Create);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -100,8 +102,7 @@ namespace ContactManager.Controllers
             
             _context.Add(contact);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-            
+            return RedirectToAction("Index");            
         }
         #endregion
 
@@ -114,14 +115,16 @@ namespace ContactManager.Controllers
                 return NotFound();
             }
 
-            var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            var contactDB = await _context.Contact.SingleOrDefaultAsync(
+                                                        m => m.ContactId == id);
             if (contactDB == null)
             {
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB, 
-                                        ContactOperations.Update);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                        User, contactDB, 
+                                                        ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();

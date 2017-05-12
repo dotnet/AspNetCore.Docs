@@ -107,258 +107,33 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* fold
 
 The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the `ContactIsOwner` handler with the service collection so it will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the `ContactIsOwner` handler with the service collection so it will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_ContactIsOwnerAuthorizationHandler&highlight=1-2)]
 
 Update the `ContactsController` constructor to resolve the `IAuthorizationService` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the `Identity` `UserManager` service:
 
-````c#
-
-   public class ContactsController : Controller
-   {
-       private readonly ApplicationDbContext _context;
-       private readonly IAuthorizationService _authorizationService;
-       private readonly UserManager<ApplicationUser> _userManager;
-
-       public ContactsController(
-           ApplicationDbContext context,
-           IAuthorizationService authorizationService,
-           UserManager<ApplicationUser> userManager)
-       {
-           _context = context;
-           _userManager = userManager;
-           _authorizationService = authorizationService;
-       }
-
-   ````
+[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_ContactsControllerCtor)]
 
 Add the `ContactOperationsRequirements` class to the *Authorization* folder to contain the requirements our app supports:
 
+[!code-csharp[Main](secure-data/samples/final15/Authorization/ContactOperations.cs)]
 
-````c#
+Update the `HTTP POST Create` method to:
 
-   using ContactManager.Authorization;
-   using Microsoft.AspNetCore.Authorization.Infrastructure;
+* Add the user ID to the `Contact` model.
+* Call the authorization handler to verify the user owns the contact.
 
-   // Add https://github.com/blowdart/AspNetAuthorization-Samples/blob/master/src/AspNetAuthorization/Authorization/DocumentAuthorizationHandler.cs
-   // MapClaimsToOperations
-
-   namespace ContactManager.Authorization
-   {
-       public static class ContactOperationsRequirements
-       {
-           public static OperationAuthorizationRequirement Create =  // Add a create handler
-               new OperationAuthorizationRequirement { Name = "Create" };
-           public static OperationAuthorizationRequirement Read =
-               new OperationAuthorizationRequirement { Name = "Read" };  // Add a read handler
-           public static OperationAuthorizationRequirement Update =
-               new OperationAuthorizationRequirement { Name = "Update" }; // Add a delete handler
-           public static OperationAuthorizationRequirement Delete =
-               new OperationAuthorizationRequirement { Name = Constants.canDelete };
-           public static OperationAuthorizationRequirement ContainsOne =
-             new OperationAuthorizationRequirement { Name = Constants.ContainsOne };
-       }
-
-       public class Constants
-       {
-           public static readonly string canDelete = "canDelete";
-           public static readonly string ContainsOne = "ContainsOne";
-       }
-   }
-
-   // operations are not permission, permissions are what grant operations
-   ````
-
-Update the `HTTP POST Create` method to add the user ID to the `Contact` model:
-
-
-````c#
-
-   // POST: Contacts/Create
-   [HttpPost]
-   [ValidateAntiForgeryToken]
-   public async Task<IActionResult> Create(
-               [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
-   {
-       if (ModelState.IsValid)
-       {
-           contact.OwnerID = _userManager.GetUserId(User);
-           _context.Add(contact);
-           await _context.SaveChangesAsync();
-           return RedirectToAction("Index");
-       }
-       return View(contact);
-   }
-
-   ````
+[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Create&highlight=20-27)]
 
 Update both `Edit` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the `[Authorize]` attribute as we don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
 
-
-````c#
-
-   public async Task<IActionResult> Edit(int? id)
-   {
-       if (id == null)
-       {
-           return NotFound();
-       }
-
-       var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-       if (contactDB == null)
-       {
-           return NotFound();
-       }
-
-       var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB, 
-                                   ContactOperationsRequirements.Update);
-       if (!isAuthorized)
-       {
-           return new ChallengeResult();
-       }
-
-       return View(contactDB);
-   }
-
-   // Make ContactViewModel -- might need multiple viewModeles
-   // POST: Contacts/Edit/5
-   [HttpPost]
-   [ValidateAntiForgeryToken]
-   public async Task<IActionResult> Edit(int id, 
-       [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
-   {
-       // Why is this here? Scaffolding??
-       if (id != contact.ContactId)
-       {
-           return NotFound();
-       }
-
-       // Fetch Contact from DB to get OwnerID.
-       var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-       if (contactDB == null)
-       {
-           return NotFound();
-       }
-
-       var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB,
-                                   ContactOperationsRequirements.Update);
-       if (!isAuthorized)
-       {
-           return new ChallengeResult();
-       }
-       // Review with EF - should I copy changed fields to contactDB and update
-       // rather that what I'm doing here.
-       contact.OwnerID = contactDB.OwnerID;
-       _context.Entry(contactDB).State = EntityState.Detached;
-
-       if (ModelState.IsValid)
-       {
-           try
-           {
-               _context.Update(contact);
-               await _context.SaveChangesAsync();
-           }
-           catch (DbUpdateConcurrencyException)
-           {
-               if (!ContactExists(contact.ContactId))
-               {
-                   return NotFound();
-               }
-               else
-               {
-                   throw;
-               }
-           }
-           return RedirectToAction("Index");
-       }
-       return View(contact);
-   }
-
-   ````
+[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Edit)]
 
 Update both `Delete` methods to use the authorization handler to verify the user owns the contact.
 
+[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Delete)]
 
-````c#
-
-   public async Task<IActionResult> Delete(int? id)
-   {
-       if (id == null)
-       {
-           return NotFound();
-       }
-
-       var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-       if (contact == null)
-       {
-           return NotFound();
-       }
-
-       var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                   ContactOperationsRequirements.Delete);
-       if (!isAuthorized)
-       {
-           return new ChallengeResult();
-       }
-
-       return View(contact);
-   }
-
-   // POST: Contacts/Delete/5
-   [HttpPost, ActionName("Delete")]
-   [ValidateAntiForgeryToken]
-   public async Task<IActionResult> DeleteConfirmed(int id)
-   {
-       var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-
-       var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                   ContactOperationsRequirements.Delete);
-       if (!isAuthorized)
-       {
-           return new ChallengeResult();
-       }
-
-       _context.Contact.Remove(contact);
-       await _context.SaveChangesAsync();
-       return RedirectToAction("Index");
-   }
-
-   ````
-
-<a name=update-access-denied-label></a>
-
-  ## Update the `AccountController` to display friendly access denied errors
-
-Add the `AccessDenied` method to the `AccountController`. This method will be invoked when we call `ChallengeResult`.
-
-````c#
-
-   //
-   // GET /Account/AccessDenied
-   [HttpGet]
-   [AllowAnonymous]
-   public IActionResult AccessDenied()
-   {
-       return View();
-   }
-
-   ````
-
-Add the *Views/Account/AccessDenied.cshtml* Razor view:
-
-
-````html
-
-   @{
-       ViewData["Title"] = "Access Denied";
-   }
-
-   <header>
-       <h1 class="text-danger">Access Denied.</h1>
-       <p class="text-danger">You do not have access to this resource.</p>
-   </header>
-   ````
 
   ## Test the `Edit`, `Delete`, and `Create` methods
 
