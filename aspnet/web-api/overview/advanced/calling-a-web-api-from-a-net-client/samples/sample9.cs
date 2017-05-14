@@ -1,4 +1,4 @@
-static async Task UpdateProductAsync(Product product)
+static async Task<Product> UpdateProductAsync(Product product)
 {
     HttpResponseMessage response = await client.PutAsJsonAsync($"api/products/{product.Id}", product);
     response.EnsureSuccessStatusCode();
