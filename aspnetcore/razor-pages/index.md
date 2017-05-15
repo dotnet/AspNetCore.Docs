@@ -156,7 +156,7 @@ You don't have to write any code for antiforgery validation. Antiforgery token g
 
 You could write this form by partitioning the view code and the handler method into separate files. The view code:
 
-*MyApp/Pages/Contact.chsml*
+*MyApp/Pages/Contact.cshtml*
 
 ```html
 @page
@@ -222,13 +222,13 @@ Using a `PageModel` supports unit testing, but requires you to write an explicit
 
 ## Using the view engine
 
-Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cstml* all work in the same way they do for conventional Razor views. 
+Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* all work in the same way they do for conventional Razor views. 
 
 Let's declutter this page by taking advantage of some of those features. 
 
 Add a layout page for the HTML skeleton, and set the `Layout` property from `_ViewStart.cshtml`:
 
-*MyApp/Pages/_Layout.chsml*
+*MyApp/Pages/_Layout.cshtml*
 
 ```html
 <html>
@@ -236,7 +236,7 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 </html>
 ```
 
-*MyApp/Pages/_ViewStart.chsml*
+*MyApp/Pages/_ViewStart.cshtml*
 
 ```html
 @{ Layout = "_Layout"; }
@@ -248,7 +248,7 @@ View search from a page will include the *MyApp/Views/Shared* folder. The layout
 
 Add a *_ViewImports.cshtml* file:
 
-*MyApp/Pages/_ViewImports.chsml*
+*MyApp/Pages/_ViewImports.cshtml*
 
 ```c#
 @namespace MyApp.Pages
@@ -262,7 +262,7 @@ The `@namespace` directive is a new feature that controls the namespace of the g
 
 Here's what the page looks like after simplification:
 
-*MyApp/Pages/Contact.chsml*
+*MyApp/Pages/Contact.cshtml*
 
 ```html
 @page
@@ -305,7 +305,7 @@ Let's suppose we want to do something more useful than showing the same page aga
 
 This example adds a confirmation message and redirects back to the home page:
 
-*MyApp/Pages/Contact.chsml*
+*MyApp/Pages/Contact.cshtml*
 
 ```
 @page
@@ -348,7 +348,7 @@ This example adds a confirmation message and redirects back to the home page:
 </div>
 ```
 
-*MyApp/Pages/Index.chsml*
+*MyApp/Pages/Index.cshtml*
 
 ```html
 @page
@@ -387,7 +387,7 @@ Let's update this form to support multiple operations. A visitor to the site can
 
 If you want one page to handle multiple logical actions, you can use *named handler methods*. Any text in the name after `On<Verb>` and before `Async` (if present) in the method name is considered a handler name. The handler methods in the following example have the handler names `JoinMailingList` and `RequestQuote`:
 
-*MyApp/Pages/Contact.chsml*
+*MyApp/Pages/Contact.cshtml*
 
 ```html
 @page

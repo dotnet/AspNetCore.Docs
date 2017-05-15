@@ -14,6 +14,8 @@ uid: security/authentication/index
 ---
 # Authentication
 
+* [Community OSS authentication options](community.md)
+
 * [Introduction to Identity](identity.md)
 
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)
