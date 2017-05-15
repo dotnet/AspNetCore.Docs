@@ -34,7 +34,7 @@ npm install -g yo bower
 From a command prompt, install the ASP.NET generator:
 
 ```console
-npm install -g generator-aspnet@0.2.6
+npm install -g generator-aspnet
 ```
 
 > [!NOTE]
