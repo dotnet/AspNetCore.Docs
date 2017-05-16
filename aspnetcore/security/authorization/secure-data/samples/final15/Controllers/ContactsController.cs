@@ -35,9 +35,22 @@ namespace ContactManager.Controllers
         // GET: Contacts
         public async Task<IActionResult> Index(int? id)
         {
-            var viewName = id == null ? "Index" : $"Index{id}";
 
-            return View(viewName, await _context.Contact.ToListAsync());
+            var contacts = from c in _context.Contact
+                           select c;
+
+            var contactDB = await _context.Contact.FirstOrDefaultAsync();
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(
+                                                       User, contactDB,
+                                                       ContactOperations.Approve);
+
+            if (!isAuthorized)
+            {
+                contacts = contacts.Where(c => c.Status == ContactStatus.Approved);
+            }
+
+            return View(await contacts.ToListAsync());
         }
 
         // GET: Contacts/Details/5

@@ -55,14 +55,15 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.State) @*<snippet_1>*@
+                    @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Zip)
                 </td>
+                @*Markup removed for brevity.*@                
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>
+                </td>               
                 <td>
                     @if (await AuthorizationService.AuthorizeAsync(User,
                                                            item, ContactOperations.Update))
@@ -75,11 +76,8 @@
                     {
                         <text> | </text>
                         <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
-                    }
-                    
-
+                    }                  
                 </td>
-                @*</snippet_1>*@
             </tr>
         }
     </tbody>

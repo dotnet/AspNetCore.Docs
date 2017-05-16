@@ -55,6 +55,7 @@ namespace ContactManager
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        #region Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -75,8 +76,6 @@ namespace ContactManager
 
             app.UseIdentity();
 
-            // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -96,5 +95,6 @@ namespace ContactManager
                       + "\nIf that doesn't work, comment out SeedData and register a new user");
             }
         }
+        #endregion
     }
 }

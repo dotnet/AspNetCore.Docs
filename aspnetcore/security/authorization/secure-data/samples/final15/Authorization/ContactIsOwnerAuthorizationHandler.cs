@@ -31,9 +31,10 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            // Review: Add comment
-            if (requirement.Name != Constants.ApproveOperationName && 
-                requirement.Name != Constants.RejectOperationName)
+            // Review: I commented this out
+            // Why do we skip if checking for manager role? Do we need this check?
+            //if (requirement.Name != Constants.ApproveOperationName && 
+            //    requirement.Name != Constants.RejectOperationName)
             {
                 if (resource.OwnerID == _userManager.GetUserId(context.User))
                 {

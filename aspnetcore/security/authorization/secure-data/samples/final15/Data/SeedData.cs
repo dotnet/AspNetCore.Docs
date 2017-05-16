@@ -27,11 +27,12 @@ namespace ContactManager.Data
                 // The admin user can do anything
 
                 var adminUid = await EnsureUser(serviceProvider, testUserPw, "admin@contoso.com");
-                await EnsureAdminRole(serviceProvider, adminUid, Constants.ContactAdministratorsRole);
+                await EnsureRole(serviceProvider, adminUid, Constants.ContactAdministratorsRole);
 
                 // allowed user can create and edit contacts that they create
                 var uid = await EnsureUser(serviceProvider, testUserPw, "manager@contoso.com");
-                await EnsureManagerRole(serviceProvider, uid, Constants.ContactManagersRole);
+                await EnsureRole(serviceProvider, uid, Constants.ContactManagersRole);
+
                 SeedDB(context, adminUid);
             }
         }
@@ -54,45 +55,25 @@ namespace ContactManager.Data
             return user.Id;
         }
 
-        private static async Task<IdentityResult> EnsureAdminRole(IServiceProvider serviceProvider,
-                                                                       string uid, string adminRole)
+        private static async Task<IdentityResult> EnsureRole(IServiceProvider serviceProvider,
+                                                                      string uid, string role)
         {
             IdentityResult IR = null;
             var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
 
-            if (!await roleManager.RoleExistsAsync(adminRole))
+            if (!await roleManager.RoleExistsAsync(role))
             {
-                IR = await roleManager.CreateAsync(new IdentityRole(adminRole));
+                IR = await roleManager.CreateAsync(new IdentityRole(role));
             }
 
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByIdAsync(uid);
 
-            IR = await userManager.AddToRoleAsync(user, adminRole);
+            IR = await userManager.AddToRoleAsync(user, role);
 
             return IR;
-        }
-
-        private static async Task<IdentityResult> EnsureManagerRole(IServiceProvider serviceProvider,
-                                                                       string uid, string userRole)
-        {
-            IdentityResult IR = null;
-            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
-
-            if (!await roleManager.RoleExistsAsync(userRole))
-            {
-                IR = await roleManager.CreateAsync(new IdentityRole(userRole));
-            }
-
-            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-
-            var user = await userManager.FindByIdAsync(uid);
-
-            IR = await userManager.AddToRoleAsync(user, userRole);
-
-            return IR;
-        }
+        }        
         #endregion
         #region snippet1
         public static void SeedDB(ApplicationDbContext context, string uid)
@@ -161,5 +142,4 @@ namespace ContactManager.Data
         }
     }
 }
-
 #endif
