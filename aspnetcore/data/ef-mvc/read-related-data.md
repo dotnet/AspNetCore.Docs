@@ -202,7 +202,7 @@ Run the application and select the Instructors tab. The page displays the Locati
 
 ![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
 
-In the *Views/Instructor/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
+In the *Views/Instructors/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 

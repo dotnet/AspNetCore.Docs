@@ -238,7 +238,7 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 
 *MyApp/Pages/_ViewStart.cshtml*
 
-```html
+```c#
 @{ Layout = "_Layout"; }
 ```
 
@@ -307,7 +307,7 @@ This example adds a confirmation message and redirects back to the home page:
 
 *MyApp/Pages/Contact.cshtml*
 
-```
+```html
 @page
 @inject ApplicationDbContext Db
 
@@ -430,7 +430,7 @@ In this case, the URL path that submits to `OnPostJoinMailingListAsync` is `/Con
 
 If you don't like seeing `?handler=RequestQuote` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
 
-```
+```c#
 @page "{handler?}"
 @inject ApplicationDbContext Db
 
