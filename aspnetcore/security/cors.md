@@ -16,9 +16,9 @@ uid: security/cors
 
 By [Mike Wasson](https://github.com/mikewasson) and [Shayne Boyer](https://twitter.com/spboyer)
 
-Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
+Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web API.
 
-[Cross Origin Resource Sharing](http://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as [JSONP](http://en.wikipedia.org/wiki/JSONP). This topic shows how to enable CORS in your ASP.NET Core application.
+[Cross Origin Resource Sharing](http://www.w3.org/TR/cors/) (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as [JSONP](http://en.wikipedia.org/wiki/JSONP). This topic shows how to enable CORS in an ASP.NET Core application.
 
 ## What is "same origin"?
 
@@ -34,18 +34,18 @@ These URLs have different origins than the previous two:
 
 * `http://example.net` - Different domain
 
-* `http://example.com:9000/foo.html` - Different port
+* `http://www.example.com/foo.html` - Different subdomain
 
 * `https://example.com/foo.html` - Different scheme
 
-* `http://www.example.com/foo.html` - Different subdomain
+* `http://example.com:9000/foo.html` - Different port
 
 > [!NOTE]
 > Internet Explorer does not consider the port when comparing origins.
 
 ## Setting up CORS
 
-To setup CORS for your application add the `Microsoft.AspNetCore.Cors` package to your project.
+To set up CORS for your application add the `Microsoft.AspNetCore.Cors` package to your project.
 
 Add the CORS services in Startup.cs:
 
@@ -59,7 +59,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
 
 [!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
 
-The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from `http://example.com` and no other origins.
+The lambda takes a `CorsPolicyBuilder` object. You'll find a list of the [configuration options](#cors-policy-options) later in this topic. In this example, the policy allows cross-origin requests from `http://example.com` and no other origins.
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
@@ -69,7 +69,7 @@ The second approach is to define one or more named CORS policies, and then selec
 
 [!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample2/Startup.cs?name=snippet_begin)]
 
-This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.
+This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to `UseCors`.
 
 ## Enabling CORS in MVC
 
@@ -123,13 +123,13 @@ For some options it may be helpful to read [How CORS works](#how-cors-works) fir
 
 To allow one or more specific origins:
 
-[!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample4/Startup.cs?range=18-22)]
+[!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample4/Startup.cs?range=19-23)]
 
 To allow all origins:
 
 [!code-csharp[Main](cors/sample/src/CorsExamples/CorsExample4/Startup.cs??range=27-31)]
 
-Consider carefully before allowing requests from any origin. It means that literally any website can make AJAX calls to your app.
+Consider carefully before allowing requests from any origin. It means that literally any website can make AJAX calls to your API.
 
 ### Set the allowed HTTP methods
 
