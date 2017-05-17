@@ -141,5 +141,6 @@
 
 # [1.1 Release notes](aspnetcore-1.1.md)
 ## [Earlier release notes](https://github.com/aspnet/home/releases)
+## [project.json and VS 2015 docs](https://docs.microsoft.com/dotnet/articles/project-json)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
