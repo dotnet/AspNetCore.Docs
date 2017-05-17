@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Cors;
 namespace CorsMVC.Controllers
 {
     #region EnableOnController
-    [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]
+    [EnableCors("AllowSpecificOrigin")]
     public class ValuesController : Controller
 #endregion
     {
         // GET api/values
         #region EnableOnAction
-        [EnableCors("AllowSpecificOrigin")]
         [HttpGet]
+        [EnableCors("AllowSpecificOrigin")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -25,8 +25,8 @@ namespace CorsMVC.Controllers
 
         // GET api/values/5
         #region DisableOnAction
-        [DisableCors]
         [HttpGet("{id}")]
+        [DisableCors]
         public string Get(int id)
         {
             return "value";
