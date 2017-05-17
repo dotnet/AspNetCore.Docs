@@ -14,7 +14,7 @@ uid: security/cors
 ---
 # Enabling Cross-Origin Requests (CORS)
 
-By [Mike Wasson](https://github.com/mikewasson) and [Shayne Boyer](https://twitter.com/spboyer)
+By [Mike Wasson](https://github.com/mikewasson), [Shayne Boyer](https://twitter.com/spboyer), and [Tom Dykstra](https://github.com/tdykstra)
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web API.
 
