@@ -141,41 +141,6 @@
 
 # [1.1 Release notes](aspnetcore-1.1.md)
 ## [Earlier release notes](https://github.com/aspnet/home/releases)
-## [### [Get started with Blob storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-blobs)
-### [Get Started with Queue Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-queues)
-### [Get Started with Table Storage and Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-storage-aspnet5-getting-started-tables)
-
-# [Client-Side Development](client-side/toc.md)
-
-# [Mobile](mobile/toc.md)
-
-# [Hosting and deployment](xref:publishing/index)
-## [Host on Windows with IIS](xref:publishing/iis)
-### [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
-### [IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
-## [Host in a Windows service](xref:hosting/windows-service)
-## [Host on Linux with Nginx](xref:publishing/linuxproduction)
-## [Host on Linux with Apache](xref:publishing/apache-proxy)
-## [Host in Docker](xref:publishing/docker)
-### [Building Docker Images](https://docs.microsoft.com/dotnet/articles/core/docker/building-net-docker-images)
-### [Visual Studio Tools for Docker](https://docs.microsoft.com/dotnet/articles/core/docker/visual-studio-tools-for-docker)
-### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
-## [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
-## [Continuous deployment to Azure with Visual Studio and Git](xref:publishing/azure-continuous-deployment)
-## [Continuous deployment to Azure with VSTS](xref:publishing/vsts-continuous-deployment)
-## [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
-## [Directory structure](xref:hosting/directory-structure)
-
-# [Security](security/toc.md)
-
-# [Performance](performance/toc.md)
-
-# [Migration](migration/toc.md)
-
-# [API Reference](/aspnet/core/api/)
-
-# [1.1 Release notes](aspnetcore-1.1.md)
-## [Earlier release notes](https://github.com/aspnet/home/releases)
 ## [VS 2015/project.json docs](https://docs.microsoft.com/dotnet/articles/project-json)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
