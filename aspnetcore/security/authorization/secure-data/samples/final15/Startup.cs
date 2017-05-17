@@ -104,7 +104,7 @@ namespace ContactManager
         }
         #endregion
 
-        #region snippetUserPW
+        #region Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
