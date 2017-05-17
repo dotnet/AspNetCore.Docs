@@ -104,9 +104,9 @@ namespace ContactManager
         }
         #endregion
 
+        #region snippetUserPW
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -121,15 +121,8 @@ namespace ContactManager
 
             app.UseIdentity();
 
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
 
-            #region snippetUserPW
             // Set password with the Secret Manager tool.
             // dotnet user-secrets set SeedUserPW <pw>
             var testUserPw = Configuration["SeedUserPW"];

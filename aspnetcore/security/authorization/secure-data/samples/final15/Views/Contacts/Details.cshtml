@@ -61,6 +61,7 @@
     {
         <form asp-action="Approve" asp-controller="Contacts" style="display:inline;">
             <input type="hidden" name="id" value="@Model.ContactId" />
+            <input type="hidden" name="status" value="@Model.Status" />
             <button type="submit" class="btn btn-xs btn-success">Approve</button>
         </form>
     }  

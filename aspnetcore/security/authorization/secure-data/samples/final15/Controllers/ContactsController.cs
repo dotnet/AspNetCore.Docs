@@ -33,18 +33,18 @@ namespace ContactManager.Controllers
         #endregion
 
         // GET: Contacts
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
-
             var contacts = from c in _context.Contact
                            select c;
 
+            // REVIEW: Must be a cleaner way.
             var contactDB = await _context.Contact.FirstOrDefaultAsync();
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(
                                                        User, contactDB,
                                                        ContactOperations.Approve);
-
+            // Review: good if users could see their own contacts before approval.
             if (!isAuthorized)
             {
                 contacts = contacts.Where(c => c.Status == ContactStatus.Approved);
@@ -65,6 +65,21 @@ namespace ContactManager.Controllers
             if (contact == null)
             {
                 return NotFound();
+            }
+
+            var isAuthorizedRead = await _authorizationService.AuthorizeAsync(
+                                                       User, contact,
+                                                       ContactOperations.Read);
+
+            var isAuthorizedApprove = await _authorizationService.AuthorizeAsync(
+                                           User, contact,
+                                           ContactOperations.Approve);
+
+            if (contact.Status != ContactStatus.Approved &&   // Not approve
+                                  !isAuthorizedRead &&        // Don't own it
+                                  !isAuthorizedApprove)       // Not a manager
+            {
+                return new ChallengeResult();
             }
 
             return View(contact);
@@ -112,10 +127,10 @@ namespace ContactManager.Controllers
             {
                 return new ChallengeResult();
             }
-            
+
             _context.Add(contact);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");            
+            return RedirectToAction("Index");
         }
         #endregion
 
@@ -136,7 +151,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(
-                                                        User, contactDB, 
+                                                        User, contactDB,
                                                         ContactOperations.Update);
             if (!isAuthorized)
             {
@@ -158,7 +173,7 @@ namespace ContactManager.Controllers
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, 
+        public async Task<IActionResult> Edit(int id,
             [Bind("ContactId,Address,City,Email,Name,State,Zip")] ContactEditViewModel editModel)
         {
             // Why is this here? Scaffolding??
@@ -167,7 +182,7 @@ namespace ContactManager.Controllers
                 return NotFound();
             }
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(editModel);
             }
@@ -185,27 +200,27 @@ namespace ContactManager.Controllers
             {
                 return new ChallengeResult();
             }
-            
+
             contact.Address = editModel.Address;
             contact.City = editModel.City;
             contact.Email = editModel.Email;
             contact.Name = editModel.Name;
             contact.State = editModel.State;
             contact.Zip = editModel.Zip;
-            
-            if(contact.Status == ContactStatus.Approved)
+
+            if (contact.Status == ContactStatus.Approved)
             {
                 // If the contact is updated after approval, 
                 // and the user cannot approve set the status back to submitted
                 var canApprove = await _authorizationService.AuthorizeAsync(User, contact,
                                         ContactOperations.Approve);
 
-                if(!canApprove) contact.Status = ContactStatus.Submitted;
+                if (!canApprove) contact.Status = ContactStatus.Submitted;
             }
-            
+
             _context.Update(contact);
             await _context.SaveChangesAsync();
-           
+
             return RedirectToAction("Index");
         }
         #endregion

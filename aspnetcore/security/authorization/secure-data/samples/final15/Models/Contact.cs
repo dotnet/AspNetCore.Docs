@@ -20,7 +20,6 @@ namespace ContactManager.Models
 
         public ContactStatus Status { get; set; }
     }
-    #endregion
 
     public enum ContactStatus
     {
@@ -28,4 +27,5 @@ namespace ContactManager.Models
         Approved,
         Rejected
     }
+    #endregion
 }

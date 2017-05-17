@@ -15,29 +15,41 @@ uid: security/authorization/secure-data
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that Authenticated (registered) users have created. In the following image, user `rick@example.com` is signed in. Only the last record, created by `rick@example.com` displays edit and delete links:
+This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that Authenticated (registered) users have created. In the following image, user `rick@example.com` is signed in. Only the last record, created by `rick@example.com` displays edit and delete links. User Rick can only view approved contacts.
 
 ![image described above](secure-data/_static/rick.png)
 
-Authenticated users can read all the contacts but can only edit their own contacts. 
+Authenticated users can read all approved contacts but can only edit their own contacts. 
 
-In the following image, `manager@contoso.com` is signed in and in the managers role. The following image shows the details view of a contact. The manager can approve or reject a contact. The status field on the Index page shows `Submitted` for new data, and ``Approved` or `Rejected` once the manager marks the data.
+In the following image, `manager@contoso.com` is signed in and in the managers role. 
+
+![image described above](secure-data/_static/manager1.png)
+
+The manager can view all images. The manager can only edit and delete contacts she creates. The status field on the Index page shows `Submitted`, `Approved`, or `Rejected`. The manager or administrator can set a contact to `Approved` or `Rejected`
+
+The following image shows the details view of a contact. The manager can approve or reject a contact. 
 
 ![image described above](secure-data/_static/manager.png)
 
-The app was created by scaffolding the following `Contact` model:
+In the following image, `admin@contoso.com` is signed in and in the administrators role. 
+
+![image described above](secure-data/_static/admin.png)
+
+The administrator has all privlidges. She can read/edit/delete any contact and change the status of contacts.
+
+The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller)  the following `Contact` model:
 
 [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
 
 The contact information properties (Address, Name, etc.) are displayed in the images above. `ContactId` is the primary key for the table.
 
-A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that data can only be edited by the data owner. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler`  authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
+A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that data can only be edited by the data owner. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler` authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
 
-  ## Prerequisites
+## Prerequisites
 
 This is not a beginning tutorial. You should be familiar with [creating an ASP.NET Core MVC app](xref:tutorials/first-mvc-app/start-mvc).
 
-  ## The starter app
+## The starter app
 
 [Download](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) and test the starter app. See [Create the starter app](#create-the-starter-app) if you'd like to create it.
 
@@ -50,13 +62,13 @@ Update the database:
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
-  ## Tie the contact data to the user
+## Tie the contact data to the user
 
 We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model :
 
-[!code-csharp[Main](secure-data/samples/final15/Models/Contact.cs?name=snippet1&highlight=5-6)]
+[!code-csharp[Main](secure-data/samples/final15/Models/Contact.cs?name=snippet1&highlight=5-6,16-)]
 
-`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database.
+`OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users. 
 
 Scaffold a new migration and update the database:
 
@@ -65,7 +77,7 @@ dotnet ef migrations add userID
 dotnet ef database update
  ```
 
-  ## Require SSL and authenticated users
+## Require SSL and authenticated users
 
 In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/RequireHttpsAttribute/index.html.md#Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.md) authorization filter that requires all requests use HTTPS:
 
@@ -91,11 +103,11 @@ dotnet user-secrets set SeedUserPW <PW>
 
 Update `Configure` to use the test password:
 
-[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippetUserPW&highlight=2)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=Configure&highlight=19-21)]
 
-Add the test accounts user ID to the seed data. Only one contact is shown, add the user ID to all contacts:
+Add the test accounts user ID and `Status = ContactStatus.Approved` to a couple of the contacts. Only one contact is shown, add the user ID to all contacts:
 
-[!code-csharp[Main](secure-data/samples/final15/Data/SeedData.cs?name=snippet1&highlight=16)]
+[!code-csharp[Main](secure-data/samples/final15/Data/SeedData.cs?name=snippet1&highlight=16,17)]
 
 Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
 
@@ -150,7 +162,7 @@ Update both `Delete` methods to use the authorization handler to verify the user
 
 [!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Delete)]
 
-  ## Inject the authorization service into the views
+## Inject the authorization service into the views
 
 Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization handler to the views.
 
@@ -209,7 +221,7 @@ You could write a handler that fails the requirements, even if the other handler
 
 -->
 
-  ## Test the app
+## Test the app
 
 An easy way to test the changes we made is to launch three different browsers (or incognito/InPrivate versions). Register a new user, for example, `test@example.com`. Sigin to each browser with a different user. 
 
@@ -224,7 +236,7 @@ An easy way to test the changes we made is to launch three different browsers (o
 | test@example.com | Can edit/delete own data |
 
 
-  ## Create the starter app
+## Create the starter app
 
 * Create a new **ASP.NET Core Web Application** using [Visual Studio 2015](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
 
@@ -264,7 +276,7 @@ The updated markup:
 
 * Test the app by creating, editing and deleting a contact
 
-  ## Seed the database
+## Seed the database
 
 Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, you can copy the *SeedData.cs* file to the *Data* folder of the starter project.
 
@@ -287,7 +299,7 @@ Test that the app seeded the database. The seed method will not run if there are
 
 <a name=secure-data-add-resources-label></a>
 
-  ### Additional resources
+### Additional resources
 
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop)
 * [Authorization](index.md)

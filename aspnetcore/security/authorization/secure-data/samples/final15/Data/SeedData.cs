@@ -93,6 +93,7 @@ namespace ContactManager.Data
                     State = "WA",
                     Zip = "10999",
                     Email = "debra@example.com",
+                    Status = ContactStatus.Approved,
                     OwnerID = uid
                 },
             #endregion
@@ -105,6 +106,7 @@ namespace ContactManager.Data
                     State = "WA",
                     Zip = "10999",
                     Email = "thorsten@example.com",
+                    Status = ContactStatus.Approved,
                     OwnerID = uid
                 },
              new Contact
@@ -115,6 +117,7 @@ namespace ContactManager.Data
                  State = "WA",
                  Zip = "10999",
                  Email = "yuhong@example.com",
+                 Status = ContactStatus.Approved,
                  OwnerID = uid
              },
              new Contact
