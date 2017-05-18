@@ -15,19 +15,22 @@ uid: security/authorization/secure-data
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that Authenticated (registered) users have created. In the following image, user `rick@example.com` is signed in. Only the last record, created by `rick@example.com` displays edit and delete links. User Rick can only view approved contacts.
+This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that Authenticated (registered) users have created. In the following image, user `rick@example.com` is signed in. User Rick can only view approved contacts and edit/delete his contacts. Only the last record, created by `rick@example.com`, displays edit and delete links
 
 ![image described above](secure-data/_static/rick.png)
 
-Authenticated users can read all approved contacts but can only edit their own contacts. 
+Authenticated users can read all approved contacts but can only edit/delete their own contacts. 
 
 In the following image, `manager@contoso.com` is signed in and in the managers role. 
 
 ![image described above](secure-data/_static/manager1.png)
 
-The manager can view all contacts. The manager can only edit and delete contacts she creates. The status field on the Index page shows `Submitted`, `Approved`, or `Rejected`. The manager or administrator can set a contact to `Approved` or `Rejected`
+The manager can:
+* View all contacts. 
+* Edit and delete contacts she creates. 
+* Set a contact to `Approved` or `Rejected`.
 
-The following image shows the details view of a contact. The manager can approve or reject a contact. 
+The following image shows the details view of a contact.
 
 ![image described above](secure-data/_static/manager.png)
 
@@ -43,7 +46,7 @@ The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-m
 
 The contact information properties (Address, Name, etc.) are displayed in the images above. `ContactId` is the primary key for the table.
 
-A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that data can only be edited by the data owner. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler` authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
+A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that a user can only edit their data. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler` authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
 
 ## Prerequisites
 
@@ -51,13 +54,13 @@ This is not a beginning tutorial. You should be familiar with [creating an ASP.N
 
 ## The starter and completed app
 
-Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final15) app. [Test](#Test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your working code with the completed sample.
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final15) app. [Test](#Test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your code with the completed sample.
 
 ### The starter app
 
-Download and test the [starter](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) ) app. 
+Download the [starter](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) app. 
 
-See [Create the starter app](#create-the-starter-app) if you'd like to create it.
+See [Create the starter app](#create-the-starter-app) if you'd like to create it from scratch.
 
 Update the database:
 
@@ -67,7 +70,7 @@ Update the database:
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
-This tutorial has all the major steps to create the secure user data app, but some code such as the `ViewModel_to_model` method is only in the completed sample. 
+This tutorial has all the major steps to create the secure user data app, but some code such as the `ViewModel_to_model` method is only shown in the completed sample. 
 
 ## Tie the contact data to the user
 
