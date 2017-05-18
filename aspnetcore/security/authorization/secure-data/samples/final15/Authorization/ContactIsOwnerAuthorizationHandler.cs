@@ -26,11 +26,12 @@ namespace ContactManager.Authorization
                 return Task.FromResult(0);
             }
 
-            // If requesting approval or rejection, return.
-            // This method only handles ownership.
+            // If we're not asking for CRUD permission, return.
 
-            if (requirement.Name == Constants.ApproveOperationName ||
-                requirement.Name == Constants.RejectOperationName)
+            if (requirement.Name != Constants.CreateOperationName &&
+                requirement.Name != Constants.ReadOperationName   &&
+                requirement.Name != Constants.UpdateOperationName &&
+                requirement.Name != Constants.DeleteOperationName )
             {
                 return Task.FromResult(0);
             }
