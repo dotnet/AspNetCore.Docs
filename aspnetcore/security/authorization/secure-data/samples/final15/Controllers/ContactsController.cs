@@ -35,14 +35,13 @@ namespace ContactManager.Controllers
             var contacts = from c in _context.Contact
                            select c;
 
-            // REVIEW: Must be a cleaner way to compute isAuthorized.
+            // REVIEW: Is there a cleaner way to compute isAuthorized.
             var contactDB = await _context.Contact.FirstOrDefaultAsync();
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(
                                                        User, contactDB,
                                                        ContactOperations.Approve);
 
-            // Review: good if users could see their own contacts before approval.
             // Todo: It would be nice if users could see their own contacts before
             // they are approved. Only do this if it'd doesn't make the code complicated.
 
@@ -77,9 +76,9 @@ namespace ContactManager.Controllers
                                            User, contact,
                                            ContactOperations.Approve);
 
-            if (contact.Status != ContactStatus.Approved &&   // Not approve
-                                  !isAuthorizedRead &&        // Don't own it
-                                  !isAuthorizedApprove)       // Not a manager
+            if (contact.Status != ContactStatus.Approved &&   // Not approved.
+                                  !isAuthorizedRead &&        // Don't own it.
+                                  !isAuthorizedApprove)       // Not a manager.
             {
                 return new ChallengeResult();
             }
@@ -191,15 +190,8 @@ namespace ContactManager.Controllers
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,
-            [Bind("ContactId,Address,City,Email,Name,State,Zip")] ContactEditViewModel editModel)
-        {
-            // Why is this here? Scaffolding??
-            if (id != editModel.ContactId)
-            {
-                return NotFound();
-            }
-
+        public async Task<IActionResult> Edit(int id, ContactEditViewModel editModel)
+        {           
             if (!ModelState.IsValid)
             {
                 return View(editModel);
@@ -213,7 +205,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperations.Update);
+                                                                ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -260,16 +252,7 @@ namespace ContactManager.Controllers
                 return new ChallengeResult();
             }
 
-            var editModel = new ContactEditViewModel();
-            editModel.ContactId = contact.ContactId;
-            editModel.Address = contact.Address;
-            editModel.City = contact.City;
-            editModel.Email = contact.Email;
-            editModel.Name = contact.Name;
-            editModel.State = contact.State;
-            editModel.Zip = contact.Zip;
-
-            return View(editModel);
+            return View(contact);
         }
 
         // POST: Contacts/Delete/5

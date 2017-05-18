@@ -31,11 +31,11 @@ The following image shows the details view of a contact. The manager can approve
 
 ![image described above](secure-data/_static/manager.png)
 
-In the following image, `admin@contoso.com` is signed in and in the administrators role. 
+In the following image, `admin@contoso.com` is signed in and in the administrator’s role. 
 
 ![image described above](secure-data/_static/admin.png)
 
-The administrator has all privlidges. She can read/edit/delete any contact and change the status of contacts.
+The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
 The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-model#scaffold-the-moviecontroller)  the following `Contact` model:
 
@@ -51,7 +51,7 @@ This is not a beginning tutorial. You should be familiar with [creating an ASP.N
 
 ## The starter and completed app
 
-Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final15) app. [Test](#Test-the-completed-app) the completed app so you become familar with its security features. It's also helpful to compare your working code with the completed sample.
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final15) app. [Test](#Test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your working code with the completed sample.
 
 ### The starter app
 
@@ -71,7 +71,7 @@ This tutorial has all the major steps to create the secure user data app, but so
 
 ## Tie the contact data to the user
 
-We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model :
+Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` to the `Contact` model:
 
 [!code-csharp[Main](secure-data/samples/final15/Models/Contact.cs?name=snippet1&highlight=5-6,16-)]
 
@@ -96,7 +96,7 @@ If you're using Visual Studio, see [Set up IIS Express for SSL/HTTPS](xref:secur
 
 Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
-[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_defaultPolicy&highlight=2-)]
+[!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_defaultPolicy)]
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
@@ -124,7 +124,7 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* fold
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. Authorization handelers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return `context.Fail()`.
+The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. Authorization handlers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return `context.Fail()`.
 
 We allow contact owners to edit/delete their own data, so we don't need to check the operation passed in the requirement parameter.
 
@@ -178,7 +178,7 @@ Update the `HTTP POST Create` method to:
 * Add the user ID to the `Contact` model.
 * Call the authorization handler to verify the user owns the contact.
 
-[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Create&highlight=20-27)]
+[!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Create)]
 
 
 ### Update Edit
@@ -225,17 +225,17 @@ Update the database:
 
 You'll need to register a user to browse the contact database.
 
-An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. Sigin to each browser with a different user. 
+An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. SignIn to each browser with a different user. 
 
 * Registered users can view all the approved contact data.
 * Registered users can edit/delete their own data. 
-* Managers can approve or reject contact data. The Details view shows **Approve** and **Reject** buttons. 
+* Managers can approve or reject contact data. The `Details` view shows **Approve** and **Reject** buttons. 
 * Administrators can approve/reject and edit/delete any data.
 
 | User| Options |
 | ------------ | ---------|
-| admin@contoso.com | Can edit/delete & approve/reject all data|
-| manager@contoso.com | Can approve/reject |
+| admin@contoso.com | Can edit/delete and approve/reject all data|
+| manager@contoso.com | Can approve/reject and edit/delete own data  |
 | test@example.com | Can edit/delete own data |
 
 
@@ -291,7 +291,7 @@ Add the highlighted code to the end of the `Configure` method in the *Startup.cs
 [!code-csharp[Main](secure-data/samples/Starter/Startup.cs?name=Configure&highlight=28-)]
 
 
-Test that the app seeded the database. The seed method will not run if there are any rows in the contact DB.
+Test that the app seeded the database. The seed method does not run if there are any rows in the contact DB.
 
 ### Create the resources for the tutorial
 
