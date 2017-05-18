@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ContactManager.Authorization
 {
-    public class ContactManagerAuthorizationHandler : 
+    public class ContactManagerAuthorizationHandler :
         AuthorizationHandler<OperationAuthorizationRequirement, Contact>
     {
         UserManager<ApplicationUser> _userManager;
@@ -16,31 +16,29 @@ namespace ContactManager.Authorization
             _userManager = userManager;
         }
 
-        protected override Task 
+        protected override Task
             HandleRequirementAsync(AuthorizationHandlerContext context,
                                    OperationAuthorizationRequirement requirement,
                                    Contact resource)
         {
-            if (context.User == null)
+            if (context.User == null || resource == null)
             {
                 return Task.FromResult(0);
             }
 
-            if (resource == null)
+            // If not asking for approval/reject, return.
+            if (requirement.Name != Constants.ApproveOperationName &&
+                requirement.Name != Constants.RejectOperationName)
             {
                 return Task.FromResult(0);
             }
 
             // Managers can approve or reject.
-            if (requirement.Name == Constants.ApproveOperationName || 
-                requirement.Name == Constants.RejectOperationName)
+            if (context.User.IsInRole(Constants.ContactManagersRole))
             {
-                if (context.User.IsInRole(Constants.ContactManagersRole))
-                {
-                    context.Succeed(requirement);
-                    return Task.FromResult(0);
-                }
-            }            
+                context.Succeed(requirement);
+                return Task.FromResult(0);
+            }
 
             return Task.FromResult(0);
         }

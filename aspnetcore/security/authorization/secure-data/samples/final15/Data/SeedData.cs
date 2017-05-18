@@ -26,14 +26,14 @@ namespace ContactManager.Data
                 // dotnet user-secrets set SeedUserPW <pw>
                 // The admin user can do anything
 
-                var adminUid = await EnsureUser(serviceProvider, testUserPw, "admin@contoso.com");
-                await EnsureRole(serviceProvider, adminUid, Constants.ContactAdministratorsRole);
+                var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@contoso.com");
+                await EnsureRole(serviceProvider, adminID, Constants.ContactAdministratorsRole);
 
                 // allowed user can create and edit contacts that they create
                 var uid = await EnsureUser(serviceProvider, testUserPw, "manager@contoso.com");
                 await EnsureRole(serviceProvider, uid, Constants.ContactManagersRole);
 
-                SeedDB(context, adminUid);
+                SeedDB(context, adminID);
             }
         }
         #endregion
@@ -76,7 +76,7 @@ namespace ContactManager.Data
         }        
         #endregion
         #region snippet1
-        public static void SeedDB(ApplicationDbContext context, string uid)
+        public static void SeedDB(ApplicationDbContext context, string adminID)
         {
             if (context.Contact.Any())
             {
@@ -94,7 +94,7 @@ namespace ContactManager.Data
                     Zip = "10999",
                     Email = "debra@example.com",
                     Status = ContactStatus.Approved,
-                    OwnerID = uid
+                    OwnerID = adminID
                 },
             #endregion
             #endregion
@@ -107,7 +107,7 @@ namespace ContactManager.Data
                     Zip = "10999",
                     Email = "thorsten@example.com",
                     Status = ContactStatus.Approved,
-                    OwnerID = uid
+                    OwnerID = adminID
                 },
              new Contact
              {
@@ -118,7 +118,7 @@ namespace ContactManager.Data
                  Zip = "10999",
                  Email = "yuhong@example.com",
                  Status = ContactStatus.Approved,
-                 OwnerID = uid
+                 OwnerID = adminID
              },
              new Contact
              {
@@ -128,7 +128,7 @@ namespace ContactManager.Data
                  State = "WA",
                  Zip = "10999",
                  Email = "jon@example.com",
-                 OwnerID = uid
+                 OwnerID = adminID
              },
              new Contact
              {
@@ -138,7 +138,7 @@ namespace ContactManager.Data
                  State = "WA",
                  Zip = "10999",
                  Email = "diliana@example.com",
-                 OwnerID = uid
+                 OwnerID = adminID
              }
              );
             context.SaveChanges();

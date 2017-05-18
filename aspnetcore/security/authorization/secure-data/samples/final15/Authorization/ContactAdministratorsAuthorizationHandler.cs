@@ -15,11 +15,13 @@ namespace ContactManager.Authorization
             {
                 return Task.FromResult(0);
             }
-            // administrators can do anything
+
+            // Administrators can do anything.
             if (context.User.IsInRole(Constants.ContactAdministratorsRole))
             {
                 context.Succeed(requirement);
             }
+
             return Task.FromResult(0);
         }
     }

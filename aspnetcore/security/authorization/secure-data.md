@@ -25,7 +25,7 @@ In the following image, `manager@contoso.com` is signed in and in the managers r
 
 ![image described above](secure-data/_static/manager1.png)
 
-The manager can view all images. The manager can only edit and delete contacts she creates. The status field on the Index page shows `Submitted`, `Approved`, or `Rejected`. The manager or administrator can set a contact to `Approved` or `Rejected`
+The manager can view all contacts. The manager can only edit and delete contacts she creates. The status field on the Index page shows `Submitted`, `Approved`, or `Rejected`. The manager or administrator can set a contact to `Approved` or `Rejected`
 
 The following image shows the details view of a contact. The manager can approve or reject a contact. 
 
@@ -73,7 +73,7 @@ We'll use the ASP.NET [Identity](xref:security/authentication/identity) user ID 
 Scaffold a new migration and update the database:
 
 ```console
-dotnet ef migrations add userID
+dotnet ef migrations add userID_Status
 dotnet ef database update
  ```
 
@@ -85,17 +85,19 @@ In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttp
 
 If you're using Visual Studio, see [Set up IIS Express for SSL/HTTPS](xref:security/enforcing-ssl#set-up-iis-express-for-sslhttps). To redirect HTTP requests to HTTPS, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
+### Require authenticated users
+
 Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
 [!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=snippet_defaultPolicy&highlight=2-)]
 
 Add `[AllowAnonymous]` to the home controller so anonymous users can get information about the site before they register.
 
-[!code-csharp[Main](secure-data/samples/final15/Controllers/HomeController.cs?name=snippet1&highlight=3,7)]
+[!code-csharp[Main](secure-data/samples/final15/Controllers/HomeController.cs?name=snippet1&highlight=2,6)]
 
 ## Configure the test account
 
-The `SeedData` class creates a test user account. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for the account. Do this from the project directory (the directory containing *Program.cs*).
+The `SeedData` class creates a two accounts,  administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
 
 ```console
 dotnet user-secrets set SeedUserPW <PW>
@@ -105,11 +107,9 @@ Update `Configure` to use the test password:
 
 [!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=Configure&highlight=19-21)]
 
-Add the test accounts user ID and `Status = ContactStatus.Approved` to a couple of the contacts. Only one contact is shown, add the user ID to all contacts:
+Add the administrator user ID and `Status = ContactStatus.Approved` to the contacts. Only one contact is shown, add the user ID to all contacts:
 
-[!code-csharp[Main](secure-data/samples/final15/Data/SeedData.cs?name=snippet1&highlight=16,17)]
-
-Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
+[!code-csharp[Main](secure-data/samples/final15/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
 ## Create owner, manager, and administrator authorization handlers
 
@@ -117,15 +117,23 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the  *Authorization* fold
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter.
+The `ContactIsOwnerAuthorizationHandler` calls `context.Succeed` if the current authenticated user is the contact owner. Authorization handelers generally return `context.Succeed` when the requirements are met. They return `Task.FromResult(0)` when requirements are not met. `Task.FromResult(0)` is neither success or failure, it allows other authorization handler to run. If you need to explicitly fail, return `context.Fail()`.
 
-Create a `ContactManagerAuthorizationHandler` class in the  *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve content changes (new or changed) can be visible to other users.
+We allow contact owners to edit/delete their own data, so we don't need to check the operation passed in the requirement parameter.
+
+### Create a manager authorization handler
+
+Create a `ContactManagerAuthorizationHandler` class in the  *Authorization* folder. The `ContactManagerAuthorizationHandler` will verify the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactManagerAuthorizationHandler.cs)]
+
+### Create a administrator authorization handler
 
 Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
+
+## Register the authorization handlers
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped.md). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they will be available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
@@ -137,15 +145,26 @@ The complete `ConfigureServices`:
 
 [!code-csharp[Main](secure-data/samples/final15/Startup.cs?name=ConfigureServices)]
 
+## Update the code to support authorization
+
+In this section, you update the controller, views and add an operations requirements class.
+
 ### Update the Contacts controller
 
-Update the `ContactsController` constructor to resolve the `IAuthorizationService` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the `Identity` `UserManager` service:
+Update the `ContactsController` constructor:
+
+* Add the `IAuthorizationService` service to  access to the authorization handlers. 
+* Add the `Identity` `UserManager` service:
 
 [!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_ContactsControllerCtor)]
 
-Add the `ContactOperationsRequirements` class to the *Authorization* folder to contain the requirements our app supports:
+### Add a contact operations requirements class
+
+Add the `ContactOperationsRequirements` class to the *Authorization* folder. This class  contain the requirements our app supports:
 
 [!code-csharp[Main](secure-data/samples/final15/Authorization/ContactOperations.cs)]
+
+### Update Create
 
 Update the `HTTP POST Create` method to:
 
@@ -154,9 +173,14 @@ Update the `HTTP POST Create` method to:
 
 [!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Create&highlight=20-27)]
 
-Update both `Edit` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the `[Authorize]` attribute as we don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
+
+### Update Edit
+
+Update both `Edit` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the `[Authorize]` attribute. We don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
 
 [!code-csharp[Main](secure-data/samples/final15/Controllers/ContactsController.cs?name=snippet_Edit)]
+
+### Update the Delete method
 
 Update both `Delete` methods to use the authorization handler to verify the user owns the contact.
 
@@ -170,58 +194,21 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it w
 
 [!code-html[Main](secure-data/samples/final15/Views/_ViewImports.cshtml)]
 
-
 Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edit and delete links for the users data:
 
 [!code-html[Main](secure-data/samples/final15/Views/Contacts/Index.cshtml?range=1-3,63-80)]
 
 Warning: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
 
+### Update the Delete view
 
-<!-- TODO show how to fail
-You could write a handler that fails the requirements, even if the other handlers succeed. For example, consider the following handler that fails if the contact address doesn't contain "1":
+Update the delete view so managers and administrators have **Aprove** and **Reject** buttons:
 
-````c#
-
-   using System;
-   using System.Threading.Tasks;
-   using ContactManager.Models;
-   using Microsoft.AspNetCore.Authorization;
-   using Microsoft.AspNetCore.Authorization.Infrastructure;
-
-   namespace ContactManager.Authorization
-   {
-       public class ContactHasOneAuthorizationHandler 
-                   : AuthorizationHandler<OperationAuthorizationRequirement, Contact>
-       {        
-
-           protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-               OperationAuthorizationRequirement requirement, Contact resource)
-           {
-               if (resource == null)
-               {
-                   return Task.FromResult(0);
-               }
-
-               // Return if we haven't requested this requirement.
-               if (string.CompareOrdinal(requirement.Name, Constants.ContainsOne) != 0)
-               {
-                   return Task.FromResult(0);
-               }
-
-               if (!resource.Address.Contains("1"))
-               {
-                   context.Fail();
-               }
-               return Task.FromResult(0);
-           }
-       }
-   }
-   ````
-
--->
+[!code-html[Main](secure-data/samples/final15/Views/Contacts/Delete.cshtml?range=53-)]
 
 ## Test the app
+
+Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
 
 An easy way to test the changes we made is to launch three different browsers (or incognito/InPrivate versions). Register a new user, for example, `test@example.com`. Sigin to each browser with a different user. 
 

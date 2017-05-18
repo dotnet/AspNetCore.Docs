@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using ContactManager.Authorization;
 using ContactManager.Data;
 using ContactManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using ContactManager.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContactManager.Controllers
 {
@@ -38,13 +35,18 @@ namespace ContactManager.Controllers
             var contacts = from c in _context.Contact
                            select c;
 
-            // REVIEW: Must be a cleaner way.
+            // REVIEW: Must be a cleaner way to compute isAuthorized.
             var contactDB = await _context.Contact.FirstOrDefaultAsync();
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(
                                                        User, contactDB,
                                                        ContactOperations.Approve);
+
             // Review: good if users could see their own contacts before approval.
+            // Todo: It would be nice if users could see their own contacts before
+            // they are approved. Only do this if it'd doesn't make the code complicated.
+
+            // Only approved contacts are shown UNLESS you're authorized to see them all.
             if (!isAuthorized)
             {
                 contacts = contacts.Where(c => c.Status == ContactStatus.Approved);
@@ -279,40 +281,28 @@ namespace ContactManager.Controllers
         }
         #endregion
 
+        #region SetStatus
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Approve(int id)
+        public async Task<IActionResult> SetStatus(int id, ContactStatus status)
         {
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
 
+            var contactOperation = (status == ContactStatus.Approved) ? ContactOperations.Approve
+                                                                      : ContactOperations.Reject;
+
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperations.Approve);
+                                        contactOperation);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
-            contact.Status = ContactStatus.Approved;
+            contact.Status = status;
             _context.Contact.Update(contact);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Reject(int id)
-        {
-            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperations.Reject);
-            if (!isAuthorized)
-            {
-                return new ChallengeResult();
-            }
-            contact.Status = ContactStatus.Rejected;
-            _context.Contact.Update(contact);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        #endregion
 
         private bool ContactExists(int id)
         {

@@ -59,9 +59,9 @@
 {
     @if (await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Approve))
     {
-        <form asp-action="Approve" asp-controller="Contacts" style="display:inline;">
+        <form asp-action="SetStatus" asp-controller="Contacts" style="display:inline;">
             <input type="hidden" name="id" value="@Model.ContactId" />
-            <input type="hidden" name="status" value="@Model.Status" />
+            <input type="hidden" name="status" value="@ContactStatus.Approved" />
             <button type="submit" class="btn btn-xs btn-success">Approve</button>
         </form>
     }  
@@ -70,8 +70,9 @@
 {
     @if (await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Reject))
     {
-        <form asp-action="Reject" asp-controller="Contacts" style="display:inline;">
+        <form asp-action="SetStatus" asp-controller="Contacts" style="display:inline;">
             <input type="hidden" name="id" value="@Model.ContactId" />
+            <input type="hidden" name="status" value="@ContactStatus.Rejected" />
             <button type="submit" class="btn btn-xs btn-danger">Reject</button>
         </form>
     }
