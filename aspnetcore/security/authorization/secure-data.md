@@ -49,18 +49,25 @@ A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that data c
 
 This is not a beginning tutorial. You should be familiar with [creating an ASP.NET Core MVC app](xref:tutorials/first-mvc-app/start-mvc).
 
-## The starter app
+## The starter and completed app
 
-[Download](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) and test the starter app. See [Create the starter app](#create-the-starter-app) if you'd like to create it.
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final15) app. [Test](#Test-the-completed-app) the completed app so you become familar with its security features. It's also helpful to compare your working code with the completed sample.
+
+### The starter app
+
+Download and test the [starter](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) ) app. 
+
+See [Create the starter app](#create-the-starter-app) if you'd like to create it.
 
 Update the database:
 
-````none
-
+```none
    dotnet ef database update
-   ````
+```
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
+
+This tutorial has all the major steps to create the secure user data app, but some code such as the `ViewModel_to_model` method is only in the completed sample. 
 
 ## Tie the contact data to the user
 
@@ -206,14 +213,23 @@ Update the delete view so managers and administrators have **Aprove** and **Reje
 
 [!code-html[Main](secure-data/samples/final15/Views/Contacts/Delete.cshtml?range=53-)]
 
-## Test the app
+## Test the completed app
 
-Delete all the records in the `Contact` table and restart the app to seed the database. You'll need to register a user to browse the contact database.
+IF you have run the app, delete all the records in the `Contact` table and restart the app to seed the database. 
 
-An easy way to test the changes we made is to launch three different browsers (or incognito/InPrivate versions). Register a new user, for example, `test@example.com`. Sigin to each browser with a different user. 
+Update the database:
 
-* Registered users can view all the contact data and edit/delete their own data. 
-* Managers can approve or reject contact data. The Details view shows Approve and Reject buttons. 
+```none
+   dotnet ef database update
+```
+
+You'll need to register a user to browse the contact database.
+
+An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. Sigin to each browser with a different user. 
+
+* Registered users can view all the approved contact data.
+* Registered users can edit/delete their own data. 
+* Managers can approve or reject contact data. The Details view shows **Approve** and **Reject** buttons. 
 * Administrators can approve/reject and edit/delete any data.
 
 | User| Options |

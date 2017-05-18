@@ -91,6 +91,7 @@ namespace ContactManager.Controllers
         public IActionResult Create()
         {
             //return View();
+            // TODO - remove, this is just for quick testing.
             return View(new ContactEditViewModel
             {
                 Address = "123 N 456 E",
@@ -101,27 +102,49 @@ namespace ContactManager.Controllers
                 Zip = "59405"
             });
         }
-        #region snippet_Create
-        // POST: Contacts/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-                            [Bind("ContactId,Address,City,Email,Name,State,Zip")]
-                            ContactEditViewModel editModel)
+        
+        private Contact ViewModel_to_model(Contact contact, ContactEditViewModel editModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(editModel);
-            }
-
-            var contact = new Contact();
             contact.Address = editModel.Address;
             contact.City = editModel.City;
             contact.Email = editModel.Email;
             contact.Name = editModel.Name;
             contact.State = editModel.State;
             contact.Zip = editModel.Zip;
+
+            return contact;
+        }
+
+        private ContactEditViewModel Model_to_viewModel(Contact contact)
+        {
+            var editModel = new ContactEditViewModel();
+
+            editModel.ContactId = contact.ContactId;
+            editModel.Address = contact.Address;
+            editModel.City = contact.City;
+            editModel.Email = contact.Email;
+            editModel.Name = contact.Name;
+            editModel.State = contact.State;
+            editModel.Zip = contact.Zip;
+
+            return editModel;
+        }
+
+        #region snippet_Create
+        // POST: Contacts/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ContactEditViewModel editModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(editModel);
+            }
+
+            var contact = ViewModel_to_model(new Contact(), editModel);
+
             contact.OwnerID = _userManager.GetUserId(User);
+
             var isAuthorized = await _authorizationService.AuthorizeAsync(
                                                         User, contact,
                                                         ContactOperations.Create);
@@ -145,29 +168,22 @@ namespace ContactManager.Controllers
                 return NotFound();
             }
 
-            var contactDB = await _context.Contact.SingleOrDefaultAsync(
+            var contact = await _context.Contact.SingleOrDefaultAsync(
                                                         m => m.ContactId == id);
-            if (contactDB == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(
-                                                        User, contactDB,
+                                                        User, contact,
                                                         ContactOperations.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
 
-            var editModel = new ContactEditViewModel();
-            editModel.ContactId = contactDB.ContactId;
-            editModel.Address = contactDB.Address;
-            editModel.City = contactDB.City;
-            editModel.Email = contactDB.Email;
-            editModel.Name = contactDB.Name;
-            editModel.State = contactDB.State;
-            editModel.Zip = contactDB.Zip;
+            var editModel = Model_to_viewModel(contact);
 
             return View(editModel);
         }
@@ -203,12 +219,7 @@ namespace ContactManager.Controllers
                 return new ChallengeResult();
             }
 
-            contact.Address = editModel.Address;
-            contact.City = editModel.City;
-            contact.Email = editModel.Email;
-            contact.Name = editModel.Name;
-            contact.State = editModel.State;
-            contact.Zip = editModel.Zip;
+            contact = ViewModel_to_model(contact, editModel);
 
             if (contact.Status == ContactStatus.Approved)
             {
