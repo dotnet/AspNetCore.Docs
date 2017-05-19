@@ -54,7 +54,7 @@ This is not a beginning tutorial. You should be familiar with [creating an ASP.N
 
 ## The starter and completed app
 
-Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#Test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your code with the completed sample.
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your code with the completed sample.
 
 ### The starter app
 
@@ -207,7 +207,7 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it w
 
 [!code-html[Main](secure-data/samples/final/Views/_ViewImports.cshtml)]
 
-Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edit and delete links for the users data:
+Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edit and delete links for users who can edit/delete the contact.
 
 Add `@using ContactManager.Authorization;`
 
@@ -217,12 +217,6 @@ Update the `Edit` and `Delete` links so they are only rendered for users with pe
 
 Warning: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
 
-### Update the Delete view
-
-Update the delete view so managers and administrators have **Aprove** and **Reject** buttons:
-
-[!code-html[Main](secure-data/samples/final/Views/Contacts/Delete.cshtml?range=53-)]
-
 ### Update the Details view
 
 Update the details view so managers can approve or reject contacts:
@@ -231,15 +225,15 @@ Update the details view so managers can approve or reject contacts:
 
 ## Test the completed app
 
-If you have run the app, delete all the records in the `Contact` table and restart the app to seed the database. 
+If you have run the app and have contacts, delete all the records in the `Contact` table and restart the app to seed the database. You need to exit and restart IIS Express to seed the database.
 
-Update the database:
+If you deleted the database, run update on the database:
 
 ```none
    dotnet ef database update
 ```
 
-You'll need to register a user to browse the contact database.
+You'll need to register a user to browse the contacts.
 
 An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. SignIn to each browser with a different user. Verify the following:
 
@@ -258,14 +252,16 @@ Create a contact in the administrators browser. Copy the URL for delete and edit
 
 ## Create the starter app
 
-* Create a new **ASP.NET Core Web Application** using [Visual Studio 2015](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
+Follow these instructions to create the starter app.
+
+* Create a new **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
 
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace will match the namespace use in the sample.
 
 * Add the following `Contact` model:
 
-[!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
+  [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
 
 * Scaffold the `Contact` model using Entity Framework Core and the `ApplicationDbContext` data context. Accept all the scaffolding defaults. Using `ApplicationDbContext` for the data context class  puts the contact table in the [Identity](xref:security/authentication/identity) database. See [Adding a model](xref:tutorials/first-mvc-app/adding-model) for more information.
 

@@ -11,7 +11,8 @@ namespace ContactManager.Authorization
     {
         UserManager<ApplicationUser> _userManager;
 
-        public ContactIsOwnerAuthorizationHandler(UserManager<ApplicationUser> userManager)
+        public ContactIsOwnerAuthorizationHandler(UserManager<ApplicationUser> 
+            userManager)
         {
             _userManager = userManager;
         }

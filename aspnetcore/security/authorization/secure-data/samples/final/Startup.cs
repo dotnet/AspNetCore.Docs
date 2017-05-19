@@ -125,7 +125,7 @@ namespace ContactManager
 
             if (String.IsNullOrEmpty(testUserPw))
             {
-                throw new System.Exception("Use secrets manager/environment to set SeedUserPW \n" +
+                throw new System.Exception("Use secrets manager to set SeedUserPW \n" +
                                            "dotnet user-secrets set SeedUserPW <pw>");
             }
 
@@ -138,7 +138,8 @@ namespace ContactManager
                 throw new System.Exception("You need to update the DB "
                     + "\nPM > Update-Database " + "\n or \n" +
                       "> dotnet ef database update"
-                      + "\nIf that doesn't work, comment out SeedData and register a new user");
+                      + "\nIf that doesn't work, comment out SeedData and "
+                      + "register a new user");
             }
             #endregion
         }
