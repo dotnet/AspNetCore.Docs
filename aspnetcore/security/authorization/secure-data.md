@@ -15,24 +15,26 @@ uid: security/authorization/secure-data
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that Authenticated (registered) users have created. In the following image, user `rick@example.com` is signed in. User Rick can only view approved contacts and edit/delete his contacts. Only the last record, created by `rick@example.com`, displays edit and delete links
+This tutorial shows how to create a web app with user data protected by authorization. It  displays a list of contacts that authenticated (registered) users have created. There are three security groups:
+
+* Registered users can view all the approved contact data.
+* Registered users can edit/delete their own data. 
+* Managers can approve or reject contact data. Only approved contacts are visible to users.
+* Administrators can approve/reject and edit/delete any data.
+
+In the following image, user Rick (`rick@example.com`) is signed in. User Rick can only view approved contacts and edit/delete his contacts. Only the last record, created by Rick, displays edit and delete links
 
 ![image described above](secure-data/_static/rick.png)
-
-Authenticated users can read all approved contacts but can only edit/delete their own contacts. 
 
 In the following image, `manager@contoso.com` is signed in and in the managers role. 
 
 ![image described above](secure-data/_static/manager1.png)
 
-The manager can:
-* View all contacts. 
-* Edit and delete contacts she creates. 
-* Set a contact to `Approved` or `Rejected`.
-
-The following image shows the details view of a contact.
+The following image shows the  managers details view of a contact.
 
 ![image described above](secure-data/_static/manager.png)
+
+Only managers and administrators have the approve and reject buttons.
 
 In the following image, `admin@contoso.com` is signed in and in the administrator’s role. 
 
@@ -44,19 +46,22 @@ The app was created by [scaffolding](xref:tutorials/first-mvc-app-xplat/adding-m
 
 [!code-csharp[Main](secure-data/samples/starter/Models/Contact.cs?name=snippet1)]
 
-The contact information properties (Address, Name, etc.) are displayed in the images above. `ContactId` is the primary key for the table.
-
 A `ContactIsOwnerAuthorizationHandler` authorization handler ensures that a user can only edit their data. A `ContactManagerAuthorizationHandler` authorization handler allows managers to approve or reject contacts.  A `ContactAdministratorsAuthorizationHandler` authorization handler allows administrators to approve or reject contacts and to edit/delete contacts. 
 
 ## Prerequisites
 
-This is not a beginning tutorial. You should be familiar with [creating an ASP.NET Core MVC app](xref:tutorials/first-mvc-app/start-mvc).
+This is not a beginning tutorial. You should be familiar with:
+
+* [ASP.NET Core MVC app](xref:tutorials/first-mvc-app/start-mvc).
+* [Entity Framework Core](xref:data/ef-mvc/intro).
 
 ## The starter and completed app
 
-Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. It's also helpful to compare your code with the completed sample.
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
 
 ### The starter app
+
+It's helpful to compare your code with the completed sample.
 
 Download the [starter](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) app. 
 
@@ -93,7 +98,7 @@ dotnet ef database update
 
 ### Require SSL and authenticated users
 
-In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/RequireHttpsAttribute/index.html.md#Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.md) authorization filter that requires all requests use HTTPS:
+In the `ConfigureServices` method of the *Startup.cs* file, add the [RequireHttpsAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/RequireHttpsAttribute/index.html.md#Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.md) authorization filter:
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_SSL&highlight=1)]
 
@@ -101,7 +106,7 @@ If you're using Visual Studio, see [Set up IIS Express for SSL/HTTPS](xref:secur
 
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is more fail safe than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
+Set the default authentication policy to require users to be authenticated. You can opt out of authentication at the controller or action method with the `[AllowAnonymous]` attribute. With this approach, any new controllers added will automatically require authentication, which is safer than relying on new controllers to include the `[Authorize]` attribute. Add the following to  the `ConfigureServices` method of the *Startup.cs* file:
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=snippet_defaultPolicy)]
 
@@ -111,7 +116,7 @@ Add `[AllowAnonymous]` to the home controller so anonymous users can get informa
 
 ### Configure the test account
 
-The `SeedData` class creates a two accounts,  administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
+The `SeedData` class creates two accounts,  administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Do this from the project directory (the directory containing *Program.cs*).
 
 ```console
 dotnet user-secrets set SeedUserPW <PW>
@@ -153,7 +158,7 @@ Services using Entity Framework Core must be registered for [dependency injectio
 
 [!code-csharp[Main](secure-data/samples/final/Startup.cs?name=AuthorizationHandlers)]
 
-`ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as a singleton because all the information needed is in the `Context` parameter of the *HandleRequirementAsync* method.
+`ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They are singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
 The complete `ConfigureServices`:
 
@@ -161,7 +166,7 @@ The complete `ConfigureServices`:
 
 ## Update the code to support authorization
 
-In this section, you update the controller, views and add an operations requirements class.
+In this section, you update the controller and views and add an operations requirements class.
 
 ### Update the Contacts controller
 
@@ -207,7 +212,7 @@ Inject the authorization service in the *Views/_ViewImports.cshtml* file so it w
 
 [!code-html[Main](secure-data/samples/final/Views/_ViewImports.cshtml)]
 
-Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edit and delete links for users who can edit/delete the contact.
+Update the *Views/Contacts/Index.cshtml* Razor view to only display the edit and delete links for users who can edit/delete the contact.
 
 Add `@using ContactManager.Authorization;`
 
@@ -215,7 +220,7 @@ Update the `Edit` and `Delete` links so they are only rendered for users with pe
 
 [!code-html[Main](secure-data/samples/final/Views/Contacts/Index.cshtml?range=63-84)]
 
-Warning: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
+Warning: Hiding links from users that do not have permission to edit or delete data does not secure the app. Hiding links makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
 
 ### Update the Details view
 
@@ -235,7 +240,7 @@ If you deleted the database, run update on the database:
 
 You'll need to register a user to browse the contacts.
 
-An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. SignIn to each browser with a different user. Verify the following:
+An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. Sign in to each browser with a different user. Verify the following:
 
 * Registered users can view all the approved contact data.
 * Registered users can edit/delete their own data. 
@@ -248,7 +253,7 @@ An easy way to test the completed app is to launch three different browsers (or 
 | manager@contoso.com | Can approve/reject and edit/delete own data  |
 | test@example.com | Can edit/delete own data |
 
-Create a contact in the administrators browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test users browser to verify the test user cannot perform these operations.
+Create a contact in the administrators browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user cannot perform these operations.
 
 ## Create the starter app
 
@@ -286,7 +291,7 @@ The updated markup:
 
 * Test the app by creating, editing and deleting a contact
 
-## Seed the database
+### Seed the database
 
 Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, you can copy the *SeedData.cs* file to the *Data* folder of the starter project.
 
@@ -298,7 +303,7 @@ Add the highlighted code to the end of the `Configure` method in the *Startup.cs
 
 Test that the app seeded the database. The seed method does not run if there are any rows in the contact DB.
 
-### Create the resources for the tutorial
+### Create a class used in the tutorial
 
 * Create a folder named *Authorization*.
 * Copy the *Authorization\ContactOperations.cs* file from the completed project download, or copy the following code:
@@ -309,6 +314,6 @@ Test that the app seeded the database. The seed method does not run if there are
 
 ### Additional resources
 
-* [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop)
-* [Authorization](index.md)
+* [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
+* [Authorization in ASP.NET Core : Simple, role, claims-based and custom](index.md)
 * [Custom Policy-Based Authorization](policies.md)
