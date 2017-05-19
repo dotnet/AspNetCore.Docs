@@ -1,4 +1,5 @@
 # [Introduction](introduction.md)
+# [Create an app with user data protected by authorization](secure-data.md)
 # [Simple Authorization](simple.md)
 # [Role based Authorization](roles.md)
 # [Claims-Based Authorization](claims.md)
