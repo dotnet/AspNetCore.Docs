@@ -70,7 +70,7 @@ Update the database:
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
 
-This tutorial has all the major steps to create the secure user data app, but some code such as the `ViewModel_to_model` method is only shown in the completed sample. 
+This tutorial has all the major steps to create the secure user data app. You may find it helpful to refer to the completed project.
 
 ## Tie the contact data to the user
 

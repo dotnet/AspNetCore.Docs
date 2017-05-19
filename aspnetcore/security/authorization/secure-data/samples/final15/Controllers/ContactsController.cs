@@ -101,33 +101,6 @@ namespace ContactManager.Controllers
                 Zip = "59405"
             });
         }
-        
-        private Contact ViewModel_to_model(Contact contact, ContactEditViewModel editModel)
-        {
-            contact.Address = editModel.Address;
-            contact.City = editModel.City;
-            contact.Email = editModel.Email;
-            contact.Name = editModel.Name;
-            contact.State = editModel.State;
-            contact.Zip = editModel.Zip;
-
-            return contact;
-        }
-
-        private ContactEditViewModel Model_to_viewModel(Contact contact)
-        {
-            var editModel = new ContactEditViewModel();
-
-            editModel.ContactId = contact.ContactId;
-            editModel.Address = contact.Address;
-            editModel.City = contact.City;
-            editModel.Email = contact.Email;
-            editModel.Name = contact.Name;
-            editModel.State = contact.State;
-            editModel.Zip = contact.Zip;
-
-            return editModel;
-        }
 
         #region snippet_Create
         // POST: Contacts/Create
@@ -301,6 +274,33 @@ namespace ContactManager.Controllers
         private bool ContactExists(int id)
         {
             return _context.Contact.Any(e => e.ContactId == id);
+        }
+
+        private Contact ViewModel_to_model(Contact contact, ContactEditViewModel editModel)
+        {
+            contact.Address = editModel.Address;
+            contact.City = editModel.City;
+            contact.Email = editModel.Email;
+            contact.Name = editModel.Name;
+            contact.State = editModel.State;
+            contact.Zip = editModel.Zip;
+
+            return contact;
+        }
+
+        private ContactEditViewModel Model_to_viewModel(Contact contact)
+        {
+            var editModel = new ContactEditViewModel();
+
+            editModel.ContactId = contact.ContactId;
+            editModel.Address = contact.Address;
+            editModel.City = contact.City;
+            editModel.Email = contact.Email;
+            editModel.Name = contact.Name;
+            editModel.State = contact.State;
+            editModel.Zip = contact.Zip;
+
+            return editModel;
         }
     }
 }
