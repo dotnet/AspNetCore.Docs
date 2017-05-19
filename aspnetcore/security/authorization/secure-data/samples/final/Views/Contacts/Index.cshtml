@@ -6,14 +6,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index User Authz Only, no Admin</h2>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
-@*TODO - Remove address, email, zip from Index page, leave them on the Details page.
-Add owner name.*@ 
+@*TODO-Rick - Remove address, email, zip from Index page, leave them on the Details page.
+    Add owner name.*@
 
 <table class="table">
     <thead>
@@ -64,23 +64,22 @@ Add owner name.*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Zip)
                 </td>
-                @*Markup removed for brevity.*@                
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>               
+                </td>
                 <td>
                     @if (await AuthorizationService.AuthorizeAsync(User,
-                                                           item, ContactOperations.Update))
+                                                       item, ContactOperations.Update))
                     {
                         <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a><text> | </text>
                     }
                     <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
                     @if (await AuthorizationService.AuthorizeAsync(User,
-                                                             item, ContactOperations.Delete))
+                                                         item, ContactOperations.Delete))
                     {
                         <text> | </text>
                         <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
-                    }                  
+                    }
                 </td>
             </tr>
         }

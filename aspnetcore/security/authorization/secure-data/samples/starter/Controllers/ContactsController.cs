@@ -50,19 +50,20 @@ namespace ContactManager.Controllers
         }
 
         // POST: Contacts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContactId,Name,Address,City,State,Zip,Email")] Contact contact)
+        public async Task<IActionResult> Create(ContactEditViewModel editModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(contact);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return View(editModel);
             }
-            return View(contact);
+
+            var contact = ViewModel_to_model(new Contact(), editModel);          
+
+            _context.Add(contact);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         // GET: Contacts/Edit/5
@@ -78,42 +79,34 @@ namespace ContactManager.Controllers
             {
                 return NotFound();
             }
-            return View(contact);
+
+            var editModel = Model_to_viewModel(contact);
+
+            return View(editModel);
         }
 
         // POST: Contacts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContactId,Name,Address,City,State,Zip,Email")] Contact contact)
+        public async Task<IActionResult> Edit(int id, ContactEditViewModel editModel)
         {
-            if (id != contact.ContactId)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(editModel);
             }
 
-            if (ModelState.IsValid)
+            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            if (contact == null)
             {
-                try
-                {
-                    _context.Update(contact);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ContactExists(contact.ContactId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(contact);
+                return NotFound();
+            }           
+
+            contact = ViewModel_to_model(contact, editModel);           
+
+            _context.Update(contact);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Contacts/Delete/5

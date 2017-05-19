@@ -42,7 +42,7 @@ namespace ContactManager.Controllers
                                                        User, contactDB,
                                                        ContactOperations.Approve);
 
-            // Todo: It would be nice if users could see their own contacts before
+            // TODO-Rick: It would be nice if users could see their own contacts before
             // they are approved. Only do this if it'd doesn't make the code complicated.
 
             // Only approved contacts are shown UNLESS you're authorized to see them all.
@@ -90,7 +90,7 @@ namespace ContactManager.Controllers
         public IActionResult Create()
         {
             //return View();
-            // TODO - remove, this is just for quick testing.
+            // TODO-Rick - remove, this is just for quick testing.
             return View(new ContactEditViewModel
             {
                 Address = "123 N 456 E",
