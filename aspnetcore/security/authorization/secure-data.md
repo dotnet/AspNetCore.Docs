@@ -1,9 +1,10 @@
 ---
 title: Create an app with user data protected by authorization
 author: rick-anderson
+keywords: ASP.NET Core, MVC, authorization, roles, security, administrator
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 05/22/2017
 ms.topic: article
 ms.assetid: abeb2f8e-dfbf-4398-a04c-338a613a65bc
 ms.technology: aspnet
@@ -146,7 +147,7 @@ Create a `ContactManagerAuthorizationHandler` class in the  *Authorization* fold
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactManagerAuthorizationHandler.cs)]
 
-### Create a administrator authorization handler
+### Create an administrator authorization handler
 
 Create a `ContactAdministratorsAuthorizationHandler` class in the  *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` will verify the user acting on the resource is a administrator. Administrator can do all operations.
 
@@ -259,7 +260,7 @@ Create a contact in the administrators browser. Copy the URL for delete and edit
 
 Follow these instructions to create the starter app.
 
-* Create a new **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
+* Create an **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
 
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace will match the namespace use in the sample.
