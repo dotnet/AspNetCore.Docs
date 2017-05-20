@@ -57,7 +57,7 @@ This is not a beginning tutorial. You should be familiar with:
 
 ## The starter and completed app
 
-Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
+Download the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. See [download instructions](https://docs.microsoft.com/dotnet/articles/samples-and-tutorials/#viewing-and-downloading-samples). [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
 
 ### The starter app
 
