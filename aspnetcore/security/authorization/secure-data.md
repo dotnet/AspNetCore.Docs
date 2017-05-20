@@ -1,5 +1,5 @@
 ---
-title: Create an app with user data protected by authorization
+title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
 keywords: ASP.NET Core, MVC, authorization, roles, security, administrator
 ms.author: riande
@@ -12,7 +12,7 @@ ms.prod: aspnet-core
 uid: security/authorization/secure-data
 ---
 
-# Create an app with user data protected by authorization
+# Create an ASP.NET Core app with user data protected by authorization
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
