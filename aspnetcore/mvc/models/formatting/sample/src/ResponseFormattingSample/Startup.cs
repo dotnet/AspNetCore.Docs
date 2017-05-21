@@ -31,8 +31,8 @@ namespace ResponseFormattingSample
         {
             services.AddMvc(options =>
             {
-                //set global format or default to xml
-                //options.Filters.Add(new ProducesAttribute("application/xml"));
+                //set global format to xml
+                options.Filters.Add(new ProducesAttribute("application/xml"));
             })
                 .AddXmlSerializerFormatters();
 
