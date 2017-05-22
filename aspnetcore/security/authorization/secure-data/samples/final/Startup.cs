@@ -63,9 +63,9 @@ namespace ContactManager
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
-                // Set LocalTest:skipSSL to true to skip SSL requrement in 
-                // debug mode. This is useful when working with VS Code.
-                if (_hostingEnv.IsDevelopment() && !skipSSL)
+            // Set LocalTest:skipSSL to true to skip SSL requrement in 
+            // debug mode. This is useful when not using Visual Studio.
+            if (_hostingEnv.IsDevelopment() && !skipSSL)
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
@@ -75,7 +75,6 @@ namespace ContactManager
             #region snippet_defaultPolicy
             // requires: using Microsoft.AspNetCore.Authorization;
             //           using Microsoft.AspNetCore.Mvc.Authorization;
-            // Default authentication policy will require authenticated user.
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
