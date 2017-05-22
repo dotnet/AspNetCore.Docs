@@ -34,20 +34,17 @@ namespace ContactManager.Controllers
             var contacts = from c in _context.Contact
                            select c;
 
-            // REVIEW: Is there a cleaner way to compute isAuthorized.
-            var contactDB = await _context.Contact.FirstOrDefaultAsync();
+            var isAuthorized = User.IsInRole(Constants.ContactManagersRole) || 
+                               User.IsInRole(Constants.ContactAdministratorsRole);
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(
-                                                       User, contactDB,
-                                                       ContactOperations.Approve);
+            var currentUserId = _userManager.GetUserId(User);
 
-            // TODO-Rick: It would be nice if users could see their own contacts before
-            // they are approved. Only do this if it'd doesn't make the code complicated.
-
-            // Only approved contacts are shown UNLESS you're authorized to see them all.
+            // Only approved contacts are shown UNLESS you're authorized to see them
+            // or you are the owner.
             if (!isAuthorized)
             {
-                contacts = contacts.Where(c => c.Status == ContactStatus.Approved);
+                contacts = contacts.Where(c => c.Status  == ContactStatus.Approved 
+                                            || c.OwnerID == currentUserId);
             }
 
             return View(await contacts.ToListAsync());
@@ -163,7 +160,7 @@ namespace ContactManager.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ContactEditViewModel editModel)
-        {           
+        {
             if (!ModelState.IsValid)
             {
                 return View(editModel);

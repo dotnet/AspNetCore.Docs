@@ -10,7 +10,8 @@ namespace ContactManager.Authorization
     {
         protected override Task HandleRequirementAsync(
                                               AuthorizationHandlerContext context,
-                        OperationAuthorizationRequirement requirement, Contact resource)
+                                    OperationAuthorizationRequirement requirement, 
+                                     Contact resource)
         {
             if (context.User == null)
             {
