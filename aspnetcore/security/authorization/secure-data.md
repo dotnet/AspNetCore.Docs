@@ -231,15 +231,13 @@ Update the details view so managers can approve or reject contacts:
 
 ## Test the completed app
 
-If you have run the app and have contacts, delete all the records in the `Contact` table and restart the app to seed the database. You need to exit and restart IIS Express to seed the database.
+If you are using Visual Studio Code or testing on local platform that doesn't include a test certificate for SSL:
 
-If you deleted the database, run update on the database:
+- Set `"LocalTest:skipSSL": true`
 
-```none
-   dotnet ef database update
-```
+If you have run the app and have contacts, delete all the records in the `Contact` table and restart the app to seed the database. If you are using Visual Studio, you need to exit and restart IIS Express to seed the database.
 
-You'll need to register a user to browse the contacts.
+Register a user to browse the contacts.
 
 An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate versions). In one browser, register a new user, for example, `test@example.com`. Sign in to each browser with a different user. Verify the following:
 
@@ -250,9 +248,9 @@ An easy way to test the completed app is to launch three different browsers (or 
 
 | User| Options |
 | ------------ | ---------|
-| admin@contoso.com | Can edit/delete and approve/reject all data|
-| manager@contoso.com | Can approve/reject and edit/delete own data  |
 | test@example.com | Can edit/delete own data |
+| manager@contoso.com | Can approve/reject and edit/delete own data  |
+| admin@contoso.com | Can edit/delete and approve/reject all data|
 
 Create a contact in the administrators browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user cannot perform these operations.
 

@@ -17,6 +17,8 @@ namespace ContactManager
 {
     public class Startup
     {
+        private IHostingEnvironment _hostingEnv;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -32,6 +34,8 @@ namespace ContactManager
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _hostingEnv = env;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -55,10 +59,16 @@ namespace ContactManager
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             #region snippet_SSL 
+            var skipSSL = Configuration.GetValue<bool>("LocalTest:skipSSL");
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
-                options.Filters.Add(new RequireHttpsAttribute());
+                // Set LocalTest:skipSSL to true to skip SSL requrement in 
+                // debug mode. This is useful when working with VS Code.
+                if (_hostingEnv.IsDevelopment() && !skipSSL)
+                {
+                    options.Filters.Add(new RequireHttpsAttribute());
+                }
             });
             #endregion
 
@@ -73,28 +83,17 @@ namespace ContactManager
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
-            #endregion
-
-            // Review: Where is this explained in the article?
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(
-                Constants.ContactUserPolicy,
-                authBuilder =>
-                {
-                    authBuilder.RequireAuthenticatedUser();
-                });              
-            });
+            #endregion           
 
             #region AuthorizationHandlers
             // Authorization handlers.
-            services.AddScoped<IAuthorizationHandler, 
+            services.AddScoped<IAuthorizationHandler,
                                   ContactIsOwnerAuthorizationHandler>();
 
-            services.AddSingleton<IAuthorizationHandler, 
+            services.AddSingleton<IAuthorizationHandler,
                                   ContactAdministratorsAuthorizationHandler>();
 
-            services.AddSingleton<IAuthorizationHandler, 
+            services.AddSingleton<IAuthorizationHandler,
                                   ContactManagerAuthorizationHandler>();
             #endregion
         }

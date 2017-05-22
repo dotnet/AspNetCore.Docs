@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace ContactManager.Controllers
 {
     #region snippet_ContactsControllerCtor
-    [Authorize(Policy = "ContactUserPolicy")]
     public class ContactsController : Controller
     {
         private readonly ApplicationDbContext _context;

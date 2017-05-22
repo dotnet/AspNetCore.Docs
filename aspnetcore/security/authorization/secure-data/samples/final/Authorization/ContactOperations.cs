@@ -30,7 +30,5 @@ namespace ContactManager.Authorization
         public static readonly string ContactAdministratorsRole = 
                                                               "ContactAdministrators";
         public static readonly string ContactManagersRole = "ContactManagers";
-        
-        public static readonly string ContactUserPolicy = "ContactUserPolicy";
     }
 }
