@@ -128,7 +128,7 @@ Before you applied the first two migrations, the name columns were of type nvarc
 
 In *Models/Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,25-31)]
+[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
 ### The Required attribute
 
