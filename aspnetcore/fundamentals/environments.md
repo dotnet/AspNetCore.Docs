@@ -31,20 +31,19 @@ The current environment setting can be detected programmatically from within you
 
 ### Development
 
-This should be the environment used when developing an application. When using Visual Studio, this setting can be specified in your project's debug profiles, such as for IIS Express, shown here:
+This should be the environment used when developing an application. It is typically used to enable features that you wouldn't want to be available when the app runs in production, such as the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page).
+
+If you're using Visual Studio, the environment can be configured in your project's debug profiles. Debug profiles specify the [server](xref:fundamentals/servers/index) to use when launching the application and any environment variables to be set. Your project can have multiple debug profiles that set environment variables differently. You manage these profiles by using the **Debug** tab of your web application project's **Properties** menu. The values you set in project properties are persisted in the *launchSettings.json* file, and you can also configure profiles by editing that file directly.
+
+The profile for IIS Express is shown here:
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers/index.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
-
-launchSettings.json
+Here is a `launchSettings.json` file that includes profiles for `Development` and `Staging`:
 
 [!code-json[Main](../fundamentals/environments/sample/src/Environments/Properties/launchSettings.json?highlight=15,22)]
 
-> [!NOTE]
-> Changes made to project profiles or to *launchSettings.json* directly may not take effect until the web server used is restarted (in particular, Kestrel must be restarted before it will detect changes made to its environment).
-
-You can create multiple different launch profiles for various different configurations of your application, including those that require other environment variables.
+Changes made to project profiles may not take effect until the web server used is restarted (in particular, Kestrel must be restarted before it will detect changes made to its environment).
 
 >[!WARNING]
 > Environment variables stored in *launchSettings.json* are not secured in any way and will be part of the source code repository for your project, if you use one. **Never store credentials or other secret data in this file.** If you need a place to store such data, use the *Secret Manager* tool described in [Safe storage of app secrets during development](../security/app-secrets.md#security-app-secrets).
