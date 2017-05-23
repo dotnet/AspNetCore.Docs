@@ -19,7 +19,7 @@ uid: tutorials/first-web-api
 
 [!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
-### Create the project
+## Create the project
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
 
@@ -30,6 +30,16 @@ Select the **ASP.NET Core Web Application (.NET Core)** project template. Name t
 In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Select **OK**. Do **not** select **Enable Docker Support**.
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
+
+### Launch the app
+
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the `ValuesController` data will be displayed:
+
+```
+["value1","value2"]
+``` 
+
+If you're using IE, you are prompted to open or save the *values.json* file.
 
 ### Add support for Entity Framework Core
 

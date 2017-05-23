@@ -22,7 +22,7 @@ uid: tutorials/first-web-api-mac
 * See [Introduction to ASP.NET Core MVC on Mac or [Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
 
 
-### Create the project
+## Create the project
 
 From Visual Studio, select **File > New Solution**.
 
@@ -35,6 +35,14 @@ From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next**.
 Enter **TodoApi** for the **Project Name**, and then select Create.
 
 ![config dialog](first-web-api-mac/_static/2.png)
+
+### Launch the app
+
+In Visual Studio, select **Run > Start With Debugging** to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port`, where *port* is a randomly chosen port number. You get an HTTP 404 (Not Found) error.  Change the URL to `http://localhost:port/api/values`. The `ValuesController` data will be displayed:
+
+```
+["value1","value2"]
+```
 
 ### Add support for Entity Framework Core
 
@@ -94,9 +102,6 @@ Navigate to the `Todo` controller at`http://localhost:port/api/todo`:
 ```
 [{"key":1,"name":"Item1","isComplete":false}]
 ```
-
-<!-- review: why do they need to close the browser? -->
-Stop the debugger. From the menu,  **Run > Stop**. Close the brower window.
 
 ## Implement the other CRUD operations
 
