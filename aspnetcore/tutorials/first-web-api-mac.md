@@ -1,5 +1,5 @@
 ---
-title: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac | Microsoft Docs
+title: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
 description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 keywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS
@@ -12,6 +12,8 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-web-api-mac
 ---
+
+# Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
@@ -65,6 +67,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 Add a `TodoContext` class to the *Models* folder.
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
+
+[!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
 ## Add a controller
 

@@ -1,5 +1,3 @@
-# Building Your First Web API with ASP.NET Core MVC and Visual Studio
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
 HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is flexible and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
