@@ -128,7 +128,7 @@ Before you applied the first two migrations, the name columns were of type nvarc
 
 In *Models/Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,25-31)]
+[!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
 ### The Required attribute
 
@@ -437,7 +437,7 @@ Sometimes when you execute migrations with existing data, you need to insert stu
 
 To make this migration work with existing data you have to change the code to give the new column a default value, and create a stub department named "Temp" to act as the default department. As a result, existing Course rows will all be related to the "Temp" department after the `Up` method runs.
 
-* Open the *<timestamp>_ComplexDataModel.cs* file. 
+* Open the *{timestamp}_ComplexDataModel.cs* file. 
 
 * Comment out the line of code that adds the DepartmentID column to the Course table.
 

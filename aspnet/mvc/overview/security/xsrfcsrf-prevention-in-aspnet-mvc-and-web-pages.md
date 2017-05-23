@@ -78,7 +78,7 @@ The payloads of the anti-XSRF tokens are encrypted and signed, so you can't view
 
 ## Generating the tokens
 
-To generate the anti-XSRF tokens, call the @Html.[AntiForgeryToken](https://msdn.microsoft.com/en-us/library/dd470175.aspx)() method from an MVC view or @AntiForgery.GetHtml() from a Razor page. The runtime will then perform the following steps:
+To generate the anti-XSRF tokens, call the [@Html.AntiForgeryToken](https://msdn.microsoft.com/en-us/library/dd470175.aspx) method from an MVC view or @AntiForgery.GetHtml() from a Razor page. The runtime will then perform the following steps:
 
 1. If the current HTTP request already contains an anti-XSRF session token (the anti-XSRF cookie \_\_RequestVerificationToken), the security token is extracted from it. If the HTTP request does not contain an anti-XSRF session token or if extraction of the security token fails, a new random anti-XSRF token will be generated.
 2. An anti-XSRF field token is generated using the security token from step (1) above and the identity of the current logged-in user. (For more information on determining user identity, see the **[Scenarios with special support](#_Scenarios_with_special)** section below.) Additionally, if an [IAntiForgeryAdditionalDataProvider](https://msdn.microsoft.com/en-us/library/jj158328(v=vs.111).aspx) is configured, the runtime will call its [GetAdditionalData](https://msdn.microsoft.com/en-us/library/system.web.helpers.iantiforgeryadditionaldataprovider.getadditionaldata(v=vs.111).aspx) method and include the returned string in the field token. (See the **[Configuration and extensibility](#_Configuration_and_extensibility)** section for more information.)

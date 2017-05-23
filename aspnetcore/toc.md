@@ -94,10 +94,11 @@
 
 # [Razor Pages](razor-pages/index.md)
 
-# [Testing](testing/index.md)
+# [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration testing](testing/integration-testing.md)
 ## [Testing controllers](mvc/controllers/testing.md)
+## [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)
 
 # [Working with Data](data/index.md)
 ## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
@@ -141,5 +142,6 @@
 
 # [1.1 Release notes](aspnetcore-1.1.md)
 ## [Earlier release notes](https://github.com/aspnet/home/releases)
+## [VS 2015/project.json docs](https://docs.microsoft.com/dotnet/articles/project-json)
 
 # [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)

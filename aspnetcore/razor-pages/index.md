@@ -27,7 +27,7 @@ Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* lik
 ```c#
 public class Startup
 {
-    public void ConfigureServices(IServiceCollections services)
+    public void ConfigureServices(IServiceCollection services)
     {
         services.AddMvc(); // Includes support for pages and controllers.
     }

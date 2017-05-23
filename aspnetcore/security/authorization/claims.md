@@ -94,7 +94,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         options.AddPolicy("Founders", policy =>
                           policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
-    }
+    });
 }
 ```
 

@@ -5,7 +5,7 @@ description: Index page for first ASP.NET Core MVC app with Visual Studio Code
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 3/29/2019
+ms.date: 5/17/2017
 ms.topic: article
 ms.assetid: 959ff4ca-be2d-1638-ac04-789e7f7146ff
 ms.technology: aspnet
