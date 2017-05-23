@@ -60,7 +60,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [ASP.NET Core on Nano Server](nano-server.md)
 * [ASP.NET Core and Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-add-a-web-frontend)
 
-<a id="download"></a> 
+<a name="download"></a> 
 ## How to download a sample
 1. [Download the ASP.NET repository zip file](https://github.com/aspnet/docs/archive/master.zip).
 1. Unzip the *Docs-master.zip* file.
