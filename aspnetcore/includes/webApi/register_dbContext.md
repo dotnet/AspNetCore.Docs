@@ -1,0 +1,12 @@
+## Register the database context
+
+Register the database context with the service container using the built-in support for [dependency injection](xref:fundamentals/dependency-injection).  Replace the contents of the *Startup.cs* file with the following:
+
+In the `ConfigureServices` method, add the highlighted code:
+
+[!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Startup.cs?highlight=2,4,12)]
+
+The preceding code:
+
+* Removes the code we're not using.
+* Specifies an in-memory database is injected into the service container.
