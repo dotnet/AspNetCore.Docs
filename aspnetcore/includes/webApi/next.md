@@ -2,5 +2,5 @@
 
 * [Routing to Controller Actions](xref:mvc/controllers/routing)
 * For information about deploying your API, see [Publishing and Deployment](xref:publishing/index).
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample). See [how to download](xref:tutorials/index#downloading-a-sample).
+* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample). See [how to download](xref:tutorials/index#download).
 * [Postman](https://www.getpostman.com/)
