@@ -201,7 +201,7 @@ The `CookieRequestCultureProvider` `DefaultCookieName`  returns the default cook
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
-    c='en-UK'|uic='en-US'
+    c=en-UK|uic=en-US
 
 If you only specify one of culture info and UI culture, the specified culture will be used for both culture info and UI culture.
 
