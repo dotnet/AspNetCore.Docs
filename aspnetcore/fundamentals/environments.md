@@ -39,7 +39,7 @@ The profile for IIS Express is shown here:
 
 ![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
-Here is a `launchSettings.json` file that includes a profile configured to set the environment to `Staging` and use IIS Express:
+Here is a `launchSettings.json` file that includes profiles for `Development` and `Staging`:
 
 [!code-json[Main](../fundamentals/environments/sample/src/Environments/Properties/launchSettings.json?highlight=15,22)]
 
