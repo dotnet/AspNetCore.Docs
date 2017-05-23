@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 using System.Linq;
 
+#region TodoController
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
         private readonly TodoContext _context;
+#endregion
 
         public TodoController(TodoContext context)
         {

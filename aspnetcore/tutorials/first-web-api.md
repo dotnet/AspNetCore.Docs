@@ -69,7 +69,7 @@ In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **N
 
 ![Add new Item dialog with controller in search box and web API controller selected](first-web-api/_static/new_controller.png)
 
-Replace the generated code with the following (and add closing braces):
+Replace the generated code with the following:
 
 [!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
   

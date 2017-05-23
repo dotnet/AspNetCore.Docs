@@ -81,7 +81,7 @@ Add a `TodoContext` class in the *Models* folder:
 
 ## Add a controller
 
-In the *Controllers* folder, create a class named `TodoController`. Add the following (and add closing braces):
+In the *Controllers* folder, create a class named `TodoController`. Add the following code:
 
 [!INCLUDE[code and get todo items](../includes/webApi/getTodoItems.md)]
 
