@@ -10,6 +10,7 @@ ms.topic: article
 ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
 ms.technology: aspnet
 ms.prod: asp.net-core
+uid: tutorials/index
 ---
 # ASP.NET Core tutorials
 
