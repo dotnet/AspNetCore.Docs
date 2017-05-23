@@ -1,4 +1,4 @@
-[!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_todo1)]
+[!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
 
 This defines an empty controller class. In the next sections, we'll add methods to implement the API.
 
