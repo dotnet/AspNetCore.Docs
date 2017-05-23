@@ -62,4 +62,4 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 ## Downloading a sample
 1. [Download the ASP.NET repository zip file](https://github.com/aspnet/docs/archive/master.zip).
 1. Unzip the *Docs-master.zip* file.
-1. Use the URL in the sample link to help you naviage to to the sample directory. 
+1. Use the URL in the sample link to help you navigate to to the sample directory. 
