@@ -33,7 +33,7 @@ The current environment setting can be detected programmatically from within you
 
 This should be the environment used when developing an application. It is typically used to enable features that you wouldn't want to be available when the app runs in production, such as the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page).
 
-If you're using Visual Studio, the environment can be configured in your project's debug profiles. Debug profiles specify the [server](xref:fundamentals/servers) to use when launching the application and any environment variables to be set. Your project can have multiple debug profiles that set environment variables differently. You manage these profiles by using the **Debug** tab of your web application project's **Properties** menu. The values you set in project properties are persisted in the *launchSettings.json* file, and you can also configure profiles by editing that file directly.
+If you're using Visual Studio, the environment can be configured in your project's debug profiles. Debug profiles specify the [server](xref:fundamentals/servers/index) to use when launching the application and any environment variables to be set. Your project can have multiple debug profiles that set environment variables differently. You manage these profiles by using the **Debug** tab of your web application project's **Properties** menu. The values you set in project properties are persisted in the *launchSettings.json* file, and you can also configure profiles by editing that file directly.
 
 The profile for IIS Express is shown here:
 
