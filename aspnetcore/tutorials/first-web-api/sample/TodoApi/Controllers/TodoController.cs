@@ -1,5 +1,4 @@
-﻿#region snippet_todo1
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 using System.Linq;
@@ -21,7 +20,6 @@ namespace TodoApi.Controllers
                 _context.SaveChanges();
             }
         }
-        #endregion
 
         #region snippet_GetAll
         [HttpGet]
