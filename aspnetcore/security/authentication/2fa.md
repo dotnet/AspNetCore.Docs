@@ -14,7 +14,7 @@ uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
 This tutorial will show you how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
@@ -61,7 +61,7 @@ Set the `SMSAccountIdentification`, `SMSAccountPassword` and `SMSAccountFrom` wi
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
 info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 ```
-* Depending on the used SMS provider, add the corresponding NuGet package. From the Package Manager Console (PMC) run
+* Add the NuGet package for the SMS provider. From the Package Manager Console (PMC) run:
 
 **Twilio:**  
 `Install-Package Twilio`
@@ -70,9 +70,14 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 `Install-Package ASPSMS`
 
 
-* Add code in the *Services/MessageServices.cs* file to enable SMS. Depending on the used SMS provider activate either the Twilio or the ASPSMS section:
+* Add code in the *Services/MessageServices.cs* file to enable SMS. Use either the Twilio or the ASPSMS section:
 
-[!code-csharp[Main](2fa/sample/Web2FA/Services/MessageServices.cs)]
+
+**Twilio:**  
+[!code-csharp[Main](2fa/sample/Web2FA/Services/MessageServices_twilio.cs)]
+
+**ASPSMS:**  
+[!code-csharp[Main](2fa/sample/Web2FA/Services/MessageServices_ASPSMS.cs)]
 
 ### Configure startup to use `SMSoptions`
 
