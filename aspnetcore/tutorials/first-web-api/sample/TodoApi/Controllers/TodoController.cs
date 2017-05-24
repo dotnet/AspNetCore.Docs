@@ -1,32 +1,39 @@
-﻿#region snippet_todo1
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
+using System.Linq;
 
+#region TodoController
 namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        private readonly ITodoRepository _todoRepository;
+        private readonly TodoContext _context;
+#endregion
 
-        public TodoController(ITodoRepository todoRepository)
+        public TodoController(TodoContext context)
         {
-            _todoRepository = todoRepository;
+            _context = context;
+
+            if (_context.TodoItems.Count() == 0)
+            {
+                _context.TodoItems.Add(new TodoItem { Name = "Item1" });
+                _context.SaveChanges();
+            }
         }
-        #endregion
 
         #region snippet_GetAll
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
-            return _todoRepository.GetAll();
+            return _context.TodoItems.ToList();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(long id)
         {
-            var item = _todoRepository.Find(id);
+            var item = _context.TodoItems.FirstOrDefault(t => t.Id == id);
             if (item == null)
             {
                 return NotFound();
@@ -43,9 +50,10 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
 
-            _todoRepository.Add(item);
+            _context.TodoItems.Add(item);
+            _context.SaveChanges();
 
-            return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
+            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
         }
         #endregion
 
@@ -53,12 +61,12 @@ namespace TodoApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] TodoItem item)
         {
-            if (item == null || item.Key != id)
+            if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
 
-            var todo = _todoRepository.Find(id);
+            var todo = _context.TodoItems.FirstOrDefault(t => t.Id == id);
             if (todo == null)
             {
                 return NotFound();
@@ -67,7 +75,8 @@ namespace TodoApi.Controllers
             todo.IsComplete = item.IsComplete;
             todo.Name = item.Name;
 
-            _todoRepository.Update(todo);
+            _context.TodoItems.Update(item);
+            _context.SaveChanges();
             return new NoContentResult();
         }
         #endregion
@@ -76,13 +85,14 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _todoRepository.Find(id);
+            var todo = _context.TodoItems.First(t => t.Id == id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            _todoRepository.Remove(id);
+            _context.TodoItems.Remove(todo);
+            _context.SaveChanges();
             return new NoContentResult();
         }
         #endregion
