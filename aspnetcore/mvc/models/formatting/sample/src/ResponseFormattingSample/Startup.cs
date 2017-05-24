@@ -29,7 +29,11 @@ namespace ResponseFormattingSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
+            services.AddMvc(options =>
+            {
+                //set global format to xml
+                options.Filters.Add(new ProducesAttribute("application/xml"));
+            })
                 .AddXmlSerializerFormatters();
 
             services.AddScoped<IAuthorRepository, AuthorRepository>();

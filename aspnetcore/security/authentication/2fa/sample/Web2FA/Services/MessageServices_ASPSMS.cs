@@ -23,10 +23,16 @@ namespace Web2FA.Services
 
         public Task SendSmsAsync(string number, string message)
         {
-            // Plug in your SMS service here to send a text message.
+            ASPSMS.SMS SMSSender = new ASPSMS.SMS();
 
-            // Please check MessageServices_twilio.cs or MessageServices_ASPSMS.cs
-            // for implementation details.
+            SMSSender.Userkey = Options.SMSAccountIdentification;
+            SMSSender.Password = Options.SMSAccountPassword;
+            SMSSender.Originator = Options.SMSAccountFrom;
+
+            SMSSender.AddRecipient(number);
+            SMSSender.MessageData = message;
+
+            SMSSender.SendTextSMS();
 
             return Task.FromResult(0);
         }

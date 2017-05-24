@@ -363,7 +363,7 @@ Capturing events on Nano Server requires some additional setup:
 * Stop the tracing session when you're finished:
 
   ```powershell
-  Remove-EtwTraceSession MyAppTrace
+  Stop-EtwTraceSession -Name "MyAppTrace"
   ```
 
 The resulting *C:\trace.etl* file can be analyzed with PerfView as on other editions of Windows.
