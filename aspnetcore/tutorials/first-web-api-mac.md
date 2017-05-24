@@ -19,8 +19,7 @@ uid: tutorials/first-web-api-mac
 
 [!INCLUDE[template files](../includes/webApi/intro.md)]
 
-* See [Introduction to ASP.NET Core MVC on Mac or [Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
-
+* See [Introduction to ASP.NET Core MVC on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
 
 ## Create the project
 
@@ -28,7 +27,7 @@ From Visual Studio, select **File > New Solution**.
 
 ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-From Visual Studio, select **.NET Core App >  ASP.NET Core Web API > Next**.
+Select **.NET Core App >  ASP.NET Core Web API > Next**.
 
 ![macOS New project dialog](first-web-api-mac/_static/1.png)
 
