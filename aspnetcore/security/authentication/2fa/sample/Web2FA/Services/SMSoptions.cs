@@ -2,7 +2,8 @@
 {
     public class SMSoptions
     {
-        public string accountSid { get; set; }
-        public string authToken { get; set; }
+        public string SMSAccountIdentification { get; set; }
+        public string SMSAccountPassword { get; set; }
+        public string SMSAccountFrom { get; set; }
     }
 }
