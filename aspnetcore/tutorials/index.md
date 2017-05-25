@@ -17,8 +17,8 @@ uid: tutorials/index
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
-* [Introduction to ASP.NET Core MVC on Mac or Linux ](first-mvc-app-xplat/index.md)
-* [Introduction to ASP.NET Core MVC with Visual Studio](first-mvc-app/index.md)
+* [Create an ASP.NET Core MVC app with Visual Studio Code on Mac or Linux ](xref:tutorials/first-mvc-app-xplat/index)
+* [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/index)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)

@@ -33,7 +33,7 @@
 ## [Choose between .NET Core and .NET Framework runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)
 
 # [MVC](mvc/overview.md)
-## [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
+## [Create an ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
 ### [Getting started](tutorials/first-mvc-app/start-mvc.md)
 ### [Adding a controller](tutorials/first-mvc-app/adding-controller.md)
 ### [Adding a view](tutorials/first-mvc-app/adding-view.md)
