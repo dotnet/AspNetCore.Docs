@@ -123,8 +123,8 @@ In this task you will create a custom filter attribute class that will contain t
 > [!NOTE]
 > The **ActionFilterAttribute** is the base class for all the attribute filters. It provides the following methods to execute a specific logic after and before controller action's execution:
 > 
-> - **OnActionExecuting**(ActionExecutedContext filterContext): Just before the action method is called.
-> - **OnActionExecuted**(ActionExecutingContext filterContext): After the action method is called and before the result is executed (before view render).
+> - **OnActionExecuting**(ActionExecutingContext filterContext): Just before the action method is called.
+> - **OnActionExecuted**(ActionExecutedContext filterContext): After the action method is called and before the result is executed (before view render).
 > - **OnResultExecuting**(ResultExecutingContext filterContext): Just before the result is executed (before view render).
 > - **OnResultExecuted**(ResultExecutedContext filterContext): After the result is executed (after the view is rendered).
 > 
