@@ -1,5 +1,5 @@
 ---
-title: Create a Web API with ASP.NET Core and VS for Windows
+title: Create a Web API with ASP.NET Core and Visual Studio for Windows
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 keywords: ASP.NET Core, WebAPI, Web API, REST, HTTP, Service, HTTP Service

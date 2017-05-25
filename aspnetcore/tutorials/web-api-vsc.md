@@ -23,8 +23,8 @@ uid: tutorials/web-api-vsc
 
 Download and install:
 - [.NET Core](https://microsoft.com/net/core)
-- [VS Code](https://code.visualstudio.com)
-- VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+- [Visual Studio Code](https://code.visualstudio.com)
+- Visual Studio Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 
 ## Create the project
 
