@@ -116,9 +116,7 @@ When implementing your own storage provider, you must create a user class which 
 
 At a minimum your user class must include an `Id` and a `UserName` property.
 
-The `IUser<TKey>` interface defines the properties that the `UserManager` attempts to call when performing requested operations. The interface contains two properties: `Id` and `UserName`. The `IUser<TKey>` interface enables you to specify the type of the key for the user through the generic `TKey` parameter. The type of the `Id` property matches the value of the `TKey` parameter.
-
-The ASP.NET Core Identity framework also provides the `IUser` interface (without the generic parameter) when you want to use a string value for the key.
+The `IUser` interface defines the properties that the `UserManager` attempts to call when performing requested operations. The interface contains two properties: `Id` and `UserName`. The type of the `Id` property is always a string. The framework expects the storage implementation to handle data conversions if necessary.
 
 The `IdentityUser` class implements `IUser` and contains any additional properties or constructors for users on your web site. The following example shows an `IdentityUser` class that uses an integer for the key. The `Id` field is set to `int` to match the value of the generic parameter.
 
@@ -126,7 +124,7 @@ The `IdentityUser` class implements `IUser` and contains any additional properti
 
 ## Customize the user store
 
-You also create a UserStore class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore<TUser>](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.userstore-1) class. In your UserStore class, you implement `IUserStore<TUser, TKey>` and any of the optional interfaces. You select which optional interfaces to implement based on on the functionality you wish to provide in your application.
+You also create a UserStore class that provides the methods for all data operations on the user. This class is equivalent to the [UserStore<TUser>](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.userstore-1) class. In your UserStore class, you implement `IUserStore<TUser>` and any of the optional interfaces. You select which optional interfaces to implement based on on the functionality you wish to provide in your application.
 
 ### Optional interfaces
 
@@ -143,7 +141,7 @@ You also create a UserStore class that provides the methods for all data operati
 
 All of these optional interfaces inherit from `IUserStore`.
 
-The following example shows a simple user store class. The TUser generic parameter takes the type of your user class which usually is the IdentityUser class you defined. The TKey generic parameter takes the type of your user key.
+The following example shows a simple user store class. The TUser generic parameter takes the type of your user class which usually is the IdentityUser class you defined.
 
 (show high level view of a UserStore class)
 
@@ -214,7 +212,7 @@ public class IdentityRole : IRole
 
 ## Customize the role store
 
-You also create a RoleStore class that provides the methods for all data operations on roles. This class is equivalent to the RoleStore<TRole> class. In your RoleStore class, you implement the IRoleStore<TRole, TKey> and optionally the IQueryableRoleStore<TRole, TKey> interface.
+You also create a RoleStore class that provides the methods for all data operations on roles. This class is equivalent to the RoleStore<TRole> class. In your RoleStore class, you implement the IRoleStore<TRole> and optionally the IQueryableRoleStore<TRole> interface.
 
 The following example shows a role store class. The TRole generic parameter takes the type of your role class which usually is the IdentityRole class you defined.
 
@@ -260,9 +258,6 @@ services.AddIdentity<IdentityUser, IdentityRole>()
 ```
 5. If you are using Roles, you must update the RoleManager to use your RoleStore class.
 6. If necessary, add connection string or credentials to your app's configuration.
-
-
-
 
 ## References
 
