@@ -105,7 +105,7 @@ This is equivalent to calling `CreateLogger` with the fully qualified type name 
 
 Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
 
-In the following code example, the names of the methods specify the log level:
+In the following code example, the names of the methods specify the log level, the first parameter is the [Log event ID](#log-event-id), and the remaining parameters construct a log message:
 
 [!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
