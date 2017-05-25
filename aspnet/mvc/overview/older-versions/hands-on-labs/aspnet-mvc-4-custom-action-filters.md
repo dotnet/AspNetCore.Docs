@@ -133,7 +133,7 @@ In this task you will create a custom filter attribute class that will contain t
 
 1. Open the **Begin** solution located at **\Source\Ex01-LoggingActions\Begin** folder.
 
-    1. You will need to download some missing NuGet packages before continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
+    1. You will need to download some missing NuGet packages before you continue. To do this, click the **Project** menu and select **Manage NuGet Packages**.
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
