@@ -14,6 +14,7 @@ uid: security/authorization/index
 ---
 # Authorization in ASP.NET Core : Simple, role, claims-based and custom
 
+* [Secure User Data](secure-data.md)
 * [Introduction](introduction.md)
 
 * [Simple Authorization](simple.md)
