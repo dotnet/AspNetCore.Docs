@@ -21,6 +21,13 @@ uid: tutorials/first-web-api-mac
 
 * See [Introduction to ASP.NET Core MVC on Mac or Linux](xref:tutorials/first-mvc-app-xplat/index) for an example that uses a persistent database.
 
+## Prerequisites
+
+Install the following:
+
+- [.NET Core SDK](https://www.microsoft.com/net/core#macos)  
+- [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+
 ## Create the project
 
 From Visual Studio, select **File > New Solution**.
