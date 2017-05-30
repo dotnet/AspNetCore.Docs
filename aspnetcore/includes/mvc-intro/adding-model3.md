@@ -1,3 +1,4 @@
+
 ## Test the app
 
 * Run the app and tap the **Mvc Movie** link.
@@ -59,7 +60,16 @@ You could also pass in the `id` with a query string as follows:
 
 `http://localhost:1234/movies/details?id=1`
 
-If a Movie is found, an instance of the `Movie` model is passed to the `Details` view:
+The `id` parameter is defined as a [nullable type](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in case an ID value is not provided.
+
+A [lambda expression](https://docs.microsoft.com/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `SingleOrDefaultAsync` to select movie entities that match the route data or query string value.
+
+```csharp
+var movie = await _context.Movie
+    .SingleOrDefaultAsync(m => m.ID == id);
+```
+
+If a movie is found, an instance of the `Movie` model is passed to the `Details` view:
 
 ```csharp
 return View(movie);
