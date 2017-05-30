@@ -107,7 +107,7 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 </vc:[view-component-name]>
 ```
 
-Note that in order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp" you will need the following directive in your `_ViewImports.cshtml` file to register the View Components:
+Note that in order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp" you will need the following directive in your `_ViewImports.cshtml` file (or to any file that references the View Component, see [Managing Tag Helper Scope](../../mvc/views/tag-helpers/intro.md#managing-tag-helper-scope) for more info) to register the View Components:
 
 ```csharp
 @addTagHelper "*, MyWebApp"
