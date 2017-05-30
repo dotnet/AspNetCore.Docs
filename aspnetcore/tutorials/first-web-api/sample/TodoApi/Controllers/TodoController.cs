@@ -75,7 +75,7 @@ namespace TodoApi.Controllers
             todo.IsComplete = item.IsComplete;
             todo.Name = item.Name;
 
-            _context.TodoItems.Update(item);
+            _context.TodoItems.Update(todo);
             _context.SaveChanges();
             return new NoContentResult();
         }
