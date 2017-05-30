@@ -1,7 +1,7 @@
 ---
 title: Key Encryption At Rest | Microsoft Docs
 author: rick-anderson
-description: 
+description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -47,7 +47,7 @@ sc.AddDataProtection()
 
 ## X.509 certificate
 
-*This mechanism is not yet available on `.NET Core`.*
+*This mechanism is not available on `.NET Core 1.0` or `1.1`.*
 
 If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.
 
@@ -57,7 +57,7 @@ sc.AddDataProtection()
        .ProtectKeysWithCertificate("3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0");
    ```
 
-Because this mechanism uses [X509Certificate2](https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2(v=vs.110).aspx) and [EncryptedXml](https://msdn.microsoft.com/en-us/library/system.security.cryptography.xml.encryptedxml(v=vs.110).aspx) under the covers, this feature is currently only available on Desktop CLR. Additionally, due to .NET Framework limitations only certificates with CAPI private keys are supported. See [Certificate-based encryption with Windows DPAPI-NG](#data-protection-implementation-key-encryption-at-rest-dpapi-ng) below for possible workarounds to these limitations.
+Due to .NET Framework limitations only certificates with CAPI private keys are supported. See [Certificate-based encryption with Windows DPAPI-NG](#data-protection-implementation-key-encryption-at-rest-dpapi-ng) below for possible workarounds to these limitations.
 
 <a name=data-protection-implementation-key-encryption-at-rest-dpapi-ng></a>
 

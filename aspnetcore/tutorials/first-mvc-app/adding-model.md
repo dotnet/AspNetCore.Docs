@@ -58,10 +58,13 @@ Complete the **Add Controller** dialog:
 
 ![Add Controller dialog](adding-model/_static/add_controller2.png)
 
+Visual Studio creates:
+
+* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Models/MvcMovieContext*)
 * A movies controller (*Controllers/MoviesController.cs*)
 * Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/\*.cshtml*)
 
-The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
+The automatic creation of the database context and [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
 If you run the app and click on the **Mvc Movie** link, you'll get an error similar to the following:
 
@@ -87,28 +90,8 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 Note: The version numbers shown above were correct at the time of writing.
 
 Save your changes. 
-<!-- Move the next two sections to an include -->
 
-## Add initial migration and update the database
-
-* Open a command prompt and navigate to the project directory. (The directory containing the *Startup.cs* file).
-
-* Run the following commands in the command prompt:
-
-  ```console
-  dotnet restore
-  dotnet ef migrations add Initial
-  dotnet ef database update
-  ```
-  
-### dotnet ef commands
-
-* `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853).
-* `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
-* `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter after "add" is a name that you assign to the migration. Here you're naming the migration "Initial" because it's the initial database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add the *Movie* table to the database.
-* `dotnet ef database update`  Updates the database with the migration we just created.
-
-You'll learn about the database and connection string in the next tutorial. You'll learn about data model changes in the [Add a field](xref:tutorials/first-mvc-app/new-field) tutorial.
+[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model2.md)]
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 

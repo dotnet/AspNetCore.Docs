@@ -66,7 +66,7 @@ public class VacationController : Controller
 }
 ```
 
-If you have a controller that is protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute;
+If you have a controller that is protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -100,7 +100,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Multiple Policy Evaluation
 
-If you apply multiple policies to a controller or action then all policies must pass before access is granted. For example;
+If you apply multiple policies to a controller or action then all policies must pass before access is granted. For example:
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]

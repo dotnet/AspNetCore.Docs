@@ -1,5 +1,5 @@
 ---
-title: Building your first ASP.NET Core MVC app with Visual Studio | Microsoft Docs
+title: Create an ASP.NET Core MVC app with Visual Studio
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/index
 ---
-# Building your first ASP.NET Core MVC app with Visual Studio
+# Create an ASP.NET Core MVC app with Visual Studio
 
 This series of tutorials will teach you the basics of building an ASP.NET Core MVC web app using Visual Studio.
 

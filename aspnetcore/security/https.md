@@ -62,9 +62,7 @@ If you do not have the IIS Express Development Certificate installed, you can cr
 
 ```powershell
 $cert = New-SelfSignedCertificate -Subject localhost -DnsName localhost -FriendlyName "ASP.NET Core Development" -KeyUsage DigitalSignature -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.1") 
-
 Export-Certificate -Cert $cert -FilePath cert.cer
-
 Import-Certificate -FilePath cert.cer -CertStoreLocation cert:/CurrentUser/Root
 ```
 
@@ -72,7 +70,7 @@ On macOS and Linux you can create a self-signed certificate for HTTPS using [Ope
 
 ```bash
 openssl req -new -x509 -newkey rsa:2048 -keyout localhost.key -out localhost.cer -days 365 -subj /CN=localhost
-openssl pkcs12 -export -out certificate.pfx -inkey localhost.key -in certificate.crt
+openssl pkcs12 -export -out certificate.pfx -inkey localhost.key -in localhost.cer
 ```
 
 Once the `certificate.pfx` file has been generated, configure the HTTPS certificate in your `appsettings.Development.json` file:
