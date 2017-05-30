@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/views/view-compilation
 ---
-# Razor view compilation and precompilation
+# Razor view compilation and precompilation in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
