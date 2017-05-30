@@ -159,14 +159,14 @@ An ASP.NET Core application will store the keyring in memory under the following
 * A website is hosted behind IIS.
 * The Data Protection stack has not been configured to store the keyring in a persistent store.
 
-If the keyring is stored in memory:
+If the keyring is stored in memory, when the app restarts:
 
-* When the app restarts all forms authentication tokens will be invalid. 
+* All forms authentication tokens will be invalid. 
 * Users will need to login again on their next request. 
-* Any data you protected will no longer be able to be unprotected. 
+* Any data you protected with the keyring will no longer be protected.
 
 > [!WARNING]
-> Data Protection is used by several ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with the deployment script or in your own code. If you do not configure data protection, by default the keys will be held in memory and discarded when your app restarts. Restarting will invalidate any cookies written by the cookie authentication and users will have to login again.
+> Data Protection is used by several ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with a deployment script or in your own code. If you do not configure data protection, by default the keys will be held in memory and discarded when your app restarts. Restarting will invalidate any cookies written by the cookie authentication and users will have to login again.
 
 To configure Data Protection under IIS you must use one of the following approaches:
 
