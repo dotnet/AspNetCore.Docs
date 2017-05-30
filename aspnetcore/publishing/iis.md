@@ -163,7 +163,7 @@ If the keyring is stored in memory, when the app restarts:
 
 * All forms authentication tokens will be invalid. 
 * Users will need to login again on their next request. 
-* Any data you protected with the keyring will no longer be protected.
+* Any data you protected with the keyring will no longer be unprotected.
 
 > [!WARNING]
 > Data Protection is used by several ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with a deployment script or in your own code. If you do not configure data protection, by default the keys will be held in memory and discarded when your app restarts. Restarting will invalidate any cookies written by the cookie authentication and users will have to login again.
