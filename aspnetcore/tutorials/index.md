@@ -17,8 +17,8 @@ uid: tutorials/index
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
-* [Introduction to ASP.NET Core MVC on Mac or Linux ](first-mvc-app-xplat/index.md)
-* [Introduction to ASP.NET Core MVC with Visual Studio](first-mvc-app/index.md)
+* [Create an ASP.NET Core MVC app with Visual Studio Code on Mac or Linux ](xref:tutorials/first-mvc-app-xplat/index)
+* [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/index)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
@@ -27,9 +27,9 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
-* [Create a Web API with ASP.NET Core MVC and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* [Building your first web API with ASP.NET Core MVC and Visual Studio](first-web-api.md)
-* [Create a Web API app on Mac or Linux with Visual Studio Code ](web-api-vsc.md)
+* [Create a Web API with ASP.NET Core and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+* [Create a Web API with ASP.NET Core and Visual Studio for Windows](first-web-api.md)
+* [Create a Web API with ASP.NET Core and Visual Studio Code](web-api-vsc.md)
 * [ASP.NET Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
 * [Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)
 
