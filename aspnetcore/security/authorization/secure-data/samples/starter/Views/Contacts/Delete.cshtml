@@ -1,0 +1,59 @@
+@model ContactManager.Models.Contact
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="ContactId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zip)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
