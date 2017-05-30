@@ -152,7 +152,34 @@ If you don't wish to use Web Deploy or are not using Visual Studio, you may use 
 >[!WARNING]
 > .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS. Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the *web.config* file is never accidently renamed or removed from the deployment.**
 
-## Create a Data Protection Registry Hive
+## Data protection
+
+An ASP.NET Core application will store the keyring in memory under the following condition:
+
+* A website is hosted behind IIS.
+* The Data Protection stack has not been configured to store the keyring in a persistent store.
+
+If the keyring is stored in memory, when the app restarts:
+
+* All forms authentication tokens will be invalid. 
+* Users will need to login again on their next request. 
+* Any data you protected with the keyring will no longer be unprotected.
+
+> [!WARNING]
+> Data Protection is used by several ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with a deployment script or in your own code. If you do not configure data protection, by default the keys will be held in memory and discarded when your app restarts. Restarting will invalidate any cookies written by the cookie authentication and users will have to login again.
+
+To configure Data Protection under IIS you must use one of the following approaches:
+
+* Run a [powershell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) to create suitable registry entries (For example,  `.\Provision-AutoGenKeys.ps1 DefaultAppPool`). This will store keys in the registry, protected using DPAPI with a machine wide key.
+* Configure the IIS Application Pool to load the user profile. This setting is in the **Process Model** section under the **Advanced Settings** for the application pool. Set **Load User Profile** to `True`. This will store keys under the user profile directory, and protected using DPAPI with a key specific to the user account used for the app pool.
+* Adjust your application code to [use the file system as a key ring store](https://docs.microsoft.com/aspnet/core/security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure it is a trusted certificate. For example, if it is a self signed certificate you must place it in the Trusted Root store.
+
+When using IIS in a web farm:
+
+* Use a file share all machines can access.
+* Deploy an X509 certificate to each machine.  Configure [data protection in code](https://docs.asp.net/en/latest/security/data-protection/configuration/overview.html).
+
+### 1. Create a Data Protection Registry Hive
 
 Data Protection keys used by ASP.NET applications are stored in registry hives external to the applications. To persist the keys for a given application, you must create a registry hive for the application's application pool.
 
@@ -160,13 +187,14 @@ For standalone IIS installations, you may use the [Data Protection Provision-Aut
 
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You should ensure that the file permissions for such a share are limited to the Windows account the application runs as. In addition you may choose to protect keys at rest using an X509 certificate. You may wish to consider a mechanism to allow users to upload certificates, place them into the user's trusted certificate store, and ensure they are available on all machines the user's application will run on. See [Configuring Data Protection](xref:security/data-protection/configuration/overview#data-protection-configuring) for details.
 
-> [!WARNING]
-> Data Protection is used by various ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with the deployment script or in your own code. If you do not configure data protection when using IIS by default the keys will be held in memory and discarded when your application closes or restarts. This will then, for example, invalidate any cookies written by the cookie authentication and users will have to login again.
 
-### Machine-wide policy for data protection
+
+### 2. Configure the IIS Application Pool to load the user profile
+This setting is in the Process Model section under the Advanced Settings for the application pool. Set Load User Profile to True. This will store keys under the user profile directory, and protected using DPAPI with a key specific to the user account used for the app pool.
+
+### 3. Machine-wide policy for data protection
 
 The data protection system has limited support for setting default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy#data-protection-configuration-machinewidepolicy) for all applications that consume the data protection APIs. See the [data protection](xref:security/data-protection/index) documentation for more details.
-
 
 ## Configuration of sub-applications
 
