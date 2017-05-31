@@ -234,18 +234,17 @@ services.Configure<RequestLocalizationOptions>(options =>
    {
        var supportedCultures = new[]
        {
-           // Your current culture is already configured in your application.
+           // Your current culture is configured in your application.
            // You don't need to add your current culture here.
            // For example - If your application culture is en-US and you want your 
-           // application to support en-US and fr, you just need to add "fr"
+           // application to support en-US and fr, add only "fr"
 
            new CultureInfo("fr")
            
-           // If your application culture is en-AU and you want to support en-AU, en-US and fr 
-           // then you need to add
-           
-           new CultureInfo("en-US"),
-           new CultureInfo("fr")
+           // If your application culture is en-AU and you want to support 
+           // en-AU, en-US and fr, add
+          
+           // new CultureInfo("en-US"),
        };
 
        options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
