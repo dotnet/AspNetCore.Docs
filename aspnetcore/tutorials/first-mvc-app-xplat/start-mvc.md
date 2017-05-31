@@ -6,7 +6,7 @@ keywords: ASP.NET Core, MVC, VS Code, Visual Studio Code, Mac, Linux
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 1d18b589-1638-4dc6-1638-fb0f41998d78
 ms.technology: aspnet
 ms.prod: asp.net-core

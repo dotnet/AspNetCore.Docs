@@ -6,7 +6,7 @@ keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 04/14/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 1638bacf-fe7b-4b41-84b0-06a1574b7734
 ms.technology: aspnet
 ms.prod: asp.net-core

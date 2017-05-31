@@ -6,7 +6,7 @@ keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Lin
 ms.author: riande
 manager: wpickett
 ms.date: 03/09/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
 ms.technology: aspnet
 ms.prod: asp.net-core

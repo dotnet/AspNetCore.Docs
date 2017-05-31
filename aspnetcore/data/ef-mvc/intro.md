@@ -6,7 +6,7 @@ keywords: ASP.NET Core, Entity Framework Core, tutorial
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: b67c3d4a-f2bf-4132-a48b-4b0d599d7981
 ms.technology: aspnet
 ms.prod: asp.net-core
