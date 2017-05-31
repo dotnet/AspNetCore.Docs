@@ -6,7 +6,7 @@ keywords: ASP.NET Core, WebAPI, Web API, REST, HTTP, Service, HTTP Service
 ms.author: riande
 manager: wpickett
 ms.date: 5/24/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 830b4af5-ed14-423e-9f59-764a6f13a8f6
 ms.technology: aspnet
 ms.prod: asp.net-core

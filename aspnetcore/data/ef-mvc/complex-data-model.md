@@ -6,7 +6,7 @@ keywords: ASP.NET Core, Entity Framework Core, data annotations
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
 ms.technology: aspnet
 ms.prod: asp.net-core

@@ -6,7 +6,7 @@ keywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP S
 ms.author: riande
 manager: wpickett
 ms.date: 5/24/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 830b4af5-ed14-1638-7734-764a6f13a8f6
 ms.technology: aspnet
 ms.prod: asp.net-core

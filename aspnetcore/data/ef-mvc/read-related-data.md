@@ -6,7 +6,7 @@ keywords: ASP.NET Core, Entity Framework Core, related data, joins
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 71fec30f-8ea7-4ca8-96e3-d2e26c5be44e
 ms.technology: aspnet
 ms.prod: asp.net-core
