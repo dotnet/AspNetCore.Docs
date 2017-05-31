@@ -240,11 +240,6 @@ services.Configure<RequestLocalizationOptions>(options =>
            // application to support en-US and fr, add only "fr"
 
            new CultureInfo("fr")
-           
-           // If your application culture is en-AU and you want to support 
-           // en-AU, en-US and fr, add
-          
-           // new CultureInfo("en-US"),
        };
 
        options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
