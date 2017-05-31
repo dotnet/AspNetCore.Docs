@@ -227,7 +227,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 ### Using a custom provider
 
-Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
+Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. Your current culture is configured in your application, you don't need to add it here. The following code shows how to add a custom provider:
 
 ```csharp
 services.Configure<RequestLocalizationOptions>(options =>
