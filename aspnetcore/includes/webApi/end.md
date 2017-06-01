@@ -37,7 +37,7 @@ You can use the Location header URI to access the resource you just created. Rec
 
 ```csharp
 [HttpGet("{id}", Name = "GetTodo")]
-public IActionResult GetById(string id)
+public IActionResult GetById(long id)
 ```
 
 ### Update
