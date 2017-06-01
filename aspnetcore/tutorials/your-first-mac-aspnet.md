@@ -41,6 +41,10 @@ The template "Empty ASP.NET Core Web Application" created successfully.
 [!INCLUDE[template files](~/includes/template-files.md)]
 -->
 
+[!INCLUDE[template files](~/includes/template-files.md)]
+
+duplicate include template files
+
 [!INCLUDE[template files](../includes/template-files.md)]
 
 ## Developing ASP.NET Core applications on a Mac and Linux with Visual Studio Code
