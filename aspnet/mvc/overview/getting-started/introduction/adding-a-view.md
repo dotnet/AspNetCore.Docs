@@ -45,7 +45,7 @@ The *MvcMovie\Views\HelloWorld\Index.cshtml* file is created.
 
 ![](adding-a-view/_static/image4.png)
 
-Add the following highlighed markup.
+Add the following highlighted markup.
 
 [!code-cshtml[Main](adding-a-view/samples/sample2.cshtml?highlight=4-11)]
 
