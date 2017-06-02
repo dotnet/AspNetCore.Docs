@@ -324,12 +324,14 @@ The following table demonstrates some route constraints and their expected behav
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](https://msdn.microsoft.com/en-us/library/system.text.regularexpressions.regexoptions(v=vs.110).aspx) for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/en-us/library/aa691090(v=vs.71).aspx)). The `{` and `}` characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/en-us/library/aa691090(v=vs.71).aspx)). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
 
 | Expression               | Note |
 | ----------------- | ------------ | 
 | `^\d{3}-\d{2}-\d{4}$` | Regular expression |
 | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  |
+| `^[a-z]{2}$` | Regular expression |
+| `^[[a-z]]{{2}}$` | Escaped  |
 
 Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
 
