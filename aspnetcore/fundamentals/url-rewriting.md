@@ -74,6 +74,7 @@ The part of the expression contained by parentheses is called a *capture group*.
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
+<a name=url-redirect-to-secure-endpoint></a>
 ### URL redirect to a secure endpoint
 Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (`https://`) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to `https://` and the client will access the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 ```csharp
