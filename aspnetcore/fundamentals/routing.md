@@ -329,9 +329,9 @@ Regular expressions use delimiters and tokens similar to those used by Routing a
 | Expression               | Note |
 | ----------------- | ------------ | 
 | `^\d{3}-\d{2}-\d{4}$` | Regular expression |
-| `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  
+| `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` | Escaped  |
 | `^[a-z]{2}$` | Regular expression |
-| `^[[a-z]]{{2}}$` | Escaped  ||
+| `^[[a-z]]{{2}}$` | Escaped  |
 
 Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string). The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.
 
