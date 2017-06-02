@@ -6,7 +6,7 @@ keywords: ASP.NET Core, cli
 ms.author: riande
 manager: wpickett
 ms.date: 03/30/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 69421638-1638-41e6-9ad7-cad666abf4db
 ms.technology: aspnet
 ms.prod: asp.net-core

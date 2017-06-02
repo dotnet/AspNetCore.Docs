@@ -6,7 +6,7 @@ keywords: ASP.NET Core, Entity Framework Core, raw sql, examine sql, repository 
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 92a2986a-d005-4ff6-9559-6657fd466bb7
 ms.technology: aspnet
 ms.prod: asp.net-core

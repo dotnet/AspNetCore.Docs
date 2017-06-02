@@ -6,7 +6,7 @@ keywords: ASP.NET Core, Entity Framework Core, migrations
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: 81f6c9c2-a819-4f3a-97a4-4b0503b56c26
 ms.technology: aspnet
 ms.prod: asp.net-core

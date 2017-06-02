@@ -6,7 +6,7 @@ description: In this tutorial you'll add sorting, filtering, and paging function
 keywords: ASP.NET Core, Entity Framework Core, sort, filter, paging, grouping
 ms.author: tdykstra
 ms.date: 03/15/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: e6c1ff3c-5673-43bf-9c2d-077f6ada1f29
 ms.technology: aspnet
 ms.prod: asp.net-core

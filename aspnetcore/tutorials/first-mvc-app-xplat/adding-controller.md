@@ -6,7 +6,7 @@ keywords: ASP.NET Core, MVC
 ms.author: riande
 manager: wpickett
 ms.date: 02/28/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: e04b6665-1638-4d99-1636-d666c4634666
 ms.technology: aspnet
 ms.prod: asp.net-core
