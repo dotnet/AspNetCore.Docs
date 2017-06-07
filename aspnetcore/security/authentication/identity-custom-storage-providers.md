@@ -16,17 +16,17 @@ uid: security/authentication/identity-custom-storage-providers
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET Core Identity is an extensible system which enables you to create your own storage provider and plug it into your application without re-working the application. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but it is not step-by-step walkthrough of implementing a custom storage provider.
+ASP.NET Core Identity is an extensible system which enables you to create your own storage provider and plug it into your application without re-working the application. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but is not a step-by-step walkthrough.
 
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample).
 
 ## Introduction
 
-By default, the ASP.NET Core Identity system stores user information in a SQL Server database, and uses Entity Framework Core to create the database. For many applications, this approach works well. However, you may prefer to use a different type of persistence mechanism, such as Azure Table Storage, or you may already have database tables with a very different structure than the default implementation. In either case, you can write a customized provider for your storage mechanism and plug that provider into your application.
+By default, the ASP.NET Core Identity system stores user information in a SQL Server database, and uses Entity Framework Core to create the database. For many applications, this approach works well. However, you may prefer to use a different type of persistence mechanism, such as [Azure Table Storage](https://docs.microsoft.com/en-us/azure/storage/), or you may already have database tables with a very different structure than the default implementation. In either case, you can write a customized provider for your storage mechanism and plug that provider into your application.
 
-ASP.NET Core Identity is included in application templates in Visual Studio when the "Indvidual User Accoutns" option is chosen:
+ASP.NET Core Identity is included in application templates in Visual Studio when the "Individual User Accounts" option is chosen:
 
-(show screenshot)
+![Choose indvidual accounts when creating new project in Visual Studio to add Identity](identity-custom-storage-providers/_static/individual-accounts.png)
 
 When using the dotnet CLI, you can include ASP.NET Core Identity by adding the -au or --auth option and specifying Individual:
 
@@ -37,16 +37,15 @@ dotnet new webapi -au Individual
 
 ## Understand the architecture
 
-ASP.NET Core Identity consists of classes called managers and stores. Managers are high-level classes which an application developer uses to perform operations, such as creating a user, in the ASP.NET Core Identity system. Stores are lower-level classes that specify how entities, such as users and roles, are persisted. Stores follow the [repository pattern](http://deviq.com/repository-pattern/) and are closely coupled with the persistence mechanism, but managers are decoupled from stores which means you can replace the persistence mechanism without disrupting the entire application.
+ASP.NET Core Identity consists of classes called managers and stores. *Managers* are high-level classes which an application developer uses to perform operations, such as creating a user, in the ASP.NET Core Identity system. *Stores* are lower-level classes that specify how entities, such as users and roles, are persisted. Stores follow the [repository pattern](http://deviq.com/repository-pattern/) and are closely coupled with the persistence mechanism, but managers are decoupled from stores which means you can replace the persistence mechanism without disrupting the entire application.
 
 The following diagram shows how your web application interacts with the managers, and stores interact with the data access layer.
 
-(update screenshot to say ASP.NET Core Apps)
-![ASP.NET Core Apps work with Managers (for example, UserManager, RoleManager). Managers work with Stores (for example, UserStore) which communicate with a Data Source using a library like Entity Framework Core.](identity/_static/identity-architecture-diagram.png)
+![ASP.NET Core Apps work with Managers (for example, UserManager, RoleManager). Managers work with Stores (for example, UserStore) which communicate with a Data Source using a library like Entity Framework Core.](identity-custom-storage-providers/_static/identity-architecture-diagram.png)
 
-To create a custom storage provider for ASP.NET Core Identity, you have to create the data source, the data access layer, and the store classes that interact with this data access layer. You can continue using the same manager APIs to perform data operations on the user but now that data is saved to a different storage system.
+To create a custom storage provider for ASP.NET Core Identity, you have to create the data source, the data access layer, and the store classes that interact with this data access layer (the green and grey boxes in the diagram above). You can continue using the same managers to perform data operations on the user, and the same application code that interacts with these managers (the blue boxes above).
 
-You do not need to customize the manager classes because when creating a new instance of UserManager or RoleManager you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into the existing structure. You will see how to instantiate UserManager and RoleManager with your customized store classes in the section Reconfigure application to use new storage provider (TODO: link).
+You do not need to customize the manager classes because when creating a new instance of UserManager or RoleManager you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into the existing structure. You will see how to instantiate UserManager and RoleManager with your customized store classes in the section [Reconfigure application to use new storage provider](#reconfigure-app-to-use-new-storage-provider).
 
 ## Understand the data that is stored
 
@@ -72,9 +71,7 @@ Authorization groups for your site. Includes the role Id and role name (like "Ad
 
 This topic assumes you are familiar with the persistence mechanism that you are going to use and how to create entities for that mechanism. This topic does not provide details about how to create the repositories or data access classes; instead, it provides some suggestions about the design decisions you need to make when working with ASP.NET Core Identity.
 
-You have a lot of freedom when designing the data access layer for a customized store provider. You only need to create persistence mechanisms for features that you intend to use in your application. For example, if you are not using roles in your application, you do not need to create storage for roles or user roles. Your technology and existing infrastructure may require a structure that is very different from the default implementation of ASP.NET Core Identity. In your data access layer, you provide the logic to work with the structure of your storage implementation.
-
-For a MySQL implemention of data repositories for ASP.NET Core Identity, see [MySQLIdentity.sql](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/MySQLIdentity.sql). TODO: Does this work with ASP.NET Core Identity? Most likely not. Is there an updated example? Possibly use Azure Storage as our sample. Open source example here: https://github.com/dlmelendez/identityazuretable/tree/master/src/ElCamino.AspNetCore.Identity.AzureTable
+You have a lot of freedom when designing the data access layer for a customized store provider. You only need to create persistence mechanisms for features that you intend to use in your application. For example, if you are not using roles in your application, you do not need to create storage for roles or user role associations. Your technology and existing infrastructure may require a structure that is very different from the default implementation of ASP.NET Core Identity. In your data access layer, you provide the logic to work with the structure of your storage implementation.
 
 In the data access layer, you provide the logic to save the data from ASP.NET Core Identity to your data source. The data access layer for your customized storage provider might include the following classes to store user and role information.
 
@@ -104,11 +101,9 @@ Stores and retrieves which roles are assigned to which users.
 
 [!TIP] Only implement the classes you intend to use in your app.
 
-In the data access classes, you provide code to perform data operations for your particular persistence mechanism. For example, within the Azure Table implementation, the UserTable class contains a method to insert a new record into the Users table in Azure Storage. The variable named _context is an instance of the `IdentityCloudContext` class.
+In the data access classes, you provide code to perform data operations for your particular persistence mechanism. For example, within a custom SQL Server implementation accessed using Dapper, you might have the following code to create a new user:
 
-(show code example for an Insert method)
 
-After creating your data access classes, you must create store classes that call the specific methods in the data access layer.
 
 ## Customize the user class
 
@@ -118,9 +113,7 @@ At a minimum your user class must include an `Id` and a `UserName` property.
 
 The `IUser` interface defines the properties that the `UserManager` attempts to call when performing requested operations. The interface contains two properties: `Id` and `UserName`. The type of the `Id` property is always a string. The framework expects the storage implementation to handle data conversions if necessary.
 
-The `IdentityUser` class implements `IUser` and contains any additional properties or constructors for users on your web site. The following example shows an `IdentityUser` class that uses an integer for the key. The `Id` field is set to `int` to match the value of the generic parameter.
-
-(show a sample IdentityUser class inheriting from interface)
+The `IdentityUser` class implements `IUser` and contains any additional properties or constructors for users on your web site.
 
 ## Customize the user store
 
@@ -141,13 +134,48 @@ You also create a UserStore class that provides the methods for all data operati
 
 All of these optional interfaces inherit from `IUserStore`.
 
-The following example shows a simple user store class. The TUser generic parameter takes the type of your user class which usually is the IdentityUser class you defined.
+The following example shows a simple user store class. The TUser generic parameter takes the type of your user class which usually is the `IdentityUser` class you defined.
 
 (show high level view of a UserStore class)
 
-Within your `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the Azure Table Storage implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `UserTable` to insert a new record. The Insert method on the `UserTable` object is the same method that was shown in the previous section.
+Within your `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the Azure Table Storage implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `UserTable` to insert a new record.
 
-(show CreateAsync method)
+```c#
+public async virtual Task<IdentityResult> CreateAsync(TUser user, 
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+	cancellationToken.ThrowIfCancellationRequested();
+	ThrowIfDisposed();
+
+	if (user == null)
+	{
+		throw new ArgumentNullException("user");
+	}
+	((Model.IGenerateKeys)user).GenerateKeys();
+
+	try
+	{
+
+		List<Task> tasks = new List<Task>(2);
+		tasks.Add(_userTable.ExecuteAsync(TableOperation.Insert(user)));
+
+		if (!string.IsNullOrWhiteSpace(user.Email))
+		{
+			Model.IdentityUserIndex index = CreateEmailIndex(user.Id.ToString(), user.Email);
+			tasks.Add(_indexTable.ExecuteAsync(TableOperation.InsertOrReplace(index)));
+		}
+
+		await Task.WhenAll(tasks.ToArray());
+		return IdentityResult.Success;
+	}
+	catch (AggregateException aggex)
+	{
+		aggex.Flatten();
+		return IdentityResult.Failed(new IdentityError()
+        { Code = "001", Description = "User Creation Failed." });
+	}
+}
+```
 
 ### Interfaces to implement when customizing user store
 
