@@ -1500,7 +1500,7 @@
 #### [Create an Edit Data Page in WebMatrix](web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix.md)
 #### [Create a Delete Data Page in WebMatrix](web-pages/videos/introduction/create-a-delete-data-page-in-webmatrix.md)
 #### [Publish a Website to the Internet Using WebMatrix](web-pages/videos/introduction/publish-a-website-to-the-internet-using-webmatrix.md)
-### [ASP.NET Razor Pages](web-pages/videos/aspnet-razor-pages/index.md)
+### [ASP.NET Web Pages](web-pages/videos/aspnet-razor-pages/index.md)
 #### [Getting Started with WebMatrix and ASP.NET Web Pages](web-pages/videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.md)
 #### [Intro to ASP.NET Web Programming Razor Syntax](web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.md)
 #### [Creating a Consistent Look (Part 1)](web-pages/videos/aspnet-razor-pages/creating-a-consistent-look-part-1.md)
