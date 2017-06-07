@@ -64,12 +64,12 @@ An authorization requirement is a collection of data parameters that a policy ca
 ```csharp
 public class MinimumAgeRequirement : IAuthorizationRequirement
 {
-    public MinimumAgeRequirement(int age)
+    public int MinimumAge { get; private set; }
+    
+    public MinimumAgeRequirement(int minimumAge)
     {
-        MinimumAge = age;
+        MinimumAge = minimumAge;
     }
-
-    protected int MinimumAge { get; set; }
 }
 ```
 
