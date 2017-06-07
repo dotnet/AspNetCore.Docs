@@ -19,7 +19,7 @@ by [Jon Galloway](https://github.com/jongalloway), [Pranav Rastogi](https://gith
 
 > The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typically handle authentication and authorization. ASP.NET Identity is a fresh look at what the membership system should be when you are building modern applications for the web, phone, or tablet.
 > 
-> This article was written by Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Jon Galloway ([@jongalloway](https://twitter.com/rustd)), Tom Dykstra, and Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ).
+> This article was written by Pranav Rastogi ([@rustd](https://twitter.com/rustd)), Jon Galloway ([@jongalloway](https://twitter.com/jongalloway)), Tom Dykstra, and Rick Anderson ([@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) ).
 
 
 ## Background: Membership in ASP.NET
