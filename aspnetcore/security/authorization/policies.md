@@ -69,7 +69,7 @@ public class MinimumAgeRequirement : IAuthorizationRequirement
         MinimumAge = age;
     }
 
-    protected int MinimumAge { get; set; }
+    public int MinimumAge { get; set; }
 }
 ```
 
