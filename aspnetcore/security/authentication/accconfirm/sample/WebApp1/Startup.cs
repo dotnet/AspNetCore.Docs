@@ -80,8 +80,8 @@ namespace WebApp1
             var options = new RewriteOptions()
                .AddRedirectToHttps();
 
-            #endregion
             app.UseRewriter(options);
+            #endregion
 
             if (env.IsDevelopment())
             {
