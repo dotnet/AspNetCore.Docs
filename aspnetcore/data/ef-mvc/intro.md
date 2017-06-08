@@ -110,6 +110,8 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
   
 This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
+For information about other database providers that are available for Entity Framework Core, see [Database providers](https://docs.microsoft.com/ef/core/providers/).
+
 ## Create the data model
 
 Next you'll create entity classes for the Contoso University application. You'll start with the following three entities.
