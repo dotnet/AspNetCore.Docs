@@ -282,13 +282,13 @@ Attribute routing can also make use of the `Http[Verb]` attributes such as `Http
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
-[HttpGet("/products")]
+[HttpGet("products")]
 public IActionResult ListProducts()
 {
    // ...
 }
 
-[HttpPost("/products")]
+[HttpPost("products")]
 public IActionResult CreateProduct(...)
 {
    // ...
@@ -305,7 +305,7 @@ Since an attribute route applies to a specific action, it's easy to make paramet
 ```csharp
 public class ProductsApiController : Controller
 {
-   [HttpGet("/products/{id}", Name = "Products_List")]
+   [HttpGet("products/{id}", Name = "Products_List")]
    public IActionResult GetProduct(int id) { ... }
 }
 ```
@@ -319,7 +319,7 @@ The following code  defines a *route name* of `Products_List`:
 ```csharp
 public class ProductsApiController : Controller
 {
-   [HttpGet("/products/{id}", Name = "Products_List")]
+   [HttpGet("products/{id}", Name = "Products_List")]
    public IActionResult GetProduct(int id) { ... }
 }
 ```
