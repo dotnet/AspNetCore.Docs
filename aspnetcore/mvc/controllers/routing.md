@@ -393,7 +393,7 @@ Attribute routes can configure an order, using the `Order` property of all of th
 
 ## Token replacement in route templates ([controller], [action], [area])
 
-For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`]). The tokens `[action]`, `[area]`, and `[controller]` will be replaced with the values of the action name, area name, and controller name from the action where the route is defined. In this example the actions can match URL paths as described in the comments:
+For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` will be replaced with the values of the action name, area name, and controller name from the action where the route is defined. In this example the actions can match URL paths as described in the comments:
 
 [!code-csharp[Main](routing/sample/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 
