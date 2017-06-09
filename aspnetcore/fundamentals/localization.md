@@ -98,6 +98,24 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
+<a name=one-resource-string-multiple-classes></a>
+### Using one resource string for multiple classes
+
+The following code shows how to use one resource string for validation attributes with multiple classes:
+
+```
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc()
+        .AddDataAnnotationsLocalization(options => {
+            options.DataAnnotationLocalizerProvider = (type, factory) =>
+                factory.Create(typeof(SharedResource));
+        });
+}
+```
+
+In the preceeding code, `SharedResource` is the class corresponding to the resx where your validation messages are stored. With this approach,  DataAnnotations will only use `SharedResource`, rather than the resource for each class. 
+
 ## Provide localized resources for the languages and cultures you support  
 
 ### SupportedCultures and SupportedUICultures
