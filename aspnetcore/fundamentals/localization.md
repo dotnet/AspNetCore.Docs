@@ -98,6 +98,18 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
+You can use custom localizer provider by setting it in the  `AddDataAnnotationsLocalization` options in the `Startup` class.
+
+```csharp
+services.AddDataAnnotationsLocalization(options => {
+    options.DataAnnotationLocalizerProvider = (type, factory) => 
+        factory.Create(typeof(SharedResource));
+});
+```
+
+
+
+
 ## Provide localized resources for the languages and cultures you support  
 
 ### SupportedCultures and SupportedUICultures
