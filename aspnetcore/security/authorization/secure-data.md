@@ -58,13 +58,13 @@ This is not a beginning tutorial. You should be familiar with:
 
 ## The starter and completed app
 
-[Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
+[Download](xref:tutorials/index#how-to-download-a-sample) the [completed](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features. 
 
 ### The starter app
 
 It's helpful to compare your code with the completed sample.
 
-[Download](xref:tutorials/index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter) app. 
+[Download](xref:tutorials/index#how-to-download-a-sample) the [starter](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter) app. 
 
 See [Create the starter app](#create-the-starter-app) if you'd like to create it from scratch.
 
