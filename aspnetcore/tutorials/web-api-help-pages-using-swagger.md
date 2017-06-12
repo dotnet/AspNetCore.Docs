@@ -44,7 +44,7 @@ You can add Swashbuckle with any of the following approaches:
 
 * From the Package Manager Console:
 
-```bash
+```PowerShell
 Install-Package Swashbuckle.AspNetCore
    ```
 
@@ -100,7 +100,7 @@ In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:
 > [!NOTE]
 > Microsoft Edge, Google Chrome and Firefox display JSON documents natively.  There are extensions for Chrome that will format the document for easier reading. *Example below reduced for brevity.*
 
-```javascript
+```JSON
 {
    "swagger": "2.0",
    "info": {
@@ -228,7 +228,7 @@ Note that the UI is driven by the generated JSON file, and these comments are al
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [5]}} -->
 
-```javascript
+```JSON
 "delete": {
   "tags": [
     "Todo"

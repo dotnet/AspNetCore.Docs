@@ -187,7 +187,7 @@ Add routing to the service container in *Startup.cs*:
 
 [!code-csharp[Main](../fundamentals/routing/sample/RoutingSample/Startup.cs?highlight=3&start=11&end=14)]
 
-Routes must configured in the `Configure` method in the `Startup` class. The sample below uses these APIs:
+Routes must be configured in the `Configure` method in the `Startup` class. The sample below uses these APIs:
 
 * `RouteBuilder`
 * `Build`
