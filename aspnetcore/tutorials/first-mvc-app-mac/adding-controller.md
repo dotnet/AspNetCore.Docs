@@ -5,9 +5,9 @@ description: How to add a controller to a simple ASP.NET Core MVC app
 keywords: ASP.NET Core, MVC
 ms.author: riande
 manager: wpickett
-ms.date: 02/28/2017
+ms.date: 06/28/2017
 ms.topic: article
-ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
+ms.assetid: e04b6666-d0de-4d99-b78f-d6a0c4634a87
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/adding-controller
@@ -26,7 +26,7 @@ uid: tutorials/first-mvc-app/adding-controller
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string.  Note the comments preceding each method.
 
@@ -44,7 +44,7 @@ MVC invokes controller classes (and the action methods within them) depending on
 
 You set the format for routing in the *Startup.cs* file.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
 When you run the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
@@ -56,7 +56,7 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 Let's modify the example slightly so that you can pass some parameter information  from the URL to the controller (for example, `/HelloWorld/Welcome?name=Scott&numtimes=4`).  Change the `Welcome` method  to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
 The code above uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). It also uses [Interpolated Strings](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings).
 
@@ -74,7 +74,7 @@ In the sample above, the URL segment (`Parameters`) is not used, the `name` and 
 
 Replace the `Welcome` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
 Run the app and enter the following URL:  `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
 
@@ -82,10 +82,12 @@ Run the app and enter the following URL:  `http://localhost:xxx/HelloWorld/Welco
 
 This time the third URL segment  matched the route parameter `id`. The `Welcome`  method contains a parameter  `id` that matched the URL template in the `MapRoute` method. The trailing `?`  (in `id?`) indicates the `id` parameter is optional.
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[Main](../first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.
 
 >[!div class="step-by-step"]
-[Previous](start-mvc.md)
-[Next](adding-view.md)  
+[Previous](../first-mvc-app/start-mvc.md)
+<!--
+[Next](adding-view.md)
+-->
