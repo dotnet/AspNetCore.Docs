@@ -20,16 +20,13 @@ By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.co
 In a typical modern web application, the build process might:
 
 * Bundle and minify JavaScript and CSS files.
-
 * Run tools to call the bundling and minification tasks before each build.
-
 * Compile LESS or SASS files to CSS.
-
 * Compile CoffeeScript or TypeScript files to JavaScript.
 
 A *task runner* is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: [Gulp](http://gulpjs.com) and [Grunt](using-grunt.md).
 
-## Introducing Gulp
+## Gulp
 
 Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate [bundling and minification](bundling-and-minification.md) or the cleansing of a development environment before a new build.
 
