@@ -57,7 +57,7 @@ Proceed through the **Confirmation** step to install the web server role and ser
 2. Restart the system or execute **net stop was /y** followed by **net start w3svc** from a command prompt to pick up a change to the system PATH.
 
 > [!NOTE]
-> If you only plan to host [self-contained deployments](https://docs.microsoft.com/dotnet/articles/core/deploying/) and thus don't require the .NET Core runtime on the system, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.0.3_1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+> If you only plan to host [self-contained deployments](https://docs.microsoft.com/dotnet/articles/core/deploying/) and thus don't require the .NET Core runtime on the system, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command prompt: **DotNetCore.1.0.4_1.1.1-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
 
 > [!NOTE]
 > If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:hosting/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
