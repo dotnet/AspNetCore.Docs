@@ -16,7 +16,7 @@ uid: mvc/controllers/actions
 
 By [Steve Smith](http://ardalis.com)
 
-Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET MVC Core.
+Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET Core MVC.
 
 ## What is a Controller
 
