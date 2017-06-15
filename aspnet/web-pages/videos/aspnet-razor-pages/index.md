@@ -13,8 +13,8 @@ ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages
 msc.type: chapter
 ---
-ASP.NET Razor Pages
-====================
+ASP.NET Web Pages
+=================
 > Which videos you can view to drill down into Web Pages and WebMatrix.
 
 

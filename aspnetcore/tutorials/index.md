@@ -6,7 +6,7 @@ keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -17,6 +17,7 @@ uid: tutorials/index
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
+
 * [Introduction to ASP.NET Core MVC with Visual Studio for Mac](first-mvc-app-mac/index.md)
 * [Introduction to ASP.NET Core MVC with Visual Studio](first-mvc-app/index.md)
 * [Introduction to ASP.NET Core MVC on Mac or Linux ](first-mvc-app-xplat/index.md)
@@ -28,9 +29,9 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
-* [Create a Web API with ASP.NET Core MVC and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* [Building your first web API with ASP.NET Core MVC and Visual Studio](first-web-api.md)
-* [Create a Web API app on Mac or Linux with Visual Studio Code ](web-api-vsc.md)
+* [Create a Web API with ASP.NET Core and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+* [Create a Web API with ASP.NET Core and Visual Studio for Windows](first-web-api.md)
+* [Create a Web API with ASP.NET Core and Visual Studio Code](web-api-vsc.md)
 * [ASP.NET Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
 * [Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)
 

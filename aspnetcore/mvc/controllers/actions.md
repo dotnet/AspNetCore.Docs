@@ -1,8 +1,8 @@
 ---
-title: Handling requests with controllers in ASP.NET MVC Core | Microsoft Docs
+title: Handling requests with controllers in ASP.NET Core MVC | Microsoft Docs
 author: ardalis
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/controllers/actions
 ---
-# Handling requests with controllers in ASP.NET MVC Core
+# Handling requests with controllers in ASP.NET Core MVC
 
 By [Steve Smith](http://ardalis.com)
 
-Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET MVC Core.
+Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET Core MVC.
 
 ## What is a Controller
 

@@ -64,12 +64,12 @@ An authorization requirement is a collection of data parameters that a policy ca
 ```csharp
 public class MinimumAgeRequirement : IAuthorizationRequirement
 {
-    public MinimumAgeRequirement(int age)
+    public int MinimumAge { get; private set; }
+    
+    public MinimumAgeRequirement(int minimumAge)
     {
-        MinimumAge = age;
+        MinimumAge = minimumAge;
     }
-
-    protected int MinimumAge { get; set; }
 }
 ```
 
@@ -231,9 +231,7 @@ The use of the `Resource` property is framework specific. Using information in t
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
-var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
-
-if (mvcContext != null)
+if (context.Resource is Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext mvcContext)
 {
     // Examine MVC specific things like routing data.
 }

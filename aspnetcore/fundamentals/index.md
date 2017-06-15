@@ -6,7 +6,7 @@ keywords: ASP.NET Core, fundamentals, overview
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -43,7 +43,7 @@ public class Startup
 }
 ```
 
-* `ConfigureServices` defines the services (see [Services](#services) below) used by your app (such as the ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.)
+* `ConfigureServices` defines the services (see [Services](#services) below) used by your app (such as the ASP.NET Core MVC framework, Entity Framework Core, Identity, etc.)
 
 * `Configure` defines the [middleware](middleware.md) in the request pipeline
 

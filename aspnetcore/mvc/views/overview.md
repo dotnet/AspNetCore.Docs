@@ -16,7 +16,7 @@ uid: mvc/views/overview
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET MVC Core controllers can return formatted results using *views*.
+ASP.NET Core MVC controllers can return formatted results using *views*.
 
 ## What are Views?
 

@@ -6,7 +6,7 @@ keywords: ASP.NET Core,SQL Server LocalDB, SQL Server, LocalDB
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
-ms.topic: article
+ms.topic: get-started-article
 ms.assetid: ff8fd9b8-7c98-424d-8641-7524e23bf541
 ms.technology: aspnet
 ms.prod: asp.net-core

@@ -162,7 +162,7 @@ This sample applies this convention to routes that are not using attribute routi
 
 ## Application Model Usage in WebApiCompatShim
 
-ASP.NET MVC Core uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET MVC Core app's behavior to be consistent with that of a Web API app. Microsoft ships the [WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim/) specifically for this purpose.
+ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a Web API app. Microsoft ships the [WebApiCompatShim](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim/) specifically for this purpose.
 
 > [!NOTE]
 > Learn more about [migrating from ASP.NET Web API](https://docs.microsoft.com/aspnet/core/migration/webapi)).
