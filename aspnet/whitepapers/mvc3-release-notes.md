@@ -442,7 +442,7 @@ A view engine can return a view using an explicit view path as in the following 
 
 [!code-csharp[Main](mvc3-release-notes/samples/sample12.cs)]
 
-The first view engine always attempts to render the view. By default, the Web Forms view engine is the first view engine; because the Web Forms engine cannot render a Razor view, an error occurs. View engines now have a *FileExtensions* property that is used to specify which file extensions they support. This property is checked when ASP.NET determines whether a view engine can render a file. This is a breaking change and more details are included in the [Breaking Changes](#_Breaking_Changes) section of this document.
+The first view engine always attempts to render the view. By default, the Web Forms view engine is the first view engine; because the Web Forms engine cannot render a Razor view, an error occurs. View engines now have a *FileExtensions* property that is used to specify which file extensions they support. This property is checked when ASP.NET determines whether a view engine can render a file. This is a breaking change and more details are included in the [Breaking Changes](#_Toc2_BC) section of this document.
 
 <a id="_Toc2_12"></a>
 ### Fixed "LabelFor" Helper to Emit the Correct Value for the "For" Attribute

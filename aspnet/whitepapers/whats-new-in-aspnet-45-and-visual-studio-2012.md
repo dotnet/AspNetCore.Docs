@@ -364,7 +364,7 @@ Then, to integrate the prefetcher with ASP.NET applications, add the following t
 <a id="_Toc318097385"></a>
 ## ASP.NET Web Forms
 
-<a id="_Strongly_Typed_Data"></a>
+<a id="_Toc318097386"></a>
 ### Strongly Typed Data Controls
 
 In ASP.NET 4.5, Web Forms includes some improvements for working with data. The first improvement is strongly typed data controls. For Web Forms controls in previous versions of ASP.NET, you display a data-bound value using *Eval* and a data-binding expression:
@@ -403,7 +403,7 @@ In the following example, the *GridView* control is configured to use a method n
 
 [!code-aspx[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample22.aspx)]
 
-You create the *GetCategories* method in the page's code. For a simple select operation, the method needs no parameters and should return an *IEnumerable* or *IQueryable* object. If the new *ItemType* property is set (which enables strongly typed data-binding expressions, as explained under [Strongly Typed Data Controls](#_Strongly_Typed_Data) earlier), the generic versions of these interfaces should be returned — *IEnumerable&lt;T&gt;* or *IQueryable&lt;T&gt;*, with the *T* parameter matching the type of the *ItemType* property (for example, *IQueryable&lt;Category&gt;*).
+You create the *GetCategories* method in the page's code. For a simple select operation, the method needs no parameters and should return an *IEnumerable* or *IQueryable* object. If the new *ItemType* property is set (which enables strongly typed data-binding expressions, as explained under [Strongly Typed Data Controls](#_Toc318097386) earlier), the generic versions of these interfaces should be returned — *IEnumerable&lt;T&gt;* or *IQueryable&lt;T&gt;*, with the *T* parameter matching the type of the *ItemType* property (for example, *IQueryable&lt;Category&gt;*).
 
 The following example shows the code for a *GetCategories* method. This example uses the Entity Framework Code First model with the Northwind sample database. The code makes sure that the query returns details of the related products for each category by way of the *Include* method. (This ensures that the *TemplateField* element in the markup displays the count of products in each category without requiring an [n+1 select](http://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem).)
 
@@ -644,7 +644,7 @@ To invoke the snippet, press Tab twice when the element is selected in IntelliSe
 
 This produces a snippet that you can customize.
 
-<a id="a"></a>
+<a id="_Toc318097401"></a>
 #### Extract to user control
 
 In large web pages, it can be a good idea to move individual pieces into user controls. This form of refactoring can help increase the readability of the page and can simplify the page structure.

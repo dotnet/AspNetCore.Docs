@@ -31,7 +31,7 @@ This topic describes what's new for ASP.NET Web MVC 5.1.
     - [Supporting the ‘this' context in Unobtrusive Ajax](#thisContext)
 - [Known Issues and Breaking Changes](#KnownBreakingChanges)- [Bug Fixes](#bug-fixes)
 
-<a id="#SoftwareRequirements"></a>
+<a id="SoftwareRequirements"></a>
 ## Software Requirements
 
 - Visual Studio 2012: Download [ASP.NET and Web Tools 2013.1 for Visual Studio 2012](https://go.microsoft.com/fwlink/?LinkId=390062).

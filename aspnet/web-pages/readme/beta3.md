@@ -118,7 +118,7 @@ This section of the document describes new features, changes, and known issues w
 - [Changes](#Changes)
 - [Issues](#Issues)
 
-<a id="NewFeautres"></a>
+<a id="NewFeatures"></a>
 
 #### New Features in Beta 3 for ASP.NET Web Pages with Razor Syntax
 
@@ -352,7 +352,7 @@ This section of the document describes new features, changes, and known issues w
 > **Workaround**  
 > Temporarily set the application to use Full Trust.
 
-
+<a id="Known_Issues_SQL_Server_Compact"></a>
 ### SQL Server Compact
 
 #### Issue: "Encrypt" property is not recognized
