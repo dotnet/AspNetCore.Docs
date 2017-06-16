@@ -18,8 +18,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio 2017](https://www.visualstudio.com/).
 
-> [!NOTE]
-> See [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../your-first-mac-aspnet.md) for a Mac tutorial.
+There are 3 versions of this tutorial:
+
+* macOS: [Create an ASP.NET Core MVC app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
+* Windows: [Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)
+* macOS, Linux, and Windows: [Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)
 
 For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
 
