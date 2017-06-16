@@ -17,7 +17,7 @@ ms.custom: H1Hack27Feb2017
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 
-When errors occur in your ASP.NET Core app, you can handle them in a variety of ways, as described in this article.
+This article covers common appoaches to handling errors in ASP.NET Core apps.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample)
 
