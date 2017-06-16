@@ -23,29 +23,29 @@ In this article, you will learn how to build a SPA-style ASP.NET Core applicatio
 
 ## Using SpaServices with ASP.NET Core
 
-A SPA (Single-Page Application) is a very popular breed of web application due to its inherent rich user experience. Alas, integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be daunting. To reduce friction in the integration process and to allow the disparate client and server technology stacks to happily coexist, the ASP.NET Core team shipped SpaServices.
+A  Single-Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be daunting. SpaServices <!-- make this a link or use fully qualified name --> was develped to reduce friction in the integration process and to allow the disparate client and server technology stacks to work together. 
 
 ## What is SpaServices
 
-The `Microsoft.AspNetCore.SpaServices` (SpaServices) NuGet package can be used while building web applications using SPA frameworks; and, it is included in the larger [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) project. It provides useful infrastructure for building SPAs with technologies such as Angular or React.
+The `Microsoft.AspNetCore.SpaServices` (SpaServices) NuGet package can be used while building web applications using SPA frameworks. `SpaServices` included in the [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) project. <!-- So what. Do we need that info? --> `SpaServices` provides useful infrastructure for building SPAs with technologies such as Angular or React and ASP.NET Core???
 
-It is not mandatory to use the package when developing SPAs with ASP.NET Core; however, it provides useful features such as server-side prerendering, Webpack middleware, Hot Module Replacement, and routing helpers. Using these features can result in a significant productivity boost.
+`SpaServices` is not required to develope SPAs with ASP.NET Core; however, it provides features such as server-side prerendering, Webpack middleware, Hot Module Replacement, and routing helpers. 
 
 ### Server-side prerendering for universal applications
 
-A universal (a.k.a. isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for such application development. The idea is to first render the framework components on the server-side and then delegate further execution to the client.
+A universal (also know as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for such application development. The idea is to first render the framework components on the server-side and then delegate further execution to the client.
 
-SpaServices offers some ASP.NET Core APIs which know how to invoke JavaScript functions on the server-side. Contextual information can also be passed as arguments to those functions, if necessary. Under the hood, this processing is all handled by the [Microsoft.AspNetCore.NodeServices](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.NodeServices) (NodeServices) NuGet package.
+SpaServices offers provide ASP.NET Core APIs which invoke JavaScript functions on the server-side. Contextual information can  be passed as arguments to those functions, if necessary. Under the hood, this processing is handled by the [Microsoft.AspNetCore.NodeServices](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.NodeServices) (NodeServices) NuGet package.
 
-> [!NOTE]
-> The SpaServices package is built atop the NodeServices package. Whether building SPAs or not, the standalone NodeServices package is handy if you want to execute JavaScript code on the server-side.
+The SpaServices package is built atop the NodeServices package. The standalone NodeServices package is handy if you want to execute JavaScript code on the server-side.
 
-The NodeServices package accomplishes this by spawning a hidden instance of Node.js which executes some JavaScript functions on the server-side.
+The NodeServices package accomplishes this (what is this?) by spawning a hidden instance of Node.js which executes some JavaScript functions on the server-side.
 
-### Tag Helpers
+## Tag Helpers
 
-SpaServices provides a small number of [Tag Helpers](../mvc/views/tag-helpers/index.md) which are used in the pre-rendering process. They do the heavy-lifting and spare you from the burden of communicating directly with the low-level APIs.
+SpaServices provides some [Tag Helpers](../mvc/views/tag-helpers/index.md) [Never use relative links, use only xref links - copy the uid: from the meta data and use it] [Tag Helpers](xref:uid: mvc/views/tag-helpers/intro)  which are used in the pre-rendering process. ~They do the heavy-lifting and spare you from the burden of communicating directly with the low-level APIs.~ They (something more concrete on how they are useful).
 
+### The asp-prerender-module Tag Helper
 The `asp-prerender-module` Tag Helper is intended for running code within a specified JavaScript module. For example, the following markup will execute code found in the `app` folder's `morning-greeter.js` file:
 
 ```html
@@ -54,6 +54,7 @@ The `asp-prerender-module` Tag Helper is intended for running code within a spec
 
 The specified JavaScript module should return HTML markup to be rendered on the server. The following is an example of a JavaScript function that returns some HTML markup wrapped in a `Promise` object:
 
+[Can we replace this with code in a working sample, then we can tell folks we have a sample they can try]
 ```javascript
 var prerendering = require('aspnet-prerendering');
 
@@ -66,12 +67,13 @@ module.exports = prerendering.createServerRenderer(function() {
 });
 ```
 
-> [!NOTE] 
-> If a module is not found in the specified location, SpaServices will return an **Error: Cannot Find Module** error while in development mode.
+~If a module is not found in the specified location, SpaServices will return an **Error: Cannot Find Module** error while in development mode. This is too obvious - remove~
 
-Another Tag Helper is `asp-prerender-data`, which is used for passing contextual information from a view element to a JavaScript function. For example, the following markup passes user data to the `morning-greeter` module:
+### The asp-prerender-data Tag Helper
+The  `asp-prerender-data` is used for passing contextual information from a view element to a JavaScript function. For example, the following markup passes user data to the `morning-greeter` module:
+[again, best to import a snippet from a working sample]
 
-```html
+```html 
 <div id="my-spa" asp-prerender-module="app/morning-greeter" 
                     asp-prerender-data='new { 
                     UserName = "John Doe" 
@@ -79,8 +81,9 @@ Another Tag Helper is `asp-prerender-data`, which is used for passing contextual
 ```
 
 The received data is serialized using the built-in JSON serializer and is stored in the `params.data` object. The following is an example of using the data from the `param.data` object to construct some simple markup:
+[again, best to import a snippet from a working sample]
 
-```javascript
+```javascript 
 var prerendering = require('aspnet-prerendering');
 
 module.exports = prerendering.createServerRenderer(function (params) {
@@ -91,10 +94,9 @@ module.exports = prerendering.createServerRenderer(function (params) {
 });
 ```
 
-> [!NOTE] 
-> **PascalCase** notation is used for property names in the `asp-prerender-data` Tag Helper; however, in JavaScript they are used in **camelCase**. The default JSON serialization configuration is responsible for this difference.
+*PascalCase* notation is used for property names in the `asp-prerender-data` Tag Helper; however, in JavaScript they are used in **camelCase**. The default JSON serialization configuration is responsible for this difference.
 
-Data can also be passed back to the view. While returning the `Promise` object that resolves markup, use the `globals` property to send data back to the view:
+Data can ~also~ be passed back to the view. ~While returning the `Promise` object that resolves markup, use the `globals` property to send data back to the view:~  Maybe something like, In the preceedind code, the `Promise` object bla bla bla. The following code uses the `globals` property to send data ~back~ to the view
 
 ```javascript
 resolve({
@@ -108,26 +110,27 @@ resolve({
 });
 ```
 
-> [!NOTE] 
-> Each of the properties set inside the `globals` object will create individual, globally-accessible JavaScript variables with the exact same property names and their associated values.
+Each of the properties set inside the `globals` object will create individual, globally-accessible JavaScript variables with the ~exact~ same property names and ~their~ associated values.
 
-### Webpack dev middleware
+## Webpack dev middleware
 
-This middleware generates Webpack-built resources on demand. It doesn’t need you to run Webpack manually every time you modify the markup or the code. Instead, the middleware will automatically compile and serve the client-side resources once you reload the page.
+The Webpack dev middleware generates Webpack-built resources on demand. ~It doesn’t need you to run Webpack manually every time you modify the markup or the code. Instead,~ The middleware automatically compiles and serves client-side resources when a page is reloaded.
 
-To configure the Webpack dev middleware, you must add `app.UseWebpackDevMiddleware();` to the `Startup.cs` file's `Configure` method. Be sure that it appears before the middleware that add supports for serving static files:
+To configure the Webpack dev middleware, ~you must~ add `app.UseWebpackDevMiddleware` to the ~`Startup.cs` file's~ `Configure` method. `UseWebpackDevMiddleware` must be called before `UseStaticFiles`:
 
 ```c#
 if (env.IsDevelopment()) {
     app.UseWebpackDevMiddleware();
 }
 
+// Call UseWebpackDevMiddleware before UseStaticFiles
 app.UseStaticFiles();
 ```
 
-As depicted in the previous code snippet, this middleware component should be configured for use only when running the application in development mode. It is a development workflow enhancement tool which was never intended for use in a production-grade build of the application.
+~As depicted in the previous code snippet,~ this middleware component should be configured for use only when running the application in development mode. ~It is a development workflow enhancement tool which was never intended for use in a production-grade build of the application.~
 
-As was previously mentioned, the Webpack dev middleware eliminates the need to run Webpack manually. However, if you want to run Webpack manually from the command line, do the following:
+[Do we need this manual diversion?]
+~As was previously mentioned, the Webpack dev middleware eliminates the need to run Webpack manually. However, if you want~ to run Webpack manually from the command line, do the following:
     * Open the `package.json` file, and add the following three lines within its `scripts` property:
 
     [!code-json[Main](../client-side/angular2/sample/DemoUsingAngular/package.json?range=5-7)]
@@ -137,52 +140,52 @@ As was previously mentioned, the Webpack dev middleware eliminates the need to r
         * The `build:custom` script invokes Webpack without any parameters, resulting in a rebuild of only your application code.
         * The `build` script repackages both the vendor code and your custom code, in that particular order.
 
-> [!NOTE] 
-> Run the `build:vendor` npm script only when you are modifying third-party dependencies. For example, run it if you are upgrading to a newer version of your chosen SPA framework.
+Run the `build:vendor` npm script only when you are modifying third-party dependencies. For example, run it if you are upgrading to a newer version of your chosen SPA framework.
 
-These commands will produce development-grade builds. If you want to produce production-grade builds, then also pass the flag `--env.prod` when invoking Webpack.
+~These commands will produce development-grade builds. If you want to produce production-grade builds, then also~ For production, pass the flag `--env.prod` when invoking Webpack.
 
-### Hot Module Replacement (HMR)
+## Hot Module Replacement (HMR)
 
-This feature can be enabled while configuring the Webpack dev middleware. It watches the changes made to the code or markup and pushes them directly into the running application without requiring a reload of the whole page. It is especially useful while in the middle of a debugging session, since a full page reload deletes the application state and would force you to start over.
+This feature can be enabled while configuring the Webpack dev middleware. It watches the changes made to the code or markup and pushes them ~directly~ into the running application without requiring a reload of the whole page. It is especially useful while in the middle of a debugging session, since a full page reload deletes the application state and would force you to start over.
 
-To enable HMR, modify the Webpack dev middleware component's configuration in your `Startup.cs` file's `Configure` method. It should look as follows:
+To enable HMR, modify the Webpack dev middleware component's configuration in the `Configure` method. It should look as follows:
 
 [!code-csharp[Main](../client-side/angular2/sample/DemoUsingAngular/Startup.cs?range=44-46)]
 
 ## Prerequisites for using SpaServices
-To work with SpaServices, first make sure you’ve installed the following:
-* .NET Core SDK 1.0 RC4 (or later) for Windows, Mac, or Linux
-* If you’re on Windows, you can install the latest Visual Studio 2017, which includes it. Be sure you have VS 2017 build 26206 or later — older versions won’t work.
-* Node.js, version 6 or later
+~To work with SpaServices, first make sure you’ve installed the following:~
+* .NET Core SDK 1.0 ~RC4~ or  (or later) for Windows, Mac, or Linux [What - and make this a link]
+* If you’re on Windows, you can install the latest Visual Studio 2017 {make this a link}, which includes SpaServices. ~Be sure you have VS 2017 build 26206 or later — older versions won’t work.~
+* Node.js, version 6 or later {link?}
 
 ## Creating an Angular application using SpaServices
 
-As a starting point, JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries including Angular, Aurelia, Knockout, React, and Vue.
+~As a starting point,~ JavaScriptServices {link here} provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
 
-These templates can be installed using the .NET Core CLI by running the following command:
+Install the templates with the following command:
 
 ```console
 dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 ```
 
-Upon successful installation, a list of available templates is provided:
+The preceding command returns a list of available templates is provided:
 
+{ This is an advanced topic, only minimal screenshots - even in a beginning, I would use one here - it's likely to change frequently. If you think it's useful, put a table of some of the output values]
 ![Available ASP.NET Core SPA Templates](angular2/_static/installed_templates.png)
 
-To create a new project using one of the SPA templates, include the **Short Name** of the template in the `dotnet new` command. In this case, run `dotnet new angular` to create an Angular application with ASP.NET Core MVC configured for the server-side.
+To create a new project using one of the SPA templates, include the **Short Name** of the template in the `dotnet new` command. ~In this case, run `dotnet new angular` to create an Angular application with ASP.NET Core MVC configured for the server-side.~ The following commands create an Angular application with ASP.NET Core MVC configured for the server-side. {Show the command, not a screen shot}
 
 ![Create Angular Application Using ASP.NET Core SPA Templates](angular2/_static/dotnet_new.png)
 
 ### Restoring NuGet and npm packages
 
-Out of the box, the SPA template includes additional NuGet and npm packages to make things work together. To restore these packages, run the following command:
+~Out of the box,~ the SPA template includes additional NuGet and npm packages ~to make things work together~ {something more elegant that work together} . To restore these packages, run the following command:
     
 ```console
 dotnet restore && npm install
 ```
 
-Next, set an environment variable instructing ASP.NET Core to run in **development** mode:
+~Next,~ {NEXT is banned}  set an environment variable instructing ASP.NET Core to run in **development** mode:
 
 * If you’re using PowerShell in Windows, execute `$Env:ASPNETCORE_ENVIRONMENT = "Development"`.
 * If you’re using cmd.exe in Windows, execute `setx ASPNETCORE_ENVIRONMENT "Development"`, and then restart your command prompt for the change to take effect.
@@ -192,47 +195,46 @@ To run the application now, execute `dotnet run` in the command shell. It will s
 
 ![First Application Run](angular2/_static/default_page.png)
 
-### Using Yeoman and Yarn as an alternative
+### Using Yeoman and Yarn as an alternative {Can we skip this? Do we need it? If so, shouldn't it be at the bottom of the page?}
 
-The .NET Core CLI is not the only way to generate these SPA templates; Yeoman can be used instead. For this option, the Yeoman npm module and the SPA template generator for ASP.NET Core must be installed globally. Use the following command to install those two dependencies:
+~The .NET Core CLI is not the only way to generate these SPA templates;~  Yeoman and Yare can generate these SPA templates. For this option, the Yeoman npm module and the SPA template generator for ASP.NET Core must be installed globally. Use the following command to install those two dependencies:
 
 ```console
 npm install -g yo generator-aspnetcore-spa
 ```
-
+{The following seems too detailed for an advanced topic}
 Create an empty folder where your project will reside. Change your directory to that newly-created folder from the command prompt, and run the following command to create a new project from the available SPA template options:
 
 ```console
 yo aspnetcore-spa
 ```
-
+{No pics of output}
 ![Using Yeoman Generator for Creating Application](angular2/_static/demo_yeoman.png)
 
-A benefit of this approach is that the resulting application resolves npm dependencies using [Yarn](https://yarnpkg.com/en/). Yarn is noticeably faster than npm. Other than that, everything is pretty much same as the project created with the .NET Core CLI.
+A benefit of this approach is that the resulting application resolves npm dependencies using [Yarn](https://yarnpkg.com/en/). Yarn is noticeably faster than npm. ~Other than that, everything is pretty much same as the project created with the .NET Core CLI.~
 
-## Project structure
+## Project structure {What project structure?}
 
-Out of the box, the Angular SPA project template uses ASP.NET Core on the server-side. On the client-side, it uses Angular which is configured to work with Typescript. Angular provides a universal platform. That’s why it can run both on the client and on the server to some extent. To support critical development workflow tasks such as TypeScript transpilation to JavaScript and minification & bundling of resources, Webpack is used. To satisfy basic layout and styling needs, Bootstrap is used.
+~Out of the box,~ the Angular SPA project template uses ASP.NET Core on the server-side. On the client-side, it uses Angular which is configured to work with Typescript. {won't experts know the following?} Angular provides a universal platform. That’s why it can run both on the client and on the server to some extent. To support critical development workflow tasks such as TypeScript transpilation to JavaScript and minification & bundling of resources, Webpack is used. To satisfy basic layout and styling needs, Bootstrap is used.
 
 ### Web API
 
-To demonstrate how a client can initiate an HTTP request to a server-side API, the demo project is setup with an API controller. The API controller returns sample weather data back to the client. It is found within the `Controllers` folder and is named `SampleDataController.cs`. Later in the article, we will create additional API controllers in the `Controllers` folder.
+To demonstrate how a client can initiate an HTTP request to a server-side API, the demo project is setup with an API controller. The API controller `SampleDataController` returns sample weather data ~back~ to the client.  {That's it - I'd say delete this H3 until you're ready to show complete code }
 
-### Angular
+### Angular {Anything in here an expert would know delete - or is documented in the Angual docs}
 
 Angular is a component-based framework. The main component, where your application starts bootstrapping, is named `AppComponent`. Along with this bootstrapping component, there are other predefined components. For example, `FetchDataComponent` is responsible for displaying sample weather data in the client. This weather data is retrieved via an HTTP request to the backend API from the component's constructor:
 
 [!code-javascript[Main](../client-side/angular2/sample/DemoUsingAngular/ClientApp/app/components/fetchdata/fetchdata.component.ts?range=11-15)]
 
-These components are declared in a module name `AppModule`. Components are self-contained, in the sense that they each have their own markup and styling.
 
-## Routing Helper: MapSpaFallbackRoute
+## Routing Helper: MapSpaFallbackRoute {should this be moved to the end of the article? }
 
-In most SPAs, you'll want client-side routing as well as your server-side routing. The two routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404s.
+In most SPAs, you'll want client-side routing in addition to server-side routing. The two routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404s.
 
-Suppose that a request arrives for `/some/page`, and this requested route doesn't match any server-side route. In this situation, you likely want to return HTML to bootstrap your client-side application. Unlike the server-side, the client probably understands the route `/some/page`. Now suppose a request arrives for `/images/user-512.png`. If that requested resource path doesn't match any server-side route or static file, it's unlikely that your client-side application would handle it — you probably want to return a 404 HTTP status code.
+Consider a request for `/some/page`, and the request doesn't match a server-side route, but matches a client side route. Now consider a request for `/images/user-512.png`. If that requested resource path doesn't match any server-side route or static file, it's unlikely that your client-side application would handle it — you probably want to return a 404 HTTP status code.
 
-To help distinguish between these cases, a MVC routing helper named `MapSpaFallbackRoute` is used. For example, in your `Startup.cs` file's `Configure` method, you may see:
+To help distinguish between these cases, a MVC routing helper named `MapSpaFallbackRoute` is used. For example, in the   `Configure` method, you may see: {don't like you may see - replace with something like - the defaut template contains or typical code to handle this }
 
 [!code-csharp[Main](../client-side/angular2/sample/DemoUsingAngular/Startup.cs?range=53-64)]
 
@@ -284,10 +286,10 @@ Once the component is created, it should be added in the `app.module.ts` file to
 
 [!code-javascript[Main](../client-side/angular2/sample/DemoUsingAngular/ClientApp/app/app.module.ts?range=8,10-13,18,20-23,28,31-)]
 
-> [!NOTE] 
-> Some of the existing code in `app.module.ts` is omitted for brevity.
+Some of the existing code in `app.module.ts` is omitted for brevity.
+{when you do that, add a comment in the code  `<!--  Code omitted for brevity. -->`
 
-Also notice in this example that a new route is configured in `RouterModule`'s routes collection. Consequently, the `blog` component is loaded once someone navigates to `http://localhost:5000/blog`.
+~Also notice~ in this example that a new route is configured in `RouterModule`'s routes collection. Consequently, the `blog` component is loaded once someone navigates to `http://localhost:5000/blog`.
 
 Add a navigation menu in the `navmenu.component.html` file, like the others that are already set by default:
 
