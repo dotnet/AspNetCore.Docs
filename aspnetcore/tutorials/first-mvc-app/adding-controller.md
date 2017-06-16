@@ -13,6 +13,10 @@ ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
+# Adding a controller to a ASP.NET COre MVC app with Visual Studio
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 [!INCLUDE[adding-controller1](../../includes/mvc-intro/adding-controller1.md)]
 
 * In **Solution Explorer**, right-click **Controllers > Add > New Item**
