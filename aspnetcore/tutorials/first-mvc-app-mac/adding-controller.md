@@ -12,13 +12,13 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-mac/adding-controller
 ---
-# Adding a controller to a ASP.NET COre MVC app with Visual Studio for Mac
+# Adding a controller to a ASP.NET Core MVC app with Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[adding-controller](../../includes/mvc-intro/adding-controller1.md)]
 
-## Add a controller
+## Add a controller 
 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 
