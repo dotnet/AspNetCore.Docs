@@ -5,7 +5,11 @@ using System.Threading;
 
 namespace CustomIdentityProviderSample.CustomProvider
 {
-    public class CustomUserStore : IUserStore<ApplicationUser>, IUserPasswordStore<ApplicationUser>
+    /// <summary>
+    /// This store is only partially implemented. It supports user creation and find methods.
+    /// </summary>
+    public class CustomUserStore : IUserStore<ApplicationUser>, 
+        IUserPasswordStore<ApplicationUser>
     {
         private readonly DapperUsersTable _usersTable;
 
@@ -13,6 +17,8 @@ namespace CustomIdentityProviderSample.CustomProvider
         {
             _usersTable = usersTable;
         }
+        
+        #region createuser
         public async Task<IdentityResult> CreateAsync(ApplicationUser user, 
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -21,6 +27,7 @@ namespace CustomIdentityProviderSample.CustomProvider
 
             return await _usersTable.CreateAsync(user);
         }
+        #endregion
 
         public async Task<IdentityResult> DeleteAsync(ApplicationUser user, 
             CancellationToken cancellationToken = default(CancellationToken))

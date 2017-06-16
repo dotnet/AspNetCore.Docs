@@ -5,6 +5,9 @@ using System.Threading;
 
 namespace CustomIdentityProviderSample.CustomProvider
 {
+    /// <summary>
+    /// This store isn't implemented as part of this sample.
+    /// </summary>
     public class CustomRoleStore : IRoleStore<ApplicationRole>
     {
         public Task<IdentityResult> CreateAsync(ApplicationRole role, CancellationToken cancellationToken)

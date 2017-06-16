@@ -15,6 +15,7 @@ namespace CustomIdentityProviderSample.CustomProvider
             _connection = connection;
         }
 
+#region createuser
         public async Task<IdentityResult> CreateAsync(ApplicationUser user)
         {
             string sql = "INSERT INTO dbo.CustomUser " +
@@ -28,6 +29,7 @@ namespace CustomIdentityProviderSample.CustomProvider
             }
             return IdentityResult.Failed(new IdentityError { Description = $"Could not insert user {user.Email}." });
         }
+#endregion
 
         public async Task<IdentityResult> DeleteAsync(ApplicationUser user)
         {

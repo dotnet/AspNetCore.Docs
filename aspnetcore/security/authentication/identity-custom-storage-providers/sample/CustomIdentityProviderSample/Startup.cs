@@ -40,10 +40,9 @@ namespace CustomIdentityProviderSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add identity types
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddDefaultTokenProviders();
-
-            services.AddMvc();
 
             // Identity Services
             services.AddTransient<IUserStore<ApplicationUser>, CustomUserStore>();
@@ -51,6 +50,8 @@ namespace CustomIdentityProviderSample
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddTransient<SqlConnection>(e => new SqlConnection(connectionString));
             services.AddTransient<DapperUsersTable>();
+
+            services.AddMvc();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
