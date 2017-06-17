@@ -32,7 +32,7 @@ In each of these cases, you can write a customized provider for your storage mec
 
 ASP.NET Core Identity is included in application templates in Visual Studio with the "Individual User Accounts" option.
 
-When using the dotnet CLI, add `-au Individual`:
+When using the .NET Core CLI, add `-au Individual`:
 
 ```
 dotnet new mvc -au Individual
@@ -126,7 +126,7 @@ When implementing a storage provider, create a user class which is equivalent to
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
-The `IdentityUser` class defines the properties that the ``UserManager`` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken> and specify a different type. The framework expects the storage implementation to handle data type conversions.
+The `IdentityUser` class defines the properties that the ``UserManager`` calls when performing requested operations. The default type of the `Id` property is a string, but you can inherit from `IdentityUser<TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>` and specify a different type. The framework expects the storage implementation to handle data type conversions.
 
 ## Customize the user store
 
@@ -209,7 +209,7 @@ The following is an example role class:
 
 ## Customize the role store
 
-You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the  <!--make all these links to the Identity Repo -->``RoleStore<TRole>`` class. In the RoleStore class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
+You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the  <!--make all these links to the Identity Repo -->``RoleStore<TRole>`` class. In the `RoleStore` class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
 
 The following class view diagram shows a role store class. The ``TRole`` generic parameter takes the type of the role class.
 <!-- I don't see how that view is helpful - wouldn't the default implementation of that class be more useful? -->
@@ -225,11 +225,11 @@ The following class view diagram shows a role store class. The ``TRole`` generic
 
 Once you have implemented a storage provider, you configure your app to use it. If your app used the default provider, replace it with your custom provider.
 
-1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity' NuGet package.
+1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity` NuGet package.
 1. If the storage provider resides in a separate project or package, add a reference to it.
-1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity' with a using statement for the namespace of your storage provider.
+1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity` with a using statement for the namespace of your storage provider.
 1. In the ``ConfigureServices`` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose.<!-- see (link to custom extension methods)-->
-1. If you are using Roles, update the `RoleManager` to use your RoleStore class.
+1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.
 
 Example:
