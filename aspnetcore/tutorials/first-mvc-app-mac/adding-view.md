@@ -15,19 +15,16 @@ uid: tutorials/first-mvc-app-mac/adding-view
 
 [!INCLUDE[adding-view](../../includes/mvc-intro/adding_view1.md)]
 
+## Add a view 
+
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
-
 * Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
+* In the **New File** dialog:
 
-* In the **Add New Item - MvcMovie** dialog
-
-  * In the search box in the upper-right, enter *view*
-
-  * Tap **MVC View Page**
-
-  * In the **Name** box, change the name if necessary to *Index.cshtml*.
-
-  * Tap **Add**
+  * Select **Web** in the left pane.
+  * Select **Empty HTML file** in the center pane.
+  * Type *Index.cshtml* in the **Name** box.
+  * Select **New**.
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
