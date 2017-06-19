@@ -152,7 +152,7 @@ In this section, run the web app and show the account confirmation and password 
 * Enter the email you used to register the account.
 * An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
 
-<a name=debug></a>
+<a name="debug"></a>
 
 ### Debug email
 
