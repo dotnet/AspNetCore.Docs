@@ -98,26 +98,10 @@ The *MyApp/Pages/Contact.cshtml* file:
 ```html
 @page
 @using MyApp
+@using MyApp.Pages
 @using Microsoft.AspNetCore.Mvc.RazorPages
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
-@inject ApplicationDbContext Db
-
-@functions {
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            return RedirectToPage();
-        }
-        
-        return Page();
-    }
-}
+@model ContactModel
 
 <html>
 <body>
@@ -130,6 +114,41 @@ The *MyApp/Pages/Contact.cshtml* file:
     </form>
 </body>
 </html>
+```
+
+The *MyApp/Pages/Contact.cshtml.cs* file:
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MyApp.Pages
+{
+    public class ContactModel : PageModel
+    {
+        public ContactModel(ApplicationDbContext db)
+        {
+            Db = db;
+        }
+
+        [BindProperty]
+        public Contact Contact { get; set; }
+        
+        private ApplicationDbContext Db { get; }
+    
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (ModelState.IsValid)
+            {
+                Db.Contacts.Add(Contact);
+                await Db.SaveChangesAsync();
+                return RedirectToPage();
+            }
+            
+            return Page();
+        }
+    }
+}
 ```
 
 The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. You most frequently use an `OnGet` handler to initialize any state a needed to show the HTML and `OnPost` to handle form submissions. The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
@@ -145,10 +164,6 @@ When the data is entered successfully, the `OnPostAsync` handler method calls th
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
 The `Contact` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Contacts.Name" />`) and accept the input.
-
-Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
-
-Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views - this generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
@@ -266,25 +281,7 @@ Here's what the page looks like after simplification:
 
 ```html
 @page
-@inject ApplicationDbContext Db
-
-@functions {
-
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            return RedirectToPage();
-        }
-        
-        return Page();
-    }
-}
+@model ContactModel
 
 <div class="row">
     <div class="col-md-3">
@@ -297,6 +294,41 @@ Here's what the page looks like after simplification:
         </form>
     </div>
 </div>
+```
+
+*MyApp/Pages/Contact.cshtml.cs*
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MyApp.Pages
+{
+    public class ContactModel : PageModel
+    {
+        public ContactModel(ApplicationDbContext db)
+        {
+            Db = db;
+        }
+
+        [BindProperty]
+        public Contact Contact { get; set; }
+        
+        private ApplicationDbContext Db { get; }
+    
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (ModelState.IsValid)
+            {
+                Db.Contacts.Add(Contact);
+                await Db.SaveChangesAsync();
+                return RedirectToPage();
+            }
+            
+            return Page();
+        }
+    }
+}
 ```
 
 ## URL generation for Pages
@@ -309,31 +341,7 @@ This example adds a confirmation message and redirects back to the home page:
 
 ```html
 @page
-@inject ApplicationDbContext Db
-
-@functions {
-
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    [TempData]
-    public string Message { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            
-            Message = "Thanks, we'll be in touch shortly.";
-            return RedirectToPage("/Index");
-        }
-        
-        return Page();
-    }
-}
-
+@model ContactModel
 
 <div class="row">
     <div class="col-md-3">
@@ -348,16 +356,51 @@ This example adds a confirmation message and redirects back to the home page:
 </div>
 ```
 
+*MyApp/Pages/Contact.cshtml.cs*
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MyApp.Pages
+{
+    public class ContactModel : PageModel
+    {
+        public ContactModel(ApplicationDbContext db)
+        {
+            Db = db;
+        }
+
+        [BindProperty]
+        public Contact Contact { get; set; }
+        
+        [TempData]
+        public string Message { get; set; }
+        
+        private ApplicationDbContext Db { get; }
+    
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (ModelState.IsValid)
+            {
+                Db.Contacts.Add(Contact);
+                await Db.SaveChangesAsync();
+
+                Message = "Thanks, we'll be in touch shortly.";
+                return RedirectToPage("/Index");
+            }
+            
+            return Page();
+        }
+    }
+}
+```
+
 *MyApp/Pages/Index.cshtml*
 
 ```html
 @page
-
-@functions {
-    [TempData]
-    public string Message { get; set; }
-}
-
+@model IndexModel
 
 <div class="row">
     <div class="col-md-3">
@@ -369,6 +412,22 @@ This example adds a confirmation message and redirects back to the home page:
         <p>Hi, welcome to our website!</p>
     </div>
 </div>
+```
+
+*MyApp/Pages/Index.cshtml.cs*
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MyApp.Pages
+{
+    public class ContactModel : PageModel
+    {
+        [TempData]
+        public string Message { get; set; }
+    }
+}
 ```
 
 We've  added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is the name of the page we just added, and can be used with `Url.Page(...)`, `<a asp-page="..." />` or `RedirectToPage`.
@@ -391,23 +450,8 @@ If you want one page to handle multiple logical actions, you can use *named hand
 
 ```html
 @page
-@inject ApplicationDbContext Db
+@model ContactModel
 
-@functions {
-
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostJoinMailingListAsync()
-    {
-        ...
-    }
-
-    public async Task<IActionResult> OnPostRequestQuoteAsync()
-    {
-        ...
-    }
-}
 <div class="row">
     <div class="col-md-3">
         <p>Enter your contact info here we will email you about our fine products! Or get a free quote!</p>
@@ -420,6 +464,37 @@ If you want one page to handle multiple logical actions, you can use *named hand
         </form>
     </div>
 </div>
+```
+
+*MyApp/Pages/Contact.cshtml.cs*
+
+```c#
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MyApp.Pages
+{
+    public class ContactModel : PageModel
+    {
+        public ContactModel(ApplicationDbContext db)
+        {
+            Db = db;
+        }
+
+        [BindProperty]
+        public Contact Contact { get; set; }
+        
+        public async Task<IActionResult> OnPostJoinMailingListAsync()
+        {
+            ...
+        }
+
+        public async Task<IActionResult> OnPostRequestQuoteAsync()
+        {
+            ...
+        }
+    }
+}
 ```
 
 The form in this example has two submit buttons, each using the new `FormActionTagHelper` in conjunction to submit to a different URL. The `asp-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
