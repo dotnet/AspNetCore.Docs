@@ -34,6 +34,4 @@ Name the controller **HelloWorldController**.
 
 >[!div class="step-by-step"]
 [Previous](../first-mvc-app/start-mvc.md)
-<!--
 [Next](adding-view.md)
--->
