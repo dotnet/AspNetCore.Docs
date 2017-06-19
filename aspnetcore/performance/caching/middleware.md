@@ -23,7 +23,7 @@ This document provides details on how to configure the Response Caching Middlewa
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or later. This feature is available for apps that target ASP.NET Core 1.1.0 or later.
 
 ## Configuration
-In `ConfgureServices`, add the middleware to your service collection.
+In `ConfigureServices`, add the middleware to your service collection.
 
 [!code-csharp[Main](middleware/sample/Startup.cs?name=snippet1)]
 
