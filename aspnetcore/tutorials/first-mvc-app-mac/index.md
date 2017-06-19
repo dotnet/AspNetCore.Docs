@@ -18,3 +18,4 @@ This series of tutorials teaches you the basics of building an ASP.NET Core MVC 
 
 1. [Getting started](start-mvc.md)
 1. [Adding a controller](adding-controller.md)
+1. [Adding a view](adding-view.md)
