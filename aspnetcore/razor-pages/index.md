@@ -167,6 +167,51 @@ The `Contact` property is using the new `[BindProperty]` attribute to opt-in to 
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
+### Combine view and model
+
+You can combine the view and model in the same file. You use `@functions` to define handlers, and add (`@inject`) for all your injected properties.
+
+*MyApp/Pages/Contact.cshtml*
+
+```html
+@page
+@using MyApp
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@inject ApplicationDbContext Db
+
+@functions {
+    [BindProperty]
+    public Contact Contact { get; set; }
+    
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (ModelState.IsValid)
+        {
+            Db.Contacts.Add(Contact);
+            await Db.SaveChangesAsync();
+            return RedirectToPage();
+        }
+        
+        return Page();
+    }
+}
+
+<html>
+<body>
+    <p>Enter your contact info here and we will email you about our fine products!</p> 
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+      <div>Name: <input asp-for="Contact.Name" /></div>
+      <div>Email: <input asp-for="Contact.Email" /></div>
+      <input type="submit" />
+    </form>
+</body>
+</html>
+```
+
+Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
+
 ## Introducing PageModel
 
 You could write this form by partitioning the view code and the handler method into separate files. The view code:
@@ -231,9 +276,7 @@ namespace MyApp.Pages
 }
 ```
 
-By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change is to add constructor injection for all your injected (`@inject`) properties.
-
-Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
+By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
 ## Using the view engine
 
@@ -484,6 +527,8 @@ namespace MyApp.Pages
         [BindProperty]
         public Contact Contact { get; set; }
         
+        private ApplicationDbContext Db { get; }
+        
         public async Task<IActionResult> OnPostJoinMailingListAsync()
         {
             ...
@@ -507,7 +552,6 @@ If you don't like seeing `?handler=RequestQuote` in the URL, you can change the 
 
 ```c#
 @page "{handler?}"
-@inject ApplicationDbContext Db
 
 ...
 ```
