@@ -1,6 +1,6 @@
 ---
 uid: visual-studio/index
-title: "Visual Studio | Microsoft Docs"
+title: "Visual Studio 2012 and 2013 with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: ""
 ms.author: aspnetcontent
@@ -13,7 +13,7 @@ ms.prod: .net-framework
 msc.legacyurl: /visual-studio
 msc.type: categoryindex
 ---
-# Visual Studio
+# Visual Studio 2012 and 2013 with ASP.NET
 
 For current information about Visual Studio, go to [visualstudio.com](https://www.visualstudio.com).
 
