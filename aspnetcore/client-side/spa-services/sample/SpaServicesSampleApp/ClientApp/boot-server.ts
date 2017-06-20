@@ -18,7 +18,7 @@ export default createServerRenderer(params => {
         const appRef = moduleRef.injector.get(ApplicationRef);
         const state = moduleRef.injector.get(PlatformState);
         const zone = moduleRef.injector.get(NgZone);
-        /*
+        
         return new Promise<RenderResult>((resolve, reject) => {
             zone.onError.subscribe(errorInfo => reject(errorInfo));
             appRef.isStable.first(isStable => isStable).subscribe(() => {
@@ -32,7 +32,7 @@ export default createServerRenderer(params => {
                 });
             });
         });
-        */
+        
         // Example of accessing arguments passed from the Tag Helper
         /*
         return new Promise<RenderResult>((resolve, reject) => {
@@ -53,7 +53,7 @@ export default createServerRenderer(params => {
         */
 
         // Example of attaching property to browser's "window" object
-        
+        /*
         return new Promise<RenderResult>((resolve, reject) => {
             const result = `<h1>Hello, ${params.data.userName}</h1>`;
 
@@ -75,6 +75,6 @@ export default createServerRenderer(params => {
                 });
             });
         });
-        
+        */
     });
 });
