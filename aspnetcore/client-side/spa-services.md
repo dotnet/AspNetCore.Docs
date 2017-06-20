@@ -33,7 +33,7 @@ SpaServices is not required to develop SPAs with ASP.NET Core. Since SpaServices
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server-side via Node.js and then delegate further execution to the client. SpaServices' Tag Helpers make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
 
-#### Tag Helpers
+### Tag Helpers
 
 SpaServices provides a suite of ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) to support the prerendering process. Using them requires installation of the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
@@ -47,7 +47,7 @@ These Tag Helpers abstract away the intricacies of communicating directly with l
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
-#### The asp-prerender-module Tag Helper
+### The asp-prerender-module Tag Helper
 
 The `asp-prerender-module` Tag Helper, used in the previous example, executes `ClientApp/dist/main-server.js` on the server via Node.js. To clarify, `main-server.js` file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the `ClientApp/boot-server.ts` file:
 
@@ -57,7 +57,7 @@ The `ClientApp/boot-server.ts` file utilizes the `createServerRenderer` function
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
-#### The asp-prerender-data Tag Helper
+### The asp-prerender-data Tag Helper
 
 Sometimes contextual information must be passed as arguments from the Razor view to the server-side JavaScript. To satisfy this requirement, the `asp-prerender-data` Tag Helper is used in conjunction with the aforementioned `asp-prerender-module` Tag Helper. For example, the following markup passes user data to the `main-server` module:
 
