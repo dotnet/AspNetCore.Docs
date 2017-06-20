@@ -172,7 +172,7 @@ For example, when publishing with a profile named *FolderProfile* you can execut
 - `dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 - `msbuild      /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 
-When you invoke `dotnet build` it will call `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when you pass in a folder profile. When calling MSBuild directly on Windows you get the full .NET Framework version of MSBuild.  MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
+When you invoke `dotnet build` it will call `msbuild` to run the build and publish process. Calling `dotnet build` or `msbuild` is essentially equivalent when you pass in a folder profile. When calling MSBuild directly on Windows you get the .NET Framework version of MSBuild.  MSDeploy is currently limited to Windows machines for publishing. Calling `dotnet build` on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling `dotnet build` on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.
 
 The following folder publish profile was created with Visual Studio and publishes to a network share:
 
@@ -188,7 +188,7 @@ Using MSBuild:
 
 ## Publish to an MSDeploy endpoint from the command line
 
-As previously mentioned, you can publish using `dotnet publish` or the `msbuild` command. `dotnet publish` runs in the context for of .NET Core. `msbuild` requires the full .NET framework, and is therefore limited to Windows environments.
+As previously mentioned, you can publish using `dotnet publish` or the `msbuild` command. `dotnet publish` runs in the context of .NET Core. `msbuild` requires .NET framework, and is therefore limited to Windows environments.
 
 The easiest way to publish with MSDeploy is to first create a publish profile in Visual Studio 2017 and use the profile from the command line.
 

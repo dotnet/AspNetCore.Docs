@@ -55,7 +55,7 @@ This topic includes the following sections:
 - [Storing group membership in Azure table storage](#storeazuretable)
 - [Verifying group membership when reconnecting](#verify)
 
-<a id="#add"></a>
+<a id="add"></a>
 
 ## Adding and removing users
 
@@ -73,7 +73,7 @@ If you want to add a client to a group and immediately send a message to the cli
 
 In general, you should not include `await` when calling the `Groups.Remove` method because the connection id that you are trying to remove might no longer be available. In that case, `TaskCanceledException` is thrown after the request times out. If your application must ensure that the user has been removed from the group before sending a message to the group, you can add `await` before Groups.Remove, and then catch the `TaskCanceledException` exception that might be thrown.
 
-<a id="#call"></a>
+<a id="call"></a>
 
 ## Calling members of a group
 

@@ -1,11 +1,11 @@
 ---
-title: Authoring Tag Helpers in ASP.NET Core | Microsoft Docs
+title: Authoring Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
 keywords: ASP.NET Core, tag helpers
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 6/14/2017
 ms.topic: article
 ms.assetid: 4f16d978-5695-4abf-a785-fdaabf3bbcb9
 ms.technology: aspnet
@@ -23,7 +23,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial provides an introduction to programming Tag Helpers. [Introduction to Tag Helpers](intro.md) describes the benefits that Tag Helpers provide.
 
-A tag helper is any class that implements the `ITagHelper` interface. However, when you author a tag helper, you generally derive from `TagHelper`, doing so gives you access to the `Process` method. We will introduce the `TagHelper` methods and properties as we use them in this tutorial.
+A tag helper is any class that implements the `ITagHelper` interface. However, when you author a tag helper, you generally derive from `TagHelper`, doing so gives you access to the `Process` method.
 
 1. Create a new ASP.NET Core project called **AuthoringTagHelpers**. You won't need authentication for this project.
 
@@ -31,7 +31,7 @@ A tag helper is any class that implements the `ITagHelper` interface. However, w
 
 ## A minimal Tag Helper
 
-In this section we will write a tag helper that updates an email tag. For example:
+In this section you write a tag helper that updates an email tag. For example:
 
 ```html
 <email>Support</email>
@@ -67,10 +67,10 @@ That is, an anchor tag that makes this an email link. You might want to do this 
     public class Email : TagHelper
     ```
 
-2.  To make the `EmailTagHelper` class available to all our Razor views, we will add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:
+2.  To make the `EmailTagHelper` class available to all our Razor views, add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:
     [!code-html[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
     
-    The code above uses the wildcard syntax to specify all the tag helpers in our assembly will be available. The first string after `@addTagHelper` specifies the tag helper to load (we are using "*" for all tag helpers), and the second string "AuthoringTagHelpers" specifies the assembly the tag helper is in. Also, note that the second line brings in the ASP.NET Core MVC tag helpers using the wildcard syntax (those helpers are discussed in [Introduction to Tag Helpers](intro.md).) It's the `@addTagHelper` directive that makes the tag helper available to the Razor view. Alternatively, you can provide the fully qualified name (FQN) of a tag helper as shown below:
+    The code above uses the wildcard syntax to specify all the tag helpers in our assembly will be available. The first string after `@addTagHelper` specifies the tag helper to load (Use "*" for all tag helpers), and the second string "AuthoringTagHelpers" specifies the assembly the tag helper is in. Also, note that the second line brings in the ASP.NET Core MVC tag helpers using the wildcard syntax (those helpers are discussed in [Introduction to Tag Helpers](intro.md).) It's the `@addTagHelper` directive that makes the tag helper available to the Razor view. Alternatively, you can provide the fully qualified name (FQN) of a tag helper as shown below:
     
     [!code-html[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
     
@@ -128,7 +128,7 @@ In this section we'll write an asynchronous email helper.
 
     * This version uses the asynchronous `ProcessAsync` method. The asynchronous `GetChildContentAsync` returns a `Task` containing the `TagHelperContent`.
 
-    * We use the `output` parameter to get contents of the HTML element.
+    * Use the `output` parameter to get contents of the HTML element.
 
 2.  Make the following change to the *Views/Home/Contact.cshtml* file so the tag helper can get the target email.
 
@@ -146,7 +146,7 @@ In this section we'll write an asynchronous email helper.
     
     * The `[HtmlTargetElement]` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the `Process` override method in the class will run. In our sample, the `Process`  method removes the "bold" attribute and surrounds the containing markup with `<strong></strong>`.
     
-    * Because we don't want to replace the existing tag content, we must write the opening `<strong>` tag with the `PreContent.SetHtmlContent` method and the closing `</strong>` tag with the `PostContent.SetHtmlContent` method.
+    * Because you don't want to replace the existing tag content, you must write the opening `<strong>` tag with the `PreContent.SetHtmlContent` method and the closing `</strong>` tag with the `PostContent.SetHtmlContent` method.
     
 2.  Modify the *About.cshtml* view to contain a `bold` attribute value. The completed code is shown below.
 
@@ -192,7 +192,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
     
     * As mentioned previously, tag helpers translates Pascal-cased C# class names and properties for tag helpers into [lower kebab case](http://c2.com/cgi/wiki?KebabCase). Therefore, to use the `WebsiteInformationTagHelper` in Razor, you'll write `<website-information />`.
     
-    * We are not explicitly identifying the target element with the `[HtmlTargetElement]` attribute, so the default of `website-information` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
+    * You are not explicitly identifying the target element with the `[HtmlTargetElement]` attribute, so the default of `website-information` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
     
     ```csharp
     [HtmlTargetElement("WebsiteInformation")]
@@ -204,7 +204,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
     [HtmlTargetElement("Website-Information")]
     ```
     
-    * Elements that are self-closing have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a [section](http://www.w3.org/TR/html5/sections.html#the-section-element) element (which is not self-closing and we are writing content inside the `section` element). Therefore, we need to set `TagMode` to `StartTagAndEndTag` to write output. Alternatively, you can comment out the line setting `TagMode` and write markup with a closing tag. (Example markup is provided later in this tutorial.)
+    * Elements that are self-closing have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a [section](http://www.w3.org/TR/html5/sections.html#the-section-element) element (which is not self-closing and you are writing content inside the `section` element). Therefore, you need to set `TagMode` to `StartTagAndEndTag` to write output. Alternatively, you can comment out the line setting `TagMode` and write markup with a closing tag. (Example markup is provided later in this tutorial.)
     
     * The `$` (dollar sign) in the following line uses an [interpolated string](https://msdn.microsoft.com/en-us/library/Dn961160.aspx):
     
@@ -270,7 +270,7 @@ The condition tag helper renders output when passed a true value.
 4.  Run the app and browse to the home page. The markup in the conditional `div` will not be rendered. Append the query string `?approved=true` to the URL (for example, `http://localhost:1235/Home/Index?approved=true`). `approved` is set to true and the conditional markup will be displayed.
 
 >[!NOTE]
->We use the [nameof](https://msdn.microsoft.com/en-us/library/dn986596.aspx) operator to specify the attribute to target rather than specifying a string as we did with the bold tag helper:
+>Use the [nameof](https://msdn.microsoft.com/en-us/library/dn986596.aspx) operator to specify the attribute to target rather than specifying a string as you did with the bold tag helper:
 >
 >[!code-csharp[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/zConditionTagHelperCopy.cs?highlight=1,2,5&range=5-18)]
 >
@@ -278,9 +278,9 @@ The condition tag helper renders output when passed a true value.
 
 ### Avoiding Tag Helper conflicts
 
-In this section, we will write a pair of auto-linking tag helpers. The first will replace markup containing a URL starting with HTTP to an HTML anchor tag containing the same URL (and thus yielding a link to the URL). The second will do the same for a URL starting with WWW.
+In this section, you write a pair of auto-linking tag helpers. The first will replace markup containing a URL starting with HTTP to an HTML anchor tag containing the same URL (and thus yielding a link to the URL). The second will do the same for a URL starting with WWW.
 
-Because these two helpers are closely related and we may refactor them in the future, we'll keep them in the same file.
+Because these two helpers are closely related and you may refactor them in the future, we'll keep them in the same file.
 
 1.  Add the following `AutoLinkerHttpTagHelper` class to the *TagHelpers* folder.
 
@@ -304,11 +304,11 @@ Because these two helpers are closely related and we may refactor them in the fu
     [!code-csharp[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs?highlight=5,6,10,21,22,26&range=8-37)]
 
     >[!NOTE]
-    >In the first edition of the auto-linking tag helpers, we got the content of the target with the following code:
+    >In the first edition of the auto-linking tag helpers, you got the content of the target with the following code:
     >
     >[!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs?range=12)]
     >
-    >That is, we call `GetChildContentAsync` using the `TagHelperOutput` passed into the `ProcessAsync` method. As mentioned previously, because the output is cached, the last tag helper to run wins. We fixed that problem with the following code:
+    >That is, you call `GetChildContentAsync` using the `TagHelperOutput` passed into the `ProcessAsync` method. As mentioned previously, because the output is cached, the last tag helper to run wins. You fixed that problem with the following code:
     >
     >[!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs?range=34-35)]
     >

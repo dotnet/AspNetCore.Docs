@@ -296,7 +296,7 @@ From the **Courses** menu, select **Update Credits**. The **Update Credits** pag
 
 Verify that an *Elmah* folder exists in the *c:\inetpub\wwwroot\ContosoUniversity* folder with only the placeholder file in it.
 
-<a id="efcfmigrations"></a>
+<a id="reviewingmigrations"></a>
 
 ## Review the automatic Web.config changes for Code First Migrations
 

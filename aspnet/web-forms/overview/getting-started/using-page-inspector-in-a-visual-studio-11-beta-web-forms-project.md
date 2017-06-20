@@ -92,6 +92,7 @@ The top pane of the Page Inspector window shows the current page in a browser wi
 
 In this tutorial, you will use the Page Inspector browser pane, and the **HTML** and **Styles** tabs to help you rapidly navigate and make changes to the application.
 
+<a id="_4_inspection_mode"></a>
 ## Enable Inspection Mode
 
 Next, you will see how Page Inspector's Inspection Mode works. In the Page Inspector window, click the **Inspect** button.

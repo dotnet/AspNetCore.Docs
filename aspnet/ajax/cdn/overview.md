@@ -1006,7 +1006,7 @@ The following releases of [getbootstrap.com](http://getbootstrap.com "getbootstr
 - http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings.png
 - http://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/img/glyphicons-halflings-white.png
 
-<a id="#BootstrapTouchCarousel_Releases_on_the_CDN_18"></a>
+<a id="BootstrapTouchCarousel_Releases_on_the_CDN_18"></a>
 
 ### Bootstrap TouchCarousel Releases on the CDN
 

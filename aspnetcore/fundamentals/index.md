@@ -43,7 +43,7 @@ public class Startup
 }
 ```
 
-* `ConfigureServices` defines the services (see [Services](#services) below) used by your app (such as the ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.)
+* `ConfigureServices` defines the services (see [Services](#services) below) used by your app (such as the ASP.NET Core MVC framework, Entity Framework Core, Identity, etc.)
 
 * `Configure` defines the [middleware](middleware.md) in the request pipeline
 

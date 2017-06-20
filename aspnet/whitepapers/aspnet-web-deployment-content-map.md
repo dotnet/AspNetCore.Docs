@@ -78,6 +78,7 @@ This topic contains the following sections:
 - [.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/) (Microsoft Azure site). 5-part tutorial series, shows how to create an MVC project and deploy it to a Windows Azure Cloud Service.
 
 
+<a id="package"></a>
 ## Deploying a web application by creating and installing a web deployment package
 
 - [How to: Create a Web Deployment Package in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465323.aspx)  (MSDN).

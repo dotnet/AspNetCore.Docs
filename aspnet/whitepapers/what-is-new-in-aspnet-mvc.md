@@ -145,11 +145,11 @@ ASP.NET MVC 2 supports using the RangeAttribute, RequiredAttribute, StringLength
 
 For more information, see [How to: Validate Model Data Using DataAnnotations Attributes](https://go.microsoft.com/fwlink/?LinkId=159063) on the MSDN Web site. A sample project that illustrates the use of these attributes is available for download at [https://go.microsoft.com/fwlink/?LinkId=157753](https://go.microsoft.com/fwlink/?LinkId=157753).
 
-### <a id="_TOC3_08"></a>  Model-Validator Providers
+### <a id="_TOC3_8"></a>  Model-Validator Providers
 
 The model-validation provider class represents an abstraction that provides validation logic for the model. ASP.NET MVC includes a default provider based on validation attributes that are included in the System.ComponentModel.DataAnnotations namespace. You can also create your own validation providers that define custom validation rules and custom mappings of validation rules to the model. For more information, see the documentation for the [ModelValidatorProvider](https://msdn.microsoft.com/en-us/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx) class.
 
-### <a id="_TOC3_09"></a>  Client-Side Validation
+### <a id="_TOC3_9"></a>  Client-Side Validation
 
 The model-validator provider class exposes validation metadata to the browser in the form of JSON-serialized data that can be consumed by a client-side validation library. ASP.NET MVC 2 includes a client validation library and adapter that supports the DataAnnotations namespace validation attributes noted earlier. The provider class also enables you to use other client-validation libraries by writing an adapter that processes the JSON data and calls into the alternate library.
 

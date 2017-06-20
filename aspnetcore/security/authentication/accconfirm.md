@@ -5,7 +5,7 @@ description: Shows how to build an ASP.NET Core app with email confirmation and 
 keywords: ASP.NET Core, password reset, email confirmation, security
 ms.author: riande
 manager: wpickett
-ms.date: 03/14/2017
+ms.date: 06/14/2017
 ms.topic: article
 ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
 ms.technology: aspnet
@@ -151,6 +151,16 @@ In this section, run the web app and show the account confirmation and password 
 * Select the **Log in** link and select the **Forgot your password?** link.
 * Enter the email you used to register the account.
 * An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
+
+<a name="debug"></a>
+
+### Debug email
+
+If you can't get email working:
+
+* Review the [Email Activity](https://sendgrid.com/docs/User_Guide/email_activity.html) page.
+* Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
+* Try sending to different email accounts.
 
 ## Prevent login at registration
 

@@ -119,7 +119,7 @@ The following code sends a PUT request to update a product.
 
 The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sends a PUT request instead of POST.
 
-<a id="#DeletingResource"></a>
+<a id="DeletingResource"></a>
 ## Sending a DELETE Request to Delete a Resource
 
 The following code sends a DELETE request to delete a product.
