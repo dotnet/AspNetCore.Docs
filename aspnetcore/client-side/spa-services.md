@@ -75,10 +75,7 @@ Data can be passed from the server to the view by hydrating the `globals` proper
 
 The `postList` array defined inside the `globals` object is attached to the browser's global `window` object. This capability eliminates duplication of effort, particularly as it pertains to loading the same data once on the server and again on the client.
 
-
-
-
-<<INSERT SCREENSHOT OF window.postList OUTPUT IN EDGE DEV TOOLS>>
+![global postList variable attached to window object](spa-services/_static/global_variable.png)
 
 ## Webpack middleware
 
