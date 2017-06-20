@@ -27,7 +27,7 @@ Add the following properties to the `Movie` class:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
-The `ID` field is required by the database for the primary key. 
+The `ID` field is required by the database for the primary key.
 
 Build the project to verify you don't have any errors. You now have a **M**odel in your **M**VC app.
 
