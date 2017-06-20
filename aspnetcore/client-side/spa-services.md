@@ -45,60 +45,40 @@ With the required packages installed, the Tag Helpers are made discoverable via 
 
 These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax within the Razor view:
 
-[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?highlight=5)]
+[!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
 #### The asp-prerender-module Tag Helper
 
-The `asp-prerender-module` Tag Helper executes `ClientApp/dist/main-server.js` on the server via Node.js. To clarify, `main-server.js` file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the `ClientApp/boot-server.ts` file:
+The `asp-prerender-module` Tag Helper, used in the previous example, executes `ClientApp/dist/main-server.js` on the server via Node.js. To clarify, `main-server.js` file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the `ClientApp/boot-server.ts` file:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
 The `ClientApp/boot-server.ts` file utilizes the `createServerRenderer` function and `RenderResult` type of the `aspnet-prerendering` npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a `resolve` function call, which is wrapped in a JavaScript `Promise` object of type `RenderResult`. The `Promise` object is significant in that it asynchronously supplies the HTML markup to the page for injection in the placeholder element.
 
-[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-)]
+[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
 #### The asp-prerender-data Tag Helper
 
 Sometimes contextual information must be passed as arguments from the Razor view to the server-side JavaScript. To satisfy this requirement, the `asp-prerender-data` Tag Helper is used in conjunction with the aforementioned `asp-prerender-module` Tag Helper. For example, the following markup passes user data to the `main-server` module:
 
-```html 
-<div id="my-spa" asp-prerender-module="ClientApp/dist/main-server" 
-                 asp-prerender-data='new { 
-                    UserName = "John Doe" 
-                 }'></div>
-```
+[!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 
-The received data is serialized using the built-in JSON serializer and is stored in the `params.data` object. The following is an example of using the data from the `param.data` object to construct some simple markup:
-[again, best to import a snippet from a working sample]
+The received `UserName` argument is serialized using the built-in JSON serializer and is stored in the `params.data` object. The data is used to construct a personalized greeting within an `h1` element:
 
-```javascript 
-var prerendering = require('aspnet-prerendering');
+[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-module.exports = prerendering.createServerRenderer(function (params) {
-    return new Promise(function (resolve, reject) {
-        var result = '<h1>Good Morning, ' + params.data.userName  + '!</h1>';
-        resolve({ html: result });
-    });
-});
-```
+Property names passed in the `asp-prerender-data` Tag Helper are represented with *PascalCase* notation. Contrast that to JavaScript, where the same property names are represented with *camelCase*. The default JSON serialization configuration is responsible for this difference.
 
-*PascalCase* notation is used for property names in the `asp-prerender-data` Tag Helper; however, in JavaScript they are used in **camelCase**. The default JSON serialization configuration is responsible for this difference.
+Data can be passed from the server to the view by hydrating the `globals` property passed to the `resolve` function:
 
-Data can be passed back to the view. ~While returning the `Promise` object that resolves markup, use the `globals` property to send data back to the view:~  Maybe something like, In the preceding code, the `Promise` object bla bla bla. The following code uses the `globals` property to send data to the view:
+[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,57-77,79-)]
 
-```javascript
-resolve({
-    html: result,
-    globals: {
-        postList: [
-            'Introduction to ASP.NET Core',
-            'Making apps with Angular and ASP.NET Core'
-        ]
-    }
-});
-```
+The `postList` array defined inside the `globals` object is attached to the browser's global `window` object. This capability eliminates duplication of effort, particularly as it pertains to loading the same data once on the server and again on the client.
 
-Each of the properties set inside the `globals` object will create individual, globally-accessible JavaScript variables with the same property names and associated values.
+
+
+
+<<INSERT SCREENSHOT OF window.postList OUTPUT IN EDGE DEV TOOLS>>
 
 ## Webpack middleware
 
