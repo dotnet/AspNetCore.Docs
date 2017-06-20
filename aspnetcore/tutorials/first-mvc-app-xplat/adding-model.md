@@ -18,7 +18,8 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
-   [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
