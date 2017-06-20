@@ -76,6 +76,20 @@ The scaffolding engine creates the following:
 
 The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
+### Add the files to Visual Studio
+
+* Add the *MovieController.cs* file to the Visual Studio project:
+
+  * Right-click on the *Controllers* folder and select **Add > Add Files**.
+  * Select the *MovieController.cs* file.
+
+* Add the *Movies* folder and views:
+
+  * Right-click on the *Views* folder and select **Add > Add Existing Folder**.
+  * Navigate to the *Views* folder, select *Views\Movies*, and then select **Open**.
+  * In the **Select files to add from Movies** dialog, select **Include All**, and then **OK**.
+
+
 ### Create the database
 
 You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
@@ -83,6 +97,8 @@ You'll call the `EnsureCreated` method to cause EF Core to create the database i
 This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model, you drop the database. The next time the app runs, EF Core creates a new database to match your new data model.
 
 This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
+<!-- todo - update link above with mac version -->
+
 
 Create a *Models\DBinitialize.cs* file and add the following code:
 
