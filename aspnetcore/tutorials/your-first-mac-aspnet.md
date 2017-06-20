@@ -1,7 +1,7 @@
 ---
 title: Build an ASP.NET Core app on a Mac or Linux using Visual Studio Code | Microsoft Docs
 author: spboyer
-description: This article will walk you through creating your first web application on a Mac using the dotnet CLI for ASP.NET Core and Visual Studio Code
+description: This article will walk you through creating your first web application on a Mac using the .NET Core CLI for ASP.NET Core and Visual Studio Code
 keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code, Linux, VS Code
 ms.author: riande
 manager: wpickett
