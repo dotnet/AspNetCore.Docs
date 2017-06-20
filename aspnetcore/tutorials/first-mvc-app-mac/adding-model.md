@@ -15,13 +15,13 @@ uid: tutorials/first-mvc-app-mac/adding-model
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
-* In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-* Right click the *Models* folder > **Add** > **New File**. 
+* In Solution Explorer, right-click the **MvcMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the *Models* folder, and then select **Add** > **New File**. 
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
   * Select **Empty Class** in the center pain.
-  * Name the class **Movie*** and select **New**
+  * Name the class **Movie** and select **New**.
 
 Add the following properties to the `Movie` class:
 
@@ -65,9 +65,10 @@ Open a terminal window in the project folder and run the following commands:
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
-
+<!--
 > [!NOTE]
 > If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
+-->
 
 The scaffolding engine creates the following:
 
