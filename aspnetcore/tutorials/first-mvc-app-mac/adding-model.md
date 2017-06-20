@@ -1,48 +1,57 @@
 ---
-title: Adding a model | Microsoft Docs
+title: Adding a model to an ASP.NET MVC Core app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, MVC, scaffold, scaffolding
 ms.author: riande
 manager: wpickett
 ms.date: 03/30/2017
 ms.topic: get-started-article
-ms.assetid: 8dc28498-eeee-4666-b903-b593059e9f39
+ms.assetid: 8dc28498-eeee-1638-b903-b593059e9f39
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: tutorials/first-mvc-app-xplat/adding-model
+uid: tutorials/first-mvc-app-mac/adding-model
 ---
 
-[!INCLUDE[adding-model1](../../includes/mvc-intro/adding-model1.md)]
+[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
-* Add a folder named *Models*.
-* Add a class to the *Models* folder named *Movie.cs*.
-* Add the following code to the *Models/Movie.cs* file:
+* In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+* Right click the *Models* folder > **Add** > **New File**. 
+* In the **New File** dialog:
+
+  * Select **General** in the left pane.
+  * Select **Empty Class** in the center pain.
+  * Name the class **Movie*** and select **New**
+
+Add the following properties to the `Movie` class:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
-Build the app to verify you don't have any errors, and you've finally added a **M**odel to your **M**VC app.
+Build the project to verify you don't have any errors. You now have a **M**odel in your **M**VC app.
 
 ## Prepare the project for scaffolding
 
+- Right click on the project file, and then select **Tools > Edit File**.
+
+  ![view of above step](adding-model/_static/1.png)
+
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,17-18,21-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie.csproj?highlight=5,14-21)]
 
-- Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
+- Save the file.
+
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
-
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
+   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Models/MvcMovieContext.cs)]
    
 - Open the *Startup.cs* file and add two usings:
-
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
+   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet1&highlight=1,2)]
 
 - Add the database context to the *Startup.cs* file:
 
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
+   [!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
 
   This tells Entity Framework which model classes are included in the data model. You're defining one *entity set* of Movie objects, which will be represented in the database as a Movie table.
 
@@ -118,11 +127,13 @@ Call the `EnsureCreated` method from the `Configure` method in the *Startup.cs* 
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
-### Additional resources
+## Additional resources
 
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
 >[!div class="step-by-step"]
-[Previous - Add a view](adding-view.md)
-[Next - Working with SQLite](working-with-sql.md)
+[Previous Adding a View](adding-view.md)
+<!--
+[Next Working with SQL](working-with-sql.md)  
+-->
