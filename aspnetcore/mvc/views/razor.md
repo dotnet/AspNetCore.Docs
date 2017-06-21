@@ -437,7 +437,7 @@ For example, if you create an ASP.NET Core MVC app with individual user accounts
 @model LoginViewModel
    ```
 
-In the class example in , the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
+In the preceding class example, the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
 
 ```csharp
 @model LoginViewModel
