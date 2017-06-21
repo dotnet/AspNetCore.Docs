@@ -1,4 +1,4 @@
-# Adding a model
+# Adding a model to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
 

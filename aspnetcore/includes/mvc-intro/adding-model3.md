@@ -10,13 +10,13 @@
 
 <a name=displayformatdatelocal></a>
 
-* In some locales you'll need to specify the date format. See the highlighted code below.
+* In some locales you need to specify the date format. See the highlighted code below.
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateFormat.cs?name=snippet_1&highlight=2,10)]
 
 We'll talk about `DataAnnotations` later in the tutorial.
 
-Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. You are then redirected to the */Movies* URL, where you can see the newly created movie in the listing.
+Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. The app redirects to the */Movies* URL, where the newly created movie information is displayed.
 
 ![Movies view showing newly created movie listing](../../tutorials/first-mvc-app/adding-model/_static/h.png)
 
@@ -44,7 +44,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code and richer [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx). The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
@@ -56,7 +56,7 @@ The `id` parameter is generally passed as route data. For example `http://localh
 * The action to `details` (the second URL segment).
 * The id to 1 (the last URL segment).
 
-You could also pass in the `id` with a query string as follows:
+You can also pass in the `id` with a query string as follows:
 
 `http://localhost:1234/movies/details?id=1`
 
@@ -101,4 +101,4 @@ The `@model` directive allows you to access the list of movies that the controll
 
 [!code-html[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) support in the code editor:
+Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code:

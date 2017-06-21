@@ -36,7 +36,9 @@ Later in the tutorial I'll show how you can view the HTTP response using [Postma
 The `[HttpGet]` attribute specifies an HTTP GET method. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller’s route attribute:
+
 [!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
+
 * Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is not case sensitive.
 * If the `[HttpGet]` attribute has a route template (such as `[HttpGet("/products")]`, append that to the path. This sample doesn't use a template. See [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes) for more information.
 
