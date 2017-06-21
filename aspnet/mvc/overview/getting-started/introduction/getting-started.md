@@ -23,7 +23,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > 
 > This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
 > 
-> Download the [completed project](https://github.com/Rick-Anderson/MvcMovie5).
+> <!-- Download the [completed project](https://github.com/Rick-Anderson/MvcMovie5). -->
 > 
 > This tutorial was written by [Scott Guthrie](https://weblogs.asp.net/scottgu/) (twitter[@scottgu](https://twitter.com/scottgu) ), [Scott Hanselman](http://www.hanselman.com/blog/) (twitter: [@shanselman](https://twitter.com/shanselman) ), and [Rick Anderson](https://twitter.com/RickAndMSFT) ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) )
 > 
