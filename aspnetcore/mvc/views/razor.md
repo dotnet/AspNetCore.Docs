@@ -71,7 +71,7 @@ With the exception of the C# `await` keyword implicit expressions must not conta
 
 ## Explicit Razor expressions
 
-Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last weeks’ time:
+Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last week's time:
 
 ```html
 <p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
