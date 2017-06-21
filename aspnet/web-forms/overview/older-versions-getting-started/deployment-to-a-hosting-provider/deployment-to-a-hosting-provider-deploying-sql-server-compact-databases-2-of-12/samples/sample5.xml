@@ -1,0 +1,8 @@
+<configuration>
+  <!-- Settings -->
+  <connectionStrings>
+    <add name="DefaultConnection" connectionString="Data Source=|DataDirectory|aspnet.sdf" providerName="System.Data.SqlServerCe.4.0" />
+    <add name="SchoolContext" connectionString="Data Source=|DataDirectory|School.sdf" providerName="System.Data.SqlServerCe.4.0" />
+  </connectionStrings>
+  <!-- Settings -->
+</configuration>

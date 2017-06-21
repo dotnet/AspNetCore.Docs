@@ -1,0 +1,35 @@
+@{
+Layout = "~/_MapLayout.cshtml";
+Assets.AddScript("~/Scripts/jquery-1.6.2.min.js");
+}
+
+<div id="navigation">
+<h3>Map a set of coordinates:</h3>
+<form method="post" action="" id="coordinates">
+<fieldset>
+<div>
+	<label for="latitude">Latitude:&nbsp;&nbsp;&nbsp;</label>
+	<input type="text"  name="latitude" value="@Request["latitude"]"/>
+</div>
+<div>
+	<label for="longitude">Longitude:</label>
+	<input type="text" name="longitude" value="@Request["longitude"]"/>
+</div>
+<div>
+	<input type="submit" value="Map It!" />
+</div>
+</fieldset>
+</form>
+</div>
+<div id="content">
+@if(IsPost) {
+var theLatitude = Request["latitude"];
+var theLongitude = Request["longitude"];
+@Maps.GetBingHtml("Ag6C5Ci9VUGz9AIhQyJ7YNwGraanqwy5-V3LK1qGDpdEVPV-MUPBryG18ELoC6g6",
+	"",
+	theLatitude,
+	theLongitude,
+	width: "800",
+	height: "800")
+}
+</div>

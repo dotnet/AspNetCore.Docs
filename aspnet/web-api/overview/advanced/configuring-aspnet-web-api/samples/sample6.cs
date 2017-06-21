@@ -1,0 +1,1 @@
+config.Services.Replace(typeof(ITraceWriter), new MyTraceWriter());

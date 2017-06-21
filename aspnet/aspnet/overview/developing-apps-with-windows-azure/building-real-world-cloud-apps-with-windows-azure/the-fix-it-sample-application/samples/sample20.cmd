@@ -1,0 +1,1 @@
+PS C:\> Set-ExecutionPolicy RemoteSigned

@@ -1,0 +1,53 @@
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+  - name: ASP.NET
+    tocHref: /aspnet/
+    topicHref: /aspnet/index
+    items:
+    - name: ASP.NET AJAX
+      tocHref: /aspnet/ajax/
+      topicHref: /aspnet/ajax/index
+    - name: ASP.NET Best Practices
+      tocHref: /aspnet/aspnet/overview/web-development-best-practices/
+      topicHref: /aspnet/aspnet/overview/web-development-best-practices/index
+    - name: OWIN and Katana
+      tocHref: /aspnet/aspnet/overview/owin-and-katana/
+      topicHref: /aspnet/aspnet/overview/owin-and-katana/index
+    - name: ASP.NET Identity
+      tocHref: /aspnet/identity/
+      topicHref: /aspnet/identity/index
+    - name: ASP.NET Mobile
+      tocHref: /aspnet/mobile/
+      topicHref: /aspnet/mobile/index
+    - name: ASP.NET MVC
+      tocHref: /aspnet/mvc/
+      topicHref: /aspnet/mvc/index
+    - name: ASP.NET SignalR
+      tocHref: /aspnet/signalr/
+      topicHref: /aspnet/signalr/index
+    - name: ASP.NET SPA
+      tocHref: /aspnet/single-page-application/
+      topicHref: /aspnet/single-page-application/index
+    - name: ASP.NET and Visual Studio
+      tocHref: /aspnet/visual-studio/
+      topicHref: /aspnet/visual-studio/index
+    - name: ASP.NET Web API
+      tocHref: /aspnet/web-api/
+      topicHref: /aspnet/web-api/index
+    - name: ASP.NET Web Forms
+      tocHref: /aspnet/web-forms/
+      topicHref: /aspnet/web-forms/index
+    - name: ASP.NET Web Pages
+      tocHref: /aspnet/web-pages/
+      topicHref: /aspnet/web-pages/index
+    - name: ASP.NET WebHooks
+      tocHref: /aspnet/webhooks/
+      topicHref: /aspnet/webhooks/index
+    - name: ASP.NET Whitepapers
+      tocHref: /aspnet/whitepapers/
+      topicHref: /aspnet/whitepapers/index
+    - name: ASP.NET Core
+      tocHref: /aspnet/core/
+      topicHref: /aspnet/core/intro

@@ -1,0 +1,7 @@
+<system.web.extensions> 
+ <scripting>
+ <webServices>
+ <authenticationService enabled="true" /> 
+ </webServices>
+ </scripting> 
+</system.web.extensions>

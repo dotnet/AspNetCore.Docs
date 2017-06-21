@@ -1,0 +1,1 @@
+[assembly: OwinStartup(typeof(StartupDemo.TestStartup))]

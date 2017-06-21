@@ -1,0 +1,4 @@
+<FunctionImport Name="RateProduct" m:IsAlwaysBindable="true" IsBindable="true" ReturnType="Edm.Double">
+  <Parameter Name="bindingParameter" Type="ProductService.Models.Product"/>
+  <Parameter Name="Rating" Nullable="false" Type="Edm.Int32"/>
+</FunctionImport>

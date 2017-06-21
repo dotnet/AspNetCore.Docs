@@ -1,0 +1,55 @@
+<script type="text/javascript">
+    (function ($) {
+        var authorizeUri = '@(Paths.AuthorizationServerBaseAddress + Paths.AuthorizePath)';
+        var tokenUri = '@(Paths.AuthorizationServerBaseAddress + Paths.TokenPath)';
+        var apiUri = '@(Paths.ResourceServerBaseAddress + Paths.MePath)';
+        var returnUri = '@Paths.ImplicitGrantCallBackPath';
+
+        $('#Authorize').click(function () {
+            var nonce = 'my-nonce';
+
+            var uri = addQueryString(authorizeUri, {
+                'client_id': '7890ab',
+                'redirect_uri': returnUri,
+                'state': nonce,
+                'scope': 'bio notes',
+                'response_type': 'token',
+            });
+
+            window.oauth = {};
+            window.oauth.signin = function (data) {
+                if (data.state !== nonce) {
+                    return;
+                }
+
+                $('#AccessToken').val(data.access_token);
+            }
+
+            window.open(uri, 'Authorize', 'width=640,height=480');
+        });
+
+        $('#CallApi').click(function () {
+            $.ajax(apiUri, {
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + $('#AccessToken').val());
+                },
+                dataType: 'text',
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    $('#output').text(data);
+                }
+            });
+        });
+
+        function addQueryString(uri, parameters) {
+            var delimiter = (uri.indexOf('?') == -1) ? '?' : '&';
+            for (var parameterName in parameters) {
+                var parameterValue = parameters[parameterName];
+                uri += delimiter + encodeURIComponent(parameterName) + '=' + encodeURIComponent(parameterValue);
+                delimiter = '&';
+            }
+            return uri;
+        }
+    })(jQuery);
+</script>

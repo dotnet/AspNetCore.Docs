@@ -1,0 +1,26 @@
+@model MvcMobile.Models.Session
+
+@{
+    ViewBag.Title = "Session details";
+}
+<h2>@Model.Title</h2>
+<p>
+    <strong>@Model.DateText</strong> in <strong>@Model.Room</strong>
+</p>
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Speakers</li>
+    @foreach (var speaker in Model.Speakers) {
+        <li>@Html.ActionLink(speaker, "SessionsBySpeaker", new { speaker })</li>
+    }
+</ul>
+
+<p>@Model.Description</p>
+<h4>Code: @Model.Code</h4>
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Tags</li>
+    @foreach (var tag in Model.Tags) {
+        <li>@Html.ActionLink(tag, "SessionsByTag", new { tag })</li>
+    }
+</ul>

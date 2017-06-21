@@ -1,0 +1,50 @@
+@{
+    Layout = "~/_Layout.cshtml";
+
+    var db = Database.Open("WebPagesMovies") ;
+    var selectCommand = "SELECT * FROM Movies";
+    var searchTerm = "";
+
+    if(!Request.QueryString["searchGenre"].IsEmpty() ) {
+        selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
+        searchTerm = Request.QueryString["searchGenre"];
+    }
+
+    if(!Request.QueryString["searchTitle"].IsEmpty() ) {
+      selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
+      searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
+    }
+
+    var selectedData = db.Query(selectCommand, searchTerm);
+    var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
+}
+  <h2>List Movies</h2>
+  <form method="get">
+    <div>
+      <label for="searchGenre">Genre to look for:</label>
+      <input type="text" name="searchGenre"
+         value="@Request.QueryString["searchGenre"]" />
+      <input type="Submit" value="Search Genre" /><br/>
+      (Leave blank to list all movies.)<br/>
+    </div>
+    <div>
+       <label for="SearchTitle">Movie title contains the following:</label>
+       <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
+       <input type="Submit" value="Search Title" /><br/>
+    </div>
+  </form>
+  <div>
+    @grid.GetHtml(
+        tableStyle: "grid",
+        headerStyle: "head",
+        alternatingRowStyle: "alt",
+        columns: grid.Columns(
+            grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
+            grid.Column("Title"),
+            grid.Column("Genre"),
+            grid.Column("Year"),
+            grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
+       )
+    )
+  </div>
+  <p><a href="~/AddMovie">Add a movie</a></p>

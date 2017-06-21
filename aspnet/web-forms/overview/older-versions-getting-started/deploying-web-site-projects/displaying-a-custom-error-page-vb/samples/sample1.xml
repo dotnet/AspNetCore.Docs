@@ -1,0 +1,10 @@
+<configuration>
+    ...
+
+    <system.web>
+        <customErrors mode="RemoteOnly"
+                      defaultRedirect="~/ErrorPages/Oops.aspx" />
+
+        ...
+    </system.web>
+</configuration>

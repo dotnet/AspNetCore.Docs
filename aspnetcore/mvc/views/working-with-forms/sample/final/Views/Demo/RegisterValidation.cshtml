@@ -1,0 +1,16 @@
+﻿@model RegisterViewModel
+
+<form asp-controller="Demo" asp-action="RegisterValidation" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    Email:  <input asp-for="Email" /> <br />
+    <span asp-validation-for="Email"></span><br />
+    Password: <input asp-for="Password" /><br />
+    <span asp-validation-for="Password"></span><br />
+    <button type="submit">Register</button>
+</form>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js">
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js">
+</script>

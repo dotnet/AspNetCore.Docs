@@ -1,4 +1,0 @@
-.. include:: /../common/stub-topic.txt
-
-.. note::
-    This documentation is a work in progress. Topics marked with a |stub-icon| are placeholders that have not been written yet. You can track the status of these topics through our public documentation `issue tracker <https://github.com/aspnet/docs/issues>`_. Learn how you can `contribute <https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md>`_ on GitHub.

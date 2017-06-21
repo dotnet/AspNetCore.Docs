@@ -1,0 +1,6 @@
+myHub.server.send("<script>")
+            .fail(function (e) {
+                if (e.source === 'HubException') {
+                    console.log(e.message + ' : ' + e.data.user);
+                }
+            });

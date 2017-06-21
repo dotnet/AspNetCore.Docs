@@ -1,0 +1,5 @@
+<add assembly="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, 
+     PublicKeyToken=31BF3856AD364E35" />
+
+<add assembly="System.Web.Helpers, Version=1.0.0.0, Culture=neutral,
+     PublicKeyToken=31BF3856AD364E35" />

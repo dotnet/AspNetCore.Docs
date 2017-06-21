@@ -1,0 +1,7 @@
+@if(IsPost) {
+    // This line has all content between matched <p> tags.
+    <p>Hello, the time is @DateTime.Now and this page is a postback!</p>
+} else {
+    // All content between matched tags, followed by server code.
+    <p>Hello <em>stranger</em>, today is: <br /> </p>  @DateTime.Now
+}

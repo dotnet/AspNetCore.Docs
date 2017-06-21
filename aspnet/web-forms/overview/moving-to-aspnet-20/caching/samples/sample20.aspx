@@ -1,0 +1,1 @@
+<%@ OutputCache SqlDependency="Northwind:Products" Duration="480" VaryByParam="None"%>

@@ -1,0 +1,1 @@
+$.post('api/updates/postlist', { "": ["update one", "update two", "update three"] });

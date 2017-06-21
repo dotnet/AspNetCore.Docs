@@ -1,0 +1,14 @@
+<Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">
+  <PropertyGroup>
+    <_WhatIfSwitch>/Y</_WhatIfSwitch>
+    <_WhatIfSwitch Condition=" '$(WhatIf)'=='true' ">/T</_WhatIfSwitch>
+    <_Cmd>%(PublishPackages.FullPath) $(_WhatifSwitch)  
+         /M:$(MSDeployComputerName) 
+         /U:$(MSDeployUsername) 
+         /P:$(MSDeployPassword) 
+         /A:$(MSDeployAuth) 
+         %(PublishPackages.AdditionalMSDeployParameters)
+    </_Cmd>
+  </PropertyGroup>
+  <Exec Command="$(_Cmd)"/>
+</Target>

@@ -1,0 +1,7 @@
+<connectionStrings>
+  <add name="ApplicationServices"
+       connectionString="Data Source=.\SQLEXPRESS;
+                         Integrated Security=true;
+                         Initial Catalog=CMAppServices"
+       providerName="System.Data.SqlClient" />
+</connectionStrings>

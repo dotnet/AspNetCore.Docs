@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8" />
+   <title>Edit a Movie</title>
+    <style>
+      .validation-summary-errors{
+        border:2px dashed red;
+        color:red;
+        font-weight:bold;
+        margin:12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit a Movie</h1>
+    @Html.ValidationSummary()
+    <form method="post">
+      <fieldset>
+        <legend>Movie Information</legend>
+
+        <p><label for="title">Title:</label>
+           <input type="text" name="title" value="@title" /></p>
+
+        <p><label for="genre">Genre:</label>
+           <input type="text" name="genre" value="@genre" /></p>
+
+        <p><label for="year">Year:</label>
+           <input type="text" name="year" value="@year" /></p>
+
+        <input type="hidden" name="movieid" value="@movieId" />
+
+        <p><input type="submit" name="buttonSubmit" value="Submit Changes" /></p>
+      </fieldset>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<system.net>
+        <mailSettings>
+            <smtp>
+                <network
+                     host="mail..com"
+                     port="25"
+                     userName=""
+                     password="" />
+            </smtp>
+        </mailSettings>
+    </system.net>

@@ -1,0 +1,1 @@
+$(".chzn-select")

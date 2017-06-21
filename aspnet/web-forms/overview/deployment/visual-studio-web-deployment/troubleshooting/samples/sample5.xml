@@ -1,0 +1,4 @@
+<connectionStrings>
+  <add name="DefaultConnection" connectionString="$(ReplacableToken_DefaultConnection-Web.config Connection String_0)" providerName="System.Data.SqlServerCe.4.0" />
+  <add name="SchoolContext" connectionString="$(ReplacableToken_SchoolContext-Web.config Connection String_0)" providerName="System.Data.SqlServerCe.4.0" />
+</connectionStrings>

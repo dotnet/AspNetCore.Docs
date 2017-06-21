@@ -1,0 +1,23 @@
+<ItemGroup>
+  <PublishPackages Include="$(_ContactManagerDest)ContactManager.Mvc.deploy.cmd"> 
+    <ParametersXml>
+      $(_ContactManagerDest)ContactManager.Mvc.SetParameters.xml
+    </ParametersXml>
+    <IisWebAppName>
+      $(ContactManagerIisPath)
+    </IisWebAppName> 
+    <MembershipDBConnectionName>
+      ApplicationServices-Web.config Connection String
+    </MembershipDBConnectionName>
+    <MembershipDBConnectionString>
+      $(MembershipConnectionString.Replace(";","%3b"))
+    </MembershipDBConnectionString>
+    <ServiceEndpointParamName>
+      ContactService Service Endpoint Address
+    </ServiceEndpointParamName>
+    <ServiceEndpointValue>
+      $(ContactManagerTargetUrl)
+    </ServiceEndpointValue>
+  </PublishPackages>
+  ...
+</ItemGroup>

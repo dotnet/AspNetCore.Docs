@@ -1,0 +1,10 @@
+@helper MakeNote(string content, string noteid) {
+Assets.AddScript("~/Scripts/Test.js");
+
+<div id="@noteid" style="border: 1px solid black; width: 90%; padding: 5px; margin-left: 15px;"
+ onmouseover="UpdateNoteStyle('@noteid')" onmouseout="ReturnNoteStyle('@noteid')">
+  <p>
+  <strong>Note</strong>&nbsp;&nbsp; @content
+   </p>
+</div>
+}

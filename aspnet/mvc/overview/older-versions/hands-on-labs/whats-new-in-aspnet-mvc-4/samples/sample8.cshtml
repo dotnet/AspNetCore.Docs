@@ -1,0 +1,16 @@
+@model List<PhotoGallery.Models.Photo>
+@{
+    ViewBag.Title = "Photo Gallery";
+}
+
+<ul class="thumbnails">
+    @foreach (var photo in Model)
+    {
+        <li class="item">
+            <a href="@Url.Content("~/photos/" + photo.FileName)">
+                <img alt="@photo.Description" src="@Url.Content("~/photos/" + photo.FileName)" class="thumbnail-border" width="180" />
+            </a>
+                <span class="image-overlay">@photo.Title</span>
+        </li>
+    }
+</ul>

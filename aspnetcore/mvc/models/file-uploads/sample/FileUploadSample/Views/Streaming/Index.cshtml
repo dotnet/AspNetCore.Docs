@@ -1,0 +1,63 @@
+﻿@model FileUploadSample.Models.User
+@{
+    ViewData["Title"] = "Upload files";
+}
+
+<h2>Upload files using Ajax and multipart/form-data</h2>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <ul>
+            <li id="errorMessages" class="error" data-ng-repeat="e in errors">
+                {{e}}
+            </li>
+        </ul>
+        <div>
+            <div>
+                <label for="Name">Name</label>
+                <div>
+                    <input type="text" name="Name" ng-model="name"/>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <label for="Age">Age</label>
+                <div>
+                    <input type="text" name="Age" ng-model="age"/>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <label for="Zipcode">Zipcode</label>
+                <div>
+                    <input type="text" name="Zipcode" ng-model="zipCode"/>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <label for="CurriculumVitae">Curriculum Vitae</label>
+                <div>
+                    <input name="CurriculumVitae" type="file" file-model="curriculumVitae"/>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <button ng-click="createUser()">Create User</button>
+            </div>
+            <br/>
+            <div ng-show="showUploadStatus">
+                <b><span ng-bind="uploadStatus"></span></b>
+            </div>
+            <div ng-show="showUploadedData">
+                <b>Name:</b> <span ng-bind="uploadedData.name"></span><br/>
+                <b>Age:</b><span ng-bind="uploadedData.age"></span><br/>
+                <b>Zipcode:</b> <span ng-bind="uploadedData.zipcode"></span><br/>
+                <b>File:</b> <span ng-bind="uploadedData.filePath"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="~/js/app.js"></script>
+}

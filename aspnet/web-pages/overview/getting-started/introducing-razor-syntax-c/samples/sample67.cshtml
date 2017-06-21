@@ -1,0 +1,57 @@
+@{
+    var dataFilePath = "~/dataFile.txt";
+    var fileContents = "";
+    var physicalPath = Server.MapPath(dataFilePath);
+    var userMessage = "Hello world, the time is " + DateTime.Now;
+    var userErrMsg = "";
+    var errMsg = "";
+
+    if(IsPost)
+    {
+        // When the user clicks the "Open File" button and posts
+        // the page, try to open the created file for reading.
+        try {
+            // This code fails because of faulty path to the file.
+            fileContents = File.ReadAllText(@"c:\batafile.txt");
+
+            // This code works. To eliminate error on page,
+            // comment the above line of code and uncomment this one.
+            //fileContents = File.ReadAllText(physicalPath);
+        }
+        catch (FileNotFoundException ex) {
+            // You can use the exception object for debugging, logging, etc.
+            errMsg = ex.Message;
+            // Create a friendly error message for users.
+            userErrMsg = "A file could not be opened, please contact "
+                + "your system administrator.";
+        }
+        catch (DirectoryNotFoundException ex) {
+            // Similar to previous exception.
+            errMsg = ex.Message;
+            userErrMsg = "A directory was not found, please contact "
+                + "your system administrator.";
+        }
+    }
+    else
+    {
+        // The first time the page is requested, create the text file.
+        File.WriteAllText(physicalPath, userMessage);
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Try-Catch Statements</title>
+    </head>
+    <body>
+    <form method="POST" action="" >
+      <input type="Submit" name="Submit" value="Open File"/>
+    </form>
+
+    <p>@fileContents</p>
+    <p>@userErrMsg</p>
+
+    </body>
+</html>

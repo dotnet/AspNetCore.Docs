@@ -1,0 +1,7 @@
+<system.webServer>
+    <security>
+        <access sslFlags="Ssl, SslNegotiateCert" />
+        <!-- To require a client cert: -->
+        <!-- <access sslFlags="Ssl, SslRequireCert" /> -->
+    </security>
+</system.webServer>

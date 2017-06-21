@@ -1,0 +1,6 @@
+/* hide back of pane during flip */
+.front, .back {
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}

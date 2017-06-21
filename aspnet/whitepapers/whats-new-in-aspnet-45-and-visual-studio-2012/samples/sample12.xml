@@ -1,0 +1,3 @@
+<system.web>
+ <compilation targetframework="4.5" debug="true" />
+ ...</system.web>

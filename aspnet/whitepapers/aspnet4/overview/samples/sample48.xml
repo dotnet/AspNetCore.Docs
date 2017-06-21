@@ -1,0 +1,3 @@
+<system.web> 
+  <pages clientIDMode="Predictable"></pages> 
+</system.web>

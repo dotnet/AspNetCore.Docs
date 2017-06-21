@@ -1,0 +1,29 @@
+<configuration>
+    <system.web>
+        ...
+
+        <membership defaultProvider="ReviewMembership">
+            <providers>
+                <clear />
+
+                <add type="System.Web.Security.SqlMembershipProvider" 
+                     name="ReviewMembership" 
+                     connectionStringName="ReviewsConnectionString" 
+                     applicationName="BookReviews" />
+            </providers>
+        </membership>
+
+        <roleManager enabled="true" defaultProvider="ReviewRole">
+            <providers>
+                <clear />
+
+                <add type="System.Web.Security.SqlRoleProvider" 
+                     name="ReviewRole" 
+                     connectionStringName="ReviewsConnectionString" 
+                     applicationName="BookReviews" />
+            </providers>
+        </roleManager>
+
+        ...
+    </system.web>
+</configuration>

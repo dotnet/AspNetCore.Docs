@@ -1,0 +1,6 @@
+<healthMonitoring>
+    <rules>
+        <add name="All Events" eventName="All Events"
+             provider="EventLogProvider" profile="Critical" />
+    </rules>
+</healthMonitoring>

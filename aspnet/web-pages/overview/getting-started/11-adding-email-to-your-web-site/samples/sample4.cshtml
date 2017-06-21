@@ -1,0 +1,55 @@
+@{
+    var customerName = Request["customerName"];
+    var customerEmail = Request["customerEmail"]; 
+    var customerRequest = Request["customerRequest"];
+    var subjectLine = Request["subjectLine"];
+    var fileAttachment = Request["fileAttachment"];
+    var errorMessage = "";
+    var debuggingFlag = false;
+
+    try {
+        // Initialize WebMail helper
+        WebMail.SmtpServer = "your-SMTP-host";
+        WebMail.SmtpPort = 25;
+        WebMail.UserName = "your-user-name-here";
+        WebMail.Password = "your-account-password";
+        WebMail.From = "your-email-address-here";
+
+        // Create array containing file name
+        var filesList = new string [] { fileAttachment };
+
+        // Attach file and send email
+        WebMail.Send(to: customerEmail,
+            subject: subjectLine,
+            body: "File attached. <br />From: " + customerName,
+            filesToAttach: filesList);
+    }
+    catch (Exception ex ) {
+        errorMessage = ex.Message;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request for Assistance</title>
+</head>
+<body>
+  <p>Sorry to hear that you are having trouble, <b>@customerName</b>.</p>
+    @if(errorMessage == ""){
+        <p><b>@customerName</b>, thank you for your interest.</p>
+        <p>An email message has been sent to our customer service
+           department with the <b>@fileAttachment</b> file attached.</p>
+    }
+    else{
+        <p><b>The email was <em>not</em> sent.</b></p>
+        <p>Please check that the code in the ProcessRequest page has 
+           correct settings for the SMTP server name, a user name, 
+           a password, and a "from" address.
+        </p>
+        if(debuggingFlag){
+            <p>The following error was reported:</p>
+            <p><em>@errorMessage</em></p>
+        }
+    }
+</body>
+</html>

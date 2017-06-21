@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")"
+rel="stylesheet" 
+        type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")"
+        type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <h1><a href="/">ASP.NET MVC MUSIC
+STORE</a></h1>
+        <ul id="navlist">
+            <li class="first">
+                <a href="@Url.Content("~")" id="current">
+                    Home</a></li>
+            <li><a href="@Url.Content("~/Store/")">Store</a></li>
+            <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+            <li><a href="@Url.Content("~/StoreManager/")">
+                    Admin</a></li>
+        </ul>        
+    </div>
+    @{Html.RenderAction("GenreMenu", "Store");}
+    <div id="main">
+        @RenderBody()
+    </div>
+    <div id="footer">
+        built with <a href="http://asp.net/mvc">ASP.NET MVC 3</a>
+    </div>
+</body>
+</html>

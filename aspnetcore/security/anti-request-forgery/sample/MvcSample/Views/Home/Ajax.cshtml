@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "AJAX Demo";
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<div class="row">
+    <input type="button" id="antiforgery" value="Antiforgery" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+    <script>
+                $("#antiforgery").click(function () {
+                    $.ajax({
+                        type: "post",
+                        dataType: "html",
+                        headers:
+                        {
+                            "RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+                        },
+                        url: '@Url.Action("Antiforgery", "Home")',
+                        success: function (result) {
+                            alert(result);
+                        },
+                        error: function (err, scnd) {
+                            alert(err.statusText);
+                        }
+                    });
+                });
+    </script>
+</div>

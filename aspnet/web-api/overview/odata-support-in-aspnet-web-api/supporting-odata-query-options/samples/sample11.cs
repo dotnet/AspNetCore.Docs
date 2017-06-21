@@ -1,0 +1,1 @@
+[Queryable(AllowedArithmeticOperators=AllowedArithmeticOperators.None)]

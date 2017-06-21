@@ -1,0 +1,13 @@
+<authentication mode="Forms">
+
+  <forms
+
+  cookieless="UseUri"
+
+  slidingExpiration="true"
+
+  timeout="60"
+
+  />
+
+</authentication>

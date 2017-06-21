@@ -1,0 +1,9 @@
+<system.webServer>
+    <rewrite>
+        <rules>
+            <rule name="redirect-images" stopProcessing="true">
+                <match url="img/(.*)"/>
+                <action type="Redirect" url="http://[YOUR-STORAGE-ACCOUNT].blob.core.windows.net/images/{R:1}"></action>
+            </rule>
+        </rules>
+    </rewrite>

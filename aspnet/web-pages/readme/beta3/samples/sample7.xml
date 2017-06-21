@@ -1,0 +1,3 @@
+<system.webServer>
+  <modules runAllManagedModulesForAllRequests="true"/>
+</system.webServer>

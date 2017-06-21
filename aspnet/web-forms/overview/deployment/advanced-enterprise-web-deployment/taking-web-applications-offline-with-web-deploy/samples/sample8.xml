@@ -1,0 +1,11 @@
+<Project ToolsVersion="4.0" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="AddAppOfflineToPackage"
+          BeforeTargets="CopyAllFilesToSingleFolderForPackage">
+    <ItemGroup>   
+      <FilesForPackagingFromProject Include="App_offline-template.htm">
+        <DestinationRelativePath>App_offline.htm</DestinationRelativePath>
+    </FilesForPackagingFromProject>
+  </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,1 @@
+self.error = ko.observable();

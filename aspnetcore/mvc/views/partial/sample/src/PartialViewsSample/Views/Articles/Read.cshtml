@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using PartialViewsSample.ViewModels
+@model Article
+
+<h2>@Model.Title</h2>
+@*Pass the authors name to Views\Shared\AuthorPartial.cshtml*@
+@Html.Partial("AuthorPartial", Model.AuthorName)
+@Model.PublicationDate
+
+@*Loop over the Sections and pass in a section and additional ViewData
+    to the strongly typed Views\Articles\ArticleSection.cshtml partial view.*@
+@{ var index = 0;
+    @foreach (var section in Model.Sections)
+    {
+        @Html.Partial("ArticleSection", section,
+                    new ViewDataDictionary(this.ViewData) { { "index", index } })
+        index++;
+    }
+}

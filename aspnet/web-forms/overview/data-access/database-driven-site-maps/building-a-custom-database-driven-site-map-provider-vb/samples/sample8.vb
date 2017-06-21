@@ -1,0 +1,1 @@
+Dim root As SiteMapNode = SiteMap.RootNode

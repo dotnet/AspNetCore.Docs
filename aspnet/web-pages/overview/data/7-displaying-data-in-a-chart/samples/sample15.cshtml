@@ -1,0 +1,22 @@
+@{
+    var filePathName = "_ChartFiles/chart01.jpg";
+    if (!File.Exists(Server.MapPath(filePathName))) {
+        var chartImage = new Chart(600, 400);
+        chartImage.AddTitle("Chart Title");
+        chartImage.AddSeries(
+                name: "Employee",
+                axisLabel: "Name",
+                xValue: new[] {  "Peter", "Andrew", "Julie", "Mary", "Dave" },
+                yValues: new[] { "2", "6", "4", "5", "3" });
+        chartImage.Save(path: filePathName);
+    }
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chart Example</title>
+    </head>
+    <body>
+        <img src="@filePathName" />
+    </body>
+</html>

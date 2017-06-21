@@ -1,0 +1,10 @@
+<membership defaultProvider="ReviewMembership">
+    <providers>
+        <clear />
+
+        <add type="System.Web.Security.SqlMembershipProvider" 
+             name="ReviewMembership" 
+             connectionStringName="ReviewsConnectionString" 
+             applicationName="BookReviews" />
+    </providers>
+</membership>

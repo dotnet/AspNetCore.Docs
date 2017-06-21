@@ -1,0 +1,20 @@
+<PropertyGroup>
+  <!--This is where the .deploymanifest file will be written to during a build-->    
+  <_DbDeployManifestPath>
+    $(OutputRoot)ContactManager.Database.deploymanifest
+  </_DbDeployManifestPath>    
+  
+  <!-- The folder where the .zip and .cmd file will be located for 
+                ContactManager.Mvc Web project -->
+  <_ContactManagerDest>
+    $(OutputRoot)_PublishedWebsites\ContactManager.Mvc_Package\
+  </_ContactManagerDest>
+  
+  <!-- The folder where the .zip and .cmd file will be located for 
+                ContactManager.Service Web project -->
+   <_ContactManagerSvcDest>
+    $(OutputRoot)_PublishedWebsites\ContactManager.Service_Package\
+  </_ContactManagerSvcDest>
+  
+  <!-- ... -->
+</PropertyGroup>

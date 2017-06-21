@@ -1,0 +1,1 @@
+_service = new ContactManagerService(New ModelStateWrapper(ModelState))

@@ -1,0 +1,1 @@
+departmentEntityToBeInserted.PersonReference.EntityKey = new System.Data.EntityKey("SchoolEntities.Departments", "PersonID", Convert.ToInt32(administratorsDropDownList.SelectedValue));

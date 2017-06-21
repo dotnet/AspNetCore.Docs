@@ -1,0 +1,30 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>    
+    <MSDeployComputerName Condition=" '$(MSDeployComputerName)'=='' ">
+      https://STAGEWEB1:8172/MSDeploy.axd?site=DemoSite
+    </MSDeployComputerName>
+    <MSDeployAuth Condition=" '$(MSDeployAuth)'=='' ">Basic</MSDeployAuth>
+    <MSDeployUsername Condition=" '$(MSDeployUsername)'=='' ">
+      FABRIKAM\stagingdeployer
+    </MSDeployUsername>
+    <MSDeployPassword Condition=" '$(MSDeployPassword)'=='' ">
+      Pa$$w0rd
+    </MSDeployPassword>
+    <ContactManagerTargetUrl Condition =" '$(ContactManagerTargetUrl)'=='' ">
+      http://localhost:85/ContactManagerService/ContactService.svc
+    </ContactManagerTargetUrl>
+    <ContactManagerIisPath Condition=" '$(ContactManagerIisPath)'=='' ">
+      DemoSite/ContactManager
+    </ContactManagerIisPath>
+    <ContactManagerServiceIisPath 
+      Condition=" '$(ContactManagerServiceIisPath)'=='' ">
+        DemoSite/ContactManagerService
+    </ContactManagerServiceIisPath>
+    <CmDatabaseConnectionString Condition=" '$(CmDatabaseConnectionString)'=='' ">
+      Data Source=STAGEDB1;User ID=sa;Password=Pa$$w0rd;
+    </CmDatabaseConnectionString>
+    <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
+      ContactManager
+    </CmTargetDatabase>
+  </PropertyGroup>  
+</Project>

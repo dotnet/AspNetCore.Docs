@@ -1,0 +1,1 @@
+builder.Entity<Product>().Action("RateProduct"); // Always bindable

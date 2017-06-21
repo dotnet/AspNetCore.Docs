@@ -1,0 +1,11 @@
+<PropertyGroup> 
+  <ContactManagerIisPath Condition=" '$(ContactManagerIisPath)'=='' ">
+    DemoSite/ContactManager
+  </ContactManagerIisPath>
+  <ContactManagerTargetUrl Condition =" '$(ContactManagerTargetUrl)'=='' ">
+    http://localhost:85/ContactManagerService/ContactService.svc
+  </ContactManagerTargetUrl>
+  <MembershipConnectionString Condition=" '$(MembershipConnectionString)'=='' ">
+    Data Source=TESTDB1;Integrated Security=true;Initial Catalog=CMAppServices
+  </MembershipConnectionString>  
+</PropertyGroup>

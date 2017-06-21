@@ -1,0 +1,10 @@
+<configuration>
+    <system.web>
+        ...
+        <siteMap defaultProvider="defaultProviderName">
+          <providers>
+            <add name="name" type="type" />
+          </providers>
+        </siteMap>
+    </system.web>
+</configuration>

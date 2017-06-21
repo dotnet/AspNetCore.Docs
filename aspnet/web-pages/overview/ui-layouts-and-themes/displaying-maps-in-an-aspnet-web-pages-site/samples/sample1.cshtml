@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map an Address</title>
+  <script src="~/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <h1>Map an Address</h1>
+    <form method="post">
+        <fieldset>
+          <div>
+            <label for="address">Address:</label>
+            <input style="width: 300px" type="text" name="address" value="@Request["address"]"/>
+            <input type="submit" value="Map It!" />
+           </div>
+        </fieldset>
+    </form>
+    @if(IsPost) {
+        @Maps.GetGoogleHtml(Request.Form["address"],
+            width: "400",
+            height: "400")
+    }
+</body>
+</html>

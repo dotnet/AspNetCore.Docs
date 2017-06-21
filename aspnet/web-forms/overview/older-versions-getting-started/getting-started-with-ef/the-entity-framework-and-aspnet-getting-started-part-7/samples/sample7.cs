@@ -1,0 +1,1 @@
+var allCourses = context.GetCourses();
