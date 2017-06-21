@@ -56,7 +56,9 @@ public class EnvironmentSecretManager : IKeyVaultSecretManager
 
     public string GetKey(SecretBundle secret)
     {
-        return secret.SecretIdentifier.Name.Substring(_appNamePrefix.Length);
+        return secret.SecretIdentifier.Name
+                     .Substring(_appNamePrefix.Length)
+                     .Replace("--", ConfigurationPath.KeyDelimiter);
     }
 }
 ```
