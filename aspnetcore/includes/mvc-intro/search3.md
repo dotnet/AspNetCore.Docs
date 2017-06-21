@@ -23,7 +23,7 @@ The following markup shows the change to the `form` tag:
 <form asp-controller="Movies" asp-action="Index" method="get">
    ```
 
-## Adding Search by Genre
+## Adding Search by genre
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
