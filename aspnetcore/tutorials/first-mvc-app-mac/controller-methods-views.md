@@ -36,6 +36,4 @@ Build and run the app.
 
 >[!div class="step-by-step"]
 [Previous - Working with SQLite](working-with-sql.md)
-<!--
 [Next - Add search](search.md)
--->
