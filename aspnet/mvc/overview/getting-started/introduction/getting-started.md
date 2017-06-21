@@ -18,7 +18,7 @@ Getting Started with ASP.NET MVC 5
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
 > > [!NOTE]
-> > An updated version of this tutorial is available [here](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc) using the latest version of [Visual Studio 2015.](https://www.visualstudio.com) The new tutorial uses [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/), which provides many improvements over this tutorial.
+> > An updated version of this tutorial is available [here](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc) using the latest version of [Visual Studio.](https://www.visualstudio.com) The new tutorial uses [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/), which provides many improvements over this tutorial.
 > 
 > 
 > This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
