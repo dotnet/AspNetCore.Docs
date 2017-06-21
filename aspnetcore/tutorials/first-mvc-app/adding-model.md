@@ -60,7 +60,7 @@ Complete the **Add Controller** dialog:
 
 Visual Studio creates:
 
-* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Models/MvcMovieContext*)
+* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
 * Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/\*.cshtml*)
 
