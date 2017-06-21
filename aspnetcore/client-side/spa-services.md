@@ -35,11 +35,17 @@ A universal (also known as isomorphic) application is a JavaScript application c
 
 ### Tag Helpers
 
-SpaServices provides a suite of ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) to support the prerendering process. Using them requires installation of the following mutually inclusive prerequisites:
+SpaServices provides a suite of ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) to support the prerendering process.
+
+#### Prerequisites
+
+Using them requires installation of the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 1. [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package
 
-With the required packages installed, the Tag Helpers are made discoverable via registration in the project's `_ViewImports.cshtml` file:
+#### Configuration
+
+The Tag Helpers are made discoverable via registration in the project's `_ViewImports.cshtml` file:
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
@@ -83,21 +89,37 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 [!code-json[Main](../client-side/spa-services/sample/SpaServicesSampleApp/package.json?range=5)]
 
+### Prerequisites
+
 Using Webpack Dev Middleware requires installation of the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package
 
+### Configuration
+
 Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
 
-[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?range=41-42,44-47,53-54)]
+[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=webpack-middleware-registration&highlight=4-6)]
 
-With regard to `UseWebpackDevMiddleware`, there are a couple important points:
-1. It must be called before `UseStaticFiles`
+With regard to `UseWebpackDevMiddleware`, there are a few critical points:
+1. It must be called before the `UseStaticFiles` extension method
 1. It should be registered for use only when running the application in development mode
+
+Finally, the `webpack.config.js` file's `output.publicPath` property tells the middleware to watch the `wwwroot/dist` folder for changes:
+
+[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
 ## Hot Module Replacement
 
-## Routing helper
+Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature introduces all the same benefits as Webpack Dev Middleware; and, it streamlines the development workflow even further by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, as that would interfere with the current in-memory state and debugging session of the SPA. Changes are simply pushed to the browser.
+
+### Prerequisites
+
+### Configuration
+
+
+
+## Routing helpers
 
 In most SPAs using ASP.NET Core, you'll want client-side routing in addition to server-side routing. The SPA and MVC routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404s.
 
