@@ -59,6 +59,6 @@ Examine the lambda expression used in the following `HTML Helper`:
 
  `@Html.DisplayNameFor(model => model.movies[0].Title)`
  
-The lambda expression in the preceeding code gets the meta-data for the HTML Helper from the movie model, not from an instance of the movie array. That's why, when the model is empty (that is, there is no element at `model.movies[0]`), you don't get an access violation. The lambda expression is not accessing data. 
+In the preceding code, the HTML Helper `DisplayNameFor` inspects the lambda expression `model => model.movies[0].Title` to determine the display name. The lambda expression is not evaluated, that's why you don't get an access violation when `model`, `model.movies`, or `model.movies[0]` are `null` or empty. When the lambda expression is evaluated, it will be run against the model.
 
 Test the app by searching by genre, by movie title, and by both.
