@@ -17,7 +17,7 @@ uid: tutorials/first-mvc-app-mac/controller-methods-views
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-We have a good start to the movie app, but the presentation is not ideal. We don't want to see the time (12:00:00 AM in the image below) and **ReleaseDate** should be two words.
+We have a good start to the movie app, but the presentation is not ideal. We don't want to see the time (12:00:00 AM in the following image) and **ReleaseDate** should be two words.
 
 ![Index view: Release Date is one word (no space) and every movie release date shows a time of 12 AM](../../tutorials/first-mvc-app/working-with-sql/_static/m55.png)
 
@@ -36,6 +36,4 @@ Build and run the app.
 
 >[!div class="step-by-step"]
 [Previous - Working with SQLite](working-with-sql.md)
-<!--
 [Next - Add search](search.md)
--->
