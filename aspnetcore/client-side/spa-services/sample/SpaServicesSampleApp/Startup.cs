@@ -38,6 +38,7 @@ namespace SpaServicesSampleApp
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            #region webpack-middleware-registration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -50,8 +51,11 @@ namespace SpaServicesSampleApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Call UseWebpackDevMiddleware before UseStaticFiles
             app.UseStaticFiles();
+            #endregion
 
+            #region mvc-routing-table
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -62,6 +66,7 @@ namespace SpaServicesSampleApp
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+            #endregion
         }
     }
 }

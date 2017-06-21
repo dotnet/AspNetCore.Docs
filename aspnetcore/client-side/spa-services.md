@@ -43,7 +43,7 @@ With the required packages installed, the Tag Helpers are made discoverable via 
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax within the Razor view:
+These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the Razor view:
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
@@ -73,22 +73,41 @@ Data can be passed from the server to the view by hydrating the `globals` proper
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,57-77,79-)]
 
-The `postList` array defined inside the `globals` object is attached to the browser's global `window` object. This capability eliminates duplication of effort, particularly as it pertains to loading the same data once on the server and again on the client.
+The `postList` array defined inside the `globals` object is attached to the browser's global `window` object. This variable hoisting to global scope eliminates duplication of effort, particularly as it pertains to loading the same data once on the server and again on the client.
 
 ![global postList variable attached to window object](spa-services/_static/global_variable.png)
 
-## Webpack middleware
+## Webpack Dev Middleware
 
-### MapSpaFallbackRoute
+[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate, less efficient approach is to manually run the following npm script when a third-party dependency or your custom code changes:
 
-### UseWebpackDevMiddleware
+[!code-json[Main](../client-side/spa-services/sample/SpaServicesSampleApp/package.json?range=5)]
+
+Using Webpack Dev Middleware requires installation of the following mutually inclusive prerequisites:
+1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
+1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package
+
+Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
+
+[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?range=41-42,44-47,53-54)]
+
+With regard to `UseWebpackDevMiddleware`, there are a couple important points:
+1. It must be called before `UseStaticFiles`
+1. It should be registered for use only when running the application in development mode
 
 ## Hot Module Replacement
 
-## Routing helpers
+## Routing helper
 
+In most SPAs using ASP.NET Core, you'll want client-side routing in addition to server-side routing. The SPA and MVC routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404s.
 
+Consider the scenario where an extensionless route of `/some/page` is used. Assume the request doesn't pattern match a server-side route, but it pattern matches a client-side route. Now consider an incoming request for `/images/user-512.png`, which undoubtedly expects to find an image file on the server. As such, if that requested resource path doesn't match any server-side route or static file, it's unlikely that your client-side application would handle it — you probably want to return a 404 HTTP status code.
 
+To distinguish between these cases, a C# extension method named `MapSpaFallbackRoute` is used in the `Startup` class' `Configure` method:
+
+[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=mvc-routing-table&highlight=7-9)]
+
+Order matters when configuring routes. Consequently, 
 
 
 
