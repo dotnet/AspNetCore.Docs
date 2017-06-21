@@ -27,23 +27,19 @@ A SPA is a popular type of web application due to its inherent rich user experie
 
 ## What is SpaServices?
 
-SpaServices is not required to develop SPAs with ASP.NET Core. Since SpaServices is a nonopinionated, client framework-agnostic library, it doesn't lock you into a particular client framework, library, or coding style. It provides useful infrastructure such as server-side prerendering, Webpack middleware, Hot Module Replacement, and routing helpers.
+SpaServices is not required to develop SPAs with ASP.NET Core. Because SpaServices is a nonopinionated, client framework-agnostic library, it doesn't lock you into a particular client framework, library, or coding style. It provides useful infrastructure such as server-side prerendering, Webpack middleware, Hot Module Replacement, and routing helpers.
 
-### Server-side prerendering
+## Server-side prerendering
 
-A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server-side via Node.js and then delegate further execution to the client. SpaServices' Tag Helpers make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
+A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server-side via Node.js and then delegate further execution to the client. SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
 
-### Tag Helpers
+### Prerequisites
 
-SpaServices provides a suite of ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) to support the prerendering process.
-
-#### Prerequisites
-
-Using them requires installation of the following mutually inclusive prerequisites:
+Install the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 1. [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package
 
-#### Configuration
+### Configuration
 
 The Tag Helpers are made discoverable via registration in the project's `_ViewImports.cshtml` file:
 
@@ -91,7 +87,7 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 ### Prerequisites
 
-Using Webpack Dev Middleware requires installation of the following mutually inclusive prerequisites:
+Install the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package
 
@@ -99,7 +95,7 @@ Using Webpack Dev Middleware requires installation of the following mutually inc
 
 Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
 
-[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=webpack-middleware-registration&highlight=4-6)]
+[!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=webpack-middleware-registration&highlight=4)]
 
 With regard to `UseWebpackDevMiddleware`, there are a few critical points:
 1. It must be called before the `UseStaticFiles` extension method
@@ -111,13 +107,31 @@ Finally, the `webpack.config.js` file's `output.publicPath` property tells the m
 
 ## Hot Module Replacement
 
-Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature introduces all the same benefits as Webpack Dev Middleware; and, it streamlines the development workflow even further by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, as that would interfere with the current in-memory state and debugging session of the SPA. Changes are simply pushed to the browser.
+Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature as an evolution of Webpack Dev Middleware. HMR introduces all the same benefits; and, it streamlines the development workflow even further by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. Changes are simply pushed to the browser.
 
 ### Prerequisites
 
+Install the following mutually inclusive prerequisites:
+1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
+1. [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package
+
 ### Configuration
 
+The HMR component must be registered into MVC's HTTP request pipeline. An overload of the `UseWebpackDevMiddleware` extension method must be used in the `Startup` class' `Configure` method:
 
+```csharp
+app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+    HotModuleReplacement = true
+});
+```
+
+As was true with Webpack Dev Middleware, there are a few critical points when using `UseWebpackDevMiddleware`:
+1. It must be called before the `UseStaticFiles` extension method
+1. It should be registered for use only when running the application in development mode
+
+Finally, the `webpack.config.js` file should define a `plugins` array, even if it's left empty:
+
+[!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,25)]
 
 ## Routing helpers
 
@@ -129,9 +143,7 @@ To distinguish between these cases, a C# extension method named `MapSpaFallbackR
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=mvc-routing-table&highlight=7-9)]
 
-Order matters when configuring routes. Consequently, 
-
-
+Routes are evaluated in the order in which they're configured. Consequently, the server routing table will be consulted for pattern matching first.
 
 ## Prerequisites
 
