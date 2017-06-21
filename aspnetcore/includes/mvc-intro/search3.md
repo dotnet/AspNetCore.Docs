@@ -55,4 +55,10 @@ Update `Index.cshtml` as follows:
 
 [!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37,43)]
 
+Examine the lambda expression used in the following `HTML Helper`:
+
+ `@Html.DisplayNameFor(model => model.movies[0].Title)`
+ 
+The lambda expression in the preceeding code gets the meta-data for the HTML Helper from the movie model, not from an instance of the movie array. That's why, when the model is empty (that is, there is no element at `model.movies[0]`), you don't get an access violation. The lambda expression is not accessing data. 
+
 Test the app by searching by genre, by movie title, and by both.
