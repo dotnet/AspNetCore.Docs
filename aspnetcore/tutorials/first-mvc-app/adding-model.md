@@ -1,5 +1,5 @@
 ---
-title: Adding a model | Microsoft Docs
+title: Adding a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
@@ -17,13 +17,13 @@ uid: tutorials/first-mvc-app/adding-model
 
 In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
-In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
+Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
-Build the project to verify you don't have any errors, and you've finally added a **M**odel to your **M**VC app.
+Build the project to verify you don't have any errors. You now have a **M**odel in your **M**VC app.
 
 ## Scaffolding a controller
 
