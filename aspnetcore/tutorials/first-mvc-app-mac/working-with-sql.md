@@ -17,6 +17,4 @@ uid: tutorials/first-mvc-app-mac/working-with-sql
 
 >[!div class="step-by-step"]
 [Previous - Add a model](adding-model.md)
-<!-- 
 [Next - Controller methods and views](controller-methods-views.md)
--->
