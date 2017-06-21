@@ -16,7 +16,6 @@ uid: mvc/views/tag-helpers/builtin-th/AnchorTagHelper
 
 By [Peter Kellner](http://peterkellner.net) 
 
-
 The Anchor Tag Helper enhances the html anchor (`<a ... ></a>`) tag by adding new attributes. The link generated (on the `href` tag) is created using the new attributes. That URL can include an optional protocol such as https.
 
 The speaker controller below is used in samples in this document.
