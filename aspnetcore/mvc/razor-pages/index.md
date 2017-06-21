@@ -10,7 +10,7 @@ ms.topic: get-started-article
 ms.assetid: 30e4104c-0124-477b-86b3-beb7b34ed3f6
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: razor-pages/index
+uid: mvc/razor-pages/index
 ---
 ## Introduction to Razor Pages in ASP.NET Core
 
