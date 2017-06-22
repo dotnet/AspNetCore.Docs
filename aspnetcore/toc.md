@@ -84,9 +84,9 @@
 ### [Formatting response data](mvc/models/formatting.md)
 #### [Custom formatters](mvc/advanced/custom-formatters.md)
 <!--### [🔧 Support resource updates with JSON patch](mvc/web-api/json-patch.md)-->
+## [Razor Pages](mvc/razor-pages/index.md)
 ## [Filters](mvc/controllers/filters.md)
 ## [Areas](mvc/controllers/areas.md)
-## [Razor Pages](mvc/razor-pages/index.md)
 ## [Advanced](mvc/advanced/index.md)
 ### [Working with the Application Model](mvc/controllers/application-model.md)
 ### [Application parts](mvc/advanced/app-parts.md)
