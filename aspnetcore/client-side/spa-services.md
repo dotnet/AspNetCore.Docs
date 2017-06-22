@@ -29,6 +29,15 @@ A SPA is a very popular breed of web application due to its inherent rich user e
 
 SpaServices was created as a component of the larger [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) project, whose goal is to make ASP.NET Core developers' preferred server-side platform for building SPAs. With that being said, SpaServices is not required to develop SPAs with ASP.NET Core. Because SpaServices is a nonopinionated, client framework-agnostic library, it doesn't lock you into a particular client framework, library, or coding style. It provides useful infrastructure such as server-side prerendering, Webpack Dev Middleware, Hot Module Replacement, and routing helpers.
 
+## Prerequisites for using SpaServices
+
+To work with SpaServices, install the following:
+1. [Node.js](https://nodejs.org/) (version 6 or later)
+    * To verify this is installed and can be found, run `node -v` on a command line.
+    * Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node is already installed and available in the server environments.
+1. [.NET Core SDK](https://www.microsoft.com/net/download/core) 1.0 RC4 (or later)
+    * If you're on Windows, you can install Visual Studio 2017, which includes the .NET Core SDK.
+
 ## Server-side prerendering
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js and then delegate further execution to the client.
@@ -165,15 +174,6 @@ To distinguish between these cases, a C# extension method named `MapSpaFallbackR
 > [!TIP]
 > Routes are evaluated in the order in which they're configured. Consequently, the `default` route in the preceding code example will be consulted first for pattern matching.
 
-## Prerequisites for using SpaServices
-
-To work with SpaServices, install the following:
-1. [Node.js](https://nodejs.org/), version 6 or later
-    * To test this is installed and can be found, run `node -v` on a command line.
-    * Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node is already installed and available in the server environments.
-1. .NET Core, version 1.0 RC4 or later
-    * If you're on Windows, you can install Visual Studio 2017, which includes it.
-
 ## Creating a new project
 
 JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
@@ -203,7 +203,7 @@ dotnet new angular
 
 ### Running with .NET Core CLI
 
-Restore the required NuGet and npm packages by running:
+Restore the required NuGet and npm packages by running the following command at the project root:
 
 ```console
 dotnet restore && npm i
@@ -236,7 +236,7 @@ Using the Angular application as an example, there are two Jasmine test cases al
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/app/components/counter/counter.component.spec.ts?range=15-28)]
 
-Open the command prompt at the root of your application, and run the following command:
+Open the command prompt at the project root, and run the following command:
 
 ```console
 npm test
