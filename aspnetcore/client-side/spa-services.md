@@ -33,7 +33,7 @@ SpaServices was created as a component of the larger [JavaScriptServices](https:
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js and then delegate further execution to the client.
 
-SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
+SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server for you.
 
 ### Prerequisites
 
@@ -47,7 +47,7 @@ Install the following mutually inclusive prerequisites:
 
 ### Configuration
 
-The Tag Helpers are made discoverable via namespace registration in the project's `_ViewImports.cshtml` file:
+The Tag Helpers are made discoverable via namespace registration in the project's *_ViewImports.cshtml* file:
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
@@ -57,11 +57,11 @@ These Tag Helpers abstract away the intricacies of communicating directly with l
 
 ### The `asp-prerender-module` Tag Helper
 
-The `asp-prerender-module` Tag Helper, used in the previous example, executes `ClientApp/dist/main-server.js` on the server via Node.js. To clarify, `main-server.js` file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the `ClientApp/boot-server.ts` file:
+The `asp-prerender-module` Tag Helper, used in the previous example, executes *ClientApp/dist/main-server.js* on the server via Node.js. To clarify, *main-server.js* file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the *ClientApp/boot-server.ts* file:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
-The `ClientApp/boot-server.ts` file utilizes the `createServerRenderer` function and `RenderResult` type of the `aspnet-prerendering` npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a `resolve` function call, which is wrapped in a JavaScript `Promise` object of type `RenderResult`. The `Promise` object is significant in that it asynchronously supplies the HTML markup to the page for injection in the placeholder element.
+The *ClientApp/boot-server.ts* file utilizes the `createServerRenderer` function and `RenderResult` type of the `aspnet-prerendering` npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a `resolve` function call, which is wrapped in a JavaScript `Promise` object of type `RenderResult`. The `Promise` object's significance is that it asynchronously supplies the HTML markup to the page for injection in the DOM's placeholder element.
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
@@ -75,7 +75,8 @@ The received `UserName` argument is serialized using the built-in JSON serialize
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-Property names passed in the `asp-prerender-data` Tag Helper are represented with *PascalCase* notation. Contrast that to JavaScript, where the same property names are represented with *camelCase*. The default JSON serialization configuration is responsible for this difference.
+> [!NOTE]
+> Property names passed in Tag Helpers are represented with *PascalCase* notation. Contrast that to JavaScript, where the same property names are represented with *camelCase*. The default JSON serialization configuration is responsible for this difference.
 
 Data can be passed from the server to the view by hydrating the `globals` property passed to the `resolve` function:
 
@@ -87,7 +88,7 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 ## Webpack Dev Middleware
 
-[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate, less efficient approach is to manually run the project's Webpack build script when a third-party dependency or your custom code changes. An example of said build script is:
+[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate, less efficient approach is to manually invoke Webpack via the project's npm build script when a third-party dependency or the custom code changes. An example of said build script is:
 
 [!code-json[Main](../client-side/spa-services/sample/SpaServicesSampleApp/package.json?range=5)]
 
@@ -103,7 +104,7 @@ Install the following mutually inclusive prerequisites:
 
 ### Configuration
 
-Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the `Startup.cs` file's `Configure` method:
+Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the *Startup.cs* file's `Configure` method:
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=webpack-middleware-registration&highlight=4)]
 
@@ -111,7 +112,7 @@ With regard to `UseWebpackDevMiddleware`, there are a few critical points:
 1. It must be called before the `UseStaticFiles` extension method
 1. It should be registered for use only when running the application in development mode
 
-Finally, the `webpack.config.js` file's `output.publicPath` property tells the middleware to watch the `wwwroot/dist` folder for changes:
+Finally, the *webpack.config.js* file's `output.publicPath` property tells the middleware to watch the `wwwroot/dist` folder for changes:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -143,23 +144,35 @@ As was true with Webpack Dev Middleware, there are a few critical points when us
 1. It must be called before the `UseStaticFiles` extension method
 1. It should be registered for use only when running the application in development mode
 
-Finally, the `webpack.config.js` file should define a `plugins` array, even if it's left empty:
+Finally, the *webpack.config.js* file must define a `plugins` array, even if it's left empty:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,25)]
+
+After loading the application in the browser, the developer tools' Console tab provides confirmation of HMR activation:
+
+![Hot Module Replacement connected message](spa-services/_static/hmr_connected.png)
 
 ## Routing helpers
 
 In most SPAs using ASP.NET Core, you'll want client-side routing in addition to server-side routing. The SPA and MVC routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404s.
 
-Consider the scenario where an extensionless route of `/some/page` is used. Assume the request doesn't pattern match a server-side route, but it pattern matches a client-side route. Now consider an incoming request for `/images/user-512.png`, which undoubtedly expects to find an image file on the server. As such, if that requested resource path doesn't match any server-side route or static file, it's unlikely that your client-side application would handle it — you probably want to return a 404 HTTP status code.
+Consider the scenario in which an extensionless route of `/some/page` is used. Assume the request doesn't pattern-match a server-side route, but its pattern does match a client-side route. Now consider an incoming request for `/images/user-512.png`, which undoubtedly expects to find an image file on the server. As such, if that requested resource path doesn't match any server-side route or static file, it's unlikely that the client-side application would handle it — you probably want to return a 404 HTTP status code.
 
 To distinguish between these cases, a C# extension method named `MapSpaFallbackRoute` is used in the `Startup` class' `Configure` method:
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=mvc-routing-table&highlight=7-9)]
 
-Routes are evaluated in the order in which they're configured. Consequently, the server routing table will be consulted for pattern matching first.
+> [!TIP]
+> Routes are evaluated in the order in which they're configured. Consequently, the `default` route in the preceding code example will be consulted first for pattern matching.
 
-## Prerequisites
+## Prerequisites for using SpaServices
+
+To work with SpaServices, install the following:
+1. [Node.js](https://nodejs.org/), version 6 or later
+    * To test this is installed and can be found, run `node -v` on a command line.
+    * Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node is already installed and available in the server environments.
+1. .NET Core, version 1.0 RC4 or later
+    * If you're on Windows, you can install Visual Studio 2017, which includes it.
 
 ## Creating a new project
 
@@ -171,9 +184,7 @@ Routes are evaluated in the order in which they're configured. Consequently, the
 
 ### Web API
 
-### Angular
-
-## Developing your project
+## Developing the project
 
 ### Create the Backend (Controller / REST)
 
@@ -181,7 +192,7 @@ Routes are evaluated in the order in which they're configured. Consequently, the
 
 ### Add Lazy Loading
 
-## Debugging your application
+## Debugging the application
 
 ### Visual Studio Code
 
@@ -195,7 +206,7 @@ Routes are evaluated in the order in which they're configured. Consequently, the
 
 ### Use Tree Shaking with Webpack
 
-## Deploying your application
+## Deploying the application
 
 ### Azure
 
