@@ -73,7 +73,7 @@ The runtime looks for Razor Pages files in the *Pages* folder by default.
 
 The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic 'contact us' form for the `Contact` model:
 
-For the examples on this page, the `DbContext` is initialized in the *Startup.cs** file.
+For the examples on this page, the `DbContext` is initialized in the *Startup.cs* file.
 
 The *MyApp/Contact.cs* file:
 
