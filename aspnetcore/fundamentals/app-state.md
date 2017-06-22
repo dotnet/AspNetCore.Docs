@@ -5,7 +5,7 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
-ms.date: 03/08/2017
+ms.date: 06/08/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
@@ -37,7 +37,7 @@ The remainder of this section describes the options for storing user data.
 
 ### TempData
 
-ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data for only a single request after the current one.`TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is built on top of session state. 
+ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is built on top of session state. 
 
 ## Cookie-based TempData provider 
 
