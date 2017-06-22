@@ -176,7 +176,58 @@ To work with SpaServices, install the following:
 
 ## Creating a new project
 
+JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.
+
+These templates can be installed using the .NET Core CLI by running the following command:
+
+```console
+dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
+```
+
+Upon successful installation, a list of available SPA templates is provided:
+
+| Templates                                 | Short Name | Language | Tags        |
+|:------------------------------------------|:-----------|:---------|:------------|
+| MVC ASP.NET Core with Angular             | angular    | [C#]     | Web/MVC/SPA |
+| MVC ASP.NET Core with Aurelia             | aurelia    | [C#]     | Web/MVC/SPA |
+| MVC ASP.NET Core with Knockout.js         | knockout   | [C#]     | Web/MVC/SPA |
+| MVC ASP.NET Core with React.js            | react      | [C#]     | Web/MVC/SPA |
+| MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
+| MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
+
 ### Using the .NET Core CLI
+
+To create a new project using one of the SPA templates, include the **Short Name** of the template in the `dotnet new` command. The following command creates an Angular application with ASP.NET Core MVC configured for the server-side:
+
+```console
+dotnet new angular
+```
+
+Restore the required NuGet and npm packages by running:
+
+```console
+dotnet restore && npm i
+```
+
+Set an environment variable instructing ASP.NET Core to run in **development** mode:
+
+* For Windows:
+    * **PowerShell**: execute `$Env:ASPNETCORE_ENVIRONMENT = "Development"`
+    * **cmd.exe**: execute `setx ASPNETCORE_ENVIRONMENT "Development"`, and then restart your command prompt for the change to take effect
+* For Mac or Linux, execute `export ASPNETCORE_ENVIRONMENT=Development`
+
+Run the application:
+
+```console
+dotnet run
+```
+
+The application will start in development mode under localhost. Navigating to `http://localhost:5000` in your browser will display the landing page.
+
+### Using Visual Studio 2017
+
+To create a new project using Visual Studio 2017, navigate to *File* > *New* > *Project...*.
+
 
 ### Using npm / Yarn
 
