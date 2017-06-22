@@ -140,7 +140,7 @@ The basic flow of `OnPostAsync` is:
 1. If there are no errors, save the data and redirect -
 1. Else, show the page again with the validation errors.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirctToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
 
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
@@ -256,7 +256,9 @@ Add a *_ViewImports.cshtml* file:
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 ```
 
-The `@namespace` directive is a new feature that controls the namespace of the generated code. The `@namespace` directive allows us to get rid of `@using` directives from the page. The `@namespace` directive works by computing the difference in folders between your view code and the `_ViewImports.cshtml` where it appears. Because the *Customer.cshtml* file is also in the *MyApp/Pages* folder, it will have the namespace `MyApp.Pages`. If the path was  *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
+The `@namespace` directive is a new feature that controls the namespace of the generated code.  If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-seperated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+
+Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages generated code *just work* without having to add extra usings.
 
 `@namespace` also works for conventional Razor views.
 

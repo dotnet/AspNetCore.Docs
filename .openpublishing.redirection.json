@@ -59,6 +59,11 @@
         "source_path": "aspnetcore/intro.md",
         "redirect_url": "/aspnet/core", 
         "redirect_document_id": false 
-    } 
+    },
+    {
+        "source_path": "aspnetcore/razor-pages/index.md",
+        "redirect_url": "/aspnet/core/mvc/razor-pages/",
+        "redirect_document_id": false
+    }
   ] 
 }
