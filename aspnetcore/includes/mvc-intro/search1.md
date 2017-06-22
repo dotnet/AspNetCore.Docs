@@ -1,8 +1,8 @@
-# Adding Search
+# Adding Search to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you'll add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
+In this section you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
 Update the `Index` method with the following code:
 <!--

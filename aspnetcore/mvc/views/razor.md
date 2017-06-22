@@ -71,7 +71,7 @@ With the exception of the C# `await` keyword implicit expressions must not conta
 
 ## Explicit Razor expressions
 
-Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last weeks’ time:
+Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last week's time:
 
 ```html
 <p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
@@ -437,7 +437,7 @@ For example, if you create an ASP.NET Core MVC app with individual user accounts
 @model LoginViewModel
    ```
 
-In the class example in , the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
+In the preceding class example, the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
 
 ```csharp
 @model LoginViewModel

@@ -86,14 +86,13 @@
 <!--### [🔧 Support resource updates with JSON patch](mvc/web-api/json-patch.md)-->
 ## [Filters](mvc/controllers/filters.md)
 ## [Areas](mvc/controllers/areas.md)
+## [Razor Pages](mvc/razor-pages/index.md)
 ## [Advanced](mvc/advanced/index.md)
 ### [Working with the Application Model](mvc/controllers/application-model.md)
 ### [Application parts](mvc/advanced/app-parts.md)
 ### [Custom Model Binding](mvc/advanced/custom-model-binding.md)
 <!--### [🔧 Creating a Custom View Engine](mvc/advanced/custom-view-engine.md)-->
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
-
-# [Razor Pages](razor-pages/index.md)
 
 # [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
