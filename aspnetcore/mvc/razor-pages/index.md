@@ -256,9 +256,9 @@ Add a *_ViewImports.cshtml* file:
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 ```
 
-The `@namespace` directive is a new feature that controls the namespace of the generated code allowing us to get rid of `@using` directives. If the `@namspace` directive is used directly in the page, the page will be put directly in the specified namespace. If the `@namespace` directive is inside a *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-seperated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+The `@namespace` directive is a new feature that controls the namespace of the generated code.  If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-seperated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
-Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive was also changed to `@namespace NotMyApp`, the namespace of the generated code would be *NotMyApp.Store*. This is intended so that the C# classes you add and pages generated code *just work* without having to add extra usings.
+Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages generated code *just work* without having to add extra usings.
 
 `@namespace` also works for conventional Razor views.
 
