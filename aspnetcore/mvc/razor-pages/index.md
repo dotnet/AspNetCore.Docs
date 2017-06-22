@@ -140,7 +140,7 @@ The basic flow of `OnPostAsync` is:
 1. If there are no errors, save the data and redirect -
 1. Else, show the page again with the validation errors.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirctToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
 
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
