@@ -23,25 +23,31 @@ In this article, you will learn about the value proposition of [SpaServices](htt
 
 ## Using SpaServices with ASP.NET Core
 
-A SPA is a popular type of web application due to its inherent rich user experience; however, integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be daunting. The `Microsoft.AspNetCore.SpaServices` NuGet package, or SpaServices for short, was developed to reduce friction in the integration process. It enables seamless operation between the disparate client and server technology stacks.
+A SPA is a very popular breed of web application due to its inherent rich user experience. Alas, integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be daunting. The `Microsoft.AspNetCore.SpaServices` NuGet package, or SpaServices for short, was developed to reduce friction in the integration process. It enables seamless operation between the disparate client and server technology stacks.
 
 ## What is SpaServices?
 
-SpaServices is not required to develop SPAs with ASP.NET Core. Because SpaServices is a nonopinionated, client framework-agnostic library, it doesn't lock you into a particular client framework, library, or coding style. It provides useful infrastructure such as server-side prerendering, Webpack middleware, Hot Module Replacement, and routing helpers.
+SpaServices was created as a component of the larger [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) project, whose goal is to make ASP.NET Core developers' preferred server-side platform for building SPAs. With that being said, SpaServices is not required to develop SPAs with ASP.NET Core. Because SpaServices is a nonopinionated, client framework-agnostic library, it doesn't lock you into a particular client framework, library, or coding style. It provides useful infrastructure such as server-side prerendering, Webpack Dev Middleware, Hot Module Replacement, and routing helpers.
 
 ## Server-side prerendering
 
-A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server-side via Node.js and then delegate further execution to the client. SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
+A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js and then delegate further execution to the client.
+
+SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) make the implementation of server-side prerendering simple by invoking the JavaScript functions on the server for you.
 
 ### Prerequisites
 
 Install the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package
+1. [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package:
+
+    ```console
+    npm i -S aspnet-prerendering
+    ```
 
 ### Configuration
 
-The Tag Helpers are made discoverable via registration in the project's `_ViewImports.cshtml` file:
+The Tag Helpers are made discoverable via namespace registration in the project's `_ViewImports.cshtml` file:
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
@@ -49,7 +55,7 @@ These Tag Helpers abstract away the intricacies of communicating directly with l
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
-### The asp-prerender-module Tag Helper
+### The `asp-prerender-module` Tag Helper
 
 The `asp-prerender-module` Tag Helper, used in the previous example, executes `ClientApp/dist/main-server.js` on the server via Node.js. To clarify, `main-server.js` file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the `ClientApp/boot-server.ts` file:
 
@@ -59,7 +65,7 @@ The `ClientApp/boot-server.ts` file utilizes the `createServerRenderer` function
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
-### The asp-prerender-data Tag Helper
+### The `asp-prerender-data` Tag Helper
 
 Sometimes contextual information must be passed as arguments from the Razor view to the server-side JavaScript. To satisfy this requirement, the `asp-prerender-data` Tag Helper is used in conjunction with the aforementioned `asp-prerender-module` Tag Helper. For example, the following markup passes user data to the `main-server` module:
 
@@ -81,7 +87,7 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 ## Webpack Dev Middleware
 
-[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate, less efficient approach is to manually run the following npm script when a third-party dependency or your custom code changes:
+[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html) introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate, less efficient approach is to manually run the project's Webpack build script when a third-party dependency or your custom code changes. An example of said build script is:
 
 [!code-json[Main](../client-side/spa-services/sample/SpaServicesSampleApp/package.json?range=5)]
 
@@ -89,7 +95,11 @@ The `postList` array defined inside the `globals` object is attached to the brow
 
 Install the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package
+1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package:
+
+    ```console
+    npm i -D aspnet-webpack
+    ```
 
 ### Configuration
 
@@ -113,7 +123,11 @@ Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-m
 
 Install the following mutually inclusive prerequisites:
 1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package
+1. [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package:
+
+    ```console
+    npm i -D webpack-hot-middleware
+    ```
 
 ### Configuration
 
