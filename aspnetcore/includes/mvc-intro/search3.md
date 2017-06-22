@@ -59,6 +59,6 @@ Examine the lambda expression used in the following HTML Helper:
 
 `@Html.DisplayNameFor(model => model.movies[0].Title)`
  
-In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. Since the lambda expression is inspected rather than evaluated, you don't receive an access violation when `model`, `model.movies`, or `model.movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, `@Html.DisplayFor(model => model.movies[0].Title)`), the model's property values are evaluated.
+In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. Since the lambda expression is inspected rather than evaluated, you don't receive an access violation when `model`, `model.movies`, or `model.movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
 Test the app by searching by genre, by movie title, and by both.
