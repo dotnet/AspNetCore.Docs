@@ -5,7 +5,7 @@ description: Overview of fundamental concpepts in ASP.NET Core.
 keywords: ASP.NET Core, fundamentals, overview
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 6/14/2017
 ms.topic: get-started-article
 ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
 ms.technology: aspnet
@@ -16,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 # ASP.NET Core fundamentals overview
 
-An ASP.NET Core app is simply a console app that creates a web server in its `Main` method:
+An ASP.NET Core app is a console app that creates a web server in its `Main` method:
 
 [!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
