@@ -25,3 +25,4 @@ This series of tutorials teaches you the basics of building an ASP.NET Core MVC 
 1. [Adding Search](search.md)
 1. [Adding a New Field](new-field.md)
 1. [Adding Validation](validation.md)
+1. [Examining the Details and Delete methods](xref:tutorials/first-mvc-app/details)

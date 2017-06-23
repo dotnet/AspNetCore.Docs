@@ -17,7 +17,6 @@ uid: tutorials/first-mvc-app-mac/validation
 
 >[!div class="step-by-step"]
 [Previous - Add a field](new-field.md)
-<!--
 [Next - Examine the Details and Delete methods](xref:tutorials/first-mvc-app/details)
--->  
+
 
