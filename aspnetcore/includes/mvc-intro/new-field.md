@@ -1,15 +1,3 @@
-title: Adding a New Field to an ASP.NET Core app
-author: rick-anderson
-description: Shows you how to add an new field to an exiting ASP.NET Core EF/MVC app.
-keywords: ASP.NET Core,
-ms.author: riande
-manager: wpickett
-ms.date: 04/14/2017
-ms.topic: get-started-article
-ms.technology: aspnet
-ms.prod: asp.net-core
----
-
 # Adding a new field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
