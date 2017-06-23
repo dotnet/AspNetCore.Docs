@@ -171,7 +171,7 @@ If you create a resource file in Visual Studio without a culture in the file nam
 
 ### Adding Other Cultures
 
-Each language and culture combination (other than the default language) requires a unique resource file. You can create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the .resx file name extension, as in *Welcome.es-MX.resx* (Spanish/Mexico). To specify a culturally neutral language, you would eliminate the country code, such as *Welcome.fr.resx* for the French language.
+Each language and culture combination (other than the default language) requires a unique resource file. You create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the *.resx* file name extension, as in *Welcome.es-MX.resx* (Spanish/Mexico). To specify a culturally neutral language, remove the country code (`MX` in the preceding example). The culturally neutral Spanish resource file name is *Welcome.es.resx*.
 
 ## Implement a strategy to select the language/culture for each request  
 

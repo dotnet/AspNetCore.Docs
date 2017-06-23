@@ -29,7 +29,7 @@ HTTP/1.1 200 OK
    [{"Key":"1", "Name":"Item1","IsComplete":false}]
    ```
 
-Later in the tutorial I'll show how you can view the HTTP response using [Postman](https://www.getpostman.com/) or or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
+Later in the tutorial I'll show how you can view the HTTP response using [Postman](https://www.getpostman.com/) or [curl](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/curl.1.html).
 
 ### Routing and URL paths
 
