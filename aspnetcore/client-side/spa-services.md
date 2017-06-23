@@ -307,15 +307,21 @@ The script launches the Karma test runner, which reads the settings defined in t
 
 ## Publishing the application
 
-Without SpaServices, packaging up the appropriate client-side assets with the published ASP.NET Core assets can be cumbersome. SpaServices includes a custom MSBuild target named `RunWebpack`: 
+Combining the generated client-side assets and the published ASP.NET Core artifacts into a ready-to-deploy package can be cumbersome. Thankfully, SpaServices orchestrates that entire publication process with a custom MSBuild target named `RunWebpack`:
 
 [!code-xml[Main](../client-side/spa-services/sample/SpaServicesSampleApp/SpaServicesSampleApp.csproj?range=31-45)]
 
-The target has the following responsibilities:
+The MSBuild target has the following responsibilities:
 1. Restore the npm packages
-1. Create a production-grade build of the third-party, client-side code
-1. Create a production-grade build of the custom client-side code
+1. Create a production-grade build of the third-party, client-side assets
+1. Create a production-grade build of the custom client-side assets
 1. Copy the Webpack-generated assets to the publish folder
+
+The MSBuild target is invoked when running:
+
+```console
+dotnet publish -c Release
+```
 
 ## Additional resources
 
