@@ -17,6 +17,4 @@ ms.prod: asp.net-core
 
 >[!div class="step-by-step"]
 [Previous - Add search](search.md)
-<!--
-[Next - Add validation](validation.md)  
--->
+[Next - Add validation](validation.md)
