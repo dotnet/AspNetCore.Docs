@@ -1,6 +1,6 @@
 ---
-ms.assetid: 1638bacf-fe7b-4b41-84b0-06a1574b7734
-uid: tutorials/first-mvc-app-xplat/new-field
+ms.assetid: 1638bacf-1638-bebe-7734-06a1574b7734
+uid: tutorials/first-mvc-app-mac/new-field
 title: Adding a New Field to an ASP.NET Core app
 author: rick-anderson
 description: Shows you how to add an new field to an exiting ASP.NET Core EF/MVC app.
@@ -17,4 +17,6 @@ ms.prod: asp.net-core
 
 >[!div class="step-by-step"]
 [Previous - Add search](search.md)
+<!--
 [Next - Add validation](validation.md)  
+-->

@@ -23,3 +23,4 @@ This series of tutorials teaches you the basics of building an ASP.NET Core MVC 
 1. [ SQLite](working-with-sql.md)
 1. [Controller methods and views](controller-methods-views.md)
 1. [Adding Search](search.md)
+1. [Adding a New Field](new-field.md)
