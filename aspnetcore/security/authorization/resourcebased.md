@@ -24,26 +24,26 @@ Authorization is implemented as a service, `IAuthorizationService`, registered i
 
 ```csharp
 public class DocumentController : Controller
-   {
-       IAuthorizationService _authorizationService;
+{
+    IAuthorizationService _authorizationService;
 
-       public DocumentController(IAuthorizationService authorizationService)
-       {
-           _authorizationService = authorizationService;
-       }
-   }
-   ```
+    public DocumentController(IAuthorizationService authorizationService)
+    {
+        _authorizationService = authorizationService;
+    }
+}
+```
 
 `IAuthorizationService` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
 
 ```csharp
 Task<bool> AuthorizeAsync(ClaimsPrincipal user,
-                             object resource,
-                             IEnumerable<IAuthorizationRequirement> requirements);
-   Task<bool> AuthorizeAsync(ClaimsPrincipal user,
-                             object resource,
-                             string policyName);
-   ```
+                          object resource,
+                          IEnumerable<IAuthorizationRequirement> requirements);
+Task<bool> AuthorizeAsync(ClaimsPrincipal user,
+                          object resource,
+                          string policyName);
+```
 
 <a name=security-authorization-resource-based-imperative></a>
 
@@ -51,24 +51,24 @@ To call the service load your resource within your action then call the `Authori
 
 ```csharp
 public async Task<IActionResult> Edit(Guid documentId)
-   {
-       Document document = documentRepository.Find(documentId);
+{
+    Document document = documentRepository.Find(documentId);
 
-       if (document == null)
-       {
-           return new HttpNotFoundResult();
-       }
+    if (document == null)
+    {
+        return new HttpNotFoundResult();
+    }
 
-       if (await _authorizationService.AuthorizeAsync(User, document, "EditPolicy"))
-       {
-           return View(document);
-       }
-       else
-       {
-           return new ChallengeResult();
-       }
-   }
-   ```
+    if (await _authorizationService.AuthorizeAsync(User, document, "EditPolicy"))
+    {
+        return View(document);
+    }
+    else
+    {
+        return new ChallengeResult();
+    }
+}
+```
 
 ## Writing a resource based handler
 
@@ -76,23 +76,23 @@ Writing a handler for resource based authorization is not that much different to
 
 ```csharp
 public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, Document>
-   {
-       public override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                                   MyRequirement requirement,
-                                                   Document resource)
-       {
-           // Validate the requirement against the resource and identity.
+{
+    public override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+                                                MyRequirement requirement,
+                                                Document resource)
+    {
+        // Validate the requirement against the resource and identity.
 
-           return Task.CompletedTask;
-       }
-   }
-   ```
+        return Task.CompletedTask;
+    }
+}
+```
 
 Don't forget you also need to register your handler in the `ConfigureServices` method;
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
-   ```
+```
 
 ### Operational Requirements
 
@@ -100,35 +100,35 @@ If you are making decisions based on operations such as read, write, update and 
 
 ```csharp
 public static class Operations
-   {
-       public static OperationAuthorizationRequirement Create =
-           new OperationAuthorizationRequirement { Name = "Create" };
-       public static OperationAuthorizationRequirement Read =
-           new OperationAuthorizationRequirement   { Name = "Read" };
-       public static OperationAuthorizationRequirement Update =
-           new OperationAuthorizationRequirement { Name = "Update" };
-       public static OperationAuthorizationRequirement Delete =
-           new OperationAuthorizationRequirement { Name = "Delete" };
-   }
-   ```
+{
+    public static OperationAuthorizationRequirement Create =
+        new OperationAuthorizationRequirement { Name = "Create" };
+    public static OperationAuthorizationRequirement Read =
+        new OperationAuthorizationRequirement   { Name = "Read" };
+    public static OperationAuthorizationRequirement Update =
+        new OperationAuthorizationRequirement { Name = "Update" };
+    public static OperationAuthorizationRequirement Delete =
+        new OperationAuthorizationRequirement { Name = "Delete" };
+}
+```
 
 Your handler could then be implemented as follows, using a hypothetical `Document` class as the resource;
 
 ```csharp
 public class DocumentAuthorizationHandler :
-       AuthorizationHandler<OperationAuthorizationRequirement, Document>
-   {
-       public override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                                   OperationAuthorizationRequirement requirement,
-                                                   Document resource)
-       {
-           // Validate the operation using the resource, the identity and
-           // the Name property value from the requirement.
+    AuthorizationHandler<OperationAuthorizationRequirement, Document>
+{
+    public override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+                                                OperationAuthorizationRequirement requirement,
+                                                Document resource)
+    {
+        // Validate the operation using the resource, the identity and
+        // the Name property value from the requirement.
 
-           return Task.CompletedTask;
-       }
-   }
-   ```
+        return Task.CompletedTask;
+    }
+}
+```
 
 You can see the handler works on `OperationAuthorizationRequirement`. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
 
@@ -136,13 +136,13 @@ To call an operational resource handler you need to specify the operation when c
 
 ```csharp
 if (await _authorizationService.AuthorizeAsync(User, document, Operations.Read))
-   {
-       return View(document);
-   }
-   else
-   {
-       return new ChallengeResult();
-   }
-   ```
+{
+    return View(document);
+}
+else
+{
+    return new ChallengeResult();
+}
+```
 
 This example checks if the User is able to perform the Read operation for the current `document` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning `ChallengeResult` will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
