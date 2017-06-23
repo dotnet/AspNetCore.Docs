@@ -22,7 +22,7 @@ ASP.NET Core Identity is an extensible system which enables you to create a cust
 
 ## Introduction
 
-By default, the ASP.NET Core Identity system stores user information in a SQL Server database using Entity Framework Core. For many apps, this approach works well. However, you may prefer to use a different persistence mechanism. For example:
+By default, the ASP.NET Core Identity system stores user information in a SQL Server database using Entity Framework Core. For many apps, this approach works well. However, you may prefer to use a different persistence mechanism or data schema. For example:
 
 * You use [Azure Table Storage](https://docs.microsoft.com/azure/storage/) or another data store.
 * Your database tables have a different structure. 
@@ -55,16 +55,16 @@ When creating a new instance of `UserManager` or `RoleManager` you provide the t
 
 ## ASP.NET Core Identity stores data types
 
-To implement a custom storage provider, it's helpful to understand the types of data used with ASP.NET Core Identity. This helps you decide which features are relevant to your app. The ASP.NET Core stores data types are detailed in the following sections:
+ASP.NET Core Identity data types are detailed in the following sections:
 
 ### Users
 
 Registered users of your web site. The `User` store includes the following fields:
 <!--  Just like english code is not allowed, ditto for data structures. Can't you just include the User class with some comments? How is this useful to creating a custom store? You need to do something like like the list below of the most important fields - but you need to point to the Users model.-->
-* user Id and user name. 
+* User Id and user name. 
 * A hashed password if users log in with credentials that are specific to your site (rather than using credentials from an external site like Facebook).
 * A security stamp to indicate whether anything has changed in the user credentials. 
-* email address, phone number, whether two factor authentication is enabled, the current number of failed logins, and whether an account has been locked.
+* Email address, phone number, whether two-factor authentication is enabled, the current number of failed logins, and whether an account has been locked.
 
 ### User Claims
 
