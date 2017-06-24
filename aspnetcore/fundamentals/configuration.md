@@ -56,7 +56,7 @@ Console.Write($"{Configuration["wizards:0:Name"]}, ");
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-The preceding sample uses the configuration indexer to read values. When the `Configuration` object is available, the indexer is a convenient way to access setting. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
+The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
 
 It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code adds two configuration providers to three sources:
 
