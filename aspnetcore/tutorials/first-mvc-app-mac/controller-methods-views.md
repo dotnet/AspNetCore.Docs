@@ -1,5 +1,5 @@
 ---
-title: Controller methods and views in a ASP.NET Core MVC app
+title: Controller methods and views in an ASP.NET Core MVC app
 author: rick-anderson
 description: Working with controller methods, views and DataAnnotations
 keywords: ASP.NET Core,
@@ -13,7 +13,7 @@ ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-mac/controller-methods-views
 ---
 
-# Controller methods and views in a ASP.NET Core MVC app
+# Controller methods and views in an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
