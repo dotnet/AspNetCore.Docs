@@ -48,7 +48,7 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
 ```
 
-To work with arrays in a JSON-formatted configuration, use a array index with a colon-separated string. For instance, to get the name of the first item in the preceding `wizards` array, use the following code:
+Use an array index with a colon-separated string to access arrays in a JSON-formatted configuration. The following example gets the name of the first item in the preceding `wizards` array:
 
 ```csharp
 Console.Write($"{Configuration["wizards:0:Name"]}, ");
