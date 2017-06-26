@@ -126,7 +126,7 @@ If you don't have a *web.config* file in the project when you publish with *dotn
    ![Select Basic Settings from the contextual menu of the Application Pool.](iis/_static/apppools-basic-settings-ws2016.png)
 
 8. Set the **.NET CLR version** to **No Managed Code**.
-  
+
    ![Set No Managed Code for the .NET CLR Version.](iis/_static/edit-apppool-ws2016.png)
      
     Note: Setting the **.NET CLR version** to **No Managed Code** is optional. ASP.NET Core doesn't rely on loading the desktop CLR.
