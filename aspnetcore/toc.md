@@ -1,8 +1,8 @@
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
-## [Create a Web API with ASP.NET Core and Visual Studio](xref:tutorials/first-web-api)
-## [Create a Web app with ASP.NET Core and Visual Studio](xref:tutorials/first-mvc-app/start-mvc)
+## [Create a Web API](xref:tutorials/first-web-api)
+## [Create a Web app](xref:tutorials/first-mvc-app/start-mvc)
 ## [ASP.NET Core tutorials](xref:tutorials/index)
 
 # [Tutorials](tutorials/index.md)
