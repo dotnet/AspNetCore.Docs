@@ -137,6 +137,5 @@ For more information, see the following resources:
 
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
-* [Your First ASP.NET Core Application on a Mac Using Visual Studio Code.](../../tutorials/your-first-mac-aspnet.md)
 
   The tutorial uses Kestrel by itself locally, then deploys the app to Azure where it runs under Windows using IIS as a reverse proxy server.
