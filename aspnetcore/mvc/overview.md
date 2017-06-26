@@ -1,5 +1,5 @@
 ---
-title: Overview of ASP.NET Core MVC | Microsoft Docs
+title: Overview of ASP.NET Core MVC 
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -60,30 +60,19 @@ ASP.NET Core MVC provides a patterns-based way to build dynamic websites that en
 
 ## Features
 
-ASP.NET Core MVC includes the following features:
+ASP.NET Core MVC includes the following:
 
 * [Routing](#routing)
-
 * [Model binding](#model-binding)
-
 * [Model validation](#model-validation)
-
 * [Dependency injection](../fundamentals/dependency-injection.md)
-
 * [Filters](#filters)
-
 * [Areas](#areas)
-
 * [Web APIs](#web-apis)
-
 * [Testability](#testability)
-
 * [Razor view engine](#razor-view-engine)
-
 * [Strongly typed views](#strongly-typed-views)
-
 * [Tag Helpers](#tag-helpers)
-
 * [View Components](#view-components)
 
 ### Routing
