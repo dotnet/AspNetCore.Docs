@@ -42,7 +42,7 @@ The SignalR server component can be hosted in the following server or client ope
 
 ### Supported server .NET Framework version
 
-SignalR 2 is only supported on .NET Famework 4.5. See the [Recommended Updates](#updates) section for updates that enhance reliability, compatibility, stability, and performance.
+SignalR 2 is only supported on .NET Framework 4.5. See the [Recommended Updates](#updates) section for updates that enhance reliability, compatibility, stability, and performance.
 
 ### Supported server IIS versions
 
