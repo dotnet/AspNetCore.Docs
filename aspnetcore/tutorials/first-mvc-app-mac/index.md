@@ -14,7 +14,7 @@ uid: tutorials/first-mvc-app-mac/index
 ---
 # Building an ASP.NET Core MVC app with Visual Studio for Mac
 
-This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio for Mac. This is a work in progress. See the [Visual Studio for Windows version](xref:tutorials/first-mvc-app/index) for the complete series.
+This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio for Mac.
 
 1. [Getting started](start-mvc.md)
 1. [Adding a controller](adding-controller.md)
