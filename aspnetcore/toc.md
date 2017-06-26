@@ -1,9 +1,9 @@
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
-## [Your first ASP.NET Core application on a Mac using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
-## [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
-## [Developing ASP.NET Core applications using dotnet watch](tutorials/dotnet-watch.md)
+## [Create a Web API](xref:tutorials/first-web-api)
+## [Create a Web app](xref:tutorials/first-mvc-app/start-mvc)
+## [ASP.NET Core tutorials](xref:tutorials/index)
 
 # [Tutorials](tutorials/index.md)
 
