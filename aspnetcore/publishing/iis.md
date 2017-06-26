@@ -128,10 +128,13 @@ If you don't have a *web.config* file in the project when you publish with *dotn
 8. Set the **.NET CLR version** to **No Managed Code**.
 
    ![Set No Managed Code for the .NET CLR Version.](iis/_static/edit-apppool-ws2016.png)
-   
-> [!NOTE]
-> If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
+     
+    Note: Setting the **.NET CLR version** to **No Managed Code** is optional. ASP.NET Core doesn't rely on loading the desktop CLR.
 
+9. Confirm the process model identity has the proper permissions.
+
+    If you change the default identity of the application pool (**Process Model** > **Identity**) from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the application's folder, database, and other required resources.
+   
 ## Deploy the application
 Deploy the application to the folder you created on the target IIS system. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
