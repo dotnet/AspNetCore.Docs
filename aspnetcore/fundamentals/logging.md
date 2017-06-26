@@ -137,7 +137,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
 
-You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and lower to go to a high-volume data store, and all logs of `Warning` level and higher to go to a high-value data store. During development you might normally direct only logs of `Warning` or higher severity to the console, but add `Debug` level when you need to investigate a problem. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
+You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and lower to go to a volume data store, and all logs of `Warning` level and higher to go to a value data store. During development you might normally direct only logs of `Warning` or higher severity to the console, but add `Debug` level when you need to investigate a problem. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
 The ASP.NET Core framework writes `Debug` logs for framework events. Here's an example of what you see from the console provider if you run the sample application with the minimum log level set to `Debug` and go to URL `http://localhost:5000/api/todo/0`:
 
