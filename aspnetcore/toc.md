@@ -6,7 +6,6 @@
 ## [ASP.NET Core tutorials](xref:tutorials/index)
 
 # [Tutorials](tutorials/index.md)
-
 # [Fundamentals](fundamentals/index.md)
 ## [Application Startup](fundamentals/startup.md)
 ## [Middleware](fundamentals/middleware.md)
@@ -34,7 +33,7 @@
 
 # [MVC](mvc/overview.md)
 ## [Razor Pages](mvc/razor-pages/index.md)
-## [Model](mvc/models/model-binding.md)
+## [Models](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
 ### [Razor syntax](mvc/views/razor.md)
