@@ -20,6 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Cesar Blum Silveira](ht
 
 * Install the latest [Azure SDK for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs). The SDK installs Visual Studio if you don't already have it.
 
+
 > [!NOTE]
 > The SDK installation can take more than 30 minutes if your machine doesn't have many of the dependencies.
 
@@ -123,8 +124,10 @@ Create a new resource group and app service plan:
 
 ![Configure SQL Server dialog](publish-to-azure-webapp-using-vs/_static/conf_servername.png)
 
+
 > [!NOTE]
 > "admin" is not allowed as the administrator user name.
+
 
 * Tap **OK** on the  **Configure SQL Database** dialog
 
@@ -141,6 +144,10 @@ Create a new resource group and app service plan:
 * On the **Settings** stage of the **Publish** dialog:
 
   * Expand **Databases** and check **Use this connection string at runtime**
+  
+  > [!NOTE]
+  > If you are using Connection Strings in **appsettings.json**, then leave this blank.
+  > Otherwise these settings will be saved on the remote Azure settings and appsettings.json ignored.
 
   * Expand **Entity Framework Migrations** and check **Apply this migration on publish**
 
