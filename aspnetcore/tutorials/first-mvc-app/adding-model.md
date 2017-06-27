@@ -79,6 +79,8 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 ## Add EF tooling for Migrations
 
+In this section you install the Entity Framework Core tools NuGet package by editing the *.csproj* file. You can't use the `install-package` command or the package manager GUI to install a tools package.
+
 - In Solution Explorer, right click the **MvcMovie** project > **Edit MvcMovie.csproj**.
 
    ![SE meu showing Edit MvcMovie.csproj](adding-model/_static/edit_csproj.png)
