@@ -5,7 +5,7 @@ description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 03/30/2017
+ms.date: 06/27/2017
 ms.topic: get-started-article
 ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.technology: aspnet
@@ -87,7 +87,10 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 [!code-xml[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?range=22-25&highlight=3)] 
 
-Note: The version numbers shown above were correct at the time of writing.
+Notes: 
+
+* You can't add the EF tools packages to the `DotNetCliToolReference` element using the Package Manager Console.
+* The version numbers shown above were correct at the time of writing.
 
 Save your changes. 
 
