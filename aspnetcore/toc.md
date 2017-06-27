@@ -3,7 +3,6 @@
 # [Getting Started](getting-started.md)
 ## [Create a Web API](xref:tutorials/first-web-api)
 ## [Create a Web app](xref:tutorials/first-mvc-app/start-mvc)
-## [ASP.NET Core tutorials](xref:tutorials/index)
 
 # [Tutorials](tutorials/index.md)
 # [Fundamentals](fundamentals/index.md)
@@ -33,7 +32,8 @@
 
 # [MVC](mvc/overview.md)
 ## [Razor Pages](mvc/razor-pages/index.md)
-## [Models](mvc/models/model-binding.md)
+### [Razor syntax](mvc/views/razor.md)
+## [Model Binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
 ### [Razor syntax](mvc/views/razor.md)
@@ -58,6 +58,9 @@
 ### [Application parts](mvc/advanced/app-parts.md)
 ### [Custom Model Binding](mvc/advanced/custom-model-binding.md)
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
+### [Formatting response data](mvc/models/formatting.md)
+### [Custom formatters](mvc/advanced/custom-formatters.md)
+
 ## [Tutorials](tutorials/index.md)
 
 ### [Create a web app on Windows](tutorials/first-mvc-app/index.md)
@@ -96,7 +99,6 @@
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-### [Create a Web API](xref:tutorials/first-web-api-mac)
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
 #### [Getting started](data/ef-mvc/intro.md)
 #### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
@@ -110,11 +112,10 @@
 #### [Advanced topics](data/ef-mvc/advanced.md)
 ### [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ### [Building Web APIs](mvc/web-api/index.md)
-#### [Create a Web API with ASP.NET Core MVC using Visual Studio](tutorials/first-web-api.md)
+###3 [Create a Web API](xref:tutorials/first-web-api-mac)
 #### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 #### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
-#### [Formatting response data](mvc/models/formatting.md)
-##### [Custom formatters](mvc/advanced/custom-formatters.md)
+
 # [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration testing](testing/integration-testing.md)
