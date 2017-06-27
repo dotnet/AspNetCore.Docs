@@ -99,8 +99,6 @@ Update-Database
 
 See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model2.md)]
-
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
