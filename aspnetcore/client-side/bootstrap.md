@@ -32,7 +32,7 @@ Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to *
 
 This is the recommended way to add Bootstrap to an ASP.NET Core project.
 
-You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
+You can also install bootstrap using one of several package managers, such as Bower, npm, or NuGet. In each case, the process is essentially the same:
 
 ### Bower
 

@@ -308,7 +308,7 @@ You can use the following values for specifying the transport method:
 - "serverSentEvents"
 - "longPolling"
 
-The following examples show how to find out which transport method is being used by a connectiion.
+The following examples show how to find out which transport method is being used by a connection.
 
 **Client code that displays the transport method used by a connection (with the generated proxy)**
 

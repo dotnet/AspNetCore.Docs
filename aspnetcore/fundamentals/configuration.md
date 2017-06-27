@@ -1,11 +1,11 @@
 ---
-title: Configuration in ASP.NET Core | Microsoft Docs
+title: Configuration in ASP.NET Core 
 author: rick-anderson
 description: Demonstrates the configuration API
 keywords: ASP.NET Core, configuration, JSON
 ms.author: riande
 manager: wpickett
-ms.date: 11/29/2016
+ms.date: 6/24/2017
 ms.topic: article
 ms.assetid: b3a5984d-e172-42eb-8a48-547e4acb6806
 ms.technology: aspnet
@@ -18,7 +18,7 @@ uid: fundamentals/configuration
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
 
-The configuration API provides a way of configuring an app based on a list of name-value pairs that can be read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
+The configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
 
 * File formats (INI, JSON, and XML)
 * Command-line arguments
@@ -42,23 +42,23 @@ The app reads and displays the following configuration settings:
 
 [!code-json[Main](configuration/sample/src/ConfigJson/appsettings.json)]
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, you access the `Configuration` indexer with the corresponding item’s key:
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the `Configuration` indexer with the corresponding item’s key:
 
 ```csharp
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
 ```
 
-To work with arrays in JSON-formatted configuration sources, use a zero-based array index as part of the colon-separated string used to retrieve the value. For instance, to get the name of the first item in the `wizards` array shown above, use the following code:
+To work with arrays in JSON-formatted configuration sources, use a array index as part of the colon-separated string. The following example gets the name of the first item in the preceding `wizards` array:
 
 ```csharp
 Console.Write($"{Configuration["wizards:0:Name"]}, ");
 ```
 
-Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
+Name-value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-The sample above uses the configuration indexer to read values. When the `Configuration` object is available, the indexer is a convenient way to access setting. To flow information from configuration into other parts of the app outside of `Startup`, we recommend using the [options pattern](xref:fundamentals/configuration#options-config-objects). We'll show that later in this document.
+The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
 
-It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
+It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code adds two configuration providers to three sources:
 
 1. JSON provider, reading *appsettings.json*
 2. JSON provider, reading *appsettings.\<EnvironmentName>.json*
@@ -77,7 +77,7 @@ Configuration considerations:
 * `IOptionsSnapshot` can reload configuration data when it changes. Use `IOptionsSnapshot` if you need to reload configuration data.  See [IOptionsSnapshot](#ioptionssnapshot) for more information.
 * Configuration keys are case insensitive.
 * A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [safe storage of app secrets during development](../security/app-secrets.md).
 * If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
 
 <a name=options-config-objects></a>
@@ -99,8 +99,7 @@ In the following code, the JSON configuration provider is enabled. The `MyOption
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-22)]
 
-
-The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
+The following [controller](../mvc/controllers/index.md)  uses [constructor Dependency Injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) on [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController.cs?name=snippet1)]
 
@@ -118,9 +117,9 @@ In the following code, a second `IConfigureOptions<TOptions>` service is added t
 
 You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
 
-Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
+Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json* -- but the value of `Option1` is overridden by the configured delegate. 
 
-When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
+When more than one configuration service is enabled, the last configuration source specified "wins" (sets the configuration value). In the preceding code, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. A sub-property sample is shown later in this article.
 
@@ -150,9 +149,9 @@ With the following `Controller`:
 
 *Requires ASP.NET Core 1.1 or higher.*
 
-`IOptionsSnapshot` supports reloading configuration data when the configuration file has changed.  It also has minimal overhead if you don't care about changes. Using `IOptionsSnapshot` with `reloadOnChange: true`, the options are bound to `IConfiguration` and reloaded when changed.
+`IOptionsSnapshot` supports reloading configuration data when the configuration file has changed. It has minimal overhead. Using `IOptionsSnapshot` with `reloadOnChange: true`, the options are bound to `IConfiguration` and reloaded when changed.
 
-The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
+The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to the server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
 
 [!code-csharp[Main](configuration/sample/IOptionsSnapshot2/Startup.cs?name=snippet1&highlight=1-9,13-18,32,33,52,53)]
 
@@ -188,7 +187,7 @@ Display the settings from the `HomeController`:
 
   ### GetValue
 
-The following sample demonstrates the `GetValue<T>` extension method:
+The following sample demonstrates the [GetValue<T>](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationbinder#Microsoft_Extensions_Configuration_ConfigurationBinder_GetValue_Microsoft_Extensions_Configuration_IConfiguration_System_Type_System_String_System_Object_) extension method:
 
 [!code-csharp[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
 
@@ -245,9 +244,9 @@ public void CanBindObjectTree()
 
 <a name=custom-config-providers></a>
 
-  ## Simple sample of Entity Framework custom provider
+## Basic sample of Entity Framework custom provider
 
-In this section, we'll create a simple configuration provider that reads name-value pairs from a database using EF. 
+In this section, a basic configuration provider that reads name-value pairs from a database using EF is created. 
 
 Define a `ConfigurationValue` entity for storing configuration values in the database:
 
@@ -318,8 +317,6 @@ dotnet run -MachineName=Bob -Left=7734
 
 Displays:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
 ```
 Hello Bob
 Left 7734
@@ -341,11 +338,12 @@ results in an exception. An exception will be thrown if you specify a command-li
 
   ## The *web.config* file
 
-*web.config* is required when you host the app in IIS or IIS-Express. It turns on the AspNetCoreModule in IIS to launch your app. It may also be used to configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
+A *web.config* file is required when you host the app in IIS or IIS-Express. *web.config* turns on the AspNetCoreModule in IIS to launch your app. Settings in *web.config* enable the AspNetCoreModule in IIS to launch your app and configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
   ### Additional notes
 
-* Dependency Injection (DI) is not setup until after `ConfigureServices` is invoked and the configuration system is not DI aware.
+* Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
+* The configuration system is not DI aware.
 * `IConfiguration` has two specializations:
 
   * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
