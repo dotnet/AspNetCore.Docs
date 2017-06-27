@@ -1,7 +1,7 @@
 ---
-title: Using SpaServices for Creating Single Page Applications | Microsoft Docs
+title: Using JavaScriptServices for Creating Single Page Applications | Microsoft Docs
 author: scottaddie
-description: Learn about the benefits of using SpaServices to build a SPA with ASP.NET Core
+description: Learn about the benefits of using JavaScriptServices to build a SPA with ASP.NET Core
 keywords: ASP.NET Core, Angular, SPA, JavaScriptServices, SpaServices
 ms.author: scaddie
 manager: wpickett
@@ -13,25 +13,37 @@ ms.prod: asp.net-core
 uid: client-side/spa-services
 ms.custom: H1Hack27Feb2017
 ---
-# Using SpaServices for Creating Single Page Applications with ASP.NET Core
+# Using JavaScriptServices for Creating Single Page Applications with ASP.NET Core
 
-By [Scott Addie](https://github.com/scottaddie)
+By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](http://fiyazhasan.me/)
 
-This article describes the value proposition of [SpaServices](https://github.com/aspnet/JavaScriptServices/tree/dev/src/Microsoft.AspNetCore.SpaServices) in building a Single Page Application (SPA) with ASP.NET Core.
+A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be difficult. [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/spa-services/sample)
 
-<a name="using-spa-services"></a>
+<a name="what-is-js-services"></a>
 
-## Using SpaServices with ASP.NET Core
+## What is JavaScriptServices?
 
-A SPA is a popular web application approach due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks like ASP.NET Core can be difficult. The `Microsoft.AspNetCore.SpaServices` NuGet package, or SpaServices for short, was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
+JavaScriptServices is a collection of client-side technologies for ASP.NET Core. Its goal is to position ASP.NET Core as developers' preferred server-side platform for building SPAs.
+
+JavaScriptServices consists of three distinct NuGet packages:
+* [Microsoft.AspNetCore.NodeServices](http://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/) (NodeServices)
+* [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) (SpaServices)
+* [Microsoft.AspNetCore.SpaTemplates](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaTemplates/) (SpaTemplates)
+
+These packages are useful if you:
+* Run JavaScript on the server
+* Use a SPA framework or library
+* Build client-side assets with Webpack
+
+Much of the focus in this article is placed on using the SpaServices package.
 
 <a name="what-is-spa-services"></a>
 
 ## What is SpaServices?
 
-SpaServices was created as a component of the [JavaScriptServices](https://github.com/aspnet/JavaScriptServices) project, whose goal is to position ASP.NET Core as developers' preferred server-side platform for building SPAs. SpaServices is not required to develop SPAs with ASP.NET Core. SpaServices is a client framework-agnostic library, it doesn't lock you into a particular client framework.
+SpaServices was created to position ASP.NET Core as developers' preferred server-side platform for building SPAs. SpaServices is not required to develop SPAs with ASP.NET Core, and it doesn't lock you into a particular client framework.
 
 SpaServices provides useful infrastructure such as:
 * [Server-side prerendering](#server-prerendering)
@@ -39,15 +51,15 @@ SpaServices provides useful infrastructure such as:
 * [Hot Module Replacement](#hot-module-replacement)
 * [Routing helpers](#routing-helpers)
 
-Collectively, these infrastructure components enhance both the development workflow and the runtime experience. The components can be adopted in an  <!-- need a simple term here - piecemeal?? --> à la carte fashion.
+Collectively, these infrastructure components enhance both the development workflow and the runtime experience. The components can be adopted individually.
 
 <a name="spa-services-prereqs"></a>
 
 ## Prerequisites for using SpaServices
 
 To work with SpaServices, install the following:
-1. [Node.js](https://nodejs.org/) (version 6 or later) with npm
-    * To verify these component are installed and can be found, run the following from the command line:
+* [Node.js](https://nodejs.org/) (version 6 or later) with npm
+    * To verify these components are installed and can be found, run the following from the command line:
 
     ```console
     node -v && npm -v
@@ -55,8 +67,10 @@ To work with SpaServices, install the following:
 
 Note: If you're deploying to an Azure web site, you don't need to do anything here &mdash; Node.js is installed and available in the server environments.
 
-1. [.NET Core SDK](https://www.microsoft.com/net/download/core) 1.0 (or later)
-    * If you're on Windows, you can install Visual Studio 2017, which includes the .NET Core SDK.
+* [.NET Core SDK](https://www.microsoft.com/net/download/core) 1.0 (or later)
+    * If you're on Windows, this can be installed by selecting Visual Studio 2017's **.NET Core cross-platform development** workload.
+
+* [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
 
 <a name="server-prerendering"></a>
 
@@ -64,13 +78,12 @@ Note: If you're deploying to an Azure web site, you don't need to do anything he
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js, and then delegate further execution to the client.
 
-SpaServices' ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server for you.
+ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) provided by SpaServices simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server for you.
 
 ### Prerequisites
 
 Install the following:
-1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package:
+* [aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering) npm package:
 
     ```console
     npm i -S aspnet-prerendering
@@ -86,22 +99,22 @@ These Tag Helpers abstract the intricacies of communicating directly with low-le
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
-Microsoft's **[Razor Language Services](https://marketplace.visualstudio.com/items?itemName=ms-madsk.RazorLanguageServices)** extension improves Visual Studio 2017's Tag Helpers development experience by adding context-aware IntelliSense and syntax highlighting:
+Microsoft's [Razor Language Services](https://marketplace.visualstudio.com/items?itemName=ms-madsk.RazorLanguageServices) extension improves Visual Studio 2017's Tag Helpers development experience by adding context-aware IntelliSense and syntax highlighting:
 ![Tag Helpers intellisense](../client-side/spa-services/_static/tag_helper_intellisense.png)
 
 ### The `asp-prerender-module` Tag Helper
 
-The `asp-prerender-module` Tag Helper, used in the preceding code example, executes *ClientApp/dist/main-server.js* on the server via Node.js. For clarity's sake, *main-server.js* file is an artifact of the [Webpack](http://webpack.github.io/) build process' TypeScript-to-JavaScript transpilation task. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the *ClientApp/boot-server.ts* file:
+The `asp-prerender-module` Tag Helper, used in the preceding code example, executes *ClientApp/dist/main-server.js* on the server via Node.js. For clarity's sake, *main-server.js* file is an artifact of the TypeScript-to-JavaScript transpilation task in the [Webpack](http://webpack.github.io/) build process. Webpack defines an entry point alias of `main-server`; and, traversal of the dependency graph for this alias begins at the *ClientApp/boot-server.ts* file:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
-In the following Angular example, the *ClientApp/boot-server.ts* file utilizes the `createServerRenderer` function and `RenderResult` type of the `aspnet-prerendering` npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a `resolve` function call, which is wrapped in a JavaScript `Promise` object of type `RenderResult`. The `Promise` object's significance is that it asynchronously supplies the HTML markup to the page for injection in the DOM's placeholder element.
+In the following Angular example, the *ClientApp/boot-server.ts* file utilizes the `createServerRenderer` function and `RenderResult` type of the `aspnet-prerendering` npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a resolve function call, which is wrapped in a strongly-typed JavaScript `Promise` object. The `Promise` object's significance is that it asynchronously supplies the HTML markup to the page for injection in the DOM's placeholder element.
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-34,79-)]
 
 ### The `asp-prerender-data` Tag Helper
 
-The  `asp-prerender-data`  and  `asp-prerender-module` Tag Helpers can be used to pass contextual information from the Razor view to the server-side JavaScript. For example, the following markup passes user data to the `main-server` module:
+When coupled with the `asp-prerender-module` Tag Helper, the `asp-prerender-data` Tag Helper can be used to pass contextual information from the Razor view to the server-side JavaScript. For example, the following markup passes user data to the `main-server` module:
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 
@@ -130,8 +143,7 @@ The `postList` array defined inside the `globals` object is attached to the brow
 ### Prerequisites
 
 Install the following:
-1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package:
+* [aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack) npm package:
 
     ```console
     npm i -D aspnet-webpack
@@ -143,11 +155,9 @@ Webpack Dev Middleware is registered into the HTTP request pipeline via the foll
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Startup.cs?name=webpack-middleware-registration&highlight=4)]
 
-The `UseWebpackDevMiddleware` extension method:
-1. Must be called before [registering static file hosting](xref:fundamentals/static-files) via the `UseStaticFiles` extension method.
-1. For security reasons, registered only when running the app in development mode
+The `UseWebpackDevMiddleware` extension method must be called before [registering static file hosting](xref:fundamentals/static-files) via the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
 
-~Finally, this is a banned word~ the *webpack.config.js* file's `output.publicPath` property tells the middleware to watch the `dist` folder for changes:
+The *webpack.config.js* file's `output.publicPath` property tells the middleware to watch the `dist` folder for changes:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=6,13-16)]
 
@@ -155,13 +165,12 @@ The `UseWebpackDevMiddleware` extension method:
 
 ## Hot Module Replacement
 
-Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits; but, it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There is a live link between the Webpack Dev Middleware service and the browser, which means changes are ~simply another banned word~ pushed to the browser.
+Think of Webpack's [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html) (HMR) feature as an evolution of [Webpack Dev Middleware](#webpack-dev-middleware). HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don't confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There is a live link between the Webpack Dev Middleware service and the browser, which means changes are ~simply another banned word~ pushed to the browser.
 
 ### Prerequisites
 
 Install the following:
-1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package:
+* [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware) npm package:
 
     ```console
     npm i -D webpack-hot-middleware
@@ -169,7 +178,7 @@ Install the following:
 
 ### Configuration
 
-The HMR component must be registered into MVC's HTTP request pipeline (in the `Configure` method):
+The HMR component must be registered into MVC's HTTP request pipeline in the `Configure` method:
 
 ```csharp
 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
@@ -177,9 +186,7 @@ app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
 });
 ```
 
-Consider the following when using `UseWebpackDevMiddleware`:
-1. It must be called before the `UseStaticFiles` extension method
-1. For security reasons, registered only when running the app in development mode.
+As was true with [Webpack Dev Middleware](#webpack-dev-middleware), the `UseWebpackDevMiddleware` extension method must be called before the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
 
 The *webpack.config.js* file must define a `plugins` array, even if it's left empty:
 
@@ -200,8 +207,7 @@ Consider the scenario in which an extensionless route of `/some/page` is used. A
 ### Prerequisites
 
 Install the following:
-1. [Microsoft.AspNetCore.SpaServices](http://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/) NuGet package
-1. The client-side routing npm package. Using Angular as an example:
+* The client-side routing npm package. Using Angular as an example:
 
     ```console
     npm i -S @angular/router
@@ -238,7 +244,7 @@ A list of available SPA templates is displayed:
 | MVC ASP.NET Core with React.js and Redux  | reactredux | [C#]     | Web/MVC/SPA |
 | MVC ASP.NET Core with Vue.js              | vue        | [C#]     | Web/MVC/SPA | 
 
-To create a new project using one of the SPA templates, include the **Short Name** of the template in the `dotnet new` command. The following command creates an Angular application with ASP.NET Core MVC configured for the server-side:
+To create a new project using one of the SPA templates, include the **Short Name** of the template in the `dotnet new` command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
 ```console
 dotnet new angular
@@ -249,10 +255,10 @@ dotnet new angular
 ### Set the runtime configuration mode
 
 Two primary runtime configuration modes exist:
-1. **Development**:
+* **Development**:
     * Includes source maps to ease debugging.
     * Doesn't optimize the client-side code for performance.
-1. **Production**:
+* **Production**:
     * Excludes source maps.
     * Optimizes the client-side code via bundling & minification.
 
@@ -276,7 +282,7 @@ The application starts on localhost according to the [runtime configuration mode
 
 ### Running with Visual Studio 2017
 
-Open the *.csproj* file generated by the `dotnet new` command. The required NuGet and npm packages are restored automatically upon project open. This restoration process may take up to a few minutes; and, the application is ready to run when it completes. Click the green run button or press `Ctrl` + `F5`, and the browser opens to the application's landing page. The application runs on localhost according to the [runtime configuration mode](#runtime-config-mode). 
+Open the *.csproj* file generated by the `dotnet new` command. The required NuGet and npm packages are restored automatically upon project open. This restoration process may take up to a few minutes, and the application is ready to run when it completes. Click the green run button or press `Ctrl + F5`, and the browser opens to the application's landing page. The application runs on localhost according to the [runtime configuration mode](#runtime-config-mode). 
 
 <a name="app-testing"></a>
 
@@ -294,7 +300,7 @@ Open the command prompt at the project root, and run the following command:
 npm test
 ```
 
-The script launches the Karma test runner, which reads the settings defined in the *karma.conf.js* file. Amongst other settings, the *karma.conf.js* identifies the test files to be executed via its `files` array:
+The script launches the Karma test runner, which reads the settings defined in the *karma.conf.js* file. Among other settings, the *karma.conf.js* identifies the test files to be executed via its `files` array:
 
 [!code-javascript[Main](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/test/karma.conf.js?range=4-5,8-11)]
 

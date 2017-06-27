@@ -19,7 +19,7 @@ ms.prod: asp.net-core
 - [Building beautiful, responsive sites with Bootstrap](bootstrap.md)
 - [Knockout.js MVVM Framework](knockout.md)
 - [Using AngularJS for Single Page Apps (SPAs)](angular.md)
-- [Using SpaServices for Single Page Apps (SPAs)](spa-services.md)
+- [Using JavaScriptServices for Single Page Apps (SPAs)](spa-services.md)
 - [Styling applications with Less, Sass, and Font Awesome](less-sass-fa.md)
 - [Bundling and minification](bundling-and-minification.md)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
