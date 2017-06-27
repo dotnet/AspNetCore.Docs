@@ -89,7 +89,7 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 Notes: 
 
-* You can't add the EF tools packages to the `DotNetCliToolReference` element using the Package Manager Console*.
+* You can't add the EF tools packages to the `DotNetCliToolReference` element using the Package Manager Console.
 * The version numbers shown above were correct at the time of writing.
 
 Save your changes. 
