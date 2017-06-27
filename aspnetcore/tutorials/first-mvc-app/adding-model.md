@@ -81,23 +81,25 @@ You need to create the database, and you'll use the EF Core [Migrations](xref:da
 
 In this section you'll use the Package Manager Console (PMC) to:
 
-* Add the Entity Framework Core Tools package.
+* Add the Entity Framework Core Tools package. This package is required to add migrations and update the database.
 * Add an initial migration.
 * Update the database with the initial migration.
 
-- From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
   ![PMC menu](adding-model/_static/pmc.png)
 
-- In the PMC, enter the following commands:
+In the PMC, enter the following commands:
 
-  ``` PMC
+``` PMC
 Install-Package Microsoft.EntityFrameworkCore.Tools
 Add-Migration Initial
 Update-Database
 ```
 
-See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The `Add-Migration` command create code to create the initial database schema. The schema is based on model specified in the `DbContext`( In the *Data/MvcMovieContext.cs file). The `Initial` argument is used to name the migrations file. You can use another name, by convention the name indicates the migration step. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+
+The `Update-Database` command runs the code in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
