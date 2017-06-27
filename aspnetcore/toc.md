@@ -59,7 +59,6 @@
 ### [Custom Model Binding](mvc/advanced/custom-model-binding.md)
 ### [Custom formatters](mvc/advanced/custom-formatters.md)
 ### [Formatting response data](mvc/models/formatting.md)
-### [Custom formatters](mvc/advanced/custom-formatters.md)
 
 ## [Tutorials](tutorials/index.md)
 
@@ -112,7 +111,7 @@
 #### [Advanced topics](data/ef-mvc/advanced.md)
 ### [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ### [Building Web APIs](mvc/web-api/index.md)
-###3 [Create a Web API](xref:tutorials/first-web-api-mac)
+### [Create a Web API](xref:tutorials/first-web-api-mac)
 #### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 #### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 
