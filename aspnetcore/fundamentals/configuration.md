@@ -48,13 +48,13 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
 ```
 
-Use an array index with a colon-separated string to access arrays in a JSON-formatted configuration. The following example gets the name of the first item in the preceding `wizards` array:
+To work with arrays in JSON-formatted configuration sources, use a array index as part of the colon-separated string. The following example gets the name of the first item in the preceding `wizards` array:
 
 ```csharp
 Console.Write($"{Configuration["wizards:0:Name"]}, ");
 ```
 
-Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
+Name-value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
 
@@ -77,7 +77,7 @@ Configuration considerations:
 * `IOptionsSnapshot` can reload configuration data when it changes. Use `IOptionsSnapshot` if you need to reload configuration data.  See [IOptionsSnapshot](#ioptionssnapshot) for more information.
 * Configuration keys are case insensitive.
 * A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Do not use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [safe storage of app secrets during development](../security/app-secrets.md).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [safe storage of app secrets during development](../security/app-secrets.md).
 * If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
 
 <a name=options-config-objects></a>
@@ -99,8 +99,7 @@ In the following code, the JSON configuration provider is enabled. The `MyOption
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-22)]
 
-
-The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
+The following [controller](../mvc/controllers/index.md)  uses [constructor Dependency Injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) on [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController.cs?name=snippet1)]
 
@@ -118,9 +117,9 @@ In the following code, a second `IConfigureOptions<TOptions>` service is added t
 
 You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
 
-Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*- but the value of `Option1` is overridden by the configured delegate. 
+Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json* -- but the value of `Option1` is overridden by the configured delegate. 
 
-When more than one configuration service is enabled, the last configuration source specified "wins" (sets the configuration value). With the preceding code, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
+When more than one configuration service is enabled, the last configuration source specified "wins" (sets the configuration value). In the preceding code, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. A sub-property sample is shown later in this article.
 
@@ -152,7 +151,7 @@ With the following `Controller`:
 
 `IOptionsSnapshot` supports reloading configuration data when the configuration file has changed. It has minimal overhead. Using `IOptionsSnapshot` with `reloadOnChange: true`, the options are bound to `IConfiguration` and reloaded when changed.
 
-The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
+The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to the server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
 
 [!code-csharp[Main](configuration/sample/IOptionsSnapshot2/Startup.cs?name=snippet1&highlight=1-9,13-18,32,33,52,53)]
 
@@ -318,8 +317,6 @@ dotnet run -MachineName=Bob -Left=7734
 
 Displays:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
 ```
 Hello Bob
 Left 7734
@@ -341,11 +338,11 @@ results in an exception. An exception will be thrown if you specify a command-li
 
   ## The *web.config* file
 
-*web.config* is required when you host the app in IIS or IIS-Express. *web.config* turns on the AspNetCoreModule in IIS to launch your app. *web.config* can also be used to configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
+A *web.config* file is required when you host the app in IIS or IIS-Express. *web.config* turns on the AspNetCoreModule in IIS to launch your app. Settings in *web.config* enable the AspNetCoreModule in IIS to launch your app and configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
   ### Additional notes
 
-* Dependency Injection (DI) is not setup until after `ConfigureServices` is invoked.
+* Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
 * The configuration system is not DI aware.
 * `IConfiguration` has two specializations:
 
