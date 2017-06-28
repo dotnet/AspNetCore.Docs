@@ -77,21 +77,29 @@ Login failed for user Rick
 
 You need to create the database, and you'll use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
 
-## Add EF tooling for Migrations
+## Add EF tooling and perform initial migration
 
-- In Solution Explorer, right click the **MvcMovie** project > **Edit MvcMovie.csproj**.
+In this section you'll use the Package Manager Console (PMC) to:
 
-   ![SE meu showing Edit MvcMovie.csproj](adding-model/_static/edit_csproj.png)
+* Add the Entity Framework Core Tools package. This package is required to add migrations and update the database.
+* Add an initial migration.
+* Update the database with the initial migration.
 
-- Add the `"Microsoft.EntityFrameworkCore.Tools.DotNet"` NuGet package:
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-[!code-xml[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?range=22-25&highlight=3)] 
+  ![PMC menu](adding-model/_static/pmc.png)
 
-Note: The version numbers shown above were correct at the time of writing.
+In the PMC, enter the following commands:
 
-Save your changes. 
+``` PMC
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Add-Migration Initial
+Update-Database
+```
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model2.md)]
+The `Add-Migration` command creates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Data/MvcMovieContext.cs file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+
+The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 

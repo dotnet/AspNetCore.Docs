@@ -64,19 +64,20 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
 
-Build the solution then open a command prompt in the project folder. Enter the following commands:
+Build the solution.
 
-```console
-dotnet ef migrations add Rating
-dotnet ef database update
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+
+  ![PMC menu](adding-model/_static/pmc.png)
+
+In the PMC, enter the following commands:
+
+```PMC
+Add-Migration Rating
+Update-Database
 ```
-Note: If you get the error message `No executable found matching command "dotnet-ef"`:
 
-- Verify you're in the project folder (which contains the *.csproj* file).
-- Verify the *.csproj* file contains the "Microsoft.EntityFrameworkCore.Tools.DotNet" NuGet package.
-- See [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
-
-The `migrations add` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step.
+The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
 If you delete all the records in the DB, the initialize will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from SSOX.
 
