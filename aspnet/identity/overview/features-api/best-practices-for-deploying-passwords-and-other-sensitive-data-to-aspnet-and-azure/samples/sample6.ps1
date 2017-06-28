@@ -8,4 +8,4 @@ $credPath = $PSScriptRoot + '\' + $Name + ".credential"
 $PWord = ConvertTo-SecureString –String $Password –AsPlainText -Force 
 $Credential = New-Object –TypeName `
 System.Management.Automation.PSCredential –ArgumentList $Name, $PWord
-$credential | Export-CliXml $credPath
+$Credential | Export-CliXml $credPath
