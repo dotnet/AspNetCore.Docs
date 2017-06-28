@@ -122,7 +122,7 @@ Note: We're also preventing a newly registered user from being automatically log
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
 
-Uncomment the markup in *Views/Account/ForgotPassword.cshtml*:
+Uncomment the markup in *Views/Account/ForgotPassword.cshtml* and comment out or remove the paragraph with the link to this article:
 
 [!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml)]
 
