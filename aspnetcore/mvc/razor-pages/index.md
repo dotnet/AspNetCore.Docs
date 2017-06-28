@@ -1,11 +1,11 @@
 ---
-title: Introduction to Razor Pages in ASP.NET Core | Microsoft Docs
+title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: Overview of Razor Pages in ASP.NET Core | Microsoft Docs
+description: Overview of Razor Pages in ASP.NET Core
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 05/10/2017
+ms.date: 06/28/2017
 ms.topic: get-started-article
 ms.assetid: 30e4104c-0124-477b-86b3-beb7b34ed3f6
 ms.technology: aspnet
@@ -121,7 +121,8 @@ The *MyApp/Pages/Contact.cshtml* file:
 
 <html>
 <body>
-    <p>Enter your contact info here and we will email you about our fine products!</p> 
+    <p>Enter your contact info here and we will email you about 
+         our fine products!</p> 
     <div asp-validation-summary="All"></div>
     <form method="POST">
       <div>Name: <input asp-for="Contact.Name" /></div>
@@ -132,13 +133,18 @@ The *MyApp/Pages/Contact.cshtml* file:
 </html>
 ```
 
-The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. You most frequently use an `OnGet` handler to initialize any state a needed to show the HTML and `OnPost` to handle form submissions. The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
+The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
+
+* `OnGet`  to initialize state needed for the page.
+* `OnPost` to handle form submissions. 
+
+The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
 
 The basic flow of `OnPostAsync` is:
 
 1. Check for validation errors.
-1. If there are no errors, save the data and redirect -
-1. Else, show the page again with the validation errors.
+1. If there are no errors, save the data and redirect.
+1. Else if errors, show the page again with the validation message.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
 
@@ -148,7 +154,7 @@ The `Contact` property is using the new `[BindProperty]` attribute to opt-in to 
 
 Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
 
-Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views - this generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement  generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
@@ -168,7 +174,8 @@ You could write this form by partitioning the view code and the handler method i
 
 <html>
 <body>
-    <p>Enter your contact info here and we will email you about our fine products!</p> 
+    <p>Enter your contact info here and we will email you about 
+         our fine products!</p> 
     <div asp-validation-summary="All"></div>
     <form method="POST">
       <div>Name: <input asp-for="Contact.Name" /></div>
@@ -242,9 +249,9 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 @{ Layout = "_Layout"; }
 ```
 
-Note that we  placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any page.
+Note that we  placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor Page.
 
-View search from a page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views 'just work'.
+View search from a Razor Page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views 'just work'.
 
 Add a *_ViewImports.cshtml* file:
 
