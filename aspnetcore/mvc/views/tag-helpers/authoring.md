@@ -322,7 +322,7 @@ Because these two helpers are closely related and you may refactor them in the f
 
 ## Inspecting and retrieving child content
 
-The tag-helpers provide several properties to retrieve content.
+The tag helpers provide several properties to retrieve content.
 
 -  The result of `GetChildContentAsync` can be appended to `output.Content`.
 -  You can inspect the result of `GetChildContentAsync` with `GetContent`.

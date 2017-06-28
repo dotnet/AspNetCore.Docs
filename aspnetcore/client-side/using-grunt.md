@@ -54,13 +54,13 @@ To begin, set up a new empty web application and add TypeScript example files. T
 
 6.  Right-click the `TypeScript` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file *Tastes.ts* (note the \*.ts extension). Copy the line of TypeScript code below into the file (when you save, a new *Tastes.js* file will appear with the JavaScript source).
     
-    ```javascript
+    ```typescript
     enum Tastes { Sweet, Sour, Salty, Bitter }
     ```
 
 7.  Add a second file to the **TypeScript** directory and name it `Food.ts`. Copy the code below into the file.
 
-    ```javascript
+    ```typescript
     class Food {
       constructor(name: string, calories: number) {
         this._name = name;
