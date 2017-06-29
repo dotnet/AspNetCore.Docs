@@ -41,7 +41,7 @@ public class Startup
 
 All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, then a reference to the Razor Pages assembly is already included.
 
-Consider  a basic page:
+Consider a basic page:
 
 ```html
 @page
@@ -133,9 +133,9 @@ The *MyApp/Pages/Contact.cshtml* file:
 </html>
 ```
 
-The  page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
+The page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
-* `OnGet`  to initialize state needed for the page.
+* `OnGet` to initialize state needed for the page.
 * `OnPost` to handle form submissions. 
 
 The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
@@ -154,7 +154,7 @@ The `Contact` property is using the new `[BindProperty]` attribute to opt-in to 
 
 Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
 
-Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement  generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
@@ -223,7 +223,7 @@ namespace MyApp.Pages
 }
 ```
 
-By convention the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change is to add constructor injection for all your injected (`@inject`) properties.
+By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change is to add constructor injection for all your injected (`@inject`) properties.
 
 Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
 
@@ -249,7 +249,7 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 @{ Layout = "_Layout"; }
 ```
 
-Note that we  placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor Page.
+Note that we placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor Page.
 
 View search from a Razor Page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
 
@@ -263,7 +263,7 @@ Add a *_ViewImports.cshtml* file:
 @addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
 ```
 
-The `@namespace` directive is a new feature that controls the namespace of the generated code.  If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-seperated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+The `@namespace` directive is a new feature that controls the namespace of the generated code. If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
 Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages generated code *just work* without having to add extra usings.
 
@@ -380,7 +380,7 @@ This example adds a confirmation message and redirects back to the home page:
 </div>
 ```
 
-We've  added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is the name of the page we just added, and can be used with `Url.Page(...)`, `<a asp-page="..." />` or `RedirectToPage`.
+We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is the name of the page we just added, and can be used with `Url.Page(...)`, `<a asp-page="..." />` or `RedirectToPage`.
 
 The page name is just the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
