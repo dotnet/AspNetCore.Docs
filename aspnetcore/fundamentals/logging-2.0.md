@@ -35,7 +35,8 @@ var builder = new WebHostBuilder()
 
 A big advantage shown in this example is using the `HostingContext` provided to the `ConfigureLogging` extension method. This allows easy access to the configuration that is also registered in `Program.cs`. This leaves your `Startup.cs` more focused on configuring services and your middleware pipeline with less other concerns (namely logging and configuration).
 
-The final thing that impacts configuring logging is the new opinionated `WebHost` that you can see in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the sample above, meaning that if you only need `Console` and `Debug` logging and will use a `Logging` configuration section to control things like MinimumLogLevel or filters, then you don't need to add any extra code. If you want to add additional `ILoggerProviders` then you can call `ConfigureLogging` as well, adding just the providers that you need:
+### WebHost
+`WebHost` is new for ASP.NET Core 2.0 and is used in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the previous sample.  If you only need `Console` and `Debug` logging and  use a `Logging` configuration section to control things like MinimumLogLevel or filters, then you don't need to add any extra code. If you want to add additional `ILoggerProviders` then you call `ConfigureLogging`, adding the providers that you need:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -43,7 +44,7 @@ WebHost.CreateDefaultBuilder(args)
     .ConfigureLoggin(logging => logging.AddEventLog())
     .Build();
 ```
-In the above sample you have all of the default loggers (Console and Debug) as well as the EventLog provider that you are adding.
+In the previous sample you have all the default loggers (Console and Debug) as well as the EventLog provider that you are adding.
 
 ## Configuring Filtering
 
