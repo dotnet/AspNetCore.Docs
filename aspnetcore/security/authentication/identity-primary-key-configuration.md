@@ -8,7 +8,7 @@ ASP.NET Core Identity allows you to easily configure the data type you want for 
 
 ## How to
 
-1.  The first step is to implement the Identity's model, and override the <string> behavior to <data type you want>'s one.
+1.  The first step is to implement the Identity's model, and override the string type with the data type you want.
 
     [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationUser.cs?highlight=4-6&range=7-13)]
 

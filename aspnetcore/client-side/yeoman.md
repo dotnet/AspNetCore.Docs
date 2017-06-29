@@ -158,7 +158,4 @@ namespace MyWebApp
 ## Additional resources
 
 * [Servers (Kestrel and WebListener)](../fundamentals/servers/index.md)
-
-* [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../tutorials/your-first-mac-aspnet.md)
-
 * [Fundamentals](../fundamentals/index.md)

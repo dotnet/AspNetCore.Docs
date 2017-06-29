@@ -1,17 +1,3 @@
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
-
-HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is flexible and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
-
-In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
-
-ASP.NET Core has built-in support for MVC creating Web APIs.
-
-There are 3 versions of this tutorial:
-
-* macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* Windows: [Web API with Visual Studio for Windows](xref:tutorials/first-web-api)
-* macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
-
 ## Overview
 
 Here is the API that you’ll create:

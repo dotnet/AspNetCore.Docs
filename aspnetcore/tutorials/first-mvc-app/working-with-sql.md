@@ -54,7 +54,7 @@ Create a new class named `SeedData` in the *Models* folder. Replace the generate
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Models/SeedData.cs?name=snippet_1)]
 
-Notice if there are any movies in the DB, the seed initializer returns.
+If there are any movies in the DB, the seed initializer returns and no movies are added.
 
 ```csharp
 if (context.Movie.Any())
