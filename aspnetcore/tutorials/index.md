@@ -18,11 +18,10 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web applications
 
-* [Create an ASP.NET Core app with Visual Studio for Mac](first-mvc-app-mac/index.md)
+* [Create an ASP.NET Core app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
 * [Create an ASP.NET Core app with Visual Studio on Windows](first-mvc-app/index.md)
 * [Create an ASP.NET Core app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
 * [Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)

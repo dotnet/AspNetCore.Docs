@@ -65,7 +65,7 @@ In your application's `Main` method, call the `UseIISIntegration` extension meth
 
 [!code-csharp[](aspnet-core-module/sample/Program.cs?name=snippet_Main&highlight=12)]
 
-The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like [developing and testing on MacOS and deploying to a server that runs IIS](../../tutorials/your-first-mac-aspnet.md).  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
+The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on MacOS and deploying to a server that runs IIS.  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
 
 ### Don't call UseUrls
 
