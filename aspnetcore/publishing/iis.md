@@ -99,7 +99,7 @@ services.Configure<IISOptions>(options => {
 
 ### web.config
 
-The *web.config* file configures the ASP.NET Core Module and provides other IIS configuration. Creating, transforming, and publishing *web.config* is handled by `Microsoft.NET.Sdk.Web`, which is included when you set your project's SDK at the top of your *.csproj* file, `<Project Sdk="Microsoft.NET.Sdk.Web">`.
+The *web.config* file configures the ASP.NET Core Module and provides other IIS configuration. Creating, transforming, and publishing *web.config* is handled by `Microsoft.NET.Sdk.Web`, which is included when you set your project's SDK at the top of your *.csproj* file, `<Project Sdk="Microsoft.NET.Sdk.Web">`. To prevent the MSBuild target from transforming your *web.config* file, add the **\<IsTransformWebConfigDisabled>** property to your project file with a setting of `True`.
 
 If you don't have a *web.config* file in the project when you publish with *dotnet publish* or with Visual Studio publish, the file is created for you in published output. If you have the file in your project, it's transformed with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to published output. The transformation doesn't touch IIS configuration settings that you've included in the file.
 
@@ -142,6 +142,8 @@ Deploy the application to the folder you created on the target IIS system. Web D
 Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
 
 ![Publish dialog page](iis/_static/pub-dialog.png)
+
+To prevent Web Deploy from transforming your *web.config* file, add the **\<TransformWebConfigEnabled>** property to your project file with a setting of `False`. For more information, see [How to: Disable Web.config Transformation](https://msdn.microsoft.com/library/dd465342(v=vs.100).aspx).
 
 ### Web Deploy outside of Visual Studio
 You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/library/dd568996(WS.10).aspx).
