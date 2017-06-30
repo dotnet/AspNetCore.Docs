@@ -153,7 +153,7 @@ ConfigureServices(collection => collection.AddSingleton<ILoggerFactory>(myFactor
 
 ## Filtering Algorithm
 
-When creating an `ILogger` to write logs, the framework selects a single rule per provider to apply to the `ILogger`. All messages written to the `ILogger` are filtered based on these rules. The most specific rule for each provider and category pair from the available filter is selected. 
+When creating an `ILogger` to log messages, the framework selects a single rule per provider to apply to the `ILogger`. All messages written to the `ILogger` are filtered based on these rules. The most specific rule for each provider and category pair from the available filter is selected. 
 
 The following algorithm is used to select a rule for a given provider and category:
 
