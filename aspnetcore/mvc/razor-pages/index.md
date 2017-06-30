@@ -142,9 +142,10 @@ The `Async` naming suffix is optional but is often used by convention. The code 
 
 The basic flow of `OnPostAsync` is:
 
-1. Check for validation errors.
-1. If there are no errors, save the data and redirect.
-1. Else if errors, show the page again with the validation message.
+Check for validation errors.
+
+*  If there are no errors, save the data and redirect.
+*  If there are errors, show the page again with the validation message.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
 
@@ -154,7 +155,7 @@ The `Contact` property is using the new `[BindProperty]` attribute to opt-in to 
 
 Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
 
-Notice that this Page also uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+Notice that this Page uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
 
@@ -267,7 +268,7 @@ The `@namespace` directive is a new feature that controls the namespace of the g
 
 Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages generated code *just work* without having to add extra usings.
 
-`@namespace` also works for conventional Razor views.
+Note: `@namespace` works with conventional Razor views.
 
 Here's what the page looks like after simplification:
 
@@ -380,9 +381,15 @@ This example adds a confirmation message and redirects back to the home page:
 </div>
 ```
 
-We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is the name of the page we just added, and can be used with `Url.Page(...)`, `<a asp-page="..." />` or `RedirectToPage`.
+We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to this page. For example:
 
-The page name is just the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
+
+* `Url.Page("/Index", ...)`
+* `<a asp-page="/Index">My Index Page</a>`
+* `RedirectToPage("/Index")`
+
+
+The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. From *MyApp/Pages/Contact.cshtml*, you could also redirect to *MyApp/Pages/Index.cshtml* using `RedirectToPage("Index")` or `RedirectToPage("./Index")`. These are both *relative names*. The provided string is *combined* with the page name of the current page to compute the name of the destination page. You can also use the directory traversal `..` operator. 
 
