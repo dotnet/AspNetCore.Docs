@@ -250,7 +250,7 @@ Add a layout page for the HTML skeleton, and set the `Layout` property from `_Vi
 @{ Layout = "_Layout"; }
 ```
 
-Note that we placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor Page.
+Note that we placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor page.
 
 View search from a Razor Page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
 
