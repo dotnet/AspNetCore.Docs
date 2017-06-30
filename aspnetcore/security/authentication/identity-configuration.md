@@ -1,5 +1,5 @@
 ---
-title: Configure Identity | Microsoft Docs
+title: Configure Identity
 uid: security/authentication/identity-configuration
 ---
 # Configure Identity

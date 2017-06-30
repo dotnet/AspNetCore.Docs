@@ -1,5 +1,5 @@
 ---
-title: Custom Policy-Based Authorization | Microsoft Docs
+title: Custom Policy-Based Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

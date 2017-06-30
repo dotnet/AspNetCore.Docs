@@ -1,5 +1,5 @@
 ---
-title: Claims-Based Authorization | Microsoft Docs
+title: Claims-Based Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

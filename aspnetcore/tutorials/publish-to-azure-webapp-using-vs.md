@@ -1,5 +1,5 @@
 ---
-title: Publish an ASP.NET Core app to Azure using Visual Studio | Microsoft Docs
+title: Publish an ASP.NET Core app to Azure using Visual Studio
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

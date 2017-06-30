@@ -1,5 +1,5 @@
 ---
-title: Working with a Distributed Cache | Microsoft Docs
+title: Working with a Distributed Cache
 author: ardalis
 description: 
 keywords: ASP.NET Core,

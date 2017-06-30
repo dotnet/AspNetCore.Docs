@@ -1,5 +1,5 @@
 ---
-title: Adding a New Field | Microsoft Docs
+title: Adding a New Field
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

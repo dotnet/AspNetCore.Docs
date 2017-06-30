@@ -1,5 +1,5 @@
 ---
-title: Password Hashing | Microsoft Docs
+title: Password Hashing
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

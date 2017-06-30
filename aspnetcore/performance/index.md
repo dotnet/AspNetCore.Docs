@@ -1,5 +1,5 @@
 ---
-title: Performance | Microsoft Docs
+title: Performance
 author: ardalis
 description: 
 keywords: ASP.NET Core,

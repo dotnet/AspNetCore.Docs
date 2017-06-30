@@ -1,5 +1,5 @@
 ---
-title: Response Compression Middleware | Microsoft Docs
+title: Response Compression Middleware
 author: guardrex
 description: An introduction to response compression with instructions on how to use Response Compression Middleware in ASP.NET Core applications.
 keywords: ASP.NET Core, performance, response compression, gzip, accept-encoding, middleware

@@ -1,5 +1,5 @@
 ---
-title: Working with SQL Server LocalDB | Microsoft Docs
+title: Working with SQL Server LocalDB
 author: rick-anderson
 description: Using SQL Server LocalDB with a simple MVC app
 keywords: ASP.NET Core,SQL Server LocalDB, SQL Server, LocalDB 

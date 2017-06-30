@@ -1,5 +1,5 @@
 ---
-title: Role based Authorization | Microsoft Docs
+title: Role based Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

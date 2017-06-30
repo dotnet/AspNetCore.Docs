@@ -1,5 +1,5 @@
 ---
-title: Replacing `<machineKey>` in ASP.NET | Microsoft Docs
+title: Replacing `<machineKey>` in ASP.NET
 author: rick-anderson
 description: Replacing `<machineKey>` in ASP.NET
 keywords: ASP.NET Core, security, `<machineKey>` 

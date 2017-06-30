@@ -1,5 +1,5 @@
 ---
-title: Authenticated encryption details. | Microsoft Docs
+title: Authenticated encryption details.
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

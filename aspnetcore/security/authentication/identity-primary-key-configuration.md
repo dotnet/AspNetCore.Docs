@@ -1,5 +1,5 @@
 ---
-title: Configure Identity primary keys data type | Microsoft Docs
+title: Configure Identity primary keys data type
 uid: security/authentication/identity-primary-key-configuration
 ---
 # Configure Identity primary keys data type

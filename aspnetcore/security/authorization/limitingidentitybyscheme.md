@@ -1,5 +1,5 @@
 ---
-title: Limiting identity by scheme | Microsoft Docs
+title: Limiting identity by scheme
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

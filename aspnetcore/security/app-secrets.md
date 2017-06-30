@@ -1,5 +1,5 @@
 ---
-title: Safe storage of app secrets during development | Microsoft Docs
+title: Safe storage of app secrets during development
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Key management and lifetime | Microsoft Docs
+title: Key management and lifetime
 author: rick-anderson
 description: Describes key management and lifetime.
 keywords: ASP.NET Core, key management, DPAPI, DataProtection

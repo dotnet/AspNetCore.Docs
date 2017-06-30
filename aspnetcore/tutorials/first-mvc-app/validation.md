@@ -1,5 +1,5 @@
 ---
-title: Adding Validation | Microsoft Docs
+title: Adding Validation
 author: rick-anderson
 description: How to add validation to a simple ASP.NET Core app.
 keywords: ASP.NET Core, validation, DataAnnotations

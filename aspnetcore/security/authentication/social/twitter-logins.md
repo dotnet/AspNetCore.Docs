@@ -1,5 +1,5 @@
 ---
-title: Twitter external login setup | Microsoft Docs
+title: Twitter external login setup
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

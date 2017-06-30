@@ -1,5 +1,5 @@
 ---
-title: Client-Side Development in ASP.NET Core | Microsoft Docs
+title: Client-Side Development in ASP.NET Core
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
