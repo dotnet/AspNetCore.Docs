@@ -14,7 +14,7 @@ uid: aspnetcore/fundamentals/logging2
 
 By [Pavel Krymets](https://github.com/pakrym) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core 2.0 configures logging in the *Program.cs* file, while ASP.NET Core 1.x used the *Startup.cs* file.
+ASP.NET Core 2.0 configures logging in the *Program.cs* file, while ASP.NET Core 1.x uses the *Startup.cs* file.
 
 ## Configuring Logging
 
@@ -25,7 +25,7 @@ services.AddLogging(builder => builder
                 .AddConsole()
                 .AddDebug();
 ```
-Logging is now part of [dependency injection](xref:fundamentals/dependency-injection). Methods have beed added to `WebHostBuilder` to allow configuration in *Program.cs* rather than *Startup.cs*:
+Logging is now part of [dependency injection](xref:fundamentals/dependency-injection). Methods have been added to `WebHostBuilder` to allow configuration in *Program.cs* rather than *Startup.cs*:
 
 <!-- Provide me with the working Program.cs and Startup.cs and I'll add them to GitHub and import the snippet. I'd prefer to import the entire Program.cs file
 -->
@@ -55,12 +55,14 @@ The preceding example uses `HostingContext` (provided by the `ConfigureLogging` 
 
 ### WebHost
 
-`WebHost` is new for ASP.NET Core 2.0 and is used in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the previous sample. If your app:
+<!-- what does opinionated  mean?  ESL and machine translation won't be able to process that -->
+
+`WebHost` is new for ASP.NET Core 2.0 and is used in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the previous sample. You don't need to add any extra code if your app:
 
 * Needs only `Console` and `Debug` logging - And
 * Uses a `Logging` configuration section to control things like `MinimumLogLevel` or filters.
 
-If the preceeding is true for your app, you don't need to add any extra code. To add additional `ILoggerProviders`, call `ConfigureLogging`, adding the providers that you need:
+To add additional `ILoggerProviders`, call `ConfigureLogging`, adding the providers that you need:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -75,7 +77,7 @@ The preceeding sample enables the default loggers (Console and Debug) and the Ev
 ASP.NET Core 1.x filtering is provider specific. ASP.NET Core 2.0 changes the default `ILoggerFactory` to support filtering:
 
 * You can filter log messages to all providers.
-* You can bind filtering to `IConfiguration`. Binding filtering to `IConfiguration`   allows you to control filtering from the configuration source you specify. See [Configuration](xref:fundamentals/configuration) for more information.
+* You can bind filtering to `IConfiguration`. Binding filtering to `IConfiguration` allows you to control filtering from the configuration source you specify. See [Configuration](xref:fundamentals/configuration) for more information.
 
 When configuring logging you can explicitly register filters in code:
 
@@ -87,8 +89,8 @@ services.AddLogging(builder => builder
                 .AddFilter("System", LogLevel.Information) 
                    // Rule only for debug provider.
                 .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace) 
-                 // Adds rules from IConfiguration, overriding default rules 
-                 // added above
+                 // Adds rules from IConfiguration, possibly overriding  
+                 // default rules added above
                 .AddConfiguration(configuration.GetSection("Logging"))); 
 ```
 
@@ -143,7 +145,7 @@ The default `LoggerFactory` for ASP.NET Core 2.0 provides the following:
 
 <!- Can you say something to tie the above with the replacing `ILoggerFactory`  below?
 Maybe something like, if you implement your own logger factory, you may want to make it DI friendly and provider a filter mechanism.  -->
-If you want to replace the factory you can do so by replacing the `ILoggerFactory` service in DI:
+You can replace the default `LoggerFactory` by replacing the `ILoggerFactory` service in DI:
 
 ```csharp
 ConfigureServices(collection => collection.AddSingleton<ILoggerFactory>(myFactory))
