@@ -3,7 +3,7 @@
 # [Manage client-side packages with Bower](bower.md)
 # [Building beautiful, responsive sites with Bootstrap](bootstrap.md)
 # [Knockout.js MVVM Framework](knockout.md)
-# [Using Angular for Single Page Apps (SPAs)](angular.md)
+# [Using AngularJS for Single Page Apps (SPAs)](angular.md)
 # [Using JavaScriptServices for Single Page Apps (SPAs)](spa-services.md)
 # [Styling applications with Less, Sass, and Font Awesome](less-sass-fa.md)
 # [Bundling and minification](bundling-and-minification.md)
