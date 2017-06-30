@@ -1,5 +1,5 @@
 ---
-title: Custom Model Binding | Microsoft Docs
+title: Custom Model Binding
 author: ardalis
 description: Customizing model binding in ASP.NET Core MVC.
 keywords: ASP.NET Core, model binding, custom model binder

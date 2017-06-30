@@ -1,5 +1,5 @@
 ---
-title: Open Web Interface for .NET (OWIN) | Microsoft Docs
+title: Open Web Interface for .NET (OWIN)
 author: ardalis
 description: Introduction to Open Web Interface for .NET (OWIN).
 keywords: ASP.NET Core, Open Web Interface for .NET, OWIN

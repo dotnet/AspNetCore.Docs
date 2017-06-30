@@ -1,5 +1,5 @@
 ---
-title: Globalization and localization | Microsoft Docs
+title: Globalization and localization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

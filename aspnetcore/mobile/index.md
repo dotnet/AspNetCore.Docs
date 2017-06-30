@@ -1,5 +1,5 @@
 ---
-title: Mobile | Microsoft Docs
+title: Mobile
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

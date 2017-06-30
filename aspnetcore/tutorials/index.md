@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core tutorials | Microsoft Docs
+title: ASP.NET Core tutorials
 author: tdykstra
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
 keywords: ASP.NET Core,

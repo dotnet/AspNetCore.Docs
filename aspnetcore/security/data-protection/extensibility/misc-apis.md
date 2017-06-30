@@ -1,5 +1,5 @@
 ---
-title: Miscellaneous APIs | Microsoft Docs
+title: Miscellaneous APIs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

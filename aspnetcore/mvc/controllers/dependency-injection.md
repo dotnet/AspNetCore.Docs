@@ -1,5 +1,5 @@
 ---
-title: Dependency injection into controllers | Microsoft Docs
+title: Dependency injection into controllers
 author: ardalis
 description: 
 keywords: ASP.NET Core,

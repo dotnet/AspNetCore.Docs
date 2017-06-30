@@ -1,5 +1,5 @@
 ---
-title: Using JavaScriptServices for Creating Single Page Applications | Microsoft Docs
+title: Using JavaScriptServices for Creating Single Page Applications
 author: scottaddie
 description: Learn about the benefits of using JavaScriptServices to build a SPA with ASP.NET Core
 keywords: ASP.NET Core, Angular, SPA, JavaScriptServices, SpaServices

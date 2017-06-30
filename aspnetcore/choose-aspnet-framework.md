@@ -1,5 +1,5 @@
 ---
-title: "Choose between ASP.NET and ASP.NET Core | Microsoft Docs"
+title: Choose between ASP.NET and ASP.NET Core
 author: rick-anderson
 description: "How to choose between ASP.NET and ASP.NET Core."
 ms.author: aspnetcontent

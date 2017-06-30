@@ -1,5 +1,5 @@
 ---
-title: Partial Views | Microsoft Docs
+title: Partial Views
 author: ardalis
 description: Using partial views in ASP.NET Core MVC
 keywords: ASP.NET Core,Partial Views, partial

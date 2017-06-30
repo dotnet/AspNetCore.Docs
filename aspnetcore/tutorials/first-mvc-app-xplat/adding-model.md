@@ -1,5 +1,5 @@
 ---
-title: Adding a model | Microsoft Docs
+title: Adding a model
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,

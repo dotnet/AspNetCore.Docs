@@ -1,5 +1,5 @@
 ---
-title: Migrating from ASP.NET Web API | Microsoft Docs
+title: Migrating from ASP.NET Web API
 author: ardalis
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Ephemeral data protection providers | Microsoft Docs
+title: Ephemeral data protection providers
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

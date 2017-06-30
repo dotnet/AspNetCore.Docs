@@ -1,5 +1,5 @@
 ---
-title: Razor Syntax Reference | Microsoft Docs
+title: Razor Syntax Reference
 author: rick-anderson
 description: Details Razor syntax
 keywords: ASP.NET Core, Razor

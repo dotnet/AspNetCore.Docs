@@ -1,5 +1,5 @@
 ---
-title: Implementation | Microsoft Docs
+title: Implementation
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

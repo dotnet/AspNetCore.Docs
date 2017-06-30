@@ -1,5 +1,5 @@
 ---
-title: Building Web APIs | Microsoft Docs
+title: Building Web APIs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

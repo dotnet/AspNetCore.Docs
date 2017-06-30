@@ -1,5 +1,5 @@
 ---
-title: Controller methods and views | Microsoft Docs
+title: Controller methods and views
 author: rick-anderson
 description: Working with controller methods, views and DataAnnotations
 keywords: ASP.NET Core,

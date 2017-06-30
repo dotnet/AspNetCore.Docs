@@ -1,5 +1,5 @@
 ---
-title: Tag helpers in forms in ASP.NET Core | Microsoft Docs
+title: Tag helpers in forms in ASP.NET Core
 author: rick-anderson
 description: Describes the built-in Tag Helpers used with Forms.
 keywords: ASP.NET Core, Tag Helper, TagHelper, HTML Form, Forms

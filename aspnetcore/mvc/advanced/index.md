@@ -1,5 +1,5 @@
 ---
-title: Advanced topics for ASP.NET Core MVC | Microsoft Docs
+title: Advanced topics for ASP.NET Core MVC
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

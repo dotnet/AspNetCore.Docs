@@ -1,5 +1,5 @@
 ---
-title: Response Caching | Microsoft Docs
+title: Response Caching
 author: rick-anderson
 description: Explains how to use Response caching to lower bandwidth and increase performance.
 keywords: ASP.NET Core, Response caching, HTTP headers

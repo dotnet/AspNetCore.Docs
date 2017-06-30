@@ -1,5 +1,5 @@
 ---
-title: Key storage providers | Microsoft Docs
+title: Key storage providers
 author: rick-anderson
 description:  Key storage providers
 keywords: encryption, ASP.NET Core,

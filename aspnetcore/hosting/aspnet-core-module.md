@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Module configuration reference | Microsoft Docs
+title: ASP.NET Core Module configuration reference
 author: guardrex
 description: How to configure the ASP.NET Core Module for hosting ASP.NET Core applications.
 keywords: ASP.NET Core, ancm, core module, iis, stdout logging, environment variable, env var, subapplication, subapp, appoffline, app_offline, 502, schema

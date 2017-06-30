@@ -1,5 +1,5 @@
 ---
-title: Dependency Injection in requirement handlers | Microsoft Docs
+title: Dependency Injection in requirement handlers
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

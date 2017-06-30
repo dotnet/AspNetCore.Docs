@@ -1,5 +1,5 @@
 ---
-title: Introduction to ASP.NET Core MVC on Mac or Linux | Microsoft Docs
+title: Introduction to ASP.NET Core MVC on Mac or Linux
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio Code on Mac and Linux
 keywords: ASP.NET Core, MVC, VS Code, Visual Studio Code, Mac, Linux

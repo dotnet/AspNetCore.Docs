@@ -1,5 +1,5 @@
 ---
-title: Model Binding | Microsoft Docs
+title: Model Binding
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

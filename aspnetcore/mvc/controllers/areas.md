@@ -1,5 +1,5 @@
 ---
-title: Areas | Microsoft Docs
+title: Areas
 author: rick-anderson
 description: Shows how to work with areas.
 keywords: ASP.NET Core, areas, routing, views

@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10 | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
 author: tdykstra
 description: 
 keywords: ASP.NET Core, Entity Framework Core, CRUD, create, read, update, delete

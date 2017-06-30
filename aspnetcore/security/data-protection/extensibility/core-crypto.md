@@ -1,5 +1,5 @@
 ---
-title: Core cryptography extensibility | Microsoft Docs
+title: Core cryptography extensibility
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
