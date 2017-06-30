@@ -172,7 +172,7 @@ Add the relative path to `bundleconfig.json`.
 [!code-json[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/bundleconfig2.json)]
 
 > [!NOTE]
-> Alternatively, the globbing pattern could be used - `"inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]` which gets all css files and excludes the minified file pattern.
+> Alternatively, the globbing pattern could be used - `"inputFiles": ["wwwroot/**/*(*.css|!(*.min.css)"]` which gets all CSS files and excludes the minified file pattern.
 
 Build the application and if you open `site.min.css`, you'll now notice that contents of `custom.css` has been appended to the end of the file.
 
