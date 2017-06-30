@@ -122,9 +122,9 @@ Note: We're also preventing a newly registered user from being automatically log
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
 
-Uncomment the markup in *Views/Account/ForgotPassword.cshtml* and comment out or remove the paragraph with the link to this article:
+Uncomment the form element in *Views/Account/ForgotPassword.cshtml* razor file. You might want remove the `<p> For more information on how to enable reset password ... </p> element which contains a link to this article.
 
-[!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml)]
+[!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-9,11,27)]
 
 ## Register, confirm email, and reset password
 
