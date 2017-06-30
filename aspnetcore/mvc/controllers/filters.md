@@ -255,6 +255,12 @@ For an `IAsyncActionFilter`, a call to the `ActionExecutionDelegate` executes an
 
 The framework provides an abstract `ActionFilterAttribute` that you can subclass. 
 
+You can use an action filter to automatically validate model state and return any errors if the state is invalid:
+
+[!code-csharp[Main](./filters/sample/src/FiltersSample/Filters/ValidateModelAttribute.cs)]
+
+The `OnActionExecuted` method runs after the action method and can see and manipulate the results of the action through the `ActionExecutedContext.Result` property. `ActionExecutedContext.Canceled` will be set to true if the action execution was short-circuited by another filter. `ActionExecutedContext.Exception` will be set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null effectively 'handles' an exception, and `ActionExectedContext.Result` will then be executed as if it were returned from the action method normally.
+
 ## Exception filters
 
 *Exception filters* implement either the `IExceptionFilter` or `IAsyncExceptionFilter` interface. They can be used to implement common error handling policies for an app. 
@@ -275,12 +281,6 @@ To handle an exception, set the `ExceptionContext.ExceptionHandled` property to 
 Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
 The framework provides an abstract `ExceptionFilterAttribute` that you can subclass. 
-
-You can use an action filter to automatically validate model state and return any errors if the state is invalid:
-
-[!code-csharp[Main](./filters/sample/src/FiltersSample/Filters/ValidateModelAttribute.cs)]
-
-The `OnActionExecuted` method runs after the action method and can see and manipulate the results of the action through the `ActionExecutedContext.Result` property. `ActionExecutedContext.Canceled` will be set to true if the action execution was short-circuited by another filter. `ActionExecutedContext.Exception` will be set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null effectively 'handles' an exception, and `ActionExectedContext.Result` will then be executed as if it were returned from the action method normally.
 
 ## Result filters
 

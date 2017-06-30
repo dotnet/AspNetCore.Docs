@@ -44,6 +44,6 @@ namespace AuthoringTagHelpers.TagHelpers
 }
 
 /*
-@addTagHelper "AuthoringTagHelpers.TagHelpers.AutoLinkerHttpTagHelper, AuthoringTagHelpers"
-@addTagHelper "AuthoringTagHelpers.TagHelpers.AutoLinkerWwwTagHelper, AuthoringTagHelpers"
+@addTagHelper AuthoringTagHelpers.TagHelpers.AutoLinkerHttpTagHelper, AuthoringTagHelpers
+@addTagHelper AuthoringTagHelpers.TagHelpers.AutoLinkerWwwTagHelper, AuthoringTagHelpers
 */

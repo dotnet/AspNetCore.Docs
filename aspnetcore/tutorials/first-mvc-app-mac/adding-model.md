@@ -65,6 +65,12 @@ Open a terminal window in the project folder and run the following commands:
 dotnet restore
 dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
 ```
+If you get the error `No executable found matching command "dotnet-aspnet-codegenerator", verify`:
+
+ * You are in the project directory. The project directory has the *Program.cs*, *Startup.cs* and *.csproj* files.
+ * Your dotnet version is 1.1 or higher. Run `dotnet` to get the version.
+ * You have added the `<DotNetCliToolReference>` elment to the [MvcMovie.csproj file](#prepare-the-project-for-scaffolding).
+ 
 <!--
 > [!NOTE]
 > If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
