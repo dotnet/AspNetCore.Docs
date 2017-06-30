@@ -1,10 +1,24 @@
-# Logging changes in ASP.NET Core 2.0
+---
+title: Logging in ASP.NET Core 2.0
+author: rick-anderson
+ms.author: riande
+manager: wpickett
+ms.date: 07/03/2017
+ms.topic: article
+ms.assetid: 
+ms.prod: aspnet-core
+uid: aspnetcore/fundamentals/logging2
+---
 
-ASP.NET Core 2.0 changes to the way that you configure logging in your application.
+# Logging in ASP.NET Core 2.0
+
+By [Pavel Krymets](https://github.com/pakrym) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+ASP.NET Core 2.0 configures logging in the *Program.cs* file, while ASP.NET Core 1.x used the *Startup.cs* file.
 
 ## Configuring Logging
 
-The main change from version 1.x for a typical app is that instead of configuring logging in the  `Configure` method (in *Startup.cs*), you use a new method and builder API when configuring services:
+The main change from version 1.x for a typical app is that instead of configuring logging in the `Configure` method, you use a new method and builder API when configuring services:
 
 ```csharp
 services.AddLogging(builder => builder
@@ -13,6 +27,8 @@ services.AddLogging(builder => builder
 ```
 Logging is now part of [dependency injection](xref:fundamentals/dependency-injection). Methods have beed added to `WebHostBuilder` to allow configuration in *Program.cs* rather than *Startup.cs*:
 
+<!-- Provide me with the working Program.cs and Startup.cs and I'll add them to GitHub and import the snippet. I'd prefer to import the entire Program.cs file
+-->
 ```csharp
 var builder = new WebHostBuilder()
                 .UseKestrel()
@@ -32,19 +48,27 @@ var builder = new WebHostBuilder()
                 });
 ```
 
-An advantage shown in the preceding example is using the `HostingContext` provided to the `ConfigureLogging` extension method. This allows access to the configuration that is also registered in *Program.cs*. This leaves *Startup.cs* focused on configuring services and the middleware pipeline with less concerns (namely logging and configuration).
+The preceding example uses `HostingContext` (provided by the `ConfigureLogging` extension method). Using `HostingContext` to configure logging in *Program.cs* has the following advantages:
+
+* You have access to the configuration. Configuration is registered in *Program.cs*.
+* *Startup.cs* no longer handles logging and configuation. *Startup.cs* is focused on configuring services and the middleware pipeline.
 
 ### WebHost
 
-`WebHost` is new for ASP.NET Core 2.0 and is used in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the previous sample.  If you only need `Console` and `Debug` logging and  use a `Logging` configuration section to control things like `MinimumLogLevel` or filters, then you don't need to add any extra code. If you want to add additional `ILoggerProviders` then you call `ConfigureLogging`, adding the providers that you need:
+`WebHost` is new for ASP.NET Core 2.0 and is used in the ASP.NET Core 2.0 templates. The default `WebHost` will configure logging in the same way as the previous sample. If your app:
+
+* Needs only `Console` and `Debug` logging - And
+* Uses a `Logging` configuration section to control things like `MinimumLogLevel` or filters.
+
+If the preceeding is true for your app, you don't need to add any extra code. To add additional `ILoggerProviders`, call `ConfigureLogging`, adding the providers that you need:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseStartup<Startup>()
-    .ConfigureLoggin(logging => logging.AddEventLog())
+    .ConfigureLogging(logging => logging.AddEventLog())
     .Build();
 ```
-The sample above enables all the default loggers (Console and Debug) the EventLog provider (added explicitly).
+The preceeding sample enables the default loggers (Console and Debug) and the EventLog provider (added explicitly).
 
 ## Configuring Filtering
 
@@ -96,7 +120,8 @@ ConfigureLogging(logBuilder =>
 {
     logBuilder.AddFilter((provider, category, logLevel) =>
     {
-        if(provider == "Micrososft.Extensions.Logging.EventSource" && category == "TodoApi.Controllers.TodoController")
+        if(provider == "Micrososft.Extensions.Logging.EventSource" && 
+           category == "TodoApi.Controllers.TodoController")
         {
             return false;
         }
@@ -106,16 +131,19 @@ ConfigureLogging(logBuilder =>
 ```
 The preceding function:
 
-*  Is executed for all log messages.
-*  Blocks log messages to the `EventSource` provider if the category is `TodoApi.Controllers.TodoController`. All other log messages are passed through the filter function.
-
-## Advanced Topics
-
-<!-- Need something here and possibly make the following ### -->
+* Is executed for all log messages.
+* Blocks log messages to the `EventSource` provider if the category is `TodoApi.Controllers.TodoController`. All other log messages are passed through the filter function.
 
 ## Replacing the LoggerFactory
 
-Getting providers from DI and using `LoggerFilterOptions` to filter messages are both features of the default `LoggerFactory` provided by the ASP.NET Core 2.0 framework. If you want to replace the factory you can do so by replacing the `ILoggerFactory` service in DI:
+The default `LoggerFactory` for ASP.NET Core 2.0 provides the following:
+
+* Accesses providers from dependency-injection.
+* `LoggerFilterOptions` to filter messages.
+
+<!- Can you say something to tie the above with the replacing `ILoggerFactory`  below?
+Maybe something like, if you implement your own logger factory, you may want to make it DI friendly and provider a filter mechanism.  -->
+If you want to replace the factory you can do so by replacing the `ILoggerFactory` service in DI:
 
 ```csharp
 ConfigureServices(collection => collection.AddSingleton<ILoggerFactory>(myFactory))
@@ -136,4 +164,4 @@ NOTE: Filter function is only invoked when message level matches rule minimum le
 
 ## Provider Authoring
 
-If you are writing your own `ILoggerProvider` then you can take advantage of the fact that they are now in DI by accepting any registered services in your constructor.
+If you are writing your own `ILoggerProvider` you can take advantage that the loggers are  available by DI. You can access registered services in your constructor.
