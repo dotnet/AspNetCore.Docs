@@ -99,7 +99,7 @@ The *MyApp/Pages/Contact.cshtml* file:
 @page
 @using MyApp
 @using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @inject ApplicationDbContext Db
 
 @functions {
@@ -163,7 +163,7 @@ You could write this form by partitioning the view code and the handler method i
 @using MyApp
 @using MyApp.Pages
 @using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model ContactModel
 
 <html>
@@ -253,7 +253,7 @@ Add a *_ViewImports.cshtml* file:
 ```c#
 @namespace MyApp.Pages
 @using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 ```
 
 The `@namespace` directive is a new feature that controls the namespace of the generated code.  If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-seperated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
