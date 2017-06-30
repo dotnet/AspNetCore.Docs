@@ -14,7 +14,7 @@ uid: aspnetcore/fundamentals/logging2
 
 By [Pavel Krymets](https://github.com/pakrym) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core 2.0 configures logging in the *Program.cs* file, while ASP.NET Core 1.x uses the *Startup.cs* file.
+ASP.NET Core 2.0 provides significant improvements to logging over ASP.NET Core 1.x. ASP.NET Core 2.0 configures logging in the *Program.cs* file, while ASP.NET Core 1.x uses the *Startup.cs* file.
 
 ## Configuring Logging
 
