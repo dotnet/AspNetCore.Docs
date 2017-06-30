@@ -147,7 +147,7 @@ Check for validation errors.
 *  If there are no errors, save the data and redirect.
 *  If there are errors, show the page again with the validation message.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects back to the same URL as the current page (`/Contact`). Later I'll show how to redirect to a different page.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects back to the same URL as the current page (`/Contact`). Later, I'll show how to redirect to a different page.
 
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
@@ -389,7 +389,7 @@ We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it
 * `RedirectToPage("/Index")`
 
 
-The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
+The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. From *MyApp/Pages/Contact.cshtml*, you could also redirect to *MyApp/Pages/Index.cshtml* using `RedirectToPage("Index")` or `RedirectToPage("./Index")`. These are both *relative names*. The provided string is *combined* with the page name of the current page to compute the name of the destination page. You can also use the directory traversal `..` operator. 
 
