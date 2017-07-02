@@ -1,6 +1,7 @@
 @model ContactManager.Models.Contact
 @using ContactManager.Authorization;
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -78,6 +79,9 @@
     }
 }
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ContactId">Edit</a> |
+    @if(await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Update))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ContactId">Edit</a> <text>|</text>
+    }
     <a asp-action="Index">Back to List</a>
 </div>
