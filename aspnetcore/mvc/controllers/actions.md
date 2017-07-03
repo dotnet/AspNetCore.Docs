@@ -37,7 +37,7 @@ Controllers should follow the [Explicit Dependencies Principle](http://deviq.com
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 
 > [!NOTE]
-> The model should be a *Plain Old CLR Object (POCO)*, not a `DbContext` object or a database-related type.
+> The model should be a *Plain Old CLR Object (POCO)*, not a database-related type used by an ORM such as Entity Framework.
 
 The controller takes the result of the model's processing (if any) and returns the proper view along with the associated view data. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Getting started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
@@ -46,14 +46,11 @@ The controller takes the result of the model's processing (if any) and returns t
 
 ## Defining Actions
 
-Any public method on a controller type is an action. Parameters on actions are bound to request data and are validated using [model binding](xref:mvc/models/model-binding).
-
-> [!WARNING]
-> Action methods that accept parameters should verify the `ModelState.IsValid` property is true.
+Any public method on a controller is an action. Parameters on actions are bound to request data and are validated using [model binding](xref:mvc/models/model-binding). Model validation can be accomplished by explicitly verifying the `ModelState.IsValid` property is true.
 
 Action methods should contain logic for mapping an incoming request to a business concern. Business concerns should typically be represented as services that the controller accesses through [dependency injection](xref:mvc/controllers/dependency-injection). Actions then map the result of the business action to an application state.
 
-Actions can return anything, but frequently return an instance of `IActionResult` (or `Task<IActionResult>` for async methods) that produces a response. The action method is responsible for choosing *what kind of response*; the action result *does the responding*.
+Actions can return anything, but frequently return an instance of `IActionResult` (or `Task<IActionResult>` for async methods) that produces a response. The action method is responsible for choosing *what kind of response*. The action result *does the responding*.
 
 ### Controller Helper Methods
 
@@ -65,13 +62,13 @@ No `Content-Type` HTTP response header is included, since the response body lack
 
 There are two response types within this category: Redirect and HTTP Status Code. The Redirect response type differs from the HTTP Status Code type primarily in the addition of a `Location` HTTP response header.
 
-**Redirect**
+* **Redirect**
 
-This type returns a redirect to an action or destination (using `Redirect`, `LocalRedirect`, `RedirectToAction`, or `RedirectToRoute`). For example, `return RedirectToAction("Complete", new {id = 123});` redirects to the named action method and passes to it an anonymous object.
+    This type returns a redirect to an action or destination (using `Redirect`, `LocalRedirect`, `RedirectToAction`, or `RedirectToRoute`). For example, `return RedirectToAction("Complete", new {id = 123});` redirects to the named action method and passes to it an anonymous object.
 
-**HTTP Status Code**
+* **HTTP Status Code**
 
-This type returns an HTTP status code. A couple helper methods of this type are `BadRequest` and `NotFound`. For example, `return BadRequest();` produces a 400 status code when executed.
+    This type returns an HTTP status code. A couple helper methods of this type are `BadRequest` and `NotFound`. For example, `return BadRequest();` produces a 400 status code when executed.
 
 #### 2. A non-empty response body with a predefined content type
 
@@ -79,13 +76,13 @@ Most of these response types include a `ContentType` property, allowing you to s
 
 There are two response types within this category: [View](xref:mvc/views/overview) and [Formatted Response](xref:mvc/models/formatting).
 
-**View**
+* **View**
 
-This type returns a view which uses a model to render HTML. For example, `return View(customer);` passes a model to the view for data-binding.
+    This type returns a view which uses a model to render HTML. For example, `return View(customer);` passes a model to the view for data-binding.
 
-**Formatted Response**
+* **Formatted Response**
 
-This type returns JSON or a similar data exchange format to represent an object in a specific manner. For example, `return Json(customer);` serializes the provided object into JSON format.
+    This type returns JSON or a similar data exchange format to represent an object in a specific manner. For example, `return Json(customer);` serializes the provided object into JSON format.
 
 #### 3. A non-empty response body formatted in a content type negotiated with the client
 
@@ -97,7 +94,7 @@ Instead of returning an object directly, an action can return a content negotiat
 
 In most apps, many actions share parts of their workflow. For instance, most of an app might be available only to authenticated users, or might benefit from caching. When you want to perform some logic before or after an action method runs, you can use a *filter*. You can help keep the actions from growing too large by using [Filters](xref:mvc/controllers/filters) to handle these cross-cutting concerns. This can help eliminate duplication within the actions, allowing them to follow the [Don't Repeat Yourself (DRY) principle](http://deviq.com/don-t-repeat-yourself/).
 
-In the case of authorization and authentication, you can apply the `Authorize` attribute to any actions that require it. Adding it to a controller applies it to all actions within that controller. Adding this attribute ensures the appropriate filter is applied to any request for this action. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior.
+In the case of authorization and authentication, you can apply the `Authorize` attribute to any actions that require it. Adding it to a controller applies it to all actions within that controller. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior.
 
 Other examples of cross-cutting concerns in MVC apps may include:
    * [Error handling](xref:mvc/controllers/filters#exception-filters)
