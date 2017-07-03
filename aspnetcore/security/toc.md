@@ -6,6 +6,6 @@
 # [Safe storage of app secrets during development](app-secrets.md)
 # [Azure Key Vault configuration provider](key-vault-configuration.md)
 # [Anti-Request Forgery](anti-request-forgery.md)
-<!--# [🔧 Preventing Open Redirect Attacks](open-redirect.md)-->
+# [Preventing Open Redirect Attacks](preventing-open-redirects.md)
 # [Preventing Cross-Site Scripting](cross-site-scripting.md)
 # [Enabling Cross-Origin Requests (CORS)](cors.md)
