@@ -331,7 +331,7 @@ For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Log
 loggerFactory.AddEventSourceLogger()
 ```
 
-The best way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/en-us/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
+A good way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/en-us/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
 
