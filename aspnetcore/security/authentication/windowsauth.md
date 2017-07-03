@@ -48,7 +48,18 @@ During development in Visual Studio, you can configure whether your app allows a
 
 You can also configure these same properties by editing the `launchSettings.json` file:
 
-[!code-csharp[Main](windowsauth/sample/WindowsAuthSample/Properties/launchSettings.json?highlight=3-4)]
+```javascript
+{
+  "iisSettings": {
+    "windowsAuthentication": true,
+    "anonymousAuthentication": false,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:52171/",
+      "sslPort": 0
+    }
+  } // additional options trimmed
+}
+```
 
 ## Enabling Windows Authentication with IIS
 
