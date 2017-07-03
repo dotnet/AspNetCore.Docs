@@ -1,6 +1,7 @@
 # [Community OSS authentication options](community.md)
 # [Introduction to Identity](identity.md)
 # [Configure Identity](identity-configuration.md)
+# [Configure Windows Authentication](windowsauth.md)
 # [Configure primary key type for Identity](identity-primary-key-configuration.md)
 # [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 ## [Facebook authentication](social/facebook-logins.md)
