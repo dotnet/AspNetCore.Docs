@@ -20,7 +20,7 @@ Controllers, actions, and action results are a fundamental part of how developer
 
 ## What is a Controller?
 
-In ASP.NET MVC, a controller is used to define and group a set of actions. An action (or action method) is a method on a controller which handles incoming requests. Controllers provide a logical means of grouping similar actions together, allowing common sets of rules, such as routing, caching, and authorization, to be applied collectively. Incoming requests are mapped to actions through [routing](xref:mvc/controllers/routing).
+In ASP.NET MVC, a controller is used to define and group a set of actions. An action (or action method) is a method on a controller which handles requests. Controllers logically group similar actions together. This aggregation of actions allows common sets of rules, such as routing, caching, and authorization, to be applied collectively. Requests are mapped to actions through [routing](xref:mvc/controllers/routing).
 
 In ASP.NET Core MVC, a controller is an instantiable class in which at least one of the following conditions is true:
 * The class name is suffixed with "Controller"
@@ -36,25 +36,21 @@ Controllers should follow the [Explicit Dependencies Principle](http://deviq.com
 
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 
-> [!NOTE]
-> The model should be a *Plain Old CLR Object (POCO)*, not a database-related type used by an ORM such as Entity Framework.
-
 The controller takes the result of the model's processing (if any) and returns the proper view along with the associated view data. Learn more at [Overview of ASP.NET Core MVC](xref:mvc/overview) and [Getting started with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
-> [!TIP]
-> The controller is a *UI-level* abstraction. Its responsibilities are to ensure incoming request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it does not directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
+The controller is a *UI-level* abstraction. Its responsibilities are to ensure request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps, it does not directly include data access or business logic. Instead, the controller delegates to services handling these responsibilities.
 
 ## Defining Actions
 
 Any public method on a controller is an action. Parameters on actions are bound to request data and are validated using [model binding](xref:mvc/models/model-binding). Model validation can be accomplished by explicitly verifying the `ModelState.IsValid` property is true.
 
-Action methods should contain logic for mapping an incoming request to a business concern. Business concerns should typically be represented as services that the controller accesses through [dependency injection](xref:mvc/controllers/dependency-injection). Actions then map the result of the business action to an application state.
+Action methods should contain logic for mapping a request to a business concern. Business concerns should typically be represented as services that the controller accesses through [dependency injection](xref:mvc/controllers/dependency-injection). Actions then map the result of the business action to an application state.
 
 Actions can return anything, but frequently return an instance of `IActionResult` (or `Task<IActionResult>` for async methods) that produces a response. The action method is responsible for choosing *what kind of response*. The action result *does the responding*.
 
 ### Controller Helper Methods
 
-Although not required, most developers have their controllers inherit from the base `Controller` class. Doing so provides controllers with access to three categories of helper methods designed to return specific response types:
+Controllers usually inherit from [Controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller), although this is not required. Deriving from `Controller` provides access to three categories of helper methods designed to return specific response types:
 
 #### 1. An empty response body
 
@@ -64,7 +60,7 @@ There are two response types within this category: Redirect and HTTP Status Code
 
 * **Redirect**
 
-    This type returns a redirect to an action or destination (using `Redirect`, `LocalRedirect`, `RedirectToAction`, or `RedirectToRoute`). For example, `return RedirectToAction("Complete", new {id = 123});` redirects to the named action method and passes to it an anonymous object.
+    This type returns a redirect to an action or destination (using `Redirect`, `LocalRedirect`, `RedirectToAction`, or `RedirectToRoute`). For example, `return RedirectToAction("Complete", new {id = 123});` redirects to `Complete`, passing an anonymous object.
 
 * **HTTP Status Code**
 
@@ -86,19 +82,18 @@ There are two response types within this category: [View](xref:mvc/views/overvie
 
 #### 3. A non-empty response body formatted in a content type negotiated with the client
 
-This type is better known as a **Content Negotiated Response**. [Content negotiation](xref:mvc/models/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult) implementation. 
+This type is better known as a **Content Negotiated Response**. [Content negotiation](xref:mvc/models/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult) implementation. 
 
-Instead of returning an object directly, an action can return a content negotiated response. Some helper methods of this type include `Created`, `CreatedAtAction`, `CreatedAtRoute`, and `Ok`. Examples: `return Ok();` or `return CreatedAtRoute("routename", values, newobject);`
+Some helper methods of this type include `Created`, `CreatedAtAction`, `CreatedAtRoute`, and `Ok`. Examples: `return Ok();` or `return CreatedAtRoute("routename", values, newobject);`
 
 ### Cross-Cutting Concerns
 
-In most apps, many actions share parts of their workflow. For instance, most of an app might be available only to authenticated users, or might benefit from caching. When you want to perform some logic before or after an action method runs, you can use a *filter*. You can help keep the actions from growing too large by using [Filters](xref:mvc/controllers/filters) to handle these cross-cutting concerns. This can help eliminate duplication within the actions, allowing them to follow the [Don't Repeat Yourself (DRY) principle](http://deviq.com/don-t-repeat-yourself/).
+Applications typically share parts of their workflow. Examples include an app that requires authentication to access the shopping cart, or an app that caches data on some pages. To perform logic before or after an action method, use a *filter*. Using [Filters](xref:mvc/controllers/filters) on cross-cutting concerns can reduce duplication, allowing them to follow the [Don't Repeat Yourself (DRY) principle](http://deviq.com/don-t-repeat-yourself/).
 
-In the case of authorization and authentication, you can apply the `Authorize` attribute to any actions that require it. Adding it to a controller applies it to all actions within that controller. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior.
+Most filter attributes, such as `[Authorize]`, can be applied at the controller or action level depending upon the desired level of granularity.
 
-Other examples of cross-cutting concerns in MVC apps may include:
+Error handling and response caching are often cross-cutting concerns:
    * [Error handling](xref:mvc/controllers/filters#exception-filters)
    * [Response Caching](xref:performance/caching/response)
 
-> [!NOTE]
-> Many cross-cutting concerns can be handled using filters in MVC apps. An alternative to keep in mind, which is available to any type of ASP.NET Core app, is custom [middleware](xref:fundamentals/middleware).
+Many cross-cutting concerns can be handled using filters or custom [middleware](xref:fundamentals/middleware).
