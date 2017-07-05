@@ -1,0 +1,1 @@
+**Warning**: The following code uses `GetTempFileName`, which throws an `IOException` if more than 65535 files are created without deleting previous temporary files. A real app should either delete temporary files or use `GetTempPath` and `GetRandomFileName` to create temporary file names.
