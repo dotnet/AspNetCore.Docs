@@ -20,16 +20,16 @@ Whenever your application logic redirects to a specified URL, you must verify th
 
 ## What is an open redirect attack?
 
-Web applications frequently redirect users to a login page when they accesses resources that require authentication. The redirection typlically includes a returnUrl querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authentications, they are redirected to the URL they had originally requested.
+Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a `returnUrl` querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they are redirected to the URL they had originally requested.
 
 Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
 
 
 ### An example attack
 
-A malicious user could develop an attack intended to allow the malacious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``.
+A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``.
 
-If you navigate to the preceding link and log in, you are redirected to the site's [About page](http://nerddinner.com/Home/About). Imagine an attack designed to gain access to a user's credentials. The attacker creates a page that matched the look of the target app. The malacious site might use a similar domain name (for example, nerddiner.com, with a single 'n'). The attacker lures a user to navigate to a page requesting them to change their password, using a URL like this: ``http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn``. After successfully logging in, the user sees the page reload and they are prompted to log in agin. The user may think their first attempt had failed, and try again. The attacker  stores the user's credentials, and redirects them back to their original site. 
+If you navigate to the preceding link and log in, you are redirected to the site's [About page](http://nerddinner.com/Home/About). Imagine an attack designed to gain access to a user's credentials. The attacker creates a page that matches the look of the target app. The malicious site might use a similar domain name (for example, nerddiner.com, with a single 'n'). The attacker lures a user to navigate to the site and log in, using a URL like this: ``http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn``. After successfully logging in, the user sees the page reload and they are prompted to log in agin. The user will likely believe their first attempt to log in failed, and try again. The attacker stores the user's credentials, and redirects them back to their original site. 
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
