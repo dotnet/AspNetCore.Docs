@@ -20,33 +20,38 @@ Windows authentication can be configured for ASP.NET Core apps hosted with IIS o
 
 ## What is Windows authentication
 
-Windows authentication relies on the underlying operating system to authenticate users of ASP.NET Core apps. For obvious reasons, it only works on apps running on Windows hosts. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is a secure form of authentication best suited to intranet environments where client applications and web servers belong to the same Windows domain.
+Windows authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is a secure form of authentication best suited to intranet environments where useers, client applications, and web servers belong to the same Windows domain.
 
 [Learn more about Windows Authentication](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
 
-## Enabling Windows authentication in your app
+## Enabling Windows authentication in an ASP.NET Core application
 
-You can use Window authentication in your ASP.NET Core app hosted in IIS Express by installing the appropriate template or configuring the app's properties.
+The Visual Studio Web Application template can be configured to support Windows authentication.
 
-### Installing the Windows authentication app template
+### Using the Windows authentication app template
 
-In Visual Studio, create a new ASP.NET Core Web Application. Next, select Web Application from the list of templates, and click the Change Authentication button. Choose Windows Authentication from the dialog that appears.
+In Visual Studio:
+* Create a new ASP.NET Core Web Application. 
+* Select Web Application from the list of templates.
+* Select the Change Authentication button and  select **Windows Authentication**. 
 
+<!-- delete this file, it will only get stale. This is not a beginning tutorial
 ![New Project Template - Choose Windows Authentication](windowsauth/_static/vs-windows-auth-template.png)
+-->
 
-Once you've create the project, run the application (on Windows) and you should see your username appear in the top right of the page that appears when the app is run.
+Run the app. The username appears in the top right of the app.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/browser-screenshot.png)
 
-During development, this is all that is required to work with Windows authentication. IIS Express does not require any additional configuration to support Windows authentication. The app template configures Visual Studio to support Windows authentication. The next section shows how to perform this same configuration yourself.
+For develpment work using IIS Express, the template provides all the configuration necessary to use Windows authentication. The next section shows how to configure an ASP.NET Core app manually for Windows authentication.
 
-### Setting app properties to support Windows authentication
+### Visual Studio settings for Windows and anonymous authentication
 
-During development in Visual Studio, you can configure whether your app allows anonymous requests and whether it supports Windows authentication. You can edit your app's properties and toggle these behaviors from the Debug menu:
+The Visual Studio properties page, debug tab provides check boxes for Windows authentication and anonymous authentication.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
 
-You can also configure these same properties by editing the `launchSettings.json` file:
+You can also configure these properties in the `launchSettings.json` file:
 
 ```javascript
 {
@@ -63,7 +68,7 @@ You can also configure these same properties by editing the `launchSettings.json
 
 ## Enabling Windows Authentication with IIS
 
-IIS uses the [ASP.NET Core Module](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM will flow Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. Take the following steps to configure your ASP.NET Core app to use Windows authentication on a local install of IIS:
+IIS uses the [ASP.NET Core Module](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/aspnet-core-module) (ANCM) <!-- use xref link --> to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication:
 
 ### Create a new IIS site
 
@@ -87,11 +92,11 @@ Using Visual Studio or the dotnet CLI, *publish* your app to the destination fol
 
 Learn more about [publishing to IIS](https://docs.microsoft.com/en-us/aspnet/core/publishing/iis).
 
-After completing these steps, you should be able to launch your app from its IIS-bound path and Windows authentication should work correctly.
+Launch the app to verify Windows authentication is working.
 
 ## Enabling Windows authentication with WebListener
 
-Although Kestrel doesn't support Windows authentication, you can use [WebListener](/fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. Use the following code snippet to configure your app's web host to use WebListener with Windows authentication:
+Although Kestrel doesn't support Windows authentication, you can use [WebListener](/fundamentals/servers/weblistener) <!-- BAD - xref only!!!! --> to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
 ```
 public class Program
@@ -118,6 +123,13 @@ public class Program
 
 If your app mixes Windows authentication and anonymous access, you can still use the ``[Authorize]`` attribute. Apps that do not have anonymous enabled do not need to use the ``[Authorize]`` attribute at all. In this case, the whole app is treated as requiring authentication, and the server rejects anonymous requests.
 
+<!-- what about  [AllowAnonymous] ?
+
+Don't you want something like:
+
+An app can allow anon access with Win auth using  [AllowAnonymous] and Authorize
+-->
+
 ### Impersonation
 
-ASP.NET Core does not implement impersonation. Your app will run with its application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, you should use ``WindowsIdentity.RunImpersonated``. Run a single action in this conext and then close the context. Note that ``RunImpersonated`` does not support async and should not be used for complex scenarios (for example, wrapping entire requests or middleware chains is not supported or recommended).
+ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use ``WindowsIdentity.RunImpersonated``. Run a single action in this conext and then close the context. Note that ``RunImpersonated`` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
