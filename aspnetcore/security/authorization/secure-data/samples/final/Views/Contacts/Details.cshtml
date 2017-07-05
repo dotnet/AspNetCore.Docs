@@ -87,9 +87,15 @@
     }
 }
 <div>
+@* Uncomment to perform authorization check. A real app would hide the edit link from users
+        uses who don't have edit access. A user without edit access can click the link but will get denied 
+        access in the controller.  
     @if(await AuthorizationService.AuthorizeAsync(User, Model, ContactOperations.Update))
     {
+*@
         <a asp-action="Edit" asp-route-id="@Model.ContactId">Edit</a> <text>|</text>
+@*
     }
+*@
     <a asp-action="Index">Back to List</a>
 </div>
