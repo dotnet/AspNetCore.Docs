@@ -133,7 +133,7 @@ The *MyApp/Pages/Contact.cshtml* file:
 </html>
 ```
 
-The page has a `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
+The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page.
 * `OnPost` to handle form submissions. 
@@ -266,7 +266,7 @@ Add a *_ViewImports.cshtml* file:
 
 The `@namespace` directive is a new feature that controls the namespace of the generated code. If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
-Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages generated code *just work* without having to add extra usings.
+Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add extra usings.
 
 Note: `@namespace` works with conventional Razor views.
 
@@ -389,7 +389,7 @@ We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it
 * `RedirectToPage("/Index")`
 
 
-The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`). It seems simple, but this is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
+The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`, for example `/Index`). It seems simple, but this is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. From *MyApp/Pages/Contact.cshtml*, you could also redirect to *MyApp/Pages/Index.cshtml* using `RedirectToPage("Index")` or `RedirectToPage("./Index")`. These are both *relative names*. The provided string is *combined* with the page name of the current page to compute the name of the destination page. You can also use the directory traversal `..` operator. 
 
@@ -453,10 +453,9 @@ If you don't like seeing `?handler=RequestQuote` in the URL, you can change the 
 ...
 ```
 
-This route will now put the handler name in the URL path instead of the query string.
+This route will now put the handler name in the URL path instead of the query string. The `?` following `handler` means this is an optional route parameter.
 
-You can use `@page` to add additional segments and parameters to a page's route, whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
-
+You can use `@page` to add additional segments and parameters to a page's route. Whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
 
 ### Configuration and settings
 
