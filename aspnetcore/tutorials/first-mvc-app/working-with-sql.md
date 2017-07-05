@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7)]
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
