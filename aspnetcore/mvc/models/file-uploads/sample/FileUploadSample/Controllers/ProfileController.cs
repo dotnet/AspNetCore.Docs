@@ -51,6 +51,11 @@ namespace FileUploadSample.Controllers
             if (model.AvatarFile.Length > 0)
             {
                 // don't rely on or trust the FileName property without validation
+                //**Warning**: The following code uses `GetTempFileName`, which throws
+                // an `IOException` if more than 65535 files are created without 
+                // deleting previous temporary files. A real app should either delete
+                // temporary files or use `GetTempPath` and `GetRandomFileName` 
+                // to create temporary file names.
                 var filePath = Path.GetTempFileName();
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
