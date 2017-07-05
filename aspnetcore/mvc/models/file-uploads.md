@@ -66,7 +66,7 @@ public interface IFormFile
 
 When uploading files using model binding and the `IFormFile` interface, the action method can accept either a single `IFormFile` or an `IEnumerable<IFormFile>` (or `List<IFormFile>`) representing several files. The following example loops through one or more uploaded files, saves them to the local file system, and returns the total number and size of files uploaded.
 
-[!INCLUDE [replace GetTempFileName](../../includes/GetTempFileName.md)]
+[!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs?name=snippet1)]
 
@@ -162,7 +162,7 @@ Since model binding is disabled, the `Upload` action method doesn't accept param
 
 The complete `Upload` method is shown below:
 
-[!INCLUDE [replace GetTempFileName](../../includes/GetTempFileName.md)]
+[!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs?name=snippet1)]
 
