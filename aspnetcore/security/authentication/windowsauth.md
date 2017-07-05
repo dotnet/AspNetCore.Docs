@@ -1,7 +1,7 @@
 ---
 title: Configure Windows Authentication in ASP.NET Core
 author: ardalis
-description: 
+description: How to configure Windows Authentication in ASP.NET Core
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
