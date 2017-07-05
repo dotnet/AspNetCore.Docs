@@ -35,10 +35,6 @@ In Visual Studio:
 * Select Web Application from the list of templates.
 * Select the Change Authentication button and select **Windows Authentication**. 
 
-<!-- delete this file, it will only get stale. This is not a beginning tutorial
-![New Project Template - Choose Windows Authentication](windowsauth/_static/vs-windows-auth-template.png)
--->
-
 Run the app. The username appears in the top right of the app.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/browser-screenshot.png)
@@ -68,7 +64,7 @@ You can also configure these properties in the `launchSettings.json` file:
 
 ## Enabling Windows Authentication with IIS
 
-IIS uses the [ASP.NET Core Module](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/aspnet-core-module) (ANCM) <!-- use xref link --> to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication:
+IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication:
 
 ### Create a new IIS site
 
@@ -96,7 +92,7 @@ Launch the app to verify Windows authentication is working.
 
 ## Enabling Windows authentication with WebListener
 
-Although Kestrel doesn't support Windows authentication, you can use [WebListener](/fundamentals/servers/weblistener) <!-- BAD - xref only!!!! --> to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
+Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
 ```
 public class Program
@@ -121,14 +117,7 @@ public class Program
 
 ## Working with Windows authentication
 
-If your app mixes Windows authentication and anonymous access, you can still use the ``[Authorize]`` attribute. Apps that do not have anonymous enabled do not need to use the ``[Authorize]`` attribute at all. In this case, the whole app is treated as requiring authentication, and the server rejects anonymous requests.
-
-<!-- what about  [AllowAnonymous] ?
-
-Don't you want something like:
-
-An app can allow anon access with Win auth using  [AllowAnonymous] and Authorize
--->
+If your app mixes Windows authentication and anonymous access, you can still use the ``[Authorize]`` attribute. Apps that do not have anonymous enabled do not need to use the ``[Authorize]`` attribute at all. In this case, the whole app is treated as requiring authentication, and the server rejects anonymous requests. Note, if the IIS site is configured not to allow anonymous access, the ``[AllowAnonymous]`` attribute cannot be used to override this behavior. It can only be used to override ``[Authorize]`` attribute usage within apps that allow anonymous access at the IIS level.
 
 ### Impersonation
 
