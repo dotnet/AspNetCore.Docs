@@ -1,5 +1,5 @@
 ---
-title: Facebook external login setup | Microsoft Docs
+title: Facebook external login setup
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

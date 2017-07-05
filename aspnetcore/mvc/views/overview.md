@@ -1,5 +1,5 @@
 ---
-title: Views Overview | Microsoft Docs
+title: Views Overview
 author: ardalis
 description: 
 keywords: ASP.NET Core,

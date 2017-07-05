@@ -1,5 +1,5 @@
 ﻿---
-title: Hosting and deployment overview - ASP.NET Core | Microsoft Docs
+title: Hosting and deployment overview - ASP.NET Core
 author: tdykstra
 description: Overview of how to set up hosting environments and deploy ASP.NET Core apps to them.
 keywords: ASP.NET Core,

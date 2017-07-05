@@ -1,5 +1,5 @@
 ---
-title: Developing ASP.NET Core apps using dotnet watch | Microsoft Docs
+title: Developing ASP.NET Core apps using dotnet watch
 author: rick-anderson
 description: Shows how to use dotnet watch.
 keywords: ASP.NET Core, using dotnet watch

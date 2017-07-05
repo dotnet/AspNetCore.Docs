@@ -1,5 +1,5 @@
 ---
-title: Preventing Cross-Site Scripting | Microsoft Docs
+title: Preventing Cross-Site Scripting
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Application Parts | Microsoft Docs
+title: Application Parts
 author: ardalis
 description: 
 keywords: ASP.NET Core,

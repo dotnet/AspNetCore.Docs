@@ -1,5 +1,5 @@
 ---
-title: Using Cookie Middleware without ASP.NET Core Identity | Microsoft Docs
+title: Using Cookie Middleware without ASP.NET Core Identity
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

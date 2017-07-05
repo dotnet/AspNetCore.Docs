@@ -1,5 +1,5 @@
 ---
-title: Continuous deployment to Azure with VSTS | Microsoft Docs
+title: Continuous deployment to Azure with VSTS
 author: rick-anderson
 description: Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using continuous deployment with VSTS.
 keywords: ASP.NET Core,

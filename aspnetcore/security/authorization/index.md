@@ -1,5 +1,5 @@
 ---
-title: Authorization in ASP.NET Core | Microsoft Docs
+title: Authorization in ASP.NET Core
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Getting Started with ASP.NET Core | Microsoft Docs
+title: Getting Started with ASP.NET Core
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Configure Identity | Microsoft Docs
+title: Configure Identity
 uid: security/authentication/identity-configuration
 ---
 # Configure Identity
@@ -8,13 +8,13 @@ ASP.NET Core Identity has some default behaviors that you can override easily in
 
 ## Passwords policy
 
-By default, Identity requires very secure passwords who have to contain an uppercase character, lowercase character, digits and some other restrictions that you sometimes need to simplify. It's very simple to do that, all the configuration is accessible in the startup class of your application.
+By default, Identity requires that passwords contain an uppercase character, lowercase character, and digits. There are also some other restrictions. If you want to simplify password restrictions, you can do that in the startup class of your application.
 
 [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=2&range=60-65)]
 
 ## Application's cookie settings
 
-With the same philosophy of the passwords policy, all the settings about the application's cookie can be changed in the startup class.
+Like the passwords policy, all the settings of the application's cookie can be changed in the startup class.
 
 [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=2&range=72-80)]
 

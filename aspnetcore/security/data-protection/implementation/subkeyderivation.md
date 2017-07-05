@@ -1,5 +1,5 @@
 ---
-title: Subkey Derivation and Authenticated Encryption | Microsoft Docs
+title: Subkey Derivation and Authenticated Encryption
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Non DI Aware Scenarios | Microsoft Docs
+title: Non DI Aware Scenarios
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

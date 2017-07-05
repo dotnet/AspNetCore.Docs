@@ -1,5 +1,5 @@
 ---
-title: Knockout.js MVVM Framework in ASP.NET Core | Microsoft Docs
+title: Knockout.js MVVM Framework in ASP.NET Core
 author: ardalis
 description: 
 keywords: ASP.NET Core,

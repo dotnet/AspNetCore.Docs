@@ -1,5 +1,5 @@
 ---
-title: Request Features in ASP.NET Core | Microsoft Docs
+title: Request Features in ASP.NET Core
 author: ardalis
 description: 
 keywords: ASP.NET Core,

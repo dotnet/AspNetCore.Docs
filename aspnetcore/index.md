@@ -1,5 +1,5 @@
 ---
-title: Introduction to ASP.NET Core | Microsoft Docs
+title: Introduction to ASP.NET Core
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

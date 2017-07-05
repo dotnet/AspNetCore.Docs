@@ -1,5 +1,5 @@
 ---
-title: Configuring Data Protection | Microsoft Docs
+title: Configuring Data Protection
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

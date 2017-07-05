@@ -1,5 +1,5 @@
 ---
-title: Key management extensibility | Microsoft Docs
+title: Key management extensibility
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Introduction to Identity | Microsoft Docs
+title: Introduction to Identity
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

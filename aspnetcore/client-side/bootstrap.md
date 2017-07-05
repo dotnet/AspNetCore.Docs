@@ -1,5 +1,5 @@
 ---
-title: Building beautiful, responsive sites with Bootstrap | Microsoft Docs
+title: Building beautiful, responsive sites with Bootstrap
 author: ardalis
 description: 
 keywords: ASP.NET Core,

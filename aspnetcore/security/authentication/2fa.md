@@ -1,5 +1,5 @@
 ---
-title: Two-factor authentication with SMS | Microsoft Docs
+title: Two-factor authentication with SMS
 author: rick-anderson
 description: Shows how to set up two-factor authentication (2FA) with ASP.NET Core
 keywords: ASP.NET Core, SMS, authentication, 2FA, two-factor authentication, two factor authentication 

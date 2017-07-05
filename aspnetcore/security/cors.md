@@ -1,5 +1,5 @@
 ---
-title: Enabling Cross-Origin Requests (CORS) | Microsoft Docs
+title: Enabling Cross-Origin Requests (CORS)
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

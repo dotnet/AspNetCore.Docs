@@ -1,5 +1,5 @@
 ---
-title: Google external login setup | Microsoft Docs
+title: Google external login setup
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
