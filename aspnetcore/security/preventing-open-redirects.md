@@ -24,7 +24,6 @@ Web applications frequently redirect users to a login page when they access reso
 
 Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.
 
-
 ### An example attack
 
 A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``.
@@ -35,7 +34,22 @@ If you navigate to the preceding link and log in, you are redirected to the site
 
 ## Protecting against open redirect attacks
 
-When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring). 
+When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).
+
+### LocalRedirect
+
+Use the ``LocalRedirect`` helper method from the base `Controller` class:
+
+```
+public IActionResult SomeAction(string redirectUrl)
+{
+    return LocalRedirect(redirectUrl);
+}
+```
+
+``LocalRedirect`` will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the ``Redirect`` method.
+
+### IsLocalUrl
 
 Use the [IsLocalUrl](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iurlhelper#Microsoft_AspNetCore_Mvc_IUrlHelper_IsLocalUrl_System_String_) method to test URLs before redirecting:
 
