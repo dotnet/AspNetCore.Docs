@@ -1,5 +1,5 @@
 ---
-title: View Based Authorization | Microsoft Docs
+title: View Based Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

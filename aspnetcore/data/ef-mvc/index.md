@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC with EF Core - tutorial series | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - tutorial series
 author: tdykstra
 description: 
 keywords: ASP.NET Core,

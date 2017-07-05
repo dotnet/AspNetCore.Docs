@@ -1,5 +1,5 @@
 ---
-title: Bundling and minification in ASP.NET Core | Microsoft Docs
+title: Bundling and minification in ASP.NET Core
 author: spboyer
 description: 
 keywords: ASP.NET Core, Bundling and Minification, CSS, JavaScript, Minify, BuildBundlerMinifier

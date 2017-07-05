@@ -1,5 +1,5 @@
 ---
-title: Testing Controller Logic | Microsoft Docs
+title: Testing Controller Logic
 author: ardalis
 description: 
 keywords: ASP.NET Core,

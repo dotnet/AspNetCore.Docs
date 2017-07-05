@@ -1,5 +1,5 @@
 ---
-title: Adding a view | Microsoft Docs
+title: Adding a view
 author: rick-anderson
 description: Adding a view to a simple ASP.NET Core MVC app
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Using Gulp in ASP.NET Core | Microsoft Docs
+title: Using Gulp in ASP.NET Core
 author: rick-anderson
 description: Learn how to use Gulp in ASP.NET Core.
 keywords: ASP.NET Core, Gulp

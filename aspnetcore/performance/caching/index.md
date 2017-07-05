@@ -1,5 +1,5 @@
 ---
-title: Caching | Microsoft Docs
+title: Caching
 author: ardalis
 description: Demonstrates how to use caching for higher performance.
 keywords: ASP.NET Core, caching, performance

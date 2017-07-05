@@ -1,5 +1,5 @@
 ---
-title: Routing in ASP.NET Core | Microsoft Docs
+title: Routing in ASP.NET Core
 author: ardalis
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Key Immutability and Changing Settings | Microsoft Docs
+title: Key Immutability and Changing Settings
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

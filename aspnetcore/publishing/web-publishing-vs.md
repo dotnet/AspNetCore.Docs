@@ -1,5 +1,5 @@
 ---
-title: Create publish profiles for Visual Studio and MSBuild | Microsoft Docs
+title: Create publish profiles for Visual Studio and MSBuild
 author: rick-anderson
 description: Explains web publishing in Visual Studio.
 keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish, Visual Studio 2017

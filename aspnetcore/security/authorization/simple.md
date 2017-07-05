@@ -1,5 +1,5 @@
 ---
-title: Simple Authorization | Microsoft Docs
+title: Simple Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Key Encryption At Rest | Microsoft Docs
+title: Key Encryption At Rest
 author: rick-anderson
 description:
 keywords: ASP.NET Core,

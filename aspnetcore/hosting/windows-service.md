@@ -1,5 +1,5 @@
 ---
-title: Host in a Windows Service | Microsoft Docs
+title: Host in a Windows Service
 author: tdykstra
 description: Learn how to host an ASP.NET Core application in a Windows Service.
 keywords: ASP.NET Core, Windows service, hosting

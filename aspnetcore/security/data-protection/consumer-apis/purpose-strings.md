@@ -1,5 +1,5 @@
 ---
-title: Purpose Strings | Microsoft Docs
+title: Purpose Strings
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

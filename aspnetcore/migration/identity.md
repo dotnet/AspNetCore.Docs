@@ -1,5 +1,5 @@
 ---
-title: Migrating Authentication and Identity | Microsoft Docs
+title: Migrating Authentication and Identity
 author: ardalis
 description: 
 keywords: ASP.NET Core,

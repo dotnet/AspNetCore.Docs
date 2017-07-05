@@ -1,5 +1,5 @@
 ---
-title: Authentication | Microsoft Docs
+title: Authentication
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

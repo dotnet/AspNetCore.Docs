@@ -1,5 +1,5 @@
 ---
-title: Resource Based Authorization | Microsoft Docs
+title: Resource Based Authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

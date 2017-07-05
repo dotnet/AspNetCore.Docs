@@ -1,5 +1,5 @@
 ---
-title: Introduction to Data Protection | Microsoft Docs
+title: Introduction to Data Protection
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

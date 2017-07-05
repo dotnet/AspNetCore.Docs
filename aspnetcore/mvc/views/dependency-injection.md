@@ -1,5 +1,5 @@
 ---
-title: Dependency injection into views | Microsoft Docs
+title: Dependency injection into views
 author: ardalis
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Limiting the lifetime of protected payloads | Microsoft Docs
+title: Limiting the lifetime of protected payloads
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

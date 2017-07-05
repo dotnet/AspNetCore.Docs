@@ -1,5 +1,5 @@
 ---
-title: Security | Microsoft Docs
+title: Security
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

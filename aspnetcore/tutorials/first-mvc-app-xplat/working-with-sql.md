@@ -1,5 +1,5 @@
 ---
-title: Working with SQLite | Microsoft Docs
+title: Working with SQLite
 author: rick-anderson
 description: Using SQLite with a simple MVC app
 keywords: ASP.NET Core,SQLite, SQL Server 

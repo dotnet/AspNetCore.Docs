@@ -1,5 +1,5 @@
 ---
-title: File Providers in ASP.NET Core | Microsoft Docs
+title: File Providers in ASP.NET Core
 author: ardalis
 description: 
 keywords: ASP.NET Core,

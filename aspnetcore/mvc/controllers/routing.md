@@ -1,5 +1,5 @@
 ---
-title: Routing to Controller Actions | Microsoft Docs
+title: Routing to Controller Actions
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

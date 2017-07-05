@@ -1,5 +1,5 @@
 ---
-title: Azure Active Directory | Microsoft Docs
+title: Azure Active Directory
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

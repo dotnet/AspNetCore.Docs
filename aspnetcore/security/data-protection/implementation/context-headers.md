@@ -1,5 +1,5 @@
 ---
-title: Context headers | Microsoft Docs
+title: Context headers
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

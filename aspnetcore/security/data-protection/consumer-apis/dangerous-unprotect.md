@@ -1,5 +1,5 @@
 ---
-title: Unprotecting payloads whose keys have been revoked | Microsoft Docs
+title: Unprotecting payloads whose keys have been revoked
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

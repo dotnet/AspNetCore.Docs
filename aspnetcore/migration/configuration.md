@@ -1,5 +1,5 @@
 ---
-title: Migrating Configuration | Microsoft Docs
+title: Migrating Configuration
 author: ardalis
 description: 
 keywords: ASP.NET Core,

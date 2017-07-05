@@ -1,5 +1,5 @@
 ---
-title: Account Confirmation and Password Recovery | Microsoft Docs
+title: Account Confirmation and Password Recovery
 author: rick-anderson
 description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
 keywords: ASP.NET Core, password reset, email confirmation, security

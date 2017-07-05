@@ -1,5 +1,5 @@
 ---
-title: Machine Wide Policy | Microsoft Docs
+title: Machine Wide Policy
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
