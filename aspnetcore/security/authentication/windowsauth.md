@@ -33,7 +33,7 @@ The Visual Studio Web Application template can be configured to support Windows 
 In Visual Studio:
 * Create a new ASP.NET Core Web Application. 
 * Select Web Application from the list of templates.
-* Select the Change Authentication button and  select **Windows Authentication**. 
+* Select the Change Authentication button and select **Windows Authentication**. 
 
 <!-- delete this file, it will only get stale. This is not a beginning tutorial
 ![New Project Template - Choose Windows Authentication](windowsauth/_static/vs-windows-auth-template.png)
@@ -132,4 +132,4 @@ An app can allow anon access with Win auth using  [AllowAnonymous] and Authorize
 
 ### Impersonation
 
-ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use ``WindowsIdentity.RunImpersonated``. Run a single action in this conext and then close the context. Note that ``RunImpersonated`` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
+ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use ``WindowsIdentity.RunImpersonated``. Run a single action in this context and then close the context. Note that ``RunImpersonated`` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
