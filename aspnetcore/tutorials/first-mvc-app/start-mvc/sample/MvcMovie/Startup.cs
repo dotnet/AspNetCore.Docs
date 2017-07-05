@@ -35,8 +35,8 @@ namespace MvcMovie
             services.AddMvc();
 
             services.AddDbContext<MvcMovieContext>(options =>
-            #endregion
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            #endregion
         }
 
 
