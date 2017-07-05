@@ -22,11 +22,11 @@ Windows authentication can be configured for ASP.NET Core apps hosted with IIS o
 
 Windows authentication relies on the underlying operating system to authenticate users of ASP.NET Core apps. For obvious reasons, it only works on apps running on Windows hosts. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is a secure form of authentication best suited to intranet environments where client applications and web servers belong to the same Windows domain.
 
-[Learn more about Windows Authentication](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
+[Learn more about Windows Authentication and installing it for IIS](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
 
 ## Enabling Windows authentication in your app
 
-You can use Window authentication in your ASP.NET Core app hosted in IIS Express by installing the appropriate template or configuring the app's properties.
+You can use Window authentication in your ASP.NET Core app hosted in IIS Express by choosing the appropriate template or configuring the app's properties.
 
 ### Installing the Windows authentication app template
 
