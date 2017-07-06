@@ -31,6 +31,8 @@ Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Page
 
 Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
 
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs "Startup ")]
+
 ```c#
 public class Startup
 {
