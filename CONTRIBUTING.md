@@ -36,7 +36,7 @@ Markdown file names and image file names should be all lower case.
 
 ## Internal links
 
-Internal links should use the `uid` of the target article with a xref link:
+Internal links should use the `uid` of the target article with an xref link:
 
 `[link_text](xref:uid_of_the_topic)`
 
