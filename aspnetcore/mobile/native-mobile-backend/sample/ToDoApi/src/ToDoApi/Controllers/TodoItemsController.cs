@@ -31,7 +31,7 @@ namespace ToDoApi.Controllers
                 {
                     return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
                 }
-                bool itemExists = _toDoRepository.DoesItemExist(item.ID);
+                bool itemExists = _toDoRepository.DoesItemExist(id);
                 if (itemExists)
                 {
                     return StatusCode(StatusCodes.Status409Conflict, ErrorCode.TodoItemIDInUse.ToString());
