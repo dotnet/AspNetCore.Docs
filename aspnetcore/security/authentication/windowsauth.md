@@ -117,7 +117,7 @@ public class Program
 
 ## Working with Windows authentication
 
-If your app mixes Windows authentication and anonymous access, you can still use the ``[Authorize]`` attribute. Apps that do not have anonymous enabled do not need to use the ``[Authorize]`` attribute at all. In this case, the whole app is treated as requiring authentication, and the server rejects anonymous requests. Note, if the IIS site is configured not to allow anonymous access, the ``[AllowAnonymous]`` attribute cannot be used to override this behavior. It can only be used to override ``[Authorize]`` attribute usage within apps that allow anonymous access at the IIS level.
+If your app uses Windows authentication and anonymous access, you can use the ``[Authorize]`` and ``[AllowAnonymous]`` attributes. Apps that do not have anonymous enabled do not rquire ``[Authorize]``; the  app is treated as requiring authentication, anonymous requests are rejected. Note, if the IIS site is configured **not** to allow anonymous access, the ``[AllowAnonymous]`` attribute does **not** allow anonymous requests. The ``[AllowAnonymous]`` attribute overrides ``[Authorize]`` attribute usage within apps that allow anonymous access.
 
 ### Impersonation
 
