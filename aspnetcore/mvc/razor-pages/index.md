@@ -16,14 +16,15 @@ uid: mvc/razor-pages/index
 
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<!-- this is just to test external snippets - remove
 [!code-cs[main](../../../dotnet-sqldb-tutorial/DotNetAppSqlDb/Views/TodosDone/Edit.cshtml?highlight=36-42 "Edit View")]
-
-
-
+-->
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
+<!-- This works 
 [!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/Index.cshtml.cs?highlight=8,12 "IndexModel ")]
+-->
 
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 
@@ -31,8 +32,9 @@ Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Page
 
 Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs "Startup ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs?name=Startup "Startup ")]
 
+<!-- 
 ```c#
 public class Startup
 {
@@ -47,10 +49,14 @@ public class Startup
     }
 }
 ```
+-->
 
-All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, then a reference to the Razor Pages assembly is already included.
+All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, then a reference to the Razor Pages assembly is included.
 
 Consider a basic page:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Index2.cshtml "Startup ")]
+
 
 ```html
 @page
