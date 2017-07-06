@@ -34,6 +34,14 @@ For each Markdown file there may be a folder for images and a folder for sample 
 
 Markdown file names and image file names should be all lower case.
 
+## Internal links
+
+Internal links should use the `uid` of the target article with an xref link:
+
+`[link_text](xref:uid_of_the_topic)`
+
+See [DocFX Cross Reference](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#cross-reference) for more info.
+
 ## Code snippets
 
 Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
