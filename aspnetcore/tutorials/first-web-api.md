@@ -73,6 +73,8 @@ Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
+The database generates the `Id` when a `TodoItem` is created.
+
 ### Create the database context
 
 The *database context* is the main class that coordinates Entity Framework functionality for a given data model. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.

@@ -20,6 +20,8 @@ uid: security/authentication/index
 
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 
+* [Configure Windows Authentication](windowsauth.md)
+
 * [Account Confirmation and Password Recovery](accconfirm.md)
 
 * [Two-factor authentication with SMS](2fa.md)

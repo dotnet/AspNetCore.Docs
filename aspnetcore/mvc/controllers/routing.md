@@ -26,7 +26,7 @@ This document will explain the interactions between MVC and routing, and how typ
 
 In your *Configure* method you may see code similar to:
 
-```
+```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
@@ -37,7 +37,7 @@ Inside the call to `UseMvc`, `MapRoute` is used to create a single route, which 
 
 The route template `"{controller=Home}/{action=Index}/{id?}"` can match a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. MVC will attempt to locate a controller named `ProductsController` and run the action `Details`:
 
-```
+```csharp
 public class ProductsController : Controller
 {
    public IActionResult Details(int id) { ... }
@@ -48,7 +48,7 @@ Note that in this example, model binding would use the value of `id = 5` to set 
 
 Using the `default` route:
 
-```
+```csharp
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
@@ -64,7 +64,7 @@ Default and optional route parameters do not need to be present in the URL path 
 
 `"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` does not produce a value since there is no corresponding segment in the URL path. MVC would use these route values to select the `HomeController` and `Index` action:
 
-```
+```csharp
 public class HomeController : Controller
 {
   public IActionResult Index() { ... }
@@ -83,13 +83,13 @@ Using this controller definition and route template, the `HomeController.Index` 
 
 The convenience method `UseMvcWithDefaultRoute`:
 
-```
+```csharp
 app.UseMvcWithDefaultRoute();
 ```
 
 Can be used to replace:
 
-```
+```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
@@ -100,7 +100,7 @@ app.UseMvc(routes =>
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
-```
+```csharp
 var routes = new RouteBuilder(app);
 
 // Add connection to MVC, will be hooked up by calls to MapRoute.
@@ -123,7 +123,7 @@ The `default` route:
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
-```
+```csharp
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
@@ -149,7 +149,7 @@ You can add multiple routes inside `UseMvc` by adding more calls to `MapRoute`. 
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
-```
+```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("blog", "blog/{*article}",
@@ -175,7 +175,7 @@ When two actions match through routing, MVC must disambiguate to choose the 'bes
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
-```
+```csharp
 public class ProductsController : Controller
 {
    public IActionResult Edit(int id) { ... }
@@ -200,7 +200,7 @@ If multiple routes match, and MVC can't find a 'best' route, it will throw an `A
 The strings  `"blog"` and `"default"` in the following examples are route names:
 
 
-```
+```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("blog", "blog/{*article}",
