@@ -16,6 +16,7 @@ ms.prod: asp.net-core
 *   [Authentication](authentication/index.md)
     *   [Introduction to Identity](authentication/identity.md)
     *   [Enabling authentication using Facebook, Google and other external providers](authentication/social/index.md)
+    * [Configure Windows Authentication](authentication/windowsauth.md)
     *   [Account Confirmation and Password Recovery](authentication/accconfirm.md)
     *   [Two-factor authentication with SMS](authentication/2fa.md) 
     *   [Using Cookie Middleware without ASP.NET Core Identity](authentication/cookie.md)
