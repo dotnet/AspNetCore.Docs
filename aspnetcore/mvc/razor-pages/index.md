@@ -18,7 +18,12 @@ By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.
 
 [!code-cs[main](../../../dotnet-sqldb-tutorial/DotNetAppSqlDb/Views/TodosDone/Edit.cshtml?highlight=36-42 "Edit View")]
 
+
+
+
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/Index.cshtml.cs?highlight=8,12 "IndexModel ")]
 
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 

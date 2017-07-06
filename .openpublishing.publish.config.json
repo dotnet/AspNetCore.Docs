@@ -74,6 +74,11 @@
 		"path_to_root": "dotnet-sqldb-tutorial",
 		"url": "https://github.com/Azure-Samples/dotnet-sqldb-tutorial",
 		"branch": "master"
+	},
+   {
+		"path_to_root": "razor-page-intro",
+		"url": "https://github.com/Rick-Anderson/razor-page-intro",
+		"branch": "master"
 	}
   ]
 }
