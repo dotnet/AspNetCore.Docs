@@ -16,8 +16,6 @@ uid: mvc/razor-pages/index
 
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!code-cs[main](../../dotnet-sqldb-tutorial/DotNetAppSqlDb/Views/TodosDone/Edit.cshtml?highlight=36-42 "Edit View")]
-
 [!code-cs[main](../../../dotnet-sqldb-tutorial/DotNetAppSqlDb/Views/TodosDone/Edit.cshtml?highlight=36-42 "Edit View")]
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
