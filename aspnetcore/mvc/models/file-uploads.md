@@ -1,18 +1,18 @@
 ---
-title: File uploads
+title: File uploads in ASP.NET Core
 author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 keywords: ASP.NET Core, file upload, model binding, IFormFile, streaming
 ms.author: riande
 manager: wpickett
-ms.date: 11/10/2016
+ms.date: 7/5/2017
 ms.topic: article
 ms.assetid: ebc98159-a028-4a94-b06c-43981c79c6be
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/models/file-uploads
 ---
-# File uploads
+# File uploads in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
@@ -65,6 +65,8 @@ public interface IFormFile
 > Don't rely on or trust the `FileName` property without validation. The `FileName` property should only be used for display purposes.
 
 When uploading files using model binding and the `IFormFile` interface, the action method can accept either a single `IFormFile` or an `IEnumerable<IFormFile>` (or `List<IFormFile>`) representing several files. The following example loops through one or more uploaded files, saves them to the local file system, and returns the total number and size of files uploaded.
+
+[!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs?name=snippet1)]
 
@@ -159,6 +161,8 @@ The `DisableFormValueModelBinding` attribute, shown below, is used to disable mo
 Since model binding is disabled, the `Upload` action method doesn't accept parameters. It works directly with the `Request` property of `ControllerBase`. A `MultipartReader` is used to read each section. The file is saved with a GUID filename and the the key/value data is stored in a `KeyValueAccumulator`. Once all sections have been read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
 The complete `Upload` method is shown below:
+
+[!INCLUDE [GetTempFileName](../../includes/GetTempFileName.md)]
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs?name=snippet1)]
 
