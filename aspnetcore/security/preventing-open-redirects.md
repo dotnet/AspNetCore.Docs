@@ -26,9 +26,14 @@ Because the destination URL is specified in the querystring of the request, a ma
 
 ### An example attack
 
-A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``.
+A malicious user could develop an attack intended to allow the malicious user access to a user's credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site's login page, with a `returnUrl` querystring value added to the URL. For example, the [NerdDinner.com](http://nerddinner.com) sample application (written for ASP.NET MVC) includes such a login page here: ``http://nerddinner.com/Account/LogOn?returnUrl=/Home/About``. The attack then follows these steps:
 
-If you navigate to the preceding link and log in, you are redirected to the site's [About page](http://nerddinner.com/Home/About). Imagine an attack designed to gain access to a user's credentials. The attacker creates a page that matches the look of the target app. The malicious site might use a similar domain name (for example, nerddiner.com, with a single 'n'). The attacker lures a user to navigate to the site and log in, using a URL like this: ``http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn``. After successfully logging in, the user sees the page reload and they are prompted to log in again. The user will likely believe their first attempt to log in failed, and try again. The attacker stores the user's credentials, and redirects them back to their original site. 
+1. User clicks a link to ``http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn`` (note, second URL is nerddi**n**er, not nerddi**nn**er).
+2. The user logs in successfully.
+3. The user is redirected (by the site) to ``http://nerddiner.com/Account/LogOn`` (malicious site that looks like real site).
+4. The user logs in again (giving malicious site their credentials) and is redirected back to the real site.
+
+The user will likely believe their first attempt to log in failed, and their second one was successful. They'll most likely remain unaware their credentials have been compromised.
 
 ![Open Redirection Attack Process](preventing-open-redirects/_static/open-redirection-attack-process.png)
 
