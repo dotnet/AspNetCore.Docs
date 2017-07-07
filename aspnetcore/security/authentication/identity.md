@@ -1,8 +1,8 @@
 ---
-title: Introduction to Identity
+title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Using Identity with an ASP.NET Core app
+keywords: ASP.NET Core, Identity, authorization, security
 ms.author: riande
 manager: wpickett
 ms.date: 7/7/2017
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/identity
 ---
-# Introduction to Identity
+# Introduction to Identity on ASP.NET Core
 
 By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), Jon Galloway, [Erik Reitan](https://github.com/Erikre), and [Steve Smith](http://ardalis.com)
 
