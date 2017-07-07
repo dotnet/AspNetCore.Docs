@@ -22,27 +22,13 @@ The `Startup` class configures services and the application's request pipeline.
 
 ASP.NET Core apps require a `Startup` class. By convention, the `Startup` class is named "Startup". You specify the startup class name in the `Main` program's [WebHostBuilderExtensions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions) [`UseStartup<TStartup>`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method. See [Hosting](xref:fundamentals/hosting) to learn more.
 
-You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. If you specify `startupAssembly` in the WebHost configuration or options, hosting will load that startup assembly and search for a `Startup` or `Startup[Environment]` type. See [FindStartupType](https://github.com/aspnet/Hosting/blob/rel/1.1.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs) in `StartupLoader` and [Working with multiple environments](environments.md#startup-conventions). `UseStartup<TStartup>` is the recommended approach.
+You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. If you specify `startupAssembly` in the WebHost configuration or options, hosting will load that startup assembly and search for a `Startup` or `Startup[Environment]` type. See [FindStartupType](https://github.com/aspnet/Hosting/blob/rel/1.1.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs) in `StartupLoader` and [Working with multiple environments](environments.md#startup-conventions). For example, if the app is run in the *Development* environment, and includes both a `Startup` and a `StartupDevelopment` class, the `StartupDevelopment` class will be used. `UseStartup<TStartup>` is the recommended approach.
 
 The `Startup` class constructor can accept dependencies that are provided through [dependency injection](xref:fundamentals/dependency-injection). A common approach is to use `IHostingEnvironment` to set up [configuration](xref:fundamentals/configuration) sources.
 
 The `Startup` class must include a `Configure` method and can optionally include a `ConfigureServices` method, both of which are called when the application starts. The class can also include [environment-specific versions of these methods](xref:fundamentals/environments#startup-conventions). `ConfigureServices`, if present, is called before `Configure`.
 
 Learn about [handling exceptions during application startup](xref:fundamentals/error-handling#startup-exception-handling).
-
-## The Configure method
-
-The `Configure` method is used to specify how the ASP.NET application will respond to HTTP requests. The request pipeline is configured by adding [middleware](middleware.md) components to an `IApplicationBuilder` instance that is provided by dependency injection.
-
-In the following example from the default web site template, several extension methods are used to configure the pipeline with support for [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, ASP.NET MVC, and Identity.
-
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
-
-Each `Use` extension method adds a [middleware](xref:fundamentals/middleware) component to the request pipeline. For instance, the `UseMvc` extension method adds the [routing](routing.md) middleware to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
-
-For more information about how to use `IApplicationBuilder`, see [Middleware](xref:fundamentals/middleware).
-
-Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be specified in the method signature, in which case these services will be [injected](dependency-injection.md) if they are available. 
 
 ## The ConfigureServices method
 
@@ -65,6 +51,20 @@ Below are some of the services typically requested by `Startup` methods:
 * In `Configure`:  `IApplicationBuilder`, `IHostingEnvironment`, `ILoggerFactory`
 
 Any services added by the ``WebHostBuilder`` ``ConfigureServices`` method may be requested by the ``Startup`` class constructor or its ``Configure`` method. Use `WebHostBuilder` to provide any services you need during `Startup` methods.
+
+## The Configure method
+
+The `Configure` method is used to specify how the ASP.NET application will respond to HTTP requests. The request pipeline is configured by adding [middleware](middleware.md) components to an `IApplicationBuilder` instance that is provided by dependency injection.
+
+In the following example from the default web site template, several extension methods are used to configure the pipeline with support for [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, ASP.NET MVC, and Identity.
+
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+
+Each `Use` extension method adds a [middleware](xref:fundamentals/middleware) component to the request pipeline. For instance, the `UseMvc` extension method adds the [routing](routing.md) middleware to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
+
+For more information about how to use `IApplicationBuilder`, see [Middleware](xref:fundamentals/middleware).
+
+Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be specified in the method signature, in which case these services will be [injected](dependency-injection.md) if they are available. 
 
 ## Additional Resources
 
