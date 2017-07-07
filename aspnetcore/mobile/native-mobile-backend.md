@@ -110,7 +110,7 @@ You can test your new API method using a variety of tools, such as [Postman](htt
 
 ### Creating Items
 
-By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it, and accepts an ID parameter and a `ToDoItem` instance. The HTTP verb attributes, like `[HttpPost]`, optionally accept a route template string (`{id}` in this example). This has the same effect as adding a `[Route]` attribute to the action. Since the `item` argument will be passed in the body of the POST, this parameter is decorated with the `[FromBody]` attribute.
+By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it, and accepts a `ToDoItem` instance. Since the `item` argument will be passed in the body of the POST, this parameter is decorated with the `[FromBody]` attribute.
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it is added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 
@@ -132,7 +132,7 @@ Modifying records is done using HTTP PUT requests. Other than this change, the `
 
 [!code-csharp[Main](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=48-69)]
 
-To test with Postman, change the verb to PUT and add the ID of the record being updated to the URL. Specify the updated object data in the Body of the request.
+To test with Postman, change the verb to PUT. Specify the updated object data in the Body of the request.
 
 ![Postman console showing a PUT and response](native-mobile-backend/_static/postman-put.png)
 

@@ -22,8 +22,8 @@ namespace ToDoApi.Controllers
             return Ok(_toDoRepository.All);
         }
 
-        [HttpPost("{id}")]
-        public IActionResult Create(string id, [FromBody]ToDoItem item)
+        [HttpPost]
+        public IActionResult Create([FromBody] ToDoItem item)
         {
             try
             {
@@ -45,8 +45,8 @@ namespace ToDoApi.Controllers
             return Ok(item);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Edit(string id, [FromBody] ToDoItem item)
+        [HttpPut]
+        public IActionResult Edit([FromBody] ToDoItem item)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace ToDoApi.Controllers
                 {
                     return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
                 }
-                var existingItem = _toDoRepository.Find(id);
+                var existingItem = _toDoRepository.Find(item.ID);
                 if (existingItem == null)
                 {
                     return NotFound(ErrorCode.RecordNotFound.ToString());
