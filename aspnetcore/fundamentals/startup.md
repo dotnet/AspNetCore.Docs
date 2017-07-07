@@ -16,7 +16,7 @@ uid: fundamentals/startup
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 
-The `Startup` class configures services required by the app and the request pipeline that handles all requests made to the application. 
+The `Startup` class configures services and the application's request pipeline. 
 
 ## The Startup class
 
@@ -56,7 +56,7 @@ Adding services to the services container makes them available within your appli
 
 ## Services Available in Startup
 
-ASP.NET Core dependency injection provides application services during an application's startup. You can request these services by including the appropriate interface as a parameter on your `Startup` class's constructor or its `Configure` method. The `ConfigureServices` method only takes an `IServiceCollection` parameter (but any registered service can be retrieved from this collection, so additional parameters are not necessary).
+ASP.NET Core dependency injection provides services during an application's startup. You can request these services by including the appropriate interface as a parameter on your `Startup` class's constructor or its `Configure` method. The `ConfigureServices` method only takes an `IServiceCollection` parameter (but any registered service can be retrieved from this collection, so additional parameters are not necessary).
 
 Below are some of the services typically requested by `Startup` methods:
 
