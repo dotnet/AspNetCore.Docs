@@ -78,7 +78,7 @@ This is because there was no route found that matched a controller that had a me
 
 `asp-all-route-data` allows creating on a .NET context (that is, the running C# associated with your Razor view) a dictionary of key value pairs where the key is the parameter name and the value is the value associated with that key. 
 
-As the example below shows, an inline dictionary is created and the data is passed to the razor view. The data could also be passed in with your model to keep the Razor view simpler.
+As the example below shows, an inline dictionary is created and the data is passed to the Razor view. The data could also be passed in with your model to keep the Razor view simpler.
 
 ```
 @{
