@@ -42,6 +42,14 @@
 ### [Tag helpers](mvc/views/tag-helpers/intro.md)
 #### [Authoring tag helpers](mvc/views/tag-helpers/authoring.md)
 #### [Using tag helpers in forms](mvc/views/working-with-forms.md)
+                            
+#### [Built-in tag helpers](mvc/views/tag-helpers/built-in/index.md)
+##### [Anchor tag helper](mvc/views/tag-helpers/built-in/AnchorTagHelper.md)
+##### [Cache tag helper](mvc/views/tag-helpers/built-in/CacheTagHelper.md)
+##### [Distributed Cache tag helper](mvc/views/tag-helpers/built-in/DistributedCacheTagHelper.md)
+##### [Environment tag helper](mvc/views/tag-helpers/built-in/EnvironmentTagHelper.md)
+##### [Image tag helper](mvc/views/tag-helpers/built-in/ImageTagHelper.md)
+
 ### [Partial views](mvc/views/partial.md)
 ### [Dependency injection into views](mvc/views/dependency-injection.md)
 ### [View components](mvc/views/view-components.md)
