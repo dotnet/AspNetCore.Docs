@@ -75,5 +75,6 @@ ms.prod: asp.net-core
 *   [Enforcing SSL](enforcing-ssl.md)
 *   [Setting up HTTPS for development](https.md)
 *   [Anti-Request Forgery](anti-request-forgery.md)
+*   [Preventing Open Redirect Attacks](preventing-open-redirects.md)
 *   [Preventing Cross-Site Scripting](cross-site-scripting.md)
 *   [Enabling Cross-Origin Requests (CORS)](cors.md)
