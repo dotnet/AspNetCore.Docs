@@ -37,7 +37,7 @@ View components are intended anywhere you have reusable rendering logic that is 
 * Sidebar content on a typical blog
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A view component consists of two parts: the class (typically derived from [ViewComponent](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A view component consists of two parts: the class (typically derived from [ViewComponent](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 ## Creating a view component
 

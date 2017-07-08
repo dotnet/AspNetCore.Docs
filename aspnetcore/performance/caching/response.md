@@ -33,7 +33,7 @@ The web server can cache responses by adding the response caching middleware. Se
 
 ## ResponseCache Attribute
 
-The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
+The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
 
 >[!WARNING]
 > Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that does not change based on a user's identity, or whether a user is logged in.

@@ -97,7 +97,7 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 Note that production code would ensure that updates always result in valid data. The simplified code shown here could multiply the number of credits enough to result in numbers greater than 5. (The `Credits` property has a `[Range(0, 5)]` attribute.) The update query would work but the invalid data could cause unexpected results in other parts of the system that assume the number of credits is 5 or less.
 
-For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql).
+For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/ef/core/querying/raw-sql).
 
 ## Examine SQL sent to the database
 

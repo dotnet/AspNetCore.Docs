@@ -83,7 +83,7 @@ The following code from *Startup.cs* shows the value being set:
 
 ## Using a Redis Distributed Cache
 
-[Redis](http://redis.io) is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/en-us/services/cache/) for your Azure-hosted ASP.NET Core apps. Your ASP.NET Core app configures the cache implementation using a `RedisDistributedCache` instance.
+[Redis](http://redis.io) is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for your Azure-hosted ASP.NET Core apps. Your ASP.NET Core app configures the cache implementation using a `RedisDistributedCache` instance.
 
 You configure the Redis implementation in `ConfigureServices` and access it in your app code by requesting an instance of `IDistributedCache` (see the code above).
 
@@ -134,5 +134,5 @@ When deciding which implementation of `IDistributedCache` is right for your app,
 Additional resources:
 
 * [In memory caching](memory.md)
-* [Redis Cache on Azure](https://azure.microsoft.com/en-us/documentation/services/redis-cache/)
-* [SQL Database on Azure](https://azure.microsoft.com/en-us/documentation/services/sql-database/)
+* [Redis Cache on Azure](https://azure.microsoft.com/documentation/services/redis-cache/)
+* [SQL Database on Azure](https://azure.microsoft.com/documentation/services/sql-database/)

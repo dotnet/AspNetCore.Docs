@@ -260,7 +260,7 @@ Create a contact in the administrators browser. Copy the URL for delete and edit
 
 Follow these instructions to create the starter app.
 
-* Create an **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx) named "ContactManager"
+* Create an **ASP.NET Core Web Application** using [Visual Studio 2017](https://www.visualstudio.com/visual-studio-homepage-vs.aspx) named "ContactManager"
 
   * Create the app with **Individual User Accounts**.
   * Name it "ContactManager" so your namespace will match the namespace use in the sample.

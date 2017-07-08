@@ -30,7 +30,7 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
-  * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)
+  * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
 
 Run the installer and select the following workloads:
  - **ASP.NET and web development** (under **Web & Cloud**)
