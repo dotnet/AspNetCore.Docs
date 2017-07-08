@@ -73,7 +73,7 @@ For the examples in this document, the `DbContext` is initialized in the *Startu
 
 The data model:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs? "model ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs "model ")]
 
 The *Pages/Create.cshtml* file:
 
@@ -91,26 +91,32 @@ The page has an `OnPostAsync` *handler method* which runs on `POST` requests (wh
 
 The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.
 
-The basic flow of `OnPostAsync`:
+The `OnPostAsync` method:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync "OnPostAsync ")]
+
+The basic flow of `OnPostAsync`:
 
 Check for validation errors.
 
 *  If there are no errors, save the data and redirect.
-*  If there are errors, show the page again with the validation message.
+*  If there are errors, show the page again with validation messages.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects back to the same URL as the current page (`/Contact`). Later, I'll show how to redirect to a different page.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`).
 
 When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
 
-The `Contact` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Contacts.Name" />`) and accept the input.
+The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like model binding, tag helpers, and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model automatically. 
+Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model **automatically**. 
 
-Notice that this Page uses `@inject` for dependency injection, which is the same as traditional Razor views. The `@inject` statement generates the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+The following code shows the combined version of the create page:
 
-You don't have to write any code for antiforgery validation. Antiforgery token generation and validation is automatic for pages. No additional code or attributes are needed to get this security feature.
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/CreateCombined.cshtml "CreateCombined ")]
+
+Notice that this Page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+
+You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
 ## Introducing PageModel
 
