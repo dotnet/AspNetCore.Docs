@@ -93,7 +93,7 @@ The `Async` naming suffix is optional but is often used by convention. The code 
 
 The `OnPostAsync` method:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync "OnPostAsync ")]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
 
 The basic flow of `OnPostAsync`:
 
