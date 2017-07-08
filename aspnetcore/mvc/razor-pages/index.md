@@ -40,22 +40,6 @@ Consider a basic page:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index.cshtml "Index ")]
 
--->
-```html
-@page
-
-@{
-    var message = "Hello, World!";
-}
-
-<html>
-<body>
-    <p>@message</p>
-</body>
-</html>
-```
--->
-
 The preceeding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function level content.
 
 A similar page, with the `PageModel` in a separate file, is shown in the following two files:
@@ -65,6 +49,8 @@ A similar page, with the `PageModel` in a separate file, is shown in the followi
 [!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs "Index2.cs ")]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
+
+For simple pages, mixing the `PageModel` class with the Razor markup is fine. For more complex code, it's a best practice to keep the page model code seperate.
 
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Pages path and the matching URL:
 
@@ -82,72 +68,32 @@ The new Razor Pages features are designed to make common patterns used with web 
 
 For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
 
-The *MyApp/Contact.cs* file:
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Startup.cs?highlight=15-16 "Startup ")]
 
-```c#
-using System.ComponentModel.DataAnnotations;
 
-namespace MyApp 
-{
-    public class Contact
-    {
-        [Required]
-        public string Name { get; set; }
+The data model:
 
-        [Required]
-        public string Email { get; set; }
-    }
-}
-```
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs? "model ")]
 
-The *MyApp/Pages/Contact.cshtml* file:
+The *Pages/Create.cshtml* file:
 
-```html
-@page
-@using MyApp
-@using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@inject ApplicationDbContext Db
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml "Create ")]
 
-@functions {
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            return RedirectToPage();
-        }
-        
-        return Page();
-    }
-}
+The *Pages/Create.cshtml.cs* file:
 
-<html>
-<body>
-    <p>Enter your contact info here and we will email you about 
-         our fine products!</p> 
-    <div asp-validation-summary="All"></div>
-    <form method="POST">
-      <div>Name: <input asp-for="Contact.Name" /></div>
-      <div>Email: <input asp-for="Contact.Email" /></div>
-      <input type="submit" />
-    </form>
-</body>
-</html>
-```
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs "Create ")]
+
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page.
 * `OnPost` to handle form submissions. 
 
-The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for pages. Most of the MVC primitives like model binding, validation, and action results are shared.
+The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.
 
-The basic flow of `OnPostAsync` is:
+The basic flow of `OnPostAsync`:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync "OnPostAsync ")]
 
 Check for validation errors.
 
