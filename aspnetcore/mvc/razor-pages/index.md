@@ -72,39 +72,43 @@ The data model:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs "model ")]
 
-The *Pages/Create.cshtml* file:
+The *Pages/Create.cshtml* view file:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml "Create ")]
 
-The `PageModel` class *Pages/Create.cshtml.cs*, a 'code-behind' file for the view code:
+The `PageModel` class *Pages/Create.cshtml.cs* 'code-behind' file for the view:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs "Create ")]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
 
-Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.  <!-- why? -->
+Using a `PageModel` 'code-behind' file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` 'code-behind' files support runtime compilation, which can be an advantage in development.  <!-- why? -->
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions. 
 
-The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.
+The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
 
-The `OnPostAsync` method:
+The previous `OnPostAsync` method:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync "OnPostAsync ")]
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cs?name=OnPostAsync "OnPostAsync ")]
 
 The basic flow of `OnPostAsync`:
 
 Check for validation errors.
 
 *  If there are no errors, save the data and redirect.
-*  If there are errors, show the page again with validation messages.
+*  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`).
 
-When the submitted form has validation errors, the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default for a handler method. A handler method that returns `void` will render the page.
+When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review Return type?? --> for a handler method. A handler method that returns `void` will render the page.
 
 The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
