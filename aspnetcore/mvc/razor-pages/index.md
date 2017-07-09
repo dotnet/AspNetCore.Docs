@@ -5,7 +5,7 @@ description: Overview of Razor Pages in ASP.NET Core
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 06/28/2017
+ms.date: 07/28/2017
 ms.topic: get-started-article
 ms.assetid: 30e4104c-0124-477b-86b3-beb7b34ed3f6
 ms.technology: aspnet
@@ -14,19 +14,13 @@ uid: mvc/razor-pages/index
 ---
 ## Introduction to Razor Pages in ASP.NET Core
 
-By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-<!-- this is just to test external snippets - remove
-[!code-cs[main](../../../dotnet-sqldb-tutorial/DotNetAppSqlDb/Views/TodosDone/Edit.cshtml?highlight=36-42 "Edit View")]
--->
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak) 
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-<!-- This works 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/Index.cshtml.cs?highlight=8,12 "IndexModel ")]
--->
-
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
+
+[Download or view sample code](https://github.com/Rick-Anderson/razor-page-intro).
 
 ## Getting started
 
@@ -34,9 +28,10 @@ Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* lik
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs?name=Startup "Startup ")]
 
-All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, then a reference to the Razor Pages assembly is included.
+All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, a reference to the Razor Pages assembly is included.
 
 Consider a basic page:
+<a name="OnGet"></a>
 
 [!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index.cshtml "Index ")]
 
@@ -46,7 +41,9 @@ A similar page, with the `PageModel` in a separate file, is shown in the followi
 
 [!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml "Index2 ")]
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs "Index2.cs ")]
+The `PageModel` class *Pages/Index2.cshtml.cs*, a 'code-behind' file for the view code:
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs "Index2.cs ")]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
@@ -79,21 +76,24 @@ The *Pages/Create.cshtml* file:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml "Create ")]
 
-The *Pages/Create.cshtml.cs* file:
+The `PageModel` class *Pages/Create.cshtml.cs*, a 'code-behind' file for the view code:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs "Create ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs "Create ")]
 
+By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
+
+Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.  <!-- why? -->
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
-* `OnGet` to initialize state needed for the page.
+* `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions. 
 
 The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.
 
 The `OnPostAsync` method:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
 
 The basic flow of `OnPostAsync`:
 
@@ -114,78 +114,13 @@ The following code shows the combined version of the create page:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/CreateCombined.cshtml "CreateCombined ")]
 
-Notice that this Page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+The main change is to replace constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+
+<a name="xsrf"></a>
+
+### XSRF/CSRF and Razor Pages
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
-
-## Introducing PageModel
-
-You could write this form by partitioning the view code and the handler method into separate files. The view code:
-
-*MyApp/Pages/Contact.cshtml*
-
-```html
-@page
-@using MyApp
-@using MyApp.Pages
-@using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model ContactModel
-
-<html>
-<body>
-    <p>Enter your contact info here and we will email you about 
-         our fine products!</p> 
-    <div asp-validation-summary="All"></div>
-    <form method="POST">
-      <div>Name: <input asp-for="Contact.Name" /></div>
-      <div>Email: <input asp-for="Contact.Email" /></div>
-      <input type="submit" />
-    </form>
-</body>
-</html>
-```
-
-The `PageModel` class, a 'code-behind' file for the view code:
-
-*MyApp/Pages/Contact.cshtml.cs*
-
-```c#
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace MyApp.Pages
-{
-    public class ContactModel : PageModel
-    {
-        public ContactModel(ApplicationDbContext db)
-        {
-            Db = db;
-        }
-
-        [BindProperty]
-        public Contact Contact { get; set; }
-        
-        private ApplicationDbContext Db { get; }
-    
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (ModelState.IsValid)
-            {
-                Db.Contacts.Add(Contact);
-                await Db.SaveChangesAsync();
-                return RedirectToPage();
-            }
-            
-            return Page();
-        }
-    }
-}
-```
-
-By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. The main change is to add constructor injection for all your injected (`@inject`) properties.
-
-Using a `PageModel` supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` files support runtime compilation, which can be an advantage in development.
 
 ## Using the view engine
 
