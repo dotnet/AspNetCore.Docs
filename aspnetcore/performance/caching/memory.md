@@ -93,7 +93,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 - When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child is not expired by manual removal or updating of the parent entry.
 
-### Other Resources
+### Other Resources 
 
 * [Working with a Distributed Cache](distributed.md)
 * [Response caching middleware](middleware.md)
