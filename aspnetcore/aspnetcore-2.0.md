@@ -15,7 +15,8 @@ uid: aspnetcore-2.0
 
 # What's new in ASP.NET Core 2.0
 
-> [!NOTE] ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published.
+> [!NOTE]
+> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published.
 
 ASP.NET Core 2.0 includes the following new features:
 
