@@ -169,7 +169,8 @@
 
 # [API Reference](/aspnet/core/api/)
 
-# [1.1 Release notes](aspnetcore-1.1.md)
+# [2.0 Preview release notes](aspnetcore-2.0.md)
+## [1.1 Release notes](aspnetcore-1.1.md)
 ## [Earlier release notes](https://github.com/aspnet/home/releases)
 ## [VS 2015/project.json docs](https://docs.microsoft.com/dotnet/articles/project-json)
 
