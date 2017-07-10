@@ -13,10 +13,10 @@ ms.prod: aspnet-core
 uid: aspnetcore-2.0
 ---
 
-# What's new in ASP.NET Core 2.0
+# What's new in ASP.NET Core 2.0 Preview
 
 > [!NOTE]
-> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not been written. This document links to GitHub issues for articles that are planned but not yet published.
+> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published. For information about how to install ASP.NET 2.0 Preview 2, see [Introducing ASP.NET Core 2.0 Preview 2](https://blogs.msdn.microsoft.com/webdev/2017/06/28/introducing-asp-net-core-2-0-preview-2/)
 
 ASP.NET Core 2.0 includes the following new features:
 
@@ -29,12 +29,12 @@ ASP.NET Core 2.0 includes the following new features:
 - [Identity update](#identity-update)
 - [SPA templates](#spa-templates)
 - [Kestrel improvements](#kestrel-improvements)
-- [WebListener renamed to HttpSysServer](#weblistener-renamed-to-httpsysserver)
+- [WebListener renamed to HttpSysServer](#weblistener-renamed-to-httpsys)
 - [Enhanced HTTP header support](#enhanced-http-header-support)
 - [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
 - [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
 - [Automatic precompilation](#automatic-precompilation)
-- [Razor support for C# 7.1]()
+- [Razor support for C# 7.1](#razor-support-for-c-71)
 
 <!--
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548).
