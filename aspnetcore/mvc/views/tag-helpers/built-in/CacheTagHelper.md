@@ -218,7 +218,7 @@ Example:
 </Cache>
 ```
 
-Using the attribute `vary-by-user` maintains the contents in cache through a log-in and log-out cycle.  When using `vary-by-cookie` which references the `.AspNetCore.Identity.Application` as shown above, a log-in and log-out action invalidates the cache for the same authenticated user (because a new cookie value is generated). If no user is authenticated, the state is considered a valid. [REVIEW, don't understand this] This means that no logged-in user is one cache state, and the contents will be maintained for that condition as well.
+Using this attribute maintains the contents in cache through a log-in and log-out cycle.  When using `vary-by-user`, a log-in and log-out action invalidates the cache for the same authenticated user.  This is because a new unique cookie value is generated upon login. Cache is maintained also for the anonymous state where no cookie is present or has expired. This means if no user is logged in, cache will be maintained for that condition as well.
 
 - - -
 
