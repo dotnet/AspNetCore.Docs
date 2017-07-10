@@ -124,7 +124,7 @@
 #### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 
 # [Testing and debugging](testing/index.md)
-## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
+## [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration testing](testing/integration-testing.md)
 ## [Testing controllers](mvc/controllers/testing.md)
 ## [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)

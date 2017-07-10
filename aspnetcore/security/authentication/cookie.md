@@ -53,7 +53,7 @@ The code snippet above configures a few options;
 
 ## Creating an identity cookie
 
-To create a cookie holding your user information you must construct a [ClaimsPrincipal](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal(v=vs.110).aspx) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal* inside your controller method call
+To create a cookie holding your user information you must construct a [ClaimsPrincipal](https://msdn.microsoft.com/library/system.security.claims.claimsprincipal(v=vs.110).aspx) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal* inside your controller method call
 
 
    ```csharp
@@ -135,7 +135,7 @@ If you want to non-destructively update the user principal, for example, their n
 
 The `CookieAuthenticationOptions` class comes with various configuration options to enable you to fine tune the cookies created.
 
-* **ClaimsIssuer** - the issuer to be used for the [Issuer](https://msdn.microsoft.com/en-us/library/microsoft.identitymodel.claims.claim.issuer.aspx) property on any claims created by the middleware.
+* **ClaimsIssuer** - the issuer to be used for the [Issuer](https://msdn.microsoft.com/library/microsoft.identitymodel.claims.claim.issuer.aspx) property on any claims created by the middleware.
 
 * **CookieDomain** - the domain name the cookie will be served to. By default this is the host name the request was sent to. The browser will only serve the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example setting the cookie domain to `.contoso.com` will make it available to `contoso.com`, `www.contoso.com`, `staging.www.contoso.com` etc.
 

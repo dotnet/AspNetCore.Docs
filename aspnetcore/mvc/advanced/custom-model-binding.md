@@ -133,4 +133,4 @@ Adding your provider to the end of the collection may result in a built-in model
 Custom model binders:
 - Should not attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](/mvc/controllers/filters.md) or logic within the action method itself should handle the failure.
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically should not be used to convert a string into a custom type, a [`TypeConverter`](https://msdn.microsoft.com/en-us/library/ayybcxe5.aspx) is usually a better option.
+- Typically should not be used to convert a string into a custom type, a [`TypeConverter`](https://msdn.microsoft.com/library/ayybcxe5.aspx) is usually a better option.

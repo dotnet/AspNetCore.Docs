@@ -16,7 +16,7 @@ uid: fundamentals/servers/weblistener
 
 By [Tom Dykstra](http://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
-WebListener is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
+WebListener is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
 Although WebListener was developed for ASP.NET Core, it can be used directly in any .NET Core or .NET Framework application via the [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) NuGet package.
 
@@ -66,7 +66,7 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
    You can use netsh.exe or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906).
 
-There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
+There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820129).
 
 ### Configure your ASP.NET Core application
 
@@ -97,7 +97,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/
 
 * [Preregister URL prefixes to bind to WebListener, and set up SSL certificates](#preregister-url-prefixes-and-configure-ssl) as you would for use in ASP.NET Core.
 
-There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
+There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820129).
 
 
 Here's a code sample that demonstrates WebListener use outside of ASP.NET Core:

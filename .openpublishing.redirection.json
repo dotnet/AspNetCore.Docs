@@ -1,6 +1,11 @@
 { 
   "redirections": [ 
     {   
+        "source_path": "aspnetcore/publishing/vsts-continuous-deployment.md", 
+        "redirect_url": "https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure", 
+        "redirect_document_id": false 
+    }, 
+    {   
         "source_path": "aspnetcore/client-side/cdn.md", 
         "redirect_url": "/aspnet/core/client-side/", 
         "redirect_document_id": false 
