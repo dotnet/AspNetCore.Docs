@@ -38,9 +38,9 @@ ASP.NET Core 2.0 includes the following new features:
 - [Tag helper updates](#tag-helper-updates)
 - [Razor support for C# 7.1]()
 
-For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following:
-
-* [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548)
+<!--
+For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548).
+-->
 
 ## ASP.NET Core metapackage
 
@@ -52,17 +52,55 @@ Applications that use the `Microsoft.AspNetCore.All` metapackage automatically t
 
 If there are features you don’t need in your application, the new package trimming features will exclude those binaries in your published application output by default.
 
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3449).
+
 ## .NET Standard 2.0
 
-ASP.NET Core 2.0 supports loading libraries targeting .NET Standard 2.0, when running on .NET Core 2.0 and .NET Framework 4.6.1. The ASP.NET Core 2.0 packages themselves target .NET Standard 2.0. They can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0 compliant implementations of .NET.
+The ASP.NET Core 2.0 packages target .NET Standard 2.0. They can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
 
 ## Configuration update
 
+An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0, to make it easier for applications to retrieve configuration values via the container.
+
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3387).
+
 ## Logging update
 
-The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. You can use this method instead of `FilterLoggerSettings` objects to control the source and level of logs that get propagated to your configured log providers.
+The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. For example here's what the code looks like in 1.x:
 
-See https://github.com/aspnet/Docs/issues/3388.
+```csharp
+var loggerFactory = new LoggerFactory();
+loggerFactory = loggerFactory.WithFilter(new FilterLoggerSettings
+{
+    { "Microsoft", LogLevel.Warning },
+    { "System", LogLevel.Error }
+});
+loggerFactory.AddConsole();
+```
+
+And here's what it looks like in 2.0:
+
+```csharp
+var loggerFactory = new LoggerFactory();
+loggerFactory.AddFilter(new Dictionary<string, LogLevel>
+{
+    { "Microsoft", LogLevel.Warning },
+    { "System", LogLevel.Error }
+});
+loggerFactory.AddConsole();
+```
+
+`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names, categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are e 
+
+
+
+
+
+
+
+You can use a `Dictionary` object instead of `FilterLoggerSettings` objects to control the source and level of logs that get propagated to your configured log providers.
+
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
 
 ## Authentication update
 
