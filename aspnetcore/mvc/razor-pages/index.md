@@ -95,9 +95,9 @@ The previous `OnPostAsync` method:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync "OnPostAsync ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cs?name=OnPostAsync "OnPostAsync ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cs?name=OnPostAsync)]
 
 The basic flow of `OnPostAsync`:
 
