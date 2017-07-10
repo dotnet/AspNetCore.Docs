@@ -48,7 +48,7 @@ namespace webapptemplate.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-
+        #region login
         //
         // POST: /Account/Login
         [HttpPost]
@@ -61,7 +61,8 @@ namespace webapptemplate.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, 
+                    model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
@@ -86,6 +87,7 @@ namespace webapptemplate.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
         //
         // GET: /Account/Register
@@ -95,7 +97,7 @@ namespace webapptemplate.Controllers
         {
             return View();
         }
-
+        #region register
         //
         // POST: /Account/Register
         [HttpPost]
@@ -125,7 +127,9 @@ namespace webapptemplate.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
+        #region logout
         //
         // POST: /Account/LogOut
         [HttpPost]
@@ -136,6 +140,7 @@ namespace webapptemplate.Controllers
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+        #endregion
 
         //
         // POST: /Account/ExternalLogin
