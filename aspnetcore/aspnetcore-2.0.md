@@ -1,0 +1,202 @@
+---
+title: What's new in ASP.NET Core 2.0
+author: rick-anderson
+description: What's new in ASP.NET Core 2.0
+keywords: ASP.NET Core, release notes, what's new
+ms.author: riande
+manager: wpickett
+ms.date: 07/10/2017
+ms.topic: article
+ms.assetid: 08c9f457-9c24-40f9-a08b-47dc251e4cec
+ms.technology: aspnet
+ms.prod: aspnet-core
+uid: aspnetcore-2.0
+---
+
+# What's new in ASP.NET Core 2.0
+
+> [!NOTE] ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. In some cases this document links to GitHub issues for articles that are planned but not yet published. 
+
+ASP.NET Core 2.0 includes the following new features:
+
+- [ASP.NET Core metapackage](#aspnet-core-metapackage)
+- [.NET Standard 2.0](#net-standard-20)
+- [Razor Pages](mvc/razor-pages/index.md)
+- [Configuration update](#configuration-update)
+- [Logging update](#logging-update)
+- [Authentication update](#authentication-update)
+- [Identity update](#identity-update)
+- [Middleware update](#middleware-update)
+- [SPA templates](#spa-templates)
+- [Kestrel improvements](#kestrel-improvements)
+- [WebListener renamed to HttpSysServer](#weblistener-renamed-to-httpsysserver)
+- [Enhanced HTTP header support](#enhanced-http-header-support)
+- [Default Web Host configuration](#default-web-host-configuration)
+- [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
+- [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
+- [Automatic precompilation](#automatic-precompilation)
+- [Tag helper updates](#tag-helper-updates)
+- [Razor support for C# 7.1]()
+
+For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following:
+
+* [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548)
+
+## ASP.NET Core metapackage
+
+A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. No longer do you need to pick and choose individual ASP.NET Core features in separate packages, as all features are now included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package in the default templates.
+
+The version number of the `Microsoft.AspNetCore.All` metapackage will always represent the latest ASP.NET Core version (aligned with the .NET Core version).
+
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications by default. This removes the requirement to have assets from the referenced ASP.NET Core NuGet packages deployed with the application. The assets in the Runtime Store are also pre-JIT'ted to improve application startup-time.
+
+If there are features you don’t need in your application, the new package trimming features will exclude those binaries in your published application output by default.
+
+## .NET Standard 2.0
+
+ASP.NET Core 2.0 supports loading libraries targeting .NET Standard 2.0, when running on .NET Core 2.0 and .NET Framework 4.6.1. The ASP.NET Core 2.0 packages themselves target .NET Standard 2.0. They can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0 compliant implementations of .NET.
+
+## Configuration update
+
+## Logging update
+
+The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. You can use this method instead of `FilterLoggerSettings` objects to control the source and level of logs that get propagated to your configured log providers.
+
+See https://github.com/aspnet/Docs/issues/3388.
+
+## Authentication update
+
+A revamped authentication model makes it easier to configure authentication for an application using DI. New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
+(https://azure.microsoft.com/services/active-directory-b2c/).
+
+See https://github.com/aspnet/Docs/issues/3054.
+
+## Identity update
+
+It's easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the [Microsoft Authentication Library (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+
+See https://github.com/aspnet/Docs/issues/3668.
+
+## Middleware update
+
+https://github.com/aspnet/Docs/issues/3665
+
+## SPA templates
+
+Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. For more information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+
+## Kestrel improvements
+
+The Kestrel web server is now approved for edge deployments. We’ve added a number of server constraint configuration options to Kestrel through the `KestrelServerOptions` class’s new `Limits` property.  You can now add limits for the following:
+
+- Maximum client connections
+- Maximum request body size
+- Maximum request body data rate
+
+### Maximum client connections
+
+The maximum number of concurrent open HTTP/S connections can be set for the entire application with the following code:
+
+```csharp
+.UseKestrel(options =>
+{
+    options.Limits.MaxConcurrentConnections = 100;
+    options.Limits.MaxConcurrentUpgradedConnections = 100;
+```
+
+Note how there are two limits. Once a connection is upgraded from HTTP to another protocol (e.g. on a WebSockets request), it’s not counted against the limit anymore since upgraded connections have their own limit.
+
+### Maximum request body size
+
+To configure the default constraint for the entire application:
+
+```csharp
+.UseKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 10 * 1024;
+```
+
+This will affect every request, unless it’s overridden on a specific request:
+
+```csharp
+app.Run(async context =>
+{
+    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = 10 * 1024;
+```
+ 
+You can only configure the limit on a request if the application hasn’t started reading yet; otherwise an exception is thrown. There’s an `IsReadOnly` property that tells you if the request body is in read-only state, meaning it’s too late to configure the limit.
+
+### Minimum request body data rate
+
+To configure a default minimum request rate:
+
+```csharp
+.UseKestrel(options =>
+{
+    options.Limits.RequestBodyMinimumDataRate = 
+        new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
+```
+
+To configure per-request:
+
+```csharp
+app.Run(async context =>
+{
+    context.Features.Get<IHttpRequestBodyMinimumDataRateFeature>().MinimumDataRate = 
+        new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
+```
+
+The way the rate works is as follows: Kestrel will check every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum, so the rate is not checked during that time. This is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
+
+## WebListener renamed to HttpSysServer
+
+## Enhanced HTTP header support
+
+When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you wish to transmit.  You can set these values on the returned content with code similar to the following:
+
+```csharp
+var data = Encoding.UTF8.GetBytes("This is a sample text from a binary array");
+var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
+return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
+```
+ 
+The file returned to your visitors will be decorated with the appropriate HTTP headers for the `ETag` and `LastModified` values.
+
+If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You do not need to write any special handlers into your methods to adapt or handle this feature; it is automatically handled for you.
+
+## Default Web Host configuration
+
+A new default Web Host configuration automatically sets the typical defaults of the web host with the `WebHost.CreateDefaultBuilder()` API. This adds Kestrel, IIS configuration, default configuration sources, logging providers, and the content root.
+
+## Hosting startup and Application Insights
+
+Hosting environments can now inject extra package dependencies and execute code during application startup, without the application needing to explicitly take a dependency or call any methods. This feature can be used to enable certain environments, such as debugging in Visual Studio or hosting in Azure App Service, to "light-up" features unique to that environment without the application needing to know ahead of time.
+
+This feature is used to automatically enable Application Insights diagnostics  in ASP.NET Core 2.0 applications when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
+
+## Automatic use of anti-forgery tokens
+
+ASP.NET Core has always helped HTMLEncode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks: ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
+
+## Automatic precompilation
+
+Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
+
+## Tag helper updates
+
+https://github.com/aspnet/Docs/issues/3662
+
+## Razor support for C# 7.1
+
+The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 features in your project add the following property in your project file and then reload the solution:
+
+```xml
+<LangVersion>latest</LangVersion>
+```
+
+C# 7.1 is in preview, and you can review the language specification for these features on [their GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
+
+## Additional Information
+
+- [ASP.NET Core 1.1.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0)
+- If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).
