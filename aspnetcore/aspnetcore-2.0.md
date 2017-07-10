@@ -15,7 +15,7 @@ uid: aspnetcore-2.0
 
 # What's new in ASP.NET Core 2.0
 
-> [!NOTE] ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. In some cases this document links to GitHub issues for articles that are planned but not yet published. 
+> [!NOTE] ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published.
 
 ASP.NET Core 2.0 includes the following new features:
 
@@ -26,16 +26,13 @@ ASP.NET Core 2.0 includes the following new features:
 - [Logging update](#logging-update)
 - [Authentication update](#authentication-update)
 - [Identity update](#identity-update)
-- [Middleware update](#middleware-update)
 - [SPA templates](#spa-templates)
 - [Kestrel improvements](#kestrel-improvements)
 - [WebListener renamed to HttpSysServer](#weblistener-renamed-to-httpsysserver)
 - [Enhanced HTTP header support](#enhanced-http-header-support)
-- [Default Web Host configuration](#default-web-host-configuration)
 - [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
 - [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
 - [Automatic precompilation](#automatic-precompilation)
-- [Tag helper updates](#tag-helper-updates)
 - [Razor support for C# 7.1]()
 
 <!--
@@ -52,7 +49,7 @@ Applications that use the `Microsoft.AspNetCore.All` metapackage automatically t
 
 If there are features you don’t need in your application, the new package trimming features will exclude those binaries in your published application output by default.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3449).
+For information about the status of planned documentation, see the [metapackage GitHub issue](https://github.com/aspnet/Docs/issues/3449) and [Runtime Store GitHub issue](https://github.com/aspnet/Docs/issues/3667).
 
 ## .NET Standard 2.0
 
@@ -78,7 +75,7 @@ loggerFactory = loggerFactory.WithFilter(new FilterLoggerSettings
 loggerFactory.AddConsole();
 ```
 
-And here's what it looks like in 2.0:
+Here's what it looks like in 2.0:
 
 ```csharp
 var loggerFactory = new LoggerFactory();
@@ -90,38 +87,85 @@ loggerFactory.AddFilter(new Dictionary<string, LogLevel>
 loggerFactory.AddConsole();
 ```
 
-`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names, categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are e 
+`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names as well as categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are predefined:
 
+- Console
+- Debug
+- EventLog
+- AzureAppServices
+- TraceSource
+- EventSource
 
+The `LoggerFactory` constructor can take an `IConfiguration` and creates filters based on the config:
 
+```csharp
+{
+  "Logging": {
+    "LogLevel": {
+        "System": "Trace",
+        "Default": "Warning"
+    },
+    "Console": {
+        "LogLevel": {
+          "Microsoft.Extensions": "Warning"
+        }
+    },
+    "CustomProvider": {
+      "LogLevel": {
+        "System": "Information"
+      }
+    }
+  }
+}
+```
 
+The configuration can also be replaced with `UseConfiguration` on `LoggerFactory`.
 
+You add providers in `Main` instead of the `Configure` method.  For example, in 1.x you typically add them as in the following example:
 
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
+{
+    factory.AddConsole();
+    factory.AddDebug();
+} 
+```
 
-You can use a `Dictionary` object instead of `FilterLoggerSettings` objects to control the source and level of logs that get propagated to your configured log providers.
+Here's a 2.0 example:
+
+```csharp
+public static void Main(string[] args)
+{
+    var host = new WebHostBuilder()
+        .ConfigureLogging(factory =>
+        {
+            factory.AddConsole();
+            factory.AddDebug();
+        }
+        .etc...
+
+    host.Run();
+}
+```
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
 
 ## Authentication update
 
-A revamped authentication model makes it easier to configure authentication for an application using DI. New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
+A new authentication model makes it easier to configure authentication for an application using DI. New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
 (https://azure.microsoft.com/services/active-directory-b2c/).
 
-See https://github.com/aspnet/Docs/issues/3054.
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3054).
 
 ## Identity update
 
 It's easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the [Microsoft Authentication Library (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
-See https://github.com/aspnet/Docs/issues/3668.
-
-## Middleware update
-
-https://github.com/aspnet/Docs/issues/3665
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3668).
 
 ## SPA templates
 
-Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. For more information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get access to the others, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
 
 ## Kestrel improvements
 
@@ -186,7 +230,13 @@ app.Run(async context =>
 
 The way the rate works is as follows: Kestrel will check every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum, so the rate is not checked during that time. This is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
 
-## WebListener renamed to HttpSysServer
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3385).
+
+## WebListener renamed to HttpSys
+
+The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
+
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/2648).
 
 ## Enhanced HTTP header support
 
@@ -202,15 +252,13 @@ The file returned to your visitors will be decorated with the appropriate HTTP h
 
 If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You do not need to write any special handlers into your methods to adapt or handle this feature; it is automatically handled for you.
 
-## Default Web Host configuration
-
-A new default Web Host configuration automatically sets the typical defaults of the web host with the `WebHost.CreateDefaultBuilder()` API. This adds Kestrel, IIS configuration, default configuration sources, logging providers, and the content root.
-
 ## Hosting startup and Application Insights
 
 Hosting environments can now inject extra package dependencies and execute code during application startup, without the application needing to explicitly take a dependency or call any methods. This feature can be used to enable certain environments, such as debugging in Visual Studio or hosting in Azure App Service, to "light-up" features unique to that environment without the application needing to know ahead of time.
 
 This feature is used to automatically enable Application Insights diagnostics  in ASP.NET Core 2.0 applications when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
+
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3389).
 
 ## Automatic use of anti-forgery tokens
 
@@ -220,10 +268,6 @@ ASP.NET Core has always helped HTMLEncode your content by default, but with the 
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
-## Tag helper updates
-
-https://github.com/aspnet/Docs/issues/3662
-
 ## Razor support for C# 7.1
 
 The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 features in your project add the following property in your project file and then reload the solution:
@@ -232,9 +276,9 @@ The Razor engine has been updated to work with the new Roslyn compiler. That inc
 <LangVersion>latest</LangVersion>
 ```
 
-C# 7.1 is in preview, and you can review the language specification for these features on [their GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
+C# 7.1 is in preview, and you can review the language specification for these features on [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
 
 ## Additional Information
 
-- [ASP.NET Core 1.1.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0)
+- [ASP.NET Core Release Notes](https://github.com/aspnet/Home/releases/)
 - If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).
