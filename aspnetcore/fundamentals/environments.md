@@ -16,7 +16,7 @@ uid: fundamentals/environments
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET Core provides support for controlling app behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the app is running in, allowing the app to be configured for that environment.
+ASP.NET Core provides support for controlling app behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate the runtime environment, allowing the app to be configured for that environment.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample)
 
@@ -26,8 +26,7 @@ ASP.NET Core references a particular [environment variable](https://github.com/a
 
 The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment [tag helper](../mvc/views/tag-helpers/index.md) to include certain sections in your [view](../mvc/views/index.md) based on the current application environment.
 
-> [!NOTE]
-> On Windows and macOS, the specified environment name is case insensitive. Whether you set the variable to `Development` or `development` or `DEVELOPMENT` the results will be the same. However, Linux is a **case sensitive** OS by default. Environment variables, file names and settings should assume case sensitivity for best practice.
+Note: On Windows and macOS, the specified environment name is case insensitive. Whether you set the variable to `Development` or `development` or `DEVELOPMENT` the results will be the same. However, Linux is a **case sensitive** OS by default. Environment variables, file names and settings require case sensitivity.
 
 ### Development
 
@@ -64,7 +63,7 @@ The `Production` environment is the environment in which the application runs wh
 
 * Turn on friendly error pages
 
-* Enable production logging and monitoring (for example, [Application Insights](https://azure.microsoft.com/en-us/documentation/articles/app-insights-asp-net-five/))
+* Enable production logging and monitoring (for example, [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/))
 
 This is by no means meant to be a complete list. It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's `Startup` class(es) wherever possible
 

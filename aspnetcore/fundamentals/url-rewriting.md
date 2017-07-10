@@ -274,8 +274,8 @@ Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` |
 ## Resources
 * [Application Startup](startup.md)
 * [Middleware](middleware.md)
-* [Regular expressions in .NET](https://docs.microsoft.com/en-us/dotnet/articles/standard/base-types/regular-expressions)
-* [Regular expression language - quick reference](https://docs.microsoft.com/en-us/dotnet/articles/standard/base-types/quick-ref)
+* [Regular expressions in .NET](https://docs.microsoft.com/dotnet/articles/standard/base-types/regular-expressions)
+* [Regular expression language - quick reference](https://docs.microsoft.com/dotnet/articles/standard/base-types/quick-ref)
 * [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)
 * [Using Url Rewrite Module 2.0 (for IIS)](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20)
 * [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)

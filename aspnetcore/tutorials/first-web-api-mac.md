@@ -62,7 +62,7 @@ In Visual Studio, select **Run > Start With Debugging** to launch the app. Visua
 
 ### Add support for Entity Framework Core
 
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 * From the **Project** menu, select **Add NuGet Packages**. 
 
@@ -86,6 +86,8 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New F
 Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+
+The database generates the `Id` when a `TodoItem` is created.
 
 ### Create the database context
 

@@ -103,6 +103,10 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+
+[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model4.md)]
+
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
 ## Additional resources

@@ -9,14 +9,6 @@ namespace ContactManager.Authorization
     public class ContactManagerAuthorizationHandler :
         AuthorizationHandler<OperationAuthorizationRequirement, Contact>
     {
-        UserManager<ApplicationUser> _userManager;
-
-        public ContactManagerAuthorizationHandler(UserManager<ApplicationUser> 
-            userManager)
-        {
-            _userManager = userManager;
-        }
-
         protected override Task
             HandleRequirementAsync(AuthorizationHandlerContext context,
                                    OperationAuthorizationRequirement requirement,
@@ -38,7 +30,6 @@ namespace ContactManager.Authorization
             if (context.User.IsInRole(Constants.ContactManagersRole))
             {
                 context.Succeed(requirement);
-                return Task.FromResult(0);
             }
 
             return Task.FromResult(0);

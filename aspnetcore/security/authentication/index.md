@@ -20,6 +20,8 @@ uid: security/authentication/index
 
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 
+* [Configure Windows Authentication](windowsauth.md)
+
 * [Account Confirmation and Password Recovery](accconfirm.md)
 
 * [Two-factor authentication with SMS](2fa.md)
@@ -32,6 +34,6 @@ uid: security/authentication/index
 
   * [Calling an ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
 
-  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore)
+  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore)
 
 * [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)

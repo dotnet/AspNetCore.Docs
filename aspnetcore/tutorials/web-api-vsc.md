@@ -63,7 +63,7 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
-Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 [!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
@@ -78,6 +78,8 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 Add a `TodoItem` class with the following code:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+
+The database generates the `Id` when a `TodoItem` is created.
 
 ## Create the database context
 
