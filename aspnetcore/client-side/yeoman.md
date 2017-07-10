@@ -80,7 +80,7 @@ At this point, you can navigate to the URL shown to test the newly-created ASP.N
 
 The front-end resources are provided by the templates from the Yeoman generator using the [Bower](xref:client-side/bower) client-side package manager, adding *bower.json* and *.bowerrc* files to restore client-side packages using Bower.
 
-The [BundlerMinifier](https://github.com/madskristensen/BundlerMinifier/wiki) component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript, and HTML.
+The [BundlerMinifier](xref:client-side/bundling-and-minification) component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript, and HTML.
 
 ## Building and running from Visual Studio
 
