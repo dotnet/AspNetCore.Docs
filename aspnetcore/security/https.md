@@ -17,7 +17,7 @@ uid: security/https
 > [!NOTE] 
 > This topic applies to ASP.NET Core 2.0 Preview 1
 
-You can configure your application to use HTTPS during development to simulate HTTPS in your production environment. Enabling HTTPS may be required to enable integration with various identity providers (like [Azure AD](https://azure.microsoft.com/en-us/services/active-directory) and [Azure AD B2C](https://azure.microsoft.com/en-us/services/active-directory-b2c)).
+You can configure your application to use HTTPS during development to simulate HTTPS in your production environment. Enabling HTTPS may be required to enable integration with various identity providers (like [Azure AD](https://azure.microsoft.com/services/active-directory) and [Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c)).
 
 On Windows if you’ve installed Visual Studio or IIS Express, the IIS Express Development Certificate will be in your LocalMachine certificate store. You can update your project properties in Visual Studio to use this certificate when running behind IIS Express.
 
