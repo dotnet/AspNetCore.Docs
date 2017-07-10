@@ -16,7 +16,7 @@ uid: aspnetcore-2.0
 # What's new in ASP.NET Core 2.0
 
 > [!NOTE]
-> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published.
+> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not been written. This document links to GitHub issues for articles that are planned but not yet published.
 
 ASP.NET Core 2.0 includes the following new features:
 
@@ -42,13 +42,15 @@ For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0
 
 ## ASP.NET Core metapackage
 
-A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. No longer do you need to pick and choose individual ASP.NET Core features in separate packages, as all features are now included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package in the default templates.
+A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-The version number of the `Microsoft.AspNetCore.All` metapackage will always represent the latest ASP.NET Core version (aligned with the .NET Core version).
+The version number of the `Microsoft.AspNetCore.All` metapackage represents the latest ASP.NET Core version (aligned with the .NET Core version).
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications by default. This removes the requirement to have assets from the referenced ASP.NET Core NuGet packages deployed with the application. The assets in the Runtime Store are also pre-JIT'ted to improve application startup-time.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications by default. <!-- what does by default mean? --> Including the `Microsoft.AspNetCore.All` metapackage removes the requirement to have assets from the referenced ASP.NET Core NuGet packages deployed with the application. The assets in the Runtime Store are also pre-JIT'ted to improve application startup-time.
 
-If there are features you don’t need in your application, the new package trimming features will exclude those binaries in your published application output by default.
+<!-- Maybe something like: Because the `Microsoft.AspNetCore.All` is resolved by the runtime store, deployments no longer need to include the NuGet packages used by the application. -->
+
+If there are features you don’t use in your application, the new package trimming features will exclude those binaries in the published application output.
 
 For information about the status of planned documentation, see the [metapackage GitHub issue](https://github.com/aspnet/Docs/issues/3449) and [Runtime Store GitHub issue](https://github.com/aspnet/Docs/issues/3667).
 
@@ -58,7 +60,7 @@ The ASP.NET Core 2.0 packages target .NET Standard 2.0. They can be referenced b
 
 ## Configuration update
 
-An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0, to make it easier for applications to retrieve configuration values via the container.
+An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0.  `IConfiguration` in the services container makes it easier for applications to retrieve configuration values from the container.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3387).
 
@@ -88,7 +90,7 @@ loggerFactory.AddFilter(new Dictionary<string, LogLevel>
 loggerFactory.AddConsole();
 ```
 
-`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names as well as categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are predefined:
+`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names, categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are predefined:
 
 - Console
 - Debug
@@ -120,7 +122,7 @@ The `LoggerFactory` constructor can take an `IConfiguration` and creates filters
 }
 ```
 
-The configuration can also be replaced with `UseConfiguration` on `LoggerFactory`.
+The configuration can be replaced with `UseConfiguration` on `LoggerFactory`.
 
 You add providers in `Main` instead of the `Configure` method.  For example, in 1.x you typically add them as in the following example:
 
@@ -160,13 +162,13 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Identity update
 
-It's easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the [Microsoft Authentication Library (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
+We've made it easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the [Microsoft Authentication Library (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3668).
 
 ## SPA templates
 
-Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get access to the others, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get access to the other templates, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
 
 ## Kestrel improvements
 
@@ -229,7 +231,7 @@ app.Run(async context =>
         new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
 ```
 
-The way the rate works is as follows: Kestrel will check every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum, so the rate is not checked during that time. This is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
+The way the rate works is as follows: Kestrel will check every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum, the rate is not checked during that time. The grace period is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3385).
 
@@ -241,7 +243,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Enhanced HTTP header support
 
-When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you wish to transmit.  You can set these values on the returned content with code similar to the following:
+When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you transmit.  You can set these values on the returned content with code similar to the following:
 
 ```csharp
 var data = Encoding.UTF8.GetBytes("This is a sample text from a binary array");
