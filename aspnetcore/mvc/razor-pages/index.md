@@ -99,7 +99,7 @@ The previous `OnPostAsync` method:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cs?name=OnPostAsync)]
 
-The basic flow of `OnPostAsync`:
+The basic flow of `OnPostAsync`: 
 
 Check for validation errors.
 
