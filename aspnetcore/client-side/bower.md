@@ -101,7 +101,7 @@ Once you list packages in the *bower.json* file, Visual Studio will download the
 ### Enable static files
 
 * Add the `Microsoft.AspNetCore.StaticFiles` NuGet package to the project.
-* Enable static files to be served with the [Static file middleware](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions). Add a call to [UseStaticFiles](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
+* Enable static files to be served with the [Static file middleware](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions). Add a call to [UseStaticFiles](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions) to the `Configure` method of `Startup`.
 
 [!code-csharp[Main](bower/sample/Startup.cs?highlight=9)]
 

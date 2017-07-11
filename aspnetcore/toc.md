@@ -42,6 +42,14 @@
 ### [Tag helpers](mvc/views/tag-helpers/intro.md)
 #### [Authoring tag helpers](mvc/views/tag-helpers/authoring.md)
 #### [Using tag helpers in forms](mvc/views/working-with-forms.md)
+                            
+#### [Built-in tag helpers](mvc/views/tag-helpers/built-in/index.md)
+##### [Anchor tag helper](mvc/views/tag-helpers/built-in/AnchorTagHelper.md)
+##### [Cache tag helper](mvc/views/tag-helpers/built-in/CacheTagHelper.md)
+##### [Distributed Cache tag helper](mvc/views/tag-helpers/built-in/DistributedCacheTagHelper.md)
+##### [Environment tag helper](mvc/views/tag-helpers/built-in/EnvironmentTagHelper.md)
+##### [Image tag helper](mvc/views/tag-helpers/built-in/ImageTagHelper.md)
+
 ### [Partial views](mvc/views/partial.md)
 ### [Dependency injection into views](mvc/views/dependency-injection.md)
 ### [View components](mvc/views/view-components.md)
@@ -116,7 +124,7 @@
 #### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 
 # [Testing and debugging](testing/index.md)
-## [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
+## [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 ## [Integration testing](testing/integration-testing.md)
 ## [Testing controllers](mvc/controllers/testing.md)
 ## [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)
@@ -149,7 +157,7 @@
 ### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
 ## [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
 ## [Continuous deployment to Azure with Visual Studio and Git](xref:publishing/azure-continuous-deployment)
-## [Continuous deployment to Azure with VSTS](xref:publishing/vsts-continuous-deployment)
+## [Continuous deployment to Azure with VSTS](https://www.visualstudio.com/en-us/docs/build/aspnet/core/quick-to-azure)
 ## [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
 ## [Directory structure](xref:hosting/directory-structure)
 

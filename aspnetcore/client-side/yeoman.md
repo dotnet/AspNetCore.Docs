@@ -5,7 +5,7 @@ description: This article walks through building an ASP.NET Core web application
 keywords: ASP.NET Core, Yeoman, Cross Platform, yo aspnet
 ms.author: spboyer
 manager: wpickett
-ms.date: 02/21/2017
+ms.date: 07/05/2017
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
 ms.technology: aspnet
@@ -20,9 +20,9 @@ uid: client-side/yeoman
 
 ### Prerequisites
 
-Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/). The installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Bower is also required for installing UI components like stylesheets.
+Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/). The installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Bower is also required for installing UI frameworks like Bootstrap.
 
-To install Yeoman and Bower run the following command:
+To install Yeoman and Bower, run the following command:
 
 ```console
 npm install -g yo bower
@@ -44,7 +44,7 @@ The `–g` flag installs the generator globally, so that it can be used from any
 
 ## Create an ASP.NET app
 
-Run the ASP.NET generator for `yo`
+Run the Yeoman-based ASP.NET generator:
 
 ```console
 yo aspnet
@@ -74,25 +74,25 @@ Build and run the app using `dotnet build` and `dotnet run`:
 
 ![Command window](yeoman/_static/dotnet-build-run.png)
 
-At this point you can navigate to the URL shown to test the newly created ASP.NET Core app.
+At this point, you can navigate to the URL shown to test the newly-created ASP.NET Core app.
 
 ## Client-side packages
 
-The front end resources are provided by the templates from the yeoman generator using the [Bower](bower.md) client-side package manager, adding *bower.json* and *.bowerrc* files to restore client-side packages using the [Bower](bower.md) client-side package manager.
+The front-end resources are provided by the templates from the Yeoman generator using the [Bower](xref:client-side/bower) client-side package manager, adding *bower.json* and *.bowerrc* files to restore client-side packages using Bower.
 
-The [BundlerMinifier](https://github.com/madskristensen/BundlerMinifier/wiki) component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript and HTML.
+The [BundlerMinifier](xref:client-side/bundling-and-minification) component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript, and HTML.
 
 ## Building and running from Visual Studio
 
-You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there. Follow the instructions above to scaffold a new ASP.NET Core app using yeoman. This time, choose **Web Application** from the menu and name the app `MyWebApp`.
+You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there. Follow the instructions above to scaffold a new ASP.NET Core app using Yeoman. This time, choose **Web Application** from the menu and name the app `MyWebApp`.
 
 Open Visual Studio. From the File menu, select Open ‣ Project/Solution.
 
-In the Open Project dialog, navigate to the *project.json* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
+In the Open Project dialog, navigate to the *.csproj* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
 
 ![Files and folders of a new project in Solution Explorer](yeoman/_static/yeoman-solution.png)
 
-Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the **References** node, and client-side dependencies in the **Dependencies** node of Solution Explorer. Dependencies are restored automatically when the project is loaded.
+Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the **Dependencies/NuGet** node, and client-side dependencies in the **Dependencies/Bower** node of Solution Explorer. Dependencies are restored automatically when the project is loaded.
 
 ![Under the Dependencies node in the Solution Explorer tree view, the Bower folder is open listing its dependencies.](yeoman/_static/yeoman-loading-dependencies.png)
 
@@ -102,9 +102,9 @@ When all the dependencies are restored, press **F5** to run the project. The def
 
 ## Restoring, building, and hosting from a command line
 
-You can prepare and host your web application using the [.NET Core](https://microsoft.com/net/core) command-line interface.
+You can prepare and host your web application using the .NET Core CLI.
 
-At a command prompt, change the current directory to the folder containing the project (that is, the folder containing the *project.json* file):
+At a command prompt, change the current directory to the folder containing the project (that is, the folder containing the *.csproj* file):
 
 ```console
 cd src\MyWebApp
@@ -122,7 +122,7 @@ Run the application:
 dotnet run
 ```
 
-The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will begin listening on port 5000.
+The cross-platform [Kestrel](xref:fundamentals/servers/kestrel) web server will begin listening on port 5000.
 
 Open a web browser, and navigate to `http://localhost:5000`.
 
@@ -130,32 +130,25 @@ Open a web browser, and navigate to `http://localhost:5000`.
 
 ## Adding to your project with sub generators
 
-You can add new generated files using Yeoman even after the project is created. Use [sub generators](https://www.github.com/omnisharp/generator-aspnet#sub-generators) to add any of the file types that make up your project. For example, to add a new class to your project, enter the `yo aspnet:class` command followed by the name of the class. Execute the following command from the directory in which the file should be created:
+Using Yeoman [sub generators](https://www.github.com/omnisharp/generator-aspnet#sub-generators), you can add either a `nuget.config` or a `web.config` after the project is created. For example, execute the following command from the directory in which the file should be created:
 
 ```console
-yo aspnet:class Person
+yo aspnet:nugetconfig
 ```
 
-The result is a file named Person.cs with a class named `Person`:
+The result is a NuGet configuration file named `nuget.config` with the following content:
 
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MyWebApp
-{
-    public class Person
-    {
-        public Person()
-        {
-        }
-    }
-}
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+ <packageSources>
+    <!--To inherit the global NuGet package sources remove the <clear/> line below -->
+    <clear />
+ </packageSources>
+</configuration>
 ```
 
 ## Additional resources
 
-* [Servers (Kestrel and WebListener)](../fundamentals/servers/index.md)
-* [Fundamentals](../fundamentals/index.md)
+* [Servers (Kestrel and WebListener)](xref:fundamentals/servers/index)
+* [Fundamentals](xref:fundamentals/index)

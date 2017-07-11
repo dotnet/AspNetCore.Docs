@@ -356,7 +356,7 @@ Some things to be aware of when you are writing asynchronous code that uses the 
 
 * If you want to take advantage of the performance benefits of async code, make sure that any library packages that you're using (such as for paging), also use async if they call any Entity Framework methods that cause queries to be sent to the database.
 
-For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/en-us/dotnet/articles/standard/async).
+For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async).
 
 ## Summary
 
