@@ -195,7 +195,7 @@ Example:
 <Cache vary-by-cookie=".AspNetCore.Identity.Application">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
-````
+```
 
 - - -
 
@@ -218,7 +218,7 @@ Example:
 </Cache>
 ```
 
-Using this attribute maintains the contents in cache through a log-in and log-out cycle.  When using `vary-by-user`, a log-in and log-out action invalidates the cache for the same authenticated user.  This is because a new unique cookie value is generated upon login. Cache is maintained also for the anonymous state where no cookie is present or has expired. This means if no user is logged in, cache will be maintained for that condition as well.
+Using this attribute maintains the contents in cache through a log-in and log-out cycle.  When using `vary-by-user="true"`, a log-in and log-out action invalidates the cache for the authenticated user.  The cache is invalidated because a new unique cookie value is generated on login. Cache is maintained for the anonymous state when no cookie is present or has expired. This means if no user is logged in, the cache will be maintained.
 
 - - -
 
