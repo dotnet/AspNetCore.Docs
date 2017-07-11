@@ -72,94 +72,9 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Logging update
 
-In ASP.NET 2.0, you add providers in `Main` instead of the `Configure` method.
+In ASP.NET 2.0, you configure logging in *Program.cs* instead of in your *Startup.cs* `Configure` method as in 1.x. Since configuration is also registered in *Program.cs*, *Startup.cs* is more focused on configuring services and the middleware pipeline. 
 
-Here's an example of how to add providers in 1.x:
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
-{
-    factory.AddConsole();
-    factory.AddDebug();
-} 
-```
-
-Here's a 2.0 example:
-
-```csharp
-public static void Main(string[] args)
-{
-    var host = new WebHostBuilder()
-        .ConfigureLogging(factory =>
-        {
-            factory.AddConsole();
-            factory.AddDebug();
-        }
-        .etc...
-
-    host.Run();
-}
-```
-
-The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. 
-
-Here's a 1.x example:
-
-```csharp
-var loggerFactory = new LoggerFactory();
-loggerFactory = loggerFactory.WithFilter(new FilterLoggerSettings
-{
-    { "Microsoft", LogLevel.Warning },
-    { "System", LogLevel.Error }
-});
-loggerFactory.AddConsole();
-```
-
-Here's what it looks like in 2.0:
-
-```csharp
-var loggerFactory = new LoggerFactory();
-loggerFactory.AddFilter(new Dictionary<string, LogLevel>
-{
-    { "Microsoft", LogLevel.Warning },
-    { "System", LogLevel.Error }
-});
-loggerFactory.AddConsole();
-```
-
-`LoggerFactory` now has multiple `AddFilter` overloads, and filters can specify provider names, categories, and log level. The `AddProvider(string providerName, ILoggerProvider provider)` function adds providers with a custom name used for filtering. The following provider names are predefined:
-
-- Console
-- Debug
-- EventLog
-- AzureAppServices
-- TraceSource
-- EventSource
-
-The `LoggerFactory` constructor can take an `IConfiguration` and creates filters based on the config:
-
-```csharp
-{
-  "Logging": {
-    "LogLevel": {
-        "System": "Trace",
-        "Default": "Warning"
-    },
-    "Console": {
-        "LogLevel": {
-          "Microsoft.Extensions": "Warning"
-        }
-    },
-    "CustomProvider": {
-      "LogLevel": {
-        "System": "Information"
-      }
-    }
-  }
-}
-```
-
-The configuration can be replaced with `UseConfiguration` on `LoggerFactory`.
+You can filter by provider, category, and log level, and it's easier to specify filter rules in configuration. You can apply a filter function to a specific provider or category or globally for all providers and categories.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
 
@@ -289,13 +204,13 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Razor support for C# 7.1
 
-The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 features in your project, add the following property in your project file and then reload the solution:
+The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 in your project, add the following property in your project file and then reload the solution:
 
 ```xml
 <LangVersion>latest</LangVersion>
 ```
 
-C# 7.1 is in preview, and you can review the language specification for these features on [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
+For information about the status of C# 7.1 features, see [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
 
 ## Additional Information
 
