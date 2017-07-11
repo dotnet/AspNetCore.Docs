@@ -67,14 +67,13 @@ For the examples in this document, the `DbContext` is initialized in the *Startu
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Startup.cs?highlight=15-16 "Startup ")]
 
-
 The data model:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs "model ")]
 
 The *Pages/Create.cshtml* view file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml "Create ")]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml)]
 
 The `PageModel` class *Pages/Create.cshtml.cs* 'code-behind' file for the view:
 
@@ -132,23 +131,27 @@ Pages work with all the features of the Razor view engine. Layouts, partials, te
 
 Let's declutter this page by taking advantage of some of those features. 
 
-Add a [layout page](xref:mvc/views/layout) to [Pages/_Layout.cshtm](https://github.com/Rick-Anderson/razor-page-intro/blob/master/RazorPagesSample/Pages/_Layout.cshtml)
+Add a [layout page](xref:mvc/views/layout) to [Pages/_Layout.cshtm](https://github.com/Rick-Anderson/razor-page-intro/blob/master/RazorPagesContacts2/Pages/_Layout.cshtml)
 
 <!-- that layout file is pretty big, consider posting only the link or part of it -->
 
-[!code-html[main](../../../razor-page-intro/RazorPagesSample/Pages/_Layout.cshtml)]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_Layout.cshtml)]
 
-The `Layout` property is set in *Pages/_ViewStart.cshtml*:
+The [Layout](mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewStart.cshtml)]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
 Note: The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
+
+We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
 View search from a Razor Page will include the *Pages* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
 
 Add a *Pages/_ViewImports.cshtml* file:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewImports.cshtml)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
+
+The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 
@@ -158,60 +161,37 @@ When the `@namespace` directive is used explicitly on a page:
 
 The directive sets the namespace for the page.
 
-When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace supplies the prefix for the generated namespace in the Page that imports the `@namespace` directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
-For example, the code behind file *Pages/Customers/SeparatePageModels/Edit.cshtml.cs* sets the namespace:
+For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicityly sets the namespace:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/Customers/SeparatePageModels/Edit.cshtml.cs?name=namespace)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=namespace)]
 
 The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewImports.cshtml?highlight=3)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-The namespace for the *Pages/Customers/SeparatePageModels/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add extra usings.
+The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` statement for the code behind file.
 
 Notes: `@namespace` works with conventional Razor views.
 
-We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
+<!--
+Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
 
-Here's what the page looks like after simplification:
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ValidationScriptsPartial.cshtml)]
 
-*MyApp/Pages/Contact.cshtml*
+-->
 
-```html
-@page
-@inject ApplicationDbContext Db
+The original *Pages/Create.cshtml* view file:
 
-@functions {
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml)]
 
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            return RedirectToPage();
-        }
-        
-        return Page();
-    }
-}
+The updated page:
 
-<div class="row">
-    <div class="col-md-3">
-        <p>Enter your contact info here and we will email you about our fine products!</p> 
-        <div asp-validation-summary="All"></div>
-        <form method="POST">
-            <div>Name: <input asp-for="Contact.Name" /></div>
-            <div>Email: <input asp-for="Contact.Email" /></div>
-            <input type="submit" />
-        </form>
-    </div>
-</div>
-```
+The *Pages/Create.cshtml* view file:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/Create.cshtml)]
+
 
 ## URL generation for Pages
 
