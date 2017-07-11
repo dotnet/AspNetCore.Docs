@@ -5,7 +5,7 @@ description: Explains how to use Response caching to lower bandwidth and increas
 keywords: ASP.NET Core, Response caching, HTTP headers
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 7/10/2017
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
 ms.prod: asp.net-core
@@ -30,6 +30,11 @@ The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 C
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4)
 
 The web server can cache responses by adding the response caching middleware. See [Response caching middleware](middleware.md) for more information.
+
+## Distributed Cache Tag Helper
+
+The [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper) enables distributed caching.
+
 
 ## ResponseCache Attribute
 
