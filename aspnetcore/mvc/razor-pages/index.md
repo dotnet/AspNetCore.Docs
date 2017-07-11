@@ -78,11 +78,11 @@ The *Pages/Create.cshtml* view file:
 
 The `PageModel` class *Pages/Create.cshtml.cs* 'code-behind' file for the view:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs "Create ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
 
-Using a `PageModel` 'code-behind' file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` 'code-behind' files support runtime compilation, which can be an advantage in development.  <!-- why? -->
+Using a `PageModel` 'code-behind' file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` 'code-behind' files support runtime compilation, which can be an advantage in development.  <!-- review: why? -->
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
@@ -93,26 +93,26 @@ The `Async` naming suffix is optional but is often used by convention. The code 
 
 The previous `OnPostAsync` method:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?range=20-30 "OnPostAsync ")]
-
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
-
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cs?name=OnPostAsync)]
 
 The basic flow of `OnPostAsync`: 
 
 Check for validation errors.
 
 *  If there are no errors, save the data and redirect.
-*  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications.
+*  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications. In many cases validation errors would be caught on the client and never submitted to the server.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`).
 
-When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review Return type?? --> for a handler method. A handler method that returns `void` will render the page.
+When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review default what? Return type?? --> for a handler method. A handler method that returns `void` will render the page.
 
-The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
+The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. 
 
-Rather than using `@model` here, we're taking advantage of a special new feature for pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With pages, you get a view model **automatically**. 
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
+
+Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
+
+Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model **automatically**. 
 
 The following code shows the combined version of the create page:
 
@@ -126,47 +126,53 @@ The main change is to replace constructor injection with injected (`@inject`) pr
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
-## Using the view engine
+## Using Layouts, partials, templates, and tag helpers with Razor Pages
 
-Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* all work in the same way they do for conventional Razor views. 
+Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
 
 Let's declutter this page by taking advantage of some of those features. 
 
-Add a layout page for the HTML skeleton, and set the `Layout` property from `_ViewStart.cshtml`:
+Add a [layout page](xref:mvc/views/layout) to [Pages/_Layout.cshtm](https://github.com/Rick-Anderson/razor-page-intro/blob/master/RazorPagesSample/Pages/_Layout.cshtml)
 
-*MyApp/Pages/_Layout.cshtml*
+<!-- that layout file is pretty big, consider posting only the link or part of it -->
 
-```html
-<html>
-    ...
-</html>
-```
+[!code-html[main](../../../razor-page-intro/RazorPagesSample/Pages/_Layout.cshtml)]
 
-*MyApp/Pages/_ViewStart.cshtml*
+The `Layout` property is set in *Pages/_ViewStart.cshtml*:
 
-```c#
-@{ Layout = "_Layout"; }
-```
+[!code-html[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewStart.cshtml)]
 
-Note that we placed the layout in the *MyApp/Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *MyApp/Pages* folder can be used from any Razor page.
+Note: The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 
-View search from a Razor Page will include the *MyApp/Views/Shared* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
+View search from a Razor Page will include the *Pages* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
 
-Add a *_ViewImports.cshtml* file:
+Add a *Pages/_ViewImports.cshtml* file:
 
-*MyApp/Pages/_ViewImports.cshtml*
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewImports.cshtml)]
 
-```c#
-@namespace MyApp.Pages
-@using Microsoft.AspNetCore.Mvc.RazorPages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-```
+<a name="namespace"></a>
 
-The `@namespace` directive is a new feature that controls the namespace of the generated code. If the `@namespace` directive is used explicitly on a page, that page's namespace will match specified namespace exactly. If the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+When the `@namespace` directive is used explicitly on a page:
 
-Because the *Customer.cshtml* and *_ViewImports.cshtml* files are both in the *MyApp/Pages* folder, there is no suffix, so the page will have the namespace *MyApp.Pages*. If the path was *MyApp/Pages/Store/Customer.cshtml*, the namespace of the generated code would be *MyApp.Pages.Store*. If the `@namespace` directive is also changed to `@namespace NotMyApp`, the namespace of the generated code is *NotMyApp.Store*. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add extra usings.
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/NameSpace.cshtml?highlight=2)]
 
-Note: `@namespace` works with conventional Razor views.
+The directive sets the namespace for the page.
+
+When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace is only the prefix. The suffix is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
+
+For example, the code behind file *Pages/Customers/SeparatePageModels/Edit.cshtml.cs* sets the namespace:
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/Customers/SeparatePageModels/Edit.cshtml.cs?name=namespace)]
+
+The *Pages/_ViewImports.cshtml* file sets the following namespace:
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ViewImports.cshtml?highlight=3)]
+
+The namespace for the *Pages/Customers/SeparatePageModels/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add extra usings.
+
+Notes: `@namespace` works with conventional Razor views.
+
+We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
 Here's what the page looks like after simplification:
 
