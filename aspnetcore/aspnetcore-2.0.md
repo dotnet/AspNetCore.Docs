@@ -18,7 +18,7 @@ uid: aspnetcore-2.0
 > [!NOTE]
 > ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published. For information about how to install ASP.NET 2.0 Preview 2, see [Introducing ASP.NET Core 2.0 Preview 2](https://blogs.msdn.microsoft.com/webdev/2017/06/28/introducing-asp-net-core-2-0-preview-2/)
 
-ASP.NET Core 2.0 includes the following new features:
+Here are some of the most significant updates in ASP.NET Core 2.0:
 
 - [Razor Pages](xref:mvc/razor-pages/index)
 - [ASP.NET Core metapackage](#aspnet-core-metapackage)
@@ -37,6 +37,8 @@ ASP.NET Core 2.0 includes the following new features:
 - [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
 - [Automatic precompilation](#automatic-precompilation)
 - [Razor support for C# 7.1](#razor-support-for-c-71)
+
+For the complete list of changes, see the [ASP.NET Core Release Notes](https://github.com/aspnet/Home/releases/).
 
 <!--
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548).
