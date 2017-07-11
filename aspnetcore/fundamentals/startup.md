@@ -72,4 +72,3 @@ Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be
 * [Middleware](xref:fundamentals/middleware)
 * [Logging](xref:fundamentals/logging)
 * [Configuration](xref:fundamentals/configuration)
-* [List All Services Available to an ASP.NET Core App](https://github.com/ardalis/AspNetCoreStartupServices)
