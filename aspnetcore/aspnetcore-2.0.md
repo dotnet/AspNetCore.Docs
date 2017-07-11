@@ -20,16 +20,18 @@ uid: aspnetcore-2.0
 
 ASP.NET Core 2.0 includes the following new features:
 
+- [Razor Pages](xref:mvc/razor-pages/index)
 - [ASP.NET Core metapackage](#aspnet-core-metapackage)
+<!--
 - [.NET Standard 2.0](#net-standard-20)
-- [Razor Pages](mvc/razor-pages/index.md)
+-->
 - [Configuration update](#configuration-update)
 - [Logging update](#logging-update)
 - [Authentication update](#authentication-update)
 - [Identity update](#identity-update)
 - [SPA templates](#spa-templates)
 - [Kestrel improvements](#kestrel-improvements)
-- [WebListener renamed to HttpSysServer](#weblistener-renamed-to-httpsys)
+- [WebListener renamed to HttpSys](#weblistener-renamed-to-httpsys)
 - [Enhanced HTTP header support](#enhanced-http-header-support)
 - [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
 - [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
@@ -46,27 +48,62 @@ A new ASP.NET Core metapackage includes all of the packages made and supported b
 
 The version number of the `Microsoft.AspNetCore.All` metapackage represents the latest ASP.NET Core version (aligned with the .NET Core version).
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications by default. <!-- what does by default mean? --> Including the `Microsoft.AspNetCore.All` metapackage removes the requirement to have assets from the referenced ASP.NET Core NuGet packages deployed with the application. The assets in the Runtime Store are also pre-JIT'ted to improve application startup-time.
-
-<!-- Maybe something like: Because the `Microsoft.AspNetCore.All` is resolved by the runtime store, deployments no longer need to include the NuGet packages used by the application. -->
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also pre-JIT'ted to improve application startup-time.
 
 If there are features you don’t use in your application, the new package trimming features will exclude those binaries in the published application output.
 
-For information about the status of planned documentation, see the [metapackage GitHub issue](https://github.com/aspnet/Docs/issues/3449) and [Runtime Store GitHub issue](https://github.com/aspnet/Docs/issues/3667).
+For information about the status of planned documentation, see the following GitHub issues:
+   
+* [Metapackage issue](https://github.com/aspnet/Docs/issues/3449)
+* [Runtime Store issue](https://github.com/aspnet/Docs/issues/3667)
+* [Package trimming issue](https://github.com/dotnet/docs/issues/1745)
 
+<!--
 ## .NET Standard 2.0
 
-The ASP.NET Core 2.0 packages target .NET Standard 2.0. They can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
+The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1.
+-->
 
 ## Configuration update
 
-An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0.  `IConfiguration` in the services container makes it easier for applications to retrieve configuration values from the container.
+An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0. `IConfiguration` in the services container makes it easier for applications to retrieve configuration values from the container.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3387).
 
 ## Logging update
 
-The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. For example here's what the code looks like in 1.x:
+In ASP.NET 2.0, you add providers in `Main` instead of the `Configure` method.
+
+Here's an example of how to add providers in 1.x:
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
+{
+    factory.AddConsole();
+    factory.AddDebug();
+} 
+```
+
+Here's a 2.0 example:
+
+```csharp
+public static void Main(string[] args)
+{
+    var host = new WebHostBuilder()
+        .ConfigureLogging(factory =>
+        {
+            factory.AddConsole();
+            factory.AddDebug();
+        }
+        .etc...
+
+    host.Run();
+}
+```
+
+The `LoggerFactory` object supports a `Dictionary<string, LogLevel>` object to define log filters. 
+
+Here's a 1.x example:
 
 ```csharp
 var loggerFactory = new LoggerFactory();
@@ -124,38 +161,13 @@ The `LoggerFactory` constructor can take an `IConfiguration` and creates filters
 
 The configuration can be replaced with `UseConfiguration` on `LoggerFactory`.
 
-You add providers in `Main` instead of the `Configure` method.  For example, in 1.x you typically add them as in the following example:
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory factory)
-{
-    factory.AddConsole();
-    factory.AddDebug();
-} 
-```
-
-Here's a 2.0 example:
-
-```csharp
-public static void Main(string[] args)
-{
-    var host = new WebHostBuilder()
-        .ConfigureLogging(factory =>
-        {
-            factory.AddConsole();
-            factory.AddDebug();
-        }
-        .etc...
-
-    host.Run();
-}
-```
-
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
 
 ## Authentication update
 
-A new authentication model makes it easier to configure authentication for an application using DI. New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
+A new authentication model makes it easier to configure authentication for an application using DI.
+
+New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
 (https://azure.microsoft.com/services/active-directory-b2c/).
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3054).
@@ -168,15 +180,15 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## SPA templates
 
-Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get access to the other templates, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single-Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Creating a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see Using [JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
 
 ## Kestrel improvements
 
-The Kestrel web server is now approved for edge deployments. We’ve added a number of server constraint configuration options to Kestrel through the `KestrelServerOptions` class’s new `Limits` property.  You can now add limits for the following:
+The Kestrel web server has new features that make it more suitable as an Internet-facing server. We’ve added a number of server constraint configuration options in the `KestrelServerOptions` class’s new `Limits` property.  You can now add limits for the following:
 
 - Maximum client connections
 - Maximum request body size
-- Maximum request body data rate
+- Minimum request body data rate
 
 ### Maximum client connections
 
@@ -231,7 +243,7 @@ app.Run(async context =>
         new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
 ```
 
-The way the rate works is as follows: Kestrel will check every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum, the rate is not checked during that time. The grace period is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
+The way the rate works is as follows: Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum; the rate is not checked during that time. The grace period is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3385).
 
@@ -243,23 +255,23 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Enhanced HTTP header support
 
-When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you transmit.  You can set these values on the returned content with code similar to the following:
+When using MVC to transmit a `FileStreamResult` or a `FileContentResult`, you now have the option to set an `ETag` or a `LastModified` date on the content you transmit. You can set these values on the returned content with code similar to the following:
 
 ```csharp
 var data = Encoding.UTF8.GetBytes("This is a sample text from a binary array");
 var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
- 
+
 The file returned to your visitors will be decorated with the appropriate HTTP headers for the `ETag` and `LastModified` values.
 
 If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You do not need to write any special handlers into your methods to adapt or handle this feature; it is automatically handled for you.
 
 ## Hosting startup and Application Insights
 
-Hosting environments can now inject extra package dependencies and execute code during application startup, without the application needing to explicitly take a dependency or call any methods. This feature can be used to enable certain environments, such as debugging in Visual Studio or hosting in Azure App Service, to "light-up" features unique to that environment without the application needing to know ahead of time.
+Hosting environments can now inject extra package dependencies and execute code during application startup, without the application needing to explicitly take a dependency or call any methods. This feature can be used to enable certain environments to "light-up" features unique to that environment without the application needing to know ahead of time. 
 
-This feature is used to automatically enable Application Insights diagnostics  in ASP.NET Core 2.0 applications when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
+In ASP.NET Core 2.0, this feature is used to automatically enable Application Insights diagnostics when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3389).
 
@@ -267,13 +279,17 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ASP.NET Core has always helped HTMLEncode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks: ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3688).
+
 ## Automatic precompilation
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3547).
+
 ## Razor support for C# 7.1
 
-The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 features in your project add the following property in your project file and then reload the solution:
+The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 features in your project, add the following property in your project file and then reload the solution:
 
 ```xml
 <LangVersion>latest</LangVersion>
