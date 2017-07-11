@@ -137,7 +137,7 @@ Add a [layout page](xref:mvc/views/layout) to [Pages/_Layout.cshtm](https://gith
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_Layout.cshtml)]
 
-The [Layout](mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
+The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
