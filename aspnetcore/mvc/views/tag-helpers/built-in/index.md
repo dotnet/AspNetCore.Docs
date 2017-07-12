@@ -1,8 +1,8 @@
 
 ---
-title: ASP.NET Core Built-in Tag Helpers
+title: ASP.NET Core built-in Tag Helpers
 author: pkellner
-description: ASP.NET Core Built-in Tag Helpers
+description: ASP.NET Core built-in Tag Helpers
 keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
@@ -13,14 +13,14 @@ ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
 
-# ASP.NET Core Built-in Tag Helpers
+# ASP.NET Core built-in Tag Helpers
 
 By [Peter Kellner](http://peterkellner.net) 
 
-Microsoft has included multiple Tag Helpers that can be immediately used in ASP.NET Core projects. These Tag Helpers are feature-complete and of production quality. They are recommended for use in projects wherever appropriate. In this section, we will outline all the built-in Tag Helpers and provide a sample of each.
+The ASP.NET Core framework includes many Tag Helpers that can help you be more productive in writing robust code. This section provides an overview of all the built-in Tag Helpers.
 
 > [!NOTE]
-> There are other built-in Tag Helpers which are not discussed, since they are used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character which expands to the root path of the web site.
+> There are built-in Tag Helpers which are not discussed, since they are used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character which expands to the root path of the web site.
 
 ## Built-in ASP.NET Core Tag Helpers
 
