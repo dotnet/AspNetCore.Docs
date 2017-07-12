@@ -151,7 +151,7 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
+I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 
@@ -159,11 +159,15 @@ When the `@namespace` directive is used explicitly on a page:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Namespace.cshtml?highlight=2)]
 
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Namespace.cshtml)]
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Namespace.cshtml)]
+
 The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
 When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace supplies the prefix for the generated namespace in the Page that imports the `@namespace` directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
-For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicityly sets the namespace:
+For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=namespace)]
 
