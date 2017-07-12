@@ -157,9 +157,7 @@ I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in
 
 When the `@namespace` directive is used explicitly on a page:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Namespace.cshtml?highlight=2)]
-
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Customers/Namespace2.cshtml)]
+[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
 The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
