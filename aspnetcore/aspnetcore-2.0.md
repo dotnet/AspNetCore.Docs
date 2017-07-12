@@ -32,7 +32,7 @@ Here are some of the most significant updates in ASP.NET Core 2.0:
 - [WebListener renamed to HttpSys](#weblistener-renamed-to-httpsys)
 - [Enhanced HTTP header support](#enhanced-http-header-support)
 - [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
-- [Automatic use of anti-forgery tokens](#automatic-use-of-antiforgery-tokens)
+- [Automatic use of anti-forgery tokens](#automatic-use-of-anti-forgery-tokens)
 - [Automatic precompilation](#automatic-precompilation)
 - [Razor support for C# 7.1](#razor-support-for-c-71)
 
