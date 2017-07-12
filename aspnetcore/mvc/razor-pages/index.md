@@ -196,11 +196,24 @@ The *Pages/Create.cshtml* view file:
 
 ## URL generation for Pages
 
-Previous samples used `RedirectToPage("/Index")`:
+<!-- todo explain RedirectToPage -->
 
- 
- 
-We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to this page. For example:
+The `Create` page, shown previously, uses `RedirectToPage`:
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync&highlight=10)]
+
+The app has the following file/folder structure
+
+* */Pages*
+
+  * *Index.cshtml*
+  * */Customer* 
+
+    * *Create.cshtml*
+    * *Edit.cshtml*
+    * *Index.cshtml*
+
+The *Pages/Customers/Create.cshtml*  and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
 
 
 * `Url.Page("/Index", ...)`
@@ -208,13 +221,25 @@ We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it
 * `RedirectToPage("/Index")`
 
 
-The page name is the path to the page from the root *MyApp/Pages* folder (including a leading `/`, for example `/Index`). It seems simple, but this is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
+The page name is the path to the page from the root */Pages* folder (including a leading `/`, for example `/Index`). This is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
-URL generation for pages supports relative names. From *MyApp/Pages/Contact.cshtml*, you could also redirect to *MyApp/Pages/Index.cshtml* using `RedirectToPage("Index")` or `RedirectToPage("./Index")`. These are both *relative names*. The provided string is *combined* with the page name of the current page to compute the name of the destination page. You can also use the directory traversal `..` operator. 
+URL generation for pages supports relative names. The following table shows which Index page is selected with different `RedirectToPage` parameters from *Pages/Customers/Create.cshtml*:
+
+| `RedirectToPage(x)| Page |
+| ----------------- | ------------ |  
+|  RedirectToPage("/Index") | *Pages/Index* |
+| RedirectToPage("./Index"); | *Pages/Customers/Index* |
+| RedirectToPage("../Index") | *Pages/Index* |
+| RedirectToPage("Index")  | *Pages/Customers/Index* |
+
+`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path -->
 
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
-Since we have another page here, we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is now cookies. A session provider is no longer required by default.
+
+## TempData
+
+Since we have another page here, we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
 
 ### Using multiple handlers
 
