@@ -33,7 +33,7 @@ All the new Razor Pages types and features are included in the `Microsoft.AspNet
 Consider a basic page:
 <a name="OnGet"></a>
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index.cshtml "Index ")]
+[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index.cshtml)]
 
 The preceeding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function level content.
 
@@ -43,7 +43,7 @@ A similar page, with the `PageModel` in a separate file, is shown in the followi
 
 The `PageModel` class *Pages/Index2.cshtml.cs*, a 'code-behind' file for the view code:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs "Index2.cs ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
@@ -157,7 +157,7 @@ The `@addTagHelper` directive will bring in the [built-in tag helpers](https://d
 
 When the `@namespace` directive is used explicitly on a page:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/NameSpace.cshtml?highlight=2)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Namespace.cshtml?highlight=2)]
 
 The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
