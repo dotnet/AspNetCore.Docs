@@ -69,7 +69,7 @@ Web API uses the Accept header in the request to choose the formatter. For more 
 
 ## IHttpActionResult
 
-The **IHttpActionResult** interface was introducted in Web API 2. Essentially, it defines an **HttpResponseMessage** factory. Here are some advantages of using the **IHttpActionResult** interface:
+The **IHttpActionResult** interface was introduced in Web API 2. Essentially, it defines an **HttpResponseMessage** factory. Here are some advantages of using the **IHttpActionResult** interface:
 
 - Simplifies [unit testing](../testing-and-debugging/unit-testing-controllers-in-web-api.md) your controllers.
 - Moves common logic for creating HTTP responses into separate classes.

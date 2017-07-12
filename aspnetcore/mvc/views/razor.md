@@ -522,7 +522,7 @@ The generated Razor C# looks like:
 
 The `@section` directive is used in conjunction with the [layout page](layout.md) to enable views to render content in different parts of the rendered HTML page. See [Sections](layout.md#layout-sections-label) for more information.
 
-## TagHelpers
+## Tag Helpers
 
 The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the links provided.
 

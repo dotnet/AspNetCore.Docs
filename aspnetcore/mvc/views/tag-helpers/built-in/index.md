@@ -1,8 +1,8 @@
 
 ---
-title: ASP.NET Core Built in Tag Helpers
+title: ASP.NET Core built-in Tag Helpers
 author: pkellner
-description: ASP.NET Core Built in Tag Helpers
+description: ASP.NET Core built-in Tag Helpers
 keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
@@ -13,48 +13,48 @@ ms.prod: aspnet-core
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
 
-# ASP.NET Core Built in Tag Helpers
+# ASP.NET Core built-in Tag Helpers
 
 By [Peter Kellner](http://peterkellner.net) 
 
-Microsoft has included multiple Tag Helpers that can be immediately used in .net Core web projects.  These Tag Helpers are complete and production quality and are recommended to be used in projects where appropriate.  In this section we will outline all the built in Tag Helpers along with a sample of each tag helper in use.
+The ASP.NET Core framework includes many Tag Helpers that can help you be more productive in writing robust code. This section provides an overview of all the built-in Tag Helpers.
 
 > [!NOTE]
-> There are other Tag Helpers built in that are not discussed as they are used internally in the Razor view engine.  This includes a tag helper for the ~ character which expands to the root path of the web site (among others).
+> There are built-in Tag Helpers which are not discussed, since they are used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character which expands to the root path of the web site.
 
-## Built in ASP.NET Core Tag Helpers
+## Built-in ASP.NET Core Tag Helpers
 
-**[Anchor Tag Helper](AnchorTagHelper.md)**
+**[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)**
 
-**[Cache Tag Helper](CacheTagHelper.md)**
+**[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/CacheTagHelper)**
 
-**[Distributed Cache Tag Helper](DistributedCacheTagHelper.md)**
+**[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper)**
 
-**[Environment Tag Helper](EnvironmentTagHelper.md)**
+**[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper)**
 
-[comment]: **[FormActionTagHelper](builtin-th/FormActionTagHelper.md)**
+[comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormActionTagHelper)**
 
-[comment]: **[FormTagTagHelper](builtin-th/FormTagHelper.md)**
+[comment]: **[FormTagTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormTagHelper)**
 
-**[Image Tag Helper](ImageTagHelper.md)**
+**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/ImageTagHelper)**
 
-[comment]: **[InputTagHelper](builtin-th/InputTagHelper.md)**
+[comment]: **[InputTagHelper](xref:mvc/views/tag-helpers/builtin-th/InputTagHelper)**
 
-[comment]: **[LabelTagHelper](builtin-th/LabelTagHelper.md)**
+[comment]: **[LabelTagHelper](xref:mvc/views/tag-helpers/builtin-th/LabelTagHelper)**
 
-[comment]: **[LinkTagHelper](builtin-th/LinkTagHelper.md)**
+[comment]: **[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/LinkTagHelper)**
 
-[comment]: **[OptionTagHelper](builtin-th/OptionTagHelper.md)**
+[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/OptionTagHelper)**
 
-[comment]: **[ScriptTagHelper](builtin-th/ScriptTagTagHelper.md)**
+[comment]: **[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/ScriptTagTagHelper)**
 
-[comment]: **[SelectTagHelper](builtin-th/SelectTagTagHelper.md)**
+[comment]: **[SelectTagHelper](xref:mvc/views/tag-helpers/builtin-th/SelectTagTagHelper)**
 
-[comment]: **[TextAreaTagHelper](builtin-th/TextAreaTagHelper.md)**
+[comment]: **[TextAreaTagHelper](xref:mvc/views/tag-helpers/builtin-th/TextAreaTagHelper)**
 
-[comment]: **[ValidationMessageTagHelper](builtin-th/ValidationMessageTagHelper.md)**
+[comment]: **[ValidationMessageTagHelper](xref:mvc/views/tag-helpers/builtin-th/ValidationMessageTagHelper)**
 
-[comment]: **[ValidationSummaryTagHelper](builtin-th/ValidationSummaryTagHelper.md)**  
+[comment]: **[ValidationSummaryTagHelper](xref:mvc/views/tag-helpers/builtin-th/ValidationSummaryTagHelper)**  
   
   
 <!--
@@ -64,5 +64,5 @@ Microsoft has included multiple Tag Helpers that can be immediately used in .net
 REQUIRED These must be xref links, not relative, that is ../../
 * [Client-Side Development](../../../client-side/index.md)
 
-* [Tag Helpers](../../../mvc/views/tag-helpers/index.md)
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 -->
