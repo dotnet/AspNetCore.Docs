@@ -157,9 +157,9 @@ The `@addTagHelper` directive will bring in the [built-in tag helpers](https://d
 
 When the `@namespace` directive is used explicitly on a page:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/NameSpace.cshtml?highlight=2)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/NameSpace.cshtml?highlight=2)]
 
-The directive sets the namespace for the page.
+The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
 When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace supplies the prefix for the generated namespace in the Page that imports the `@namespace` directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
@@ -178,7 +178,7 @@ Notes: `@namespace` works with conventional Razor views.
 <!--
 Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesSample/Pages/_ValidationScriptsPartial.cshtml)]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
 
 -->
 
@@ -195,76 +195,7 @@ The *Pages/Create.cshtml* view file:
 
 ## URL generation for Pages
 
-Let's suppose we want to do something more useful than showing the same page again when the visitor submits their contact information. We can use `RedirectToPage("/Index")` to redirect to the `Index` page.
-
-This example adds a confirmation message and redirects back to the home page:
-
-*MyApp/Pages/Contact.cshtml*
-
-```html
-@page
-@inject ApplicationDbContext Db
-
-@functions {
-
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    [TempData]
-    public string Message { get; set; }
-    
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (ModelState.IsValid)
-        {
-            Db.Contacts.Add(Contact);
-            await Db.SaveChangesAsync();
-            
-            Message = "Thanks, we'll be in touch shortly.";
-            return RedirectToPage("/Index");
-        }
-        
-        return Page();
-    }
-}
-
-
-<div class="row">
-    <div class="col-md-3">
-        <p>Enter your contact info here and we will email you about our fine products!</p> 
-        <div asp-validation-summary="All"></div>
-        <form method="POST">
-            <div>Name: <input asp-for="Contact.Name" /></div>
-            <div>Email: <input asp-for="Contact.Email" /></div>
-            <input type="submit" />
-        </form>
-    </div>
-</div>
-```
-
-*MyApp/Pages/Index.cshtml*
-
-```html
-@page
-
-@functions {
-    [TempData]
-    public string Message { get; set; }
-}
-
-
-<div class="row">
-    <div class="col-md-3">
-        @if (Message != null)
-        {
-            <h3>@Message</h3>
-        }
-
-        <p>Hi, welcome to our website!</p>
-    </div>
-</div>
-```
-
+ 
 We've added another page (*MyApp/Pages/Index.cshtml*), and are redirecting to it using `RedirectToPage("/Index")`. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to this page. For example:
 
 
