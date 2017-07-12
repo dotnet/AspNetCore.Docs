@@ -1,4 +1,19 @@
-﻿# ASP.NET Core Built in Razor Tag Helpers
+
+---
+title: ASP.NET Core Built in Tag Helpers
+author: pkellner
+description: ASP.NET Core Built in Tag Helpers
+keywords: ASP.NET Core,tag helper
+ms.author: riande
+manager: wpickett
+ms.date: 7/11/2017
+ms.topic: article
+ms.technology: aspnet
+ms.prod: aspnet-core
+uid: mvc/views/tag-helpers/builtin-th/Index
+---
+
+# ASP.NET Core Built in Tag Helpers
 
 By [Peter Kellner](http://peterkellner.net) 
 
