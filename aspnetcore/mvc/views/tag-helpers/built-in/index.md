@@ -36,7 +36,7 @@ The ASP.NET Core framework includes many Tag Helpers that can help you be more p
 
 [comment]: **[FormTagTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormTagHelper)**
 
-**[Image Tag Helper](mvc/views/tag-helpers/builtin-th/ImageTagHelper)**
+**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/ImageTagHelper)**
 
 [comment]: **[InputTagHelper](xref:mvc/views/tag-helpers/builtin-th/InputTagHelper)**
 
