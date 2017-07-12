@@ -101,7 +101,7 @@ Check for validation errors.
 *  If there are no errors, save the data and redirect.
 *  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications. In many cases validation errors would be caught on the client and never submitted to the server.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](url_gen) section.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
 When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review default what? Return type?? --> for a handler method. A handler method that returns `void` will render the page.
 
