@@ -120,6 +120,8 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample2.cs)]
 8. In **Solution Explorer**, right-click the project, then click **Add | HTML Page**. Name the new page `index.html`.
+    >[!NOTE]
+    >You might need to change the version numbers for the references to JQuery and SignalR libraries
 9. In **Solution Explorer**, right-click the HTML page you just created and click **Set as Start Page**.
 10. Replace the default code in the HTML page with the following code.
 
