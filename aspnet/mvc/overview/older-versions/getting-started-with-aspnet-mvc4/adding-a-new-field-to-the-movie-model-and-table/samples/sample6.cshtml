@@ -1,7 +1,7 @@
-<div class="editor-label">
-    @Html.LabelFor(model => model.Rating)
-</div>
-<div class="editor-field">
-    @Html.EditorFor(model => model.Rating)
-    @Html.ValidationMessageFor(model => model.Rating)
+<div class="form-group">
+            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+            </div>
 </div>
