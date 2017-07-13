@@ -73,6 +73,7 @@ If the attribute `asp-action` is `Index`, then no action is appended to the URL,
 
 - - -
   
+<a name="route"></a>
 ### asp-route-{value}
 
 `asp-route-` is a wild card route prefix. Any value you put after the trailing dash will be interpreted as a potential route parameter. If a default route is not found, this route prefix will be appended to the generated href as a request parameter and value. Otherwise it will be substituted in the route template.
