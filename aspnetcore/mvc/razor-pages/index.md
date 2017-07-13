@@ -115,13 +115,41 @@ Rather than using `@model`, we're taking advantage of a new feature for Pages. B
 
 The following code shows the combined version of the create page:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/CreateCombined.cshtml "CreateCombined ")]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/CreateCombined.cshtml)]
 
 The main change is to replace constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
+
+The home page (*Index.cshtml*)
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Index.cshtml)]
+
+The code behind *Index.cshtml.cs* file:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Index.cshtml.cs)]
+
+The *Index.cshtml* file contains the following markup to create an edit link for each contact:
+
+```html
+<a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
+```
+
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+
+The *Pages/Edit.cshtml* file:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
+
+<!-- REVIEW -->
+The first line contains the `@page "{id:int}"` directive. The `"{id:int}" tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
+
+The *Pages/Edit.cshtml.cs* file:
+
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+
 <a name="xsrf"></a>
 
-### XSRF/CSRF and Razor Pages
+## XSRF/CSRF and Razor Pages
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
