@@ -111,7 +111,7 @@ The data protection stack allows changing the default algorithm used by newly-ge
 
 ```csharp
 services.AddDataProtection()
-       .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
+       .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
        {
            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
@@ -131,11 +131,11 @@ The developer can manually specify an implementation if desired via a call to Us
 
 ### Specifying custom managed algorithms
 
-To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
+To specify custom managed algorithms, create a ManagedAuthenticatedEncryptorConfiguration instance that points to the implementation types.
 
 ```csharp
 serviceCollection.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
+       .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptorConfiguration()
        {
            // a type that subclasses SymmetricAlgorithm
            EncryptionAlgorithmType = typeof(Aes),
@@ -157,11 +157,11 @@ Generally the *Type properties must point to concrete, instantiable (via a publi
 
 ### Specifying custom Windows CNG algorithms
 
-To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
+To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
 
 ```csharp
 services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
+       .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration()
        {
            // passed to BCryptOpenAlgorithmProvider
            EncryptionAlgorithm = "AES",
@@ -179,11 +179,11 @@ services.AddDataProtection()
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The *Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
 
-To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionSettings instance that contains the algorithmic information.
+To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
 
 ```csharp
 services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
+       .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration()
        {
            // passed to BCryptOpenAlgorithmProvider
            EncryptionAlgorithm = "AES",
