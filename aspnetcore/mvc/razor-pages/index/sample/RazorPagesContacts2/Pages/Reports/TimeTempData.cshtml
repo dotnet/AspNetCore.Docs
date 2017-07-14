@@ -1,0 +1,22 @@
+﻿@page
+@model TimeTempDataModel
+@using Microsoft.AspNetCore.Mvc.RazorPages
+
+
+@functions {
+    public class TimeTempDataModel : PageModel
+    {
+        [TempData]
+        public string Message { get; set; }
+
+        public void OnGet()
+        {
+            Message = $" Server seconds  { DateTime.Now.Second.ToString() }";
+        }
+    }
+}
+
+<h2>Server Seconds using [TempData] </h2>
+<p>
+        <h3>@Model.Message</h3>        
+</p>
