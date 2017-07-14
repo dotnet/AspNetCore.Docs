@@ -136,9 +136,11 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 
 <!-- todo
 [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
+[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 -->
+[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [`asp-route-{value}`](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
