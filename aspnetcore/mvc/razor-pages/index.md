@@ -142,7 +142,11 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
       [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The 
+[Anchor Tag Helper ZZ](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
+used the 
+[asp-route-Xyz](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
+attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
@@ -169,7 +173,7 @@ Let's declutter this page by taking advantage of some of those features.
 
 Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/LayoutSimple.cshtml)]
+                     razor-page-intro/RazorPagesContacts2/Pages/_LayoutSimple.cshtml
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
