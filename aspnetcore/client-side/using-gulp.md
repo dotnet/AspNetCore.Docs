@@ -175,7 +175,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
-    ![Open Task Runner Exploere from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
+    ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
     
