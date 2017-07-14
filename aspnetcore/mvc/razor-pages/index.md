@@ -1,8 +1,3 @@
-<!--   TODO
-
-check lang type [!code-
-
--->
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
@@ -139,7 +134,7 @@ The home page (*Index.cshtml*)
 
 The code behind *Index.cshtml.cs* file:
 
-[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
@@ -176,7 +171,7 @@ Let's declutter this page by taking advantage of some of those features.
 
 Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
 
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
@@ -190,7 +185,7 @@ View search from a Razor Page will include the *Pages* folder. The layouts, temp
 
 Add a *Pages/_ViewImports.cshtml* file:
 
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
 I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
 
@@ -210,16 +205,16 @@ For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly se
 
 The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` statement for the code behind file.
 
 Note: `@namespace` also works with conventional Razor views.
 
-<!--
+<!-- rick todo
 Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
 
-[!code-cs[main](index/sample/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
 
 -->
 
@@ -317,7 +312,7 @@ You can use `@page` to add additional segments and parameters to a page's route.
 
 Use the extension method `AddRazorPagesOptions` on the MVC builder to configure advanced options such as the following example:
 
-<!-- Review - please update the sample code to do this and I'll import the snippet
+<!-- Review - please update the sample code to configure advanced options  and I'll import the snippet
 -->
 
 ```c#
