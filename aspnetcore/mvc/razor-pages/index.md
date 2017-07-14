@@ -45,11 +45,11 @@ Consider a basic page:
 
 The preceeding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function level content.
 
-A similar page, with the `PageModel` in a separate file, is shown in the following two files:
+A similar page, with the `PageModel` in a separate file, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
 [!code-html[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-The `PageModel` class *Pages/Index2.cshtml.cs*, a code-behind file for the view code:
+The *Pages/Index2.cshtml.cs* `code-behind` file:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -57,7 +57,7 @@ By convention, the `PageModel` class file has the same name as the Razor Page fi
 
 For simple pages, mixing the `PageModel` class with the Razor markup is fine. For more complex code, it's a best practice to keep the page model code seperate.
 
-The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Pages path and the matching URL:
+The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL:
 
 | File name and path               | matching URL |
 | ----------------- | ------------ | 
@@ -67,7 +67,7 @@ The associations of URL paths to pages are determined by the page's location in 
 
 The runtime looks for Razor Pages files in the *Pages* folder by default.
 
-### Writing a basic form
+## Writing a basic form
 
 The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic 'contact us' form for the `Contact` model:
 
@@ -83,7 +83,7 @@ The *Pages/Create.cshtml* view file:
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
-The `PageModel` class *Pages/Create.cshtml.cs* code-behind file for the view:
+The *Pages/Create.cshtml.cs* code-behind file for the view:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
 
@@ -109,9 +109,9 @@ Check for validation errors.
 *  If there are no errors, save the data and redirect.
 *  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications. In many cases validation errors would be caught on the client and never submitted to the server.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
-When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review default what? Return type?? --> for a handler method. A handler method that returns `void` will render the page.
+When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review default what?  --> for a handler method. A handler method that returns `void` will render the page.
 
 The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. 
 
@@ -119,7 +119,7 @@ The `Customer` property is using the new `[BindProperty]` attribute to opt-in to
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model **automatically**. 
+Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
 
 The following code shows the combined version of the create page:
 
@@ -143,7 +143,7 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 ```
 
 The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
-used the [asp-route-](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) 
+used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) 
 attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
@@ -155,7 +155,7 @@ The first line contains the `@page "{id:int}"` directive. `"{id:int}"` tells the
 
 The *Pages/Edit.cshtml.cs* file:
 
-[!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
 
 <a name="xsrf"></a>
 
@@ -171,7 +171,7 @@ Let's declutter this page by taking advantage of some of those features.
 
 Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
 
-                     razor-page-intro/RazorPagesContacts2/Pages/_LayoutSimple.cshtml
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
