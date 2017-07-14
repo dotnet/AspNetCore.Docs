@@ -41,7 +41,7 @@ A similar page, with the `PageModel` in a separate file, is shown in the followi
 
 [!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml "Index2 ")]
 
-The `PageModel` class *Pages/Index2.cshtml.cs*, a 'code-behind' file for the view code:
+The `PageModel` class *Pages/Index2.cshtml.cs*, a code-behind file for the view code:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -75,13 +75,13 @@ The *Pages/Create.cshtml* view file:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml)]
 
-The `PageModel` class *Pages/Create.cshtml.cs* 'code-behind' file for the view:
+The `PageModel` class *Pages/Create.cshtml.cs* code-behind file for the view:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
 
-Using a `PageModel` 'code-behind' file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` 'code-behind' files support runtime compilation, which can be an advantage in development.  <!-- review: why? -->
+Using a `PageModel` code-behind file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` code-behind files support runtime compilation, which can be an advantage in development.  <!-- review: advantage because you can make changes and refresh the browser without explicitly compiling the app -->
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
@@ -134,18 +134,8 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
 ```
 
-<!-- todo
-[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
-[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
--->
-[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
-[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
-      [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
-
-The 
-[Anchor Tag Helper ZZ](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
-used the 
-[asp-route-Xyz](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
+used the [asp-route-](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) 
 attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
@@ -275,7 +265,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-Since we have another page here, we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
+The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
 
 <a name="mhpp"></a>
 ##  Multiple handlers per page
