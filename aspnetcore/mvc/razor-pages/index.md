@@ -34,24 +34,24 @@ Optional: [Visual Studio 2017 Preview](https://www.visualstudio.com/vs/preview/)
 
 If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs?name=Startup)]
+[!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=Startup)]
 
 All the Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, a reference to the Razor Pages assembly is included.
 
 Consider a basic page:
 <a name="OnGet"></a>
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index.cshtml)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
 The preceeding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function level content.
 
 A similar page, with the `PageModel` in a separate file, is shown in the following two files:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 The `PageModel` class *Pages/Index2.cshtml.cs*, a code-behind file for the view code:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml.cs)]
+[!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
@@ -73,19 +73,19 @@ The new Razor Pages features are designed to make common patterns used with web 
 
 For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Startup.cs?highlight=15-16)]
+[!code-cs[main](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
 The data model:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs)]
+[!code-cs[main](index/sample/RazorPagesContacts/Data/Customer.cs)]
 
 The *Pages/Create.cshtml* view file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
 The `PageModel` class *Pages/Create.cshtml.cs* code-behind file for the view:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
 
@@ -100,7 +100,7 @@ The `Async` naming suffix is optional but is often used by convention. The code 
 
 The previous `OnPostAsync` method:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
 
 The basic flow of `OnPostAsync`: 
 
@@ -115,7 +115,7 @@ When the submitted form has validation errors (that are passed to the server), t
 
 The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. 
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
@@ -123,18 +123,18 @@ Rather than using `@model`, we're taking advantage of a new feature for Pages. B
 
 The following code shows the combined version of the create page:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/CreateCombined.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/CreateCombined.cshtml)]
 
 The main change is to replace constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 
 The home page (*Index.cshtml*)
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Index.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
 The code behind *Index.cshtml.cs* file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Index.cshtml.cs)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
@@ -148,14 +148,14 @@ attribute to generate a link to the Edit page. The link contains route data with
 
 The *Pages/Edit.cshtml* file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
 <!-- REVIEW -->
 The first line contains the `@page "{id:int}"` directive. `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
 
 The *Pages/Edit.cshtml.cs* file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
 
 <a name="xsrf"></a>
 
@@ -175,7 +175,7 @@ Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
 Note: The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. This means that a layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 
@@ -185,7 +185,7 @@ View search from a Razor Page will include the *Pages* folder. The layouts, temp
 
 Add a *Pages/_ViewImports.cshtml* file:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
 I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
 
@@ -193,7 +193,7 @@ I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in
 
 When the `@namespace` directive is used explicitly on a page:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
+[!code-html[main](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
 The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
@@ -201,11 +201,11 @@ When the `@namespace` directive is contained in *_ViewImports.cshtml*, the speci
 
 For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=namespace)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=namespace)]
 
 The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` statement for the code behind file.
 
@@ -214,19 +214,19 @@ Note: `@namespace` also works with conventional Razor views.
 <!--
 Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
 
 -->
 
 The original *Pages/Create.cshtml* view file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
 The updated page:
 
 The *Pages/Create.cshtml* view file:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml)]
 
 <a name="url_gen"></a>
 
@@ -234,7 +234,7 @@ The *Pages/Create.cshtml* view file:
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync&highlight=10)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync&highlight=10)]
 
 The app has the following file/folder structure
 
@@ -280,18 +280,18 @@ The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and p
 
 The following page generates markup for two page handlers using the `asp-page-handler` tag helper:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
 <!-- Review: Where is the FormActionTagHelper?  How is it used in conjunction? -->
 The form in the preceeding example has two submit buttons, each using the new `FormActionTagHelper` in conjunction to submit to a different URL. The `asp-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
 
 The code-behind file:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
 The preceeding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceeding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. The handler names when **OnPost** and **Async** are removed are `JoinList` and `JoinListUC`.
 
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
 Using the preceeding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`. 
 
