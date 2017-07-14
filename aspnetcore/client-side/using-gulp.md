@@ -193,7 +193,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
     The **Before Build** binding configures the clean task to run automatically before each build of the project.
 
-The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example put this in your *.csproj* file:
+The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example, put this in your *.csproj* file:
 
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
