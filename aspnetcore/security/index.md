@@ -20,7 +20,6 @@ ms.prod: asp.net-core
     *   [Account Confirmation and Password Recovery](authentication/accconfirm.md)
     *   [Two-factor authentication with SMS](authentication/2fa.md) 
     *   [Using Cookie Middleware without ASP.NET Core Identity](authentication/cookie.md)
-    *   [Azure Active Directory](authentication/azure-active-directory/index.md)
         *   [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
         *   [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
         *   [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)

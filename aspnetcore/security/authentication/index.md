@@ -28,8 +28,6 @@ uid: security/authentication/index
 
 * [Using Cookie Middleware without ASP.NET Core Identity](cookie.md)
 
-* [Azure Active Directory](azure-active-directory/index.md)
-
   * [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
 
   * [Calling an ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
