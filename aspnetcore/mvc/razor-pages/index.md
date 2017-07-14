@@ -140,14 +140,14 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 -->
 [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [`asp-route-{value}`](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
 [!code-html[main](../../../razor-page-intro/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
 <!-- REVIEW -->
-The first line contains the `@page "{id:int}"` directive. The `"{id:int}" tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
+The first line contains the `@page "{id:int}"` directive. `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
 
 The *Pages/Edit.cshtml.cs* file:
 
@@ -165,11 +165,9 @@ Pages work with all the features of the Razor view engine. Layouts, partials, te
 
 Let's declutter this page by taking advantage of some of those features. 
 
-Add a [layout page](xref:mvc/views/layout) to [Pages/_Layout.cshtm](https://github.com/Rick-Anderson/razor-page-intro/blob/master/RazorPagesContacts2/Pages/_Layout.cshtml)
+Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
 
-<!-- that layout file is pretty big, consider posting only the link or part of it -->
-
-[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/_Layout.cshtml)]
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/LayoutSimple.cshtml)]
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
