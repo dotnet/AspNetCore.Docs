@@ -88,9 +88,9 @@ XmlKeyManager depends on several other components in the course of fulfilling it
 
 Below are high-level diagrams which indicate how these components are wired together within XmlKeyManager.
 
-   ![Key Creation](key-management/_static/keycreation.png)
-
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+   ![Key Creation](key-management/_static/keycreation1.png)
 
    *Key Creation / CreateNewKey*
 
@@ -98,13 +98,23 @@ In the implementation of CreateNewKey, the IAuthenticatedEncryptorConfiguration 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
+   ![Key Creation](key-management/_static/keycreation2.png)
+
    *Key Creation / CreateNewKey*
 
 In the implementation of CreateNewKey, the AlgorithmConfiguration component is used to create a unique IAuthenticatedEncryptorDescriptor, which is then serialized as XML. If a key escrow sink is present, the raw (unencrypted) XML is provided to the sink for long-term storage. The unencrypted XML is then run through an IXmlEncryptor (if required) to generate the encrypted XML document. This encrypted document is persisted to long-term storage via the IXmlRepository. (If no IXmlEncryptor is configured, the unencrypted document is persisted in the IXmlRepository.)
 
 ---
 
-   ![Key Retrieval](key-management/_static/keyretrieval.png)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+   ![Key Retrieval](key-management/_static/keyretrieval1.png)
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+   ![Key Retrieval](key-management/_static/keyretrieval2.png)
+
+---
 
    *Key Retrieval / GetAllKeys*
 
