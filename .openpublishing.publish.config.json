@@ -69,6 +69,11 @@
       "path_to_root": "_themes.pdf",
       "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
       "branch": "master"
-    }
+    },
+   {
+		"path_to_root": "razor-page-intro",
+		"url": "https://github.com/Rick-Anderson/razor-page-intro",
+		"branch": "master"
+	}
   ]
 }

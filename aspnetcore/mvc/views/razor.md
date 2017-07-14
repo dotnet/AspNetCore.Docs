@@ -492,13 +492,15 @@ When passed "[Rick@contoso.com](mailto:Rick@contoso.com)" in the model:
 
    See [Layout](layout.md) for more information.
 
+<a name="inject"></a>
 ### `@inject`
 
 The `@inject` directive enables you to inject a service from your [service container](../../fundamentals/dependency-injection.md)  into your Razor page for use. See [Dependency injection into views](dependency-injection.md).
 
+<a name="functions"></a>
 ### `@functions`
 
-The `@functions` directive enables you to add function level content to your Razor page. The syntax is:
+The `@functions` directive enables function level content to a Razor page. The syntax is:
 
 ```none
 @functions { // C# Code }
