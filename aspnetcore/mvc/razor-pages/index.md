@@ -138,9 +138,8 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
 [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 -->
-[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-X](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
@@ -205,7 +204,7 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` statement for the code behind file.
 
-Notes: `@namespace` works with conventional Razor views.
+Note: `@namespace` also works with conventional Razor views.
 
 <!--
 Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
