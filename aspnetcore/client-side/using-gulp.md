@@ -175,7 +175,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
-    ![Open Task Runner Exploere from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
+    ![Open Task Runner Explorer from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
     **Task Runner Explorer** shows the list of Gulp tasks. (You might have to click the **Refresh** button that appears to the left of the project name.)
     
@@ -193,7 +193,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
     The **Before Build** binding configures the clean task to run automatically before each build of the project.
 
-The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example put this in your *.csproj* file:
+The bindings you set up with **Task Runner Explorer** are stored in the form of a comment at the top of your *gulpfile.js* and are effective only in Visual Studio. An alternative that doesn't require Visual Studio is to configure automatic execution of gulp tasks in your *.csproj* file. For example, put this in your *.csproj* file:
 
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
