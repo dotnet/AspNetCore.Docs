@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/razor-pages/index
 ---
-## Introduction to Razor Pages in ASP.NET Core
+# Introduction to Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak) 
 
@@ -22,13 +22,21 @@ Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Page
 
 [Download or view sample code](https://github.com/Rick-Anderson/razor-page-intro).
 
-## Getting started
+<a name="prerequisites"></a>
 
-Razor Pages is on by default in MVC. If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
+## ASP.NET Core 2.0 preview prerequisites
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs?name=Startup "Startup ")]
+ASP.NET Core 2.0 preview  is included in .NET Core 2.0 preview. [Download .NET Core 2.0 Preview 2](https://www.microsoft.com/net/core/preview) 
 
-All the new Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, a reference to the Razor Pages assembly is included.
+Optional: [Visual Studio 2017 Preview](https://www.visualstudio.com/vs/preview/)
+
+## Razor Pages
+
+If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
+
+[!code-cs[main](../../../razor-page-intro/RazorPagesIntro/Startup.cs?name=Startup)]
+
+All the Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, a reference to the Razor Pages assembly is included.
 
 Consider a basic page:
 <a name="OnGet"></a>
@@ -39,7 +47,7 @@ The preceeding code looks a lot like a Razor view file. What makes it different 
 
 A similar page, with the `PageModel` in a separate file, is shown in the following two files:
 
-[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml "Index2 ")]
+[!code-html[main](../../../razor-page-intro/RazorPagesIntro/Pages/Index2.cshtml)]
 
 The `PageModel` class *Pages/Index2.cshtml.cs*, a code-behind file for the view code:
 
@@ -65,11 +73,11 @@ The new Razor Pages features are designed to make common patterns used with web 
 
 For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Startup.cs?highlight=15-16 "Startup ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
 The data model:
 
-[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs "model ")]
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Data/Customer.cs)]
 
 The *Pages/Create.cshtml* view file:
 
