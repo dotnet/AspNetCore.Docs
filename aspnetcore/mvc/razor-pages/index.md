@@ -134,7 +134,11 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
 ```
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+<!-- todo
+[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
+-->
+
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
@@ -224,8 +228,6 @@ The *Pages/Create.cshtml* view file:
 
 ## URL generation for Pages
 
-<!-- todo explain RedirectToPage -->
-
 The `Create` page, shown previously, uses `RedirectToPage`:
 
 [!code-cs[main](../../../razor-page-intro/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync&highlight=10)]
@@ -269,54 +271,29 @@ Relative name linking is useful when building sites with a complex structure. If
 
 Since we have another page here, we're also taking advantage of the `[TempData]` attribute to pass data across pages. `[TempData]` is a more convenient way to use the existing MVC temp data features. The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
 
-### Using multiple handlers
+<a name="mhpp"></a>
+##  Multiple handlers per page
 
-Let's update this form to support multiple operations. A visitor to the site can either join the mailing list or ask for a free quote.
+The following page generates markup for two page handlers using the `asp-page-handler` tag helper:
 
-If you want one page to handle multiple logical actions, you can use *named handler methods*. Any text in the name after `On<Verb>` and before `Async` (if present) in the method name is considered a handler name. The handler methods in the following example have the handler names `JoinMailingList` and `RequestQuote`:
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-*MyApp/Pages/Contact.cshtml*
+<!-- Review: Where is the FormActionTagHelper?  How is it used in conjunction? -->
+The form in the preceeding example has two submit buttons, each using the new `FormActionTagHelper` in conjunction to submit to a different URL. The `asp-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
 
-```html
-@page
-@inject ApplicationDbContext Db
+The code-behind file:
 
-@functions {
+[!code-cs[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-    [BindProperty]
-    public Contact Contact { get; set; }
-    
-    public async Task<IActionResult> OnPostJoinMailingListAsync()
-    {
-        ...
-    }
+The preceeding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceeding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. The handler names when **OnPost** and **Async** are removed are `JoinList` and `JoinListUC`.
 
-    public async Task<IActionResult> OnPostRequestQuoteAsync()
-    {
-        ...
-    }
-}
-<div class="row">
-    <div class="col-md-3">
-        <p>Enter your contact info here we will email you about our fine products! Or get a free quote!</p>
-        <div asp-validation-summary="All"></div>
-        <form method="POST">
-            <div>Name: <input asp-for="Contact.Name" /></div>
-            <div>Email: <input asp-for="Contact.Email" /></div>
-            <input type="submit" asp-page-handler="JoinMailingList" value="Join our mailing list"/>
-            <input type="submit" asp-page-handler="RequestQuote" value="Get a free quote"/>
-        </form>
-    </div>
-</div>
-```
+[!code-html[main](../../../razor-page-intro/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-The form in this example has two submit buttons, each using the new `FormActionTagHelper` in conjunction to submit to a different URL. The `asp-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
-
-In this case, the URL path that submits to `OnPostJoinMailingListAsync` is `/Contact?handler=JoinMailingList` and the URL path that submits to `OnPostRequestQuoteAsync` is `/Contact?handler=RequestQuote`.
+Using the preceeding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`. 
 
 ## Customizing Routing
 
-If you don't like seeing `?handler=RequestQuote` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
+If you don't like `?handler=RequestQuote` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
 
 ```c#
 @page "{handler?}"
@@ -329,7 +306,7 @@ This route will now put the handler name in the URL path instead of the query st
 
 You can use `@page` to add additional segments and parameters to a page's route. Whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
 
-### Configuration and settings
+## Configuration and settings
 
 Use the extension method `AddRazorPagesOptions` on the MVC builder to configure advanced options such as the following example:
 
