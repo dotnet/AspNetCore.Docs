@@ -1,3 +1,8 @@
+<!--   TODO
+
+check lang type [!code-
+
+-->
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
@@ -220,13 +225,13 @@ Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side valida
 
 The original *Pages/Create.cshtml* view file:
 
-[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
 
 The updated page:
 
 The *Pages/Create.cshtml* view file:
 
-[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml)]
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
 <a name="url_gen"></a>
 
@@ -266,7 +271,7 @@ URL generation for pages supports relative names. The following table shows whic
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
 
-`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path -->
+`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path -->
 
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
 
@@ -274,6 +279,8 @@ Relative name linking is useful when building sites with a complex structure. If
 ## TempData
 
 The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
+
+TODO provide sample moving temp data bewteen pages.
 
 <a name="mhpp"></a>
 ##  Multiple handlers per page
@@ -289,7 +296,7 @@ The code-behind file:
 
 [!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-The preceeding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceeding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. The handler names when **OnPost** and **Async** are removed are `JoinList` and `JoinListUC`.
+The preceeding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceeding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. The handler names when *OnPost* and *Async* are removed are `JoinList` and `JoinListUC`.
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
@@ -297,14 +304,10 @@ Using the preceeding code, the URL path that submits to `OnPostJoinListAsync` is
 
 ## Customizing Routing
 
-If you don't like `?handler=RequestQuote` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
+If you don't like the query string`?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
 
-```c#
-@page "{handler?}"
-@inject ApplicationDbContext Db
+[!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
-...
-```
 
 This route will now put the handler name in the URL path instead of the query string. The `?` following `handler` means this is an optional route parameter.
 
@@ -313,6 +316,9 @@ You can use `@page` to add additional segments and parameters to a page's route.
 ## Configuration and settings
 
 Use the extension method `AddRazorPagesOptions` on the MVC builder to configure advanced options such as the following example:
+
+<!-- Review - please update the sample code to do this and I'll import the snippet
+-->
 
 ```c#
 public class Startup
