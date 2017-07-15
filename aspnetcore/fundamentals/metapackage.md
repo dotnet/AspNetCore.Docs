@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: fundamentals/metapackage
 ---
 
-#"Microsoft.AspNetCore.All" metapackage for ASP.NET Core 2.X
+#Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.X
 
 This feature requires ASP.NET Core 2.X.
 
@@ -30,4 +30,6 @@ Applications that use the `Microsoft.AspNetCore.All` metapackage automatically t
 
 Features you don’t use in your application are removed by package trimming. Unused features are excluded in published application output.
 
-The following *.csproj* file references the latest `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
+The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
+
+[!code-xml[Main](..\mvc\views\view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5)]
