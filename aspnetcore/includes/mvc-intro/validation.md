@@ -95,7 +95,7 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 
 * The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
 
-* By default, the browser will render data using the correct format based on your [locale](http://msdn.microsoft.com/library/vstudio/wyzd2bce.aspx)
+* By default, the browser will render data using the correct format based on your locale.
 
 * The `DataType` attribute can enable MVC to choose the right field template to render the data (the `DisplayFormat` if used by itself uses the string template).
 

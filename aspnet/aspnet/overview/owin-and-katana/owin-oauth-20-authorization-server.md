@@ -40,9 +40,8 @@ The [OAuth 2.0 framework](http://tools.ietf.org/html/rfc6749) enables a third-pa
 
 This tutorial will cover:
 
-- How to create an authorization server to support 4 Authorization Grants and refresh tokens.
-- Authorization code grant:
-
+- How to create an authorization server to support four authorization grant types and refresh tokens:
+    - Authorization code grant
     - Implicit Grant
     - Resource Owner Password Credentials Grant
     - Client Credentials Grant
