@@ -1,18 +1,18 @@
 ---
-title: "Microsoft.AspNetCore.All" metapackage for ASP.NET Core 2.X and later
+title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.X and later
 author: Rick-Anderson
 description: Microsoft.AspNetCore.All metapackage includes all supported packages.
 keywords: ASP.NET Core, NuGet, package,  Microsoft.AspNetCore.All, metapackage
 ms.author: riande
 manager: wpickett
 ms.date: 07/16/2017
-ms.topic: get-started-article
+ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/metapackage
 ---
 
-# "Microsoft.AspNetCore.All" metapackage for ASP.NET Core 2.X
+#"Microsoft.AspNetCore.All" metapackage for ASP.NET Core 2.X
 
 This feature requires ASP.NET Core 2.X.
 
