@@ -10,6 +10,7 @@ ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/metapackage
+---
 
 # "Microsoft.AspNetCore.All" metapackage for ASP.NET Core 2.X
 
