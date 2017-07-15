@@ -59,6 +59,11 @@ However, CSRF vulnerabilities are fundamentally a problem with the web app, not 
 
 ## How does ASP.NET Core MVC address CSRF?
 
+> [!NOTE]
+> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. You don't have to write any additional code. See [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index) for more information.
+
+<!-- [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf) for more information. -->
+
 The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's identity to the client. The client must send back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's identity, the request should be rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). ASP.NET Core MVC will generate Antiforgery Tokens by default on all forms it generates. The following two examples of view logic will generate antiforgery tokens automatically:
 
 ```html
