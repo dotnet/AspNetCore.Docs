@@ -32,4 +32,4 @@ Features you don’t use in your application are removed by package trimming. Un
 
 The following *.csproj* file references the `Microsoft.AspNetCore.All` metapackage for ASP.NET Core:
 
-[!code-xml[Main](..\mvc\views\view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5)]
+[!code-xml[Main](..\mvc\views\view-compilation\sample\MvcRazorCompileOnPublish.csproj2?highlight=5)]
