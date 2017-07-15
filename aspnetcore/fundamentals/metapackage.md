@@ -15,15 +15,15 @@ uid: fundamentals/metapackage
 
 This feature requires ASP.NET Core 2.X.
 
-The `Microsoft.AspNetCore.All` metapackage for ASP.NET Core includes:
+The `Microsoft.AspNetCore.All` metapackage for ASP.NET Core includes all:
 
-* All of the supported packages by for ASP.NET Core.
-* All of the supported packages by for  Entity Framework Core. 
-* All the internal and 3rd-party dependencies. 
+* Supported packages by for ASP.NET Core.
+* Supported packages by for  Entity Framework Core. 
+* Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework Core. 
 
 All the features of ASP.NET Core 2.X and Entity Framework Core 2.X are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-The version number of the `Microsoft.AspNetCore.All` metapackage represents the ASP.NET Core version (aligned with the .NET Core version).
+The version number of the `Microsoft.AspNetCore.All` metapackage represents the ASP.NET Core version and Entity Framework Core version (aligned with the .NET Core version).
 
 Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the .NET Core runtime store. The runtime store contains all the runtime assets needed to run ASP.NET Core 2.X applications. When you use the `Microsoft.AspNetCore.All` metapackage, **no** assets from the referenced ASP.NET Core NuGet packages are deployed with the application - the  .NET Core runtime store contains these assets. The assets in the runtime store are precompiled to improve application startup time.
 
