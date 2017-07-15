@@ -21,6 +21,8 @@ This article focuses on using Visual Studio 2017 to create publish profiles. The
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
+# [ASP.NET 1.x](#tab/aspnet1x)
+
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
@@ -35,6 +37,30 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
   </ItemGroup>
 
 </Project>
+```
+
+# [ASP.NET 2.0](#tab/aspnet20)
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <UserSecretsId>aspnet-z-2582C05F-B564-408F-BCC2-A1F4CAE20544</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview2-final" />
+  </ItemGroup>
+
+</Project>
+
 ```
 
 The `Sdk` attribute in the `<Project>` element (in the first line) of the markup above does the following:
