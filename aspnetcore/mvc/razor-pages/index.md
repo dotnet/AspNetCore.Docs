@@ -36,20 +36,20 @@ If you are using a typical *Startup.cs* like the following code, Razor Pages is 
 
 [!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=Startup)]
 
-All the Razor Pages types and features are included in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. If you are referencing the `Microsoft.AspNetCore.Mvc` package, a reference to the Razor Pages assembly is included.
+All the Razor Pages types and features are in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. The `Microsoft.AspNetCore.Mvc` package includes the Razor Pages assembly. The  `Microsoft.AspNetCore.All` metapackage include all ASP.NET Core 2.x packages.
 
 Consider a basic page:
 <a name="OnGet"></a>
 
 [!code-html[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
-The preceding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function level content.
+The preceding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function-level content.
 
 A similar page, with the `PageModel` in a separate file, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
 [!code-html[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-The *Pages/Index2.cshtml.cs* `code-behind` file:
+The *Pages/Index2.cshtml.cs* 'code-behind' file:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
@@ -69,7 +69,7 @@ The runtime looks for Razor Pages files in the *Pages* folder by default.
 
 ## Writing a basic form
 
-The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic 'contact us' form for the `Contact` model:
+The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
 For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
 
@@ -96,7 +96,7 @@ The page has an `OnPostAsync` *handler method* which runs on `POST` requests (wh
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions. 
 
-The `Async` naming suffix is optional but is often used by convention. The code that's in `OnPostAsync` in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
+The `Async` naming suffix is optional but is often used by convention. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
 
 The previous `OnPostAsync` method:
 
@@ -107,11 +107,11 @@ The basic flow of `OnPostAsync`:
 Check for validation errors.
 
 *  If there are no errors, save the data and redirect.
-*  If there are errors, show the page again with validation messages. Client side validation is identical to traditonal ASP.NET Core MVC applications. In many cases validation errors would be caught on the client and never submitted to the server.
+*  If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be caught on the client and never submitted to the server.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result similar to `RedirectToAction` or `RedirectToRoute` but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`.This is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
-When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review default what?  --> for a handler method. A handler method that returns `void` will render the page.
+When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` will render the page.
 
 The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. 
 
@@ -119,7 +119,7 @@ The `Customer` property is using the new `[BindProperty]` attribute to opt-in to
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [tag helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
+Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
 
 The following code shows the combined version of the create page:
 
@@ -128,7 +128,7 @@ The following code shows the combined version of the create page:
 The main change is to replace constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 
-The home page (*Index.cshtml*)
+The home page (*Index.cshtml*):
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
@@ -163,13 +163,13 @@ The *Pages/Edit.cshtml.cs* file:
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
-## Using Layouts, partials, templates, and tag helpers with Razor Pages
+## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
-Pages work with all the features of the Razor view engine. Layouts, partials, templates, tag helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
+Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
 
 Let's declutter this page by taking advantage of some of those features. 
 
-Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtm:
+Add a [layout page](xref:mvc/views/layout) to Pages/_Layout.cshtml:
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
@@ -187,7 +187,7 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in the [built-in tag helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
+I'll explain the `@namespace` later. The `@addTagHelper` directive will bring in the [built-in Tag Helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 
@@ -207,12 +207,12 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` statement for the code behind file.
+The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes you add and pages-generated code *just work* without having to add an `@using` directive for the code behind file.
 
 Note: `@namespace` also works with conventional Razor views.
 
 <!-- rick todo
-Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client side validation.
+Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client-side validation.
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
 
@@ -273,7 +273,7 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-The `[TempData]` attribute is new in 2.0.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
+The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
 
 TODO provide sample moving temp data bewteen pages.
 
@@ -291,7 +291,7 @@ The code-behind file:
 
 [!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
-The preceding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. The handler names when *OnPost* and *Async* are removed are `JoinList` and `JoinListUC`.
+The preceding code uses *named handler methods*. Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present). In the preceding example, the page methods are OnPost**JoinList**Async and OnPost**JoinListUC**Async. With *OnPost* and *Async* removed, the handler names are `JoinList` and `JoinListUC`.
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
@@ -299,7 +299,7 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 ## Customizing Routing
 
-If you don't like the query string`?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in quotes after the `@page` directive.
+If you don't like the query string `?handler=JoinList` in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in double quotes after the `@page` directive.
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
