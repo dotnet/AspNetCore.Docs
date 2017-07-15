@@ -51,7 +51,7 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 
 If you're using IE, you are prompted to open or save the *values.json* file.
 
-### Add support for Entity Framework Core
+## Add support for Entity Framework Core
 
 # [ASP.NET 1.x](#tab/aspnet1x)
 
