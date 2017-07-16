@@ -63,6 +63,8 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
 
 ```
 
+---
+
 The `Sdk` attribute in the `<Project>` element (in the first line) of the markup above does the following:
 
 * Imports the `props` file from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.Props* at the beginning.

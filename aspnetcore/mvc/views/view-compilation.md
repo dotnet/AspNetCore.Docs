@@ -33,3 +33,5 @@ Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlight
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
 All the ASP.NET Core 2.x templates set `MvcRazorCompileOnPublish` to true.
+
+---
