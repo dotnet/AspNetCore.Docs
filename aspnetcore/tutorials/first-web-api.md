@@ -65,6 +65,7 @@ Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. S
 
 The [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider is included in the ["Microsoft.AspNetCore.All" metapackage](xref:fundamentals/metapackage), you don't need to install it. This database provider allows Entity Framework Core to be used with an in-memory database.
 
+---
 
 ## Add a model class
 
