@@ -31,3 +31,5 @@ Set `MvcRazorCompileOnPublish` to true and include a package reference to `Micro
 Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlights this settings:
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
+
+All the ASP.NET Core 2.x templates set `MvcRazorCompileOnPublish` to true.
