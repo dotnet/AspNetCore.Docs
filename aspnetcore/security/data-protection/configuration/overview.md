@@ -109,6 +109,8 @@ If the data protection system is not provided by an ASP.NET Core host (e.g., if 
 
 The data protection stack allows changing the default algorithm used by newly-generated keys. The simplest way to do this is to call UseCryptographicAlgorithms from the configuration callback, as in the below example.
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 ```csharp
 services.AddDataProtection()
        .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
@@ -116,7 +118,20 @@ services.AddDataProtection()
            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
        });
-   ```
+```
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+services.AddDataProtection()
+       .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+       {
+           EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+           ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+       });
+```
+
+---
 
 The default EncryptionAlgorithm and ValidationAlgorithm are AES-256-CBC and HMACSHA256, respectively. The default policy can be set by a system administrator via [Machine Wide Policy](machine-wide-policy.md), but an explicit call to UseCryptographicAlgorithms will override the default policy.
 
@@ -130,6 +145,8 @@ The developer can manually specify an implementation if desired via a call to Us
 <a name=data-protection-changing-algorithms-custom-managed></a>
 
 ### Specifying custom managed algorithms
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
 
@@ -148,6 +165,27 @@ serviceCollection.AddDataProtection()
        });
    ```
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+To specify custom managed algorithms, create a ManagedAuthenticatedEncryptorConfiguration instance that points to the implementation types.
+
+```csharp
+serviceCollection.AddDataProtection()
+       .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptorConfiguration()
+       {
+           // a type that subclasses SymmetricAlgorithm
+           EncryptionAlgorithmType = typeof(Aes),
+
+           // specified in bits
+           EncryptionAlgorithmKeySize = 256,
+
+           // a type that subclasses KeyedHashAlgorithm
+           ValidationAlgorithmType = typeof(HMACSHA256)
+       });
+   ```
+
+---
+
 Generally the *Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.
 
 > [!NOTE]
@@ -156,6 +194,8 @@ Generally the *Type properties must point to concrete, instantiable (via a publi
 <a name=data-protection-changing-algorithms-cng></a>
 
 ### Specifying custom Windows CNG algorithms
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
@@ -176,8 +216,33 @@ services.AddDataProtection()
        });
    ```
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
+
+```csharp
+services.AddDataProtection()
+       .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration()
+       {
+           // passed to BCryptOpenAlgorithmProvider
+           EncryptionAlgorithm = "AES",
+           EncryptionAlgorithmProvider = null,
+
+           // specified in bits
+           EncryptionAlgorithmKeySize = 256,
+
+           // passed to BCryptOpenAlgorithmProvider
+           HashAlgorithm = "SHA256",
+           HashAlgorithmProvider = null
+       });
+   ```
+
+---
+
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The *Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
@@ -194,6 +259,25 @@ services.AddDataProtection()
        });
    });
    ```
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
+
+```csharp
+services.AddDataProtection()
+       .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration()
+       {
+           // passed to BCryptOpenAlgorithmProvider
+           EncryptionAlgorithm = "AES",
+           EncryptionAlgorithmProvider = null,
+
+           // specified in bits
+           EncryptionAlgorithmKeySize = 256
+       });
+   });
+   ```
+
+---
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of exactly 128 bits, and it must support GCM encryption. The EncryptionAlgorithmProvider property can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
