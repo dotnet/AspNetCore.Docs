@@ -5,7 +5,7 @@ description: Overview of Razor Pages in ASP.NET Core
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 07/28/2017
+ms.date: 07/18/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -65,6 +65,19 @@ The associations of URL paths to pages are determined by the page's location in 
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
 
 The runtime looks for Razor Pages files in the *Pages* folder by default.
+
+<a name="rpvs17"></a>
+
+## Creating a Razor Pages project with Visual Studio 2017
+
+Note: This feature requires Visual Studio 2017 Preview 2 or later.
+
+You can create a Razor Pages starter project from Visual Studio 2017 with the following steps:
+
+* From the Visual Studio **File** menu, select **New > Project**.
+* Create a new ASP.NET Core Web Application:
+ ![new ASP.NET Core Web Application](new/_static/np.png)
+* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application (Razor Pages).
 
 ## Writing a basic form
 
@@ -149,7 +162,6 @@ The *Pages/Edit.cshtml* file:
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
-<!-- REVIEW -->
 The first line contains the `@page "{id:int}"` directive. `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
 
 The *Pages/Edit.cshtml.cs* file:
@@ -210,13 +222,6 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 
 Note: `@namespace` also works with conventional Razor views.
 
-<!-- rick todo
-Add a *Pages/_ValidationScriptsPartial.cshtml* file to enable client-side validation.
-
-[!code-html[main](index/sample/RazorPagesContacts/Pages/_ValidationScriptsPartial.cshtml)]
-
--->
-
 The original *Pages/Create.cshtml* view file:
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
@@ -226,6 +231,8 @@ The updated page:
 The *Pages/Create.cshtml* view file:
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
+
+The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client side validation.
 
 <a name="url_gen"></a>
 
