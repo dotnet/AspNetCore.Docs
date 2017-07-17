@@ -26,7 +26,7 @@ An example of a CSRF attack:
 2. The server authenticates the user and issues a response that includes an authentication cookie.
 3. The user visits a malicious site.
 
-   The malicious site contains an HTML form simlar to the following:
+   The malicious site contains an HTML form similar to the following:
 
 ```html
    <h1>You Are a Winner!</h1>
@@ -40,11 +40,11 @@ An example of a CSRF attack:
 Notice that the form action posts to the vulnerable site, not to the malicious site. This is the “cross-site” part of CSRF.
 
 4. The user clicks the submit button. The browser automatically includes the authentication cookie for the requested domain (the vulnerable site in this case) with the request.
-5. The request runs on the server with the user’s authentication context, and can do anything that an authenticated user is allowed to do.
+5. The request runs on the server with the user’s authentication context and can do anything that an authenticated user is allowed to do.
 
 This example requires the user to click the form button. The malicious page could run a script that automatically submits the form or sends a form submission as an AJAX request. The form could  be hidden using CSS so the user never realizes it's present. Using SSL does not prevent a CSRF attack, the malicious site can send an `https://` request. 
 
-Some attacks  target site endpoints that respond to `GET` requests, in which case an image tag can be used to perform the action (this form of attack is common on forum sites that permit images but block JavaScript). Applications that change state with `GET` requests are more vunerable from malacious attacks.
+Some attacks  target site endpoints that respond to `GET` requests, in which case an image tag can be used to perform the action (this form of attack is common on forum sites that permit images but block JavaScript). Applications that change state with `GET` requests are  vulnerable from malicious attacks.
 
 CSRF attacks are possible against web sites that use cookies for authentication, because browsers send all relevant cookies to the destination web site. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user logs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
@@ -58,7 +58,7 @@ However, CSRF vulnerabilities are fundamentally a problem with the web app, not 
 
 ## How does ASP.NET Core MVC address CSRF?
 
-In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper] injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatially generate anti-forgery tokens:
+In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper] injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatically generate anti-forgery tokens:
 
 ```html
 <form method="post">
@@ -218,7 +218,7 @@ AngularJS uses a convention to address CSRF. If the server sends a cookie with t
 
 For ASP.NET Core API work with this convention:
 
-* Configure your app to provide a token in a cookied called ``XSRF-TOKEN``
+* Configure your app to provide a token in a cookie called ``XSRF-TOKEN``
 * Configure the antiforgery service to look for a header named ``X-XSRF-TOKEN``
 
 ```c#
@@ -320,7 +320,7 @@ services.AddAntiforgery(options =>
 |FormFieldName | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
 |HeaderName    | The name of the header used by the antiforgery system. If `null`, the system will consider only form data. |
 |RequireSsl    | Specifies whether SSL is required by the antiforgery system. Defaults to `false`. If `true`, non-SSL requests will fail. |
-|SuppressXFrameOptionsHeader  | Specifies whether to suppress generation of the `X-Frame-Options` header. By default the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
+|SuppressXFrameOptionsHeader  | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 See https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.cookieauthenticationoptions for more info.
 
@@ -330,7 +330,7 @@ The [IAntiForgeryAdditionalDataProvider](https://docs.microsoft.com/aspnet/core/
 
 ## Fundamentals
 
-CSRF attacks rely on the default browser behavior of sending cookies associated with a domain with every request made to that domain. These cookies are stored within the browser. They frequently include session cookies for authenticated users. Cookie-based authentication is the most popular form of authentication used by web applications. However, token-based authentication systems have been growing in popularity in recent years, especially for SPAs and other "smart client" scenarios.
+CSRF attacks rely on the default browser behavior of sending cookies associated with a domain with every request made to that domain. These cookies are stored within the browser. They frequently include session cookies for authenticated users. Cookie-based authentication is a popular form of authentication. token-based authentication systems have been growing in popularity, especially for SPAs and other "smart client" scenarios.
 
 ### Cookie based authentication
 
@@ -338,18 +338,15 @@ Once a user has authenticated using their username and password, they are issued
 
 When a cookie is used, The authentication cookie is just a container for the forms authentication ticket. The ticket is passed as the value of the forms authentication cookie with each request and is used by forms authentication, on the server, to identify an authenticated user.
 
-When a user is logged in to a system, a user session is created on the server side and is stored in a database or some other persistent store. The system generates a session key that points to the actual session in the data store and it is sent as a client side cookie. The web server will check this session key any time a user requests a resource that requires authorization. The system checks whether the associated user session has the privilege to access the requested resource. If so, the request continues. Otherwise, the request returns as not authorized. In this approach, cookies are used to make the application appear to be stateful, since it is able to "remember" that the user has previously authenticated with the server.
+When a user is logged in to a system, a user session is created on the server-side and is stored in a database or some other persistent store. The system generates a session key that points to the actual session in the data store and it is sent as a client side cookie. The web server will check this session key any time a user requests a resource that requires authorization. The system checks whether the associated user session has the privilege to access the requested resource. If so, the request continues. Otherwise, the request returns as not authorized. In this approach, cookies are used to make the application appear to be stateful, since it is able to "remember" that the user has previously authenticated with the server.
 
 ### User tokens
 
-Token based authentication doesn’t store any kind of session on the server or in a server-side data store. Instead when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://msdn.microsoft.com/library/ff359101.aspx). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server side validation. One thing to remember is this token is not *encrypted*; rather it is *encoded*. On the server side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is still an issue if the token is stored in a cookie.
+Token based authentication doesn’t store session on the server. Instead, when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://msdn.microsoft.com/library/ff359101.aspx). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server-side validation. This token is not *encrypted*; rather it is *encoded*. On the server-side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is an issue if the token is stored in a cookie.
 
 ### Multiple applications are hosted in one domain
 
-Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there is an implicit trust relationship between all hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests do not necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login CSRF attacks.
-
-> [!NOTE]
-> You should only host live and preproduction apps in domains you fully control, rather than shared domains like `azurewebsites.net` or `cloudapp.net`. This will better protect your app's users from session hijacking and/or CSRF attacks.
+Even though `example1.cloudapp.net` and `example2.cloudapp.net` are different hosts, there is an implicit trust relationship between all hosts under the `*.cloudapp.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other’s cookies (the same-origin policies that govern AJAX requests do not necessarily apply to HTTP cookies). The ASP.NET Core runtime provides some mitigation in that the username is embedded into the field token, so even if a malicious subdomain is able to overwrite a session token it will be unable to generate a valid field token for the user. However, when hosted in such an environment the built-in anti-XSRF routines still cannot defend against session hijacking or login CSRF attacks. Shared hosting environments are vunerable to session hijacking, login CSRF, and other attacks.
 
 
 ### Additional Resources
