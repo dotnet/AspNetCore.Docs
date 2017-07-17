@@ -110,7 +110,7 @@ To connect to authentication providers like Google and Facebook, you will need t
 ## Creating a Google app for OAuth 2 and connecting the app to the project
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
-2. Click the **Create Project** button and enter a project name and ID (you can use the default values). In a few seconds the new project will be created and your browser will display the new projects page.
+1. If you haven't create a project before, select **Credentials** in the left tab, and then select **Create**.
 3. In the left tab, click **Credentials**.
 4. Click the **Create credentials** then **OAuth client ID**. 
 
