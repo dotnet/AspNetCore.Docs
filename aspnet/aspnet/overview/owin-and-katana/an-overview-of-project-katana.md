@@ -216,7 +216,7 @@ For Katana 2.0, the middleware components are primarily focused on providing dif
 
 ## For more information about Katana
 
-- The Katana project on CodePlex: [http://katanaproject.codeplex.com](http://katanaproject.codeplex.com).
+- The Katana project on GitHub: [https://github.com/aspnet/AspNetKatana/](https://github.com/aspnet/AspNetKatana/).
 - Video: [The Katana Project - OWIN for ASP.NET](https://channel9.msdn.com/Shows/Web+Camps+TV/The-Katana-Project-OWIN-for-ASPNET), by Howard Dierking.
 
 ## Acknowledgements
