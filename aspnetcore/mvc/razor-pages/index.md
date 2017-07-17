@@ -7,7 +7,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 07/28/2017
 ms.topic: get-started-article
-ms.assetid: 30e4104c-0124-477b-86b3-beb7b34ed3f6
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/razor-pages/index
