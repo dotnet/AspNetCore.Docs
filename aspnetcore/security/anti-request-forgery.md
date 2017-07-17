@@ -77,7 +77,7 @@ The automatic generation of anti-forgery tokens for HTML form elements happens w
 * The `form` tag contains the `method="post"` attribute AND
 
   * The action attribute is empty. ( `action=""`) OR
-  * The action attribute is not supplied. (<form method="post">)
+  * The action attribute is not supplied. (`<form method="post">`)
 
 You can disable automatic generation of anti-forgery tokens for HTML form elements by:
 
@@ -88,7 +88,7 @@ You can disable automatic generation of anti-forgery tokens for HTML form elemen
   </form>
   ```
 
-* Opt the form element out of Tag Helpers by using the Tag Helper [! jopt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out).
+* Opt the form element out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out).
 
  ```html
   <!form method="post">
@@ -102,9 +102,7 @@ You can disable automatic generation of anti-forgery tokens for HTML form elemen
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. You don't have to write any additional code. See [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index) for more information.
-
-<!-- [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf) for more information. -->
+> [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. You don't have to write any additional code. See [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf) for more information.
 
 The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's identity to the client. The client sends back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's identity, the request is rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). All the forms in ASP.NET Core MVC templates generate antiforgery tokens. The following two examples of view logic generate antiforgery tokens:
 
