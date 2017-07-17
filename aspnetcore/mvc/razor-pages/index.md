@@ -35,7 +35,7 @@ If you are using a typical *Startup.cs* like the following code, Razor Pages is 
 
 [!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=Startup)]
 
-All the Razor Pages types and features are in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. The `Microsoft.AspNetCore.Mvc` package includes the Razor Pages assembly. The  `Microsoft.AspNetCore.All` metapackage include all ASP.NET Core 2.x packages.
+All the Razor Pages types and features are in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. The `Microsoft.AspNetCore.Mvc` package includes the Razor Pages assembly. The `Microsoft.AspNetCore.All` metapackage includes all ASP.NET Core 2.x packages.
 
 Consider a basic page:
 <a name="OnGet"></a>
