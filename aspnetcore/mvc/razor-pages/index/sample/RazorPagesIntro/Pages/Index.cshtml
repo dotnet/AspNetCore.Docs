@@ -1,0 +1,20 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Mvc.RazorPages
+
+@functions {
+    public class IndexModel : PageModel
+    {
+        public string Message { get; private set; } = "In page model: ";
+
+        public void OnGet()
+        {
+            Message += $" Server seconds  { DateTime.Now.Second.ToString() }";
+        }
+    }
+}
+
+<h2>In page sample</h2>
+<p>
+    @Model.Message
+</p>

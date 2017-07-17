@@ -1,0 +1,72 @@
+﻿@page
+@namespace RazorPagesContacts.Pages
+@using RazorPagesContacts.Data
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using Microsoft.EntityFrameworkCore
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject AppDbContext Db
+@model IndexCombinedModel
+
+@functions {
+    public class IndexCombinedModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public IndexCombinedModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        public IList<Customer> Customers { get; private set; }
+
+        public async Task OnGetAsync()
+        {
+            Customers = await _db.Customers.AsNoTracking().ToListAsync();
+
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var contact = await _db.Customers.FindAsync(id);
+
+            if (contact != null)
+            {
+                _db.Customers.Remove(contact);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+    }
+}
+
+
+<h1>Contacts Combined page</h1>
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model.Customers)
+            {
+                <tr>
+                    <td>@contact.Id</td>
+                    <td>@contact.Name</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
+                        <button type="submit" asp-page-handler="delete" 
+                                asp-route-id="@contact.Id">delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-page="./CreateCombined">Create</a>
+</form>

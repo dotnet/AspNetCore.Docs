@@ -1,0 +1,16 @@
+﻿@page
+@model RazorPagesContacts.Pages.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<html>
+<body>
+    <p>
+        Enter your name.
+    </p>
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+        <div>Name: <input asp-for="Customer.Name" /></div>
+        <input type="submit" />
+    </form>
+</body>
+</html>
