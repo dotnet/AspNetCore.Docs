@@ -76,8 +76,9 @@ You can create a Razor Pages starter project from Visual Studio 2017 with the fo
 
 * From the Visual Studio **File** menu, select **New > Project**.
 * Create a new ASP.NET Core Web Application:
- ![new ASP.NET Core Web Application](new/_static/np.png)
+ ![new ASP.NET Core Web Application](index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application (Razor Pages).
+ ![Web Application (Razor Pages)](index/_static/np2.png)
 
 ## Writing a basic form
 
@@ -162,7 +163,7 @@ The *Pages/Edit.cshtml* file:
 
 [!code-html[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
-The first line contains the `@page "{id:int}"` directive. `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
+The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.
 
 The *Pages/Edit.cshtml.cs* file:
 
@@ -286,12 +287,13 @@ TODO provide sample moving temp data bewteen pages.
 <a name="mhpp"></a>
 ##  Multiple handlers per page
 
-The following page generates markup for two page handlers using the `asp-page-handler` tag helper:
+The following page generates markup for two page handlers using the `asp-page-handler` Tag Helper:
 
 [!code-html[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-<!-- Review: Where is the FormActionTagHelper?  How is it used in conjunction? -->
-The form in the preceding example has two submit buttons, each using the new `FormActionTagHelper` in conjunction to submit to a different URL. The `asp-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
+<!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there is no `asp-` attribute   -->
+
+The form in the preceding example has two submit buttons, each using the new `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
 
 The code-behind file:
 
