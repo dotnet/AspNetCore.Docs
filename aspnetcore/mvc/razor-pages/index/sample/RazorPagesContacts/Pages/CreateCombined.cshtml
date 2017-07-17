@@ -1,0 +1,35 @@
+﻿@page
+@using RazorPagesContacts.Data
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject AppDbContext Db
+
+@functions {
+      [BindProperty]
+        public Customer Customer { get; set; }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            Db.Customers.Add(Customer);
+            await Db.SaveChangesAsync();
+            return RedirectToPage("/Index");
+        }
+}
+
+<html>
+<body>
+    <p>
+        Enter your contact info (Combined page).
+    </p>
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+        <div>Name: <input asp-for="Customer.Name" /></div>
+        <input type="submit" />
+    </form>
+</body>
+</html>
