@@ -42,7 +42,13 @@ Notice that the form action posts to the vulnerable site, not to the malicious s
 4. The user clicks the submit button. The browser automatically includes the authentication cookie for the requested domain (the vulnerable site in this case) with the request.
 5. The request runs on the server with the user’s authentication context and can do anything that an authenticated user is allowed to do.
 
-This example requires the user to click the form button. The malicious page could run a script that automatically submits the form or sends a form submission as an AJAX request. The form could  be hidden using CSS so the user never realizes it's present. Using SSL does not prevent a CSRF attack, the malicious site can send an `https://` request. 
+This example requires the user to click the form button. The malicious page could:
+
+* Run a script that automatically submits the form.
+* Sends a form submission as an AJAX request. 
+* Use a hidden form with CSS. 
+
+Using SSL does not prevent a CSRF attack, the malicious site can send an `https://` request. 
 
 Some attacks  target site endpoints that respond to `GET` requests, in which case an image tag can be used to perform the action (this form of attack is common on forum sites that permit images but block JavaScript). Applications that change state with `GET` requests are  vulnerable from malicious attacks.
 
@@ -58,7 +64,7 @@ However, CSRF vulnerabilities are fundamentally a problem with the web app, not 
 
 ## How does ASP.NET Core MVC address CSRF?
 
-In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper] injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatically generate anti-forgery tokens:
+In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatically generate anti-forgery tokens:
 
 ```html
 <form method="post">
@@ -70,7 +76,7 @@ The automatic generation of anti-forgery tokens for HTML form elements happens w
 
 * The `form` tag contains the `method="post"` attribute AND
 
-  * The action attribute is empty. ( `action="") OR
+  * The action attribute is empty. ( `action=""`) OR
   * The action attribute is not supplied. (<form method="post">)
 
 You can disable automatic generation of anti-forgery tokens for HTML form elements by:
@@ -79,7 +85,7 @@ You can disable automatic generation of anti-forgery tokens for HTML form elemen
 
  ```html
   <form method="post" asp-antiforgery="false">
-  /form>
+  </form>
   ```
 
 * Opt the form element out of Tag Helpers by using the Tag Helper [! jopt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out).
@@ -113,7 +119,7 @@ The most common approach to defending against CSRF attacks is the synchronizer t
 }
 ```
 
-You can explicitly add an antiforgery token to a ``<form>`` element without using tag helpers or HTML helpers with ``@Html.AntiForgeryToken``:
+You can explicitly add an antiforgery token to a ``<form>`` element without using tag helpers with the HTML helper ``@Html.AntiForgeryToken``:
 
 
 ```html
@@ -330,7 +336,7 @@ The [IAntiForgeryAdditionalDataProvider](https://docs.microsoft.com/aspnet/core/
 
 ## Fundamentals
 
-CSRF attacks rely on the default browser behavior of sending cookies associated with a domain with every request made to that domain. These cookies are stored within the browser. They frequently include session cookies for authenticated users. Cookie-based authentication is a popular form of authentication. token-based authentication systems have been growing in popularity, especially for SPAs and other "smart client" scenarios.
+CSRF attacks rely on the default browser behavior of sending cookies associated with a domain with every request made to that domain. These cookies are stored within the browser. They frequently include session cookies for authenticated users. Cookie-based authentication is a popular form of authentication. Token-based authentication systems have been growing in popularity, especially for SPAs and other "smart client" scenarios.
 
 ### Cookie based authentication
 
