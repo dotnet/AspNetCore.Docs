@@ -2,8 +2,9 @@
 title: Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
 author: steve-smith
 ms.author: riande
+description: Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
 manager: wpickett
-ms.date: 2/14/2017
+ms.date: 7/14/2017
 ms.topic: article
 ms.assetid: 43844a0f-d6d3-44d0-8ced-597c33d4c52d
 ms.technology: aspnet
@@ -13,7 +14,7 @@ uid: security/anti-request-forgery
 
 # Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
 
-[Steve Smith](http://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan)
+[Steve Smith](http://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## What attack does anti-forgery prevent?
 
@@ -22,12 +23,10 @@ Cross-site request forgery (also known as XSRF or CSRF, pronounced *see-surf*) i
 An example of a CSRF attack:
 
 1. A user logs into `www.example.com`, using forms authentication.
-
 2. The server authenticates the user and issues a response that includes an authentication cookie.
-
 3. The user visits a malicious site.
 
-   This malicious site contains the following HTML form:
+   The malicious site contains an HTML form simlar to the following:
 
 ```html
    <h1>You Are a Winner!</h1>
@@ -41,30 +40,67 @@ An example of a CSRF attack:
 Notice that the form action posts to the vulnerable site, not to the malicious site. This is the “cross-site” part of CSRF.
 
 4. The user clicks the submit button. The browser automatically includes the authentication cookie for the requested domain (the vulnerable site in this case) with the request.
-
 5. The request runs on the server with the user’s authentication context, and can do anything that an authenticated user is allowed to do.
 
-Although this example requires the user to click the form button, the malicious page could just as easily run a script that automatically submits the form or sends a form submission as an AJAX request. The form could also be hidden using CSS so the user never realizes it's present. Moreover, using SSL does not prevent a CSRF attack, because the malicious site can send an `https://` request. Some attacks can target site endpoints that respond to `GET` requests, in which case even an image tag can be used to perform the action (this form of attack is common on forum sites that permit images but block JavaScript). If your application uses `GET` requests to significantly change the state of the application, you should switch to `POST` if possible (in addition to protecting against CSRF attacks).
+This example requires the user to click the form button. The malicious page could run a script that automatically submits the form or sends a form submission as an AJAX request. The form could  be hidden using CSS so the user never realizes it's present. Using SSL does not prevent a CSRF attack, the malicious site can send an `https://` request. 
 
-Typically, CSRF attacks are possible against web sites that use cookies for authentication, because browsers send all relevant cookies to the destination web site. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user logs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
+Some attacks  target site endpoints that respond to `GET` requests, in which case an image tag can be used to perform the action (this form of attack is common on forum sites that permit images but block JavaScript). Applications that change state with `GET` requests are more vunerable from malacious attacks.
 
-> [!NOTE]
-> In this context, *session* refers to the client-side session during which the user is authenticated. It is unrelated to server-side sessions or [session middleware](xref:fundamentals/app-state).
+CSRF attacks are possible against web sites that use cookies for authentication, because browsers send all relevant cookies to the destination web site. However, CSRF attacks are not limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user logs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
+
+Note: In this context, *session* refers to the client-side session during which the user is authenticated. It is unrelated to server-side sessions or [session middleware](xref:fundamentals/app-state).
 
 Users can guard against CSRF vulnerabilities by:
-* Logging off of web sites when they have finished using them
-* Clearing their browser's cookies periodically
+* Logging off of web sites when they have finished using them.
+* Clearing their browser's cookies periodically.
 
 However, CSRF vulnerabilities are fundamentally a problem with the web app, not the end user.
 
 ## How does ASP.NET Core MVC address CSRF?
+
+In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper] injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatially generate anti-forgery tokens:
+
+```html
+<form method="post">
+  <!-- form markup -->
+</form>
+```
+
+The automatic generation of anti-forgery tokens for HTML form elements happens when:
+
+* The `form` tag contains the `method="post"` attribute AND
+
+  * The action attribute is empty. ( `action="") OR
+  * The action attribute is not supplied. (<form method="post">)
+
+You can disable automatic generation of anti-forgery tokens for HTML form elements by:
+
+* Explicitly disabling `asp-antiforgery`. For example
+
+ ```html
+  <form method="post" asp-antiforgery="false">
+  /form>
+  ```
+
+* Opt the form element out of Tag Helpers by using the Tag Helper [! jopt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out).
+
+ ```html
+  <!form method="post">
+  </!form>
+  ```
+
+* Remove the `FormTagHelper` from the view. You can remove the `FormTagHelper` from a view by adding the following directive to the Razor view:
+
+ ```html
+  @removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+  ```
 
 > [!NOTE]
 > [Razor Pages](xref:mvc/razor-pages/index) are automatically protected from XSRF/CSRF. You don't have to write any additional code. See [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index) for more information.
 
 <!-- [XSRF/CSRF and Razor Pages](xref:mvc/razor-pages/index#xsrf) for more information. -->
 
-The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's identity to the client. The client must send back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's identity, the request should be rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). ASP.NET Core MVC will generate Antiforgery Tokens by default on all forms it generates. The following two examples of view logic will generate antiforgery tokens automatically:
+The most common approach to defending against CSRF attacks is the synchronizer token pattern (STP). STP is a technique used when the user requests a page with form data. The server sends a token associated with the current user's identity to the client. The client sends back the token to the server for verification. If the server receives a token that doesn't match the authenticated user's identity, the request is rejected. The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (ensuring page 1 precedes page 2 which precedes page 3). All the forms in ASP.NET Core MVC templates generate antiforgery tokens. The following two examples of view logic generate antiforgery tokens:
 
 ```html
 <form asp-controller="Manage" asp-action="ChangePassword" method="post">
@@ -77,7 +113,7 @@ The most common approach to defending against CSRF attacks is the synchronizer t
 }
 ```
 
-You can also explicitly add an antiforgery token to a ``<form>`` element you create without using tag helpers or HTML helpers by using ``@Html.AntiForgeryToken()``:
+You can explicitly add an antiforgery token to a ``<form>`` element without using tag helpers or HTML helpers with ``@Html.AntiForgeryToken``:
 
 
 ```html
@@ -87,16 +123,18 @@ You can also explicitly add an antiforgery token to a ``<form>`` element you cre
 ```
 
 ```html
-In each of the above cases, ASP.NET Core will add a hidden form field like the following:
+In each of the preceding cases, ASP.NET Core will add a hidden form field similar to the following:
 
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkSldwD9CpLRyOtm6FiJB1Jr_F3FQJQDvhlHoLNJJrLA6zaMUmhjMsisu2D2tFkAiYgyWQawJk9vNm36sYP1esHOtamBEPvSk1_x--Sg8Ey2a-d9CV2zHVWIN9MVhvKHOSyKqdZFlYDVd69XYx-rOWPw3ilHGLN6K0Km-1p83jZzF0E4WU5OGg5ns2-m9Yw" />
 ```
 
 ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens: ``ValidateAntiForgeryToken``, ``AutoValidateAntiforgeryToken``, and ``IgnoreAntiforgeryToken``.
 
+<a name="vaft"></a>
+
 ### ValidateAntiForgeryToken
 
-The ``ValidateAntiForgeryToken`` is an action filter that can be applied to an individual action, a controller, or globally for the app. Requests made to actions that have this filter applied will be blocked unless the request includes a valid antiforgery token.
+The ``ValidateAntiForgeryToken`` is an action filter that can be applied to an individual action, a controller, or globally. Requests made to actions that have this filter applied will be blocked unless the request includes a valid antiforgery token.
 
 ```c#
 [HttpPost]
@@ -118,11 +156,11 @@ public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
 }
 ```
 
-The ``ValidateAntiForgeryToken`` attribute will require a token for requests to action methods it decorates, including *GET* requests. If you apply it broadly, you can override it with the ``IgnoreAntiforgeryToken`` attribute.
+The ``ValidateAntiForgeryToken`` attribute requires a token for requests to action methods it decorates, including `HTTP GET` requests. If you apply it broadly, you can override it with the ``IgnoreAntiforgeryToken`` attribute.
 
 ### AutoValidateAntiforgeryToken
 
-In most cases, your application will not receive antiforgery tokens for certain kinds of HTTP requests, such as GET requests. Instead of broadly applying the ``ValidateAntiForgeryToken`` attribute and then overriding it with ``IgnoreAntiforgeryToken`` attributes, you can use the ``AutoValidateAntiforgeryToken`` attribute. This attribute works identically to the ``ValidateAntiForgeryToken`` attribute, except that it doesn't require tokens for requests made using the following HTTP methods:
+ASP.NET Core apps generally do not generate antiforgery tokens for HTTP safe methods (GET, HEAD, OPTIONS, and TRACE). Instead of broadly applying the ``ValidateAntiForgeryToken`` attribute and then overriding it with ``IgnoreAntiforgeryToken`` attributes, you can use the ``AutoValidateAntiforgeryToken`` attribute. This attribute works identically to the ``ValidateAntiForgeryToken`` attribute, except that it doesn't require tokens for requests made using the following HTTP methods:
 
 * GET
 * HEAD
@@ -131,8 +169,7 @@ In most cases, your application will not receive antiforgery tokens for certain 
 
 We recommend you use ``AutoValidateAntiforgeryToken`` broadly for non-API scenarios. This ensures your POST actions are protected by default. The alternative is to ignore antiforgery tokens by default, unless ``ValidateAntiForgeryToken`` is applied to the individual action method. It's more likely in this scenario for a POST action method to be left unprotected, leaving your app vulnerable to CSRF attacks. Even anonymous POSTS should send the antiforgery token.
 
-> [!NOTE]
-> APIs don't have an automatic mechanism for sending the non-cookie part of the token; your implementation will likely depend on your client code implementation. Some examples are shown below.
+Note: APIs don't have an automatic mechanism for sending the non-cookie part of the token; your implementation will likely depend on your client code implementation. Some examples are shown below.
 
 
 Example (class level):
@@ -150,6 +187,8 @@ Example (global):
 services.AddMvc(options => 
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 ```
+
+<a name="iaft"></a>
 
 ### IgnoreAntiforgeryToken
 
