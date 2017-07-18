@@ -36,9 +36,12 @@ The Encrypt method returns a blob that includes the enciphered plaintext and an 
 > [!NOTE]
 > The IAuthenticatedEncryptor instance itself doesn't actually need to contain the key material. For example, the implementation could delegate to an HSM for all operations.
 
+<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptorfactory></a>
 <a name=data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor></a>
 
-## IAuthenticatedEncryptorDescriptor
+## How to create an IAuthenticatedEncryptor
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows how to create an [IAuthenticatedEncryptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance. Its API is as follows.
 
@@ -65,6 +68,49 @@ Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor i
 
    // the 'roundTripped' and 'plaintext' buffers should be equivalent
    ```
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The **IAuthenticatedEncryptorFactory** interface represents a type that knows how to create an [IAuthenticatedEncryptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance. Its API is as follows.
+
+* CreateEncryptorInstance(IKey key) : IAuthenticatedEncryptor
+
+For any given IKey instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.
+
+```csharp
+// we have an IAuthenticatedEncryptorFactory instance and an IKey instance
+   IAuthenticatedEncryptorFactory factory = ...;
+   IKey key = ...;
+
+   // get an encryptor instance and perform an authenticated encryption operation
+   ArraySegment<byte> plaintext = new ArraySegment<byte>(Encoding.UTF8.GetBytes("plaintext"));
+   ArraySegment<byte> aad = new ArraySegment<byte>(Encoding.UTF8.GetBytes("AAD"));
+   var encryptor1 = factory.CreateEncryptorInstance(key);
+   byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
+
+   // get another encryptor instance and perform an authenticated decryption operation
+   var encryptor2 = factory.CreateEncryptorInstance(key);
+   byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad);
+
+
+   // the 'roundTripped' and 'plaintext' buffers should be equivalent
+   ```
+
+---
+
+<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor></a>
+
+## IAuthenticatedEncryptorDescriptor (ASP.NET Core 2.x only)
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows how to export itself to XML. Its API is as follows.
+
+* ExportToXml() : XmlSerializedDescriptorInfo
+
+---
 
 ## XML Serialization
 
@@ -100,7 +146,9 @@ Types which implement IAuthenticatedEncryptorDescriptorDeserializer should have 
 > [!NOTE]
 > The IServiceProvider passed to the constructor may be null.
 
-## IAuthenticatedEncryptorConfiguration
+## The top-level factory
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The **IAuthenticatedEncryptorConfiguration** interface represents a type which knows how to create [IAuthenticatedEncryptorDescriptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor) instances. It exposes a single API.
 
@@ -111,3 +159,17 @@ Think of IAuthenticatedEncryptorConfiguration as the top-level factory. The conf
 When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.
 
 The IAuthenticatedEncryptorConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#data-protection-implementation-key-management). To change the implementation for all future keys, register a singleton IAuthenticatedEncryptorConfiguration in the service container.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The **AlgorithmConfiguration** class represents a type which knows how to create [IAuthenticatedEncryptorDescriptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor) instances. It exposes a single API.
+
+* CreateNewDescriptor() : IAuthenticatedEncryptorDescriptor
+
+Think of AlgorithmConfiguration as the top-level factory. The configuration serves as a template. It wraps algorithmic information (e.g., this configuration produces descriptors with an AES-128-GCM master key), but it is not yet associated with a specific key.
+
+When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.
+
+The AlgorithmConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#data-protection-implementation-key-management). To change the implementation for all future keys, set the AuthenticatedEncryptorConfiguration property in KeyManagementOptions.
+
+---
