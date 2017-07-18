@@ -20,7 +20,7 @@ Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0
 
 To deploy precompiled views:
 
-# [ASP.NET 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnet1x)
 
 Set `MvcRazorCompileOnPublish` to true and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
@@ -32,6 +32,6 @@ Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlight
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
-All the ASP.NET Core 2.x templates set `MvcRazorCompileOnPublish` to true.
+All the ASP.NET Core 2.x project templates set `MvcRazorCompileOnPublish` to true.
 
 ---
