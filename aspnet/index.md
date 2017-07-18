@@ -155,7 +155,7 @@ description:
                                 </div>
                             </li>
                             <li>
-                                <a href="https://docs.microsoft.com/aspnet/core/tutorials/your-first-mac-aspnet">
+                                <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-mac/start-mvc">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -166,7 +166,7 @@ description:
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Build a website on a Mac</h3>
-                                                    <p>Build your first ASP.NET core app on a Mac using Visual Studio Code.</p>
+                                                    <p>Build your first ASP.NET core app on a Mac using Visual Studio for Mac.</p>
                                                 </div>
                                             </div>
                                         </div>
