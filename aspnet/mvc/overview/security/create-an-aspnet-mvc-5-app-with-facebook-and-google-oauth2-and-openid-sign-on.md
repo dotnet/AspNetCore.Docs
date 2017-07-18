@@ -110,14 +110,14 @@ To connect to authentication providers like Google and Facebook, you will need t
 ## Creating a Google app for OAuth 2 and connecting the app to the project
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
-1. If you haven't create a project before, select **Credentials** in the left tab, and then select **Create**.
-3. In the left tab, click **Credentials**.
-4. Click the **Create credentials** then **OAuth client ID**. 
+1. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
+1. In the left tab, click **Credentials**.
+1. Click **Create credentials** then **OAuth client ID**. 
 
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300` unless you've created other SSL projects)
     3. Set the **Authorized redirect URI** to:  
-         `https://localhost:44300/signin-google`
+         `https://localhost:44300/signin-google/`
 5. Click the OAuth Consent screen menu item, then set your email address and product name. When you have completed the form click **Save**.
 6. Click the Library menu item, search **Google+ API**, click on it then press Enable.
   
