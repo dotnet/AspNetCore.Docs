@@ -20,7 +20,7 @@ Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0
 
 Precompilation considerations:
 
-* Precompiling views results in a smaller published bundle and faster startup time.
+* Precompiling views results in  a smaller published bundle and faster startup time.
 * You can't edit Razor files after you precompile views. The edited views won't be present in the published bundle. 
 
 To deploy precompiled views:
@@ -31,7 +31,7 @@ Set `MvcRazorCompileOnPublish` to true and include a package reference to `Micro
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 
-# [ASP.NET 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.0](#tab/aspnet20)
 
 Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlights this setting:
 
