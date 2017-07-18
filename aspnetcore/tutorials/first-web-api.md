@@ -63,7 +63,7 @@ Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. S
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-The [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider is included in the ["Microsoft.AspNetCore.All" metapackage](xref:fundamentals/metapackage), you don't need to install it. This database provider allows Entity Framework Core to be used with an in-memory database.
+The [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). You don't need to install `Entity Framework Core InMemory`. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 ---
 
