@@ -72,7 +72,7 @@ The `Sdk` attribute in the `<Project>` element (in the first line) of the markup
 
 The default location for `MSBuildSDKsPath` (with Visual Studio 2017 Enterprise) is the *%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks* folder.
 
-`"Microsoft.NET.Sdk.Web"` depends on:
+`Microsoft.NET.Sdk.Web` depends on:
 
 * *Microsoft.NET.Sdk.Web.ProjectSystem*
 * *Microsoft.NET.Sdk.Publish*
