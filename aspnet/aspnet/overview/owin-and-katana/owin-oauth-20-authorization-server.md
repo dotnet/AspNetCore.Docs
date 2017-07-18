@@ -128,7 +128,11 @@ The code above uses an in-memory concurrent dictionary to store the code and ide
 
 [!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample6.cs?highlight=15)]
 
-The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:![](owin-oauth-20-authorization-server/_static/image2.png) If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
+The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:
+
+![](owin-oauth-20-authorization-server/_static/image2.png)
+
+If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
 
 ### Implicit Grant
 
