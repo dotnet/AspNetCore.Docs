@@ -178,13 +178,15 @@ The `asp-for` attribute value is a `ModelExpression` and the right hand side of 
        var joe = "Joe";
    }
    <input asp-for="@joe" />
-   ```
+```
 
 Generates the following:
 
 ```HTML
 <input type="text" id="joe" name="joe" value="Joe" />
-   ```
+```
+
+With collection properties, `asp-for="CollectionProperty[23].Member"` generates the same name as `asp-for="CollectionProperty[i].Member"` when `i` has the value `23`.
 
 ### Navigating child properties
 
