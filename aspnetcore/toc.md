@@ -1,6 +1,7 @@
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
+## [Razor Pages](xref:mvc/razor-pages/index)
 ## [Create a Web API](xref:tutorials/first-web-api)
 ## [Create a Web app](xref:tutorials/first-mvc-app/start-mvc)
 
@@ -32,7 +33,7 @@
 ## [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage)
 
 # [MVC](mvc/overview.md)
-## [Razor Pages](mvc/razor-pages/index.md)
+## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
 ## [Model Binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
