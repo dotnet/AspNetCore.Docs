@@ -28,7 +28,7 @@ Set `MvcRazorCompileOnPublish` to true and include a package reference to `Micro
 
 # [ASP.NET 2.0](#tab/aspnet20)
 
-Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlights this settings:
+Set `MvcRazorCompileOnPublish` to true. The following *.csproj* sample highlights this setting:
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
