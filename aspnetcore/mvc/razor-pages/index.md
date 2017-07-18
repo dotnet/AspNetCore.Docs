@@ -27,7 +27,7 @@ Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Page
 
 ASP.NET Core 2.0 preview  is included in .NET Core 2.0 preview. [Download .NET Core 2.0 Preview 2](https://www.microsoft.com/net/core/preview) 
 
-If you’re using Visual Studio, [Visual Studio 2017 Preview 2](https://www.visualstudio.com/vs/preview/) is required.
+If you’re using Visual Studio, [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) or later is required.
 
 ## Razor Pages
 
