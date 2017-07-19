@@ -276,6 +276,7 @@ namespace AspNetCoreDotNetCore1._1App.Controllers
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 
+        #region snippet_ManageLogins
         //GET: /Manage/ManageLogins
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
@@ -299,6 +300,7 @@ namespace AspNetCoreDotNetCore1._1App.Controllers
                 OtherLogins = otherLogins
             });
         }
+        #endregion
 
         //
         // POST: /Manage/LinkLogin

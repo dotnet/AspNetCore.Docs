@@ -1,7 +1,5 @@
-﻿using System;
+﻿#region snippet_ManageLoginsViewModel
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,3 +12,4 @@ namespace AspNetCoreDotNetCore1._1App.Models.ManageViewModels
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
 }
+#endregion
