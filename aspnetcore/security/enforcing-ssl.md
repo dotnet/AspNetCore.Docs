@@ -14,6 +14,8 @@ uid: security/enforcing-ssl
 ---
 # Enforcing SSL in an ASP.NET Core app
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 This document shows how to:
 
 - Require SSL for all requests (HTTPS requests only).
