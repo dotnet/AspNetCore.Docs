@@ -166,7 +166,7 @@ In the 2.x project templates, Application Insights isn't added by default. Follo
 > [!NOTE]
 > If you're starting with a 2.x project template, notice that the `Main` method of *Program.cs* has changed from 1.x:
 > [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=16)]
-> This new form is optional as part of the migration, but it's highly recommended.
+> This new pattern is optional as part of the migration, but its adoption is highly recommended.
 
 ## Razor View Compilation
 [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
