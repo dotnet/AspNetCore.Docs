@@ -23,7 +23,7 @@ Install the following prerequisites before migrating to ASP.NET Core 2.x:
 - Visual Studio 2017 Preview version 15.3 or later, Visual Studio Code, or Visual Studio for Mac
 - .NET Core 2.x or .NET Framework 4.6.1+
 
-For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must also be updated.
+For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must be updated.
 
 > [!NOTE]
 > Thanks to .NET Standard 2.0, .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work for you now.
@@ -132,7 +132,7 @@ In 2.x projects, this changes to:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16-17)]
 
-1.x projects also reference `GetExternalAuthenticationSchemes` in *Login.cshtml*:
+1.x projects reference `GetExternalAuthenticationSchemes` in *Login.cshtml*:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Account/Login.cshtml?range=62,75-84)]
 
@@ -168,7 +168,7 @@ In the 2.x project templates, Application Insights isn't added by default.
 
 If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, it's recommended that you omit its explicit package reference and the code referenced in steps 2 and 3 above. You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
 
-If you are using the Application Insights SDK directly, continue to do so. Since the 2.x meta-package includes the latest version of Application Insights, you will encounter a package downgrade error if you're referencing an older version.
+If you are using the Application Insights SDK directly, continue to do so. Since the 2.x meta-package includes the latest version of Application Insights, a package downgrade error appears if you're referencing an older version.
 
 ## Program.cs
 In 1.x projects, the `Main` method of *Program.cs* looked like this:
@@ -179,7 +179,7 @@ If you're starting with a 2.x project template, notice that the `Main` method of
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs)]
 
-The adoption of this new 2.x pattern is highly recommended. Product features like Entity Framework Core Migrations **will not** work without it.
+The adoption of this new 2.x pattern is highly recommended. Product features like Entity Framework Core Migrations **do not** work without it.
 
 ## Razor View Compilation
 [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
@@ -193,3 +193,4 @@ The 2.x project templates add and enable the `MvcRazorCompileOnPublish` property
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?highlight=4)]
 
 ## Publishing
+At publish time, ASP.NET Core 2.x applications targeting .NET Core 2.x use a new feature called the .NET Core Runtime Store. The Runtime Store contains all the runtime assets necessary to run ASP.NET Core 2.x applications. No assets from the referenced ASP.NET Core NuGet packages are deployed with the application. The benefits are a much smaller published bundle size and decreased application startup time.
