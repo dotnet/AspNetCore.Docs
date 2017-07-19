@@ -40,7 +40,7 @@ Projects targeting .NET Framework must use the TFM of a version greater than or 
 ```
 
 ## global.json
-If your solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the desired version on your machine:
+If your solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the desired version installed on your machine:
 
 [!code-json[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/global.json?highlight=3)]
 
@@ -151,6 +151,7 @@ In 2.x projects, the return type changes to `IList<AuthenticationScheme>`. This 
 
 ## Application Insights
 ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. This was accomplished via a three-step process:
+
 1. Add the supporting NuGet package:
 
     [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=10)]
@@ -169,6 +170,10 @@ In the 2.x project templates, Application Insights isn't added by default. Follo
 > If you're starting with a 2.x project template, notice that the `Main` method of *Program.cs* has changed from 1.x:
 > [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=16)]
 > This new pattern is optional as part of the migration, but its adoption is highly recommended.
+
+If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, it's recommended that you remove its explicit package reference and just rely on the new "light-up" features available in Visual Studio 2017.
+
+If you are using the Application Insights SDK directly, continue to do so. Because the 2.x meta-package includes the latest version of Application Insights, you will encounter a package downgrade error if you're referencing an older version.
 
 ## Razor View Compilation
 [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
