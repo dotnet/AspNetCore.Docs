@@ -45,7 +45,7 @@ In a 1.x .csproj file, an assortment of NuGet packages is needed:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=9-26)]
 
-In an ASP.NET Core 2.x application targeting .NET Core 2.x, a single meta-package reference in the .csproj file replaces the aforementioned collection of packages:
+In an ASP.NET Core 2.x application targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the .csproj file replaces the aforementioned collection of packages:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
 
