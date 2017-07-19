@@ -61,11 +61,11 @@ Update the `Version` attributes of each `<DotNetCliToolReference />` node to the
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
 ## PackageTargetFallback
-The *.csproj* file of a 1.x application used a `PackageTargetFallback` node:
+The *.csproj* file of a 1.x application used a `PackageTargetFallback` node and variable:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
 
-This node has been renamed:
+Both the node and variable have been renamed:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
 
