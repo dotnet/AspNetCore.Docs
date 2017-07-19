@@ -23,6 +23,8 @@ Install the following prerequisites before migrating to ASP.NET Core 2.x:
 - Visual Studio 2017 Preview version 15.3 or later, Visual Studio Code, or Visual Studio for Mac
 - .NET Core 2.x or .NET Framework 4.6.1+
 
+For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must also be updated.
+
 > [!NOTE]
 > Thanks to .NET Standard 2.0, .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work for you now.
 
@@ -53,7 +55,7 @@ In an ASP.NET Core 2.x project targeting .NET Core 2.x, a single [meta-package](
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the meta-package.
 
-The meta-package is incompatible with ASP.NET Core 2.x projects targeting .NET Framework. For projects targeting .NET Framework, upgrade each NuGet package reference to 2.x.
+In an ASP.NET Core 2.x project targeting .NET Framework, the meta-package is incompatible. An upgrade of each NuGet package reference to 2.x is required.
 
 ## DotNetCliToolReference
 Update the `Version` attributes of each `<DotNetCliToolReference />` node to the desired 2.x version:
@@ -91,7 +93,7 @@ The `UseIdentity` extension method, which typically appeared in the `Configure` 
 Feature parity is maintained when this method call is removed in 2.x projects.
 
 ### IdentityCookieOptions Instances
-A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
+A side effect of the 2.x changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
 For example, 1.x projects use constructor injection to pass an `IdentityCookieOptions` parameter into *AccountController.cs*. The external cookie authentication scheme is accessed from the provided instance:
 
