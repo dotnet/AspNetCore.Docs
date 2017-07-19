@@ -16,6 +16,8 @@ uid: migration/1x-to-2x
 
 By [Scott Addie](https://github.com/scottaddie)
 
+This article shows how to migrate an existing ASP.NET Core 1.x project to ASP.NET Core 2.x. Non-breaking changes are outside of the article's scope.
+
 ## Prerequisites
 Install the following prerequisites before migrating to ASP.NET Core 2.x:
 - Visual Studio 2017 Preview version 15.3 or later, Visual Studio Code, or Visual Studio for Mac
@@ -25,11 +27,11 @@ Install the following prerequisites before migrating to ASP.NET Core 2.x:
 > Thanks to .NET Standard 2.0, .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work for you now.
 
 ## Target Framework Moniker (TFM)
-Applications targeting .NET Core must use the `netcoreapp2.0` TFM:
+Projects targeting .NET Core must use the TFM of a version greater than or equal to .NET Core 2.0:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=4)]
 
-Applications targeting .NET Framework must use the TFM of a version greater than or equal to .NET Framework 4.6.1:
+Projects targeting .NET Framework must use the TFM of a version greater than or equal to .NET Framework 4.6.1:
 
 ```xml
 <TargetFramework>net461</TargetFramework>
@@ -41,17 +43,17 @@ If your solution relies upon a *global.json* file to target a specific .NET Core
 [!code-json[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/global.json?highlight=3)]
 
 ## PackageReference
-In a 1.x .csproj file, an assortment of NuGet packages is needed:
+In a 1.x *.csproj* file, an assortment of NuGet packages is needed:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=9-26)]
 
-In an ASP.NET Core 2.x application targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the .csproj file replaces the aforementioned collection of packages:
+In an ASP.NET Core 2.x application targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the aforementioned collection of packages:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the meta-package.
 
-The meta-package is incompatible with ASP.NET Core 2.x applications targeting .NET Framework. For applications targeting .NET Framework, upgrade each NuGet package reference to 2.x.
+The meta-package is incompatible with ASP.NET Core 2.x projects targeting .NET Framework. For projects targeting .NET Framework, upgrade each NuGet package reference to 2.x.
 
 ## DotNetCliToolReference
 Update the `Version` attributes of each `<DotNetCliToolReference />` node to the desired 2.x version:
@@ -59,7 +61,7 @@ Update the `Version` attributes of each `<DotNetCliToolReference />` node to the
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
 ## PackageTargetFallback
-The .csproj file of a 1.x application used a `PackageTargetFallback` node:
+The *.csproj* file of a 1.x application used a `PackageTargetFallback` node:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
 
@@ -68,34 +70,34 @@ This node has been renamed:
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
 
 ## Authentication / Identity
-The old 1.x authentication stack is obsolete and must be migrated to the 2.0 stack. What follows are changes required to get the application running.
+With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The old 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. What follows are changes required to get the application running.
 
 ### IAuthenticationManager (HttpContext.Authentication) is obsolete
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
 
-For example, 1.x applications reference an `Authentication` property:
+For example, 1.x projects reference an `Authentication` property:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
-In 2.x applications, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
+In 2.x projects, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
 ### Authentication Middleware
-The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x applications, is obsolete:
+The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x projects, is obsolete:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Startup.cs?range=76)]
 
-Feature parity is maintained when this method call is removed in 2.x applications.
+Feature parity is maintained when this method call is removed in 2.x projects.
 
 ### IdentityCookieOptions Instances
 A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
-For example, 1.x applications use constructor injection to pass an `IdentityCookieOptions` parameter into *AccountController.cs*. The external cookie authentication scheme is accessed from the provided instance:
+For example, 1.x projects use constructor injection to pass an `IdentityCookieOptions` parameter into *AccountController.cs*. The external cookie authentication scheme is accessed from the provided instance:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 
-In 2.x applications, this changes to:
+In 2.x projects, this changes to:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=10)]
 
@@ -120,33 +122,33 @@ public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
 ```
 
 ### Removal of GetExternalAuthenticationSchemes
-This synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x applications have the following code in *ManageController.cs*:
+This synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *ManageController.cs*:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16)]
 
-In 2.x applications, this changes to:
+In 2.x projects, this changes to:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16-17)]
 
-1.x applications also reference `GetExternalAuthenticationSchemes` in *Login.cshtml*:
+1.x projects also reference `GetExternalAuthenticationSchemes` in *Login.cshtml*:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Account/Login.cshtml?range=62,75-84)]
 
-In 2.x applications, the asynchronous version of the method is called instead. Switching to this new method means the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`.
+In 2.x projects, the asynchronous version of the method is called instead. Switching to this new method means the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`.
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Views/Account/Login.cshtml?range=62,75-84)]
 
 ### ManageLoginsViewModel Property Change
-A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x applications, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
+A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x projects, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 
-In 2.x applications, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import  with a `Microsoft.AspNetCore.Authentication` import.
+In 2.x projects, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import  with a `Microsoft.AspNetCore.Authentication` import.
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 
 ## Application Insights
-ASP.NET Core 1.1 applications created in Visual Studio 2017 added Application Insights by default. This was accomplished via a three-step process:
+ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. This was accomplished via a three-step process:
 1. Add the supporting NuGet package:
 
     [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=10)]
@@ -169,7 +171,7 @@ In the 2.x project templates, Application Insights isn't added by default. Follo
 ## Razor View Compilation
 [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
 
-In 1.x applications, view compilation is enabled by adding a reference to the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package and by manually adding and enabling the `MvcRazorCompileOnPublish` property:
+In 1.x projects, view compilation is enabled by adding a reference to the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package and by manually adding and enabling the `MvcRazorCompileOnPublish` property:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?highlight=4,16)]
 
