@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace AspNetCoreDotNetCore1._1App
 {
     public class Program
     {
-        #region snippet_MainMethod
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
@@ -22,6 +17,5 @@ namespace AspNetCoreDotNetCore1._1App
 
             host.Run();
         }
-        #endregion
     }
 }

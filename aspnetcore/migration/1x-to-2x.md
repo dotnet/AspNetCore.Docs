@@ -5,7 +5,7 @@ description: Upgrading an ASP.NET Core 1.x application to ASP.NET Core 2.x
 keywords: ASP.NET Core
 ms.author: scaddie
 manager: wpickett
-ms.date: 07/18/2017
+ms.date: 07/19/2017
 ms.topic: article
 ms.assetid: 8468d859-ff32-4a92-9e62-08c4a9e36594
 ms.technology: aspnet
@@ -153,15 +153,18 @@ ASP.NET Core 1.1 applications created in Visual Studio 2017 added Application In
 
 2. Invoke the `UseApplicationInsights` extension method in *Program.cs*:
 
-    [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?name=snippet_MainMethod&highlight=8)]
+    [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=15)]
 
 3. Add the client-side API call in *_Layout.cshtml*:
 
     [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
-In 2.x, Application Insights isn't added by default. The application won't compile once you add the ASP.NET Core meta-package.
+In the 2.x project templates, Application Insights isn't added by default. Follow steps 2 and 3 above.
 
-<!-- FIGURE OUT HOW TO ADD APP INSIGHTS IN 2.x -->
+> [!NOTE]
+> If you're starting with a 2.x project template, notice that the `Main` method of *Program.cs* has changed from 1.x:
+> [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=16)]
+> This new form is optional as part of the migration, but it's highly recommended.
 
 ## Razor View Compilation
 [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
