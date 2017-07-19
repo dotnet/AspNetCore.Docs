@@ -1,7 +1,7 @@
 ---
 title: Migrating from ASP.NET Core 1.x to 2.x
 author: scottaddie
-description: Upgrading an ASP.NET Core 1.x application to ASP.NET Core 2.x
+description: Upgrading an ASP.NET Core 1.x project to ASP.NET Core 2.x
 keywords: ASP.NET Core
 ms.author: scaddie
 manager: wpickett
@@ -38,7 +38,7 @@ Projects targeting .NET Framework must use the TFM of a version greater than or 
 ```
 
 ## global.json
-If your solution relies upon a *global.json* file to target a specific .NET Core SDK version, update it to use the desired version on your machine:
+If your solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the desired version on your machine:
 
 [!code-json[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/global.json?highlight=3)]
 
@@ -47,7 +47,7 @@ In a 1.x *.csproj* file, an assortment of NuGet packages is needed:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=9-26)]
 
-In an ASP.NET Core 2.x application targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the aforementioned collection of packages:
+In an ASP.NET Core 2.x project targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the aforementioned collection of packages:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
 
@@ -61,7 +61,7 @@ Update the `Version` attributes of each `<DotNetCliToolReference />` node to the
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
 ## PackageTargetFallback
-The *.csproj* file of a 1.x application used a `PackageTargetFallback` node and variable:
+The *.csproj* file of a 1.x project used a `PackageTargetFallback` node and variable:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
 
@@ -70,7 +70,7 @@ Both the node and variable have been renamed:
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
 
 ## Authentication / Identity
-With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The old 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. What follows are changes required to get the application running.
+With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The old 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. What follows are changes required to get the project running.
 
 ### IAuthenticationManager (HttpContext.Authentication) is obsolete
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
@@ -102,7 +102,7 @@ In 2.x projects, this changes to:
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=10)]
 
 ### IdentityUser POCO Navigation Properties
-The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x application used these properties, manually add them back to the 2.x application:
+The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.x project:
 
 ```csharp
 /// <summary>
