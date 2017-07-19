@@ -31,7 +31,7 @@ For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core W
 ## Target Framework Moniker (TFM)
 Projects targeting .NET Core must use the TFM of a version greater than or equal to .NET Core 2.0:
 
-[!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=4)]
+[!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=3)]
 
 Projects targeting .NET Framework must use the TFM of a version greater than or equal to .NET Framework 4.6.1:
 
