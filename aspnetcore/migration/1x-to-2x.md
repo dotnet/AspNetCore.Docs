@@ -68,7 +68,7 @@ This node has been renamed:
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
 
 ## Authentication / Identity
-The old 1.x authentication stack is obsolete and must be migrated to the 2.0 stack. What follows are common changes required to get the application running:
+The old 1.x authentication stack is obsolete and must be migrated to the 2.0 stack. What follows are changes required to get the application running.
 
 ### IAuthenticationManager (HttpContext.Authentication) is obsolete
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
@@ -119,6 +119,24 @@ public virtual ICollection<TUserClaim> Claims { get; } = new List<TUserClaim>();
 public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
 ```
 
+### Removal of GetExternalAuthenticationSchemes
+This synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x applications have the following code in *ManageController.cs*:
+
+[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16)]
+
+In 2.x applications, this changes to:
+
+[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16-17)]
+
+### ManageLoginsViewModel Property Change
+A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x applications, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
+
+[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
+
+In 2.x applications, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import  with a `Microsoft.AspNetCore.Authentication` import.
+
+[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
+
 ## Application Insights
 ASP.NET Core 1.1 applications created in Visual Studio 2017 added Application Insights by default. This was accomplished via a three-step process:
 1. Add the supporting NuGet package:
@@ -133,7 +151,7 @@ ASP.NET Core 1.1 applications created in Visual Studio 2017 added Application In
 
     [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
-In 2.x, Application Insights isn't added by default. The application won't compile anymore once you add the ASP.NET Core meta-package.
+In 2.x, Application Insights isn't added by default. The application won't compile once you add the ASP.NET Core meta-package.
 
 <!-- FIGURE OUT HOW TO ADD APP INSIGHTS IN 2.x -->
 
