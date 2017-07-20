@@ -159,11 +159,11 @@ In 2.x projects, use the asynchronous version of the method:
 
 1.x projects reference `GetExternalAuthenticationSchemes` in *Login.cshtml*:
 
-[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Account/Login.cshtml?range=62,75-84)]
+[!code-cshtml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Account/Login.cshtml?range=62,75-84)]
 
 In 2.x projects, the asynchronous version of the method is called instead. Switching to this new method means the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`.
 
-[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Views/Account/Login.cshtml?range=62,75-84)]
+[!code-cshtml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Views/Account/Login.cshtml?range=62,75-84)]
 
 <a name="property-change"></a>
 
@@ -191,7 +191,7 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
 3. Add the client-side API call in *_Layout.cshtml*:
 
-    [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
+    [!code-cshtml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
 In the 2.x project templates, Application Insights isn't added by default.
 
