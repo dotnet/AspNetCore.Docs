@@ -77,10 +77,13 @@ You might want to use this email again in the next step when the app sends a con
 
 See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB. 
 
+---
+
 ## Require SSL and setup IIS Express for SSL
 
 See [Enforcing SSL](xref:security/enforcing-ssl).
 
+<a name="prevent-login-at-registration"></a>
 ## Require email confirmation
 
 It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
