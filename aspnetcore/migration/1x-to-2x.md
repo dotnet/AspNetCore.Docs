@@ -210,7 +210,7 @@ If you're starting with a 2.x project template, notice that the `Main` method of
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs)]
 
-The adoption of this new 2.x pattern is highly recommended. Product features like Entity Framework Core Migrations **do not** work without it.
+The adoption of this new 2.x pattern is highly recommended. Product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) **do not** work without it.
 
 <a name="view-compilation"></a>
 
