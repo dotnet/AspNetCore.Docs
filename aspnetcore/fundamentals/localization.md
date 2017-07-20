@@ -143,6 +143,12 @@ A resource file is a useful mechanism for separating localizable strings from co
 
     ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
 
+<a name="error"></a>
+
+If you are using Visual Studio 2017 Preview version 15.3, you'll get an error indicator in the resource editor. You can ignore the error or remove the * ResXFileCodeGenerator*  value from the * Custom Tool*  properties grid:
+
+![Resx editor](localization/_static/err.png)
+
 ## Resource file naming
 
 Resources are named for the full type name of their class minus the assembly name. For example, a French resource in a project whose main assembly is `LocalizationWebsite.Web.dll` for the class `LocalizationWebsite.Web.Startup` would be named *Startup.fr.resx*. A resource for the class `LocalizationWebsite.Web.Controllers.HomeController` would be named *Controllers.HomeController.fr.resx*. If your targeted class's namespace is not the same as the assembly name you will need the full type name. For example, in the sample project a resource for the type `ExtraNamespace.Tools` would be named *ExtraNamespace.Tools.fr.resx*.
