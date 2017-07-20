@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
-ms.date: 07/14/2017
+ms.date: 07/20/2017
 ms.topic: article
 ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0a2c3e
 ms.technology: aspnet
