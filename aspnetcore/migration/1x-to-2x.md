@@ -86,11 +86,13 @@ In 2.x projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
 ### Authentication Middleware
-The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x projects, is obsolete:
+The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x projects, is obsolete and will be removed in a future release:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Startup.cs?range=76)]
 
-Feature parity is maintained when this method call is removed in 2.x projects.
+Feature parity is maintained in 2.x projects when this method call is replaced with `UseAuthentication`:
+
+[!code-csharp[Main(../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]]
 
 ### IdentityCookieOptions Instances
 A side effect of the 2.x changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
