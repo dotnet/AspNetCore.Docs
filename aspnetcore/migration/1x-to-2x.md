@@ -92,7 +92,7 @@ The `UseIdentity` extension method, which typically appeared in the `Configure` 
 
 Feature parity is maintained in 2.x projects when this method call is replaced with `UseAuthentication`:
 
-[!code-csharp[Main(../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]]
+[!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]
 
 ### IdentityCookieOptions Instances
 A side effect of the 2.x changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
