@@ -32,8 +32,6 @@ The tutorial requires Visual Studio 2017 preview 2 or later.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/2.png)
 
----
-
 # [Visual Studio 2017](#tab/vs17)
 
 The tutorial requires Visual Studio 2017 or later.
@@ -43,7 +41,6 @@ The tutorial requires Visual Studio 2017 or later.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
 
----
 
 # [SQLite macOS, Linux](#tab/macLinux)
 
@@ -73,8 +70,6 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 Note the `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
-
----
 
 # [SQLite](#tab/sqllite)
 
