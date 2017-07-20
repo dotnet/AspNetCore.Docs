@@ -19,16 +19,7 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 ## Create a New ASP.NET Core Project
 
-# [Visual Studio 2017](#tab/vs17)
-
-The tutorial requires Visual Studio 2017 or later.
-
-* In Visual Studio, create a New Web Application Project.
-* Select **Change Authentication** and set to **Individual User Accounts**.
-
-![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
-
----
+Select the tab for your environment.
 
 # [Visual Studio 2017 Preview 2 with ASP.NET Core 2.x](#tab/vs17p2)
 
@@ -43,7 +34,17 @@ The tutorial requires Visual Studio 2017 preview 2 or later.
 
 ---
 
-<!--
+# [Visual Studio 2017](#tab/vs17)
+
+The tutorial requires Visual Studio 2017 or later.
+
+* In Visual Studio, create a New Web Application Project.
+* Select **Change Authentication** and set to **Individual User Accounts**.
+
+![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
+
+---
+
 # [SQLite macOS, Linux](#tab/macLinux)
 
 Run the following in a command window:
@@ -54,9 +55,9 @@ dotnet new mvc --auth Individual
 
 * `--auth Individual`: specifies the Individual User Accounts template.
 * On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
+* run `new mvc --help` to get help on this command.
 
 ---
--->
 
 Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
