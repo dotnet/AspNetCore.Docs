@@ -87,6 +87,8 @@ Both the node and variable have been renamed:
 ## Authentication / Identity
 With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. The required changes are shown in the following sections.
 
+<a name="obsolete-interface"></a>
+
 ### IAuthenticationManager (HttpContext.Authentication) is obsolete
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
 
@@ -98,6 +100,8 @@ In 2.x projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
+<a name="auth-middleware"></a>
+
 ### Authentication Middleware
 The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x projects, is obsolete and will be removed in a future release:
 
@@ -106,6 +110,8 @@ The `UseIdentity` extension method, which typically appeared in the `Configure` 
 Feature parity is maintained in 2.x projects when this method call is replaced with `UseAuthentication`:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]
+
+<a name="identity-cookie-options"></a>
 
 ### IdentityCookieOptions Instances
 A side effect of the 2.x changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
@@ -117,6 +123,8 @@ For example, 1.x projects use [constructor injection](xref:mvc/controllers/depen
 In 2.x projects, this changes to:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=10)]
+
+<a name="navigation-properties"></a>
 
 ### IdentityUser POCO Navigation Properties
 The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If the 1.x project used these properties, manually add them back to the 2.x project:
@@ -138,6 +146,8 @@ public virtual ICollection<TUserClaim> Claims { get; } = new List<TUserClaim>();
 public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
 ```
 
+<a name="synchronous-method-removal"></a>
+
 ### Removal of GetExternalAuthenticationSchemes
 The synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *ManageController.cs*:
 
@@ -154,6 +164,8 @@ In 2.x projects, use the asynchronous version of the method:
 In 2.x projects, the asynchronous version of the method is called instead. Switching to this new method means the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`.
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Views/Account/Login.cshtml?range=62,75-84)]
+
+<a name="property-change"></a>
 
 ### ManageLoginsViewModel Property Change
 A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x projects, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
