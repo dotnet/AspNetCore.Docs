@@ -7,7 +7,6 @@ ms.author: scaddie
 manager: wpickett
 ms.date: 07/19/2017
 ms.topic: article
-ms.assetid: 8468d859-ff32-4a92-9e62-08c4a9e36594
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: migration/1x-to-2x
@@ -16,17 +15,17 @@ uid: migration/1x-to-2x
 
 By [Scott Addie](https://github.com/scottaddie)
 
-This article shows how to migrate an existing ASP.NET Core 1.x project to ASP.NET Core 2.x. Non-breaking changes are outside of the article's scope.
+This article outlines the most common steps to migrate an existing ASP.NET Core 1.x project to ASP.NET Core 2.x. Non-breaking changes are outside of the article's scope.
 
 ## Prerequisites
 Install the following prerequisites before migrating to ASP.NET Core 2.x:
-- Visual Studio 2017 Preview version 15.3 or later, Visual Studio Code, or Visual Studio for Mac
-- .NET Core 2.x or .NET Framework 4.6.1+
+- If you're using Visual Studio, install Visual Studio 2017 Preview version 15.3 or later
+- [.NET Core 2.x](https://www.microsoft.com/net/core/preview) or .NET Framework 4.6.1+
 
 For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must be updated.
 
 > [!NOTE]
-> Thanks to .NET Standard 2.0, .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work for you now.
+> .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
 
 ## Target Framework Moniker (TFM)
 Projects targeting .NET Core must use the TFM of a version greater than or equal to .NET Core 2.0:
@@ -40,25 +39,25 @@ Projects targeting .NET Framework must use the TFM of a version greater than or 
 ```
 
 ## global.json
-If the solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the desired version installed on the machine:
+If the solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the 2.x version installed on the machine:
 
 [!code-json[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/global.json?highlight=3)]
 
 ## PackageReference
-In a 1.x *.csproj* file, an assortment of NuGet packages is needed:
+The *.csproj* file in a 1.x project lists each NuGet package used by the project:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=9-26)]
 
-In an ASP.NET Core 2.x project targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the aforementioned collection of packages:
+In an ASP.NET Core 2.x project targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the collection of packages:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the meta-package.
 
-In an ASP.NET Core 2.x project targeting .NET Framework, the meta-package is incompatible. An upgrade of each NuGet package reference to 2.x is required.
+ASP.NET Core 2.x projects targeting .NET Framework cannot use this meta-package. An upgrade of each NuGet package reference to 2.x is required.
 
 ## DotNetCliToolReference
-Update the `Version` attributes of each `<DotNetCliToolReference />` node to the desired 2.x version:
+Update the `Version` attributes of each `<DotNetCliToolReference />` node to the 2.x version:
 
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
@@ -72,7 +71,7 @@ Both the node and variable have been renamed:
 [!code-xml[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
 
 ## Authentication / Identity
-With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The old 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. What follows are changes required to get the project running.
+With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The 1.x authentication stack is obsolete and **must** be migrated to the 2.0 stack. The required changes are shown in the following sections.
 
 ### IAuthenticationManager (HttpContext.Authentication) is obsolete
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
@@ -126,11 +125,11 @@ public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
 ```
 
 ### Removal of GetExternalAuthenticationSchemes
-This synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *ManageController.cs*:
+The synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *ManageController.cs*:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16)]
 
-In 2.x projects, this changes to:
+In 2.x projects, use the asynchronous version of the method:
 
 [!code-csharp[Main](../migration/1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/ManageController.cs?name=snippet_ManageLogins&highlight=16-17)]
 
