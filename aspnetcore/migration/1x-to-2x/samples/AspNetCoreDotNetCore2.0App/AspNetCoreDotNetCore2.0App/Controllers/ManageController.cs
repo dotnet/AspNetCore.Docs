@@ -19,7 +19,6 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
@@ -27,15 +26,12 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
-          //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
           ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
-            _externalCookieScheme = IdentityConstants.ExternalScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
@@ -312,7 +308,7 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
         public async Task<IActionResult> LinkLogin(string provider)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(_externalCookieScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
@@ -341,7 +337,7 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
             {
                 message = ManageMessageId.AddLoginSuccess;
                 // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.SignOutAsync(_externalCookieScheme);
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             }
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }

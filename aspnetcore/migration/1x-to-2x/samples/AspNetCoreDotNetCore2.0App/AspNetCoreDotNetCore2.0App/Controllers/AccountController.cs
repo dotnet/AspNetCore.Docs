@@ -24,7 +24,6 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-        private readonly string _externalCookieScheme;
 
         #region snippet_AccountControllerConstructor
         public AccountController(
@@ -36,7 +35,6 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _externalCookieScheme = IdentityConstants.ExternalScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
@@ -51,7 +49,7 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
         {
             #region snippet_AuthenticationProperty
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(_externalCookieScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             #endregion
 
             ViewData["ReturnUrl"] = returnUrl;
