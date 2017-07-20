@@ -43,6 +43,7 @@ The tutorial requires Visual Studio 2017 preview 2 or later.
 
 ---
 
+<!--
 # [SQLite macOS, Linux](#tab/macLinux)
 
 Run the following in a command window:
@@ -52,9 +53,10 @@ dotnet new mvc --auth Individual
 ```
 
 * `--auth Individual`: specifies the Individual User Accounts template.
-* Without the `-uld` option, defaults to using SQLite DB.
+* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
 
 ---
+-->
 
 Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
