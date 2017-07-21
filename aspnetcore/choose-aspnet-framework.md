@@ -33,7 +33,6 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 |Use [MVC](xref:mvc/overview) or [Web API](xref:tutorials/first-web-api)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
 |Develop with Visual Studio, [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with Visual Studio using C#, VB, or F#|
-|New platform|Mature platform|
 |Ultra performance|High performance|
 |[Choose .NET Framework or .NET Core runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
