@@ -48,7 +48,7 @@ A new ASP.NET Core metapackage includes all of the packages made and supported b
 
 The version number of the `Microsoft.AspNetCore.All` metapackage represents the latest ASP.NET Core version (aligned with the .NET Core version).
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core runtime store. The runtime store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the runtime store are also precompiled to improve application startup-time.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup-time.
 
 If there are features you don’t use in your application, the new package trimming features will exclude those binaries in the published application output.
 
@@ -62,7 +62,7 @@ For information about the status of planned documentation, see the following Git
 
 The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
 
-The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it is intended to be used with the .NET Core 2.0 runtime store.
+The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it is intended to be used with the .NET Core 2.0 Runtime Store.
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3449).
 
