@@ -89,13 +89,24 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update `ConfigureServices` to require a confirmed email:
 
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=13-16)]
+
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=13-16)]
+
+---
 
 `config.SignIn.RequireConfirmedEmail = true;` prevents newly registered users from being logged in until their email is confirmed.
 
 ### Configure email provider
 
-In this tutorial SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
+In this tutorial SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email. <!-- todo, insert reason why -->
+
+The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
 
 Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
@@ -119,11 +130,18 @@ The contents of the *secrets.json* file are not encrypted. The *secrets.json* fi
   }
   ```
 
-### Configure startup to use `AuthMessageSenderOptions`
+### Configure startup to use AuthMessageSenderOptions
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=18)]
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
+
+---
 
 ### Configure the AuthMessageSender class
 
@@ -134,9 +152,22 @@ This tutorial shows how to add email notification through [SendGrid](https://sen
   `Install-Package SendGrid`
 
 * See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register for a free SendGrid account.
+
+#### Configure SendGrid
+
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+* Add code in *Services/EmailSender.cs* similar to the following to configure SendGrid:
+
+[!code-csharp[Main](accconfirm/sample/WebPW/Services/EmailSender.cs)]
+
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Services/MessageServices.cs)]
+
+---
 
 ## Enable account confirmation and password recovery
 
