@@ -1,20 +1,17 @@
 ---
-title: Account Confirmation and Password Recovery
+title: Account Confirmation and Password Recovery in ASP.NET Core
 author: rick-anderson
 description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
 keywords: ASP.NET Core, password reset, email confirmation, security
 ms.author: riande
 manager: wpickett
-ms.date: 06/14/2017
+ms.date: 07/19/2017
 ms.topic: article
-ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/accconfirm
 ---
-# Account confirmation and password recovery
-
-<a name=security-authentication-account-confirmation></a>
+# Account confirmation and password recovery in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -22,16 +19,47 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 ## Create a New ASP.NET Core Project
 
-The tutorial requires Visual Studio 2017 or higher.
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+The tutorial requires Visual Studio 2017 preview 2 or later.
+
+* In Visual Studio, create a New Web Application Project.
+* Select **ASP.NET Core 2.0**.
+* Select **Change Authentication** and set to **Individual User Accounts**.
+* Keep the default **Store user accounts in-app**.
+
+![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/2.png)
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+The tutorial requires Visual Studio 2017 or later.
 
 * In Visual Studio, create a New Web Application Project.
 * Select **Change Authentication** and set to **Individual User Accounts**.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/indiv.png)
 
+---
+
+### macOS and Linux using SQLite
+
+Run the following in a command window:
+
+```
+dotnet new mvc --auth Individual
+```
+
+* `--auth Individual`: specifies the Individual User Accounts template.
+* On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
+* run `new mvc --help` to get help on this command.
+
+## Test new user registration
+
 Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
 ## View the Identity database
+
+# [SQL Server](#tab/sqlserver)
 
 * From the **View** menu, select **SQL Server Object Explorer** (SSOX). 
 * Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right click on **dbo.AspNetUsers** > **View Data**:
@@ -42,24 +70,32 @@ Note the `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
+# [SQLite](#tab/sqllite)
+
+See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB. 
+
+---
 
 ## Require SSL and setup IIS Express for SSL
 
 See [Enforcing SSL](xref:security/enforcing-ssl).
 
+<a name="prevent-login-at-registration"></a>
 ## Require email confirmation
 
 It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
-You generally want to prevent new users from posting any data to your web site before they have a confirmed email. In the sections below, we will enable email confirmation and modify the code to prevent newly registered users from logging in until their email has been confirmed.
+You generally want to prevent new users from posting any data to your web site before they have a confirmed email. 
 
 Update `ConfigureServices` to require a confirmed email:
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=13-16)]
 
+`config.SignIn.RequireConfirmedEmail = true;` prevents newly registered users from being logged in until their email is confirmed.
+
 ### Configure email provider
 
-In this tutorial we'll be using SendGrid to send email. You'll need a SendGrid account and key to send email. We'll use the [Options pattern](xref:fundamentals/configuration#options-config-objects) to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
+In this tutorial SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
 
 Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
@@ -113,7 +149,6 @@ The template already has the code for account confirmation and password recovery
 
 Note: We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
 
-
 ```csharp 
 //await _signInManager.SignInAsync(user, isPersistent: false);
 ```
@@ -161,12 +196,6 @@ If you can't get email working:
 * Review the [Email Activity](https://sendgrid.com/docs/User_Guide/email_activity.html) page.
 * Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
 * Try sending to different email accounts.
-
-## Prevent login at registration
-
-With the current templates, once a user completes the registration form, they are logged in (authenticated). You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in. Update the `[HttpPost] Login` action in the *AccountController.cs* file with the following highlighted changes.
-
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=11-21&name=snippet_Login)]
 
 Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
