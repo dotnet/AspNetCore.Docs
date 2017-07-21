@@ -35,7 +35,7 @@ An example of a valid `environment` tag helper is:
 
 ## include and exclude attributes
 
-ASP.NET Core 2.x adds the `include` & `exclude` attributes. These attributes control rendering the  enclosed content based on the included or excluded hosting environment names.
+ASP.NET Core 2.x adds the `include` & `exclude` attributes. These attributes control rendering the enclosed content based on the included or excluded hosting environment names.
 
 ### include ASP.NET Core 2.0 and later
 
