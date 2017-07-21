@@ -190,15 +190,16 @@ Note: We're also preventing a newly registered user from being automatically log
 ```csharp 
 //await _signInManager.SignInAsync(user, isPersistent: false);
 ```
----
 
-*  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
+Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=17-23&name=snippet_ForgotPassword)]
 
 Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might want to remove the `<p> For more information on how to enable reset password ... </p>` element which contains a link to this article.
 
 [!code-html[Main](accconfirm/sample/WebApp1/Views/Account/ForgotPassword.cshtml?highlight=7-10,12,28)]
+
+---
 
 ## Register, confirm email, and reset password
 
