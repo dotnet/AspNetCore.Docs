@@ -28,19 +28,13 @@ uid: getting-started
     - On macOS and Linux, open a terminal window. On Windows, open a command prompt.
     - Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
 
-3.  Restore the packages:
-
-    ```terminal
-    dotnet restore
-    ```
-
-4.  Run the app  (the `dotnet run` command will build the app when it's out of date):
+3.  Run the app  (the `dotnet run` command will build the app when it's out of date):
 
     ```terminal
     dotnet run
     ```
 
-5.  Browse to `http://localhost:5000`
+4.  Browse to `http://localhost:5000`
 
 ## Next steps
 
