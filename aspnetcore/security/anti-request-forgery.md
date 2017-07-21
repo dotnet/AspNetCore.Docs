@@ -6,7 +6,6 @@ description: Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NE
 manager: wpickett
 ms.date: 7/14/2017
 ms.topic: article
-ms.assetid: 43844a0f-d6d3-44d0-8ced-597c33d4c52d
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/anti-request-forgery
@@ -63,6 +62,11 @@ Users can guard against CSRF vulnerabilities by:
 However, CSRF vulnerabilities are fundamentally a problem with the web app, not the end user.
 
 ## How does ASP.NET Core MVC address CSRF?
+
+> [!WARNING]
+> ASP.NET Core implements anti-request-forgery using the [ASP.NET Core data protection stack](xref:security/data-protection/introduction). ASP.NET Core data protection must be configured to work in a server farm. See [Configuring data protection](xref:security/data-protection/configuration/overview) for more information.
+
+ASP.NET Core anti-request-forgery  default data protection configuration 
 
 In ASP.NET Core MVC 2.0 the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects anti-forgery tokens for HTML form elements. For example, the following markup in a Razor file will automatically generate anti-forgery tokens:
 
