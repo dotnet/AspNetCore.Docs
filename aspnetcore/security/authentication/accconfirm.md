@@ -171,10 +171,17 @@ This tutorial shows how to add email notification through [SendGrid](https://sen
 
 ## Enable account confirmation and password recovery
 
-The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
+The template has the code for account confirmation and password recovery.  Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
 
-*  Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
-*  Uncomment the code to enable account confirmation.
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+Preventing newly registered users from being automatically logged on by commenting out the highlighted line:
+
+[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16&name=snippet_Register)]
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Uncomment the code to enable account confirmation.
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16-25&name=snippet_Register)]
 
@@ -183,6 +190,7 @@ Note: We're also preventing a newly registered user from being automatically log
 ```csharp 
 //await _signInManager.SignInAsync(user, isPersistent: false);
 ```
+---
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
