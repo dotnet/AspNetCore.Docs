@@ -19,11 +19,11 @@ No matter the web application you are creating, ASP.NET has a solution for you: 
 
 ## ASP.NET Core
 
-ASP.NET Core is a new, open-source, cross-platform framework for .NET to build modern, cloud-based web applications on Windows, macOS, or Linux.
+ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web applications on Windows, macOS, or Linux.
 
 ## ASP.NET
 
-ASP.NET is a mature framework that provides all the services needed to build enterprise-class, server-based web applications using .NET on Windows.
+ASP.NET is a mature framework that provides all the services needed to build enterprise-class, server-based web applications on Windows.
 
 ## Which one is right for me?
 
