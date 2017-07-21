@@ -145,9 +145,11 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 <a name="error"></a>
 
-If you are using Visual Studio 2017 Preview version 15.3, you'll get an error indicator in the resource editor. You can ignore the error or remove the *ResXFileCodeGenerator*  value from the *Custom Tool*  properties grid:
+If you are using Visual Studio 2017 Preview version 15.3, you'll get an error indicator in the resource editor. Remove the *ResXFileCodeGenerator*  value from the *Custom Tool*  properties grid to prevent this error message:
 
 ![Resx editor](localization/_static/err.png)
+
+Alternatively, you can ignore this error. We hope to fix this in the next release.
 
 ## Resource file naming
 
