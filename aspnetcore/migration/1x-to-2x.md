@@ -199,7 +199,7 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
 In the 2.x project templates, Application Insights isn't added by default.
 
-If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, it's recommended that you omit its explicit package reference and the code referenced in steps 2 and 3 above. You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
+If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, omit its explicit package reference and the code referenced in steps 2 and 3 above. You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
 
 If you are using the Application Insights SDK directly, continue to do so. Since the 2.x meta-package includes the latest version of Application Insights, a package downgrade error appears if you're referencing an older version.
 
