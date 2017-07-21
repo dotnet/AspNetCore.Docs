@@ -14,9 +14,11 @@ uid: mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper
 ---
 # Environment Tag Helper
 
-By [Peter Kellner](http://peterkellner.net) 
+By [Peter Kellner](http://peterkellner.net) and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 The Environment Tag Helper conditionally renders its enclosed content based on the current hosting environment. Its single attribute `names` is a comma separated list of environment names, that if any match to the current environment, will trigger the enclosed content to be rendered.
+
+In ASP.NET Core 2.0 Preview 1 there are two new attributes introduced: `include` & `exclude`, so that tag helper renders its enclosed content based on the included or excluded hosting environment names.
 
 ## Environment Tag Helper Attributes
 
@@ -30,6 +32,26 @@ An example of a valid `environment` tag helper is:
 
 ```html
 <environment names="Staging,Production">
+  <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+</environment>
+```
+
+### include
+
+The `include` property has a similar behavior of the `names` attribute in ASP.NET Core 1.0.
+
+```html
+<environment include="Staging,Production">
+  <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+</environment>
+```
+
+### exclude
+
+In constract the `exclude` property let the `EnvironmentTagHelper` to render the enclosed content for all hosting environment names except the one(s) that you specified.
+
+```html
+<environment exclude="Development">
   <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
 ```
