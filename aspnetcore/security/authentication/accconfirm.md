@@ -41,9 +41,9 @@ The tutorial requires Visual Studio 2017 or later.
 
 ---
 
-### macOS and Linux using SQLite
+### CLI project creation for macOS and Linux
 
-Run the following in a command window:
+If you're using the CLI or SQLite, run the following in a command window:
 
 ```
 dotnet new mvc --auth Individual
@@ -91,7 +91,7 @@ Update `ConfigureServices` to require a confirmed email:
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=13-16)]
+[!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=6-9)]
 
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
@@ -100,7 +100,11 @@ Update `ConfigureServices` to require a confirmed email:
 
 ---
 
-`config.SignIn.RequireConfirmedEmail = true;` prevents newly registered users from being logged in until their email is confirmed.
+The 
+```csharp
+config.SignIn.RequireConfirmedEmail = true;
+```
+line prevents newly registered users from being logged in until their email is confirmed.
 
 ### Configure email provider
 
@@ -178,10 +182,12 @@ The template has the code for account confirmation and password recovery.  Find 
 Prevent newly registered users from being automatically logged on by commenting out the following line:
 
 ```csharp 
-//await _signInManager.SignInAsync(user, isPersistent: false);
+await _signInManager.SignInAsync(user, isPersistent: false);
 ```
 
-[!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=16&name=snippet_Register)]
+The complete method is show with the changed line highlighted:
+
+[!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=19&name=snippet_Register)]
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
@@ -262,8 +268,9 @@ If you can't get email working:
 
 Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
-<!-- TODO This will be updated when security/authentication/social/index is updated -->
 ## Combine social and local login accounts
+
+Note: This section applies only to ASP.NET Core 1.x. For ASP.NET Core 2.x, see [this](https://github.com/aspnet/Docs/issues/3753) issue.
 
 To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).
 
