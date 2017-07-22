@@ -213,6 +213,7 @@ namespace WebPW.Controllers
             return View();
         }
 
+        #region snippet_Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -241,6 +242,7 @@ namespace WebPW.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+#endregion
 
         [HttpPost]
         [ValidateAntiForgeryToken]

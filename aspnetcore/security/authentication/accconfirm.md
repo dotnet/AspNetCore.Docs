@@ -175,9 +175,13 @@ The template has the code for account confirmation and password recovery.  Find 
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-Preventing newly registered users from being automatically logged on by commenting out the highlighted line:
+Prevent newly registered users from being automatically logged on by commenting out the following line:
 
-[!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16&name=snippet_Register)]
+```csharp 
+//await _signInManager.SignInAsync(user, isPersistent: false);
+```
+
+[!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=16&name=snippet_Register)]
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
@@ -203,22 +207,39 @@ Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might w
 
 ## Register, confirm email, and reset password
 
-In this section, run the web app and show the account confirmation and password recovery flow.
+Run the web app and test the account confirmation and password recovery flow.
 
 * Run the app and register a new user
 
  ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
 
-* Check your email for the account confirmation link. If you don't get the email notification:
-
-  * Check the SendGrid web site to verify your sent mail messages.
-  * Check your spam folder.
-  * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-  * In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
-
+* Check your email for the account confirmation link. See [Debug email](#debug) you don't get the email.
 * Click the link to confirm your email.
 * Log in with your email and password.
 * Log off.
+
+### View the manage page
+
+Select your user name in the browser:
+![browser window with username](accconfirm/_static/un.png)
+
+You might need to expand the navbar to see username.
+
+![navbar](accconfirm/_static/x.png)
+
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+The manage page is display with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed. 
+
+![manage page](accconfirm/_static/rick2.png)
+
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+We'll talk about this page later in the tutorial.
+![manage page](accconfirm/_static/rick2.png)
+
+---
 
 ### Test password reset
 
@@ -234,11 +255,14 @@ In this section, run the web app and show the account confirmation and password 
 If you can't get email working:
 
 * Review the [Email Activity](https://sendgrid.com/docs/User_Guide/email_activity.html) page.
+* Check your spam folder.
+* Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
 * Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
 * Try sending to different email accounts.
 
 Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
+<!-- TODO This will be updated when security/authentication/social/index is updated -->
 ## Combine social and local login accounts
 
 To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).

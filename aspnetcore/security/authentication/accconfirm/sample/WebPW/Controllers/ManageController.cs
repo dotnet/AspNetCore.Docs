@@ -51,6 +51,8 @@ namespace WebPW.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var un = user.UserName;
+
             var model = new IndexViewModel
             {
                 Username = user.UserName,
