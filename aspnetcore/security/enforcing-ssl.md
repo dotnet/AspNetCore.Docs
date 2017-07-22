@@ -40,7 +40,7 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 
 ## Set up IIS Express for SSL/HTTPS
 
-Note: The web application templates for ASP.NET Core 2.x that use individual user accounts automatically enable SSL.
+Note: The web application templates for ASP.NET Core 2.x that use  authentication (for example,individual user accounts) automatically enable SSL. You don't need to manualy enable SSL.
 
    * In Solution Explorer, right click the project and select **Properties**.
    * On the left pane, select **Debug**.
