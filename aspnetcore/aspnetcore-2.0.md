@@ -184,6 +184,17 @@ For example suppose you create an `ILogger` object for category "Microsoft.AspNe
 
 When you create logs with that `ILogger`, logs of Warning level and above will go to the Debug provider, and logs of Debug level and above will go to the Console provider.
 
+### Provider aliases
+
+To identify the desired provider in configuration or for the AddFilter method, you use the fully qualified type name or a short custom name.  When you use the `Add{Provider}` extension methods that we provide, you can use the following provider names:
+
+- Console
+- Debug
+- EventLog
+- AzureAppServices
+- TraceSource
+- EventSource
+
 ### Default minimum level
 
 You set the default minimum level by calling `SetMinimumLevel`:
