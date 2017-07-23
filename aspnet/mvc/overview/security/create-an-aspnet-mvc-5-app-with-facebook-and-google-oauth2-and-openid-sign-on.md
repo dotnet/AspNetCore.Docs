@@ -110,16 +110,16 @@ To connect to authentication providers like Google and Facebook, you will need t
 ## Creating a Google app for OAuth 2 and connecting the app to the project
 
 1. Navigate to the [Google Developers Console](https://console.developers.google.com/).
-2. Click the **Create Project** button and enter a project name and ID (you can use the default values). In a few seconds the new project will be created and your browser will display the new projects page.
-3. In the left tab, click **APIs &amp; auth**, and then &gt; **Credentials**.
-4. Click the **Create New Client ID** under OAuth. 
+1. If you haven't created a project before, select **Credentials** in the left tab, and then select **Create**.
+1. In the left tab, click **Credentials**.
+1. Click **Create credentials** then **OAuth client ID**. 
 
     1. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
     2. Set the **Authorized JavaScript** origins to the SSL URL you used above (`https://localhost:44300/` unless you've created other SSL projects)
     3. Set the **Authorized redirect URI** to:  
-         `https://localhost:44300/signin-google`
-5. Click the Consent screen menu item, then set your email address and product name. When you have completed the form click **Save**.
-6. Click the APIs menu item, scroll down and click the off button on **Google+ API**.  
+         `https://localhost:44300/signin-google/`
+5. Click the OAuth Consent screen menu item, then set your email address and product name. When you have completed the form click **Save**.
+6. Click the Library menu item, search **Google+ API**, click on it then press Enable.
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image15.png)  
   
