@@ -21,10 +21,12 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-The tutorial requires Visual Studio 2017 preview 2 or later.
+This step applies to Visual Studio on Windows. See the next section for CLI instructions.
+
+The tutorial requires Visual Studio 2017 Preview 2 or later.
 
 * In Visual Studio, create a New Web Application Project.
-* Select **ASP.NET Core 2.0**.
+* Select **ASP.NET Core 2.0**. The following image show **.NET Core** selected, but you can select **.NET Framework**.
 * Select **Change Authentication** and set to **Individual User Accounts**.
 * Keep the default **Store user accounts in-app**.
 
@@ -41,21 +43,21 @@ The tutorial requires Visual Studio 2017 or later.
 
 ---
 
-### CLI project creation for macOS and Linux
+### .NET Core CLI project creation for macOS and Linux
 
 If you're using the CLI or SQLite, run the following in a command window:
 
-```
+```console
 dotnet new mvc --auth Individual
 ```
 
-* `--auth Individual`: specifies the Individual User Accounts template.
+* `--auth Individual` specifies the Individual User Accounts template.
 * On Windows, add the `-uld` option. The `-uld` option creates a LocalDB connection string rather than a SQLite DB.
-* run `new mvc --help` to get help on this command.
+* Run `new mvc --help` to get help on this command.
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
+Run the app, select the **Register** link, and register a user. Follow the instructions to run Entity Framework Core migrations. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial, we'll change this so new users cannot log in until their email has been validated.
 
 ## View the Identity database
 
@@ -83,7 +85,7 @@ See [Enforcing SSL](xref:security/enforcing-ssl).
 <a name="prevent-login-at-registration"></a>
 ## Require email confirmation
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, and you wanted to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
 You generally want to prevent new users from posting any data to your web site before they have a confirmed email. 
 
@@ -100,15 +102,15 @@ Update `ConfigureServices` to require a confirmed email:
 
 ---
 
-The 
+ 
 ```csharp
 config.SignIn.RequireConfirmedEmail = true;
 ```
-line prevents registered users from being logged in until their email is confirmed. However, that line does not prevent new users from being logged in after they register. The default code logs in a user after they register. Once they log out, they won't be able to log in again until they register. Later in the tutorial we'll change the code so newly registered user are **not** logged in.
+The preceding line prevents registered users from being logged in until their email is confirmed. However, that line does not prevent new users from being logged in after they register. The default code logs in a user after they register. Once they log out, they won't be able to log in again until they register. Later in the tutorial we'll change the code so newly registered user are **not** logged in.
 
 ### Configure email provider
 
-In this tutorial SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email. <!-- todo, insert reason why -->
+In this tutorial, SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email.
 
 The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
 
@@ -175,7 +177,7 @@ This tutorial shows how to add email notification through [SendGrid](https://sen
 
 ## Enable account confirmation and password recovery
 
-The template has the code for account confirmation and password recovery.  Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
+The template has the code for account confirmation and password recovery. Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
@@ -185,7 +187,7 @@ Prevent newly registered users from being automatically logged on by commenting 
 await _signInManager.SignInAsync(user, isPersistent: false);
 ```
 
-The complete method is show with the changed line highlighted:
+The complete method is shown with the changed line highlighted:
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=19&name=snippet_Register)]
 
@@ -195,7 +197,7 @@ Uncomment the code to enable account confirmation.
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=16-25&name=snippet_Register)]
 
-Note: We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
+Note: We're also preventing a newly-registered user from being automatically logged on by commenting out the following line:
 
 ```csharp 
 //await _signInManager.SignInAsync(user, isPersistent: false);
@@ -213,13 +215,13 @@ Uncomment the form element in *Views/Account/ForgotPassword.cshtml*. You might w
 
 ## Register, confirm email, and reset password
 
-Run the web app and test the account confirmation and password recovery flow.
+Run the web app, and test the account confirmation and password recovery flow.
 
 * Run the app and register a new user
 
  ![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
 
-* Check your email for the account confirmation link. See [Debug email](#debug) you don't get the email.
+* Check your email for the account confirmation link. See [Debug email](#debug) if you don't get the email.
 * Click the link to confirm your email.
 * Log in with your email and password.
 * Log off.
@@ -227,15 +229,15 @@ Run the web app and test the account confirmation and password recovery flow.
 ### View the manage page
 
 Select your user name in the browser:
-![browser window with username](accconfirm/_static/un.png)
+![browser window with user name](accconfirm/_static/un.png)
 
-You might need to expand the navbar to see username.
+You might need to expand the navbar to see user name.
 
 ![navbar](accconfirm/_static/x.png)
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-The manage page is display with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed. 
+The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed. 
 
 ![manage page](accconfirm/_static/rick2.png)
 
@@ -266,7 +268,7 @@ If you can't get email working:
 * Create a [console app to send email](https://sendgrid.com/docs/Integrate/Code_Examples/v2_Mail/csharp.html).
 * Try sending to different email accounts.
 
-Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+**Note:** A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 ## Prevent login at registration
 
@@ -283,7 +285,7 @@ Note: This section applies only to ASP.NET Core 1.x. For ASP.NET Core 2.x, see [
 
 To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).
 
-You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
+You can combine local and social accounts by clicking on your email link. In the following sequence, "RickAndMSFT@gmail.com" is first created as a local login; however, you can create the account as a social login first, then add a local login.
 
 ![Web application: RickAndMSFT@gmail.com user authenticated](accconfirm/_static/rick.png)
 
