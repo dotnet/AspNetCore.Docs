@@ -151,7 +151,7 @@ Add `AuthMessageSenderOptions` to the service container at the end of the `Confi
 
 ### Configure the AuthMessageSender class
 
-This tutorial shows how to add email notification through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
+This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
 
 * Install the `SendGrid` NuGet package. From the Package Manager Console,  enter the following the following command:
 
@@ -276,7 +276,7 @@ With the current templates, once a user completes the registration form, they ar
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Controllers/AccountController.cs?highlight=11-21&name=snippet_Login)]
 
-Note: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+**Note:** A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 
 ## Combine social and local login accounts
