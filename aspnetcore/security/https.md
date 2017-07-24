@@ -19,8 +19,6 @@ uid: security/https
 
 You can configure your application to use HTTPS during development to simulate HTTPS in your production environment. Enabling HTTPS may be required to enable integration with various identity providers (like [Azure AD](https://azure.microsoft.com/services/active-directory) and [Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c)).
 
-If you are using macOS or Linux, use [Kestrel](xref:fundamentals/servers/kestrel) and see [Create a self-signed HTTPS certificate for macOS and Linux](#OpenSSL).
-
 <a name="iisxpress"></a>
 
 On Windows if you’ve installed Visual Studio or IIS Express, the IIS Express Development Certificate will be in your LocalMachine certificate store. You can update your project properties in Visual Studio to use this certificate when running behind IIS Express.
@@ -31,23 +29,6 @@ On Windows if you’ve installed Visual Studio or IIS Express, the IIS Express D
    * Copy the SSL URL and paste it into the **App URL**
 
 ![Debug tab of web application properties](enforcing-ssl/_static/ssl.png)
-
-You can also configure Kestrel to listen over HTTPS by configuring an endpoint with the desired IP address, port, and certificate. The certificate can be configured inline, or in the top-level `Certificates` section and then referenced by name:
-
-```json
-{
-  "Kestrel": {
-    "Endpoints": {
-      "LocalhostHttps": {
-        "Address": "127.0.0.1",
-        "Port": "43434",
-        "Certificate": "HTTPS"
-      }
-    }
-  }
-}
-
-```
 
 For development you can use the IIS Express Development Certificate if it is available, or create a new certificate for development purposes. The development certificate should be configured in the `appsettings.Development.json` file so that it is not used in production:
 
@@ -77,7 +58,24 @@ Import-Certificate -FilePath cert.cer -CertStoreLocation cert:/CurrentUser/Root
 
 <a name="OpenSSL"></a>
 
-## Create a self-signed HTTPS certificate for macOS and Linux
+## Kestrel on  macOS and Linux
+
+You can  configure Kestrel to listen over HTTPS by configuring an endpoint with the desired IP address, port, and certificate. The certificate can be configured inline, or in the top-level `Certificates` section and then referenced by name:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "LocalhostHttps": {
+        "Address": "127.0.0.1",
+        "Port": "43434",
+        "Certificate": "HTTPS"
+      }
+    }
+  }
+}
+
+```
 
 On macOS and Linux you can create a self-signed certificate for HTTPS using [OpenSSL](https://www.openssl.org/):
 
