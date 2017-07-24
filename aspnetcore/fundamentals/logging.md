@@ -21,7 +21,8 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
 
-> [!NOTE] This article was written for ASP.NET Core 1.x. For information about ASP.NET Core 2.0 changes, see [Logging update](xref:aspnetcore-2.0.md#logging-update).
+> [!NOTE]
+> This article was written for ASP.NET Core 1.x. For information about ASP.NET Core 2.0 changes, see [Logging update](xref:aspnetcore-2.0#logging-update).
 
 ## How to add providers
 
