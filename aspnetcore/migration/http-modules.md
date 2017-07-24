@@ -124,7 +124,7 @@ Convert this by [adding your new middleware](../fundamentals/middleware.md#creat
 
 The exact spot in the pipeline where you insert your new middleware depends on the event that it handled as a module (`BeginRequest`, `EndRequest`, etc.) and its order in your list of modules in *Web.config*.
 
-As previously stated, there is no application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
+As previously stated, there is no application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more challenging.
 
 If ordering becomes a problem, you could split your module into multiple middleware components that can be ordered independently.
 
