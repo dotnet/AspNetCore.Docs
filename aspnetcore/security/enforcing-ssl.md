@@ -1,13 +1,12 @@
 ---
 title: Enforcing SSL in an ASP.NET Core app
 author: rick-anderson
-description: Shows how to require SSL in a web app and how to set IIS Express to use SSL
+description: Shows how to require SSL in a ASP.NET Core web app
 keywords: ASP.NET Core, SSL, HTTPS, RequireHttpsAttribute, IIS Express
 ms.author: riande
 manager: wpickett
-ms.date: 03/19/2017
+ms.date: 07/19/2017
 ms.topic: article
-ms.assetid: 4694e563-e91a-4ecd-b7ed-00b3f1eee2b5
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/enforcing-ssl
@@ -20,7 +19,6 @@ This document shows how to:
 
 - Require SSL for all requests (HTTPS requests only).
 - Redirect all HTTP requests to HTTPS.
-- Set up IIS Express to use SSL/HTTPS.
 
 ## Require SSL
 
@@ -40,9 +38,4 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 
 ## Set up IIS Express for SSL/HTTPS
 
-   * In Solution Explorer, right click the project and select **Properties**.
-   * On the left pane, select **Debug**.
-   * Check **Enable SSL**
-   * Copy the SSL URL and paste it into the **App URL**
-
-![Debug tab of web application properties](enforcing-ssl/_static/ssl.png)
+See [Setting up HTTPS for development in ASP.NET Core](xref:security/https#iisxpress).
