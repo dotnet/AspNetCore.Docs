@@ -5,19 +5,21 @@ description: A list of step-by-step guides for learning how to develop ASP.NET C
 keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 7/14/2017
 ms.topic: get-started-article
-ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/index
 ---
 # ASP.NET Core tutorials
 
+[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
+
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
 
+* [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
 * [Create an ASP.NET Core app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
 * [Create an ASP.NET Core app with Visual Studio on Windows](first-mvc-app/index.md)
 * [Create an ASP.NET Core app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
