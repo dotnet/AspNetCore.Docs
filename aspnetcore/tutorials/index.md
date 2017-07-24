@@ -13,13 +13,11 @@ uid: tutorials/index
 ---
 # ASP.NET Core tutorials
 
-[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
-
 The following step-by-step guides for developing ASP.NET Core applications are available:
 
 ## Building web applications
 
-* [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
+* [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index) [Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
 * [Create an ASP.NET Core app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
 * [Create an ASP.NET Core app with Visual Studio on Windows](first-mvc-app/index.md)
 * [Create an ASP.NET Core app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
