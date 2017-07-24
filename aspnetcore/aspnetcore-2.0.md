@@ -174,21 +174,21 @@ When you create an `ILogger` object to write logs with, the `ILoggerFactory` obj
 
 The following algorithm is used for each provider when an `ILogger` is created for a given category:
 
-1. Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.
-2. From result of #1 select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
-3. If multiple rules are selected take the **last** one.
-4. If no rules are selected, use `MinimumLevel` 
+* Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.
+* From result of #1 select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
+* If multiple rules are selected take the **last** one.
+* If no rules are selected, use `MinimumLevel` 
  
-For example, suppose you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
+For example, suppose you have the preceding list of rules and you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
 
-* For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific (it's for a specific provider and category), so that's the one selected.
-* For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific (4 matches too but is not as long), so that's the one selected.
+* For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that's the one selected.
+* For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific.
 
 When you create logs with that `ILogger`, logs of Trace level and above will go to the Debug provider, and logs of Debug level and above will go to the Console provider.
 
 ### Provider aliases
 
-You can use the type name to specify a provider in configuration, but each provider defines a shorter *alias* that is easier to use. For the built-in providers, you can use the following aliases:
+You can use the type name to specify a provider in configuration, but each provider defines a shorter *alias* that is easier to use. For the built-in providers, use the following aliases:
 
 - Console
 - Debug
