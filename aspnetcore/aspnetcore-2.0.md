@@ -74,7 +74,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Logging update
 
-Logging is now incorporated into the dependency injection (DI) system by default, and you add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. Here's an example that shows how to add providers and specify that configuration is used to set up filtering:
+In ASP.NET 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. Here's an example that shows how to add providers and specify that configuration is used to set up filtering:
 
 ```csharp
 var builder = new WebHostBuilder()
@@ -106,7 +106,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Configuring filtering
 
-In ASP.NET Core 1.x, it's difficult to configure filtering: the way to do it across providers is not intuitive, and if you do it for individual providers, each provider handles it differently. In 2.0 we have changed the default `ILoggerFactory` to support filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.  This one approach is designed to work with `IConfiguration`, so you can control filtering from whatever configuration sources you choose. 
+In ASP.NET Core 1.x, it's difficult to configure filtering: the way to do it across providers is not intuitive, and if you do it for individual providers, each provider handles it differently. In 2.0 we have changed the default `ILoggerFactory` to support filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.  This approach to filtering is designed to work with `IConfiguration`, so you can control filtering from whatever configuration sources you choose. 
 
 ### Create filter rules in configuration
 
@@ -153,11 +153,11 @@ WebHost.CreateDefaultBuilder(args)
     .Build();
 ```
 
-The first `AddFilter` call applies to all providers. The second specifies the Debug provider by using its type name.
+The second `AddFilter` specifies the Debug provider by using its type name. The first `AddFilter` call applies to all providers because it doesn't specify a provider type.
 
 ### How filtering rules are applied
 
-The configuration data and the `AddFilter` code shown create the following rules. The first six come from the configuration example and the last two come from the code example:
+The configuration data and the `AddFilter` code shown in the preceding examples create the following rules. The first six come from the [configuration example](#create-filter-rules-in-configuration) and the last two come from the [code example](#filter-rules-in-code):
 
 Number|Provider|Categories that begin with|Minimum log level|
 ------|--------|--------------------------|-----------------|
@@ -175,9 +175,9 @@ When you create an `ILogger` object to write logs with, the `ILoggerFactory` obj
 The following algorithm is used for each provider when an `ILogger` is created for a given category:
 
 * Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.
-* From result of #1 select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
+* From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
 * If multiple rules are selected take the **last** one.
-* If no rules are selected, use `MinimumLevel` 
+* If no rules are selected, use `MinimumLevel`.
  
 For example, suppose you have the preceding list of rules and you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
 
