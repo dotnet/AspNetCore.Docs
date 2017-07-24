@@ -38,6 +38,7 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 
 ## ASP.NET Core scenarios
 
+* [Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
 
