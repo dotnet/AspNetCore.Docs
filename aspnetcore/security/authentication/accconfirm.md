@@ -64,7 +64,7 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 # [SQL Server](#tab/sqlserver)
 
 * From the **View** menu, select **SQL Server Object Explorer** (SSOX). 
-* Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right click on **dbo.AspNetUsers** > **View Data**:
+* Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
 
 ![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
 
