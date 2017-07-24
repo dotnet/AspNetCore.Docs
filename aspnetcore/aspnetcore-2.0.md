@@ -100,7 +100,7 @@ The ASP.NET Core 2.0 project templates set up configuration and logging as shown
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseStartup<Startup>()
-    .ConfigureLoggin(logging => logging.AddEventLog())
+    .ConfigureLogging(logging => logging.AddEventLog())
     .Build();
 ```
 
