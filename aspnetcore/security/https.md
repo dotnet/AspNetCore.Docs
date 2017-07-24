@@ -19,7 +19,14 @@ uid: security/https
 
 You can configure your application to use HTTPS during development to simulate HTTPS in your production environment. Enabling HTTPS may be required to enable integration with various identity providers (like [Azure AD](https://azure.microsoft.com/services/active-directory) and [Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c)).
 
+<a name="iisxpress"></a>
+
 On Windows if you’ve installed Visual Studio or IIS Express, the IIS Express Development Certificate will be in your LocalMachine certificate store. You can update your project properties in Visual Studio to use this certificate when running behind IIS Express.
+
+   * In Solution Explorer, right click the project and select **Properties**.
+   * On the left pane, select **Debug**.
+   * Check **Enable SSL**
+   * Copy the SSL URL and paste it into the **App URL**
 
 ![Debug tab of web application properties](enforcing-ssl/_static/ssl.png)
 
