@@ -30,7 +30,7 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 | ASP.NET Core | ASP.NET |
 |---|---|
 |Build for Windows, macOS, or Linux|Build for Windows|
-|Use [MVC](xref:mvc/overview) or [Web API](xref:tutorials/first-web-api)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
+|[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0. See also [MVC](xref:mvc/overview) and [Web API](xref:tutorials/first-web-api)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
 |Develop with Visual Studio, [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with Visual Studio using C#, VB, or F#|
 |Higher performance than ASP.NET|Good performance|
@@ -38,6 +38,8 @@ ASP.NET is a mature framework that provides all the services needed to build ent
 
 ## ASP.NET Core scenarios
 
+<!-- update link to Razor Pages mvc movie series when done -->
+* [Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
 

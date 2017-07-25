@@ -74,11 +74,177 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Logging update
 
-In ASP.NET 2.0, you configure logging in *Program.cs* instead of in your *Startup.cs* `Configure` method as in 1.x. Since configuration is also registered in *Program.cs*, *Startup.cs* is more focused on configuring services and the middleware pipeline. 
+In ASP.NET 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. Here's an example that shows how to add providers and specify that configuration is used to set up filtering:
 
-You can filter by provider, category, and log level, and it's easier to specify filter rules in configuration. You can apply a filter function to a specific provider or category or globally for all providers and categories.
+```csharp
+var builder = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    var env = hostingContext.HostingEnvironment;
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                    config.AddEnvironmentVariables();
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                });
+```
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
+The ASP.NET Core 2.0 project templates set up configuration and logging as shown above by default. If you only need `Console` and `Debug` logging and a `Logging` configuration section to control filtering, you don't need to add any extra code. However, you won't see the preceding code in your projects because the project template code calls a `CreateDefaultBuilder` method to do all that.  Here's the project template code with an extra `ConfigureLogging` call that shows how to add a provider:
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseStartup<Startup>()
+    .ConfigureLogging(logging => logging.AddEventLog())
+    .Build();
+```
+
+### Configuring filtering
+
+In ASP.NET Core 1.x, it's difficult to configure filtering: the way to do it across providers is not intuitive, and if you do it for individual providers, each provider handles it differently. In 2.0 we have changed the default `ILoggerFactory` to support filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.  This approach to filtering is designed to work with `IConfiguration`, so you can control filtering from whatever configuration sources you choose. 
+
+### Create filter rules in configuration
+
+The `CreateDefaultBuilder` method sets up logging to look for configuration in a `Logging` section. The configuration data specifies minimum log levels by provider and category, as in the following example:
+
+```json
+{
+  "Logging": {
+    "IncludeScopes": false,
+    "Debug": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    },
+    "Console": {
+      "LogLevel": {
+        "Microsoft.AspNetCore.Mvc.Razor.Internal": "Warning",
+        "Microsoft.AspNetCore.Mvc.Razor.Razor": "Debug",
+        "Microsoft.AspNetCore.Mvc.Razor": "Error",
+        "Default": "Warning"
+      }
+    },
+    "": {
+      "LogLevel": {
+        "Default": "Debug"
+      }
+    }
+  }
+}
+
+```
+
+This JSON creates six filter rules, one for the Debug provider, four for the Console provider, and one that applies to all providers. You'll see [later](#how-filtering-rules-are-applied) how a single rule is chosen for each provider when an `ILogger` object is created.
+
+### Filter rules in code
+
+You can register filter rules in code, as shown in the following example:
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseStartup<Startup>()
+    .ConfigureLogging(logging =>
+        logging.AddFilter("System", LogLevel.Debug)
+               .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
+    .Build();
+```
+
+The second `AddFilter` specifies the Debug provider by using its type name. The first `AddFilter` call applies to all providers because it doesn't specify a provider type.
+
+### How filtering rules are applied
+
+The configuration data and the `AddFilter` code shown in the preceding examples create the following rules. The first six come from the [configuration example](#create-filter-rules-in-configuration) and the last two come from the [code example](#filter-rules-in-code):
+
+Number|Provider|Categories that begin with|Minimum log level|
+------|--------|--------------------------|-----------------|
+1|Debug|All categories|Warning|
+2|Console|Microsoft.AspNetCore.Mvc.Razor.Internal|Warning|
+3|Console|Microsoft.AspNetCore.Mvc.Razor.Razor|Debug|
+4|Console|Microsoft.AspNetCore.Mvc.Razor|Error|
+5|Console|All categories|Warning|
+6|All providers|All categories|Warning
+7|All providers|System|Debug
+8|Debug|Microsoft|Trace
+
+When you create an `ILogger` object to write logs with, the `ILoggerFactory` object selects a single rule per provider to apply to that logger. All messages written to that `ILogger` object are filtered based on the selected rules. The most specific rule possible for each provider and category pair is selected from the available rules.
+
+The following algorithm is used for each provider when an `ILogger` is created for a given category:
+
+* Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.
+* From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don't specify a category.
+* If multiple rules are selected take the **last** one.
+* If no rules are selected, use `MinimumLevel`.
+ 
+For example, suppose you have the preceding list of rules and you create an `ILogger` object for category "Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine":
+
+* For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that's the one selected.
+* For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific.
+
+When you create logs with that `ILogger`, logs of Trace level and above will go to the Debug provider, and logs of Debug level and above will go to the Console provider.
+
+### Provider aliases
+
+You can use the type name to specify a provider in configuration, but each provider defines a shorter *alias* that is easier to use. For the built-in providers, use the following aliases:
+
+- Console
+- Debug
+- EventLog
+- AzureAppServices
+- TraceSource
+- EventSource
+
+### Default minimum level
+
+You set the default minimum level by calling `SetMinimumLevel`:
+
+```csharp
+public static IWebHost BuildWebHost(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
+        .Build();
+```
+
+### Filter functions
+
+You can apply a filter function to a specific provider or category or globally for all providers and categories. A global filter function has access to the provider type (or alias), category, and log level to decide whether or not a message should be logged. For example:
+
+```
+ConfigureLogging(logBuilder =>
+{
+    logBuilder.AddFilter((provider, category, logLevel) =>
+    {
+        if(provider == "Microsoft.Extensions.Logging.EventSource" && category == "TodoApi.Controllers.TodoController")
+        {
+            return false;
+        }
+        return true;
+    });
+})
+```
+
+A filter function is only invoked when the message level is at least the rule minimum level.
+
+### Replacing the LoggerFactory
+
+The default `LoggerFactory` provided by .NET Core gets providers from DI and uses `LoggerFilterOptions` to filter. If you want to replace the factory, you can do so by replacing the `ILoggerFactory` service in DI:
+
+```csharp
+ConfigureServices(collection => collection.AddSingleton<ILoggerFactory>(myFactory))
+```
+
+### Provider Authoring
+
+If you are writing a custom `ILoggerProvider`, you can take advantage of the fact that they are now in DI. In your constructor, accept any registered services that you want to use. Decorate the class with the `ProviderAlias` attribute to specify an alias.
+
+### More information about logging documentation
+
+For information about the status of planned documentation about logging, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3388).
 
 ## Authentication update
 
