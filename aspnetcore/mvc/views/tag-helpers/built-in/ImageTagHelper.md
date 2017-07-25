@@ -1,5 +1,5 @@
 ﻿---
-title: Anchor Tag Helper | Microsoft Docs
+title: Image Tag Helper | Microsoft Docs
 author: pkellner
 description: Shows how to work with Image Tag Helper
 keywords: ASP.NET Core,tag helper
