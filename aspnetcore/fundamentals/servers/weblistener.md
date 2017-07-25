@@ -22,7 +22,7 @@ Although WebListener was developed for ASP.NET Core, it can be used directly in 
 
 WebListener supports the following features:
 
-- [Windows Authentication ](/security/authentication/windowsauth.md)
+- [Windows Authentication](xref:security/authentication/windowsauth)
 - Port sharing
 - HTTPS with SNI
 - HTTP/2 over TLS (Windows 10)
