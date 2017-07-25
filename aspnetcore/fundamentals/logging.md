@@ -21,6 +21,9 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
 
+> [!NOTE]
+> This article was written for ASP.NET Core 1.x. For information about ASP.NET Core 2.0 changes, see [Logging update](xref:aspnetcore-2.0#logging-update).
+
 ## How to add providers
 
 A logging provider takes some action on logged data, such as display it on the console or store it in Azure blob storage. To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
