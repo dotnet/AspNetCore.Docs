@@ -1,10 +1,10 @@
 ---
 title: Choose between ASP.NET and ASP.NET Core
 author: rick-anderson
-description: "How to choose between ASP.NET and ASP.NET Core."
+description: How to choose between ASP.NET and ASP.NET Core.
 ms.author: aspnetcontent
 manager: wpickett
-ms.date: 06/07/2017
+ms.date: 07/21/2017
 ms.topic: article
 ms.assetid: f0d17abf-3c69-413e-87fc-30780805e33f
 ms.technology: aspnet
@@ -19,28 +19,27 @@ No matter the web application you are creating, ASP.NET has a solution for you: 
 
 ## ASP.NET Core
 
-ASP.NET Core is a new open-source and cross-platform .NET framework for building modern cloud-based web applications on Windows, Mac, or Linux.
+ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web applications on Windows, macOS, or Linux.
 
 ## ASP.NET
 
-ASP.NET is a mature web platform that provides all the services that you require to build enterprise-class, server-based web applications using .NET on Windows.
+ASP.NET is a mature framework that provides all the services needed to build enterprise-class, server-based web applications on Windows.
 
 ## Which one is right for me?
 
 | ASP.NET Core | ASP.NET |
 |---|---|
-|Build for Windows, Mac, or Linux|Build for Windows|
-|Use [MVC](mvc/overview.md) or [Web API](tutorials/first-web-api.md)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
+|Build for Windows, macOS, or Linux|Build for Windows|
+|Use [MVC](xref:mvc/overview) or [Web API](xref:tutorials/first-web-api)|Use [Web Forms](https://docs.microsoft.com/aspnet/web-forms), [SignalR](https://docs.microsoft.com/aspnet/signalr), [MVC](https://docs.microsoft.com/aspnet/mvc), [Web API](https://docs.microsoft.com/aspnet/web-api/), or [Web Pages](https://docs.microsoft.com/aspnet/web-pages)|
 |Multiple versions per machine|One version per machine|
-|Develop with Visual Studio or Visual Studio Code using C#|Develop with Visual Studio using C#, VB or F#|
-|New platform|Mature platform|
-|Ultra performance|High performance|
+|Develop with Visual Studio, [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/), or [Visual Studio Code](https://code.visualstudio.com/) using C# or F#|Develop with Visual Studio using C#, VB, or F#|
+|Higher performance than ASP.NET|Good performance|
 |[Choose .NET Framework or .NET Core runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)|Use .NET Framework runtime|
 
 ## ASP.NET Core scenarios
 
-* [Websites](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/)
-* [APIs](https://docs.microsoft.com/aspnet/core/tutorials/first-web-api)
+* [Websites](xref:tutorials/first-mvc-app/index)
+* [APIs](xref:tutorials/first-web-api)
 
 ## ASP.NET scenarios
 
@@ -51,4 +50,4 @@ ASP.NET is a mature web platform that provides all the services that you require
 ## Resources
 
 * [Introduction to ASP.NET](https://docs.microsoft.com/aspnet/overview)
-* [Introduction to ASP.NET Core](index.md)
+* [Introduction to ASP.NET Core](xref:index)

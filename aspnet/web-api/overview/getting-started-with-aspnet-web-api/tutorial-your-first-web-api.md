@@ -17,7 +17,7 @@ Getting Started with ASP.NET Web API 2 (C#)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)
 
-[Download Completed Project](http://code.msdn.microsoft.com/ASP-NET-Web-API-Tutorial-8d2588b1)
+[Download Completed Project](https://code.msdn.microsoft.com/Sample-code-of-Getting-c56ccb28)
 
 > HTTP is not just for serving up web pages. It is also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop applications.
 > 
@@ -26,7 +26,7 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+> - [Visual Studio 2017](https://www.visualstudio.com/downloads/)
 > - Web API 2
 
 
