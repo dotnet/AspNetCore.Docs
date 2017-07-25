@@ -148,8 +148,9 @@ You can register filter rules in code, as shown in the following example:
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseStartup<Startup>()
-    .ConfigureLogging(logging => logging.AddFilter("System", LogLevel.Debug))
-    .ConfigureLogging(logging => logging.AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
+    .ConfigureLogging(logging =>
+        logging.AddFilter("System", LogLevel.Debug)
+               .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
     .Build();
 ```
 
