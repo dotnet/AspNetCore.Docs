@@ -2,7 +2,7 @@
 title: Create a Razor Pages web app with ASP.NET Core
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
 ms.date:7/26/2017
