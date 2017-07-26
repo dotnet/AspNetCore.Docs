@@ -1,4 +1,17 @@
 ---
+title: fix me
+author: rick-anderson
+ms.author: riande
+manager: wpickett
+ms.date: 03/07/2017
+ms.topic: article
+ms.prod: aspnet-core
+uid: tutorials/razor-pages/index2
+---
+
+<!--
+
+---
 title: Create a Razor Pages web app with ASP.NET Core
 author: rick-anderson
 description: 
@@ -11,6 +24,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/razor-pages/index2
 ---
+-->
 
 # Create a Razor Pages web app with ASP.NET Core
 
