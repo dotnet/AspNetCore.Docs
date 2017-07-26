@@ -1,17 +1,17 @@
 ---
-title: Getting started with Razor Pages on ASP.NET Core
+title: Getting started with Razor Pages in ASP.NET Core
 author: rick-anderson
-description: Getting started with Razor Pages on ASP.NET Core
-keywords: ASP.NET Core,Razor Pages, Razor, MVC
+description: Getting started with Razor Pages in ASP.NET Core
+keywords: ASP.NET Core,Razor Pages,Razor,MVC
 ms.author: riande
 manager: wpickett
 ms.date: 7/27/2017
 ms.topic: get-started-article
 ms.technology: aspnet
-ms.prod: asp.net-core
+ms.prod: aspnet-core
 uid: tutorials/razor-pages/razor-pages-start
 ---
-# Getting started with Razor Pages on ASP.NET Core
+# Getting started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -34,7 +34,8 @@ The Visual Studio template creates a starter project:
 
 ![Solution Explorer](razor-pages-start/_static/se.png)
 
-Press **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
+Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attaching the debugger
+
 ![Home or Index page](razor-pages-start/_static/home.png)
 
 * Visual Studio starts [IIS Express](http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
