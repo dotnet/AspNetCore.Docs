@@ -1,11 +1,14 @@
 ---
-title: fix me
+title: Create a Razor Pages web app with ASP.NET Core
 author: rick-anderson
+description: Shows how to create a Razor Pages web app with ASP.NET Core
+keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 03/07/2017
-ms.topic: article
-ms.prod: aspnet-core
+ms.date:7/26/2017
+ms.topic: get-started-article
+ms.technology: aspnet
+ms.prod: asp.net-core
 uid: tutorials/razor-pages/index2
 ---
 

@@ -15,7 +15,7 @@ uid: tutorials/razor-pages/razor-pages-start
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core Razor Pages web app. We recommend you review [Introduction to Razor Pages](xref:mvc/razor-pages/index) before starting this tutorial.
+This tutorial will teach you the basics of building an ASP.NET Core Razor Pages web app. We recommend you complete [Introduction to Razor Pages](xref:mvc/razor-pages/index) before starting this tutorial.
 
 ## Prerequisites
 
@@ -27,10 +27,10 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 * From the Visual Studio **File** menu, select **New > Project**.
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
  ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
-* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**.
+* Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
  ![Web Application (Razor Pages)](../../mvc/razor-pages/index/_static/np2.png)
 
-The Visual Studio templated creates a starter project:
+The Visual Studio template creates a starter project:
 
 ![Solution Explorer](razor-pages-start/_static/se.png)
 
@@ -44,7 +44,7 @@ The default template creates **RazorPagesMovie**, **Home**, **About** and **Cont
 
 ![Home or Index page](razor-pages-start/_static/home2.png)
 
-Test the links. The **RazorPagesMovie** and **Home** links take you to the home page. The **About** and **Contact** links take you to the About and Contact pages.
+Test the links. The **RazorPagesMovie** and **Home** links go to the home page. The **About** and **Contact** links go to the `About` and `Contact` pages.
 
 ## Project files and folders
 
@@ -52,22 +52,22 @@ The following table lists the files and folders in the project. For this tutoria
 
 | File or folder              | Purpose |
 | ----------------- | ------------ | 
-| wwwroot | Contains static files. See [Working with static files](xref:fundamentals/static-files) |
-| Pages | Folder for [Razor Pages](xref:mvc/razor-pages/index) | 
+| wwwroot | Contains static files. See [Working with static files](xref:fundamentals/static-files). |
+| Pages | Folder for [Razor Pages](xref:mvc/razor-pages/index). | 
 | *appsettings.json* | [Configuration](xref:fundamentals/configuration) |
 | *bower.json* | Client side package management. See [Bower](xref:client-side/bower).|
 | *Program.cs* | [Hosts](xref:fundamentals/hosting) the ASP.NET app.|
-| *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup)|
+| *Startup.cs* | Configures services and the request pipeline. See [Startup](xref:fundamentals/startup).|
 
 ### The Pages folder
 
-The *_Layout.cshtml* file contains common HTML elements (scripts and stylesheets) and sets the layout for all the pages that use it. For example, when you click on **RazorPagesMovie**, **Home**, **About** or **Contact**, you see the same elements in the navigation menu on the top, and the same header on the bottom of the window. See [Layout](xref:mvc/views/layout) for more information.
+The *_Layout.cshtml* file contains common HTML elements (scripts and stylesheets) and sets the layout for the application. For example, when you click on **RazorPagesMovie**, **Home**, **About** or **Contact**, you see the same elements. The common elements include the navigation menu on the top, and the header on the bottom of the window. See [Layout](xref:mvc/views/layout) for more information.
 
 The *_ViewStart.cshtml* sets the Razor Pages `Layout` property to use the *_Layout.cshtml* file. See [Layout](xref:mvc/views/layout) for more information.
 
 The *_ViewImports.cshtml* file contains Razor directives that are imported to each Razor Page. See [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives) for more information.
 
-The *_ValidationScriptsPartial.cshtml* file provides a reference to jQuery validation scripts. Later in the tutorial when we add `Create` and `Edit` pages, the *_ValidationScriptsPartial.cshtml* file will be used.
+The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](https://jquery.com/) validation scripts. Later in the tutorial when we add `Create` and `Edit` pages, the *_ValidationScriptsPartial.cshtml* file will be used.
 
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information.
 
