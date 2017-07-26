@@ -48,7 +48,7 @@ Here is an example of an HTML form with a hidden form token:
 
 [!code-html[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample2.html)]
 
-Anti-forgery tokens work because the malicious page cannot read the user's tokens, due to same-origin policies. ([Same-orgin policies](http://www.w3.org/Security/wiki/Same_Origin_Policy) prevent documents hosted on two different sites from accessing each other's content. So in the earlier example, the malicious page can send requests to example.com, but it cannot read the response.)
+Anti-forgery tokens work because the malicious page cannot read the user's tokens, due to same-origin policies. ([Same-origin policies](http://www.w3.org/Security/wiki/Same_Origin_Policy) prevent documents hosted on two different sites from accessing each other's content. So in the earlier example, the malicious page can send requests to example.com, but it cannot read the response.)
 
 To prevent CSRF attacks, use anti-forgery tokens with any authentication protocol where the browser silently sends credentials after the user logs in. This includes cookie-based authentication protocols, such as forms authentication, as well as protocols such as Basic and Digest authentication.
 

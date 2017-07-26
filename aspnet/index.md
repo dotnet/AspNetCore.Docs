@@ -308,8 +308,8 @@ description:
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Get started with ASP.NET</h3>
-                                                    <p>Download Visual Studio, the free IDE for ASP.NET on Windows.</p>
+                                                    <h3>Download Visual Studio</h3>
+                                                    <p>Visual Studio is a free IDE for ASP.NET on Windows.</p>
                                                 </div>
                                             </div>
                                         </div>

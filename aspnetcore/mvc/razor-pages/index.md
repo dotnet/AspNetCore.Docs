@@ -77,7 +77,7 @@ You can create a Razor Pages starter project from Visual Studio 2017 with the fo
 * From the Visual Studio **File** menu, select **New > Project**.
 * Create a new ASP.NET Core Web Application:
  ![new ASP.NET Core Web Application](index/_static/np.png)
-* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application (Razor Pages)**.
+* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**.
  ![Web Application (Razor Pages)](index/_static/np2.png)
 
 ## Writing a basic form
