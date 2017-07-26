@@ -11,6 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/razor-pages/index
 ---
+
 # Create a Razor Pages web app with ASP.NET Core
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core.

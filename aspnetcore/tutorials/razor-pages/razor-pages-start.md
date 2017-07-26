@@ -37,7 +37,7 @@ The Visual Studio templated creates a starter project:
 Press **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 ![Home or Index page](razor-pages-start/_static/home.png)
 
-* Visual Studio starts [IIS Express](http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
+* Visual Studio starts [IIS Express](http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server. In the preceding image, the port number is 5000. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 The default template creates **RazorPagesMovie**, **Home**, **About** and **Contact** links. Depending on the size of your browser, you might need to click the navigation icon to show the links.
@@ -48,7 +48,7 @@ Test the links. The **RazorPagesMovie** and **Home** links take you to the home 
 
 ## Project files and folders
 
-The following table lists the files and folders in the project. For this tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a refrence when you need more information on a file or folder in the project.
+The following table lists the files and folders in the project. For this tutorial, the *Startup.cs* file is the most important to understand. You don't need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.
 
 | File or folder              | Purpose |
 | ----------------- | ------------ | 
