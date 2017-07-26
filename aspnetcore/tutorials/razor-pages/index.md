@@ -16,4 +16,4 @@ uid: tutorials/razor-pages/index
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core.
 
-1. [Getting started](razor-pages-start.md)
+1. [Getting started with Razor Pages on ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)

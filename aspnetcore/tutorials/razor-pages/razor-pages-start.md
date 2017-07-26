@@ -1,5 +1,5 @@
 ---
-title: Create a Razor Pages web app with ASP.NET Core
+title: Getting started with Razor Pages on ASP.NET Core
 author: rick-anderson
 description: Getting started with Razor Pages on ASP.NET Core
 keywords: ASP.NET Core,Razor Pages, Razor, MVC
