@@ -20,3 +20,4 @@ This is a work in progress. We hope to have the series complete within two weeks
 This series explains the basics of building a Razor Pages web app with ASP.NET Core.
 
 1. [Getting started with Razor Pages on ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+1. [Adding a model to a Razor Pages app in ASP.NET Core](xref:tutorials/razor-pages/model)
