@@ -23,13 +23,10 @@ This article outlines the most common steps to migrate an existing ASP.NET Core 
 
 ## Prerequisites
 Install the following prerequisites before migrating to ASP.NET Core 2.x:
-- If you're using Visual Studio, install Visual Studio 2017 Preview version 15.3 or later
+- If you're using Visual Studio, install [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) or later
 - [.NET Core 2.x](https://www.microsoft.com/net/core/preview) or .NET Framework 4.6.1+
 
 For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must be updated.
-
-> [!NOTE]
-> .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
 
 ## Migration from ASP.NET Core 1.x to 2.x (no auth)
 
@@ -45,6 +42,9 @@ Projects targeting .NET Framework must use the TFM of a version greater than or 
 ```xml
 <TargetFramework>net461</TargetFramework>
 ```
+
+> [!NOTE]
+> .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
 
 <a name="global-json"></a>
 
