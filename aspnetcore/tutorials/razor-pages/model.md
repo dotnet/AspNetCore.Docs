@@ -103,13 +103,14 @@ Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-<a name="scaffold"></a>
 ### Test the scaffold app
 
 * Run the app and append `/Movie` to the URL in the browser (`http://localhost:port/movie`).
 * Test the **Create** link.
 
  ![Create page](model/_static/conan.png)
+
+<a name="scaffold"></a>
 
 * Test the **Edit**, **Details**, and **Delete** links.
 
@@ -121,19 +122,6 @@ An unhandled exception occurred while processing the request.
 SqlException: Cannot open database "DB name" requested by the login. The login failed.
 Login failed for user 'user name'.
 ```
-
-
-
-
-## Additional resources
-
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Globalization and localization](xref:fundamentals/localization)
-
-
-
-
-
 
 
 >[!div class="step-by-step"]
