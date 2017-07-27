@@ -1,6 +1,6 @@
-# [Migrating From ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
+# [Migrating from ASP.NET MVC to ASP.NET Core MVC](xref:migration/mvc)
 # [Migrating Configuration](xref:migration/configuration)
 # [Migrating Authentication and Identity](xref:migration/identity)
 # [Migrating from ASP.NET Web API](xref:migration/webapi)
 # [Migrating HTTP Modules to Middleware](xref:migration/http-modules)
-# [Migrating From ASP.NET Core 1.x to 2.x](xref:migration/1x-to-2x)
+# [Migrating from ASP.NET Core 1.x to 2.x](xref:migration/1x-to-2x)
