@@ -139,4 +139,4 @@ At publish time, ASP.NET Core 2.x applications targeting .NET Core 2.x use a new
 <a name="auth-and-identity"></a>
 
 ## Authentication / Identity
-See [Migrating Authentication and Identity to ASP.NET Core 2.x](identity-2x.md).
+See [Migrating Authentication and Identity to ASP.NET Core 2.x](xref:migration/identity-2x).
