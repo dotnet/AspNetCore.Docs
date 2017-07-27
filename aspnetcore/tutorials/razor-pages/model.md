@@ -17,9 +17,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you add some classes for managing movies in a database. You use these classes with the [Entity Framework Core](https://docs.microsoft.com/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data-access code that you have to write.
 
-The model classes you'll create are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They just define the properties of the data that are stored in the database.
+The model classes you'll create are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-In this tutorial you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to generate model classes from an already-existing database. For information about that approach, see [ASP.NET Core - Existing Database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
+In this tutorial you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to [generate model classes from an existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
 ## Add a data model
 
@@ -35,7 +35,7 @@ The `ID` field is required by the database for the primary key.
 
 Add a `DbContext` derived class to the *Models* folder.
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Models\MovieNoEF.cs?name=MovieNoEF)]
+[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Models\MovieContext.cs)]
 
 The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
 
@@ -43,7 +43,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file.
 
-[!code-json[Main](razor-pages-start\sample\RazorPagesMovie\appsettings.json?highlight=11)]
+[!code-json[Main](razor-pages-start\sample\RazorPagesMovie\appsettings.json?highlight=8-10)]
 
 ###  Register the database context
 
@@ -74,7 +74,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Modes/MovieContext.cs file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
@@ -95,7 +95,7 @@ The following table details the ASP.NET Core code generators parameters:
 | -m  | The name of the model. |
 | -dc  | The data context. |
 | -udl | Use the default layout. |
-| -ourDir | The relative output folder path to create the views. |
+| -outDir | The relative output folder path to create the views. |
 
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
@@ -103,7 +103,7 @@ Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-### Test the scaffold app
+### Test the app
 
 * Run the app and append `/Movie` to the URL in the browser (`http://localhost:port/movie`).
 * Test the **Create** link.
@@ -122,6 +122,8 @@ An unhandled exception occurred while processing the request.
 SqlException: Cannot open database "DB name" requested by the login. The login failed.
 Login failed for user 'user name'.
 ```
+
+The next tutorial explains the files created by scaffolding.
 
 
 >[!div class="step-by-step"]
