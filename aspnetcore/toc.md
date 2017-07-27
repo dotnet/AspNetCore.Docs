@@ -127,6 +127,7 @@
 
 ### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages/model)
 
 # [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
