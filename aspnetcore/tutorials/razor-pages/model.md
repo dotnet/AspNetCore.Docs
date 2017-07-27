@@ -43,7 +43,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file.
 
-[!code-json[Main](razor-pages-start\sample\RazorPagesMovie\appsettings.json?highlight=810)]
+[!code-json[Main](razor-pages-start\sample\RazorPagesMovie\appsettings.json?highlight=11)]
 
 ###  Register the database context
 
@@ -103,14 +103,24 @@ Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
+<a name="scaffold"></a>
 ### Test the scaffold app
 
 * Run the app and append `/Movie` to the URL in the browser (`http://localhost:port/movie`).
-* Test the *Create* link.
+* Test the **Create** link.
 
  ![Create page](model/_static/conan.png)
 
+* Test the **Edit**, **Details**, and **Delete** links.
 
+If you get the following error, verify you have run migrations and updated the database:
+
+```
+An unhandled exception occurred while processing the request.
+
+SqlException: Cannot open database "DB name" requested by the login. The login failed.
+Login failed for user 'user name'.
+```
 
 
 
