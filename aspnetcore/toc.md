@@ -171,7 +171,7 @@
 ## [ASP.NET to ASP.NET Core 1.x](xref:migration/mvc)
 ### [Configuration](xref:migration/configuration)
 ### [Authentication and Identity](xref:migration/identity)
-### [From Web API](xref:migration/webapi)
+### [Web API](xref:migration/webapi)
 ### [HTTP Modules to Middleware](xref:migration/http-modules)
 ## [ASP.NET Core 1.x to 2.x](xref:migration/1x-to-2x)
 ### [Authentication and Identity](xref:migration/identity-2x)
