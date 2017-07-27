@@ -36,14 +36,12 @@ ASP.NET MVC 4
 
 ### Install ASP.NET MVC 4 for Visual Studio 2010
 
-- [ASP.NET MVC 4 Web Platform Installer for Visual Studio 2010 SP1](javascript:;)
 - Download the standalone ASP.NET [MVC 4 installer executable](https://www.microsoft.com/download/details.aspx?id=30683)
 
 
 ### Install Visual Studio 2012 (includes ASP.NET MVC 4)
 
 - [Visual Studio 2012 Ultimate](https://go.microsoft.com/fwlink/?linkid=247148)
-- [Visual Studio 2012 Express](javascript:;)
 
 
 ### Getting Help and Reporting Issues

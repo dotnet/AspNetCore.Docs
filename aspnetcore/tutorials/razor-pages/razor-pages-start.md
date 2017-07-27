@@ -19,7 +19,9 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 
 ## Prerequisites
 
-* [.NET Core 2.0 SDK](https://www.microsoft.com/net/core)
+* Install latest [.NET Core 2.0 SDK](https://github.com/dotnet/cli/tree/release/2.0.0)
+<!--
+* [.NET Core 2.0 SDK](https://www.microsoft.com/net/core) -->
 * [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/)
 
 ## Create a Razor web app
@@ -72,7 +74,5 @@ The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](htt
 
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information.
 
-<!--
 >[!div class="step-by-step"]
-[Next](adding-controller.md)  
--->
+[Next Adding a model](xref:tutorials/razor-pages/model)  

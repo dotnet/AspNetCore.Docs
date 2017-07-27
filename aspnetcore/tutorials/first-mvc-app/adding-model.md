@@ -87,6 +87,7 @@ In this section you'll use the Package Manager Console (PMC) to:
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
+<!-- following image shared with uid: tutorials/razor-pages/model -->
   ![PMC menu](adding-model/_static/pmc.png)
 
 In the PMC, enter the following commands:
