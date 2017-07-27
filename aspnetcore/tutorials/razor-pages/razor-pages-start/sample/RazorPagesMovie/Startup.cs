@@ -16,7 +16,7 @@ namespace RazorPagesMovie
 
         public IConfiguration Configuration { get; }
 
-        #region ConfigureServices
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             // requires using RazorPagesMovie.Models;

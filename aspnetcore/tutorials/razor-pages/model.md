@@ -27,7 +27,7 @@ In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **
 
 Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Models\MovieNoEF.cs?name=MovieNoEF)]
+[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Models\MovieNoEF.cs?name=snippet_MovieNoEF)]
 
 The `ID` field is required by the database for the primary key. 
 
@@ -49,7 +49,7 @@ Add a connection string to the *appsettings.json* file.
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Startup.cs?name=ConfigureServices&highlight=3-6)]
+[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Startup.cs?name=snippet_ConfigureServices&highlight=3-6)]
 
 Build the project to verify you don't have any errors.
 
@@ -127,7 +127,7 @@ The next tutorial explains the files created by scaffolding.
 
 
 >[!div class="step-by-step"]
-[Previous Getting Started](tutorials/razor-pages/razor-pages-start)
+[Previous Getting Started](xref:tutorials/razor-pages/razor-pages-start)
 <!--
 [Next Working with SQL](working-with-sql.md)    
 -->

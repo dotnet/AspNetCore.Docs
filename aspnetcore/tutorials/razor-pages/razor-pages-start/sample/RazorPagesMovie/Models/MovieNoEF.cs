@@ -1,7 +1,7 @@
 ﻿#define First
 #if First
 
-#region MovieNoEF
+#region snippet_MovieNoEF
 using System;
 
 namespace RazorPagesMovie.Models
