@@ -15,15 +15,15 @@ uid: tutorials/razor-pages/model
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-In this section you add some classes for managing movies in a database. You use these classes with the [Entity Framework Core](https://docs.microsoft.com/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data-access code that you have to write.
+In this section, you add some classes for managing movies in a database. You use these classes with [Entity Framework Core](https://docs.microsoft.com/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.
 
-The model classes you'll create are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
+The model classes you create are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-In this tutorial you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to [generate model classes from an existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
+In this tutorial, you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to [generate model classes from an existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
 ## Add a data model
 
-In Solution Explorer, right click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
 Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
@@ -33,7 +33,7 @@ The `ID` field is required by the database for the primary key.
 
 ### Add a database context class
 
-Add a `DbContext` derived class to the *Models* folder.
+Add a `DbContext`-derived class to the *Models* folder.
 
 [!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Models\MovieContext.cs)]
 
@@ -56,7 +56,7 @@ Build the project to verify you don't have any errors.
 
 ## Add scaffold tooling and perform initial migration
 
-In this section you'll use the Package Manager Console (PMC) to:
+In this section, you use the Package Manager Console (PMC) to:
 
 * Add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
 * Add an initial migration.
@@ -68,13 +68,13 @@ From the **Tools** menu, select **NuGet Package Manager > Package Manager Consol
 
 In the PMC, enter the following commands:
 
-```PMC
+```powershell
 Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0-rtm-26452 -Pre
 Add-Migration Initial
 Update-Database
 ```
 
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
@@ -88,7 +88,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movie
   ```
 
-The following table details the ASP.NET Core code generators parameters:
+The following table details the ASP.NET Core code generators` parameters:
 
 | Parameter               | Description|
 | ----------------- | ------------ |
@@ -127,7 +127,7 @@ The next tutorial explains the files created by scaffolding.
 
 
 >[!div class="step-by-step"]
-[Previous Getting Started](razor-pages-start.md)
+[Previous Getting Started](tutorials/razor-pages/razor-pages-start)
 <!--
 [Next Working with SQL](working-with-sql.md)    
 -->
