@@ -26,12 +26,14 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
 1.  Create an ASP.NET Core Web Application project with Individual User Accounts.
 
+    ### Using Visual Studio
     In Visual Studio, select **File** -> **New** -> **Project**. Select the **ASP.NET Web Application** from the **New Project** dialog box. Selecting an ASP.NET Core **Web Application** with **Individual User Accounts** as the authentication method.
 
     Note: You must select **Individual User Accounts**.
  
     ![New Project dialog](identity/_static/01-mvc.png)
-
+    
+    ### Using the command line interface
     If using the dotnet CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same identity template code Visual Studio creates.
  
     The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the identity data and schema to SQL Server using [Entity Framework Core](https://docs.efproject.net).
