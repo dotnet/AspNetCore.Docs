@@ -61,9 +61,19 @@ In your application, install [Microsoft.AspNetCore.Server.IISIntegration](https:
 
 ### Call UseIISIntegration
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 In your application's `Main` method, call the `UseIISIntegration` extension method on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md). 
 
 [!code-csharp[](aspnet-core-module/sample/Program.cs?name=snippet_Main&highlight=12)]
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+If you use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), the `UseIISIntegration` method is called automatically when you're running with IIS.
+
+The `UseIISIntegration` method is also called automatically if you install `Microsoft.AspNetCore.Server.IISIntegration` separately, without using the metapackage. However, if you call `UseIISIntegration` explicitly, and if you forget to install the `Microsoft.AspNetCore.Server.IISIntegration` package, you won't get an error until runtime. 
+
+---
 
 The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on MacOS and deploying to a server that runs IIS.  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
 
