@@ -16,7 +16,7 @@ uid: index
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
-ASP.NET Core is a new [open-source](https://github.com/aspnet/home) and cross-platform framework for building modern cloud-based Internet-connected applications, such as web apps, IoT apps and mobile backends. It was architected to provide an optimized development framework for apps that are deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run ASP.NET Core apps on Windows, Mac and Linux. ASP.NET Core apps can [run on .NET Core or on the .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+ASP.NET Core is a new [open-source](https://github.com/aspnet/home) and cross-platform framework for building modern, cloud-based, Internet-connected applications, such as web apps, IoT apps and mobile backends. It was architected to provide an optimized development framework for apps that are deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run ASP.NET Core apps on Windows, Mac and Linux. ASP.NET Core apps can [run on .NET Core or on the .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
 ## Why use ASP.NET Core?
 
