@@ -34,8 +34,8 @@ The highlighted code above requires all requests use `HTTPS`, therefore HTTP req
 
 See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
 
-Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. When you apply the
-`[RequireHttps]` attribute, keep it mind that new controllers added to your project will not automatically require HTTPS.
+Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the 
+`[RequireHttps]` attribute to all controller is not considered as secure as requiring HTTPS globally. You can't guarantee new controllers added to your app will remember to apply the `[RequireHttps]` attribute.
 
 ## Set up IIS Express for SSL/HTTPS
 
