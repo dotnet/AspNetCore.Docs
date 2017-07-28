@@ -341,3 +341,5 @@ public class Startup
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
 See [Razor view compilation](xref:mvc/views/view-compilation) to precompile views.
+
+See [Getting started with Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start), which builds on this tutorial.
