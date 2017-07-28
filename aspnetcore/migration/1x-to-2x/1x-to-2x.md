@@ -78,7 +78,7 @@ The *.csproj* file of a 1.x project used a `PackageTargetFallback` node and vari
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
 
-This node can be removed.
+This node should be removed.
 
 <a name="app-insights"></a>
 
