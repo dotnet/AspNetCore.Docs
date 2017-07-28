@@ -555,9 +555,12 @@ Razor keywords can be escaped with `@(Razor Keyword)`, for example `@(functions)
 * for
 * foreach
 * if
+* else
 * lock
 * switch
 * try
+* catch
+* finally
 * using
 * while
 
