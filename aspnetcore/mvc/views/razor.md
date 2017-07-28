@@ -538,6 +538,7 @@ The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the
 
 ### Razor keywords
 
+* page (Requires ASP.NET Core 2.0 and later)
 * functions
 * inherits
 * model
