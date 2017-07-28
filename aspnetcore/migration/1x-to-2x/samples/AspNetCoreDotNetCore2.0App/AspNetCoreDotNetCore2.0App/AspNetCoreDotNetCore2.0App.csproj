@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <UserSecretsId>aspnet-AspNetCoreDotNetCore2._0App-35BDD8D8-5F3F-4637-ABC3-1B56E49AACC6</UserSecretsId>
   </PropertyGroup>
 

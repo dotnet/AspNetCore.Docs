@@ -58,7 +58,7 @@ The *.csproj* file in a 1.x project lists each NuGet package used by the project
 
 In an ASP.NET Core 2.x project targeting .NET Core 2.x, a single [meta-package](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the collection of packages:
 
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=8-10)]
 
 All the features of ASP.NET Core 2.x and Entity Framework Core 2.x are included in the meta-package.
 
@@ -69,7 +69,7 @@ ASP.NET Core 2.x projects targeting .NET Framework cannot use this meta-package.
 ## DotNetCliToolReference
 Update the `Version` attributes of each `<DotNetCliToolReference />` node to the 2.x version:
 
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=12-16)]
 
 <a name="package-target-fallback"></a>
 
@@ -78,9 +78,7 @@ The *.csproj* file of a 1.x project used a `PackageTargetFallback` node and vari
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
 
-Both the node and variable have been renamed:
-
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=5)]
+This node can be removed.
 
 <a name="app-insights"></a>
 
