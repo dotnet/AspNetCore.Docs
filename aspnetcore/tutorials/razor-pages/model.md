@@ -78,7 +78,7 @@ The `Add-Migration` command generates code to create the initial database schema
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
-
+<a name="scaffold"></a>
 ### Scaffold the Movie model
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
