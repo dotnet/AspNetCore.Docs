@@ -588,4 +588,5 @@ Set a break point on the `Compile` method of `CustomCompilationService` and view
 ![Text Visualizer view of compilationContent](razor/_static/tvr.png)
 
 > [!NOTE]
-> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
+> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.` 
+[Areas](xref:mvc/controllers/areas) are case sensitive. `[Area("admin")]` will not work if your folder is named *Areas/Admin*.
