@@ -274,7 +274,6 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 
-        #region snippet_ManageLogins
         //GET: /Manage/ManageLogins
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
@@ -290,8 +289,12 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
                 return View("Error");
             }
             var userLogins = await _userManager.GetLoginsAsync(user);
+
+            #region snippet_GetExternalAuthenticationSchemesAsync
             var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
             var otherLogins = schemes.Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider)).ToList();
+            #endregion
+
             ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -299,7 +302,6 @@ namespace AspNetCoreDotNetCore2._0App.Controllers
                 OtherLogins = otherLogins
             });
         }
-        #endregion
 
         //
         // POST: /Manage/LinkLogin
