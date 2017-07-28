@@ -66,7 +66,9 @@ To create logs, get an `ILogger` object from the [dependency injection](dependen
 
 [!code-csharp[](logging/sample/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-This logger object creates logs with the `TodoController` class as the *category*.  Categories are explained [later in this article](#log-category).
+This logger creates logs with the `TodoController` class as the *category*.  Categories are explained [later in this article](#log-category).
+
+Notice that these are not async methods. ASP.NET Core does not have `LogAsync` methods because logging should be so fast that it isn't worth the cost of using async. If you're in a situation where that's not true, consider a more complicated solution: write the log message to a fast store first, then move it to a slow store later.  For example, log to a message queue that is read and persisted to slow storage by another process.
 
 ## Sample logging output
 
@@ -180,7 +182,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
 * Debug = 1
 
-  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.`
+  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.` You typically would not enable `Debug` level logs in production unless you are troubleshooting, due to the high volume of logs.
 
 * Information = 2
 
@@ -488,7 +490,9 @@ loggingBuilder.Console()
 <a id="debug"></a>
 ### The Debug provider
 
-The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) provider package writes log output by using the [System.Diagnostics.Debug](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug) class.
+The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) provider package writes log output by using the [System.Diagnostics.Debug](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug) class (`Debug.WriteLine` method calls).
+
+On Linux this provider writes logs to */var/log/message*.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -639,16 +643,6 @@ Add an Azure App Service provider by calling the `AddAzureWebAppDiagnostics` ext
 loggerFactory.AddAzureWebAppDiagnostics();
 ```
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-Add an Azure App Service provider by calling the `AddAzureWebAppDiagnostics` extension method.
-
-```csharp
-loggingBuilder.AddAzureWebAppDiagnostics();
-```
-
----
-
 An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs), with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message format string that is applied to all logs, on top of the one that you provide when you call an `ILogger` method.)  
 
 When you deploy to an App Service app, your application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** blade of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. 
@@ -672,17 +666,30 @@ The provider only works when your project runs in the Azure environment.  It has
 >
 >  Behind the scenes, `UseAzureAppServices` calls `UseIISIntegration` and the logging provider extension method `AddAzureWebAppDiagnostics`.
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Add an Azure App Service provider by calling the `AddAzureWebAppDiagnostics` extension method.
+
+```csharp
+loggingBuilder.AddAzureWebAppDiagnostics();
+```
+
+---
+
+
 ## Third-party logging providers
 
 Here are some third-party logging frameworks that work with ASP.NET Core:
 
-   * [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
+* [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
 
-   * [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
+* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client side events in your server side log.
 
-   * [NLog](https://github.com/NLog/NLog.Extensions.Logging) - provider for the NLog library
+* [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
 
-   * [Serilog](https://github.com/serilog/serilog-framework-logging) - provider for the Serilog library
+* [NLog](https://github.com/NLog/NLog.Extensions.Logging) - provider for the NLog library
+
+* [Serilog](https://github.com/serilog/serilog-framework-logging) - provider for the Serilog library
 
 Some third-party frameworks can do [semantic logging, also known as structured logging](http://programmers.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 

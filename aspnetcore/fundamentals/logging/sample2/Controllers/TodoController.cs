@@ -302,7 +302,7 @@ namespace TodoApi.Controllers
         {
             using (_logger.BeginScope("Message {HoleValue}", DateTime.Now))
             {
-                _logger.LogInformation(LoggingEvents.LIST_ITEMS, "Listing all items");
+                _logger.LogInformation(LoggingEvents.ListItems, "Listing all items");
                 EnsureItems();
             }
             return _todoRepository.GetAll();
@@ -315,11 +315,11 @@ namespace TodoApi.Controllers
             TodoItem item;
             using (_logger.BeginScope("Message attached to logs created in the using block"))
             {
-                _logger.LogInformation(LoggingEvents.GET_ITEM, "Getting item {ID}", id);
+                _logger.LogInformation(LoggingEvents.GetItem, "Getting item {ID}", id);
                 item = _todoRepository.Find(id);
                 if (item == null)
                 {
-                    _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "GetById({ID}) NOT FOUND", id);
+                    _logger.LogWarning(LoggingEvents.GetItemNotFound, "GetById({ID}) NOT FOUND", id);
                     return NotFound();
                 }
             }
@@ -335,7 +335,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             _todoRepository.Add(item);
-            _logger.LogInformation(LoggingEvents.INSERT_ITEM, "Item {0} Created", item.Key);
+            _logger.LogInformation(LoggingEvents.InsertItem, "Item {0} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
 
@@ -350,12 +350,12 @@ namespace TodoApi.Controllers
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
-                _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Update({0}) NOT FOUND", id);
+                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({0}) NOT FOUND", id);
                 return NotFound();
             }
 
             _todoRepository.Update(item);
-            _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Item {0} Updated", item.Key);
+            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {0} Updated", item.Key);
             return new NoContentResult();
         }
 
@@ -363,14 +363,14 @@ namespace TodoApi.Controllers
         public void Delete(string id)
         {
             _todoRepository.Remove(id);
-            _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Item {0} Deleted", id);
+            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {0} Deleted", id);
         }
 
         private void EnsureItems()
         {
             if (!_todoRepository.GetAll().Any())
             {
-                _logger.LogInformation(LoggingEvents.GENERATE_ITEMS, "Generating sample items.");
+                _logger.LogInformation(LoggingEvents.GenerateItems, "Generating sample items.");
                 for (int i = 1; i < 11; i++)
                 {
                     _todoRepository.Add(new TodoItem() { Name = "Item " + i });
