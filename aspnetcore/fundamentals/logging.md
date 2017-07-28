@@ -62,9 +62,9 @@ You'll find information about each [built-in logging provider](#built-in-logging
 
 To create logs, get an `ILogger` object from the [dependency injection](dependency-injection.md) container and store it in a field, then call logging methods on that logger object.
 
-[!code-csharp[](logging/sample/TodoApi/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7,10)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7,10)]
 
-[!code-csharp[](logging/sample/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 This logger creates logs with the `TodoController` class as the *category*.  Categories are explained [later in this article](#log-category).
 
