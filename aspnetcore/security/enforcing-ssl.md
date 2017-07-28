@@ -30,11 +30,12 @@ Add the following code to `ConfigureServices` in `Startup`:
 
 The highlighted code above requires all requests use `HTTPS`, therefore HTTP requests are ignored. The following highlighted code redirects all HTTP requests to HTTPS:
 
-[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=6-)]
+[!code-csharp[Main](authentication/accconfirm/sample/WebApp1/Startup.cs?name=snippet_AddRedirectToHttps&highlight=7-)]
 
 See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more information.
 
-Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the `[RequireHttps]` to controllers has the drawback that you're not guaranteed new controllers added to you project will get this protection.
+Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the 
+`[RequireHttps]` attribute to all controller is not considered as secure as requiring HTTPS globally. You can't guarantee new controllers added to your app will remember to apply the `[RequireHttps]` attribute.
 
 ## Set up IIS Express for SSL/HTTPS
 
