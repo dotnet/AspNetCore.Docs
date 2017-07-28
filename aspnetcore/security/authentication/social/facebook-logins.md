@@ -102,7 +102,7 @@ Once you enter your Facebook credentials you will be redirected back to your sit
 
 You are now logged in using your Facebook credentials:
 
-![Web application: User authenticated](index/_static/FBLoggedIn.png)
+![Web application: User authenticated](index/_static/Done.png)
 
 ## Troubleshooting
 
