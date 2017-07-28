@@ -108,11 +108,11 @@ If you are using the Application Insights SDK directly, continue to do so. Since
 ## Program.cs
 In 1.x projects, the `Main` method of *Program.cs* looked like this:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=8-19)]
 
 If you're starting with a 2.x project template, notice that the `Main` method of *Program.cs* has changed:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=8-11)]
 
 The adoption of this new 2.x pattern is highly recommended. Product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) **do not** work without it.
 
