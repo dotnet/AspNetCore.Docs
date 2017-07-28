@@ -35,7 +35,7 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 A logging provider takes some action on logged data, such as display it on the console or store it in Azure blob storage. To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
 
-[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
 ASP.NET Core [dependency injection](dependency-injection.md) (DI) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider. 
 
@@ -156,11 +156,11 @@ A *category* is included with each log that you create.  You specify the categor
 
 You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call `CreateLogger` on an *ILoggerFactory* instance, as shown below.
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
 
 Most of the time it will be easier to use  `ILogger<T>`, as in the following example.
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7,10)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7,10)]
 
 This is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
@@ -170,7 +170,7 @@ Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com
 
 In the following code example, the names of the methods specify the log level, the first parameter is the [Log event ID](#log-event-id), and the remaining parameters construct a log message:
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 Log methods that include the level in the method name are [extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions).  Behind the scenes these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
 
@@ -239,9 +239,9 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
 
 Each time you write a log, you can specify an *event ID*. The sample app does this by using a locally-defined `LoggingEvents` class:
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-[!code-csharp[](logging/sample/src/TodoApi/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
+[!code-csharp[](logging/sample//Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
 
 An event ID is an integer value that you can use to associate a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.
 
@@ -258,7 +258,7 @@ warn: TodoApi.Controllers.TodoController[4000]
 
 Each time you write a log, you provide a text message. The message string can contain named placeholders into which argument values are placed, as in the following example:
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 The order of placeholders, not their names, determines which parameters are used for them. For example, if you have the following code:
 
@@ -286,7 +286,7 @@ Each Azure Table entity could have `ID` and `RequestTime` properties, which woul
 
 The logger methods have overloads that let you pass in an exception, as in the following example:
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
 
 Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
 
@@ -305,13 +305,13 @@ Some logging providers let you specify when logs should be written to a storage 
 
 The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
 
-[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
 
 The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
 
 You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
 
-[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
 
 If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
@@ -409,13 +409,13 @@ You can group a set of logical operations within a *scope* in order to attach th
 
 A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TState>` method and lasts until it is disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
 
-[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The following code enables scopes for the console provider:
 
-[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_Scopes&highlight=6)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_Scopes&highlight=6)]
 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -473,7 +473,7 @@ loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
 This code refers to the `Logging` section of the *appSettings.json* file:
 
-[!code-json[](logging/sample/src/TodoApi/appsettings.json)]
+[!code-json[](logging/sample//appsettings.json)]
 
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](configuration.md).
 
@@ -628,7 +628,7 @@ To use this provider, an application has to run on the .NET Framework (rather th
 
 The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
 
-[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_TraceSource&highlight=8-12)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_TraceSource&highlight=8-12)]
 
 <a id="appservice"></a>
 ### The Azure App Service provider
