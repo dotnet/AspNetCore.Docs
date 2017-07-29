@@ -26,7 +26,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ![Twitter Application Management open in Microsoft Edge](index/_static/TwitterAppManage.png)
 
-* Tap **Create New App** and fill out the application **Name**:
+* Tap **Create New App** and fill out the application **Name**, **Description** and public **Website** URI (this can be temporary until you register the domain name):
 
 ![Create an application page](index/_static/TwitterCreate.png)
 
@@ -35,6 +35,8 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 * Fill out the rest of the form and tap **Create your Twitter application**. New application details are displayed:
 
 ![Details tab on Application page](index/_static/TwitterAppDetails.png)
+
+* When deploying the site you'll need to revisit the **Application Management** page and register a new public URI.
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 

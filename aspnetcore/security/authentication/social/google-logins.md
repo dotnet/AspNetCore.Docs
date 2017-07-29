@@ -30,11 +30,11 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ![API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
 
-* Tap **Create** and enter your application name:
+* Tap **Create** and enter your **Project name**:
 
 ![New Project dialog](index/_static/GoogleConsoleNewProj.png)
 
-* After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. <a name="enable-googleplus">Find **Google+ API** in the list</a> and click on its link to add the API feature:
+* After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. Find **Google+ API** in the list</a> and click on its link to add the API feature:
 
 ![API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
 
@@ -53,7 +53,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ![API Manager Credentials page: Find out what kind of credentials you need panel](index/_static/GoogleConsoleChooseCred.png)
 
-* Tap **What credentials do I need?** which takes you to the second step of app configuration:
+* Tap **What credentials do I need?** which takes you to the second step of app configuration, **Create an OAuth 2.0 client ID**:
 
 ![API Manager Credentials page: Create an OAuth 2.0 client ID](index/_static/GoogleConsoleCreateClient.png)
 
@@ -61,15 +61,15 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). Google middleware configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
 
-* Press TAB to add an **Authorized redirect URIs** entry.
+* Press TAB to add the **Authorized redirect URIs** entry.
 
-* Tap **Create client ID**, which takes you to the third step:
+* Tap **Create client ID**, which takes you to the third step, **Set up the OAuth 2.0 consent screen**:
 
 ![API Manager Credentials page: Set up the OAuth 2.0 consent screen](index/_static/GoogleConsoleAddCred.png)
 
 * Enter your public facing **Email address** and the **Product name** shown for your app when Google+ prompts the user to sign in. Additional options are available under **More customization options**.
 
-* Tap **Continue** to proceed to the last step:
+* Tap **Continue** to proceed to the last step, **Download credentials**:
 
 ![API Manager Credentials page: Download credentials](index/_static/GoogleConsoleFinish.png)
 
@@ -105,7 +105,7 @@ services.AddGoogleAuthentication(googleOptions =>
 ```
 
 > [!NOTE]
-> See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
+> See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
 
 ## Sign in with Google
 

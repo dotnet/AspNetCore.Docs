@@ -18,7 +18,7 @@ uid: security/authentication/facebook-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.x project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Create the app in Facebook
 
@@ -36,7 +36,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
    ![Product Setup page](index/_static/FBProductSetup.png)
 
-* The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu at the left:
+* The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **Settings** link in the menu on the left:
 
    ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
 
@@ -56,7 +56,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * When deploying the site you'll need to revisit the **Facebook Login** setup page and register a new public URI.
 
-## Store Facebook App ID and AppSecret
+## Store Facebook App ID and App Secret
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](../../app-secrets.md). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 

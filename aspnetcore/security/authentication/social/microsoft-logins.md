@@ -44,7 +44,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 ![Add Platform dialog](index/_static/MicrosoftDevAppPlatform.png)
 
-* In the new **Web** platform section, enter your development URI with */signin-microsoft* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-microsoft`). Microsoft middleware configured later in this tutorial will automatically handle requests at */signin-microsoft* route to implement the OAuth flow:
+* In the new **Web** platform section, enter your development URL with */signin-microsoft* appended into the **Redirect URLs** field (for example: `https://localhost:44320/signin-microsoft`). Microsoft middleware configured later in this tutorial will automatically handle requests at */signin-microsoft* route to implement the OAuth flow:
 
 ![Web Platform section](index/_static/MicrosoftRedirectUri.png)
 
@@ -52,7 +52,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 * Fill out any other application settings if necessary and tap **Save** at the bottom of the page to save changes to app configuration.
 
-* When deploying the site you'll need to revisit the **Registration** page and set a new public URI.
+* When deploying the site you'll need to revisit the **Registration** page and set a new public URL.
 
 ## Store Microsoft Application Id and Password
 
