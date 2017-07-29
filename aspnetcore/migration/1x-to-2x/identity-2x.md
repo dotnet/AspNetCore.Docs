@@ -1,7 +1,7 @@
 ---
-title: Migrating Auth and Identity to ASP.NET Core 2.x
+title: Migrating Auth and Identity to ASP.NET Core 2.0
 author: scottaddie
-description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.x.
+description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
 keywords: ASP.NET Core,Identity,authentication
 ms.author: scaddie
 manager: wpickett
@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: migration/identity-2x
 ---
 
-# Migrating Authentication and Identity to ASP.NET Core 2.x
+# Migrating Authentication and Identity to ASP.NET Core 2.0
 
 <a name="migration-identity"></a>
 
@@ -29,7 +29,7 @@ For example, 1.x projects reference an `Authentication` property:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
-In 2.x projects, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
+In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
 
@@ -40,20 +40,20 @@ The `UseIdentity` extension method, which typically appeared in the `Configure` 
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Startup.cs?range=76)]
 
-Feature parity is maintained in 2.x projects when this method call is replaced with `UseAuthentication`:
+Feature parity is maintained in 2.0 projects when this method call is replaced with `UseAuthentication`:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]
 
 <a name="identity-cookie-options"></a>
 
 ## IdentityCookieOptions Instances
-A side effect of the 2.x changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
+A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
 For example, 1.x projects use [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to pass an `IdentityCookieOptions` parameter into *AccountController.cs*. The external cookie authentication scheme is accessed from the provided instance:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 
-The constructor injection becomes unnecessary in 2.x projects, and the `_externalCookieScheme` field can be deleted:
+The constructor injection becomes unnecessary in 2.0 projects, and the `_externalCookieScheme` field can be deleted:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor)]
 
@@ -64,7 +64,7 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 <a name="navigation-properties"></a>
 
 ## IdentityUser POCO Navigation Properties
-The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If the 1.x project used these properties, manually add them back to the 2.x project:
+The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If the 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
 /// <summary>
@@ -94,7 +94,7 @@ This method appears in *Login.cshtml* too:
 
 [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Account/Login.cshtml?range=62,75-84)]
 
-In 2.x projects, use the `GetExternalAuthenticationSchemesAsync` method:
+In 2.0 projects, use the `GetExternalAuthenticationSchemesAsync` method:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemesAsync)]
 
@@ -109,6 +109,6 @@ A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *Manage
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 
-In 2.x projects, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import with a `Microsoft.AspNetCore.Authentication` import.
+In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import with a `Microsoft.AspNetCore.Authentication` import.
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
