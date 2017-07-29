@@ -422,7 +422,7 @@ The following code enables scopes for the console provider:
 
 The following code enables scopes for the console provider:
 
-[!code-csharp[](logging/sample2s/Program.cs?name=snippet_Scopes&highlight=3)]
+[!code-csharp[](logging/sample2/Program.cs?name=snippet_Scopes&highlight=3)]
 
 ---
 
