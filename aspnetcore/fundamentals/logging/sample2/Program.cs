@@ -1,4 +1,4 @@
-﻿#define ExpandDefault // TemplateCode // or ExpandDefault or FilterInCode or MinLevel or FilterFunction
+﻿#define TemplateCode // or ExpandDefault or FilterInCode or MinLevel or FilterFunction
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace TodoApi
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddAzureWebAppDiagnostics();
+                    logging.AddConsole();
                     logging.AddDebug();
                 })
                 .UseStartup<Startup>()
