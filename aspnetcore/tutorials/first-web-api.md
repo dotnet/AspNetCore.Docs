@@ -15,6 +15,16 @@ uid: tutorials/first-web-api
 
 #Create a web API with ASP.NET Core MVC and Visual Studio for Windows
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
+
+In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
+
+There are 3 versions of this tutorial:
+
+* Windows: Web API with Visual Studio for Windows (This tutorial)
+* macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+* macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
+
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
 [!INCLUDE[intro to web API](../includes/webApi/intro.md)]
@@ -41,15 +51,23 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 
 If you're using IE, you are prompted to open or save the *values.json* file.
 
-### Add support for Entity Framework Core
+## Add support for Entity Framework Core
 
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add "Microsoft.EntityFrameworkCore.InMemory":
 
 [!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=15)]
 
-### Add a model class
+# [ASP.NET Core 2.0](#tab/aspnet20)
+
+The [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). You don't need to install `Entity Framework Core InMemory`. This database provider allows Entity Framework Core to be used with an in-memory database.
+
+---
+
+## Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
@@ -62,6 +80,8 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **C
 Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+
+The database generates the `Id` when a `TodoItem` is created.
 
 ### Create the database context
 

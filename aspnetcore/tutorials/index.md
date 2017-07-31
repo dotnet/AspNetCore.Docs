@@ -1,13 +1,12 @@
 ---
-title: ASP.NET Core tutorials | Microsoft Docs
+title: ASP.NET Core tutorials
 author: tdykstra
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
 keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 7/14/2017
 ms.topic: get-started-article
-ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/index
@@ -18,11 +17,13 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web applications
 
-* [Introduction to ASP.NET Core MVC with Visual Studio for Mac](first-mvc-app-mac/index.md)
-* [Introduction to ASP.NET Core MVC with Visual Studio](first-mvc-app/index.md)
-* [Introduction to ASP.NET Core MVC on Mac or Linux ](first-mvc-app-xplat/index.md)
+[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
+
+* [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index) 
+* [Create an ASP.NET Core app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)
+* [Create an ASP.NET Core app with Visual Studio on Windows](first-mvc-app/index.md)
+* [Create an ASP.NET Core app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [Your first ASP.NET Core application on a Mac or Linux using Visual Studio Code](your-first-mac-aspnet.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
 * [Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)
@@ -58,9 +59,8 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
 * [Publishing to an Azure Web App with Continuous Deployment](../publishing/azure-continuous-deployment.md)
 * [Deploy an ASP.NET container to a remote Docker host](https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
-* [Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment](../publishing/vsts-continuous-deployment.md)
 * [ASP.NET Core on Nano Server](nano-server.md)
-* [ASP.NET Core and Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-add-a-web-frontend)
+* [ASP.NET Core and Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-add-a-web-frontend)
 
 <a name="download"></a> 
 ## How to download a sample

@@ -70,27 +70,13 @@ This tutorial will begin by creating a new ASP.NET MVC 3 project using the free 
 
 You can follow along step by step, or you can download the completed application from [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com).
 
-You can use either Visual Studio 2010 SP1 or Visual Web Developer 2010 Express SP1 (a free version of Visual Studio 2010) to build the application. We'll be using the SQL Server Compact (also free) to host the database. Before you start, make sure you've installed the prerequisites listed below. You can install all of them using the following Web Platform Installer link: [https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=VWD2010SP1Pack](javascript:;)
+You can use either Visual Studio 2010 SP1 or Visual Web Developer 2010 Express SP1 (a free version of Visual Studio 2010) to build the application. We'll be using the SQL Server Compact (also free) to host the database. Before you start, make sure you've installed the prerequisites listed below.
 
-Note: You can find this link on the big green button at this (easier to remember) link: [https://asp.net/mvc](https://asp.net/mvc)
 
-![](mvc-music-store-part-1/_static/image3.png)
+- [Visual Studio Web Developer Express SP1 prerequisites]
+- [ASP.NET MVC 3 Tools Update]
+- [SQL Server Compact 4.0] - including both runtime and tools support
 
-The Web Platform Installer will check what you've got installed and just download what you need.
-
-![](mvc-music-store-part-1/_static/image4.png)
-
-If you want to individually install the prerequisites using the following links instead of using the above link, use the following links (written out in case you're using a printed version of this tutorial):
-
-- [Visual Studio Web Developer Express SP1 prerequisites](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=VWD2010SP1Pack
-- [ASP.NET MVC 3 Tools Update](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MVC3
-- [SQL Server Compact 4.0](javascript:;)- including both runtime and tools support https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=SQLCE;SQLCEVSTools\_4\_0
-
-Note: If you're using Visual Studio 2010 instead of Visual Web Developer 2010, install the prerequisites with this link instead:
-
-[Visual Studio Web Developer Express SP1 prerequisites](javascript:;) https://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appsxml=&amp;appid=VS2010SP1Pack
-
-I highly recommend you use the first Web Platform Installer link, as it will make sure you've got everything set up correctly.
 
 ### Creating a new ASP.NET MVC 3 project
 

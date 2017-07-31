@@ -1,5 +1,5 @@
 ---
-title: Layout | Microsoft Docs
+title: Layout
 author: ardalis
 description: 
 keywords: ASP.NET Core,

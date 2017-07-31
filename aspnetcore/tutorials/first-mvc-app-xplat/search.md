@@ -1,5 +1,5 @@
 ---
-title: Adding Search | Microsoft Docs
+title: Adding Search
 author: rick-anderson
 description: Shows how to add search to simple ASP.NET Core MVC app
 keywords: ASP.NET Core,

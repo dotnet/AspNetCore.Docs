@@ -1,5 +1,5 @@
 ---
-title: Security | Microsoft Docs
+title: Security
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -16,14 +16,15 @@ ms.prod: asp.net-core
 *   [Authentication](authentication/index.md)
     *   [Introduction to Identity](authentication/identity.md)
     *   [Enabling authentication using Facebook, Google and other external providers](authentication/social/index.md)
+    * [Configure Windows Authentication](authentication/windowsauth.md)
     *   [Account Confirmation and Password Recovery](authentication/accconfirm.md)
     *   [Two-factor authentication with SMS](authentication/2fa.md) 
     *   [Using Cookie Middleware without ASP.NET Core Identity](authentication/cookie.md)
     *   [Azure Active Directory](authentication/azure-active-directory/index.md)
         *   [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
         *   [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
-        *   [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
-        *   [An ASP.NET Core web app with Azure AD B2C](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-b2c/)
+        *   [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
+        *   [An ASP.NET Core web app with Azure AD B2C](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-b2c/)
     *   [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)
 *   [Authorization](authorization/index.md)
     *   [Introduction](authorization/introduction.md)
@@ -74,5 +75,6 @@ ms.prod: asp.net-core
 *   [Enforcing SSL](enforcing-ssl.md)
 *   [Setting up HTTPS for development](https.md)
 *   [Anti-Request Forgery](anti-request-forgery.md)
+*   [Preventing Open Redirect Attacks](preventing-open-redirects.md)
 *   [Preventing Cross-Site Scripting](cross-site-scripting.md)
 *   [Enabling Cross-Origin Requests (CORS)](cors.md)

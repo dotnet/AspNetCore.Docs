@@ -1,5 +1,5 @@
 ---
-title: Azure Key Vault configuration provider | Microsoft Docs
+title: Azure Key Vault configuration provider
 author: guardrex
 description: How to use the Azure Key Vault Configuration Provider to configure an application using name-value pairs loaded at runtime.
 keywords: ASP.NET Core, configuration, Azure Key Vault
@@ -56,7 +56,9 @@ public class EnvironmentSecretManager : IKeyVaultSecretManager
 
     public string GetKey(SecretBundle secret)
     {
-        return secret.SecretIdentifier.Name.Substring(_appNamePrefix.Length);
+        return secret.SecretIdentifier.Name
+                     .Substring(_appNamePrefix.Length)
+                     .Replace("--", ConfigurationPath.KeyDelimiter);
     }
 }
 ```

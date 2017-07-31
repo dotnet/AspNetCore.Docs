@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10 | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Data Model - 5 of 10
 author: tdykstra
 description: In this tutorial you add more entities and relationships and customize the data model by specifying formatting, validation, and database mapping rules.
 keywords: ASP.NET Core, Entity Framework Core, data annotations
@@ -376,7 +376,7 @@ This code adds the new entities and configures the CourseAssignment entity's com
 
 ## Fluent API alternative to attributes
 
-The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](https://docs.microsoft.com/en-us/ef/core/modeling/#methods-of-configuration):
+The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)

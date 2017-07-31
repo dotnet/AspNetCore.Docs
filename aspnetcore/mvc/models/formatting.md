@@ -1,5 +1,5 @@
 ---
-title: Formatting response data in ASP.NET Core MVC | Microsoft Docs
+title: Formatting response data in ASP.NET Core MVC
 author: ardalis
 description: Learn how to format response data in ASP.NET Core MVC.
 keywords: ASP.NET Core, response data, IOutputFormatter, IActionResult
@@ -100,7 +100,7 @@ services.AddMvc(options =>
 
 ## Configuring Formatters
 
-If your application needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](model-binding.md); output formatters are used to format responses. You can also configure [🔧 Custom Formatters](../advanced/custom-formatters.md).
+If your application needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](model-binding.md); output formatters are used to format responses. You can also configure [Custom Formatters](../advanced/custom-formatters.md).
 
 ### Adding XML Format Support
 

@@ -21,8 +21,7 @@ ASP.NET MVC 3
 > 
 > It installs side-by-side with ASP.NET MVC 2, so get started using it today!
 > 
-> [Install MVC3 Free](javascript:;)   
-> or download the [installer here](https://go.microsoft.com/fwlink/?LinkID=208140)
+> Download the [installer here](https://go.microsoft.com/fwlink/?LinkID=208140)
 
 
 ## Top Features

@@ -15,6 +15,16 @@ uid: tutorials/web-api-vsc
 
 # Create a Web API with ASP.NET Core MVC and Visual Studio Code on Linux, macOS, and Windows
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
+
+In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
+
+There are 3 versions of this tutorial:
+
+* macOS, Linux, Windows: Web API with Visual Studio Code (This tutorial)
+* macOS: [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+* Windows: [Web API with Visual Studio for Windows](xref:tutorials/first-web-api)
+
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
 [!INCLUDE[template files](../includes/webApi/intro.md)]
@@ -53,7 +63,7 @@ See [Visual Studio Code help](#visual-studio-code-help) for tips on using VS Cod
 
 ## Add support for Entity Framework Core
 
-Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Edit the *TodoApi.csproj* file to install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 [!code-xml[Main](web-api-vsc/sample/TodoApi/TodoApi.csproj?highlight=12)]
 
@@ -68,6 +78,8 @@ Add a folder named *Models*. You can put model classes anywhere in your project,
 Add a `TodoItem` class with the following code:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+
+The database generates the `Id` when a `TodoItem` is created.
 
 ## Create the database context
 

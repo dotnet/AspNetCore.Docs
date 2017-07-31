@@ -3,7 +3,7 @@
 This sample illustrates the use of the Azure Key Vault Configuration Provider.
 
 ## Using the sample
-1. Following the guidance in [Get started with Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started):
+1. Following the guidance in [Get started with Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-get-started):
   * Create a key vault
   * Create key vault secrets
     - `MySecret`: `secret_value_1`

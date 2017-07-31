@@ -15,6 +15,16 @@ uid: tutorials/first-web-api-mac
 
 # Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
+
+In this tutorial, you’ll build a web API for managing a list of "to-do" items. You won’t build a UI.
+
+There are 3 versions of this tutorial:
+
+* macOS: Web API with Visual Studio for Mac (This tutorial)
+* Windows: [Web API with Visual Studio for Windows](xref:tutorials/first-web-api)
+* macOS, Linux, Windows: [Web API with Visual Studio Code](xref:tutorials/web-api-vsc)
+
 <!-- WARNING: The code AND images in this doc are used by uid: tutorials/web-api-vsc, tutorials/first-web-api-mac and tutorials/first-web-api. If you change any code/images in this tutorial, update uid: tutorials/web-api-vsc -->
 
 [!INCLUDE[template files](../includes/webApi/intro.md)]
@@ -52,7 +62,7 @@ In Visual Studio, select **Run > Start With Debugging** to launch the app. Visua
 
 ### Add support for Entity Framework Core
 
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
+Install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
 
 * From the **Project** menu, select **Add NuGet Packages**. 
 
@@ -76,6 +86,8 @@ Add a `TodoItem` class. Right-click the *Models* folder and select **Add > New F
 Replace the generated code with:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
+
+The database generates the `Id` when a `TodoItem` is created.
 
 ### Create the database context
 

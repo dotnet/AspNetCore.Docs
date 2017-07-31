@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Module | Microsoft Docs
+title: ASP.NET Core Module
 author: tdykstra
 description: Introduces ASP.NET Core Module (ANCM), an IIS module that lets the Kestrel web server use IIS or IIS Express as a reverse proxy server.
 keywords: ASP.NET Core, IIS, IIS Express, ASP.NET Core Module, UseIISIntegration
@@ -53,7 +53,7 @@ This section provides an overview of the process for setting up an IIS server an
 
 ### Install ANCM
 
-The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [ASP.NET Core Server Hosting Bundle](https://go.microsoft.com/fwlink/?linkid=844461). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
+The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [ASP.NET Core Server Hosting Bundle](https://go.microsoft.com/fwlink/?linkid=848766). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
 
 ### Install the IISIntegration NuGet package
 
@@ -65,7 +65,7 @@ In your application's `Main` method, call the `UseIISIntegration` extension meth
 
 [!code-csharp[](aspnet-core-module/sample/Program.cs?name=snippet_Main&highlight=12)]
 
-The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like [developing and testing on MacOS and deploying to a server that runs IIS](../../tutorials/your-first-mac-aspnet.md).  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
+The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on MacOS and deploying to a server that runs IIS.  While running on the Mac, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
 
 ### Don't call UseUrls
 

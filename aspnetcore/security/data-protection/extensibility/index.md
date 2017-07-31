@@ -1,5 +1,5 @@
 ---
-title: Extensibility APIs | Microsoft Docs
+title: Extensibility APIs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

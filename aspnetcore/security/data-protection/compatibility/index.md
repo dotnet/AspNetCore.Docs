@@ -1,5 +1,5 @@
 ---
-title: Compatibility in ASP.NET Core | Microsoft Docs
+title: Compatibility in ASP.NET Core
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

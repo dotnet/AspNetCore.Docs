@@ -1,5 +1,5 @@
 ---
-title: Logging in ASP.NET Core | Microsoft Docs
+title: Logging in ASP.NET Core
 author: ardalis
 description: Introduces the logging framework in ASP.NET Core. Includes a section for each built-in logging provider and links to some popular third-party providers.
 keywords: ASP.NET Core, logging, logging providers, Microsoft.Extensions.Logging, ILogger, ILoggerFactory, LogLevel, WithFilter, TraceSource, EventLog, EventSource, scopes
@@ -20,6 +20,9 @@ By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykst
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers let you send logs to one or more destinations, and you can plug in a third-party logging framework. This article shows how to use the built-in logging API and providers in your code.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
+
+> [!NOTE]
+> This article was written for ASP.NET Core 1.x. For information about ASP.NET Core 2.0 changes, see [Logging update](xref:aspnetcore-2.0#logging-update).
 
 ## How to add providers
 
@@ -103,7 +106,7 @@ This is equivalent to calling `CreateLogger` with the fully qualified type name 
 
 ## Log level
 
-Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
+Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
 
 In the following code example, the names of the methods specify the log level, the first parameter is the [Log event ID](#log-event-id), and the remaining parameters construct a log message:
 
@@ -137,7 +140,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
 
-You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and higher to go to a high-volume data store, and all logs of `Warning` level and higher to go to a high-value data store. During development you might normally direct only logs of `Warning` or higher severity to the console, but add `Debug` level when you need to investigate a problem. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
+You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and lower to go to a volume data store, and all logs of `Warning` level and higher to go to a value data store. During development you might normally direct only logs of `Warning` or higher severity to the console, but add `Debug` level when you need to investigate a problem. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
 The ASP.NET Core framework writes `Debug` logs for framework events. Here's an example of what you see from the console provider if you run the sample application with the minimum log level set to `Debug` and go to URL `http://localhost:5000/api/todo/0`:
 
@@ -331,7 +334,7 @@ For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Log
 loggerFactory.AddEventSourceLogger()
 ```
 
-The best way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/en-us/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
+A good way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. 
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
 
@@ -399,7 +402,7 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 <a id="appservice"></a>
 ### The Azure App Service provider
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
 
 ```csharp
 loggerFactory.AddAzureWebAppDiagnostics();
@@ -407,7 +410,7 @@ loggerFactory.AddAzureWebAppDiagnostics();
 
 An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs), with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message format string that is applied to all logs, on top of the one that you provide when you call an `ILogger` method.)  
 
-When you deploy to an App Service app, your application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/en-us/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** blade of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. 
+When you deploy to an App Service app, your application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** blade of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. 
 
 ![Azure logging settings](logging/_static/azure-logging-settings.png)
 

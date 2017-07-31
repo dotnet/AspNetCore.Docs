@@ -1,5 +1,5 @@
 ---
-title: Web server implementations in ASP.NET Core | Microsoft Docs
+title: Web server implementations in ASP.NET Core
 author: tdykstra
 description: Introduces web servers Kestrel and WebListener for ASP.NET Core. Provides guidance on how to choose one and when to use one with a reverse proxy server.
 keywords: ASP.NET Core, IServer, web server, Kestrel, WebListener, reverse proxy
@@ -22,7 +22,7 @@ ASP.NET Core ships two server implementations:
 
 * [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
-* [WebListener](weblistener.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364510.aspx).
+* [WebListener](weblistener.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
 ## Kestrel
 

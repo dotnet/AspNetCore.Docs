@@ -1,11 +1,11 @@
 ---
-title: Response Caching | Microsoft Docs
+title: Response Caching
 author: rick-anderson
 description: Explains how to use Response caching to lower bandwidth and increase performance.
 keywords: ASP.NET Core, Response caching, HTTP headers
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 7/10/2017
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
 ms.prod: asp.net-core
@@ -31,9 +31,14 @@ The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 C
 
 The web server can cache responses by adding the response caching middleware. See [Response caching middleware](middleware.md) for more information.
 
+## Distributed Cache Tag Helper
+
+The [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper) enables distributed caching.
+
+
 ## ResponseCache Attribute
 
-The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
+The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
 
 >[!WARNING]
 > Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that does not change based on a user's identity, or whether a user is logged in.

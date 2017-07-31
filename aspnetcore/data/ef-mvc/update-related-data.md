@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10 | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
 author: tdykstra
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
 keywords: ASP.NET Core, Entity Framework Core, related data, joins
@@ -246,7 +246,7 @@ This code makes the following changes:
 
 ## Add office location and courses to the Create page
 
-In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
+In *InstructorsController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22,29)]
 

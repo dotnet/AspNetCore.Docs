@@ -1,5 +1,5 @@
 ---
-title: View components | Microsoft Docs
+title: View components
 author: rick-anderson
 description: View Components are intended anywhere you have reusable rendering logic.
 keywords: ASP.NET Core,view components, partial view
@@ -37,7 +37,7 @@ View components are intended anywhere you have reusable rendering logic that is 
 * Sidebar content on a typical blog
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A view component consists of two parts: the class (typically derived from [ViewComponent](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A view component consists of two parts: the class (typically derived from [ViewComponent](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 ## Creating a view component
 
@@ -110,7 +110,7 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp", add the following directive to the `_ViewImports.cshtml` file:
 
 ```csharp
-@addTagHelper "*, MyWebApp"
+@addTagHelper *, MyWebApp
 ```
 
 You can register a View Component as a Tag Helper to any file that references the View Component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.

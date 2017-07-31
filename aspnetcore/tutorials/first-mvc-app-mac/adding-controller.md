@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-mac/adding-controller
 ---
-# Adding a controller to a ASP.NET Core MVC app with Visual Studio for Mac
+# Adding a controller to an ASP.NET Core MVC app with Visual Studio for Mac
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -1,5 +1,5 @@
 ---
-title: Adding a model | Microsoft Docs
+title: Adding a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 keywords: ASP.NET Core,
@@ -17,13 +17,13 @@ uid: tutorials/first-mvc-app/adding-model
 
 In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
-In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
+Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieNoEF.cs?name=snippet_1)]
 
 The `ID` field is required by the database for the primary key. 
 
-Build the project to verify you don't have any errors, and you've finally added a **M**odel to your **M**VC app.
+Build the project to verify you don't have any errors. You now have a **M**odel in your **M**VC app.
 
 ## Scaffolding a controller
 
@@ -60,9 +60,9 @@ Complete the **Add Controller** dialog:
 
 Visual Studio creates:
 
-* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Models/MvcMovieContext*)
+* An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/\*.cshtml*)
+* Razor view files for Create, Delete, Details, Edit and Index pages (*Views/Movies/&ast;.cshtml*)
 
 The automatic creation of the database context and [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
@@ -77,23 +77,36 @@ Login failed for user Rick
 
 You need to create the database, and you'll use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
 
-## Add EF tooling for Migrations
+## Add EF tooling and perform initial migration
 
-- In Solution Explorer, right click the **MvcMovie** project > **Edit MvcMovie.csproj**.
+In this section you'll use the Package Manager Console (PMC) to:
 
-   ![SE meu showing Edit MvcMovie.csproj](adding-model/_static/edit_csproj.png)
+* Add the Entity Framework Core Tools package. This package is required to add migrations and update the database.
+* Add an initial migration.
+* Update the database with the initial migration.
 
-- Add the `"Microsoft.EntityFrameworkCore.Tools.DotNet"` NuGet package:
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-[!code-xml[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?range=22-25&highlight=3)] 
+<!-- following image shared with uid: tutorials/razor-pages/model -->
+  ![PMC menu](adding-model/_static/pmc.png)
 
-Note: The version numbers shown above were correct at the time of writing.
+In the PMC, enter the following commands:
 
-Save your changes. 
+``` PMC
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Add-Migration Initial
+Update-Database
+```
 
-[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model2.md)]
+The `Add-Migration` command creates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Data/MvcMovieContext.cs file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+
+The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
+
+[!INCLUDE[adding-model](../../includes/mvc-intro/adding-model4.md)]
 
 ![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 

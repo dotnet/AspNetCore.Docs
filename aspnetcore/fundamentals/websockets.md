@@ -1,5 +1,5 @@
 ---
-title: WebSockets support in ASP.NET Core | Microsoft Docs
+title: WebSockets support in ASP.NET Core
 author: tdykstra
 description: What is WebSockets support in ASP.NET Core and how to use it.
 keywords: ASP.NET Core, WebSockets
@@ -31,7 +31,11 @@ This article explains how to get started with WebSockets in ASP.NET Core. [WebSo
   * Linux
   * macOS
 
-   Exception: If your app runs on Windows with IIS, or with WebListener, you must use Windows 8 / Windows Server 2012 or later
+* **Exception**: If your app runs on Windows with IIS, or with WebListener, you must use:
+
+  * Windows 8 / Windows Server 2012 or later
+  * IIS 8 / IIS 8 Express
+  * WebSocket must be enabled in IIS
 
 * For supported browsers, see http://caniuse.com/#feat=websockets.
 

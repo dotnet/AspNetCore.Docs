@@ -1,5 +1,5 @@
 ---
-title: Razor Syntax Reference | Microsoft Docs
+title: Razor Syntax Reference
 author: rick-anderson
 description: Details Razor syntax
 keywords: ASP.NET Core, Razor
@@ -71,7 +71,7 @@ With the exception of the C# `await` keyword implicit expressions must not conta
 
 ## Explicit Razor expressions
 
-Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last weeks’ time:
+Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last week's time:
 
 ```html
 <p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
@@ -437,7 +437,7 @@ For example, if you create an ASP.NET Core MVC app with individual user accounts
 @model LoginViewModel
    ```
 
-In the class example in , the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
+In the preceding class example, the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
 
 ```csharp
 @model LoginViewModel
@@ -496,6 +496,8 @@ When passed "[Rick@contoso.com](mailto:Rick@contoso.com)" in the model:
 
 The `@inject` directive enables you to inject a service from your [service container](../../fundamentals/dependency-injection.md)  into your Razor page for use. See [Dependency injection into views](dependency-injection.md).
 
+<a name="functions"></a>
+
 ### `@functions`
 
 The `@functions` directive enables you to add function level content to your Razor page. The syntax is:
@@ -522,7 +524,7 @@ The generated Razor C# looks like:
 
 The `@section` directive is used in conjunction with the [layout page](layout.md) to enable views to render content in different parts of the rendered HTML page. See [Sections](layout.md#layout-sections-label) for more information.
 
-## TagHelpers
+## Tag Helpers
 
 The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the links provided.
 

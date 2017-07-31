@@ -1,5 +1,5 @@
 ---
-title: What's new in ASP.NET Core 1.1 | Microsoft Docs
+title: What's new in ASP.NET Core 1.1
 author: rick-anderson
 description: What's new in ASP.NET Core 1.1
 keywords: ASP.NET Core, bower
@@ -17,8 +17,8 @@ uid: aspnetcore-1.1
 
 ASP.NET Core 1.1 includes the following new features:
 
-- [URL Rewriting Middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting)
-- [Response Caching Middleware](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/middleware)
+- [URL Rewriting Middleware](https://docs.microsoft.com/aspnet/core/fundamentals/url-rewriting)
+- [Response Caching Middleware](https://docs.microsoft.com/aspnet/core/performance/caching/middleware)
 - [View Components as Tag Helpers](xref:mvc/views/view-components#invoking-a-view-component-as-a-tag-helper)
 - [Middleware as MVC filters](xref:mvc/controllers/filters#using-middleware-in-the-filter-pipeline)
 - [Cookie-based TempData provider](xref:fundamentals/app-state#cookie-based-tempdata-provider )

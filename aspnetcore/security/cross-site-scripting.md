@@ -1,5 +1,5 @@
 ---
-title: Preventing Cross-Site Scripting | Microsoft Docs
+title: Preventing Cross-Site Scripting
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -16,7 +16,7 @@ uid: security/cross-site-scripting
 
 <a name=security-cross-site-scripting></a>
 
-Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacher to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.
+Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.
 
 ## Protecting your application against XSS
 

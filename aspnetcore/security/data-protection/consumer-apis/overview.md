@@ -1,5 +1,5 @@
 ---
-title: Consumer APIs Overview | Microsoft Docs
+title: Consumer APIs Overview
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

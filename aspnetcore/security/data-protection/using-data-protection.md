@@ -1,5 +1,5 @@
 ---
-title: Getting Started with the Data Protection APIs | Microsoft Docs
+title: Getting Started with the Data Protection APIs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,

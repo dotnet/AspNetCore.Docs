@@ -1,5 +1,5 @@
 ---
-title: Introduction | Microsoft Docs
+title: Introduction
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
