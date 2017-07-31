@@ -35,9 +35,7 @@ Projects targeting .NET Core must use the [TFM](/dotnet/standard/frameworks#refe
 
 Projects targeting .NET Framework must use the TFM of a version greater than or equal to .NET Framework 4.6.1:
 
-```xml
-<TargetFramework>net461</TargetFramework>
-```
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=4)]
 
 > [!NOTE]
 > .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
@@ -52,9 +50,7 @@ If the solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/
 <a name="package-reference"></a>
 
 ## Update package references
-The *.csproj* file in a 1.x project lists each NuGet package used by the project:
-
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=9-26)]
+The *.csproj* file in a 1.x project lists each NuGet package used by the project.
 
 In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the collection of packages:
 
@@ -62,7 +58,9 @@ In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](x
 
 All the features of ASP.NET Core 2.0 and Entity Framework Core 2.0 are included in the metapackage.
 
-ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference individual NuGet packages. An upgrade of each package reference to 2.0 is required.
+ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference individual NuGet packages. An upgrade of each package reference to 2.0 is required:
+
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=9-22)]
 
 <a name="dot-net-cli-tool-reference"></a>
 
