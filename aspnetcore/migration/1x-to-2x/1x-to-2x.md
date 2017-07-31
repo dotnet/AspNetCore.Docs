@@ -5,7 +5,7 @@ description: This article outlines the prerequisites and most common steps for m
 keywords: ASP.NET Core,migrating
 ms.author: scaddie
 manager: wpickett
-ms.date: 07/27/2017
+ms.date: 07/31/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -105,25 +105,19 @@ When targeting .NET Framework, you still need to explicitly reference the `Micro
 <a name="app-insights"></a>
 
 ## Application Insights
-ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. This was accomplished via a three-step process:
+ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, remove the `Microsoft.ApplicationInsights.AspNetCore` package reference.
 
-1. Add the supporting NuGet package:
+In addition, remove the `UseApplicationInsights` extension method invocation from *Program.cs*:
 
-    [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=10)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=15)]
 
-2. Invoke the `UseApplicationInsights` extension method in *Program.cs*:
+The client-side API call in *_Layout.cshtml* should be removed as well:
 
-    [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=15)]
+[!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
-3. Add the client-side API call in *_Layout.cshtml*:
+You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
 
-    [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
-
-In the 2.0 project templates, Application Insights isn't added by default.
-
-If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, omit its explicit package reference and the code referenced in steps 2 and 3 above. You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
-
-If you are using the Application Insights SDK directly, continue to do so. Since the 2.0 metapackage includes the latest version of Application Insights, a package downgrade error appears if you're referencing an older version.
+If you are using the Application Insights SDK directly, continue to do so. The 2.0 metapackage includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 
 <a name="publishing"></a>
 
