@@ -23,7 +23,13 @@ ASP.NET Core 2.0 has a new model for authentication and Identity that simplifies
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
-In 1.x projects, a middleware method was invoked for each authentication scheme you wanted to support. For example, invoking the `UseCookieAuthentication` or `UseFacebookAuthentication` methods in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication or Facebook authentication, respectively:
+In 1.x projects, authentication is configured with middleware. 2.x projects use services to configure authentication.
+
+When using ASP.NET Core Identity for cookie-based authentication in 2.x, the `AddIdentity` extension method adds cookie authentication services that get picked up by the middleware:
+
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=33-35)]
+
+In 1.x, a middleware method was invoked for each authentication scheme you wanted to support. For example, invoking the `UseCookieAuthentication` or `UseFacebookAuthentication` methods in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication or Facebook authentication, respectively:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -35,7 +41,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 } 
 ```
 
-In 2.x projects, each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
+In 2.x, each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
