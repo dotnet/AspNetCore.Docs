@@ -105,15 +105,19 @@ When targeting .NET Framework, you still need to explicitly reference the `Micro
 <a name="app-insights"></a>
 
 ## Application Insights
-ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, remove the `Microsoft.ApplicationInsights.AspNetCore` package reference.
+ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, follow these steps:
 
-In addition, remove the `UseApplicationInsights` extension method invocation from *Program.cs*:
+1. Remove the `Microsoft.ApplicationInsights.AspNetCore` package reference:
+    
+    [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=10)]
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=15)]
+2. Remove the `UseApplicationInsights` extension method invocation from *Program.cs*:
 
-The client-side API call in *_Layout.cshtml* should be removed as well:
+    [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 
-[!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
+3. Remove the client-side API call from *_Layout.cshtml*:
+
+    [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
 You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
 

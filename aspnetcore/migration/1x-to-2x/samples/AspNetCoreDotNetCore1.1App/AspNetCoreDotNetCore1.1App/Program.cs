@@ -5,6 +5,7 @@ namespace AspNetCoreDotNetCore1._1App
 {
     public class Program
     {
+        #region snippet_ProgramCsMain
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
@@ -17,5 +18,6 @@ namespace AspNetCoreDotNetCore1._1App
 
             host.Run();
         }
+        #endregion
     }
 }
