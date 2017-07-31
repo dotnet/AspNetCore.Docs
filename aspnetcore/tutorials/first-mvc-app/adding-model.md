@@ -104,7 +104,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 You can perform the preceeding steps using the command-line interface (CLI) rather than the PMC:
 
-* Add [EF Core tooling](xref:data/ef-mvc/migrations#entity-framework-core-nuget-packages-for-migrations)
+* Add [EF Core tooling](xref:data/ef-mvc/migrations#entity-framework-core-nuget-packages-for-migrations) to the *.csproj* file.
 * Run the following commands from the console (in the project directory):
 
   ```console
