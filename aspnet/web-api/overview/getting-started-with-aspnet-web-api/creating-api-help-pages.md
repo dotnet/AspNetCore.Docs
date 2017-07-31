@@ -45,7 +45,7 @@ The main part of the page is a table of APIs, grouped by controller. The table e
 
 The "API" column lists the HTTP method and relative URI. The "Description" column contains documentation for each API. Initially, the documentation is just placeholder text. In the next section, I'll show you how to add documentation from XML comments.
 
-Each API has a link to a page with mroe detailed information, including example request and response bodies.
+Each API has a link to a page with more detailed information, including example request and response bodies.
 
 ![](creating-api-help-pages/_static/image5.png)
 
