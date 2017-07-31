@@ -95,6 +95,13 @@ If you're starting with a 2.0 project template, notice that the `Main` method of
 
 The adoption of this new 2.0 pattern is highly recommended. Product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) **do not** work without it.
 
+<a name="view-compilation"></a>
+
+## Razor View Compilation
+[Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
+
+When targeting .NET Framework, you still need to explicitly reference the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package.
+
 <a name="app-insights"></a>
 
 ## Application Insights
@@ -117,13 +124,6 @@ In the 2.0 project templates, Application Insights isn't added by default.
 If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, omit its explicit package reference and the code referenced in steps 2 and 3 above. You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
 
 If you are using the Application Insights SDK directly, continue to do so. Since the 2.0 metapackage includes the latest version of Application Insights, a package downgrade error appears if you're referencing an older version.
-
-<a name="view-compilation"></a>
-
-## Razor View Compilation
-[Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
-
-When targeting .NET Framework, you still need to explicitly reference the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package:
 
 <a name="publishing"></a>
 
