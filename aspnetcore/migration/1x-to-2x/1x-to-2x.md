@@ -22,7 +22,7 @@ This article outlines the most common steps to migrate an existing ASP.NET Core 
 ## Prerequisites
 Install the following prerequisites before migrating to ASP.NET Core 2.0:
 - If you're using Visual Studio, install [Visual Studio 2017 version 15.3](https://www.visualstudio.com/vs/) or later
-- [.NET Core 2.0](https://www.microsoft.com/net/download/core#/sdk) or .NET Framework 4.6.1+
+- [.NET Core 2.0](https://github.com/dotnet/core/blob/master/release-notes/download-archives/2.0.0-download.md) or .NET Framework 4.6.1+
 
 For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must be updated.
 
