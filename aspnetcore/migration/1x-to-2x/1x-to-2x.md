@@ -58,7 +58,7 @@ The *.csproj* file in a 1.x project lists each NuGet package used by the project
 
 In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the *.csproj* file replaces the collection of packages:
 
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=8-10)]
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=9-11)]
 
 All the features of ASP.NET Core 2.0 and Entity Framework Core 2.0 are included in the metapackage.
 
@@ -69,7 +69,7 @@ ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference 
 ## Update .NET Core CLI tools
 Update the `Version` attributes of each `<DotNetCliToolReference />` node to the 2.0 version:
 
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=12-16)]
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
 <a name="package-target-fallback"></a>
 
