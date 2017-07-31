@@ -216,7 +216,7 @@ The Access-Control-Max-Age header specifies how long the response to the preflig
 
 ## How CORS works
 
-This section describes what happens in a CORS request, at the level of the HTTP messages. It’s important to understand how CORS works, so that you can configure the your CORS policy correctly, and troubleshoot if things don’t work as you expect.
+This section describes what happens in a CORS request, at the level of the HTTP messages. It’s important to understand how CORS works, so that you can configure your CORS policy correctly, and troubleshoot if things don’t work as you expect.
 
 The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code.
 
