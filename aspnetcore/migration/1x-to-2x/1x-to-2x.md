@@ -121,15 +121,9 @@ If you are using the Application Insights SDK directly, continue to do so. Since
 <a name="view-compilation"></a>
 
 ## Razor View Compilation
-[Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. The *Views* folder and its Razor files are no longer present in the published bundle. Consequently, the published bundle is smaller and startup performance is noticeably improved.
+[Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
 
-In 1.x projects, view compilation is enabled by adding a reference to the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package and by manually adding and enabling the `MvcRazorCompileOnPublish` property:
-
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?highlight=4,16)]
-
-The 2.0 project templates add and enable the `MvcRazorCompileOnPublish` property by default. The metapackage reference imports the rest of the necessary view compilation bits.
-
-[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?highlight=4)]
+When targeting .NET Framework, you still need to explicitly reference the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package:
 
 <a name="publishing"></a>
 
