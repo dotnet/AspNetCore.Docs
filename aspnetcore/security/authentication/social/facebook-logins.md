@@ -50,15 +50,15 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Click the **Dashboard** link in the left navigation. 
 
-    On this page, you'll need to make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
+    On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
 
    ![Facebook Developer Dashboard](index/_static/FBDashboard.png)
 
-* When deploying the site you'll need to revisit the **Facebook Login** setup page and register a new public URI.
+* When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
 
 ## Store Facebook App ID and App Secret
 
-Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](../../app-secrets.md). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
+Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 
 ## Configure Facebook middleware
 
@@ -71,7 +71,7 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
 >
 >   `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
 
-Add the Facebook middleware in the `ConfigureServices` method in `Startup.cs`:
+Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
 services.AddFacebookAuthentication(facebookOptions =>
@@ -81,16 +81,18 @@ services.AddFacebookAuthentication(facebookOptions =>
 });
 ```
 
-> [!NOTE]
-> See the [FacebookOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Facebook middleware. This can be used to request different information about the user or add query string arguments to customize the login experience.
+Note: See the [FacebookOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Facebook middleware. Configuration options can be used to:
+
+* Request different information about the user.
+* Add query string arguments to customize the login experience.
 
 ## Sign in with Facebook
 
-Run your application and click **Log in**. You will see an option to sign in with Facebook.
+Run your application and click **Log in**. You see an option to sign in with Facebook.
 
 ![Web application: User not authenticated](index/_static/DoneFacebook.png)
 
-When you click on **Facebook**, you will be redirected to Facebook for authentication:
+When you click on **Facebook**, you are redirected to Facebook for authentication:
 
 ![Facebook authentication page](index/_static/FBLogin.png)
 
@@ -98,7 +100,7 @@ Facebook middleware requests public profile and email address by default:
 
 ![Facebook authentication page](index/_static/FBLoginDone.png)
 
-Once you enter your Facebook credentials you will be redirected back to your site where you can set your email.
+Once you enter your Facebook credentials you are redirected back to your site where you can set your email.
 
 You are now logged in using your Facebook credentials:
 
@@ -107,7 +109,7 @@ You are now logged in using your Facebook credentials:
 ## Troubleshooting
 
 * If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
-* If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
+* If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
 
