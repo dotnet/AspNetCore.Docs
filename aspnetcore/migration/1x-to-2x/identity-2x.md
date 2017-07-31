@@ -23,11 +23,11 @@ ASP.NET Core 2.0 has a new model for authentication and Identity that simplifies
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
-In 1.x projects, authentication is configured with middleware. 2.x projects use services to configure authentication.
+In 1.x projects, authentication is configured via middleware. 2.x projects use services to configure authentication.
 
-When using ASP.NET Core Identity for cookie-based authentication in 2.x, the `AddIdentity` extension method adds cookie authentication services that get picked up by the middleware:
+When using ASP.NET Core Identity for cookie-based authentication in 2.x, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=33-35)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
 
 In 1.x, a middleware method was invoked for each authentication scheme you wanted to support. For example, invoking the `UseCookieAuthentication` or `UseFacebookAuthentication` methods in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication or Facebook authentication, respectively:
 
