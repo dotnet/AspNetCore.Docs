@@ -340,7 +340,7 @@ The [IAntiForgeryAdditionalDataProvider](https://docs.microsoft.com/aspnet/core/
 
 CSRF attacks rely on the default browser behavior of sending cookies associated with a domain with every request made to that domain. These cookies are stored within the browser. They frequently include session cookies for authenticated users. Cookie-based authentication is a popular form of authentication. Token-based authentication systems have been growing in popularity, especially for SPAs and other "smart client" scenarios.
 
-### Cookie based authentication
+### Cookie-based authentication
 
 Once a user has authenticated using their username and password, they are issued a token that can be used to identify them and validate that they have been authenticated. The token is stored as a cookie that accompanies every request the client makes. Generating and validating this cookie is done by the cookie authentication middleware. ASP.NET Core provides cookie [middleware](../fundamentals/middleware.md) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`.
 
@@ -350,7 +350,7 @@ When a user is logged in to a system, a user session is created on the server-si
 
 ### User tokens
 
-Token based authentication doesn’t store session on the server. Instead, when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://msdn.microsoft.com/library/ff359101.aspx). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server-side validation. This token is not *encrypted*; rather it is *encoded*. On the server-side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is an issue if the token is stored in a cookie.
+Token-based authentication doesn’t store session on the server. Instead, when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://msdn.microsoft.com/library/ff359101.aspx). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server-side validation. This token is not *encrypted*; rather it is *encoded*. On the server-side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is an issue if the token is stored in a cookie.
 
 ### Multiple applications are hosted in one domain
 
