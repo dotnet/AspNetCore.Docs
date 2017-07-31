@@ -27,8 +27,7 @@ This tutorial demonstrates how to build an ASP.NET Core 2.x app that enables use
 
 Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
-> [!NOTE]
-> Packages presented here abstract a great deal of complexity of the OAuth authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Some issues can be resolved by looking at the [ASP.NET Core source code for the provider packages](https://github.com/aspnet/Security/tree/dev/src).
+Note: Packages presented here abstract a great deal of complexity of the OAuth authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Some issues can be resolved by looking at the [ASP.NET Core source code for the provider packages](https://github.com/aspnet/Security/tree/dev/src).
 
 ## Create a New ASP.NET Core Project
 
@@ -42,19 +41,17 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 ![New Web Application dialog](index/_static/select-project.png)
 
-  > [!NOTE]
-  > This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.
+Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.
 
 ## Require SSL
 
 OAuth 2.0 requires the use of SSL for authentication over the HTTPS protocol.
 
-> [!NOTE]
-> Projects created using **Web Application** or **Web API** project templates for ASP.NET Core 2.x are automatically configured to enable SSL and launch with https URL if the **Individual User Accounts** option was selected on **Change Authentication dialog** in the project wizard as shown above.
+Note: Projects created using **Web Application** or **Web API** project templates for ASP.NET Core 2.x are automatically configured to enable SSL and launch with https URL if the **Individual User Accounts** option was selected on **Change Authentication dialog** in the project wizard as shown above.
 
-* Learn how to enable SSL manually by following the steps in [Setting up HTTPS for development in ASP.NET Core](../../https.md) topic.
+* Learn how to enable SSL manually by following the steps in [Setting up HTTPS for development in ASP.NET Core](xref:security/https) topic.
 
-* Then, require SSL on your site by following the steps in [Enforcing SSL in an ASP.NET Core app](../../enforcing-ssl.md) topic.
+* Then, require SSL on your site by following the steps in [Enforcing SSL in an ASP.NET Core app](xref:security/enforcing-ssl) topic.
 
 ## Use SecretManager to store tokens assigned by login providers
 
@@ -62,7 +59,7 @@ Social login providers assign **Application Id** and **Application Secret** toke
 
 These values are effectively the *user name* and *password* your application uses to access their API, and constitute the "secrets" that can be linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly or hard-coding them.
 
-Follow the steps in [Safe storage of app secrets during development in ASP.NET Core](../../app-secrets.md) topic so that you can store tokens assigned by each login provider below.
+Follow the steps in [Safe storage of app secrets during development in ASP.NET Core](xref:security/app-secrets) topic so that you can store tokens assigned by each login provider below.
 
 ## Setup login providers required by your application
 
