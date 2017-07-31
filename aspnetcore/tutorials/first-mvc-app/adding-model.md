@@ -102,6 +102,18 @@ The `Add-Migration` command creates code to create the initial database schema. 
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
+You can perform the preceeding steps using the command-line interface (CLI) rather than the PMC:
+
+* Add [EF Core tooling](xref:data/ef-mvc/migrations#entity-framework-core-nuget-packages-for-migrations)
+* Run the following commands from the console (in the project directory):
+
+  ```console
+     dotnet ef migrations add InitialCreate
+     dotnet ef database update
+     ```
+     
+  
+
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=ConfigureServices&highlight=6-7)]
