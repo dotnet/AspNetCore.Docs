@@ -1,18 +1,17 @@
 ---
-title: Google external login setup
+title: Google external login setup in ASP.NET Core
 author: rick-anderson
-description: 
+description: Google external login setup in ASP.NET Core
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 11/2/2016
+ms.date: 8/2/2017
 ms.topic: article
-ms.assetid: 8BA389D6-0911-4415-A818-C7B3F5B5CC8D
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/google-logins
 ---
-# Configuring Google authentication
+# Configuring Google authentication in ASP.NET Core
 
 <a name=security-authentication-google-logins></a>
 
@@ -85,14 +84,13 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google middleware
 
-> [!NOTE]
-> The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is already installed.
->
-> * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-> * To install with **dotnet** CLI, execute the following in your project directory:
->
->   `dotnet add package Microsoft.AspNetCore.Authentication.Google`
+Note: The project template used in this tutorial ensures that 
+[Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
+
+ * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+ * To install with **dotnet** CLI, execute the following in your project directory:
+
+   `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 Add the Google middleware in the `ConfigureServices` method in `Startup.cs`:
 
@@ -104,8 +102,7 @@ services.AddGoogleAuthentication(googleOptions =>
 });
 ```
 
-> [!NOTE]
-> See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
+Note: See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
 
 ## Sign in with Google
 
