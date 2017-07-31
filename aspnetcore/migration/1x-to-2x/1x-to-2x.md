@@ -73,7 +73,7 @@ Update the `Version` attributes of each `<DotNetCliToolReference />` node to the
 
 <a name="package-target-fallback"></a>
 
-## PackageTargetFallback
+## Package Target Fallback property
 The *.csproj* file of a 1.x project used a `PackageTargetFallback` node and variable:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
