@@ -16,13 +16,49 @@ uid: migration/identity-2x
 
 <a name="migration-identity"></a>
 
-By [Scott Addie](https://github.com/scottaddie)
+By [Scott Addie](https://github.com/scottaddie) and [Hao Kung](https://github.com/HaoK)
 
-With the release of ASP.NET Core 2.0, the most impacted area of the framework is authentication. The 1.x authentication stack is obsolete and must be migrated to the 2.0 stack. The most common changes are outlined in the following sections.
+ASP.NET Core 2.0 has a new model for authentication and Identity that simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication and Identity need to be updated to use the new model as outlined below.
+
+<a name="auth-middleware"></a>
+
+## Authentication Middleware and Services
+In 1.x projects, a middleware method was invoked for each authentication scheme you wanted to support. For example, invoking the `UseCookieAuthentication` or `UseFacebookAuthentication` methods in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication or Facebook authentication, respectively:
+
+```csharp
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
+    app.UseIdentity();
+    app.UseCookieAuthentication(new CookieAuthenticationOptions
+       { LoginPath = new PathString("/login") });
+    app.UseFacebookAuthentication(new FacebookOptions
+       { AppId = Configuration["facebook:appid"],  AppSecret = Configuration["facebook:appsecret"] });
+} 
+```
+
+In 2.x projects, each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services) {
+    services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
+    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o => o.LoginPath = new PathString("/login"))
+                .AddFacebook(o =>
+                {
+                    o.AppId = Configuration["facebook:appid"];
+                    o.AppSecret = Configuration["facebook:appsecret"];
+                });
+}
+
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
+    app.UseAuthentication();
+}
+```
+
+The `UseAuthentication` method discovers the services being used, from [dependency injection](xref:fundamentals/dependency-injection), to determine the authentication schemes you want to use.
 
 <a name="obsolete-interface"></a>
 
-## IAuthenticationManager (HttpContext.Authentication) is obsolete
+## Use HttpContext Authentication Extensions
 The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
 
 For example, 1.x projects reference an `Authentication` property:
@@ -32,17 +68,6 @@ For example, 1.x projects reference an `Authentication` property:
 In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
-
-<a name="auth-middleware"></a>
-
-## Authentication Middleware
-The `UseIdentity` extension method, which typically appeared in the `Configure` method of *Startup.cs* in 1.x projects, is obsolete and will be removed in a future release:
-
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Startup.cs?range=76)]
-
-Feature parity is maintained in 2.0 projects when this method call is replaced with `UseAuthentication`:
-
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=76)]
 
 <a name="identity-cookie-options"></a>
 
