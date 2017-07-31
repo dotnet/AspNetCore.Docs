@@ -307,7 +307,7 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
 
 1. In **Design** view, double-click the [Calendar](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.aspx) control.
 
-    A new event handler is created and displayed in teh code-behind file named *FirstWebPage.aspx.cs*.
+    A new event handler is created and displayed in the code-behind file named *FirstWebPage.aspx.cs*.
 2. Finish the [SelectionChanged](https://msdn.microsoft.com/library/system.web.ui.webcontrols.calendar.selectionchanged.aspx) event handler with the following code.
 
 
