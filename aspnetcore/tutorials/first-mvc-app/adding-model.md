@@ -98,9 +98,23 @@ Add-Migration Initial
 Update-Database
 ```
 
+Note: See the [CLI approach](#cli) if you have problems with the PMC.
+
 The `Add-Migration` command creates code to create the initial database schema. The schema is based on the model specified in the `DbContext`(In the *Data/MvcMovieContext.cs file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+
+<a name="cli"></a>
+You can perform the preceeding steps using the command-line interface (CLI) rather than the PMC:
+
+* Add [EF Core tooling](xref:data/ef-mvc/migrations#entity-framework-core-nuget-packages-for-migrations) to the *.csproj* file.
+* Run the following commands from the console (in the project directory):
+
+  ```console
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```     
+  
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
