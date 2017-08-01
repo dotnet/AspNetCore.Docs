@@ -31,9 +31,11 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 ## How to create logs
 
-To create logs, get an `ILogger` object from the [dependency injection](dependency-injection.md) container, then call logging methods on that logger object.
+To create logs, get an `ILogger` object from the [dependency injection](dependency-injection.md) container:
 
 [!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
+
+Then call logging methods on that logger object:
 
 [!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
@@ -74,9 +76,7 @@ You'll find information about each [built-in logging provider](#built-in-logging
 
 ## Sample logging output
 
-With the sample code shown in the preceding section, you'll see logs in the console when you run from the command line, and in the Debug window when you run in Visual Studio in Debug mode. 
-
-Here's an example of logs displayed on the console when you run the sample application from the command line. These logs were created by going to `http://localhost:5000/api/todo/0`, which triggers execution of both `ILogger` calls shown in the preceding section.
+With the sample code shown in the preceding section, you'll see logs in the console when you run from the command line. Here's an example of console output:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -94,10 +94,12 @@ info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
       Request finished in 148.889ms 404
 ```
+ 
+These logs were created by going to `http://localhost:5000/api/todo/0`, which triggers execution of both `ILogger` calls shown in the preceding section.
 
-Here's an example of logs displayed in the Debug window when you run the sample application from Visual Studio.
+Here's an example of the same logs as they appear in the Debug window when you run the sample application in Visual Studio:
 
-```
+```console
 Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:53104/api/todo/0  
 Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
 TodoApi.Controllers.TodoController:Information: Getting item 0
@@ -119,11 +121,11 @@ The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Loggi
 
 A *category* is included with each log that you create.  You specify the category when you create an `ILogger` object. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written.  For example: "TodoApi.Controllers.TodoController".
 
-You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call `CreateLogger` on an *ILoggerFactory* instance, as shown below.
+You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call `CreateLogger` on an `ILoggerFactory` instance, as shown below.
 
 [!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
 
-Most of the time it will be easier to use  `ILogger<T>`, as in the following example.
+Most of the time, it will be easier to use  `ILogger<T>`, as in the following example.
 
 [!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 
@@ -137,7 +139,7 @@ In the following code example, the names of the methods (for example, `LogWarnin
 
 [!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-Log methods that include the level in the method name are [extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions).  Behind the scenes these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+Log methods that include the level in the method name are [extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions). Behind the scenes, these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
 
 ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel), ordered here from least to highest severity.
 
@@ -165,7 +167,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
 
-You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and lower to go to a volume data store, and all logs of `Warning` level and higher to go to a value data store. During development you might normally send logs of `Warning` or higher severity to the console. Then when you need to troubleshoot, you can add `Debug` level. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
+You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and lower to go to a volume data store, and all logs of `Warning` level and higher to go to a value data store. During development, you might normally send logs of `Warning` or higher severity to the console. Then when you need to troubleshoot, you can add `Debug` level. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
 The ASP.NET Core framework writes `Debug` level logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` level logs were shown. Here's an example of console logs if you run the sample application configured to show `Debug` and higher logs for the console provider.
 
@@ -376,9 +378,13 @@ The following code enables scopes for the console provider:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
+In *Startup.cs*:
+
 [!code-csharp[](logging/sample//Startup.cs?name=snippet_Scopes&highlight=6)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+In *Program.cs*:
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_Scopes&highlight=4)]
 
@@ -446,7 +452,7 @@ logging.AddConsole()
 
 The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) provider package writes log output by using the [System.Diagnostics.Debug](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug) class (`Debug.WriteLine` method calls).
 
-On Linux this provider writes logs to */var/log/message*.
+On Linux, this provider writes logs to */var/log/message*.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -566,7 +572,7 @@ To use this provider, an application has to run on the .NET Framework (rather th
 
 The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_TraceSource&highlight=8-12)]
+[!code-csharp[](logging/sample//Startup.cs?name=snippet_TraceSource&highlight=9-12)]
 
 <a id="appservice"></a>
 ### The Azure App Service provider
@@ -594,9 +600,9 @@ When you deploy to an App Service app, your application honors the settings in t
 
 ![Azure logging settings](logging/_static/azure-logging-settings.png)
 
-The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs).
+The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*. For more information about default behavior, see [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs).
 
-The provider only works when your project runs in the Azure environment.  It has no effect when you run locally -- it does not write to local files or local development storage for blobs.
+The provider only works when your project runs in the Azure environment.  It has no effect when you run locally &mdash; it does not write to local files or local development storage for blobs.
 
 ## Third-party logging providers
 
@@ -604,7 +610,7 @@ Here are some third-party logging frameworks that work with ASP.NET Core:
 
 * [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
 
-* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client side events in your server side log.
+* [JSNLog](http://jsnlog.com) - logs JavaScript exceptions and other client-side events in your server-side log.
 
 * [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
 
