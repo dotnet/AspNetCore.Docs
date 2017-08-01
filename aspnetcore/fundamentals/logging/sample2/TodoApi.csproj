@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="1x\**" />
-    <Content Remove="1x\**" />
-    <EmbeddedResource Remove="1x\**" />
-    <None Remove="1x\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
