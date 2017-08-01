@@ -23,18 +23,35 @@ Examine the *Pages/Movie/Index.cshtml* Razor page:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
 
-The `@page` makes the file into an MVC action - which means that it can handle requests. @page must be the first Razor directive on a page.
+Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into C#.
+
+The `@page` Razor directive makes the file into an MVC action - which means that it can handle requests. @page must be the first Razor directive on a page. `@page` is an example of transitioning into Razor specific markup.  See [Razor syntax](xref:mvc/views/razor#razor-syntax) for more information.
 
 The `@model` directive:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
 
-The `@model` line makes the `PageModel` derrived model class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
+The `@model` directive specifies the type of the model passed to the Razor page. In the preceeding example, the `@model` line makes the `PageModel` derrived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](https://docs.microsoft.com/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
+<!-- why don't xref links work?
 [HTML Helpers 2](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs)
+-->
+
+### ViewData
+
+Consider the following code:
+
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
+
+The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` enclose a block of C# code.
+
+The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages\_Layout.cshtml* file. The following markup shows the first few lines of the *Layout* file.
+
+Pages\_Layout.cshtml
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NotUsed/_Layout.cshtml?highlight=6-)]
 
 
-The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern.
+
 
 >[!div class="step-by-step"]
 [Adding a model](xref:tutorials/razor-pages/model)
