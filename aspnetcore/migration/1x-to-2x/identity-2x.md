@@ -21,7 +21,7 @@ ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
-In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support. For example, invoking the `UseCookieAuthentication` method in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication:
+In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support. For example, invoking the `UseCookieAuthentication` method in the `Configure` method of *Startup.cs* enables cookie-based authentication:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -31,7 +31,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 } 
 ```
 
-In 2.x, services are used to configure authentication. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
+In 2.0, services are used to configure authentication. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
@@ -50,10 +50,6 @@ The `UseAuthentication` method discovers the services being used, from [dependen
 Below are 2.0 migration instructions for each major authentication scheme.
 
 ### Cookie-based Authentication
-When using Identity for cookie-based authentication in 2.0, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
-
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
-
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseCookieAuthentication` method call from the `Configure` method.
@@ -65,6 +61,10 @@ Make the following changes in *Startup.cs*:
         o.LogoutPath = "/Account/LogOff";
     });
     ```
+
+When using Identity with cookie-based authentication in 2.0, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
+
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
 
 ### JWT Bearer Authentication
 Make the following changes in *Startup.cs*:
@@ -132,7 +132,7 @@ Make the following changes in *Startup.cs*:
     ```
 
 ### Multiple Authentication Schemes
-If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified in 2.x. 
+If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified in 2.0. 
 
 <a name="obsolete-interface"></a>
 
