@@ -252,7 +252,7 @@ In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 
 ## Windows Authentication (HttpSys / IISIntegration)
-If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". Failure to set the default scheme accordingly will prevent challenges from working.
+If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". Failure to set the default scheme accordingly will prevent the authorize request to challenge from working.
 
 ## Authorization Changes
 
