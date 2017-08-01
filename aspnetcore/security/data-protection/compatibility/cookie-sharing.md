@@ -95,6 +95,7 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
        {
            AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
            CookieName = ".AspNetCore.Cookies",
+           // CookieName = ".AspNetCore.ApplicationCookie", (if you're using identity)
            // CookiePath = "...", (if necessary)
            // ...
            TicketDataFormat = new AspNetTicketDataFormat(
