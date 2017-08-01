@@ -175,6 +175,7 @@ The *Pages/Edit.cshtml.cs* file:
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
+<a name="layout"></a>
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
 Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
@@ -184,6 +185,13 @@ Let's declutter this page by taking advantage of some of those features.
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
+
+The [Layout](xref:mvc/views/layout):
+
+* Controlls the layout of each page (unless the page opts-out of layout).
+* Imports HTML structures such as JavaScript and stylesheets.
+
+See [layout page](xref:mvc/views/layout) for more information.
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
