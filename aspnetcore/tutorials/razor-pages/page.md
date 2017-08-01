@@ -21,6 +21,14 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 ## The Create, Delete, Details, and Edit pages.
 
+Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
+
+Razor Pages are derrived from `PageModel`. By convention, the `PageModel` derrivd class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
+
+When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page.
+
 Examine the *Pages/Movie/Index.cshtml* Razor page:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
@@ -78,8 +86,7 @@ Replace the preceeding element with the following markup.
 
 The preceeding anchor element is [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's a [Anchor Tag Helper](xref:mvc/views/tag-helpers/built-in/anchortaghelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
 
-Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) in GitHub.
-
+Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
