@@ -71,7 +71,7 @@ See [Layout](xref:mvc/razor-pages/index#layout) for more information.
 
 Change the `<title>` element in the *Pages\_Layout.cshtml* file to use a shorter string.
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6highlight=6-)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6-)]
 
 Find the following anchor element.
 
@@ -84,7 +84,7 @@ Replace the preceeding element with the following markup.
 <a asp-page="/Movie/Index" class="navbar-brand">RpMovie</a>
 ```
 
-The preceeding anchor element is [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's a [Anchor Tag Helper](xref:mvc/views/tag-helpers/built-in/anchortaghelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
+The preceeding anchor element is [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's a [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
 
 Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
 
