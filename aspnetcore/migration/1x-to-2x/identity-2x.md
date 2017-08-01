@@ -27,7 +27,7 @@ In 1.x projects, authentication is configured via middleware. A middleware metho
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
     app.UseIdentity();
     app.UseCookieAuthentication(new CookieAuthenticationOptions {
-        LoginPath = new PathString("/login")
+        LoginPath = new PathString("/Account/LogIn")
     });
     app.UseFacebookAuthentication(new FacebookOptions { 
         AppId = Configuration["auth:facebook:appid"],
@@ -42,7 +42,7 @@ In 2.0 projects, authentication is configured via services. Each authentication 
 public void ConfigureServices(IServiceCollection services) {
     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(o => o.LoginPath = new PathString("/login"))
+            .AddCookie(o => o.LoginPath = new PathString("/Account/LogIn"))
             .AddFacebook(o =>
             {
                 o.AppId = Configuration["auth:facebook:appid"];
