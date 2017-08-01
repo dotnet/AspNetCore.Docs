@@ -63,8 +63,12 @@ The associations of URL paths to pages are determined by the page's location in 
 | */Pages/Index.cshtml* | `/` or `/Index` | 
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
+| */Pages/Store/Index.cshtml* | `/Store` or `/Store/Index`  |
 
-The runtime looks for Razor Pages files in the *Pages* folder by default.
+Notes:
+
+* The runtime looks for Razor Pages files in the *Pages* folder by default.
+* `Index` is the default page when a URL doesn't include a page.
 
 <a name="rpvs17"></a>
 
