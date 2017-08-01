@@ -22,9 +22,9 @@ The ASP.NET Core web app templates support authenticators, but do not provide su
 
 ## Adding QR Codes to the 2FA configuration page
 
-These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcodejs/ repo.
+These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcodejs/ repo.
 
-* Download [qrcode.js script](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
+* Download the  [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
 * In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
 
