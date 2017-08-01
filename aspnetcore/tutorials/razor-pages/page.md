@@ -27,11 +27,11 @@ The `@page` makes the file into an MVC action - which means that it can handle r
 
 The `@model` directive:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml&range=1-2?highlight=2)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
 
 The `@model` line makes the `PageModel` derrived model class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
-
+[HTML Helpers 2](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs)
 
 
 The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern.
