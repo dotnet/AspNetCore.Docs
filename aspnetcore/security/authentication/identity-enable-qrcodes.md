@@ -1,28 +1,40 @@
+---
+title: Enabling QR Code generation for authenticator apps in ASP.NET Core
+author: rick-anderson
+description: Enabling QR Code generation for authenticator apps in ASP.NET Core
+keywords: ASP.NET Core, MVC, QR Code generation, authenticator, 2FA
+ms.author: riande
+manager: wpickett
+ms.date: 7/24/2017
+ms.topic: article
+ms.technology: aspnet
+ms.prod: asp.net-core
+uid: security/authentication/identity-enable-qrcodes
+---
+
 # Enabling QR Code generation for authenticator apps in ASP.NET Core
 
-> [!NOTE]
-> This topic applies to ASP.NET Core 2.0
+Note: This topic applies to ASP.NET Core 2.x
 
-ASP.NET Core ships with support for Authenticator applications for individual authentication. 2fa Authenticator apps are the industry recommended method of two factor authentication, using a code based on a Time-based One-time Password Algorithm (TOTP). An authenticator app provides a six to eight digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
+ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approch for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
 
-The ASP.NET Core templates for web applications and MVC web applications support authenticators, but do not provide support for QRCode generation, which applications can use to ease the setup. This document will guide you through adding QR Code generation to the 2fa configuration page.
+The ASP.NET Core web app templates support authenticators, but do not provide support for QRCode generation. QRCode generators ease the setup of 2FA. This document will guide you through adding [QR Code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
 
-## Adding QR Codes to the 2fa configuration page
+## Adding QR Codes to the 2FA configuration page
 
-These instructions use `qrcode.js` from https://davidshimjs.github.io/qrcodejs/.
+These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcodejs/ repo.
 
-* Download the [qrcode.js script](https://davidshimjs.github.io/qrcodejs/) and place it in the `wwwroot\lib` folder in your project.
+* Download [qrcode.js script](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-* Open the `Pages\Account\Manage\EnableAuthenticator.cshtml` file.
-
-* Locate the Scripts section at the end of the file. It will look something like this:
+* In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
 
 ```None
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
 ```
-* Change the `Scripts` section to add a reference to the library you added and a call to generate the QR Code. It should look as follows:
+
+* Update the `Scripts` section to add a reference to the `qrcodejs` library you added and a call to generate the QR Code. It should look as follows:
 
 ```None
 @section Scripts {
@@ -40,13 +52,13 @@ These instructions use `qrcode.js` from https://davidshimjs.github.io/qrcodejs/.
 }
 ```
 
-* Finally delete the paragraph which links you to these instructions.
+* Delete the paragraph which links you to these instructions.
 
-Run your application and ensure that you can scan the QR code and validate the code the authenticator proves.
+Run your app and ensure that you can scan the QR code and validate the code the authenticator proves.
 
 ## Change the site name in the QR Code
 
-The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in `EnableAuthenticator.cshtml.cs`. 
+The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in  the *EnableAuthenticator.cshtml.cs* file. 
 
 The default code from the template looks as follows:
 
@@ -61,10 +73,15 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
 }
 ```
 
-The second parameter in the call to `string.Format()` is your site name, taken from your solution name. It can be changed to anything value, but it must always be URL encoded.
+The second parameter in the call to `string.Format` is your site name, taken from your solution name. It can be changed to any value, but it must always be URL encoded.
 
 ## Using a different QR Code library
 
-You may have a preferred QR Code library which you want to use. The `qrCode` element in the view is a suitable place to put the QR code.
+You can replace the QR Code library with your preferred library. The HTML contains a `qrCode` element into which you can place a QR Code by whatever mechanism your library provides.
 
-The correctly formatted URL for the QR Code is available in two places, in the `AuthenticatorUri` property of the model and in the `data-url` property in the `qrCodeData` element. If you want to use the model property you must access it in your view using `@Html.Raw` otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored.
+The correctly formatted URL for the QR Code is available in the:
+
+* `AuthenticatorUri` property of the model.
+* `data-url` property in the `qrCodeData` element. 
+
+Use `@Html.Raw` to access the model property in a view (otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored).
