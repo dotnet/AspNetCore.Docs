@@ -60,7 +60,10 @@ Make the following changes in *Startup.cs*:
 - Add an `AddCookieAuthentication` method call to the `ConfigureServices` method:
 
     ```csharp
-    services.AddCookieAuthentication(o => o.LoginPath = new PathString("/login"));
+    services.AddCookieAuthentication(o => {
+        o.LoginPath = "/Account/LogIn";
+        o.LogoutPath = "/Account/LogOff";
+    });
     ```
 
 ### JWT Bearer Authentication
