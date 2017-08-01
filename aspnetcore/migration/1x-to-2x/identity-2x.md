@@ -161,11 +161,13 @@ If your 1.x application has configured multiple authentication schemes, the defa
 
 In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
-In 2.x, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call in the `ConfigureServices` method of *Startup.cs*:
+In 2.0, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication(o => o.DefaultScheme = "Cookies");
 ```
+
+In 2.0, a default scheme must always be specified. The exception to that rule is `AddIdentity` &mdash; it adds cookies, so the default scheme is already defined for you.
 
 <a name="obsolete-interface"></a>
 
@@ -248,3 +250,11 @@ A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *Manage
 In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This new return type requires replacing the `Microsoft.AspNetCore.Http.Authentication` import with a `Microsoft.AspNetCore.Authentication` import.
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
+
+## Windows Authentication (HttpSys / IISIntegration)
+
+
+## Authorization Changes
+
+## Additional Resources
+For additional details and discussion, see the [Auth 2.0 Migration announcement](https://github.com/aspnet/Security/issues/1310) issue on GitHub.
