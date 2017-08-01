@@ -42,12 +42,12 @@ In 2.0 projects, authentication is configured via services. Each authentication 
 public void ConfigureServices(IServiceCollection services) {
     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = new PathString("/login"))
-                .AddFacebook(o =>
-                {
-                    o.AppId = Configuration["auth:facebook:appid"];
-                    o.AppSecret = Configuration["auth:facebook:appsecret"];
-                });
+            .AddCookie(o => o.LoginPath = new PathString("/login"))
+            .AddFacebook(o =>
+            {
+                o.AppId = Configuration["auth:facebook:appid"];
+                o.AppSecret = Configuration["auth:facebook:appsecret"];
+            });
 }
 
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -74,8 +74,8 @@ Select one of the two options below, and make the necessary changes in *Startup.
 
     ```csharp
     services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
     services.ConfigureApplicationCookie(o => o.LoginPath = new PathString("/Account/LogIn"));
     ```
 
