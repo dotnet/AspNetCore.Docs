@@ -64,7 +64,7 @@ To use a provider, call the provider's `Add<ProviderName>` extension method in *
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_ExpandDefault&highlight=16,17)]
 
-The default project templates add Debug and Console providers by default. The `CreateDefaultBuilder` method adds configuration for logging and adds the two providers.  Here's the template code in *Program.cs*:
+The default project template sets up logging the way you see it in the preceding code, but the `ConfigureLogging` call is done by the `CreateDefaultBuilder` method. Here's the code in *Program.cs* that is created by project templates:
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
@@ -125,7 +125,7 @@ You can specify the category as a string or use an extension method that derives
 
 Most of the time it will be easier to use  `ILogger<T>`, as in the following example.
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7,10)]
+[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 
 This is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
@@ -288,7 +288,7 @@ If you want to suppress all logs, you can specify `LogLevel.None` as the minimum
 
 **Create filter rules in configuration**
 
-As was noted at the start of this article, the project templates create code that calls `CreateDefaultBuilder` to set up logging for the Console and Debug providers. The `CreateDefaultBuilder` method also sets up logging to look for configuration in a `Logging` section, using code like the following:
+The project templates create code that calls `CreateDefaultBuilder` to set up logging for the Console and Debug providers. The `CreateDefaultBuilder` method also sets up logging to look for configuration in a `Logging` section, using code like the following:
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_ExpandDefault&highlight=15)]
 
@@ -304,7 +304,7 @@ You can register filter rules in code, as shown in the following example:
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_FilterInCode&highlight=4-5)]
 
-The second `AddFilter` specifies the Debug provider by using its type name. The first `AddFilter` call applies to all providers because it doesn't specify a provider type.
+The second `AddFilter` specifies the Debug provider by using its type name. The first `AddFilter` applies to all providers because it doesn't specify a provider type.
 
 **How filtering rules are applied**
 
