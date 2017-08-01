@@ -48,7 +48,9 @@ The preceeding highligted code is an example of Razor transitioning into C#. The
 The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages\_Layout.cshtml* file. The following markup shows the first few lines of the *Layout* file.
 
 Pages\_Layout.cshtml
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NotUsed/_Layout.cshtml?highlight=6-)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NotUsed/_Layout1.cshtml?highlight=6-)]
+
+Test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
 
 
 
