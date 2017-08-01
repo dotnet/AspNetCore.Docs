@@ -60,7 +60,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             _todoRepository.Add(item);
-            _logger.LogInformation(LoggingEvents.InsertItem, "Item {0} Created", item.Key);
+            _logger.LogInformation(LoggingEvents.InsertItem, "Item {ID} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
 
@@ -75,12 +75,12 @@ namespace TodoApi.Controllers
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
-                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({0}) NOT FOUND", id);
+                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({ID}) NOT FOUND", id);
                 return NotFound();
             }
 
             _todoRepository.Update(item);
-            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {0} Updated", item.Key);
+            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {ID} Updated", item.Key);
             return new NoContentResult();
         }
 
@@ -88,7 +88,7 @@ namespace TodoApi.Controllers
         public void Delete(string id)
         {
             _todoRepository.Remove(id);
-            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {0} Deleted", id);
+            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {ID} Deleted", id);
         }
 
         private void EnsureItems()
@@ -147,7 +147,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             _todoRepository.Add(item);
-            _logger.LogInformation(LoggingEvents.InsertItem, "Item {0} Created", item.Key);
+            _logger.LogInformation(LoggingEvents.InsertItem, "Item {ID} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
 
@@ -162,12 +162,12 @@ namespace TodoApi.Controllers
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
-                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({0}) NOT FOUND", id);
+                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({ID}) NOT FOUND", id);
                 return NotFound();
             }
 
             _todoRepository.Update(item);
-            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {0} Updated", item.Key);
+            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {ID} Updated", item.Key);
             return new NoContentResult();
         }
 
@@ -175,7 +175,7 @@ namespace TodoApi.Controllers
         public void Delete(string id)
         {
             _todoRepository.Remove(id);
-            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {0} Deleted", id);
+            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {ID} Deleted", id);
         }
 
         private void EnsureItems()
@@ -241,7 +241,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             _todoRepository.Add(item);
-            _logger.LogInformation(LoggingEvents.InsertItem, "Item {0} Created", item.Key);
+            _logger.LogInformation(LoggingEvents.InsertItem, "Item {ID} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
 
@@ -256,12 +256,12 @@ namespace TodoApi.Controllers
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
-                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({0}) NOT FOUND", id);
+                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({ID}) NOT FOUND", id);
                 return NotFound();
             }
 
             _todoRepository.Update(item);
-            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {0} Updated", item.Key);
+            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {ID} Updated", item.Key);
             return new NoContentResult();
         }
 
@@ -269,7 +269,7 @@ namespace TodoApi.Controllers
         public void Delete(string id)
         {
             _todoRepository.Remove(id);
-            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {0} Deleted", id);
+            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {ID} Deleted", id);
         }
 
         private void EnsureItems()
@@ -335,7 +335,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             _todoRepository.Add(item);
-            _logger.LogInformation(LoggingEvents.InsertItem, "Item {0} Created", item.Key);
+            _logger.LogInformation(LoggingEvents.InsertItem, "Item {ID} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
 
@@ -350,12 +350,12 @@ namespace TodoApi.Controllers
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
-                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({0}) NOT FOUND", id);
+                _logger.LogWarning(LoggingEvents.GetItemNotFound, "Update({ID}) NOT FOUND", id);
                 return NotFound();
             }
 
             _todoRepository.Update(item);
-            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {0} Updated", item.Key);
+            _logger.LogInformation(LoggingEvents.UpdateItem, "Item {ID} Updated", item.Key);
             return new NoContentResult();
         }
 
@@ -363,7 +363,7 @@ namespace TodoApi.Controllers
         public void Delete(string id)
         {
             _todoRepository.Remove(id);
-            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {0} Deleted", id);
+            _logger.LogInformation(LoggingEvents.DeleteItem, "Item {ID} Deleted", id);
         }
 
         private void EnsureItems()
