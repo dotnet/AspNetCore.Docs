@@ -21,23 +21,33 @@ ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
-In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support. For example, invoking the `UseCookieAuthentication` method in the `Configure` method of *Startup.cs* enables cookie-based authentication:
+In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
     app.UseIdentity();
-    app.UseCookieAuthentication(new CookieAuthenticationOptions
-       { LoginPath = new PathString("/login") });
+    app.UseCookieAuthentication(new CookieAuthenticationOptions {
+        LoginPath = new PathString("/login")
+    });
+    app.UseFacebookAuthentication(new FacebookOptions { 
+        AppId = Configuration["auth:facebook:appid"],
+        AppSecret = Configuration["auth:facebook:appsecret"]
+    });
 } 
 ```
 
-In 2.0, services are used to configure authentication. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
+In 2.0 projects, authentication is configured via services. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = new PathString("/login"));
+                .AddCookie(o => o.LoginPath = new PathString("/login"))
+                .AddFacebook(o =>
+                {
+                    o.AppId = Configuration["auth:facebook:appid"];
+                    o.AppSecret = Configuration["auth:facebook:appsecret"];
+                });
 }
 
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -50,27 +60,42 @@ The `UseAuthentication` method discovers the services being used, from [dependen
 Below are 2.0 migration instructions for each major authentication scheme.
 
 ### Cookie-based Authentication
-Make the following changes in *Startup.cs*:
+Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
-- Remove the `UseCookieAuthentication` method call from the `Configure` method.
-- Add an `AddCookieAuthentication` method call to the `ConfigureServices` method:
-
+1. Use cookies with Identity
+- Remove the cookie configuration code from the `Configure` method:
+ 
     ```csharp
-    services.AddCookieAuthentication(o => {
-        o.LoginPath = "/Account/LogIn";
-        o.LogoutPath = "/Account/LogOff";
-    });
+    services.Configure<IdentityOptions>(o => { config.Cookies... }
     ```
 
-When using Identity with cookie-based authentication in 2.0, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
+- Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
+- Invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to configure the Identity cookie.
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
+    ```csharp
+    services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+    services.ConfigureApplicationCookie(o => o.LoginPath = new PathString("/Account/LogIn"));
+    ```
+
+2. Use cookies without Identity
+- Remove the `UseCookieAuthentication` method call from the `Configure` method.
+- Invoke the `AddAuthentication` and `AddCookieAuthentication` methods in the `ConfigureServices` method:
+
+    ```csharp
+    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookieAuthentication(o => {
+                o.LoginPath = "/Account/LogIn";
+                o.LogoutPath = "/Account/LogOff";
+            });
+    ```
 
 ### JWT Bearer Authentication
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseJwtBearerAuthentication` method call from the `Configure` method.
-- Add an `AddJwtBearerAuthentication` method call to the `ConfigureServices` method:
+- Invoke the `AddJwtBearerAuthentication` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddJwtBearerAuthentication(o => {
@@ -83,7 +108,7 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseFacebookAuthentication` method call from the `Configure` method.
-- Add an `AddFacebookAuthentication` method call to the `ConfigureServices` method:
+- Invoke the `AddFacebookAuthentication` method in the `ConfigureServices` method:
     
     ```csharp
     services.AddFacebookAuthentication(o => {
@@ -96,7 +121,7 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseGoogleAuthentication` method call from the `Configure` method.
-- Add an `AddGoogleAuthentication` method call to the `ConfigureServices` method:
+- Invoke the `AddGoogleAuthentication` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddGoogleAuthentication(o => {
@@ -109,7 +134,7 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseMicrosoftAccountAuthentication` method call from the `Configure` method.
-- Add an `AddMicrosoftAccountAuthentication` method call to the `ConfigureServices` method:
+- Invoke the `AddMicrosoftAccountAuthentication` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddMicrosoftAccountAuthentication(o => {
@@ -122,7 +147,7 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseTwitterAuthentication` method call from the `Configure` method.
-- Add an `AddTwitterAuthentication` method call to the `ConfigureServices` method:
+- Invoke the `AddTwitterAuthentication` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddTwitterAuthentication(o => {
