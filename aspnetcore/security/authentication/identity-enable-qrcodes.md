@@ -77,8 +77,7 @@ The second parameter in the call to `string.Format` is your site name, taken fro
 
 ## Using a different QR Code library
 
-You can replace the QR Code library in the `qrCode` element.  <!-- Original
-You may have a preferred QR Code library which you want to use. The `qrCode` element in the view is a suitable place to put the QR code. -->
+You can replace the QR Code library with your preferred library. The HTML contains a `qrCode` element into which you can place a QR Code by whatever mechanism your library provides.
 
 The correctly formatted URL for the QR Code is available in the:
 
