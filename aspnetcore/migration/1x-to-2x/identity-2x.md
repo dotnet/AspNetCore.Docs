@@ -63,14 +63,14 @@ Below are 2.0 migration instructions for each major authentication scheme.
 Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
 1. Use cookies with Identity
-- Remove the cookie configuration code from the `Configure` method:
+    - Remove the cookie configuration code from the `Configure` method:
  
     ```csharp
     services.Configure<IdentityOptions>(o => { config.Cookies... }
     ```
 
-- Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
-- Invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to configure the Identity cookie.
+    - Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
+    - Invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to configure the Identity cookie.
 
     ```csharp
     services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -80,8 +80,8 @@ Select one of the two options below, and make the necessary changes in *Startup.
     ```
 
 2. Use cookies without Identity
-- Remove the `UseCookieAuthentication` method call from the `Configure` method.
-- Invoke the `AddAuthentication` and `AddCookieAuthentication` methods in the `ConfigureServices` method:
+    - Remove the `UseCookieAuthentication` method call from the `Configure` method.
+    - Invoke the `AddAuthentication` and `AddCookieAuthentication` methods in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
