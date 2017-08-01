@@ -14,45 +14,30 @@ uid: migration/identity-2x
 
 # Migrating Authentication and Identity to ASP.NET Core 2.0
 
-<a name="migration-identity"></a>
-
 By [Scott Addie](https://github.com/scottaddie) and [Hao Kung](https://github.com/HaoK)
 
-ASP.NET Core 2.0 has a new model for authentication and Identity that simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication and Identity need to be updated to use the new model as outlined below.
+ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security/authentication/identity) which simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication and Identity need to be updated to use the new model as outlined below.
 
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
-In 1.x projects, authentication is configured via middleware. 2.x projects use services to configure authentication.
-
-When using ASP.NET Core Identity for cookie-based authentication in 2.x, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
-
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
-
-In 1.x, a middleware method was invoked for each authentication scheme you wanted to support. For example, invoking the `UseCookieAuthentication` or `UseFacebookAuthentication` methods in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication or Facebook authentication, respectively:
+In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support. For example, invoking the `UseCookieAuthentication` method in the `Configure` method of *Startup.cs* would have enabled cookie-based authentication:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
     app.UseIdentity();
     app.UseCookieAuthentication(new CookieAuthenticationOptions
        { LoginPath = new PathString("/login") });
-    app.UseFacebookAuthentication(new FacebookOptions
-       { AppId = Configuration["facebook:appid"],  AppSecret = Configuration["facebook:appsecret"] });
 } 
 ```
 
-In 2.x, each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
+In 2.x, services are used to configure authentication. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = new PathString("/login"))
-                .AddFacebook(o =>
-                {
-                    o.AppId = Configuration["facebook:appid"];
-                    o.AppSecret = Configuration["facebook:appsecret"];
-                });
+                .AddCookie(o => o.LoginPath = new PathString("/login"));
 }
 
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -61,6 +46,90 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 ```
 
 The `UseAuthentication` method discovers the services being used, from [dependency injection](xref:fundamentals/dependency-injection), to determine the authentication schemes you want to use.
+
+Below are 2.0 migration instructions for each major authentication scheme.
+
+### Cookie-based Authentication
+When using Identity for cookie-based authentication in 2.0, the `AddIdentity` extension method adds cookie authentication services which are detected by the middleware:
+
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Startup.cs?range=46-48)]
+
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseCookieAuthentication` method call from the `Configure` method.
+- Add an `AddCookieAuthentication` method call to the `ConfigureServices` method:
+
+    ```csharp
+    services.AddCookieAuthentication(o => o.LoginPath = new PathString("/login"));
+    ```
+
+### JWT Bearer Authentication
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseJwtBearerAuthentication` method call from the `Configure` method.
+- Add an `AddJwtBearerAuthentication` method call to the `ConfigureServices` method:
+
+    ```csharp
+    services.AddJwtBearerAuthentication(o => {
+        o.Audience = "http://localhost:5001/";
+        o.Authority = "http://localhost:5000/";
+    });
+    ```
+
+### Facebook Authentication
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseFacebookAuthentication` method call from the `Configure` method.
+- Add an `AddFacebookAuthentication` method call to the `ConfigureServices` method:
+    
+    ```csharp
+    services.AddFacebookAuthentication(o => {
+        o.AppId = Configuration["facebook:appid"];
+        o.AppSecret = Configuration["facebook:appsecret"];
+    });
+    ```
+
+### Google Authentication
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseGoogleAuthentication` method call from the `Configure` method.
+- Add an `AddGoogleAuthentication` method call to the `ConfigureServices` method:
+
+    ```csharp
+    services.AddGoogleAuthentication(o => {
+        o.ClientId = Configuration["auth:google:clientid"];
+        o.ClientSecret = Configuration["auth:google:clientsecret"];
+    });    
+    ```
+
+### Microsoft Account Authentication
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseMicrosoftAccountAuthentication` method call from the `Configure` method.
+- Add an `AddMicrosoftAccountAuthentication` method call to the `ConfigureServices` method:
+
+    ```csharp
+    services.AddMicrosoftAccountAuthentication(o => {
+        o.ClientId = Configuration["auth:microsoft:clientid"];
+        o.ClientSecret = Configuration["auth:microsoft:clientsecret"];
+    });
+    ``` 
+
+### Twitter Authentication
+Make the following changes in *Startup.cs*:
+
+- Remove the `UseTwitterAuthentication` method call from the `Configure` method.
+- Add an `AddTwitterAuthentication` method call to the `ConfigureServices` method:
+
+    ```csharp
+    services.AddTwitterAuthentication(o => {
+        o.ConsumerKey = Configuration["auth:twitter:consumerkey"];
+        o.ConsumerSecret = Configuration["auth:twitter:consumersecret"];
+    });
+    ```
+
+### Multiple Authentication Schemes
+If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified in 2.x. 
 
 <a name="obsolete-interface"></a>
 
@@ -94,7 +163,7 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 
 <a name="navigation-properties"></a>
 
-## IdentityUser POCO Navigation Properties
+## Add IdentityUser POCO Navigation Properties
 The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If the 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
@@ -116,7 +185,7 @@ public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
 
 <a name="synchronous-method-removal"></a>
 
-## Removal of GetExternalAuthenticationSchemes
+## Replace GetExternalAuthenticationSchemes
 The synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *ManageController.cs*:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemes)]
