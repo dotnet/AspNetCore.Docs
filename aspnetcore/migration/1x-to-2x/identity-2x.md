@@ -157,7 +157,15 @@ Make the following changes in *Startup.cs*:
     ```
 
 ### Multiple Authentication Schemes
-If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified in 2.0. 
+If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified differently in 2.0. 
+
+In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties were intended to be set on a single authentication scheme. There was no good way to enforce this.
+
+In 2.x, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call in the `ConfigureServices` method of *Startup.cs*:
+
+```csharp
+services.AddAuthentication(o => o.DefaultScheme = "Cookies");
+```
 
 <a name="obsolete-interface"></a>
 
