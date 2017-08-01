@@ -254,7 +254,5 @@ In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This 
 ## Windows Authentication (HttpSys / IISIntegration)
 If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". Failure to set the default scheme accordingly will prevent the authorize request to challenge from working.
 
-## Authorization Changes
-
 ## Additional Resources
 For additional details and discussion, see the [Auth 2.0 Migration announcement](https://github.com/aspnet/Security/issues/1310) issue on GitHub.
