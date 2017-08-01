@@ -21,6 +21,8 @@ The model classes you create are known as POCO classes (from "plain-old CLR obje
 
 In this tutorial, you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to [generate model classes from an existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
+[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
+
 ## Add a data model
 
 In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.

@@ -17,6 +17,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/page). 
 
+[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
+
 ## The Create, Delete, Details, and Edit pages.
 
 Examine the *Pages/Movie/Index.cshtml* Razor page:
@@ -45,9 +47,8 @@ Consider the following code:
 
 The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` enclose a block of C# code.
 
-The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages\_Layout.cshtml* file (See [Layout](xref:mvc/razor-pages/index#layout)). The following markup shows the first few lines of the *Layout* file.
+The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages\_Layout.cshtml* file. The following markup shows the first few lines of the *Pages\_Layout.cshtml* file.
 
-Pages\_Layout.cshtml
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/_Layout1.cshtml?highlight=6-)]
 
 Test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
@@ -56,10 +57,31 @@ The `Layout` property is set globally in the *Pages/_ViewStart.cshtml* file:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_ViewStart.cshtml)]
 
-You can opt-out of layout on a page by setting the `Layout` property to `null`.
+See [Layout](xref:mvc/razor-pages/index#layout) for more information.
+
+### Update layout
+
+Change the `<title>` element in the *Pages\_Layout.cshtml* file to use a shorter string.
+
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6highlight=6-)]
+
+Find the following anchor element.
+
+```html
+<a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
+```
+Replace the preceeding element with the following markup.
+
+```html
+<a asp-page="/Movie/Index" class="navbar-brand">RpMovie</a>
+```
+
+The preceeding anchor element is [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's a [Anchor Tag Helper](xref:mvc/views/tag-helpers/built-in/anchortaghelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
+
+Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) in GitHub.
 
 
-
+[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
 >[!div class="step-by-step"]
 [Adding a model](xref:tutorials/razor-pages/model)
