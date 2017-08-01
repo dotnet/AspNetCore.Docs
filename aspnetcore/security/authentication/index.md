@@ -20,6 +20,8 @@ uid: security/authentication/index
 
 * [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 
+* [Enabling QR Code generation in ASP.NET identity](identity-enable-qrcodes.md)
+
 * [Configure Windows Authentication](windowsauth.md)
 
 * [Account Confirmation and Password Recovery](accconfirm.md)
