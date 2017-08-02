@@ -18,7 +18,7 @@ uid: security/authentication/microsoft-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.x project created on the [previous page](index.md).
+This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md).
 
 ## Create the app in Microsoft Developer Portal
 
@@ -66,29 +66,41 @@ Link sensitive settings like Microsoft `Application ID` and `Password` to your a
 
 ## Configure Microsoft Account middleware
 
-> [!NOTE]
-> The project template used in this tutorial ensures that 
+The project template used in this tutorial ensures that 
 [Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Microsoft) package is already installed.
->
-> * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-> * To install with **dotnet** CLI, execute the following in your project directory:
->
->   `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
 
-Add the Microsoft Account middleware in the `ConfigureServices` method in `Startup.cs`:
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with **dotnet** CLI, execute the following in your project directory:
+
+   `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Add the Microsoft Account middleware in the `Configure` method in `Startup.cs` file:
 
 ```csharp
-services.AddMicrosoftAuthentication(microsoftOptions =>
+app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 {
-    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+    ClientId = Configuration["Authentication:Microsoft:ApplicationId"],
+    ClientSecret = Configuration["Authentication:Microsoft:Password"]
 });
 ```
-> [!NOTE]
-> Although the terminology used on Microsoft Developer Portal names these tokens `ApplicationId` and `Password`, they are exposed as `ClientId` and `ClientSecret` to the configuration API.
 
-> [!NOTE]
-> See the [MicrosoftOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Microsoft/MicrosoftOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Microsoft Account middleware. This can be used to request different information about the user.
+# [ASP.NET Core 2.0](#tab/aspnet20)
+
+Add the Microsoft Account middleware in the `ConfigureServices` method in `Startup.cs` file:
+
+```csharp
+services.AddMicrosoftAuthentication(new MicrosoftAccountOptions()
+{
+    ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+    ClientSecret = Configuration["Authentication:Microsoft:Password"];
+});
+```
+
+Although the terminology used on Microsoft Developer Portal names these tokens `ApplicationId` and `Password`, they are exposed as `ClientId` and `ClientSecret` to the configuration API.
+
+See the [MicrosoftOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Microsoft/MicrosoftOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Microsoft Account middleware. This can be used to request different information about the user.
 
 ## Sign in with Microsoft Account
 

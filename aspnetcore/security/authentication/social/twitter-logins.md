@@ -18,7 +18,7 @@ uid: security/authentication/twitter-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core 2.x project created on the [previous page](index.md).
+This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core 2.0 project created on the [previous page](index.md).
 
 ## Create the app in Twitter
 
@@ -48,27 +48,40 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating y
 
 ## Configure Twitter middleware
 
-> [!NOTE]
-> The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package is already installed.
->
-> * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-> * To install with **dotnet** CLI, execute the following in your project directory:
->
->   `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
+The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package is already installed.
 
-Add the Twitter middleware in the `ConfigureServices` method in `Startup.cs`:
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with **dotnet** CLI, execute the following in your project directory:
+
+   `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Add the Twitter middleware in the `Configure` method in `Startup.cs` file:
 
 ```csharp
-services.AddTwitterAuthentication(twitterOptions =>
+app.UseTwitterAuthentication(new TwitterOptions()
 {
-    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
-    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+    ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
+    ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
 });
 ```
 
-> [!NOTE]
-> See the [TwitterOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Twitter/TwitterOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Twitter middleware. This can be used to request different information about the user.
+# [ASP.NET Core 2.0](#tab/aspnet20)
+
+Add the Twitter middleware in the `ConfigureServices` method in `Startup.cs` file:
+
+```csharp
+services.AddTwitterAuthentication(new TwitterOptions()
+{
+    ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+    ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+});
+```
+
+---
+
+See the [TwitterOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Twitter/TwitterOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Twitter middleware. This can be used to request different information about the user.
 
 ## Sign in with Twitter
 
