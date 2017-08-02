@@ -94,12 +94,17 @@ Save your changes and test the app by clicking on the **RpMovie** link. See the 
 
 Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?highlight=24,25)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
 The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
 
+The `OnPostAsync` method is run when the page posts form data:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
+
+If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client side validation and model validation later in the tutorial.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 

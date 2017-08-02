@@ -1,5 +1,5 @@
+#region snippetALL
 // Unused usings removed.
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesMovie.Models;
@@ -24,6 +24,7 @@ namespace RazorPagesMovie.Pages_Movie
         [BindProperty]
         public Movie Movie { get; set; }
 
+#region snippetPost
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -36,5 +37,7 @@ namespace RazorPagesMovie.Pages_Movie
 
             return RedirectToPage("./Index");
         }
+#endregion
     }
 }
+#endregion
