@@ -16,12 +16,14 @@ uid: migration/identity-2x
 
 By [Scott Addie](https://github.com/scottaddie) and [Hao Kung](https://github.com/HaoK)
 
-ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security/authentication/identity) which simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication and Identity need to be updated to use the new model as outlined below.
+ASP.NET Core 2.0 has a new model for authentication and [Identity](xref:security/authentication/identity) which simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication or Identity can be updated to use the new model as outlined below.
 
 <a name="auth-middleware"></a>
 
 ## Authentication Middleware and Services
 In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.
+
+The following 1.x example configures Facebook authentication with Identity in *Startup.cs*:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
@@ -34,6 +36,8 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 ```
 
 In 2.0 projects, authentication is configured via services. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`.
+
+The following 2.0 example configures Facebook authentication with Identity in *Startup.cs*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
@@ -159,14 +163,14 @@ In 2.0, these two properties have been removed as flags on the individual `Authe
 services.AddAuthentication("Cookies");
 ```
 
-Alternatively, you can use an overloaded version of `AddAuthentication` to set more than one property
+Alternatively, you can use an overloaded version of `AddAuthentication` to set more than one property.
 
-In 2.0, a default scheme must be specified if you want the user to be automatically signed in. An exception to that rule is `AddIdentity` &mdash; it adds cookies, so the default scheme is already defined for you.
+Define a default scheme in 2.0 if you want the user to be automatically signed in. An exception to that rule is the `AddIdentity` method &mdash; it adds cookies for you, so the default scheme is already defined.
 
 <a name="obsolete-interface"></a>
 
 ## Use HttpContext Authentication Extensions
-The `IAuthenticationManager` interface was the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
+The `IAuthenticationManager` interface is the main entry point into the 1.x authentication system. It has been replaced with a new set of `HttpContext` extension methods in the `Microsoft.AspNetCore.Authentication` namespace.
 
 For example, 1.x projects reference an `Authentication` property:
 
@@ -179,13 +183,19 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 <a name="windows-auth-changes"></a>
 
 ## Windows Authentication (HttpSys / IISIntegration)
-If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". This is done in the `ConfigureServices` method of *Startup.cs*:
+There are two varieties of Windows authentication:
+1. The host only allows authenticated users
+2. The host allows both anonymous and authenticated users
+
+The first variety described above is unaffected by the 2.0 changes.
+
+The second variety described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HttpSys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to "Windows" in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication("Windows");
 ```
 
-Failure to set the default scheme accordingly will prevent the authorize request to challenge from working.
+Failure to set the default scheme accordingly prevents the authorize request to challenge from working.
 
 <a name="identity-cookie-options"></a>
 
@@ -196,7 +206,7 @@ For example, 1.x projects use [constructor injection](xref:mvc/controllers/depen
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 
-The constructor injection becomes unnecessary in 2.0 projects, and the `_externalCookieScheme` field can be deleted:
+The aforementioned constructor injection becomes unnecessary in 2.0 projects, and the `_externalCookieScheme` field can be deleted:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor)]
 
@@ -207,7 +217,7 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 <a name="navigation-properties"></a>
 
 ## Add IdentityUser POCO Navigation Properties
-The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If the 1.x project used these properties, manually add them back to the 2.0 project:
+The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
 /// <summary>
