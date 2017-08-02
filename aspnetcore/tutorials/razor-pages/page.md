@@ -116,7 +116,7 @@ Examine the *Pages/Movie/Create.cshtml* Razor Page file:
 
 Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).
 
-![VS17 view of Create.cshtml page](pages/_static/th.png)
+![VS17 view of Create.cshtml page](page/_static/th.png)
 
 
 
