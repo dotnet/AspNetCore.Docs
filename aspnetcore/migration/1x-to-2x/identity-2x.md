@@ -214,7 +214,7 @@ services.AddAuthentication(options =>
 }).AddCookies().AddOpenIdConnect(options => { ... });
 ```
 
-In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The scheme may also be set within your individual `[Authorize]` attributes or authorization policies.
+In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The default scheme may alternatively be set within your individual `[Authorize]` attributes or authorization policies.
 
 Define a default scheme in 2.0 if you want the user to be automatically signed in. An exception to that rule is the `AddIdentity` method &mdash; it adds cookies for you, so the default scheme is already defined.
 
