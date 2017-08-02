@@ -90,7 +90,7 @@ The preceeding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro
 
 Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
 
-### The Create page
+### The Create code-behind page
 
 Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
 
@@ -105,6 +105,20 @@ The `OnPostAsync` method is run when the page posts form data:
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client side validation and model validation later in the tutorial.
+
+If there are no model errors, the data is saved, and browser is redirected to the Index page.
+
+### The Create Razor Page
+
+Examine the *Pages/Movie/Create.cshtml* Razor Page file:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
+
+Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).
+
+![VS17 view of Create.cshtml page](pages/_static/th.png)
+
+
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
