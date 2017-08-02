@@ -16,7 +16,7 @@ msc.type: content
 
 # ASP.NET API reference
 
-* [ASP.NET API Reference](https://msdn.microsoft.com/library/mt481589)
+* [ASP.NET API Reference](/dotnet/api/?view=netframework-4.7&term=system.web)
 
 * [ASP.NET MVC API Reference](https://msdn.microsoft.com/library/mt134468)
 

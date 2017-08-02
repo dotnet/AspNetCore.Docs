@@ -63,8 +63,12 @@ The associations of URL paths to pages are determined by the page's location in 
 | */Pages/Index.cshtml* | `/` or `/Index` | 
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
+| */Pages/Store/Index.cshtml* | `/Store` or `/Store/Index`  |
 
-The runtime looks for Razor Pages files in the *Pages* folder by default.
+Notes:
+
+* The runtime looks for Razor Pages files in the *Pages* folder by default.
+* `Index` is the default page when a URL doesn't include a page.
 
 <a name="rpvs17"></a>
 
@@ -341,3 +345,5 @@ public class Startup
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
 See [Razor view compilation](xref:mvc/views/view-compilation) to precompile views.
+
+See [Getting started with Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start), which builds on this tutorial.

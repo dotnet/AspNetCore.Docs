@@ -11,6 +11,7 @@
 ## [Microsoft authentication](social/microsoft-logins.md)
 ## [Other authentication providers](social/other-logins.md)
 # [Account Confirmation and Password Recovery](accconfirm.md)
+# [Enabling QR Code generation in ASP.NET identity](identity-enable-qrcodes.md)
 # [Two-factor authentication with SMS](2fa.md)
 <!--# [🔧 Supporting Third Party Clients using OAuth 2.0](oauth2.md)-->
 # [Using Cookie Middleware without ASP.NET Core Identity](cookie.md)

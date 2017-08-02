@@ -82,7 +82,7 @@ Disable Anonymous Authentication and enable Windows Authentication.
 
 ### Publish your project to the IIS site folder
 
-Using Visual Studio or the dotnet CLI, *publish* your app to the destination folder.
+Using Visual Studio or the .NET Core CLI, *publish* your app to the destination folder.
 
 ![Visual Studio Publish Dialog](windowsauth/_static/vs-publish-app.png)
 

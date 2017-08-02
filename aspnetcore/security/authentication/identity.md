@@ -26,19 +26,23 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
 1.  Create an ASP.NET Core Web Application project with Individual User Accounts.
 
+    # [Visual Studio](#tab/vs0)
     In Visual Studio, select **File** -> **New** -> **Project**. Select the **ASP.NET Web Application** from the **New Project** dialog box. Selecting an ASP.NET Core **Web Application** with **Individual User Accounts** as the authentication method.
 
     Note: You must select **Individual User Accounts**.
  
     ![New Project dialog](identity/_static/01-mvc.png)
-
-    If using the dotnet CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same identity template code Visual Studio creates.
+    
+    # [.NET Core CLI](#tab/cli)
+    If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same Identity template code Visual Studio creates.
  
-    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the identity data and schema to SQL Server using [Entity Framework Core](https://docs.efproject.net).
+    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.efproject.net).
+    
+    ---
  
-2.  Configure identity services and add middleware in `Startup`.
+2.  Configure Identity services and add middleware in `Startup`.
 
-    The identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
+    The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,13-34)]
 	
@@ -111,9 +115,9 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
 ## Identity Components
 
-The primary reference assembly for the identity system is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
+The primary reference assembly for the Identity system is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
-These dependencies are needed to use the identity system in ASP.NET Core applications:
+These dependencies are needed to use the Identity system in ASP.NET Core applications:
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore` - Contains the required types to use Identity with Entity Framework Core.
 
@@ -123,7 +127,7 @@ These dependencies are needed to use the identity system in ASP.NET Core applica
 
 ## Migrating to ASP.NET Core Identity
 
-For additional information and guidance on migrating your existing identity store see [Migrating Authentication and Identity](xref:migration/identity).
+For additional information and guidance on migrating your existing Identity store see [Migrating Authentication and Identity](xref:migration/identity).
 
 ## Next Steps
 

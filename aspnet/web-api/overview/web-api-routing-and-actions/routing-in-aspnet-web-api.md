@@ -35,7 +35,7 @@ This route is defined in the WebApiConfig.cs file, which is placed in the App\_S
 
 ![](routing-in-aspnet-web-api/_static/image1.png)
 
-For more information aboout the **WebApiConfig** class, see [Configuring ASP.NET Web API](../advanced/configuring-aspnet-web-api.md).
+For more information about the **WebApiConfig** class, see [Configuring ASP.NET Web API](../advanced/configuring-aspnet-web-api.md).
 
 If you self-host Web API, you must set the routing table directly on the **HttpSelfHostConfiguration** object. For more information, see [Self-Host a Web API](../older-versions/self-host-a-web-api.md).
 

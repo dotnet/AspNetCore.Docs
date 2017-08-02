@@ -16,7 +16,7 @@ uid: security/authentication/cookie
 
 <a name=security-authentication-cookie-middleware></a>
 
-ASP.NET Core provides cookie [middleware](../../fundamentals/middleware.md#fundamentals-middleware) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`. If you want to provide your own login screens and user databases you can use the cookie middleware as a standalone feature.
+ASP.NET Core provides cookie [middleware](../../fundamentals/middleware.md#fundamentals-middleware) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the `User` property on `HttpContext`. If you want to provide your own login screens and user databases, you can use the cookie middleware as a standalone feature.
 
 <a name=security-authentication-cookie-middleware-configuring></a>
 
