@@ -25,7 +25,7 @@ Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
 
-Razor Pages are derrived from `PageModel`. By convention, the `PageModel` derrivd class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
+Razor Pages are derrived from `PageModel`. By convention, the `PageModel` derrived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
 When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page.
 
@@ -53,13 +53,15 @@ Consider the following code:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
 
-The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` enclose a block of C# code.
+The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages\_Layout.cshtml* file. The following markup shows the first few lines of the *Pages\_Layout.cshtml* file.
+The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages/_Layout.cshtml* file. The following markup shows the first few lines of the *Pages/_Layout.cshtml* file.
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/_Layout1.cshtml?highlight=6-)]
 
-Test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
+The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
+
+Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
 
 The `Layout` property is set globally in the *Pages/_ViewStart.cshtml* file:
 
@@ -67,13 +69,13 @@ The `Layout` property is set globally in the *Pages/_ViewStart.cshtml* file:
 
 See [Layout](xref:mvc/razor-pages/index#layout) for more information.
 
-### Update layout
+### Update the layout
 
-Change the `<title>` element in the *Pages\_Layout.cshtml* file to use a shorter string.
+Change the `<title>` element in the *Pages/_Layout.cshtml* file to use a shorter string.
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6-)]
 
-Find the following anchor element.
+Find the following anchor element in the *Pages/_Layout.cshtml* file.
 
 ```html
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
@@ -84,9 +86,20 @@ Replace the preceeding element with the following markup.
 <a asp-page="/Movie/Index" class="navbar-brand">RpMovie</a>
 ```
 
-The preceeding anchor element is [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's a [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
+The preceeding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
 
 Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
+
+### The Create page
+
+Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?highlight=24,25)]
+
+The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
+
+The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
+
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 

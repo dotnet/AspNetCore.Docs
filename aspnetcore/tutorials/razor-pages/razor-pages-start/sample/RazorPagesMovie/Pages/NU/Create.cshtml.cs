@@ -1,11 +1,12 @@
 // Unused usings removed.
+#define NS
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorPagesMovie.Models;
 using System.Threading.Tasks;
+using RazorPagesMovie.Models;  // Not used
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movie
 {
     public class CreateModel : PageModel
     {
@@ -18,11 +19,21 @@ namespace RazorPagesMovie.Pages_Movie
 
         public IActionResult OnGet()
         {
+            Movie = new Models.Movie
+            {
+                Title = "Conan",
+                Genre = "Action",
+                Price = 1.99M
+            };
             return Page();
         }
 
         [BindProperty]
+#if NS
+        public Models.Movie Movie { get; set; }
+#else
         public Movie Movie { get; set; }
+#endif
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -34,7 +45,7 @@ namespace RazorPagesMovie.Pages_Movie
             _context.Movie.Add(Movie);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Movie/Index");
         }
     }
 }
