@@ -5,7 +5,7 @@ description: This article outlines the prerequisites and most common steps for m
 keywords: ASP.NET Core,migrating
 ms.author: scaddie
 manager: wpickett
-ms.date: 07/31/2017
+ms.date: 08/01/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -15,25 +15,23 @@ uid: migration/1x-to-2x
 
 By [Scott Addie](https://github.com/scottaddie)
 
-This article outlines the most common steps to migrate an existing ASP.NET Core 1.x project to ASP.NET Core 2.0.
+In this article, we'll walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](blog post link from Jeff). 
+
+Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
 
 <a name="prerequisites"></a>
 
 ## Prerequisites
-Install the following prerequisites before migrating to ASP.NET Core 2.0:
-- If you're using Visual Studio, install [Visual Studio 2017 version 15.3](https://www.visualstudio.com/vs/) or later
-- [.NET Core 2.0](https://github.com/dotnet/core/blob/master/release-notes/download-archives/2.0.0-download.md) or .NET Framework 4.6.1+
-
-For applications hosted on Windows Server with IIS and Kestrel, the [.NET Core Windows Server Hosting bundle](xref:publishing/iis) must be updated.
+Please see [Getting Started with ASP.NET Core](xref:getting-started).
 
 <a name="tfm"></a>
 
 ## Target Framework Moniker (TFM)
-Projects targeting .NET Core must use the [TFM](/dotnet/standard/frameworks#referring-to-frameworks) of a version greater than or equal to .NET Core 2.0:
+Projects targeting .NET Core should use the [TFM](/dotnet/standard/frameworks#referring-to-frameworks) of a version greater than or equal to .NET Core 2.0. Search for the `TargetFramework` node in the *.csproj* file, and replace its inner text with `netcoreapp2.0`:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=3)]
 
-Projects targeting .NET Framework must use the TFM of a version greater than or equal to .NET Framework 4.6.1:
+Projects targeting .NET Framework should use the TFM of a version greater than or equal to .NET Framework 4.6.1. Search for the `TargetFramework` node in the *.csproj* file, and replace its inner text with `net461`:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=4)]
 
@@ -58,14 +56,18 @@ In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](x
 
 All the features of ASP.NET Core 2.0 and Entity Framework Core 2.0 are included in the metapackage.
 
-ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference individual NuGet packages. An upgrade of each package reference to 2.0 is required:
+ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference individual NuGet packages. Update the `Version` attribute of each `<PackageReference />` node to 2.0.0.
+
+For example, here's the list of `<PackageReference />` nodes used in a typical ASP.NET Core 2.0 project targeting .NET Framework:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=9-22)]
 
 <a name="dot-net-cli-tool-reference"></a>
 
 ## Update .NET Core CLI tools
-Update the `Version` attributes of each `<DotNetCliToolReference />` node to the 2.0 version:
+In the *.csproj* file, update the `Version` attribute of each `<DotNetCliToolReference />` node to 2.0.0.
+
+For example, here's the list of CLI tools used in a typical ASP.NET Core 2.0 project targeting .NET Core 2.0:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=13-17)]
 
@@ -91,7 +93,7 @@ In 2.0 projects, the `Main` method of *Program.cs* has been simplified:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=8-11)]
 
-The adoption of this new 2.0 pattern is highly recommended. Product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) **do not** work without it.
+The adoption of this new 2.0 pattern is highly recommended and is required in order for product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) to work.
 
 <a name="view-compilation"></a>
 
@@ -105,7 +107,7 @@ When targeting .NET Framework, you still need to explicitly reference the `Micro
 ## Application Insights
 ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, follow these steps:
 
-1. Remove the `Microsoft.ApplicationInsights.AspNetCore` package reference:
+1. Remove the following `<PackageReference />` node from the *.csproj* file:
     
     [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=10)]
 
@@ -121,12 +123,7 @@ You can rely on the new "light-up" features available in the Visual Studio 2017 
 
 If you are using the Application Insights SDK directly, continue to do so. The 2.0 metapackage includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 
-<a name="publishing"></a>
-
-## Publishing
-At publish time, ASP.NET Core 2.0 applications targeting .NET Core 2.0 use a new feature called the .NET Core Runtime Store. The Runtime Store contains all the runtime assets necessary to run ASP.NET Core 2.0 applications. No assets from the referenced ASP.NET Core NuGet packages are deployed with the application. The benefits are a much smaller published bundle size and decreased application startup time.
-
 <a name="auth-and-identity"></a>
 
 ## Authentication / Identity
-ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. See [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/identity-2x).
+ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your application with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/identity-2x).
