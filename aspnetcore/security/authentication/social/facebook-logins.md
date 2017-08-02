@@ -18,7 +18,7 @@ uid: security/authentication/facebook-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.x project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Create the app in Facebook
 
@@ -62,26 +62,40 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
 
 ## Configure Facebook middleware
 
-> [!NOTE]
-> The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
->
-> * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-> * To install with **dotnet** CLI, execute the following in your project directory:
->
->   `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
+The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
 
-Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
+* To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
+* To install with **dotnet** CLI, execute the following in your project directory:
+
+   `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Add the Facebook middleware in the `Configure` method in `Startup.cs` file:
 
 ```csharp
-services.AddFacebookAuthentication(facebookOptions =>
+app.UseFacebookAuthentication(new FacebookOptions()
 {
-    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+    AppId = Configuration["Authentication:Facebook:AppId"],
+    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
 });
 ```
 
-Note: See the [FacebookOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Facebook middleware. Configuration options can be used to:
+# [ASP.NET Core 2.0](#tab/aspnet20)
+
+Add the Facebook middleware in the `ConfigureServices` method in the `Startup.cs` file:
+
+```csharp
+services.AddFacebookAuthentication(new FacebookOptions()
+{
+    AppId = Configuration["Authentication:Facebook:AppId"];
+    AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+});
+```
+
+---
+
+See the [FacebookOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Facebook middleware. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.

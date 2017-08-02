@@ -17,7 +17,7 @@ uid: security/authentication/google-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core 2.x project created on the [previous page](index.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
+This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
 
 ## Create the app in Google API Console
 
@@ -84,25 +84,40 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 
 ## Configure Google middleware
 
-Note: The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
+The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
  * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
  * To install with **dotnet** CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
-Add the Google middleware in the `ConfigureServices` method in `Startup.cs`:
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
+Add the Google middleware in the `Configure` method in `Startup.cs` file:
 
 ```csharp
-services.AddGoogleAuthentication(googleOptions =>
+app.UseGoogleAuthentication(new GoogleOptions()
 {
-    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+    ClientId = Configuration["Authentication:Google:ClientId"],
+    ClientSecret = Configuration["Authentication:Google:ClientSecret"]
 });
 ```
 
-Note: See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
+# [ASP.NET Core 2.0](#tab/aspnet20)
+
+Add the Google middleware in the `ConfigureServices` method in `Startup.cs` file:
+
+```csharp
+services.AddGoogleAuthentication(new GoogleOptions()
+{
+    ClientId = Configuration["Authentication:Google:ClientId"];
+    ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+});
+```
+
+---
+
+See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
 
 ## Sign in with Google
 
