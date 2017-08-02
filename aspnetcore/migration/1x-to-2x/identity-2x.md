@@ -5,7 +5,7 @@ description: This article outlines the most common steps for migrating ASP.NET C
 keywords: ASP.NET Core,Identity,authentication
 ms.author: scaddie
 manager: wpickett
-ms.date: 07/31/2017
+ms.date: 08/01/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -26,9 +26,6 @@ In 1.x projects, authentication is configured via middleware. A middleware metho
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
     app.UseIdentity();
-    app.UseCookieAuthentication(new CookieAuthenticationOptions {
-        LoginPath = new PathString("/Account/LogIn")
-    });
     app.UseFacebookAuthentication(new FacebookOptions { 
         AppId = Configuration["auth:facebook:appid"],
         AppSecret = Configuration["auth:facebook:appsecret"]
@@ -41,12 +38,13 @@ In 2.0 projects, authentication is configured via services. Each authentication 
 ```csharp
 public void ConfigureServices(IServiceCollection services) {
     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores();
-    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(o => o.LoginPath = new PathString("/Account/LogIn"))
-            .AddFacebook(o =>
-            {
-                o.AppId = Configuration["auth:facebook:appid"];
-                o.AppSecret = Configuration["auth:facebook:appsecret"];
+
+    // If you want to tweak Identity cookies, they're no longer part of IdentityOptions.
+    services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
+    services.AddAuthentication()
+            .AddFacebook(o => {
+                o.AppId = Configuration["facebook:appid"];
+                o.AppSecret = Configuration["facebook:appsecret"];
             });
 }
 
@@ -63,12 +61,6 @@ Below are 2.0 migration instructions for each major authentication scheme.
 Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
 1. Use cookies with Identity
-    - Remove the cookie configuration code from the `Configure` method:
- 
-    ```csharp
-    services.Configure<IdentityOptions>(o => { config.Cookies... }
-    ```
-
     - Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
     - Invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to configure the Identity cookie.
 
@@ -76,16 +68,16 @@ Select one of the two options below, and make the necessary changes in *Startup.
     services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-    services.ConfigureApplicationCookie(o => o.LoginPath = new PathString("/Account/LogIn"));
+    services.ConfigureApplicationCookie(o => o.LoginPath = "/Account/LogIn");
     ```
 
 2. Use cookies without Identity
     - Remove the `UseCookieAuthentication` method call from the `Configure` method.
-    - Invoke the `AddAuthentication` and `AddCookieAuthentication` methods in the `ConfigureServices` method:
+    - Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookieAuthentication(o => {
+            .AddCookie(o => {
                 o.LoginPath = "/Account/LogIn";
                 o.LogoutPath = "/Account/LogOff";
             });
@@ -95,10 +87,10 @@ Select one of the two options below, and make the necessary changes in *Startup.
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseJwtBearerAuthentication` method call from the `Configure` method.
-- Invoke the `AddJwtBearerAuthentication` method in the `ConfigureServices` method:
+- Invoke the `AddJwtBearer` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddJwtBearerAuthentication(o => {
+    services.AddJwtBearer(o => {
         o.Audience = "http://localhost:5001/";
         o.Authority = "http://localhost:5000/";
     });
@@ -108,10 +100,10 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseFacebookAuthentication` method call from the `Configure` method.
-- Invoke the `AddFacebookAuthentication` method in the `ConfigureServices` method:
+- Invoke the `AddFacebook` method in the `ConfigureServices` method:
     
     ```csharp
-    services.AddFacebookAuthentication(o => {
+    services.AddFacebook(o => {
         o.AppId = Configuration["facebook:appid"];
         o.AppSecret = Configuration["facebook:appsecret"];
     });
@@ -121,10 +113,10 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseGoogleAuthentication` method call from the `Configure` method.
-- Invoke the `AddGoogleAuthentication` method in the `ConfigureServices` method:
+- Invoke the `AddGoogle` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddGoogleAuthentication(o => {
+    services.AddGoogle(o => {
         o.ClientId = Configuration["auth:google:clientid"];
         o.ClientSecret = Configuration["auth:google:clientsecret"];
     });    
@@ -134,10 +126,10 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseMicrosoftAccountAuthentication` method call from the `Configure` method.
-- Invoke the `AddMicrosoftAccountAuthentication` method in the `ConfigureServices` method:
+- Invoke the `AddMicrosoftAccount` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddMicrosoftAccountAuthentication(o => {
+    services.AddMicrosoftAccount(o => {
         o.ClientId = Configuration["auth:microsoft:clientid"];
         o.ClientSecret = Configuration["auth:microsoft:clientsecret"];
     });
@@ -147,10 +139,10 @@ Make the following changes in *Startup.cs*:
 Make the following changes in *Startup.cs*:
 
 - Remove the `UseTwitterAuthentication` method call from the `Configure` method.
-- Invoke the `AddTwitterAuthentication` method in the `ConfigureServices` method:
+- Invoke the `AddTwitter` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddTwitterAuthentication(o => {
+    services.AddTwitter(o => {
         o.ConsumerKey = Configuration["auth:twitter:consumerkey"];
         o.ConsumerSecret = Configuration["auth:twitter:consumersecret"];
     });
@@ -161,13 +153,15 @@ If your 1.x application has configured multiple authentication schemes, the defa
 
 In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
-In 2.0, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call in the `ConfigureServices` method of *Startup.cs*:
+In 2.0, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
-services.AddAuthentication(o => o.DefaultScheme = "Cookies");
+services.AddAuthentication("Cookies");
 ```
 
-In 2.0, a default scheme must always be specified. The exception to that rule is `AddIdentity` &mdash; it adds cookies, so the default scheme is already defined for you.
+Alternatively, you can use an overloaded version of `AddAuthentication` to set more than one property
+
+In 2.0, a default scheme must be specified if you want the user to be automatically signed in. An exception to that rule is `AddIdentity` &mdash; it adds cookies, so the default scheme is already defined for you.
 
 <a name="obsolete-interface"></a>
 
@@ -181,6 +175,17 @@ For example, 1.x projects reference an `Authentication` property:
 In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and delete the `Authentication` property references:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Controllers/AccountController.cs?name=snippet_AuthenticationProperty)]
+
+<a name="windows-auth-changes"></a>
+
+## Windows Authentication (HttpSys / IISIntegration)
+If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". This is done in the `ConfigureServices` method of *Startup.cs*:
+
+```csharp
+services.AddAuthentication("Windows");
+```
+
+Failure to set the default scheme accordingly will prevent the authorize request to challenge from working.
 
 <a name="identity-cookie-options"></a>
 
@@ -251,8 +256,7 @@ In 2.0 projects, the return type changes to `IList<AuthenticationScheme>`. This 
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 
-## Windows Authentication (HttpSys / IISIntegration)
-If you are allowing anonymous users into your application at the IIS or HttpSys layer, you need to set the default scheme to "Windows". Failure to set the default scheme accordingly will prevent the authorize request to challenge from working.
+<a name="additional-resources"></a>
 
 ## Additional Resources
-For additional details and discussion, see the [Auth 2.0 Migration announcement](https://github.com/aspnet/Security/issues/1310) issue on GitHub.
+For additional details and discussion, see the [Discussion for Auth 2.0](https://github.com/aspnet/Security/issues/1338) issue on GitHub.
