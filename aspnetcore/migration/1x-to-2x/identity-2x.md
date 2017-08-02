@@ -66,7 +66,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
 }
 ```
 
-The `UseAuthentication` method discovers the services being used, from [dependency injection](xref:fundamentals/dependency-injection), to determine the authentication schemes you want to use.
+The `UseAuthentication` method adds a single authentication middleware component which is responsible for automatic authentication and the handling of remote authentication requests. It replaces all of the individual middleware components with a single, common middleware component.
 
 Below are 2.0 migration instructions for each major authentication scheme.
 
@@ -101,6 +101,8 @@ Select one of the two options below, and make the necessary changes in *Startup.
     - Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method:
 
         ```csharp
+        // If you don't want the cookie to be automatically authenticated, remove the 
+        // CookieAuthenticationDefaults.AuthenticationScheme parameter passed AddAuthentication
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.LoginPath = "/Account/LogIn";
@@ -137,8 +139,8 @@ Make the following changes in *Startup.cs*:
     
     ```csharp
     services.AddAuthentication().AddFacebook(options => {
-        options.AppId = Configuration["facebook:appid"];
-        options.AppSecret = Configuration["facebook:appsecret"];
+        options.AppId = Configuration["auth:facebook:appid"];
+        options.AppSecret = Configuration["auth:facebook:appsecret"];
     });
     ```
 
@@ -214,9 +216,9 @@ services.AddAuthentication(options =>
 }).AddCookies().AddOpenIdConnect(options => { ... });
 ```
 
-In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The default scheme may alternatively be set within your individual `[Authorize]` attributes or authorization policies.
+In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The authentication scheme may alternatively be specified within your individual `[Authorize]` attributes or authorization policies.
 
-Define a default scheme in 2.0 if you want the user to be automatically signed in. An exception to that rule is the `AddIdentity` method &mdash; it adds cookies for you, so the default scheme is already defined.
+Define a default scheme in 2.0 if you want the user to be automatically signed in. An exception to that rule is the `AddIdentity` method. This method adds cookies for you and sets the default authenticate and challenge schemes to the application cookie `IdentityConstants.ApplicationScheme`. Additionally, it sets the default sign-in scheme to the external cookie `IdentityConstants.ExternalScheme`.
 
 <a name="obsolete-interface"></a>
 
@@ -234,13 +236,13 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 <a name="windows-auth-changes"></a>
 
 ## Windows Authentication (HttpSys / IISIntegration)
-There are two varieties of Windows authentication:
+There are two variations of Windows authentication:
 1. The host only allows authenticated users
 2. The host allows both anonymous and authenticated users
 
-The first variety described above is unaffected by the 2.0 changes.
+The first variation described above is unaffected by the 2.0 changes.
 
-The second variety described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HttpSys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
+The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HttpSys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication(IISDefaults.AuthenticationScheme);
