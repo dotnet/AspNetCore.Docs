@@ -15,9 +15,9 @@ uid: migration/1x-to-2x
 
 By [Scott Addie](https://github.com/scottaddie)
 
-In this article, we'll walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](blog post link from Jeff). 
+In this article, we'll walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](https://go.microsoft.com/fwlink/?linkid=854094). 
 
-Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
+Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code contained within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
 
 <a name="prerequisites"></a>
 
@@ -26,12 +26,12 @@ Please see [Getting Started with ASP.NET Core](xref:getting-started).
 
 <a name="tfm"></a>
 
-## Target Framework Moniker (TFM)
-Projects targeting .NET Core should use the [TFM](/dotnet/standard/frameworks#referring-to-frameworks) of a version greater than or equal to .NET Core 2.0. Search for the `TargetFramework` node in the *.csproj* file, and replace its inner text with `netcoreapp2.0`:
+## Update Target Framework Moniker (TFM)
+Projects targeting .NET Core should use the [TFM](/dotnet/standard/frameworks#referring-to-frameworks) of a version greater than or equal to .NET Core 2.0. Search for the `<TargetFramework>` node in the *.csproj* file, and replace its inner text with `netcoreapp2.0`:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App.csproj?range=3)]
 
-Projects targeting .NET Framework should use the TFM of a version greater than or equal to .NET Framework 4.6.1. Search for the `TargetFramework` node in the *.csproj* file, and replace its inner text with `net461`:
+Projects targeting .NET Framework should use the TFM of a version greater than or equal to .NET Framework 4.6.1. Search for the `<TargetFramework>` node in the *.csproj* file, and replace its inner text with `net461`:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=4)]
 
@@ -40,8 +40,8 @@ Projects targeting .NET Framework should use the TFM of a version greater than o
 
 <a name="global-json"></a>
 
-## global.json
-If the solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update it to use the 2.0 version installed on the machine:
+## Update .NET Core SDK version in global.json
+If your solution relies upon a [*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json) file to target a specific .NET Core SDK version, update its `version` property to use the 2.0 version installed on your machine:
 
 [!code-json[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/global.json?highlight=3)]
 
@@ -73,7 +73,7 @@ For example, here's the list of CLI tools used in a typical ASP.NET Core 2.0 pro
 
 <a name="package-target-fallback"></a>
 
-## Package Target Fallback property
+## Rename Package Target Fallback property
 The *.csproj* file of a 1.x project used a `PackageTargetFallback` node and variable:
 
 [!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App.csproj?range=5)]
@@ -84,7 +84,7 @@ Rename both the node and variable to `AssetTargetFallback`:
 
 <a name="program-cs"></a>
 
-## Program.cs
+## Update Main method in Program.cs
 In 1.x projects, the `Main` method of *Program.cs* looked like this:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=9-20)]
@@ -97,14 +97,20 @@ The adoption of this new 2.0 pattern is highly recommended and is required in or
 
 <a name="view-compilation"></a>
 
-## Razor View Compilation
-[Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0. Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
+## Review your Razor View Compilation setting
+Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0.
 
-When targeting .NET Framework, you still need to explicitly reference the `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation` NuGet package.
+Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the *.csproj* file.
+
+When targeting .NET Framework, you still need to explicitly reference the [Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation) NuGet package in your *.csproj* file:
+
+[!code-xml[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=15)]
 
 <a name="app-insights"></a>
 
-## Application Insights
+## Rely on Application Insights "Light-Up" features
+Effortless setup of application performance instrumentation is important. You can now rely on the new [Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) "light-up" features available in the Visual Studio 2017 tooling.
+
 ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, follow these steps:
 
 1. Remove the following `<PackageReference />` node from the *.csproj* file:
@@ -115,15 +121,13 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
     [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 
-3. Remove the client-side API call from *_Layout.cshtml*:
+3. Remove the Application Insights client-side API call from *_Layout.cshtml*. It comprises the following two lines of code:
 
     [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Views/Shared/_Layout.cshtml?range=1,19)]
 
-You can rely on the new "light-up" features available in the Visual Studio 2017 tooling.
-
-If you are using the Application Insights SDK directly, continue to do so. The 2.0 metapackage includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
+If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](xref:fundamentals/metapackage) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 
 <a name="auth-and-identity"></a>
 
-## Authentication / Identity
-ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your application with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/identity-2x).
+## Adopt Authentication / Identity Improvements
+ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/identity-2x).
