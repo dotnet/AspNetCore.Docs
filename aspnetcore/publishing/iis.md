@@ -207,14 +207,14 @@ The data protection system has limited support for setting default [machine-wide
 
 ## Configuration of sub-applications
 
-Applications added to a root application shouldn't include the ASP.NET Core Module as a handler. If you add the module as a handler in a sub-application's *web.config* file, you receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub app. Use the following *web.config* for an ASP.NET Core sub app:
+Sub applications added under the root application shouldn't include the ASP.NET Core Module as a handler. If you add the module as a handler in a sub-application's *web.config* file, you receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub app. The following example shows the contents of a published *web.config* file for an ASP.NET Core sub app:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <system.webServer>
-    <aspNetCore processPath="%LAUNCHER_PATH%" 
-        arguments="%LAUNCHER_ARGS%" 
+    <aspNetCore processPath="dotnet" 
+        arguments=".\MyApp.dll" 
         stdoutLogEnabled="false" 
         stdoutLogFile=".\logs\stdout" />
   </system.webServer>
@@ -230,13 +230,15 @@ If you intend to host a non-ASP.NET Core sub app underneath an ASP.NET Core app,
     <handlers>
       <remove name="aspNetCore"/>
     </handlers>
-    <aspNetCore processPath="%LAUNCHER_PATH%" 
-        arguments="%LAUNCHER_ARGS%" 
+    <aspNetCore processPath="dotnet" 
+        arguments=".\MyApp.dll" 
         stdoutLogEnabled="false" 
         stdoutLogFile=".\logs\stdout" />
   </system.webServer>
 </configuration>
 ```
+
+For more information on configuring the ASP.NET Core Module with the *web.config* file, see the [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic and the [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module).
 
 ## Configuration of IIS with web.config
 
@@ -497,9 +499,9 @@ Troubleshooting
 
 ## Resources
 
-* [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module)
+* [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 
-* [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
+* [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module)
 
 * [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
 
