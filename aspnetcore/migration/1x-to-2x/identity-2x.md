@@ -56,8 +56,8 @@ public void ConfigureServices(IServiceCollection services)
     services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
     services.AddAuthentication()
             .AddFacebook(options => {
-                options.AppId = Configuration["facebook:appid"];
-                options.AppSecret = Configuration["facebook:appsecret"];
+                options.AppId = Configuration["auth:facebook:appid"];
+                options.AppSecret = Configuration["auth:facebook:appsecret"];
             });
 }
 
@@ -74,7 +74,7 @@ Below are 2.0 migration instructions for each major authentication scheme.
 Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
 1. Use cookies with Identity
-    - Invoke the `UseAuthentication` method in the `Configure` method:
+    - Replace `UseIdentity` with `UseAuthentication` in the `Configure` method:
 
         ```csharp
         app.UseAuthentication();
@@ -101,8 +101,8 @@ Select one of the two options below, and make the necessary changes in *Startup.
     - Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method:
 
         ```csharp
-        // If you don't want the cookie to be automatically authenticated, remove the 
-        // CookieAuthenticationDefaults.AuthenticationScheme parameter passed AddAuthentication
+        // If you don't want the cookie to be automatically authenticated and assigned to HttpContext.User, 
+        // remove the CookieAuthenticationDefaults.AuthenticationScheme parameter passed to AddAuthentication.
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.LoginPath = "/Account/LogIn";
@@ -121,13 +121,35 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddJwtBearer` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
-        options.Audience = "http://localhost:5001/";
-        options.Authority = "http://localhost:5000/";
-    });
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options => {
+                options.Audience = "http://localhost:5001/";
+                options.Authority = "http://localhost:5000/";
+            });
     ```
 
     This code snippet doesn't use Identity, so the default scheme should be set by passing `JwtBearerDefaults.AuthenticationScheme` to the `AddAuthentication` method.
+
+### OpenID Connect (OIDC) Authentication
+Make the following changes in *Startup.cs*:
+
+- Replace the `UseOpenIdConnectAuthentication` method call in the `Configure` method with `UseAuthentication`:
+
+    ```csharp
+    app.UseAuthentication();
+    ```
+
+- Invoke the `AddOpenIdConnect` method in the `ConfigureServices` method:
+
+    ```csharp
+    services.AddAuthentication(options => {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    }).AddCookie().AddOpenIdConnect(options => {
+        options.Authority = Configuration["auth:oidc:authority"];
+        options.ClientId = Configuration["auth:oidc:clientid"];
+    });
+    ```
 
 ### Facebook Authentication
 Make the following changes in *Startup.cs*:
@@ -140,10 +162,11 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddFacebook` method in the `ConfigureServices` method:
     
     ```csharp
-    services.AddAuthentication().AddFacebook(options => {
-        options.AppId = Configuration["auth:facebook:appid"];
-        options.AppSecret = Configuration["auth:facebook:appsecret"];
-    });
+    services.AddAuthentication()
+            .AddFacebook(options => {
+                options.AppId = Configuration["auth:facebook:appid"];
+                options.AppSecret = Configuration["auth:facebook:appsecret"];
+            });
     ```
 
 ### Google Authentication
@@ -157,10 +180,11 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddGoogle` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddAuthentication().AddGoogle(options => {
-        options.ClientId = Configuration["auth:google:clientid"];
-        options.ClientSecret = Configuration["auth:google:clientsecret"];
-    });    
+    services.AddAuthentication()
+            .AddGoogle(options => {
+                options.ClientId = Configuration["auth:google:clientid"];
+                options.ClientSecret = Configuration["auth:google:clientsecret"];
+            });    
     ```
 
 ### Microsoft Account Authentication
@@ -174,10 +198,11 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddMicrosoftAccount` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddAuthentication().AddMicrosoftAccount(options => {
-        options.ClientId = Configuration["auth:microsoft:clientid"];
-        options.ClientSecret = Configuration["auth:microsoft:clientsecret"];
-    });
+    services.AddAuthentication()
+            .AddMicrosoftAccount(options => {
+                options.ClientId = Configuration["auth:microsoft:clientid"];
+                options.ClientSecret = Configuration["auth:microsoft:clientsecret"];
+            });
     ``` 
 
 ### Twitter Authentication
@@ -191,15 +216,14 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddTwitter` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddAuthentication().AddTwitter(options => {
-        options.ConsumerKey = Configuration["auth:twitter:consumerkey"];
-        options.ConsumerSecret = Configuration["auth:twitter:consumersecret"];
-    });
+    services.AddAuthentication()
+            .AddTwitter(options => {
+                options.ConsumerKey = Configuration["auth:twitter:consumerkey"];
+                options.ConsumerSecret = Configuration["auth:twitter:consumersecret"];
+            });
     ```
 
-### Multiple Authentication Schemes
-If your 1.x application has configured multiple authentication schemes, the default scheme needs to be identified differently in 2.0. 
-
+### Setting Default Authentication Schemes
 In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
 In 2.0, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
@@ -211,16 +235,19 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 Alternatively, use an overloaded version of the `AddAuthentication` method to set more than one property:
 
 ```csharp
-services.AddAuthentication(options =>
-{
-  options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-  options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-}).AddCookies().AddOpenIdConnect(options => { ... });
+services.AddAuthentication(options => {
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+});
 ```
 
 In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The authentication scheme may alternatively be specified within your individual `[Authorize]` attributes or authorization policies.
 
-Define a default scheme in 2.0 if you want the user to be automatically signed in. An exception to that rule is the `AddIdentity` method. This method adds cookies for you and sets the default authenticate and challenge schemes to the application cookie `IdentityConstants.ApplicationScheme`. Additionally, it sets the default sign-in scheme to the external cookie `IdentityConstants.ExternalScheme`.
+Define a default scheme in 2.0 if one of the following conditions is true:
+- You want the user to be automatically signed in
+- You use the `[Authorize]` attribute or authorization policies without specifying schemes
+
+An exception to this rule is the `AddIdentity` method. This method adds cookies for you and sets the default authenticate and challenge schemes to the application cookie `IdentityConstants.ApplicationScheme`. Additionally, it sets the default sign-in scheme to the external cookie `IdentityConstants.ExternalScheme`.
 
 <a name="obsolete-interface"></a>
 
