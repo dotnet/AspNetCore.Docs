@@ -51,7 +51,7 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating y
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with **dotnet** CLI, execute the following in your project directory:
+* To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 

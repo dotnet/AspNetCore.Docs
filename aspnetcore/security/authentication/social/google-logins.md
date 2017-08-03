@@ -87,7 +87,7 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
  * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
- * To install with **dotnet** CLI, execute the following in your project directory:
+ * To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
