@@ -63,7 +63,7 @@ The `Controller` base class has a `ViewData` dictionary property that can be use
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
 
-Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
+Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify them to have different values.
 
 The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
@@ -116,7 +116,7 @@ Examine the *Pages/Movie/Create.cshtml* Razor Page file:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
 
-Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes a [antiforgery token](xref:security/anti-request-forgery).
+Visual Studio displays the `<form method="post">` tag in a distinctive font used for Tag Helpers. The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes a [antiforgery token](xref:security/anti-request-forgery).
 
 ![VS17 view of Create.cshtml page](page/_static/th.png)
 
@@ -124,9 +124,12 @@ The scaffolding engine creates Razor markup for each field in the model (except 
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml?range=15-20)]
 
+The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` and ` <span asp-validation-for`) display validation errors. Validation is covered in more detail later in this series.
+
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the clent-side. The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. Validation is covered in more detail later in this series.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the clent-side. 
+
 
 >[!div class="step-by-step"]
 [Adding a model](xref:tutorials/razor-pages/model)
