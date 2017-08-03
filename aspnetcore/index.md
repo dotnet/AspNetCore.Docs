@@ -49,14 +49,14 @@ ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials
 * Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your apps [testable](testing/index.md).
 * [Razor Pages](xref:mvc/razor-pages/index) is a new feature in ASP.NET 2.0 that makes building web page UI easier and more productive.
-* [Razor syntax](xref:mvc/views/razor) provides a productive language for Razor pages and [MVC Views](xref:mvc/views/index).
+* [Razor syntax](xref:mvc/views/razor) provides a productive language for Razor pages and [MVC Views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 * [Model Binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
 * [Model Validation](xref:mvc/models/validation) automatically performs client and server-side validation.
 
 ## Client-side development
 
-ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](xref:client-side/angular), [KnockoutJS](xref:client-side/knockout), and [Bootstrap](xref:client-side/bootstrap). See [Client-side development](xref:client-side/index) for more details.
+ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](xref:client-side/angular), [KnockoutJS](xref:client-side/knockout), and [Bootstrap](xref:client-side/bootstrap). See [Client-side development](client-side/index.md) for more details.
 
 ## Next steps
 
