@@ -5,7 +5,7 @@ description: Introduces Kestrel, the cross-platform web server for ASP.NET Core 
 keywords: ASP.NET Core, Kestrel, libuv, url prefixes
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/02/2017
 ms.topic: article
 ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
 ms.technology: aspnet
@@ -171,16 +171,6 @@ You can listen on a Unix socket for improved performance with Nginx:
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_UnixSocket)]
 
-**Bind to a file descriptor**
-
-You can bind to a file descriptor:
-
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_FileDescriptor)]
-
-If you need to bind to a file descriptor and you use systemd socket activation, call the `UseSystemd` extension method to get file descriptor information from environment variables. This method no-ops if the requisite environment variable has not been set.
-
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Systemd)]
-
 **Port 0**
 
 If you specify port number 0, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound to at runtime:
@@ -324,7 +314,14 @@ var host = new WebHostBuilder()
 
 For more information, see the following resources:
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
-  The tutorial uses Kestrel by itself locally, then deploys the app to Azure where it runs under Windows using IIS as a reverse proxy server.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+* [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
+
+---
