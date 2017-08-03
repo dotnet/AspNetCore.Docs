@@ -234,7 +234,7 @@ In 2.0, these two properties have been removed as flags on the individual `Authe
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 ```
 
-Alternatively, use an overloaded version of the `AddAuthentication` method to set more than one property:
+Alternatively, use an overloaded version of the `AddAuthentication` method to set more than one property. In the following overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The authentication scheme may alternatively be specified within your individual `[Authorize]` attributes or authorization policies.
 
 ```csharp
 services.AddAuthentication(options => {
@@ -242,8 +242,6 @@ services.AddAuthentication(options => {
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 });
 ```
-
-In this overloaded method example, the default scheme is set to `CookieAuthenticationDefaults.AuthenticationScheme`. The authentication scheme may alternatively be specified within your individual `[Authorize]` attributes or authorization policies.
 
 Define a default scheme in 2.0 if one of the following conditions is true:
 - You want the user to be automatically signed in
