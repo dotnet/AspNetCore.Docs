@@ -5,7 +5,7 @@ description: Introduces web servers Kestrel and WebListener for ASP.NET Core. Pr
 keywords: ASP.NET Core, IServer, web server, Kestrel, WebListener, reverse proxy
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/03/2017
 ms.topic: article
 ms.assetid: dba74f39-58cd-4dee-a061-6d15f7346959
 ms.technology: aspnet

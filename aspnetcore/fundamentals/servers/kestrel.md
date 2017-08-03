@@ -165,6 +165,8 @@ The `Listen` method binds to a TCP socket, and an options lambda lets you config
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Main&highlight=13-20)]
 
+[Earlier in this article](#kestrel-options) you saw how to configure Kestrel options for all endpoint bindings. The preceding code example shows how to configure settings for a particular endpoint. The example configures the endpoint for SSL, but you can use the same [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs) API to configure any Kestrel setting.
+
 **Bind to a Unix socket**
 
 You can listen on a Unix socket for improved performance with Nginx:

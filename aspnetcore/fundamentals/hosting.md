@@ -40,9 +40,19 @@ The server's *content root* determines where it searches for content files, like
 > [!NOTE]
 > Specifying `Directory.GetCurrentDirectory` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling `dotnet run` from the web project folder). This is the default used in Visual Studio and `dotnet new` templates.
 
-If the app should work with IIS, the `UseIISIntegration` method should be called as part of building the host. Note that this does not configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`.
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-`UseKestrel` and `UseIISIntegration` are very different actions. IIS is only used as a reverse proxy. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` specifies IIS as the reverse proxy server. It also examines environment variables used by IIS/IISExpress and makes decisions like which dynamic port use, which headers to set, etc. However, it doesn't deal with or create an `IServer`.
+To use IIS as a reverse proxy, call `UseIISIntegration` as part of building the host. 
+
+Note that `UseIISIntegration` does not configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` examines environment variables used by IIS/IISExpress and makes decisions such as which dynamic port to use and which headers to set.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+When you use IIS as a reverse proxy, ASP.NET Core automatically calls `UseIISIntegration` as part of building the host.
+
+Note that `UseIISIntegration` does not configure a *server*, like `UseKestrel` does. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` examines environment variables used by IIS/IISExpress and makes decisions such as which dynamic port to use and which headers to set.
+
+---
 
 A minimal implementation of configuring a host (and an ASP.NET Core app) would include just a server and configuration of the app's request pipeline:
 
@@ -123,7 +133,10 @@ new WebHostBuilder()
 > [!NOTE]
 > By default, the environment is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using Visual Studio, environment variables may be set in the *launchSettings.json* file.
 
+<a id="server-urls"></>
 **Server URLs** `string`
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. The prefixes are interpreted by the configured server; supported formats will vary between servers.
 
@@ -131,6 +144,19 @@ Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the 
 new WebHostBuilder()
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. 
+
+The prefixes are interpreted by the configured server; supported formats will vary between servers. Note that Kestrel doesn't support `https://` protocol in the `urls` string. To use SSL with Kestrel, call [Kestrel's Listen API](xref:fundamentals/servers/kestrel.md#endpoint-configuration).
+
+```csharp
+new WebHostBuilder()
+    .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
+```
+
+---
 
 **Startup Assembly** `string`
 
@@ -155,8 +181,6 @@ new WebHostBuilder()
 ### Overriding Configuration
 
 Use [Configuration](configuration.md) to set configuration values to be used by the host. These values may be subsequently overridden. This is specified using `UseConfiguration`.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3, 4, 5, 6, 9]}} -->
 
 ```csharp
 public static void Main(string[] args)
@@ -220,6 +244,8 @@ using (host)
     Console.ReadLine();
 }
 ```
+
+The URL formats that are valid here depend on the server you're using. For more information, see [Server URLs](#server-urls) earlier in this article.
 
 ### Ordering Importance
 
