@@ -35,9 +35,10 @@ Examine the *Pages/Movie/Index.cshtml* Razor page:
 
 Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into C#.
 
-The `@page` Razor directive makes the file into an MVC action - which means that it can handle requests. @page must be the first Razor directive on a page. `@page` is an example of transitioning into Razor specific markup.  See [Razor syntax](xref:mvc/views/razor#razor-syntax) for more information.
+The `@page` Razor directive makes the file into an MVC action - which means that it can handle requests. `@page` must be the first Razor directive on a page. `@page` is an example of transitioning into Razor specific markup.  See [Razor syntax](xref:mvc/views/razor#razor-syntax) for more information.
 
-The `@model` directive:
+<a name="md"></a>
+### The @model directive
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
 
@@ -47,6 +48,7 @@ The `@model` directive specifies the type of the model passed to the Razor page.
 [HTML Helpers 2](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs)
 -->
 
+<a name="vd"></a>
 ### ViewData and layout
 
 Consider the following code:
@@ -63,11 +65,11 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify the title value.
 
-The `Layout` property is set globally in the *Pages/_ViewStart.cshtml* file:
+The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_ViewStart.cshtml)]
 
-See [Layout](xref:mvc/razor-pages/index#layout) for more information.
+The preceeding markup sets the layout file to *Pages/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:mvc/razor-pages/index#layout) for more information.
 
 ### Update the layout
 
@@ -106,19 +108,25 @@ The `OnPostAsync` method is run when the page posts form data:
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client side validation and model validation later in the tutorial.
 
-If there are no model errors, the data is saved, and browser is redirected to the Index page.
+If there are no model errors, the data is saved, and the browser is redirected to the Index page.
 
 ### The Create Razor Page
 
 Examine the *Pages/Movie/Create.cshtml* Razor Page file:
+<!-- NUU copy is used because markup will change when we add a new field -->
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NUU/Create.cshtml)]
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
-
-Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper).
+Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes a [antiforgery token](xref:security/anti-request-forgery).
 
 ![VS17 view of Create.cshtml page](page/_static/th.png)
 
+The scaffolding engine creates Razor markup for each field in the model (except the ID) simular to the following:
 
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NUU/Create.cshtml&range=15-20)]
+
+The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
+
+The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. Validation is covered in more detail later in this series.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
