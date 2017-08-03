@@ -5,9 +5,8 @@ description: Getting started with ASP.NET Core MVC and Visual Studio
 keywords: ASP.NET Core, MVC
 ms.author: riande
 manager: wpickett
-ms.date: 03/07/2017
+ms.date: 07/07/2017
 ms.topic: get-started-article
-ms.assetid: 1d18b589-e3fd-4dc6-bde6-fb0f41998d78
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/start-mvc
@@ -28,9 +27,20 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 ## Install Visual Studio and .NET Core
 
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+Install [.NET Core 2.0 Preview 2](https://www.microsoft.com/net/core/preview) 
+ASP.NET Core 2.0 preview  is included in .NET Core 2.0 preview. 
+
+Install  [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) or later
+
+# [ASP.NET Core 1.x](#tab/aspnet1x)
+
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
   * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
+
+---
 
 Run the installer and select the following workloads:
  - **ASP.NET and web development** (under **Web & Cloud**)
