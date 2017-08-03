@@ -25,7 +25,7 @@ Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
 
-Razor Pages are derrived from `PageModel`. By convention, the `PageModel` derrived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
+Razor Pages are derived from `PageModel`. By convention, the `PageModel` derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
 When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page.
 
@@ -42,7 +42,7 @@ The `@page` Razor directive makes the file into an MVC action - which means that
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
 
-The `@model` directive specifies the type of the model passed to the Razor page. In the preceeding example, the `@model` line makes the `PageModel` derrived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](https://docs.microsoft.com/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
+The `@model` directive specifies the type of the model passed to the Razor page. In the preceding example, the `@model` line makes the `PageModel` derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](https://docs.microsoft.com/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
 <!-- why don't xref links work?
 [HTML Helpers 2](xref:aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs)
@@ -55,9 +55,9 @@ Consider the following code:
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
 
-The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
+The preceding highligted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceeding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages/_Layout.cshtml* file. The following markup shows the first few lines of the *Pages/_Layout.cshtml* file.
+The `Controller` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages/_Layout.cshtml* file. The following markup shows the first few lines of the *Pages/_Layout.cshtml* file.
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/_Layout1.cshtml?highlight=6-)]
 
@@ -69,7 +69,7 @@ The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_ViewStart.cshtml)]
 
-The preceeding markup sets the layout file to *Pages/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:mvc/razor-pages/index#layout) for more information.
+The preceding markup sets the layout file to *Pages/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:mvc/razor-pages/index#layout) for more information.
 
 ### Update the layout
 
@@ -82,13 +82,13 @@ Find the following anchor element in the *Pages/_Layout.cshtml* file.
 ```html
 <a asp-page="/Index" class="navbar-brand">RazorPagesMovie</a>
 ```
-Replace the preceeding element with the following markup.
+Replace the preceding element with the following markup.
 
 ```html
 <a asp-page="/Movie/Index" class="navbar-brand">RpMovie</a>
 ```
 
-The preceeding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
+The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
 
 Save your changes and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
 
@@ -106,7 +106,7 @@ The `OnPostAsync` method is run when the page posts form data:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
 
-If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client side validation and model validation later in the tutorial.
+If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the clent-side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about clent-side validation and model validation later in the tutorial.
 
 If there are no model errors, the data is saved, and the browser is redirected to the Index page.
 
@@ -120,13 +120,13 @@ Visual Studio displays the `<form method="post">` tag in a distinctive font. The
 
 ![VS17 view of Create.cshtml page](page/_static/th.png)
 
-The scaffolding engine creates Razor markup for each field in the model (except the ID) simular to the following:
+The scaffolding engine creates Razor markup for each field in the model (except the ID) similar to the following:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml?range=15-20)]
 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. Validation is covered in more detail later in this series.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the clent-side. The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. Validation is covered in more detail later in this series.
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
