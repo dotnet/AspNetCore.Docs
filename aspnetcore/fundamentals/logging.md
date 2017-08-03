@@ -270,13 +270,13 @@ Some logging providers let you specify when logs should be written to a storage 
 
 The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
 
 The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
 
 You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
 
 If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
@@ -380,7 +380,7 @@ The following code enables scopes for the console provider:
 
 In *Startup.cs*:
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_Scopes&highlight=6)]
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_Scopes&highlight=6)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -572,7 +572,7 @@ To use this provider, an application has to run on the .NET Framework (rather th
 
 The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_TraceSource&highlight=9-12)]
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_TraceSource&highlight=9-12)]
 
 <a id="appservice"></a>
 ### The Azure App Service provider
