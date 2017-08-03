@@ -113,8 +113,8 @@ If there are no model errors, the data is saved, and the browser is redirected t
 ### The Create Razor Page
 
 Examine the *Pages/Movie/Create.cshtml* Razor Page file:
-<!-- NUU copy is used because markup will change when we add a new field -->
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NUU/Create.cshtml)]
+<!-- NU copy is used because markup will change when we add a new field -->
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/Create.cshtml)]
 
 Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes a [antiforgery token](xref:security/anti-request-forgery).
 
@@ -122,7 +122,7 @@ Visual Studio displays the `<form method="post">` tag in a distinctive font. The
 
 The scaffolding engine creates Razor markup for each field in the model (except the ID) simular to the following:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NUU/Create.cshtml&range=15-20)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/Create.cshtml&range=15-20)]
 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
