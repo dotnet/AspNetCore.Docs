@@ -27,7 +27,7 @@ Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel` derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
-When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page.
+When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page. `OnGetAsync` or `OnGet` is called on a Razor Page to initialize the state for the page. In this case, `OnGetAsync` gets a list of movies to display.
 
 Examine the *Pages/Movie/Index.cshtml* Razor page:
 
@@ -127,8 +127,6 @@ The scaffolding engine creates Razor markup for each field in the model (except 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the clent-side. The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. Validation is covered in more detail later in this series.
-
-[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
 >[!div class="step-by-step"]
 [Adding a model](xref:tutorials/razor-pages/model)
