@@ -7,6 +7,8 @@ This article acts as a reference guide for migrating ASP.NET Framework Applicati
 > [!IMPORTANT]
 > This topic uses a Preview Version of Visual Studio in order to complete it's steps. Please ensure that you have installed [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) before preceeding.
 
+## Useful Links
+* [Porting Libraries to .Net Core](https://docs.microsoft.com/en-us/dotnet/core/porting/libraries)
 
 ## Key package changes
 * Common assemblies and core equivalent (table or mapping diagram)
