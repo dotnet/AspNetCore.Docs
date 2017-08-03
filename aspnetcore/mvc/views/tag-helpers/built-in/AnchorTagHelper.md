@@ -34,13 +34,13 @@ The speaker controller below is used in samples in this document.
 
 `asp-controller` is used to associate which controller will be used to generate the URL. The controllers specified must exist in the current project. The following code lists all speakers: 
 
-```
-<a asp-controller="Speaker" asp-action="Index" >All Speakers</a>
+```cshtml
+<a asp-controller="Speaker" asp-action="Index">All Speakers</a>
 ```
 
-The generated URL will be:
+The generated markup will be:
 
-```
+```html
 <a href="/Speaker">All Speakers</a>
 ```
 
@@ -58,10 +58,10 @@ If the `asp-controller` is specified and `asp-action` is not, the default `asp-a
 `asp-action` is the name of the action method in the controller that will be included in the generated `href`. For example, the following code set the generated `href` to point to the speaker detail page:
 
 ```html
-<a asp-controller="Speaker" asp-action="Detail" >Speaker Detail</a>
+<a asp-controller="Speaker" asp-action="Detail">Speaker Detail</a>
 ```
 
-The generated URL will be:
+The generated markup will be:
 
 ```html
 <a href="/Speaker/Detail">Speaker Detail</a>
@@ -91,7 +91,7 @@ public IActionResult AnchorTagHelper(string id)
 }
 ```
 
-And have the default route template defined in your **Startup.cs** as follows:
+And have the default route template defined in your *Startup.cs* as follows:
 
 ```csharp
 app.UseMvc(routes =>
@@ -105,7 +105,7 @@ app.UseMvc(routes =>
 
 The **cshtml** file that contains the Anchor Tag Helper necessary to use the **speaker** model parameter passed in from the controller to the view is as follows:
 
-```html
+```cshtml
 @model SpeakerData
 <!DOCTYPE html>
 <html><body>
@@ -121,7 +121,7 @@ The generated HTML will then be as follows because **id** was found in the defau
 
 If the route prefix is not part of the routing template found, which is the case with the following **cshtml** file:
 
-```html
+```cshtml
 @model SpeakerData
 <!DOCTYPE html>
 <html><body>
@@ -154,7 +154,7 @@ If either `asp-controller` or `asp-action` are not specified, then the same defa
 
 As the example below shows, an inline dictionary is created and the data is passed to the razor view. As an alternative, the data could also be passed in with your model.
 
-```
+```cshtml
 @{
     var dict =
         new Dictionary<string, string>
@@ -167,11 +167,7 @@ As the example below shows, an inline dictionary is created and the data is pass
    asp-all-route-data="dict">SpeakerEvals</a>
 ```
 
-The code above generates the following HTML:
-
-```
-http://localhost/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true
-```
+The code above generates the following URL: http://localhost/Speaker/EvaluationsCurrent?speakerId=11&currentYear=true
 
 When the link is clicked, the controller method `EvaluationsCurrent` is called. It is called because that controller has two string parameters that match what has been created from the `asp-all-route-data` dictionary.
 
@@ -183,16 +179,12 @@ If any keys in the dictionary match route parameters, those values will be subst
 
 `asp-fragment` defines a URL fragment to append to the URL. The Anchor Tag Helper will add the hash character (#). If you create a tag:
 
-```
+```cshtml
 <a asp-action="Evaluations" asp-controller="Speaker"  
    asp-fragment="SpeakerEvaluations">About Speaker Evals</a>
 ```
 
-The generated URL will be:
-
-```
-http://localhost/Speaker/Evaluations#SpeakerEvaluations
-```
+The generated URL will be: http://localhost/Speaker/Evaluations#SpeakerEvaluations
 
 Hash tags are useful when building client-side applications. They can be used for easy marking and searching in JavaScript, for example.
 
@@ -228,24 +220,24 @@ Hash tags are useful when building client-side applications. They can be used fo
         
 Specifying an area tag that is valid, such as ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the Anchor Tag Helper.
 
-```
+```cshtml
 <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>
 ```
 
 The generated HTML will include the areas segment and will be as follows:
 
-```
+```html
 <a href="/Blogs/Home/AboutBlog">Blogs About</a>
 ```
 
 > [!TIP]
-> For MVC areas to work in a web application, the route template must include a reference to the area if it exists. That template, which is the second parameter of the `routes.MapRoute` method call, will appear as: template: '"{area:exists}/{controller=Home}/{action=Index}"'
+> For MVC areas to work in a web application, the route template must include a reference to the area if it exists. That template, which is the second parameter of the `routes.MapRoute` method call, will appear as: `template: '"{area:exists}/{controller=Home}/{action=Index}"'`
 
 - - -
 
 ### asp-protocol
 
-The `asp-protocol` is for specifying a  protocol (such as `https`) in your URL. An example Anchor Tag Helper that includes the protocol will look as follows:
+The `asp-protocol` is for specifying a protocol (such as `https`) in your URL. An example Anchor Tag Helper that includes the protocol will look as follows:
 
 ```<a asp-protocol="https" asp-action="About" asp-controller="Home">About</a>```
 
@@ -260,7 +252,3 @@ The domain in the example is localhost, but the Anchor Tag Helper uses the websi
 ## Additional resources
 
 * [Areas](xref:mvc/controllers/areas)
-
-
-
-

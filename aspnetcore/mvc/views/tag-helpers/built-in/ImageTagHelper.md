@@ -18,7 +18,7 @@ By [Peter Kellner](http://peterkellner.net)
 
 The Image Tag Helper enhances the `img` (`<img>`) tag. It requires a `src` tag as well as the `boolean` attribute `asp-append-version`.
 
-If the image source (`src`) is a static file on the host web server, a unique cache busting string is appended as a query parameter to the image source. This insures that if the file on the host web server changes, a unique request URL is generated that includes the updated request parameter. The cache busting string is a unique value representing the hash of the static image file.
+If the image source (`src`) is a static file on the host web server, a unique cache busting string is appended as a query parameter to the image source. This ensures that if the file on the host web server changes, a unique request URL is generated that includes the updated request parameter. The cache busting string is a unique value representing the hash of the static image file.
 
 If the image source (`src`) isn't a static file (for example a remote URL or the file doesn't exist on the server), the `<img>` tag's `src` attribute is generated with no cache busting query string parameter.
 
@@ -31,7 +31,7 @@ When specified along with a `src` attribute, the Image Tag Helper is invoked.
 
 An example of a valid `img` tag helper is:
 
-```html
+```cshtml
 <img src="~/images/asplogo.png" 
     asp-append-version="true"  />
 ```
@@ -52,10 +52,8 @@ The value assigned to the parameter `v` is the hash value of the file on disk. I
 To activate the Image Tag Helper, the src attribute is required on the `<img>` element. 
 
 > [!NOTE]
->  The Image Tag Helper uses the `Cache` provider on the local web server to store the calculated `Sha512` of a given file. If the file is requested again the `Sha512` does not need to be recalculated.  The Cache is invalidated by a file watcher that is attached to the file when the file's `Sha512` is calculated.
+> The Image Tag Helper uses the `Cache` provider on the local web server to store the calculated `Sha512` of a given file. If the file is requested again the `Sha512` does not need to be recalculated. The Cache is invalidated by a file watcher that is attached to the file when the file's `Sha512` is calculated.
 
 ## Additional resources
 
 * <xref:performance/caching/memory>
-
-
