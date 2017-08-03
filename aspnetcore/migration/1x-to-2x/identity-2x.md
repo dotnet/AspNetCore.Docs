@@ -145,7 +145,9 @@ Make the following changes in *Startup.cs*:
     services.AddAuthentication(options => {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    }).AddCookie().AddOpenIdConnect(options => {
+    })
+    .AddCookie()
+    .AddOpenIdConnect(options => {
         options.Authority = Configuration["auth:oidc:authority"];
         options.ClientId = Configuration["auth:oidc:clientid"];
     });
