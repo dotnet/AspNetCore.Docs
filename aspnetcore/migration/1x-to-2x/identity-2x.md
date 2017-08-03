@@ -121,11 +121,13 @@ Make the following changes in *Startup.cs*:
 - Invoke the `AddJwtBearer` method in the `ConfigureServices` method:
 
     ```csharp
-    services.AddAuthentication().AddJwtBearer(options => {
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
         options.Audience = "http://localhost:5001/";
         options.Authority = "http://localhost:5000/";
     });
     ```
+
+    This code snippet doesn't use Identity, so the default scheme should be set by passing `JwtBearerDefaults.AuthenticationScheme` to the `AddAuthentication` method.
 
 ### Facebook Authentication
 Make the following changes in *Startup.cs*:
