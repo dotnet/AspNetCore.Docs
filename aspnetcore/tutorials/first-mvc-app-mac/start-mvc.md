@@ -16,7 +16,7 @@ uid: tutorials/first-mvc-app-mac/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). For new development in ASP.NET 2.0, [Razor Pages](mvc/razor-pages/index) is the recommended way to build UI for web applications.
+This tutorial teaches you the basics of building an ASP.NET Core MVC web app using [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/). For new development in ASP.NET 2.0, [Razor Pages](xref:mvc/razor-pages/index) is the recommended way to build UI for web applications.
 
 There are 3 versions of this tutorial:
 
