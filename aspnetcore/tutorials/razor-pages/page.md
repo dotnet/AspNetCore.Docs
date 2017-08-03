@@ -31,7 +31,7 @@ When a request is made for the page, the `OnGetAsync` method returns a list of m
 
 Examine the *Pages/Movie/Index.cshtml* Razor page:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
 
 Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into C#.
 
@@ -40,7 +40,7 @@ The `@page` Razor directive makes the file into an MVC action - which means that
 <a name="md"></a>
 ### The @model directive
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
 
 The `@model` directive specifies the type of the model passed to the Razor page. In the preceeding example, the `@model` line makes the `PageModel` derrived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayNameFor` [HTML Helpers](https://docs.microsoft.com/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
@@ -53,7 +53,7 @@ The `@model` directive specifies the type of the model passed to the Razor page.
 
 Consider the following code:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
 
 The preceeding highligted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
@@ -96,7 +96,7 @@ Save your changes and test the app by clicking on the **RpMovie** link. See the 
 
 Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
@@ -104,7 +104,7 @@ The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model bin
 
 The `OnPostAsync` method is run when the page posts form data:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client side validation and model validation later in the tutorial.
 
@@ -113,8 +113,8 @@ If there are no model errors, the data is saved, and the browser is redirected t
 ### The Create Razor Page
 
 Examine the *Pages/Movie/Create.cshtml* Razor Page file:
-<!-- NU copy is used because markup will change when we add a new field -->
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/Create.cshtml)]
+
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
 
 Visual Studio displays the `<form method="post">` tag in a distinctive font. The `<form method="post">` is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes a [antiforgery token](xref:security/anti-request-forgery).
 
@@ -122,7 +122,7 @@ Visual Studio displays the `<form method="post">` tag in a distinctive font. The
 
 The scaffolding engine creates Razor markup for each field in the model (except the ID) simular to the following:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/NU/Create.cshtml&range=15-20)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml&range=15-20)]
 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
