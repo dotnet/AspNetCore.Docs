@@ -5,7 +5,7 @@ description: Introduces Kestrel, the cross-platform web server for ASP.NET Core 
 keywords: ASP.NET Core, Kestrel, libuv, url prefixes
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/02/2017
 ms.topic: article
 ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
 ms.technology: aspnet
@@ -71,27 +71,27 @@ Even if a reverse proxy server isn't required, using one can simplify load balan
 
 Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
 
-Call the [`UseKestrel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the next section.
+Call the [UseKestrel](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the next section.
 
 [!code-csharp[](kestrel/sample/Program.cs?name=snippet_Main&highlight=13-19)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ASP.NET Core project templates use Kestrel by default. 
+The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage.
 
-The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [ASP.NET Core metapackage](xref:metapackage).
-
-The `CreateDefaultBuilder` method calls the [`UseKestrel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method behind the scenes.
+ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the template code calls `CreateDefaultBuilder`, which calls [UseKestrel](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) behind the scenes.
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
-To configure Kestrel settings, use the [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) class. If you use `CreateDefaultBuilder`, you can configure options in *Startup.cs* in the `ConfigureServices` method:
+If you use the template code, configure Kestrel options in the `ConfigureServices` method of *Startup.cs*:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_KestrelOptions&highlight=3-4)]
 
-If you don't use `CreateDefaultBuilder`, you can configure options in *Program.cs* when you call `UseKestrel`:
+If you don't use `CreateDefaultBuilder`, call `UseKestrel` in *Program.cs* and configure options at the same time:
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Main&highlight=13-20)]
+
+For more information about Kestrel settings, see the [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) class.
 
 ---
 
@@ -171,29 +171,18 @@ You can listen on a Unix socket for improved performance with Nginx:
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_UnixSocket)]
 
-**Bind to a file descriptor**
-
-You can bind to a file descriptor:
-
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_FileDescriptor)]
-
-If you need to bind to a file descriptor and you use systemd socket activation, call the `UseSystemd` extension method to get file descriptor information from environment variables. This method no-ops if the requisite environment variable has not been set.
-
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Systemd)]
-
 **Port 0**
 
-If you specify port number 0, Kestrel dynamically binds to an available port.
-
-The following example shows how to determine which port Kestrel actually bound to at runtime:
+If you specify port number 0, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound to at runtime:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Configure)]
 
 **UseUrls method**
 
-You can also configure endpoints by using the `UseUrls` method or the  `urls` command-line argument. These methods are useful if you want code that works also with servers other than Kestrel. However, you can't use SSL with these methods.
+You can configure endpoints by calling the `UseUrls` method or using the `urls` command-line argument. These methods are useful if you want your code to work with servers other than Kestrel. However, be aware of these limitations:
 
-If you use both the `Listen` method and `UseUrls`, the `Listen` endpoints override the `UseUrls` endpoints.
+* You can't use SSL with these methods.
+* If you use both the `Listen` method and `UseUrls`, the `Listen` endpoints override the `UseUrls` endpoints.
 
 **Endpoint configuration for IIS**
 
@@ -203,7 +192,7 @@ If you use IIS, the URL bindings for IIS override anything that you set by calli
 
 ### URL prefixes
 
-If you call `UseUrls` or use the  `urls` command-line argument, the URL prefixes can be in any of the following formats. 
+If you call `UseUrls` or use the `urls` command-line argument, the URL prefixes can be in any of the following formats. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -253,6 +242,14 @@ If you call `UseUrls` or use the  `urls` command-line argument, the URL prefixes
   ```
   http://unix:/run/dan-live.sock  
   ```
+
+**Port 0**
+
+If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for `localhost` name.
+
+The following example shows how to determine which port Kestrel actually bound to at runtime:
+
+[!code-csharp[](kestrel/sample/Startup.cs?name=snippet_Configure)]
 
 **URL prefixes for SSL**
 
@@ -312,20 +309,19 @@ var host = new WebHostBuilder()
 
   When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
 
-If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for `localhost` name.
-
-The following example shows how to determine which port Kestrel actually bound to at runtime:
-
-[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Configure)]
-
-
 ---
-
 ## Next steps
 
 For more information, see the following resources:
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
-  The tutorial uses Kestrel by itself locally, then deploys the app to Azure where it runs under Windows using IIS as a reverse proxy server.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+* [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
+
+---

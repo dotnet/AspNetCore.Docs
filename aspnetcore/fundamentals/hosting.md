@@ -5,7 +5,7 @@ description: Introduction to web hosts in ASP.NET Core.
 keywords: ASP.NET Core, web host, IWebHost
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 08/02/2017
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
