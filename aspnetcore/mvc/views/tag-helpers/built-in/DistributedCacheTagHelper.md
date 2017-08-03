@@ -17,7 +17,7 @@ uid: mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper
 By [Peter Kellner](http://peterkellner.net) 
 
 
-The  Distributed Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to a distributed cache source.
+The Distributed Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to a distributed cache source.
 
 The Distributed Cache Tag Helper inherits from the same base class as the Cache Tag Helper.  All attributes associated with the Cache Tag Helper will also work on the Distributed Tag Helper.
 
@@ -30,7 +30,7 @@ The Distributed Cache Tag Helper follows the **Explicit Dependencies Principle**
 
 ### enabled expires-on expires-after expires-sliding vary-by-header vary-by-query vary-by-route vary-by-cookie vary-by-user vary-by priority
 
-See Cache Tag Helper for definitions.  Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper so all these attributes are common from Cache Tag Helper.
+See Cache Tag Helper for definitions. Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper so all these attributes are common from Cache Tag Helper.
 
 - - -
 
@@ -44,7 +44,7 @@ The required `name` attribute is used as a key to that cache stored for each ins
 
 Usage Example:
 
-```html
+```cshtml
 <distributed-cache name="my-distributed-cache-unique-key-101">
     Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -69,7 +69,3 @@ There no tag attributes specifically associated with using any specific implemen
 * <xref:performance/caching/distributed>
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>
-
-
-
-
