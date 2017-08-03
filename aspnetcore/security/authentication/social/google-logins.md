@@ -93,7 +93,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Google middleware in the `Configure` method in `Startup.cs` file:
+Add the Google middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseGoogleAuthentication(new GoogleOptions()
@@ -105,13 +105,13 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Google middleware in the `ConfigureServices` method in `Startup.cs` file:
+Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddGoogleAuthentication(new GoogleOptions()
+services.AddGoogleAuthentication(googleOptions =>
 {
-    ClientId = Configuration["Authentication:Google:ClientId"];
-    ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 });
 ```
 

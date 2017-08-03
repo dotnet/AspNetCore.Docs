@@ -76,7 +76,7 @@ The project template used in this tutorial ensures that
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Microsoft Account middleware in the `Configure` method in `Startup.cs` file:
+Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
@@ -88,13 +88,13 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Microsoft Account middleware in the `ConfigureServices` method in `Startup.cs` file:
+Add the Microsoft Account middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddMicrosoftAuthentication(new MicrosoftAccountOptions()
+services.AddMicrosoftAuthentication(microsoftOptions =>
 {
-    ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-    ClientSecret = Configuration["Authentication:Microsoft:Password"];
+    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
 });
 ```
 
