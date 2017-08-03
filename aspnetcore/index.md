@@ -16,7 +16,12 @@ uid: index
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. Build web apps and services, IoT apps, and mobile backends. Use your favorite development tools on Windows, Mac, and Linux. Deploy to the cloud or on-premises, and run on [.NET Core or the .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
+
+* Build web apps and services, IoT apps, and mobile backends.
+* Use your favorite development tools on Windows, Mac, and Linux.
+* Deploy to the cloud or on-premises
+* Run on [.NET Core or the .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
 ## Why use ASP.NET Core?
 
@@ -44,19 +49,19 @@ ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials
 * Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * The [Model-View-Controller (MVC) pattern](xref:mvc/index) helps make your apps [testable](testing/index.md).
 * [Razor Pages](xref:mvc/razor-pages) is a new feature in ASP.NET 2.0 that makes building web page UI easier and more productive.
-* [Razor](http://www.asp.net/web-pages/overview/getting-started/introducing-razor-syntax-c) provides a productive language to create Razor pages and [MVC Views](mvc/views/index.md).
-* [Tag Helpers](mvc/views/tag-helpers/intro.md) enable server-side code to participate in creating and rendering HTML elements in Razor files.
-* [Model Binding](mvc/models/model-binding.md) automatically maps data from HTTP requests to action method parameters.
-* [Model Validation](mvc/models/validation.md) automatically performs client and server side validation.
+* [Razor syntax](xref:mvc/views/razor) provides a productive language for Razor pages and [MVC Views](xref:mvc/views/index).
+* [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+* [Model Binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
+* [Model Validation](xref:mvc/models/validation) automatically performs client and server-side validation.
 
 ## Client-side development
 
-ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](client-side/angular.md), [KnockoutJS](client-side/knockout.md), and [Bootstrap](client-side/bootstrap.md). See [Client-Side Development](client-side/index.md) for more details.
+ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](xref:client-side/angular), [KnockoutJS](xref:client-side/knockout), and [Bootstrap](xref:client-side/bootstrap). See [Client-side development](xref:client-side/index) for more details.
 
 ## Next steps
 
 For more information, see the following resources:
 
-* [ASP.NET Core tutorials](tutorials/index.md)
-* [ASP.NET Core fundamentals](fundamentals/index.md)
+* [ASP.NET Core tutorials](xref:tutorials/index)
+* [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans and features new blogs and third-party software.
