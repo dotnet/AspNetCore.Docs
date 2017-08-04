@@ -38,13 +38,13 @@ Supported Windows versions:
 
 HttpSys is useful for deployments where you need to expose the server directly to the Internet without using IIS.
 
-![HttpSys to Internet](HttpSys/_static/HttpSys-to-internet.png)
+![HttpSys to Internet](httpsys/_static/httpsys-to-internet.png)
 
 Because it's built on Http.Sys, HttpSys doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
 
 HttpSys is also a good choice for internal deployments when you need one of the features it offers that you can't get by using Kestrel.
 
-![HttpSys to Internet](HttpSys/_static/HttpSys-to-internal.png)
+![HttpSys to Internet](httpsys/_static/httpsys-to-internal.png)
 
 ## How to use HttpSys
 
