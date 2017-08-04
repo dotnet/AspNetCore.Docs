@@ -76,6 +76,7 @@ For information about how to use Nginx on Linux as a reverse proxy server for Ke
 
 For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
 
+## HttpSys (WebListener in ASP.NET Core 1.x)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
