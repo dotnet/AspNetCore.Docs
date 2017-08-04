@@ -42,11 +42,11 @@ Kestrel is the web server that is included by default in ASP.NET Core new-projec
 
 If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
-![Kestrel to internal network](overview/_static/kestrel-to-internal.png)
+![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.
 
-![Kestrel to Internet](overview/_static/kestrel-to-internet.png)
+![Kestrel to Internet](kestrel/_static/kestrel-to-internet.png)
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits. For more information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
