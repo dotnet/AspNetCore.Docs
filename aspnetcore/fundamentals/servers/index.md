@@ -20,9 +20,19 @@ An ASP.NET Core application runs with an in-process HTTP server implementation. 
 
 ASP.NET Core ships two server implementations:
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 * [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
 * [WebListener](weblistener.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+* [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
+
+* [HttpSys](httpsys.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
+
+---
 
 ## Kestrel
 
@@ -66,7 +76,8 @@ For information about how to use Nginx on Linux as a reverse proxy server for Ke
 
 For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
 
-## WebListener
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS. 
 
@@ -78,6 +89,18 @@ WebListener can also be used in place of Kestrel for applications that are expos
 
 For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only WebListener offers. For information about WebListener features, see [WebListener](weblistener.md).
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+If you run your ASP.NET Core app on Windows, HttpSys is an alternative to Kestrel. You can use HttpSys for scenarios where you need one of its features that Kestrel doesn't support.
+
+![WebListener](overview/_static/weblistener-to-internet.png)
+
+![WebListener](overview/_static/weblistener-to-internal.png)
+
+For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
+
+---
+
 ## Notes about ASP.NET Core server infrastructure
 
 The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/IApplicationBuilder/index.html#Microsoft.AspNetCore.Builder.IApplicationBuilder.md) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html#Microsoft.AspNetCore.Http.Features.IFeatureCollection.md). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md), but different server implementations may expose additional functionality.
@@ -86,14 +109,26 @@ The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/M
 
 ## Custom servers
 
-You can create custom server implementations to use in place of Kestrel or WebListener. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [`IHttpRequestFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.md) and [`IHttpResponseFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.md).
+If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [`IHttpRequestFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.md) and [`IHttpResponseFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.md).
 
 ## Next steps
 
 For more information, see the following resources:
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
 - [Kestrel with Nginx](../../publishing/linuxproduction.md)
 - [Kestrel with Apache](../../publishing/apache-proxy.md)
 - [WebListener](weblistener.md)
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+- [Kestrel](kestrel.md)
+- [Kestrel with IIS](aspnet-core-module.md)
+- [Kestrel with Nginx](../../publishing/linuxproduction.md)
+- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [HttpSys](httpsys.md)
+
+---
