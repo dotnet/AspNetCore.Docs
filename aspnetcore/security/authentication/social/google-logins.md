@@ -108,12 +108,14 @@ app.UseGoogleAuthentication(new GoogleOptions()
 Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddGoogleAuthentication(googleOptions =>
+services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 

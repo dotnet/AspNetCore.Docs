@@ -72,12 +72,14 @@ app.UseTwitterAuthentication(new TwitterOptions()
 Add the Twitter middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddTwitterAuthentication(twitterOptions =>
+services.AddAuthentication().AddTwitter(twitterOptions =>
 {
     twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
     twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 

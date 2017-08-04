@@ -91,12 +91,16 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 Add the Microsoft Account middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddMicrosoftAuthentication(microsoftOptions =>
+services.AddAuthentication().AddMicrosoft(microsoftOptions =>
 {
     microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
     microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+---
 
 Although the terminology used on Microsoft Developer Portal names these tokens `ApplicationId` and `Password`, they are exposed as `ClientId` and `ClientSecret` to the configuration API.
 

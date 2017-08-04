@@ -86,12 +86,14 @@ app.UseFacebookAuthentication(new FacebookOptions()
 Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
-services.AddFacebookAuthentication(facebookOptions =>
+services.AddAuthentication().AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 
