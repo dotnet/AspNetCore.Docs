@@ -270,7 +270,7 @@ Edit the nginx.conf file.
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
+Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
 
 #### MIME-type sniffing
 
@@ -282,4 +282,4 @@ Edit the nginx.conf file.
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Add the the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
+Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
