@@ -51,13 +51,13 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating y
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with **dotnet** CLI, execute the following in your project directory:
+* To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Twitter middleware in the `Configure` method in `Startup.cs` file:
+Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseTwitterAuthentication(new TwitterOptions()
@@ -69,15 +69,17 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Twitter middleware in the `ConfigureServices` method in `Startup.cs` file:
+Add the Twitter middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddTwitterAuthentication(new TwitterOptions()
+services.AddAuthentication().AddTwitter(twitterOptions =>
 {
-    ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
-    ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 

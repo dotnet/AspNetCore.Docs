@@ -70,13 +70,13 @@ The project template used in this tutorial ensures that
 [Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Microsoft) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with **dotnet** CLI, execute the following in your project directory:
+* To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Microsoft Account middleware in the `Configure` method in `Startup.cs` file:
+Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
@@ -88,15 +88,19 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Microsoft Account middleware in the `ConfigureServices` method in `Startup.cs` file:
+Add the Microsoft Account middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddMicrosoftAuthentication(new MicrosoftAccountOptions()
+services.AddAuthentication().AddMicrosoft(microsoftOptions =>
 {
-    ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-    ClientSecret = Configuration["Authentication:Microsoft:Password"];
+    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+---
 
 Although the terminology used on Microsoft Developer Portal names these tokens `ApplicationId` and `Password`, they are exposed as `ClientId` and `ClientSecret` to the configuration API.
 
