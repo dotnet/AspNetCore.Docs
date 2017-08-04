@@ -7,7 +7,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 08/03/2017
 ms.topic: article
-ms.assetid: 1c501638-114a-4cd3-ad39-0a5790b4e764
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: index
@@ -47,10 +46,10 @@ ASP.NET Core ships entirely as [NuGet](https://nuget.org) packages. This allows 
 ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials/index#building-web-apis) and [web apps](xref:tutorials/index#building-web-applications):
 
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](testing/index.md).
-* Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * [Razor Pages](xref:mvc/razor-pages/index) (new in 2.0) is a page-based programming model that makes building web UI easier and more productive.
 * [Razor syntax](xref:mvc/views/razor) provides a productive language for [Razor Pages](xref:mvc/razor-pages/index) and [MVC Views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+* Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * [Model Binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
 * [Model Validation](xref:mvc/models/validation) automatically performs client and server-side validation.
 
