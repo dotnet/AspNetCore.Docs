@@ -57,7 +57,15 @@ The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Ex
 
 ### Install the IISIntegration NuGet package
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 In your application, install [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/). This is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information such as the port to listen on. 
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) package is included in the ASP.NET Core metapackages ([Microsoft.AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore/) and [Microsoft.AspNetCore.All](xref:fundamentals/metapackage)). If you don't use one of the metapackages, install `Microsoft.AspNetCore.Server.IISIntegration` separately. This is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information such as the port to listen on. 
+
+---
 
 ### Call UseIISIntegration
 
@@ -69,11 +77,9 @@ In your application's `Main` method, call the `UseIISIntegration` extension meth
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The `UseIISIntegration` method is called automatically when you run with IIS. If the `Microsoft.AspNetCore.Server.IISIntegration` package is not installed, you get a runtime error.
+The `UseIISIntegration` `UseIISIntegration` extension method on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md) is called automatically when you run with IIS.
 
-The `Microsoft.AspNetCore.Server.IISIntegration` package is included in the [Microsoft.AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore/) and [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackages.
-
-If you prefer to get a compile time error for a missing package, call `UseIISIntegration` explicitly.
+If you aren't using one of the ASP.NET Core metapackages, and the `Microsoft.AspNetCore.Server.IISIntegration` package is not installed, you get a runtime error. You can call `UseIISIntegration` explicitly to get a compile time error when the package is not installed.
 
 ---
 
@@ -91,7 +97,7 @@ In ASP.NET Core 1.0, if you call `UseUrls`, do it **before** you call `IISIntegr
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations, such as calls to `IWebHostBuilder.UseUrls` or [Kestrel's Listen API](/kestrel.md#endpoint-configuration). Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
+ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations, such as calls to `IWebHostBuilder.UseUrls` or [Kestrel's Listen API](/kestrel.md#endpoint-configuration). Therefore, you don't need to call `UseUrls` or Kestrel's `Listen` API when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
 
 If you need to set the port number for when you run the app without IIS, you can call `UseURLs` or Kestrel's `Listen` API.  When you run without IIS, the port number that you specify will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls` or Kestrel's `Listen` API.
 

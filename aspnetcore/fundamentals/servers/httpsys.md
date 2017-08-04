@@ -79,9 +79,9 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * Configure URLs and ports to listen on 
 
-  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseUrls` extension method, the `urls` command-line argument or the `UrlPrefixes` property on [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). The preceding code example shows use of `UrlPrefixes`.
+  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseUrls` extension method, the `urls` command-line argument, or the `UrlPrefixes` property on [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). The preceding code example uses `UrlPrefixes`.
 
-  An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. If you don't need SSL, an advantage of `UseUrls` is that you can more easily switch between Kestrel and HttpSys. (You can't use SSL with `UseUrls` and Kestrel.)
+  An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
 
   If you use both `UseUrls` and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](../../fundamentals/hosting.md).
 
