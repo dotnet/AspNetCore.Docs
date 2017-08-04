@@ -4,16 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movies
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Models.MovieContext _context;
 
-        public DeleteModel(RazorPagesMovie.Models.MovieContext context)
+        public EditModel(RazorPagesMovie.Models.MovieContext context)
         {
             _context = context;
         }
@@ -37,19 +38,22 @@ namespace RazorPagesMovie.Pages_Movie
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Movie = await _context.Movie.FindAsync(id);
+            _context.Attach(Movie).State = EntityState.Modified;
 
-            if (Movie != null)
+            try
             {
-                _context.Movie.Remove(Movie);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
             }
 
             return RedirectToPage("./Index");

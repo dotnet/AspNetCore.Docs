@@ -1,12 +1,13 @@
-// This code is imported by uid: tutorials/razor-pages/page
-#region snippetALL
-// Unused usings removed.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesMovie.Models;
-using System.Threading.Tasks;
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movies
 {
     public class CreateModel : PageModel
     {
@@ -19,13 +20,19 @@ namespace RazorPagesMovie.Pages_Movie
 
         public IActionResult OnGet()
         {
+            Movie = new Movie
+            {
+                Title = "The Good, the bad, and the ugly",
+                Genre = "Western",
+                Price = 1.19M,
+                ReleaseDate = DateTime.Now
+            };
             return Page();
         }
 
         [BindProperty]
         public Movie Movie { get; set; }
 
-#region snippetPost
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -38,7 +45,5 @@ namespace RazorPagesMovie.Pages_Movie
 
             return RedirectToPage("./Index");
         }
-#endregion
     }
 }
-#endregion
