@@ -131,3 +131,6 @@ If you are using the Application Insights SDK directly, continue to do so. The 2
 
 ## Adopt Authentication / Identity Improvements
 ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/identity-2x).
+
+## Additional Resources
+- [Breaking Changes in ASP.NET Core 2.0](https://github.com/aspnet/announcements/issues?page=1&q=is%3Aissue+is%3Aopen+label%3A2.0.0+label%3A%22Breaking+change%22&utf8=%E2%9C%93)
