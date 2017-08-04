@@ -87,13 +87,13 @@ The values for these tokens can be found in the JSON file downloaded in the prev
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
  * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
- * To install with **dotnet** CLI, execute the following in your project directory:
+ * To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Google middleware in the `Configure` method in `Startup.cs` file:
+Add the Google middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseGoogleAuthentication(new GoogleOptions()
@@ -105,15 +105,17 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Google middleware in the `ConfigureServices` method in `Startup.cs` file:
+Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
-services.AddGoogleAuthentication(new GoogleOptions()
+services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    ClientId = Configuration["Authentication:Google:ClientId"];
-    ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 

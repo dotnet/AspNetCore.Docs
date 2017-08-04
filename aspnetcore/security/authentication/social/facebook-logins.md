@@ -65,13 +65,13 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
-* To install with **dotnet** CLI, execute the following in your project directory:
+* To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
-Add the Facebook middleware in the `Configure` method in `Startup.cs` file:
+Add the Facebook middleware in the `Configure` method in *Startup.cs* file:
 
 ```csharp
 app.UseFacebookAuthentication(new FacebookOptions()
@@ -83,15 +83,17 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 # [ASP.NET Core 2.0](#tab/aspnet20)
 
-Add the Facebook middleware in the `ConfigureServices` method in the `Startup.cs` file:
+Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
-services.AddFacebookAuthentication(new FacebookOptions()
+services.AddAuthentication().AddFacebook(facebookOptions =>
 {
-    AppId = Configuration["Authentication:Facebook:AppId"];
-    AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 });
 ```
+
+When adding other authentication providers, `AddAuthentication` has to be called only once.
 
 ---
 
