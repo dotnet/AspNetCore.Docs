@@ -23,7 +23,7 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel` derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
