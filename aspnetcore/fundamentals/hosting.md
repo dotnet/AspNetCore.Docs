@@ -133,7 +133,7 @@ new WebHostBuilder()
 > [!NOTE]
 > By default, the environment is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using Visual Studio, environment variables may be set in the *launchSettings.json* file.
 
-<a id="server-urls"></>
+<a id="server-urls"></a>
 **Server URLs** `string`
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
