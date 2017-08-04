@@ -23,7 +23,7 @@ The Razor View Engine sets the default `expires-after` to twenty minutes.
 
 The following Razor markup caches the date/time:
 
-```html
+```cshtml
 <Cache>@DateTime.Now<Cache>
 ```
 
@@ -48,7 +48,7 @@ Determines whether the content enclosed by the Cache Tag Helper is cached. The d
 
 Example:
 
-```html
+```cshtml
 <Cache enabled="true">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -67,7 +67,7 @@ Sets an absolute expiration date. The following example will cache the contents 
 
 Example:
 
-```html
+```cshtml
 <Cache expires-on="@new DateTime(2025,1,29,17,02,0)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -86,7 +86,7 @@ Sets the length of time from the first request time to cache the contents.
 
 Example:
 
-```html
+```cshtml
 <Cache expires-on="@TimeSpan.FromSeconds(120)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -105,7 +105,7 @@ Sets the time that a cache entry should be evicted if it has not been accessed.
 
 Example:
 
-```html
+```cshtml
 <Cache expires-sliding="@TimeSpan.FromSeconds(60)">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -124,7 +124,7 @@ Accepts a single header value or a comma-separated list of header values that tr
 
 Example:
 
-```html
+```cshtml
 <Cache vary-by-header="User-Agent">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -143,8 +143,7 @@ Accepts a single header value or a comma-separated list of header values that tr
 
 Example:
 
-```
-html
+```cshtml
 <Cache vary-by-query="Make,Model">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -172,7 +171,7 @@ routes.MapRoute(
   
 *Index.cshtml*
 
-```html
+```cshtml
 <Cache vary-by-route="Make,Model">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -191,7 +190,7 @@ Accepts a single header value or a comma-separated list of header values that tr
 
 Example:
 
-```html
+```cshtml
 <Cache vary-by-cookie=".AspNetCore.Identity.Application">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -212,7 +211,7 @@ The following example looks at the current logged in user.
 
 Example:
 
-```html
+```cshtml
 <Cache vary-by-user="true">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -250,7 +249,7 @@ public IActionResult Index(string myParam1,string myParam2,string myParam3)
 
 *Index.cshtml*
 
-```html
+```cshtml
 <Cache vary-by="@Model"">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -271,7 +270,7 @@ Provides cache eviction guidance to the built-in cache provider. The web server 
 
 Example:
 
-```html
+```cshtml
 <Cache priority="High">
     Current Time Inside Cache Tag Helper: @DateTime.Now
 </Cache>
@@ -285,7 +284,3 @@ The Cache Tag Helper is dependent on the the [memory cache service](xref:perform
 
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>
-
-
-
-

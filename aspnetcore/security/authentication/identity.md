@@ -93,7 +93,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs?name=logout&highlight=7)]
  
-    The preceding code above the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
+    The preceding code above calls the `_signInManager.SignOutAsync` method. The `SignOutAsync` method clears the user's claims stored in a cookie.
  
 6.  Configuration.
 
