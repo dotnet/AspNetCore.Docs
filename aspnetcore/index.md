@@ -48,7 +48,7 @@ ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials
 
 * Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your apps [testable](testing/index.md).
-* [Razor Pages](xref:mvc/razor-pages/index) is a new feature in ASP.NET 2.0 that makes building web page UI easier and more productive.
+* [Razor Pages](xref:mvc/razor-pages/index) is a new feature in ASP.NET 2.0 that makes building web apps easier and more productive.
 * [Razor syntax](xref:mvc/views/razor) provides a productive language for [Razor Pages](xref:mvc/razor-pages/index) and [MVC Views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 * [Model Binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
