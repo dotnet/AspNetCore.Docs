@@ -1,18 +1,17 @@
 ---
-title: Razor Syntax Reference
+title: Razor Syntax Reference for ASP.NET Core
 author: rick-anderson
 description: Details Razor syntax
 keywords: ASP.NET Core, Razor
 ms.author: riande
 manager: wpickett
-ms.date: 01/14/2017
+ms.date: 07/4/2017
 ms.topic: article
-ms.assetid: a89a8433-8b0e-4795-a73a-82114d27e233
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/views/razor
 ---
-# Razor syntax
+# Razor syntax for ASP.NET Core
 
 By [Taylor Mullen](https://twitter.com/ntaylormullen) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -538,6 +537,7 @@ The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the
 
 ### Razor keywords
 
+* page (Requires ASP.NET Core 2.0 and later)
 * functions
 * inherits
 * model
@@ -554,9 +554,12 @@ Razor keywords can be escaped with `@(Razor Keyword)`, for example `@(functions)
 * for
 * foreach
 * if
+* else
 * lock
 * switch
 * try
+* catch
+* finally
 * using
 * while
 
@@ -583,5 +586,19 @@ Set a break point on the `Compile` method of `CustomCompilationService` and view
 
 ![Text Visualizer view of compilationContent](razor/_static/tvr.png)
 
-> [!NOTE]
-> View lookups are case sensitive. If your controller routing seeks a view named `Index` (*Index.cshtml*) but you've named your view file `index` (*index.cshtml*), you'll receive an exception: `InvalidOperationException: The view 'Index' was not found.`
+<a name="case"></a>
+## View lookups and case sensitivity
+
+The Razor view engine performs case-sensitive lookups for views. However, the actual lookup is determined by the underlying source:
+
+* File based source: 
+
+    * On operating systems with case insensitive file systems (like Windows), physical file provider lookups are case insensitive. For example `return View("Test")` would result in `/Views/Home/Test.cshtml`, `/Views/home/test.cshtml` and all other casing variants would be discovered.
+    * On case sensitive file systems, which includes Linux, OSX and `EmbeddedFileProvider`, lookups are case sensitive. For example, `return View("Test")` would specifically look for `/Views/Home/Test.cshtml`.
+        
+* Precompiled views:
+
+   * With ASP.Net Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. 
+   Note: If two precompiled views differ only in case, the result of lookup is non-deterministic.
+
+Developers are encouraged to match the casing of file and directory names to the casing of area, controller and action names. This would ensure your deployments remain agnostic of the underlying file system.
