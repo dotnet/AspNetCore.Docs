@@ -47,7 +47,7 @@ ASP.NET Core ships entirely as [NuGet](https://nuget.org) packages. This allows 
 ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials/index#building-web-apis) and [web apps](xref:tutorials/index#building-web-applications):
 
 * Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
-* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your apps [testable](testing/index.md).
+* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](testing/index.md).
 * [Razor Pages](xref:mvc/razor-pages/index) is a new feature in ASP.NET 2.0 that makes building web apps easier and more productive.
 * [Razor syntax](xref:mvc/views/razor) provides a productive language for [Razor Pages](xref:mvc/razor-pages/index) and [MVC Views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
