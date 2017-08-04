@@ -25,9 +25,9 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 ## Why use ASP.NET Core?
 
-ASP.NET was released over 15 years ago. Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.
+Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.
 
-ASP.NET Core provides the following improvements compared to ASP.NET:
+ASP.NET Core provides the following benefits:
 
 * A unified story for building web UI and web APIs.
 * Integration of [modern client-side frameworks](xref:client-side/index) and development workflows.
@@ -46,8 +46,8 @@ ASP.NET Core ships entirely as [NuGet](https://nuget.org) packages. This allows 
 
 ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials/index#building-web-apis) and [web apps](xref:tutorials/index#building-web-applications):
 
-* Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](testing/index.md).
+* Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
 * [Razor Pages](xref:mvc/razor-pages/index) is a new feature in ASP.NET 2.0 that makes building web apps easier and more productive.
 * [Razor syntax](xref:mvc/views/razor) provides a productive language for [Razor Pages](xref:mvc/razor-pages/index) and [MVC Views](xref:mvc/views/overview).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
