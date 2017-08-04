@@ -15,7 +15,7 @@ uid: tutorials/first-mvc-app/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio 2017](https://www.visualstudio.com/). [Razor Pages](xref:mvc/razor-pages/index) is the recommended way to build UI for web applications.
+This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio 2017](https://www.visualstudio.com/). [!INCLUDE[consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 

@@ -32,7 +32,7 @@ Is rendered unchanged as `<p>Hello World</p>` by the server.
 
 ## Razor syntax
 
-Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into plain C#.
+Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords) it transitions into Razor-specific markup, otherwise it transitions into plain C#.
 
 <a name=escape-at-label></a>
 

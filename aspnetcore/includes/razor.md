@@ -1,0 +1,1 @@
+If you’re new to ASP.NET Core, consider the [Razor Pages Tutorial](xref:mvc/razor-pages/index) version of this tutorial. 

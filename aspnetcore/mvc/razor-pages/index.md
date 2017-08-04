@@ -138,7 +138,7 @@ The following code shows the combined version of the create page:
 
 Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
 
-The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for [constructor dependency injection](xref:mvc/controllers/dependency-injection#constructor-injection). The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 
 The home page (*Index.cshtml*):
@@ -188,7 +188,7 @@ Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
 The [Layout](xref:mvc/views/layout):
 
-* Controlls the layout of each page (unless the page opts-out of layout).
+* Controls the layout of each page (unless the page opts out of layout).
 * Imports HTML structures such as JavaScript and stylesheets.
 
 See [layout page](xref:mvc/views/layout) for more information.
