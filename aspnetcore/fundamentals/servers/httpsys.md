@@ -16,6 +16,9 @@ uid: fundamentals/servers/HttpSys
 
 By [Tom Dykstra](http://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
+> [!NOTE]
+> This topic applies only to ASP.NET Core 2.0 and later. In earlier versions of ASP.NET Core, HttpSys is named [WebListener](WebListener.md).
+
 HttpSys is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). HttpSys is an alternative to [Kestrel](kestrel.md) that offers some features that Kestel doesn't. **HttpSys can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
 HttpSys supports the following features:
