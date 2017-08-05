@@ -258,7 +258,7 @@ The app has the following file/folder structure
     * *Edit.cshtml*
     * *Index.cshtml*
 
-The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
+The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
 
 
 * `Url.Page("/Index", ...)`
