@@ -87,7 +87,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movie
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies
   ```
 
 The following table details the ASP.NET Core code generators` parameters:
