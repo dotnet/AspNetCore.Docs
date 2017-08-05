@@ -293,7 +293,7 @@ Edit the httpd.conf file.
     sudo nano /etc/httpd/conf/httpd.conf
 ```
 
-Add the the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"` and save the file, then restart Apache.
+Add the line `Header append X-FRAME-OPTIONS "SAMEORIGIN"` and save the file, then restart Apache.
 
 #### MIME-type sniffing
 
@@ -305,7 +305,7 @@ Edit the httpd.conf file.
     sudo nano /etc/httpd/conf/httpd.conf
 ```
 
-Add the the line `Header set X-Content-Type-Options "nosniff"` and save the file, then restart Apache.
+Add the line `Header set X-Content-Type-Options "nosniff"` and save the file, then restart Apache.
 
 ### Load Balancing 
 
