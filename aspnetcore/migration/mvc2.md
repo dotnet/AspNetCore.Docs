@@ -23,7 +23,30 @@ This article acts as a reference guide for migrating ASP.NET Framework Applicati
 * Middleware (App_Start/Global.asax vs Startup.cs)
 
 ## Storing Configurations
-* Using appsettings.json vs Web.config sections
+Since the earliest versions of .Net Framework, developers have needed to store settings that could change depending on the environment they were deployed to or other factors. The most common practice was to store all AppSettings in a section of your Web.config file called `<appSettings>`. 
+
+[!code-csharp[Main](samples/sample1.cs)]
+
+And you would read those settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace
+
+[!code-csharp[Main](samples/sample2.cs)]
+
+In ASP.Net Core, we hold configurations for our applications in any file and load them as part of Middleware Bootstrapping. The default file for this is `appSettings.json`
+
+[!code-csharp[Main](samples/sample3.cs)]
+
+And loading this file into an instance of `IConfigurationRoot` inside your application is done in `Startup.cs` 
+
+[!code-csharp[Main](samples/sample4.cs)]
+
+And then you read from `Configuration` to get the values of your settings
+
+[!code-csharp[Main](samples/sample5.cs)]
+
+There are extensions to this to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of Configurations.
+
+> [!NOTE]
+> For a more in-depth reference to .Net Core Configuration, please read [Configuration in ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration)
 
 ## DI first class citizen
 One very important factor in building large, scalable applications is to have loosely coupled components and services. The Dependency Injection Pattern is one that takes away the inner dependency that one class my have on another (an MVC Controller relationship with an Entity Framework Context is an often used used example. Dependency Injection is also very useful because it allows a developer to better test units of work in a manner that is easy to comprehend. There are more reasons to implement Dependency Injection in your applications, and now Dependency Injection is included when building .Net Core 2.0 Applications.
