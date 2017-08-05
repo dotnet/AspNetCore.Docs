@@ -7,18 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movies
 {
-    public class DeleteModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly RazorPagesMovie.Models.MovieContext _context;
 
-        public DeleteModel(RazorPagesMovie.Models.MovieContext context)
+        public DetailsModel(RazorPagesMovie.Models.MovieContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
         public Movie Movie { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -35,24 +34,6 @@ namespace RazorPagesMovie.Pages_Movie
                 return NotFound();
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Movie = await _context.Movie.FindAsync(id);
-
-            if (Movie != null)
-            {
-                _context.Movie.Remove(Movie);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }

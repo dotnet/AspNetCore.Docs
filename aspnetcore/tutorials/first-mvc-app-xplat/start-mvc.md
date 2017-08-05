@@ -16,7 +16,7 @@ uid: tutorials/first-mvc-app-xplat/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code). The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information. 
+This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio Code](https://code.visualstudio.com) (VS Code). The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information. [!INCLUDE[consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 

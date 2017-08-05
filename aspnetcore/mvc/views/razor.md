@@ -31,7 +31,7 @@ Is rendered unchanged as `<p>Hello World</p>` by the server.
 
 ## Razor syntax
 
-Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into plain C# .
+Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords) it transitions into Razor-specific markup, otherwise it transitions into plain C#.
 
 <a name=escape-at-label></a>
 
@@ -424,7 +424,7 @@ The `@using` directive will add the c# `using` directive to the generated razor 
 
 ### `@model`
 
-The `@model` directive allows you to specify the type of the model passed to your Razor page. It uses the following syntax:
+The `@model` directive specifies the type of the model passed to the Razor page. It uses the following syntax:
 
 ```none
 @model TypeNameOfModel

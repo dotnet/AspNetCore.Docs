@@ -11,14 +11,14 @@ using System;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20170727005405_Initial")]
+    [Migration("20170804225952_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26424")
+                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>

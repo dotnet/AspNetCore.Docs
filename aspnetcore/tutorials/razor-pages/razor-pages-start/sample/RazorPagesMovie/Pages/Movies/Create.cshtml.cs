@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movies
 {
     public class CreateModel : PageModel
     {
@@ -20,6 +20,13 @@ namespace RazorPagesMovie.Pages_Movie
 
         public IActionResult OnGet()
         {
+            Movie = new Movie
+            {
+                Title = "The Good, the bad, and the ugly",
+                Genre = "Western",
+                Price = 1.19M,
+                ReleaseDate = DateTime.Now
+            };
             return Page();
         }
 
