@@ -91,7 +91,12 @@ If you don't use `CreateDefaultBuilder`, call `UseKestrel` in *Program.cs* and c
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Main&highlight=13-20)]
 
-For more information about Kestrel settings, see the [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) class.
+For more information about Kestrel settings, see the following classes:
+
+* [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs)
+* [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs)
+* [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs)
+
 
 ---
 
