@@ -57,7 +57,7 @@ Next, choose the Web API project template. We will migrate the *ProductsApp* con
 
 Delete the `Project_Readme.html` file from the new project. Your solution should now look like this:
 
-![Application solution open in Solution Explorer showing files and folders of the the ProductsApp and ProductsCore projects](webapi/_static/webapimigration-solution.png)
+![Application solution open in Solution Explorer showing files and folders of the ProductsApp and ProductsCore projects](webapi/_static/webapimigration-solution.png)
 
 ## Migrate Configuration
 
