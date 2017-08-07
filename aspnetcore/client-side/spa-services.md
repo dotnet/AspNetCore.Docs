@@ -1,11 +1,11 @@
 ---
 title: Using JavaScriptServices for Creating Single Page Applications
 author: scottaddie
-description: Learn about the benefits of using JavaScriptServices to build a SPA with ASP.NET Core
-keywords: ASP.NET Core, Angular, SPA, JavaScriptServices, SpaServices
+description: Learn about the benefits of using JavaScriptServices to create a Single Page Application (SPA) backed by ASP.NET Core.
+keywords: ASP.NET Core,Angular,SPA,JavaScriptServices,SpaServices
 ms.author: scaddie
 manager: wpickett
-ms.date: 6/23/2017
+ms.date: 08/02/2017
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.technology: aspnet
@@ -95,12 +95,9 @@ The Tag Helpers are made discoverable via namespace registration in the project'
 
 [!code-csharp[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-These Tag Helpers abstract the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the Razor view:
+These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the Razor view:
 
 [!code-html[Main](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
-
-Microsoft's [Razor Language Services](https://marketplace.visualstudio.com/items?itemName=ms-madsk.RazorLanguageServices) extension improves Visual Studio 2017's Tag Helpers development experience by adding context-aware IntelliSense and syntax highlighting:
-![Tag Helpers intellisense](../client-side/spa-services/_static/tag_helper_intellisense.png)
 
 ### The `asp-prerender-module` Tag Helper
 
