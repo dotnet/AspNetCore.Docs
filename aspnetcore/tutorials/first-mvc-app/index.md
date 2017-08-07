@@ -14,7 +14,7 @@ uid: tutorials/first-mvc-app/index
 ---
 # Create a web app with ASP.NET Core MVC using Visual Studio on Windows
 
-This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio.
+This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio. [!INCLUDE[consider RP](../../includes/razor.md)]
 
 1. [Getting started](start-mvc.md)
 1. [Adding a controller](adding-controller.md)
