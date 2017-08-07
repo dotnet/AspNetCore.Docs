@@ -45,7 +45,7 @@ HttpSys is useful for deployments where you need to expose the server directly t
 
 Because it's built on Http.Sys, HttpSys doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
 
-HttpSys is also a good choice for internal deployments when you need one of the features it offers that you can't get by using Kestrel.
+HttpSys is a good choice for internal deployments when you need a feature not available in Kestrel.
 
 ![HttpSys to Internet](httpsys/_static/httpsys-to-internal.png)
 
@@ -73,7 +73,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * No package install is needed if you use the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage. The [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/) package is included in the metapackage.
 
-* Call the [`UseHttpSys`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilderKestrelExtensions/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys.md) extension method on [WebHostBuilder](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md) in your `Main` method, specifying any HttpSys [options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) that you need, as shown in the following example:
+* Call the `UseHttpSys` extension method on `WebHostBuilder` in your `Main` method, specifying any HttpSys [options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) that you need, as shown in the following example:
 
   [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-18)]
 
@@ -83,7 +83,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
   An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
 
-  If you use both `UseUrls` and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](../../fundamentals/hosting.md).
+  If you use both `UseUrls` and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](xref:fundamentals/hosting).
 
   HttpSys uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to HttpSys.
 
@@ -92,7 +92,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * Make sure your application is not configured to run IIS or IIS Express.
 
-  In Visual Studio, the default launch profile is for IIS Express.  To run the project as a console application you have to manually change the selected profile, as shown in the following screen shot.
+  In Visual Studio, the default launch profile is for IIS Express.  To run the project as a console application, manually change the selected profile, as shown in the following screen shot.
 
   ![Select console app profile](HttpSys/_static/vs-choose-profile.png)
 
@@ -100,9 +100,9 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 Both IIS and HttpSys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you're using HttpSys you need to configure Http.Sys yourself. The built-in tool for doing that is netsh.exe. 
 
-The most common tasks you need to use netsh.exe for are reserving URL prefixes and assigning SSL certificates.
+With netsh.exe you can reserve URL prefixes and assign SSL certificates.
 
-NetSh.exe is not an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
+It's not an easy tool to use. The following example shows the minimum needed to reserve URL prefixes for ports 80 and 443:
 
 ```console
 netsh http add urlacl url=http://+:80/ user=Users
@@ -115,7 +115,7 @@ The following example shows how to assign an SSL certificate:
 netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid={00000000-0000-0000-0000-000000000000}".
 ```
 
-Here is the official reference documentation:
+Here is the reference documentation for netsh.exe:
 
 * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](http://technet.microsoft.com/library/cc725882.aspx)
 * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
@@ -143,4 +143,4 @@ For more information, see the following resources:
 
 * [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/HttpSys/sample)
 * [HttpSys source code](https://github.com/aspnet/HttpSysServer/)
-* [Hosting](../hosting.md)
+* [Hosting](xref:fundamentals/hosting)

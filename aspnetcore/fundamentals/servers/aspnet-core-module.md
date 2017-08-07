@@ -83,13 +83,13 @@ If you aren't using one of the ASP.NET Core metapackages, and the `Microsoft.Asp
 
 ---
 
-The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on macOS and deploying to a server that runs IIS.  While running on macOS, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically hooks up to ANCM and IIS.
+The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on macOS or Linux and deploying to a server that runs IIS.  While running on macOS or Linux, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically uses ANCM and IIS.
 
 ### ANCM port binding overrides other port bindings
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
+ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port at `http://localhost:5000`.
 
 If you need to set the port number for when you run the app without IIS, you can call `UseURLs`.  When you run without IIS, the port number that you specify will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls`.
 
