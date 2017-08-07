@@ -41,7 +41,7 @@ The form data is not sent to the server until there are no client side validatio
 
 ## How validation works
 
-You might wonder how the validation UI was generated without any updates to the code in the controller or views. The follow code shows the two `Create` methods.
+You might wonder how the validation UI was generated without any updates to the code in the controller or views. The following code shows the two `Create` methods.
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
 
