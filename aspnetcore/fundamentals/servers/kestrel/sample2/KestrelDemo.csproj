@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>sample</AssemblyName>
+    <AssemblyName>KestrelDemo</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>sample</PackageId>
   </PropertyGroup>

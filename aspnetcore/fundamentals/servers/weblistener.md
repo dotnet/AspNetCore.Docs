@@ -5,7 +5,7 @@ description: Introduces WebListener, a web server for ASP.NET Core on Windows. B
 keywords: ASP.NET Core, WebListener, HttpListener, url prefixes, SSL 
 ms.author: riande
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/07/2017
 ms.topic: article
 ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
 ms.technology: aspnet
