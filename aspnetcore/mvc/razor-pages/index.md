@@ -292,9 +292,27 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
+ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request.
 
-TODO provide sample moving temp data bewteen pages.
+The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
+
+The following code sets the value of `Message` using `TempData`.
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28)]
+
+The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
+
+```cshtml
+<h3>Msg: @Model.Message</h3>
+```
+
+The *Pages/Customers/Index.cshtml.cs* code-behind file applies the `[TempData]` attribute to the `Message` property.
+
+```cs
+[TempData]
+public string Message { get; set; }
+```
+
+See [TempData](xref:fundamentals/app-state#temp) for more information.
 
 <a name="mhpp"></a>
 ##  Multiple handlers per page
