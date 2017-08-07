@@ -29,8 +29,32 @@ In previous versions of .Net Framework we would use [Portable Class Libraries](h
 > For a more in-depth reference to .Net Standard, read [.Net Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
 ## Project structure differences
-* Changes to .csproj
-* Middleware (App_Start/Global.asax vs Startup.cs)
+With ASP.Net Core the structure of `.csproj` has changed. Most notably we no longer have to include files within the `.csproj` for them to be considered part of the project. This reduces the risk of merge conflicts when working on large teams as different features may been to add different files and conflict resolution isn't that great with XML. Also there are no more references to other projects using Guids, which adds more readability to the file in general. In my opinion however, the most interesting change is that we can now edit the `.csproj` without unloading it in Visual Studio
+
+![Edit CSPROJ in VS 2017](/static/EditProjectVs2017.png)
+
+The process that ASP.Net Core uses to load your application has changed as well. In previous versions of .Net Framework, the entry point was Global.asax so we would load our routes, filters and register areas within there
+
+[!code-csharp[Main](samples/sample1.cs)]
+
+This couples our application and the server it is deployed to in a way that interferes with our implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. This framework provides a pipeline so we can add a-la cart modules to our pipeline at our leisure and needs. The hosting environment takes a `Startup` function to set up everything. That function registers a set of Middleware with the application. For each request, the application calls each of the the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware can add one or more handlers to the request handling pipeline by returning a reference to the handler that will be the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. Now the entry point to your application is `Startup` and you no longer have a dependency on `Global.asax`. When using OWIN with .Net Framework, you could have something like this as a pipeline.
+
+[!code-csharp[Main](samples/sample7.cs)]
+
+This configures your default routes, and defaults to XmlSerialization over Json. From here you could continue to add other Middleware to this pipeline as you see fit to satisfy your application's needs (loading services, configuration settings, static files, etc).
+
+Dot Net Core uses a similar approach but no longer relies on OWIN to handle the entry, instead that is done through `Program.cs` Main method (similar to Console Applcations) and Startup is loaded through there.
+
+[!code-csharp[Main](samples/sample8.cs)]
+
+`Startup` must include a Configure method and inside Configure we can add whatever Middleware to the pipeline we need. In the following example from the default web site template, several extension methods are used to configure the pipeline with support for [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, ASP.NET MVC, and Identity.
+
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,21&start=58&end=84)]
+
+Now we have a decoupled relationship between our host and our application which gives us the flexibility to move to a differnet platform in the future (One of the Key Positives of using Dot Net Core)
+
+> [!NOTE]
+> For a more in-depth reference to .Net Core Startup and Middleware, please read [Startup in ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup)
 
 ## Storing Configurations
 Since the earliest versions of .Net Framework, developers have needed to store settings that could change depending on the environment they were deployed to or other factors. The most common practice was to store all AppSettings in a section of your Web.config file called `<appSettings>`. 
