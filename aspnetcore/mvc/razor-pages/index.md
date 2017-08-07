@@ -86,7 +86,7 @@ You can create a Razor Pages starter project from Visual Studio 2017 with the fo
 
 ## Writing a basic form
 
-The new Razor Pages features are designed to make common patterns used with web browsers easy. Consider a page that implements a basic "contact us" form for the `Contact` model:
+The new Razor Pages features are designed to make common patterns used with web browsers easy. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
 For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
 
@@ -136,13 +136,13 @@ The `Customer` property is using the new `[BindProperty]` attribute to opt-in to
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. This means that features like [model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in `@functions`. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
-
 The following code shows the combined version of the create page:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/CreateCombined.cshtml)]
 
-The main change is to replace constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for dependency injection. The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
+Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
+
+The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for [constructor dependency injection](xref:mvc/controllers/dependency-injection#constructor-injection). The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
 
 The home page (*Index.cshtml*):
@@ -179,6 +179,7 @@ The *Pages/Edit.cshtml.cs* file:
 
 You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation is automatically included in Razor Pages.
 
+<a name="layout"></a>
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
 Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
@@ -188,6 +189,13 @@ Let's declutter this page by taking advantage of some of those features.
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
+
+The [Layout](xref:mvc/views/layout):
+
+* Controls the layout of each page (unless the page opts out of layout).
+* Imports HTML structures such as JavaScript and stylesheets.
+
+See [layout page](xref:mvc/views/layout) for more information.
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
@@ -258,7 +266,7 @@ The app has the following file/folder structure
     * *Edit.cshtml*
     * *Index.cshtml*
 
-The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
+The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
 
 
 * `Url.Page("/Index", ...)`

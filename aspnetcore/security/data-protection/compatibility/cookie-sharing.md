@@ -30,7 +30,9 @@ If you're using identity:
 app.AddIdentity<ApplicationUser, IdentityRole>(options =>
    {
        options.Cookies.ApplicationCookie.AuthenticationScheme = "ApplicationCookie";
-       options.Cookies.ApplicationCookie.DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"));
+       var protectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"));
+       options.Cookies.ApplicationCookie.DataProtectionProvider = protectionProvider;
+       options.Cookies.ApplicationCookie.TicketDataFormat = new TicketDataFormat(protectionProvider.CreateProtector("Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware", "Cookies", "v2"));
    });
    ```
 
@@ -93,6 +95,7 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
        {
            AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
            CookieName = ".AspNetCore.Cookies",
+           // CookieName = ".AspNetCore.ApplicationCookie", (if you're using identity)
            // CookiePath = "...", (if necessary)
            // ...
            TicketDataFormat = new AspNetTicketDataFormat(
