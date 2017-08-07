@@ -16,7 +16,17 @@ This article acts as a reference guide for migrating ASP.NET Framework Applicati
 
 
 ## Net Standard
-* Introduction to .Net Standard and what it looks like
+In previous versions of .Net Framework we would use [Portable Class Libraries](https://docs.microsoft.com/en-us/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library) to make applications cross-platform compatible. .Net Standard is the new thinking to the PCL concept, and ASP.Net Core uses .Net Standard to obtain it's standard set of Apis. With every new version of .Net Standard, more Apis will be added to the fold. The major benefit to this for ASP.Net Core, is the inclusion of the [NETStandard.Library](https://github.com/dotnet/standard/blob/master/netstandard/pkg/NETStandard.Library.dependencies.props) metapackage that will be referenced in `.csproj` upon creation of the project. So in the past when your `.csproj` would have multiple references to essential components of the Framework, when creating a new project in ASP.Net Core, the `.csproj` will only have one reference
+
+````
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
+  </ItemGroup>
+  ````
+  
+  This package contains many commonly used assemblies that would otherwise need to be referenced individually
+> [!NOTE]
+> For a more in-depth reference to .Net Standard, read [.Net Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
 ## Project structure differences
 * Changes to .csproj
