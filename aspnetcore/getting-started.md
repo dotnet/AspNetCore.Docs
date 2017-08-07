@@ -14,38 +14,38 @@ uid: getting-started
 ---
 # Getting Started with ASP.NET Core
 
-1.  Install [.NET Core](https://microsoft.com/net/core)
+1. Install [.NET Core](https://microsoft.com/net/core).
 
-2.  Create a new .NET Core project:
+   If you're on Windows, select the **Command line / other** environment. 
 
-    ```terminal
-    mkdir aspnetcoreapp
-    cd aspnetcoreapp
-    dotnet new web
-    ```
+   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
+
+2. Create a new .NET Core project.
+
+   On macOS and Linux, open a terminal window. On Windows, open a command prompt.
+
+   ```terminal
+   mkdir aspnetcoreapp
+   cd aspnetcoreapp
+   dotnet new web
+   ```
     
-    Notes: 
-    - On macOS and Linux, open a terminal window. On Windows, open a command prompt.
-    - Previous versions of .NET Core required a `t` parameter, that is   `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet` (with no parameters)  will display the .NET Core version.
+   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet --info` displays the .NET Core version. You should have version 2.0.0 or later.
 
-3.  Restore the packages:
+4. Run the app.
 
-    ```terminal
-    dotnet restore
-    ```
+   The `dotnet run` command builds the app first if needed.
 
-4.  Run the app  (the `dotnet run` command will build the app when it's out of date):
+   ```terminal
+   dotnet run
+   ```
 
-    ```terminal
-    dotnet run
-    ```
-
-5.  Browse to `http://localhost:5000`
+5. Browse to `http://localhost:5000`
 
 ## Next steps
 
-For more getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
+For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
 
 For an introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Introduction](index.md) and [ASP.NET Core Fundamentals](fundamentals/index.md).
 
-An ASP.NET Core app can use the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+An ASP.NET Core app can use the .NET Core or .NET Framework Base Class Library and runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
