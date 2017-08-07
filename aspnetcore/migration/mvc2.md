@@ -74,4 +74,15 @@ That is it, you now can inject your repository anywhere like before. This proces
 > For a more in-depth reference to .Net Core and Dependecy Injection, please read Steve Smith and Scott Addie's article on Dependecy [Injection in ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Static file / wwwroot
-One essential part of web development is the ability to serve files that are "static" or in better terms, not built code to the browser. The most common examples of static files are HTML, CSS, Javascript and images and they are used by every website on the internet. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load onto the browser. This process has changed in Dot Net Core wheras in previous versions of the .Net Framework, you would 
+One essential part of web development is the ability to serve files that are "static" or in better terms, not built code to the browser. The most common examples of static files are HTML, CSS, Javascript and images and they are used by every website on the internet. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load onto the browser. This process has changed in Dot Net Core wheras in previous versions of the .Net Framework, you could store your static files basically anywhere, and reference them in your view like regular html (with the path to the asset provided). 
+
+In Dot Net Core, we store our static files in `web root` (<content root>/wwwroot) and loading them into the pipeline using the `UseStaticFiles` extension from `Statup.Configure`. Be sure to include the NuGet package "Microsoft.AspNetCore.StaticFiles" in your application.
+
+[!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
+
+Doing this allows all your assets in the wwwroot folder accessible to the browser at a location such as
+
+`http://<app>/images/<imageFileName>` (This example has an image folder in wwwroot and that folder has images in it)
+
+> [!NOTE]
+> For a more in-depth reference to .Net Core and serving Static Files, please read [Introduction to working with static files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files)
