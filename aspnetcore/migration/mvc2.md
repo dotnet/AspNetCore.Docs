@@ -74,4 +74,4 @@ That is it, you now can inject your repository anywhere like before. This proces
 > For a more in-depth reference to .Net Core and Dependecy Injection, please read Steve Smith and Scott Addie's article on Dependecy [Injection in ASP.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Static file / wwwroot
-* Adding assets and publishing through wwwroot
+One essential part of web development is the ability to serve files that are "static" or in better terms, not built code to the browser. The most common examples of static files are HTML, CSS, Javascript and images and they are used by every website on the internet. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load onto the browser. This process has changed in Dot Net Core wheras in previous versions of the .Net Framework, you would 
