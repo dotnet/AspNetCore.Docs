@@ -297,7 +297,7 @@ ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/m
 The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
 
 The following code sets the value of `Message` using `TempData`.
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28&name=snippetTemp)]
 
 The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
 
