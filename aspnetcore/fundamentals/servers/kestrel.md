@@ -191,7 +191,7 @@ You can listen on a Unix socket for improved performance with Nginx, as shown in
 
 If you specify port number 0, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound to at runtime:
 
-[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Configure?highlight=3,13,16-17)]
+[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Configure&highlight=3,13,16-17)]
 
 <a id="useurls-limitations"></a>
 
