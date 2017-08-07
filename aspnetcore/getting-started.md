@@ -14,8 +14,6 @@ uid: getting-started
 ---
 # Getting Started with ASP.NET Core
 
-These instructions are for the latest version of ASP.NET Core. Looking to get started with 1.1? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
-
 1. Install [.NET Core](https://microsoft.com/net/core).
 
    If you're on Windows, select the **Command line / other** environment. 
