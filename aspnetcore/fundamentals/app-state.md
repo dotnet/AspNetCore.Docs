@@ -35,6 +35,7 @@ The in-memory session provider stores session data on the local server. If you p
 
 The remainder of this section describes the options for storing user data.
 
+<a name="temp"></a>
 ### TempData
 
 ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is built on top of session state. 
