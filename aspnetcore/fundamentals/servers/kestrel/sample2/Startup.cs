@@ -37,8 +37,6 @@ namespace KestrelDemo
         #region snippet_Configure
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
-
             var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
 
             app.UseStaticFiles();
@@ -64,8 +62,6 @@ namespace KestrelDemo
 #elif Limits
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
-
             var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
 
             app.UseStaticFiles();

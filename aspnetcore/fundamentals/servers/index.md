@@ -38,7 +38,7 @@ Kestrel is the web server that is included by default in ASP.NET Core new-projec
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-If your application accepts requests only from an internal network, you can use Kestrel directly.
+If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
 ![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
 
@@ -48,21 +48,23 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
 
+For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
+
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If your application accepts requests only from an internal network, you can use Kestrel directly.
+If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
 ![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
 
-If you expose your application to the Internet, you can use Kestrel directly or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
+If you expose your application to the Internet, you can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
 ![Kestrel to Internet without reverse proxy](kestrel/_static/kestrel-to-internet2.png)
 
 ![Kestrel to Internet with reverse proxy](kestrel/_static/kestrel-to-internet.png)
 
----
-
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
+
+---
 
 You can't use IIS, Nginx, or Apache without Kestrel or a [custom server implementation](#custom-servers). ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be essentially the same no matter where you deploy.
 
@@ -78,11 +80,11 @@ For information about how to use Nginx on Linux as a reverse proxy server for Ke
 
 For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
 
-## HttpSys (WebListener in ASP.NET Core 1.x)
+## HttpSys
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS. 
+HttpSys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS.
 
 ![WebListener](weblistener/_static/weblistener-to-internet.png)
 

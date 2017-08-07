@@ -134,9 +134,8 @@ new WebHostBuilder()
 > By default, the environment is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using Visual Studio, environment variables may be set in the *launchSettings.json* file.
 
 <a id="server-urls"></a>
-**Server URLs** `string`
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+**Server URLs** `string`
 
 Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. The prefixes are interpreted by the configured server; supported formats will vary between servers.
 
@@ -145,18 +144,7 @@ new WebHostBuilder()
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. 
-
-The prefixes are interpreted by the configured server; supported formats will vary between servers. Note that Kestrel doesn't support `https://` protocol in the `urls` string. To use SSL with Kestrel, call [Kestrel's Listen API](xref:fundamentals/servers/kestrel?branch=td-kestrel&tabs=aspnetcore2x#endpoint-configuration).
-
-```csharp
-new WebHostBuilder()
-    .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
-```
-
----
+In ASP.NET Core 2.0, Kestrel has its own endpoint configuration API and does not support `https://` in the `urls` string. For more information, see [Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration?tabs=aspnetcore2x)
 
 **Startup Assembly** `string`
 
