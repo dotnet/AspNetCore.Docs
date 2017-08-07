@@ -31,11 +31,11 @@ In previous versions of .Net Framework we would use [Portable Class Libraries](h
 ## Project structure differences
 With ASP.Net Core the structure of `.csproj` has changed. Most notably we no longer have to include files within the `.csproj` for them to be considered part of the project. This reduces the risk of merge conflicts when working on large teams as different features may been to add different files and conflict resolution isn't that great with XML. Also there are no more references to other projects using Guids, which adds more readability to the file in general. In my opinion however, the most interesting change is that we can now edit the `.csproj` without unloading it in Visual Studio
 
-![Edit CSPROJ in VS 2017](/static/EditProjectVs2017.png)
+![Edit CSPROJ in VS 2017](static/EditProjectVs2017.png)
 
 The process that ASP.Net Core uses to load your application has changed as well. In previous versions of .Net Framework, the entry point was Global.asax so we would load our routes, filters and register areas within there
 
-[!code-csharp[Main](samples/sample1.cs)]
+[!code-csharp[Main](samples/sample6.cs)]
 
 This couples our application and the server it is deployed to in a way that interferes with our implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. This framework provides a pipeline so we can add a-la cart modules to our pipeline at our leisure and needs. The hosting environment takes a `Startup` function to set up everything. That function registers a set of Middleware with the application. For each request, the application calls each of the the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware can add one or more handlers to the request handling pipeline by returning a reference to the handler that will be the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. Now the entry point to your application is `Startup` and you no longer have a dependency on `Global.asax`. When using OWIN with .Net Framework, you could have something like this as a pipeline.
 
