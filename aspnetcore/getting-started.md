@@ -1,11 +1,11 @@
 ---
 title: Getting Started with ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
+keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
@@ -13,6 +13,8 @@ ms.prod: asp.net-core
 uid: getting-started
 ---
 # Getting Started with ASP.NET Core
+
+These instructions are for the latest version of ASP.NET Core. Looking to get started with 1.1? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
 
 1. Install [.NET Core](https://microsoft.com/net/core).
 
