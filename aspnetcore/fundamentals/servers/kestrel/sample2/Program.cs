@@ -54,8 +54,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
         #endregion
 #elif UnixSocket
@@ -84,8 +82,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
 #elif FileDescriptor
         public static int Main(string[] args)
@@ -116,8 +112,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
 #elif Systemd
         public static int Main(string[] args)
@@ -141,8 +135,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
 #elif Limits
         public static int Main(string[] args)
@@ -175,8 +167,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
 #endif
     }

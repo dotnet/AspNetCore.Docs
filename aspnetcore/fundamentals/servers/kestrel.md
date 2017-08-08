@@ -126,7 +126,7 @@ The maximum number of concurrent open HTTP/HTTPS connections can be set for the 
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=3-4)]
 
-There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request).  After a connection is upgraded, it’s not counted against the `MaxConcurrentConnections` limit anymore.
+There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.
 
 **Maximum request body size**
 
@@ -134,7 +134,7 @@ The default maximum request body size is 30,000,000 bytes, which is approximatel
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=5)]
 
-This will affect every request.  The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
+This affects every request. The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
 
 ```csharp
 [RequestSizeLimit(100000000)]
@@ -145,7 +145,7 @@ You can also override the setting on a specific request as shown here:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=3-4)]
  
-An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There’s an `IsReadOnly` property that tells you if the request body is in read-only state, meaning it’s too late to configure the limit.
+An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There's an `IsReadOnly` property that tells you if the request body is in read-only state, meaning it's too late to configure the limit.
 
 **Minimum request body data rate**
 
@@ -157,7 +157,7 @@ You can configure the rate per request:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-6)]
 
-Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to get its send rate up to the minimum; the rate is not checked during that time. The grace period is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
+Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
 
 For information about other Kestrel options, see [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) and [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs). 
 
@@ -171,7 +171,7 @@ By default ASP.NET Core binds to `http://localhost:5000`. You can configure URL 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-By default ASP.NET Core binds to `http://localhost:5000`. You configure URL prefixes and ports for Kestrel to listen on by calling `Listen` or `ListenUnixSocket` methods on `KestrelServerOptions`. (`UseUrls` and the `urls` command-line argument also work, with limitations noted [later in this article](#useurls-limitations).)
+By default ASP.NET Core binds to `http://localhost:5000`. You configure URL prefixes and ports for Kestrel to listen on by calling `Listen` or `ListenUnixSocket` methods on `KestrelServerOptions`. (`UseUrls` and the `urls` command-line argument also work but have the limitations noted [later in this article](#useurls-limitations).)
 
 **Bind to a TCP socket**
 
@@ -204,7 +204,7 @@ You can configure endpoints by calling the `UseUrls` method or using the `urls` 
 
 **Endpoint configuration for IIS**
 
-If you use IIS, the URL bindings for IIS override anything that you set by calling either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](aspnet-core-module.md).
+If you use IIS, the URL bindings for IIS override any bindings that you set by calling either `Listen` or `UseUrls`. For more information, see [Introduction to ASP.NET Core Module](aspnet-core-module.md).
 
 ---
 
@@ -243,7 +243,7 @@ If you call `UseUrls` or use the `urls` command-line argument, the URL prefixes 
   https://*:443/
   ```
 
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, \*, and + aren't special. Anything that isn't a recognized IP address or "localhost" binds to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 
 * "Localhost" name with port number or loopback IP with port number
 

@@ -46,7 +46,7 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 ![Kestrel to Internet](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
+The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and doesn't yet have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
 
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
@@ -104,7 +104,7 @@ HttpSys can also be used for applications that are exposed only to an internal n
 
 ![HttpSys to internal network](httpsys/_static/httpsys-to-internal.png)
 
-For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
+For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
 
 ---
 
@@ -116,7 +116,7 @@ The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/M
 
 ## Custom servers
 
-If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [`IHttpRequestFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.md) and [`IHttpResponseFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.md).
+If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [IServer](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [IHttpRequestFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttprequestfeature) and [IHttpResponseFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpresponsefeature).
 
 ## Next steps
 

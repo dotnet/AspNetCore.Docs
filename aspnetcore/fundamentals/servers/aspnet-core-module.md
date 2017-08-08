@@ -59,11 +59,11 @@ The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Ex
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-In your application, install [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/). This is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information such as the port to listen on. 
+In your application, install [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/). The `IISIntegration` package  is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information, such as the port to listen on. 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) package is included in the ASP.NET Core metapackages ([Microsoft.AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore/) and [Microsoft.AspNetCore.All](xref:fundamentals/metapackage)). If you don't use one of the metapackages, install `Microsoft.AspNetCore.Server.IISIntegration` separately. This is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information such as the port to listen on. 
+The [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) package is included in the ASP.NET Core metapackages ([Microsoft.AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore/) and [Microsoft.AspNetCore.All](xref:fundamentals/metapackage)). If you don't use one of the metapackages, install `Microsoft.AspNetCore.Server.IISIntegration` separately. The `IISIntegration` package is an interoperability pack that reads environment variables broadcast by ANCM to set up your app. The environment variables provide configuration information, such as the port to listen on. 
 
 ---
 
@@ -71,19 +71,19 @@ The [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-In your application's `Main` method, call the `UseIISIntegration` extension method on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md). 
+In your application's `Main` method, call the `UseIISIntegration` extension method on [`WebHostBuilder`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilder). 
 
 [!code-csharp[](aspnet-core-module/sample/Program.cs?name=snippet_Main&highlight=12)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The `UseIISIntegration` extension method on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md) is called automatically when you run with IIS.
+The `UseIISIntegration` extension method on [`WebHostBuilder`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilder) is called automatically when you run with IIS.
 
-If you aren't using one of the ASP.NET Core metapackages, and the `Microsoft.AspNetCore.Server.IISIntegration` package is not installed, you get a runtime error. If you call `UseIISIntegration` explicitly, you get a compile time error if the package is not installed.
+If you aren't using one of the ASP.NET Core metapackages and haven't installed the  `Microsoft.AspNetCore.Server.IISIntegration` package, you get a runtime error. If you call `UseIISIntegration` explicitly, you get a compile time error if the package isn't installed.
 
 ---
 
-The `UseIISIntegration` method looks for environment variables that ANCM sets, and it does nothing if they aren't found. This behavior facilitates scenarios like developing and testing on macOS or Linux and deploying to a server that runs IIS.  While running on macOS or Linux, Kestrel acts as the web server, but when the app is deployed to the IIS environment, it automatically uses ANCM and IIS.
+The `UseIISIntegration` method looks for environment variables that ANCM sets, and it no-ops if they aren't found. This behavior facilitates scenarios like developing and testing on macOS or Linux and deploying to a server that runs IIS. While running on macOS or Linux, Kestrel acts as the web server; but when the app is deployed to the IIS environment, it automatically uses ANCM and IIS.
 
 ### ANCM port binding overrides other port bindings
 
@@ -91,15 +91,15 @@ The `UseIISIntegration` method looks for environment variables that ANCM sets, a
 
 ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port at `http://localhost:5000`.
 
-If you need to set the port number for when you run the app without IIS, you can call `UseURLs`.  When you run without IIS, the port number that you specify will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls`.
+If you need to set the port for when you run the app without IIS, you can call `UseUrls`. The port that you specify will take effect because `IISIntegration` no-ops without IIS. But when you run with IIS, the port specified by ANCM will override the port you passed to `UseUrls`.
 
-In ASP.NET Core 1.0, if you call `UseUrls`, do it **before** you call `IISIntegration` so that the ANCM-configured port doesn't get overwritten. This calling order is not required in ASP.NET Core 1.1, because the ANCM setting overrides `UseUrls`.
+In ASP.NET Core 1.0, if you call `UseUrls`, call it **before** you call `UseIISIntegration` so that the ANCM-configured port doesn't get overwritten. This calling order isn't required in ASP.NET Core 1.1, because the ANCM setting overrides `UseUrls`.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls` or [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration). Therefore, you don't need to call `UseUrls` or Kestrel's `Listen` API when you use ANCM. When you run the app without IIS, it listens on the default port number at `http://localhost:5000`.
+ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls` or [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration). Therefore, you don't need to call `UseUrls` or Kestrel's `Listen` API when you use ANCM. When you run the app without IIS, it listens on the default port at `http://localhost:5000`.
 
-If you need to set the port number for when you run the app without IIS, you can call `UseURLs` or Kestrel's `Listen` API.  When you run without IIS, the port number that you specify will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls` or Kestrel's `Listen` API.
+If you need to set the port when you run the app without IIS, you can call `UseUrls` or Kestrel's `Listen` API.  The port that you specify will take effect because `UseIISIntegration` no-ops without IIS. But when you run with IIS, the port specified by ANCM overrides the port you passed to `UseUrls` or Kestrel's `Listen` API.
 
 ---
 

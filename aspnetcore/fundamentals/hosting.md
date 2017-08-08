@@ -44,13 +44,13 @@ The server's *content root* determines where it searches for content files, like
 
 To use IIS as a reverse proxy, call `UseIISIntegration` as part of building the host. 
 
-Note that `UseIISIntegration` does not configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` examines environment variables used by IIS/IISExpress and makes decisions such as which dynamic port to use and which headers to set.
+Note that `UseIISIntegration` doesn't configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. `UseKestrel` creates the web server and hosts the app. `UseIISIntegration` examines environment variables used by IIS/IISExpress and configures settings such as the port to listen on and the headers to use.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-When you use IIS as a reverse proxy, ASP.NET Core automatically calls `UseIISIntegration` as part of building the host.
+When you use IIS as a reverse proxy, ASP.NET Core automatically calls `UseIISIntegration` as part of building the host. For more information, see [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
 
-Note that `UseIISIntegration` does not configure a *server*, like `UseKestrel` does. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` examines environment variables used by IIS/IISExpress and makes decisions such as which dynamic port to use and which headers to set.
+Note that `UseIISIntegration` doesn't configure a *server*, like `UseKestrel` does. `UseKestrel` creates the web server and hosts the app. `UseIISIntegration` examines environment variables used by IIS/IISExpress and configures settings such as the port to listen on and the headers to use.
 
 ---
 
@@ -144,7 +144,7 @@ new WebHostBuilder()
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
-In ASP.NET Core 2.0, Kestrel has its own endpoint configuration API and does not support `https://` in the `urls` string. For more information, see [Kestrel](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#endpoint-configuration)
+In ASP.NET Core 2.0, Kestrel has its own endpoint configuration API and does not support `https://` in the `urls` string. For more information, see [Kestrel](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#endpoint-configuration).
 
 **Startup Assembly** `string`
 

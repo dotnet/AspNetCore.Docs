@@ -44,8 +44,6 @@ namespace HttpSysDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
         #endregion
     }

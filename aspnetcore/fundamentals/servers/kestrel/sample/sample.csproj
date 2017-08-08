@@ -2,17 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp1.0;net451</TargetFrameworks>
-    <AssemblyName>sample</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>sample</PackageId>
     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Update="wwwroot\**\*">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
