@@ -19,6 +19,8 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
 
+If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
+
 [Download or view sample code](https://github.com/Rick-Anderson/razor-page-intro).
 
 <a name="prerequisites"></a>
@@ -80,9 +82,9 @@ You can create a Razor Pages starter project from Visual Studio 2017 with the fo
 
 * From the Visual Studio **File** menu, select **New > Project**.
 * Create a new ASP.NET Core Web Application:
- ![new ASP.NET Core Web Application](index/_static/np.png)
+ ![new ASP.NET Core Web Application](index/_static/npp.png)
 * Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**.
- ![Web Application (Razor Pages)](index/_static/np2.png)
+ ![Web Application (Razor Pages)](index/_static/npp2.png)
 
 ## Writing a basic form
 
@@ -292,9 +294,27 @@ Relative name linking is useful when building sites with a complex structure. If
 
 ## TempData
 
-The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages. In 2.0.0, the default storage for temp data is cookies. A session provider is no longer required by default.
+ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request.
 
-TODO provide sample moving temp data bewteen pages.
+The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
+
+The following code sets the value of `Message` using `TempData`.
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28&name=snippetTemp)]
+
+The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
+
+```cshtml
+<h3>Msg: @Model.Message</h3>
+```
+
+The *Pages/Customers/Index.cshtml.cs* code-behind file applies the `[TempData]` attribute to the `Message` property.
+
+```cs
+[TempData]
+public string Message { get; set; }
+```
+
+See [TempData](xref:fundamentals/app-state#temp) for more information.
 
 <a name="mhpp"></a>
 ##  Multiple handlers per page

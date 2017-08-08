@@ -87,7 +87,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 The following table details the ASP.NET Core code generators` parameters:
@@ -98,6 +98,7 @@ The following table details the ASP.NET Core code generators` parameters:
 | -dc  | The data context. |
 | -udl | Use the default layout. |
 | -outDir | The relative output folder path to create the views. |
+| --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
