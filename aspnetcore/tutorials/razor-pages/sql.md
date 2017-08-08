@@ -49,7 +49,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[Main](start-mvc/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
@@ -62,7 +62,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
 
-[!code-csharp[Main](start-mvc/sample/RazorPagesMovie/Startup.cs?highlight=21&name=snippetConfigure)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?highlight=21&name=snippetConfigure)]
 
 Test the app
 
