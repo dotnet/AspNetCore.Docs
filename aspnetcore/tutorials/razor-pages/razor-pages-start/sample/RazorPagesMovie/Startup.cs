@@ -21,6 +21,7 @@ namespace RazorPagesMovie
         {
             // requires using RazorPagesMovie.Models;
             // and using Microsoft.Extensions.DependencyInjection;
+            // and using Microsoft.EntityFrameworkCore;
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
             services.AddMvc();
