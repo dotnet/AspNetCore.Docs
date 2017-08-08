@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// Unused usings removed.
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Models;
+using System;
 
 namespace RazorPagesMovie
 {
@@ -24,13 +20,14 @@ namespace RazorPagesMovie
 
                 try
                 {
+                    // Requires using RazorPagesMovie.Models;
                     SeedData.Initialize(services);
 
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating the database.");
+                    logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
 
