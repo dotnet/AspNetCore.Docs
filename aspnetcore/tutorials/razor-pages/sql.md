@@ -79,9 +79,9 @@ Test the app
    * If you were running VS in debug mode, stop the debugger and press F5
    
 The app shows the seeded data.
-<!--
-![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
--->
+
+![Movie application open in Chrome showing movie data](working-with-sql/_static/m55.png)
+
 
 >[!div class="step-by-step"]
 [Previous Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   

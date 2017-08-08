@@ -26,7 +26,7 @@ namespace RazorPagesMovie.Models
                      new Movie
                      {
                          Title = "When Harry Met Sally",
-                         ReleaseDate = DateTime.Parse("1989-1-11"),
+                         ReleaseDate = DateTime.Parse("1989-2-12"),
                          Genre = "Romantic Comedy",
                          Price = 7.99M
                      },
