@@ -48,7 +48,6 @@ namespace RazorPagesMovie
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-            SeedData.Initialize(app.ApplicationServices);
         }
         #endregion
     }
