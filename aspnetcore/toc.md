@@ -71,6 +71,12 @@
 
 ## [Tutorials](tutorials/index.md)
 
+### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages/model)
+#### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+#### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+
 ### [Create a web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -123,11 +129,6 @@
 ### [Create a Web API](xref:tutorials/first-web-api-mac)
 #### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 #### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
-
-### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
-#### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-#### [Adding a model](xref:tutorials/razor-pages/model)
-#### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 
 # [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
