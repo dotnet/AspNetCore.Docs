@@ -14,7 +14,8 @@ uid: getting-started
 ---
 # Getting Started with ASP.NET Core
 
-These instructions are for ASP.NET Core 2.0 Preview. Looking to get started with 1.1? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
+> [!NOTE]
+> These instructions are for ASP.NET Core 2.0 Preview. Looking to get started with 1.1? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
 
 1. Install [.NET Core 2.0 Preview](https://microsoft.com/net/core/preview).
 
@@ -47,7 +48,7 @@ These instructions are for ASP.NET Core 2.0 Preview. Looking to get started with
 
 5. Browse to `http://localhost:5000`
 
-## Next steps
+### Next steps
 
 For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
 

@@ -14,7 +14,8 @@ uid: getting-started-1.1
 ---
 # Getting Started with ASP.NET Core 1.1
 
-These instructions are for ASP.NET Core 1.1. Looking for the latest version? See [the latest version of this tutorial](xref:getting-started).
+> [!NOTE]
+> These instructions are for ASP.NET Core 1.1. Looking for the latest version? See [the 2.0 version of this tutorial](xref:getting-started).
 
 1. Install the .NET Core 1.1 SDK from the [.NET Core downloads page](https://www.microsoft.com/net/download/core).
 
@@ -27,7 +28,7 @@ These instructions are for ASP.NET Core 1.1. Looking for the latest version? See
    cd aspnetcoreapp
    ```
 
-2. Add a *global.json* file to select the 1.1 SDK.
+2. Create a *global.json* file to select the 1.1 SDK.
 
    ```json
    {
@@ -41,7 +42,7 @@ These instructions are for ASP.NET Core 1.1. Looking for the latest version? See
    dotnet new web
    ```
     
-   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, make sure you have 1.1 installed. Run dotnet --version to verify that you are using version 1.1.0.
+   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, run `dotnet --version` to verify that you are using version 1.1.0.
 
 3.  Restore the packages:
 
@@ -59,7 +60,7 @@ These instructions are for ASP.NET Core 1.1. Looking for the latest version? See
 
 5. Browse to `http://localhost:5000`
 
-## Next steps
+### Next steps
 
 For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
 
