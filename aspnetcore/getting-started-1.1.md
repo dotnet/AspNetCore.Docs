@@ -17,7 +17,14 @@ uid: getting-started-1.1
 > [!NOTE]
 > These instructions are for ASP.NET Core 1.1. Looking for the latest version? See [the 2.0 version of this tutorial](xref:getting-started).
 
-1. Install the .NET Core 1.1 SDK from the [.NET Core downloads page](https://www.microsoft.com/net/download/core).
+<!-- use this #1 after RTW, check version number
+1. Install the .NET Core 1.0.4 SDK from the [.NET Core downloads page](https://microsoft.com/net/download/core/).
+-->
+
+1. Install [.NET Core](https://microsoft.com/net/core).
+
+   If you're on Windows, select the **Command line / other** environment. 
+   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
 
 2. Create a folder for a new .NET Core project.
 
@@ -28,11 +35,11 @@ uid: getting-started-1.1
    cd aspnetcoreapp
    ```
 
-2. Create a *global.json* file to select the 1.1 SDK.
+2. If you have installed a later preview release on your machine, create a *global.json* file to select the 1.0.4 SDK.
 
    ```json
    {
-     "sdk": { "version": "1.1.0" }
+     "sdk": { "version": "1.0.4" }
    }
    ```
 
@@ -41,8 +48,10 @@ uid: getting-started-1.1
    ```terminal
    dotnet new web
    ```
-    
+   
+   <!-- commenting out for now, restore if this turns out to be a problem still 
    Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, run `dotnet --version` to verify that you are using version 1.1.0.
+   -->
 
 3.  Restore the packages:
 
@@ -60,6 +69,7 @@ uid: getting-started-1.1
 
 5. Browse to `http://localhost:5000`
 
+<!-- H3 to avoid a single-entry internal TOC -->
 ### Next steps
 
 For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
