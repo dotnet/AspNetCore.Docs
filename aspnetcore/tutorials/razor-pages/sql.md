@@ -80,7 +80,7 @@ Test the app
    
 The app shows the seeded data.
 
-![Movie application open in Chrome showing movie data](working-with-sql/_static/m55.png)
+![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
 
 >[!div class="step-by-step"]
