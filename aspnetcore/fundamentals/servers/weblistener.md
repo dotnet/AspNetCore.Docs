@@ -43,13 +43,13 @@ Supported Windows versions:
 
 WebListener is useful for deployments where you need to expose the server directly to the Internet without using IIS.
 
-![WebListener to Internet](weblistener/_static/weblistener-to-internet.png)
+![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
 Because it's built on Http.Sys, WebListener doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
 
 WebListener is also a good choice for internal deployments when you need one of the features it offers that you can't get by using Kestrel.
 
-![WebListener to Internet](weblistener/_static/weblistener-to-internal.png)
+![Weblistener communicates directly with your internal network](weblistener/_static/weblistener-to-internal.png)
 
 ## How to use WebListener
 

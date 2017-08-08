@@ -40,11 +40,11 @@ Kestrel is the web server that is included by default in ASP.NET Core new-projec
 
 If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
-![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
+![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.
 
-![Kestrel to Internet](kestrel/_static/kestrel-to-internet.png)
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and doesn't yet have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
 
@@ -54,13 +54,13 @@ For information about when to use Kestrel with a reverse proxy, see [Kestrel](ke
 
 If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
-![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
+![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
-![Kestrel to Internet without reverse proxy](kestrel/_static/kestrel-to-internet2.png)
+![Kestrel communicates directly to the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
 
-![Kestrel to Internet with reverse proxy](kestrel/_static/kestrel-to-internet.png)
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
@@ -86,11 +86,11 @@ For information about how to use Apache on Linux as a reverse proxy server for K
 
 HttpSys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS.
 
-![WebListener](weblistener/_static/weblistener-to-internet.png)
+![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
 WebListener can also be used in place of Kestrel for applications that are exposed only to an internal network, if you need WebListener features that Kestrel doesn't support. 
 
-![WebListener](weblistener/_static/weblistener-to-internal.png)
+![Weblistener communicates directly with your internal network](weblistener/_static/weblistener-to-internal.png)
 
 For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only WebListener offers. For information about WebListener features, see [WebListener](weblistener.md).
 
@@ -98,11 +98,11 @@ For internal network scenarios, Kestrel is generally recommended for best perfor
 
 If you run your ASP.NET Core app on Windows, HttpSys is an alternative to Kestrel. You can use HttpSys for scenarios where you expose your app to the Internet and you need HttpSys features that Kestrel doesn't support. 
 
-![HttpSys to Internet](httpsys/_static/httpsys-to-internet.png)
+![HttpSys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
 HttpSys can also be used for applications that are exposed only to an internal network. 
 
-![HttpSys to internal network](httpsys/_static/httpsys-to-internal.png)
+![HttpSys communicates directly with your internal network](httpsys/_static/httpsys-to-internal.png)
 
 For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
 

@@ -43,11 +43,11 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
-![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
+![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
-![Kestrel to Internet with reverse proxy](kestrel/_static/kestrel-to-internet.png)
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
 A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
 
@@ -55,13 +55,13 @@ A reverse proxy is required for edge deployments (exposed to traffic from the In
 
 If your application accepts requests only from an internal network, you can use Kestrel by itself.
 
-![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
+![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
-![Kestrel to Internet without reverse proxy](kestrel/_static/kestrel-to-internet2.png)
+![Kestrel communicates directly to the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
 
-![Kestrel to Internet with reverse proxy](kestrel/_static/kestrel-to-internet.png)
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
 ---
 
