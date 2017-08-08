@@ -128,6 +128,7 @@
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 #### [Adding a model](xref:tutorials/razor-pages/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+#### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
 
 # [Testing and debugging](testing/index.md)
 ## [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)

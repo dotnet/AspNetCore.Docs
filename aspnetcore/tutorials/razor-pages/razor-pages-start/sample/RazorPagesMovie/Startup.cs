@@ -27,6 +27,7 @@ namespace RazorPagesMovie
         }
         #endregion
 
+        #region snippetConfigure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,6 +48,8 @@ namespace RazorPagesMovie
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            SeedData.Initialize(app.ApplicationServices);
         }
+        #endregion
     }
 }
