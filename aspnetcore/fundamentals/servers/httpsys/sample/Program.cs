@@ -23,7 +23,7 @@ namespace HttpSysDemo
         public static string Server;
 
         #region snippet_Main
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Running demo with HttpSys.");
 

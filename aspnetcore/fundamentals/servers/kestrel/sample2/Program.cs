@@ -137,7 +137,7 @@ namespace KestrelDemo
             host.Run();
         }
 #elif Limits
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Running demo with Kestrel.");
 

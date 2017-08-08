@@ -22,7 +22,7 @@ namespace KestrelDemo
         // Put it after UseConfiguration(config) to take precedence over command-line configuration.
 
         #region snippet_Main
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Running demo with Kestrel.");
 
@@ -45,8 +45,6 @@ namespace KestrelDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
         #endregion
     }
