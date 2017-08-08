@@ -73,7 +73,7 @@ Test the app
 
     ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
-    ![Contextual menu](../first-mvc-app/working-with-sql/_static/stopIIS.png)
+    ![Contextual menu](sql/_static/stopIIS.png)
 
    * If you were running VS in non-debug mode, press F5 to run in debug mode
    * If you were running VS in debug mode, stop the debugger and press F5
