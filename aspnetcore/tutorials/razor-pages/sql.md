@@ -17,11 +17,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `MovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main]([!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
-[!code-javascript[Main](razor-pages-start/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
+[!code-javascript[Main](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
 
 When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See [Configuration](xref:fundamentals/configuration) for more information.
 
@@ -49,7 +49,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[Main](start-mvc/sample/RazorPagesMovie/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
@@ -62,7 +62,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?highlight=21&name=snippetConfigure)]
+[!code-csharp[Main](start-mvc/sample/RazorPagesMovie/Startup.cs?highlight=21&name=snippetConfigure)]
 
 Test the app
 
@@ -79,8 +79,9 @@ Test the app
    * If you were running VS in debug mode, stop the debugger and press F5
    
 The app shows the seeded data.
-
+<!--
 ![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
+-->
 
 >[!div class="step-by-step"]
 [Previous Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
