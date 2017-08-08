@@ -1,7 +1,7 @@
 ---
-title: Getting Started with ASP.NET Core
+title: Getting Started with ASP.NET Core 1.1
 author: rick-anderson
-description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
+description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core 1.1.
 keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
@@ -10,32 +10,44 @@ ms.topic: get-started-article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: getting-started
+uid: getting-started-1.1
 ---
-# Getting Started with ASP.NET Core
+# Getting Started with ASP.NET Core 1.1
 
-These instructions are for ASP.NET Core 2.0 Preview. Looking to get started with 1.1? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
+These instructions are for ASP.NET Core 1.1. Looking for the latest version? See [the latest version of this tutorial](xref:getting-started).
 
-1. Install [.NET Core 2.0 Preview](https://microsoft.com/net/core/preview).
+1. Install the .NET Core 1.1 SDK from the [.NET Core downloads page](https://www.microsoft.com/net/download/core).
 
-<!-- after RTW uncomment this section
-   If you're on Windows, select the **Command line / other** environment. 
-   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
--->
-
-2. Create a new .NET Core project.
+2. Create a folder for a new .NET Core project.
 
    On macOS and Linux, open a terminal window. On Windows, open a command prompt.
 
    ```terminal
    mkdir aspnetcoreapp
    cd aspnetcoreapp
+   ```
+
+2. Add a *global.json* file to select the 1.1 SDK.
+
+   ```json
+   {
+     "sdk": { "version": "1.1.0" }
+   }
+   ```
+
+2. Create a new .NET Core project.
+
+   ```terminal
    dotnet new web
    ```
     
-<!-- after RTW uncomment this section
-   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet --info` displays the .NET Core version. You should have version 2.0.0 or later.
--->
+   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, make sure you have 1.1 installed. Run dotnet --version to verify that you are using version 1.1.0.
+
+3.  Restore the packages:
+
+    ```terminal
+    dotnet restore
+    ```
 
 4. Run the app.
 
