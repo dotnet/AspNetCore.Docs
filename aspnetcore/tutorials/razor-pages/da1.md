@@ -48,7 +48,7 @@ in the *Pages/Movies/Index.cshtml* file.
 
 [!code-cshtml[Main](razor-pages-start\snapshot_sample\RazorPagesMovie\Pages\Movie\Index.cshtml?highlight=16-18&range=32-)]
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative, the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:mvc/razor-pages/index#url-generation-for-pages) for more information.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:mvc/razor-pages/index#url-generation-for-pages) for more information.
 
 Use **View Source** from your favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
@@ -61,7 +61,9 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 
 ```
 
-The dynamically generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
+The dynamically generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). 
+
+Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
 
 ```html
 <td>
@@ -71,22 +73,28 @@ The dynamically generated links pass the movie ID with a query string (for examp
 </td>
 ```
 
+A request to the page with the "{id:int}" route template that does **not** include the integer will return a HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route template:
+
+ ```cshtml
+@page "{id:int?}"
+```
+
 ### Update concurrency exception handling
 
 Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Pages/Movies/Delete.cshtml.cs* files. The following highlighted code shows the changes:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
-The previous code only detects concurrency exceptions when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit changes or delete).
+The previous code only detects concurrency exceptions when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit or delete).
 
 To test the `catch` block:
 
 * Set a breakpoint on `catch (DbUpdateConcurrencyException)`
 * Edit a movie (select either the **Edit** or **Delete** links).
 * In another browser window, select the **Delete** link for the same movie, and then delete the movie.
-* In the previous browser, make changes to the movie (if you selected **Edit**), or delete the movie.
+* In the previous browser window, post changes to the movie (if you selected **Edit**), or delete the movie.
 
-Production code would generally detect concurrency conflicts when two or more clients update a record. See [Handling concurrency conflicts](xref:data/ef-mvc/concurrency) for more information.
+Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handling concurrency conflicts](xref:data/ef-mvc/concurrency) for more information.
 
 ### Posting and binding review
 
@@ -99,18 +107,19 @@ When a HTTP GET request is made to the Movies/Edit page (for example, `http://lo
 * The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the the movie model available on the page.
 * The Edit form is displayed with the values from the movie.
 
-When a HTTP Post request is made to the Movies/Edit page:
+When the Movies/Edit page is posted:
 
 * The form values on the page are bound to the `Movie` property. The `[BindProperty]` attribute enables [Model binding](xref:mvc/models/model-binding).
-* If there are erros in the model state (for example, `ReleaseDate` cannot be converted to a date, the form is posted again with the submitted values.
-* If there are no model errors, the movie is saved.
 
 ```csharp
 [BindProperty]
 public Movie Movie { get; set; }
 ```
 
-The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP PUT `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method inn the Edit Razor Page.
+* If there are erros in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is posted again with the submitted values.
+* If there are no model errors, the movie is saved.
+
+The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method inn the Edit Razor Page.
 
 >[!div class="step-by-step"]
 [Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)

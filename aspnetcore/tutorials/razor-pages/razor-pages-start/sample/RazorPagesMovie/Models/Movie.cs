@@ -1,8 +1,9 @@
-﻿//#define First
+﻿#define First
 #if First
 
 #region snippet_1
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesMovie.Models
 {
