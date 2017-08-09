@@ -20,7 +20,7 @@ We have a good start to the movie app, but the presentation is not ideal. We don
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
-Open the *Models/Movie.cs* file and add the highlighted lines shown below:
+Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
 
@@ -46,7 +46,9 @@ in the *Pages/Movies/Index.cshtml* file.
 
 [!code-cshtml[Main](razor-pages-start\snapshot_sample\RazorPagesMovie\Pages\Movie\Index.cshtml?highlight=16-18&range=32-)]
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the controller action method and route id. You use **View Source** from your favorite browser or use the developer tools to examine the generated markup. A portion of the generated HTML is shown below:
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative, the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:mvc/razor-pages/index#url-generation-for-pages) for more information.
+
+Use **View Source** from your favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
 ```html
 <td>
@@ -57,6 +59,15 @@ in the *Pages/Movies/Index.cshtml* file.
 
 ```
 
+The dynamically generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
+
+```html
+<td>
+  <a href="/Movies/Edit/1">Edit</a> |
+  <a href="/Movies/Details/1">Details</a> |
+  <a href="/Movies/Delete/1">Delete</a>
+</td>
+```
 
 
 
