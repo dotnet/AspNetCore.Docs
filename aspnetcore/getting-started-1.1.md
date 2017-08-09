@@ -23,9 +23,6 @@ uid: getting-started-1.1
 
 1. Install [.NET Core](https://microsoft.com/net/core).
 
-   If you're on Windows, select the **Command line / other** environment. 
-   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
-
 2. Create a folder for a new .NET Core project.
 
    On macOS and Linux, open a terminal window. On Windows, open a command prompt.
