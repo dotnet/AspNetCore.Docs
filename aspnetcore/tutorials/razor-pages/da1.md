@@ -77,7 +77,7 @@ Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Page
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
-The previous code only detects concurrency expections when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit changes or delete).
+The previous code only detects concurrency exceptions when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit changes or delete).
 
 To test the `catch` block:
 
@@ -108,7 +108,7 @@ When a HTTP Post request is made to the Movies/Edit page:
 ```csharp
 [BindProperty]
 public Movie Movie { get; set; }
-``
+```
 
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP PUT `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method inn the Edit Razor Page.
 
