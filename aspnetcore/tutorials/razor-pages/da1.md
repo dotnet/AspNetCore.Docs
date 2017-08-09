@@ -9,7 +9,7 @@ ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: tutorials/first-mvc-app/da1
+uid: tutorials/razor-pages/da1
 ---
 
 # Updating the generated pages
@@ -75,7 +75,7 @@ The dynamically generated links pass the movie ID with a query string (for examp
 
 Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Pages/Movies/Delete.cshtml.cs* files. The following highlighted code shows the changes:
 
-[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Movies/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
 The previous code only detects concurrency expections when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit changes or delete).
 
@@ -91,8 +91,7 @@ Production code would generally detect concurrency conflicts when two or more cl
 ### Posting and binding review
 
 Examine the *Pages/Movies/Edit.cshtml.cs* file:
-
-[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Movies/Edit.cshtml.cs?name=snippet2)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet2)]
 
 When a HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 
