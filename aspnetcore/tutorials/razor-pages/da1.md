@@ -1,7 +1,7 @@
 ---
-title: Controller methods and views
+title: Updating the generated pages
 author: rick-anderson
-description: 
+description: Updating the generated pages with better display.
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
@@ -12,13 +12,15 @@ ms.prod: asp.net-core
 uid: tutorials/first-mvc-app/da1
 ---
 
-# Controller methods and views
+# Updating the generated pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 We have a good start to the movie app, but the presentation is not ideal. We don't want to see the time (12:00:00 AM in the image below) and **ReleaseDate** should be **Release Date** (two words).
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
+
+## Update the generated code
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
@@ -69,7 +71,47 @@ The dynamically generated links pass the movie ID with a query string (for examp
 </td>
 ```
 
+### Update concurrency exception handling
 
+Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Pages/Movies/Delete.cshtml.cs* files. The following highlighted code shows the changes:
+
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Movies/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
+
+The previous code only detects concurrency expections when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit changes or delete).
+
+To test the `catch` block:
+
+* Set a breakpoint on `catch (DbUpdateConcurrencyException)`
+* Edit a movie (select either the **Edit** or **Delete** links).
+* In another browser window, select the **Delete** link for the same movie, and then delete the movie.
+* In the previous browser, make changes to the movie (if you selected **Edit**), or delete the movie.
+
+Production code would generally detect concurrency conflicts when two or more clients update a record. See [Handling concurrency conflicts](xref:data/ef-mvc/concurrency) for more information.
+
+### Posting and binding review
+
+Examine the *Pages/Movies/Edit.cshtml.cs* file:
+
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Movies/Edit.cshtml.cs?name=snippet2)]
+
+When a HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
+
+* The `OnGetAsync` method fetches the movie from the database and returns the `Page` method. 
+* The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the the movie model available on the page.
+* The Edit form is displayed with the values from the movie.
+
+When a HTTP Post request is made to the Movies/Edit page:
+
+* The form values on the page are bound to the `Movie` property. The `[BindProperty]` attribute enables [Model binding](xref:mvc/models/model-binding).
+* If there are erros in the model state (for example, `ReleaseDate` cannot be converted to a date, the form is posted again with the submitted values.
+* If there are no model errors, the movie is saved.
+
+```csharp
+[BindProperty]
+public Movie Movie { get; set; }
+``
+
+The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP PUT `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method inn the Edit Razor Page.
 
 >[!div class="step-by-step"]
 [Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
