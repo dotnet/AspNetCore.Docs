@@ -23,6 +23,7 @@ namespace HttpSysDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                #region snippet_Options
                 .UseHttpSys(options =>
                 {
                     options.Authentication.Schemes = AuthenticationSchemes.None;
@@ -31,6 +32,7 @@ namespace HttpSysDemo
                     options.MaxRequestBodySize = 30000000;
                     options.UrlPrefixes.Add("http://localhost:5000");
                 })
+                #endregion
                 .Build();
         #endregion
     }

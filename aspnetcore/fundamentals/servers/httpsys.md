@@ -75,7 +75,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * Call the `UseHttpSys` extension method on `WebHostBuilder` in your `Main` method, specifying any [HttpSys options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) that you need, as shown in the following example:
 
-  [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-20)]
+  [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=11-19)]
 
 ### Configure HttpSys options
 
@@ -83,15 +83,15 @@ Here are some of the HttpSys settings and limits that you can configure.
 
 **Maximum client connections**
 
-The maximum number of concurrent open TCP connections can be set for the entire application with the following code:
+The maximum number of concurrent open TCP connections can be set for the entire application with the following code in *Program.cs*:
 
-[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=17)]
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Options&highlight=5)]
 
 The maximum number of connections is unlimited (null) by default.
 
 **Maximum request body size**
 
-The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB. 
+The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB.
 
 The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
 
@@ -102,21 +102,21 @@ public IActionResult MyActionMethod()
 
 Here's an example that shows how to configure the constraint for the entire application, every request:
 
-[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=18)]
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Options&highlight=6)]
 
-You can also override the setting on a specific request in *Startup.cs*, as shown here:
+You can override the setting on a specific request in *Startup.cs*:
 
 [!code-csharp[](httpsys/sample/Startup.cs?name=snippet_Configure&highlight=9-10)]
  
 An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There's an `IsReadOnly` property that tells you if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-For information about other HttpSys options, see [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) and [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs). 
+For information about other HttpSys options, see [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). 
 
 ### Configure URLs and ports to listen on 
 
 By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseUrls` extension method, the `urls` command-line argument, the ASPNETCORE_URLS environment variable, or the `UrlPrefixes` property on [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). The following code example uses `UrlPrefixes`.
 
-[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-18)]
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=17)]
 
 An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
 

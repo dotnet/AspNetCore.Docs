@@ -94,12 +94,6 @@ If you need to configure Kestrel options, call `UseKestrel` in *Program.cs* as s
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
 
-For more information about Kestrel settings, see the following classes:
-
-* [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs)
-* [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs)
-* [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs)
-
 ---
 
 ### Kestrel options
@@ -143,7 +137,7 @@ Here's an example that shows how to configure the constraint for the entire appl
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=5)]
 
-You can also override the setting on a specific request as shown here:
+You can also override the setting on a specific request in the `Configure` method of *Startup.cs*:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=3-4)]
  
@@ -155,17 +149,21 @@ Kestrel checks every second if data is coming in at the specified rate in bytes/
 
 The default minimum rate is 240 bytes/second, with a 5 second grace period.
 
-Here's an example that shows how to configure the minimum request rate:
+Here's an example that shows how to configure the minimum request rate in *Program.cs*:
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=6-7)]
 
-You can configure the rate per request:
+You can configure the rate per request in *Startup.cs*:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-6)]
 
 You can also set the minimum data rate for the response. The property and interface names have `Response` in place of `RequestBody`; otherwise the code to configure this limit is the same. 
 
-For information about other Kestrel options, see [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) and [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs). 
+For information about other Kestrel options, see the following classes:
+
+* [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs)
+* [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs)
+* [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs)
 
 ---
 
@@ -177,13 +175,13 @@ By default ASP.NET Core binds to `http://localhost:5000`. You can configure URL 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-By default ASP.NET Core binds to `http://localhost:5000`. You configure URL prefixes and ports for Kestrel to listen on by calling `Listen` or `ListenUnixSocket` methods on `KestrelServerOptions`. (`UseUrls` and the `urls` command-line argument also work but have the limitations noted [later in this article](#useurls-limitations).)
+By default ASP.NET Core binds to `http://localhost:5000`. You configure URL prefixes and ports for Kestrel to listen on by calling `Listen` or `ListenUnixSocket` methods on `KestrelServerOptions`. (`UseUrls`, the `urls` command-line argument, and the ASPNETCORE_URLS environment variable also work but have the limitations noted [later in this article](#useurls-limitations).)
 
 **Bind to a TCP socket**
 
 The `Listen` method binds to a TCP socket, and an options lambda lets you configure an SSL certificate:
 
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=10-17)]
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=19-16)]
 
 Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints. 
 
@@ -342,12 +340,12 @@ For more information, see the following resources:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-* [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
+* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-* [Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+* [Sample app for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 ---

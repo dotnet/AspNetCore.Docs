@@ -50,7 +50,7 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
 
-For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
+For information about when to use Kestrel with a reverse proxy, see [Introduction to Kestrel](kestrel.md).
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -63,7 +63,6 @@ You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Ngi
 Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
 
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
-
 ---
 
 You can't use IIS, Nginx, or Apache without Kestrel or a [custom server implementation](#custom-servers). ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be essentially the same no matter where you deploy.
@@ -122,17 +121,20 @@ If the built-in servers don't meet your needs, you can create a custom server im
 
 For more information, see the following resources:
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
 - [Kestrel with Nginx](../../publishing/linuxproduction.md)
 - [Kestrel with Apache](../../publishing/apache-proxy.md)
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
 - [WebListener](weblistener.md)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
+- [Kestrel](kestrel.md)
+- [Kestrel with IIS](aspnet-core-module.md)
+- [Kestrel with Nginx](../../publishing/linuxproduction.md)
+- [Kestrel with Apache](../../publishing/apache-proxy.md)
 - [HttpSys](httpsys.md)
 
 ---

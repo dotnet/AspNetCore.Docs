@@ -53,8 +53,8 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
                 })
-                .Build();
         #endregion
+                .Build();
 #elif FileDescriptor
         public static void Main(string[] args)
         {
@@ -76,8 +76,8 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
                 })
-                .Build();
         #endregion
+                .Build();
 #elif Limits
         public static void Main(string[] args)
         {
@@ -101,8 +101,8 @@ namespace KestrelDemo
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
                 })
-               .Build();
         #endregion
+               .Build();
 #endif
     }
 }
