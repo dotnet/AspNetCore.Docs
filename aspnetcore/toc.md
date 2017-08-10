@@ -76,6 +76,7 @@
 #### [Adding a model](xref:tutorials/razor-pages/model)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 #### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+#### [Updating the pages](xref:tutorials/razor-pages/da1)
 
 ### [Create a web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)

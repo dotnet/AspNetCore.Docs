@@ -33,6 +33,7 @@ Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** 
 
 The `ID` field is required by the database for the primary key. 
 
+<a name="dc"></a>
 ### Add a database context class
 
 Add a `DbContext`-derived class to the *Models* folder.
@@ -41,12 +42,14 @@ Add a `DbContext`-derived class to the *Models* folder.
 
 The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
 
+<a name="cs"></a>
 ### Add a database connection string
 
 Add a connection string to the *appsettings.json* file.
 
 [!code-json[Main](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=8-10)]
 
+<a name="reg"></a>
 ###  Register the database context
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
@@ -107,7 +110,7 @@ Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 ```console
 dotnet aspnet-codegenerator razorpage -h
 ```
-
+<a name="test"></a>
 ### Test the app
 
 * Run the app and append `/Movie` to the URL in the browser (`http://localhost:port/movie`).
