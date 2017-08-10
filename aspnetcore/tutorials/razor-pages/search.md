@@ -59,12 +59,48 @@ However, you can't expect users to modify the URL every time they want to search
 
 Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
-[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-21)]
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When you submit the form, the filter string is posted to the Pages/Movies/Index Razor Page. Save your changes and test the filter.
 
 ![Index view with the word ghost typed into the Title filter textbox](../../tutorials/first-mvc-app/search/_static/filter.png)
+
+## Adding Search by genre
+
+Add the the following highlighted properties to the *Pages/Movies/Index.cshtml.cs* file:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
+
+The `SelectList Genres` containing the list of genres. This will allow the user to select a genre from the list.
+
+The `MovieGenre` property contains the selected genre.
+
+Update the `OnGetAsync` method with the following code:
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
+
+The following code is a `LINQ` query that retrieves all the genres from the database.
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
+
+The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
+
+## Adding search by genre to the Index view
+
+Update `Index.cshtml` as follows:
+
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18)]
+
+Examine the lambda expression used in the following HTML Helper:
+
+`@Html.DisplayNameFor(model => model.Movies[0].Title))`
+ 
+In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. Since the lambda expression is inspected rather than evaluated, you don't receive an access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
+
+Test the app by searching by genre, by movie title, and by both.
+
 
 >[!div class="step-by-step"]
 [Previous Updating the pages](xref:tutorials/razor-pages/da1)
