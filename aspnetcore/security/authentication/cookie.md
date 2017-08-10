@@ -43,15 +43,17 @@ Complete the following steps:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Complete the following steps in the *Startup.cs* file:
+Complete the following steps:
 
-- Invoke the `UseAuthentication` method in the `Configure` method:
+- If targeting .NET Framework, install version 2.0+ of the `Microsoft.AspNetCore.Authentication.Cookies` NuGet package in your project.
+
+- Invoke the `UseAuthentication` method in the `Configure` method of the *Startup.cs* file:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method before the `app.UseMvc()` statement:
+- Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method of the *Startup.cs* file:
 
     ```csharp
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
