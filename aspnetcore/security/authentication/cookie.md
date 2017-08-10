@@ -1,8 +1,8 @@
 ---
 title: Using Cookie Middleware without ASP.NET Core Identity
 author: rick-anderson
-description: 
-keywords: ASP.NET Core
+description: An explanation of using cookie middleware without ASP.NET Core Identity
+keywords: ASP.NET Core,cookies
 ms.author: riande
 manager: wpickett
 ms.date: 08/10/2017
@@ -239,11 +239,9 @@ The `CookieAuthenticationOptions` class comes with various configuration options
 
 ## Persistent cookies and absolute expiry times
 
-You may want the cookie expiry to persist across browser sessions and want an absolute expiry to the identity and the cookie transporting it. You can do these things by using the `AuthenticationProperties` parameter on the `SignInAsync` method called when [signing in an identity and creating the cookie](xref:security/authentication/cookie#security-authentication-cookie-middleware-creating-a-cookie). The `AuthenticationProperties` class is in the `Microsoft.AspNetCore.Http.Authentication` namespace.
+You may want the cookie expiry to persist across browser sessions and want an absolute expiry to the identity and the cookie transporting it. You can do these things by using the `AuthenticationProperties` parameter on the `SignInAsync` method called when [signing in an identity and creating the cookie](xref:security/authentication/cookie#security-authentication-cookie-middleware-creating-a-cookie). For example:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-For example:
 
 ```csharp
 await HttpContext.Authentication.SignInAsync(
@@ -255,9 +253,9 @@ await HttpContext.Authentication.SignInAsync(
     });
 ```
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+The `AuthenticationProperties` class, used in the preceding code snippet, resides in the `Microsoft.AspNetCore.Http.Authentication` namespace.
 
-For example:
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 await HttpContext.SignInAsync(
@@ -268,6 +266,8 @@ await HttpContext.SignInAsync(
         IsPersistent = true
     });
 ```
+
+The `AuthenticationProperties` class, used in the preceding code snippet, resides in the `Microsoft.AspNetCore.Authentication` namespace.
 
 ---
 
