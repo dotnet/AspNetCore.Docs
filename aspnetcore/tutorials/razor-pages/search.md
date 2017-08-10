@@ -87,6 +87,8 @@ The `SelectList` of genres is created by projecting the distinct genres (we don'
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
+
 ## Adding search by genre to the Index view
 
 Update `Index.cshtml` as follows:
