@@ -85,9 +85,17 @@ The following code is a `LINQ` query that retrieves all the genres from the data
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
+<!-- BUG in OPS 
+Tag snippet_selectlist's start line '75' should be less than end line '29' when resolving "[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]"
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
+There is no start line.
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
+-->
+
+```csharp
+Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+```
 
 ## Adding search by genre to the Index view
 
