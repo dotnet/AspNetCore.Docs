@@ -29,11 +29,11 @@ Install the `Microsoft.AspNetCore.Authentication.Cookies` NuGet package in your 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions()
 {
-    AuthenticationScheme = "MyCookieMiddlewareInstance",
-    LoginPath = "/Account/Unauthorized/",
     AccessDeniedPath = "/Account/Forbidden/",
+    AuthenticationScheme = "MyCookieMiddlewareInstance",
     AutomaticAuthenticate = true,
-    AutomaticChallenge = true
+    AutomaticChallenge = true,
+    LoginPath = "/Account/Unauthorized/"
 });
 ```
 
@@ -52,24 +52,24 @@ Complete the following steps in the *Startup.cs* file:
     ```csharp
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => {
-                options.LoginPath = "/Account/Unauthorized/";
                 options.AccessDeniedPath = "/Account/Forbidden/";
+                options.LoginPath = "/Account/Unauthorized/";
             });
     ```
 
 ---
 
-The code snippet above configures the following options:
-
-* `AuthenticationScheme` - this is a value by which the middleware is known. This is useful when there are multiple instances of middleware and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
-
-* `LoginPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but has not been authenticated.
+The code snippets above configure some or all of the following options:
 
 * `AccessDeniedPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but does not pass any [authorization policies](xref:security/authorization/policies#security-authorization-policies-based) for that resource.
+
+* `AuthenticationScheme` - this is a value by which the middleware is known. This is useful when there are multiple instances of middleware and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
 
 * `AutomaticAuthenticate` - this flag indicates that the middleware should run on every request and attempt to validate and reconstruct any serialized principal it created.
 
 * `AutomaticChallenge` - this flag indicates that the middleware should redirect the browser to the `LoginPath` or `AccessDeniedPath` when authorization fails.
+
+* `LoginPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but has not been authenticated.
 
 [Other options](xref:security/authentication/cookie#security-authentication-cookie-options) include the ability to set the issuer for any claims the middleware creates, the name of the cookie the middleware drops, the domain for the cookie and various security properties on the cookie. By default, the cookie middleware will use appropriate security options for any cookies it creates, setting HTTPONLY to avoid the cookie being accessible in client-side JavaScript and limiting the cookie to HTTPS if a request has traveled over HTTPS.
 
