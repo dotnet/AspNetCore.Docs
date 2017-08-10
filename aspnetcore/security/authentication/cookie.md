@@ -71,13 +71,15 @@ The code snippets above configure some or all of the following options:
 
 * `LoginPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but has not been authenticated.
 
-[Other options](xref:security/authentication/cookie#security-authentication-cookie-options) include the ability to set the issuer for any claims the middleware creates, the name of the cookie the middleware drops, the domain for the cookie and various security properties on the cookie. By default, the cookie middleware will use appropriate security options for any cookies it creates, setting HTTPONLY to avoid the cookie being accessible in client-side JavaScript and limiting the cookie to HTTPS if a request has traveled over HTTPS.
+[Other options](xref:security/authentication/cookie#security-authentication-cookie-options) include the ability to set the issuer for any claims the middleware creates, the name of the cookie the middleware drops, the domain for the cookie and various security properties on the cookie. By default, the cookie middleware will use appropriate security options for any cookies it creates, such as:
+- Setting the HttpOnly flag to prevent cookie access in client-side JavaScript
+- Limiting the cookie to HTTPS if a request has traveled over HTTPS
 
 <a name="security-authentication-cookie-middleware-creating-a-cookie"></a>
 
 ## Creating an Identity cookie
 
-To create a cookie holding your user information, you must construct a [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal*, call the following inside your controller method:
+To create a cookie holding your user information, you must construct a [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) holding the information you wish to be serialized in the cookie. Once you have a suitable `ClaimsPrincipal` object, call the following inside your controller method:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -95,7 +97,7 @@ await HttpContext.SignInAsync("MyCookieMiddlewareInstance", principal);
 
 This will create an encrypted cookie and add it to the current response. The `AuthenticationScheme` specified during [configuration](xref:security/authentication/cookie#security-authentication-cookie-middleware-configuring) must also be used when calling `SignInAsync`.
 
-Under the covers, the encryption used is ASP.NET's [Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) system. If you are hosting on multiple machines, load balancing, or using a web farm, then you will need to [configure data protection](xref:security/data-protection/configuration/overview#data-protection-configuring) to use the same key ring and application identifier.
+Under the covers, the encryption used is ASP.NET Core's [Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) system. If you are hosting on multiple machines, load balancing, or using a web farm, then you will need to [configure data protection](xref:security/data-protection/configuration/overview#data-protection-configuring) to use the same key ring and application identifier.
 
 ## Signing out
 
