@@ -24,18 +24,22 @@ ASP.NET Core provides cookie [middleware](../../fundamentals/middleware.md#funda
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Install the `Microsoft.AspNetCore.Authentication.Cookies` NuGet package in your project. This package contains the cookie middleware. Then add the following lines to the `Configure` method in your *Startup.cs* file before the `app.UseMvc()` statement:
+Complete the following steps:
 
-```csharp
-app.UseCookieAuthentication(new CookieAuthenticationOptions()
-{
-    AccessDeniedPath = "/Account/Forbidden/",
-    AuthenticationScheme = "MyCookieMiddlewareInstance",
-    AutomaticAuthenticate = true,
-    AutomaticChallenge = true,
-    LoginPath = "/Account/Unauthorized/"
-});
-```
+- Install the `Microsoft.AspNetCore.Authentication.Cookies` NuGet package in your project. This package contains the cookie middleware.
+
+- Add the following lines to the `Configure` method in your *Startup.cs* file before the `app.UseMvc()` statement:
+
+    ```csharp
+    app.UseCookieAuthentication(new CookieAuthenticationOptions()
+    {
+        AccessDeniedPath = "/Account/Forbidden/",
+        AuthenticationScheme = "MyCookieMiddlewareInstance",
+        AutomaticAuthenticate = true,
+        AutomaticChallenge = true,
+        LoginPath = "/Account/Unauthorized/"
+    });
+    ```
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
