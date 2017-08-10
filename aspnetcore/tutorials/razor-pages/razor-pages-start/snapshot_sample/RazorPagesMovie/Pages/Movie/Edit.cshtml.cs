@@ -10,6 +10,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+#region snippet2
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Models.MovieContext _context;
@@ -19,7 +20,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-       [BindProperty]
+        [BindProperty]
         public Movie Movie { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -37,7 +38,8 @@ namespace RazorPagesMovie.Pages.Movies
             }
             return Page();
         }
-
+        
+        #region snippet1
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -67,5 +69,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
+#endregion
 }
