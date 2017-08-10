@@ -2,7 +2,7 @@
 title: Updating the generated pages
 author: rick-anderson
 description: Updating the generated pages with better display.
-keywords: ASP.NET Core, Razor Pages
+keywords: ASP.NET Core,Razor Pages
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
@@ -26,7 +26,7 @@ Open the *Models/Movie.cs* file and add the highlighted lines shown in the follo
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDate.cs?name=snippet_1&highlight=10-11)]
 
-Right click on a red squiggly line **> Quick Actions and Refactorings**.
+Right click on a red squiggly line > ** Quick Actions and Refactorings**.
 
   ![Contextual menu shows **> Quick Actions and Refactorings**.](da1/qa.png)
 
@@ -39,7 +39,7 @@ Select `using System.ComponentModel.DataAnnotations;`
 
 We'll cover [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) in the next tutorial. The [Display](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.displayattribute.aspx) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attribute specifies the type of the data (Date), so the time information stored in the field is not displayed.
 
-Browse to `Pages/Movies` and hold the mouse pointer over an **Edit** link to see the target URL.
+Browse to Pages/Movies and  hover over an **Edit** link to see the target URL.
 
 ![Browser window with mouse over the Edit link and a link Url of http://localhost:1234/Movies/Edit/5 is shown](da1/edit7.png)
 
@@ -61,7 +61,7 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 
 ```
 
-The dynamically generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). 
+The dynamically-generated links pass the movie ID with a query string (for example, `http://localhost:5000/Movies/Details?id=2` ). 
 
 Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
 
@@ -73,7 +73,7 @@ Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route tem
 </td>
 ```
 
-A request to the page with the "{id:int}" route template that does **not** include the integer will return a HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route template:
+A request to the page with the "{id:int}" route template that does **not** include the integer will return a HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the routing constraint:
 
  ```cshtml
 @page "{id:int?}"
@@ -85,7 +85,7 @@ Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Page
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
-The previous code only detects concurrency exceptions when the first concurrent client deletes the movie and the 2nd concurrent client posts changes to the movie (either edit or delete).
+The previous code only detects concurrency exceptions when the first concurrent client deletes the movie, and the second concurrent client posts changes to the movie (either edit or delete).
 
 To test the `catch` block:
 
@@ -116,10 +116,10 @@ When the Movies/Edit page is posted:
 public Movie Movie { get; set; }
 ```
 
-* If there are erros in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is posted again with the submitted values.
+* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is posted again with the submitted values.
 * If there are no model errors, the movie is saved.
 
-The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method inn the Edit Razor Page.
+The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
 
 >[!div class="step-by-step"]
 [Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)

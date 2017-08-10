@@ -38,6 +38,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             return Page();
         }
+        
         #region snippet1
         public async Task<IActionResult> OnPostAsync()
         {
