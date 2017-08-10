@@ -22,7 +22,7 @@ In this section you add search capability to the `Index` action method that lets
 
 Update the `Index` method with the following code:
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Pages\Movies\Index.cshtml.cs?name=snippet_1stSearch)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/library/bb397926.aspx) query to select the movies:
 
@@ -35,7 +35,7 @@ The query is *only* defined at this point, it has **not** been run against the d
 
 If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string:
 
-[!code-csharp[Main](razor-pages-start\sample\RazorPagesMovie\Pages\Movies\Index.cshtml.cs?name=snippet_SearchNull)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
 The `s => s.Title.Contains()` code is a [Lambda Expression](http://msdn.microsoft.com/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/library/system.linq.enumerable.where.aspx) method or `Contains` (used in the preceeding code). LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/library/bb738633.aspx).
 
@@ -60,7 +60,7 @@ However, you can't expect users to modify the URL every time they want to search
 Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
 [!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
-[!code-cshtml[Main](razor-pages-start\sample\RazorPagesMovie\Pages\Movie\Index2.cshtml?highlight=14-19&range=1-21)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-21)]
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When you submit the form, the filter string is posted to the Pages/Movies/Index Razor Page. Save your changes and test the filter.
 
