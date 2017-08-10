@@ -44,6 +44,8 @@ Microsoft Ajax Content Delivery Network
  [ASP.NET MVC Releases on the CDN](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [ASP.NET SignalR Releases on the CDN](#ASPNET_SignalR_Releases_on_the_CDN_17)
 
+**Note: The Microsoft Ajax CDN is not intended for production scenarios.**
+
 The Microsoft Ajax Content Delivery Network (CDN) hosts popular third party JavaScript libraries such as jQuery and enables you to easily add them to your Web applications. For example, you can start using jQuery which is hosted on this CDN simply by adding a &lt;script&gt; tag to your page that points to ajax.aspnetcdn.com.
 
 By taking advantage of the CDN, you can significantly improve the performance of your Ajax applications. The contents of the CDN are cached on servers located around the world. In addition, the CDN enables browsers to reuse cached third party JavaScript files for web sites that are located in different domains.
