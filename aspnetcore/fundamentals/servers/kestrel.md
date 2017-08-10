@@ -181,7 +181,7 @@ By default ASP.NET Core binds to `http://localhost:5000`. You configure URL pref
 
 The `Listen` method binds to a TCP socket, and an options lambda lets you configure an SSL certificate:
 
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=19-16)]
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
 
 Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints. 
 
