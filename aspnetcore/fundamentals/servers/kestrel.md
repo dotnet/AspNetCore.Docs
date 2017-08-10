@@ -29,11 +29,11 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
+[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+[View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
 
 ---
 
@@ -49,25 +49,28 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
+A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. The 1.x versions of Kestrel don't have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If your application accepts requests only from an internal network, you can use Kestrel by itself.
+You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
-![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
-
-If you expose your application to the Internet, you can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
-
-![Kestrel communicates directly to the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
+Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
+
 ---
 
-A scenario that requires a reverse proxy is when you have multiple applications that share the same port running on a single server. That doesn't work with Kestrel directly because Kestrel doesn't support sharing a port between multiple processes. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header. A reverse proxy that can share ports must then forward to Kestrel on a unique port.
+A scenario that requires a reverse proxy is when you have multiple applications that share the same IP and port running on a single server. That doesn't work with Kestrel directly because Kestrel doesn't support sharing the same IP and port between multiple processes. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header. A reverse proxy that can share ports must then forward to Kestrel on a unique IP and port.
 
-Even if a reverse proxy server isn't required, using one can simplify load balancing and SSL set-up -- only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.
+Even if a reverse proxy server isn't required, using one might be a good choice for other reasons:
+
+* It can limit your exposed surface area.
+* It provides an optional additional layer of configuration and defense.
+* It might integrate better with existing infrastructure.
+* It simplifies load balancing and SSL set-up. Only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.
 
 ## How to use Kestrel in ASP.NET Core apps
 
@@ -77,7 +80,7 @@ Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages
 
 Call the [UseKestrel](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the next section.
 
-[!code-csharp[](kestrel/sample/Program.cs?name=snippet_Main&highlight=13-19)]
+[!code-csharp[](kestrel/sample1/Program.cs?name=snippet_Main&highlight=13-19)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -87,20 +90,15 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the temp
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
-If you use the template code, configure Kestrel options in the `ConfigureServices` method of *Startup.cs*:
+If you need to configure Kestrel options, call `UseKestrel` in *Program.cs* as shown in the following example:
 
-[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_KestrelOptions&highlight=3-4)]
-
-If you don't use `CreateDefaultBuilder`, call `UseKestrel` in *Program.cs* and configure options at the same time:
-
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Main&highlight=13-20)]
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
 
 For more information about Kestrel settings, see the following classes:
 
 * [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs)
 * [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs)
 * [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs)
-
 
 ---
 
@@ -118,36 +116,44 @@ The Kestrel web server has constraint configuration options that are especially 
 - Maximum request body size
 - Minimum request body data rate
 
-You set these constraints and others in the The `Limits` property of the [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) class. The `Limits` property holds an instance of the [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs) class. 
+You set these constraints and others in the `Limits` property of the [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) class. The `Limits` property holds an instance of the [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs) class. 
 
 **Maximum client connections**
 
-The maximum number of concurrent open HTTP/HTTPS connections can be set for the entire application with the following code:
+The maximum number of concurrent open TCP connections can be set for the entire application with the following code:
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=3-4)]
 
-There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.
+There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit. 
+
+The maximum number of connections is unlimited (null) by default.
 
 **Maximum request body size**
 
-The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB. Here's an example that shows how to configure the constraint for the entire application:
+The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB. 
 
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=5)]
-
-This affects every request. The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
+The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
 
 ```csharp
 [RequestSizeLimit(100000000)]
 public IActionResult MyActionMethod()
 ```
 
+Here's an example that shows how to configure the constraint for the entire application, every request:
+
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=5)]
+
 You can also override the setting on a specific request as shown here:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=3-4)]
  
-An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There's an `IsReadOnly` property that tells you if the request body is in read-only state, meaning it's too late to configure the limit.
+An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There's an `IsReadOnly` property that tells you if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
 **Minimum request body data rate**
+
+Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
+
+The default minimum rate is 240 bytes/second, with a 5 second grace period.
 
 Here's an example that shows how to configure the minimum request rate:
 
@@ -157,7 +163,7 @@ You can configure the rate per request:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-6)]
 
-Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
+You can also set the minimum data rate for the response. The property and interface names have `Response` in place of `RequestBody`; otherwise the code to configure this limit is the same. 
 
 For information about other Kestrel options, see [KestrelServerOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs) and [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs). 
 
@@ -177,7 +183,7 @@ By default ASP.NET Core binds to `http://localhost:5000`. You configure URL pref
 
 The `Listen` method binds to a TCP socket, and an options lambda lets you configure an SSL certificate:
 
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Main&highlight=13-20)]
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=10-17)]
 
 Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints. 
 
@@ -197,7 +203,7 @@ If you specify port number 0, Kestrel dynamically binds to an available port. Th
 
 **UseUrls limitations**
 
-You can configure endpoints by calling the `UseUrls` method or using the `urls` command-line argument. These methods are useful if you want your code to work with servers other than Kestrel. However, be aware of these limitations:
+You can configure endpoints by calling the `UseUrls` method or using the `urls` command-line argument or the ASPNETCORE_URLS environment variable. These methods are useful if you want your code to work with servers other than Kestrel. However, be aware of these limitations:
 
 * You can't use SSL with these methods.
 * If you use both the `Listen` method and `UseUrls`, the `Listen` endpoints override the `UseUrls` endpoints.
@@ -210,7 +216,7 @@ If you use IIS, the URL bindings for IIS override any bindings that you set by c
 
 ### URL prefixes
 
-If you call `UseUrls` or use the `urls` command-line argument, the URL prefixes can be in any of the following formats. 
+If you call `UseUrls` or use the `urls` command-line argument  or ASPNETCORE_URLS environment variable, the URL prefixes can be in any of the following formats. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -267,7 +273,7 @@ If you specify port number 0, Kestrel dynamically binds to an available port. Bi
 
 The following example shows how to determine which port Kestrel actually bound to at runtime:
 
-[!code-csharp[](kestrel/sample/Startup.cs?name=snippet_Configure)]
+[!code-csharp[](kestrel/sample1/Startup.cs?name=snippet_Configure)]
 
 **URL prefixes for SSL**
 
@@ -317,7 +323,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://*:80/
   ```
 
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HttpSys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 
 * "Localhost" name with port number or loopback IP with port number
 

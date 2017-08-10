@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -17,22 +15,6 @@ namespace KestrelDemo
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
-        {
-            Configuration = new ConfigurationBuilder()
-                .AddEnvironmentVariables()
-                .Build();
-        }
-
-        public IConfigurationRoot Configuration { get; private set; }
-
-        #region snippet_KestrelOptions
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.Configure<KestrelServerOptions>(options =>
-                options.Limits.MaxConcurrentConnections = 100);
-        }
-        #endregion
 #if Default
         #region snippet_Configure
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

@@ -89,17 +89,13 @@ The `UseIISIntegration` method looks for environment variables that ANCM sets, a
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port at `http://localhost:5000`.
-
-If you need to set the port for when you run the app without IIS, you can call `UseUrls`. The port that you specify will take effect because `IISIntegration` no-ops without IIS. But when you run with IIS, the port specified by ANCM will override the port you passed to `UseUrls`.
+ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. If you do call `UseUrls`, Kestrel listens on the port you specify when you run the app without IIS.
 
 In ASP.NET Core 1.0, if you call `UseUrls`, call it **before** you call `UseIISIntegration` so that the ANCM-configured port doesn't get overwritten. This calling order isn't required in ASP.NET Core 1.1, because the ANCM setting overrides `UseUrls`.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls` or [Kestrel's Listen API](xref:fundamentals/servers/kestrel#endpoint-configuration). Therefore, you don't need to call `UseUrls` or Kestrel's `Listen` API when you use ANCM. When you run the app without IIS, it listens on the default port at `http://localhost:5000`.
-
-If you need to set the port when you run the app without IIS, you can call `UseUrls` or Kestrel's `Listen` API.  The port that you specify will take effect because `UseIISIntegration` no-ops without IIS. But when you run with IIS, the port specified by ANCM overrides the port you passed to `UseUrls` or Kestrel's `Listen` API.
+ANCM generates a dynamic port to assign to the back-end process. The `UseIISIntegration` method picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overrides other URL configurations, such as calls to `UseUrls` or [Kestrel's Listen API](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#endpoint-configuration). Therefore, you don't need to call `UseUrls` or Kestrel's `Listen` API when you use ANCM. If you do call `UseUrls` or `Listen`, Kestrel listens on the port you specify when you run the app without IIS.
 
 ---
 

@@ -45,7 +45,7 @@ HttpSys is useful for deployments where you need to expose the server directly t
 
 Because it's built on Http.Sys, HttpSys doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
 
-HttpSys is a good choice for internal deployments when you need a feature not available in Kestrel.
+HttpSys is a good choice for internal deployments when you need a feature not available in Kestrel, such as Windows authentication.
 
 ![HttpSys communicates directly with your internal network](httpsys/_static/httpsys-to-internal.png)
 
@@ -69,40 +69,79 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
 There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820129).
 
-### Configure your ASP.NET Core application
+### Configure your ASP.NET Core application to use HttpSys
 
 * No package install is needed if you use the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage. The [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/) package is included in the metapackage.
 
-* Call the `UseHttpSys` extension method on `WebHostBuilder` in your `Main` method, specifying any HttpSys [options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) that you need, as shown in the following example:
+* Call the `UseHttpSys` extension method on `WebHostBuilder` in your `Main` method, specifying any [HttpSys options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) that you need, as shown in the following example:
 
-  [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-18)]
+  [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-20)]
 
-* Configure URLs and ports to listen on 
+### Configure HttpSys options
 
-  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseUrls` extension method, the `urls` command-line argument, or the `UrlPrefixes` property on [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). The preceding code example uses `UrlPrefixes`.
+Here are some of the HttpSys settings and limits that you can configure.
 
-  An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
+**Maximum client connections**
 
-  If you use both `UseUrls` and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](xref:fundamentals/hosting).
+The maximum number of concurrent open TCP connections can be set for the entire application with the following code:
 
-  HttpSys uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to HttpSys.
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=17)]
 
-  > [!NOTE]
-  > Make sure that you specify the same prefix strings in `UseUrls` or `UrlPrefixes` that you preregister on the server. 
+The maximum number of connections is unlimited (null) by default.
 
-* Make sure your application isn't configured to run IIS or IIS Express.
+**Maximum request body size**
 
-  In Visual Studio, the default launch profile is for IIS Express. To run the project as a console application, manually change the selected profile, as shown in the following screen shot.
+The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB. 
 
-  ![Select console app profile](HttpSys/_static/vs-choose-profile.png)
+The recommended way to override the limit in an ASP.NET Core MVC app is to use the [RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs) attribute on an action method:
+
+```csharp
+[RequestSizeLimit(100000000)]
+public IActionResult MyActionMethod()
+```
+
+Here's an example that shows how to configure the constraint for the entire application, every request:
+
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=18)]
+
+You can also override the setting on a specific request in *Startup.cs*, as shown here:
+
+[!code-csharp[](httpsys/sample/Startup.cs?name=snippet_Configure&highlight=9-10)]
+ 
+An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There's an `IsReadOnly` property that tells you if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
+
+For information about other HttpSys options, see [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs) and [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs). 
+
+### Configure URLs and ports to listen on 
+
+By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseUrls` extension method, the `urls` command-line argument, the ASPNETCORE_URLS environment variable, or the `UrlPrefixes` property on [HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs). The following code example uses `UrlPrefixes`.
+
+[!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=13-18)]
+
+An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
+
+If you use both `UseUrls` (or `urls` or ASPNETCORE_URLS) and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](xref:fundamentals/hosting).
+
+HttpSys uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx).
+
+> [!NOTE]
+> Make sure that you specify the same prefix strings in `UseUrls` or `UrlPrefixes` that you preregister on the server. 
+
+### Don't use IIS
+
+Make sure your application isn't configured to run IIS or IIS Express.
+
+In Visual Studio, the default launch profile is for IIS Express. To run the project as a console application, manually change the selected profile, as shown in the following screen shot.
+
+![Select console app profile](HttpSys/_static/vs-choose-profile.png)
 
 ## Preregister URL prefixes and configure SSL
 
 Both IIS and HttpSys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, you need to configure Http.Sys yourself. The built-in tool for doing that is *netsh.exe*. 
 
-With *netsh.exe* you can reserve URL prefixes and assign SSL certificates.
+With *netsh.exe* you can reserve URL prefixes and assign SSL certificates. The tool requires administrative privileges.
 
-It's not an easy tool to use. The following example shows the minimum needed to reserve URL prefixes for ports 80 and 443:
+The following example shows the minimum needed to reserve URL prefixes for ports 80 and 443:
 
 ```console
 netsh http add urlacl url=http://+:80/ user=Users

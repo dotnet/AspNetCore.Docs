@@ -29,7 +29,9 @@ The host is responsible for application startup and lifetime management. The ser
 
 ## Setting up a Host
 
-You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main`, (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, demonstrates how to use a `WebHostBuilder` to build a host.
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main` (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, demonstrates how to use a `WebHostBuilder` to build a host.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=14,15,16,17,18,19,20,21)]
 
@@ -39,6 +41,34 @@ The server's *content root* determines where it searches for content files, like
 
 > [!NOTE]
 > Specifying `Directory.GetCurrentDirectory` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling `dotnet run` from the web project folder). This is the default used in Visual Studio and `dotnet new` templates.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main` (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, calls `CreateDefaultbuilder` to build a host:
+
+[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?highlight=9)]
+
+`CreateDefaultbuilder` creates an instance of `WebHostBuilder` to build the host that bootstraps the server for the app. The host requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HttpSys](servers/httpsys.md); the project templates use Kestrel by default.
+
+`CreateDefaultbuilder` performs set-up tasks in addition to configuring Kestrel as the web server:
+
+* Sets the content root to `Directory.GetCurrentDirectory`.
+* Loads configuration from:
+  * *appsettings.json*
+  * *appsettings.\<EnvironmentName>.json*.
+  * user secrets when the app runs in the Development environment
+  * environment variables
+  * supplied command line args
+* Configures logging for console and debug output, with filtering rules specified in a Logging configuration section.
+* Enables IIS integration.
+* Adds the developer exception page when the app runs in the Development environment.
+
+The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder from which the application is run.
+
+> [!NOTE]
+> Specifying `Directory.GetCurrentDirectory` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling `dotnet run` from the web project folder). This is the default used in Visual Studio and `dotnet new` templates.
+
+---
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

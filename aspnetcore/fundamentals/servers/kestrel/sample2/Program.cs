@@ -1,12 +1,10 @@
-﻿#define DefaultBuilder // or NoDefaultBuilder or Limits or UnixSocket or FileDescriptor
+﻿#define DefaultBuilder // or Limits or UnixSocket or FileDescriptor
 
-using System;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using System.Net;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System;
+using System.Net;
 
 namespace KestrelDemo
 {
@@ -27,47 +25,24 @@ namespace KestrelDemo
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .Build();
-        #endregion
-#elif NoDefaultBuilder
-        #region snippet_Main
-        public static int Main(string[] args)
-        {
-            Console.WriteLine("Running demo with Kestrel.");
-
-            var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .Build();
-
-            var builder = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
-                .UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback,5000);
+                    options.Listen(IPAddress.Loopback, 5000);
                     options.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
-                });
-
-            var host = builder.Build();
-            host.Run();
-        }
+                })
+                .Build();
         #endregion
 #elif UnixSocket
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Running demo with Kestrel.");
+            BuildWebHost(args).Run();
+        }
 
-            var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .Build();
-
-            var builder = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
         #region snippet_UnixSocket
                 .UseKestrel(options =>
@@ -77,24 +52,17 @@ namespace KestrelDemo
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
-                });
-        #endregion
-
-            var host = builder.Build();
-            host.Run();
-        }
-#elif FileDescriptor
-        public static int Main(string[] args)
-        {
-            Console.WriteLine("Running demo with Kestrel.");
-
-            var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
+                })
                 .Build();
+        #endregion
+#elif FileDescriptor
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
 
-            var builder = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
         #region snippet_FileDescriptor
                 .UseKestrel(options =>
@@ -103,51 +71,21 @@ namespace KestrelDemo
                     ulong fd = ulong.Parse(fds);
 
                     options.ListenHandle(fd);
-                    options.ListenHandle(fd, listenOptions => 
+                    options.ListenHandle(fd, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
-                });
-        #endregion
-
-            var host = builder.Build();
-            host.Run();
-        }
-#elif Systemd
-        public static int Main(string[] args)
-        {
-            Console.WriteLine("Running demo with Kestrel.");
-
-            var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
+                })
                 .Build();
-
-            var builder = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
-                .UseStartup<Startup>()
-        #region snippet_Systemd
-                .UseKestrel(options =>
-                {
-                    options.UseSystemd();
-                });
         #endregion
-
-            var host = builder.Build();
-            host.Run();
-        }
 #elif Limits
         public static void Main(string[] args)
         {
-            Console.WriteLine("Running demo with Kestrel.");
+            BuildWebHost(args).Run();
+        }
 
-            var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .Build();
-
-            var builder = new WebHostBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseConfiguration(config)
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
         #region snippet_Limits
                 .UseKestrel(options =>
@@ -155,20 +93,18 @@ namespace KestrelDemo
                     options.Limits.MaxConcurrentConnections = 100;
                     options.Limits.MaxConcurrentUpgradedConnections = 100;
                     options.Limits.MaxRequestBodySize = 10 * 1024;
-                    options.Limits.MinRequestBodyDataRate = 
+                    options.Limits.MinRequestBodyDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
                     options.Listen(IPAddress.Loopback, 5000);
                     options.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
-                });
+                })
+               .Build();
         #endregion
-
-            var host = builder.Build();
-            host.Run();
-        }
 #endif
     }
 }
+
 

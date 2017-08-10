@@ -20,13 +20,15 @@ An ASP.NET Core application runs with an in-process HTTP server implementation. 
 
 ASP.NET Core ships two server implementations:
 
-* [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
-
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+* [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
 * [WebListener](weblistener.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+* [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
 * [HttpSys](httpsys.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
@@ -46,21 +48,19 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and doesn't yet have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
+The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
 
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If your application accepts requests only from an internal network, you can use Kestrel by itself.
+You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
-![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
-
-If you expose your application to the Internet, you can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
-
-![Kestrel communicates directly to the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+
+Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
 
 For information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
 
