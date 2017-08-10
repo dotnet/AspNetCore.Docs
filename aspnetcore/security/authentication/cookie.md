@@ -41,31 +41,31 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions()
 
 Complete the following steps in the *Startup.cs* file:
 
-1. Invoke the `UseAuthentication` method in the `Configure` method:
+- Invoke the `UseAuthentication` method in the `Configure` method:
 
-```csharp
-app.UseAuthentication();
-```
+    ```csharp
+    app.UseAuthentication();
+    ```
 
-2. Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method before the `app.UseMvc()` statement:
+- Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method before the `app.UseMvc()` statement:
 
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options => {
-            options.LoginPath = "/Account/Unauthorized/";
-            options.AccessDeniedPath = "/Account/Forbidden/";
-        });
-```
+    ```csharp
+    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options => {
+                options.LoginPath = "/Account/Unauthorized/";
+                options.AccessDeniedPath = "/Account/Forbidden/";
+            });
+    ```
 
 ---
 
-The code snippet above configures a few options:
+The code snippet above configures the following options:
 
-* `AuthenticationScheme` - this is a value by which the middleware is known. This is useful when there are multiple instances of middleware and you want to [limit authorization to one instance](../authorization/limitingidentitybyscheme.md#security-authorization-limiting-by-scheme).
+* `AuthenticationScheme` - this is a value by which the middleware is known. This is useful when there are multiple instances of middleware and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
 
 * `LoginPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but has not been authenticated.
 
-* `AccessDeniedPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but does not pass any [authorization policies](../authorization/policies.md#security-authorization-policies-based) for that resource.
+* `AccessDeniedPath` - this is the relative path requests will be redirected to when a user attempts to access a resource but does not pass any [authorization policies](xref:security/authorization/policies#security-authorization-policies-based) for that resource.
 
 * `AutomaticAuthenticate` - this flag indicates that the middleware should run on every request and attempt to validate and reconstruct any serialized principal it created.
 
@@ -75,9 +75,9 @@ The code snippet above configures a few options:
 
 <a name="security-authentication-cookie-middleware-creating-a-cookie"></a>
 
-## Creating an identity cookie
+## Creating an Identity cookie
 
-To create a cookie holding your user information, you must construct a [ClaimsPrincipal](https://msdn.microsoft.com/library/system.security.claims.claimsprincipal(v=vs.110).aspx) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal*, call the following inside your controller method:
+To create a cookie holding your user information, you must construct a [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal*, call the following inside your controller method:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -95,7 +95,7 @@ await HttpContext.SignInAsync("MyCookieMiddlewareInstance", principal);
 
 This will create an encrypted cookie and add it to the current response. The `AuthenticationScheme` specified during [configuration](xref:security/authentication/cookie#security-authentication-cookie-middleware-configuring) must also be used when calling `SignInAsync`.
 
-Under the covers, the encryption used is ASP.NET's [Data Protection](../data-protection/using-data-protection.md#security-data-protection-getting-started) system. If you are hosting on multiple machines, load balancing, or using a web farm, then you will need to [configure data protection](../data-protection/configuration/overview.md#data-protection-configuring) to use the same key ring and application identifier.
+Under the covers, the encryption used is ASP.NET's [Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started) system. If you are hosting on multiple machines, load balancing, or using a web farm, then you will need to [configure data protection](xref:security/data-protection/configuration/overview#data-protection-configuring) to use the same key ring and application identifier.
 
 ## Signing out
 
@@ -221,7 +221,7 @@ Consider the example in which their name has been updated &mdash a decision whic
 
 The `CookieAuthenticationOptions` class comes with various configuration options to enable you to fine-tune the cookies created.
 
-* `ClaimsIssuer` - the issuer to be used for the [Issuer](https://msdn.microsoft.com/library/microsoft.identitymodel.claims.claim.issuer.aspx) property on any claims created by the middleware.
+* `ClaimsIssuer` - the issuer to be used for the [Issuer](https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer) property on any claims created by the middleware.
 
 * `CookieDomain` - the domain name the cookie will be served to. By default, this is the host name the request was sent to. The browser will only serve the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example, setting the cookie domain to `.contoso.com` will make it available to `contoso.com`, `www.contoso.com`, `staging.www.contoso.com`, etc.
 
