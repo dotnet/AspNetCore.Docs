@@ -89,7 +89,7 @@ The app displays the email used to register the new user and a **Log off** link.
 
 ## Deploy the app to Azure
 
-Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running, and deployment can't occur when files are locked because locked files can't be copied.
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
 
 Right-click on the project in Solution Explorer and select **Publish...**.
 

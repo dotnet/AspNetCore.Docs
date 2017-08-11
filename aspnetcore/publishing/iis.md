@@ -144,7 +144,7 @@ If you don't have a *web.config* file in the project when you publish with *dotn
 ## Deploy the application
 Deploy the application to the folder you created on the target IIS system. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
-Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running, and deployment can't occur when files are locked because locked files can't be copied.
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
 
 ### Web Deploy with Visual Studio
 Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
