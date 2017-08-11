@@ -137,7 +137,7 @@ Here's an example that shows how to configure the constraint for the entire appl
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=5)]
 
-You can also override the setting on a specific request in the `Configure` method of *Startup.cs*:
+You can override the setting on a specific request in middleware:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=3-4)]
  
@@ -155,7 +155,7 @@ Here's an example that shows how to configure the minimum data rates in *Program
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=6-9)]
 
-You can configure the rates per request in *Startup.cs*:
+You can configure the rates per request in middleware:
 
 [!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-8)]
 
@@ -183,7 +183,9 @@ The `Listen` method binds to a TCP socket, and an options lambda lets you config
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
 
-Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints. 
+Notice how this example configures SSL for a particular endpoint by using [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs). You can use the same API to configure other Kestrel settings for particular endpoints.
+
+[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
 
 **Bind to a Unix socket**
 
@@ -214,7 +216,7 @@ If you use IIS, the URL bindings for IIS override any bindings that you set by c
 
 ### URL prefixes
 
-If you call `UseUrls` or use the `urls` command-line argument  or ASPNETCORE_URLS environment variable, the URL prefixes can be in any of the following formats. 
+If you call `UseUrls` or use the `urls` command-line argument or ASPNETCORE_URLS environment variable, the URL prefixes can be in any of the following formats. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -291,6 +293,8 @@ var host = new WebHostBuilder()
 
 > [!NOTE]
 > HTTPS and HTTP cannot be hosted on the same port.
+
+[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 

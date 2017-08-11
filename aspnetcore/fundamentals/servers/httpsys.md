@@ -118,7 +118,7 @@ By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefi
 
 [!code-csharp[](HttpSys/sample/Program.cs?name=snippet_Main&highlight=17)]
 
-An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HttpSys. (But this applies only if you don't use SSL, because you can't use SSL with `UseUrls` and Kestrel.)
+An advantage of `UrlPrefixes` is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of `UseUrls` (shared with `urls` and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HttpSys.
 
 If you use both `UseUrls` (or `urls` or ASPNETCORE_URLS) and `UrlPrefixes`, the settings in `UrlPrefixes` override the ones in `UseUrls`. For more information, see [Hosting](xref:fundamentals/hosting).
 
@@ -171,10 +171,7 @@ Here are some third-party tools that can be easier to use than the *netsh.exe* c
 * [HttpSysManager](http://httpsysmanager.codeplex.com/) provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. 
 * [HttpConfig](http://www.stevestechspot.com/ABetterHttpcfg.aspx) lets you list or configure SSL certificates and URL prefixes. The UI is more refined than HttpSysManager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.
 
-For generating self-signed SSL certificates, Microsoft provides command-line tools: [MakeCert.exe](https://msdn.microsoft.com/library/windows/desktop/aa386968) and the PowerShell cmdlet [New-SelfSignedCertificate](https://technet.microsoft.com/library/hh848633). There are also third-party UI tools that make it easier for you to generate self-signed SSL certificates:
-
-* [SelfCert](https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net)
-* [Makecert UI](http://makecertui.codeplex.com/)
+[!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
 
 ## Next steps
 
