@@ -25,6 +25,7 @@
 ### [Kestrel](fundamentals/servers/kestrel.md)
 ### [ASP.NET Core Module](fundamentals/servers/aspnet-core-module.md)
 ### [WebListener](fundamentals/servers/weblistener.md)
+### [HttpSys](fundamentals/servers/httpsys.md)
 ## [Request Features](fundamentals/request-features.md)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)

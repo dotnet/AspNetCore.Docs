@@ -5,7 +5,7 @@ description: Introduction to web hosts in ASP.NET Core.
 keywords: ASP.NET Core, web host, IWebHost
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 08/02/2017
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
@@ -29,7 +29,9 @@ The host is responsible for application startup and lifetime management. The ser
 
 ## Setting up a Host
 
-You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main`, (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, demonstrates how to use a `WebHostBuilder` to build a host.
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main` (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, demonstrates how to use a `WebHostBuilder` to build a host.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=14,15,16,17,18,19,20,21)]
 
@@ -40,10 +42,41 @@ The server's *content root* determines where it searches for content files, like
 > [!NOTE]
 > Specifying `Directory.GetCurrentDirectory` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling `dotnet run` from the web project folder). This is the default used in Visual Studio and `dotnet new` templates.
 
-If the app should work with IIS, the `UseIISIntegration` method should be called as part of building the host. Note that this does not configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. Kestrel is designed to be run behind a proxy and should not be deployed directly facing the Internet. `UseIISIntegration` specifies IIS as the reverse proxy server.
+To use IIS as a reverse proxy, call `UseIISIntegration` as part of building the host. 
+
+Note that `UseIISIntegration` doesn't configure a *server*, like `UseKestrel` does. To use IIS with ASP.NET Core, you must specify both `UseKestrel` and `UseIISIntegration`. `UseKestrel` creates the web server and hosts the app. `UseIISIntegration` examines environment variables used by IIS/IISExpress and configures settings such as the port to listen on and the headers to use.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+You create a host using an instance of `WebHostBuilder`. This is typically done in your app's entry point: `public static void Main` (which in the project templates is located in a *Program.cs* file). A typical *Program.cs*, shown below, calls `CreateDefaultbuilder` to build a host:
+
+[!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=9)]
+
+`CreateDefaultbuilder` creates an instance of `WebHostBuilder` to build the host that bootstraps the server for the app. The host requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HttpSys](servers/httpsys.md); `CreateDefaultbuilder` use Kestrel by default.
+
+`CreateDefaultbuilder` performs set-up tasks in addition to configuring Kestrel as the web server:
+
+* Sets the content root to `Directory.GetCurrentDirectory`.
+* Loads configuration from:
+  * *appsettings.json*
+  * *appsettings.\<EnvironmentName>.json*.
+  * user secrets when the app runs in the Development environment
+  * environment variables
+  * supplied command line args
+* Configures logging for console and debug output, with filtering rules specified in a Logging configuration section.
+* Enables IIS integration.
+* Adds the developer exception page when the app runs in the Development environment.
+
+The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder from which the application is run.
 
 > [!NOTE]
-> `UseKestrel` and `UseIISIntegration` are very different actions. IIS is only used as a reverse proxy. `UseKestrel` creates the web server and hosts the code. `UseIISIntegration` specifies IIS as the reverse proxy server. It also examines environment variables used by IIS/IISExpress and makes decisions like which dynamic port use, which headers to set, etc. However, it doesn't deal with or create an `IServer`.
+> Specifying `Directory.GetCurrentDirectory` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling `dotnet run` from the web project folder). This is the default used in Visual Studio and `dotnet new` templates.
+
+When you use IIS as a reverse proxy, ASP.NET Core automatically calls `UseIISIntegration` as part of building the host. For more information, see [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module).
+
+Note that `UseIISIntegration` doesn't configure a *server*, like `UseKestrel` does. `UseKestrel` creates the web server and hosts the app. `UseIISIntegration` examines environment variables used by IIS/IISExpress and configures settings such as the port to listen on and the headers to use.
+
+---
 
 A minimal implementation of configuring a host (and an ASP.NET Core app) would include just a server and configuration of the app's request pipeline:
 
@@ -80,6 +113,8 @@ Key: `applicationName`. This configuration setting specifies the value that will
 **Capture Startup Errors** `bool`
 
 Key: `captureStartupErrors`. Defaults to `false`. When `false`, errors during startup result in the host exiting. When `true`, the host will capture any exceptions from the `Startup` class and attempt to start the server. It will display an error page (generic, or detailed, based on the Detailed Errors setting, below) for every request. Set using the `CaptureStartupErrors` method.
+
+Note: When your app runs with Kestrel and IIS, the default behavior is to capture startup errors. 
 
 ```csharp
 new WebHostBuilder()
@@ -124,6 +159,8 @@ new WebHostBuilder()
 > [!NOTE]
 > By default, the environment is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using Visual Studio, environment variables may be set in the *launchSettings.json* file.
 
+<a id="server-urls"></a>
+
 **Server URLs** `string`
 
 Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, `http://localhost:123`. The domain/host name can be replaced with "\*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, `http://*:5000` or `https://*:5001`). The protocol (`http://` or `https://`) must be included with each URL. The prefixes are interpreted by the configured server; supported formats will vary between servers.
@@ -132,6 +169,8 @@ Key: `urls`. Set to a semicolon (;) separated list of URL prefixes to which the 
 new WebHostBuilder()
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
+
+In ASP.NET Core 2.0, Kestrel has its own endpoint configuration API and does not support `https://` in the `urls` string. For more information, see [Introduction to Kestrel](xref:fundamentals/servers/kestrel?tabs=aspnetcore2x#endpoint-configuration).
 
 **Startup Assembly** `string`
 
@@ -156,8 +195,6 @@ new WebHostBuilder()
 ### Overriding Configuration
 
 Use [Configuration](configuration.md) to set configuration values to be used by the host. These values may be subsequently overridden. This is specified using `UseConfiguration`.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3, 4, 5, 6, 9]}} -->
 
 ```csharp
 public static void Main(string[] args)
@@ -222,6 +259,8 @@ using (host)
 }
 ```
 
+The URL formats that are valid here depend on the server you're using. For more information, see [Server URLs](#server-urls) earlier in this article.
+
 > [!NOTE]
 > The `UseConfiguration` extension method isn't currently capable of parsing a configuration section returned by `GetSection` (for example, `.UseConfiguration(Configuration.GetSection("section"))`. The `GetSection` method filters the configuration keys to the section requested but leaves the section name on the keys (for example, `section:urls`, `section:environment`). The `UseConfiguration` method expects the keys to match the `WebHostBuilder` keys (for example, `urls`, `environment`). The presence of the section name on the keys prevents the section's values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see [Passing configuration section into WebHostBuilder.UseConfiguration uses full keys](https://github.com/aspnet/Hosting/issues/839).
 
@@ -245,12 +284,8 @@ var host = new WebHostBuilder()
 
 ## Additional resources
 
-* [Publishing to IIS](../publishing/iis.md)
+* [Publish to Windows using IIS](../publishing/iis.md)
+* [Publish to Linux using Nginx](../publishing/linuxproduction.md)
+* [Publish to Linux using Apache](../publishing/apache-proxy.md)
+* [Host in a Windows Service](xref:hosting/windows-service)
 
-* [Publish to a Linux Production Environment](../publishing/linuxproduction.md)
-
-* Hosting ASP.NET Core as a Windows Service
-
-* Hosting ASP.NET Core Embedded in Another Application
-
-* [Using Apache Web Server as a reverse-proxy](../publishing/apache-proxy.md)
