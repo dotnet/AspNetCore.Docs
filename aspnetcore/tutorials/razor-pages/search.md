@@ -95,15 +95,15 @@ There is no start line.
 Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 ```
 
-### Adding search by genre to the Index page
+### Adding search by genre
 
 Update *Index.cshtml* as follows:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-25)]
 
 Examine the lambda expression used in the following HTML Helper:
 
-`@Html.DisplayNameFor(model => model.Movies[0].Title))`
+`@Html.DisplayNameFor(model => model.Movie[0].Title))`
 
 In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
