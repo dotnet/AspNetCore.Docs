@@ -23,7 +23,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public List<Movie> Movies;
+        public List<Movie> Movie;
         public SelectList Genres;
         public string MovieGenre { get; set; }
         #endregion
@@ -75,7 +75,7 @@ namespace RazorPagesMovie.Pages.Movies
             #region snippet_SelectList
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             #endregion
-            Movies = await movies.ToListAsync();
+            Movie = await movies.ToListAsync();
         }
         #endregion
 #endif
