@@ -344,7 +344,7 @@ For more information, see the following resources:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample)
+* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
