@@ -114,6 +114,8 @@ Key: `applicationName`. This configuration setting specifies the value that will
 
 Key: `captureStartupErrors`. Defaults to `false`. When `false`, errors during startup result in the host exiting. When `true`, the host will capture any exceptions from the `Startup` class and attempt to start the server. It will display an error page (generic, or detailed, based on the Detailed Errors setting, below) for every request. Set using the `CaptureStartupErrors` method.
 
+Note: When your app runs with Kestrel and IIS, the default behavior is to capture startup errors. 
+
 ```csharp
 new WebHostBuilder()
     .CaptureStartupErrors(true)
@@ -282,12 +284,8 @@ var host = new WebHostBuilder()
 
 ## Additional resources
 
-* [Publishing to IIS](../publishing/iis.md)
+* [Publish to Windows using IIS](../publishing/iis.md)
+* [Publish to Linux using Nginx](../publishing/linuxproduction.md)
+* [Publish to Linux using Apache](../publishing/apache-proxy.md)
+* [Host in a Windows Service](xref:hosting/windows-service)
 
-* [Publish to a Linux Production Environment](../publishing/linuxproduction.md)
-
-* Hosting ASP.NET Core as a Windows Service
-
-* Hosting ASP.NET Core Embedded in Another Application
-
-* [Using Apache Web Server as a reverse-proxy](../publishing/apache-proxy.md)
