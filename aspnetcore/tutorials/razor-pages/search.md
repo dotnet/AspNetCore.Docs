@@ -90,7 +90,7 @@ There is no start line.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 -->
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
+
 ```csharp
 Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 ```

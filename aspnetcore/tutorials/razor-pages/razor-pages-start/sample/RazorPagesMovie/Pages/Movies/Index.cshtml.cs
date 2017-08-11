@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    #region snippet_selectlist
+    #region snippet_newProps
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Models.MovieContext _context;
