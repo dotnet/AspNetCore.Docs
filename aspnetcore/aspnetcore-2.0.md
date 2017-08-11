@@ -97,74 +97,19 @@ Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.j
 
 ## Kestrel improvements
 
-The Kestrel web server has new features that make it more suitable as an Internet-facing server. We’ve added a number of server constraint configuration options in the `KestrelServerOptions` class’s new `Limits` property.  You can now add limits for the following:
+The Kestrel web server has new features that make it more suitable as an Internet-facing server. We’ve added a number of server constraint configuration options in the `KestrelServerOptions` class’s new `Limits` property. You can now add limits for the following:
 
 - Maximum client connections
 - Maximum request body size
 - Minimum request body data rate
 
-### Maximum client connections
-
-The maximum number of concurrent open HTTP/S connections can be set for the entire application with the following code:
-
-```csharp
-.UseKestrel(options =>
-{
-    options.Limits.MaxConcurrentConnections = 100;
-    options.Limits.MaxConcurrentUpgradedConnections = 100;
-```
-
-Note how there are two limits. Once a connection is upgraded from HTTP to another protocol (e.g. on a WebSockets request), it’s not counted against the limit anymore since upgraded connections have their own limit.
-
-### Maximum request body size
-
-To configure the default constraint for the entire application:
-
-```csharp
-.UseKestrel(options =>
-{
-    options.Limits.MaxRequestBodySize = 10 * 1024;
-```
-
-This will affect every request, unless it’s overridden on a specific request:
-
-```csharp
-app.Run(async context =>
-{
-    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = 10 * 1024;
-```
- 
-You can only configure the limit on a request if the application hasn’t started reading yet; otherwise an exception is thrown. There’s an `IsReadOnly` property that tells you if the request body is in read-only state, meaning it’s too late to configure the limit.
-
-### Minimum request body data rate
-
-To configure a default minimum request rate:
-
-```csharp
-.UseKestrel(options =>
-{
-    options.Limits.RequestBodyMinimumDataRate = 
-        new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
-```
-
-To configure per-request:
-
-```csharp
-app.Run(async context =>
-{
-    context.Features.Get<IHttpRequestBodyMinimumDataRateFeature>().MinimumDataRate = 
-        new MinimumDataRate(rate: 100, gracePeriod: TimeSpan.FromSeconds(10));
-```
-
-The way the rate works is as follows: Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel will give the client to get its send rate up to the minimum; the rate is not checked during that time. The grace period is to avoid dropping connections that are initially sending data at a slow rate due to TCP slow start.
-
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3385).
+For more information, see [Introduction to Kestrel](xref:fundamentals/servers/kestrel).
 
 ## WebListener renamed to HttpSys
 
 The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/2648).
+For more information, see [Introduction to HttpSys](xref:fundamentals/servers/httpsys).
 
 ## Enhanced HTTP header support
 

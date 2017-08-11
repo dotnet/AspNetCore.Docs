@@ -5,7 +5,7 @@ description: Introduces WebListener, a web server for ASP.NET Core on Windows. B
 keywords: ASP.NET Core, WebListener, HttpListener, url prefixes, SSL 
 ms.author: riande
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/07/2017
 ms.topic: article
 ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
 ms.technology: aspnet
@@ -15,6 +15,9 @@ uid: fundamentals/servers/weblistener
 # WebListener web server implementation in ASP.NET Core
 
 By [Tom Dykstra](http://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
+
+> [!NOTE]
+> This topic applies only to ASP.NET Core 1.x. In ASP.NET Core 2.0, WebListener is named [HttpSys](httpsys.md).
 
 WebListener is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
@@ -40,13 +43,13 @@ Supported Windows versions:
 
 WebListener is useful for deployments where you need to expose the server directly to the Internet without using IIS.
 
-![WebListener to Internet](weblistener/_static/weblistener-to-internet.png)
+![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
 Because it's built on Http.Sys, WebListener doesn't require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. 
 
 WebListener is also a good choice for internal deployments when you need one of the features it offers that you can't get by using Kestrel.
 
-![WebListener to Internet](weblistener/_static/weblistener-to-internal.png)
+![Weblistener communicates directly with your internal network](weblistener/_static/weblistener-to-internal.png)
 
 ## How to use WebListener
 

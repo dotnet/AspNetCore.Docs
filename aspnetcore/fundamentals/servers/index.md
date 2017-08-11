@@ -5,7 +5,7 @@ description: Introduces web servers Kestrel and WebListener for ASP.NET Core. Pr
 keywords: ASP.NET Core, IServer, web server, Kestrel, WebListener, reverse proxy
 ms.author: tdykstra
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 08/03/2017
 ms.topic: article
 ms.assetid: dba74f39-58cd-4dee-a061-6d15f7346959
 ms.technology: aspnet
@@ -14,27 +14,57 @@ uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
 
-By [Tom Dykstra](http://github.com/tdykstra), [Steve Smith](http://ardalis.com), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher) 
+By [Tom Dykstra](http://github.com/tdykstra), [Steve Smith](http://ardalis.com), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
 An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of [request features](https://docs.asp.net/en/latest/fundamentals/request-features.html) composed into an `HttpContext`.
 
 ASP.NET Core ships two server implementations:
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 * [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
 * [WebListener](weblistener.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+* [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
+
+* [HttpSys](httpsys.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
+
+---
+
 ## Kestrel
 
-Kestrel is the web server that is included by default in ASP.NET Core new-project templates. If your application accepts requests only from an internal network, you can use Kestrel by itself.
+Kestrel is the web server that is included by default in ASP.NET Core new-project templates. 
 
-![Kestrel to internal network](overview/_static/kestrel-to-internal.png)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+If your application accepts requests only from an internal network, you can use Kestrel by itself.
+
+![Kestrel communicates directly with your internal network](kestrel/_static/kestrel-to-internal.png)
 
 If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.
 
-![Kestrel to Internet](overview/_static/kestrel-to-internet.png)
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits. For more information about when to use Kestrel with a reverse proxy, see [Kestrel](kestrel.md).
+The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don't have a full complement of defenses against attacks. This includes, but isn't limited to, appropriate timeouts, size limits, and concurrent connection limits.
+
+For information about when to use Kestrel with a reverse proxy, see [Introduction to Kestrel](kestrel.md).
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
+
+![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+
+Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
+
+For information about when to use Kestrel with a reverse proxy, see [Introduction to Kestrel](kestrel.md).
+
+---
 
 You can't use IIS, Nginx, or Apache without Kestrel or a [custom server implementation](#custom-servers). ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your `Program.Main` and `Startup` classes to be essentially the same no matter where you deploy.
 
@@ -50,17 +80,33 @@ For information about how to use Nginx on Linux as a reverse proxy server for Ke
 
 For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
 
-## WebListener
+## HttpSys
 
-If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS. 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-![WebListener](overview/_static/weblistener-to-internet.png)
+HttpSys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS.
 
-WebListener can also be used in place of Kestrel for applications that are exposed only to an internal network, if you need one of its features that Kestrel doesn't support. 
+![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
-![WebListener](overview/_static/weblistener-to-internal.png)
+WebListener can also be used in place of Kestrel for applications that are exposed only to an internal network, if you need WebListener features that Kestrel doesn't support. 
+
+![Weblistener communicates directly with your internal network](weblistener/_static/weblistener-to-internal.png)
 
 For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only WebListener offers. For information about WebListener features, see [WebListener](weblistener.md).
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+If you run your ASP.NET Core app on Windows, HttpSys is an alternative to Kestrel. You can use HttpSys for scenarios where you expose your app to the Internet and you need HttpSys features that Kestrel doesn't support. 
+
+![HttpSys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
+
+HttpSys can also be used for applications that are exposed only to an internal network. 
+
+![HttpSys communicates directly with your internal network](httpsys/_static/httpsys-to-internal.png)
+
+For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
+
+---
 
 ## Notes about ASP.NET Core server infrastructure
 
@@ -70,14 +116,26 @@ The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/M
 
 ## Custom servers
 
-You can create custom server implementations to use in place of Kestrel or WebListener. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [`IHttpRequestFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.md) and [`IHttpResponseFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.md).
+If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [IServer](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [IHttpRequestFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttprequestfeature) and [IHttpResponseFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpresponsefeature).
 
 ## Next steps
 
 For more information, see the following resources:
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 - [Kestrel](kestrel.md)
 - [Kestrel with IIS](aspnet-core-module.md)
 - [Kestrel with Nginx](../../publishing/linuxproduction.md)
 - [Kestrel with Apache](../../publishing/apache-proxy.md)
 - [WebListener](weblistener.md)
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+- [Kestrel](kestrel.md)
+- [Kestrel with IIS](aspnet-core-module.md)
+- [Kestrel with Nginx](../../publishing/linuxproduction.md)
+- [Kestrel with Apache](../../publishing/apache-proxy.md)
+- [HttpSys](httpsys.md)
+
+---

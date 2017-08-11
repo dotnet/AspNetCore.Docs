@@ -23,7 +23,7 @@ namespace WebListenerDemo
         public static string Server;
 
         #region snippet_Main
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Running demo with WebListener.");
 
@@ -43,8 +43,6 @@ namespace WebListenerDemo
 
             var host = builder.Build();
             host.Run();
-
-            return 0;
         }
         #endregion
     }
