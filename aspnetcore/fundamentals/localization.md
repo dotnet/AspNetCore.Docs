@@ -171,7 +171,7 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
-While it is possible to create a 'default' resource (one which lacks a language identifier in the name), we do not recommend doing so because it leads to behavioral changes when moving between machines with different OS languages.
+We recommend that you do **not** create  a 'default' resource file (A resource file that doen't contain a language identifier in the name, such as *A.fr.resx*). A default resource file leads to behavioral changes when moving or deploying to machines with different OS languages.
 
 ### Generating resource files with Visual Studio
 
