@@ -9,7 +9,7 @@ ms.date: 08/01/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: migration/1x-to-2x
+uid: migration/1x-to-2x/index
 ---
 # Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0
 

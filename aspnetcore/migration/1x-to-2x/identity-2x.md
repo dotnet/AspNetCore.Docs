@@ -9,7 +9,7 @@ ms.date: 08/02/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: migration/identity-2x
+uid: migration/1x-to-2x/identity-2x
 ---
 
 # Migrating Authentication and Identity to ASP.NET Core 2.0
