@@ -149,15 +149,15 @@ Kestrel checks every second if data is coming in at the specified rate in bytes/
 
 The default minimum rate is 240 bytes/second, with a 5 second grace period.
 
-Here's an example that shows how to configure the minimum request rate in *Program.cs*:
+A minimum rate also applies to the response. The code to set the request limit and the response limit is the same except for having `RequestBody` or `Response` in the property and interface names. 
 
-[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=6-7)]
+Here's an example that shows how to configure the minimum data rates in *Program.cs*:
 
-You can configure the rate per request in *Startup.cs*:
+[!code-csharp[](kestrel/sample2/Program.cs?name=snippet_Limits&highlight=6-9)]
 
-[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-6)]
+You can configure the rates per request in *Startup.cs*:
 
-You can also set the minimum data rate for the response. The property and interface names have `Response` in place of `RequestBody`; otherwise the code to configure this limit is the same. 
+[!code-csharp[](kestrel/sample2/Startup.cs?name=snippet_Limits&highlight=5-8)]
 
 For information about other Kestrel options, see the following classes:
 

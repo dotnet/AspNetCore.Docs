@@ -48,14 +48,16 @@ namespace KestrelDemo
 
             app.UseStaticFiles();
 
-            #region snippet_Limits
+        #region snippet_Limits
             app.Run(async (context) =>
             {
                 context.Features.Get<IHttpMaxRequestBodySizeFeature>()
                     .MaxRequestBodySize = 10 * 1024;
                 context.Features.Get<IHttpMinRequestBodyDataRateFeature>()
                     .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
-                #endregion
+                context.Features.Get<IHttpMinResponseDataRateFeature>()
+                    .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+        #endregion
                 context.Response.ContentType = "text/html";
                 await context.Response
                     .WriteAsync("<p>Hosted by Kestrel</p>");

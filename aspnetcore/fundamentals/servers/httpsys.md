@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: 0a7286e4-6428-424e-b5c4-5c98815cf61c
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: fundamentals/servers/HttpSys
+uid: fundamentals/servers/httpsys
 ---
 # HttpSys web server implementation in ASP.NET Core
 
