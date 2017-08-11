@@ -10,31 +10,33 @@ Once your app is deployed and you have data that you need to perserve, you can't
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
 
-Update the Razor Pages with the `Rating` property. Edit the */Pages/Movies/Index.cshtml* file and add a `Rating` field:
+Because you've added a new field to the `Movie` class, you also need to update the binding whitelist so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
-[!code-HTML[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
+```csharp
+[Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
+   ```
 
-Make similar changes to the Delete, and Details pages.
+You also need to update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
-Update the */Pages/Movies/Create.cshtml* with the `Rating` field:
+Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
-[!code-HTML[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
+[!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexGenreRating.cshtml?highlight=17,39&range=24-64)]
 
-Make similar changes to the Edit page.
+Update the */Views/Movies/Create.cshtml* with a `Rating` field.
 
-The app won't work until we update the DB to include the new field. If you run it now, you'll get the following `SqlException`:
+The app won't work until we update the DB to include the new field. If you run it now, you'll get the following `SqliteException`:
 
 ```
-SqlException: Invalid column name 'Rating'.
+SqliteException: SQLite Error 1: 'no such column: m.Rating'.
 ```
 
 You're seeing this error because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no `Rating` column in the database table.)
 
 There are a few approaches to resolving the error:
 
-1. Drop the database and have the Entity Framework automatically re-create the database based on the new model class schema. With this approach, you lose existing data in the database — so you can't do this with a production database! This is a convienent approach in early development. Using an initializer to automatically seed a database with test data is often a productive way to develop an app.
+1. Drop the database and have the Entity Framework automatically re-create the database based on the new model class schema. With this approach, you lose existing data in the database — so you can't do this with a production database! Using an initializer to automatically seed a database with test data is often a productive way to develop an app.
 
 2. Manually modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 
