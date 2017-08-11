@@ -110,4 +110,4 @@ In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` pro
 Test the app by searching by genre, by movie title, and by both.
 
 >[!div class="step-by-step"]
-[Previous Updating the pages](xref:tutorials/razor-pages/da1)
+[Previous: Updating the pages](xref:tutorials/razor-pages/da1)

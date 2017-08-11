@@ -122,4 +122,5 @@ public Movie Movie { get; set; }
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
 
 >[!div class="step-by-step"]
-[Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+[Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+[Adding Search](xref:tutorials/razor-pages/search)

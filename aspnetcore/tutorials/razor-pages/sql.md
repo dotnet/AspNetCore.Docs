@@ -84,5 +84,5 @@ The app shows the seeded data.
 
 
 >[!div class="step-by-step"]
-[Previous Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
-[Next Updating the pages](xref:tutorials/razor-pages/da1)
+[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
+[Next: Updating the pages](xref:tutorials/razor-pages/da1)
