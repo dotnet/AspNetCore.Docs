@@ -36,6 +36,12 @@ Razor can transition from HTML into C# or into Razor-specific markup. When an `@
 
 The `@page` Razor directive makes the file into an MVC action &mdash; which means that it can handle requests. `@page` must be the first Razor directive on a page. `@page` is an example of transitioning into Razor-specific markup. See [Razor syntax](xref:mvc/views/razor#razor-syntax) for more information.
 
+Examine the lambda expression used in the following HTML Helper:
+
+`@Html.DisplayNameFor(model => model.Movie[0].Title))`
+
+The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
+
 <a name="md"></a>
 ### The @model directive
 
@@ -127,11 +133,10 @@ The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-ta
 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client-side. 
+The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client-side.
 
+The next tutorial explains SQL Server LocalDB and seeding the database.
 
 >[!div class="step-by-step"]
-[Adding a model](xref:tutorials/razor-pages/model)
-<!--
-[](xref:tutorials/razor-pages/page)   
--->
+[Previous: Adding a model](xref:tutorials/razor-pages/model)
+[Next: SQL Server LocalDB](xref:tutorials/razor-pages/sql)
