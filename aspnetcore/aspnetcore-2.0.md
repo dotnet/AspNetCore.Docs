@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: aspnetcore-2.0
 ---
 
-# What's new in ASP.NET Core 2.0 Preview
+# What's new in ASP.NET Core 2.0
 
 This article highlights the most significant changes in ASP.NET Core 2.0, with links to relevant documentation.
 
@@ -30,11 +30,11 @@ For more information, see the introduction and tutorial:
 
 A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage).
+For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](xref:fundamentals/metapackage).
 
 ## Runtime Store
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup-time.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
 
 For more information, see [Runtime store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store)
 
@@ -52,7 +52,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Logging update
 
-In ASP.NET 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
+In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
 
 For more information, see [Introduction to Logging](xref:fundamentals/logging).
 
@@ -119,7 +119,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Automatic use of anti-forgery tokens
 
-ASP.NET Core has always helped HTMLEncode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks: ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
+ASP.NET Core has always helped HTML-encode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
 For more information, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](xref:security/anti-request-forgery).
 
@@ -129,7 +129,7 @@ Razor view pre-compilation is enabled during publish by default, reducing the pu
 
 ## Razor support for C# 7.1
 
-The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 in your project, add the following property in your project file and then reload the solution:
+The Razor view engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics. To use C# 7.1 in your project, add the following property in your project file and then reload the solution:
 
 ```xml
 <LangVersion>latest</LangVersion>
