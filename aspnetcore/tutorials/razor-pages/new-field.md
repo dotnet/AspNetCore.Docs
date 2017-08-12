@@ -33,7 +33,7 @@ Edit *Pages/Movies/Index.cshtml* and add a `Rating` field:
 
 Add the `Rating` field to the Delete and Details pages.
 
-Update *Pages/Movies/Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
@@ -71,12 +71,12 @@ Update-Database
 
 The `Add-Migration` command tells the framework to:
 
-* Examine the current `Movie` model with the current `Movie` DB schema.
-* Create the necessary code to migrate the DB to the new model.
+* Compare the `Movie` model with the `Movie` DB schema.
+* Create code to migrate the DB schema to the new model.
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-If you delete all the records in the DB, the initialize will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from Sql Server Object Explorer.
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from Sql Server Object Explorer.
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 

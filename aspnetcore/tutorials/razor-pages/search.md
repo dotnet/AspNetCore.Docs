@@ -43,17 +43,17 @@ Navigate to the Movies page and append a query string such as `?searchString=Gho
 
 ![Index view](search/_static/ghost.png)
 
-If you add the following route template to the Index page, the search string can be passed as a URL segment (for example, `http://localhost:5000/Movies/ghost`).
+If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, `http://localhost:5000/Movies/ghost`).
 
 ```cshtml
 @page "{searchString?}"
 ```
 
-The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.
+The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The `?` in `"{searchString?}"` means this is an optional route parameter.
 
 ![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](search/_static/g2.png)
 
-However, you can't expect users to modify the URL to search for a movie. In this step, you add UI to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
+However, you can't expect users to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
 Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted in the following code:
 
@@ -65,7 +65,7 @@ The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-for
 
 ## Search by genre
 
-Add the the following highlighted properties to the *Pages/Movies/Index.cshtml.cs* file:
+Add the the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-)]
 
