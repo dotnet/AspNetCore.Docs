@@ -24,7 +24,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 For more information, see the introduction and tutorial:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
-* [Create a Razor Pages web app with ASP.NET Core](xref:mvc/tutorials/razor-pages/index)
+* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## ASP.NET Core metapackage
 
@@ -139,7 +139,7 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 ## Other documentation updates for 2.0
 
-* [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](publishing/web-publishing-vs)
+* [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs)
 * [Key Management](xref:security/data-protection/implementation/key-management)
 * [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
 * [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
