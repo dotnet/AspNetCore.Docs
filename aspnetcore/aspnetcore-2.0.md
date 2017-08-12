@@ -21,7 +21,7 @@ This article highlights the most significant changes in ASP.NET Core 2.0, with l
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-For information about Razor Pages, see the following introduction and tuorials:
+For more information, see the introduction and tutorial:
 
 * [Introduction to Razor Pages](xref:mvc/razor-pages/index)
 * [Create a Razor Pages web app with ASP.NET Core](xref:mvc/tutorials/razor-pages/index)
