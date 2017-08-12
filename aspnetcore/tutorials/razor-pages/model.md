@@ -36,7 +36,7 @@ The `ID` field is required by the database for the primary key.
 <a name="dc"></a>
 ### Add a database context class
 
-Add a `DbContext`-derived class to the *Models* folder.
+Add a `DbContext` derived class to the *Models* folder.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieContext.cs)]
 
@@ -58,7 +58,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 Build the project to verify you don't have any errors.
 
-
+<a name="pmc"></a>
 ## Add scaffold tooling and perform initial migration
 
 In this section, you use the Package Manager Console (PMC) to:
@@ -74,7 +74,7 @@ From the **Tools** menu, select **NuGet Package Manager > Package Manager Consol
 In the PMC, enter the following commands:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0-rtm-26452 -Pre
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
 Add-Migration Initial
 Update-Database
 ```
@@ -135,5 +135,5 @@ The next tutorial explains the files created by scaffolding.
 
 
 >[!div class="step-by-step"]
-[Previous Getting Started](xref:tutorials/razor-pages/razor-pages-start)
-[Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
+[Previous: Getting Started](xref:tutorials/razor-pages/razor-pages-start)
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    

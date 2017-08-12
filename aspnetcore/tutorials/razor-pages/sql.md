@@ -29,6 +29,7 @@ When you deploy the app to a test or production server, you can use an environme
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine that is targeted for program development. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB database creates "\*.mdf" files in the *C:/Users/\<user\>* directory.
 
+<a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
   ![View menu](sql/_static/ssox.png)
@@ -66,7 +67,7 @@ Add the seed initializer to the end of the `Main` method in the *Program.cs* fil
 
 Test the app
 
-* Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
+* Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
   * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
@@ -75,14 +76,15 @@ Test the app
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-   * If you were running VS in non-debug mode, press F5 to run in debug mode
-   * If you were running VS in debug mode, stop the debugger and press F5
+   * If you were running VS in non-debug mode, press F5 to run in debug mode.
+   * If you were running VS in debug mode, stop the debugger and press F5.
    
 The app shows the seeded data.
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
+The next tutorial will clean up the presentation of the data.
 
 >[!div class="step-by-step"]
-[Previous Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
-[Next Updating the pages](xref:tutorials/razor-pages/da1)
+[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
+[Next: Updating the pages](xref:tutorials/razor-pages/da1)

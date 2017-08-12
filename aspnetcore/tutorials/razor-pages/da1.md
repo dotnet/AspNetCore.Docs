@@ -48,7 +48,7 @@ in the *Pages/Movies/Index.cshtml* file.
 
 [!code-cshtml[Main](razor-pages-start\snapshot_sample\RazorPagesMovie\Pages\Movie\Index.cshtml?highlight=16-18&range=32-)]
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the code above, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:mvc/razor-pages/index#url-generation-for-pages) for more information.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:mvc/razor-pages/index#url-generation-for-pages) for more information.
 
 Use **View Source** from your favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
@@ -73,7 +73,7 @@ Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route tem
 </td>
 ```
 
-A request to the page with the "{id:int}" route template that does **not** include the integer will return a HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the routing constraint:
+A request to the page with the "{id:int}" route template that does **not** include the integer will return an HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
 
  ```cshtml
 @page "{id:int?}"
@@ -101,7 +101,7 @@ Production code would generally detect concurrency conflicts when two or more cl
 Examine the *Pages/Movies/Edit.cshtml.cs* file:
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet2)]
 
-When a HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
+When an HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 
 * The `OnGetAsync` method fetches the movie from the database and returns the `Page` method. 
 * The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the the movie model available on the page.
@@ -121,5 +121,8 @@ public Movie Movie { get; set; }
 
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
 
+Search is added in the next tutorial.
+
 >[!div class="step-by-step"]
-[Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+[Previous: Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
+[Adding Search](xref:tutorials/razor-pages/search)

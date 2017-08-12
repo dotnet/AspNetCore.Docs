@@ -73,4 +73,4 @@ The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](htt
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information.
 
 >[!div class="step-by-step"]
-[Next Adding a model](xref:tutorials/razor-pages/model)  
+[Next: Adding a model](xref:tutorials/razor-pages/model)  
