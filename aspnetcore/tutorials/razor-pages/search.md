@@ -83,7 +83,7 @@ The following code is a LINQ query that retrieves all the genres from the databa
 
 The `SelectList` of genres is created by projecting the distinct genres.
 
-<!-- BUG in OPS 
+<!-- BUG in OPS
 Tag snippet_selectlist's start line '75' should be less than end line '29' when resolving "[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]"
 
 There is no start line.
