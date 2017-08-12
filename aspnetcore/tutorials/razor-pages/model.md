@@ -58,7 +58,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 Build the project to verify you don't have any errors.
 
-
+<a name="pmc"></a>
 ## Add scaffold tooling and perform initial migration
 
 In this section, you use the Package Manager Console (PMC) to:

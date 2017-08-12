@@ -101,12 +101,6 @@ Update *Index.cshtml* as follows:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18,29)]
 
-Examine the lambda expression used in the following HTML Helper:
-
-`@Html.DisplayNameFor(model => model.Movie[0].Title))`
-
-In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
-
 Test the app by searching by genre, by movie title, and by both.
 
 >[!div class="step-by-step"]

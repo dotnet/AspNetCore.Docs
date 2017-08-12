@@ -76,9 +76,19 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from Sql Server Object Explorer.
+If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX). To delete the database from SSOX:
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
+* Select the database in SSOX.
+* Right click on the database, and select *Delete*.
+* Check **Close existing connections*
+* Select **OK**
+* In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database 
+
+    ```PMC
+    Update-Database
+    ```
+
+Run the app and verify you can create/edit/display movies with a `Rating` field.
 
 >[!div class="step-by-step"]
 [Previous: Adding Search](xref:tutorials/razor-pages/search)
