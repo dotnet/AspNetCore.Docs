@@ -67,7 +67,7 @@ Add the seed initializer to the end of the `Main` method in the *Program.cs* fil
 
 Test the app
 
-* Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
+* Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
   * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
@@ -76,13 +76,14 @@ Test the app
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-   * If you were running VS in non-debug mode, press F5 to run in debug mode
-   * If you were running VS in debug mode, stop the debugger and press F5
+   * If you were running VS in non-debug mode, press F5 to run in debug mode.
+   * If you were running VS in debug mode, stop the debugger and press F5.
    
 The app shows the seeded data.
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
+The next tutorial will clean up the presentation of the data.
 
 >[!div class="step-by-step"]
 [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   

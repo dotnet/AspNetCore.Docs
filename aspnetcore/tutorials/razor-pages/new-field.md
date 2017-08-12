@@ -27,13 +27,17 @@ Open the *Models/Movie.cs* file and add a `Rating` property:
 
 Build the app (Ctrl+Shift+B).
 
-Edit *Pages/Movies/Index.cshtml* and add a `Rating` field:
+Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=40-42,61-63)]
 
 Add the `Rating` field to the Delete and Details pages.
 
-Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous `<div>` element and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+
+The following code shows *Create.cshtml* with a `Rating` field:
+
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=31-35)]
 
 ![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
@@ -55,9 +59,11 @@ There are a few approaches to resolving the error:
 
 For this tutorial, use Code First Migrations.
 
-Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
+Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie` block.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
+
+See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
 
 Build the solution.
 
@@ -76,6 +82,7 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
+<a name="ssox"></a>
 If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX). To delete the database from SSOX:
 
 * Select the database in SSOX.
@@ -88,7 +95,7 @@ If you delete all the records in the DB, the initializer will seed the DB and in
     Update-Database
     ```
 
-Run the app and verify you can create/edit/display movies with a `Rating` field.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database is not seeded, stop IIS Express, and then run the app.
 
 >[!div class="step-by-step"]
 [Previous: Adding Search](xref:tutorials/razor-pages/search)

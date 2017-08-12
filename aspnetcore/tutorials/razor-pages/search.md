@@ -99,7 +99,7 @@ Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
 Update *Index.cshtml* as follows:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18,29)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18?range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
 
