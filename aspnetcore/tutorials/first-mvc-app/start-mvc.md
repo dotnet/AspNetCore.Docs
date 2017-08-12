@@ -29,7 +29,7 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-Install [.NET Core 2.0 Preview 2].(https://www.microsoft.com/net/core/preview) 
+Install [.NET Core 2.0 Preview 2](https://www.microsoft.com/net/core/preview) 
 ASP.NET Core 2.0 preview  is included in .NET Core 2.0 preview. 
 
 Install  [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) or later
