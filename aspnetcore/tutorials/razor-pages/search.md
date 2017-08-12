@@ -2,7 +2,7 @@
 title: Adding Search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
-keywords: ASP.NET Core,
+keywords: ASP.NET Core,search,Razor Pages
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this document, search capability is added to the Index page that enables searching movies by *genre* or *name*.
 
-Update the Index pages `OnGetAsync` method with the following code:
+Update the Index page's `OnGetAsync` method with the following code:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
 
@@ -35,9 +35,9 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
-The `s => s.Title.Contains()` code is a [Lambda Expression](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains` (used in the preceding code). LINQ queries are not executed when they are defined or when they are modified by calling a method (such as `Where`, `Contains`  or `OrderBy`). Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. See [Query Execution](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.
+The `s => s.Title.Contains()` code is a [Lambda Expression](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains` (used in the preceding code). LINQ queries are not executed when they are defined or when they are modified by calling a method (such as `Where`, `Contains`  or `OrderBy`). Rather, query execution is deferred. That means the evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. See [Query Execution](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.
 
-Note: The [Contains](http://msdn.microsoft.com/library/bb155125.aspx) method is run on the database, not in the c# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLlite, with the default collation, it's case sensitive.
+**Note:** The [Contains](http://msdn.microsoft.com/library/bb155125.aspx) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL (for example, `http://localhost:5000/Movies?searchString=Ghost`). The filtered movies are displayed.
 
@@ -49,17 +49,17 @@ If you add the following route template to the Index page, the search string can
 @page "{searchString?}"
 ```
 
-The preceding  route constraint allows searching the title as route data (a URL segment) instead of as a query string value.
+The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.
 
 ![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](search/_static/g2.png)
 
-However, you can't expect users to modify the URL to search for a movie. In this step you add UI to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
+However, you can't expect users to modify the URL to search for a movie. In this step, you add UI to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
-Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
+Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted in the following code:
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
 
-The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the Pages/Movies/Index Razor Page. Save the changes and test the filter.
+The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page. Save the changes and test the filter.
 
 ![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
 
@@ -69,15 +69,15 @@ Add the the following highlighted properties to the *Pages/Movies/Index.cshtml.c
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-)]
 
-The `SelectList Genres` containing the list of genres. This allows the user to select a genre from the list.
+The `SelectList Genres` contains the list of genres. This allows the user to select a genre from the list.
 
-The `MovieGenre` property contains the selected genre.
+The `MovieGenre` property contains the specific genre the user selects (for example, "Western").
 
 Update the `OnGetAsync` method with the following code:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
-The following code is a `LINQ` query that retrieves all the genres from the database.
+The following code is a LINQ query that retrieves all the genres from the database.
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
@@ -99,7 +99,7 @@ Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
 Update *Index.cshtml* as follows:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-25)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18,29)]
 
 Examine the lambda expression used in the following HTML Helper:
 
