@@ -141,10 +141,10 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 * [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](publishing/web-publishing-vs)
 * [Key Management](xref:security/data-protection/implementation/key-management)
-* [Configuring Facebook authentication](xref:security/authentication/social/facebook-logins)
-* [Configuring Twitter authentication](xref:security/authentication/social/twitter-logins)
-* [Configuring Google authentication](xref:security/authentication/social/google-logins)
-* [Configuring Microsoft Account authentication](xref:security/authentication/social/microsoft-logins)
+* [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
+* [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
+* [Configuring Google authentication](xref:security/authentication/google-logins)
+* [Configuring Microsoft Account authentication](xref:security/authentication/microsoft-logins)
 * [Setting up HTTPS for development in ASP.NET Core](xref:security/https)
 
 ## Migration guidance
