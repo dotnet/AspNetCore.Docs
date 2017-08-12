@@ -1,5 +1,5 @@
 ---
-title: Adding Search to ASP.NET Core Razor Pages
+title: Adding search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
 keywords: ASP.NET Core,search,Razor Pages
@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: tutorials/razor-pages/search
 ---
 
-# Adding Search to an ASP.NET Core MVC app
+# Adding search to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -111,3 +111,4 @@ Test the app by searching by genre, by movie title, and by both.
 
 >[!div class="step-by-step"]
 [Previous: Updating the pages](xref:tutorials/razor-pages/da1)
+[Next: Adding a new field](xref:tutorials/razor-pages/new-field)
