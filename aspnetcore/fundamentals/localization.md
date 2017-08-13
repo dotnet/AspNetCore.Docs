@@ -171,7 +171,7 @@ Resource files using `@inject IViewLocalizer` in Razor views follow a similar pa
 
 If you don't use the `ResourcesPath` option, the *.resx* file for a view would be located in the same folder as the view.
 
-If you remove the ".fr" culture designator AND you have the culture set to French (via cookie or other mechanism), the default resource file is read and strings are localized. The Resource manager designates a default or fallback resource, when nothing meets your requested culture you're served the *.resx file without a culture designator. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.
+While it is possible to create a 'default' resource (one which lacks a language identifier in the name), we do not recommend doing so because it leads to behavioral changes when moving between machines with different OS languages.
 
 ### Generating resource files with Visual Studio
 
