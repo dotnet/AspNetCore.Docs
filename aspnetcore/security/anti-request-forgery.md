@@ -314,7 +314,7 @@ services.AddAntiforgery(options =>
   options.FormFieldName = "AntiforgeryFieldname";
   options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
   options.RequireSsl = false;
-  otpions.SuppressXFrameOptionsHeader = false;
+  options.SuppressXFrameOptionsHeader = false;
 });
 ```
 
