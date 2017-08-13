@@ -80,6 +80,8 @@
 #### [Updating the pages](xref:tutorials/razor-pages/da1)
 #### [Adding search](xref:tutorials/razor-pages/search)
 #### [Adding a new field](xref:tutorials/razor-pages/new-field)
+#### [Adding validation](xref:tutorials/razor-pages/validation)
+
 
 ### [Create a web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
