@@ -21,10 +21,7 @@ uid: getting-started-1.1
 1. Install the .NET Core 1.0.4 SDK from the [.NET Core downloads page](https://microsoft.com/net/download/core/).
 -->
 
-1. Install [.NET Core](https://microsoft.com/net/core).
-
-   If you're on Windows, select the **Command line / other** environment. 
-   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
+1. Install [the .NET Core SDK](https://microsoft.com/net/core).
 
 2. Create a folder for a new .NET Core project.
 
