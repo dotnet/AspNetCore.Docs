@@ -89,6 +89,14 @@ These commands take effect only for the current window. When the window is close
 
 ![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png) 
 
+**web.config**
+
+See the *Setting environment variables* section of the [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module#setting-environment-variables) topic.
+
+**Per IIS Application Pool**
+
+If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
+
 ### macOS
 Setting the current environment for macOS can be done in-line when running the application;
 

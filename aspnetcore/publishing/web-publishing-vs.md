@@ -155,6 +155,8 @@ The following command publishes a `Release` build to a network share:
 
 The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
 
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
+
 ## Publish profiles
 
 This section uses Visual Studio 2017 and higher to create publishing profiles. Once created, you can publish from Visual Studio or the command line.

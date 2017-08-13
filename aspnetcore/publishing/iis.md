@@ -109,7 +109,7 @@ The *web.config* file configures the ASP.NET Core Module and provides other IIS 
 
 If you don't have a *web.config* file in the project when you publish with *dotnet publish* or with Visual Studio publish, the file is created for you in published output. If you have the file in your project, it's transformed with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to published output. The transformation doesn't touch IIS configuration settings that you've included in the file.
 
-## Deploy the application
+## Create the IIS Website
 
 1. On the target IIS system, create a folder to contain the application's published folders and files, which are described in [Directory Structure](xref:hosting/directory-structure).
 
@@ -144,8 +144,10 @@ If you don't have a *web.config* file in the project when you publish with *dotn
 ## Deploy the application
 Deploy the application to the folder you created on the target IIS system. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
+
 ### Web Deploy with Visual Studio
-Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
+See [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs#publish-profiles) topic to learn how to create a publish profile for use with Web Deploy. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
 
 ![Publish dialog page](iis/_static/pub-dialog.png)
 
@@ -196,8 +198,6 @@ For standalone IIS installations, you may use the [Data Protection Provision-Aut
 
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You should ensure that the file permissions for such a share are limited to the Windows account the application runs as. In addition you may choose to protect keys at rest using an X509 certificate. You may wish to consider a mechanism to allow users to upload certificates, place them into the user's trusted certificate store, and ensure they are available on all machines the user's application will run on. See [Configuring Data Protection](xref:security/data-protection/configuration/overview#data-protection-configuring) for details.
 
-
-
 ### 2. Configure the IIS Application Pool to load the user profile
 This setting is in the Process Model section under the Advanced Settings for the application pool. Set Load User Profile to True. This will store keys under the user profile directory, and protected using DPAPI with a key specific to the user account used for the app pool.
 
@@ -207,11 +207,42 @@ The data protection system has limited support for setting default [machine-wide
 
 ## Configuration of sub-applications
 
-When adding applications to an IIS Site's root application, the root application *web.config* file should include the `<handlers>` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the `<handlers>` section. If you repeat the `<handlers>` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
+Sub applications added under the root application shouldn't include the ASP.NET Core Module as a handler. If you add the module as a handler in a sub-application's *web.config* file, you receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub app. The following example shows the contents of a published *web.config* file for an ASP.NET Core sub app:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <aspNetCore processPath="dotnet" 
+        arguments=".\MyApp.dll" 
+        stdoutLogEnabled="false" 
+        stdoutLogFile=".\logs\stdout" />
+  </system.webServer>
+</configuration>
+```
+
+If you intend to host a non-ASP.NET Core sub app underneath an ASP.NET Core app, you must explicitly remove the inherited handler in the sub app *web.config* file:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <handlers>
+      <remove name="aspNetCore"/>
+    </handlers>
+    <aspNetCore processPath="dotnet" 
+        arguments=".\MyApp.dll" 
+        stdoutLogEnabled="false" 
+        stdoutLogFile=".\logs\stdout" />
+  </system.webServer>
+</configuration>
+```
+
+For more information on configuring the ASP.NET Core Module with the *web.config* file, see the [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) topic and the [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module).
 
 ## Configuration of IIS with web.config
 
-IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the system level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver), [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules). If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the [Environment Variables **\<environmentVariables>**](https://www.iis.net/configreference/system.applicationhost/applicationpools/add/environmentvariables) topic in the IIS reference documentation.
+IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the system level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver), [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules). If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
 ## Configuration sections of web.config
 
@@ -468,9 +499,9 @@ Troubleshooting
 
 ## Resources
 
-* [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module)
+* [Introduction to ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 
-* [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module)
+* [ASP.NET Core Module configuration reference](xref:hosting/aspnet-core-module)
 
 * [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules)
 
