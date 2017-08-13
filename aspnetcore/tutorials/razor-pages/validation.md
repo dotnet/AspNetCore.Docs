@@ -40,9 +40,9 @@ Having validation rules automatically enforced by ASP.NET Core helps make your a
 
 Run the app and navigate to  Pages/Movies.
 
-Select the **Create New** link to add a new movie. Fill out the form with some invalid values. When jQuery client side validation detects the error, it displays an error message.
+Select the **Create New** link to add a new movie. Fill out the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client side validation errors](../../tutorials/first-mvc-app/validation/_static/val.png)
+![Movie view form with multiple jQuery client-side validation errors](../../tutorials/first-mvc-app/validation/_static/val.png)
 
 > [!NOTE]
 > You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](http://jqueryvalidation.org/) in non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
@@ -51,15 +51,15 @@ Notice how the form has automatically rendered an appropriate validation error m
 
 A significant benefit is that **no** code changes were necessary in the Create page. Once the DataAnnotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules (using validation attributes on the properties of the `Movie` model class). Test validation using the `Edit` action method, and the same validation is applied.
 
-The form data is not posted to the server until there are no client side validation errors. Verify form data is not posted by one or more of the following approaches: 
+The form data is not posted to the server until there are no client-side validation errors. Verify form data is not posted by one or more of the following approaches: 
 
 * Put a break point in the `OnPostAsync` method. Submit the form (select **Create**). The break point is never hit.
 * Use the [Fiddler tool](http://www.telerik.com/fiddler).
-* Use the browsr developer tools.
+* Use the browser developer tools.
 
 ### Server-side validation
 
-When JavaScript is disabled in the browser, submiting the form with errors will post to the server. 
+When JavaScript is disabled in the browser, submitting the form with errors will post to the server. 
 
 Optional, test server-side validation:
 
@@ -75,14 +75,13 @@ Optional, test server-side validation:
        }
   ```
 
-
 The following code shows a portion of the *Create.cshtml* page that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
 [!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
+The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
-The Create and Edit pages have not validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages thate edit the `Movie` model.
+The Create and Edit pages have not validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages that edit the `Movie` model.
 
 When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the application (validation logic is defined in one place). Validation in one place helps keep the code clean, and makes it easier to maintain and update.
 
@@ -113,7 +112,7 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 * By default, the browser will render data using the correct format based on your locale.
 * The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat` if used by itself uses the string template.
 
-Note: jQuery validation does not work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
+Note: jQuery validation does not work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
@@ -125,7 +124,7 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-Congradulations for complete this series. 
+Thanks for completing this introduction to Razor Pages. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 
