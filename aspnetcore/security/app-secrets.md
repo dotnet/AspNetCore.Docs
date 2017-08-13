@@ -60,8 +60,8 @@ Open the project's `project.json` file. Add a reference to `Microsoft.Extensions
 
 ```json
 "tools": {
-    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    "Microsoft.Extensions.SecretManager.Tools": "1.0.02.0.02-final",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.02.0.02-final"
 },
 ```
 

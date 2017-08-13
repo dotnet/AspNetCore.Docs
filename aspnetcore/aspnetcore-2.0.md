@@ -16,7 +16,7 @@ uid: aspnetcore-2.0
 # What's new in ASP.NET Core 2.0 Preview
 
 > [!NOTE]
-> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published. For information about how to install ASP.NET 2.0 Preview 2, see [Introducing ASP.NET Core 2.0 Preview 2](https://blogs.msdn.microsoft.com/webdev/2017/06/28/introducing-asp-net-core-2-0-preview-2/)
+> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published. For information about how to install ASP.NET 2.0 Preview 2, see [Introducing ASP.NET Core 2.0 Preview 2](https://blogs.msdn.microsoft.com/webdev/2017/06/28/introducing-asp-net-core-2-02.0.0-2/)
 
 Here are some of the most significant updates in ASP.NET Core 2.0:
 
