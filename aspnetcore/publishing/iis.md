@@ -109,7 +109,7 @@ The *web.config* file configures the ASP.NET Core Module and provides other IIS 
 
 If you don't have a *web.config* file in the project when you publish with *dotnet publish* or with Visual Studio publish, the file is created for you in published output. If you have the file in your project, it's transformed with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to published output. The transformation doesn't touch IIS configuration settings that you've included in the file.
 
-## Deploy the application
+## Create the IIS Website
 
 1. On the target IIS system, create a folder to contain the application's published folders and files, which are described in [Directory Structure](xref:hosting/directory-structure).
 
@@ -143,6 +143,8 @@ If you don't have a *web.config* file in the project when you publish with *dotn
    
 ## Deploy the application
 Deploy the application to the folder you created on the target IIS system. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
+
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
 
 ### Web Deploy with Visual Studio
 See [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs#publish-profiles) topic to learn how to create a publish profile for use with Web Deploy. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
@@ -195,8 +197,6 @@ Data Protection keys used by ASP.NET applications are stored in registry hives e
 For standalone IIS installations, you may use the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) for each application pool used with an ASP.NET Core application. This script will create a special registry key in the HKLM registry that is ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
 
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You should ensure that the file permissions for such a share are limited to the Windows account the application runs as. In addition you may choose to protect keys at rest using an X509 certificate. You may wish to consider a mechanism to allow users to upload certificates, place them into the user's trusted certificate store, and ensure they are available on all machines the user's application will run on. See [Configuring Data Protection](xref:security/data-protection/configuration/overview#data-protection-configuring) for details.
-
-
 
 ### 2. Configure the IIS Application Pool to load the user profile
 This setting is in the Process Model section under the Advanced Settings for the application pool. Set Load User Profile to True. This will store keys under the user profile directory, and protected using DPAPI with a key specific to the user account used for the app pool.
