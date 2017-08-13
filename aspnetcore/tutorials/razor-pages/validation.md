@@ -2,7 +2,7 @@
 title: Adding Validation
 author: rick-anderson
 description: How to add validation to a Razor Page
-keywords: ASP.NET Core,validation,DataAnnotations
+keywords: ASP.NET Core,validation,DataAnnotations,Razor,Razor Pages
 ms.author: riande
 manager: wpickett
 ms.date: 8/7/2017
