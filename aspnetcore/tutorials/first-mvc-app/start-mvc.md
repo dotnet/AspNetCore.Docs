@@ -37,8 +37,6 @@ Install Visual Studio Community 2017. Select the Community download. Skip this s
 
   * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
 
----
-
 Run the installer and select the following workloads:
  - **ASP.NET and web development** (under **Web & Cloud**)
  - **.NET Core cross-platform development** (under **Other Toolsets**)
@@ -46,7 +44,7 @@ Run the installer and select the following workloads:
 ![**ASP.NET and web development** (under **Web & Cloud**)](start-mvc/_static/web_workload.png)
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
-
+---
 
 ## Create a web app
 

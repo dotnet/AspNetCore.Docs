@@ -15,6 +15,8 @@ uid: tutorials/first-mvc-app/adding-model
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
+Note: The ASP.NET Core 2.0 templates contain the *Models* folder.
+
 In Solution Explorer, right click the **MvcMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
 Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
@@ -70,9 +72,11 @@ If you run the app and click on the **Mvc Movie** link, you'll get an error simi
 
 ```
 An unhandled exception occurred while processing the request.
-SqlException: Cannot open database "MvcMovieContext-<GUID removed>" 
-requested by the login. The login failed.
-Login failed for user Rick
+
+SqlException: Cannot open database "MvcMovieContext-<GUID removed>" requested by the login. The login failed.
+Login failed for user 'Rick'.
+
+System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString 
 ```
 
 You need to create the database, and you'll use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
