@@ -68,7 +68,7 @@ Visual Studio creates:
 
 The automatic creation of the database context and [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-If you run the app and click on the **Mvc Movie** link, you'll get an error similar to one of the following:
+If you run the app and click on the **Mvc Movie** link, you'll get an error similar the following:
 
 ```
 An unhandled exception occurred while processing the request.
@@ -77,13 +77,6 @@ SqlException: Cannot open database "MvcMovieContext-<GUID removed>" requested by
 Login failed for user 'Rick'.
 
 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString 
-```
-
-```
-An unhandled exception occurred while processing the request.
-SqlException: Cannot open database "MvcMovieContext-<GUID removed>" 
-requested by the login. The login failed.
-Login failed for user Rick
 ```
 
 You need to create the database, and you'll use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
@@ -108,7 +101,6 @@ Install-Package Microsoft.EntityFrameworkCore.Tools
 Add-Migration Initial
 Update-Database
 ```
----
 
 Note: See the [CLI approach](#cli) if you have problems with the PMC.
 
