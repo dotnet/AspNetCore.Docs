@@ -16,20 +16,21 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework Core 2.0 and Visual Studio 2017.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 
 [Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-EF Core 1.1 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
+EF Core 2.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
 > [!NOTE]
-> For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
+> * For the ASP.NET Core 1.1/EF Core 1.1 version of this tutorial, see the [version of this tutorial in PDF format for Visual Studio 2017 Update 2 and earlier](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
+> * For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
 
 ## Prerequisites
 
-[Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) with the **ASP.NET and web development** and **.NET Core cross-platform development workloads** installed.
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
 ## Troubleshooting
 
