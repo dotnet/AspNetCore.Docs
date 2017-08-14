@@ -18,7 +18,7 @@ uid: security/authentication/cookie
 
 ASP.NET Core 1.x provides cookie [middleware](../../fundamentals/middleware.md#fundamentals-middleware) which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal, and assigns it to the `HttpContext.User` property. If you want to provide your own login screens and user databases, you can use the cookie middleware as a standalone feature.
 
-A major change in ASP.NET Core 2.x is that the cookie middleware is absent. Consequently, the `UseAuthentication` method invocation in the `Configure` method of *Startup.cs* sets the `HttpContext.User` property.
+A major change in ASP.NET Core 2.x is that the cookie middleware is absent. Instead, the `UseAuthentication` method invocation in the `Configure` method of *Startup.cs* adds the AuthenticationMiddleware which sets the `HttpContext.User` property.
 
 <a name="security-authentication-cookie-middleware-configuring"></a>
 
@@ -71,15 +71,15 @@ The code snippets above configure some or all of the following options:
 
 * `AccessDeniedPath` - This is the relative path to which requests redirect when a user attempts to access a resource but does not pass any [authorization policies](xref:security/authorization/policies#security-authorization-policies-based) for that resource.
 
-* `AuthenticationScheme` - This is a value by which the middleware is known. This is useful when there are multiple instances of middleware and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
+* `AuthenticationScheme` - This is a value by which a particular cookie authentication scheme is known. This is useful when there are multiple instances of cookie authentication and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
 
-* `AutomaticAuthenticate` - This flag is relevant only for ASP.NET Core 1.x. It indicates that the middleware should run on every request and attempt to validate and reconstruct any serialized principal it created.
+* `AutomaticAuthenticate` - This flag is relevant only for ASP.NET Core 1.x. It indicates that the cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.
 
-* `AutomaticChallenge` - This flag is relevant only for ASP.NET Core 1.x. It indicates that the 1.x middleware should redirect the browser to the `LoginPath` or `AccessDeniedPath` when authorization fails.
+* `AutomaticChallenge` - This flag is relevant only for ASP.NET Core 1.x. It indicates that the 1.x cookie authentication should redirect the browser to the `LoginPath` or `AccessDeniedPath` when authorization fails.
 
 * `LoginPath` - This is the relative path to which requests redirect when a user attempts to access a resource but has not been authenticated.
 
-[Other options](xref:security/authentication/cookie#security-authentication-cookie-options) include the ability to set the issuer for any claims the middleware creates, the name of the cookie the middleware drops, the domain for the cookie and various security properties on the cookie. By default, the cookie middleware uses appropriate security options for any cookies it creates, such as:
+[Other options](xref:security/authentication/cookie#security-authentication-cookie-options) include the ability to set the issuer for any claims the cookie authentication creates, the name of the cookie the authentication drops, the domain for the cookie and various security properties on the cookie. By default, the cookie authentication uses appropriate security options for any cookies it creates, such as:
 - Setting the HttpOnly flag to prevent cookie access in client-side JavaScript
 - Limiting the cookie to HTTPS if a request has traveled over HTTPS
 
@@ -128,9 +128,9 @@ await HttpContext.SignOutAsync("MyCookieAuthenticationScheme");
 ## Reacting to back-end changes
 
 >[!WARNING]
-> Once a principal cookie has been created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie middleware has no knowledge of this, and a user stays logged in as long as their cookie is valid.
+> Once a principal cookie has been created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie authentication has no knowledge of this, and a user stays logged in as long as their cookie is valid.
 
-The cookie authentication middleware provides a series of events in its option class. The `ValidateAsync()` event can be used to intercept and override validation of the cookie identity.
+The cookie authentication provides a series of events in its option class. The `ValidateAsync()` event can be used to intercept and override validation of the cookie identity.
 
 Consider a back-end user database that may have a "LastChanged" column. In order to invalidate a cookie when the database changes, you should first, when [creating the cookie](xref:security/authentication/cookie#security-authentication-cookie-middleware-creating-a-cookie), add a "LastChanged" claim containing the current value. When the database changes, the "LastChanged" value should be updated.
 
@@ -169,7 +169,7 @@ public static class LastChangedValidator
 }
 ```
 
-This would then be wired up during cookie middleware configuration in the `Configure` method of *Startup.cs*:
+This would then be wired up during cookie authentication configuration in the `Configure` method of *Startup.cs*:
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -223,7 +223,7 @@ services.AddAuthentication("MyCookieAuthenticationScheme")
 
 ---
 
-Consider the example in which their name has been updated &mdash a decision which doesn't affect security in any way. If you want to non-destructively update the user principal, you can call `context.ReplacePrincipal()` and set the `context.ShouldRenew` property to `true`.
+Consider the example in which their name has been updated &mdash; a decision which doesn't affect security in any way. If you want to non-destructively update the user principal, you can call `context.ReplacePrincipal()` and set the `context.ShouldRenew` property to `true`.
 
 <a name="security-authentication-cookie-options"></a>
 
@@ -264,7 +264,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 
 ASP.NET Core 2.x unifies the APIs used for configuring cookies. The 1.x APIs have been marked as obsolete, and a new `Cookie` property of type `CookieBuilder` has been introduced in the `CookieAuthenticationOptions` class. It's recommended that you migrate to the 2.x APIs.
 
-* `ClaimsIssuer` is the issuer to be used for the [Issuer](https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer) property on any claims created by the middleware.
+* `ClaimsIssuer` is the issuer to be used for the [Issuer](https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer) property on any claims created by the cookie authentication.
 
 * `CookieBuilder.Domain` is the domain name to which the cookie is served. By default, this is the host name the request was sent to. The browser only serves the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example, setting the cookie domain to `.contoso.com` makes it available to `contoso.com`, `www.contoso.com`, `staging.www.contoso.com`, etc.
 
