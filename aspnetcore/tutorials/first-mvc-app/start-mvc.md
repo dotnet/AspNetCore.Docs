@@ -30,8 +30,9 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
 [!INCLUDE[install 2.0](../../includes/mvc-intro/install2.0.md)]
-[!INCLUDE[install 2.0](includes/mvc-intro/install2.0.md)]
-[!INCLUDE[install 2.0](aspnetcore/includes/mvc-intro/install2.0.md)]
+[!INCLUDE[install 2.0](../../../includes/mvc-intro/install2.0.md)]
+[!INCLUDE[install 2.0](../includes/mvc-intro/install2.0.md)]
+
 
 * Install [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
 * Install [Visual Studio](https://www.visualstudio.com/vs/preview/) 15.3 or later.
