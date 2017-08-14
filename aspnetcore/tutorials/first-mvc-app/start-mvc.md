@@ -54,27 +54,27 @@ From Visual Studio, select  **File > New > Project**.
 
 ![File > New > Project](start-mvc/_static/alt_new_project.png)
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
-
 Complete the **New Project** dialog:
 
 * In the left pane, tap **.NET Core**
 * In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
 * Tap **OK**
+
+![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
+
+
+# [ASP.NET Core 2.x](#tab/aspnet20)
+
+Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
+
+* In the version selector drop-down box select **ASP.NET Core 2.-**
+* Select **Web Application(Model-View-Controller)**
+* Tap **OK**.
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22.png)
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
-
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
-
-Complete the **New Project** dialog:
-
-* In the left pane, tap **.NET Core**
-* In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
-* Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
-* Tap **OK**
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
