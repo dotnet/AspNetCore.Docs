@@ -19,8 +19,8 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 
 ## Prerequisites
 
-* Install the latest [.NET Core 2.0 SDK](https://github.com/dotnet/cli/tree/release/2.0.0)
-* [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/)
+* Install [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+* Install [Visual Studio](https://www.visualstudio.com/vs/preview/) 15.3 or later.
 
 ## Create a Razor web app
 
