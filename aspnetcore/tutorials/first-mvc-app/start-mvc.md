@@ -61,13 +61,20 @@ Complete the **New Project** dialog:
 * Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
 * Tap **OK**
 
+![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
+
+
 # [ASP.NET Core 2.x](#tab/aspnet20)
+
+Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
+
+* In the version selector drop-down box select **ASP.NET Core 2.-**
+* Select **Web Application(Model-View-Controller)**
+* Tap **OK**.
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22.png)
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
-
-![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
@@ -77,6 +84,8 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 * Tap **OK**.
 
 ![New ASP.NET Core web app](start-mvc/_static/p3.png)
+
+---
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a simple starter project, and it's a good place to start,
 
