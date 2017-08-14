@@ -113,7 +113,7 @@ dotnet aspnet-codegenerator razorpage -h
 <a name="test"></a>
 ### Test the app
 
-* Run the app and append `/Movie` to the URL in the browser (`http://localhost:port/movie`).
+* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
  ![Create page](model/_static/conan.png)

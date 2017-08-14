@@ -74,7 +74,7 @@ Notes:
 
 ## Creating a Razor Pages project with Visual Studio 2017
 
-Note: This feature requires Visual Studio 2017 2 or later.
+Note: This feature requires Visual Studio 2017 version 15.3 or later.
 
 You can create a Razor Pages starter project from Visual Studio 2017 with the following steps:
 
