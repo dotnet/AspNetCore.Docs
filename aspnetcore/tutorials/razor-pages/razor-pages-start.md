@@ -19,9 +19,12 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../../includes/mvc-intro/install2.0.md)]
-[!INCLUDE[install 2.0](../../../includes/mvc-intro/install2.0.md)]
-[!INCLUDE[install 2.0](../includes/mvc-intro/install2.0.md)]
+"C:\csprojNew\1\Docs\aspnetcore\includes\install2.0.md"
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+<!--
+[!INCLUDE[install 2.0](../../../includes/install2.0.md)]
+[!INCLUDE[install 2.0](../includes/install2.0.md)]
+-->
 
 ## Create a Razor web app
 
