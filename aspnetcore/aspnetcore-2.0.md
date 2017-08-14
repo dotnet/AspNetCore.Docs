@@ -13,58 +13,36 @@ ms.prod: aspnet-core
 uid: aspnetcore-2.0
 ---
 
-# What's new in ASP.NET Core 2.0 Preview
+# What's new in ASP.NET Core 2.0
 
-> [!NOTE]
-> ASP.NET Core 2.0 is in preview, and some of the documentation for it has not yet been written. This document links to GitHub issues for articles that are planned but not yet published. For information about how to install ASP.NET 2.0 Preview 2, see [Introducing ASP.NET Core 2.0 Preview 2](https://blogs.msdn.microsoft.com/webdev/2017/06/28/introducing-asp-net-core-2-0-preview-2/)
+This article highlights the most significant changes in ASP.NET Core 2.0, with links to relevant documentation.
 
-Here are some of the most significant updates in ASP.NET Core 2.0:
+## Razor Pages
 
-- [Razor Pages](xref:mvc/razor-pages/index)
-- [ASP.NET Core metapackage](#aspnet-core-metapackage)
-- [.NET Standard 2.0](#net-standard-20)
-- [Configuration update](#configuration-update)
-- [Logging update](#logging-update)
-- [Authentication update](#authentication-update)
-- [Identity update](#identity-update)
-- [SPA templates](#spa-templates)
-- [Kestrel improvements](#kestrel-improvements)
-- [WebListener renamed to HttpSys](#weblistener-renamed-to-httpsys)
-- [Enhanced HTTP header support](#enhanced-http-header-support)
-- [Hosting startup and Application Insights](#hosting-startup-and-application-insights)
-- [Automatic use of anti-forgery tokens](#automatic-use-of-anti-forgery-tokens)
-- [Automatic precompilation](#automatic-precompilation)
-- [Razor support for C# 7.1](#razor-support-for-c-71)
+Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-For the complete list of changes, see the [ASP.NET Core Release Notes](https://github.com/aspnet/Home/releases/).
+For more information, see the introduction and tutorial:
 
-<!--
-For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see [Migrate from 1.x to 2.0](https://github.com/aspnet/Docs/issues/3548).
--->
+* [Introduction to Razor Pages](xref:mvc/razor-pages/index)
+* [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## ASP.NET Core metapackage
 
 A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-The version number of the `Microsoft.AspNetCore.All` metapackage represents the latest ASP.NET Core version (aligned with the .NET Core version).
+For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](xref:fundamentals/metapackage).
 
-Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Runtime Store will contain all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup-time.
+## Runtime Store
 
-If there are features you don’t use in your application, the new package trimming features will exclude those binaries in the published application output.
+Applications that use the `Microsoft.AspNetCore.All` metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the `Microsoft.AspNetCore.All` metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.
 
-For information about the status of planned documentation, see the following GitHub issues:
-   
-* [Metapackage issue](https://github.com/aspnet/Docs/issues/3449)
-* [Runtime Store issue](https://github.com/aspnet/Docs/issues/3667)
-* [Package trimming issue](https://github.com/dotnet/docs/issues/1745)
+For more information, see [Runtime store](https://docs.microsoft.com/dotnet/core/deploying/runtime-store)
 
 ## .NET Standard 2.0
 
 The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. 
 
 The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because it is intended to be used with the .NET Core 2.0 Runtime Store.
-
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3449).
 
 ## Configuration update
 
@@ -74,7 +52,9 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Logging update
 
-In ASP.NET 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering. For more information, see [Introduction to Logging](xref:fundamentals/logging).
+In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the *Program.cs* file instead of in the *Startup.cs* file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
+
+For more information, see [Introduction to Logging](xref:fundamentals/logging).
 
 ## Authentication update
 
@@ -89,7 +69,11 @@ For information about the status of planned documentation, see the [GitHub issue
 
 We've made it easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the [Microsoft Authentication Library (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client).
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3668).
+For more information on authentication changes in 2.0, see the following resources:
+
+* [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
+* [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
 
 ## SPA templates
 
@@ -135,19 +119,17 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ## Automatic use of anti-forgery tokens
 
-ASP.NET Core has always helped HTMLEncode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks: ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
+ASP.NET Core has always helped HTML-encode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3688).
+For more information, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](xref:security/anti-request-forgery).
 
 ## Automatic precompilation
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3547).
-
 ## Razor support for C# 7.1
 
-The Razor engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics.  To use C #7.1 in your project, add the following property in your project file and then reload the solution:
+The Razor view engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics. To use C# 7.1 in your project, add the following property in your project file and then reload the solution:
 
 ```xml
 <LangVersion>latest</LangVersion>
@@ -155,7 +137,25 @@ The Razor engine has been updated to work with the new Roslyn compiler. That inc
 
 For information about the status of C# 7.1 features, see [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
 
+## Other documentation updates for 2.0
+
+* [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps](xref:publishing/web-publishing-vs)
+* [Key Management](xref:security/data-protection/implementation/key-management)
+* [Configuring Facebook authentication](xref:security/authentication/facebook-logins)
+* [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
+* [Configuring Google authentication](xref:security/authentication/google-logins)
+* [Configuring Microsoft Account authentication](xref:security/authentication/microsoft-logins)
+* [Setting up HTTPS for development in ASP.NET Core](xref:security/https)
+
+## Migration guidance
+
+For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:
+
+* [Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
+* [Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+
 ## Additional Information
 
-- [ASP.NET Core Release Notes](https://github.com/aspnet/Home/releases/)
-- If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).
+For the complete list of changes, see the [ASP.NET Core 2.0 Release Notes](https://github.com/aspnet/Home/releases/tag/2.0.0).
+
+If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly [ASP.NET Community Standup](https://live.asp.net/).

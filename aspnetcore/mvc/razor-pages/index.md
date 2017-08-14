@@ -13,23 +13,21 @@ uid: mvc/razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak) 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-Razor Pages requires ASP.NET Core 2.0.0 or later. Tooling support for Razor Pages ships in Visual Studio 2017 Update 3 or later.
+Razor Pages requires [.NET Core 2.0](https://dot.net/core) or later. Tooling support for Razor Pages ships in [Visual Studio 2017](https://www.visualstudio.com/downloads/)  15.3 or later.
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
-[Download or view sample code](https://github.com/Rick-Anderson/razor-page-intro).
-
 <a name="prerequisites"></a>
 
-## ASP.NET Core 2.0 preview prerequisites
+## ASP.NET Core 2.0 prerequisites
 
-ASP.NET Core 2.0 preview  is included in .NET Core 2.0 preview. [Download .NET Core 2.0 Preview 2](https://www.microsoft.com/net/core/preview) 
+[.NET Core 2.0.0 SDK](https://dot.net/core) or later.
 
-If you’re using Visual Studio, [Visual Studio 2017 Preview version 15.3](https://www.visualstudio.com/vs/preview/) or later is required.
+If you’re using Visual Studio, [Visual Studio 2017 version 15.3](https://www.visualstudio.com/vs/) or later is required.
 
 ## Razor Pages
 
@@ -61,8 +59,8 @@ For simple pages, mixing the `PageModel` class with the Razor markup is fine. Fo
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL:
 
 | File name and path               | matching URL |
-| ----------------- | ------------ | 
-| */Pages/Index.cshtml* | `/` or `/Index` | 
+| ----------------- | ------------ |
+| */Pages/Index.cshtml* | `/` or `/Index` |
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
 | */Pages/Store/Index.cshtml* | `/Store` or `/Store/Index`  |
@@ -76,7 +74,7 @@ Notes:
 
 ## Creating a Razor Pages project with Visual Studio 2017
 
-Note: This feature requires Visual Studio 2017 Preview 2 or later.
+Note: This feature requires Visual Studio 2017 2 or later.
 
 You can create a Razor Pages starter project from Visual Studio 2017 with the following steps:
 
@@ -106,14 +104,14 @@ The *Pages/Create.cshtml.cs* code-behind file for the view:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
 
-By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class. 
+By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class.
 
 Using a `PageModel` code-behind file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` code-behind files support runtime compilation, which can be an advantage in development.  <!-- review: advantage because you can make changes and refresh the browser without explicitly compiling the app -->
 
 The page has an `OnPostAsync` *handler method* which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
-* `OnPost` to handle form submissions. 
+* `OnPost` to handle form submissions.
 
 The `Async` naming suffix is optional but is often used by convention. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
 
@@ -121,7 +119,7 @@ The previous `OnPostAsync` method:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
 
-The basic flow of `OnPostAsync`: 
+The basic flow of `OnPostAsync`:
 
 Check for validation errors.
 
@@ -132,7 +130,7 @@ When the data is entered successfully, the `OnPostAsync` handler method calls th
 
 When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` will render the page.
 
-The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding. 
+The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding.
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
 
@@ -142,7 +140,7 @@ The following code shows the combined version of the create page:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/CreateCombined.cshtml)]
 
-Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*. 
+Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*.
 
 The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for [constructor dependency injection](xref:mvc/controllers/dependency-injection#constructor-injection). The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
 
@@ -161,8 +159,8 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
 ```
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper) 
-used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route) 
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
+used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
 attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
@@ -184,9 +182,9 @@ You don't have to write any code for [antiforgery validation](xref:security/anti
 <a name="layout"></a>
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
-Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views. 
+Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
 
-Let's declutter this page by taking advantage of some of those features. 
+Let's declutter this page by taking advantage of some of those features.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/_Layout.cshtml*:
 
@@ -262,7 +260,7 @@ The app has the following file/folder structure
 * */Pages*
 
   * *Index.cshtml*
-  * */Customer* 
+  * */Customer*
 
     * *Create.cshtml*
     * *Edit.cshtml*
@@ -270,18 +268,16 @@ The app has the following file/folder structure
 
 The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
 
-
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">My Index Page</a>`
 * `RedirectToPage("/Index")`
-
 
 The page name is the path to the page from the root */Pages* folder (including a leading `/`, for example `/Index`). This is much more feature-rich than just hardcoding a URL. This is URL generation using [routing](xref:mvc/controllers/routing), and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. The following table shows which Index page is selected with different `RedirectToPage` parameters from *Pages/Customers/Create.cshtml*:
 
 | `RedirectToPage(x)| Page |
-| ----------------- | ------------ |  
+| ----------------- | ------------ |
 |  RedirectToPage("/Index") | *Pages/Index* |
 | RedirectToPage("./Index"); | *Pages/Customers/Index* |
 | RedirectToPage("../Index") | *Pages/Index* |
@@ -290,7 +286,6 @@ URL generation for pages supports relative names. The following table shows whic
 `RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")`  are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path -->
 
 Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
-
 
 ## TempData
 
@@ -317,7 +312,7 @@ public string Message { get; set; }
 See [TempData](xref:fundamentals/app-state#temp) for more information.
 
 <a name="mhpp"></a>
-##  Multiple handlers per page
+## Multiple handlers per page
 
 The following page generates markup for two page handlers using the `asp-page-handler` Tag Helper:
 
@@ -335,7 +330,7 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`. 
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
 
 ## Customizing Routing
 
@@ -362,7 +357,7 @@ public class Startup
     {
         services.AddMvc().AddRazorPagesOptions(options =>
         {
-           ... 
+           ...
         });
     }
 
@@ -373,5 +368,7 @@ public class Startup
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
 See [Razor view compilation](xref:mvc/views/view-compilation) to precompile views.
+
+[Download or view sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/index/sample).
 
 See [Getting started with Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start), which builds on this tutorial.

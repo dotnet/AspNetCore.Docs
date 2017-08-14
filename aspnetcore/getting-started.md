@@ -12,17 +12,12 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: getting-started
 ---
-# Getting Started with ASP.NET Core 2.0
+# Getting Started with ASP.NET Core
 
 > [!NOTE]
-> These instructions are for ASP.NET Core 2.0 Preview. The Preview release is not recommended for installation on a production machine. Looking to get started with the latest stable release? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
+> These instructions are for the latest version of ASP.NET Core. Looking to get started with an earlier version? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
 
-1. Install [.NET Core 2.0 Preview](https://microsoft.com/net/core/preview).
-
-<!-- after RTW uncomment this section
-   If you're on Windows, select the **Command line / other** environment. 
-   ![Select Command line environment for Windows](getting-started/_static/win-install-cmd-line.png)
--->
+1. Install [.NET Core](https://microsoft.com/net/core/).
 
 2. Create a new .NET Core project.
 
@@ -34,10 +29,6 @@ uid: getting-started
    dotnet new web
    ```
     
-<!-- after RTW uncomment this section
-   Note: Earlier versions of .NET Core required a `t` parameter, that is, `dotnet new -t web`. If you get an error running `dotnet new web`, install the latest [.NET Core](https://microsoft.com/net/core).  `dotnet --info` displays the .NET Core version. You should have version 2.0.0 or later.
--->
-
 4. Run the app.
 
    The `dotnet run` command builds the app first if needed.
