@@ -72,11 +72,11 @@ Notes:
 
 ## Creating a Razor Pages project
 
-Select the **.NET Core CLI** tab if you are using:
+Select the **.NET Core CLI** tab if you are working with:
 
 * Visual Studio for Mac
 * Visual Studio Code
-* Using the CLI
+* The CLI
 
 # [Visual Studio](#tab/vs0)
 
