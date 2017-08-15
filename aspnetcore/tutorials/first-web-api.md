@@ -52,35 +52,17 @@ In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a brow
 ["value1","value2"]
 ``` 
 
-If you're using IE, you are prompted to open or save the *values.json* file.
-
-## Add support for Entity Framework Core
-
-# [ASP.NET Core 1.x](#tab/aspnet1x)
-
-Install the [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider. This database provider allows Entity Framework Core to be used with an in-memory database.
-
-Edit the *TodoApi.csproj* file. In Solution Explorer, right-click the project. Select **Edit TodoApi.csproj**. In the `ItemGroup` element, add "Microsoft.EntityFrameworkCore.InMemory":
-
-[!code-xml[Main](first-web-api/sample/TodoApi/TodoApi.csproj?highlight=15)]
-
-# [ASP.NET Core 2.0](#tab/aspnet20)
-
-The [Entity Framework Core InMemory](https://docs.microsoft.com/ef/core/providers/in-memory/) database provider is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). You don't need to install `Entity Framework Core InMemory`. This database provider allows Entity Framework Core to be used with an in-memory database.
-
----
-
-## Add a model class
+### Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
 Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-Note: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
+Note: The model classes go anywhere in your project, but the *Models* folder is used by convention.
 
 Add a `TodoItem` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoItem` and select **Add**.
 
-Replace the generated code with:
+Replace the generated code with the following:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoItem.cs)]
 
@@ -88,15 +70,17 @@ The database generates the `Id` when a `TodoItem` is created.
 
 ### Create the database context
 
-The *database context* is the main class that coordinates Entity Framework functionality for a given data model. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
+The *database context* is the main class that coordinates Entity Framework functionality for a given data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
 
 Add a `TodoContext` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class `TodoContext` and select **Add**.
+
+Replace the generated code with the following:
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Models/TodoContext.cs)]
 
 [!INCLUDE[Register the database context](../includes/webApi/register_dbContext.md)]
 
-## Add a controller
+### Add a controller
 
 In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web  API Controller Class** template. Name the class `TodoController`.
 
