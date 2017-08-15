@@ -74,8 +74,8 @@ Notes:
 
 Select the **.NET Core CLI** tab if you are working with:
 
-* Visual Studio for Mac
-* Visual Studio Code
+* [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * The CLI
 
 # [Visual Studio](#tab/vs0)
@@ -92,7 +92,9 @@ To create a Razor Pages starter project:
 
 # [.NET Core CLI](#tab/cli)
 
-Run `dotnet razor` from the command line.
+Run `dotnet new razor` from the command line.
+
+If you're using Visual Studio for Mac, open the generated *.csproj* file.
 
 ---
 
