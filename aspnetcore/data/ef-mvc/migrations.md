@@ -33,7 +33,7 @@ To work with migrations, you can use the **Package Manager Console** (PMC) or th
 
 The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file, as shown. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
 
-[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=13)]
+[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=2)]
   
 (The version numbers in this example were current when the tutorial was written.) 
 
