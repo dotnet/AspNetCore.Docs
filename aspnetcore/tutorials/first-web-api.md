@@ -5,9 +5,8 @@ description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 keywords: ASP.NET Core, WebAPI, Web API, REST, HTTP, Service, HTTP Service
 ms.author: riande
 manager: wpickett
-ms.date: 5/24/2017
+ms.date: 8/15/2017
 ms.topic: get-started-article
-ms.assetid: 830b4af5-ed14-423e-9f59-764a6f13a8f6
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-web-api
@@ -29,6 +28,10 @@ There are 3 versions of this tutorial:
 
 [!INCLUDE[intro to web API](../includes/webApi/intro.md)]
 
+## Prerequisites
+
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+
 ## Create the project
 
 From Visual Studio, select **File** menu, > **New** > **Project**.
@@ -37,13 +40,13 @@ Select the **ASP.NET Core Web Application (.NET Core)** project template. Name t
 
 ![New project dialog](first-web-api/_static/new-project.png)
 
-In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Select **OK**. Do **not** select **Enable Docker Support**.
+In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **Web API** template. Select **OK**. Do **not** select **Enable Docker Support**.
 
 ![New ASP.NET Web Application dialog with Web API project template selected from ASP.NET Core Templates](first-web-api/_static/web-api-project.png)
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the `ValuesController` data will be displayed:
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Chrome, Edge, and Firefox, display the following:
 
 ```
 ["value1","value2"]
