@@ -2,7 +2,7 @@
 title: Create a Web API with ASP.NET Core and Visual Studio for Windows
 author: rick-anderson
 description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
-keywords: ASP.NET Core, WebAPI, Web API, REST, HTTP, Service, HTTP Service
+keywords:ASP.NET Core,WebAPI,Web API,REST,HTTP,Service,HTTP Service
 ms.author: riande
 manager: wpickett
 ms.date: 8/15/2017
@@ -48,7 +48,7 @@ In the **New ASP.NET Core Web Application - TodoApi** dialog, select the **Web A
 
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. Chrome, Edge, and Firefox, display the following:
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly-chosen port number. Chrome, Edge, and Firefox display the following:
 
 ```
 ["value1","value2"]
