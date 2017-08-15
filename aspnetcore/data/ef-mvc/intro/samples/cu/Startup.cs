@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+#region snippet_Usings
 using ContosoUniversity.Data;
 using Microsoft.EntityFrameworkCore;
+#endregion
 
 namespace ContosoUniversity
 {
@@ -46,12 +48,14 @@ namespace ContosoUniversity
 
             app.UseStaticFiles();
 
+            #region snippet_Route
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            #endregion
         }
     }
 }
