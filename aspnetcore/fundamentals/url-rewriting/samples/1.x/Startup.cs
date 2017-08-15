@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using RewriteRules;
 
-namespace URLRewritingSample
+namespace UrlRewritingSample
 {
     public class Startup
     {
@@ -31,11 +31,12 @@ namespace URLRewritingSample
         }
 
         #region snippet2
-        static void RedirectXMLRequests(RewriteContext context)
+        public static void RedirectXMLRequests(RewriteContext context)
         {
             var request = context.HttpContext.Request;
 
-            // Because we're redirecting back to the same app, stop processing if the request has already been redirected
+            // Because we're redirecting back to the same app, stop 
+            // processing if the request has already been redirected
             if (request.Path.StartsWithSegments(new PathString("/xmlfiles")))
             {
                 return;
@@ -46,7 +47,8 @@ namespace URLRewritingSample
                 var response = context.HttpContext.Response;
                 response.StatusCode = StatusCodes.Status301MovedPermanently;
                 context.Result = RuleResult.EndResponse;
-                response.Headers[HeaderNames.Location] = "/xmlfiles" + request.Path + request.QueryString;
+                response.Headers[HeaderNames.Location] = 
+                    "/xmlfiles" + request.Path + request.QueryString;
             }
         }
         #endregion

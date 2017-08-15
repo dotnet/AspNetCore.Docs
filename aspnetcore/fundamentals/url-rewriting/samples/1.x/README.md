@@ -1,6 +1,6 @@
-# ASP.NET Core URL Rewriting Sample
+# ASP.NET Core URL Rewriting Sample (ASP.NET Core 1.x)
 
-This sample illustrates usage of ASP.NET Core URL Rewriting Middleware. The application demonstrates URL redirect and URL rewriting options.
+This sample illustrates usage of ASP.NET Core 1.x URL Rewriting Middleware. The application demonstrates URL redirect and URL rewriting options. For the ASP.NET Core 2.x sample, see [ASP.NET Core URL Rewriting Sample (ASP.NET Core 2.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/2.x).
 
 When running the sample, a response will be served that shows the rewritten or redirected URL when one of the rules is applied to a request URL.
 
