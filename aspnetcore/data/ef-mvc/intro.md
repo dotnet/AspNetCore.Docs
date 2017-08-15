@@ -59,7 +59,7 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * From the left pane, select **Templates > Visual C# > Web**.
 
-* Select the **ASP.NET Core Web Application (.NET Core)** project template.
+* Select the **ASP.NET Core Web Application** project template.
 
 * Enter **ContosoUniversity** as the name and click **OK**.
 
@@ -67,9 +67,9 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Wait for the **New ASP.NET Core Web Application (.NET Core)** dialog to appear
 
-* Select **ASP.NET Core 1.1** and the **Web Application** template.
+* Select **ASP.NET Core 2.0** and the **Web Application (Model-View-Controller)** template.
 
-  **Note:** This tutorial requires ASP.NET Core 1.1 and EF Core 1.1 or later -- make sure that **ASP.NET Core 1.0** is not selected.
+  **Note:** This tutorial requires ASP.NET Core 2.0 and EF Core 2.0 or later -- make sure that **ASP.NET Core 1.1** is not selected.
 
 * Make sure **Authentication** is set to **No Authentication**.
 
@@ -101,14 +101,8 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses the SQL Server provider, [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). The provider package is already included in the [Microsoft.AspNetCore.All](xref:fundamentalthe [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
-To install the package, enter the following command in **Package Manager Console (PMC)**. (From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.)
-
-```
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-```
-  
 This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
 For information about other database providers that are available for Entity Framework Core, see [Database providers](https://docs.microsoft.com/ef/core/providers/).
@@ -126,8 +120,6 @@ In the following sections you'll create a class for each one of these entities.
 ### The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
-
-In the project folder, create a folder named *Models*.
 
 In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
 
@@ -221,13 +213,11 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and repla
 
 The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data.  It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
-In *Startup.cs*, modify the `Configure` method to call this seed method on application startup. First, add the context to the method signature so that ASP.NET dependency injection can provide it to your `DbInitializer` class.
+In *Program.cs*, modify the `Main` method to call this seed method on application startup. 
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_ConfigureSignature&highlight=1)]
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-19)]
 
-Then call your `DbInitializer.Initialize` method at the end of the `Configure` method.
-
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_RouteAndSeed&highlight=8)]
+Add `using` statements for `Microsoft.Extensions.DependencyInjection` and  `ContosoUniversity.Data`.
 
 Now the first time you run the application the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials you'll see how to modify the database when the data model changes, without deleting and re-creating it.
 
