@@ -25,9 +25,7 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 ## ASP.NET Core 2.0 prerequisites
 
-[.NET Core 2.0.0 SDK](https://dot.net/core) or later.
-
-If you’re using Visual Studio, [Visual Studio 2017 version 15.3](https://www.visualstudio.com/vs/) or later is required.
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
 ## Razor Pages
 
