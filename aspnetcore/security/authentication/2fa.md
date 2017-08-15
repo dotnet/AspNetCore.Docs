@@ -2,12 +2,11 @@
 title: Two-factor authentication with SMS
 author: rick-anderson
 description: Shows how to set up two-factor authentication (2FA) with ASP.NET Core
-keywords: ASP.NET Core, SMS, authentication, 2FA, two-factor authentication, two factor authentication 
+keywords: ASP.NET Core,SMS, authentication,2FA,two-factor authentication,two factor authentication 
 ms.author: riande
 manager: wpickett
-ms.date: 04/01/2017
+ms.date: 8/15/2017
 ms.topic: article
-ms.assetid: ff1c22d1-d1f2-4616-84dd-94ba61ec299a
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/2fa
@@ -16,7 +15,9 @@ uid: security/authentication/2fa
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://github.com/Swiss-Devs)
 
-This tutorial will show you how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
+This tutorial applies to ASP.NET Core 1.x only. See [Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes) for ASP.NET Core 2.0 and later.
+
+This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and [ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
 View the [completed sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA). [How to download](xref:tutorials/index#how-to-download-a-sample).
 
