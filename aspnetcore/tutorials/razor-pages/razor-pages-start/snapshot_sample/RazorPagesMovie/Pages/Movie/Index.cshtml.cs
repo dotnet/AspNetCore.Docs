@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using RazorPagesMovie.Models;
 
 
-namespace RazorPagesMovie.Pages_Movie
+namespace RazorPagesMovie.Pages.Movies
 {
     public class IndexModel : PageModel
     {
