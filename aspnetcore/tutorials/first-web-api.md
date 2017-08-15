@@ -30,7 +30,7 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+[!INCLUDE[install 2.0](../includes/install2.0.md)]
 
 See [this PDF](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/_static/_webAPI.pdf) for the ASP.NET Core 1.1 version.
 
