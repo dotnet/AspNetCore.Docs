@@ -21,14 +21,14 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 ## The Create, Delete, Details, and Edit pages.
 
-Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
+Examine the *Pages/Movies/Index.cshtml.cs* code-behind file:
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
 When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page. `OnGetAsync` or `OnGet` is called on a Razor Page to initialize the state for the page. In this case, `OnGetAsync` gets a list of movies to display.
 
-Examine the *Pages/Movie/Index.cshtml* Razor Page:
+Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
 
@@ -68,7 +68,7 @@ The `Controller` base class has a `ViewData` dictionary property that can be use
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
 
-Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify them to have different values.
+Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movies/Index.cshtml* currently have the same title, but you can modify them to have different values.
 
 The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
@@ -99,7 +99,7 @@ Save your changes, and test the app by clicking on the **RpMovie** link. See the
 
 ### The Create code-behind page
 
-Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
+Examine the *Pages/Movies/Create.cshtml.cs* code-behind file:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
 
@@ -117,7 +117,7 @@ If there are no model errors, the data is saved, and the browser is redirected t
 
 ### The Create Razor Page
 
-Examine the *Pages/Movie/Create.cshtml* Razor Page file:
+Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
 
