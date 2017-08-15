@@ -25,12 +25,12 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 ## ASP.NET Core 2.0 prerequisites
 
-Install [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+Install [.NET Core](https://dot.net/core) 2.0.0 or later.
 
 If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later with the following workloads:
 
-* ASP.NET and web development
-* .NET Core cross-platform development
+* **ASP.NET and web development**
+* **.NET Core cross-platform development**
 
 ## Razor Pages
 
