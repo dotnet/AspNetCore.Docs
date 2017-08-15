@@ -29,7 +29,17 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 # [ASP.NET Core 2.x](#tab/aspnet20)
 
-[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+Install the following:
+
+* [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+* [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later.
+Run the installer and select the following workloads:
+ - **ASP.NET and web development** (under **Web & Cloud**)
+ - **.NET Core cross-platform development** (under **Other Toolsets**)
+
+![**ASP.NET and web development** (under **Web & Cloud**)](start-mvc/_static/web_workload.png)
+
+![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
 # [ASP.NET Core 1.x](#tab/aspnet1x)
 
