@@ -5,7 +5,7 @@ description: Overview of Razor Pages in ASP.NET Core
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 07/18/2017
+ms.date: 08/15/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
