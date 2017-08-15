@@ -70,17 +70,31 @@ Notes:
 
 <a name="rpvs17"></a>
 
-## Creating a Razor Pages project with Visual Studio 2017
+## Creating a Razor Pages project
+
+Select the **.NET Core CLI** tab if you are using:
+
+* Visual Studio for Mac
+* Visual Studio Code
+* Using the CLI
+
+# [Visual Studio](#tab/vs0)
 
 Note: This feature requires Visual Studio 2017 version 15.3 or later.
 
-You can create a Razor Pages starter project from Visual Studio 2017 with the following steps:
+To create a Razor Pages starter project:
 
 * From the Visual Studio **File** menu, select **New > Project**.
-* Create a new ASP.NET Core Web Application:
+* Create a new **ASP.NET Core Web Application**.
  ![new ASP.NET Core Web Application](index/_static/npp.png)
-* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**.
+* Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
  ![Web Application (Razor Pages)](index/_static/npp2.png)
+
+# [.NET Core CLI](#tab/cli)
+
+Run `dotnet razor` from the command line.
+
+---
 
 ## Writing a basic form
 
