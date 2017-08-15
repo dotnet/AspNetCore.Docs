@@ -5,7 +5,7 @@ description: Overview of Razor Pages in ASP.NET Core
 keywords: ASP.NET Core, Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 07/18/2017
+ms.date: 08/15/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -25,9 +25,7 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 ## ASP.NET Core 2.0 prerequisites
 
-[.NET Core 2.0.0 SDK](https://dot.net/core) or later.
-
-If you’re using Visual Studio, [Visual Studio 2017 version 15.3](https://www.visualstudio.com/vs/) or later is required.
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
 ## Razor Pages
 
