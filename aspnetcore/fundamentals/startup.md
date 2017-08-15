@@ -7,7 +7,6 @@ ms.author: tdykstra
 manager: wpickett
 ms.date: 02/29/2017
 ms.topic: article
-ms.assetid: 6538df00-4ec2-45e4-811a-d7ce2ee608ed
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/startup
