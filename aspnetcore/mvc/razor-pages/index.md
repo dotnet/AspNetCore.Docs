@@ -27,7 +27,7 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 Install [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
 
-If you're usinging Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later with the following workloads:
+If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later with the following workloads:
 
 * ASP.NET and web development
 * .NET Core cross-platform development
