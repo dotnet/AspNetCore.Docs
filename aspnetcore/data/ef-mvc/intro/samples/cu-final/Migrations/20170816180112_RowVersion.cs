@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
 {
@@ -11,6 +11,7 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AddColumn<byte[]>(
                 name: "RowVersion",
                 table: "Department",
+                type: "rowversion",
                 rowVersion: true,
                 nullable: true);
         }

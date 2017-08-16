@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Collections.Generic;
 
 namespace ContosoUniversity.Migrations
 {
@@ -13,9 +13,9 @@ namespace ContosoUniversity.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(nullable: false),
-                    Credits = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true)
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    Credits = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,11 +26,11 @@ namespace ContosoUniversity.Migrations
                 name: "Student",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EnrollmentDate = table.Column<DateTime>(nullable: false),
-                    FirstMidName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FirstMidName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,11 +41,11 @@ namespace ContosoUniversity.Migrations
                 name: "Enrollment",
                 columns: table => new
                 {
-                    EnrollmentID = table.Column<int>(nullable: false)
+                    EnrollmentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CourseID = table.Column<int>(nullable: false),
-                    Grade = table.Column<int>(nullable: true),
-                    StudentID = table.Column<int>(nullable: false)
+                    CourseID = table.Column<int>(type: "int", nullable: false),
+                    Grade = table.Column<int>(type: "int", nullable: true),
+                    StudentID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

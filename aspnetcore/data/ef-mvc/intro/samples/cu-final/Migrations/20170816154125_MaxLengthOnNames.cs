@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
 {
@@ -11,6 +11,7 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
+                type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -19,6 +20,7 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "FirstMidName",
                 table: "Student",
+                type: "nvarchar(50)",
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -32,6 +34,7 @@ namespace ContosoUniversity.Migrations
                 table: "Student",
                 nullable: true,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(50)",
                 oldMaxLength: 50,
                 oldNullable: true);
 
@@ -40,6 +43,7 @@ namespace ContosoUniversity.Migrations
                 table: "Student",
                 nullable: true,
                 oldClrType: typeof(string),
+                oldType: "nvarchar(50)",
                 oldMaxLength: 50,
                 oldNullable: true);
         }

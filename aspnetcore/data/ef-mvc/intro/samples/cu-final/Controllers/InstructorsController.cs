@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;
-
 
 namespace ContosoUniversity.Controllers
 {
@@ -55,7 +54,7 @@ namespace ContosoUniversity.Controllers
 
             return View(viewModel);
         }
-
+        
         // GET: Instructors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
