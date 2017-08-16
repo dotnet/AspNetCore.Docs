@@ -110,20 +110,25 @@ Run the application in debug mode, and go to the Details page for a student.
 Go to the **Output** window showing debug output, and you see the query:
 
 ```
-Microsoft.EntityFrameworkCore.Storage.IRelationalCommandBuilderFactory:Information: Executed DbCommand (225ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
-SELECT [e].[EnrollmentID], [e].[CourseID], [e].[Grade], [e].[StudentID], [c].[CourseID], [c].[Credits], [c].[DepartmentID], [c].[Title]
-FROM [Enrollment] AS [e]
+Microsoft.EntityFrameworkCore.Database.Command:Information: Executed DbCommand (56ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [s].[ID], [s].[Discriminator], [s].[FirstName], [s].[LastName], [s].[EnrollmentDate]
+FROM [Person] AS [s]
+WHERE ([s].[Discriminator] = N'Student') AND ([s].[ID] = @__id_0)
+ORDER BY [s].[ID]
+Microsoft.EntityFrameworkCore.Database.Command:Information: Executed DbCommand (122ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT [s.Enrollments].[EnrollmentID], [s.Enrollments].[CourseID], [s.Enrollments].[Grade], [s.Enrollments].[StudentID], [e.Course].[CourseID], [e.Course].[Credits], [e.Course].[DepartmentID], [e.Course].[Title]
+FROM [Enrollment] AS [s.Enrollments]
+INNER JOIN [Course] AS [e.Course] ON [s.Enrollments].[CourseID] = [e.Course].[CourseID]
 INNER JOIN (
-    SELECT DISTINCT TOP(2) [s].[ID]
-    FROM [Person] AS [s]
-    WHERE ([s].[Discriminator] = N'Student') AND ([s].[ID] = @__id_0)
-    ORDER BY [s].[ID]
-) AS [s0] ON [e].[StudentID] = [s0].[ID]
-INNER JOIN [Course] AS [c] ON [e].[CourseID] = [c].[CourseID]
-ORDER BY [s0].[ID]
+    SELECT TOP(1) [s0].[ID]
+    FROM [Person] AS [s0]
+    WHERE ([s0].[Discriminator] = N'Student') AND ([s0].[ID] = @__id_0)
+    ORDER BY [s0].[ID]
+) AS [t] ON [s.Enrollments].[StudentID] = [t].[ID]
+ORDER BY [t].[ID]
 ```
 
-You'll notice something here that might surprise you: the SQL selects up to 2 rows (`TOP(2)`). The `SingleOrDefaultAsync` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the `SingleOrDefault` method is the same as if 2 rows match.
+You'll notice something here that might surprise you: the SQL selects up to 2 rows (`TOP(2)`) from the Person table. The `SingleOrDefaultAsync` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the `SingleOrDefault` method is the same as if 2 rows match.
 
 Note that you don't have to use debug mode and stop at a breakpoint to get logging output in the **Output** window. It's just a convenient way to stop the logging at the point you want to look at the output. If you don't do that, logging continues and you have to scroll back to find the parts you're interested in.
 

@@ -86,15 +86,7 @@ Save your changes and build the project. Then open the command window in the pro
 dotnet ef migrations add Inheritance
 ```
 
-Run the `database update` command:.
-
-```console
-dotnet ef database update
-```
-
-The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
-
-> The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_CourseAssignment_Person_InstructorID". The conflict occurred in database "ContosoUniversity09133", table "dbo.Person", column 'ID'.
+Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
 Open *Migrations\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
@@ -122,7 +114,7 @@ This code takes care of the following database update tasks:
 
 (If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could have been omitted.)
 
-Run the `database update` command again:
+Run the `database update` command:
 
 ```console
 dotnet ef database update
