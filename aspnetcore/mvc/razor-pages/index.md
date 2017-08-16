@@ -129,7 +129,7 @@ Check for validation errors.
 *  If there are no errors, save the data and redirect.
 *  If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be caught on the client and never submitted to the server.
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`.This is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
+When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. This is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
 When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` will render the page.
 
@@ -279,9 +279,9 @@ The page name is the path to the page from the root */Pages* folder (including a
 
 URL generation for pages supports relative names. The following table shows which Index page is selected with different `RedirectToPage` parameters from *Pages/Customers/Create.cshtml*:
 
-| `RedirectToPage(x)| Page |
+| RedirectToPage(x)| Page |
 | ----------------- | ------------ |
-|  RedirectToPage("/Index") | *Pages/Index* |
+| RedirectToPage("/Index") | *Pages/Index* |
 | RedirectToPage("./Index"); | *Pages/Customers/Index* |
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
