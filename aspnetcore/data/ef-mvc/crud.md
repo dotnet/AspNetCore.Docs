@@ -16,7 +16,7 @@ uid: data/ef-mvc/crud
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
@@ -153,7 +153,7 @@ The code in *Views/Students/Create.cshtml* uses `label`, `input`, and `span` (fo
 
 Run the page by selecting the **Students** tab and clicking **Create New**.
 
-Enter names and an invalid date and click **Create** to see the error message.
+Enter names and a date. Try entering an invalid date if your browser lets you do that. (Some browsers force you to use a date picker.) Then click **Create** to see the error message.
 
 ![Date validation error](crud/_static/date-error.png)
 

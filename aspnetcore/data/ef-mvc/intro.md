@@ -89,7 +89,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=7,31,37-40,49)]
+[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,30,36-39,48)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -101,7 +101,7 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. This tutorial uses the SQL Server provider, [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). The provider package is already included in the [Microsoft.AspNetCore.All](xref:fundamentalthe [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is already included in the [Microsoft.AspNetCore.All](xref:fundamentalthe [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
 This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
@@ -185,7 +185,7 @@ ASP.NET Core implements [dependency injection](../../fundamentals/dependency-inj
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=4-5)]
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file.
 
@@ -213,13 +213,21 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and repla
 
 The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data.  It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
-In *Program.cs*, modify the `Main` method to call this seed method on application startup. 
+In *Program.cs*, modify the `Main` method to do the following on application startup:
 
-[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-19)]
+* Get a database context instance from the dependency injection container.
+* Call the seed method, passing to it the context.
+* Dispose the context when the seed method is done.
 
-Add `using` statements for `Microsoft.Extensions.DependencyInjection` and  `ContosoUniversity.Data`.
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
 
-Now the first time you run the application the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+Add `using` statements:
+
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Usings)]
+
+Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+
+**Note:** For earlier versions of ASP.NET Core, we recommended that you call `DbInitializer.Initialize` in the `Configure` method in *Startup.cs*. In ASP.NET 2.0 we recommend that you use the `Configure` method only to set up the request pipeline. Application startup code, such as `DbInitializer.Initialize`, belongs in the `Main` method. 
 
 ## Create a controller and views
 
@@ -233,7 +241,9 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
   ![Add dependencies](intro/_static/add-depend.png)
 
-  Visual Studio adds the dependencies needed to scaffold a controller, including a package with design-time EF functionality (`Microsoft.EntityFrameworkCore.Design`). A package that is needed only for scaffolding a DbContext from an existing database is also included (`Microsoft.EntityFrameworkCore.SqlServer.Design`). A *ScaffoldingReadMe.txt* file is created which you can delete.
+  Visual Studio adds the dependencies needed to scaffold a controller. The only change in the project file is the addition of the `Microsoft.VisualStudio.Web.CodeGeneration.Design` package.
+
+  A *ScaffoldingReadMe.txt* file is created which you can delete.
 
 * Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 

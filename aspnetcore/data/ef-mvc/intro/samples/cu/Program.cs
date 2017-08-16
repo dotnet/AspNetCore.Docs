@@ -7,8 +7,10 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+#region snippet_Usings
 using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data;
+#endregion
 
 namespace ContosoUniversity
 {
