@@ -104,6 +104,9 @@ Save your changes and build the project, and then enter the following commands i
 
 ```console
 dotnet ef migrations add RowVersion
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -175,7 +178,7 @@ In *Views/Departments/Edit.cshtml*, make the following changes:
 
 * Add a "Select Administrator" option to the drop-down list.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=15,41-43)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
 ## Test concurrency conflicts in the Edit page
 
@@ -238,7 +241,7 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 In *Views/Department/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,43-44)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44)]
 
 This makes the following changes:
 
@@ -248,7 +251,7 @@ This makes the following changes:
 
 * Removes the RowVersion field.
 
-* Adds hidden fields for the `DepartmentID` and `RowVersion` properties.
+* Adds a hidden field for the `RowVersion` property.
 
 Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
 
@@ -272,7 +275,7 @@ Replace the code in *Views/Departments/Details.cshtml* to delete the RowVersion 
 
 Replace the code in *Views/Departments/Create.cshtml* to add a Select option to the drop-down list.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Create.cshtml?highlight=38-40)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
 ## Summary
 
