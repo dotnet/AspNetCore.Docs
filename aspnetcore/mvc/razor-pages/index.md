@@ -17,8 +17,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://git
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-Razor Pages requires [.NET Core 2.0](https://dot.net/core) or later. Tooling support for Razor Pages ships in [Visual Studio 2017](https://www.visualstudio.com/downloads/)  15.3 or later.
-
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
 <a name="prerequisites"></a>
