@@ -7,7 +7,6 @@ using RazorPagesContacts.Data;
 
 #region namespace
 namespace RazorPagesContacts.Pages
-
 {
     public class EditModel : PageModel
     {
