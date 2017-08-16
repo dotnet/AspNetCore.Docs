@@ -83,6 +83,9 @@ Save your changes and build the project. Then open the command window in the pro
 
 ```console
 dotnet ef migrations add MaxLengthOnNames
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -110,6 +113,9 @@ Save your changes and build the project. Then open the command window in the pro
 
 ```console
 dotnet ef migrations add ColumnFirstName
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -420,11 +426,6 @@ dotnet ef migrations add ComplexDataModel
 You get a warning about possible data loss.
 
 ```text
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:11.58
 An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
 Done. To undo this action, use 'ef migrations remove'
 ```

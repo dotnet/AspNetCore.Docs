@@ -73,11 +73,10 @@ dotnet ef migrations add InitialCreate
 You see output like the following in the command window:
 
 ```console
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:15.63
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using 'C:\Users\username\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
+      Entity Framework Core 2.0.0-rtm-26452 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Done. To undo this action, use 'ef migrations remove'
 ```
 
@@ -116,20 +115,34 @@ In the command window, enter the following command to create the database and ta
 dotnet ef database update
 ```
 
-The output from the command is similar to the `migrations add` command.
+The output from the command is similar to the `migrations add` command, except that you see logs for the SQL commands that set up the database. Most of the logs are omitted in the following sample output. If you prefer not to see this level of detail in log messages, you can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging).
 
 ```text
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using 'C:\Users\username\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
+      Entity Framework Core 2.0.0-rtm-26452 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (467ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      CREATE DATABASE [ContosoUniversity2];
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [__EFMigrationsHistory] (
+          [MigrationId] nvarchar(150) NOT NULL,
+          [ProductVersion] nvarchar(32) NOT NULL,
+          CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+      );
 
-Time Elapsed 00:00:17.34
+<logs omitted for brevity>
+
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20170816151242_InitialCreate', N'2.0.0-rtm-26452');
 Done.
 ```
 
-Use **SQL Server Object Explorer** to inspect the database as you did in the first tutorial.  You'll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the database. View the data in that table and you'll see one entry for the first migration.
-
-![Migrations history in SSOX](migrations/_static/migrations-table.png)
+Use **SQL Server Object Explorer** to inspect the database as you did in the first tutorial.  You'll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the database. View the data in that table and you'll see one row for the first migration. (The last log in the preceding CLI output example shows the INSERT statement that creates this row.)
 
 Run the application to verify that everything still works the same as before.
 
@@ -140,8 +153,9 @@ Run the application to verify that everything still works the same as before.
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
 
-If you want to use the PMC commands, install the
-[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. Unlike the CLI tools, you don't have to edit the *.csproj* file; you can install it by using the **Package Manager Console** or the **NuGet Package Manager** GUI. Note that this is not the same package as the one you install for the CLI: its name ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
+The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is already included in the [Microsoft.AspNetCore.All](xref:fundamentalthe [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
+
+**Important:** This is not the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet). 
 
