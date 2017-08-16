@@ -15,19 +15,19 @@ uid: security/key-vault-configuration
 
 By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
-# [ASP.NET Core 1.1](#tab/aspnetcore11)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-View or download sample code for 1.1:
+View or download sample code for 1.x:
 
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/sample1/1.1) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/sample2/1.1) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version. 
+* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x) - Reads secret values into an app.
+* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version. 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 View or download sample code for 2.x:
 
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/sample1/2.0) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/sample2/2.0) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
+* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x) - Reads secret values into an app.
+* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
 
 ---
 
@@ -47,9 +47,9 @@ The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault` 
 | `ClientId`     | Azure Active Directory App Id  | 627e911e-43cc-61d4-992e-12db9c81b413         |
 | `ClientSecret` | Azure Active Directory App Key | g58K3dtg59o1Pa+e59v2Tx829w6VxTB2yv9sv/101di= |
 
-[!code-csharp[Program](key-vault-configuration/samples/sample1/2.0/Program.cs?name=snippet1&highlight=2,7-10)]
+[!code-csharp[Program](key-vault-configuration/samples/basic-sample/2.x/Program.cs?name=snippet1&highlight=2,7-10)]
 
-## Creating key vault secrets and loading configuration values (Sample 1)
+## Creating key vault secrets and loading configuration values (basic-sample)
 1. Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/documentation/articles/key-vault-get-started/).
   * Add secrets to the key vault using the [AzureRM Key Vault PowerShell Module](/powershell/module/azurerm.keyvault) available from the [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureRM.KeyVault), the [Azure Key Vault REST API](/rest/api/keyvault/), or the [Azure Portal](https://portal.azure.com/). Secrets are created as either *Manual* or *Certificate* secrets. *Certificate* secrets are certificates for use by apps and services but are not supported by the configuration provider. You should use the *Manual* option to create name-value pair secrets for use with the configuration provider.
     * Simple secrets are created as name-value pairs. Azure Key Vault secret names are limited to alphanumeric characters and dashes.
@@ -70,7 +70,7 @@ When you run the app, a webpage shows the loaded secret values:
 
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample1.png)
 
-## Creating prefixed key vault secrets and loading configuration values (Sample 2)
+## Creating prefixed key vault secrets and loading configuration values (key-name-prefix-sample)
 `AddAzureKeyVault` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
@@ -78,9 +78,9 @@ When you run the app, a webpage shows the loaded secret values:
 
 Using the second sample app, you create a secret in the key vault for `5000-AppSecret` (periods aren't allowed in key vault secret names) representing an app secret for version 5.0.0.0 of your app. For another version, 5.1.0.0, you create a secret for `5100-AppSecret`. Each app version loads its own secret value into its configuration as `AppSecret`, stripping off the version as it loads the secret. The sample's implementation is shown below:
 
-[!code-csharp[Configuration builder](key-vault-configuration/samples/sample2/2.0/Program.cs?name=snippet1&highlight=12)]
+[!code-csharp[Configuration builder](key-vault-configuration/samples/key-name-prefix-sample/2.x/Program.cs?name=snippet1&highlight=12)]
 
-[!code-csharp[PrefixKeyVaultSecretManager](key-vault-configuration/samples/sample2/2.0/Startup.cs?name=snippet1)]
+[!code-csharp[PrefixKeyVaultSecretManager](key-vault-configuration/samples/key-name-prefix-sample/2.x/Startup.cs?name=snippet1)]
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
 

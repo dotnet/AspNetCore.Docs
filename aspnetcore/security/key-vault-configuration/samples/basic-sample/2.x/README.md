@@ -1,6 +1,6 @@
-# Key Vault Configuration Provider sample application
+# Key Vault Configuration Provider sample application (ASP.NET Core 2.x)
 
-This sample illustrates the use of the Azure Key Vault Configuration Provider.
+This sample illustrates the use of the Azure Key Vault Configuration Provider for ASP.NET Core 2.x. For the ASP.NET Core 1.x sample, see [Key Vault Configuration Provider sample application (ASP.NET Core 1.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x).
 
 For more information on how the sample works, see the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) topic.
 

@@ -1,6 +1,6 @@
-# Prefix Key Vault Configuration Provider sample application
+# Prefix Key Vault Configuration Provider sample application (ASP.NET Core 2.x)
 
-This sample illustrates the use of the Azure Key Vault Configuration Provider.
+This sample illustrates the use of the Azure Key Vault Configuration Provider for ASP.NET Core 2.x using key name prefixes. For the ASP.NET Core 1.x sample, see [Prefix Key Vault Configuration Provider sample application (ASP.NET Core 1.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x).
 
 For more information on how the sample works, see the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) topic.
 
