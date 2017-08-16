@@ -5,7 +5,7 @@ using RazorPagesContacts.Data;
 
 namespace RazorPagesContacts.Pages.Customers
 {
-      public class Create2DotModel : PageModel
+    public class Create2DotModel : PageModel
     {
         private readonly AppDbContext _db;
 
