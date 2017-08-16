@@ -37,8 +37,6 @@ Select the **.NET Core CLI** tab if you are working with:
 
 # [Visual Studio](#tab/vs0)
 
-Note: This feature requires Visual Studio 2017 version 15.3 or later.
-
 To create a Razor Pages starter project:
 
 * From the Visual Studio **File** menu, select **New > Project**.
