@@ -1,34 +1,31 @@
-﻿#region snippet_Usings
-using ContosoUniversity.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+#region snippet_Usings
+using ContosoUniversity.Data;
+using Microsoft.EntityFrameworkCore;
 #endregion
 
 namespace ContosoUniversity
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet_SchoolContext
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -37,13 +34,8 @@ namespace ContosoUniversity
         #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet_ConfigureSignature
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, SchoolContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-            #endregion
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,15 +48,13 @@ namespace ContosoUniversity
 
             app.UseStaticFiles();
 
-            #region snippet_RouteAndSeed
+            #region snippet_Route
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            DbInitializer.Initialize(context);
             #endregion
         }
     }

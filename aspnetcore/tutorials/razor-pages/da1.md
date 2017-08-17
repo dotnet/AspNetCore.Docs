@@ -81,18 +81,18 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 
 ### Update concurrency exception handling
 
-Update the `OnPostAsync` method in the *Pages/Movies/Create.cshtml.cs* and *Pages/Movies/Delete.cshtml.cs* files. The following highlighted code shows the changes:
+Update the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file. The following highlighted code shows the changes:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
-The previous code only detects concurrency exceptions when the first concurrent client deletes the movie, and the second concurrent client posts changes to the movie (either edit or delete).
+The previous code only detects concurrency exceptions when the first concurrent client deletes the movie, and the second concurrent client posts changes to the movie.
 
 To test the `catch` block:
 
 * Set a breakpoint on `catch (DbUpdateConcurrencyException)`
-* Edit a movie (select either the **Edit** or **Delete** links).
+* Edit a movie.
 * In another browser window, select the **Delete** link for the same movie, and then delete the movie.
-* In the previous browser window, post changes to the movie (if you selected **Edit**), or delete the movie.
+* In the previous browser window, post changes to the movie.
 
 Production code would generally detect concurrency conflicts when two or more clients concurrently updated a record. See [Handling concurrency conflicts](xref:data/ef-mvc/concurrency) for more information.
 

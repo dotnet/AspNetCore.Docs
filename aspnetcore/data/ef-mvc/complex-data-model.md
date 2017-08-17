@@ -17,9 +17,9 @@ uid: data/ef-mvc/complex-data-model
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
-In the previous tutorials you worked with a simple data model that was composed of three entities. In this tutorial you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules.
+In the previous tutorials, you worked with a simple data model that was composed of three entities. In this tutorial, you'll add more entities and relationships and you'll customize the data model by specifying formatting, validation, and database mapping rules.
 
 When you're finished, the entity classes will make up the completed data model that's shown in the following illustration:
 
@@ -83,6 +83,9 @@ Save your changes and build the project. Then open the command window in the pro
 
 ```console
 dotnet ef migrations add MaxLengthOnNames
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -110,6 +113,9 @@ Save your changes and build the project. Then open the command window in the pro
 
 ```console
 dotnet ef migrations add ColumnFirstName
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -420,11 +426,6 @@ dotnet ef migrations add ComplexDataModel
 You get a warning about possible data loss.
 
 ```text
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:11.58
 An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
 Done. To undo this action, use 'ef migrations remove'
 ```

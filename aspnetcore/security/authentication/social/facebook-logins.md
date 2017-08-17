@@ -69,7 +69,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Add the Facebook middleware in the `Configure` method in *Startup.cs* file:
 
@@ -81,7 +81,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 });
 ```
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
 

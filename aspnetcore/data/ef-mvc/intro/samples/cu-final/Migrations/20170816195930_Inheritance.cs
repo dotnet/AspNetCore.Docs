@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Collections.Generic;
 
 namespace ContosoUniversity.Migrations
 {
@@ -45,7 +45,6 @@ namespace ContosoUniversity.Migrations
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Cascade);
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -64,8 +63,34 @@ namespace ContosoUniversity.Migrations
                 name: "FK_OfficeAssignment_Person_InstructorID",
                 table: "OfficeAssignment");
 
-            migrationBuilder.DropTable(
-                name: "Person");
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_Person",
+                table: "Person");
+
+            migrationBuilder.DropColumn(
+                name: "HireDate",
+                table: "Person");
+
+            migrationBuilder.DropColumn(
+                name: "Discriminator",
+                table: "Person");
+
+            migrationBuilder.RenameTable(
+                name: "Person",
+                newName: "Student");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "EnrollmentDate",
+                table: "Student",
+                nullable: false,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
+                oldNullable: true);
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Student",
+                table: "Student",
+                column: "ID");
 
             migrationBuilder.CreateTable(
                 name: "Instructor",
@@ -80,21 +105,6 @@ namespace ContosoUniversity.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Instructor", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Student",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    EnrollmentDate = table.Column<DateTime>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Student", x => x.ID);
                 });
 
             migrationBuilder.AddForeignKey(
