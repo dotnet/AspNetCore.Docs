@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +16,7 @@ namespace ContosoUniversity.Controllers
 
         public StudentsController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: Students
@@ -67,7 +67,6 @@ namespace ContosoUniversity.Controllers
             int pageSize = 3;
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
         }
-
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -171,7 +170,6 @@ namespace ContosoUniversity.Controllers
             }
             return View(studentToUpdate);
         }
-
         // GET: Students/Delete/5
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {

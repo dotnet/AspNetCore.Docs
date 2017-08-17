@@ -1,4 +1,4 @@
-@model ContosoUniversity.Models.Instructor
+﻿@model ContosoUniversity.Models.Instructor
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,7 +11,6 @@
     <h4>Instructor</h4>
     <hr />
     <dl class="dl-horizontal">
-        <input type="hidden" asp-for="ID" />
         <dt>
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
@@ -33,9 +32,8 @@
     </dl>
     
     <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
-        </div>
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

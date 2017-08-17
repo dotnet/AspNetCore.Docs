@@ -16,20 +16,21 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 
 [Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-EF Core 1.1 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
+EF Core 2.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
 > [!NOTE]
-> For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
+> * For the ASP.NET Core 1.1 version of this tutorial, see the [VS 2017 Update 2 version of this tutorial in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
+> * For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf).
 
 ## Prerequisites
 
-[Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) with the **ASP.NET and web development** and **.NET Core cross-platform development workloads** installed.
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
 ## Troubleshooting
 
@@ -58,7 +59,7 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * From the left pane, select **Templates > Visual C# > Web**.
 
-* Select the **ASP.NET Core Web Application (.NET Core)** project template.
+* Select the **ASP.NET Core Web Application** project template.
 
 * Enter **ContosoUniversity** as the name and click **OK**.
 
@@ -66,9 +67,9 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * Wait for the **New ASP.NET Core Web Application (.NET Core)** dialog to appear
 
-* Select **ASP.NET Core 1.1** and the **Web Application** template.
+* Select **ASP.NET Core 2.0** and the **Web Application (Model-View-Controller)** template.
 
-  **Note:** This tutorial requires ASP.NET Core 1.1 and EF Core 1.1 or later -- make sure that **ASP.NET Core 1.0** is not selected.
+  **Note:** This tutorial requires ASP.NET Core 2.0 and EF Core 2.0 or later -- make sure that **ASP.NET Core 1.1** is not selected.
 
 * Make sure **Authentication** is set to **No Authentication**.
 
@@ -88,7 +89,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=7,31,37-40,49)]
+[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,30,36-39,48)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -100,15 +101,9 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. For this tutorial, install the SQL Server provider:  [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). 
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
-To install the package, enter the following command in **Package Manager Console (PMC)**. (From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.)
-
-```
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-```
-  
-This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
+This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
 For information about other database providers that are available for Entity Framework Core, see [Database providers](https://docs.microsoft.com/ef/core/providers/).
 
@@ -125,8 +120,6 @@ In the following sections you'll create a class for each one of these entities.
 ### The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
-
-In the project folder, create a folder named *Models*.
 
 In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
 
@@ -192,13 +185,13 @@ ASP.NET Core implements [dependency injection](../../fundamentals/dependency-inj
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=4-5)]
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=3-4)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file.
 
 Add `using` statements for `ContosoUniversity.Data`  and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings&highlight=1,4)]
+[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
 Open the *appsettings.json* file and add a connection string as shown in the following example.
 
@@ -220,15 +213,21 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and repla
 
 The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data.  It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
-In *Startup.cs*, modify the `Configure` method to call this seed method on application startup. First, add the context to the method signature so that ASP.NET dependency injection can provide it to your `DbInitializer` class.
+In *Program.cs*, modify the `Main` method to do the following on application startup:
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_ConfigureSignature&highlight=1)]
+* Get a database context instance from the dependency injection container.
+* Call the seed method, passing to it the context.
+* Dispose the context when the seed method is done.
 
-Then call your `DbInitializer.Initialize` method at the end of the `Configure` method.
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
 
-[!code-csharp[Main](intro/samples/cu/Startup.cs?name=snippet_RouteAndSeed&highlight=8)]
+Add `using` statements:
 
-Now the first time you run the application the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Usings)]
+
+In older tutorials, you may see similar code in the `Configure` method in *Startup.cs*. We recommend that you use the `Configure` method only to set up the request pipeline. Application startup code belongs in the `Main` method.
+
+Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials, you'll see how to modify the database when the data model changes, without deleting and re-creating it.
 
 ## Create a controller and views
 
@@ -242,7 +241,9 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
 
   ![Add dependencies](intro/_static/add-depend.png)
 
-  Visual Studio adds the dependencies needed to scaffold a controller, including a package with design-time EF functionality (`Microsoft.EntityFrameworkCore.Design`). A package that is needed only for scaffolding a DbContext from an existing database is also included (`Microsoft.EntityFrameworkCore.SqlServer.Design`). A *ScaffoldingReadMe.txt* file is created which you can delete.
+  Visual Studio adds the dependencies needed to scaffold a controller. The only change in the project file is the addition of the `Microsoft.VisualStudio.Web.CodeGeneration.Design` package.
+
+  A *ScaffoldingReadMe.txt* file is created which you can delete.
 
 * Once again, right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
 
