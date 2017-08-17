@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace RazorPagesContacts.Pages.Customers
 {
-      public class CreateTempDataModel : PageModel
+    public class CreateTempDataModel : PageModel
     {
         private readonly AppDbContext _db;
 

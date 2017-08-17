@@ -21,7 +21,6 @@ namespace RazorPagesContacts.Pages
         public async Task OnGetAsync()
         {
             Customers = await _db.Customers.AsNoTracking().ToListAsync();
-
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
