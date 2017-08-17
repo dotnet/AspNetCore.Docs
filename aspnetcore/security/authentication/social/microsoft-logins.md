@@ -74,7 +74,7 @@ The project template used in this tutorial ensures that
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
 
@@ -86,7 +86,7 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 });
 ```
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Microsoft Account middleware in the `ConfigureServices` method in *Startup.cs* file:
 

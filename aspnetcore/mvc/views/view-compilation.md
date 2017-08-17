@@ -28,13 +28,13 @@ Precompilation considerations:
 
 To deploy precompiled views:
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Set `MvcRazorCompileOnPublish` to `true`, and include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`. The following *.csproj* sample highlights these settings:
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish.csproj?highlight=5,12)]
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 If your project targets .NET Framework, include a package reference to `Microsoft.AspNetCore.Mvc.Razor.ViewCompilation`:
 

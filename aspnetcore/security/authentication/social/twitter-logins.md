@@ -55,7 +55,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
 
@@ -67,7 +67,7 @@ app.UseTwitterAuthentication(new TwitterOptions()
 });
 ```
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Twitter middleware in the `ConfigureServices` method in *Startup.cs* file:
 

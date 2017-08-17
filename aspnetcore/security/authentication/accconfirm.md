@@ -19,7 +19,7 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 ## Create a New ASP.NET Core Project
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 This step applies to Visual Studio on Windows. See the next section for CLI instructions.
 
@@ -32,7 +32,7 @@ The tutorial requires Visual Studio 2017 Preview 2 or later.
 
 ![New Project dialog showing "Individual User Accounts radio" selected](accconfirm/_static/2.png)
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The tutorial requires Visual Studio 2017 or later.
 
@@ -61,7 +61,7 @@ Run the app, select the **Register** link, and register a user. Follow the instr
 
 ## View the Identity database
 
-# [SQL Server](#tab/sqlserver)
+# [SQL Server](#tab/sql-server)
 
 * From the **View** menu, select **SQL Server Object Explorer** (SSOX). 
 * Navigate to **(localdb)MSSQLLocalDB(SQL Server 13)**. Right-click on **dbo.AspNetUsers** > **View Data**:
@@ -72,7 +72,7 @@ Note the `EmailConfirmed` field is `False`.
 
 You might want to use this email again in the next step when the app sends a confirmation email. Right-click on the row and select **Delete**. Deleting the email alias now will make it easier in the following steps.
 
-# [SQLite](#tab/sqllite)
+# [SQLite](#tab/sqlite)
 
 See [Working with SQLite in an ASP.NET Core MVC project](xref:tutorials/first-mvc-app-xplat/working-with-sql) for instructions on how to view the SQLite DB. 
 
@@ -91,12 +91,12 @@ You generally want to prevent new users from posting any data to your web site b
 
 Update `ConfigureServices` to require a confirmed email:
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=6-9)]
 
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=13-16)]
 
@@ -140,11 +140,11 @@ The contents of the *secrets.json* file are not encrypted. The *secrets.json* fi
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Startup.cs?name=snippet1&highlight=18)]
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 [!code-csharp[Main](accconfirm/sample/WebApp1/Startup.cs?name=snippet1&highlight=26)]
 
 ---
@@ -161,14 +161,14 @@ This tutorial shows how to add email notifications through [SendGrid](https://se
 
 #### Configure SendGrid
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 * Add code in *Services/EmailSender.cs* similar to the following to configure SendGrid:
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Services/EmailSender.cs)]
 
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 * Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid:
 
 [!code-csharp[Main](accconfirm/sample/WebApp1/Services/MessageServices.cs)]
@@ -179,7 +179,7 @@ This tutorial shows how to add email notifications through [SendGrid](https://se
 
 The template has the code for account confirmation and password recovery. Find the `[HttpPost] Register` method in the  *AccountController.cs* file.
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Prevent newly registered users from being automatically logged on by commenting out the following line:
 
@@ -191,7 +191,7 @@ The complete method is shown with the changed line highlighted:
 
 [!code-csharp[Main](accconfirm/sample/WebPW/Controllers/AccountController.cs?highlight=19&name=snippet_Register)]
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Uncomment the code to enable account confirmation.
 
@@ -235,14 +235,14 @@ You might need to expand the navbar to see user name.
 
 ![navbar](accconfirm/_static/x.png)
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed. 
 
 ![manage page](accconfirm/_static/rick2.png)
 
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 We'll talk about this page later in the tutorial.
 ![manage page](accconfirm/_static/rick2.png)

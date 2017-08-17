@@ -27,11 +27,11 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 ## Install Visual Studio and .NET Core
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!INCLUDE[install 2.0](../../includes/install2.0.md)]
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
@@ -63,7 +63,7 @@ Complete the **New Project** dialog:
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
 
 
-# [ASP.NET Core 2.x](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
@@ -73,7 +73,7 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22.png)
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
