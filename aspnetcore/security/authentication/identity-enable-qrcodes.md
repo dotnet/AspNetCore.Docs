@@ -28,7 +28,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
@@ -36,7 +36,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * Update the `Scripts` section to add a reference to the `qrcodejs` library you added and a call to generate the QR Code. It should look as follows:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
@@ -44,7 +44,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
     <script type="text/javascript">
         new QRCode(document.getElementById("qrCode"),
             {
-                text: document.getElementById('qrCodeData').dataset.url,
+                text: "@Html.Raw(Model.AuthenticatorUri)",
                 width: 150,
                 height: 150
             });
@@ -79,4 +79,9 @@ The second parameter in the call to `string.Format` is your site name, taken fro
 
 You can replace the QR Code library with your preferred library. The HTML contains a `qrCode` element into which you can place a QR Code by whatever mechanism your library provides.
 
-The correctly formatted URL for the QR Code is available in the `.dataset.url` property of the `qrCodeData` element, which can be accessed in JavaScript using `document.getElementById('qrCodeData').dataset.url`. 
+The correctly formatted URL for the QR Code is available in the:
+
+* `AuthenticatorUri` property of the model.
+* `data-url` property in the `qrCodeData` element. 
+
+Use `@Html.Raw` to access the model property in a view (otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored).
