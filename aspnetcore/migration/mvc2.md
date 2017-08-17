@@ -17,9 +17,14 @@ This article serves as a reference guide for migrating ASP.NET applications (MVC
 
 ## Target Frameworks
 
-We'd like to focus on ASP.NET rather than .NET Standard, since .NET Standard is covered extensively in a different doc set. I suggest renaming this section to something like "Target Frameworks" and explaining that ASP.NET Core 2.0 apps can target .NET Core, .NET Framework, or both. From there, explain how the ASP.NET Core metapackage is used if targeting .NET Core and that individual package references are required if targeting .NET Framework.
+ASP.NET Core 2.0 applications give developers the benefit of being able to target .NET Core, .NET Framework, or a mix if needed. When targeting .NET Framework, the experience is similar to developing traditional .NET Framework Applications, with the added benefits that .NET Core provides (mentioned later in this document). Developers will still need to reference individual packages that are needed for thier development.
 
+When targeting .NET Core, developers are able to leverage the ASP.NET Core metapackage, `Microsoft.AspNetCore.All`. `Microsoft.AspNetCore.All` is a nuget package that acts as a reference to multiple packages, including:
+- All supported packages by the ASP.NET Core team (MVC, Razor, Identity, etc) 
+- All supported packages by the Entity Framework Core team (CoreIdentity, SQLite, SQL Server, etc)
+- Internal and 3rd-party dependencies used by ASP.NET Core and Entity Framework
 
+Referencing .NET Core allows you to no longer reference each invidual package that is needed for your application, the metapackage handles that. The metapackage also leverages the .NET Core Runtime Sore, which contains all the needed assets to run ASP.NET 2.x applications. When the metapackage is used, no packages referenced in the metapackge are deployed with the application, because the Runtime Store has these assets precompiled to improve performance.
 
 In previous versions of .NET Framework we would use [Portable Class Libraries](https://docs.microsoft.com/en-us/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library) to make applications cross-platform compatible. .NET Standard is the new thinking to the PCL concept, and ASP.NET Core uses .NET Standard to obtain it's standard set of Apis. With every new version of .NET Standard, more Apis will be added to the fold. The major benefit to this for ASP.NET Core, is the inclusion of the [NETStandard.Library](https://github.com/dotnet/standard/blob/master/netstandard/pkg/NETStandard.Library.dependencies.props) metapackage that will be referenced in `.csproj` upon creation of the project. So in the past when your `.csproj` would have multiple references to essential components of the Framework, when creating a new project in ASP.NET Core, the `.csproj` will only have one reference
 
@@ -63,69 +68,74 @@ This configures your default routes, and defaults to XmlSerialization over Json.
 Now we have a decoupled relationship between our host and our application which gives us the flexibility to move to a differnet platform in the future (one of the strengths of using Dot NET Core)
 
 > [!NOTE]
-> For a more in-depth reference to .NET Core Startup and Middleware, please read [Startup in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup)
+> For a more in-depth reference to .NET Core Startup and Middleware, please read [Startup in ASP.NET Core](xref:fundamentals/startup)
 
 ## Storing Configurations
-Since the earliest versions of .NET Framework, developers have needed to store settings that could change depending on the environment they were deployed to or other factors. The most common practice was to store all AppSettings in a section of your Web.config file called `<appSettings>`. 
+Since the earliest versions of .NET Framework, developers have needed to store settings which could change depending upon factors such as the environment to which they were deployed. The most common practice was to store all AppSettings in a section of your *Web.config* file called `<appSettings>`. 
 
 [!code-csharp[Main](samples/sample1.cs)]
 
-And you would read those settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace
+You would read those settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace:
 
 [!code-csharp[Main](samples/sample2.cs)]
 
-In ASP.NET Core, we hold configurations for our applications in any file and load them as part of Middleware Bootstrapping. The default file for this is `appSettings.json`
-
-[!code-csharp[Main](samples/sample3.cs)]
-
-And loading this file into an instance of `IConfigurationRoot` inside your application is done in `Startup.cs` 
+In ASP.NET Core, we hold configurations for our applications in any file and load them as part of middleware bootstrapping. The default file for this is `appSettings.json`
 
 [!code-csharp[Main](samples/sample4.cs)]
 
-And then you read from `Configuration` to get the values of your settings
+Loading this file into an instance of `IConfigurationRoot` inside your application is done in *Startup.cs*:
+
+[!code-csharp[Main](samples/sample3.cs)]
+
+Then you read from `Configuration` to get the values of your settings:
 
 [!code-csharp[Main](samples/sample5.cs)]
 
-There are extensions to this to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of Configurations.
+There are extensions to this approach to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of Configurations.
+
+````
+//Assume AppConfiguration is a class representing a Strongly-Typed Version of AppConfiguration section
+ services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
+````
 
 > [!NOTE]
-> For a more in-depth reference to .NET Core Configuration, please read [Configuration in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration)
+> For a more in-depth reference to ASP .NET Core Configuration, please read [Configuration in ASP.NET Core](xref:fundamentals/configuration)
 
 ## DI first class citizen
-One very important factor in building large, scalable applications is to have loosely coupled components and services. The Dependency Injection Pattern is one that takes away the inner dependency that one class my have on another (an MVC Controller relationship with an Entity Framework Context is an often used used example. Dependency Injection is also very useful because it allows a developer to better test units of work in a manner that is easy to comprehend. There are more reasons to implement Dependency Injection in your applications, and now Dependency Injection is included when building .NET Core 2.0 Applications.
+One very important factor in building large, scalable applications is to have loosely-coupled components and services. The Dependency Injection Pattern is one that takes away the inner dependency that one class may have on another (an MVC Controller relationship with an Entity Framework Context is a common example). Dependency Injection is also very useful because it allows a developer to better test units of work in a manner that is easy to comprehend. There are more reasons to implement Dependency Injection in your applications,and now Dependency Injection is a native component of ASP.NET Core.
 
 In .NET Framework Applications, developers often rely on an external package to configure Dependecy Injection, one notable package being [Unity](https://github.com/unitycontainer/unity), provided by Microsoft Patterns & Practices. 
 
-One example of setting up Dependency Injection with Unity is implementing IDependencyResolver that wraps a Unity Container
+One example of setting up Dependency Injection with Unity is implementing `IDependencyResolver` that wraps a Unity Container:
 
 [!code-csharp[Main](../../aspnet/web-api/overview/advanced/dependency-injection/samples/sample8.cs)]
 
-Then you create an instance of your UnityContainer, register your service and set the dependency resolver of HttpConfiguration to new instance of UnityResolver for your container
+Then you create an instance of your UnityContainer, register your service and set the dependency resolver of `HttpConfiguration` to new instance of `UnityResolver` for your container:
 
 [!code-csharp[Main](../../aspnet/web-api/overview/advanced/dependency-injection/samples/sample9.cs)]
 
-Now you can inject IProductRepository anywhere you need to
+Now you can inject `IProductRepository` anywhere you need to:
 
 [!code-csharp[Main](../../aspnet/web-api/overview/advanced/dependency-injection/samples/sample5.cs)]
 
-It isn't much work, but it is work regardless. Now that Dependency Injection is included with .Net Core, all that is required is adding your service in the `ConfigureServices` section of `Startup.cs`
+Now that Dependency Injection is included with .Net Core, all that is required is adding your service in the `ConfigureServices` section of *Startup.cs*:
 
 [!code-csharp[Main](samples/sample.cs)]
 
-That is it, you now can inject your repository anywhere like before. This process is now streamlined and reduces complexity as well as dependencies on external packages.
+You now can inject your repository anywhere like before. This process is now streamlined and reduces complexity as well as dependencies on external packages.
 > [!NOTE]
-> For a more in-depth reference to .NET Core and Dependecy Injection, please read Steve Smith and Scott Addie's article on Dependecy [Injection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#replacing-the-default-services-container)
+> For a more in-depth reference to .NET Core and Dependency Injection, please read the article on Dependecy [Dependency Injection in ASP.NET Core](xref:/fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Static file / wwwroot
-One essential part of web development is the ability to serve files that are "static" or in better terms, not built code to the browser. The most common examples of static files are HTML, CSS, Javascript and images and they are used by every website on the internet. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load onto the browser. This process has changed in Dot Net Core wheras in previous versions of the .NET Framework, you could store your static files basically anywhere, and reference them in your view like regular html (with the path to the asset provided). 
+One essential part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript and images and they are used by every website on the Internet. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load into the browser. This process has changed in .NET CORE, whereas in previous versions of the .NET Framework, you could store your static files basically anywhere, and reference them in your view like regular HTML (with the path to the asset provided). 
 
-In Dot Net Core, we store our static files in `web root` (<content root>/wwwroot) and loading them into the pipeline using the `UseStaticFiles` extension from `Statup.Configure`. Be sure to include the NuGet package "Microsoft.AspNetCore.StaticFiles" in your application.
+In Dot Net Core, we store our static files in web root (<content root>/wwwroot) and loading them into the pipeline using the `UseStaticFiles` extension from `Statup.Configure`. Be sure to include the NuGet package `Microsoft.AspNetCore.StaticFiles` in your application.
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
-Doing this allows all your assets in the wwwroot folder accessible to the browser at a location such as
+Doing this allows all your assets in the *wwwroot* folder accessible to the browser at a location such as
 
-`http://<app>/images/<imageFileName>` (This example has an image folder in wwwroot and that folder has images in it)
+`http://<app>/images/<imageFileName>` (This example has an image folder in *wwwroot* and that folder has images in it)
 
 > [!NOTE]
 > For a more in-depth reference to .NET Core and serving Static Files, please read [Introduction to working with static files in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/static-files)
