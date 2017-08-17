@@ -17,8 +17,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://git
 
 Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.
 
-Razor Pages requires [.NET Core 2.0](https://dot.net/core) or later. Tooling support for Razor Pages ships in [Visual Studio 2017](https://www.visualstudio.com/downloads/)  15.3 or later.
-
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Getting started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
 <a name="prerequisites"></a>
@@ -32,20 +30,42 @@ If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.
 * **ASP.NET and web development**
 * **.NET Core cross-platform development**
 
+<a name="rpvs17"></a>
+
+## Creating a Razor Pages project
+
+# [Visual Studio](#tab/visual-studio) 
+
+See [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
+
+#	[Visual Studio for Mac](#tab/visual-studio-mac)
+
+Run `dotnet new razor` from the command line.
+
+Open the generated *.csproj* file from Visual Studio for Mac.
+
+# [Visual Studio Code](#tab/visual-studio-code) 
+
+Run `dotnet new razor` from the command line.
+
+#	[.NET Core CLI](#tab/netcore-cli) 
+
+Run `dotnet new razor` from the command line.
+
+---
+
 ## Razor Pages
 
-If you are using a typical *Startup.cs* like the following code, Razor Pages is enabled:
+Razor Pages is enabled in *Startup.cs*:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=Startup)]
-
-All the Razor Pages types and features are in the `Microsoft.AspNetCore.Mvc.RazorPages` assembly. The `Microsoft.AspNetCore.Mvc` package includes the Razor Pages assembly. The `Microsoft.AspNetCore.All` metapackage includes all ASP.NET Core 2.x packages.
 
 Consider a basic page:
 <a name="OnGet"></a>
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
-The preceding code looks a lot like a Razor view file. What makes it different is the new `@page` directive. `@page` makes the file into an MVC action - which means that it can handle requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function-level content.
+The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function-level content.
 
 A similar page, with the `PageModel` in a separate file, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
@@ -73,25 +93,11 @@ Notes:
 * The runtime looks for Razor Pages files in the *Pages* folder by default.
 * `Index` is the default page when a URL doesn't include a page.
 
-<a name="rpvs17"></a>
-
-## Creating a Razor Pages project with Visual Studio 2017
-
-Note: This feature requires Visual Studio 2017 version 15.3 or later.
-
-You can create a Razor Pages starter project from Visual Studio 2017 with the following steps:
-
-* From the Visual Studio **File** menu, select **New > Project**.
-* Create a new ASP.NET Core Web Application:
- ![new ASP.NET Core Web Application](index/_static/npp.png)
-* Select **ASP.NET Core 2.0** in the dropdown and then select **Web Application**.
- ![Web Application (Razor Pages)](index/_static/npp2.png)
-
 ## Writing a basic form
 
-The new Razor Pages features are designed to make common patterns used with web browsers easy. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
+Razor Pages features are designed to make common patterns used with web browsers easy. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the examples in this document, the `DbContext` is initialized in the *Startup.cs* file.
+For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
 
 [!code-cs[main](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
@@ -133,7 +139,7 @@ When the data is entered successfully, the `OnPostAsync` handler method calls th
 
 When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. This is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` will render the page.
 
-The `Customer` property is using the new `[BindProperty]` attribute to opt-in to model binding.
+The `Customer` property uses `[BindProperty]` attribute to opt-in to model binding.
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
 
@@ -323,7 +329,7 @@ The following page generates markup for two page handlers using the `asp-page-ha
 
 <!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there is no `asp-` attribute   -->
 
-The form in the preceding example has two submit buttons, each using the new `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page` and generates URLs that submit to each of the handler methods defined by the page. We don't need to specify `asp-page` because we're linking to the current page.
+The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL. The `asp-page-handler` attribute is a companion to `asp-page`. `asp-page-handler` generates URLs that submit to each of the handler methods defined by a page. `asp-page` is not specified because the sample is linking to the current page.
 
 The code-behind file:
 
