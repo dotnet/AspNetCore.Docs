@@ -19,7 +19,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-       [BindProperty]
+        [BindProperty]
         public Movie Movie { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -53,7 +53,6 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-
                 if (!_context.Movie.Any(e => e.ID == Movie.ID))
                 {
                     return NotFound();
@@ -62,7 +61,6 @@ namespace RazorPagesMovie.Pages.Movies
                 {
                     throw;
                 }
-
             }
 
             return RedirectToPage("./Index");

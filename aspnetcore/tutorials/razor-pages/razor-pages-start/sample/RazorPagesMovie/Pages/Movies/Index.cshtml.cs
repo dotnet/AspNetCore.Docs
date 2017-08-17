@@ -28,7 +28,6 @@ namespace RazorPagesMovie.Pages.Movies
         public string MovieGenre { get; set; }
         #endregion
 
-
 #if first
         #region snippet_1stSearch
         public async Task OnGetAsync(string searchString)
