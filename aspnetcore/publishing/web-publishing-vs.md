@@ -21,7 +21,7 @@ This article focuses on using Visual Studio 2017 to create publish profiles. The
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -39,7 +39,7 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
 </Project>
 ```
 
-# [ASP.NET Core 2.0](#tab/aspnet20)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
