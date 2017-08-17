@@ -22,7 +22,6 @@ namespace RazorPagesMovie
                 {
                     // Requires using RazorPagesMovie.Models;
                     SeedData.Initialize(services);
-
                 }
                 catch (Exception ex)
                 {
