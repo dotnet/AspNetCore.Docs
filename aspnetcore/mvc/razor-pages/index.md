@@ -116,7 +116,7 @@ The page has an `OnPostAsync` *handler method* which runs on `POST` requests (wh
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions.
 
-The `Async` naming suffix is optional but is often used by convention. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
+The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. This is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
 
 The previous `OnPostAsync` method:
 
