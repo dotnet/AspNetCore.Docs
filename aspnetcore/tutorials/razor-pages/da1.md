@@ -81,7 +81,7 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 
 ### Update concurrency exception handling
 
-Update the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* and *Pages/Movies/Delete.cshtml.cs* files. The following highlighted code shows the changes:
+Update the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file. The following highlighted code shows the changes:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Edit.cshtml.cs?name=snippet1&highlight=17-24)]
 
