@@ -28,7 +28,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
@@ -36,7 +36,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * Update the `Scripts` section to add a reference to the `qrcodejs` library you added and a call to generate the QR Code. It should look as follows:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
