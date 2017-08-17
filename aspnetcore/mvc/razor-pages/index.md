@@ -37,15 +37,7 @@ Select the **.NET Core CLI** tab if you are working with:
 
 # [Visual Studio](#tab/vs0)
 
-To create a Razor Pages starter project:
-
-* From the Visual Studio **File** menu, select **New > Project**.
-* Create a new **ASP.NET Core Web Application**.
- ![new ASP.NET Core Web Application](index/_static/npp.png)
-* Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
- ![Web Application (Razor Pages)](index/_static/npp2.png)
-
-[Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) contains detailed instructions on how to create a Razor Pages project using Visual Studio.
+See [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
 
 # [.NET Core CLI](#tab/cli)
 
@@ -98,7 +90,7 @@ Notes:
 
 Razor Pages features are designed to make common patterns used with web browsers easy. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the examples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
+For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
 
 [!code-cs[main](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
