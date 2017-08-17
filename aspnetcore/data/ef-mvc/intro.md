@@ -16,7 +16,7 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework Core 2.0 and Visual Studio 2017.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 
@@ -101,9 +101,9 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## Entity Framework Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is already included in the [Microsoft.AspNetCore.All](xref:fundamentalthe [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is already included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
-This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide run-time support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
+This package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial. 
 
 For information about other database providers that are available for Entity Framework Core, see [Database providers](https://docs.microsoft.com/ef/core/providers/).
 
@@ -225,9 +225,9 @@ Add `using` statements:
 
 [!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Usings)]
 
-Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials, you'll see how to modify the database when the data model changes, without deleting and re-creating it.
 
-**Note:** For earlier versions of ASP.NET Core, we recommended that you call `DbInitializer.Initialize` in the `Configure` method in *Startup.cs*. In ASP.NET 2.0 we recommend that you use the `Configure` method only to set up the request pipeline. Application startup code, such as `DbInitializer.Initialize`, belongs in the `Main` method. 
+**Note:** For earlier versions of ASP.NET Core, we recommended that you call `DbInitializer.Initialize` in the `Configure` method in *Startup.cs*. In ASP.NET Core 2.0 we recommend that you use the `Configure` method only to set up the request pipeline. Application startup code, such as `DbInitializer.Initialize`, belongs in the `Main` method. 
 
 ## Create a controller and views
 

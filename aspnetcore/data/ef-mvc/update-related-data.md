@@ -151,7 +151,7 @@ The code does the following:
 
 ### Update the Instructor Edit view
 
-In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button :
+In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button:
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
