@@ -27,7 +27,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 * Redirecting insecure requests to secure endpoints
 * Preventing image hotlinking
 
-You can define rules for changing the URL in several ways, including regular expression (regex) matching rules, rules based on the Apache mod_rewrite module, rules based on the IIS Rewrite Module, and with your own method and class rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+You can define rules for changing the URL in several ways, including regex, Apache mod_rewrite module rules, IIS Rewrite Module rules, and using custom rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
 
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, you should limit the number and complexity of rules.
@@ -68,7 +68,7 @@ Establish your URL rewrite and redirect rules by creating an instance of the `Re
 ---
 
 ### URL redirect
-Use `AddRedirect()` to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, it defaults to 302 (Found), which indicates that the resource is temporarily moved or replaced.
+Use `AddRedirect` to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, it defaults to 302 (Found), which indicates that the resource is temporarily moved or replaced.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -80,39 +80,39 @@ Use `AddRedirect()` to redirect requests. The first parameter contains your rege
 
 ---
 
-In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a 302 (Found) status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL, the second request receives a 200 (OK) response from the app and the body of the response shows the redirect URL. A complete roundtrip is made to the server when a URL is *redirected*.
+In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a 302 (Found) status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL, the second request receives a 200 (OK) response from the app and the body of the response shows the redirect URL. A roundtrip is made to the server when a URL is *redirected*.
 
 Original Request: `/redirect-rule/1234/5678`
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect.png)
 
-The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*, and the asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
+The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There's only one captured group in the redirect rule regex in the sample app, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
 <a name=url-redirect-to-secure-endpoint></a>
 ### URL redirect to a secure endpoint
-Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (`https://`) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware defaults to 302 (Found). If the port is not supplied, the middleware defaults to `null`, which means the protocol changes to `https://` and the client accesses the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
+Use `AddRedirectToHttps` to redirect HTTP requests to the same host and path using HTTPS (`https://`). If the status code isn't supplied, the middleware defaults to 302 (Found). If the port isn't supplied, the middleware defaults to `null`, which means the protocol changes to `https://` and the client accesses the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 ```csharp
 var options = new RewriteOptions()
     .AddRedirectToHttps(301, 5001);
 
 app.UseRewriter(options);
 ```
-Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same host and path with secure HTTPS protocol (`https://` on port 443). The middleware sets the status code to 301 (Moved Permanently).
+Use `AddRedirectToHttpsPermanent` to redirect insecure requests to the same host and path with secure HTTPS protocol (`https://` on port 443). The middleware sets the status code to 301 (Moved Permanently).
 
-The sample app is capable of demonstrating how to use `AddRedirectToHttps()` or `AddRedirectToHttpsPermanent()`. Add the extension method to the `RewriteOptions()`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted.
+The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted.
 
 Original Request using `AddRedirectToHttps(301, 5001)`: `/secure`
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
 
-Original Request using `AddRedirectToHttpsPermanent()`: `/secure`
+Original Request using `AddRedirectToHttpsPermanent`: `/secure`
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 ### URL rewrite
-Use `AddRewrite()` to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
+Use `AddRewrite` to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -151,14 +151,16 @@ Following the `^rewrite-rule/` portion of the expression, there are two capture 
 There's no roundtrip to the server to obtain the resource. If the resource exists, it's fetched and returned to the client with a 200 (OK) status code. Because the client isn't redirected, the URL in the browser address bar doesn't change. As far as the client is concerned, the URL rewrite operation never occurred.
 
 > [!NOTE]
-> Use `skipRemainingRules: true` whenever possible, because matching rules is an expensive process and reduces app response time. For the fastest app response, order your rewrite rules from the most frequently matched rule to the least frequently matched rule and skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
+> Use `skipRemainingRules: true` whenever possible, because matching rules is an expensive process and reduces app response time. For the fastest app response:
+> * Order your rewrite rules from the most frequently matched rule to the least frequently matched rule.
+> * Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 ### Apache mod_rewrite
-Apply Apache mod_rewrite rules with `AddApacheModRewrite()`. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
+Apply Apache mod_rewrite rules with `AddApacheModRewrite`. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-The first parameter takes an `IFileProvider`, which is provided in the sample app via [Dependency Injection](dependency-injection.md) by injecting the `IHostingEnvironment` and using it to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is *ApacheModRewrite.txt* in the sample app.
+The first parameter takes an `IFileProvider`, which is provided via [Dependency Injection](dependency-injection.md). The `IHostingEnvironment` is injected to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is *ApacheModRewrite.txt* in the sample app.
 
 [!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=4)]
 
@@ -219,7 +221,7 @@ The middleware supports the following Apache mod_rewrite server variables:
 * TIME_YEAR
 
 ### IIS URL Rewrite Module rules
-To use rules that apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite()`. Make sure that the rules file is deployed with the app. Don't direct the middleware to use your *web.config* file when running on Windows Server IIS, as these rules should be stored outside of your *web.config* to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+To use rules that apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite`. Make sure that the rules file is deployed with the app. Don't direct the middleware to use your *web.config* file when running on Windows Server IIS. With IIS, these rules should be stored outside of your *web.config* to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
