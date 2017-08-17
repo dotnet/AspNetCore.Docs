@@ -29,21 +29,23 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 ## Creating a Razor Pages project
 
-Select the **.NET Core CLI** tab if you are working with:
-
-* [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
-* [Visual Studio Code](https://code.visualstudio.com/)
-* The CLI
-
-# [Visual Studio](#tab/vs0)
+# [Visual Studio](#tab/visual-studio) 
 
 See [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project using Visual Studio.
 
-# [.NET Core CLI](#tab/cli)
+#	[Visual Studio for Mac](#tab/visual-studio-mac)
 
 Run `dotnet new razor` from the command line.
 
-If you're using Visual Studio for Mac, open the generated *.csproj* file.
+Open the generated *.csproj* file from Visual Studio for Mac.
+
+# [Visual Studio Code](#tab/visual-studio-code) 
+
+Run `dotnet new razor` from the command line.
+
+#	[.NET Core CLI](#tab/netcore-cli) 
+
+Run `dotnet new razor` from the command line.
 
 ---
 
