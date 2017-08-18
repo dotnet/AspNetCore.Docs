@@ -186,7 +186,7 @@
 ## [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
 ## [Directory structure](xref:hosting/directory-structure)
 
-# [Security](xref:security/security/index)
+# [Security](xref:security/index)
 ## [Authentication](xref:security/authentication/index)
 ### [Community OSS authentication options](xref:security/authentication/community)
 ### [Introduction to Identity](xref:security/authentication/identity)
