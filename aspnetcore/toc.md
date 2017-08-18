@@ -199,7 +199,7 @@
 #### [Twitter authentication](xref:security/authentication/twitter-logins)
 #### [Google authentication](xref:security/authentication/google-logins)
 #### [Microsoft authentication](xref:security/authentication/microsoft-logins)
-#### [Other authentication providers](xref:security/authentication/other-logins)
+#### [Other authentication providers](xref:security/authentication/otherlogins)
 ### [Account Confirmation and Password Recovery](xref:security/authentication/accconfirm)
 ### [Enabling QR Code generation in ASP.NET identity](xref:security/authentication/identity-enable-qrcodes)
 ### [Two-factor authentication with SMS](xref:security/authentication/2fa)
