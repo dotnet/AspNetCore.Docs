@@ -49,7 +49,7 @@ The Visual Studio properties page, debug tab provides check boxes for Windows au
 
 You can also configure these properties in the `launchSettings.json` file:
 
-```javascript
+```json
 {
   "iisSettings": {
     "windowsAuthentication": true,
@@ -94,7 +94,7 @@ Launch the app to verify Windows authentication is working.
 
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
-```
+```csharp
 public class Program
 {
     public static void Main(string[] args)
