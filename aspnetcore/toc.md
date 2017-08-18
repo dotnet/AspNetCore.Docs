@@ -118,7 +118,7 @@
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-### [Create a Razor Pages web app](xref:tutorials/razor-pages-mac/index)
+### [Create a Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
