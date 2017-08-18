@@ -177,15 +177,7 @@ The first parameter takes an `IFileProvider`, which is provided via [Dependency 
 
 The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/redirected?id=$1`. The response status code is 302 (Found).
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 [!code[Main](url-rewriting/samples/2.x/ApacheModRewrite.txt)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code[Main](url-rewriting/samples/1.x/ApacheModRewrite.txt)]
-
----
 
 Original Request: `/apache-mod-rules-redirect/1234`
 
@@ -242,15 +234,7 @@ The first parameter takes an `IFileProvider`, while the second parameter is the 
 
 The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?id=$1`. The response is sent to the client with a 200 (OK) status code.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 [!code-xml[Main](url-rewriting/samples/2.x/IISUrlRewrite.xml)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-xml[Main](url-rewriting/samples/1.x/IISUrlRewrite.xml)]
-
----
 
 Original Request: `/iis-rules-rewrite/1234`
 
