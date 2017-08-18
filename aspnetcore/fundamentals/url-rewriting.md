@@ -57,26 +57,26 @@ To include the middleware in your project, add a reference to the [`Microsoft.As
 ## Extension and options
 Establish your URL rewrite and redirect rules by creating an instance of the `RewriteOptions` class with extension methods for each of your rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with `app.UseRewriter(options);`.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1)]
 
 ---
 
 ### URL redirect
 Use `AddRedirect` to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, it defaults to 302 (Found), which indicates that the resource is temporarily moved or replaced.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=2)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=5)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=2)]
 
 ---
 
@@ -117,13 +117,13 @@ Original Request using `AddRedirectToHttpsPermanent`: `/secure`
 ### URL rewrite
 Use `AddRewrite` to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=3)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=6)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=3)]
 
 ---
 
@@ -161,29 +161,29 @@ There's no roundtrip to the server to obtain the resource. If the resource exist
 ### Apache mod_rewrite
 Apply Apache mod_rewrite rules with `AddApacheModRewrite`. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-The first parameter takes an `IFileProvider`, which is provided via [Dependency Injection](dependency-injection.md). The `IHostingEnvironment` is injected to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is *ApacheModRewrite.txt* in the sample app.
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=4)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 A `StreamReader` is used to read the rules from the *ApacheModRewrite.txt* rules file.
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=1,7)]
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+The first parameter takes an `IFileProvider`, which is provided via [Dependency Injection](dependency-injection.md). The `IHostingEnvironment` is injected to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is *ApacheModRewrite.txt* in the sample app.
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=4)]
+
 ---
 
 The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/redirected?id=$1`. The response status code is 302 (Found).
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code[Main](url-rewriting/samples/1.x/ApacheModRewrite.txt)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code[Main](url-rewriting/samples/2.x/ApacheModRewrite.txt)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code[Main](url-rewriting/samples/1.x/ApacheModRewrite.txt)]
 
 ---
 
@@ -226,29 +226,29 @@ The middleware supports the following Apache mod_rewrite server variables:
 ### IIS URL Rewrite Module rules
 To use rules that apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite`. Make sure that the rules file is deployed with the app. Don't direct the middleware to use your *web.config* file when running on Windows Server IIS. With IIS, these rules should be stored outside of your *web.config* to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is *IISUrlRewrite.xml* in the sample app.
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=5)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 A `StreamReader` is used to read the rules from the *IISUrlRewrite.xml* rules file.
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=2,8)]
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is *IISUrlRewrite.xml* in the sample app.
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=5)]
+
 ---
 
 The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?id=$1`. The response is sent to the client with a 200 (OK) status code.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-xml[Main](url-rewriting/samples/1.x/IISUrlRewrite.xml)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-xml[Main](url-rewriting/samples/2.x/IISUrlRewrite.xml)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-xml[Main](url-rewriting/samples/1.x/IISUrlRewrite.xml)]
 
 ---
 
@@ -260,6 +260,14 @@ If you have an active IIS Rewrite Module with server-level rules configured that
 
 #### Unsupported features
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+The middleware released with ASP.NET Core 2.x doesn't support the following IIS URL Rewrite Module features:
+* Outbound Rules
+* Custom Server Variables
+* Wildcards
+* LogRewrittenUrl
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 The middleware released with ASP.NET Core 1.x doesn't support the following IIS URL Rewrite Module features:
@@ -270,14 +278,6 @@ The middleware released with ASP.NET Core 1.x doesn't support the following IIS 
 * Custom Server Variables
 * Wildcards
 * Action:CustomResponse
-* LogRewrittenUrl
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-The middleware released with ASP.NET Core 2.x doesn't support the following IIS URL Rewrite Module features:
-* Outbound Rules
-* Custom Server Variables
-* Wildcards
 * LogRewrittenUrl
 
 ---
@@ -316,25 +316,25 @@ Use `Add(Action<RewriteContext> applyRule)` to implement your own rule logic in 
 | `RuleResult.EndResponse`             | Stop applying rules and send the response                       |
 | `RuleResult.SkipRemainingRules`      | Stop applying rules and send the context to the next middleware |
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=6)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=9)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=6)]
 
 ---
 
 The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If you make a request for `/file.xml`, it's redirected to `/xmlfiles/file.xml`. The status code is set to 301 (Moved Permanently). For a redirect, you must explicitly set the status code of the response; otherwise, a 200 (OK) status code is returned and the redirect won't occur on the client.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet2)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/RewriteRules.cs?name=snippet1)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet2)]
 
 ---
 
@@ -345,25 +345,25 @@ Original Request: `/file.xml`
 ### IRule-based rule
 Use `Add(IRule)` to implement your own rule logic in a class that derives from `IRule`. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=7-8)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/Program.cs?name=snippet1&highlight=10-11)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/Startup.cs?name=snippet1&highlight=7-8)]
 
 ---
 
 The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an `ArgumentException` is thrown. If you make a request for *image.png*, it's redirected to `/png-images/image.png`. If you make a request for *image.jpg*, it's redirected to `/jpg-images/image.jpg`. The status code is set to 301 (Moved Permanently), and the `context.Result` is set to stop processing rules and send the response.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](url-rewriting/samples/1.x/RewriteRule.cs?name=snippet1)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](url-rewriting/samples/2.x/RewriteRules.cs?name=snippet2)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](url-rewriting/samples/1.x/RewriteRule.cs?name=snippet1)]
 
 ---
 
