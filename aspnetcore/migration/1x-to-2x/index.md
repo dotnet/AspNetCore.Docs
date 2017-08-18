@@ -87,13 +87,17 @@ Rename both the node and variable to `AssetTargetFallback`:
 ## Update Main method in Program.cs
 In 1.x projects, the `Main` method of *Program.cs* looked like this:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=9-20)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?name=snippet_ProgramCs&highlight=8-19)]
 
 In 2.0 projects, the `Main` method of *Program.cs* has been simplified:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2.0App/AspNetCoreDotNetCore2.0App/Program.cs?highlight=8-11)]
 
-The adoption of this new 2.0 pattern is highly recommended and is required in order for product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) to work.
+The adoption of this new 2.0 pattern is highly recommended and is required for product features like [Entity Framework Core Migrations](xref:data/ef-mvc/migrations) to work. For example, running `Update-Database` from the Package Manager Console window or `dotnet ef database update` from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:
+
+```
+Unable to create an object of type '<Context>'. Add an implementation of 'IDesignTimeDbContextFactory<Context>' to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
+```
 
 <a name="view-compilation"></a>
 
