@@ -14,6 +14,9 @@ uid: fundamentals/middleware
 ---
 # ASP.NET Core Middleware Fundamentals
 
+* [Run](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.runextensions)
+* [Run](/apidocs/aspnet/core/api/microsoft.aspnetcore.builder.runextensions)
+
 <a name=fundamentals-middleware></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
