@@ -82,7 +82,6 @@
 #### [Adding a new field](xref:tutorials/razor-pages/new-field)
 #### [Adding validation](xref:tutorials/razor-pages/validation)
 
-
 ### [Create an MVC web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app/adding-controller.md)
@@ -118,6 +117,9 @@
 #### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+
+### [Create a Razor Pages web app](xref:tutorials/razor-pages-mac/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
 #### [Getting started](data/ef-mvc/intro.md)
