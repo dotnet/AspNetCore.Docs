@@ -66,7 +66,9 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs).
 
 Build the solution.
+
 <a name="pmc"></a>
+
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
