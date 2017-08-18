@@ -42,7 +42,7 @@ The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for yo
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=15&range=6-17)]
+[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs?highlight=10&range=6-17)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
