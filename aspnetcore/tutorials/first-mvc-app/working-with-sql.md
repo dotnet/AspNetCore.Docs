@@ -74,7 +74,7 @@ Add the seed initializer to the `Main` method in the *Program.cs* file:
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file. For ASP.NET Core 2.0, see the note above.
+Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
 
