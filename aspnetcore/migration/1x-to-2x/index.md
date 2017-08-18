@@ -87,7 +87,7 @@ Rename both the node and variable to `AssetTargetFallback`:
 ## Update Main method in Program.cs
 In 1.x projects, the `Main` method of *Program.cs* looked like this:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?highlight=9-20)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1.1App/AspNetCoreDotNetCore1.1App/Program.cs?name=snippet_ProgramCs&highlight=8-19)]
 
 In 2.0 projects, the `Main` method of *Program.cs* has been simplified:
 
