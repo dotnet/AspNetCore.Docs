@@ -101,7 +101,7 @@ public void Configure(IApplicationBuilder app)
 
 ### Run, Map, and Use
 
-You configure the HTTP pipeline using `Run`, `Map`, and `Use`. The `Run` method short-circuits the pipeline (that is, it does not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
+You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method short-circuits the pipeline (that is, it does not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
 
 `Map*` extensions are used as a convention for branching the pipeline. [Map](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions) branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
