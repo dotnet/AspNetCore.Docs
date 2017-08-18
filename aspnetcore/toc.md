@@ -83,7 +83,7 @@
 #### [Adding validation](xref:tutorials/razor-pages/validation)
 
 
-### [Create a web app on Windows](tutorials/first-mvc-app/index.md)
+### [Create an MVC web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app/adding-view.md)
@@ -95,7 +95,7 @@
 #### [Adding Validation](tutorials/first-mvc-app/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-### [Create a web app on a Mac](tutorials/first-mvc-app/index.md)
+### [Create an MVC web app on a Mac](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app-mac/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-mac/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-mac/adding-view.md)
@@ -107,7 +107,7 @@
 #### [Adding Validation](tutorials/first-mvc-app-mac/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-### [Create a web app with VS Code](tutorials/first-mvc-app-xplat/index.md)
+### [Create an MVC web app with VS Code](tutorials/first-mvc-app-xplat/index.md)
 #### [Getting started](tutorials/first-mvc-app-xplat/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-xplat/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-xplat/adding-view.md)
@@ -208,7 +208,7 @@
 #### [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
 #### [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
 #### [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore)
-### [Securing ASP.NET Core apps with IdentityServer4](xref:security/authentication/https://identityserver4.readthedocs.io)
+### [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)
 ## [Authorization](xref:security/authorization/index)
 ### [Introduction](xref:security/authorization/introduction)
 ### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
@@ -249,7 +249,7 @@
 ####[Key Immutability and Changing Settings](xref:security/data-protection/implementation/key-immutability)
 ####[Key Storage Format](xref:security/data-protection/implementation/key-storage-format)
 ####[Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
-###[Compatibility](xref:security/data-protection/xref:security/data-protection/compatibility/index)
+###[Compatibility](xref:security/data-protection/compatibility/index)
 ####[Sharing cookies between applications](xref:security/data-protection/compatibility/cookie-sharing)
 ####[Replacing <machineKey> in ASP.NET](xref:security/data-protection/compatibility/replacing-machinekey)
 ## [Enforcing SSL](xref:security/enforcing-ssl)
