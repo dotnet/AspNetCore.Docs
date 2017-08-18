@@ -24,9 +24,11 @@ This article serves as a reference guide for migrating ASP.NET applications (MVC
 * [Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) version 15.3 or later with the **ASP.NET and web development** workload
 
 ## Target Frameworks
-ASP.NET Core 2.0 applications lend developers the flexibility of targeting .NET Core, .NET Framework, or both (if needed). When targeting .NET Framework, the experience is similar to developing traditional .NET Framework applications, with the added benefits that .NET Core provides (mentioned later in this document). Developers still need to reference individual packages required for their development.
+ASP.NET Core 2.0 applications lend developers the flexibility of targeting .NET Core, .NET Framework, or both (if needed). See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate for your application.
 
-When targeting .NET Core, developers are able to install the ASP.NET Core [metapackage](xref:fundamentals/metapackage), `Microsoft.AspNetCore.All` &mdash; a monolithic NuGet package of packages. It includes:
+When targeting .NET Framework, your project needs to reference individual NuGet packages.
+
+When targeting .NET Core, you need to install the ASP.NET Core [metapackage](xref:fundamentals/metapackage), `Microsoft.AspNetCore.All` &mdash; a monolithic NuGet package of packages. It includes:
 - All supported packages by the ASP.NET Core team (MVC, Razor, Identity, etc.)
 - All supported packages by the Entity Framework Core team (CoreIdentity, SQLite, SQL Server, etc.)
 - Internal and third-party dependencies used by ASP.NET Core and Entity Framework Core
@@ -42,7 +44,7 @@ In ASP.NET, the *.csproj* has multiple references to essential components of the
   <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
 </ItemGroup>
 ```
-  
+
 This package contains many commonly-used assemblies that would otherwise need to be referenced individually.
 
 > [!NOTE]
@@ -67,7 +69,7 @@ This approach couples the application and the server to which it's deployed in a
 
 This configures your default routes, and defaults to XmlSerialization over Json. From here you could continue to add other Middleware to this pipeline as you see fit to satisfy your application's needs (loading services, configuration settings, static files, etc.).
 
-.NET Core uses a similar approach, but no longer relies on OWIN to handle the entry. Instead, that is done through *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
+ASP.NET Core uses a similar approach, but no longer relies on OWIN to handle the entry. Instead, that is done through *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
 
 [!code-csharp[Main](samples/sample8.cs)]
 
