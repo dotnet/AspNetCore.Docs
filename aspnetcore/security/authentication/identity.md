@@ -64,7 +64,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     Alternately, you can test using ASP.NET Core Identity with your app without a persistent database by using an in-memory database. To use an in-memory database, add the ``Microsoft.EntityFrameworkCore.InMemory`` package to your app and modify your app's call to ``AddDbContext`` in ``ConfigureServices`` as follows:
 
-    ```
+    ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
     ```
