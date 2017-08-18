@@ -137,7 +137,7 @@ Now that Dependency Injection is included with ASP.NET Core, you simply add your
 You now can inject your repository anywhere, as was true with Unity. This process is streamlined and reduces complexity as well as third-party dependencies.
 
 > [!NOTE]
-> For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:/fundamentals/dependency-injection#replacing-the-default-services-container)
+> For an in-depth reference to dependency injection in ASP.NET Core, see [Dependency Injection in ASP.NET Core](xref:fundamentals/dependency-injection#replacing-the-default-services-container)
 
 ## Serving Static Files
 An essential part of web development is the ability to serve static, client-side assets. The most common examples of static files are HTML, CSS, Javascript, and images. We need to be able to save these files in the published location of our application (or CDN) and reference these files to load into the browser. This process has changed in ASP.NET Core, whereas in ASP.NET, you could store your static files basically anywhere and reference them in your views' HTML (with the path to the asset provided).
