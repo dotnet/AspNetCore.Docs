@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if V1x
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,7 +69,10 @@ namespace MvcMovie
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             #endregion
+
+            SeedData.Initialize(app.ApplicationServices);
         }
     }
 }
 #endregion
+#endif
