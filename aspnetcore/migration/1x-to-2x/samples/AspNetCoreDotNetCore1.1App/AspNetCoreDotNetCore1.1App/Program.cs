@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿#region snippet_ProgramCs
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace AspNetCoreDotNetCore1._1App
@@ -21,3 +22,4 @@ namespace AspNetCoreDotNetCore1._1App
         #endregion
     }
 }
+#endregion
