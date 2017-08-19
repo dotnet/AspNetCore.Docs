@@ -67,7 +67,7 @@ See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/
 
 Build the solution.
 
-<a name="pmc"></a>
+<a id="pmc"></a>
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
