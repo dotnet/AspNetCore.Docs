@@ -99,7 +99,7 @@ public void Configure(IApplicationBuilder app)
 
 <a name=middleware-run-map-use></a>
 
-### Run, Map, and Use
+### Use, Run, and Map
 
 You configure the HTTP pipeline using `Use`, `Run`, and `Map`. The `Use` method short-circuits the pipeline (that is, it does not call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
 
