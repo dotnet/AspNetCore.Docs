@@ -42,9 +42,9 @@ When the metapackage is used, no packages referenced in the metapackage are depl
 The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
 - Explicit inclusion of files is not necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 - There are no GUID-based references to other projects, which improves file readability.
-- The file can be edited without unloading it in Visual Studio.
+- The file can be edited without unloading it in Visual Studio:
 
-![Edit CSPROJ in VS 2017](static/EditProjectVs2017.png)
+    ![Edit CSPROJ context menu option in Visual Studio 2017](static/EditProjectVs2017.png)
 
 ## Global.asax File Replacement
 ASP.NET Core introduced a new mechanism for bootstrapping your application. The entry point for ASP.NET applications is the *Global.asax* file, in which tasks such as route configuration and filter and area registrations were handled.
@@ -73,15 +73,15 @@ The host and application have been decoupled, which provides the flexibility of 
 ## Storing Configurations
 Since the earliest versions of .NET Framework, developers have needed to store settings which could change depending upon factors such as the environment to which they were deployed. The most common practice was to store all custom key-value pairs in a section of your *Web.config* file called `<appSettings>`:
 
-[!code-csharp[Main](samples/sample1.cs)]
+[!code-xml[Main](samples/sample1.cs)]
 
 You would read those settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace:
 
 [!code-csharp[Main](samples/sample2.cs)]
 
-ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is *appSettings.json*:
+ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is *appsettings.json*:
 
-[!code-csharp[Main](samples/sample4.cs)]
+[!code-json[Main](samples/sample4.cs)]
 
 Loading this file into an instance of `IConfigurationRoot` inside your application is done in *Startup.cs*:
 
@@ -91,7 +91,7 @@ Then you read from `Configuration` to get the values of your settings:
 
 [!code-csharp[Main](samples/sample5.cs)]
 
-There are extensions to this approach to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of Configurations.
+There are extensions to this approach to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of configuration objects.
 
 ````csharp
 // Assume AppConfiguration is a class representing a strongly-typed version of AppConfiguration section
