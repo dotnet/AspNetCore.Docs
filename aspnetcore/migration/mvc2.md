@@ -24,15 +24,11 @@ This article serves as a reference guide for migrating ASP.NET applications (MVC
 * [Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) version 15.3 or later with the **ASP.NET and web development** workload
 
 ## Target Frameworks
-ASP.NET Core 2.0 applications lend developers the flexibility of targeting .NET Core, .NET Framework, or both (if needed). See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate for your application.
+ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both (if needed). See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate for your application.
 
-When targeting .NET Framework, your project needs to reference individual NuGet packages.
+When targeting .NET Framework, your project still needs to reference individual NuGet packages.
 
-Targeting .NET Core allows you to eliminate several package references, thanks to the ASP.NET Core 2.0 [metapackage](xref:fundamentals/metapackage) &mdash; a monolithic NuGet package of packages. Install the `Microsoft.AspNetCore.All` metapackage in your project. When the metapackage is used, no packages referenced in the metapackage are deployed with the application, because the .NET Core Runtime Store has these assets precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
-
-In previous versions of .NET, [Portable Class Libraries](https://docs.microsoft.com/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library) were used to make applications compatible across disparate platforms. .NET Standard is a rethinking of the PCL concept, and ASP.NET Core uses .NET Standard to obtain its standard set of APIs. With every new version of .NET Standard, more APIs are added to the fold. The major benefit to this for ASP.NET Core, is the inclusion of the [NETStandard.Library](https://github.com/dotnet/standard/blob/master/netstandard/pkg/NETStandard.Library.dependencies.props) metapackage that is referenced in *.csproj* upon creation of the project.
-
-In ASP.NET, the *.csproj* has multiple references to essential components of the framework. In ASP.NET Core, the default *.csproj* has a single reference:
+Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core 2.0 [metapackage](xref:fundamentals/metapackage) &mdash; a monolithic NuGet package of packages. Install the `Microsoft.AspNetCore.All` metapackage in your project:
 
 ```xml
 <ItemGroup>
@@ -40,10 +36,7 @@ In ASP.NET, the *.csproj* has multiple references to essential components of the
 </ItemGroup>
 ```
 
-This package contains many commonly-used assemblies that would otherwise need to be referenced individually.
-
-> [!NOTE]
-> For a more in-depth reference to .NET Standard, read [.NET Standard](https://docs.microsoft.com/dotnet/standard/net-standard).
+When the metapackage is used, no packages referenced in the metapackage are deployed with the application, because the .NET Core Runtime Store has these assets precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
 
 ## Project Structure Differences
 The *.csproj* file structure has changed in ASP.NET Core. Some of the most notable changes include:
