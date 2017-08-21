@@ -28,16 +28,11 @@ ASP.NET Core 2.0 applications lend developers the flexibility of targeting .NET 
 
 When targeting .NET Framework, your project needs to reference individual NuGet packages.
 
-When targeting .NET Core, you need to install the ASP.NET Core [metapackage](xref:fundamentals/metapackage), `Microsoft.AspNetCore.All` &mdash; a monolithic NuGet package of packages. It includes:
-- All supported packages by the ASP.NET Core team (MVC, Razor, Identity, etc.)
-- All supported packages by the Entity Framework Core team (CoreIdentity, SQLite, SQL Server, etc.)
-- Internal and third-party dependencies used by ASP.NET Core and Entity Framework Core
-
-Targeting .NET Core allows you to eliminate several package references. The metapackage leverages the .NET Core Runtime Store, which contains the necessary assets to run ASP.NET Core 2.x applications. When the metapackage is used, no packages referenced in the metapackage are deployed with the application, because the Runtime Store has these assets precompiled to improve performance.
+Targeting .NET Core allows you to eliminate several package references, thanks to the ASP.NET Core 2.0 [metapackage](xref:fundamentals/metapackage) &mdash; a monolithic NuGet package of packages. Install the `Microsoft.AspNetCore.All` metapackage in your project. When the metapackage is used, no packages referenced in the metapackage are deployed with the application, because the .NET Core Runtime Store has these assets precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
 
 In previous versions of .NET, [Portable Class Libraries](https://docs.microsoft.com/dotnet/standard/cross-platform/cross-platform-development-with-the-portable-class-library) were used to make applications compatible across disparate platforms. .NET Standard is a rethinking of the PCL concept, and ASP.NET Core uses .NET Standard to obtain its standard set of APIs. With every new version of .NET Standard, more APIs are added to the fold. The major benefit to this for ASP.NET Core, is the inclusion of the [NETStandard.Library](https://github.com/dotnet/standard/blob/master/netstandard/pkg/NETStandard.Library.dependencies.props) metapackage that is referenced in *.csproj* upon creation of the project.
 
-In ASP.NET, the *.csproj* has multiple references to essential components of the framework. In ASP.NET Core, the *.csproj* only has one reference:
+In ASP.NET, the *.csproj* has multiple references to essential components of the framework. In ASP.NET Core, the default *.csproj* has a single reference:
 
 ```xml
 <ItemGroup>
