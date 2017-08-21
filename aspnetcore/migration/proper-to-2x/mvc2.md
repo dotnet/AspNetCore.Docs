@@ -49,17 +49,17 @@ The *.csproj* file format has been simplified in ASP.NET Core. Some notable chan
 ## Global.asax File Replacement
 ASP.NET Core introduced a new mechanism for bootstrapping your application. The entry point for ASP.NET applications is the *Global.asax* file, in which tasks such as route configuration and filter and area registrations were handled.
 
-[!code-csharp[Main](sample6.cs)]
+[!code-csharp[Main](samples/globalasax-sample.cs)]
 
 This approach couples the application and the server to which it's deployed in a way that interferes with our implementation. In an effort to decouple, [OWIN](http://owin.org/) was introduced to provide a cleaner way to use multiple frameworks together. OWIN provides a pipeline to which you add a la carte modules at your leisure and needs. The hosting environment takes a `Startup` function to set up everything. That function registers a set of middleware with the application. For each request, the application calls each of the the middleware components with the head pointer of a linked list to an existing set of handlers. Each middleware component can add one or more handlers to the request handling pipeline. This is accomplished by returning a reference to the handler that is the new head of the list. Each handler is responsible for remembering and invoking the next handler in the list. Now the entry point to your application is `Startup`, and you no longer have a dependency on *Global.asax*. When using OWIN with .NET Framework, you could have something like the following as a pipeline:
 
-[!code-csharp[Main](sample7.cs)]
+[!code-csharp[Main](samples/webapi-own.cs)]
 
 This configures your default routes, and defaults to XmlSerialization over Json. From here you could continue to add other Middleware to this pipeline as you see fit to satisfy your application's needs (loading services, configuration settings, static files, etc.).
 
 ASP.NET Core uses a similar approach, but no longer relies on OWIN to handle the entry. Instead, that is done through *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
 
-[!code-csharp[Main](sample8.cs)]
+[!code-csharp[Main](samples/program.cs)]
 
 `Startup` must include a `Configure` method. Inside `Configure`, you can add the necessary middleware to the pipeline. In the following example from the default web site template, several extension methods are used to configure the pipeline with support for [BrowserLink](http://vswebessentials.com/features/browserlink), error pages, static files, ASP.NET MVC, and Identity.
 
@@ -73,23 +73,23 @@ The host and application have been decoupled, which provides the flexibility of 
 ## Storing Configurations
 Since the earliest versions of .NET Framework, developers have needed to store settings which could change depending upon factors such as the environment to which they were deployed. The most common practice was to store all custom key-value pairs in a section of your *Web.config* file called `<appSettings>`:
 
-[!code-xml[Main](sample1.cs)]
+[!code-xml[Main](samples/webconfig-sample.xml)]
 
 You would read those settings using the `ConfigurationManager.AppSettings` collection in the `System.Configuration` namespace:
 
-[!code-csharp[Main](sample2.cs)]
+[!code-csharp[Main](samples/read-webconfig.cs)]
 
 ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is *appsettings.json*:
 
-[!code-json[Main](sample4.cs)]
+[!code-json[Main](samples/appsettings-sample.json)]
 
 Loading this file into an instance of `IConfigurationRoot` inside your application is done in *Startup.cs*:
 
-[!code-csharp[Main](sample3.cs)]
+[!code-csharp[Main](samples/startup-builder.cs)]
 
 Then you read from `Configuration` to get the values of your settings:
 
-[!code-csharp[Main](sample5.cs)]
+[!code-csharp[Main](samples/read-appsettings.cs)]
 
 There are extensions to this approach to make the process more robust, such as using Dependency Injection to load a service with these values, which would give you a strongly-typed set of configuration objects.
 
@@ -120,7 +120,7 @@ Now you can inject `IProductRepository` where needed:
 
 Because Dependency Injection is part of ASP.NET Core, you can add your service in the `ConfigureServices` method of *Startup.cs*:
 
-[!code-csharp[Main](sample.cs)]
+[!code-csharp[Main](samples/configure-services.cs)]
 
 The repository can be injected anywhere, as was true with Unity.
 
