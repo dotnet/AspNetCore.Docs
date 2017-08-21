@@ -39,10 +39,10 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 When the metapackage is used, no packages referenced in the metapackage are deployed with the application, because the .NET Core Runtime Store has these assets precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
 
 ## Project Structure Differences
-The *.csproj* file structure has changed in ASP.NET Core. Some of the most notable changes include:
-- You no longer have to include files within the *.csproj* for them to be considered part of the project. This reduces the risk of merge conflicts when working on large teams, as different features may been to add different files and conflict resolution is tricky with XML.
-- There are no more GUID-based references to other projects, which improves file readability.
-- You can edit the *.csproj* file without unloading it in Visual Studio.
+The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+- Explicit inclusion of files is not necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
+- There are no GUID-based references to other projects, which improves file readability.
+- The file can be edited without unloading it in Visual Studio.
 
 ![Edit CSPROJ in VS 2017](static/EditProjectVs2017.png)
 
