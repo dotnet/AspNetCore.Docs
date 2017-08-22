@@ -19,7 +19,7 @@ This is a work in progress. We hope to have the series complete within two weeks
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core using Visual Studio Code.
 
-1. [Getting started with Razor Pages on Mac](xref:tutorials/razor-pages-vsc/razor-pages-start)
+1. [Getting started with Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/razor-pages-start)
 
 Until the next section is complete, follow the Visual Studio for Windows version.
 

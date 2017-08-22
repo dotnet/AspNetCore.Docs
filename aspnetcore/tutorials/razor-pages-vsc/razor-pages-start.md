@@ -35,7 +35,7 @@ cd RazorPagesMovie
 dotnet run
 ```
 
-The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project.
+The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 
@@ -45,11 +45,17 @@ The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools
 
 Press Ctrl+C to shut down the application.
 
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+From Visual Studio Code (VS Code), select **File > Open Folder**, and then select the *RazorPagesMovie* folder.
+
+
+- Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?"
+- Select **Restore** to the **Info** message "There are unresolved dependencies".
 
 ### Launch the app
 
-In Visual Studio, select **Run > Start Without Debugging** to launch the app. Visual Studio starts [IIS Express](http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview), launches a browser, and navigates to `http://localhost:port`. Visual Studio launches the first web app at port number 5000 and increments the port number with new applications.
+Press Ctrl+F5 to start the app without debugging. Alternatively, from the **Debug** menu, select **Start Without Debugging**.
+
+In the next tutorial, we add a model to the project. 
 
 >[!div class="step-by-step"]
 [Next: Adding a model](xref:tutorials/razor-pages/model)  
