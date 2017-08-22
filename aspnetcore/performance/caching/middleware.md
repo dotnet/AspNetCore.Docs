@@ -106,7 +106,11 @@ If caching behavior isn't as you expect, confirm that responses are cacheable an
 
 Enabling logging can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache. See [Logging in ASP.NET Core](xref:fundamentals/logging) for more information on enabling logging in your app.
 
-When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. Instead of using a browser to troubleshoot caching issues, use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set request headers.
+When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. The following tools can explicitly set request headers, and are preferred for testing caching:
+
+* [Fiddler](http://www.telerik.com/fiddler)
+* [Firebug](http://getfirebug.com/)
+* [Postman](https://www.getpostman.com/)
 
 ### Conditions for caching
 * The request must result in a 200 (OK) response from the server.
