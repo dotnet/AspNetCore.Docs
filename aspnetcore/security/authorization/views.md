@@ -30,7 +30,7 @@ Once you have injected the authorization service you use it by calling the `Auth
 In some cases the resource will be your view model, and you can call `AuthorizeAsync` in exactly the same way as you would check during [resource based authorization](resourcebased.md#security-authorization-resource-based-imperative);
 
 ```csharp
-@if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
+   @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
    {
        <p><a class="btn btn-default" role="button"
            href="@Url.Action("Edit", "Document", new { id = Model.Id })">Edit</a></p>
