@@ -52,11 +52,13 @@ Kestrel is great for serving dynamic content from ASP.NET Core; however, the web
 
 For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on your requirements, you may choose a different setup.
 
-Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware allows setting the redirect URI with the `X-Forwarded-For` and `X-Forwarded-Proto` headers instead of `Request.Scheme` and `Request.Host`.
+Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware updates `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
+
+When setting up the reverse proxy server, the authentication middleware needs `UseForwardedHeaders` to run first. This ordering ensures that the authentication middleware can consume the affected values and generate correct redirect URIs.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-When setting up a reverse proxy server other than IIS, invoke `UseForwardedHeaders` before other middleware that may consume the affected values. For example, invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseAuthentication` or similar authentication scheme middleware:
+Invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseAuthentication` or similar authentication scheme middleware:
 
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -69,9 +71,7 @@ app.UseAuthentication();
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-When setting up a reverse proxy server other than IIS, the authentication middleware needs `UseForwardedHeaders` to run first. This ordering ensures that the authentication middleware can consume the affected values and generate correct redirect URIs.
-
-For example, invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseIdentity` and `UseFacebookAuthentication` or similar authentication scheme middleware:
+Invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseIdentity` and `UseFacebookAuthentication` or similar authentication scheme middleware:
 
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
