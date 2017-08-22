@@ -20,10 +20,10 @@ By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/
 This document provides details on how to configure the Response Caching Middleware in ASP.NET Core apps. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](response.md).
 
 ## Package
-To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
+To include the middleware in a project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
 
 ## Configuration
-In `ConfigureServices`, add the middleware to your service collection.
+In `ConfigureServices`, add the middleware to the service collection.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -35,7 +35,7 @@ In `ConfigureServices`, add the middleware to your service collection.
 
 ---
 
-Configure the app to use the middleware when processing requests. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample also sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+Configure the app to use the middleware when processing requests. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -104,7 +104,7 @@ Response caching by the middleware is configured via HTTP headers. The relevant 
 ## Troubleshooting
 If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. The conditions by which a response are cached are listed below.
 
-Enabling logging can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache. See [Logging in ASP.NET Core](xref:fundamentals/logging) for more information on enabling logging in your app.
+Enabling logging can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache. See [Logging in ASP.NET Core](xref:fundamentals/logging) for more information on enabling logging.
 
 When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. The following tools can explicitly set request headers, and are preferred for testing caching:
 
