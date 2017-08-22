@@ -28,6 +28,3 @@ The *_ViewImports.cshtml* file contains Razor directives that are imported into 
 The *_ValidationScriptsPartial.cshtml* file provides a reference to [jQuery](https://jquery.com/) validation scripts. When we add `Create` and `Edit` pages later in the tutorial, the *_ValidationScriptsPartial.cshtml* file will be used.
 
 The `About`, `Contact` and `Index` pages are basic pages you can use to start an app. The `Error` page is used to display error information.
-
->[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/model)  
