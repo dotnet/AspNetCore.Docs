@@ -295,7 +295,7 @@ Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then 
 
 #### MIME-type sniffing
 
-This header prevents Internet Explorer from MIME-sniffing a response away from the declared content type, as the header instructs the browser not to override the response content type. With the `nosniff` option, if the server says the content is "text/html", the browser renders it as "text/html".
+This header prevents most browsers from MIME-sniffing a response away from the declared content type, as the header instructs the browser not to override the response content type. With the `nosniff` option, if the server says the content is "text/html", the browser renders it as "text/html".
 
 Edit the *nginx.conf* file:
 
