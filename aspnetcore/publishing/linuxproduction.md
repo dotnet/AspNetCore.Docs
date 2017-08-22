@@ -22,20 +22,19 @@ This guide explains setting up a production-ready ASP.NET Core environment on an
 
 This guide:
 
-* Places an existing ASP.NET Core application behind a reverse proxy server.
-* Set up the reverse proxy server to forward requests to the Kestrel web server. 
-* Ensure the web application runs on startup as a daemon
-* Configures a process management tool to help restart the web application 
+* Places an existing ASP.NET Core application behind a reverse proxy server
+* Sets up the reverse proxy server to forward requests to the Kestrel web server
+* Ensures the web application runs on startup as a daemon
+* Configures a process management tool to help restart the web application
 
 ## Prerequisites
 
-1. Access to an Ubuntu 16.04 Server with a standard user account with sudo privilege.
-
-2. An existing ASP.NET Core application.
+1. Access to an Ubuntu 16.04 Server with a standard user account with sudo privilege
+2. An existing ASP.NET Core application
 
 ## Copy over your app
 
-Run `dotnet publish` from tje dev environment to package an app into a self-contained directory that can run on the server.
+Run `dotnet publish` from the dev environment to package an app into a self-contained directory that can run on the server.
 
 Copy the ASP.NET Core app to the server using whatever tool (SCP, FTP, etc.) integrates into your workflow. Test the app, for example:
  - From the command line, run `dotnet yourapp.dll`
@@ -49,7 +48,7 @@ A reverse proxy is a common setup for serving dynamic web applications. The reve
 
 ### Why use a reverse proxy server?
 
-Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as ~full-featured~ servers like IIS, Apache, or Nginx. A reverse proxy server can ~allow you to~ offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. The reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as servers like IIS, Apache, or Nginx. A reverse proxy server can offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. The reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
 For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on your requirements, you may choose a different setup.
 
@@ -99,17 +98,17 @@ sudo apt-get install nginx
 > [!NOTE]
 > If you plan to install optional Nginx modules, you may be required to build Nginx from source.
 
-Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, ~you can~ explicitly start it by running:
+Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
 sudo service nginx start
 ```
 
-~At this point, you should be able to navigate to your~ Verify a browser displays the default landing page for Nginx.
+Verify a browser displays the default landing page for Nginx.
 
 ### Configure Nginx
 
-To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core application, modify `/etc/nginx/sites-available/default`. Open it in ~your favorite~ a text editor, and replace the contents with the following:
+To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core application, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following:
 
 ```nginx
 server {
@@ -160,7 +159,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-Note: If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files.
+**Note:** If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files.
 
 Save the file, and enable the service.
 
@@ -182,7 +181,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
-With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header ~still~ shows the ASP.NET Core application being served by Kestrel.
+With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header shows the ASP.NET Core application being served by Kestrel.
 
 ```text
 HTTP/1.1 200 OK
@@ -211,7 +210,7 @@ sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-
 
 ### Enable AppArmor
 
-Linux Security Modules (LSM) is a framework that is part of the Linux kernel since Linux 2.6. LSM  supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
+Linux Security Modules (LSM) is a framework that is part of the Linux kernel since Linux 2.6. LSM supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
 
 ### Configuring our firewall
 
@@ -298,7 +297,7 @@ Add the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then 
 
 This header prevents Internet Explorer from MIME-sniffing a response away from the declared content type, as the header instructs the browser not to override the response content type. With the `nosniff` option, if the server says the content is "text/html", the browser renders it as "text/html".
 
-Edit the *nginx.conf* file.
+Edit the *nginx.conf* file:
 
 ```bash
 sudo nano /etc/nginx/nginx.conf
