@@ -21,9 +21,7 @@ namespace ResponseCompressionSample
 
             app.Run(async context =>
             {
-                // If the Accept-Encoding header is present, always add the Vary header
-                // This will be added as a feature in the next release of the middleware.
-                // https://github.com/aspnet/BasicMiddleware/issues/187
+                // If the Accept-Encoding header is present, add the Vary header
                 var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
                 if (!StringValues.IsNullOrEmpty(accept))
                 {

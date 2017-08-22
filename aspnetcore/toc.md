@@ -95,7 +95,7 @@
 #### [Adding Validation](tutorials/first-mvc-app/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 
-### [Create an MVC web app on a Mac](tutorials/first-mvc-app/index.md)
+### [Create an MVC web app on a Mac](tutorials/first-mvc-app-mac/index.md)
 #### [Getting started](tutorials/first-mvc-app-mac/start-mvc.md)
 #### [Adding a controller](tutorials/first-mvc-app-mac/adding-controller.md)
 #### [Adding a view](tutorials/first-mvc-app-mac/adding-view.md)

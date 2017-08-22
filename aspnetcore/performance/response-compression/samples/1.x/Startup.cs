@@ -15,23 +15,22 @@ namespace ResponseCompressionSample
 {
     public class Startup
     {
+        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet2
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<GzipCompressionProvider>();
                 options.Providers.Add<CustomCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
             });
-            #endregion
-            #region snippet3
+
             services.Configure<GzipCompressionProviderOptions>(options => 
             {
                 options.Level = CompressionLevel.Fastest;
             });
-            #endregion
         }
+        #endregion
         
         public void Configure(IApplicationBuilder app)
         {
@@ -84,11 +83,10 @@ namespace ResponseCompressionSample
         }
 
         #region snippet1
+        // ONLY REQUIRED FOR ASP.NET CORE 1.x APPS
         private void ManageVaryHeader(HttpContext context)
         {
-            // If the Accept-Encoding header is present, always add the Vary header
-            // This will be added as a feature in the next release of the middleware.
-            // https://github.com/aspnet/BasicMiddleware/issues/187
+            // If the Accept-Encoding header is present, add the Vary header
             var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
             if (!StringValues.IsNullOrEmpty(accept))
             {
