@@ -20,7 +20,12 @@ This guide explains setting up a production-ready ASP.NET Core environment on an
 
 **Note:** For Ubuntu 14.04, supervisord is recommended as a solution for monitoring the Kestrel process. systemd is not available on Ubuntu 14.04. [See previous version of this document](https://github.com/aspnet/Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md)
 
-In this guide, you place an existing ASP.NET Core application behind a reverse proxy server. Then, you setup the reverse proxy server to forward requests to our Kestrel web server. Additionally, you ensure the web application runs on startup as a daemon and configure a process management tool to help restart our web application in the event of a crash to guarantee high availability.
+This guide:
+
+* Places an existing ASP.NET Core application behind a reverse proxy server.
+* Set up the reverse proxy server to forward requests to the Kestrel web server. 
+* Ensure the web application runs on startup as a daemon
+* Configures a process management tool to help restart the web application 
 
 ## Prerequisites
 
@@ -30,13 +35,13 @@ In this guide, you place an existing ASP.NET Core application behind a reverse p
 
 ## Copy over your app
 
-Run `dotnet publish` from your dev environment to package your app into a self-contained directory that can run on your server.
+Run `dotnet publish` from tje dev environment to package an app into a self-contained directory that can run on the server.
 
-Copy your ASP.NET Core app to your server using whatever tool (SCP, FTP, etc.) integrates into your workflow. Test your app, for example:
+Copy the ASP.NET Core app to the server using whatever tool (SCP, FTP, etc.) integrates into your workflow. Test the app, for example:
  - From the command line, run `dotnet yourapp.dll`
- - In a browser, navigate to `http://<serveraddress>:<port>` to verify you app works on Linux. 
+ - In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux. 
  
-**Note:** You can use [Yeoman](xref:client-side/yeoman) to create a new ASP.NET Core application for a new project.
+**Note:** Use [Yeoman](xref:client-side/yeoman) to create a new ASP.NET Core app for a new project.
 
 ## Configure a reverse proxy server
 
@@ -44,11 +49,11 @@ A reverse proxy is a common setup for serving dynamic web applications. The reve
 
 ### Why use a reverse proxy server?
 
-Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as full-featured servers like IIS, Apache, or Nginx. A reverse proxy server can allow you to offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. The reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as ~full-featured~ servers like IIS, Apache, or Nginx. A reverse proxy server can ~allow you to~ offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. The reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
-For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside your HTTP server. Based on your requirements, you may choose a different setup.
+For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on your requirements, you may choose a different setup.
 
-Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware allows you to set the redirect URI with the `X-Forwarded-For` and `X-Forwarded-Proto` headers instead of `Request.Scheme` and `Request.Host`.
+Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware allows setting the redirect URI with the `X-Forwarded-For` and `X-Forwarded-Proto` headers instead of `Request.Scheme` and `Request.Host`.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -94,17 +99,17 @@ sudo apt-get install nginx
 > [!NOTE]
 > If you plan to install optional Nginx modules, you may be required to build Nginx from source.
 
-Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, you can explicitly start it by running:
+Use `apt-get` to install Nginx. The installer creates a System V init script that runs Nginx as daemon on system startup. Since Nginx was installed for the first time, ~you can~ explicitly start it by running:
 
 ```bash
 sudo service nginx start
 ```
 
-At this point, you should be able to navigate to your browser and see the default landing page for Nginx.
+~At this point, you should be able to navigate to your~ Verify a browser displays the default landing page for Nginx.
 
 ### Configure Nginx
 
-To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core application, modify `/etc/nginx/sites-available/default`. Open it in your favorite text editor, and replace the contents with the following:
+To configure Nginx as a reverse proxy to forward requests to our ASP.NET Core application, modify `/etc/nginx/sites-available/default`. Open it in ~your favorite~ a text editor, and replace the contents with the following:
 
 ```nginx
 server {
@@ -155,8 +160,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-> [!NOTE]
-> If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files.
+Note: If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files.
 
 Save the file, and enable the service.
 
@@ -178,7 +182,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
-With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header still shows the ASP.NET Core application being served by Kestrel.
+With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header ~still~ shows the ASP.NET Core application being served by Kestrel.
 
 ```text
 HTTP/1.1 200 OK
@@ -191,7 +195,7 @@ Transfer-Encoding: chunked
 
 ### Viewing logs
 
-Since the web application using Kestrel is managed using systemd, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by systemd. To view the `kestrel-hellomvc.service`-specific items, use the following command:
+Since the web application using Kestrel is managed using `systemd`, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by `systemd`. To view the `kestrel-hellomvc.service`-specific items, use the following command:
 
 ```bash
 sudo journalctl -fu kestrel-hellomvc.service
@@ -207,7 +211,7 @@ sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-
 
 ### Enable AppArmor
 
-Linux Security Modules (LSM) is a framework, that is part of the Linux kernel since Linux 2.6, that supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows you to confine the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
+Linux Security Modules (LSM) is a framework that is part of the Linux kernel since Linux 2.6. LSM  supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows confining the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
 
 ### Configuring our firewall
 
@@ -223,7 +227,7 @@ sudo ufw allow 443/tcp
 
 ### Securing Nginx
 
-The default distribution of Nginx doesn't enable SSL. To enable all the security features you need, build from source.
+The default distribution of Nginx doesn't enable SSL. To enable additional security features, build from source.
 
 #### Download the source and install the build dependencies
 
