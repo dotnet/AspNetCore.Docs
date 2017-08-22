@@ -5,7 +5,7 @@ description: Configuration and use of Response Caching Middleware in ASP.NET Cor
 keywords: ASP.NET Core,response caching,caching,ResponseCache,ResponseCaching,Cache-Control,VaryByQueryKeys,middleware
 ms.author: riande
 manager: wpickett
-ms.date: 08/18/2017
+ms.date: 08/22/2017
 ms.topic: article
 ms.assetid: f9267eab-2762-42ac-1638-4a25d2c9d67c
 ms.prod: asp.net-core
@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/
 This document provides details on how to configure the Response Caching Middleware in ASP.NET Core apps. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](response.md).
 
 ## Package
-To include the middleware in a project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
+To include the middleware in a project, add a reference to the [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
 
 ## Configuration
 In `ConfigureServices`, add the middleware to the service collection.
@@ -71,7 +71,7 @@ services.AddResponseCaching(options =>
 });
 ```
 
-## VaryByQueryKeys feature
+## VaryByQueryKeys
 When using MVC, the `ResponseCache` attribute specifies the parameters necessary for setting appropriate headers for response caching. The only parameter of the `ResponseCache` attribute that strictly requires the middleware is `VaryByQueryKeys`, which doesn't correspond to an actual HTTP header. For more information, see [ResponseCache Attribute](response.md#responsecache-attribute).
 
 When not using MVC, you can vary response caching with the `VaryByQueryKeys` feature. Use the `ResponseCachingFeature` directly from the `IFeatureCollection` of the `HttpContext`:
@@ -102,9 +102,7 @@ Response caching by the middleware is configured via HTTP headers. The relevant 
 | Age | The `Age` header sent in the original response is ignored. The middleware computes a new value when serving a cached response. |
 
 ## Troubleshooting
-If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. The conditions by which a response are cached are listed below.
-
-Enabling logging can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache. See [Logging in ASP.NET Core](xref:fundamentals/logging) for more information on enabling logging.
+If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
 
 When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. The following tools can explicitly set request headers, and are preferred for testing caching:
 
