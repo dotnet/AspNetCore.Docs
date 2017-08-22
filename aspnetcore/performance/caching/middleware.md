@@ -35,7 +35,7 @@ In `ConfigureServices`, add the middleware to the service collection.
 
 ---
 
-Configure the app to use the middleware when processing requests. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+Configure the app to use the middleware with the `UseResponseCaching` extension method, which adds the middleware to the request processing pipeline. The sample app adds a [`Cache-Control`](https://tools.ietf.org/html/rfc7234#section-5.2) header to the response that caches cacheable responses for up to 10 seconds. The sample sends a [`Vary`](https://tools.ietf.org/html/rfc7231#section-7.1.4) header to configure the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -58,8 +58,8 @@ The middleware offers three options for controlling response caching.
 | Option                | Default Value |
 | --------------------- | ------------- |
 | UseCaseSensitivePaths | Determines if responses are cached on case-sensitive paths.</p><p>The default value is `false`. |
-| MaximumBodySize       | The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` [64 MB (67,108,864 bytes)]. |
-| SizeLimit             | The size limit for the response cache middleware in bytes. The default value is `100 * 1024 * 1024` [100 MB (104,857,600 bytes)]. |
+| MaximumBodySize       | The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` [64 MiB]. |
+| SizeLimit             | The size limit for the response cache middleware in bytes. The default value is `100 * 1024 * 1024` [100 MiB]. |
 
 The following example configures the middleware to cache responses smaller than or equal to 1,024 bytes using case-sensitive paths, storing the responses to `/page1` and `/Page1` separately.
 
