@@ -65,7 +65,9 @@ app.UseAuthentication();
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-When setting up a reverse proxy server other than IIS, invoke `UseIdentity` before any other external providers. For example, invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseFacebookAuthentication` or similar authentication scheme middleware:
+When setting up a reverse proxy server other than IIS, the authentication middleware needs `UseForwardedHeaders` to run first. This ordering ensures that the authentication middleware can consume the affected values and generate correct redirect URIs.
+
+For example, invoke the `UseForwardedHeaders` method (in the `Configure` method of *Startup.cs*) before calling `UseIdentity` and `UseFacebookAuthentication` or similar authentication scheme middleware:
 
 ```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -73,6 +75,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 
+app.UseIdentity();
 app.UseFacebookAuthentication(new FacebookOptions()
 {
     AppId = Configuration["Authentication:Facebook:AppId"],
