@@ -281,7 +281,7 @@ If you need to grant the IIS worker process elevated access to your application,
 You can also do this via a command prompt using **ICACLS** tool:
 
 ```console
-ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
+ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 ```
 
 ## Troubleshooting tips
