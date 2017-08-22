@@ -171,7 +171,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
-With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the **Server** still shows the ASP.NET Core application being served by Kestrel.
+With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header still shows the ASP.NET Core application being served by Kestrel.
 
 ```text
 HTTP/1.1 200 OK
@@ -198,13 +198,13 @@ sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-
 
 ## Securing our application
 
-### Enable `AppArmor`
+### Enable AppArmor
 
-Linux Security Modules (LSM) is a framework, that is part of the Linux kernel since Linux 2.6, that supports different implementations of security modules. `AppArmor` is a LSM that implements a Mandatory Access Control system which allows you to confine the program to a limited set of resources. Ensure [AppArmor](https://wiki.ubuntu.com/AppArmor) is enabled and properly configured.
+Linux Security Modules (LSM) is a framework, that is part of the Linux kernel since Linux 2.6, that supports different implementations of security modules. [AppArmor](https://wiki.ubuntu.com/AppArmor) is a LSM that implements a Mandatory Access Control system which allows you to confine the program to a limited set of resources. Ensure AppArmor is enabled and properly configured.
 
 ### Configuring our firewall
 
-Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a frontend for `iptables` by providing a command-line interface for configuring the firewall. Verify that `ufw` is configured to allow traffic on any ports you need.
+Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a command line interface for configuring the firewall. Verify that `ufw` is configured to allow traffic on any ports you need.
 
 ```bash
 sudo apt-get install ufw
