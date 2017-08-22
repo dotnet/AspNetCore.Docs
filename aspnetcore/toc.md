@@ -263,7 +263,7 @@
 
 # [Performance](xref:performance/index)
 ## [Caching](xref:performance/caching/index)
-### [In Memory Caching](xref:performance/caching/memory)
+### [In-Memory Caching](xref:performance/caching/memory)
 ### [Working with a Distributed Cache](xref:performance/caching/distributed)
 ### [Response Caching](xref:performance/caching/response)
 ### [Response Caching Middleware](xref:performance/caching/middleware)
