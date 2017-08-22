@@ -18,13 +18,18 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples)
 
-Network bandwidth is a limited resource. If you can reduce response payload sizes and thus send less data to clients, you can usually increase the responsiveness of your app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
+Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
 ## When to use Response Compression Middleware
-Use Response Compression Middleware when you're unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html), [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your app is hosted directly on [HttpSys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener)) or [Kestrel](xref:fundamentals/servers/kestrel). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
+Use server-based response compression technologies in IIS, Apache, or Nginx where the performance of the middleware probably won't match that of the server modules. Use Response Compression Middleware when you're unable to use:
+* [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
+* [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
+* [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+* [HttpSys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
+* [Kestrel](xref:fundamentals/servers/kestrel)
 
 ## Response compression
-Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression. You also shouldn't compress files smaller than about 150-1000 bytes (depending on the file's content and the efficiency of compression), as doing so may produce a compressed file larger than the file itself.
+Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression. Don't compress files smaller than about 150-1000 bytes (depending on the file's content and the efficiency of compression). The overhead of compressing small files may produce a compressed file larger than the uncompressed file.
 
 When a client can process compressed content, the client must inform the server of its capabilities by sending the `Accept-Encoding` header with the request. When a server sends compressed content, it must include information in the `Content-Encoding` header on how the compressed response is encoded. Content encoding designations supported by the middleware are shown in the following table.
 
@@ -58,13 +63,15 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 | `Content-Type`     | Specifies the MIME type of the content. Every response should specify its `Content-Type`. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of [default MIME types](#mime-types) that it can encode, but you can replace or add MIME types. |
 | `Vary`             | When sent by the server with a value of `Accept-Encoding` to clients and proxies, the `Vary` header indicates to the client or proxy that it should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses are cached separately. |
 
-You can explore the features of the Response Compression Middleware with the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples). The sample illustrates the compression of app responses using gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
+You can explore the features of the Response Compression Middleware with the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples). The sample illustrates:
+* The compression of app responses using gzip and custom compression providers.
+* How to add a MIME type to the default list of MIME types for compression.
 
 ## Package
 To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
 
 ## Configuration
-The following highlighted code shows how to enable the Response Compression Middleware with the with the default gzip compression and for default MIME types.
+The following code shows how to enable the Response Compression Middleware with the with the default gzip compression and for default MIME types.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
