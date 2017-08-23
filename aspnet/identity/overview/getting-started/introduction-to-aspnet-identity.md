@@ -121,7 +121,7 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample1.cs?highlight=8-9)]
 4. Log in.  
- If the user was successfully created, she is logged in by the `SignInAsync` method.  
+ If the user was successfully created, he is logged in by the `SignInAsync` method.  
 
     [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample2.cs?highlight=12)]
 
