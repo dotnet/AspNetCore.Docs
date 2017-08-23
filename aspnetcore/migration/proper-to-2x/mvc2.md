@@ -71,7 +71,7 @@ The host and application have been decoupled, which provides the flexibility of 
 > For a more in-depth reference to ASP.NET Core Startup and Middleware, see [Startup in ASP.NET Core](xref:fundamentals/startup)
 
 ## Storing Configurations
-Since the earliest versions of .NET Framework, developers have needed to store settings which could change depending upon factors such as the environment to which they were deployed. The most common practice was to store all custom key-value pairs in a section of your *Web.config* file called `<appSettings>`:
+Since the earliest versions of ASP.NET, developers have stored settings which could change depending upon factors such as the environment to which the applications were deployed. The most common practice was to store all custom key-value pairs in a section of your *Web.config* file called `<appSettings>`:
 
 [!code-xml[Main](samples/webconfig-sample.xml)]
 
