@@ -35,7 +35,7 @@ namespace KeyVaultConfigProviderSample
             app.Run(async context =>
             {
                 var encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
-                var document = string.Format(Markup.Text, Configuration["MySecret"], Configuration["Section:MySecret"], Configuration.GetSection("Section")["MySecret"]);
+                var document = string.Format(Markup.Text, Configuration["SecretName"], Configuration["Section:SecretName"], Configuration.GetSection("Section")["SecretName"]);
                 context.Response.ContentLength = encoding.GetByteCount(document);
                 context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync(document);
