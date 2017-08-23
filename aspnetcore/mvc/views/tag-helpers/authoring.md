@@ -2,7 +2,7 @@
 title: Authoring Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn how to author Tag Helpers in ASP.NET Core.
-keywords: ASP.NET Core, tag helpers
+keywords: ASP.NET Core,tag helpers
 ms.author: riande
 manager: wpickett
 ms.date: 6/14/2017
@@ -31,7 +31,7 @@ A tag helper is any class that implements the `ITagHelper` interface. However, w
 
 ## A minimal Tag Helper
 
-In this section you write a tag helper that updates an email tag. For example:
+In this section, you write a tag helper that updates an email tag. For example:
 
 ```html
 <email>Support</email>
@@ -118,7 +118,7 @@ That approach works for the attribute "href" as long as it doesn't currently exi
     
 ### ProcessAsync
 
-In this section we'll write an asynchronous email helper.
+In this section, we'll write an asynchronous email helper.
 
 1.  Replace the `EmailTagHelper` class with the following code:
 
@@ -208,7 +208,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
     
     * The `$` (dollar sign) in the following line uses an [interpolated string](https://msdn.microsoft.com/library/Dn961160.aspx):
     
-    ```html
+    ```cshtml
     $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
     ```
 
@@ -238,12 +238,11 @@ The condition tag helper renders output when passed a true value.
 
     [!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/ConditionTagHelper.cs)]
 
-
 2.  Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
     <!-- literal_block {"xml:space": "preserve", "source": "mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
     
-    ```
+    ```cshtml
     @using AuthoringTagHelpers.Models
     @model WebsiteContext
     
