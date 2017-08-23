@@ -1,55 +1,49 @@
 ---
-title: Adding a model to a Razor Pages app in ASP.NET Core
+title: Adding a model to a Razor Pages app with Visual Studio for Mac
 author: rick-anderson
-description: Adding a model to a Razor Pages app in ASP.NET Core
+description: Adding a model to a Razor Pages app in ASP.NET Core using Visual Studio for Mac
 keywords: ASP.NET Core,Razor Pages,Razor,MVC
 ms.author: riande
 manager: wpickett
-ms.date: 7/27/2017
+ms.date: 8/27/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: tutorials/razor-pages/model
+uid: tutorials/razor-pages-mac/model
 ---
-# Adding a model to a Razor Pages app
+
+# Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
-
 ## Add a data model
 
-In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+* In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the *Models* folder, and then select **Add** > **New File**. 
+* In the **New File** dialog:
 
-Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
+  * Select **General** in the left pane.
+  * Select **Empty Class** in the center pain.
+  * Name the class **Movie** and select **New**.
 
 [!INCLUDE[model2](../../includes/RP/model2.md)]
 
-<a name="pmc"></a>
+<a name="cli"></a>
 ## Add scaffold tooling and perform initial migration
 
-In this section, you use the Package Manager Console (PMC) to:
+From the command line, run the following .NET Core CLI commands:
 
-* Add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
-* Add an initial migration.
-* Update the database with the initial migration.
-
-From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
-
-  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
-
-In the PMC, enter the following commands:
-
-```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
-Add-Migration Initial
-Update-Database
+```console
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet ef migrations add InitialCreate
+dotnet ef database update
 ```
 
-The `Install-Package` command installs the tooling required to run the scaffolding engine.
+The `add package` command installs the tooling required to run the scaffolding engine.
 
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 <a name="scaffold"></a>
 ### Scaffold the Movie model
@@ -82,7 +76,7 @@ dotnet aspnet-codegenerator razorpage -h
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 * Test the **Create** link.
 
- ![Create page](model/_static/conan.png)
+ ![Create page](../razor-pages/model/_static/conan.png)
 
 <a name="scaffold"></a>
 
