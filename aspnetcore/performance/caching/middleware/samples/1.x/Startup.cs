@@ -22,6 +22,7 @@ namespace ResponseCachingSample
         public void Configure(IApplicationBuilder app)
         {
             app.UseResponseCaching();
+            
             app.Run(async (context) =>
             {
                 context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
@@ -31,7 +32,7 @@ namespace ResponseCachingSample
                 };
                 context.Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
 
-                await context.Response.WriteAsync("Hello World! " + DateTime.UtcNow);
+                await context.Response.WriteAsync($"Hello World! {DateTime.UtcNow}");
             });
         }
         #endregion
