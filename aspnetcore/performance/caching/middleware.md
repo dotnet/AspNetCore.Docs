@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/
 This document provides details on how to configure the Response Caching Middleware in ASP.NET Core apps. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the `ResponseCache` attribute, see [Response Caching](response.md).
 
 ## Package
-To include the middleware in a project, add a reference to the [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package. This feature is available for apps that target ASP.NET Core 1.1 or later.
+To include the middleware in a project, add a reference to the [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package or use the [`Microsoft.AspNetCore.All`](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) package.
 
 ## Configuration
 In `ConfigureServices`, add the middleware to the service collection.
