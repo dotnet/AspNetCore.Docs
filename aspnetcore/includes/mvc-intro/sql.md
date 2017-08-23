@@ -31,8 +31,6 @@ if (context.Movie.Any())
 }
 ```
 
-## Seed the database
-
 <a name="si"></a>
 ### Add the seed initializer
 
