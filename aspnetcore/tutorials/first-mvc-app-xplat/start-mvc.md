@@ -26,10 +26,13 @@ There are 3 versions of this tutorial:
 
 ## Install VS Code and .NET Core
 
-Download and install:
-- [.NET Core](https://microsoft.com/net/core)
-- [VS Code](https://code.visualstudio.com)
-- VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+This tutorial requires the [.NET Core 2.0.0 SDK](https://dot.net/core) or later. See [the pdf](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
+
+Install the following:
+
+* [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+* [Visual Studio Code](https://code.visualstudio.com)
+* VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) 
 
 ## Create a web app with dotnet
 
