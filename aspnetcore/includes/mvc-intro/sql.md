@@ -31,9 +31,12 @@ if (context.Movie.Any())
 }
 ```
 
-Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
+<a name="si"></a>
+### Add the seed initializer
 
-[!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
+Add the seed initializer to the `Main` method in the *Program.cs* file:
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Program.cs?highlight=6,16-32)]
 
 ### Test the app
 
