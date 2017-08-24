@@ -97,18 +97,9 @@ host.Run();
 
 ## Configuring a Host
 
-The `WebHostBuilder` provides methods for setting most of the available configuration values for the host, which can also be set directly using `UseSetting` and associated key. For example, to specify the application name:
-
-```csharp
-new WebHostBuilder()
-    .UseSetting("applicationName", "MyApp")
-```
+The `WebHostBuilder` provides methods for setting most of the available configuration values for the host, which can also be set directly using `UseSetting` and associated key.
 
 ### Host Configuration Values
-
-**Application Name** `string`
-
-Key: `applicationName`. This configuration setting specifies the value that will be returned from `IHostingEnvironment.ApplicationName`.
 
 **Capture Startup Errors** `bool`
 

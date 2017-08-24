@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if V1x
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -74,3 +75,4 @@ namespace MvcMovie
     }
 }
 #endregion
+#endif
