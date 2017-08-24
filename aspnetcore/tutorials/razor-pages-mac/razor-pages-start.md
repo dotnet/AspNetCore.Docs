@@ -21,7 +21,7 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 
 Install the following:
 
-* [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+* [.NET Core 2.0.0 SDK](https://dot.net/core) or later
 * [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/) 
 
 ## Create a Razor web app
@@ -34,7 +34,7 @@ cd RazorPagesMovie
 dotnet run
 ```
 
-The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 
