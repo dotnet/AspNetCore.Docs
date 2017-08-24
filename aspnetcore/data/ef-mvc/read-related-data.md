@@ -139,7 +139,7 @@ At that point in the code, another `ThenInclude` would be for navigation propert
 
 The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=54-60)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=56-62)]
 
 The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `CourseAssignments` property. The `CourseAssignments` property contains `CourseAssignment` entities, from which you want only the related `Course` entities.
 

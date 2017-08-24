@@ -2,12 +2,11 @@
 title: Getting started with ASP.NET Core MVC and Visual Studio for Mac
 author: rick-anderson
 description: Getting started with ASP.NET Core MVC and Visual Studio
-keywords: ASP.NET Core, MVC, Visual Studio for Mac, Entity Framework
+keywords: ASP.NET Core,MVC,Visual Studio for Mac,Entity Framework
 ms.author: riande
 manager: wpickett
-ms.date: 06/07/2017
+ms.date: 8/23/2017
 ms.topic: article
-ms.assetid: 1d18b509-e3fd-4dc6-bde6-fb0f41998d77
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-mvc-app-mac/start-mvc
@@ -26,9 +25,11 @@ There are 3 versions of this tutorial:
 
 ## Prerequisites
 
+This tutorial requires the [.NET Core 2.0.0 SDK](https://dot.net/core) or later. See [the pdf](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf) for the ASP.NET Core 1.1 version.
+
 Install the following:
 
-- [.NET Core SDK](https://www.microsoft.com/net/core#macos)  
+- [.NET Core 2.0.0 SDK](https://dot.net/core) or later
 - [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
 
 ## Create a web app

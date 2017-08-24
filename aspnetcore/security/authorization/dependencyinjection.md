@@ -20,7 +20,7 @@ uid: security/authorization/dependencyinjection
 
 Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection.  Authorization will resolve and inject that into your constructor.
 
-For example, if you wanted to use ASP.NET's logging infrastructure you would to inject `ILoggerFactory` into your handler. Such a handler might look like:
+For example, if you wanted to use ASP.NET's logging infrastructure you would want to inject `ILoggerFactory` into your handler. Such a handler might look like:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>

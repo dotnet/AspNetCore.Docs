@@ -12,10 +12,7 @@ ms.prod: aspnet-core
 uid: tutorials/razor-pages/index
 ---
 
-
 # Create a Razor Pages web app with ASP.NET Core
-
-This is a work in progress. We hope to have the series complete within two weeks.
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core.
 
@@ -27,4 +24,3 @@ This series explains the basics of building a Razor Pages web app with ASP.NET C
 1. [Adding search](xref:tutorials/razor-pages/search)
 1. [Adding a new field](xref:tutorials/razor-pages/new-field)
 1. [Adding validation](xref:tutorials/razor-pages/validation)
-

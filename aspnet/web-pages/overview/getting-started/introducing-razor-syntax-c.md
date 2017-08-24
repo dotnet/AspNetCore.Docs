@@ -528,7 +528,7 @@ To create a dictionary, you use the `new` keyword to indicate that you're creati
 
 To add items to the dictionary, you can call the `Add` method of the dictionary variable (`myScores` in this case), and then specify a key and a value. Alternatively, you can use square brackets to indicate the key and do a simple assignment, as in the following example:
 
-[!code-css[Main](introducing-razor-syntax-c/samples/sample62.css)]
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample62.css)]
 
 To get a value from the dictionary, you specify the key in brackets:
 

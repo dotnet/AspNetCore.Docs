@@ -22,8 +22,8 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) (also works with Visual Studio 2012)
-> - Web API 2 (also works with Web API 1)
+> - [Visual Studio 2017](https://www.visualstudio.com/downloads/) (also works with Visual Studio 2015)
+> - Web API 2
 > - [Microsoft.AspNet.WebApi.Tracing](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Tracing)
 
 

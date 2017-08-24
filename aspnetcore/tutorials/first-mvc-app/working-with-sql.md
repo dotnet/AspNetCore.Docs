@@ -63,11 +63,22 @@ if (context.Movie.Any())
 }
 ```
 
-**Note: In ASP.NET Core 2.0** you add the seed initializer to the end of the `Main` method in the *Program.cs* file. See [Add the seed initializer](xref:tutorials/razor-pages/sql#si). The code is similar except for the namespace.
+<a name="si"></a>
+### Add the seed initializer
 
-In ASP.NET Core 1.x, add the seed initializer to the end of the `Configure` method in the *Startup.cs* file. For ASP.NET Core 2.0, see the note above.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Add the seed initializer to the `Main` method in the *Program.cs* file:
+
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Program.cs?highlight=6,16-32)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file.
 
 [!code-csharp[Main](start-mvc/sample/MvcMovie/Startup.cs?highlight=9&name=snippet_seed)]
+
+---
 
 Test the app
 
