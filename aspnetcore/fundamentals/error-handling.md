@@ -112,7 +112,7 @@ In addition to the exception handling logic in your app, the [server](servers/in
 
 Only the hosting layer can handle exceptions that take place during app startup. Exceptions that occur during app startup can impact server behavior. For example, if an exception happens before you call `KestrelServerOptions.UseHttps`, the hosting layer catches the exception, starts the server, and displays an error page on the non-SSL port. If an exception happens after that line executes, the error page is served over HTTPS instead.
 
-You can [configure how the host will behave in response to errors during startup](hosting.md#configuring-a-host) using `CaptureStartupErrors` and the `detailedErrors` key.
+You can [configure how the host will behave in response to errors during startup](hosting.md#detailed-errors) using `CaptureStartupErrors` and the `detailedErrors` key.
 
 ## ASP.NET MVC error handling
 
