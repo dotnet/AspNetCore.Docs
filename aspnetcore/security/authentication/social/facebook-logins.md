@@ -69,18 +69,6 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Facebook`
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Add the Facebook middleware in the `Configure` method in *Startup.cs* file:
-
-```csharp
-app.UseFacebookAuthentication(new FacebookOptions()
-{
-    AppId = Configuration["Authentication:Facebook:AppId"],
-    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-});
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
@@ -94,6 +82,18 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 ```
 
 When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the Facebook middleware in the `Configure` method in *Startup.cs* file:
+
+```csharp
+app.UseFacebookAuthentication(new FacebookOptions()
+{
+    AppId = Configuration["Authentication:Facebook:AppId"],
+    AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+});
+```
 
 ---
 

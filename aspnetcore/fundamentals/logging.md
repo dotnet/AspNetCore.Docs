@@ -19,13 +19,13 @@ By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykst
 
 ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers let you send logs to one or more destinations, and you can plug in a third-party logging framework. This article shows how to use the built-in logging API and providers in your code.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2)
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
 
 ---
 
@@ -45,6 +45,18 @@ ASP.NET Core does not provide async logger methods because logging should be so 
 
 ## How to add providers
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
+
+To use a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
+
+[!code-csharp[](logging/sample2/Program.cs?name=snippet_ExpandDefault&highlight=16,17)]
+
+The default project template sets up logging the way you see it in the preceding code, but the `ConfigureLogging` call is done by the `CreateDefaultBuilder` method. Here's the code in *Program.cs* that is created by project templates:
+
+[!code-csharp[](logging/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
@@ -57,18 +69,6 @@ ASP.NET Core [dependency injection](dependency-injection.md) (DI) provides the `
 
 > [!NOTE]
 > The sample application for this article adds logging providers in the `Configure` method of the `Startup` class. If you want to get log output from code that executes earlier, add logging providers in the `Startup` class constructor instead. 
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-A logging provider takes the messages that you create with an `ILogger` object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.
-
-To use a provider, call the provider's `Add<ProviderName>` extension method in *Program.cs*:
-
-[!code-csharp[](logging/sample2/Program.cs?name=snippet_ExpandDefault&highlight=16,17)]
-
-The default project template sets up logging the way you see it in the preceding code, but the `ConfigureLogging` call is done by the `CreateDefaultBuilder` method. Here's the code in *Program.cs* that is created by project templates:
-
-[!code-csharp[](logging/sample2/Program.cs?name=snippet_TemplateCode&highlight=7)]
 
 ---
 
@@ -264,24 +264,6 @@ System.Exception: Item not found exception.
 
 ## Log filtering
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.
-
-The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
-
-[!code-csharp[](logging/sample/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
-
-The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
-
-You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
-
-[!code-csharp[](logging/sample/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
-
-If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
-
-The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It does not affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 You can specify a minimum log level for a specific provider and category or for all providers or all categories.  Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored. 
@@ -364,6 +346,24 @@ You can write code in a filter function to apply filtering rules. A filter funct
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.
+
+The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
+
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
+
+The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
+
+You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
+
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
+
+If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+
+The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It does not affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
+
 ---
 
 ## Log scopes
@@ -376,17 +376,17 @@ A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TSt
 
 The following code enables scopes for the console provider:
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-In *Startup.cs*:
-
-[!code-csharp[](logging/sample/Startup.cs?name=snippet_Scopes&highlight=6)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 In *Program.cs*:
 
 [!code-csharp[](logging/sample2/Program.cs?name=snippet_Scopes&highlight=4)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+In *Startup.cs*:
+
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_Scopes&highlight=6)]
 
 ---
 
@@ -417,6 +417,12 @@ ASP.NET Core ships the following providers:
 
 The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+logging.AddConsole()
+```
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
@@ -439,12 +445,6 @@ This code refers to the `Logging` section of the *appSettings.json* file:
 
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](configuration.md).
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-```csharp
-logging.AddConsole()
-```
-
 ---
 
 <a id="debug"></a>
@@ -454,6 +454,12 @@ The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsof
 
 On Linux, this provider writes logs to */var/log/message*.
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+logging.AddDebug()
+```
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
@@ -462,12 +468,6 @@ loggerFactory.AddDebug()
 
 [AddDebug overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.debugloggerfactoryextensions) let you pass in a minimum log level or a filter function.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-```csharp
-logging.AddDebug()
-```
-
 ---
 
 <a id="eventsource"></a>
@@ -475,16 +475,16 @@ logging.AddDebug()
 
 For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package can implement event tracing. On Windows, it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform, but there are no event collection and display tools yet for Linux or macOS. 
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-loggerFactory.AddEventSourceLogger()
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 logging.AddEventSourceLogger()
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+loggerFactory.AddEventSourceLogger()
 ```
 
 ---
@@ -531,6 +531,12 @@ The resulting *C:\trace.etl* file can be analyzed with PerfView as on other edit
 
 The [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog) provider package sends log output to the Windows Event Log.
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+logging.AddEventLog()
+```
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
@@ -539,12 +545,6 @@ loggerFactory.AddEventLog()
 
 [AddEventLog overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.eventloggerfactoryextensions) let you pass in `EventLogSettings` or a minimum log level.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-```csharp
-logging.AddEventLog()
-```
-
 ---
 
 <a id="tracesource"></a>
@@ -552,16 +552,16 @@ logging.AddEventLog()
 
 The [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) provider package uses the [System.Diagnostics.TraceSource](https://msdn.microsoft.com/library/system.diagnostics.tracesource.aspx) libraries and providers.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-loggerFactory.AddTraceSource(sourceSwitchName);
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 logging.AddTraceSource(sourceSwitchName);
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+loggerFactory.AddTraceSource(sourceSwitchName);
 ```
 
 ---
@@ -579,6 +579,13 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+> [!NOTE]
+> ASP.NET Core 2.0 is in preview.  Apps created with the latest preview release may not run when deployed to Azure App Service. When ASP.NET Core 2.0 is released, Azure App Service will run 2.0 apps, and the Azure App Service provider will work as indicated here.
+
+You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
@@ -586,13 +593,6 @@ loggerFactory.AddAzureWebAppDiagnostics();
 ```
 
 An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs), with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message format string that is applied to all logs, on top of the one that you provide when you call an `ILogger` method.)  
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-> [!NOTE]
-> ASP.NET Core 2.0 is in preview.  Apps created with the latest preview release may not run when deployed to Azure App Service. When ASP.NET Core 2.0 is released, Azure App Service will run 2.0 apps, and the Azure App Service provider will work as indicated here.
-
-You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.
 
 ---
 
