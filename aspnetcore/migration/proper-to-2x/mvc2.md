@@ -17,9 +17,10 @@ uid: migration/mvc2
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET applications (MVC or Web API) to ASP.NET Core 2.0. Additional articles outline migration of the configuration and Identity code inherent to many ASP.NET projects.
+This article serves as a reference guide for migrating ASP.NET applications (MVC or Web API) to ASP.NET Core 2.0.
 
 ## Prerequisites
+Install the following:
 * [.NET Core 2.0.0 SDK](https://dot.net/core) or later
 * [Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) version 15.3 or later with the **ASP.NET and web development** workload
 
