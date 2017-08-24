@@ -36,8 +36,7 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 
 Edit the *RazorPagesMovie.csproj* file:
 
-* In VS Code, from the 
-You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit RazorPagesMovie.csproj**.
+* Select **File > Open File**, and then select the *RazorPagesMovie.csproj* file.
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 

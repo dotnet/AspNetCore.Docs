@@ -120,9 +120,13 @@
 
 ### [Create a Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-mac/model)
+
 
 ### [Create a Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-vsc/model)
+
 
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
 #### [Getting started](data/ef-mvc/intro.md)
