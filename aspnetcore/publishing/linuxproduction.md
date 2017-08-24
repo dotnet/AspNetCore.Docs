@@ -44,17 +44,17 @@ Copy the ASP.NET Core app to the server using whatever tool (SCP, FTP, etc.) int
 
 ## Configure a reverse proxy server
 
-A reverse proxy is a common setup for serving dynamic web applications. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core application.
+A reverse proxy is a common setup for serving dynamic web applications. A reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core application.
 
 ### Why use a reverse proxy server?
 
-Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as servers like IIS, Apache, or Nginx. A reverse proxy server can offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. The reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+Kestrel is great for serving dynamic content from ASP.NET Core; however, the web serving parts aren’t as feature rich as servers like IIS, Apache, or Nginx. A reverse proxy server can offload work like serving static content, caching requests, compressing requests, and SSL termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
 
 For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on your requirements, you may choose a different setup.
 
 Because requests are forwarded by reverse proxy, use the `ForwardedHeaders` middleware from the `Microsoft.AspNetCore.HttpOverrides` package. This middleware updates `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-When setting up the reverse proxy server, the authentication middleware needs `UseForwardedHeaders` to run first. This ordering ensures that the authentication middleware can consume the affected values and generate correct redirect URIs.
+When setting up a reverse proxy server, the authentication middleware needs `UseForwardedHeaders` to run first. This ordering ensures that the authentication middleware can consume the affected values and generate correct redirect URIs.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -124,13 +124,13 @@ server {
 }
 ```
 
-This is one of the simplest configuration files for Nginx that forwards incoming public traffic on your port `80` to a port `5000` that your web application can listen on.
+This Nginx configuration file forwards incoming public traffic from port `80` to port `5000`.
 
 Once you have completed making changes to your Nginx configuration, you can run `sudo nginx -t` to verify the syntax of your configuration files. If the configuration file test is successful, you can ask Nginx to pick up the changes by running `sudo nginx -s reload`.
 
 ## Monitoring our application
 
-Nginx is now setup to forward requests made to `http://localhost:80` on to the ASP.NET Core application running on Kestrel at `http://127.0.0.1:5000`. However, Nginx is not set up to manage the Kestrel process. You can use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
+Nginx is now setup to forward requests made to `http://yourhost:80` on to the ASP.NET Core application running on Kestrel at `http://127.0.0.1:5000`. However, Nginx is not set up to manage the Kestrel process. You can use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes. 
 
 ### Create the service file
 
@@ -181,7 +181,7 @@ Main PID: 9021 (dotnet)
             └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
 ```
 
-With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the `Server` header shows the ASP.NET Core application being served by Kestrel.
+With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. It is also accessible from a remote machine, barring any firewall that might be blocking. Inspecting the response headers, the `Server` header shows the ASP.NET Core application being served by Kestrel.
 
 ```text
 HTTP/1.1 200 OK
