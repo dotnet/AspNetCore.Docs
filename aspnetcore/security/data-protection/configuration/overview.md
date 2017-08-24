@@ -24,28 +24,27 @@ There is an extension method AddDataProtection which returns an IDataProtectionB
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddDataProtection()
-           .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
-
-   }
-   ```
+{
+    services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
+}
+```
 
 >[!WARNING]
 > If you change the key persistence location, the system will no longer automatically encrypt keys at rest since it doesn't know whether DPAPI is an appropriate encryption mechanism.
 
 <a name=configuring-x509-certificate></a>
 
-You can configure the system to protect keys at rest by calling any of the ProtectKeysWith* configuration APIs. Consider the example below, which stores keys at a UNC share and encrypts those keys at rest with a specific X.509 certificate.
+You can configure the system to protect keys at rest by calling any of the ProtectKeysWith\* configuration APIs. Consider the example below, which stores keys at a UNC share and encrypts those keys at rest with a specific X.509 certificate.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-     {
-         services.AddDataProtection()
-             .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-             .ProtectKeysWithCertificate("thumbprint");
-     }
-   ```
+{
+    services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
+        .ProtectKeysWithCertificate("thumbprint");
+}
+```
 
 See [key encryption at rest](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more examples and for discussion on the built-in key encryption mechanisms.
 
@@ -53,11 +52,11 @@ To configure the system to use a default key lifetime of 14 days instead of 90 d
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddDataProtection()
-           .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
-   }
-   ```
+{
+    services.AddDataProtection()
+        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+}
+```
 
 By default the data protection system isolates applications from one another, even if they're sharing the same physical key repository. This prevents the applications from understanding each other's protected payloads. To share protected payloads between two different applications, configure the system passing in the same application name for both applications as in the below example:
 
@@ -67,11 +66,11 @@ By default the data protection system isolates applications from one another, ev
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddDataProtection()
-           .SetApplicationName("my application");
-   }
-   ```
+{
+    services.AddDataProtection()
+        .SetApplicationName("my application");
+}
+```
 
 <a name=data-protection-configuring-disable-automatic-key-generation></a>
 
@@ -79,11 +78,11 @@ Finally, you may have a scenario where you do not want an application to automat
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-     services.AddDataProtection()
-         .DisableAutomaticKeyGeneration();
-   }
-   ```
+{
+    services.AddDataProtection()
+        .DisableAutomaticKeyGeneration();
+}
+```
 
 <a name=data-protection-configuration-per-app-isolation></a>
 
@@ -109,26 +108,26 @@ If the data protection system is not provided by an ASP.NET Core host (e.g., if 
 
 The data protection stack allows changing the default algorithm used by newly-generated keys. The simplest way to do this is to call UseCryptographicAlgorithms from the configuration callback, as in the below example.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-services.AddDataProtection()
-       .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
-       {
-           EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
-           ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
-       });
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 services.AddDataProtection()
-       .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
-       {
-           EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
-           ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
-       });
+    .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+    {
+        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+    });
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+services.AddDataProtection()
+    .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
+    {
+        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+    });
 ```
 
 ---
@@ -146,47 +145,47 @@ The developer can manually specify an implementation if desired via a call to Us
 
 ### Specifying custom managed algorithms
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
-
-```csharp
-serviceCollection.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
-       {
-           // a type that subclasses SymmetricAlgorithm
-           EncryptionAlgorithmType = typeof(Aes),
-
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256,
-
-           // a type that subclasses KeyedHashAlgorithm
-           ValidationAlgorithmType = typeof(HMACSHA256)
-       });
-   ```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 To specify custom managed algorithms, create a ManagedAuthenticatedEncryptorConfiguration instance that points to the implementation types.
 
 ```csharp
 serviceCollection.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptorConfiguration()
-       {
-           // a type that subclasses SymmetricAlgorithm
-           EncryptionAlgorithmType = typeof(Aes),
+    .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptorConfiguration()
+    {
+        // a type that subclasses SymmetricAlgorithm
+        EncryptionAlgorithmType = typeof(Aes),
 
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256,
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
 
-           // a type that subclasses KeyedHashAlgorithm
-           ValidationAlgorithmType = typeof(HMACSHA256)
-       });
-   ```
+        // a type that subclasses KeyedHashAlgorithm
+        ValidationAlgorithmType = typeof(HMACSHA256)
+    });
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
+
+```csharp
+serviceCollection.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
+    {
+        // a type that subclasses SymmetricAlgorithm
+        EncryptionAlgorithmType = typeof(Aes),
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // a type that subclasses KeyedHashAlgorithm
+        ValidationAlgorithmType = typeof(HMACSHA256)
+    });
+```
 
 ---
 
-Generally the *Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.
+Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.
 
 > [!NOTE]
 > The SymmetricAlgorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The KeyedHashAlgorithm must have a digest size of >= 128 bits, and it must support keys of length equal to the hash algorithm's digest length. The KeyedHashAlgorithm is not strictly required to be HMAC.
@@ -195,52 +194,69 @@ Generally the *Type properties must point to concrete, instantiable (via a publi
 
 ### Specifying custom Windows CNG algorithms
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
-
-```csharp
-services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
-       {
-           // passed to BCryptOpenAlgorithmProvider
-           EncryptionAlgorithm = "AES",
-           EncryptionAlgorithmProvider = null,
-
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256,
-
-           // passed to BCryptOpenAlgorithmProvider
-           HashAlgorithm = "SHA256",
-           HashAlgorithmProvider = null
-       });
-   ```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
 
 ```csharp
 services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration()
-       {
-           // passed to BCryptOpenAlgorithmProvider
-           EncryptionAlgorithm = "AES",
-           EncryptionAlgorithmProvider = null,
+    .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = "AES",
+        EncryptionAlgorithmProvider = null,
 
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256,
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
 
-           // passed to BCryptOpenAlgorithmProvider
-           HashAlgorithm = "SHA256",
-           HashAlgorithmProvider = null
-       });
-   ```
+        // passed to BCryptOpenAlgorithmProvider
+        HashAlgorithm = "SHA256",
+        HashAlgorithmProvider = null
+    });
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
+
+```csharp
+services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = "AES",
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // passed to BCryptOpenAlgorithmProvider
+        HashAlgorithm = "SHA256",
+        HashAlgorithmProvider = null
+    });
+```
 
 ---
 
 > [!NOTE]
-> The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The *Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
+> The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
+
+```csharp
+services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = "AES",
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256
+    });
+```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -248,34 +264,16 @@ To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption +
 
 ```csharp
 services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
-       {
-           // passed to BCryptOpenAlgorithmProvider
-           EncryptionAlgorithm = "AES",
-           EncryptionAlgorithmProvider = null,
+    .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = "AES",
+        EncryptionAlgorithmProvider = null,
 
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256
-       });
-   });
-   ```
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.
-
-```csharp
-services.AddDataProtection()
-       .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration()
-       {
-           // passed to BCryptOpenAlgorithmProvider
-           EncryptionAlgorithm = "AES",
-           EncryptionAlgorithmProvider = null,
-
-           // specified in bits
-           EncryptionAlgorithmKeySize = 256
-       });
-   });
-   ```
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256
+    });
+```
 
 ---
 
@@ -288,6 +286,5 @@ Though not exposed as a first-class API, the data protection system is extensibl
 
 ### See also
 
-[Non DI Aware Scenarios](non-di-scenarios.md)
-
-[Machine Wide Policy](machine-wide-policy.md)
+* [Non DI Aware Scenarios](non-di-scenarios.md)
+* [Machine Wide Policy](machine-wide-policy.md)

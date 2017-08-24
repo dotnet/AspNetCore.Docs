@@ -55,18 +55,6 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
-
-```csharp
-app.UseTwitterAuthentication(new TwitterOptions()
-{
-    ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
-    ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
-});
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Twitter middleware in the `ConfigureServices` method in *Startup.cs* file:
@@ -80,6 +68,18 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 ```
 
 When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
+
+```csharp
+app.UseTwitterAuthentication(new TwitterOptions()
+{
+    ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"],
+    ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
+});
+```
 
 ---
 
