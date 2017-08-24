@@ -45,7 +45,7 @@ The *.csproj* file format has been simplified in ASP.NET Core. Some notable chan
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](static/EditProjectVs2017.png)
+    ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
 
 ## Global.asax File Replacement
 ASP.NET Core introduced a new mechanism for bootstrapping your application. The entry point for ASP.NET applications is the *Global.asax* file, in which tasks such as route configuration and filter and area registrations were handled.
