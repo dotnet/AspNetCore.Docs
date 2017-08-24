@@ -27,6 +27,7 @@ uid: tutorials/razor-pages-vsc/model
   * Name the class **Movie** and select **New**.
 
 [!INCLUDE[model2](../../includes/RP/model2.md)]
+[!INCLUDE[model2a](../../includes/RP/model2a.md)]
 
 [!INCLUDE[model3](../../includes/RP/model3.md)]
 
