@@ -39,7 +39,6 @@ Edit the *RazorPagesMovie.csproj* file:
 * In VS Code, from the 
 You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
 
-[!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=2)]
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 
 [!INCLUDE[model3](../../includes/RP/model4.md)]
