@@ -259,7 +259,7 @@
 ## [Anti-Request Forgery](xref:security/anti-request-forgery)
 ## [Preventing Open Redirect Attacks](xref:security/preventing-open-redirects)
 ## [Preventing Cross-Site Scripting](xref:security/cross-site-scripting)
-## [Enabling Cross-Origin Requests (xref:security/CORS)](xref:security/cors)
+## [Enabling Cross-Origin Requests](xref:security/cors)
 
 # [Performance](xref:performance/index)
 ## [Caching](xref:performance/caching/index)
