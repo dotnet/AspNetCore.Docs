@@ -29,7 +29,11 @@ uid: tutorials/razor-pages-mac/model
 [!INCLUDE[model2](../../includes/RP/model2.md)]
 [!INCLUDE[model2a](../../includes/RP/model2a.md)]
 
-[!INCLUDE[model3](../../includes/RP/model3.md)]
+Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
+
+	Line 101:  ![Create page](model/red.png)
+ 
+Build the project to verify you don't have any errors.
 
 ### Entity Framework Core NuGet packages for migrations
 
@@ -46,6 +50,8 @@ To edit a *.csproj* file:
 The following code shows the updated *csproj* file.
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
+
+[!INCLUDE[model3](../../includes/RP/model3.md)]
 
 [!INCLUDE[model3](../../includes/RP/model4.md)]
 

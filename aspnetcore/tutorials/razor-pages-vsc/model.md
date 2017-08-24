@@ -29,7 +29,7 @@ uid: tutorials/razor-pages-vsc/model
 [!INCLUDE[model2](../../includes/RP/model2.md)]
 [!INCLUDE[model2a](../../includes/RP/model2a.md)]
 
-[!INCLUDE[model3](../../includes/RP/model3.md)]
+Build the project to verify you don't have any errors.
 
 ### Entity Framework Core NuGet packages for migrations
 
@@ -40,8 +40,9 @@ Edit the *RazorPagesMovie.csproj* file:
 * Select **File > Open File**, and then select the *RazorPagesMovie.csproj* file.
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
+[!INCLUDE[model 3](../../includes/RP/model3.md)]
 
-[!INCLUDE[model3](../../includes/RP/model4.md)]
+[!INCLUDE[model 4](../../includes/RP/model4.md)]
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)

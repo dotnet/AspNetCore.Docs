@@ -5,6 +5,7 @@ From the command line, run the following .NET Core CLI commands:
 
 ```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet restore
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```

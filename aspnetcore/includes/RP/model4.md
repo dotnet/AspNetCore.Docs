@@ -8,6 +8,13 @@
   dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
+If you get the error:
+  ```
+  The process cannot access the file 'RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll' 
+  because it is being used by another process.
+  ```
+Exit Visual Studio and run the command again.
+
 The following table details the ASP.NET Core code generators` parameters:
 
 | Parameter               | Description|
@@ -39,9 +46,8 @@ If you get the following error, verify you have run migrations and updated the d
 
 ```
 An unhandled exception occurred while processing the request.
-
-SqlException: Cannot open database "DB name" requested by the login. The login failed.
-Login failed for user 'user name'.
+SqliteException: SQLite Error 1: 'no such table: Movie'.
+Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
 ```
 
 The next tutorial explains the files created by scaffolding.
