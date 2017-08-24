@@ -28,9 +28,6 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <UserSecretsId>aspnet-z-2582C05F-B564-408F-BCC2-A1F4CAE20544</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -330,7 +327,8 @@ The following markup can be used to include an *images* folder outside the proje
 ``` xml
 <ItemGroup>
   <_CustomFiles Include="$(MSBuildProjectDirectory)/../images/**/*" />
-  <DotnetPublishFiles Include="@(_CustomFiles)">    <DestinationRelativePath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+  <DotnetPublishFiles Include="@(_CustomFiles)">
+    <DestinationRelativePath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
   </DotnetPublishFiles>
 </ItemGroup>
 ```
