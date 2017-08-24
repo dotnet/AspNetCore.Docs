@@ -57,4 +57,4 @@ Press Ctrl+F5 to start the app without debugging. Alternatively, from the **Debu
 In the next tutorial, we add a model to the project. 
 
 >[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/model)  
+[Next: Adding a model](xref:tutorials/razor-pages-vsc/model)  

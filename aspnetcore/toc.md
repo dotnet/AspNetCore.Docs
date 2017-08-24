@@ -74,7 +74,7 @@
 
 ### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-#### [Adding a model](xref:tutorials/razor-pages/model)
+#### [Adding a model](xref:tutorials/razor-pages/modelz)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 #### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
 #### [Updating the pages](xref:tutorials/razor-pages/da1)
