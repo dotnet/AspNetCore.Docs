@@ -7,7 +7,7 @@ The `ID` field is required by the database for the primary key.
 <a name="dc"></a>
 ### Add a database context class
 
-Add a `DbContext` derived class to the *Models* folder.
+Add a `DbContext` derived class named *MovieContext.cs* to the *Models* folder.
 
 [!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieContext.cs)]
 
@@ -19,6 +19,9 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 Add a connection string to the *appsettings.json* file.
 
 [!code-json[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=8-10)]
+
+[!code-csharp[Main](../../tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie/Startup.cs?name=snippet2&highlight=6-7)]
+
 
 <a name="reg"></a>
 ###  Register the database context

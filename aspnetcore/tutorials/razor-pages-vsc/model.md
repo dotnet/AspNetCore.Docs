@@ -9,7 +9,7 @@ ms.date: 8/27/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: tutorials/razor-pages-mac/model
+uid: tutorials/razor-pages-vsc/model
 ---
 
 # Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac
@@ -32,7 +32,12 @@ uid: tutorials/razor-pages-mac/model
 
 ### Entity Framework Core NuGet packages for migrations
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. 
+
+Edit the *RazorPagesMovie.csproj* file:
+
+* In VS Code, from the 
+You can edit the *.csproj* file by right-clicking the project name in **Solution Explorer** and selecting **Edit ContosoUniversity.csproj**.
 
 [!code-xml[](intro/samples/cu/ContosoUniversity.csproj?range=12-15&highlight=2)]
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
@@ -40,5 +45,5 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 [!INCLUDE[model3](../../includes/RP/model4.md)]
 
 >[!div class="step-by-step"]
-[Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
+[Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
 [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    

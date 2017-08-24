@@ -53,4 +53,4 @@ In Visual Studio, select **Run > Start Without Debugging** to launch the app. Vi
 In the next tutorial, we add a model to the project. 
 
 >[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/model)  
+[Next: Adding a model](xref:tutorials/razor-pages-mac/model)  
