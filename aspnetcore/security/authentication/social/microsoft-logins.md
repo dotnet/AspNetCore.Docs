@@ -74,18 +74,6 @@ The project template used in this tutorial ensures that
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
-
-```csharp
-app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
-{
-    ClientId = Configuration["Authentication:Microsoft:ApplicationId"],
-    ClientSecret = Configuration["Authentication:Microsoft:Password"]
-});
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Microsoft Account middleware in the `ConfigureServices` method in *Startup.cs* file:
@@ -99,6 +87,18 @@ services.AddAuthentication().AddMicrosoft(microsoftOptions =>
 ```
 
 When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the Microsoft Account middleware in the `Configure` method in *Startup.cs* file:
+
+```csharp
+app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
+{
+    ClientId = Configuration["Authentication:Microsoft:ApplicationId"],
+    ClientSecret = Configuration["Authentication:Microsoft:Password"]
+});
+```
 
 ---
 

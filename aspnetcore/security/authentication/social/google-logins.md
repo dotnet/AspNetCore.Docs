@@ -91,18 +91,6 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Google`
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Add the Google middleware in the `Configure` method in *Startup.cs* file:
-
-```csharp
-app.UseGoogleAuthentication(new GoogleOptions()
-{
-    ClientId = Configuration["Authentication:Google:ClientId"],
-    ClientSecret = Configuration["Authentication:Google:ClientSecret"]
-});
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
@@ -116,6 +104,18 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 ```
 
 When adding other authentication providers, `AddAuthentication` has to be called only once.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Add the Google middleware in the `Configure` method in *Startup.cs* file:
+
+```csharp
+app.UseGoogleAuthentication(new GoogleOptions()
+{
+    ClientId = Configuration["Authentication:Google:ClientId"],
+    ClientSecret = Configuration["Authentication:Google:ClientSecret"]
+});
+```
 
 ---
 

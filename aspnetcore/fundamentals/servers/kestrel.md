@@ -27,17 +27,27 @@ Kestrel supports the following features:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
+
 ---
 
 ## When to use Kestrel with a reverse proxy
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
+
+![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+
+![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+
+Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -50,16 +60,6 @@ If you expose your application to the Internet, you must use IIS, Nginx, or Apac
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
 A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. The 1.x versions of Kestrel don't have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-You can use Kestrel by itself or with a *reverse proxy server*, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
-
-![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
-
-![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
-
-Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.
 
 ---
 
@@ -74,14 +74,6 @@ Even if a reverse proxy server isn't required, using one might be a good choice 
 
 ## How to use Kestrel in ASP.NET Core apps
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
-
-Call the [UseKestrel](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the next section.
-
-[!code-csharp[](kestrel/sample1/Program.cs?name=snippet_Main&highlight=13-19)]
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
@@ -94,13 +86,17 @@ If you need to configure Kestrel options, call `UseKestrel` in *Program.cs* as s
 
 [!code-csharp[](kestrel/sample2/Program.cs?name=snippet_DefaultBuilder&highlight=9-16)]
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
+
+Call the [UseKestrel](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the next section.
+
+[!code-csharp[](kestrel/sample1/Program.cs?name=snippet_Main&highlight=13-19)]
+
 ---
 
 ### Kestrel options
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-For information about Kestrel options, see [KestrelServerOptions class](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions).
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -165,13 +161,13 @@ For information about other Kestrel options, see the following classes:
 * [KestrelServerLimits](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs)
 * [ListenOptions](https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs)
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+For information about Kestrel options, see [KestrelServerOptions class](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions).
+
 ---
 
 ### Endpoint configuration
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-By default ASP.NET Core binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseUrls` extension method, the `urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -212,11 +208,56 @@ You can configure endpoints by calling the `UseUrls` method or using the `urls` 
 
 If you use IIS, the URL bindings for IIS override any bindings that you set by calling either `Listen` or `UseUrls`. For more information, see [Introduction to ASP.NET Core Module](aspnet-core-module.md).
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+By default ASP.NET Core binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseUrls` extension method, the `urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
+
 ---
 
 ### URL prefixes
 
 If you call `UseUrls` or use the `urls` command-line argument or ASPNETCORE_URLS environment variable, the URL prefixes can be in any of the following formats. 
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configure URL bindings by using `UseUrls`.
+
+* IPv4 address with port number
+
+  ```
+  http://65.55.39.10:80/
+  ```
+
+  0.0.0.0 is a special case that binds to all IPv4 addresses.
+
+
+* IPv6 address with port number
+
+  ```
+  http://[0:0:0:0:0:ffff:4137:270a]:80/ 
+  ```
+
+  [::] is the IPv6 equivalent of IPv4 0.0.0.0.
+
+
+* Host name with port number
+
+  ```
+  http://contoso.com:80/
+  http://*:80/
+  ```
+
+  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HttpSys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+
+* "Localhost" name with port number or loopback IP with port number
+
+  ```
+  http://localhost:5000/
+  http://127.0.0.1:5000/
+  http://[::1]:5000/
+  ```
+
+  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -296,60 +337,19 @@ var host = new WebHostBuilder()
 
 [!INCLUDE[How to make an SSL cert](../../includes/make-ssl-cert.md)]
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configure URL bindings by using `UseUrls`.
-
-* IPv4 address with port number
-
-  ```
-  http://65.55.39.10:80/
-  ```
-
-  0.0.0.0 is a special case that binds to all IPv4 addresses.
-
-
-* IPv6 address with port number
-
-  ```
-  http://[0:0:0:0:0:ffff:4137:270a]:80/ 
-  ```
-
-  [::] is the IPv6 equivalent of IPv4 0.0.0.0.
-
-
-* Host name with port number
-
-  ```
-  http://contoso.com:80/
-  http://*:80/
-  ```
-
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HttpSys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
-
-* "Localhost" name with port number or loopback IP with port number
-
-  ```
-  http://localhost:5000/
-  http://127.0.0.1:5000/
-  http://[::1]:5000/
-  ```
-
-  When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
-
 ---
 ## Next steps
 
 For more information, see the following resources:
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
-* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 * [Sample app for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+* [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+* [Sample app for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
 * [Kestrel source code](https://github.com/aspnet/KestrelHttpServer)
 
 ---

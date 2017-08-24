@@ -21,24 +21,6 @@ This article focuses on using Visual Studio 2017 to create publish profiles. The
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
-  </ItemGroup>
-
-</Project>
-```
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```xml
@@ -60,7 +42,24 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
   </ItemGroup>
 
 </Project>
+```
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>
 ```
 
 ---
