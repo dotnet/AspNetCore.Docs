@@ -21,7 +21,7 @@ This tutorial will teach you the basics of building an ASP.NET Core Razor Pages 
 
 Install the following:
 
-* [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
+* [.NET Core 2.0.0 SDK](https://dot.net/core) or later
 * [Visual Studio Code](https://code.visualstudio.com)
 * VS Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) 
 
@@ -35,7 +35,7 @@ cd RazorPagesMovie
 dotnet run
 ```
 
-The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
+The preceding commands use the [.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet) to create and run a Razor Pages project. Open a browser to http://localhost:5000 to view the application.
 
 ![Home or Index page](../razor-pages/razor-pages-start/_static/home.png)
 
@@ -46,7 +46,6 @@ The preceding commands use [dotnet](https://docs.microsoft.com/dotnet/core/tools
 Press Ctrl+C to shut down the application.
 
 From Visual Studio Code (VS Code), select **File > Open Folder**, and then select the *RazorPagesMovie* folder.
-
 
 - Select **Yes** to the **Warn** message "Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?"
 - Select **Restore** to the **Info** message "There are unresolved dependencies".
