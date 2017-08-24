@@ -22,11 +22,27 @@ namespace RazorPagesMovie
             // requires using RazorPagesMovie.Models;
             // and using Microsoft.Extensions.DependencyInjection;
             // and using Microsoft.EntityFrameworkCore;
+
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
             services.AddMvc();
         }
         #endregion
+
+#if SQLite
+        #region snippet_ConfigureServices2
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // requires using RazorPagesMovie.Models;
+            // and using Microsoft.Extensions.DependencyInjection;
+            // and using Microsoft.EntityFrameworkCore;
+
+            services.AddDbContext<MovieContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+            services.AddMvc();
+        }
+        #endregion
+#endif
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
