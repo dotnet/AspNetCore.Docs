@@ -185,7 +185,7 @@ The paging buttons are displayed by tag helpers:
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled btn">
+   class="btn btn-default @prevDisabled">
    Previous
 </a>
 ```
