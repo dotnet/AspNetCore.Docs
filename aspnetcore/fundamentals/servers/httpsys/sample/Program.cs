@@ -15,7 +15,7 @@ namespace HttpSysDemo
         #region snippet_Main
         public static void Main(string[] args)
         {
-            Console.WriteLine("Running demo with HttpSys.");
+            Console.WriteLine("Running demo with HTTP.sys.");
 
             BuildWebHost(args).Run();
         }

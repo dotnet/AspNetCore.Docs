@@ -247,7 +247,7 @@ Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configur
   http://*:80/
   ```
 
-  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HttpSys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [HTTP.sys](httpsys.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 
 * "Localhost" name with port number or loopback IP with port number
 

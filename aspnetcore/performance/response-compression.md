@@ -25,7 +25,7 @@ Use server-based response compression technologies in IIS, Apache, or Nginx wher
 * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
 * [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
 * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
-* [HttpSys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
+* [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called [WebListener](xref:fundamentals/servers/weblistener))
 * [Kestrel](xref:fundamentals/servers/kestrel)
 
 ## Response compression
