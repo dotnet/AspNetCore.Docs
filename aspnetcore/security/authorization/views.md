@@ -42,7 +42,7 @@ In some cases the resource will be your view model, and you can call `AuthorizeA
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
-   @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)))
+   @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
    {
        <p><a class="btn btn-default" role="button"
            href="@Url.Action("Edit", "Document", new { id = Model.Id })">Edit</a></p>
