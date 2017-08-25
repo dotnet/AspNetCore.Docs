@@ -24,7 +24,7 @@ ASP.NET Core ships two server implementations:
 
 * [Kestrel](kestrel.md) is a cross-platform HTTP server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library.
 
-* [HttpSys](httpsys.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
+* [HTTP.sys](httpsys.md) is a Windows-only HTTP server based on the [Http.Sys kernel driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -80,23 +80,23 @@ For information about how to use Nginx on Linux as a reverse proxy server for Ke
 
 For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see [Using Apache Web Server as a reverse proxy](../../publishing/apache-proxy.md).
 
-## HttpSys
+## HTTP.sys
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If you run your ASP.NET Core app on Windows, HttpSys is an alternative to Kestrel. You can use HttpSys for scenarios where you expose your app to the Internet and you need HttpSys features that Kestrel doesn't support. 
+If you run your ASP.NET Core app on Windows, HTTP.sys is an alternative to Kestrel. You can use HTTP.sys for scenarios where you expose your app to the Internet and you need HTTP.sys features that Kestrel doesn't support. 
 
-![HttpSys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
+![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
-HttpSys can also be used for applications that are exposed only to an internal network. 
+HTTP.sys can also be used for applications that are exposed only to an internal network. 
 
-![HttpSys communicates directly with your internal network](httpsys/_static/httpsys-to-internal.png)
+![HTTP.sys communicates directly with your internal network](httpsys/_static/httpsys-to-internal.png)
 
-For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HttpSys offers. For information about HttpSys features, see [HttpSys](httpsys.md).
+For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HTTP.sys offers. For information about HTTP.sys features, see [HTTP.sys](httpsys.md).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-HttpSys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS.
+HTTP.sys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can't use IIS.
 
 ![Weblistener communicates directly with the Internet](weblistener/_static/weblistener-to-internet.png)
 
@@ -128,7 +128,7 @@ For more information, see the following resources:
 - [Kestrel with IIS](aspnet-core-module.md)
 - [Kestrel with Nginx](../../publishing/linuxproduction.md)
 - [Kestrel with Apache](../../publishing/apache-proxy.md)
-- [HttpSys](httpsys.md)
+- [HTTP.sys](httpsys.md)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
