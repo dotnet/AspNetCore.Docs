@@ -52,9 +52,9 @@ The following code shows the updated *csproj* file.
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 
 [!INCLUDE[model3](../../includes/RP/model3.md)]
-[!INCLUDE[model 4x](../../includes/RP/model4x.md)
+[!INCLUDE[model 4x](../../includes/RP/model4x.md)]
 
-[!INCLUDE[model 4 exit](../../includes/RP/model4exit.md)
+[!INCLUDE[model 4 exit](../../includes/RP/model4exit.md)]
 
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
 
