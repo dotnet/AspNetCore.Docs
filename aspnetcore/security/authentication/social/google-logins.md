@@ -58,7 +58,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
-* Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). Google middleware configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
+* Enter your development URI with */signin-google* appended into the **Authorized redirect URIs** field (for example: `https://localhost:44320/signin-google`). The Google authentication configured later in this tutorial will automatically handle requests at */signin-google* route to implement the OAuth flow.
 
 * Press TAB to add the **Authorized redirect URIs** entry.
 
@@ -82,7 +82,7 @@ Link sensitive settings like Google `Client ID` and `Client Secret` to your appl
 
 The values for these tokens can be found in the JSON file downloaded in the previous step under `web.client_id` and `web.client_secret`.
 
-## Configure Google middleware
+## Configure Google Authentication
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package is installed.
 
@@ -93,7 +93,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Add the Google middleware in the `ConfigureServices` method in *Startup.cs* file:
+Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
 services.AddAuthentication().AddGoogle(googleOptions =>
@@ -103,7 +103,7 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 });
 ```
 
-When adding other authentication providers, `AddAuthentication` has to be called only once.
+The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -119,7 +119,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 ---
 
-See the [GoogleOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Google/GoogleOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Google middleware. This can be used to request different information about the user.
+See the [GoogleOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.googleoptions) API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
 
 ## Sign in with Google
 
@@ -140,7 +140,7 @@ You are now logged in using your Google credentials:
 ## Troubleshooting
 
 * If you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier on this page](#create-the-app-in-google-api-console). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
-* If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

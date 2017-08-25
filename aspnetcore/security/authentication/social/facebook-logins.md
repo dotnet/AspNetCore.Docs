@@ -44,7 +44,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
-* Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). Facebook middleware configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
+* Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
 
 * Click **Save Changes**.
 
@@ -60,7 +60,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 
-## Configure Facebook middleware
+## Configure Facebook Authentication
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
 
@@ -71,7 +71,7 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-Add the Facebook middleware in the `ConfigureServices` method in the *Startup.cs* file:
+Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
 services.AddAuthentication().AddFacebook(facebookOptions =>
@@ -81,7 +81,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 });
 ```
 
-When adding other authentication providers, `AddAuthentication` has to be called only once.
+The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -97,7 +97,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 ---
 
-See the [FacebookOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Facebook/FacebookOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Facebook middleware. Configuration options can be used to:
+See the [FacebookOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
@@ -112,7 +112,7 @@ When you click on **Facebook**, you are redirected to Facebook for authenticatio
 
 ![Facebook authentication page](index/_static/FBLogin.png)
 
-Facebook middleware requests public profile and email address by default:
+Facebook authentication requests public profile and email address by default:
 
 ![Facebook authentication page](index/_static/FBLoginDone.png)
 
@@ -124,7 +124,7 @@ You are now logged in using your Facebook credentials:
 
 ## Troubleshooting
 
-* If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

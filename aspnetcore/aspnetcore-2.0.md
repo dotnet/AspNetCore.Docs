@@ -87,13 +87,13 @@ The Kestrel web server has new features that make it more suitable as an Interne
 - Maximum request body size
 - Minimum request body data rate
 
-For more information, see [Introduction to Kestrel](xref:fundamentals/servers/kestrel).
+For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel).
 
-## WebListener renamed to HttpSys
+## WebListener renamed to HTTP.sys
 
 The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
 
-For more information, see [Introduction to HttpSys](xref:fundamentals/servers/httpsys).
+For more information, see [HTTP.sys web server implementation in ASP.NET Core](xref:fundamentals/servers/httpsys).
 
 ## Enhanced HTTP header support
 

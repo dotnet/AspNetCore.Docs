@@ -52,7 +52,7 @@ You create a host using an instance of `WebHostBuilder`. This is typically done 
 
 [!code-csharp[Main](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=9)]
 
-`CreateDefaultbuilder` creates an instance of `WebHostBuilder` to build the host that bootstraps the server for the app. The host requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HttpSys](servers/httpsys.md); `CreateDefaultbuilder` use Kestrel by default.
+`CreateDefaultbuilder` creates an instance of `WebHostBuilder` to build the host that bootstraps the server for the app. The host requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HTTP.sys](servers/httpsys.md); `CreateDefaultbuilder` use Kestrel by default.
 
 `CreateDefaultbuilder` performs set-up tasks in addition to configuring Kestrel as the web server:
 

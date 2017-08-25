@@ -264,14 +264,14 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 
 <a name="windows-auth-changes"></a>
 
-## Windows Authentication (HttpSys / IISIntegration)
+## Windows Authentication (HTTP.sys / IISIntegration)
 There are two variations of Windows authentication:
 1. The host only allows authenticated users
 2. The host allows both anonymous and authenticated users
 
 The first variation described above is unaffected by the 2.0 changes.
 
-The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HttpSys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
+The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HTTP.sys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication(IISDefaults.AuthenticationScheme);

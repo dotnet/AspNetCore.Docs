@@ -9,7 +9,7 @@ namespace TodoApi
     {       
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase());
+            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
         }
 
