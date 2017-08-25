@@ -78,7 +78,7 @@ namespace NewMvc6Project.Models
       Database.EnsureCreated();
     }
 
-    protected override void OnConfiguring(DbContextOptions options)
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
       options.UseSqlServer();
     }
