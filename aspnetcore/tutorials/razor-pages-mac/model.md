@@ -58,6 +58,14 @@ The following code shows the updated *csproj* file.
 
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
 
+### Add the Pages/Movies files to the project
+
+* In Visual Studio, Right-click the *Pages* folder and select **Add > Add existing Folder**.
+* Select the *Movies* folder.
+* In the *Chosse files to include in the project* dialog, select **Include All**.
+
+The next tutorial explains the files created by scaffolding.
+
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
 [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    

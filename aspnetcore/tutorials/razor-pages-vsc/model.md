@@ -44,6 +44,7 @@ Edit the *RazorPagesMovie.csproj* file:
 
 [!INCLUDE[model 4x](../../includes/RP/model4x.md)]
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
+The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)

@@ -2,7 +2,7 @@ Add the following properties to the `Movie` class:
 
 [!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieNoEF.cs?name=snippet_MovieNoEF)]
 
-The `ID` field is required by the database for the primary key. 
+The `ID` field is required by the database for the primary key.
 
 <a name="dc"></a>
 ### Add a database context class

@@ -32,5 +32,3 @@ An unhandled exception occurred while processing the request.
 SqliteException: SQLite Error 1: 'no such table: Movie'.
 Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
 ```
-
-The next tutorial explains the files created by scaffolding.

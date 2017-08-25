@@ -56,6 +56,8 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
 
+The next tutorial explains the files created by scaffolding.
+
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages/razor-pages-start)
 [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
