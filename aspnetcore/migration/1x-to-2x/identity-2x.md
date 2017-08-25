@@ -299,23 +299,56 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 <a name="navigation-properties"></a>
 
 ## Add IdentityUser POCO Navigation Properties
-The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
+The Entity Framework (EF) Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
 /// <summary>
 /// Navigation property for the roles this user belongs to.
 /// </summary>
-public virtual ICollection<TUserRole> Roles { get; } = new List<TUserRole>();
+public virtual ICollection<IdentityUserRole<int>> Roles { get; } = new List<IdentityUserRole<int>>();
 
 /// <summary>
 /// Navigation property for the claims this user possesses.
 /// </summary>
-public virtual ICollection<TUserClaim> Claims { get; } = new List<TUserClaim>();
+public virtual ICollection<IdentityUserClaim<int>> Claims { get; } = new List<IdentityUserClaim<int>>();
 
 /// <summary>
 /// Navigation property for this users login accounts.
 /// </summary>
-public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
+public virtual ICollection<IdentityUserLogin<int>> Logins { get; } = new List<IdentityUserLogin<int>>();
+```
+
+To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call):
+
+```csharp
+protected override void OnModelCreating(ModelBuilder builder)
+{
+    base.OnModelCreating(builder);
+    // Customize the ASP.NET Identity model and override the defaults if needed.
+    // For example, you can rename the ASP.NET Identity table names and more.
+    // Add your customizations after calling base.OnModelCreating(builder);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Claims)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Logins)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+}
 ```
 
 <a name="synchronous-method-removal"></a>
