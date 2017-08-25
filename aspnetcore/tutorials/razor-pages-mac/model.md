@@ -31,7 +31,7 @@ uid: tutorials/razor-pages-mac/model
 
 Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
 
-	Line 101:  ![Create page](model/red.png)
+![Create page](model/red.png)
  
 Build the project to verify you don't have any errors.
 
