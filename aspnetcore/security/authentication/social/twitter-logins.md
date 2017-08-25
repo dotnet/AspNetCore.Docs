@@ -67,7 +67,7 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 });
 ```
 
-When adding other authentication providers, `AddAuthentication` has to be called only once.
+The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
