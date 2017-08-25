@@ -42,6 +42,7 @@ Edit the *RazorPagesMovie.csproj* file:
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 
+[!INCLUDE[model 4x](../../includes/RP/model4x.md)]
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
 
 >[!div class="step-by-step"]

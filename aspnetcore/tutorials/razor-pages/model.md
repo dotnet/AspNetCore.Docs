@@ -15,30 +15,15 @@ uid: tutorials/razor-pages/modelz
 
 [!INCLUDE[model1](../../includes/RP/model1.md)]
 
-
 ## Add a data model
 
 In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
 Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-[!INCLUDE[model2](../../includes/RP/model2.md)]
+[!INCLUDE[model 2](../../includes/RP/model2.md)]
 
-<a name="cs"></a>
-### Add a database connection string
-
-Add a connection string to the *appsettings.json* file.
-
-[!code-json[Main](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=8-10)]
-
-<a name="reg"></a>
-###  Register the database context
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in the *Startup.cs* file.
-
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=3-8)]
-
-Build the project to verify you don't have any errors.
+[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
 <a name="pmc"></a>
 ## Add scaffold tooling and perform initial migration
@@ -67,54 +52,9 @@ The `Add-Migration` command generates code to create the initial database schema
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
-<a name="scaffold"></a>
-### Scaffold the Movie model
+[!INCLUDE[model 4windows](../../includes/RP/model4Win.md)]
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
-
-  ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
-  ```
-
-The following table details the ASP.NET Core code generators` parameters:
-
-| Parameter               | Description|
-| ----------------- | ------------ |
-| -m  | The name of the model. |
-| -dc  | The data context. |
-| -udl | Use the default layout. |
-| -outDir | The relative output folder path to create the views. |
-| --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages |
-
-Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
-
-```console
-dotnet aspnet-codegenerator razorpage -h
-```
-<a name="test"></a>
-### Test the app
-
-* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
-* Test the **Create** link.
-
- ![Create page](model/_static/conan.png)
-
-<a name="scaffold"></a>
-
-* Test the **Edit**, **Details**, and **Delete** links.
-
-If you get the following error, verify you have run migrations and updated the database:
-
-```
-An unhandled exception occurred while processing the request.
-
-SqlException: Cannot open database "DB name" requested by the login. The login failed.
-Login failed for user 'user name'.
-```
-
-The next tutorial explains the files created by scaffolding.
-
+[!INCLUDE[model 4](../../includes/RP/model4.md)]
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages/razor-pages-start)
