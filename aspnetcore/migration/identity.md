@@ -63,7 +63,7 @@ namespace NewMvc6Project.Models
 
 ApplicationDbContext.cs:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFramework;
@@ -85,6 +85,31 @@ namespace NewMvc6Project.Models
   }
 }
 ```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+using Microsoft.AspNetCore.Identity.EntityFramework;
+using Microsoft.Data.Entity;
+
+namespace NewMvc6Project.Models
+{
+  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+  {
+    public ApplicationDbContext()
+    {
+      Database.EnsureCreated();
+    }
+
+    protected override void OnConfiguring(DbContextOptions options)
+    {
+      options.UseSqlServer();
+    }
+  }
+}
+```
+
+---
 
 The ASP.NET Core MVC Starter Web project doesn't include much customization of users, or the ApplicationDbContext. When migrating a real application, you will also need to migrate all of the custom properties and methods of your application's user and DbContext classes, as well as any other Model classes your application utilizes (for example, if your DbContext has a DbSet<Album>, you will of course need to migrate the Album class).
 
