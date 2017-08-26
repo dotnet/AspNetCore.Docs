@@ -9,7 +9,7 @@ using System.Net;
 namespace KestrelDemo
 {
     /// <summary>
-    /// Executing the "dotnet run command in the application folder will run this app.
+    /// Executing the "dotnet run" command in the application folder will run this app.
     /// </summary>
     public class Program
     {
