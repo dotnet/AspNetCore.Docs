@@ -89,7 +89,7 @@ ASP.NET Core can store configuration data for the application in any file and lo
 
 [!code-json[Main](samples/appsettings-sample.json)]
 
-Loading this file into an instance of `IConfigurationRoot` inside your application is done in *Startup.cs*:
+Loading this file into an instance of `IConfiguration` inside your application is done in *Startup.cs*:
 
 [!code-csharp[Main](samples/startup-builder.cs)]
 
