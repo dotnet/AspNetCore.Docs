@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApplication5
+namespace aspnetcoreapp
 {
     public class Program
     {
