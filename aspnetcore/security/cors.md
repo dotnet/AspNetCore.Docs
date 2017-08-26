@@ -59,8 +59,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
 
 [!code-csharp[Main](cors/sample/CorsExample1/Startup.cs?highlight=11,12&range=22-38)]
 
-> [!NOTE]
-> URL must be specified without trailing slash otherwise comparison will return false and no header will be returned.
+**Note:** The URL must be specified without trailing slash. If the URL terminates with `/`, the comparison will return `false` and no header will be returned.
 
 The lambda takes a `CorsPolicyBuilder` object. You'll find a list of the [configuration options](#cors-policy-options) later in this topic. In this example, the policy allows cross-origin requests from `http://example.com` and no other origins.
 
