@@ -19,25 +19,27 @@ uid: tutorials/razor-pages-mac/model
 ## Add a data model
 
 * In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File**. 
+* Right-click the *Models* folder, and then select **Add** > **New File**.
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
   * Select **Empty Class** in the center pain.
   * Name the class **Movie** and select **New**.
 
-[!INCLUDE[model2](../../includes/RP/model2.md)]
-[!INCLUDE[model2a](../../includes/RP/model2a.md)]
+[!INCLUDE[model 2](../../includes/RP/model2.md)]
+[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
+
+[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
+
+Build the project to verify you don't have any errors.
 
 Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
 
 ![Create page](model/red.png)
- 
-Build the project to verify you don't have any errors.
 
 ### Entity Framework Core NuGet packages for migrations
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. 
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI.
 
 To edit a *.csproj* file:
 
@@ -68,4 +70,4 @@ The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)

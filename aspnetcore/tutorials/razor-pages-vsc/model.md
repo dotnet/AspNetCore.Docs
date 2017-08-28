@@ -18,26 +18,25 @@ uid: tutorials/razor-pages-vsc/model
 
 ## Add a data model
 
-* In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File**. 
-* In the **New File** dialog:
+* Add a folder named *Models*.
+* Add a class to the *Models* folder named *Movie.cs*.
+* Add the following code to the *Models/Movie.cs* file:
 
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pain.
-  * Name the class **Movie** and select **New**.
+[!INCLUDE[model 2](../../includes/RP/model2.md)]
+[!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
-[!INCLUDE[model2](../../includes/RP/model2.md)]
-[!INCLUDE[model2a](../../includes/RP/model2a.md)]
+[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
 Build the project to verify you don't have any errors.
 
 ### Entity Framework Core NuGet packages for migrations
 
-The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI. 
+The EF tools for the command-line interface (CLI) are provided in [Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet). To install this package, add it to the `DotNetCliToolReference` collection in the *.csproj* file. **Note:** You have to install this package by editing the *.csproj* file; you can't use the `install-package` command or the package manager GUI.
 
 Edit the *RazorPagesMovie.csproj* file:
 
 * Select **File > Open File**, and then select the *RazorPagesMovie.csproj* file.
+* Add `<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />` as highlighted in the following code:
 
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
@@ -48,4 +47,4 @@ The next tutorial explains the files created by scaffolding.
 
 >[!div class="step-by-step"]
 [Previous: Getting Started](xref:tutorials/razor-pages-vsc/razor-pages-start)
-[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)    
+[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)

@@ -25,6 +25,10 @@ Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** 
 
 [!INCLUDE[model 2a](../../includes/RP/model2a.md)]
 
+[!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices&highlight=3-6)]
+
+Build the project to verify you don't have any errors.
+
 <a name="pmc"></a>
 ## Add scaffold tooling and perform initial migration
 
