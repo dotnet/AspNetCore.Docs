@@ -24,20 +24,27 @@ uid: getting-started
    On macOS and Linux, open a terminal window. On Windows, open a command prompt.
 
    ```terminal
-   mkdir aspnetcoreapp
-   cd aspnetcoreapp
-   dotnet new web
+   dotnet new razor -o aspnetcoreapp
    ```
     
 4. Run the app.
 
-   The `dotnet run` command builds the app first if needed.
+   Change to the `aspnetcoreapp` directory and issue the `dotnet run` command. The `dotnet run` command builds the app first if needed.
 
    ```terminal
+   cd aspnetcoreapp
    dotnet run
    ```
 
 5. Browse to `http://localhost:5000`
+
+6. Open Pages/Index.cshtml and add the following to the page above the carousel:
+
+```cshtml
+Hello, world! The time on the server is @DateTime.Now
+```
+
+7. Browse to `http://localhost:5000` and verify the changes.
 
 ### Next steps
 
