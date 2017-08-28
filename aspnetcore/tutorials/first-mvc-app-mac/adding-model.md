@@ -38,7 +38,7 @@ Build the project to verify you don't have any errors. You now have a **M**odel 
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie.csproj?highlight=7,10)]
+[!code-csharp[Main](../first-mvc-app-xplat/start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
 
 - Save the file.
 
