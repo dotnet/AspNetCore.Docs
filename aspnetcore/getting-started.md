@@ -36,7 +36,7 @@ uid: getting-started
    dotnet run
    ```
 
-5. Browse to `http://localhost:5000`
+5. Browse to [http://localhost:5000](http://localhost:5000)
 
 6. Open Pages/Index.cshtml and add the following to the page above the carousel:
 
@@ -44,7 +44,7 @@ uid: getting-started
 Hello, world! The time on the server is @DateTime.Now
 ```
 
-7. Browse to `http://localhost:5000` and verify the changes.
+7. Browse to [http://localhost:5000](http://localhost:5000) and verify the changes.
 
 ### Next steps
 
