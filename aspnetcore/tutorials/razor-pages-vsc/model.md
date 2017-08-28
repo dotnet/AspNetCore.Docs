@@ -41,7 +41,33 @@ Edit the *RazorPagesMovie.csproj* file:
 [!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 
-[!INCLUDE[model 4x](../../includes/RP/model4x.md)]
+<a name="scaffold"></a>
+### Scaffold the Movie model
+
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
+
+**Note: Run the following command on Windows. For MacOS and Linux, see the next command**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  ```
+
+* On MacOS and Linux, run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  ```
+
+If you get the error:
+  ```
+  The process cannot access the file 
+ 'RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll' 
+  because it is being used by another process.
+  ```
+
+Exit Visual Studio and run the command again.
+
 [!INCLUDE[model 4](../../includes/RP/model4.md)]
 The next tutorial explains the files created by scaffolding.
 

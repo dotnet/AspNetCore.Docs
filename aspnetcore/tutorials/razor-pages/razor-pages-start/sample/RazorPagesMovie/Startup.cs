@@ -19,8 +19,9 @@ namespace RazorPagesMovie
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using RazorPagesMovie.Models;
-            // and using Microsoft.EntityFrameworkCore;
+            // requires 
+            // using RazorPagesMovie.Models;
+            // using Microsoft.EntityFrameworkCore;
 
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
@@ -32,9 +33,9 @@ namespace RazorPagesMovie
         #region snippet_ConfigureServices2
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using RazorPagesMovie.Models;
-            // and using Microsoft.Extensions.DependencyInjection;
-            // and using Microsoft.EntityFrameworkCore;
+            // requires 
+            // using RazorPagesMovie.Models;
+            // using Microsoft.EntityFrameworkCore;
 
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
