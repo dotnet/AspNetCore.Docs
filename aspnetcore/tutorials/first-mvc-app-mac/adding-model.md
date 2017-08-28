@@ -95,7 +95,7 @@ The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upd
   * Navigate to the *Views* folder, select *Views\Movies*, and then select **Open**.
   * In the **Select files to add from Movies** dialog, select **Include All**, and then **OK**.
 
-[!INCLUDE[adding-model 2x](../../includes/mvc-intro/adding-mode2xp.md)]
+[!INCLUDE[adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
