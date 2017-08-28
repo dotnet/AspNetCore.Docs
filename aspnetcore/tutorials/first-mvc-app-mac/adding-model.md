@@ -15,7 +15,6 @@ uid: tutorials/first-mvc-app-mac/adding-model
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model1.md)]
 
-* In Solution Explorer, right-click the **MvcMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
 * Right-click the *Models* folder, and then select **Add** > **New File**. 
 * In the **New File** dialog:
 
@@ -39,7 +38,7 @@ Build the project to verify you don't have any errors. You now have a **M**odel 
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie.csproj?highlight=5,14-21)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie.csproj?highlight=7,19)]
 
 - Save the file.
 

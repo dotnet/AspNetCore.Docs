@@ -15,7 +15,6 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 
 [!INCLUDE[adding-model1](../../includes/mvc-intro/adding-model1.md)]
 
-* Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
 
@@ -29,7 +28,7 @@ Build the app to verify you don't have any errors, and you've finally added a **
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,17-18,21-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,19)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
