@@ -275,6 +275,7 @@
 ### [Authentication and Identity](xref:migration/identity)
 ### [Web API](xref:migration/webapi)
 ### [HTTP Modules to Middleware](xref:migration/http-modules)
+## [ASP.NET to ASP.NET Core 2.0](xref:migration/proper-to-2x/index)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 

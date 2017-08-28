@@ -1,5 +1,5 @@
 ---
-title: Migrating From ASP.NET to ASP.NET Core 2.0
+title: Migrating from ASP.NET to ASP.NET Core 2.0
 author: isaac2004
 description: This reference document provides guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
 keywords: ASP.NET Core,MVC,migrating
@@ -10,10 +10,10 @@ ms.topic: article
 ms.assetid: 3155cc9e-d0c9-424b-886c-35c0ec6f9f4e
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: migration/mvc2
+uid: migration/proper-to-2x/index
 ---
 
-# Migrating From ASP.NET to ASP.NET Core 2.0
+# Migrating from ASP.NET to ASP.NET Core 2.0
 
 By [Isaac Levin](https://isaaclevin.com)
 
@@ -37,7 +37,7 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 </ItemGroup>
 ```
 
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they are precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they are precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
 
 ## Project structure differences
 The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
