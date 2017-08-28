@@ -67,7 +67,7 @@ The scaffolding engine creates the following:
 The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
 <a name="cli"></a>
-## Add scaffold tooling and perform initial migration
+## Perform initial migration
 
 From the command line, run the following .NET Core CLI commands:
 

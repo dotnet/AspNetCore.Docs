@@ -96,7 +96,7 @@ The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upd
   * In the **Select files to add from Movies** dialog, select **Include All**, and then **OK**.
 
 <a name="cli"></a>
-## Add scaffold tooling and perform initial migration
+## Perform initial migration
 
 From the command line, run the following .NET Core CLI commands:
 
