@@ -5,7 +5,7 @@ description: Explains middleware and the request pipeline.
 keywords: ASP.NET Core, Middleware, pipeline, delegate
 ms.author: riande
 manager: wpickett
-ms.date: 02/14/2017
+ms.date: 08/14/2017
 ms.topic: article
 ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
 ms.technology: aspnet
@@ -24,7 +24,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ard
 
 Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:
 
-* Chooses whether to pass the request on to the next component in the pipeline.
+* Chooses whether to pass the request to the next component in the pipeline.
 * Can perform work before and after the next component in the pipeline is invoked. 
 
 Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
