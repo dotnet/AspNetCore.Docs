@@ -31,9 +31,9 @@ uid: tutorials/razor-pages-mac/model
 
 [!code-csharp[Main](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Startup.cs?name=snippet_ConfigureServices2&highlight=3-6)]
 
-Build the project to verify you don't have any errors.
-
 Right click on a red squiggly line, for example `MovieContext` in the line `services.AddDbContext<MovieContext>(options =>`. Select **Quick Fix > using RazorPagesMovie.Models;**. Visual studio adds the using statement.
+
+Build the project to verify you don't have any errors.
 
 ![Create page](model/red.png)
 
