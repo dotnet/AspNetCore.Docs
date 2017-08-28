@@ -157,7 +157,7 @@ Instead of:
 
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=62-67)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=64-69)]
 
 ### Modify the Instructor Index view
 
