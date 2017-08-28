@@ -20,7 +20,6 @@ namespace RazorPagesMovie
         public void ConfigureServices(IServiceCollection services)
         {
             // requires using RazorPagesMovie.Models;
-            // and using Microsoft.Extensions.DependencyInjection;
             // and using Microsoft.EntityFrameworkCore;
 
             services.AddDbContext<MovieContext>(options =>
