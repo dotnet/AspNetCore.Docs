@@ -38,7 +38,7 @@ Build the project to verify you don't have any errors. You now have a **M**odel 
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-[!code-csharp[Main](../first-mvc-app-xplat/start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
+  [!code-csharp[Main](../first-mvc-app-xplat/start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
 
 - Save the file.
 
@@ -95,55 +95,21 @@ The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_upd
   * Navigate to the *Views* folder, select *Views\Movies*, and then select **Open**.
   * In the **Select files to add from Movies** dialog, select **Include All**, and then **OK**.
 
+<a name="cli"></a>
+## Add scaffold tooling and perform initial migration
 
-### Create the database
+From the command line, run the following .NET Core CLI commands:
 
-You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
-
-This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model, you drop the database. The next time the app runs, EF Core creates a new database to match your new data model.
-
-This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
-<!-- todo - update link above with mac version -->
-
-
-Create a *Models\DBinitialize.cs* file and add the following code:
-
-<!-- todo - replace this with code import -->
-
-```c#
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-
-namespace MvcMovie.Models
-{
-    public static class DBinitialize
-    {
-        public static void EnsureCreated(IServiceProvider serviceProvider)
-        {
-            var context = new MvcMovieContext(
-                serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>());
-            context.Database.EnsureCreated();
-        }
-    }
-}
+```console
+dotnet ef migrations add InitialCreate
+dotnet ef database update
 ```
 
-Call the `EnsureCreated` method from the `Configure` method in the *Startup.cs* file. Add the call to the end of the method:
+The `add package` command installs the tooling required to run the scaffolding engine.
 
-<!-- todo - replace this with code import -->
+The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Models/MovieContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
 
-```c#
-    app.UseMvc(routes =>
-    {
-        routes.MapRoute(
-            name: "default",
-            template: "{controller=Home}/{action=Index}/{id?}");
-    });
-
-    DBinitialize.EnsureCreated(app.ApplicationServices);
-}
-```
+The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 
