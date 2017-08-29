@@ -1,1 +1,3 @@
-"As developers we fail in two ways: we build the thing wrong, or we build the wrong thing." - @ardalis
+"As developers, we fail in two ways: We build the thing wrong, or we build the wrong thing." - @ardalis
+
+"That's not a thing ... You just made that up." - @davidfowl

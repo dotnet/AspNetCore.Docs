@@ -108,7 +108,7 @@ The `IFileProvider` `Watch` method provides a way to watch one or more files or 
 
 In this article's sample, a console application is configured to display a message whenever a text file is modified:
 
-[!code-csharp[Main](file-providers/sample/src/WatchConsole/Program.cs?highlight=11,12,24,26,27)]
+[!code-csharp[Main](file-providers/sample/src/WatchConsole/Program.cs?name=snippet1&highlight=1-2,16,19-20)]
 
 The result, after saving the file several times:
 
