@@ -32,11 +32,11 @@ This tutorial builds on the sample on [Building Your First Web API with ASP.NET 
 
 There are three main components to Swashbuckle:
 
-* *Swashbuckle.AspNetCore.Swagger*: a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
+* `Swashbuckle.AspNetCore.Swagger`: a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
 
-* *Swashbuckle.AspNetCore.SwaggerGen*: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
+* `Swashbuckle.AspNetCore.SwaggerGen`: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
 
-* *Swashbuckle.AspNetCore.SwaggerUI*: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich, customizable experience for describing the Web API functionality. It includes built-in test harness capabilities for the public methods.
+* `Swashbuckle.AspNetCore.SwaggerUI`: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich, customizable experience for describing the Web API functionality. It includes built-in test harness capabilities for the public methods.
 
 ## NuGet Packages
 
@@ -109,27 +109,27 @@ Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<ra
        "/api/Todo": {
        "get": {
            "tags": [
-           "Todo"
+               "Todo"
            ],
            "operationId": "ApiTodoGet",
            "consumes": [],
            "produces": [
-           "text/plain",
-           "application/json",
-           "text/json"
+               "text/plain",
+               "application/json",
+               "text/json"
            ],
            "responses": {
            "200": {
                "description": "OK",
                "schema": {
-               "type": "array",
-               "items": {
-                   "$ref": "#/definitions/TodoItem"
-               }
+                   "type": "array",
+                   "items": {
+                       "$ref": "#/definitions/TodoItem"
+                   }
                }
            }
-           },
-           "deprecated": false
+        },
+        "deprecated": false
        },
        "post": {
            ...
@@ -147,18 +147,19 @@ Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<ra
    },
    "definitions": {
        "TodoItem": {
-       "type": "object",
-       "properties": {
-           "key": {
-           "type": "string"
-           },
-           "name": {
-           "type": "string"
-           },
-           "isComplete": {
-           "type": "boolean"
+           "type": "object",
+           "properties": {
+               "id": {
+                   "format": "int64",
+                   "type": "integer"
+               },
+               "name": {
+                   "type": "string"
+               },
+               "isComplete": {
+                   "type": "boolean"
+               }
            }
-       }
        }
    },
    "securityDefinitions": {}
