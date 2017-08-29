@@ -42,8 +42,6 @@ namespace TodoApi
         {
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -52,6 +50,8 @@ namespace TodoApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+            app.UseMvcWithDefaultRoute();
         }
         #endregion
     }

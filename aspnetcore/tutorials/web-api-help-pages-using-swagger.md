@@ -79,8 +79,6 @@ In the `Configure` method of *Startup.cs*, enable the middleware for serving the
 // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 public void Configure(IApplicationBuilder app)
 {
-    app.UseMvcWithDefaultRoute();
-
     // Enable middleware to serve generated Swagger as a JSON endpoint.
     app.UseSwagger();
 
@@ -89,6 +87,8 @@ public void Configure(IApplicationBuilder app)
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
     });
+
+    app.UseMvcWithDefaultRoute();
 }
 ```
 
