@@ -20,13 +20,13 @@ By [Shayne Boyer](https://twitter.com/spboyer)
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application.
 
-Generating good documentation and help pages as a part of your Web API using [Swagger](http://swagger.io) with the .NET Core implementation [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.
+Generating good documentation and help pages as a part of your Web API, using [Swagger](http://swagger.io) with the .NET Core implementation [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.
 
-* [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is an open source project for generating Swagger documents for Web APIs that are built with ASP.NET Core MVC.
+* [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is an open source project for generating Swagger documents for ASP.NET Core Web APIs.
 
-* [Swagger](http://swagger.io) is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
+* [Swagger](http://swagger.io) is a machine-readable representation of a RESTful API that enables support for interactive documentation, client SDK generation, and discoverability.
 
-This tutorial builds on the sample on [Building Your First Web API with ASP.NET Core MVC and Visual Studio](first-web-api.md). If you'd like to follow along, download the sample at [https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample).
+This tutorial builds on the sample on [Building Your First Web API with ASP.NET Core MVC and Visual Studio](xref:tutorials/first-web-api). If you'd like to follow along, download the sample at [https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample).
 
 ## Getting Started
 
@@ -34,9 +34,9 @@ There are three main components to Swashbuckle:
 
 * *Swashbuckle.AspNetCore.Swagger*: a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
 
-* *Swashbuckle.AspNetCore.SwaggerGen*: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers and models. Typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
+* *Swashbuckle.AspNetCore.SwaggerGen*: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
 
-* *Swashbuckle.AspNetCore.SwaggerUI*: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich customizable experience for describing the Web API functionality, and includes built-in test harness capabilities for the public methods.
+* *Swashbuckle.AspNetCore.SwaggerUI*: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich, customizable experience for describing the Web API functionality. It includes built-in test harness capabilities for the public methods.
 
 ## NuGet Packages
 
@@ -95,7 +95,7 @@ public void Configure(IApplicationBuilder app)
 In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the document generated that describes the endpoints.
 
 > [!NOTE]
-> Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that will format the document for easier reading. *Example below reduced for brevity.*
+> Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that format the document for easier reading. *Example below reduced for brevity.*
 
 ```json
 {
@@ -249,13 +249,13 @@ Notice the enhancement of the UI with these additional comments.
 
 You can decorate the API controller with `System.ComponentModel.DataAnnotations` to help drive the Swagger UI components.
 
-Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class will change the ModelSchema information in the UI. `[Produces("application/json")]`, `RegularExpression` validators and more will further detail the information delivered in the generated page. The more metadata that is in the code, the more descriptive the UI or API help page.
+Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class changes the ModelSchema information in the UI. `[Produces("application/json")]`, `RegularExpression` validators, and more, further detail the information delivered in the generated page. The more metadata that is in the code, the more descriptive the UI or API help page becomes.
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Models/TodoItem.cs?highlight=10)]
 
 ### Describing Response Types
 
-Consuming developers are probably most concerned with what is returned; specifically response types, error codes (if not standard). These are handled in the XML comments and DataAnnotations.
+Consuming developers are most concerned with what is returned &mdash; specifically response types and error codes (if not standard). These are handled in the XML comments and data annotations.
 
 Take the `Create` method for example. It returns only a "201 Created" response, by default. That is, of course, if the item is in fact created, or a "204 No Content" if no data is passed in the POST Body. However, there is no documentation to know that or any other response. That can be fixed by adding the following piece of code:
 
