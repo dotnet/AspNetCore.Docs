@@ -29,8 +29,8 @@ namespace CustomFormatterDemo
             #region mvcoptions
             services.AddMvc(options =>
             {
-                options.InputFormatters.Add(new VcardInputFormatter());
-                options.OutputFormatters.Add(new VcardOutputFormatter());
+                options.InputFormatters.Insert(0, new VcardInputFormatter());
+                options.OutputFormatters.Insert(0, new VcardInputFormatter());
             });
             #endregion
 
