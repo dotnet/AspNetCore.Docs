@@ -20,7 +20,7 @@ By [Shayne Boyer](https://twitter.com/spboyer)
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application.
 
-Generating good documentation and help pages as a part of your Web API, using [Swagger](http://swagger.io) with the .NET Core implementation [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.
+Generating good documentation and help pages for your Web API, using [Swagger](http://swagger.io) with the .NET Core implementation [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.
 
 * [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) is an open source project for generating Swagger documents for ASP.NET Core Web APIs.
 
@@ -95,7 +95,7 @@ public void Configure(IApplicationBuilder app)
 Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the generated document that describes the endpoints.
 
 > [!NOTE]
-> Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that format the document for easier reading. *Example below reduced for brevity.*
+> Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that format the document for easier reading. *The following example is reduced for brevity.*
 
 ```json
 {
@@ -175,32 +175,32 @@ Each public method in `TodoController` can be tested from the UI. Tap a method n
 
 ## Customization & Extensibility
 
-Swagger is not only a simple way to represent the API, but has options for documenting the object model, as well as customizing the interactive UI to match your look and feel or design language.
+Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
 ### API Info and Description
 
-The config. action passed to the `AddSwaggerGen` method can be used to add information such as the author, license, and description:
+The configuration action passed to the `AddSwaggerGen` method can be used to add information such as the author, license, and description:
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?range=20-30,36)]
 
-The following image shows the Swagger UI displaying the version information added.
+The following image depicts the Swagger UI displaying the version information:
 
 ![Swagger UI with version information: description, author, and see more link](web-api-help-pages-using-swagger/_static/custom-info.png)
 
 ### XML Comments
 
-To enable XML comments, right-click the project in Visual Studio and select **Properties** and then check the **XML Documentation file** box under the **Output Settings** section.
+To enable XML comments, right-click the project in Visual Studio and select **Properties**. Check the **XML Documentation file** box under the **Output Settings** section.
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
 Configure Swagger to use the generated XML file.
 
 > [!NOTE]
-> For Linux or non-Windows operating systems, file names and paths can be case sensitive. So `ToDoApi.XML` would be found on Windows but not CentOS, for example.
+> For Linux or non-Windows operating systems, file names and paths can be case sensitive. For example, a *ToDoApi.XML* file would be found on Windows but not CentOS.
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?name=snippet_ConfigureServices&highlight=20-22)]
 
-In the code above, `ApplicationBasePath` gets the base path of the app, which is needed to set the full path to the XML comments. `TodoApi.xml` only works for this example, the name of the generated XML comments file is based on the name of your application.
+In the preceding code, `ApplicationBasePath` gets the base path of the app. The base path is used to locate the XML comments file. *TodoApi.xml* only works for this example, since the name of the generated XML comments file is based on the application name.
 
 Adding the triple-slash comments to the method enhances the Swagger UI by adding the description to the section header:
 
