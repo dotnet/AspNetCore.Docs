@@ -92,7 +92,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the document generated that describes the endpoints.
+Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the generated document that describes the endpoints.
 
 > [!NOTE]
 > Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that format the document for easier reading. *Example below reduced for brevity.*
@@ -165,11 +165,11 @@ In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:
    }
 ```
 
-This document is used to drive the Swagger UI which can be viewed by navigating to `http://localhost:<random_port>/swagger`
+This document drives the Swagger UI, which can be viewed by navigating to `http://localhost:<random_port>/swagger`:
 
 ![Swagger UI](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Each of the methods in the ToDo controller can be tested from the UI. Tap a method to expand the section, add any necessary parameters and tap "Try it out!".
+Each public method in `TodoController` can be tested from the UI. Tap a method name to expand the section. Add any necessary parameters, and tap "Try it out!".
 
 ![Example Swagger GET test](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
@@ -208,7 +208,7 @@ Adding the triple-slash comments to the method enhances the Swagger UI by adding
 
 ![Swagger UI showing XML comment 'Deletes a specific To do Item' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
 
-Note that the UI is driven by the generated JSON file, and these comments are also in that file as well.
+Note that the UI is driven by the generated JSON file. These comments are in that file as well.
 
 ```json
 "delete": {
@@ -241,7 +241,7 @@ Here is a more robust example, adding `<remarks />` where the content can be jus
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create&highlight=4-14)]
 
-Notice the enhancement of the UI with these additional comments.
+Notice the UI enhancements with these additional comments.
 
 ![Swagger UI with additional comments shown](web-api-help-pages-using-swagger/_static/xml-comments-extended.png)
 
