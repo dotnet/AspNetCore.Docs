@@ -29,7 +29,7 @@ namespace TodoApi
                     License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
                 });
 
-                //Set the comments path for the swagger json and ui.
+                // Set the comments path for the Swagger JSON and UI.
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
                 c.IncludeXmlComments(xmlPath);                
