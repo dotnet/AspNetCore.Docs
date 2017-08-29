@@ -17,7 +17,7 @@ uid: fundamentals/servers/weblistener
 By [Tom Dykstra](http://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
 > [!NOTE]
-> This topic applies only to ASP.NET Core 1.x. In ASP.NET Core 2.0, WebListener is named [HttpSys](httpsys.md).
+> This topic applies only to ASP.NET Core 1.x. In ASP.NET Core 2.0, WebListener is named [HTTP.sys](httpsys.md).
 
 WebListener is a [web server for ASP.NET Core](index.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
@@ -159,8 +159,8 @@ The following resources provide detailed instructions for several scenarios. Art
 
 Here are some third-party tools that can be easier to use than the netsh.exe command line. These are not provided by or endorsed by Microsoft. The tools run as administrator by default, since netsh.exe itself requires administrator privileges.
 
-* [HttpSysManager](http://httpsysmanager.codeplex.com/) provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. 
-* [HttpConfig](http://www.stevestechspot.com/ABetterHttpcfg.aspx) lets you list or configure SSL certificates and URL prefixes. The UI is more refined than HttpSysManager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.
+* [http.sys Manager](http://httpsysmanager.codeplex.com/) provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. 
+* [HttpConfig](http://www.stevestechspot.com/ABetterHttpcfg.aspx) lets you list or configure SSL certificates and URL prefixes. The UI is more refined than http.sys Manager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.
 
 For generating self-signed SSL certificates, Microsoft provides command-line tools: [MakeCert.exe](https://msdn.microsoft.com/library/windows/desktop/aa386968) and the PowerShell cmdlet [New-SelfSignedCertificate](https://technet.microsoft.com/library/hh848633). There are also third-party UI tools that make it easier for you to generate self-signed SSL certificates:
 

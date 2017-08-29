@@ -22,9 +22,9 @@ An ASP.NET Core application is a console app that creates a web server in its `M
 
 [!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
-The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, a [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host will attempt to run on IIS, if it is available. Other web servers, such as [HttpSys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, a [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host will attempt to run on IIS, if it is available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
 
-`IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the application in HttpSys, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
+`IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the application in HTTP.sys, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

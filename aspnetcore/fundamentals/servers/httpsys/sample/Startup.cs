@@ -23,7 +23,7 @@ namespace HttpSysDemo
                     .MaxRequestBodySize = 10 * 1024;
 
                 context.Response.ContentType = "text/html";
-                await context.Response.WriteAsync("<p>Hosted by HttpSys</p>");
+                await context.Response.WriteAsync("<p>Hosted by HTTP.sys</p>");
 
                 if (serverAddressesFeature != null)
                 {

@@ -92,7 +92,7 @@ namespace ContosoUniversity.Controllers
             {
                 _context.Add(department);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             #region snippet_Dropdown
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
@@ -157,7 +157,7 @@ namespace ContosoUniversity.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
@@ -223,7 +223,7 @@ namespace ContosoUniversity.Controllers
             {
                 if (concurrencyError.GetValueOrDefault())
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 return NotFound();
             }
@@ -255,12 +255,12 @@ namespace ContosoUniversity.Controllers
                     _context.Departments.Remove(department);
                     await _context.SaveChangesAsync();
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException /* ex */)
             {
                 //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("Delete", new { concurrencyError = true, id = department.DepartmentID });
+                return RedirectToAction(nameof(Delete), new { concurrencyError = true, id = department.DepartmentID });
             }
         }
         #endregion

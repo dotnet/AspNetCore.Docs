@@ -50,7 +50,7 @@ The following 2.0 example configures Facebook authentication with Identity in *S
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
     // If you want to tweak Identity cookies, they're no longer part of IdentityOptions.
     services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
@@ -264,14 +264,14 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 
 <a name="windows-auth-changes"></a>
 
-## Windows Authentication (HttpSys / IISIntegration)
+## Windows Authentication (HTTP.sys / IISIntegration)
 There are two variations of Windows authentication:
 1. The host only allows authenticated users
 2. The host allows both anonymous and authenticated users
 
 The first variation described above is unaffected by the 2.0 changes.
 
-The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HttpSys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
+The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or [HTTP.sys](xref:fundamentals/servers/weblistener) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication(IISDefaults.AuthenticationScheme);
@@ -299,23 +299,56 @@ The `IdentityConstants.ExternalScheme` constant can be used directly:
 <a name="navigation-properties"></a>
 
 ## Add IdentityUser POCO Navigation Properties
-The Entity Framework Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
+The Entity Framework (EF) Core navigation properties of the base `IdentityUser` POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:
 
 ```csharp
 /// <summary>
 /// Navigation property for the roles this user belongs to.
 /// </summary>
-public virtual ICollection<TUserRole> Roles { get; } = new List<TUserRole>();
+public virtual ICollection<IdentityUserRole<int>> Roles { get; } = new List<IdentityUserRole<int>>();
 
 /// <summary>
 /// Navigation property for the claims this user possesses.
 /// </summary>
-public virtual ICollection<TUserClaim> Claims { get; } = new List<TUserClaim>();
+public virtual ICollection<IdentityUserClaim<int>> Claims { get; } = new List<IdentityUserClaim<int>>();
 
 /// <summary>
 /// Navigation property for this users login accounts.
 /// </summary>
-public virtual ICollection<TUserLogin> Logins { get; } = new List<TUserLogin>();
+public virtual ICollection<IdentityUserLogin<int>> Logins { get; } = new List<IdentityUserLogin<int>>();
+```
+
+To prevent duplicate foreign keys when running EF Core Migrations, add the following to your `IdentityDbContext` class' `OnModelCreating` method (after the `base.OnModelCreating();` call):
+
+```csharp
+protected override void OnModelCreating(ModelBuilder builder)
+{
+    base.OnModelCreating(builder);
+    // Customize the ASP.NET Identity model and override the defaults if needed.
+    // For example, you can rename the ASP.NET Identity table names and more.
+    // Add your customizations after calling base.OnModelCreating(builder);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Claims)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Logins)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity<ApplicationUser>()
+        .HasMany(e => e.Roles)
+        .WithOne()
+        .HasForeignKey(e => e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+}
 ```
 
 <a name="synchronous-method-removal"></a>

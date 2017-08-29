@@ -30,7 +30,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ![Create an application page](index/_static/TwitterCreate.png)
 
-* Enter your development URI with */signin-twitter* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). Twitter middleware configured later in this tutorial will automatically handle requests at */signin-twitter* route to implement the OAuth flow.
+* Enter your development URI with */signin-twitter* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-twitter`). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at */signin-twitter* route to implement the OAuth flow.
 
 * Fill out the rest of the form and tap **Create your Twitter application**. New application details are displayed:
 
@@ -46,7 +46,7 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating y
 
 ![Keys and Access Tokens tab](index/_static/TwitterKeys.png)
 
-## Configure Twitter middleware
+## Configure Twitter Authentication
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package is already installed.
 
@@ -54,6 +54,20 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 * To install with .NET Core CLI, execute the following in your project directory:
 
    `dotnet add package Microsoft.AspNetCore.Authentication.Twitter`
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
+
+```csharp
+services.AddAuthentication().AddTwitter(twitterOptions =>
+{
+    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+});
+```
+
+The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -67,23 +81,9 @@ app.UseTwitterAuthentication(new TwitterOptions()
 });
 ```
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-Add the Twitter middleware in the `ConfigureServices` method in *Startup.cs* file:
-
-```csharp
-services.AddAuthentication().AddTwitter(twitterOptions =>
-{
-    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
-    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
-});
-```
-
-When adding other authentication providers, `AddAuthentication` has to be called only once.
-
 ---
 
-See the [TwitterOptions](https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authentication.Twitter/TwitterOptions.cs) class in ASP.NET Core repository for more information on configuration options supported by Twitter middleware. This can be used to request different information about the user.
+See the [TwitterOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
 
 ## Sign in with Twitter
 
@@ -103,7 +103,7 @@ You are now logged in using your Twitter credentials:
 
 ## Troubleshooting
 
-* If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity is not configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

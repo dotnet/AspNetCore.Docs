@@ -82,7 +82,7 @@ namespace ContosoUniversity.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             PopulateDepartmentsDropDownList(course.DepartmentID);
             return View(course);
@@ -140,7 +140,7 @@ namespace ContosoUniversity.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
             return View(courseToUpdate);
@@ -191,7 +191,7 @@ namespace ContosoUniversity.Controllers
                 _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         #region snippet_UpdateGet

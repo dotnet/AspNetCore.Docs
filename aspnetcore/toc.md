@@ -25,7 +25,7 @@
 ### [Kestrel](fundamentals/servers/kestrel.md)
 ### [ASP.NET Core Module](fundamentals/servers/aspnet-core-module.md)
 ### [WebListener](fundamentals/servers/weblistener.md)
-### [HttpSys](fundamentals/servers/httpsys.md)
+### [HTTP.sys](fundamentals/servers/httpsys.md)
 ## [Request Features](fundamentals/request-features.md)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
 ## [Choose between ASP.NET Core and ASP.NET](choose-aspnet-framework.md)
@@ -74,14 +74,13 @@
 
 ### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-#### [Adding a model](xref:tutorials/razor-pages/model)
+#### [Adding a model](xref:tutorials/razor-pages/modelz)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 #### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
 #### [Updating the pages](xref:tutorials/razor-pages/da1)
 #### [Adding search](xref:tutorials/razor-pages/search)
 #### [Adding a new field](xref:tutorials/razor-pages/new-field)
 #### [Adding validation](xref:tutorials/razor-pages/validation)
-
 
 ### [Create an MVC web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
@@ -118,6 +117,16 @@
 #### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+
+### [Create a Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-mac/model)
+
+
+### [Create a Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-vsc/model)
+
 
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
 #### [Getting started](data/ef-mvc/intro.md)
@@ -159,8 +168,8 @@
 ## [Manage client-side packages with Bower](xref:client-side/bower)
 ## [Building beautiful, responsive sites with Bootstrap](xref:client-side/bootstrap)
 ## [Knockout.js MVVM Framework](xref:client-side/knockout)
-## [Using AngularJS for Single Page Apps (xref:client-side/SPAs)](xref:client-side/angular)
-## [Using JavaScriptServices for Single Page Apps (xref:client-side/SPAs)](xref:client-side/spa-services)
+## [Using AngularJS for Single Page Apps](xref:client-side/angular)
+## [Using JavaScriptServices for Single Page Apps](xref:client-side/spa-services)
 ## [Styling applications with Less, Sass, and Font Awesome](xref:client-side/less-sass-fa)
 ## [Bundling and minification](xref:client-side/bundling-and-minification)
 ## [Building Projects with Yeoman](xref:client-side/yeoman)
@@ -259,7 +268,7 @@
 ## [Anti-Request Forgery](xref:security/anti-request-forgery)
 ## [Preventing Open Redirect Attacks](xref:security/preventing-open-redirects)
 ## [Preventing Cross-Site Scripting](xref:security/cross-site-scripting)
-## [Enabling Cross-Origin Requests (xref:security/CORS)](xref:security/cors)
+## [Enabling Cross-Origin Requests](xref:security/cors)
 
 # [Performance](xref:performance/index)
 ## [Caching](xref:performance/caching/index)
@@ -275,6 +284,7 @@
 ### [Authentication and Identity](xref:migration/identity)
 ### [Web API](xref:migration/webapi)
 ### [HTTP Modules to Middleware](xref:migration/http-modules)
+## [ASP.NET to ASP.NET Core 2.0](xref:migration/proper-to-2x/index)
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 

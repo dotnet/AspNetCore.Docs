@@ -17,7 +17,7 @@ uid: tutorials/razor-pages/index
 This series explains the basics of building a Razor Pages web app with ASP.NET Core.
 
 1. [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages/model)
+1. [Adding a model to a Razor Pages app](xref:tutorials/razor-pages/modelz)
 1. [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 1. [Working with SQL Server LocalDB](xref:tutorials/razor-pages/sql)
 1. [Updating the pages](xref:tutorials/razor-pages/da1)
