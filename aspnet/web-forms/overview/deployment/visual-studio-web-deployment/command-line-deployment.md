@@ -34,7 +34,7 @@ Currently the About page displays the template code.
 
 You'll replace that with code that displays a summary of student enrollment.
 
-Open the *About.aspx* page, delete all of the markup inside the `MainContent``Content` element, and insert the following markup in its place:
+Open the *About.aspx* page, delete all of the markup inside the `MainContent` `Content` element, and insert the following markup in its place:
 
 [!code-aspx[Main](command-line-deployment/samples/sample1.aspx)]
 
