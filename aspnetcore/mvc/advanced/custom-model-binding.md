@@ -87,7 +87,7 @@ The following sample uses the `ModelBinder` attribute on the `Author` model:
 
 [!code-csharp[Main](custom-model-binding/sample/CustomModelBindingSample/Data/Author.cs?highlight=10)]
 
-In the preceding code, the `ModelBinder` attribute specifies the type of `IModelBinderProvider` that should be used to bind `Author` action parameters. 
+In the preceding code, the `ModelBinder` attribute specifies the type of `IModelBinder` that should be used to bind `Author` action parameters. 
 
 The `AuthorEntityBinder` is used to bind an `Author` parameter by fetching the entity from a data source using Entity Framework Core and an `authorId`:
 

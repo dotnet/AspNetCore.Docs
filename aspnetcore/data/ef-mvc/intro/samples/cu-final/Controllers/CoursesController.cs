@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +16,7 @@ namespace ContosoUniversity.Controllers
 
         public CoursesController(SchoolContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: Courses
@@ -55,9 +55,6 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
-        // POST: Courses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseID,Credits,DepartmentID,Title")] Course course)
@@ -72,7 +69,6 @@ namespace ContosoUniversity.Controllers
             return View(course);
         }
 
-        // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,9 +87,6 @@ namespace ContosoUniversity.Controllers
             return View(course);
         }
 
-        // POST: Courses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
@@ -135,6 +128,7 @@ namespace ContosoUniversity.Controllers
             ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
         }
 
+
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -163,19 +157,13 @@ namespace ContosoUniversity.Controllers
             var course = await _context.Courses.SingleOrDefaultAsync(m => m.CourseID == id);
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        private bool CourseExists(int id)
-        {
-            return _context.Courses.Any(e => e.CourseID == id);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult UpdateCourseCredits()
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> UpdateCourseCredits(int? multiplier)
@@ -190,5 +178,9 @@ namespace ContosoUniversity.Controllers
             return View();
         }
 
+        private bool CourseExists(int id)
+        {
+            return _context.Courses.Any(e => e.CourseID == id);
+        }
     }
 }

@@ -17,9 +17,9 @@ uid: data/ef-mvc/concurrency
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
-In earlier tutorials you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
+In earlier tutorials, you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 
 You'll create web pages that work with the Department entity and handle concurrency errors. The following illustrations show the Edit and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
 
@@ -104,6 +104,9 @@ Save your changes and build the project, and then enter the following commands i
 
 ```console
 dotnet ef migrations add RowVersion
+```
+
+```console
 dotnet ef database update
 ```
 
@@ -175,13 +178,13 @@ In *Views/Departments/Edit.cshtml*, make the following changes:
 
 * Add a "Select Administrator" option to the drop-down list.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=15,41-43)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
 ## Test concurrency conflicts in the Edit page
 
 Run the site and click Departments to go to the Departments Index page.
 
-Right click the **Edit** hyperlink for the English department and select **Open in new tab**, then click the **Edit** hyperlink for the English department. The two browser tabs now display the same information.
+Right-click the **Edit** hyperlink for the English department and select **Open in new tab**, then click the **Edit** hyperlink for the English department. The two browser tabs now display the same information.
 
 Change a field in the first browser tab and click **Save**.
 
@@ -238,7 +241,7 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 In *Views/Department/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,43-44)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44)]
 
 This makes the following changes:
 
@@ -248,7 +251,7 @@ This makes the following changes:
 
 * Removes the RowVersion field.
 
-* Adds hidden fields for the `DepartmentID` and `RowVersion` properties.
+* Adds a hidden field for the `RowVersion` property.
 
 Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
 
@@ -272,7 +275,7 @@ Replace the code in *Views/Departments/Details.cshtml* to delete the RowVersion 
 
 Replace the code in *Views/Departments/Create.cshtml* to add a Select option to the drop-down list.
 
-[!code-html[Main](intro/samples/cu/Views/Departments/Create.cshtml?highlight=38-40)]
+[!code-html[Main](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
 ## Summary
 

@@ -17,9 +17,9 @@ uid: data/ef-mvc/read-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
-In the previous tutorial you completed the School data model. In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
+In the previous tutorial, you completed the School data model. In this tutorial, you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 
 The following illustrations show the pages that you'll work with.
 
@@ -139,7 +139,7 @@ At that point in the code, another `ThenInclude` would be for navigation propert
 
 The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=54-60)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=56-62)]
 
 The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `CourseAssignments` property. The `CourseAssignments` property contains `CourseAssignment` entities, from which you want only the related `Course` entities.
 
@@ -157,7 +157,7 @@ Instead of:
 
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=62-67)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=64-69)]
 
 ### Modify the Instructor Index view
 

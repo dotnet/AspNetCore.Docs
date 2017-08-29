@@ -28,7 +28,7 @@ uid: security/authentication/index
 
 * [Two-factor authentication with SMS](2fa.md)
 
-* [Using Cookie Middleware without ASP.NET Core Identity](cookie.md)
+* [Using Cookie Authentication without ASP.NET Core Identity](cookie.md)
 
 * [Azure Active Directory](azure-active-directory/index.md)
 

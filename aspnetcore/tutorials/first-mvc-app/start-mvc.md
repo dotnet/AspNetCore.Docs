@@ -27,18 +27,26 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 ## Install Visual Studio and .NET Core
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+[!INCLUDE[install 2.0](../../includes/install2.0.md)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
-  * [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
+* [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
 
 Run the installer and select the following workloads:
- - **ASP.NET and web development** (under **Web & Cloud**)
- - **.NET Core cross-platform development** (under **Other Toolsets**)
+
+* **ASP.NET and web development** (under **Web & Cloud**)
+* **.NET Core cross-platform development** (under **Other Toolsets**)
 
 ![**ASP.NET and web development** (under **Web & Cloud**)](start-mvc/_static/web_workload.png)
 
 ![**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)](start-mvc/_static/x_plat_wl.png)
 
+---
 
 ## Create a web app
 
@@ -55,6 +63,19 @@ Complete the **New Project** dialog:
 
 ![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2.png)
 
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
+
+* In the version selector drop-down box select **ASP.NET Core 2.-**
+* Select **Web Application(Model-View-Controller)**
+* Tap **OK**.
+
+![New project dialog, .Net core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22.png)
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
 * In the version selector drop-down box tap **ASP.NET Core 1.1**
@@ -63,6 +84,8 @@ Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 * Tap **OK**.
 
 ![New ASP.NET Core web app](start-mvc/_static/p3.png)
+
+---
 
 Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a simple starter project, and it's a good place to start,
 

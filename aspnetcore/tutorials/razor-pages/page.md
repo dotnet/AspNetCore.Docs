@@ -21,20 +21,26 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 ## The Create, Delete, Details, and Edit pages.
 
-Examine the *Pages/Movie/Index.cshtml.cs* code-behind file:
+Examine the *Pages/Movies/Index.cshtml.cs* code-behind file:
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
 When a request is made for the page, the `OnGetAsync` method returns a list of movies to the Razor Page. `OnGetAsync` or `OnGet` is called on a Razor Page to initialize the state for the page. In this case, `OnGetAsync` gets a list of movies to display.
 
-Examine the *Pages/Movie/Index.cshtml* Razor Page:
+Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
 
 Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords), it transitions into Razor-specific markup, otherwise it transitions into C#.
 
 The `@page` Razor directive makes the file into an MVC action &mdash; which means that it can handle requests. `@page` must be the first Razor directive on a page. `@page` is an example of transitioning into Razor-specific markup. See [Razor syntax](xref:mvc/views/razor#razor-syntax) for more information.
+
+Examine the lambda expression used in the following HTML Helper:
+
+`@Html.DisplayNameFor(model => model.Movie[0].Title))`
+
+The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
 <a name="md"></a>
 ### The @model directive
@@ -62,7 +68,7 @@ The `Controller` base class has a `ViewData` dictionary property that can be use
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
 
-Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movie/Index.cshtml* currently have the same title, but you can modify them to have different values.
+Run the app and test the links in the project (**Home**, **About**, **Contact**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark. *Pages/Index.cshtml* and *Pages/Movies/Index.cshtml* currently have the same title, but you can modify them to have different values.
 
 The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
@@ -84,16 +90,16 @@ Find the following anchor element in the *Pages/_Layout.cshtml* file.
 Replace the preceding element with the following markup.
 
 ```cshtml
-<a asp-page="/Movie/Index" class="navbar-brand">RpMovie</a>
+<a asp-page="/Movies/Index" class="navbar-brand">RpMovie</a>
 ```
 
-The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movie/Index"` Tag Helper attribute and value creates a link to the `/Movie/Index` Razor Page.
+The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper). The `asp-page="/Movies/Index"` Tag Helper attribute and value creates a link to the `/Movies/Index` Razor Page.
 
 Save your changes, and test the app by clicking on the **RpMovie** link. See the [_Layout.cshtml](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml) file in GitHub.
 
 ### The Create code-behind page
 
-Examine the *Pages/Movie/Create.cshtml.cs* code-behind file:
+Examine the *Pages/Movies/Create.cshtml.cs* code-behind file:
 
 [!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
 
@@ -111,7 +117,7 @@ If there are no model errors, the data is saved, and the browser is redirected t
 
 ### The Create Razor Page
 
-Examine the *Pages/Movie/Create.cshtml* Razor Page file:
+Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
 [!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
 
@@ -127,11 +133,10 @@ The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-ta
 
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client-side. 
+The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control" />`) uses the [DataAnnotations](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.aspx) attributes and produces HTML attributes needed for jQuery Validation on the client-side.
 
+The next tutorial explains SQL Server LocalDB and seeding the database.
 
 >[!div class="step-by-step"]
-[Adding a model](xref:tutorials/razor-pages/model)
-<!--
-[](xref:tutorials/razor-pages/page)   
--->
+[Previous: Adding a model](xref:tutorials/razor-pages/modelz)
+[Next: SQL Server LocalDB](xref:tutorials/razor-pages/sql)

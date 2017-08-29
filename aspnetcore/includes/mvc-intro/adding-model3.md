@@ -21,12 +21,3 @@ Tapping **Create** causes the form to be posted to the server, where the movie i
 ![Movies view showing newly created movie listing](../../tutorials/first-mvc-app/adding-model/_static/h.png)
 
 Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete** links, which are all functional.
-
-## Dependency Injection
-
-Open the *Startup.cs* file and examine `ConfigureServices`:
-
-<!--
-[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_cs&highlight=7-8)]
-
--->

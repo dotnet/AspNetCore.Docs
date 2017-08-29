@@ -17,9 +17,9 @@ uid: data/ef-mvc/inheritance
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
-In the previous tutorial you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.
+In the previous tutorial, you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.
 
 In object-oriented programming, you can use inheritance to facilitate code reuse. In this tutorial, you'll change the `Instructor` and `Student` classes so that they derive from a `Person` base class which contains properties such as `LastName` that are common to both instructors and students. You won't add or change any web pages, but you'll change some of the code and those changes will be automatically reflected in the database.
 
@@ -86,15 +86,7 @@ Save your changes and build the project. Then open the command window in the pro
 dotnet ef migrations add Inheritance
 ```
 
-Run the `database update` command:.
-
-```console
-dotnet ef database update
-```
-
-The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
-
-> The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_CourseAssignment_Person_InstructorID". The conflict occurred in database "ContosoUniversity09133", table "dbo.Person", column 'ID'.
+Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
 Open *Migrations\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
@@ -122,7 +114,7 @@ This code takes care of the following database update tasks:
 
 (If you had used GUID instead of integer as the primary key type, the student primary key values wouldn't have to change, and several of these steps could have been omitted.)
 
-Run the `database update` command again:
+Run the `database update` command:
 
 ```console
 dotnet ef database update

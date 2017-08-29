@@ -14,7 +14,7 @@ uid: security/authentication/identity-enable-qrcodes
 
 # Enabling QR Code generation for authenticator apps in ASP.NET Core
 
-Note: This topic applies to ASP.NET Core 2.x
+Note: This topic applies to ASP.NET Core 2.x with Razor Pages.
 
 ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approch for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
 
@@ -28,7 +28,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
@@ -36,7 +36,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * Update the `Scripts` section to add a reference to the `qrcodejs` library you added and a call to generate the QR Code. It should look as follows:
 
-```None
+```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 

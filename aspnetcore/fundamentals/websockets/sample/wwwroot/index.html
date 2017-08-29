@@ -48,7 +48,6 @@
         var sendButton = document.getElementById("sendButton");
         var sendForm = document.getElementById("sendForm");
         var commsLog = document.getElementById("commsLog");
-
         var socket;
 
         var scheme = document.location.protocol == "https:" ? "wss" : "ws";
@@ -94,7 +93,7 @@
                         enable();
                         break;
                     default:
-                        stateLabel.innerHTML = "Unknown WebSocket State: " + socket.readyState;
+                        stateLabel.innerHTML = "Unknown WebSocket State: " + htmlEscape(socket.readyState);
                         disable();
                         break;
                 }
@@ -117,7 +116,7 @@
             commsLog.innerHTML += '<tr>' +
                 '<td class="commslog-client">Client</td>' +
                 '<td class="commslog-server">Server</td>' +
-                '<td class="commslog-data">' + data + '</td>'
+                '<td class="commslog-data">' + htmlEscape(data) + '</td>'
             '</tr>';
         }
 
@@ -133,7 +132,7 @@
             socket.onclose = function (event) {
                 updateState();
                 commsLog.innerHTML += '<tr>' +
-                    '<td colspan="3" class="commslog-data">Connection closed. Code: ' + event.code + '. Reason: ' + event.reason + '</td>' +
+                    '<td colspan="3" class="commslog-data">Connection closed. Code: ' + htmlEscape(event.code) + '. Reason: ' + htmlEscape(event.reason) + '</td>' +
                 '</tr>';
             };
             socket.onerror = updateState;
@@ -141,10 +140,19 @@
                 commsLog.innerHTML += '<tr>' +
                     '<td class="commslog-server">Server</td>' +
                     '<td class="commslog-client">Client</td>' +
-                    '<td class="commslog-data">' + event.data + '</td>'
+                    '<td class="commslog-data">' + htmlEscape(event.data) + '</td>'
                 '</tr>';
             };
         };
+
+        function htmlEscape(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
     </script>
 </body>
 </html>

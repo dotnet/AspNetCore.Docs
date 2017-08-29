@@ -17,7 +17,7 @@ uid: data/ef-mvc/update-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 1.1 MVC web applications using Entity Framework Core 1.1 and Visual Studio 2017. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
 
@@ -67,15 +67,15 @@ To optimize performance of the Course Details and Delete pages, add `AsNoTrackin
 
 ### Modify the Course views
 
-In *Views/Courses/Create.cshtml*, add a "Select Department" option to the **Department** drop-down list, and change the caption for the field from **DepartmentID** to **Department**.
+In *Views/Courses/Create.cshtml*, add a "Select Department" option to the **Department** drop-down list, change the caption from **DepartmentID** to **Department**, and add a validation message.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2,4,5,6&range=35-43)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
 
 In *Views/Courses/Edit.cshtml*, make the same change for the Department field that you just did in *Create.cshtml*.
 
-Also in *Views/Courses/Edit.cshtml*, add a course number field before the Credits field. Because it's the primary key, it's displayed, but it can't be changed.
+Also in *Views/Courses/Edit.cshtml*, add a course number field before the **Title** field. Because the course number is the primary key, it's displayed, but it can't be changed.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-20)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
@@ -151,9 +151,9 @@ The code does the following:
 
 ### Update the Instructor Edit view
 
-In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button :
+In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button:
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=36-42)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
 Run the page (select the **Instructors** tab and then click **Edit** on an instructor). Change the **Office Location** and click **Save**.
 
@@ -215,9 +215,9 @@ In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of che
 
 <a id="notepad"></a>
 > [!NOTE] 
-> When you paste the code in Visual Studio, line breaks will be changed in a way that breaks the code.  Press Ctrl+Z one time to undo the automatic formatting.  This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. With the block of new code selected, press Tab twice to line up the new code with the existing code.
+> When you paste the code in Visual Studio, line breaks will be changed in a way that breaks the code.  Press Ctrl+Z one time to undo the automatic formatting.  This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. With the block of new code selected, press Tab three times to line up the new code with the existing code.
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=43-69)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
 This code creates an HTML table that has three columns. In each column is a check box followed by a caption that consists of the course number and title. The check boxes all have the same name ("selectedCourses"), which informs the model binder that they are to be treated as a group. The value attribute of each check box is set to the value of `CourseID`. When the page is posted, the model binder passes an array to the controller that consists of the `CourseID` values for only the check boxes which are selected.
 
@@ -281,7 +281,7 @@ If you modify the `CourseAssignments` property in this way, you can remove the e
 
 In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, [fix the formatting if Visual Studio reformats the code when you paste it](#notepad).
 
-[!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=35-69)]
+[!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 
 Test by running the **Create** page and adding an instructor. 
 

@@ -49,7 +49,7 @@ The Visual Studio properties page, debug tab provides check boxes for Windows au
 
 You can also configure these properties in the `launchSettings.json` file:
 
-```javascript
+```json
 {
   "iisSettings": {
     "windowsAuthentication": true,
@@ -94,7 +94,7 @@ Launch the app to verify Windows authentication is working.
 
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
-```
+```csharp
 public class Program
 {
     public static void Main(string[] args)
@@ -117,7 +117,7 @@ public class Program
 
 ## Working with Windows authentication
 
-If your app uses Windows authentication and anonymous access, you can use the ``[Authorize]`` and ``[AllowAnonymous]`` attributes. Apps that do not have anonymous enabled do not rquire ``[Authorize]``; the  app is treated as requiring authentication, anonymous requests are rejected. Note, if the IIS site is configured **not** to allow anonymous access, the ``[AllowAnonymous]`` attribute does **not** allow anonymous requests. The ``[AllowAnonymous]`` attribute overrides ``[Authorize]`` attribute usage within apps that allow anonymous access.
+If your app uses Windows authentication and anonymous access, you can use the ``[Authorize]`` and ``[AllowAnonymous]`` attributes. Apps that do not have anonymous enabled do not require ``[Authorize]``; the  app is treated as requiring authentication, anonymous requests are rejected. Note, if the IIS site is configured **not** to allow anonymous access, the ``[AllowAnonymous]`` attribute does **not** allow anonymous requests. The ``[AllowAnonymous]`` attribute overrides ``[Authorize]`` attribute usage within apps that allow anonymous access.
 
 ### Impersonation
 

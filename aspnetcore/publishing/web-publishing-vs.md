@@ -21,7 +21,27 @@ This article focuses on using Visual Studio 2017 to create publish profiles. The
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
-# [ASP.NET Core 1.x](#tab/aspnet1x)
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -37,30 +57,6 @@ The following *.csproj* file was created with the command `dotnet new mvc`:
   </ItemGroup>
 
 </Project>
-```
-
-# [ASP.NET Core 2.0](#tab/aspnet20)
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <UserSecretsId>aspnet-z-2582C05F-B564-408F-BCC2-A1F4CAE20544</UserSecretsId>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview2-final" />
-  </ItemGroup>
-
-</Project>
-
 ```
 
 ---
@@ -154,6 +150,8 @@ The following command publishes a `Release` build to a network share:
 `dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb`
 
 The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
+
+Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
 
 ## Publish profiles
 
@@ -329,7 +327,8 @@ The following markup can be used to include an *images* folder outside the proje
 ``` xml
 <ItemGroup>
   <_CustomFiles Include="$(MSBuildProjectDirectory)/../images/**/*" />
-  <DotnetPublishFiles Include="@(_CustomFiles)">    <DestinationRelativePath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+  <DotnetPublishFiles Include="@(_CustomFiles)">
+    <DestinationRelativePath>wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
   </DotnetPublishFiles>
 </ItemGroup>
 ```

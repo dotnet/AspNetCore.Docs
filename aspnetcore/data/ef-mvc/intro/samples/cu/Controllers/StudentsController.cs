@@ -248,7 +248,7 @@ namespace ContosoUniversity.Controllers
                 {
                     _context.Add(student);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
             }
             catch (DbUpdateException /* ex */)
@@ -295,7 +295,7 @@ namespace ContosoUniversity.Controllers
                 {
                     _context.Update(student);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -327,7 +327,7 @@ namespace ContosoUniversity.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -381,19 +381,19 @@ namespace ContosoUniversity.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             try
             {
                 _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException /* ex */)
             {
                 //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
 #endregion
@@ -408,12 +408,12 @@ namespace ContosoUniversity.Controllers
                 Student studentToDelete = new Student() { ID = id };
                 _context.Entry(studentToDelete).State = EntityState.Deleted;
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateException /* ex */)
             {
                 //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
 #endregion

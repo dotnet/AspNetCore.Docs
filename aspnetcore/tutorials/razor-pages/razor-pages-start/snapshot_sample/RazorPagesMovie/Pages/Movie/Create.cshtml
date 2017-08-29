@@ -1,5 +1,5 @@
 @page
-@model RazorPagesMovie.Pages_Movie.CreateModel
+@model RazorPagesMovie.Pages.Movies.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -44,3 +44,6 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
