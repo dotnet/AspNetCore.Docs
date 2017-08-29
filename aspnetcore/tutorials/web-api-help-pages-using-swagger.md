@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Web API Help Pages using Swagger
 author: spboyer
-description: Walkthrough of adding Swagger to a Web API Application
-keywords: ASP.NET Core, Swagger
+description: This tutorial provides a walk through of adding Swagger to generate documentation and help pages for a Web API application.
+keywords: ASP.NET Core,Swagger
 ms.author: spboyer
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 08/28/2017
 ms.topic: article
 ms.assetid: 54bb961d-29d9-4dee-8e2c-a93fc33c16f2
 ms.technology: aspnet
@@ -30,13 +30,13 @@ This tutorial builds on the sample on [Building Your First Web API with ASP.NET 
 
 ## Getting Started
 
-There are three main components to Swashbuckle
+There are three main components to Swashbuckle:
 
-* *Swashbuckle.AspNetCore.Swagger* : a Swagger object model and middleware to expose SwaggerDocument objects as JSON endpoints.
+* *Swashbuckle.AspNetCore.Swagger*: a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
 
-* *Swashbuckle.AspNetCore.SwaggerGen* : a Swagger generator that builds SwaggerDocument objects directly from your routes, controllers and models. Typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
+* *Swashbuckle.AspNetCore.SwaggerGen*: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers and models. Typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
 
-* *Swashbuckle.AspNetCore.SwaggerUI* : an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich customizable experience for describing the Web API functionality, and includes built in test harness capabilities for the public methods.
+* *Swashbuckle.AspNetCore.SwaggerUI*: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich customizable experience for describing the Web API functionality, and includes built-in test harness capabilities for the public methods.
 
 ## NuGet Packages
 
@@ -44,33 +44,26 @@ You can add Swashbuckle with any of the following approaches:
 
 * From the Package Manager Console:
 
-```PowerShell
-Install-Package Swashbuckle.AspNetCore
-   ```
+    ```powershell
+    Install-Package Swashbuckle.AspNetCore
+    ```
 
 * In Visual Studio:
 
-     * Right click your project in Solution Explorer > Manage NuGet Packages
+     * Right-click your project in Solution Explorer > Manage NuGet Packages
      * Enter Swashbuckle.AspNetCore in the search box
      * Set the Package source to nuget.org
      * Tap the Swashbuckle.AspNetCore package and then tap Install
 
 ## Add and configure Swagger to the middleware
 
-Add SwaggerGen to the services collection in the Configure method, and in the ConfigureServices method, enable the middleware for serving generated JSON document and the SwaggerUI.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [12, 21, 24]}} -->
+Add the Swagger generator to the services collection in the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    // Add framework services.
+    services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
     services.AddMvc();
-
-    services.AddLogging();
-
-    // Add our repository type
-    services.AddSingleton<ITodoRepository, TodoRepository>();
 
     // Register the Swagger generator, defining one or more Swagger documents
     services.AddSwaggerGen(c =>
@@ -78,16 +71,20 @@ public void ConfigureServices(IServiceCollection services)
         c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
     });
 }
+```
 
+In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated JSON document and the SwaggerUI:
+
+```csharp
 // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+public void Configure(IApplicationBuilder app)
 {
     app.UseMvcWithDefaultRoute();
 
     // Enable middleware to serve generated Swagger as a JSON endpoint.
     app.UseSwagger();
 
-    // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
@@ -98,9 +95,9 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the document generated that describes the endpoints.
 
 > [!NOTE]
-> Microsoft Edge, Google Chrome and Firefox display JSON documents natively.  There are extensions for Chrome that will format the document for easier reading. *Example below reduced for brevity.*
+> Microsoft Edge, Google Chrome, and Firefox display JSON documents natively. There are extensions for Chrome that will format the document for easier reading. *Example below reduced for brevity.*
 
-```JSON
+```json
 {
    "swagger": "2.0",
    "info": {
@@ -166,7 +163,7 @@ In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:
    },
    "securityDefinitions": {}
    }
-   ```
+```
 
 This document is used to drive the Swagger UI which can be viewed by navigating to `http://localhost:<random_port>/swagger`
 
@@ -182,22 +179,9 @@ Swagger is not only a simple way to represent the API, but has options for docum
 
 ### API Info and Description
 
-The config. action passed to the `AddSwaggerGen` method can be used to add information such as the author, license, description.
+The config. action passed to the `AddSwaggerGen` method can be used to add information such as the author, license, and description:
 
-```csharp
-services.AddSwaggerGen(c =>
-{
-	c.SwaggerDoc("v1", new Info
-	{
-		Version = "v1",
-		Title = "ToDo API",
-		Description = "A simple example ASP.NET Core Web API",
-		TermsOfService = "None",
-		Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer"},
-		License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
-	});
-});
-```
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?range=20-30,36)]
 
 The following image shows the Swagger UI displaying the version information added.
 
@@ -205,30 +189,28 @@ The following image shows the Swagger UI displaying the version information adde
 
 ### XML Comments
 
-To enable XML comments, right click the project in Visual Studio and select **Properties** and then check the **XML Documentation file** box under the **Output Settings** section.
+To enable XML comments, right-click the project in Visual Studio and select **Properties** and then check the **XML Documentation file** box under the **Output Settings** section.
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
 Configure Swagger to use the generated XML file.
 
 > [!NOTE]
-> For Linux or non-Windows operating systems, file names and paths can be case sensitive. So `ToDoApi.XML` would be found on Windows but not CentOS for example.
+> For Linux or non-Windows operating systems, file names and paths can be case sensitive. So `ToDoApi.XML` would be found on Windows but not CentOS, for example.
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Startup.cs?name=snippet_Configure&highlight=29,33)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?name=snippet_ConfigureServices&highlight=20-22)]
 
-In the code above, ApplicationBasePath gets the base path of the app, which is needed to set the full path to the XML comments. `TodoApi.xml` only works for this example, the name of the generated XML comments file is based on the name of your application.
+In the code above, `ApplicationBasePath` gets the base path of the app, which is needed to set the full path to the XML comments. `TodoApi.xml` only works for this example, the name of the generated XML comments file is based on the name of your application.
 
-Adding the triple slash comments to the method enhances the Swagger UI by adding the description to the header of the section.
+Adding the triple-slash comments to the method enhances the Swagger UI by adding the description to the section header:
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Delete_Method&highlight=2)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Delete&highlight=2)]
 
 ![Swagger UI showing XML comment 'Deletes a specific To do Item' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
 
 Note that the UI is driven by the generated JSON file, and these comments are also in that file as well.
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [5]}} -->
-
-```JSON
+```json
 "delete": {
   "tags": [
     "Todo"
@@ -257,7 +239,7 @@ Note that the UI is driven by the generated JSON file, and these comments are al
 
 Here is a more robust example, adding `<remarks />` where the content can be just text or adding the JSON or XML object for further documentation of the method.
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Create_Method&highlight=4-14)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create&highlight=4-14)]
 
 Notice the enhancement of the UI with these additional comments.
 
@@ -267,82 +249,48 @@ Notice the enhancement of the UI with these additional comments.
 
 You can decorate the API controller with `System.ComponentModel.DataAnnotations` to help drive the Swagger UI components.
 
-Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class will change the ModelSchema information in the UI. `[Produces("application/json")]`, `RegularExpression` validators and more will further detail the information delivered in the generated page.  The more metadata that is in the code produces a more desciptive UI or API help page.  
+Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class will change the ModelSchema information in the UI. `[Produces("application/json")]`, `RegularExpression` validators and more will further detail the information delivered in the generated page. The more metadata that is in the code, the more descriptive the UI or API help page.
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Models/TodoItem.cs?highlight=10)]
-
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Models/TodoItem.cs?highlight=10)]
 
 ### Describing Response Types
 
 Consuming developers are probably most concerned with what is returned; specifically response types, error codes (if not standard). These are handled in the XML comments and DataAnnotations.
 
-Take the `Create()` method for example, currently it returns only "201 Created" response by default. That is of course if the item is in fact created, or a "204 No Content" if no data is passed in the POST Body.  However, there is no documentation to know that or any other response. That can be fixed by adding the following piece of code.
+Take the `Create` method for example. It returns only a "201 Created" response, by default. That is, of course, if the item is in fact created, or a "204 No Content" if no data is passed in the POST Body. However, there is no documentation to know that or any other response. That can be fixed by adding the following piece of code:
 
-[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Create_Method&highlight=17,18,20,21)]
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create&highlight=17,18,20,21)]
 
 ![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](web-api-help-pages-using-swagger/_static/data-annotations-response-types.png)
 
 ### Customizing the UI
 
-The stock UI is very functional as well as presentable, however when building documentation pages for your API you want it to represent your brand or look and feel.
+The stock UI is both functional and presentable; however, when building documentation pages for your API, you want it to represent your brand or theme. Accomplishing that task with the Swashbuckle components requires adding the resources to serve static files and then building the folder structure to host those files.
 
-Accomplishing that task with the Swashbuckle components is simple but requires adding the resources to serve static files that would not normally be included in a Web API project and then building the folder structure to host those files.
+If targeting .NET Framework, add the `Microsoft.AspNetCore.StaticFiles` NuGet package to the project:
 
-Add the `"Microsoft.AspNetCore.StaticFiles": "1.0.0-*"` NuGet package to the project.
-
-Enable static files middleware.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4]}} -->
-
-```csharp
-// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-   public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-   {
-       // Enable static files middleware.
-       app.UseStaticFiles();
-
-       app.UseMvcWithDefaultRoute();
-
-        // Enable middleware to serve generated Swagger as a JSON endpoint.
-        app.UseSwagger();
-
-        // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        });
-   }
-   ```
-
-Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/1.0.0-rc1/test/WebSites/CustomIndexHtml/wwwroot/swagger/index.html>`_ and put that in the `wwwroot/swagger` folder and also create a new `custom.css` file in the same folder.
-
-![Solution Explorer showing Swagger UI custom css and html files within the wwwroot folder of the application](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
-
-Reference *custom.css* in the *index.html* file.
-
-```html
-<link href='custom.css' media='screen' rel='stylesheet' type='text/css' />
+```xml
+<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
 ```
 
-The following CSS provides a simple sample of a custom header title to the page.
+Enable the static files middleware:
 
-*custom.css file*
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?name=snippet_Configure&highlight=3)]
 
-[!code-css[Main](web-api-help-pages-using-swagger/sample/src/TodoApi/wwwroot/swagger/custom.css)]
+Acquire the contents of the *dist* folder, used for the Swagger UI page, from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/2.x/dist). Copy the contents of that folder into your *wwwroot/swagger/ui* folder:
 
-*index.html body*
+![Solution Explorer showing Swagger UI custom CSS and HTML files in wwwroot](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
 
-```html
-<body class="swagger-section">
-   <div id="header">
-    <h1>ToDo API Documentation</h1>
-   </div>
+Create a *custom.css* file in the *wwwroot/swagger/ui/css* folder. The file should contain the following CSS, which provides a basic header title for the page:
 
-   <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
-   <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
-</body>
-```
+[!code-css[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/wwwroot/swagger/ui/css/custom.css)]
+
+Reference *custom.css* in the *index.html* file:
+
+[!code-html[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/wwwroot/swagger/ui/index.html?range=14)]
+
+The resulting page looks as follows:
 
 ![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
 
-There is much more you can do with the page, see the full capabilities for the UI resources at the [Swagger UI Github repository](https://github.com/swagger-api/swagger-ui).
+There is much more you can do with the page. See the full capabilities for the UI resources at the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui).
