@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ResponseFormattingSample.Infrastructure;
 using ResponseFormattingSample.Interfaces;
-using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Newtonsoft.Json.Serialization;
 
 namespace ResponseFormattingSample
@@ -29,12 +30,10 @@ namespace ResponseFormattingSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                //set global format to xml
-                options.Filters.Add(new ProducesAttribute("application/xml"));
-            })
+            #region snippet1
+            services.AddMvc()
                 .AddXmlSerializerFormatters();
+            #endregion
 
             services.AddScoped<IAuthorRepository, AuthorRepository>();
         }
@@ -56,13 +55,7 @@ namespace ResponseFormattingSample
             }
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
