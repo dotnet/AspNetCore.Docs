@@ -23,27 +23,27 @@ uid: getting-started
 
    On macOS and Linux, open a terminal window. On Windows, open a command prompt.
 
-   ```terminal
-   dotnet new razor -o aspnetcoreapp
-   ```
+    ```terminal
+    dotnet new razor -o aspnetcoreapp
+    ```
     
 4. Run the app.
 
     Use the following commands to run the app:
 
-   ```terminal
-   cd aspnetcoreapp
-   dotnet run
-   ```
+    ```terminal
+    cd aspnetcoreapp
+    dotnet run
+    ```
 
 5. Browse to [http://localhost:5000](http://localhost:5000)
 
 6. Open Pages/Index.cshtml and add the following to the page above the carousel:
 
-[!code-html[Main](getting-started/sample/getting-started/index.cshtml?range=18-23&highlight=19)]
-```cshtml
-Hello, world! The time on the server is @DateTime.Now
-```
+    [!code-html[Main](getting-started/sample/getting-started/index.cshtml?range=18-23&highlight=19)]
+    ```cshtml
+    Hello, world! The time on the server is @DateTime.Now
+    ```
 
 7. Browse to [http://localhost:5000](http://localhost:5000) and verify the changes.
 
