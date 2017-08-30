@@ -91,7 +91,7 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 [!code-csharp[Main](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
-Formatters are evaluated in the order you insert them.The first one takes precedence. 
+Formatters are evaluated in the order you insert them. The first one takes precedence. 
 
 ## Next steps
 
