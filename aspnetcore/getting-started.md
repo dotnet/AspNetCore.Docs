@@ -29,7 +29,7 @@ uid: getting-started
     
 4. Run the app.
 
-   Change to the `aspnetcoreapp` directory and issue the `dotnet run` command. The `dotnet run` command builds the app first if needed.
+    Use the following commands to run the app:
 
    ```terminal
    cd aspnetcoreapp
