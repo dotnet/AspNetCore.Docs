@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,8 +8,8 @@ using TodoApi.Models;
 
 namespace TodoApi
 {
-    public class Startup
-    {       
+    public class Startup2
+    {
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
@@ -19,20 +19,7 @@ namespace TodoApi
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Version = "v1",
-                    Title = "ToDo API",
-                    Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = "None",
-                    Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "https://twitter.com/spboyer" },
-                    License = new License { Name = "Use under LICX", Url = "https://example.com/license" }
-                });
-
-                // Set the comments path for the Swagger JSON and UI.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
-                c.IncludeXmlComments(xmlPath);                
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
         }
         #endregion
@@ -40,8 +27,6 @@ namespace TodoApi
         #region snippet_Configure
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -51,7 +36,7 @@ namespace TodoApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
         #endregion
     }

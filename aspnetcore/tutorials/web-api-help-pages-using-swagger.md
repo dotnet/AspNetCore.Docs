@@ -59,38 +59,11 @@ You can add Swashbuckle with any of the following approaches:
 
 Add the Swagger generator to the services collection in the `ConfigureServices` method of *Startup.cs*:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
-    services.AddMvc();
-
-    // Register the Swagger generator, defining one or more Swagger documents
-    services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-    });
-}
-```
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup2.cs?name=snippet_ConfigureServices&highlight=7-10)]
 
 In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated JSON document and the SwaggerUI:
 
-```csharp
-// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-public void Configure(IApplicationBuilder app)
-{
-    // Enable middleware to serve generated Swagger as a JSON endpoint.
-    app.UseSwagger();
-
-    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    });
-
-    app.UseMvcWithDefaultRoute();
-}
-```
+[!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup2.cs?name=snippet_Configure&highlight=4,7-10)]
 
 Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the generated document that describes the endpoints.
 
