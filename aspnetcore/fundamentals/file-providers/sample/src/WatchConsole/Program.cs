@@ -8,11 +8,14 @@ namespace WatchConsole
 {
     public class Program
     {
+        #region snippet1
         private static PhysicalFileProvider _fileProvider = 
             new PhysicalFileProvider(Directory.GetCurrentDirectory());
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Monitoring quotes.txt for changes (ctrl-c to quit)...");
+            Console.WriteLine("Monitoring quotes.txt for changes (Ctrl-c to quit)...");
+
             while (true)
             {
                 MainAsync().GetAwaiter().GetResult();
@@ -23,10 +26,14 @@ namespace WatchConsole
         {
             IChangeToken token = _fileProvider.Watch("quotes.txt");
             var tcs = new TaskCompletionSource<object>();
+
             token.RegisterChangeCallback(state => 
                 ((TaskCompletionSource<object>)state).TrySetResult(null), tcs);
+
             await tcs.Task.ConfigureAwait(false);
+
             Console.WriteLine("quotes.txt changed");
         }
+        #endregion
     }
 }
