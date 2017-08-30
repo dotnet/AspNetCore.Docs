@@ -40,7 +40,7 @@ uid: getting-started
 
 6. Open Pages/Index.cshtml and add the following to the page above the carousel:
 
-[!code-html[Main](../../getting-started/sample/getting-started/index.cshtml?range=18-23&highlight=19)]
+[!code-html[Main](getting-started/sample/getting-started/index.cshtml?range=18-23&highlight=19)]
 ```cshtml
 Hello, world! The time on the server is @DateTime.Now
 ```
