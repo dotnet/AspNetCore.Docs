@@ -23,6 +23,8 @@ Before an app stores data in a database, the app must validate the data. Data mu
 
 Fortunately, .NET has abstracted validation into validation attributes. These attributes contain validation code, thereby reducing the amount of code you must write.
 
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/validation/sample).
+
 ## Validation Attributes
 
 Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in database tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
@@ -59,7 +61,7 @@ There may be instances where you need more features than built-in attributes pro
 
 Model state represents validation errors in submitted HTML form values.
 
-MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the `ConfigureServices` method in the `Startup.cs` file:
+MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the `ConfigureServices` method in the *Startup.cs* file:
 
 [!code-csharp[Main](validation/sample/Startup.cs?range=27)]
 
@@ -101,29 +103,27 @@ You must have a view with the proper JavaScript script references in place for c
 
 [!code-html[Main](validation/sample/Views/Shared/_ValidationScriptsPartial.cshtml)]
 
-MVC uses validation attributes in addition to type metadata from model properties to validate data and display any error messages using JavaScript. When you use MVC to render form elements from a model using [Tag Helpers](https://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html) or [HTML helpers](https://docs.asp.net/en/latest/mvc/views/html-helpers.html) it will add HTML 5 [data- attributes](http://w3c.github.io/html/dom.html#embedding-custom-non-visible-data-with-the-data-attributes) in the form elements that need validation, as shown below. MVC generates the `data-` attributes for both built-in and custom attributes. You can display validation errors on the client using the relevant tag helpers as shown here:
+MVC uses validation attributes in addition to type metadata from model properties to validate data and display any error messages using JavaScript. When you use MVC to render form elements from a model using [Tag Helpers](xref:mvc/views/tag-helpers/intro) or [HTML helpers](xref:mvc/views/overview) it will add HTML 5 [data- attributes](http://w3c.github.io/html/dom.html#embedding-custom-non-visible-data-with-the-data-attributes) in the form elements that need validation, as shown below. MVC generates the `data-` attributes for both built-in and custom attributes. You can display validation errors on the client using the relevant tag helpers as shown here:
 
 [!code-html[Main](validation/sample/Views/Movies/Create.cshtml?highlight=4,5&range=19-25)]
 
 The tag helpers above render the HTML below. Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `ReleaseDate` property. The `data-val-required` attribute below contains an error message to display if the user doesn't fill in the release date field, and that message displays in the accompanying `<span>` element.
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [8, 9, 10, 11, 12]}} -->
-
 ```html
-<form action="/movies/Create" method="post">
-  <div class="form-horizontal">
-    <h4>Movie</h4>
-    <div class="text-danger"></div>
-    <div class="form-group">
-      <label class="col-md-2 control-label" for="ReleaseDate">ReleaseDate</label>
-      <div class="col-md-10">
-        <input class="form-control" type="datetime"
-        data-val="true" data-val-required="The ReleaseDate field is required."
-        id="ReleaseDate" name="ReleaseDate" value="" />
-        <span class="text-danger field-validation-valid"
-        data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
-      </div>
-    </div>
+<form action="/Movies/Create" method="post">
+    <div class="form-horizontal">
+        <h4>Movie</h4>
+        <div class="text-danger"></div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="ReleaseDate">ReleaseDate</label>
+            <div class="col-md-10">
+                <input class="form-control" type="datetime"
+                data-val="true" data-val-required="The ReleaseDate field is required."
+                id="ReleaseDate" name="ReleaseDate" value="" />
+                <span class="text-danger field-validation-valid"
+                data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
+            </div>
+        </div>
     </div>
 </form>
 ```
@@ -143,7 +143,7 @@ Attributes that implement this interface can add HTML attributes to generated fi
 ```html
 <input class="form-control" type="datetime"
 data-val="true"
-data-val-classicmovie="Classic movies must have a release year earlier than 1960"
+data-val-classicmovie="Classic movies must have a release year earlier than 1960."
 data-val-classicmovie-year="1960"
 data-val-required="The ReleaseDate field is required."
 id="ReleaseDate" name="ReleaseDate" value="" />
