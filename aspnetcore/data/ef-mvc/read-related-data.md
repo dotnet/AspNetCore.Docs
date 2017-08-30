@@ -190,6 +190,7 @@ You've made the following changes to the existing code:
   {
       selectedRow = "success";
   }
+  <tr class="@selectedRow">
   ```
 
 * Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.
