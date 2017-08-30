@@ -5,7 +5,7 @@ description: A quick tutorial that creates and runs a simple Hello World app usi
 keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
-ms.date: 08/07/2017
+ms.date: 08/30/2017
 ms.topic: get-started-article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
@@ -40,7 +40,7 @@ uid: getting-started
 
 6. Open Pages/Index.cshtml and add the following to the page above the carousel:
 
-[!code-html[Main](../../getting-started/sample/getting-started/pages.cshtml?range=18-23)]
+[!code-html[Main](../../getting-started/sample/getting-started/index.cshtml?range=18-23&highlight=19)]
 ```cshtml
 Hello, world! The time on the server is @DateTime.Now
 ```
