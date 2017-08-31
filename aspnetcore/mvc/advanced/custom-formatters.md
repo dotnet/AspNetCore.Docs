@@ -91,6 +91,8 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 [!code-csharp[Main](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
+Formatters are evaluated in the order you insert them. The first one takes precedence. 
+
 ## Next steps
 
 See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/Sample), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
