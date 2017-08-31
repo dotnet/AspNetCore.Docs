@@ -1,7 +1,7 @@
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
-## [Create a Web app](xref:mvc/razor-pages/index)
+## [Create a Web app](xref:tutorials/first-mvc-app/start-mvc)
 ## [Create a Web API](xref:tutorials/first-web-api)
 
 # [Tutorials](tutorials/index.md)
