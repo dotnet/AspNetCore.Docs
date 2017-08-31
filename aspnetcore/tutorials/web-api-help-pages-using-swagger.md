@@ -278,7 +278,7 @@ Enable the static files middleware:
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?name=snippet_Configure&highlight=3)]
 
-Acquire the contents of the *dist* folder, used for the Swagger UI page, from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/2.x/dist). Copy the contents of that folder into your *wwwroot/swagger/ui* folder:
+Acquire the contents of the *dist* folder from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/2.x/dist). This folder contains the necessary assets for the Swagger UI page. Copy the contents of that folder into your *wwwroot/swagger/ui* folder:
 
 ![Solution Explorer showing Swagger UI custom CSS and HTML files in wwwroot](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
 
