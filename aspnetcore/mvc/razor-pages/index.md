@@ -67,7 +67,7 @@ Consider a basic page:
 
 The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function-level content.
 
-A similar page, with the `PageModel` in a separate file, is shown in the following two files: The *Pages/Index2.cshtml* file:
+A similar page, with the `PageModel` in a separate file, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
@@ -356,23 +356,7 @@ You can use `@page` to add additional segments and parameters to a page's route.
 
 To configure advanced options, use the extension method `AddRazorPagesOptions` on the MVC builder:
 
-<!-- Review - please update the sample code to configure advanced options  and I'll import the snippet
--->
-
-```c#
-public class Startup
-{
-    public void ConfigureServices(IServiceCollections services)
-    {
-        services.AddMvc().AddRazorPagesOptions(options =>
-        {
-           ...
-        });
-    }
-
-    ...
-}
-```
+[!code-cs[main](index/sample/RazorPagesContacts/StartupAdvanced.cs?name=snippet1)]
 
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
