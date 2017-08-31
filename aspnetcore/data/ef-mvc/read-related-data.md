@@ -180,7 +180,7 @@ You've made the following changes to the existing code:
   }
   ```
 
-* Added a **Courses** column that displays courses taught by each instructor.
+* Added a **Courses** column that displays courses taught by each instructor. See [Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-label) for more about this razor syntax.
 
 * Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
 
@@ -190,6 +190,7 @@ You've made the following changes to the existing code:
   {
       selectedRow = "success";
   }
+  <tr class="@selectedRow">
   ```
 
 * Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.

@@ -12,7 +12,7 @@ ms.prod: asp.net-core
 uid: tutorials/first-web-api
 ---
 
-#Create a web API with ASP.NET Core MVC and Visual Studio for Windows
+#Create a web API with ASP.NET Core and Visual Studio for Windows
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
