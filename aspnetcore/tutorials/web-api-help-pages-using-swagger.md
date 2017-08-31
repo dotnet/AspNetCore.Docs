@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Web API Help Pages using Swagger
 author: spboyer
-description: This tutorial provides a walk through of adding Swagger to generate documentation and help pages for a Web API application.
+description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API application.
 keywords: ASP.NET Core,Swagger
 ms.author: spboyer
 manager: wpickett
