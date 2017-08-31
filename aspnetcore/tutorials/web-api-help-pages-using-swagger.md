@@ -224,7 +224,33 @@ Notice the UI enhancements with these additional comments.
 
 You can decorate the API controller with `System.ComponentModel.DataAnnotations` to help drive the Swagger UI components.
 
-Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class changes the ModelSchema information in the UI. `[Produces("application/json")]`, `RegularExpression` validators, and more, further detail the information delivered in the generated page. The more metadata that is in the code, the more descriptive the UI or API help page becomes.
+Adding the `[Required]` annotation to the `Name` property of the `TodoItem` class changes the UI behavior and alters the underlying JSON schema:
+
+```json
+"definitions": {
+    "TodoItem": {
+        "required": [
+            "name"
+        ],
+        "type": "object",
+        "properties": {
+            "id": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "name": {
+                "type": "string"
+            },
+            "isComplete": {
+                "default": false,
+                "type": "boolean"
+            }
+        }
+    }
+},
+```
+
+`[Produces("application/json")]`, `RegularExpression` validators, and more, further detail the information delivered in the generated page. The more metadata that is in the code, the more descriptive the UI or API help page becomes.
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Models/TodoItem.cs?highlight=10)]
 
