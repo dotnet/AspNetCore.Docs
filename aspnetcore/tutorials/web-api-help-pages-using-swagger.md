@@ -121,18 +121,19 @@ Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<ra
    "definitions": {
        "TodoItem": {
            "type": "object",
-           "properties": {
-               "id": {
-                   "format": "int64",
-                   "type": "integer"
-               },
-               "name": {
-                   "type": "string"
-               },
-               "isComplete": {
-                   "type": "boolean"
-               }
-           }
+            "properties": {
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "isComplete": {
+                    "default": false,
+                    "type": "boolean"
+                }
+            }
        }
    },
    "securityDefinitions": {}
@@ -180,34 +181,34 @@ Adding the triple-slash comments to the method enhances the Swagger UI by adding
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Delete&highlight=2)]
 
-![Swagger UI showing XML comment 'Deletes a specific To do Item' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
+![Swagger UI showing XML comment 'Deletes a specific TodoItem.' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
 
 Note that the UI is driven by the generated JSON file. These comments are in that file as well.
 
 ```json
 "delete": {
-  "tags": [
-    "Todo"
-  ],
-  "summary": "Deletes a specific TodoItem",
-  "operationId": "ApiTodoByIdDelete",
-  "consumes": [],
-  "produces": [],
-  "parameters": [
-    {
-      "name": "id",
-      "in": "path",
-      "description": "",
-      "required": true,
-      "type": "string"
+    "tags": [
+        "Todo"
+    ],
+    "summary": "Deletes a specific TodoItem.",
+    "operationId": "ApiTodoByIdDelete",
+    "consumes": [],
+    "produces": [],
+    "parameters": [
+        {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        }
+    ],
+    "responses": {
+        "200": {
+            "description": "Success"
+        }
     }
-  ],
-  "responses": {
-    "204": {
-      "description": "No Content"
-    }
-  },
-  "deprecated": false
 }
 ```
 

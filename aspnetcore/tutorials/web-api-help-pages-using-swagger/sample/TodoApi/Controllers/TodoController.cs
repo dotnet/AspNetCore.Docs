@@ -47,20 +47,20 @@ namespace TodoApi.Controllers
         /// Creates a TodoItem.
         /// </summary>
         /// <remarks>
-        /// Note that the key is a GUID and not an integer.
-        ///  
+        /// Sample request:
+        ///
         ///     POST /Todo
         ///     {
-        ///        "key": "0e7ad584-7788-4ab1-95a6-ca0a5b444cbb",
+        ///        "id": 1,
         ///        "name": "Item1",
         ///        "isComplete": true
         ///     }
-        /// 
+        ///
         /// </remarks>
         /// <param name="item"></param>
-        /// <returns>New Created Todo Item</returns>
-        /// <response code="201">Returns the newly created item</response>
-        /// <response code="400">If the item is null</response>        
+        /// <returns>A newly-created TodoItem</returns>
+        /// <response code="201">Returns the newly-created item</response>
+        /// <response code="400">If the item is null</response>            
         [HttpPost]
         [ProducesResponseType(typeof(TodoItem), 201)]
         [ProducesResponseType(typeof(TodoItem), 400)]
@@ -123,4 +123,3 @@ namespace TodoApi.Controllers
         #endregion
     }
 }
-
