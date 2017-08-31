@@ -1,8 +1,8 @@
 ---
-title: Testing Controller Logic
+title: Testing controller logic in ASP.NET Core
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Learn how to test controller logic in ASP.NET Core with Moq and xUnit.
+keywords: ASP.NET Core,controller,test,testing,unit test,unit testing,integration test,integration testing,xUnit
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: mvc/controllers/testing
 ---
-# Testing controllers
+# Testing controller logic in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
@@ -20,7 +20,7 @@ Controllers in ASP.NET MVC apps should be small and focused on user-interface co
 
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/testing/sample)
 
-## Why Test Controllers
+## Testing controllers
 
 Controllers are a central part of any ASP.NET Core MVC application. As such, you should have confidence they behave as intended for your app. Automated tests can provide you with this confidence and can detect errors before they reach production. It's important to avoid placing unnecessary responsibilities within your controllers and ensure your tests focus only on controller responsibilities.
 
@@ -28,19 +28,14 @@ Controller logic should be minimal and not be focused on business logic or infra
 
 Typical controller responsibilities:
 
-* Verify `ModelState.IsValid`
+* Verify `ModelState.IsValid`.
+* Return an error response if `ModelState` is invalid.
+* Retrieve a business entity from persistence.
+* Perform an action on the business entity.
+* Save the business entity to persistence.
+* Return an appropriate `IActionResult`.
 
-* Return an error response if `ModelState` is invalid
-
-* Retrieve a business entity from persistence
-
-* Perform an action on the business entity
-
-* Save the business entity to persistence
-
-* Return an appropriate `IActionResult`
-
-## Unit Testing
+## Unit testing
 
 [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test) involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action is tested, not the behavior of its dependencies or of the framework itself. As you unit test your controller actions, make sure you focus only on its behavior. A controller unit test avoids things like [filters](filters.md), [routing](../../fundamentals/routing.md), or [model binding](../models/model-binding.md). By focusing on testing just one thing, unit tests are generally simple to write and quick to run. A well-written set of unit tests can be run frequently without much overhead. However, unit tests do not detect issues in the interaction between components, which is the purpose of [integration testing](xref:mvc/controllers/testing#integration-testing).
 
@@ -100,13 +95,13 @@ The second test depends on the repository returning null, so the mock repository
 
 The last test verifies that the repository's `Update` method is called. As we did previously, the mock is called with `Verifiable` and then the mocked repository's `Verify` method is called to confirm the verifiable method was executed. It's not a unit test responsibility to ensure that the `Update` method saved the data; that can be done with an integration test.
 
-## Integration Testing
+## Integration testing
 
 [Integration testing](../../testing/integration-testing.md) is done to ensure separate modules within your app work correctly together. Generally, anything you can test with a unit test, you can also test with an integration test, but the reverse isn't true. However, integration tests tend to be much slower than unit tests. Thus, it's best to test whatever you can with unit tests, and use integration tests for scenarios that involve multiple collaborators.
 
 Although they may still be useful, mock objects are rarely used in integration tests. In unit testing, mock objects are an effective way to control how collaborators outside of the unit being tested should behave for the purposes of the test. In an integration test, real collaborators are used to confirm the whole subsystem works together correctly.
 
-### Application State
+### Application state
 
 One important consideration when performing integration testing is how to set your app's state. Tests need to run independent of one another, and so each test should start with the app in a known state. If your app doesn't use a database or have any persistence, this may not be an issue. However, most real-world apps persist their state to some kind of data store, so any modifications made by one test could impact another test unless the data store is reset. Using the built-in `TestServer`, it's very straightforward to host ASP.NET Core apps within our integration tests, but that doesn't necessarily grant access to the data it will use. If you're using an actual database, one approach is to have the app connect to a test database, which your tests can access and ensure is reset to a known state before each test executes.
 
@@ -114,11 +109,11 @@ In this sample application, I'm using Entity Framework Core's InMemoryDatabase s
 
 The `Startup` class:
 
-[!code-csharp[Main](testing/sample/TestingControllersSample/src/TestingControllersSample/Startup.cs?highlight=19,20,38,39,47,56)]
+[!code-csharp[Main](testing/sample/TestingControllersSample/src/TestingControllersSample/Startup.cs?highlight=19,20,34,35,43,52)]
 
 You'll see the `GetTestSession` method used frequently in the integration tests below.
 
-### Accessing Views
+### Accessing views
 
 Each integration test class configures the `TestServer` that will run the ASP.NET Core app. By default, `TestServer` hosts the web app in the folder where it's running - in this case, the test project folder. Thus, when you attempt to test controller actions that return `ViewResult`, you may see this error:
 
@@ -131,7 +126,7 @@ The view 'Index' was not found. The following locations were searched:
 
 To correct this issue, you need to configure the server's content root, so it can locate the views for the project being tested. This is done by a call to `UseContentRoot` in the `TestFixture` class, shown below:
 
-[!code-csharp[Main](testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/TestFixture.cs?highlight=32,35)]
+[!code-csharp[Main](testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/TestFixture.cs?highlight=30,33)]
 
 The `TestFixture` class is responsible for configuring and creating the `TestServer`, setting up an `HttpClient` to communicate with the `TestServer`. Each of the integration tests uses the `Client` property to connect to the test server and make a request.
 
@@ -141,7 +136,7 @@ In the first test above, the `responseString` holds the actual rendered HTML fro
 
 The second test constructs a form POST with a unique session name and POSTs it to the app, then verifies that the expected redirect is returned.
 
-### API Methods
+### API methods
 
 If your app exposes web APIs, it's a good idea to have automated tests confirm they execute as expected. The built-in `TestServer` makes it easy to test web APIs. If your API methods are using model binding, you should always check `ModelState.IsValid`, and integration tests are the right place to confirm that your model validation is working properly.
 

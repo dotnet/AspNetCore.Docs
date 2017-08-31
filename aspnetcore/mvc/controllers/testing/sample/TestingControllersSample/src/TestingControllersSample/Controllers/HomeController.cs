@@ -46,14 +46,16 @@ namespace TestingControllersSample.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            await _sessionRepository.AddAsync(new BrainstormSession()
+            else
             {
-                DateCreated = DateTimeOffset.Now,
-                Name = model.SessionName
-            });
+                await _sessionRepository.AddAsync(new BrainstormSession()
+                {
+                    DateCreated = DateTimeOffset.Now,
+                    Name = model.SessionName
+                });
+            }
 
-            return RedirectToAction("Index");
+            return RedirectToAction(actionName: nameof(Index));
         }
     }
 }
