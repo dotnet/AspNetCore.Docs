@@ -16,7 +16,7 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 <a name=web-api-help-pages-using-swagger></a>
 
-By [Shayne Boyer](https://twitter.com/spboyer)
+By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application.
 
@@ -36,7 +36,7 @@ There are three main components to Swashbuckle:
 
 * `Swashbuckle.AspNetCore.SwaggerGen`: a Swagger generator that builds `SwaggerDocument` objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
 
-* `Swashbuckle.AspNetCore.SwaggerUI`: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich, customizable experience for describing the Web API functionality. It includes built-in test harness capabilities for the public methods.
+* `Swashbuckle.AspNetCore.SwaggerUI`: an embedded version of the Swagger UI tool which interprets Swagger JSON to build a rich, customizable experience for describing the Web API functionality. It includes built-in test harnesses for the public methods.
 
 ## NuGet Packages
 
@@ -80,43 +80,42 @@ Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<ra
    "basePath": "/",
    "paths": {
        "/api/Todo": {
-       "get": {
-           "tags": [
-               "Todo"
-           ],
-           "operationId": "ApiTodoGet",
-           "consumes": [],
-           "produces": [
-               "text/plain",
-               "application/json",
-               "text/json"
-           ],
-           "responses": {
-           "200": {
-               "description": "OK",
-               "schema": {
-                   "type": "array",
-                   "items": {
-                       "$ref": "#/definitions/TodoItem"
+           "get": {
+               "tags": [
+                   "Todo"
+               ],
+               "operationId": "ApiTodoGet",
+               "consumes": [],
+               "produces": [
+                   "text/plain",
+                   "application/json",
+                   "text/json"
+               ],
+               "responses": {
+                   "200": {
+                       "description": "Success",
+                       "schema": {
+                           "type": "array",
+                           "items": {
+                               "$ref": "#/definitions/TodoItem"
+                           }
+                       }
                    }
-               }
+                }
+           },
+           "post": {
+               ...
            }
-        },
-        "deprecated": false
-       },
-       "post": {
-           ...
-       }
        },
        "/api/Todo/{id}": {
-       "get": {
-           ...
-       },
-       "put": {
-           ...
-       },
-       "delete": {
-           ...
+           "get": {
+               ...
+           },
+           "put": {
+               ...
+           },
+           "delete": {
+               ...
    },
    "definitions": {
        "TodoItem": {
@@ -137,7 +136,7 @@ Press *F5* in Visual Studio to launch the app. Navigate to `http://localhost:<ra
        }
    },
    "securityDefinitions": {}
-   }
+}
 ```
 
 This document drives the Swagger UI, which can be viewed by navigating to `http://localhost:<random_port>/swagger`:
