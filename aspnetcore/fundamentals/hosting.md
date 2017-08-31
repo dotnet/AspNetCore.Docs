@@ -1,11 +1,11 @@
 ---
 title: Hosting in ASP.NET Core
-author: ardalis
+author: guardrex
 description: Learn about the web host in ASP.NET Core, which is responsible for app startup and lifetime management.
-keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder
+keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder,IHostingEnvironment,IApplicationLifetime
 ms.author: riande
 manager: wpickett
-ms.date: 08/27/2017
+ms.date: 08/31/2017
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
@@ -15,7 +15,7 @@ ms.custom: H1Hack27Feb2017
 ---
 # Hosting in ASP.NET Core
 
-By [Steve Smith](http://ardalis.com)
+By [Luke Latham](https://github.com/guardrex)
 
 ASP.NET Core apps configure and launch a *host*, which is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline.
 
@@ -80,15 +80,15 @@ When setting up a host, you can provide `Configure` and `ConfigureServices` meth
 
 ## Host configuration values
 
-`WebHostBuilder` provides methods for setting most of the available configuration values for the host, which can also be set directly with `UseSetting` and the associated key.
+`WebHostBuilder` provides methods for setting most of the available configuration values for the host, which can also be set directly with `UseSetting` and the associated key. When setting a value with `UseSetting`, the value is set as a string (in quotes) regardless of the type.
 
 ### Capture Startup Errors
 
 This setting controls the capture of startup errors.
 
-**Key**: `captureStartupErrors`  
-**Type**: `bool` (`true` or `1`)  
-**Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
+**Key**: captureStartupErrors  
+**Type**: *bool* ("true" or "1")  
+**Default**: Defaults to "false" unless the app runs with Kestrel behind IIS, where the default is "true".  
 **Set using**: `CaptureStartupErrors`
 
 When `false`, errors during startup result in the host exiting. When `true`, the host captures any exceptions from the `Startup` class and attempts to start the server. It displays an error page for every request. The error page is either generic or detailed based on the [Detailed Errors setting](#detailed-errors).
@@ -115,8 +115,8 @@ var host = new WebHostBuilder()
 
 This setting determines where ASP.NET Core begins searching for content files, such as MVC Views. 
 
-**Key**: `contentRoot`  
-**Type**: `string`  
+**Key**: contentRoot  
+**Type**: *string*  
 **Default**: Defaults to the folder where the app assembly resides.  
 **Set using**: `UseContentRoot`
 
@@ -144,9 +144,9 @@ var host = new WebHostBuilder()
 
 Determines if detailed errors should be captured.
 
-**Key**: `detailedErrors`  
-**Type**: `bool` (`true` or `1`)  
-**Default**: `false`  
+**Key**: detailedErrors  
+**Type**: *bool* ("true" or "1")  
+**Default**: false  
 **Set using**: `UseSetting`
 
 When `true` (or when the *Environment* is set to `Development`), the app displays details of startup exceptions, instead of a generic error page.
@@ -171,19 +171,19 @@ var host = new WebHostBuilder()
 
 When *Detailed Errors* is set to `false` and [Capture Startup Errors](#capture-startup-errors) is `true`, a generic error page is displayed in response to every request to the server.
 
-![Generic error page](hosting/_static/generic-error-page.png)
+![Generic error page](hosting/_static/genericerrorpage.png)
 
 When *Detailed Errors* is set to `true` and [Capture Startup Errors](#capture-startup-errors) is `true`, a detailed error page is displayed in response to every request to the server.
 
-![Detailed error page](hosting/_static/detailed-error-page.png)
+![Detailed error page](hosting/_static/detailederrorpage.png)
 
 ### Environment
 
 Sets the app's environment.
 
-**Key**: `environment`  
-**Type**: `string`  
-**Default**: `Production`  
+**Key**: environment  
+**Type**: *string*  
+**Default**: Production  
 **Set using**: `UseEnvironment`
 
 You can set the *Environment* to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using Visual Studio, environment variables may be set in the *launchSettings.json* file. For more information, see [Working with Multiple Environments](environments.md).
@@ -210,8 +210,8 @@ var host = new WebHostBuilder()
 
 Sets the app's hosting startup assemblies.
 
-**Key**: `hostingStartupAssemblies`  
-**Type**: `string`  
+**Key**: hostingStartupAssemblies  
+**Type**: *string*  
 **Default**: Empty string  
 **Set using**: `UseSetting`
 
@@ -241,9 +241,9 @@ var host = new WebHostBuilder()
 
 Indicates whether the host should listen on the URLs configured with the `WebHostBuilder` instead of those configured with the `IServer` implementation.
 
-**Key**: `preferHostingUrls`  
-**Type**: `bool` (`true` or `1`)  
-**Default**: `true`  
+**Key**: preferHostingUrls  
+**Type**: *bool* ("true" or "1")  
+**Default**: true  
 **Set using**: `UseSetting`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -268,9 +268,9 @@ var host = new WebHostBuilder()
 
 Prevents the automatic loading of hosting startup assemblies, including the app's assembly.
 
-**Key**: `preventHostingStartup`  
-**Type**: `bool` (`true` or `1`)  
-**Default**: `false`  
+**Key**: preventHostingStartup  
+**Type**: *bool* ("true" or "1")  
+**Default**: false  
 **Set using**: `UseSetting`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -295,9 +295,9 @@ var host = new WebHostBuilder()
 
 Indicates the IP addresses or host addresses with ports and protocols that the server should listen on for requests.
 
-**Key**: `urls`  
-**Type**: `string`  
-**Default**: `http://localhost:5000`  
+**Key**: urls  
+**Type**: *string*  
+**Default**: http://localhost:5000  
 **Set using**: `UseUrls`
 
 Set to a semicolon-separated (;) list of URL prefixes to which the server should respond. For example, `http://localhost:123`. Use "\*" to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, `http://*:5000`). The protocol (`http://` or `https://`) must be included with each URL. Supported formats vary between servers.
@@ -326,9 +326,9 @@ var host = new WebHostBuilder()
 
 Specifies the amount of time to wait for the web host to shutdown.
 
-**Key**: `shutdownTimeoutSeconds`  
-**Type**: `int` (converted to a `TimeSpan` internally)  
-**Default**: `5`  
+**Key**: shutdownTimeoutSeconds  
+**Type**: *int*  
+**Default**: 5  
 **Set using**: `UseSetting`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -353,8 +353,8 @@ var host = new WebHostBuilder()
 
 Determines the assembly to search for the `Startup` class.
 
-**Key**: `startupAssembly`  
-**Type**: `string`  
+**Key**: startupAssembly  
+**Type**: *string*  
 **Default**: The app's assembly  
 **Set using**: `UseStartup`
 
@@ -394,9 +394,9 @@ var host = new WebHostBuilder()
 
 Sets the relative path to the app's static assets.
 
-**Key**: `webroot`  
-**Type**: `string`  
-**Default**: If not specified, the default is `(Content Root)/wwwroot`, if the path exists. If the path doesn't exist, then a non-operational file provider is used.  
+**Key**: webroot  
+**Type**: *string*  
+**Default**: If not specified, the default is "(Content Root)/wwwroot", if the path exists. If the path doesn't exist, then a non-operational file provider is used.  
 **Set using**: `UseWebRoot`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -503,6 +503,54 @@ To specify the host run on a particular URL, you could pass in the desired value
 ```console
 dotnet run --urls "http://*:8080"
 ```
+
+## Ordering importance
+
+Some of the `WebHostBuilder` settings are first read from environment variables, if set. These environment variables use the format `ASPNETCORE_{configurationKey}`. For example to set the URLs that the server listens on by default, you set `ASPNETCORE_URLS`.
+
+You can override any of these environment variable values by specifying configuration (using `UseConfiguration`) or by setting the value explicitly (using `UseUrls` for instance). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL:
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```csharp
+public static IWebHost BuildWebHost(string[] args)
+{
+    var config = new ConfigurationBuilder()
+        .AddCommandLine(args)
+        .Build();
+
+    return WebHost.CreateDefaultBuilder(args)
+        .UseUrls("http://*:5005") // default URL sets port 5005
+        .UseConfiguration(config) // override from command line
+        .Configure(app =>
+        {
+            app.Run(async context => 
+                await context.Response.WriteAsync("Hello, World!"));
+        })
+        .Build();
+}
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+var config = new ConfigurationBuilder()
+    .AddCommandLine(args)
+    .Build();
+
+var host = new WebHostBuilder()
+    .UseUrls("http://*:5005") // default URL sets port 5005
+    .UseConfiguration(config) // override from command line
+    .UseKestrel()
+    .Configure(app =>
+    {
+        app.Run(async context => 
+            await context.Response.WriteAsync("Hello, World!"));
+    })
+    .Build();
+```
+
+---
 
 ## Starting the host
 
@@ -730,54 +778,6 @@ using (host)
 {
     Console.ReadLine();
 }
-```
-
----
-
-## Ordering importance
-
-Some of the `WebHostBuilder` settings are first read from environment variables, if set. These environment variables use the format `ASPNETCORE_{configurationKey}`. For example to set the URLs that the server listens on by default, you set `ASPNETCORE_URLS`.
-
-You can override any of these environment variable values by specifying configuration (using `UseConfiguration`) or by setting the value explicitly (using `UseUrls` for instance). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL:
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-```csharp
-public static IWebHost BuildWebHost(string[] args)
-{
-    var config = new ConfigurationBuilder()
-        .AddCommandLine(args)
-        .Build();
-
-    return WebHost.CreateDefaultBuilder(args)
-        .UseUrls("http://*:5005") // default URL sets port 5005
-        .UseConfiguration(config) // override from command line
-        .Configure(app =>
-        {
-            app.Run(async context => 
-                await context.Response.WriteAsync("Hello, World!"));
-        })
-        .Build();
-}
-```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-var config = new ConfigurationBuilder()
-    .AddCommandLine(args)
-    .Build();
-
-var host = new WebHostBuilder()
-    .UseUrls("http://*:5005") // default URL sets port 5005
-    .UseConfiguration(config) // override from command line
-    .UseKestrel()
-    .Configure(app =>
-    {
-        app.Run(async context => 
-            await context.Response.WriteAsync("Hello, World!"));
-    })
-    .Build();
 ```
 
 ---
