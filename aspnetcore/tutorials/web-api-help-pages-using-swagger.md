@@ -5,7 +5,7 @@ description: This tutorial provides a walkthrough of adding Swagger to generate 
 keywords: ASP.NET Core,Swagger
 ms.author: spboyer
 manager: wpickett
-ms.date: 08/28/2017
+ms.date: 08/31/2017
 ms.topic: article
 ms.assetid: 54bb961d-29d9-4dee-8e2c-a93fc33c16f2
 ms.technology: aspnet
@@ -282,7 +282,7 @@ Acquire the contents of the *dist* folder from the [Swagger UI GitHub repository
 
 ![Solution Explorer showing Swagger UI custom CSS and HTML files in wwwroot](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
 
-Create a *custom.css* file in the *wwwroot/swagger/ui/css* folder. The file should contain the following CSS, which provides a basic header title for the page:
+Create a *custom.css* file in the *wwwroot/swagger/ui/css* folder. The file should contain the following CSS, which customizes the page header:
 
 [!code-css[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/wwwroot/swagger/ui/css/custom.css)]
 
@@ -290,7 +290,7 @@ Reference *custom.css* in the *index.html* file:
 
 [!code-html[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/wwwroot/swagger/ui/index.html?range=14)]
 
-The resulting page looks as follows:
+Browse to the *index.html* page at `http://localhost:<random_port>/swagger/ui/index.html`. Enter `http://localhost:<random_port>/swagger/v1/swagger.json` in the header's textbox, and click the **Explore** button. The resulting page looks as follows:
 
 ![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
 
