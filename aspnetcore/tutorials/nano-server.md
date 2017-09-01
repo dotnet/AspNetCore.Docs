@@ -129,7 +129,8 @@ Import-Module IISAdministration
 
 # Initialize variables
 $aspNetCoreHandlerFilePath="C:\windows\system32\inetsrv\aspnetcore.dll"
-Reset-IISServerManager -confirm:$false   $sm = Get-IISServerManager
+Reset-IISServerManager -confirm:$false
+$sm = Get-IISServerManager
 
 # Add AppSettings section 
 $sm.GetApplicationHostConfiguration().RootSectionGroup.Sections.Add("appSettings")
