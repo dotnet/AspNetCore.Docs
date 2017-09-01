@@ -6,9 +6,9 @@
 
   ![Create view with fields for genre, price, release date, and title](../../tutorials/first-mvc-app/adding-model/_static/movies.png)
 
-* You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](http://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
+* You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](http://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See https://github.com/aspnet/Docs/issues/4076 and [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
 
-<a name=displayformatdatelocal></a>
+<a name="displayformatdatelocal"></a>
 
 * In some locales you need to specify the date format. See the highlighted code below.
 
