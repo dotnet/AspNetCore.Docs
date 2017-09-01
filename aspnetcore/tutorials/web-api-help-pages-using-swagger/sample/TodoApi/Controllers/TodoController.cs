@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 using System.Linq;
 
-#region TodoController
+#region snippet_TodoController
 namespace TodoApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
@@ -25,12 +26,16 @@ namespace TodoApi.Controllers
 
         #region snippet_GetAll
         [HttpGet]
+        [Produces("application/json", Type = typeof(TodoItem))]
         public IEnumerable<TodoItem> GetAll()
         {
             return _context.TodoItems.ToList();
         }
+        #endregion
 
+        #region snippet_GetById
         [HttpGet("{id}", Name = "GetTodo")]
+        [Produces("application/json", Type = typeof(TodoItem))]
         public IActionResult GetById(long id)
         {
             var item = _context.TodoItems.FirstOrDefault(t => t.Id == id);
