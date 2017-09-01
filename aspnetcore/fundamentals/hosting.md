@@ -885,15 +885,15 @@ public class Startup
 
 If you build the host by injecting `IStartup` directly into the dependency injection container rather than calling `UseStartup` or `Configure`, you may encounter the following error: `Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided`.
 
-This occurs because the name of the app (the dependency context assembly name) is required but unknown when the host is built. If you manually inject `IStartup` into the dependency injection container, add the following call to your `WebHostBuilder` with the assembly name specified:
+This occurs because the [applicationName(ApplicationKey)](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostdefaults#Microsoft_AspNetCore_Hosting_WebHostDefaults_ApplicationKey) (the current assembly) is required to scan for `HostingStartupAttributes`. If you manually inject `IStartup` into the dependency injection container, add the following call to your `WebHostBuilder` with the assembly name specified:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .UseSetting("applicationName", "<DependencyContextAssemblyName>")
+    .UseSetting("applicationName", "<Assembly Name>")
     ...
 ```
 
-Alternatively, add a dummy `Configure` to your `WebHostBuilder`:
+Alternatively, add a dummy `Configure` to your `WebHostBuilder`, which sets the `applicationName`(`ApplicationKey`) automatically:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
