@@ -198,7 +198,7 @@ public class HasTemporaryStickerHandler : AuthorizationHandler<EnterBuildingRequ
 
 Now, assuming both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration) when a policy evaluates the `EnterBuildingRequirement` if either handler succeeds the policy evaluation will succeed.
 
-## Using a func to fufill a policy
+## Using a func to fulfill a policy
 
 There may be occasions where fulfilling a policy is simple to express in code. It is possible to simply supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
 
