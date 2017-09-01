@@ -52,7 +52,7 @@ See [Configuration in ASP.NET Core](xref:fundamentals/configuration) for more in
 
 Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder). This is typically performed in your app's entry point, the `Main` method. In the project templates, `Main` is located in *Program.cs*. The following *Program.cs* demonstrates how to use `WebHostBuilder` to build the host:
 
-[!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=14-21)]
+[!code-csharp[Main](../common/samples/WebApplication1/Program.cs)]
 
 `WebHostBuilder` requires a [server that implements IServer](servers/index.md). The built-in servers are [Kestrel](servers/kestrel.md) and [HTTP.sys](servers/httpsys.md). In this example, the [UseKestrel extension method](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1) specifies the Kestrel server.
 
@@ -67,7 +67,7 @@ var host = new WebHostBuilder()
     .UseKestrel()
     .Configure(app =>
     {
-        app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+        app.Run(async (context) => await context.Response.WriteAsync("Hello World!"));
     })
     .Build();
 
@@ -80,18 +80,18 @@ When setting up a host, you can provide [Configure](/dotnet/api/microsoft.aspnet
 
 ## Host configuration values
 
-[WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) provides methods for setting most of the available configuration values for the host, which can also be set directly with `UseSetting` and the associated key. When setting a value with [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting), the value is set as a string (in quotes) regardless of the type.
+[WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) provides methods for setting most of the available configuration values for the host, which can also be set directly with [UseSetting](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting) and the associated key. When setting a value with `UseSetting`, the value is set as a string (in quotes) regardless of the type.
 
 ### Capture Startup Errors
 
 This setting controls the capture of startup errors.
 
 **Key**: captureStartupErrors  
-**Type**: *bool* ("true" or "1")  
-**Default**: Defaults to "false" unless the app runs with Kestrel behind IIS, where the default is "true".  
+**Type**: *bool* (`true` or `1`)  
+**Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
 **Set using**: `CaptureStartupErrors`
 
-When disabled, errors during startup result in the host exiting. When enabled, the host captures exceptions during startup and attempts to start the server.
+When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -145,7 +145,7 @@ var host = new WebHostBuilder()
 Determines if detailed errors should be captured.
 
 **Key**: detailedErrors  
-**Type**: *bool* ("true" or "1")  
+**Type**: *bool* (`true` or `1`)  
 **Default**: false  
 **Set using**: `UseSetting`
 
@@ -234,7 +234,7 @@ var host = new WebHostBuilder()
 Indicates whether the host should listen on the URLs configured with the `WebHostBuilder` instead of those configured with the `IServer` implementation.
 
 **Key**: preferHostingUrls  
-**Type**: *bool* ("true" or "1")  
+**Type**: *bool* (`true` or `1`)  
 **Default**: true  
 **Set using**: `UseSetting`
 
@@ -261,7 +261,7 @@ var host = new WebHostBuilder()
 Prevents the automatic loading of hosting startup assemblies, including the app's assembly.
 
 **Key**: preventHostingStartup  
-**Type**: *bool* ("true" or "1")  
+**Type**: *bool* (`true` or `1`)  
 **Default**: false  
 **Set using**: `UseSetting`
 
@@ -415,11 +415,15 @@ var host = new WebHostBuilder()
 
 When you use `CreateDefaultBuilder` to build a host, you automatically enable configuration for *appsettings.json*, *appsettings.{Environment}.json*, [user secrets](xref:security/app-secrets) (in `Development`), environment variables, and command-line arguments. If you wish to add additional configuration sources, such as optional configuration stored in a *hosting.json* file, you can build additional configuration with `UseConfiguration`.
 
+*hosting.json*:
+
 ```json
 {
     urls: "http://*:5005"
 }
 ```
+
+Overriding the configuration provided by `CreateDefaultBuilder` with *hosting.json* config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -453,11 +457,15 @@ public class Program
 
 Use [Configuration](configuration.md) to configure the host. In the following example, host configuration is optionally specified in a *hosting.json* file. Any configuration loaded from the *hosting.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with `UseConfiguration`.
 
+*hosting.json*:
+
 ```json
 {
     urls: "http://*:5005"
 }
 ```
+
+Overriding the configuration provided by `UseUrls` with *hosting.json* config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -471,6 +479,7 @@ public class Program
             .Build();
 
         var host = new WebHostBuilder()
+            .UseUrls("http://*:5000")
             .UseConfiguration(config)
             .UseKestrel()
             .Configure(app =>
@@ -500,49 +509,7 @@ dotnet run --urls "http://*:8080"
 
 Some of the `WebHostBuilder` settings are first read from environment variables, if set. These environment variables use the format `ASPNETCORE_{configurationKey}`. To set the URLs that the server listens on by default, you set `ASPNETCORE_URLS`.
 
-You can override any of these environment variable values by specifying configuration (using `UseConfiguration`) or by setting the value explicitly (using `UseUrls` for instance). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL:
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-```csharp
-public static IWebHost BuildWebHost(string[] args)
-{
-    var config = new ConfigurationBuilder()
-        .AddCommandLine(args)
-        .Build();
-
-    return WebHost.CreateDefaultBuilder(args)
-        .UseUrls("http://*:5005") // default URL sets port 5005
-        .UseConfiguration(config) // override from command line
-        .Configure(app =>
-        {
-            app.Run(async context => 
-                await context.Response.WriteAsync("Hello, World!"));
-        })
-        .Build();
-}
-```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-var config = new ConfigurationBuilder()
-    .AddCommandLine(args)
-    .Build();
-
-var host = new WebHostBuilder()
-    .UseUrls("http://*:5005") // default URL sets port 5005
-    .UseConfiguration(config) // override from command line
-    .UseKestrel()
-    .Configure(app =>
-    {
-        app.Run(async context => 
-            await context.Response.WriteAsync("Hello, World!"));
-    })
-    .Build();
-```
-
----
+You can override any of these environment variable values by specifying configuration (using `UseConfiguration`) or by setting the value explicitly (using `UseSetting` or one of the explicit extension methods, such as `UseUrls`). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL. See [Overriding configuration](#overriding-configuration).
 
 ## Starting the host
 
@@ -916,9 +883,7 @@ public class Startup
 
 **Applies to ASP.NET Core 2.0 Only**
 
-If you build the host by injecting `IStartup` directly into the dependency injection container rather than calling `UseStartup` or `Configure`, you may encounter the following error:
-
-> Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided.
+If you build the host by injecting `IStartup` directly into the dependency injection container rather than calling `UseStartup` or `Configure`, you may encounter the following error: `Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided`.
 
 This occurs because the name of the app (the dependency context assembly name) is required but unknown when the host is built. If you manually inject `IStartup` into the dependency injection container, add the following call to your `WebHostBuilder` with the assembly name specified:
 
