@@ -193,7 +193,8 @@ XML comments can be enabled with the following approaches:
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the project in **Solution Explorer** and select **Properties**. Check the **XML documentation file** box under the **Output** section of the **Build** tab:
+* Right-click the project in **Solution Explorer** and select **Properties**
+* Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
 
