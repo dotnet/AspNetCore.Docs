@@ -42,18 +42,45 @@ There are three main components to Swashbuckle:
 
 Swashbuckle can be added with the following approaches:
 
-* From the Package Manager Console:
+# [Visual Studio](#tab/visual-studio)
+
+* From the **Package Manager Console** window:
 
     ```powershell
     Install-Package Swashbuckle.AspNetCore
     ```
 
-* In Visual Studio:
+* From the **Manage NuGet Packages** dialog:
 
      * Right-click your project in **Solution Explorer** > **Manage NuGet Packages**
-     * Enter Swashbuckle.AspNetCore in the search box
      * Set the **Package source** to "nuget.org"
-     * Select the Swashbuckle.AspNetCore package and then click Install
+     * Enter "Swashbuckle.AspNetCore" in the search box
+     * Select the "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
+* Set the **Add Packages** window's **Source** drop-down to "nuget.org"
+* Enter Swashbuckle.AspNetCore in the search box
+* Select the Swashbuckle.AspNetCore package from the results pane and click **Add Package**
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Run the following command from the **Integrated Terminal**:
+
+```console
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Run the following command:
+
+```console
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore
+```
+
+---
 
 ## Add and configure Swagger to the middleware
 
@@ -162,9 +189,28 @@ The following image depicts the Swagger UI displaying the version information:
 
 ### XML Comments
 
-To enable XML comments, right-click the project in Visual Studio and select **Properties**. Check the **XML Documentation file** box under the **Output Settings** section.
+XML comments can be enabled with the following approaches:
+
+# [Visual Studio](#tab/visual-studio)
+
+Right-click the project in **Solution Explorer** and select **Properties**. Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
 ![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Open the **Project Options** dialog > **Build** > **Compiler**
+* Check the **Generate xml documentation** box under the **General Options** section:
+
+![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Manually add the following snippet to the *.csproj* file:
+
+[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/TodoApi.csproj?range=7-9)]
+
+---
 
 Configure Swagger to use the generated XML file. For Linux or non-Windows operating systems, file names and paths can be case sensitive. For example, a *ToDoApi.XML* file would be found on Windows but not CentOS.
 
