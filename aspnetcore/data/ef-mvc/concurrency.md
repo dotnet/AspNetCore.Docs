@@ -210,13 +210,13 @@ For the Delete page, the Entity Framework detects concurrency conflicts caused b
 
 In *DepartmentController.cs*, replace the HttpGet `Delete` method with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,14-17,21-29)]
+[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
 The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends sends an error message to the view using `ViewData`.  
 
 Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeletePost&highlight=3,7,14,15,16,17,18)]
+[!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeletePost&highlight=1,3,5-8,11-18)]
 
 In the scaffolded code that you just replaced, this method accepted only a record ID:
 
