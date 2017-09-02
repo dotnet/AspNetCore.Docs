@@ -172,8 +172,6 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 In *Views/Departments/Edit.cshtml*, make the following changes:
 
-* Remove the `<div>` element that was scaffolded for the `RowVersion` field.
-
 * Add a hidden field to save the `RowVersion` property value, immediately following the hidden field for the `DepartmentID` property.
 
 * Add a "Select Administrator" option to the drop-down list.
