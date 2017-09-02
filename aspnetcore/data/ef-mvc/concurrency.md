@@ -128,7 +128,7 @@ Replace the code in *Views/Departments/Index.cshtml* with the following code.
 
 [!code-html[Main](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
-This changes the heading to "Departments" deletes the RowVersion column, and shows full name instead of first name for the administrator.
+This changes the heading to "Departments", deletes the RowVersion column, and shows full name instead of first name for the administrator.
 
 ## Update the Edit methods in the Departments controller
 
