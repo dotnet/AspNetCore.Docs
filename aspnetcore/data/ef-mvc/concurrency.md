@@ -239,7 +239,7 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 ### Update the Delete view
 
-In *Views/Department/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
+In *Views/Departments/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
 
 [!code-html[Main](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44)]
 
