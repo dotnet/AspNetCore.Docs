@@ -88,7 +88,7 @@ dotnet ef migrations add Inheritance
 
 Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
-Open *Migrations\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
+Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
