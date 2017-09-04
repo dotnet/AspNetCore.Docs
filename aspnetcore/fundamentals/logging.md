@@ -301,7 +301,7 @@ Number|Provider|Categories that begin with|Minimum log level|
 3|Console|Microsoft.AspNetCore.Mvc.Razor.Razor|Debug|
 4|Console|Microsoft.AspNetCore.Mvc.Razor|Error|
 5|Console|All categories|Information|
-6|All providers|All categories|Warning
+6|All providers|All categories|Debug
 7|All providers|System|Debug
 8|Debug|Microsoft|Trace
 
