@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using TypeInfo = System.Reflection.TypeInfo;
 
-namespace AppPartSample.ViewModels
+namespace AppPartsSample.ViewModels
 {
     public class FeaturesViewModel
     {

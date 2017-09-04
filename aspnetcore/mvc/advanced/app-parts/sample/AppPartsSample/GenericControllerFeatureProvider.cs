@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using AppPartSample.Model;
+using AppPartsSample.Model;
 
-namespace AppPartSample
+namespace AppPartsSample
 {
     // An IApplicationFeatureProvider<ControllerFeature> will be used at startup time to discover types
     // that should be treated as controllers. Normally MVC will ignore an open generic type like

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System;
 
-namespace AppPartSample
+namespace AppPartsSample
 {
     // Used to set the controller name for routing purposes. Without this convention the
     // names would be like 'GenericController`1[Widget]' instead of 'Widget'.

@@ -3,10 +3,10 @@
 namespace DependentLibrary
 {
     /// <summary>
-    /// Since the MVC project references this project, this controller will
-    /// ordinarily be discovered and available.
+    /// Since the MVC project references this project, this controller 
+    /// ordinarily is discovered and available.
     /// </summary>
-    public class NoGoodController:Controller
+    public class NoGoodController : Controller
     {
         public IActionResult Index()
         {
