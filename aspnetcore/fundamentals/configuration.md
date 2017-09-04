@@ -201,7 +201,7 @@ You can recursively bind to each object in a class. Consider the following `AppO
 
 The following sample binds to the `AppOptions` class:
 
-[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=19-20)]
+[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=15-16)]
 
 **ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convienent than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
 
