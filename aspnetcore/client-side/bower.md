@@ -43,7 +43,7 @@ Open the *bower.json* file and add "font-awesome" to the dependencies. IntelliSe
 
 ![IntelliSense of bower package explorer](bower/_static/add-package.png)
 
-![bower version IntelliSense](bower/_static/version-IntelliSense.png)
+![bower version IntelliSense](bower/_static/version-intelliSense.png)
 
 Bower uses [semantic versioning](http://semver.org/) to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme \<major>.\<minor>.\<patch>. IntelliSense simplifies semantic versioning by showing only a few common choices. The top item in the IntelliSense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
 
