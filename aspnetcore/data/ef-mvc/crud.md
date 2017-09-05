@@ -91,7 +91,7 @@ For more information about tag helpers, see [Tag helpers in ASP.NET Core](xref:m
 
 ### Add enrollments to the Details view
 
-Open *Views/Students/Details.cshtml*. Each field is displayed using `DisplayNameFor` and `DisplayFor` helper, as shown in the following example:
+Open *Views/Students/Details.cshtml*. Each field is displayed using `DisplayNameFor` and `DisplayFor` helpers, as shown in the following example:
 
 [!code-html[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
