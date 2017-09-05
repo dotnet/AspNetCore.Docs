@@ -57,7 +57,7 @@ Open Visual Studio and create a new ASP.NET Core C# web project named "ContosoUn
 
 * From the **File** menu, select **New > Project**.
 
-* From the left pane, select **Templates > Visual C# > Web**.
+* From the left pane, select **Installed > Visual C# > Web**.
 
 * Select the **ASP.NET Core Web Application** project template.
 
