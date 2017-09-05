@@ -210,7 +210,7 @@ For the Contoso University website's **About** page, you'll display how many stu
 
 Create a *SchoolViewModels* folder in the *Models* folder.
 
-In the new folder, add a class file EnrollmentDateGroup.cs and replace the template code with the following code:
+In the new folder, add a class file *EnrollmentDateGroup.cs* and replace the template code with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
