@@ -278,7 +278,7 @@ The project templates create code that calls `CreateDefaultBuilder` to set up lo
 
 The configuration data specifies minimum log levels by provider and category, as in the following example:
 
-[!code-json[](logging/sample2/AppSettings.json)]
+[!code-json[](logging/sample2/appsettings.json)]
 
 This JSON creates six filter rules, one for the Debug provider, four for the Console provider, and one that applies to all providers. You'll see later how just one of these rules is chosen for each provider when an `ILogger` object is created.
 
