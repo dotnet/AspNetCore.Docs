@@ -85,7 +85,7 @@ In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with th
 
 [!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Course/UpdateCourseCredits)`. Enter a number in the text box:
+Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Courses/UpdateCourseCredits`). Enter a number in the text box:
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 

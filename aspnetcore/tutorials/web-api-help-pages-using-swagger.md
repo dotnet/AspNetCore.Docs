@@ -88,6 +88,12 @@ Add the Swagger generator to the services collection in the `ConfigureServices` 
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup2.cs?name=snippet_ConfigureServices&highlight=7-10)]
 
+Add the following using statement for the `Info` class:
+
+```csharp
+using Swashbuckle.AspNetCore.Swagger;
+```
+
 In the `Configure` method of *Startup.cs*, enable the middleware for serving the generated JSON document and the SwaggerUI:
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup2.cs?name=snippet_Configure&highlight=4,7-10)]
