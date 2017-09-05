@@ -211,7 +211,7 @@ public int InstructorID { get; set; }
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something other than classnameID or ID.
 
-By default EF treats the key as non-database-generated because the column is for an identifying relationship.
+By default, EF treats the key as non-database-generated because the column is for an identifying relationship.
 
 ### The Instructor navigation property
 
