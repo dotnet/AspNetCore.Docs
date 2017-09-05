@@ -6,8 +6,6 @@ namespace PrimeWeb
 {
     public class Program
     {
-        public static IHostingEnvironment Environment { get; set; }
-
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
