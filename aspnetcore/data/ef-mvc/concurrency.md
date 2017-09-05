@@ -208,7 +208,7 @@ For the Delete page, the Entity Framework detects concurrency conflicts caused b
 
 ### Update the Delete methods in the Departments controller
 
-In *DepartmentController.cs*, replace the HttpGet `Delete` method with the following code:
+In *DepartmentsController.cs*, replace the HttpGet `Delete` method with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,14-17,21-29)]
 
