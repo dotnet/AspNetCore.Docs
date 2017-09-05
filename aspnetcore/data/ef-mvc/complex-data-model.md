@@ -69,7 +69,7 @@ Suppose you want to ensure that users don't enter more than 50 characters for a 
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-The `StringLength` attribute won't prevent a user from entering white space for a name. You can use the `RegularExpression` attribute to apply restrictions to the input. For example the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The `StringLength` attribute won't prevent a user from entering white space for a name. You can use the `RegularExpression` attribute to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
