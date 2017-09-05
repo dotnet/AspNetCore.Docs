@@ -87,7 +87,7 @@ Run the page (select the Courses tab on the Contoso University home page) to see
 
 ## Create an Instructors page that shows Courses and Enrollments
 
-In this section you'll create a controller and view for the Instructor entity in order to display the Instructors page:
+In this section, you'll create a controller and view for the Instructor entity in order to display the Instructors page:
 
 ![Instructors Index page](read-related-data/_static/instructors-index.png)
 
