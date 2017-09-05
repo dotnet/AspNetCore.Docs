@@ -113,7 +113,7 @@ To add paging to the Students Index page, you'll create a `PaginatedList` class 
 
 ![Students index page with paging links](sort-filter-page/_static/paging.png)
 
-In the project folder create `PaginatedList.cs`, and then replace the template code with the following code.
+In the project folder, create `PaginatedList.cs`, and then replace the template code with the following code.
 
 [!code-csharp[Main](intro/samples/cu/PaginatedList.cs)]
 
