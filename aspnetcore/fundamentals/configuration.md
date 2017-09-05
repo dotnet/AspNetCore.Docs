@@ -272,7 +272,7 @@ You can add an `EFConfigSource` extension method for adding the configuration so
 
 The following code shows how to use the custom `EFConfigProvider`:
 
-[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=20-25)]
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=21-26)]
 
 Note the sample adds the custom `EFConfigProvider` after the JSON provider, so any settings from the database will override settings from the *appsettings.json* file.
 
