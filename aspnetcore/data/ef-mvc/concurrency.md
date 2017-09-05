@@ -247,7 +247,7 @@ This makes the following changes:
 
 * Adds an error message between the `h2` and `h3` headings.
 
-* Replaces LastName with FullName in the **Administrator** field.
+* Replaces FirstMidName with FullName in the **Administrator** field.
 
 * Removes the RowVersion field.
 
