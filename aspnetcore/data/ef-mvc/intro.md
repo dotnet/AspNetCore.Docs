@@ -311,7 +311,7 @@ Right-click the **Student** table and click **View Data** to see the columns tha
 
 ![Student table in SSOX](intro/_static/ssox-student-table.png)
 
-The *.mdf* and *.ldf* database files are in the *C:Users<yourusername>* folder.
+The *.mdf* and *.ldf* database files are in the *C:\Users\<yourusername>* folder.
 
 Because you're calling `EnsureCreated` in the initializer method that runs on app start, you could now make a change to the `Student class`, delete the database, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, you'll see a new `EmailAddress` column in the re-created table.
 
