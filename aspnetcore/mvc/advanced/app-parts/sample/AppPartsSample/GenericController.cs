@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AppPartSample
+namespace AppPartsSample
 {
     [GenericControllerNameConvention] // Sets the controller name based on typeof(T).Name
     public class GenericController<T> : Controller

@@ -1,4 +1,4 @@
-﻿using AppPartSample.ViewModels;
+﻿using AppPartsSample.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 
-namespace AppPartSample.Controllers
+namespace AppPartsSample.Controllers
 {
     public class FeaturesController : Controller
     {

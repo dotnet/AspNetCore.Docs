@@ -1,7 +1,7 @@
-﻿using AppPartSample.Model;
+﻿using AppPartsSample.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppPartSample.Controllers
+namespace AppPartsSample.Controllers
 {
     public class HomeController : Controller
     {
