@@ -83,7 +83,7 @@ In *Views/Courses/Delete.cshtml*, add a course number field at the top and chang
 
 [!code-html[Main](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
-In *Views/Course/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
+In *Views/Courses/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
 
 ### Test the Course pages
 
