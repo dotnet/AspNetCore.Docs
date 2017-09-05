@@ -1,18 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
-// Add these NuGet packages:
-// "Microsoft.Extensions.Configuration.Binder"
-// "Microsoft.Extensions.Configuration.FileExtensions"
-// "Microsoft.Extensions.Configuration.Json": 
 public class Program
 {
     public static void Main(string[] args = null)
     {
         var builder = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json");
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json");
 
         var config = builder.Build();
 
@@ -20,5 +16,9 @@ public class Program
         config.GetSection("App").Bind(appConfig);
 
         Console.WriteLine($"Height {appConfig.Window.Height}");
+        Console.WriteLine();
+
+        Console.WriteLine("Press a key...");
+        Console.ReadKey();
     }
 }
