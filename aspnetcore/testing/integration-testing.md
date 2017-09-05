@@ -1,8 +1,8 @@
 ---
-title: Integration testing
+title: Integration testing in ASP.NET Core
 author: ardalis
 description: How to use ASP.NET Core integration testing to ensure that an application's components function correctly.
-keywords: ASP.NET Core, integration testing
+keywords: ASP.NET Core,integration testing
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: testing/integration-testing
 ---
-# Integration testing
+# Integration testing in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
@@ -130,7 +130,5 @@ Following this refactoring, you're confident that the web application still work
 ## Resources
 
 * [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-
 * [Middleware](xref:fundamentals/middleware)
-
 * [Testing controllers](xref:mvc/controllers/testing)

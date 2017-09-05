@@ -1,8 +1,8 @@
 ---
-title: Configuration in ASP.NET Core 
+title: Configuration in ASP.NET Core
 author: rick-anderson
-description: Demonstrates the configuration API
-keywords: ASP.NET Core, configuration, JSON
+description: Learn how to use the Configuration API to configure an ASP.NET Core app from multiple sources.
+keywords: ASP.NET Core,configuration,JSON,config
 ms.author: riande
 manager: wpickett
 ms.date: 6/24/2017
@@ -16,9 +16,9 @@ uid: fundamentals/configuration
 
   # Configuration in ASP.NET Core
 
-[Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
+[Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), and [Daniel Roth](https://github.com/danroth27)
 
-The configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
+The Configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
 
 * File formats (INI, JSON, and XML)
 * Command-line arguments
@@ -28,7 +28,7 @@ The configuration API provides a way of configuring an app based on a list of na
 * [Azure Key Vault](xref:security/key-vault-configuration)
 * Custom providers, which you install or create
 
-Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
+Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 
@@ -42,7 +42,7 @@ The app reads and displays the following configuration settings:
 
 [!code-json[Main](configuration/sample/src/ConfigJson/appsettings.json)]
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the `Configuration` indexer with the corresponding item’s key:
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the `Configuration` indexer with the corresponding item's key:
 
 ```csharp
 Console.WriteLine($"option1 = {Configuration["subsection:suboption1"]}");
@@ -185,15 +185,15 @@ Display the settings from the `HomeController`:
 
 [!code-csharp[Main](configuration/sample/src/WebConfigBind/Controllers/HomeController.cs)]
 
-  ### GetValue
+### GetValue
 
 The following sample demonstrates the [GetValue<T>](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.configurationbinder#Microsoft_Extensions_Configuration_ConfigurationBinder_GetValue_Microsoft_Extensions_Configuration_IConfiguration_System_Type_System_String_System_Object_) extension method:
 
-[!code-csharp[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
+[!code-csharp[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=27-29)]
 
-The ConfigurationBinder’s `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder's `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
-  ## Binding to an object graph
+## Binding to an object graph
 
 You can recursively bind to each object in a class. Consider the following `AppOptions` class:
 
@@ -201,7 +201,7 @@ You can recursively bind to each object in a class. Consider the following `AppO
 
 The following sample binds to the `AppOptions` class:
 
-[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=19-20)]
+[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=15-16)]
 
 **ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convienent than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
 
@@ -254,8 +254,6 @@ Define a `ConfigurationValue` entity for storing configuration values in the dat
 
 Add a `ConfigurationContext` to store and access the configured values:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs", "highlight_args": {"linenostart": 1, "hl_lines": [7]}, "names": []} -->
-
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs?name=snippet1)]
 
 Create an class that implements [IConfigurationSource](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
@@ -284,13 +282,13 @@ Using the following *appsettings.json* file:
 
 The following is displayed:
 
-```
+```console
 key1=value_from_ef_1
 key2=value_from_ef_2
 key3=value_from_json_3
 ```
 
-  ## CommandLine configuration provider
+## CommandLine configuration provider
 
 The following sample enables the CommandLine configuration provider last:
 
@@ -298,58 +296,57 @@ The following sample enables the CommandLine configuration provider last:
 
 Use the following to pass in configuration settings:
 
-```
+```console
 dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
 ```
 
 Which displays:
 
-```
+```console
 Hello Bob
 Left 1234
 ```
 
 The `GetSwitchMappings` method allows you to use `-` rather than `/` and it strips the leading subkey prefixes. For example:
 
-```
+```console
 dotnet run -MachineName=Bob -Left=7734
 ```
 
 Displays:
 
-```
+```console
 Hello Bob
 Left 7734
 ```
 
 Command-line arguments must include a value (it can be null). For example:
 
-```
+```console
 dotnet run /Profile:MachineName=
 ```
 
 Is OK, but
 
-```
+```console
 dotnet run /Profile:MachineName
 ```
 
-results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping.
+results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there's no corresponding switch mapping.
 
-  ## The *web.config* file
+## The web.config file
 
 A *web.config* file is required when you host the app in IIS or IIS-Express. *web.config* turns on the AspNetCoreModule in IIS to launch your app. Settings in *web.config* enable the AspNetCoreModule in IIS to launch your app and configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
-  ### Additional notes
+### Additional notes
 
 * Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
 * The configuration system is not DI aware.
 * `IConfiguration` has two specializations:
-
   * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
   * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
 
-### Additional Resources
+### Additional resources
 
 * [Working with Multiple Environments](environments.md)
 * [Safe storage of app secrets during development](../security/app-secrets.md)
