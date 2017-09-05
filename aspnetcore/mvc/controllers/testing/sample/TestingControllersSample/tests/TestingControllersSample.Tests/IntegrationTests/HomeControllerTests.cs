@@ -28,7 +28,7 @@ namespace TestingControllersSample.Tests.IntegrationTests
             // Assert
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.True(responseString.Contains(testSession.Name));
+            Assert.Contains(testSession.Name, responseString);
         }
 
         [Fact]

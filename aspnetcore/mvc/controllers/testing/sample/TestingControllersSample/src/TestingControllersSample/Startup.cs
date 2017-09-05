@@ -17,7 +17,7 @@ namespace TestingControllersSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(
-                optionsBuilder => optionsBuilder.UseInMemoryDatabase());
+                optionsBuilder => optionsBuilder.UseInMemoryDatabase("InMemoryDb"));
 
             services.AddMvc();
 
@@ -29,12 +29,8 @@ namespace TestingControllersSample
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(LogLevel.Warning);
-
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-
                 var repository = app.ApplicationServices.GetService<IBrainstormSessionRepository>();
                 InitializeDatabaseAsync(repository).Wait();
             }
