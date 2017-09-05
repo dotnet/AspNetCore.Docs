@@ -34,7 +34,7 @@ namespace UsingOptions
             services.Configure<MyOptions>(Configuration);
 
             // Registers the following lambda used to configure options.
-            services.Configure<MyOptions>( myOptions =>
+            services.Configure<MyOptions>(myOptions =>
             {
                 myOptions.Option1 = "value1_from_action";
             });
