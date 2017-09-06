@@ -1,22 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-public class HomeController : Controller
+namespace WebConfigBind
 {
-    private readonly IOptions<MyWindow> _optionsAccessor;
-
-    public HomeController(IOptions<MyWindow> optionsAccessor)
+    public class HomeController : Controller
     {
-        _optionsAccessor = optionsAccessor;
-    }
-    public IActionResult Index()
-    {
-        var height = _optionsAccessor.Value.Height;
-        var width = _optionsAccessor.Value.Width;
-        var left = _optionsAccessor.Value.Left;
-        var top = _optionsAccessor.Value.Top;
+        private readonly IOptions<MyWindow> _optionsAccessor;
 
-        return Content($"height = {height}, width = {width}, "
-                     + $"Left = {left}, Top = {top}");
+        public HomeController(IOptions<MyWindow> optionsAccessor)
+        {
+            _optionsAccessor = optionsAccessor;
+        }
+
+        public IActionResult Index()
+        {
+            var height = _optionsAccessor.Value.Height;
+            var width = _optionsAccessor.Value.Width;
+            var left = _optionsAccessor.Value.Left;
+            var top = _optionsAccessor.Value.Top;
+
+            return Content($"height = {height}, width = {width}, " + 
+                $"left = {left}, top = {top}");
+        }
     }
 }
