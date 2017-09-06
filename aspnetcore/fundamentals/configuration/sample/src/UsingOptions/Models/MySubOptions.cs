@@ -1,11 +1,16 @@
-﻿public class MySubOptions
+﻿namespace UsingOptions.Models
 {
-    public MySubOptions()
+    #region snippet1
+    public class MySubOptions
     {
-        // Set default values.
-        SubOption1 = "value1_from_ctor";
-        SubOption2 = 5;
+        public MySubOptions()
+        {
+            // Set default values.
+            SubOption1 = "value1_from_ctor";
+            SubOption2 = 5;
+        }
+        public string SubOption1 { get; set; }
+        public int SubOption2 { get; set; }
     }
-    public string SubOption1 { get; set; }
-    public int SubOption2 { get; set; }
+    #endregion
 }
