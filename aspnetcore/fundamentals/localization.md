@@ -187,7 +187,7 @@ Each language and culture combination (other than the default language) requires
 
 Localization is configured in the `ConfigureServices` method:
 
-[!code-csharp[Main](localization/sample/Startup.cs?range=45-49)]
+[!code-csharp[Main](localization/sample/Program.cs?name=snippet1)]
 
 * `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
@@ -197,9 +197,9 @@ Localization is configured in the `ConfigureServices` method:
 
 ### Localization middleware
 
-The current culture on a request is set in the localization [Middleware](middleware.md). The localization middleware is enabled in the `Configure` method of *Startup.cs* file. Note,  the localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvc()`).
+The current culture on a request is set in the localization [Middleware](middleware.md). The localization middleware is enabled in the `Configure` method of *Program.cs* file. Note, the localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
-[!code-csharp[Main](localization/sample/Startup.cs?highlight=13-35&range=123-159)]
+[!code-csharp[Main](localization/sample/Program.cs?name=snippet2)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -257,24 +257,24 @@ Suppose you want to let your customers store their language and culture in your 
 
 ```csharp
 services.Configure<RequestLocalizationOptions>(options =>
-   {
-       var supportedCultures = new[]
-       {
-           new CultureInfo("en-US"),
-           new CultureInfo("fr")
-       };
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("fr")
+    };
 
-       options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
-       options.SupportedCultures = supportedCultures;
-       options.SupportedUICultures = supportedCultures;
+    options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 
-       options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
-       {
-         // My custom request culture logic
-         return new ProviderCultureResult("en");
-       }));
-   });
-   ```
+    options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+});
+```
 
 Use `RequestLocalizationOptions` to add or remove localization providers.
 
@@ -286,7 +286,7 @@ This sample **Localization.StarterWeb** project on [GitHub](https://github.com/a
 
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
 
-[!code-HTML[Main](localization/sample/Views/Shared/_Layout.cshtml?range=48-61&highlight=10)]
+[!code-HTML[Main](localization/sample/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
 The `SetLanguage` method sets the culture cookie.
 
