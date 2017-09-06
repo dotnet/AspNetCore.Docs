@@ -97,7 +97,7 @@ The options class must be non-abstract with a public parameterless constructor. 
 
 In the following code, the JSON configuration provider is enabled. The `MyOptions` class is added to the service container and bound to configuration.
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-22)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-21)]
 
 The following [controller](../mvc/controllers/index.md)  uses [constructor Dependency Injection](xref:fundamentals/dependency-injection#what-is-dependency-injection) on [`IOptions<TOptions>`](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
 
@@ -135,13 +135,17 @@ Using the following *appsettings.json* file:
 
 The `MySubOptions` class:
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs?name=snippet1)]
 
 With the following `Controller`:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
 
 `subOption1 = subvalue1_from_json, subOption2 = 200` is returned.
+
+You can also supply options in a view model or inject `IOptions<TOptions>` directly into a view:
+
+[!code-html[Main](configuration/sample/src/UsingOptions/Views/Home/Index.cshtml?highlight=3-4,16-17,20-21)]
 
 <a name=in-memory-provider></a>
 
@@ -272,7 +276,7 @@ You can add an `EFConfigSource` extension method for adding the configuration so
 
 The following code shows how to use the custom `EFConfigProvider`:
 
-[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=20-25)]
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=21-26)]
 
 Note the sample adds the custom `EFConfigProvider` after the JSON provider, so any settings from the database will override settings from the *appsettings.json* file.
 

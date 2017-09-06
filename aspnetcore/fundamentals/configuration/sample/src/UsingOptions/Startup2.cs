@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using UsingOptions.Models;
 
 namespace UsingOptions
 {
@@ -22,7 +23,7 @@ namespace UsingOptions
 
         public IConfigurationRoot Configuration { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method is called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
@@ -43,12 +44,9 @@ namespace UsingOptions
             services.AddMvc();
         }
         #endregion
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-            ILoggerFactory loggerFactory)
+        // This method is called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory.AddConsole();
-
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
         }
