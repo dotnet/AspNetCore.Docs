@@ -135,13 +135,17 @@ Using the following *appsettings.json* file:
 
 The `MySubOptions` class:
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs?name=snippet1)]
 
 With the following `Controller`:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
 
 `subOption1 = subvalue1_from_json, subOption2 = 200` is returned.
+
+You can also supply options in a view model or inject `IOptions<TOptions>` directly into a view:
+
+[!code-html[Main](configuration/sample/src/UsingOptions/Views/Home/Index.cshtml?highlight=3-4,16-17,20-21)]
 
 <a name=in-memory-provider></a>
 
