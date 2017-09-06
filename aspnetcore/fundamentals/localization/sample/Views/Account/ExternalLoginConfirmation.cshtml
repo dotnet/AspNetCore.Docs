@@ -8,8 +8,8 @@
 
 <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
     <h4>Association Form</h4>
-    <hr />
-    <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+    <hr>
+    <div asp-validation-summary="All" class="text-danger"></div>
 
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewData["LoginProvider"]</strong>.
@@ -19,7 +19,7 @@
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control">
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
