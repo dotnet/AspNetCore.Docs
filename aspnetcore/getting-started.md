@@ -5,7 +5,7 @@ description: A quick tutorial that creates and runs a simple Hello World app usi
 keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
-ms.date: 08/07/2017
+ms.date: 08/30/2017
 ms.topic: get-started-article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
@@ -23,21 +23,26 @@ uid: getting-started
 
    On macOS and Linux, open a terminal window. On Windows, open a command prompt.
 
-   ```terminal
-   mkdir aspnetcoreapp
-   cd aspnetcoreapp
-   dotnet new web
-   ```
+    ```terminal
+    dotnet new razor -o aspnetcoreapp
+    ```
     
 4. Run the app.
 
-   The `dotnet run` command builds the app first if needed.
+    Use the following commands to run the app:
 
-   ```terminal
-   dotnet run
-   ```
+    ```terminal
+    cd aspnetcoreapp
+    dotnet run
+    ```
 
-5. Browse to `http://localhost:5000`
+5. Browse to [http://localhost:5000](http://localhost:5000)
+
+6. Open *Pages/About.cshtml* and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
+
+    [!code-html[Main](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
+
+7. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
 ### Next steps
 
