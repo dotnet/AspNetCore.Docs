@@ -38,11 +38,11 @@ uid: getting-started
 
 5. Browse to [http://localhost:5000](http://localhost:5000)
 
-6. Open Pages/Index.cshtml and add the following to the page above the carousel:
+6. Open Pages/About.cshtml and modify the page to display the message "Hello, world! The time on the server is @DateTime.Now":
 
-    [!code-html[Main](getting-started/sample/getting-started/index.cshtml?highlight=19&range=18-23)]
+    [!code-html[Main](getting-started/sample/getting-started/about.cshtml?highlight=9&range=1-9)]
 
-7. Browse to [http://localhost:5000](http://localhost:5000) and verify the changes.
+7. Browse to [http://localhost:5000/About](http://localhost:5000/About) and verify the changes.
 
 ### Next steps
 
