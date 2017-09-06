@@ -74,14 +74,13 @@
 
 ### [Create a Razor Pages web app](xref:tutorials/razor-pages/index)
 #### [Getting started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-#### [Adding a model](xref:tutorials/razor-pages/model)
+#### [Adding a model](xref:tutorials/razor-pages/modelz)
 #### [Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 #### [SQL Server LocalDB](xref:tutorials/razor-pages/sql)
 #### [Updating the pages](xref:tutorials/razor-pages/da1)
 #### [Adding search](xref:tutorials/razor-pages/search)
 #### [Adding a new field](xref:tutorials/razor-pages/new-field)
 #### [Adding validation](xref:tutorials/razor-pages/validation)
-
 
 ### [Create an MVC web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)
@@ -118,6 +117,16 @@
 #### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 #### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 #### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+
+### [Create a Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-mac/model)
+
+
+### [Create a Razor Pages web app with VS Code](xref:tutorials/razor-pages-vsc/index)
+#### [Getting started with Razor Pages](xref:tutorials/razor-pages-vsc/razor-pages-start)
+#### [Adding a model](xref:tutorials/razor-pages-vsc/model)
+
 
 ### [Data access - working with EF Core](data/ef-mvc/index.md)
 #### [Getting started](data/ef-mvc/intro.md)

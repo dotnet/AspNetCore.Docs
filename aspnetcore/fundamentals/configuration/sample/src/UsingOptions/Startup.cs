@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using UsingOptions.Models;
 
 namespace UsingOptions
 {
@@ -35,12 +36,9 @@ namespace UsingOptions
             services.AddMvc();
         }
         #endregion
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-            ILoggerFactory loggerFactory)
+        // This method is called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory.AddConsole();
-
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
         }

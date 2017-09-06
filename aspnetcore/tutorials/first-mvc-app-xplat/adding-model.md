@@ -15,7 +15,6 @@ uid: tutorials/first-mvc-app-xplat/adding-model
 
 [!INCLUDE[adding-model1](../../includes/mvc-intro/adding-model1.md)]
 
-* Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 * Add the following code to the *Models/Movie.cs* file:
 
@@ -29,7 +28,7 @@ Build the app to verify you don't have any errors, and you've finally added a **
 
 - Add the following highlighted NuGet packages to the *MvcMovie.csproj* file:
              
-   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=5,17-18,21-)]
+   [!code-csharp[Main](start-mvc/sample/MvcMovie/MvcMovie.csproj?highlight=7,10)]
 
 - Save the file and select **Restore** to the **Info** message "There are unresolved dependencies".
 - Create a *Models/MvcMovieContext.cs* file and add the following `MvcMovieContext` class:
@@ -67,52 +66,7 @@ The scaffolding engine creates the following:
 
 The automatic creation of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*. You'll soon have a fully functional web application that lets you manage a movie database.
 
-### Create the database
-
-You'll call the `EnsureCreated` method to cause EF Core to create the database if it doesn't exist. 
-
-This is a method you typically use only in a development environment. It creates a database to match your data model when you run the app for the first time. When you change your data model, you drop the database. The next time the app runs, EF Core creates a new database to match your new data model.
-
-This approach doesn't work well in production, because you have data you don't want to lose by dropping the database. EF Core includes a [Migrations](xref:data/ef-mvc/migrations) feature that lets you preserve data when you make data model changes, but you won't be using Migrations in this tutorial. You'll learn more about data model changes in the [Add a field](xref:tutorials/first-mvc-app-xplat/new-field) tutorial.
-
-Create a *Models\DBinitialize.cs* file and add the following code:
-
-<!-- todo - replace this with code import -->
-
-```c#
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-
-namespace MvcMovie.Models
-{
-    public static class DBinitialize
-    {
-        public static void EnsureCreated(IServiceProvider serviceProvider)
-        {
-            var context = new MvcMovieContext(
-                serviceProvider.GetRequiredService<DbContextOptions<MvcMovieContext>>());
-            context.Database.EnsureCreated();
-        }
-    }
-}
-```
-
-Call the `EnsureCreated` method from the `Configure` method in the *Startup.cs* file. Add the call to the end of the method:
-
-<!-- todo - replace this with code import -->
-
-```c#
-    app.UseMvc(routes =>
-    {
-        routes.MapRoute(
-            name: "default",
-            template: "{controller=Home}/{action=Index}/{id?}");
-    });
-
-    DBinitialize.EnsureCreated(app.ApplicationServices);
-}
-```
+[!INCLUDE[adding-model 2x](../../includes/mvc-intro/adding-model2xp.md)]
 
 [!INCLUDE[adding-model](../../includes/mvc-intro/adding-model3.md)]
 

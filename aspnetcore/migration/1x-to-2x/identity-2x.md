@@ -50,7 +50,7 @@ The following 2.0 example configures Facebook authentication with Identity in *S
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
     // If you want to tweak Identity cookies, they're no longer part of IdentityOptions.
     services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");

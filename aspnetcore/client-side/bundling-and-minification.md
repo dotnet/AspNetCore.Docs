@@ -184,11 +184,11 @@ You can specify which scripts and CSS files to include in your pages using the e
 
 The following environment tag will render the unprocessed CSS files when running in the `Development` environment:
 
-[!code-html[Main](../client-side/bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml?highlight=3&range=8-11)]
+[!code-html[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/Views/Shared/_Layout.cshtml?highlight=3&range=9-12)]
 
 This environment tag will render the bundled and minified CSS files only when running in `Production` or `Staging`:
 
-[!code-html[Main](../client-side/bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml?highlight=5&range=12-17)]
+[!code-html[Main](../client-side/bundling-and-minification/samples/BuildBundlerMinifierExample/Views/Shared/_Layout.cshtml?highlight=5&range=13-18)]
 
 ## Consuming bundleconfig.json from Gulp
 

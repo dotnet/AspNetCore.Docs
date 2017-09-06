@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
-// Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
 public class Program
 {   
     public static IConfigurationRoot Configuration { get; set; }
+
     public static void Main(string[] args = null)
     {
         var dict = new Dictionary<string, string>
@@ -19,7 +19,9 @@ public class Program
 
         var builder = new ConfigurationBuilder();
         builder.AddInMemoryCollection(dict);
+
         Configuration = builder.Build();
+
         Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
 
         // Show GetValue overload and set the default value to 80
@@ -30,5 +32,9 @@ public class Program
         var window = new MyWindow();
         Configuration.GetSection("App:MainWindow").Bind(window);
         Console.WriteLine($"Left {window.Left}");
+        Console.WriteLine();
+
+        Console.WriteLine("Press a key...");
+        Console.ReadKey();
     }
 }

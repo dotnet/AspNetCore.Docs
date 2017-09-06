@@ -22,8 +22,8 @@ namespace MVCMovie
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new MVCMovieContext())
-            services.AddSingleton<IUserRepository>(new UserRepository())
+            services.AddSingleton(new MVCMovieContext());
+            services.AddSingleton<IUserRepository>(new UserRepository());
             services.AddMvc(options => options.MaxModelValidationErrors = 50);
         }
 
@@ -33,11 +33,10 @@ namespace MVCMovie
                 .AddConsole(Configuration.GetSection("Logging"))
                 .AddDebug();
 
-            app
-                .UseStaticFiles()
-                .UseMvc(routes => routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Movies}/{action=Index}/{id:int?}"));
+            app.UseStaticFiles();
+            app.UseMvc(routes => routes.MapRoute(
+                name: "default",
+                template: "{controller=Movies}/{action=Index}/{id:int?}"));
         }
     }
 }

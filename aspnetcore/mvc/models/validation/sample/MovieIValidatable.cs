@@ -35,7 +35,7 @@ namespace MVCMovie.Models
             if (Genre == Genre.Classic && ReleaseDate.Year > _classicYear)
             {
                 yield return new ValidationResult(
-                    "Classic movies must have a release year earlier than " + _classicYear,
+                    $"Classic movies must have a release year earlier than {_classicYear}.",
                     new[] { "ReleaseDate" });
             }
         }

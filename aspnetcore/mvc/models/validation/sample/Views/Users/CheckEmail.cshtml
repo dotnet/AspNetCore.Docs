@@ -10,6 +10,11 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
+            <ol>
+                <li>Enter an address. Validate accepts the address.</li>
+                <li>Enter a different address. Validate accepts the address.</li>
+                <li>Re-enter the first address. Validation fails.</li>
+            </ol>
             <label asp-for="Email" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Email" class="form-control" />
@@ -23,10 +28,6 @@
         </div>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
