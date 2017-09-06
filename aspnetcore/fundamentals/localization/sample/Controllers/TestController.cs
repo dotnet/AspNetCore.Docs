@@ -14,10 +14,10 @@ namespace Localization.StarterWeb.Controllers
 
         public TestController(IStringLocalizerFactory factory)
         {
-            var type = typeof(SharedResource));
+            var type = typeof(SharedResource);
             var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
             _localizer = factory.Create(type);
-            _localizer2 = factory.Create("SharedResource", assemblyName);
+            _localizer2 = factory.Create("SharedResource", assemblyName.Name);
         }       
 
         public IActionResult About()
