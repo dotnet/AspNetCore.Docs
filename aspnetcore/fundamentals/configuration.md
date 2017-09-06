@@ -58,13 +58,11 @@ Name-value pairs written to the built in `Configuration` providers are **not** p
 
 The preceding sample uses the configuration indexer to read values. To access configuration outside of `Startup`, use the [options pattern](xref:fundamentals/configuration#options-config-objects). The *options pattern* is shown later in this article.
 
-It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code adds two configuration providers to three sources:
+It's typical to have different configuration settings for different environments, for example, development, test, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
-1. JSON provider, reading *appsettings.json*
-2. JSON provider, reading *appsettings.\<EnvironmentName>.json*
-3. Environment variables provider
-
-[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet2&highlight=7-9)]
+* *appsettings.json*
+* *appsettings.\<EnvironmentName>.json
+* environment variables
 
 See [AddJsonFile](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and higher. 
 
@@ -181,9 +179,9 @@ Configuration values are returned as strings, but binding enables the constructi
 
 [!code-json[Main](configuration/sample/src/WebConfigBind/appsettings.json)]
 
-Bind the custom class in `ConfigureServices` in the `Startup` class:
+Bind the custom class in `ConfigureServices` when building the host:
 
-[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet1&highlight=3,4)]
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/Program.cs?name=snippet1&highlight=3-4)]
 
 Display the settings from the `HomeController`:
 
