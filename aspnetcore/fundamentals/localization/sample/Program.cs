@@ -17,6 +17,8 @@ namespace Localization.StarterWeb
 {
     public class Program
     {
+        private const string enUSCulture = "en-US";
+
         public static IConfiguration Configuration { get; set; }
         public static IHostingEnvironment Environment { get; set; }
 
@@ -57,13 +59,13 @@ namespace Localization.StarterWeb
                     {
                         var supportedCultures = new[]
                         {
-                            new CultureInfo("en-US"),
+                            new CultureInfo(enUSCulture),
                             new CultureInfo("fr")
                         };
 
                         // State what the default culture for your application is. This is used if no specific culture
                         // can be determined for a given request.
-                        options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                        options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
 
                         // You must explicitly state which cultures your application supports.
                         // These are the cultures the app supports for formatting numbers, dates, etc.
@@ -114,7 +116,7 @@ namespace Localization.StarterWeb
                     #region snippet2
                     var supportedCultures = new[]
                     {
-                        new CultureInfo("en-US"),
+                        new CultureInfo(enUSCulture),
                         new CultureInfo("en-AU"),
                         new CultureInfo("en-GB"),
                         new CultureInfo("en"),
@@ -127,7 +129,7 @@ namespace Localization.StarterWeb
 
                     app.UseRequestLocalization(new RequestLocalizationOptions
                     {
-                        DefaultRequestCulture = new RequestCulture("en-US"),
+                        DefaultRequestCulture = new RequestCulture(enUSCulture),
                         // Formatting numbers, dates, etc.
                         SupportedCultures = supportedCultures,
                         // UI strings that we have localized.

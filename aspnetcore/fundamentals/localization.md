@@ -1,8 +1,8 @@
 ---
-title: Globalization and localization
+title: Globalization and localization in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
+keywords: ASP.NET Core,localization,culture,language,resource file,globalization,internationalization,locale
 ms.author: riande
 manager: wpickett
 ms.date: 01/14/2017
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/localization
 ---
-# Globalization and localization
+# Globalization and localization in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://twitter.com/NadeemAfana), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -256,15 +256,17 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
 
 ```csharp
+private const string enUSCulture = "en-US";
+
 services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[]
     {
-        new CultureInfo("en-US"),
+        new CultureInfo(enUSCulture),
         new CultureInfo("fr")
     };
 
-    options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+    options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 
@@ -314,7 +316,7 @@ Terms:
 * Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
 * Locale: A locale is the same as a culture.
 
-## Additional Resources
+## Additional resources
 
 * [Localization.StarterWeb project](https://github.com/aspnet/entropy) used in the article.
 * [Resource Files in Visual Studio](https://msdn.microsoft.com/library/xbx3z216(v=vs.110).aspx#VSResFiles)
