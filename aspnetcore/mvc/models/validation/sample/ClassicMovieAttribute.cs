@@ -54,7 +54,7 @@ namespace MVCMovie.Models
 
         private string GetErrorMessage()
         {
-            return "Classic movies must have a release year earlier than " + _year;
+            return $"Classic movies must have a release year earlier than {_year}.";
         }
     }
 }

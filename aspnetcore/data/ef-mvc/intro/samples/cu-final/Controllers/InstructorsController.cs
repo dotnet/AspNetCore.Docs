@@ -99,7 +99,7 @@ namespace ContosoUniversity.Controllers
             {
                 _context.Add(instructor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             PopulateAssignedCourseData(instructor);
             return View(instructor);
@@ -182,7 +182,7 @@ namespace ContosoUniversity.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             UpdateInstructorCourses(selectedCourses, instructorToUpdate);
             PopulateAssignedCourseData(instructorToUpdate);
@@ -256,7 +256,7 @@ namespace ContosoUniversity.Controllers
             _context.Instructors.Remove(instructor);
 
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         private bool InstructorExists(int id)

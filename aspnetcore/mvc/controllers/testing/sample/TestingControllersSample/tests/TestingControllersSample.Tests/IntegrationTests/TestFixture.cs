@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace TestingControllersSample.Tests.IntegrationTests
 {
@@ -18,7 +17,6 @@ namespace TestingControllersSample.Tests.IntegrationTests
     /// <typeparam name="TStartup">Target project's startup type</typeparam>
     public class TestFixture<TStartup> : IDisposable
     {
-        private const string SolutionName = "TestingControllersSample.sln";
         private readonly TestServer _server;
 
         public TestFixture()
@@ -26,10 +24,10 @@ namespace TestingControllersSample.Tests.IntegrationTests
         {
         }
 
-        protected TestFixture(string solutionRelativeTargetProjectParentDir)
+        protected TestFixture(string relativeTargetProjectParentDir)
         {
             var startupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
-            var contentRoot = GetProjectPath(solutionRelativeTargetProjectParentDir, startupAssembly);
+            var contentRoot = GetProjectPath(relativeTargetProjectParentDir, startupAssembly);
 
             var builder = new WebHostBuilder()
                 .UseContentRoot(contentRoot)
@@ -55,10 +53,10 @@ namespace TestingControllersSample.Tests.IntegrationTests
         {
             var startupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
 
-            // Inject a custom application part manager. Overrides AddMvcCore() because that uses TryAdd().
+            // Inject a custom application part manager. 
+            // Overrides AddMvcCore() because it uses TryAdd().
             var manager = new ApplicationPartManager();
             manager.ApplicationParts.Add(new AssemblyPart(startupAssembly));
-
             manager.FeatureProviders.Add(new ControllerFeatureProvider());
             manager.FeatureProviders.Add(new ViewComponentFeatureProvider());
 
@@ -66,38 +64,41 @@ namespace TestingControllersSample.Tests.IntegrationTests
         }
 
         /// <summary>
-        /// Gets the full path to the target project path that we wish to test
+        /// Gets the full path to the target project that we wish to test
         /// </summary>
-        /// <param name="solutionRelativePath">
+        /// <param name="projectRelativePath">
         /// The parent directory of the target project.
         /// e.g. src, samples, test, or test/Websites
         /// </param>
         /// <param name="startupAssembly">The target project's assembly.</param>
         /// <returns>The full path to the target project.</returns>
-        private static string GetProjectPath(string solutionRelativePath, Assembly startupAssembly)
+        private static string GetProjectPath(string projectRelativePath, Assembly startupAssembly)
         {
             // Get name of the target project which we want to test
             var projectName = startupAssembly.GetName().Name;
 
             // Get currently executing test project path
-            var applicationBasePath = PlatformServices.Default.Application.ApplicationBasePath;
+            var applicationBasePath = System.AppContext.BaseDirectory;
 
-            // Find the folder which contains the solution file. We then use this information to find the target
-            // project which we want to test.
+            // Find the path to the target project
             var directoryInfo = new DirectoryInfo(applicationBasePath);
             do
             {
-                var solutionFileInfo = new FileInfo(Path.Combine(directoryInfo.FullName, SolutionName));
-                if (solutionFileInfo.Exists)
-                {
-                    return Path.GetFullPath(Path.Combine(directoryInfo.FullName, solutionRelativePath, projectName));
-                }
-
                 directoryInfo = directoryInfo.Parent;
+
+                var projectDirectoryInfo = new DirectoryInfo(Path.Combine(directoryInfo.FullName, projectRelativePath));
+                if (projectDirectoryInfo.Exists)
+                {
+                    var projectFileInfo = new FileInfo(Path.Combine(projectDirectoryInfo.FullName, projectName, $"{projectName}.csproj"));
+                    if (projectFileInfo.Exists)
+                    {
+                        return Path.Combine(projectDirectoryInfo.FullName, projectName);
+                    }
+                }
             }
             while (directoryInfo.Parent != null);
 
-            throw new Exception($"Solution root could not be located using application root {applicationBasePath}.");
+            throw new Exception($"Project root could not be located using the application root {applicationBasePath}.");
         }
     }
 }

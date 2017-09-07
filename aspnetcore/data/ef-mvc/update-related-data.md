@@ -83,7 +83,7 @@ In *Views/Courses/Delete.cshtml*, add a course number field at the top and chang
 
 [!code-html[Main](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
-In *Views/Course/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
+In *Views/Courses/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
 
 ### Test the Course pages
 
@@ -187,7 +187,7 @@ The code in the `PopulateAssignedCourseData` method reads through all Course ent
 
 Next, add the code that's executed when the user clicks **Save**. Replace the `EditPost` method with the following code, and add a new method that updates the `Courses` navigation property of the Instructor entity.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=3,12,13,25,39-40&name=snippet_EditPostCourses)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=1,3,12,13,25,39-40&name=snippet_EditPostCourses)]
 
 [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_UpdateCourses&highlight=1-31)]
 

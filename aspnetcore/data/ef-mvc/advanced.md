@@ -85,7 +85,7 @@ In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with th
 
 [!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Course/UpdateCourseCredits)`. Enter a number in the text box:
+Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:5813/Courses/UpdateCourseCredits`). Enter a number in the text box:
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
@@ -175,7 +175,7 @@ Although the source code is open, Entity Framework Core is fully supported as a 
 
 To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db).
 
-<a id="dynamic-linq">
+<a id="dynamic-linq"></a>
 ## Use dynamic LINQ to simplify sort selection code
 
 The [third tutorial in this series](sort-filter-page.md) shows how to write LINQ code by hard-coding column names in a `switch` statement. With two columns to choose from, this works fine, but if you have many columns the code could get verbose. To solve that problem, you can use the `EF.Property` method to specify the name of the property as a string. To try out this approach, replace the `Index` method in the `StudentsController` with the following code.

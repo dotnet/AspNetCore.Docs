@@ -113,7 +113,7 @@ To add paging to the Students Index page, you'll create a `PaginatedList` class 
 
 ![Students index page with paging links](sort-filter-page/_static/paging.png)
 
-In the project folder create `PaginatedList.cs`, and then replace the template code with the following code.
+In the project folder, create `PaginatedList.cs`, and then replace the template code with the following code.
 
 [!code-csharp[Main](intro/samples/cu/PaginatedList.cs)]
 
@@ -210,7 +210,7 @@ For the Contoso University website's **About** page, you'll display how many stu
 
 Create a *SchoolViewModels* folder in the *Models* folder.
 
-In the new folder, add a class file EnrollmentDateGroup.cs and replace the template code with the following code:
+In the new folder, add a class file *EnrollmentDateGroup.cs* and replace the template code with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
@@ -244,7 +244,7 @@ Run the app and click the **About** link. The count of students for each enrollm
 
 ## Summary
 
-In this tutorial you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial you'll learn how to handle data model changes by using migrations.
+In this tutorial, you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you'll learn how to handle data model changes by using migrations.
 
 >[!div class="step-by-step"]
 [Previous](crud.md)
