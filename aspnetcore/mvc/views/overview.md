@@ -64,9 +64,9 @@ When an action returns a view, a process called *view discovery* takes place. Th
 
 When an action returns the `View` method, like so `return View();`, the action name is used as the view name. For example, if this were called from an action method named "Index", it would be equivalent to passing in a view name of "Index". A view name can be explicitly passed to the method (`return View("SomeView");`). In both of these cases, view discovery searches for a matching view file in:
 
-   1. Views/&lt;ControllerName&gt;/&lt;ViewName&gt;.cshtml
+   1. Views/\<ControllerName>/\<ViewName>.cshtml
 
-   2. Views/Shared/&lt;ViewName&gt;.cshtml
+   2. Views/Shared/\<ViewName>.cshtml
 
 >[!TIP]
 > We recommend following the convention of simply returning `View()` from actions when possible, as it results in more flexible, easier to refactor code.
