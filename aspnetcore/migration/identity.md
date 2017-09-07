@@ -63,8 +63,6 @@ namespace NewMvc6Project.Models
 
 ApplicationDbContext.cs:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFramework;
 using Microsoft.Data.Entity;
@@ -78,7 +76,7 @@ namespace NewMvc6Project.Models
       Database.EnsureCreated();
     }
 
-    protected override void OnConfiguring(DbContextOptions options)
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
       options.UseSqlServer();
     }

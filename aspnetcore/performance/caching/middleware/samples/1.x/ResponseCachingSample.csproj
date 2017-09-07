@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net451;netcoreapp1.1</TargetFrameworks>
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

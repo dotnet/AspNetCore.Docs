@@ -18,7 +18,7 @@ namespace TestingControllersSample.Controllers
         {
             if (!id.HasValue)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(actionName: nameof(Index), controllerName: "Home");
             }
 
             var session = await _sessionRepository.GetByIdAsync(id.Value);

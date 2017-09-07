@@ -278,7 +278,7 @@ The project templates create code that calls `CreateDefaultBuilder` to set up lo
 
 The configuration data specifies minimum log levels by provider and category, as in the following example:
 
-[!code-json[](logging/sample2/AppSettings.json)]
+[!code-json[](logging/sample2/appsettings.json)]
 
 This JSON creates six filter rules, one for the Debug provider, four for the Console provider, and one that applies to all providers. You'll see later how just one of these rules is chosen for each provider when an `ILogger` object is created.
 
@@ -301,7 +301,7 @@ Number|Provider|Categories that begin with|Minimum log level|
 3|Console|Microsoft.AspNetCore.Mvc.Razor.Razor|Debug|
 4|Console|Microsoft.AspNetCore.Mvc.Razor|Error|
 5|Console|All categories|Information|
-6|All providers|All categories|Warning
+6|All providers|All categories|Debug
 7|All providers|System|Debug
 8|Debug|Microsoft|Trace
 

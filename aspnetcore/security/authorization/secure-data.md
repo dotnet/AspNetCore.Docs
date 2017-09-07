@@ -300,7 +300,7 @@ Add the `SeedData` class to the *Data* folder. If you've downloaded the sample, 
 
 Add the highlighted code to the end of the `Configure` method in the *Startup.cs* file:
 
-[!code-csharp[Main](secure-data/samples/Starter/Startup.cs?name=Configure&highlight=28-)]
+[!code-csharp[Main](secure-data/samples/starter/Startup.cs?name=Configure&highlight=28-)]
 
 Test that the app seeded the database. The seed method does not run if there are any rows in the contact DB.
 

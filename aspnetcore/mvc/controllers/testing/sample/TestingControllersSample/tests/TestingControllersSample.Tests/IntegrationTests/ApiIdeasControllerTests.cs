@@ -113,7 +113,7 @@ namespace TestingControllersSample.Tests.IntegrationTests
             response.EnsureSuccessStatusCode();
             var returnedSession = await response.Content.ReadAsJsonAsync<BrainstormSession>();
             Assert.Equal(2, returnedSession.Ideas.Count);
-            Assert.True(returnedSession.Ideas.Any(i => i.Name == testIdeaName));
+            Assert.Contains(testIdeaName, returnedSession.Ideas.Select(i => i.Name).ToList());
         }
 
         [Fact]
