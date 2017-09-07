@@ -67,12 +67,12 @@ Link sensitive settings like Microsoft `Application ID` and `Password` to your a
 ## Configure Microsoft Account Authentication
 
 The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Microsoft) package is already installed.
+[Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
 * To install with .NET Core CLI, execute the following in your project directory:
 
-   `dotnet add package Microsoft.AspNetCore.Authentication.Microsoft`
+   `dotnet add package Microsoft.AspNetCore.Authentication.MicrosoftAccount`
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
