@@ -36,7 +36,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     # [.NET Core CLI](#tab/netcore-cli)
     If using the .NET Core CLI, create the new project using ``dotnet new mvc --auth Individual``. This will create a new project with the same Identity template code Visual Studio creates.
  
-    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/en-us/ef/).
+    The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the Identity data and schema to SQL Server using [Entity Framework Core](https://docs.microsoft.com/ef/).
     
     ---
  

@@ -16,7 +16,7 @@ uid: fundamentals/servers/index
 
 By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
-An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of [request features](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/request-features) composed into an `HttpContext`.
+An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of [request features](https://docs.microsoft.com/aspnet/core/fundamentals/request-features) composed into an `HttpContext`.
 
 ASP.NET Core ships two server implementations:
 
@@ -110,13 +110,13 @@ For internal network scenarios, Kestrel is generally recommended for best perfor
 
 ## Notes about ASP.NET Core server infrastructure
 
-The [`IApplicationBuilder`](https://docs.microsoft.com/en-us/aspnet/core/api) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](https://docs.microsoft.com/en-us/aspnet/core/api). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](https://docs.microsoft.com/en-us/aspnet/core/api), but different server implementations may expose additional functionality.
+The [`IApplicationBuilder`](https://docs.microsoft.com/aspnet/core/api) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](https://docs.microsoft.com/aspnet/core/api). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](https://docs.microsoft.com/aspnet/core/api), but different server implementations may expose additional functionality.
 
 `IServerAddressesFeature` can be used to find out which port the server implementation has bound to at runtime.
 
 ## Custom servers
 
-If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [IServer](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [IHttpRequestFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttprequestfeature) and [IHttpResponseFeature](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpresponsefeature).
+If the built-in servers don't meet your needs, you can create a custom server implementation. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [IServer](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [IHttpRequestFeature](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.ihttprequestfeature) and [IHttpResponseFeature](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpresponsefeature).
 
 ## Next steps
 

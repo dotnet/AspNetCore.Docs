@@ -58,7 +58,7 @@ Collectively, these infrastructure components enhance both the development workf
 ## Prerequisites for using SpaServices
 
 To work with SpaServices, install the following:
-* [Node.js](https://nodejs.org/en/) (version 6 or later) with npm
+* [Node.js](https://nodejs.org/) (version 6 or later) with npm
     * To verify these components are installed and can be found, run the following from the command line:
 
     ```console

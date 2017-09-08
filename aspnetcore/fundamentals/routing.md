@@ -322,7 +322,7 @@ The following table demonstrates some route constraints and their expected behav
 
 ## Regular expressions 
 
-The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](https://msdn.microsoft.com/en-us/library/system.text.regularexpressions.regexoptions(v=vs.110).aspx) for a description of these members.
+The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See [RegexOptions Enumeration](https://msdn.microsoft.com/library/system.text.regularexpressions.regexoptions(v=vs.110).aspx) for a description of these members.
 
 Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/library/aa691090(v=vs.71).aspx)). The `{` , `}` , '[' and ']' characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.
 
@@ -344,7 +344,7 @@ Regular expressions used in routing will often start with the `^` character (mat
 | `^[a-z]{2}$` |  hello | no | see `^` and `$` above |
 | `^[a-z]{2}$` |  123abc456 | no | see `^` and `$` above |
 
-Refer to [.NET Framework Regular Expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference) for more information on regular expression syntax.
+Refer to [.NET Framework Regular Expressions](https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference) for more information on regular expression syntax.
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "^(list|get|create)$" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 

@@ -192,7 +192,7 @@ The default setting is `30000000`, which is approximately 28.6MB. The value can 
 </system.webServer>
 ```
 
-This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits\>](https://docs.microsoft.com/en-us/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits\>](https://docs.microsoft.com/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
 ### Null Reference Exception with IFormFile
 

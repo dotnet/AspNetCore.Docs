@@ -79,7 +79,7 @@ When you use IIS Manager to configure settings, you're directly changing the *we
 If you have an IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.
 
 ### Module deactivation
-Many modules offer a configuration setting that will allow you to disable them without removing them from the application. This is the simplest and quickest way to deactivate a module. For example if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the *Child Elements* section of [IIS `<system.webServer>`](https://docs.microsoft.com/en-us/iis/configuration/system.webServer/).
+Many modules offer a configuration setting that will allow you to disable them without removing them from the application. This is the simplest and quickest way to deactivate a module. For example if you wish to disable the IIS URL Rewrite Module, use the `<httpRedirect>` element as shown below. For more information on disabling modules with configuration settings, follow the links in the *Child Elements* section of [IIS `<system.webServer>`](https://docs.microsoft.com/iis/configuration/system.webServer/).
 
 ```xml
 <configuration>
@@ -145,6 +145,6 @@ The only modules required to run an ASP.NET Core application are the Anonymous A
 
 ## Resources
 * [Publishing to IIS](xref:publishing/iis)
-* [IIS Modules Overview](https://docs.microsoft.com/en-us/iis/get-started/introduction-to-iis/iis-modules-overview)
+* [IIS Modules Overview](https://docs.microsoft.com/iis/get-started/introduction-to-iis/iis-modules-overview)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx)
-* [IIS `<system.webServer>`](https://docs.microsoft.com/en-us/iis/configuration/system.webServer/)
+* [IIS `<system.webServer>`](https://docs.microsoft.com/iis/configuration/system.webServer/)

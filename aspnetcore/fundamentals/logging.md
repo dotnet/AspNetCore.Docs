@@ -509,7 +509,7 @@ Capturing events on Nano Server requires some additional setup:
   New-EtwTraceSession -Name "MyAppTrace" -LocalFilePath C:\trace.etl
   ```
 
-* Add ETW providers for [CLR](https://docs.microsoft.com/en-us/dotnet/framework/performance/clr-etw-providers), ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is `3ac73b97-af73-50e9-0822-5da4367920d0`. 
+* Add ETW providers for [CLR](https://docs.microsoft.com/dotnet/framework/performance/clr-etw-providers), ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is `3ac73b97-af73-50e9-0822-5da4367920d0`. 
 
   ```powershell
   Add-EtwTraceProvider -Guid "{e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}" -SessionName MyAppTrace
@@ -568,7 +568,7 @@ loggerFactory.AddTraceSource(sourceSwitchName);
 
 [AddTraceSource overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.tracesourcefactoryextensions) let you pass in a source switch and a trace listener.
 
-To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider lets you route messages to a variety of [listeners](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners), such as the [TextWriterTraceListener](https://msdn.microsoft.com/library/system.diagnostics.textwritertracelistener) used in the sample application.
+To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider lets you route messages to a variety of [listeners](https://docs.microsoft.com/dotnet/framework/debug-trace-profile/trace-listeners), such as the [TextWriterTraceListener](https://msdn.microsoft.com/library/system.diagnostics.textwritertracelistener) used in the sample application.
 
 The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
 

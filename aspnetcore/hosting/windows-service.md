@@ -17,7 +17,7 @@ uid: hosting/windows-service
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
-The recommended way to host an ASP.NET Core app on Windows when you don't use IIS is to run it in a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications). That way it can automatically start after reboots and crashes, without waiting for someone to log in.
+The recommended way to host an ASP.NET Core app on Windows when you don't use IIS is to run it in a [Windows Service](https://docs.microsoft.com/dotnet/framework/windows-services/introduction-to-windows-service-applications). That way it can automatically start after reboots and crashes, without waiting for someone to log in.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample) See the [Next Steps](#next-steps) section for instructions on how to run it.
 

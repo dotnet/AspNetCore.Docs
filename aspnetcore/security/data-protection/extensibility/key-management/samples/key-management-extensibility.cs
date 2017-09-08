@@ -36,7 +36,7 @@ public class Program
             // Assuming I'm on a machine that's a member of the CONTOSO
             // domain, I can use the Domain Admins SID to generate an
             // encrypted payload that only they can read. Sample SID from
-            // https://technet.microsoft.com/en-us/library/cc778824(v=ws.10).aspx.
+            // https://technet.microsoft.com/library/cc778824(v=ws.10).aspx.
             _escrowEncryptor = new DpapiNGXmlEncryptor(
                 "SID=S-1-5-21-1004336348-1177238915-682003330-512",
                 DpapiNGProtectionDescriptorFlags.None,
