@@ -46,13 +46,13 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
-    Identity is enabled for the application by calling  `UseAuthentication` in the `Configure` method. `UseAuthentication` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+    Identity is enabled for the application by calling `UseAuthentication` in the `Configure` method. `UseAuthentication` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configure&highlight=17)]
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configure&highlight=17)]
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
@@ -60,7 +60,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
     
-    Identity is enabled for the application by calling  `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+    Identity is enabled for the application by calling `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
         
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configure&highlight=21)]
     
@@ -115,7 +115,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
-    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,11-28,30-39)]
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=snippet_configureservices&highlight=7-9,11-28,30-39)]
     
     # [ASP.NET Core 1.x](#tab/aspnetcore1x)
     
