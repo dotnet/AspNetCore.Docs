@@ -113,7 +113,7 @@ A filter can be added to the pipeline at one of three *scopes*. You can add a fi
 
 When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. This is sometimes referred to as "Russian doll" nesting, as each increase in scope is wrapped around the previous scope, like a [nesting doll](https://en.wikipedia.org/wiki/Matryoshka_doll). You generally get the desired overriding behavior without having to explicitly determine ordering.
 
-Asa result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The sequence looks like this:
+As a result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The sequence looks like this:
 
 * The *before* code of filters applied globally
   * The *before* code of filters applied to controllers
