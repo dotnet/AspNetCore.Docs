@@ -64,14 +64,14 @@ When an action returns a view, a process called *view discovery* takes place. Th
 
 When an action returns the `View` method, like so `return View();`, the action name is used as the view name. For example, if this were called from an action method named "Index", it would be equivalent to passing in a view name of "Index". A view name can be explicitly passed to the method (`return View("SomeView");`). In both of these cases, view discovery searches for a matching view file in:
 
-   1. Views/<ControllerName>/<ViewName>.cshtml
+   1. Views/\<ControllerName>/\<ViewName>.cshtml
 
-   2. Views/Shared/<ViewName>.cshtml
+   2. Views/Shared/\<ViewName>.cshtml
 
 >[!TIP]
 > We recommend following the convention of simply returning `View()` from actions when possible, as it results in more flexible, easier to refactor code.
 
-A view file path can be provided, instead of a view name. In this case, the *.cshtml* extension must be specified as part of the file path. The path should be relative to the application root (and can optionally start with "/" or "~/"). For example: `return View("Views/Home/About.cshtml");`
+A view file path can be provided, instead of a view name. If using an absolute path starting at the application root (optionally starting with "/" or "~/"), the *.cshtml* extension must be specified as part of the file path. For example: `return View("Views/Home/About.cshtml");`. Alternatively, you can use a relative path from the controller-specific directory within the *Views* directory to specify views in different directories. For example: `return View("../Manage/Index");` inside the *Home* controller. Similarly, you can traverse the current controller-specific directory: `return View("./About");`. Note that relative paths don't use the *.cshtml* extension. As previously mentioned, follow the best practice of organizing the file structure for views to reflect the relationships among controllers, actions, and views for maintainability and clarity.
 
 > [!NOTE]
 > [Partial views](partial.md) and [view components](view-components.md) use similar (but not identical) discovery mechanisms.
