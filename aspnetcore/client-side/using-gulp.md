@@ -24,7 +24,7 @@ In a typical modern web application, the build process might:
 * Compile LESS or SASS files to CSS.
 * Compile CoffeeScript or TypeScript files to JavaScript.
 
-A *task runner* is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: [Gulp](http://gulpjs.com) and [Grunt](using-grunt.md).
+A *task runner* is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: [Gulp](https://gulpjs.com/) and [Grunt](using-grunt.md).
 
 ## Gulp
 

@@ -14,7 +14,7 @@ uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the application's hosting pipeline.
 

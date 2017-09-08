@@ -15,7 +15,7 @@ uid: mvc/controllers/filters
 
 # Filters
 
-By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](http://ardalis.com)
+By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis.com/)
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after certain stages in the request processing pipeline.
 

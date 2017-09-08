@@ -16,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 # Introduction to session and application state in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com), and [Diana LaRose](https://github.com/DianaLaRose)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Diana LaRose](https://github.com/DianaLaRose)
 
 HTTP is a stateless protocol. A  web server treats each HTTP request as an independent request and does not retain user values from previous requests. This article discusses different ways to preserve application and session state between requests. 
 

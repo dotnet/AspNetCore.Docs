@@ -14,9 +14,9 @@ uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
 
-By [Tom Dykstra](http://github.com/tdykstra), [Steve Smith](http://ardalis.com), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
+By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
-An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of [request features](https://docs.asp.net/en/latest/fundamentals/request-features.html) composed into an `HttpContext`.
+An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of [request features](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/request-features) composed into an `HttpContext`.
 
 ASP.NET Core ships two server implementations:
 
@@ -110,7 +110,7 @@ For internal network scenarios, Kestrel is generally recommended for best perfor
 
 ## Notes about ASP.NET Core server infrastructure
 
-The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/IApplicationBuilder/index.html#Microsoft.AspNetCore.Builder.IApplicationBuilder.md) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html#Microsoft.AspNetCore.Http.Features.IFeatureCollection.md). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md), but different server implementations may expose additional functionality.
+The [`IApplicationBuilder`](https://docs.microsoft.com/en-us/aspnet/core/api) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](https://docs.microsoft.com/en-us/aspnet/core/api). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](https://docs.microsoft.com/en-us/aspnet/core/api), but different server implementations may expose additional functionality.
 
 `IServerAddressesFeature` can be used to find out which port the server implementation has bound to at runtime.
 

@@ -18,12 +18,12 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Cesar Blum Silveira](ht
 
 ## Set up the development environment
 
-* Install the latest [Azure SDK for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs). The SDK installs Visual Studio if you don't already have it.
+* Install the latest [Azure SDK for Visual Studio](https://www.visualstudio.com/vs/azure-tools/). The SDK installs Visual Studio if you don't already have it.
 
 > [!NOTE]
 > The SDK installation can take more than 30 minutes if your machine doesn't have many of the dependencies.
 
-* Install [.NET Core + Visual Studio tooling](http://go.microsoft.com/fwlink/?LinkID=798306)
+* Install [.NET Core + Visual Studio tooling](https://www.microsoft.com/net/core)
 
 * Verify your [Azure account](https://portal.azure.com/). You can [open a free Azure account](https://azure.microsoft.com/pricing/free-trial/) or [Activate Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).
 

@@ -130,7 +130,7 @@ Open a web browser, and navigate to `http://localhost:5000`.
 
 ## Adding to your project with sub generators
 
-Using Yeoman [sub generators](https://www.github.com/omnisharp/generator-aspnet#sub-generators), you can add either a `nuget.config` or a `web.config` after the project is created. For example, execute the following command from the directory in which the file should be created:
+Using Yeoman [sub generators](https://github.com/omnisharp/generator-aspnet), you can add either a `nuget.config` or a `web.config` after the project is created. For example, execute the following command from the directory in which the file should be created:
 
 ```console
 yo aspnet:nugetconfig

@@ -32,7 +32,7 @@ There are 3 versions of this tutorial:
 ## Set up your development environment
 
 Download and install:
-- [.NET Core](https://microsoft.com/net/core)
+- [.NET Core](https://www.microsoft.com/net/core)
 - [Visual Studio Code](https://code.visualstudio.com)
 - Visual Studio Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 
@@ -110,9 +110,9 @@ In VS Code, press F5 to launch the app. Navigate to  http://localhost:5000/api/t
 - [Integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
 - [Keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
 
-  - [Mac keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832143)
-  - [Linux keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832144)
-  - [Windows keyboard shortcuts](https://go.microsoft.com/fwlink/?linkid=832145)
+  - [Mac keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+  - [Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+  - [Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 
 [!INCLUDE[next steps](../includes/webApi/next.md)]
 

@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 ASP.NET Core MVC has built-in support for data exchange in web APIs by using JSON, XML, or plain text formats. This article shows how to add support for additional formats by creating custom formatters.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/Sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample).
 
 ## When to use custom formatters
 
@@ -95,7 +95,7 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 
 ## Next steps
 
-See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/Sample), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
+See the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample), which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD

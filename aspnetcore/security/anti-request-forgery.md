@@ -13,7 +13,7 @@ uid: security/anti-request-forgery
 
 # Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
 
-[Steve Smith](http://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Steve Smith](https://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## What attack does anti-forgery prevent?
 
