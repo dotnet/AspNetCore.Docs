@@ -151,7 +151,7 @@ As soon as a Tag Helper attribute is entered, the tag and attribute fonts change
 
 ![image](intro/_static/labelaspfor2.png)
 
-You can enter the Visual Studio *CompleteWord* shortcut (Ctrl +spacebar is the [default](https://msdn.microsoft.com/library/da5kh0wa.aspx)) inside the double quotes (""), and you are now in C#, just like you would be in a C# class. IntelliSense displays all the methods and properties on the page model. The methods and properties are available because the property type is `ModelExpression`. In the image below, I'm editing the `Register` view, so the `RegisterViewModel` is available.
+You can enter the Visual Studio *CompleteWord* shortcut (Ctrl +spacebar is the [default](https://docs.microsoft.com/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) inside the double quotes (""), and you are now in C#, just like you would be in a C# class. IntelliSense displays all the methods and properties on the page model. The methods and properties are available because the property type is `ModelExpression`. In the image below, I'm editing the `Register` view, so the `RegisterViewModel` is available.
 
 ![image](intro/_static/intellemail.png)
 
@@ -169,7 +169,7 @@ Tag Helpers attach to HTML elements in Razor views, while [HTML Helpers](http://
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
 ```
 
-The at (`@`) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so [IntelliSense](https://msdn.microsoft.com/library/hcw1s69b.aspx) can't help. The last argument:
+The at (`@`) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so [IntelliSense](https://docs.microsoft.com/visualstudio/ide/using-intellisense) can't help. The last argument:
 
 ```html
 new {@class="caption"}
@@ -245,7 +245,7 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 * Web Server controls use type converters to convert strings into objects. With Tag Helpers, you work natively in C#, so you don't need to do type conversion.
 
-* Web Server controls use [System.ComponentModel](https://msdn.microsoft.com/library/system.componentmodel%28v=vs.110%29.aspx) to implement the run-time and design-time behavior of components and controls. `System.ComponentModel` includes the base classes and interfaces for implementing attributes and type converters, binding to data sources, and licensing components. Contrast that to Tag Helpers, which typically derive from `TagHelper`, and the `TagHelper` base class exposes only two methods, `Process` and `ProcessAsync`.
+* Web Server controls use [System.ComponentModel](https://docs.microsoft.com/dotnet/api/system.componentmodel) to implement the run-time and design-time behavior of components and controls. `System.ComponentModel` includes the base classes and interfaces for implementing attributes and type converters, binding to data sources, and licensing components. Contrast that to Tag Helpers, which typically derive from `TagHelper`, and the `TagHelper` base class exposes only two methods, `Process` and `ProcessAsync`.
 
 ## Customizing the Tag Helper element font
 

@@ -63,7 +63,7 @@ Registered users of your web site. The [IdentityUser](https://docs.microsoft.com
 
 ### User Claims
 
-A set of statements (or [claims](https://msdn.microsoft.com/library/system.security.claims.claim(v=vs.110).aspx)) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
+A set of statements (or [Claims](https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
 
 ### User Logins
 
@@ -185,7 +185,7 @@ public class UserStore : IUserStore<IdentityUser>,
 
 ### IdentityUserClaim, IdentityUserLogin, and IdentityUserRole
 
-The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](https://msdn.microsoft.com/library/dn613250(v=vs.108).aspx), [IdentityUserLogin](https://msdn.microsoft.com/library/dn613251(v=vs.108).aspx), and [IdentityUserRole](https://msdn.microsoft.com/library/microsoft.aspnet.identity.entityframework.identityuserrole(v=vs.108).aspx) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
+The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
 
 ## Customize the role class
 
@@ -200,7 +200,7 @@ The following is an example role class:
 You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
- The [IRoleStore](https://msdn.microsoft.com/library/dn468195.aspx) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
+ The [IRoleStore](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
 - **RoleStore&lt;TRole&gt;**  
  To customize `RoleStore`, create a class that implements the `IRoleStore` interface. 
 
