@@ -44,34 +44,32 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     The Identity services are added to the application in the `ConfigureServices` method in the `Startup` class:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-[!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,11-28,30-39)]
-
-These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
-
-Identity is enabled for the application by calling  `UseAuthentication` in the `Configure` method. `UseAuthentication` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
-
-[!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configure&highlight=17)]
-
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,13-34)]
-
-These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
-
-Identity is enabled for the application by calling  `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
- 
-[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configure&highlight=21)]
-
----
-
- 
+    # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+    
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,11-28,30-39)]
+    
+    These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
+    
+    Identity is enabled for the application by calling  `UseAuthentication` in the `Configure` method. `UseAuthentication` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configure&highlight=17)]
+    
+    # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+    
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,13-34)]
+    
+    These services are made available to the application through [dependency injection](xref:fundamentals/dependency-injection).
+    
+    Identity is enabled for the application by calling  `UseIdentity` in the `Configure` method. `UseIdentity` adds cookie-based authentication [middleware](xref:fundamentals/middleware) to the request pipeline.
+        
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configure&highlight=21)]
+    
+    ---
+     
     For more information about the application start up process, see [Application Startup](xref:fundamentals/startup).
 
 3.  Create a user.
- 
+
     Launch the application and then click on the **Register** link.
 
     If this is the first time you're performing this action, you may be required to run migrations. The application prompts you to **Apply Migrations**:
@@ -114,8 +112,16 @@ Identity is enabled for the application by calling  `UseIdentity` in the `Config
 6.  Configuration.
 
     Identity has some default behaviors that you can override in your application's startup class. You do not need to configure ``IdentityOptions`` if you are using the default behaviors.
- 
+
+    # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+    
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo/Startup.cs?name=configureservices&highlight=7-9,11-28,30-39)]
+    
+    # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+    
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?name=configureservices&highlight=13-34)]
+
+    ---
 	
 	For more information about how to configure Identity, see [Configure Identity](xref:security/authentication/identity-configuration).
 	
