@@ -18,23 +18,23 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https
 
 ## Set up the development environment
 
-* Install [.NET Core + Visual Studio tooling](http://go.microsoft.com/fwlink/?LinkID=798306)
+* Install [.NET Core + Visual Studio tooling](http://go.microsoft.com/fwlink/?LinkID=798306).
 
 * Verify your [Azure account](https://portal.azure.com/). You can [open a free Azure account](https://azure.microsoft.com/pricing/free-trial/) or [Activate Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).
 
 ## Create a web app
 
-In the Visual Studio Start Page, select **File > New > Project...**.
+In the Visual Studio Start Page, select **File > New > Project...**
 
 ![File menu](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
 Complete the **New Project** dialog:
 
-* In the left pane, select **.NET Core**
+* In the left pane, select **.NET Core**.
 
-* In the center pane, select **ASP.NET Core Web Application**
+* In the center pane, select **ASP.NET Core Web Application**.
 
-* Select **OK**
+* Select **OK**.
 
 ![New Project dialog](publish-to-azure-webapp-using-vs/_static/new_prj.png)
 
@@ -66,7 +66,7 @@ Visual Studio creates the solution.
 
 * Select **Register** and register a new user. You can use a fictitious email address. When you submit, the page displays the following error:
 
-    "Internal Server Error: A database operation failed while processing the request. SQL exception: Cannot open the database. Applying existing migrations for Application DB context may resolve this issue."
+    *"Internal Server Error: A database operation failed while processing the request. SQL exception: Cannot open the database. Applying existing migrations for Application DB context may resolve this issue."*
 
 * Select **Apply Migrations** and, once the page updates, refresh the page.
 
@@ -102,9 +102,11 @@ In the **Publish** dialog, select **Microsoft Azure App Service** and click **Pu
 
 * Select the green **+** icon to create a new SQL Database
 
-![New Resource Group dialog: Services panel](publish-to-azure-webapp-using-vs/_static/sql.png)
+![New SQL Database](publish-to-azure-webapp-using-vs/_static/sql.png)
 
-* Select **New...** on the **Configure SQL Database** dialog to create a new database server.
+* Select **New...** on the **Configure SQL Database** dialog to create a new database.
+
+![New SQL Database and server](publish-to-azure-webapp-using-vs/_static/conf.png)
 
 The **Configure SQL Server** dialog appears.
 
@@ -117,11 +119,13 @@ The **Configure SQL Server** dialog appears.
 
 ![Configure SQL Server dialog](publish-to-azure-webapp-using-vs/_static/conf_servername.png)
 
-* Select **OK** on the  **Configure SQL Database** dialog.
+* Select **OK**.
 
-![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
+Visual Studio returns to the **Create App Service** dialog.
 
 * Select **Create** on the **Create App Service** dialog.
+
+![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
 
 * Click the **Settings** link in the **Publish** dialog.
 
@@ -129,9 +133,9 @@ The **Configure SQL Server** dialog appears.
 
 On the **Settings** page of the **Publish** dialog:
 
-  * Expand **Databases** and check **Use this connection string at runtime**
+  * Expand **Databases** and check **Use this connection string at runtime**.
 
-  * Expand **Entity Framework Migrations** and check **Apply this migration on publish**
+  * Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog. 
 
@@ -145,13 +149,13 @@ Click **Publish**. Visual Studio will publish your app to Azure and launch the c
 
 * Register a new user
 
-![Web application opened in Microsoft Edge on Azure App Service](publish-to-azure-webapp-using-vs/_static/final.png)
+![Web application opened in Microsoft Edge on Azure App Service](publish-to-azure-webapp-using-vs/_static/register.png)
 
 ### Update the app
 
 * Edit the `Pages/About.cshtml` Razor page and change its contents. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
 
-    [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9
+    [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
 
 * Right-click on the project and select **Publish...** again.
 
