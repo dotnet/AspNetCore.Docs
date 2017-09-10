@@ -53,7 +53,7 @@ This section provides an overview of the process for setting up an IIS server an
 
 ### Install ANCM
 
-The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [.NET Core Windows Server Hosting bundle](https://download.microsoft.com/download/B/1/D/B1D7D5BF-3920-47AA-94BD-7A6E48822F18/DotNetCore.2.0.0-WindowsHosting.exe). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
+The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [.NET Core Windows Server Hosting bundle](https://aka.ms/dotnetcore.2.0.0-windowshosting). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
 
 ### Install the IISIntegration NuGet package
 
