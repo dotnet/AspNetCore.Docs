@@ -173,9 +173,9 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
-* In the **Resource group** blade, select **Delete**.
+* In the **Resource groups** page, select **Delete**.
 
-![Azure Portal: Resource Groups blade](publish-to-azure-webapp-using-vs/_static/rgd.png)
+![Azure Portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
 * Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 
