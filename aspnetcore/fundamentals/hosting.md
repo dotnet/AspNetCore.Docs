@@ -5,7 +5,7 @@ description: Learn about the web host in ASP.NET Core, which is responsible for 
 keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder,IHostingEnvironment,IApplicationLifetime
 ms.author: riande
 manager: wpickett
-ms.date: 09/07/2017
+ms.date: 09/10/2017
 ms.topic: article
 ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
@@ -220,11 +220,7 @@ WebHost.CreateDefaultBuilder(args)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```csharp
-var host = new WebHostBuilder()
-    .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2")
-    ...
-```
+This feature is unavailable in ASP.NET Core 1.x.
 
 ---
 
@@ -235,7 +231,7 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
 **Default**: true  
-**Set using**: `UseSetting`
+**Set using**: `PreferHostingUrls`
 
 This feature is new in ASP.NET Core 2.0.
 
@@ -243,17 +239,13 @@ This feature is new in ASP.NET Core 2.0.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .UseSetting(WebHostDefaults.PreferHostingUrlsKey, "false")
+    .PreferHostingUrls(false)
     ...
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```csharp
-var host = new WebHostBuilder()
-    .UseSetting(WebHostDefaults.PreferHostingUrlsKey, "false")
-    ...
-```
+This feature is unavailable in ASP.NET Core 1.x.
 
 ---
 
@@ -278,11 +270,7 @@ WebHost.CreateDefaultBuilder(args)
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```csharp
-var host = new WebHostBuilder()
-    .UseSetting(WebHostDefaults.PreventHostingStartupKey, "true")
-    ...
-```
+This feature is unavailable in ASP.NET Core 1.x.
 
 ---
 
@@ -324,25 +312,21 @@ Specifies the amount of time to wait for the web host to shutdown.
 **Key**: shutdownTimeoutSeconds  
 **Type**: *int*  
 **Default**: 5  
-**Set using**: `UseSetting`
+**Set using**: `UseShutdownTimeout`
 
-This feature is new in ASP.NET Core 2.0.
+Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the `UseShutdownTimeout` extension method takes a `TimeSpan`. This feature is new in ASP.NET Core 2.0.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")
+    .UseShutdownTimeout(TimeSpan.FromSeconds(10))
     ...
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```csharp
-var host = new WebHostBuilder()
-    .UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")
-    ...
-```
+This feature is unavailable in ASP.NET Core 1.x.
 
 ---
 
@@ -568,10 +552,8 @@ Start with a `RequestDelegate`:
 ```csharp
 using (var host = WebHost.Start(app => app.Response.WriteAsync("Hello, World!")))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
@@ -584,10 +566,8 @@ Start with a URL and `RequestDelegate`:
 ```csharp
 using (var host = WebHost.Start("http://localhost:8080", app => app.Response.WriteAsync("Hello, World!")))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
@@ -609,10 +589,8 @@ using (var host = WebHost.Start(router => router
         res.WriteAsync($"{data.Values["greeting"]}, {data.Values["name"]}!"))
     .MapGet("", (req, res, data) => res.WriteAsync("Hello, World!"))))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
@@ -645,10 +623,8 @@ using (var host = WebHost.Start("http://localhost:8080", router => router
         res.WriteAsync($"{data.Values["greeting"]}, {data.Values["name"]}!"))
     .MapGet("", (req, res, data) => res.WriteAsync("Hello, World!"))))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
@@ -668,18 +644,16 @@ using (var host = WebHost.StartWith(app =>
         };
     })))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
-Make a request in the browser to `http://localhost:5000` to receive the response "Hello World!" Issuing a break (Ctrl-C/SIGINT or SIGTERM) in the console window bypasses the `WaitForShutdown`. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
+Make a request in the browser to `http://localhost:5000` to receive the response "Hello World!" `WaitForShutdown` blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
 
 **StartWith(string url, Action<IApplicationBuilder> app)**
 
-Provide a URL and middleware delegate with `Use`:
+Provide a URL and `IApplicationBuilder` instance:
 
 ```csharp
 using (var host = WebHost.StartWith("http://localhost:8080", app => 
@@ -691,10 +665,8 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
         };
     })))
 {
+    Console.WriteLine("Use Ctrl-C to shutdown the host...");
     host.WaitForShutdown();
-
-    Console.WriteLine("Press any key to exit...");
-    Console.ReadKey();
 }
 ```
 
@@ -859,12 +831,12 @@ public class Startup
         appLifetime.ApplicationStopping.Register(OnStopping);
         appLifetime.ApplicationStopped.Register(OnStopped);
 
-        var stopApp = true;
-
-        if (stopApp)
+        Console.CancelKeyPress += (sender, eventArgs) =>
         {
             appLifetime.StopApplication();
-        }
+            // Don't terminate the process immediately, wait for the Main thread to exit gracefully.
+            eventArgs.Cancel = true;
+        };
     }
 
     private void OnStarted()
