@@ -632,7 +632,7 @@ Produces the same result as **Start(Action<IRouteBuilder> routeBuilder)**, excep
 
 **StartWith(Action<IApplicationBuilder> app)**
 
-Provide a middleware delegate with `Use`:
+Provide a delegate to configure an `IApplicationBuilder`:
 
 ```csharp
 using (var host = WebHost.StartWith(app => 
@@ -653,7 +653,7 @@ Make a request in the browser to `http://localhost:5000` to receive the response
 
 **StartWith(string url, Action<IApplicationBuilder> app)**
 
-Provide a URL and `IApplicationBuilder` instance:
+Provide a URL and a delegate to configure an `IApplicationBuilder`:
 
 ```csharp
 using (var host = WebHost.StartWith("http://localhost:8080", app => 
