@@ -36,7 +36,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 * For the purposes of this tutorial, clear the **Guided Setup** check box.
 
-* Tap **Create** to continue to the **Registration** page:
+* Tap **Create** to continue to the **Registration** page. Provide a **Name** and note the value of the **Application Id**, which you use as `ClientId` later in the tutorial:
 
 ![Registration page](index/_static/MicrosoftDevAppReg.png)
 
