@@ -30,7 +30,7 @@ namespace CustomFormatterDemo
             services.AddMvc(options =>
             {
                 options.InputFormatters.Insert(0, new VcardInputFormatter());
-                options.OutputFormatters.Insert(0, new VcardInputFormatter());
+                options.OutputFormatters.Insert(0, new VcardOutputFormatter());
             });
             #endregion
 
