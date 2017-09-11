@@ -34,7 +34,7 @@ namespace IdentityDemo
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        #region configureservices
+        #region snippet_configureservices
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -77,7 +77,7 @@ namespace IdentityDemo
         #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region configure
+        #region snippet_configure
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env, 
             ILoggerFactory loggerFactory)
