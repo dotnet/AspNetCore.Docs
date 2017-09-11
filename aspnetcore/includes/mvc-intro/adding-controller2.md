@@ -46,7 +46,7 @@ Run your app and browse to:
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](../../tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-In the image above, the URL segment (`Parameters`) is not used, the `name` and `numTimes` parameters are passed as [query strings](https://en.wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
+In the image above, the URL segment (`Parameters`) is not used, the `name` and `numTimes` parameters are passed as [query strings](https://wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
 
 Replace the `Welcome` method with the following code:
 

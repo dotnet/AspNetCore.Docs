@@ -20,7 +20,7 @@ uid: client-side/yeoman
 
 ### Prerequisites
 
-Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/en/). The installer includes [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Bower is also required for installing UI frameworks like Bootstrap.
+Node.js and npm are required for Yeoman. Download from [Node.js](https://nodejs.org/). The installer includes [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/). Bower is also required for installing UI frameworks like Bootstrap.
 
 To install Yeoman and Bower, run the following command:
 

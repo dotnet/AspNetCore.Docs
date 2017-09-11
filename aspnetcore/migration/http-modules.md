@@ -30,7 +30,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    * Used to handle requests with a given file name or extension, such as *.report*
 
-   * [Configured](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/handlers/) in *Web.config*
+   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/handlers/) in *Web.config*
 
 **Modules are:**
 
@@ -42,7 +42,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    * Able to add to the HTTP response, or create their own
 
-   * [Configured](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/modules/) in *Web.config*
+   * [Configured](https://docs.microsoft.com//iis/configuration/system.webserver/modules/) in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 

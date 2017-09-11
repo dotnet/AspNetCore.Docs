@@ -30,7 +30,7 @@ For each Markdown file there may be a folder for images and a folder for sample 
 ![description of image for alt attribute](configuration/_static/imagename.png)
 ```
 
-**All** images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
+**All** images should have [alt text](https://wikipedia.org/wiki/Alt_attribute).
 
 Markdown file names and image file names should be all lower case.
 

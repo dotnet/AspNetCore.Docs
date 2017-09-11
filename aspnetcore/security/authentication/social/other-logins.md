@@ -27,7 +27,7 @@ Here are set up instructions for some other common OAuth providers. Third-party 
 
 * Set up **Yahoo** sign in: [https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F](https://login.yahoo.com/config/login?src=devnet&.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F). See [official steps](https://developer.yahoo.com/bbauth/user.html).
 
-* Set up **Tumblr** sign in: [https://www.tumblr.com/oauth/apps](https://www.tumblr.com/oauth/apps). See [official steps](https://www.tumblr.com/docs/en/api/v2#auth).
+* Set up **Tumblr** sign in: [https://www.tumblr.com/oauth/apps](https://www.tumblr.com/oauth/apps). See [official steps](https://www.tumblr.com/docs/api/v2#auth).
 
 * Set up **Pinterest** sign in: [https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F). See [official steps](https://developers.pinterest.com/docs/api/overview/?).
 

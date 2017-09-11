@@ -28,7 +28,7 @@ The Configuration API provides a way of configuring an app based on a list of na
 * [Azure Key Vault](xref:security/key-vault-configuration)
 * Custom providers, which you install or create
 
-Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
+Each configuration value maps to a string key. There's built-in binding support to deserialize settings into a custom [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 

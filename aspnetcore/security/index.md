@@ -26,7 +26,7 @@ uid: security/index
         *   [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
         *   [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
         *   [An ASP.NET Core web app with Azure AD B2C](https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapp/)
-    *   [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/en/release/)
+    *   [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/release/)
 *   [Authorization](authorization/index.md)
     *   [Introduction](authorization/introduction.md)
     *   [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
