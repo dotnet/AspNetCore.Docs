@@ -1,0 +1,79 @@
+﻿@page
+@model RazorPagesMovie.Pages.Schedules.IndexModel
+
+@{
+    ViewData["Title"] = "Schedules";
+}
+
+<h2>Schedules</h2>
+<hr />
+
+<h3>Upload Schedules</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="FileUpload.Title" class="control-label"></label>
+                <input asp-for="FileUpload.Title" type="text" class="form-control" />
+                <span asp-validation-for="FileUpload.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload.UploadPublicSchedule" class="control-label"></label>
+                <input asp-for="FileUpload.UploadPublicSchedule" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="FileUpload.UploadPublicSchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload.UploadPrivateSchedule" class="control-label"></label>
+                <input asp-for="FileUpload.UploadPrivateSchedule" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="FileUpload.UploadPrivateSchedule" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Upload" class="btn btn-default" />
+        </form>
+    </div>
+</div>
+
+<h3>Loaded Schedules</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schedules[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schedules[0].UploadDT)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Schedules[0].PublicScheduleSize)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Schedules[0].PrivateScheduleSize)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Schedules) {
+        <tr>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.PublicScheduleSize)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.PrivateScheduleSize)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

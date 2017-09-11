@@ -81,6 +81,7 @@
 #### [Adding search](xref:tutorials/razor-pages/search)
 #### [Adding a new field](xref:tutorials/razor-pages/new-field)
 #### [Adding validation](xref:tutorials/razor-pages/validation)
+#### [Uploading files](xref:tutorials/razor-pages/uploading-files)
 
 ### [Create an MVC web app on Windows](tutorials/first-mvc-app/index.md)
 #### [Getting started](tutorials/first-mvc-app/start-mvc.md)

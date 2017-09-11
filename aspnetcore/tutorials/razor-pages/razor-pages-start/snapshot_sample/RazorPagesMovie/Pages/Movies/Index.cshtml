@@ -13,23 +13,23 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Movie[0].Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Movie[0].Genre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Movie[0].Price)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Price)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Movie) {
+@foreach (var item in Model.Movies) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
