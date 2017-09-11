@@ -557,7 +557,7 @@ using (var host = WebHost.Start(app => app.Response.WriteAsync("Hello, World!"))
 }
 ```
 
-Make a request in the browser to `http://localhost:5000` to receive the response "Hello World!" Issuing a break (Ctrl-C/SIGINT or SIGTERM) in the console window bypasses the `WaitForShutdown`. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
+Make a request in the browser to `http://localhost:5000` to receive the response "Hello World!" `WaitForShutdown` blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
 
 **Start(string url, RequestDelegate app)**
 
@@ -605,7 +605,7 @@ Use the following browser requests with the example:
 | `http://localhost:5000/Sante/Kevin`        | Sante, Kevin!                            |
 | `http://localhost:5000`                    | Hello World!                             |
 
-Issuing a break (Ctrl-C/SIGINT or SIGTERM) in the console window bypasses the `WaitForShutdown`. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
+`WaitForShutdown` blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the `Console.WriteLine` message and waits for a keypress to exit.
 
 **Start(string url, Action<IRouteBuilder> routeBuilder)**
 
