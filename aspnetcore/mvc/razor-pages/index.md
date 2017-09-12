@@ -113,7 +113,7 @@ The *Pages/Create.cshtml.cs* code-behind file for the view:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
-By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class.
+By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
 Using a `PageModel` code-behind file supports unit testing, but requires you to write an explicit constructor and class. Pages without `PageModel` code-behind files support runtime compilation, which can be an advantage in development.  <!-- review: advantage because you can make changes and refresh the browser without explicitly compiling the app -->
 
