@@ -61,7 +61,7 @@ Proceed through the **Confirmation** step to install the web server role and ser
 
 ## Install Web Deploy when publishing with Visual Studio
 
-If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the hosting system. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/search/result.aspx?q=webdeploy&form=dlc). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the hosting system. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
 
 ## Application configuration
 
@@ -149,7 +149,7 @@ See [Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Co
 ![Publish dialog page](iis/_static/pub-dialog.png)
 
 ### Web Deploy outside of Visual Studio
-You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/library/dd568996(WS.10).aspx).
+You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://docs.microsoft.com/iis/publish/using-web-deploy/use-the-web-deployment-tool).
 
 ### Alternatives to Web Deploy
 If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the hosting system, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
@@ -180,12 +180,12 @@ To configure Data Protection under IIS you must use one of the following approac
 
 * Run a [powershell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) to create suitable registry entries (For example,  `.\Provision-AutoGenKeys.ps1 DefaultAppPool`). This will store keys in the registry, protected using DPAPI with a machine wide key.
 * Configure the IIS Application Pool to load the user profile. This setting is in the **Process Model** section under the **Advanced Settings** for the application pool. Set **Load User Profile** to `True`. This will store keys under the user profile directory, and protected using DPAPI with a key specific to the user account used for the app pool.
-* Adjust your application code to [use the file system as a key ring store](https://docs.microsoft.com/aspnet/core/security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure it is a trusted certificate. For example, if it is a self signed certificate you must place it in the Trusted Root store.
+* Adjust your application code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure it is a trusted certificate. For example, if it is a self signed certificate you must place it in the Trusted Root store.
 
 When using IIS in a web farm:
 
 * Use a file share all machines can access.
-* Deploy an X509 certificate to each machine.  Configure [data protection in code](https://docs.asp.net/en/latest/security/data-protection/configuration/overview.html).
+* Deploy an X509 certificate to each machine.  Configure [data protection in code](https://docs.microsoft.com/aspnet/core/security/data-protection/configuration/overview).
 
 ### 1. Create a Data Protection Registry Hive
 
@@ -239,7 +239,7 @@ For more information on configuring the ASP.NET Core Module with the *web.config
 
 ## Configuration of IIS with web.config
 
-IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the system level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver), [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules). If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
+IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the system level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://docs.microsoft.com/iis/configuration/system.webServer/), [ASP.NET Core Module Configuration Reference](xref:hosting/aspnet-core-module), and [Using IIS Modules with ASP.NET Core](xref:hosting/iis-modules). If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
 ## Configuration sections of web.config
 
@@ -504,6 +504,6 @@ Troubleshooting
 
 * [Introduction to ASP.NET Core](../index.md)
 
-* [The Official Microsoft IIS Site](http://www.iis.net/)
+* [The Official Microsoft IIS Site](https://www.iis.net/)
 
-* [Microsoft TechNet Library: Windows Server](https://technet.microsoft.com/library/bb625087.aspx)
+* [Microsoft TechNet Library: Windows Server](https://docs.microsoft.com/windows-server/windows-server-versions)

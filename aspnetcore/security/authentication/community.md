@@ -26,4 +26,4 @@ The list below is sorted alphabetically.
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | Easy-to-use OpenID Connect server for ASP.NET Core  |
 | [PwdLess](https://github.com/pwdless/pwdless) | Simple, stateless, passwordless authentication for ASP.NET Core  |
 
-To get your provider added here [edit this page](https://github.com/aspnet/Docs/edit/master/aspnetcore/security/authentication/community.md).
+To get your provider added here [edit this page](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Faspnet%2FDocs%2Fedit%2Fmaster%2Faspnetcore%2Fsecurity%2Fauthentication%2Fcommunity.md).

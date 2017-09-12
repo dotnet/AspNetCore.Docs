@@ -39,7 +39,7 @@ ASP.NET Core provides the following benefits:
 * Ability to build and run on Windows, macOS, and Linux.
 * Open-source and community-focused.
 
-ASP.NET Core ships entirely as [NuGet](https://nuget.org) packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
+ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
 
 ## Build web APIs and web UI using ASP.NET Core MVC
 

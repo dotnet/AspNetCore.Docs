@@ -156,4 +156,4 @@ When the application fails to load configuration using the provider, an error me
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
 * [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-hsm-protected-keys)
-* [KeyVaultClient Class](https://msdn.microsoft.com/library/microsoft.azure.keyvault.keyvaultclient.aspx)
+* [KeyVaultClient Class](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclient)

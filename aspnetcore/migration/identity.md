@@ -16,7 +16,7 @@ uid: migration/identity
 
 <a name=migration-identity></a>
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 In the previous article we [migrated configuration from an ASP.NET MVC project to ASP.NET Core MVC](configuration.md). In this article, we migrate the registration, login, and user management features.
 

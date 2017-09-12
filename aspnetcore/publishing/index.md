@@ -52,7 +52,7 @@ If your app uses the [Kestrel](xref:fundamentals/servers/kestrel) web server and
 
 Deployment often requires additional tasks besides copying the output from `dotnet publish` to a server. For example, you might want to include extra files in the *publish* folder, or exclude files from it. Visual Studio uses MSBuild for web deployment, and you can customize MSBuild to do many other tasks during deployment. For more information, see [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs) and the [Using MSBuild and Team Foundation Build](http://msbuildbook.com/) book.
 
-You can deploy directly from Visual Studio to Azure App Service by using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs) or by using [built-in Git support](xref:publishing/azure-continuous-deployment). Visual Studio Team Services supports [continuous deployment to Azure App Service](https://www.visualstudio.com/en-us/docs/build/aspnet/core/quick-to-azure).
+You can deploy directly from Visual Studio to Azure App Service by using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs) or by using [built-in Git support](xref:publishing/azure-continuous-deployment). Visual Studio Team Services supports [continuous deployment to Azure App Service](https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure).
 
 ## Additional resources
 

@@ -15,7 +15,7 @@ uid: mvc/controllers/filters
 
 # Filters
 
-By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](http://ardalis.com)
+By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis.com/)
 
 *Filters* in ASP.NET Core MVC allow you to run code before or after certain stages in the request processing pipeline.
 
@@ -111,7 +111,7 @@ A filter can be added to the pipeline at one of three *scopes*. You can add a fi
 
 ### Default order of execution
 
-When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. This is sometimes referred to as "Russian doll" nesting, as each increase in scope is wrapped around the previous scope, like a [nesting doll](https://en.wikipedia.org/wiki/Matryoshka_doll). You generally get the desired overriding behavior without having to explicitly determine ordering.
+When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters. This is sometimes referred to as "Russian doll" nesting, as each increase in scope is wrapped around the previous scope, like a [nesting doll](https://wikipedia.org/wiki/Matryoshka_doll). You generally get the desired overriding behavior without having to explicitly determine ordering.
 
 As a result of this nesting, the *after* code of filters runs in the reverse order of the *before* code. The sequence looks like this:
 

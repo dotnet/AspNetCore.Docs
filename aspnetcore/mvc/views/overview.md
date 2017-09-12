@@ -14,7 +14,7 @@ uid: mvc/views/overview
 ---
 # Rendering HTML with views in ASP.NET Core MVC
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC controllers can return formatted results using *views*.
 
