@@ -101,4 +101,4 @@ Run the app and verify you can create/edit/display movies with a `Rating` field.
 
 >[!div class="step-by-step"]
 [Previous: Adding Search](xref:tutorials/razor-pages/search)
-[Next: Adding a new field](xref:tutorials/razor-pages/new-field)
+[Next: Adding Validation](xref:tutorials/razor-pages/validation)
