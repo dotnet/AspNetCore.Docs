@@ -18,7 +18,6 @@ namespace RazorPagesContacts.Pages.Customers
         [TempData]
         public string Message { get; set; }
 
-
         [BindProperty]
         public Customer Customer { get; set; }
 

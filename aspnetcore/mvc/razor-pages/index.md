@@ -145,14 +145,6 @@ The `Customer` property uses `[BindProperty]` attribute to opt in to model bindi
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
-The following code shows the combined version of the create page:
-
-[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/CreateCombined.cshtml)]
-
-Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*.
-
-The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for [constructor dependency injection](xref:mvc/controllers/dependency-injection#constructor-injection). The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
-
 The home page (*Index.cshtml*):
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
@@ -209,7 +201,7 @@ The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Page
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-Note: The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
+**Note:** The layout is in the *Pages* folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the *Pages* folder can be used from any Razor page under the *Pages* folder.
 
 We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
@@ -241,15 +233,13 @@ The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
 The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the code behind file. The `@namespace` directive was designed so the C# classes added to a project and pages-generated code *just work* without having to add an `@using` directive for the code behind file.
 
-Note: `@namespace` also works with conventional Razor views.
+**Note:** `@namespace` also works with conventional Razor views.
 
 The original *Pages/Create.cshtml* view file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
 
-The updated page:
-
-The *Pages/Create.cshtml* view file:
+The updated *Pages/Create.cshtml* view file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
@@ -263,7 +253,7 @@ The `Create` page, shown previously, uses `RedirectToPage`:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
 
-The app has the following file/folder structure
+The app has the following file/folder structure:
 
 * */Pages*
 
@@ -301,8 +291,9 @@ ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/m
 
 The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
 
-The following code sets the value of `Message` using `TempData`.
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28&name=snippet_Temp)]
+The following code sets the value of `Message` using `TempData`:
+
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
 
 The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
 
