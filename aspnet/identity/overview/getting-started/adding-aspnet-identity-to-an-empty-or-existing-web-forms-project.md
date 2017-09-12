@@ -27,7 +27,7 @@ by [Raquel Soares De Almeida](https://github.com/raquelsa)
 ## Getting Started ASP.NET Identity
 
 1. Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566).
-2. Click **New Projec** t from the Start page, or you can use the menu and select **File**, and then **New Project**.
+2. Click **New Project** from the Start page, or you can use the menu and select **File**, and then **New Project**.
 3. Select **Visual C# i** n the left pane, then **Web** and then select **ASP.NET Web Application**. Name your project "WebFormsIdentity" and then click **OK**.   
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image1.png)
@@ -74,6 +74,10 @@ Note that this package will install the dependency packages: EntityFramework and
 6. Open the *Web.config* file and add a connection string entry for the database we will use to store user information. The database will be created at runtime by EntityFramework for the Identity entities. The connection string is similar to one created for you when you create a new Web Forms project. The highlighted code shows the markup you should add:
 
     [!code-xml[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample3.xml?highlight=11-14)]
+    
+    > [!NOTE] 
+    > For Visual Studio 2015 or higher, replace `(localdb)\v11.0` with `(localdb)\MSSQLLocalDB` in your connection string.
+    
 7. Right click file *Register.aspx* in your project and select **Set as Start Page**. Press Ctrl + F5 to build and run the web application. Enter a new user name and password and then click on **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image6.png)  
