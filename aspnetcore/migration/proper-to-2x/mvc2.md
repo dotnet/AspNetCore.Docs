@@ -22,7 +22,6 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 ## Prerequisites
 
 * [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
-* [Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) version 15.3 or later with the **ASP.NET and web development** workload.
 
 ## Target Frameworks
 ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
@@ -37,7 +36,7 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 </ItemGroup>
 ```
 
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they are precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref: fundamentals/metapackage) for more detail.
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they are precompiled to improve performance. See [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x](xref:fundamentals/metapackage) for more detail.
 
 ## Project structure differences
 The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
