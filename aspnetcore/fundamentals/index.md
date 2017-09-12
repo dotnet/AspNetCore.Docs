@@ -97,7 +97,7 @@ For more information, see [Middleware](xref:fundamentals/middleware) and [Open W
 
 ## Servers
 
-The ASP.NET Core hosting model does not directly listen for requests; rather, it relies on an HTTP server implementation to forward the request to the application. The forwarded request is wrapped as a set of feature objects that you can access through interfaces. The application composes this set into an `HttpContext`. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is typically run behind a production web server like [IIS](https://iis.net) or [nginx](http://nginx.org).
+The ASP.NET Core hosting model does not directly listen for requests; rather, it relies on an HTTP server implementation to forward the request to the application. The forwarded request is wrapped as a set of feature objects that you can access through interfaces. The application composes this set into an `HttpContext`. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is typically run behind a production web server like [IIS](https://www.iis.net/) or [nginx](http://nginx.org).
 
 For more information, see [Servers](xref:fundamentals/servers/index) and [Hosting](xref:fundamentals/hosting).
 

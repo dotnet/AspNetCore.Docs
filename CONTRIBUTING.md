@@ -30,7 +30,7 @@ For each Markdown file there may be a folder for images and a folder for sample 
 ![description of image for alt attribute](configuration/_static/imagename.png)
 ```
 
-**All** images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
+**All** images should have [alt text](https://wikipedia.org/wiki/Alt_attribute).
 
 Markdown file names and image file names should be all lower case.
 
@@ -61,7 +61,7 @@ To render a portion of a file as a snippet by using line numbers:
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 ```
 
-For C# snippets, you can reference a [C# region](https://msdn.microsoft.com/en-us/library/9a1ybwek.aspx). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
+For C# snippets, you can reference a [C# region](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
 
 To render a C# region named "snippet_Example":
 

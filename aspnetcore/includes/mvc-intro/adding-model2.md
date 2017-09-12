@@ -10,7 +10,7 @@
   dotnet ef database update
   ```
   
-  [.NET Core](http://go.microsoft.com/fwlink/?LinkID=517853) is a cross-platform implementation of .NET. Here is what these commands do:
+  [.NET Core](https://docs.microsoft.com/dotnet/core/tools/index) is a cross-platform implementation of .NET. Here is what these commands do:
 
   * `dotnet restore`: Downloads the NuGet packages specified in the *.csproj* file.
   * `dotnet ef migrations add Initial` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter after "add" is a name that you assign to the migration. Here you're naming the migration "Initial" because it's the initial database migration. This operation creates the *Data/Migrations/\<date-time>_Initial.cs* file containing the migration commands to add the *Movie* table to the database.

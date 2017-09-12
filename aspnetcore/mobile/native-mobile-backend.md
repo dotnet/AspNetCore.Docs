@@ -14,7 +14,7 @@ uid: mobile/native-mobile-backend
 ---
 # Creating Backend Services for Native Mobile Applications
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 Mobile apps can easily communicate with ASP.NET Core backend services.
 

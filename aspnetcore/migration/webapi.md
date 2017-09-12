@@ -14,7 +14,7 @@ uid: migration/webapi
 ---
 # Migrating from ASP.NET Web API
 
-By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
+By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 Web APIs are HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Core MVC includes support for building Web APIs providing a single, consistent way of building web applications. In this article, we demonstrate the steps required to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.
 
@@ -22,7 +22,7 @@ Web APIs are HTTP services that reach a broad range of clients, including browse
 
 ## Review ASP.NET Web API Project
 
-This article uses the sample project, *ProductsApp*, created in the article [Getting Started with ASP.NET Web API](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.
+This article uses the sample project, *ProductsApp*, created in the article [Getting Started with ASP.NET Web API](https://docs.microsoft.com/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.
 
 In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 
@@ -33,7 +33,7 @@ In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 [!code-csharp[Main](../migration/webapi/sample/ProductsApp/App_Start/WebApiConfig.cs?highlight=15,16,17,18,19,20)]
 
 
-This class configures [attribute routing](http://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format */api/{controller}/{id}*, with *{id}* being optional.
+This class configures [attribute routing](https://docs.microsoft.com/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format */api/{controller}/{id}*, with *{id}* being optional.
 
 The *ProductsApp* project includes just one simple controller, which inherits from `ApiController` and exposes two methods:
 
