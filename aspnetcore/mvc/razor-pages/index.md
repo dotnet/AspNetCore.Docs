@@ -220,7 +220,7 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
+`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 
