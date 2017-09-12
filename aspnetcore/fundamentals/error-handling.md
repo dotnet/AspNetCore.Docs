@@ -106,13 +106,13 @@ Also, be aware that once the headers for a response have been sent, you can't ch
 
 ## Server exception handling
 
-In addition to the exception handling logic in your app, the [server](servers/index.md) hosting your app will perform some exception handling. If the server catches an exception before the headers have been sent it sends a 500 Internal Server Error response with no body. If it catches an exception after the headers have been sent, it closes the connection. Requests that are not handled by your app will be handled by the server, and any exception that occurs will be handled by the server's exception handling. Any custom error pages or exception handling middleware or filters you have configured for your app will not affect this behavior.
+In addition to the exception handling logic in your app, the [server](servers/index.md) hosting your app performs some exception handling. If the server catches an exception before the headers are sent, the server sends a 500 Internal Server Error response with no body. If the server catches an exception after the headers have been sent, the server closes the connection. Requests that aren't handled by your app are handled by the server. Any exception that occurs is handled by the server's exception handling. Any configured custom error pages or exception handling middleware or filters don't affect this behavior.
 
 ## Startup exception handling
 
-Only the hosting layer can handle exceptions that take place during app startup. Exceptions that occur during app startup can impact server behavior. For example, if an exception happens before you call `KestrelServerOptions.UseHttps`, the hosting layer catches the exception, starts the server, and displays an error page on the non-SSL port. If an exception happens after that line executes, the error page is served over HTTPS instead.
+Only the hosting layer can handle exceptions that take place during app startup. You can [configure how the host behaves in response to errors during startup](hosting.md#detailed-errors) using `captureStartupErrors` and the `detailedErrors` key.
 
-You can [configure how the host will behave in response to errors during startup](hosting.md#configuring-a-host) using `CaptureStartupErrors` and the `detailedErrors` key.
+Hosting can only show an error page for a captured startup error if the error occurs after host address/port binding. If any binding fails for any reason, the hosting layer logs a critical exception, the dotnet process crashes, and no error page is displayed.
 
 ## ASP.NET MVC error handling
 
