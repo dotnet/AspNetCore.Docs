@@ -1,11 +1,11 @@
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: Overview of Razor Pages in ASP.NET Core
-keywords: ASP.NET Core, Razor Pages
+description: This doc provides an overview of using Razor Pages in ASP.NET Core to ease the development of page-focused scenarios.
+keywords: ASP.NET Core,Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 08/15/2017
+ms.date: 09/12/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -25,7 +25,7 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 Install [.NET Core](https://www.microsoft.com/net/core) 2.0.0 or later.
 
-If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later with the following workloads:
+If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 2017 version 15.3 or later with the following workloads:
 
 * **ASP.NET and web development**
 * **.NET Core cross-platform development**
@@ -58,26 +58,26 @@ Run `dotnet new razor` from the command line.
 
 Razor Pages is enabled in *Startup.cs*:
 
-[!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=Startup)]
+[!code-cs[main](index/sample/RazorPagesIntro/Startup.cs?name=snippet_Startup)]
 
 Consider a basic page:
 <a name="OnGet"></a>
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
-The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs. The [@functions](xref:mvc/views/razor#functions) directive enables function-level content.
+The preceding code looks a lot like a Razor view file. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
 
-A similar page, with the `PageModel` in a separate file, is shown in the following two files. The *Pages/Index2.cshtml* file:
+A similar page, using a `PageModel` class, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
 [!code-cshtml[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
-The *Pages/Index2.cshtml.cs* 'code-behind' file:
+The *Pages/Index2.cshtml.cs* "code-behind" file:
 
 [!code-cs[main](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
-For simple pages, mixing the `PageModel` class with the Razor markup is fine. For more complex code, it's a best practice to keep the page model code separate.
+For simple pages, mixing the `PageModel` class with the Razor markup is fine. This is accomplished by defining the page model and its members inside a [@functions](xref:mvc/views/razor#functions) block. For more complex code, it's a best practice to keep the page model code separate.
 
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL:
 
@@ -86,7 +86,7 @@ The associations of URL paths to pages are determined by the page's location in 
 | */Pages/Index.cshtml* | `/` or `/Index` |
 | */Pages/Contact.cshtml* | `/Contact` |
 | */Pages/Store/Contact.cshtml* | `/Store/Contact` |
-| */Pages/Store/Index.cshtml* | `/Store` or `/Store/Index`  |
+| */Pages/Store/Index.cshtml* | `/Store` or `/Store/Index` |
 
 Notes:
 
@@ -111,7 +111,7 @@ The *Pages/Create.cshtml* view file:
 
 The *Pages/Create.cshtml.cs* code-behind file for the view:
 
-[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=ALL)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page. Not much change is needed to convert from a page using `@functions` to define handlers and a page using a `PageModel` class.
 
@@ -126,7 +126,7 @@ The `Async` naming suffix is optional but is often used by convention for asynch
 
 The previous `OnPostAsync` method:
 
-[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 The basic flow of `OnPostAsync`:
 
@@ -141,7 +141,7 @@ When the submitted form has validation errors (that are passed to the server), t
 
 The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
 
-[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=PageModel&highlight=10-11)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
 
 Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name" />`) and accept the input.
 
@@ -152,7 +152,6 @@ The following code shows the combined version of the create page:
 Rather than using `@model`, we're taking advantage of a new feature for Pages. By default, the generated `Page`-derived class *is* the model. Using a *view model* with Razor views is a best practice. With Pages, you get a view model *automatically*.
 
 The main change is replacing constructor injection with injected (`@inject`) properties. This page uses [@inject](xref:mvc/views/razor#inject) for [constructor dependency injection](xref:mvc/controllers/dependency-injection#constructor-injection). The `@inject` statement generates and initializes the `Db` property that is used in `OnPostAsync`. Injected (`@inject`) properties are set before handler methods run.
-
 
 The home page (*Index.cshtml*):
 
@@ -234,7 +233,7 @@ When the `@namespace` directive is contained in *_ViewImports.cshtml*, the speci
 
 For example, the code behind file *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:
 
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=namespace)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
 
 The *Pages/_ViewImports.cshtml* file sets the following namespace:
 
@@ -262,7 +261,7 @@ The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScript
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=OnPostAsync&highlight=10)]
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
 
 The app has the following file/folder structure
 
@@ -303,7 +302,7 @@ ASP.NET Core exposes the [TempData](https://docs.microsoft.com/aspnet/core/api/m
 The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
 
 The following code sets the value of `Message` using `TempData`.
-[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28&name=snippetTemp)]
+[!code-cs[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,27-28&name=snippet_Temp)]
 
 The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.
 
@@ -347,7 +346,6 @@ If you don't like the query string `?handler=JoinList` in the URL, you can chang
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
-
 The preceding route puts the handler name in the URL path instead of the query string. The `?` following `handler` means the route parameter is optional.
 
 You can use `@page` to add additional segments and parameters to a page's route. Whatever's there is **appended** to the default route of the page. Using an absolute or virtual path to change the page's route (like `"~/Some/Other/Path"`) is not supported.
@@ -356,7 +354,7 @@ You can use `@page` to add additional segments and parameters to a page's route.
 
 To configure advanced options, use the extension method `AddRazorPagesOptions` on the MVC builder:
 
-[!code-cs[main](index/sample/RazorPagesContacts/StartupAdvanced.cs?name=snippet1)]
+[!code-cs[main](index/sample/RazorPagesContacts/StartupAdvanced.cs?name=snippet_1)]
 
 Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.
 
