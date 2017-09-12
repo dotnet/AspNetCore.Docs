@@ -14,7 +14,7 @@ uid: migration/configuration
 ---
 # Migrating Configuration
 
-By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
+By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 In the previous article, we began [migrating an ASP.NET MVC project to ASP.NET Core MVC](mvc.md). In this article, we migrate configuration.
 

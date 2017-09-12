@@ -14,7 +14,7 @@ uid: security/authentication/identity-custom-storage-providers
 ---
 # Custom storage providers for ASP.NET Core Identity
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but is not a step-by-step walkthrough.
 
@@ -63,7 +63,7 @@ Registered users of your web site. The [IdentityUser](https://docs.microsoft.com
 
 ### User Claims
 
-A set of statements (or [claims](https://msdn.microsoft.com/library/system.security.claims.claim(v=vs.110).aspx)) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
+A set of statements (or [Claims](https://docs.microsoft.com//dotnet/api/system.security.claims.claim) about the user that represent the user's identity. Can enable greater expression of the user's identity than can be achieved through roles.
 
 ### User Logins
 
@@ -138,7 +138,7 @@ Create a `UserStore` class that provides the methods for all data operations on 
 - IUserTwoFactorStore
 - IUserLockoutStore
 
-The optional interfaces inherit from `IUserStore`. You can see a partially implemented sample user store [here](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
+The optional interfaces inherit from `IUserStore`. You can see a partially implemented sample user store [here](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs).
 
 Within the `UserStore` class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the SQL Server with Dapper implementation, the `UserStore` class has the `CreateAsync` method which uses an instance of `DapperUsersTable` to insert a new record:
 
@@ -147,27 +147,27 @@ Within the `UserStore` class, you use the data access classes that you created t
 ### Interfaces to implement when customizing user store
 
 - **IUserStore**  
- The [IUserStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613278(v=vs.108).aspx) interface is the only interface you must implement in the user store. It defines methods for creating, updating, deleting, and retrieving users.
+ The [IUserStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserstore-1) interface is the only interface you must implement in the user store. It defines methods for creating, updating, deleting, and retrieving users.
 - **IUserClaimStore**  
- The [IUserClaimStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613265(v=vs.108).aspx) interface defines the methods you implement to enable user claims. It contains methods for adding, removing and retrieving user claims.
+ The [IUserClaimStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserclaimstore-1) interface defines the methods you implement to enable user claims. It contains methods for adding, removing and retrieving user claims.
 - **IUserLoginStore**  
- The [IUserLoginStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613272(v=vs.108).aspx) defines the methods you implement to enable external authentication providers. It contains methods for adding, removing and retrieving user logins, and a method for retrieving a user based on the login information.
+ The [IUserLoginStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserloginstore-1) defines the methods you implement to enable external authentication providers. It contains methods for adding, removing and retrieving user logins, and a method for retrieving a user based on the login information.
 - **IUserRoleStore**  
- The [IUserRoleStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613276(v=vs.108).aspx) interface defines the methods you implement to map a user to a role. It contains methods to add, remove, and retrieve a user's roles, and a method to check if a user is assigned to a role.
+ The [IUserRoleStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserrolestore-1) interface defines the methods you implement to map a user to a role. It contains methods to add, remove, and retrieve a user's roles, and a method to check if a user is assigned to a role.
 - **IUserPasswordStore**  
- The [IUserPasswordStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613273(v=vs.108).aspx) interface defines the methods you implement to persist hashed passwords. It contains methods for getting and setting the hashed password, and a method that indicates whether the user has set a password.
+ The [IUserPasswordStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserpasswordstore-1) interface defines the methods you implement to persist hashed passwords. It contains methods for getting and setting the hashed password, and a method that indicates whether the user has set a password.
 - **IUserSecurityStampStore**  
- The [IUserSecurityStampStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613277(v=vs.108).aspx) interface defines the methods you implement to use a security stamp for indicating whether the user's account information has changed. This stamp is updated when a user changes the password, or adds or removes logins. It contains methods for getting and setting the security stamp.
+ The [IUserSecurityStampStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1) interface defines the methods you implement to use a security stamp for indicating whether the user's account information has changed. This stamp is updated when a user changes the password, or adds or removes logins. It contains methods for getting and setting the security stamp.
 - **IUserTwoFactorStore**  
- The [IUserTwoFactorStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613279(v=vs.108).aspx) interface defines the methods you implement to support two factor authentication. It contains methods for getting and setting whether two factor authentication is enabled for a user.
+ The [IUserTwoFactorStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iusertwofactorstore-1) interface defines the methods you implement to support two factor authentication. It contains methods for getting and setting whether two factor authentication is enabled for a user.
 - **IUserPhoneNumberStore**  
- The [IUserPhoneNumberStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613275(v=vs.108).aspx) interface defines the methods you implement to store user phone numbers. It contains methods for getting and setting the phone number and whether the phone number is confirmed.
+ The [IUserPhoneNumberStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserphonenumberstore-1) interface defines the methods you implement to store user phone numbers. It contains methods for getting and setting the phone number and whether the phone number is confirmed.
 - **IUserEmailStore**  
- The [IUserEmailStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613143(v=vs.108).aspx) interface defines the methods you implement to store user email addresses. It contains methods for getting and setting the email address and whether the email is confirmed.
+ The [IUserEmailStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuseremailstore-1) interface defines the methods you implement to store user email addresses. It contains methods for getting and setting the email address and whether the email is confirmed.
 - **IUserLockoutStore**  
- The [IUserLockoutStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613271(v=vs.108).aspx) interface defines the methods you implement to store information about locking an account. It contains methods for tracking failed access attempts and lockouts.
+ The [IUserLockoutStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserlockoutstore-1) interface defines the methods you implement to store information about locking an account. It contains methods for tracking failed access attempts and lockouts.
 - **IQueryableUserStore**  
- The [IQueryableUserStore&lt;TUser&gt;](https://msdn.microsoft.com/library/dn613267(v=vs.108).aspx) interface defines the members implement to provide a queryable user store.
+ The [IQueryableUserStore&lt;TUser&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) interface defines the members implement to provide a queryable user store.
 
 You implement only the interfaces that are needed in your app. For example:
 
@@ -185,7 +185,7 @@ public class UserStore : IUserStore<IdentityUser>,
 
 ### IdentityUserClaim, IdentityUserLogin, and IdentityUserRole
 
-The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](https://msdn.microsoft.com/library/dn613250(v=vs.108).aspx), [IdentityUserLogin](https://msdn.microsoft.com/library/dn613251(v=vs.108).aspx), and [IdentityUserRole](https://msdn.microsoft.com/library/dn613252(v=vs.108).aspx) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
+The ``Microsoft.AspNet.Identity.EntityFramework`` namespace contains implementations of the [IdentityUserClaim](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1), [IdentityUserLogin](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin), and [IdentityUserRole](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the ``UserStore.GetClaimsAsync`` method can call the ``userClaimTable.FindByUserId(user.Id)`` method to execute a query on that table directly and return a list of claims.
 
 ## Customize the role class
 
@@ -200,7 +200,7 @@ The following is an example role class:
 You can create a ``RoleStore`` class that provides the methods for all data operations on roles. This class is equivalent to the [RoleStore<TRole>](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1) class. In the `RoleStore` class, you implement the ``IRoleStore<TRole>`` and optionally the ``IQueryableRoleStore<TRole>`` interface.
 
 - **IRoleStore&lt;TRole&gt;**  
- The [IRoleStore](https://msdn.microsoft.com/library/dn468195.aspx) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
+ The [IRoleStore](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.irolestore-1) interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.
 - **RoleStore&lt;TRole&gt;**  
  To customize `RoleStore`, create a class that implements the `IRoleStore` interface. 
 

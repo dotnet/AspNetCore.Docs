@@ -36,7 +36,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 * For the purposes of this tutorial, clear the **Guided Setup** check box.
 
-* Tap **Create** to continue to the **Registration** page:
+* Tap **Create** to continue to the **Registration** page. Provide a **Name** and note the value of the **Application Id**, which you use as `ClientId` later in the tutorial:
 
 ![Registration page](index/_static/MicrosoftDevAppReg.png)
 
@@ -66,8 +66,7 @@ Link sensitive settings like Microsoft `Application ID` and `Password` to your a
 
 ## Configure Microsoft Account Authentication
 
-The project template used in this tutorial ensures that 
-[Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package is already installed.
+The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package is already installed.
 
 * To install this package with Visual Studio 2017, right-click on the project and select **Manage NuGet Packages**.
 * To install with .NET Core CLI, execute the following in your project directory:

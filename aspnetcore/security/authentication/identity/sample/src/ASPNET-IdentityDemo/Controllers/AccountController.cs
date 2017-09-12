@@ -48,7 +48,7 @@ namespace webapptemplate.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
-        #region login
+        #region snippet_login
         //
         // POST: /Account/Login
         [HttpPost]
@@ -97,7 +97,7 @@ namespace webapptemplate.Controllers
         {
             return View();
         }
-        #region register
+        #region snippet_register
         //
         // POST: /Account/Register
         [HttpPost]
@@ -129,7 +129,7 @@ namespace webapptemplate.Controllers
         }
         #endregion
 
-        #region logout
+        #region snippet_logout
         //
         // POST: /Account/LogOut
         [HttpPost]

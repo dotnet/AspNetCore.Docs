@@ -23,7 +23,7 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 
 ## ASP.NET Core 2.0 prerequisites
 
-Install [.NET Core](https://dot.net/core) 2.0.0 or later.
+Install [.NET Core](https://www.microsoft.com/net/core) 2.0.0 or later.
 
 If you're using Visual Studio, install [Visual Studio](https://www.visualstudio.com/vs/) 15.3 or later with the following workloads:
 
@@ -220,7 +220,7 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/built-in/) to all the pages in the *Pages* folder.
+`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 

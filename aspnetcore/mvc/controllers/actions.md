@@ -14,7 +14,7 @@ uid: mvc/controllers/actions
 ---
 # Handling requests with controllers in ASP.NET Core MVC
 
-By [Steve Smith](http://ardalis.com) and [Scott Addie](https://github.com/scottaddie)
+By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://github.com/scottaddie)
 
 Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET Core MVC.
 
@@ -33,7 +33,7 @@ A controller is an instantiable class in which at least one of the following con
 
 A controller class must not have an associated `[NonController]` attribute.
 
-Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle). There are a couple approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
+Controllers should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). There are a couple approaches to implementing this principle. If multiple controller actions require the same service, consider using [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to request those dependencies. If the service is needed by only a single action method, consider using [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) to request the dependency.
 
 Within the **M**odel-**V**iew-**C**ontroller pattern, a controller is responsible for the initial processing of the request and instantiation of the model. Generally, business decisions should be performed within the model.
 

@@ -35,7 +35,7 @@ For the Visual Studio 2015 version of this tutorial, see the [VS 2015 version of
 
 Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.
 
-* [Visual Studio 2017 Home page installer](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
+* [Visual Studio 2017 Home page installer](https://www.visualstudio.com/)
 
 Run the installer and select the following workloads:
 
@@ -93,7 +93,7 @@ Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 <!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
 ![running app](start-mvc/_static/1.png)
 
-* Visual Studio starts [IIS Express](http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. When you run the app, you'll see a different port number.
+* Visual Studio starts [IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs your app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. When you run the app, you'll see a different port number.
 * Launching the app with **Ctrl+F5** (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 

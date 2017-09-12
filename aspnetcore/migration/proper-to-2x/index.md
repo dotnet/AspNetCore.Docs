@@ -22,7 +22,6 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 ## Prerequisites
 
 * [.NET Core 2.0.0 SDK](https://dot.net/core) or later.
-* [Visual Studio 2017](https://docs.microsoft.com/visualstudio/install/install-visual-studio) version 15.3 or later with the **ASP.NET and web development** workload.
 
 ## Target Frameworks
 ASP.NET Core 2.0 projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
