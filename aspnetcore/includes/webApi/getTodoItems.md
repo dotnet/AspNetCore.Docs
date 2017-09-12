@@ -3,7 +3,7 @@
 The preceding code:
 
 * Defines an empty controller class. In the next sections, we'll add methods to implement the API.
-* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext `) into the controller. The database context is used in each of the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`TodoContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 * The constructor adds an item to the in-memory database if one doesn't exist.
 
 ## Getting to-do items

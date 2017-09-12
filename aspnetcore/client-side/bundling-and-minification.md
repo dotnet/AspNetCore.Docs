@@ -86,8 +86,8 @@ Bundle options include:
 * minify - minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
   * Configuration options are available per output file type.
     * [CSS Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
-    * [JavaScript Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/jsminifier)
-    * [HTML Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/htmlminifier)
+    * [JavaScript Minifier](https://github.com/madskristensen/BundlerMinifier/wiki)
+    * [HTML Minifier](https://github.com/madskristensen/BundlerMinifier/wiki)
 * includeInProject - add generated files to project file. **optional**, *default - false*
 * sourceMaps - generate source maps for the bundled file. **optional**, *default - false*
 

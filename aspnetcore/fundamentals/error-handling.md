@@ -15,7 +15,7 @@ ms.custom: H1Hack27Feb2017
 ---
 # Introduction to Error Handling in ASP.NET Core
 
-By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
+By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdykstra/)
 
 This article covers common appoaches to handling errors in ASP.NET Core apps.
 

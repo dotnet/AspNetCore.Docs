@@ -14,7 +14,7 @@ uid: publishing/apache-proxy
 ---
 # Set up a hosting environment for ASP.NET Core on Linux with Apache, and deploy to it
 
-By [Shayne Boyer](https://www.github.com/spboyer)
+By [Shayne Boyer](https://github.com/spboyer)
 
 Apache is a very popular HTTP server and can be configured as a proxy to redirect HTTP traffic similar to nginx. In this guide, we will learn how to set up Apache on CentOS 7 and use it as a reverse proxy to welcome incoming connections and redirect them to the ASP.NET Core application running on Kestrel. For this purpose, we will use the *mod_proxy* extension and other related Apache modules.
 

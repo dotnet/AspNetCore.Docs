@@ -13,7 +13,7 @@ uid: security/anti-request-forgery
 
 # Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
 
-[Steve Smith](http://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+[Steve Smith](https://ardalis.com/), [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## What attack does anti-forgery prevent?
 
@@ -350,7 +350,7 @@ When a user is logged in to a system, a user session is created on the server-si
 
 ### User tokens
 
-Token-based authentication doesn’t store session on the server. Instead, when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://msdn.microsoft.com/library/ff359101.aspx). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server-side validation. This token is not *encrypted*; rather it is *encoded*. On the server-side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is an issue if the token is stored in a cookie.
+Token-based authentication doesn’t store session on the server. Instead, when a user is logged in they are issued a token (not an antiforgery token). This token holds all the data that is required to validate the token. It also contains user information, in the form of [claims](https://docs.microsoft.com/dotnet/framework/security/claims-based-identity-model). When a user wants to access a server resource requiring authentication, the token is sent to the server with an additional authorization header in form of Bearer {token}. This makes the application stateless since in each subsequent request the token is passed in the request for server-side validation. This token is not *encrypted*; rather it is *encoded*. On the server-side the token can be decoded to access the raw information within the token. To send the token in subsequent requests, you can either store it in browser’s local storage or in a cookie. You don’t have to worry about XSRF vulnerability if your token is stored in the local storage, but it is an issue if the token is stored in a cookie.
 
 ### Multiple applications are hosted in one domain
 

@@ -14,7 +14,7 @@ uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 
@@ -148,7 +148,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 }
 ```
 
-The framework will handle validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](http://jqueryvalidation.org/).
+The framework will handle validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](https://jqueryvalidation.org/).
 
 ### Dependency injection
 

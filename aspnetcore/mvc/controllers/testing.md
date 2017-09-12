@@ -14,7 +14,7 @@ uid: mvc/controllers/testing
 ---
 # Testing controller logic in ASP.NET Core
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 Controllers in ASP.NET MVC apps should be small and focused on user-interface concerns. Large controllers that deal with non-UI concerns are more difficult to test and maintain.
 
@@ -42,7 +42,7 @@ Typical controller responsibilities:
 If you're writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.
 
 > [!TIP]
-> [Create and run unit tests with Visual Studio](https://www.visualstudio.com/get-started/code/create-and-run-unit-tests-vs).
+> [Create and run unit tests with Visual Studio](https://www.visualstudio.com/docs/code/create-and-run-unit-tests-vs).
 
 To demonstrate unit testing, review the following controller. It displays a list of brainstorming sessions and allows new brainstorming sessions to be created with a POST:
 

@@ -72,4 +72,4 @@ If EncryptionType is "Managed", the system will be configured to use a managed S
 If EncryptionType has any other value (other than null / empty), the data protection system will throw an exception at startup.
 
 >[!WARNING]
-> When configuring a default policy setting that involves type names (EncryptionAlgorithmType, ValidationAlgorithmType, KeyEscrowSinks), the types must be available to the application. In practice, this means that for applications running on Desktop CLR, the assemblies which contain these types should be GACed. For ASP.NET Core applications running on [.NET Core](https://microsoft.com/net/core), the packages which contain these types should be installed.
+> When configuring a default policy setting that involves type names (EncryptionAlgorithmType, ValidationAlgorithmType, KeyEscrowSinks), the types must be available to the application. In practice, this means that for applications running on Desktop CLR, the assemblies which contain these types should be GACed. For ASP.NET Core applications running on [.NET Core](https://www.microsoft.com/net/core), the packages which contain these types should be installed.

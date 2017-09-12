@@ -14,7 +14,7 @@ uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](https://ardalis.com/)
 
 Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
@@ -133,4 +133,4 @@ Adding your provider to the end of the collection may result in a built-in model
 Custom model binders:
 - Should not attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically should not be used to convert a string into a custom type, a [`TypeConverter`](https://msdn.microsoft.com/library/ayybcxe5.aspx) is usually a better option.
+- Typically should not be used to convert a string into a custom type, a [`TypeConverter`](https://docs.microsoft.com//dotnet/api/system.componentmodel.typeconverter) is usually a better option.
