@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesContacts.Data;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace RazorPagesContacts.Pages.Customers
 {
