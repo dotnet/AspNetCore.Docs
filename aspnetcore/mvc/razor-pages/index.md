@@ -153,7 +153,7 @@ The code behind *Index.cshtml.cs* file:
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
-```html
+```cshtml
 <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
 ```
 
