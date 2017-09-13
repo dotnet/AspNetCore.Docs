@@ -67,16 +67,30 @@ If you intend to deploy your applications with Web Deploy in Visual Studio, inst
 
 ### Enabling the IISIntegration components
 
-Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*. Note that code calling *.UseIISIntegration()* does not affect code portability.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+A typical *Program.cs* calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) to begin setting up a host, which Configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module):
+
+```csharp
+public static IWebHost BuildWebHost(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        ...
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *UseIISIntegration* extension method to *WebHostBuilder*. Note that code calling *UseIISIntegration* doesn't affect code portability. Both `UseKestrel` and `UseIISIntegration` are required.
 
 ```csharp
 var host = new WebHostBuilder()
     .UseKestrel()
-    .UseContentRoot(Directory.GetCurrentDirectory())
     .UseIISIntegration()
-    .UseStartup<Startup>()
-    .Build();
+    ...
 ```
+
+---
+
+For more information on hosting, see [Hosting in ASP.NET Core](xref:fundamentals/hosting).
 
 ### Setting IISOptions for the IISIntegration service
 
