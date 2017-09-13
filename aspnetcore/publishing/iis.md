@@ -79,7 +79,7 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *UseIISIntegration* extension method to *WebHostBuilder*:
+Include a dependency on the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *UseIISIntegration* extension method to *WebHostBuilder*:
 
 ```csharp
 var host = new WebHostBuilder()
