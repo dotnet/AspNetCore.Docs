@@ -1016,7 +1016,6 @@
 ##### [Customizing a View](mvc/overview/getting-started/database-first-development/customizing-a-view.md)
 ##### [Enhancing Data Validation](mvc/overview/getting-started/database-first-development/enhancing-data-validation.md)
 ##### [Publish to Azure](mvc/overview/getting-started/database-first-development/publish-to-azure.md)
-#### [ASP.NET MVC Facebook Birthday App](mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app.md)
 #### [Lifecycle of an ASP.NET MVC 5 Application](mvc/overview/getting-started/lifecycle-of-an-aspnet-mvc-5-application.md)
 #### [MVC Recommended Resources](mvc/overview/getting-started/recommended-resources-for-mvc.md)
 #### [MVC recommended tutorials and articles](mvc/overview/getting-started/mvc-learning-sequence.md)

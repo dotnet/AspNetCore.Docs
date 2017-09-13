@@ -51,8 +51,3 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Performance and Debugging
 
 - [Profile and debug your ASP.NET MVC app with Glimpse](../performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
-
-<a id="addRes"></a>
-## Additional Resources
-
-- [ASP.NET MVC Facebook Birthday App](aspnet-mvc-facebook-birthday-app.md)
