@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
-title: "Code! MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#) | Microsoft Docs"
+title: "Create MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial shows you how to build an ASP.NET MVC 5 web application that enables users to log in using OAuth 2.0 with credentials from an external authenti..."
 ms.author: aspnetcontent
@@ -13,7 +13,7 @@ ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
 msc.type: authoredcontent
 ---
-Code! MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)
+Create MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 

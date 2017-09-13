@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RazorPagesIntro
 {
-    #region Startup
+    #region snippet_Startup
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)

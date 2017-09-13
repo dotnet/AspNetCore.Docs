@@ -10,7 +10,7 @@ namespace RazorPagesContacts
     {
         public Startup(IHostingEnvironment env)
         {
-                  HostingEnvironment = env;
+            HostingEnvironment = env;
         }
 
         public IHostingEnvironment HostingEnvironment { get; }
