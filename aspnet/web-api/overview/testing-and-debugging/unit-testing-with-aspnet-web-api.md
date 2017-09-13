@@ -28,7 +28,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
 > - Web API 2
 
 
@@ -50,7 +50,7 @@ This topic contains the following sections:
 <a id="prereqs"></a>
 ## Prerequisites
 
-Visual Studio 2013 or Visual Studio Express 2013 for Web
+Visual Studio 2017 Community, Professional or Enterprise edition
 
 <a id="download"></a>
 ## Download code
