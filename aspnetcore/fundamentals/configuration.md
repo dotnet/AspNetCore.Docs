@@ -61,7 +61,7 @@ The preceding sample uses the configuration indexer to read values. To access co
 It's typical to have different configuration settings for different environments, for example, development, test, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
 * *appsettings.json*
-* *appsettings.\<EnvironmentName>.json
+* *appsettings.\<EnvironmentName>.json*
 * environment variables
 
 See [AddJsonFile](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and higher. 
