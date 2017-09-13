@@ -77,8 +77,6 @@ The *Pages/Index2.cshtml.cs* "code-behind" file:
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
-For simple pages, mixing the `PageModel` class with the Razor markup is fine. This is accomplished by defining the page model and its members inside a [@functions](xref:mvc/views/razor#functions) block. For more complex code, it's a best practice to keep the page model code separate.
-
 The associations of URL paths to pages are determined by the page's location in the file system. The following table shows a Razor Page path and the matching URL:
 
 | File name and path               | matching URL |
