@@ -70,7 +70,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
-[!code-csharp[Main](start-mvc/sample/MvcMovie/Program.cs?highlight=6,16-32)]
+[!code-csharp[Main](start-mvc/sample/MvcMovie/Program.cs?highlight=6,14-32)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
