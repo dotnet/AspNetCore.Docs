@@ -47,14 +47,14 @@ Usage Example:
 ```cshtml
 <distributed-cache name="my-distributed-cache-unique-key-101">
     Time Inside Cache Tag Helper: @DateTime.Now
-</Cache>
+</distributed-cache>
 ```
 
 ## Distributed Cache Tag Helper IDistributedCache Implementations
 
 There are two implementations of `IDistributedCache` built in to ASP.NET Core.  One is based on **Sql Server** and the other is based on **Redis**. Details of these implementations can be found at the resource referenced below named "Working with a distributed cache". Both implementations involve setting an instance of `IDistributedCache` in ASP.NET Core's **startup.cs**.
 
-There no tag attributes specifically associated with using any specific implementation of `IDistributedCache`.
+There are no tag attributes specifically associated with using any specific implementation of `IDistributedCache`.
 
 
 
