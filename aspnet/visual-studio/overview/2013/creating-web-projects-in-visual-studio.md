@@ -202,7 +202,7 @@ You can install a [Visual Studio extension that provides a Facebook template](ht
 
 No authentication options are available for the Facebook template because Facebook applications run within the Facebook site and rely on Facebook's authentication.
 
-For more information about ASP.NET Facebook applications, see [Updating the MVC Facebook API](https://blogs.msdn.com/b/webdev/archive/2014/06/10/updating-the-mvc-facebook-api.aspx) and [ASP.NET MVC Facebook Birthday App](../../../mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app.md).
+For more information about ASP.NET Facebook applications, see [Updating the MVC Facebook API](https://blogs.msdn.com/b/webdev/archive/2014/06/10/updating-the-mvc-facebook-api.aspx).
 
 <a id="vs2012"></a>
 ### Visual Studio 2012 Templates
