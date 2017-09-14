@@ -131,7 +131,8 @@ An example service file for our application.
     WorkingDirectory=/var/aspnetcore/hellomvc
     ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
-    RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
+    # Restart service after 10 seconds if dotnet service crashes
+    RestartSec=10
     SyslogIdentifier=dotnet-example
     User=apache
     Environment=ASPNETCORE_ENVIRONMENT=Production 
