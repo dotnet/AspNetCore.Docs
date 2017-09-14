@@ -44,11 +44,11 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. 
 Add the highlighted line to the *.csproj* file, and save to restore the associated NuGet package:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=21)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
-Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file. The *.csproj* file should now look like the following sample:
+Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file, as highlighted in the following sample:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=21)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=6)]
 
 Saving the modified *.csproj* file also opens a `secrets.json` file in the text editor. Replace the contents of the `secrets.json` file with the following code:
 
@@ -64,8 +64,7 @@ Open the project's `project.json` file. Add a reference to `Microsoft.Extensions
 
 ```json
 "tools": {
-    "Microsoft.Extensions.SecretManager.Tools": "2.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    "Microsoft.Extensions.SecretManager.Tools": "2.0.0"
 },
 ```
 
