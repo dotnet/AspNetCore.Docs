@@ -48,7 +48,7 @@ Add the highlighted line to the *.csproj* file, and save to restore the associat
 
 Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file, as highlighted in the following sample:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=6)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
 Saving the modified *.csproj* file also opens a `secrets.json` file in the text editor. Replace the contents of the `secrets.json` file with the following code:
 
@@ -99,7 +99,7 @@ The Secret Manager tool operates on project-specific configuration settings that
 
 Add a `UserSecretsId` for your project in the *.csproj* file:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=10)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
 Use the Secret Manager tool to set a secret. For example, in a command window from the project directory, enter the following:
 
