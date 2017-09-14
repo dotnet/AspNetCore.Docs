@@ -12,8 +12,6 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/configuration
 ---
-<a name=fundamentals-configuration></a>
-
 # Configuration in ASP.NET Core
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), and [Daniel Roth](https://github.com/danroth27)
