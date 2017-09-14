@@ -82,7 +82,7 @@ Add the following to `secrets.json`:
 
 Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run `dotnet restore`.
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=21)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
 Test the Secret Manager tool by running the following command:
 
@@ -99,7 +99,7 @@ The Secret Manager tool operates on project-specific configuration settings that
 
 Add a `UserSecretsId` for your project in the *.csproj* file:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?range=7-9&highlight=2)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=10)]
 
 Use the Secret Manager tool to set a secret. For example, in a command window from the project directory, enter the following:
 
