@@ -120,7 +120,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The `Set-Cookie` header must not be present.
 * `Vary` header parameters must be valid and not equal to `*`.
 * The `Content-Length` header value (if set) must match the size of the response body.
-* The `HttpSendFileFeature` isn't used.
+* The [IHttpSendFileFeature](/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpsendfilefeature) isn't used.
 * The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering is successful, and the size of the response is smaller than the configured or default `SizeLimit`.
 * The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of [RFC 7234](https://tools.ietf.org/html/rfc7234) for details.
