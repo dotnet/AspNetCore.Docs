@@ -107,7 +107,7 @@ In 1.x projects using EF Core 1.x, a command such as `dotnet ef migrations add` 
 2. Invokes the `ConfigureServices` method to register all services with dependency injection (including `DbContext` types)
 3. Performs its requisite tasks
 
-In 2.0 projects using EF Core 2.0, the steps outlined above still occur. Additionally, the `Configure` method is invoked after `ConfigureServices`. If your 1.x app invoked database initialization code in its `Configure` method, unexpected problems can occur. For example, if the database doesn't yet exist, the seeding code will run before the EF Core Migrations command execution. This problem causes a `dotnet ef migrations list` command to fail if the database doesn't yet exist.
+In 2.0 projects using EF Core 2.0, `Program.BuildWebHost` is invoked to obtain the application services. Unlike 1.x, this has the additional side effect of invoking `Startup.Configure`. If your 1.x app invoked database initialization code in its `Configure` method, unexpected problems can occur. For example, if the database doesn't yet exist, the seeding code runs before the EF Core Migrations command execution. This problem causes a `dotnet ef migrations list` command to fail if the database doesn't yet exist.
 
 Consider the following 1.x seed initialization code in the `Configure` method of *Startup.cs*:
 
@@ -116,6 +116,8 @@ Consider the following 1.x seed initialization code in the `Configure` method of
 In 2.0 projects, move the `SeedData.Initialize` call to the `Main` method of *Program.cs*:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
+
+As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that is about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
 
 <a name="view-compilation"></a>
 
