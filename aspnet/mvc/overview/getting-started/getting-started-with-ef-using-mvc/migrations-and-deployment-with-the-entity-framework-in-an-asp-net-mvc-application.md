@@ -136,7 +136,7 @@ Your Migrations `Seed` method inserts test data. If you were deploying to a prod
 
 ### Get an Azure account
 
-You'll need an Azure account. If you don't already have one, but you do have an MSDN subscription, you can [activate your MSDN subscription benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). Otherwise, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/free/).
+You'll need an Azure account. If you don't already have one, but you do have a Visual Studio subscription, you can [activate your subscription benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). Otherwise, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/free/).
 
 ### Create a web site and a SQL database in Azure
 
