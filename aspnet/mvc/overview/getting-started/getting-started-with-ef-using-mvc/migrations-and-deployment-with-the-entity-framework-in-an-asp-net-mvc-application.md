@@ -172,7 +172,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 12. Telemety colleciton can be enabled for App Service using Application Insights. Application Insights with little configuration collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, get started in [Azure Docs](https://azure.microsoft.com/services/application-insights/).
 12. Click **Create** at the bottom of the blade to indicate that you're finished.
   
- The Management Portal returns to the Dahsboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** will be available in the *App Services* section and the new **SQL Database** will be available in the *SQL Databases* section.
+ The Management Portal returns to the Dashboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** appears in the *App Services* section and the new **SQL Database** appears in the *SQL Databases* section.
 
 ### Deploy the application to Azure
 
