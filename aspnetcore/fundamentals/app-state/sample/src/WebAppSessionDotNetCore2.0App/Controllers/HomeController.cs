@@ -16,8 +16,9 @@ namespace WebAppSession.Controllers
             // Requires using Microsoft.AspNetCore.Http;
             HttpContext.Session.SetString(SessionKeyName, "Rick");
             HttpContext.Session.SetInt32(SessionKeyYearsMember, 3);
-            return RedirectToAction("SessionNameYears");
+            return RedirectToAction(nameof(SessionNameYears));
         }
+
         public IActionResult SessionNameYears()
         {
             var name = HttpContext.Session.GetString(SessionKeyName);
@@ -32,7 +33,7 @@ namespace WebAppSession.Controllers
         {
             // Requires you add the Set extension method mentioned in the article.
             HttpContext.Session.Set<DateTime>(SessionKeyDate, DateTime.Now);
-            return RedirectToAction("GetDate");
+            return RedirectToAction(nameof(GetDate));
         }
 
         public IActionResult GetDate()
