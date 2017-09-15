@@ -21,16 +21,20 @@ namespace RazorPagesMovie.Utilities
             // name isn't found, error messages simply won't show
             // a display name.
             MemberInfo property = typeof(FileUpload).GetProperty(scheduleFormFile.Name.Substring(scheduleFormFile.Name.IndexOf(".") + 1));
-            var dd = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
 
-            if (dd != null)
+            if (property != null)
             {
-                fieldDisplayName = $"{dd.Name} ";
+                var dd = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+
+                if (dd != null)
+                {
+                    fieldDisplayName = $"{dd.Name} ";
+                }
             }
 
             // HtmlEncode the FileName property in case it must be returned
             // in an error message.
-            var fileName = WebUtility.HtmlEncode(scheduleFormFile.FileName);
+            var fileName = WebUtility.HtmlEncode(Path.GetFileName(scheduleFormFile.FileName));
 
             if (scheduleFormFile.ContentType.ToLower() != "text/plain")
             {
