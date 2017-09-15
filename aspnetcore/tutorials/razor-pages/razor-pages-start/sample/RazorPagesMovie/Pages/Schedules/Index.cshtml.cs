@@ -30,24 +30,34 @@ namespace RazorPagesMovie.Pages.Schedules
 
         public async Task<IActionResult> OnPostAsync()
         {
+            // Perform an initial check to catch FileUpload class
+            // attribute violations.
             if (!ModelState.IsValid)
             {
                 Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
                 return Page();
             }
 
-            var PublicScheduleScheduleData = 
-                await FileHelpers.ProcessSchedule(FileUpload.UploadPublicSchedule);
+            var publicScheduleData = 
+                await FileHelpers.ProcessSchedule(FileUpload.UploadPublicSchedule, ModelState);
 
-            var PrivateScheduleScheduleData = 
-                await FileHelpers.ProcessSchedule(FileUpload.UploadPrivateSchedule);
+            var privateScheduleData = 
+                await FileHelpers.ProcessSchedule(FileUpload.UploadPrivateSchedule, ModelState);
+
+            // Perform a second check to catch ProcessSchedule method
+            // violations.
+            if (!ModelState.IsValid)
+            {
+                Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+                return Page();
+            }
 
             var schedule = new Schedule() 
                 { 
-                    PublicSchedule = PublicScheduleScheduleData.RawText, 
-                    PublicScheduleSize = PublicScheduleScheduleData.Size, 
-                    PrivateSchedule = PrivateScheduleScheduleData.RawText, 
-                    PrivateScheduleSize = PrivateScheduleScheduleData.Size, 
+                    PublicSchedule = publicScheduleData, 
+                    PublicScheduleSize = FileUpload.UploadPublicSchedule.Length, 
+                    PrivateSchedule = privateScheduleData, 
+                    PrivateScheduleSize = FileUpload.UploadPrivateSchedule.Length, 
                     Title = FileUpload.Title, 
                     UploadDT = DateTime.UtcNow
                 };

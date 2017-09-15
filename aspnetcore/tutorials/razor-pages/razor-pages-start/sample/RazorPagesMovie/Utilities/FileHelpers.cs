@@ -1,59 +1,83 @@
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
+using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Utilities
 {
     public class FileHelpers
     {
-        public static async Task<(long Size, string RawText, string HtmlEncodedText)> ProcessSchedule(IFormFile scheduleFormFile)
+        public static async Task<string> ProcessSchedule(IFormFile scheduleFormFile, ModelStateDictionary modelState)
         {
-            // NOTE: Although this sample doesn't use the FileName property 
-            // of IFormFile, don't trust the property without validation.
+            var fieldDisplayName = string.Empty;
 
-            // NOTE: The ProcessSchedule method is for demonstration
-            // purposes only. It doesn't set a limit on the size of the 
-            // file, check the type of file (content type or extension),
-            // or validate the contents of the file.
+            // Use reflection to obtain the display name for the model 
+            // property associated with this IFormFile. If a display
+            // name isn't found, error messages simply won't show
+            // a display name.
+            MemberInfo property = typeof(FileUpload).GetProperty(scheduleFormFile.Name.Substring(scheduleFormFile.Name.IndexOf(".") + 1));
+            var dd = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
 
-            // Create a tuple to hold the file data
-            var scheduleData = (Size: new long(), 
-                RawText: string.Empty, HtmlEncodedText: string.Empty);
-
-            scheduleData.Size = scheduleFormFile.Length;
-
-            var fullFilePath = Path.GetTempFileName();
-
-            if (scheduleFormFile.Length > 0)
+            if (dd != null)
             {
-                // Create a FileStream for the file.
-                using (var stream = 
-                    new FileStream(fullFilePath, FileMode.Create))
+                fieldDisplayName = $"{dd.Name} ";
+            }
+
+            // HtmlEncode the FileName property in case it must be returned
+            // in an error message.
+            var fileName = WebUtility.HtmlEncode(scheduleFormFile.FileName);
+
+            if (scheduleFormFile.ContentType.ToLower() != "text/plain")
+            {
+                modelState.AddModelError(scheduleFormFile.Name, $"The {fieldDisplayName}file ({fileName}) must be a text file.");
+            }
+
+            // Check the file length and don't bother even attempting
+            // to read it if the file contains no content. This check
+            // doesn't catch files that only have a BOM as their
+            // content, so a content length check is made below after 
+            // reading the file's content to catch a file that only
+            // contains a BOM.
+            if (scheduleFormFile.Length == 0)
+            {
+                modelState.AddModelError(scheduleFormFile.Name, $"The {fieldDisplayName}file ({fileName}) is empty.");
+            }
+            else
+            {
+                try
                 {
-                    // Load the file's contents into the stream.
-                    await scheduleFormFile.CopyToAsync(stream);
+                    string fileContents;
 
-                    // Reset the position within the stream so that the 
-                    // contents can be read from the start.
-                    stream.Position = 0;
-
-                    // Use a StreamReader to obtain the text.
-                    // This example returns the raw text of the file and 
-                    // an HTML-encoded version of the text.
-                    using (var reader = new StreamReader(stream))
+                    using (var reader = new StreamReader(scheduleFormFile.OpenReadStream(), new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true), detectEncodingFromByteOrderMarks: true))
                     {
-                        scheduleData.RawText = await reader.ReadToEndAsync();
-                        scheduleData.HtmlEncodedText = 
-                            WebUtility.HtmlEncode(scheduleData.RawText);
+                        fileContents = await reader.ReadToEndAsync();
+
+                        // Check the content length in case the file's only
+                        // content was a BOM and the content is actually
+                        // empty after removing the BOM.
+                        if (fileContents.Length > 0)
+                        {
+                            return fileContents;
+                        }
+                        else
+                        {
+                            modelState.AddModelError(scheduleFormFile.Name, $"The {fieldDisplayName}file ({fileName}) is empty.");
+                        }
                     }
+                }
+                catch (IOException ex)
+                {
+                    modelState.AddModelError(scheduleFormFile.Name, $"The {fieldDisplayName}file ({fileName}) upload failed. Please contact the Help Desk for support.");
+                    // Log the exception
                 }
             }
 
-            // Delete the temp file from the system.
-            System.IO.File.Delete(fullFilePath);
-
-            return scheduleData;
+            return string.Empty;
         }
     }
 }
