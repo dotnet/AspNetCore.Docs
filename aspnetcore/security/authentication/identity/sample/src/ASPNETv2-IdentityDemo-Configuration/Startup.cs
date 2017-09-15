@@ -26,44 +26,41 @@ namespace WebApplication5
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            #region snippet_IdentityOptions
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     // Password settings
-                    options.Password.RequireDigit = true; // Defaults to true, if this is omitted and not configured.
-                    options.Password.RequiredLength = 8; // Defaults to 6, if this is omitted and not configured.
-                    options.Password.RequireNonAlphanumeric = true; // Defaults to true, if this is omitted and not configured.
-                    options.Password.RequireUppercase = true; // Defaults to true, if this is omitted and not configured.
-                    options.Password.RequireLowercase = true; // Defaults to true, if this is omitted and not configured.
-                    options.Password.RequiredUniqueChars = 2; // Defaults to 1, if this is omitted and not configured.
+                    options.Password.RequireDigit = true;
+                    options.Password.RequiredLength = 8; 
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequiredUniqueChars = 2;
 
                     // Lockout settings
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Defaults to 5 minutes, if this is omitted and not configured.
-                    options.Lockout.MaxFailedAccessAttempts = 5; // Defaults to 5, if this is omitted and not configured.
-                    options.Lockout.AllowedForNewUsers = true; // Defaults to true, if this is omitted and not configured.
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.MaxFailedAccessAttempts = 5; 
+                    options.Lockout.AllowedForNewUsers = true;
 
                     // Signin settings
-                    options.SignIn.RequireConfirmedEmail = true; // Defaults to false, if this is omitted and not configured.
-                    options.SignIn.RequireConfirmedPhoneNumber = false; // Defaults to false, if this is omitted and not configured.
+                    options.SignIn.RequireConfirmedEmail = true;
+                    options.SignIn.RequireConfirmedPhoneNumber = false;
 
                     // User settings
-                    options.User.RequireUniqueEmail = true; // Defaults to false, if this is omitted and not configured.
+                    options.User.RequireUniqueEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            #endregion
 
             #region snippet_ConfigureCookie
             services.ConfigureApplicationCookie(options =>
             {
-                // Cookie settings
-                options.Cookie.Name = "YourAppCookieName"; // Defaults to .AspNetCore.Cookies, if this is omitted and not configured.
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // Defaults to 14 days, if this is omitted and not configured.
-                options.Cookie.HttpOnly = true; // Defaults to true, if this is omitted and not configured.
-                options.LoginPath = "/Account/Login"; // Defaults to /Account/Login, if this is omitted and not configured.
-                options.LogoutPath = "/Account/Logout"; // Defaults to /Account/Logout, if this is omitted and not configured.
-                options.AccessDeniedPath = "/Account/AccessDenied"; // Defaults to /Account/AccessDenied, if this is omitted and not configured.
-                options.SlidingExpiration = true; // Defaults to true, if this is omitted and not configured.
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true; 
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied"; 
+                options.SlidingExpiration = true;
             });
             #endregion
 
