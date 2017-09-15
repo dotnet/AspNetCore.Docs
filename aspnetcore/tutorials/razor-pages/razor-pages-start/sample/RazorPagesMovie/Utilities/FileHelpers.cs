@@ -32,8 +32,10 @@ namespace RazorPagesMovie.Utilities
                 }
             }
 
-            // HtmlEncode the FileName property in case it must be returned
-            // in an error message.
+            // Use Path.GetFileName to obtain the file name, which will
+            // strip any path information passed as part of the
+            // FileName property. HtmlEncode the result in case it must 
+            // be returned in an error message.
             var fileName = WebUtility.HtmlEncode(Path.GetFileName(scheduleFormFile.FileName));
 
             if (scheduleFormFile.ContentType.ToLower() != "text/plain")
