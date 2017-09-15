@@ -144,13 +144,13 @@ Your web app in Azure will run in a shared hosting environment, which means it r
 
 You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based relational database service that is built on SQL Server technologies. Tools and applications that work with SQL Server also work with SQL Database.
 
-1. In the [Azure Management Portal](https://portal.azure.com), click **New** in the left tab, click **See All** in new blade, and then click **Web App & SQL** in the **Web** Section and finally **Create**.
+1. In the [Azure Management Portal](https://portal.azure.com), click **New** in the left tab, click **See all** in new blade, and then click **Web App & SQL** in the **Web** Section and finally **Create**.
 
     ![New button in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/CreateWeb-Sql.png)
 
  The **New Web App & SQL - Create** wizard opens.
 
-2. In the blade, enter a string in the **App Name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App Name** is already taken, the Wizard will notify you of this with a red *The app name is not available* message. If the **App Name** is available, you will get a green checkmark.
+2. In the blade, enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard will notify you of this with a red *The app name is not available* message. If the **App name** is available, you will get a green checkmark.
 
     ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Create-WebApp.png)
 
