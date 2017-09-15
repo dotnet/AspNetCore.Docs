@@ -254,5 +254,5 @@ Please leave feedback on how you liked this tutorial and what we could improve. 
 Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
 
 >[!div class="step-by-step"]
-[Previous](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
-[Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application)
+[Previous](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
+[Next](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application)
