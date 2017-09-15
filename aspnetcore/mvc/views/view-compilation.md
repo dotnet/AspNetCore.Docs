@@ -38,7 +38,7 @@ If your project targets .NET Framework, include a package reference to `Microsof
 
 If your project targets .NET Core, no changes are necessary.
 
-The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default, which means this node can be safely removed from the *.csproj* file. If you prefer to be explicit, there's no harm in setting the `MvcRazorCompileOnPublish` property to `true`. The following *.csproj* sample highlights this setting:
+The ASP.NET Core 2.x project templates implicitly set `MvcRazorCompileOnPublish` to `true` by default, which means this code can be safely removed from the *.csproj* file. If you prefer to be explicit, there's no harm in setting the `MvcRazorCompileOnPublish` property to `true`. The following *.csproj* sample highlights this setting:
 
 [!code-xml[Main](view-compilation\sample\MvcRazorCompileOnPublish2.csproj?highlight=5)]
 
