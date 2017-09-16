@@ -23,10 +23,10 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > 
 > - [Visual Studio 2017](https://www.visualstudio.com/vs/)
 > - Web API 2
-> - Moq 4.5.23
+> - [Moq](https://github.com/Moq) 4.5.30
 
 > [!NOTE]
-> I used Moq, but the same idea applies to any mocking framework. Moq 4.5.23 (and later) supports Roslyn and .NET 4.6.
+> I used Moq, but the same idea applies to any mocking framework. Moq 4.5.30 (and later) supports Visual Studio 2017, Roslyn and .NET 4.5 and later versions.
 
 A common pattern in unit tests is &quot;arrange-act-assert&quot;:
 
@@ -65,7 +65,7 @@ The `Post` method calls **UrlHelper.Link** to create links in the response. This
 
 The **UrlHelper** class needs the request URL and route data, so the test has to set values for these. Another option is mock or stub **UrlHelper**. With this approach, you replace the default value of [ApiController.Url](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.url.aspx) with a mock or stub version that returns a fixed value.
 
-Let's rewrite the test using the [Moq](https://github.com/Moq) framework.
+Let's rewrite the test using the [Moq](https://github.com/Moq) framework. You can get Moq as nuget package by adding Moq into the test project.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
