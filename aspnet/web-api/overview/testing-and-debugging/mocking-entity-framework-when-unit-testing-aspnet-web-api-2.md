@@ -57,7 +57,7 @@ Visual Studio 2017 Community, Professional or Enterprise editioo
 <a id="download"></a>
 ## Download code
 
-Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-e2867d4d). The downloadable project includes unit test code for this topic and for the [Unit Testing ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md) topic.
+Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-1374bc11). The downloadable project includes unit test code for this topic and for the [Unit Testing ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md) topic.
 
 <a id="appwithunittest"></a>
 ## Create application with unit test project
