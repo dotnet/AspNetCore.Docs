@@ -21,10 +21,12 @@ by [Mike Wasson](https://github.com/MikeWasson)
 > 
 > ## Software versions used in the tutorial
 > 
-> 
+> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
 > - Web API 2
-> - Moq 4.2
+> - Moq 4.5.23
 
+> [!NOTE]
+> I used Moq, but the same idea applies to any mocking framework. Moq 4.5.23 (and later) supports Roslyn and .NET 4.6.
 
 A common pattern in unit tests is &quot;arrange-act-assert&quot;:
 
@@ -68,9 +70,6 @@ Let's rewrite the test using the [Moq](https://github.com/Moq) framework.
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
 In this version, you don't need to set up any route data, because the mock **UrlHelper** returns a constant string.
-
-> [!NOTE]
-> I used Moq, but the same idea applies to any mocking framework.
 
 
 ## Testing Actions that Return IHttpActionResult
