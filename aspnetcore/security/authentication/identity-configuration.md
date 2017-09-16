@@ -13,13 +13,13 @@ By default, Identity requires that passwords contain an uppercase character, low
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ASP.NET Core 2 added the `RequiredUniqueChars` options. Otherwise, the options are the same from ASP.NET Core 1.x.
+ASP.NET Core 2.0 added the `RequiredUniqueChars` options. Otherwise, the options are the same from ASP.NET Core 1.x.
 
 [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=60-65)]
+[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-65,84)]
 
 ---
 
@@ -70,7 +70,7 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?name=snippet_configurecookie)]
 
 `CookieAuthenticationOptions` has the following properties:
-* `Cookie.Name`: The name of the cookie.  Defaults to .AspNetCore.Cookies.
+* `Cookie.Name`: The name of the cookie. Defaults to .AspNetCore.Cookies.
 * `Cookie.HttpOnly`: When true, the cookie is not accessible from client-side scripts. Defaults to true.
 * `ExpireTimeSpan`: Controls how much time the authentication ticket stored in the cookie will remain valid from the point it is created. Defaults to 14 days.
 * `LoginPath`: When a user is unauthorized, they will be redirected to this path to login. Defaults to /Account/Login.
@@ -80,7 +80,7 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=2&range=72-80)]
+[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-59,72-80,84)]
 
 --- 
 
