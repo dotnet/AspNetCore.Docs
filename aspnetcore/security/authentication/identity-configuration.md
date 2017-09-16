@@ -13,7 +13,7 @@ By default, Identity requires that passwords contain an uppercase character, low
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-ASP.NET Core 2.0 added the `RequiredUniqueChars` options. Otherwise, the options are the same from ASP.NET Core 1.x.
+ASP.NET Core 2.0 added the `RequiredUniqueChars` property. Otherwise, the options are the same from ASP.NET Core 1.x.
 
 [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
 
