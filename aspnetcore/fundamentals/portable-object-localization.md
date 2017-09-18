@@ -15,6 +15,8 @@ uid: fundamentals/portable-object-localization
 
 This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application.
 
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization)
+
 ## What is a PO file?
 
 PO files contain the translated strings for a given language. They prove very useful, as opposed to standard **resx** files. PO files support pluralization and are distributed as plain text files.
@@ -23,7 +25,7 @@ PO files contain the translated strings for a given language. They prove very us
 
 Here is a sample PO file containing the translation for two strings in French, including one with its plural form:
 
-**fr.po**
+*fr.po*
 ```
 #: Services/EmailService.cs:29
 msgid "Enter a comma separated list of email addresses."
@@ -38,8 +40,7 @@ msgstr[1] "Les adresses email sont \"{0}\""
 
 This example uses the following syntax:
 
-- `#:`: A comment used for editors to understand what the context of the string to translate is, as the 
-same string might be translated differently depending on where it is being used.
+- `#:`: A comment indicating the context of the string to be translated. The same string might be translated differently depending on where it is being used.
 - `msgid`: The untranslated string.
 - `msgstr`: The translated string.
 
@@ -49,11 +50,11 @@ In the case of pluralization support, more entries can be defined.
 - `msgstr[0]`: The translated string for the case 0.
 - `msgstr[N]`: The translated string for the case N.
 
-The specification for PO files can be found on this site: https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html
+The PO file specification can be found here: https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html
 
 ## Configuring PO file support in ASP.NET Core
 
-This example is based on a sample ASP.NET Core MVC application generated from a Visual Studio 2017 template.
+This example is based on a sample ASP.NET Core MVC application generated from a Visual Studio 2017 project template.
 
 ### Referencing the package
 
@@ -144,7 +145,7 @@ Edit the *Views/Home/About.cshtml* file to render localized plural strings for s
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
 ```
 
-> In a real world scenario, you would use a variable to represent the `count` variable. Here, we repeat the same code with three different values to expose a very specific case.
+**Note:** In a real world scenario, a variable would be used to represent the count. Here, we repeat the same code with three different values to expose a very specific case.
 
 Upon switching cultures, you should see:
 
@@ -178,11 +179,11 @@ Note that for the Czech culture, the three translations are different. The Frenc
 
 ### Contextualizing strings
 
-Applications often contain the same strings to be translated in several places, while requiring the flexibility to define different translations. A PO files supports the notion of a **context** that can be used to categorize the string being represented.
+Applications often contain the same strings to be translated in several places, while requiring the flexibility to define different translations. A PO file supports the notion of a *context*, which can be used to categorize the string being represented.
 
-The Portable Object localization services can use the name of the full class name or view name that is used when translating a string. This is accomplished by setting the value on the `msgctx` entry.
+The PO localization services can use the name of the full class or the view that is used when translating a string. This is accomplished by setting the value on the `msgctx` entry.
 
-Taking the previous example, the entry could have been written as is:
+Taking the previous example, the entry could have been written as:
 
 *fr.po*
 
@@ -192,7 +193,7 @@ msgid "Hello world!"
 msgstr "Bonjour le monde!"
 ```
 
-When no context is specified, it will be used as a fallback for any string whose context doesn't match any specific one.
+When no context is specified, it's used as a fallback for any string whose context doesn't match any specific one.
 
 ### Changing the location of PO files
 
@@ -202,7 +203,7 @@ You can change the default location of PO files in the application by setting a 
 services.AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
 ```
 
-In this example, the PO files will be loaded from the *Localization* folder.
+In this example, the PO files are loaded from the *Localization* folder.
 
 ### Implementing a custom logic for finding localization files
 
