@@ -39,12 +39,12 @@ namespace RazorPagesMovie.Pages.Schedules
             }
 
             var publicScheduleData = 
-                await FileHelpers.ProcessSchedule(FileUpload.UploadPublicSchedule, ModelState);
+                await FileHelpers.ProcessFormFile(FileUpload.UploadPublicSchedule, ModelState);
 
             var privateScheduleData = 
-                await FileHelpers.ProcessSchedule(FileUpload.UploadPrivateSchedule, ModelState);
+                await FileHelpers.ProcessFormFile(FileUpload.UploadPrivateSchedule, ModelState);
 
-            // Perform a second check to catch ProcessSchedule method
+            // Perform a second check to catch ProcessFormFile method
             // violations.
             if (!ModelState.IsValid)
             {
