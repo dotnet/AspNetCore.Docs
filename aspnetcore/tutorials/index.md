@@ -5,7 +5,7 @@ description: A list of step-by-step guides for learning how to develop ASP.NET C
 keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
-ms.date: 7/14/2017
+ms.date: 07/14/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
