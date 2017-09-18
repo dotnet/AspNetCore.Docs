@@ -109,8 +109,7 @@ services.Configure<IISOptions>(options =>
 | ------------------------------ | ------- | ------- |
 | `AutomaticAuthentication`      | `true`  | If `true`, the authentication middleware sets the `HttpContext.User` and responds to generic challenges. If `false`, the authentication middleware only provides an identity (`HttpContext.User`) and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
-| `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` is populated. |
-| `ForwardWindowsAuthentication` | `true`  | If `true`, the authentication middleware attempts to authenticate using platform handler Windows Authentication. If `false`, the authentication middleware isn't added. The setting applies if the ASP.NET Core Module (ANCM) indicates that IIS has a non-anonymous authentication enabled or for backwards compatibility with ANCMs that didn't provide this information. |
+| `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
 ### web.config
 
