@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 09/15/2017
 ms.topic: get-started-article
 ms.prod: asp.net-core
+uid: tutorials/first-web-api-mac
 helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
 
 #ROBOTS: 
