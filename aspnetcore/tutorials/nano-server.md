@@ -160,7 +160,7 @@ New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="AspNetCoreMod
 
 ## Installing .NET Core Framework
 
-If your app is a [framework-dependent deployment (FDD)](/dotnet/core/deploying/#framework-dependent-deployments-fdd), .NET Core must be installed on the server. Use the [dotnet-install.ps1 PowerShell script](https://raw.githubusercontent.com/dotnet/cli/release/2.0.0/scripts/obtain/dotnet-install.ps1) in a remote PowerShell session to install .NET Core on your Nano Server. Pass the CLI version with the `-Version` switch:
+If your app is a [framework-dependent deployment (FDD)](/dotnet/core/deploying/#framework-dependent-deployments-fdd), .NET Core must be installed on the server. Use the [dotnet-install.ps1 PowerShell script](https://dot.net/v1/dotnet-install.ps1) in a remote PowerShell session to install .NET Core on your Nano Server. Pass the CLI version with the `-Version` switch:
 
 ```console
 dotnet-install.ps1 -Version 2.0.0
