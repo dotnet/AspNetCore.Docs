@@ -24,11 +24,11 @@ namespace RazorPagesMovie.Utilities
 
             if (property != null)
             {
-                var dd = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                var displayAttribute = property.GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
 
-                if (dd != null)
+                if (displayAttribute != null)
                 {
-                    fieldDisplayName = $"{dd.Name} ";
+                    fieldDisplayName = $"{displayAttribute.Name} ";
                 }
             }
 
