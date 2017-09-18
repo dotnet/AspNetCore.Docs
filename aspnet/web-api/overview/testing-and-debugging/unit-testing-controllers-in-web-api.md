@@ -65,7 +65,7 @@ The `Post` method calls **UrlHelper.Link** to create links in the response. This
 
 The **UrlHelper** class needs the request URL and route data, so the test has to set values for these. Another option is mock or stub **UrlHelper**. With this approach, you replace the default value of [ApiController.Url](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.url.aspx) with a mock or stub version that returns a fixed value.
 
-Let's rewrite the test using the [Moq](https://github.com/Moq) framework. You can get Moq as nuget package by adding Moq into the test project.
+Let's rewrite the test using the [Moq](https://github.com/Moq) framework. Install the `Moq` NuGet package in the test project.
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
