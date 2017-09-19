@@ -5,7 +5,7 @@ description: Shows how to add a new field to a Razor Page with Entity Framework 
 keywords: ASP.NET Core,Entity Framework Core,migrations
 ms.author: riande
 manager: wpickett
-ms.date: 8/7/2017
+ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core

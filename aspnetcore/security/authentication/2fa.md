@@ -5,7 +5,7 @@ description: Shows how to set up two-factor authentication (2FA) with ASP.NET Co
 keywords: ASP.NET Core,SMS, authentication,2FA,two-factor authentication,two factor authentication 
 ms.author: riande
 manager: wpickett
-ms.date: 8/15/2017
+ms.date: 08/15/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core

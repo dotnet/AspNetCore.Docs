@@ -5,7 +5,7 @@ description: Google external login setup in ASP.NET Core
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 8/2/2017
+ms.date: 08/02/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core

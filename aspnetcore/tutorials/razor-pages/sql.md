@@ -5,7 +5,7 @@ description: Explains working with SQL Server LocalDB and ASP.NET Core.
 keywords: ASP.NET Core,Razor Pages,Razor,MVC, SQL, LocalDB
 ms.author: riande
 manager: wpickett
-ms.date: 8/7/2017
+ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core

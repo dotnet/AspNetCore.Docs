@@ -5,7 +5,7 @@ description: Details Razor syntax
 keywords: ASP.NET Core, Razor
 ms.author: riande
 manager: wpickett
-ms.date: 07/4/2017
+ms.date: 07/04/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
