@@ -5,7 +5,7 @@ description: Links to resources for learning how to host ASP.NET Core apps in Do
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 7/14/2017
+ms.date: 07/14/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: aspnet-core
