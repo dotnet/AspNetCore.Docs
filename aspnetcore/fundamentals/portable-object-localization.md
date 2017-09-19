@@ -78,7 +78,7 @@ Add the required middleware to the `Configure` method of *Startup.cs*:
 
 Add the following code to your Razor view of choice. *About.cshtml* is used in this example.
 
-[!code-csharp[Main](localization/sample/POLocalization/Views/Home/About.cshtml)]
+[!code-cshtml[Main](localization/sample/POLocalization/Views/Home/About.cshtml)]
 
 An `IViewLocalizer` instance is injected and used to translate the text `"Hello world!"`.
 
