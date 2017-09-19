@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 keywords: ASP.NET Core, file upload, model binding, IFormFile, streaming
 ms.author: riande
 manager: wpickett
-ms.date: 7/5/2017
+ms.date: 07/05/2017
 ms.topic: article
 ms.assetid: ebc98159-a028-4a94-b06c-43981c79c6be
 ms.technology: aspnet

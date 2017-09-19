@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core, authentication, social, authentication providers, google, facebook, twitter, microsoft account
 ms.author: riande
 manager: wpickett
-ms.date: 11/1/2016
+ms.date: 11/01/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.technology: aspnet

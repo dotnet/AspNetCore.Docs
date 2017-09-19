@@ -5,7 +5,7 @@ description:  Key storage providers
 keywords: encryption, ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 1/14/2017
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 423e0a79-2f34-44c4-aaf3-146a53c39251
 ms.technology: aspnet

@@ -5,7 +5,7 @@ description: Learn how to author Tag Helpers in ASP.NET Core.
 keywords: ASP.NET Core,tag helpers
 ms.author: riande
 manager: wpickett
-ms.date: 6/14/2017
+ms.date: 06/14/2017
 ms.topic: article
 ms.assetid: 4f16d978-5695-4abf-a785-fdaabf3bbcb9
 ms.technology: aspnet

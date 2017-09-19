@@ -5,7 +5,7 @@ description: How to add validation to a Razor Page
 keywords: ASP.NET Core,validation,DataAnnotations,Razor,Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 8/7/2017
+ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core

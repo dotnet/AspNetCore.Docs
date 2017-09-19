@@ -5,7 +5,7 @@ description: Explains how to use Response caching to lower bandwidth and increas
 keywords: ASP.NET Core, Response caching, HTTP headers
 ms.author: riande
 manager: wpickett
-ms.date: 7/10/2017
+ms.date: 07/10/2017
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
 ms.prod: asp.net-core

@@ -5,7 +5,7 @@ description: Adding a model to a Razor Pages app in ASP.NET Core using Visual St
 keywords: ASP.NET Core,Razor Pages,Razor,MVC,model
 ms.author: riande
 manager: wpickett
-ms.date: 8/27/2017
+ms.date: 08/27/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
