@@ -168,7 +168,7 @@ The database creation script retrieves the dev machine's IP address and sets a f
 
     [!code-powershell[Main](automate-everything/samples/sample14.ps1)]
 
-The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database. For an example that uses a single database, see [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data).
+The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database.
 
 ### Store app settings and connection strings
 
