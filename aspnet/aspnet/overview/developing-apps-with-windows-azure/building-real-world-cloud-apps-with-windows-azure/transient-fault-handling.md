@@ -38,7 +38,7 @@ There are several ways you can implement smart retry logic.
 
     [!code-csharp[Main](transient-fault-handling/samples/sample1.cs)]
 
-    TFH also supports [Azure In-Role Cache](https://msdn.microsoft.com/en-us/library/windowsazure/dn386103.aspx) and [Service Bus](https://www.windowsazure.com/en-us/services/messaging/).
+    TFH also supports [Azure In-Role Cache](https://msdn.microsoft.com/en-us/library/windowsazure/dn386103.aspx) and [Service Bus](https://azure.microsoft.com/services/service-bus/).
 - When you use the Entity Framework you typically aren't working directly with SQL connections, so you can't use this Patterns and Practices package, but Entity Framework 6 builds this kind of retry logic right into the framework. In a similar way you specify the retry strategy, and then EF uses that strategy whenever it accesses the database.
 
     To use this feature in the Fix It app, all we have to do is add a class that derives from *DbConfiguration* and turn on the retry logic.

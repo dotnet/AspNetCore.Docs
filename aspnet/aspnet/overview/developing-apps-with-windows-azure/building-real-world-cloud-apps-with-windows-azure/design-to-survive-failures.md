@@ -117,7 +117,7 @@ Documentation:
 - [Azure Business Continuity Technical Guidance](https://msdn.microsoft.com/en-us/library/windowsazure/hh873027.aspx). White paper by Patrick Wickline and Jason Roth.
 - [Disaster Recovery and High Availability for Azure Applications](https://msdn.microsoft.com/en-us/library/windowsazure/dn251004.aspx). White paper by Michael McKeown, Hanu Kommalapati, and Jason Roth.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Multi Data Center Deployment guidance, Circuit breaker pattern.
-- [Azure Support - Service Level Agreements](https://www.windowsazure.com/en-us/support/legal/sla/).
+- [Azure Support - Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
 - [Business Continuity in Azure SQL Database](https://msdn.microsoft.com/en-us/library/windowsazure/hh852669.aspx). Documentation about SQL Database high availability and disaster recovery features.
 - [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](https://msdn.microsoft.com/en-us/library/windowsazure/jj870962.aspx).
 
