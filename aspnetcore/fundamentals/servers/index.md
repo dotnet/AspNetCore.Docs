@@ -110,7 +110,7 @@ For internal network scenarios, Kestrel is generally recommended for best perfor
 
 ## Notes about ASP.NET Core server infrastructure
 
-The [`IApplicationBuilder`](https://docs.microsoft.com/aspnet/core/api) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](https://docs.microsoft.com/aspnet/core/api). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](https://docs.microsoft.com/aspnet/core/api), but different server implementations may expose additional functionality.
+The [`IApplicationBuilder`](/aspnet/core/api/microsoft.aspnetcore.builder.iapplicationbuilder) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](/aspnet/core/api/microsoft.aspnetcore.http.features.ifeaturecollection). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](/aspnet/core/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature), but different server implementations may expose additional functionality.
 
 `IServerAddressesFeature` can be used to find out which port the server implementation has bound to at runtime.
 
