@@ -69,6 +69,12 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 
 [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?name=snippet_configurecookie)]
 
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-59,72-80,84)]
+
+--- 
+
 `CookieAuthenticationOptions` has the following properties:
 * `Cookie.Name`: The name of the cookie. Defaults to .AspNetCore.Cookies.
 * `Cookie.HttpOnly`: When true, the cookie is not accessible from client-side scripts. Defaults to true.
@@ -77,11 +83,7 @@ Under `ConfigureServices` in the `Startup` class, you can configure the applicat
 * `LogoutPath`: When a user is logged out, they will be redirected to this path. Defaults to /Account/Logout.
 * `AccessDeniedPath`: When a user fails an authorization check, they will be redirected to this path. Defaults to /Account/AccessDenied.
 * `SlidingExpiration`: When true, a new cookie will be issued with a new expiration time when the current cookie is more than halfway through the expiration window. Defaults to true.
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-59,72-80,84)]
-
---- 
-
+* `ReturnUrlParameter`: The ReturnUrlParameter determines the name of the query string parameter which is appended by the middleware when a 401 Unauthorized status code is changed to a 302 redirect onto the login path.
+* `AuthenticationScheme`: This is only relevant for ASP.NET Core 1.x. The logical name for a particular authentication scheme.
+* `AutomaticAuthenticate`: This flag is only relevant for ASP.NET Core 1.x. When true, cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.
 
