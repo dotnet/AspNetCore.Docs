@@ -28,7 +28,8 @@ PO files contain the translated strings for a given language. They prove very us
 Here is a sample PO file containing the translation for two strings in French, including one with its plural form:
 
 *fr.po*
-```
+
+```text
 #: Services/EmailService.cs:29
 msgid "Enter a comma separated list of email addresses."
 msgstr "Entrez une liste d'emails séparés par une virgule."
@@ -106,7 +107,7 @@ The Orchard Localization package provides an API to invoke these different plura
 
 Add the following content to the previously mentioned *fr.po* file:
 
-```
+```text
 msgid "There is one item."
 msgid_plural "There are {0} items."
 msgstr[0] "Il y a un élément."
@@ -187,7 +188,7 @@ Considering the previous example, the entry could have been written as:
 
 *fr.po*
 
-```
+```text
 msgctx Views.Home.About
 msgid "Hello world!"
 msgstr "Bonjour le monde!"
