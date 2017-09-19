@@ -51,7 +51,7 @@ Use Azure Mobile Services to send push notifications to a mobile device.
 ## Develop Mobile Sites
 
 
-### [Deploy an Mobile-Friendly ASP.NET MVC 5 Web Application on Windows Azure Web Sites](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/)
+### [Deploy an Mobile-Friendly ASP.NET MVC 5 Web Application on Windows Azure Web Sites](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-deploy-aspnet-mvc-mobile-app)
 
 This tutorial will teach you the basics of how to deploy an MVC 5 application to a Windows Azure web site and create mobile-friendly views using responsive Bootstrap design.
 

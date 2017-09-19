@@ -97,7 +97,7 @@ See also [Books about the Entity Framework](#efbooks) and [Additional Entity Fra
 Most of the Code First tutorials listed above cover migrations. See also the following resources.
 
 - [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 2-part tutorial series that shows how to use Code First Migrations to deploy a database.
-- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/). Microsoft Azure). How to use migrations to deploy membership and application data to Azure.
+- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). Microsoft Azure). How to use migrations to deploy membership and application data to Azure.
 - [Web Deployment Overview for Visual Studio and ASP.NET](https://msdn.microsoft.com/en-us/library/dd394698.aspx#dbdeployment). See the **Configuring Database Deployment in Visual Studio** section for an explanation of how Code First Migrations is integrated into Visual Studio web deployment features.
 - [Data Developer Center - Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) (MSDN). The Entity Framework team's Migrations documentation.
 - [Migrations Screencast Series](https://blogs.msdn.com/b/adonet/archive/2014/03/12/migrations-screencast-series.aspx). EF blog). Three videos on advanced topics in Code First Migrations.
@@ -229,8 +229,8 @@ See also the following sections on working with SQL Server Express and LocalDB, 
 
 ### Working with Windows Azure SQL Database
 
-- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/) (Microsoft Azure site).
-- [SQL Databases](https://www.windowsazure.com/en-us/manage/services/sql-databases/) (Microsoft Azure site). Getting started tutorials and how-to guides.
+- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data) (Microsoft Azure site).
+- [SQL Databases](https://docs.microsoft.com/azure/sql-database/) (Microsoft Azure site). Getting started tutorials and how-to guides.
 - [Windows Azure SQL Database](https://msdn.microsoft.com/en-us/library/windowsazure/ee336279.aspx) (MSDN). The top-level node of the table of contents for SQL Database in MSDN.
 - [Windows Azure SQL Database TechNet Wiki Articles Index](https://social.technet.microsoft.com/wiki/contents/articles/2267.windows-azure-sql-database-technet-wiki-articles-index-en-us.aspx) (Microsoft TechNet site).
 - [Transient Fault Handling Application Block](https://msdn.microsoft.com/en-us/library/hh680934(v=PandP.50).aspx). A framework that enables you to handle transient network faults and connection errors that result from throttling. Available in a NuGet package: [Enterprise Library 5.0 - Transient Fault Handling Application Block](http://nuget.org/packages/EnterpriseLibrary.WindowsAzure.TransientFaultHandling).
@@ -257,8 +257,8 @@ See also the following sections on working with SQL Server Express and LocalDB, 
 
 ## Working with NoSQL Database Management Systems
 
-- [Windows Azure Data Services](https://www.windowsazure.com/en-us/develop/net/data/) (Microsoft Azure site). See the [Table Service feature guide](https://www.windowsazure.com/en-us/develop/net/how-to-guides/table-services/) and the **Big Data** section of the page.
-- [ASP.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/) (Microsoft Azure site). End-to-end tutorial with downloadable sample application that uses Windows Azure storage NoSQL tables.
+- [Windows Azure Data Services](https://www.windowsazure.com/en-us/develop/net/data/) (Microsoft Azure site). See the [Table Service feature guide](https://docs.microsoft.com/azure/) and the **Big Data** section of the page.
+- [ASP.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36) (Microsoft Azure site). End-to-end tutorial with downloadable sample application that uses Windows Azure storage NoSQL tables.
 
 <a id="linq"></a>
 

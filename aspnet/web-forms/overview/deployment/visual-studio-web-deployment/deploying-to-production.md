@@ -32,7 +32,7 @@ Reminder: If you get an error message or something doesn't work as you go throug
 
 ## Get a Microsoft Azure account
 
-If you don't already have an Azure account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
+If you don't already have an Azure account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
 
 ## Create a staging environment
 
@@ -47,7 +47,7 @@ As explained in the [Deploy to the Test Environment tutorial](deploying-to-iis.m
 In this section of the tutorial you'll create a web app and database to use for the staging environment, and you'll deploy to staging and test there before creating and deploying to the production environment.
 
 > [!NOTE]
-> The following steps show how to create a web app in Azure App Service by using the Azure management portal. In the latest version of the Azure SDK, you can also do this without leaving Visual Studio, by using Server Explorer. In Visual Studio 2013, you can also create a web app directly from the Publish dialog. For more information, see [Create an ASP.NET web app in Azure App Service.](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/)
+> The following steps show how to create a web app in Azure App Service by using the Azure management portal. In the latest version of the Azure SDK, you can also do this without leaving Visual Studio, by using Server Explorer. In Visual Studio 2013, you can also create a web app directly from the Publish dialog. For more information, see [Create an ASP.NET web app in Azure App Service.](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet)
 
 
 1. In the [Azure Management Portal](https://manage.windowsazure.com/), click **Websites**, and then click **New**.
@@ -94,7 +94,7 @@ In this section of the tutorial you'll create a web app and database to use for 
 Now that you have created a web app and database for the staging environment, you can deploy the project to it.
 
 > [!NOTE]
-> These instructions show how to create a publish profile by downloading a *.publishsettings* file, which works not only for Azure but also for third-party hosting providers. The latest Azure SDK also enables you to connect directly to Azure from Visual Studio, and choose from a list of web apps that you have in your Azure account. In Visual Studio 2013, you can sign in to Azure from the **Web Publish** dialog or from the **Server Explorer** window. For more information, see [Create an ASP.NET web app in Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/).
+> These instructions show how to create a publish profile by downloading a *.publishsettings* file, which works not only for Azure but also for third-party hosting providers. The latest Azure SDK also enables you to connect directly to Azure from Visual Studio, and choose from a list of web apps that you have in your Azure account. In Visual Studio 2013, you can sign in to Azure from the **Web Publish** dialog or from the **Server Explorer** window. For more information, see [Create an ASP.NET web app in Azure App Service](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet).
 
 
 ### Download the .publishsettings file
@@ -188,7 +188,7 @@ An important consideration for the staging app is that it will be live on the In
 - Use an obfuscated URL that would be impossible to guess.
 - Create a *robots.txt* file to ensure that search engines will not crawl the test app and report links to it in search results.
 
-The first of these methods is the most effective but is not covered in this tutorial because it would require that you deploy to an Azure Cloud Service instead of Azure App Service. For more information about Cloud Services and IP restrictions in Azure, see [Compute Hosting Options Provided by Azure](https://www.windowsazure.com/en-us/develop/net/fundamentals/compute/) and [Block Specific IP Addresses from Accessing a Web Role](https://msdn.microsoft.com/en-us/library/windowsazure/jj154098.aspx). If you are deploying to a third-party hosting provider, contact the provider to find out how to implement IP restrictions.
+The first of these methods is the most effective but is not covered in this tutorial because it would require that you deploy to an Azure Cloud Service instead of Azure App Service. For more information about Cloud Services and IP restrictions in Azure, see [Compute Hosting Options Provided by Azure](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me) and [Block Specific IP Addresses from Accessing a Web Role](https://msdn.microsoft.com/en-us/library/windowsazure/jj154098.aspx). If you are deploying to a third-party hosting provider, contact the provider to find out how to implement IP restrictions.
 
 For this tutorial, you'll create a *robots.txt* file.
 

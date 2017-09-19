@@ -268,7 +268,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 ## Azure and ASP.NET MVC
 
-- [Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/)
+- [Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36)
 - [Windows Azure Web Sites: Quick-and-Easy Hosting as a Service](https://msdn.microsoft.com/en-us/magazine/jj883953.aspx)
 - [Configuration Tips For ASP.NET MVC 4 on a Azure Website](http://odetocode.com/Blogs/scott/archive/2012/08/07/configuration-tips-for-asp-net-mvc-4-on-a-windows.aspx)
 - [Episode 85 - Azure, Windows 8, and MVC 4 Demos](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-85-Windows-Azure-Sample-Content-Review) (video)

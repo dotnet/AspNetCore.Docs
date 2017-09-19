@@ -17,7 +17,7 @@ SignalR Scaleout with Azure Service Bus
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)
 
-In this tutorial, you will deploy a SignalR application to a Windows Azure Web Role, using the Service Bus backplane to distribute messages to each role instance. (You can also use the Service Bus backplane with [web apps in Azure App Service](https://www.windowsazure.com/en-us/manage/services/web-sites).)
+In this tutorial, you will deploy a SignalR application to a Windows Azure Web Role, using the Service Bus backplane to distribute messages to each role instance. (You can also use the Service Bus backplane with [web apps in Azure App Service](https://docs.microsoft.com/azure/app-service-web/).)
 
 ![](scaleout-with-windows-azure-service-bus/_static/image1.png)
 
@@ -31,7 +31,7 @@ The service bus backplane is also compatible with [Service Bus for Windows Serve
 
 ## Pricing
 
-The Service Bus backplane uses topics to send messages. For the latest pricing information, see [Service Bus](https://www.windowsazure.com/en-us/pricing/details/service-bus/). At the time of this writing, you can send 1,000,000 messages per month for less than $1. The backplane sends a service bus message for each invocation of a SignalR hub method. There are also some control messages for connections, disconnections, joining or leaving groups, and so forth. In most applications, the majority of the message traffic will be hub method invocations.
+The Service Bus backplane uses topics to send messages. For the latest pricing information, see [Service Bus](https://azure.microsoft.com/pricing/details/service-bus/). At the time of this writing, you can send 1,000,000 messages per month for less than $1. The backplane sends a service bus message for each invocation of a SignalR hub method. There are also some control messages for connections, disconnections, joining or leaving groups, and so forth. In most applications, the majority of the message traffic will be hub method invocations.
 
 ## Overview
 
@@ -53,11 +53,11 @@ For each application, pick a different value for "YourAppName". Do not use the s
 
 ## Create the Azure Services
 
-Create a Cloud Service, as described in [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/en-us/manage/services/cloud-services/how-to-create-and-deploy-a-cloud-service/#quick). Follow the steps in the section "How to: Create a cloud service using Quick Create". For this tutorial, you do not need to upload a certificate.
+Create a Cloud Service, as described in [How to Create and Deploy a Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy). Follow the steps in the section "How to: Create a cloud service using Quick Create". For this tutorial, you do not need to upload a certificate.
 
 ![](scaleout-with-windows-azure-service-bus/_static/image2.png)
 
-Create a new Service Bus namespace, as described in [How to Use Service Bus Topics/Subscriptions](https://www.windowsazure.com/en-us/develop/net/how-to-guides/service-bus-topics/ "How to Use Service Bus Topics/Subscriptions"). Follow the steps in the section "Create a Service Namespace".
+Create a new Service Bus namespace, as described in [How to Use Service Bus Topics/Subscriptions](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions). Follow the steps in the section "Create a Service Namespace".
 
 ![](scaleout-with-windows-azure-service-bus/_static/image3.png)
 
