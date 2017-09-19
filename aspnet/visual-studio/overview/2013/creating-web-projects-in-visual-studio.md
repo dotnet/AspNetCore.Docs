@@ -49,7 +49,7 @@ The following steps show how to create a web project:
 
     ![New Project dialog](creating-web-projects-in-visual-studio/_static/image1.png)
 
-    You can choose **Cloud** in the left pane to create an [Azure Cloud Service](https://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-create-deploy/), [Azure Mobile Service](https://msdn.microsoft.com/en-us/library/windows/apps/dn629482.aspx), or [Azure WebJob](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-webjobs). This topic doesn't cover those templates.
+    You can choose **Cloud** in the left pane to create an [Azure Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy), [Azure Mobile Service](https://msdn.microsoft.com/en-us/library/windows/apps/dn629482.aspx), or [Azure WebJob](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-webjobs). This topic doesn't cover those templates.
 3. In the right pane, click the **Add Application Insights to Project** check box if you want health and usage monitoring for your application. For more information, see [Monitor performance in web applications](https://azure.microsoft.com/en-us/documentation/articles/app-insights-web-monitor-performance/).
 4. Specify project **Name**, **Location**, and other options, and then click **OK**.
 
@@ -81,7 +81,7 @@ Visual Studio includes features that make it easy to work with Azure services fo
 - Run in debug mode remotely while the application runs in the cloud.
 - Viiew and manage other Azure services such as SQL databases.
 
-You can [create an Azure account](https://www.windowsazure.com/en-us/pricing/free-trial/) that includes basic services such as web apps for free, and if you are an MSDN subscriber you can [activate benefits](https://www.windowsazure.com/en-us/pricing/member-offers/msdn-benefits/) that give you monthly credits toward additional Azure services. 
+You can [create an Azure account](https://www.windowsazure.com/en-us/pricing/free-trial/) that includes basic services such as web apps for free, and if you are an MSDN subscriber you can [activate benefits](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/) that give you monthly credits toward additional Azure services. 
 
 By default the **New ASP.NET Project** dialog box enables you to create a web app or virtual machine for a new web project. If you don't want to create a new web app or virtual machine, clear the **Host in the cloud** check box.
 
@@ -91,7 +91,7 @@ The check box caption might be **Host in the cloud** or **Create remote resource
 
 ![Configure Azure App Settings](creating-web-projects-in-visual-studio/_static/image9.png)
 
-For more information about how to use this process for creating Azure resources, see [Get Started with Azure and ASP.NET](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-get-started/) and [Creating a virtual machine for a web site with Visual Studio](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/).
+For more information about how to use this process for creating Azure resources, see [Get Started with Azure and ASP.NET](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet) and [Creating a virtual machine for a web site with Visual Studio](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/).
 
 The remainder of this article provides more information about the available templates and their options. The article also introduces Bootstrap, the layout and theming framework used in the templates.
 
