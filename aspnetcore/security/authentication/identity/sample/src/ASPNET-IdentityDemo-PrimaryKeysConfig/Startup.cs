@@ -70,7 +70,7 @@ namespace webapptemplate
                 options.Lockout.AllowedForNewUsers = true;
 
                 // Cookie settings
-                options.Cookies.ApplicationCookie.CookieName = "YouAppCookieName";
+                options.Cookies.ApplicationCookie.CookieName = "YourAppCookieName";
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
                 options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
                 options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
