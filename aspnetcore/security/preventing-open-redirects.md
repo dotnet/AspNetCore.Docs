@@ -5,7 +5,7 @@ description: Shows how to prevent open redirect attacks against an ASP.NET Core 
 keywords: ASP.NET Core, Security, Open Redirect Attack
 ms.author: riande
 manager: wpickett
-ms.date: 07/7/2017
+ms.date: 07/07/2017
 ms.topic: article
 ms.assetid: 4604e563-e91a-4ecd-b7ed-00b3f1eee2b5
 ms.technology: aspnet
