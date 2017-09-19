@@ -62,7 +62,7 @@ These URLs have different origins than the previous two:
 > This section assumes you already know how to create Web API projects. If not, see [Getting Started with ASP.NET Web API](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
 
 
-Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
+Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
 
 [![](enabling-cross-origin-requests-in-web-api/_static/image3.png)](enabling-cross-origin-requests-in-web-api/_static/image2.png)
 

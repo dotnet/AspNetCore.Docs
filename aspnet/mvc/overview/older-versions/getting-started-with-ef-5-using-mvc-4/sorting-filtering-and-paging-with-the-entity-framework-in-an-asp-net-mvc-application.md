@@ -257,7 +257,7 @@ Your Migrations `Seed` method inserts test data. If you were deploying to a prod
 
 ### Get a Windows Azure account
 
-You'll need a Windows Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Windows Azure Free Trial](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
+You'll need a Windows Azure account. If you don't already have one, you can create a free trial account in just a couple of minutes. For details, see [Windows Azure Free Trial](https://azure.microsoft.com/free/?WT.mc_id=A443DD604).
 
 ### Create a web site and a SQL database in Windows Azure
 
@@ -375,7 +375,7 @@ The *DefaultConnection* connection string is for the membership database (which 
 You can find the deployed version of the Web.config file on your own computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
 
 > [!NOTE]
-> The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). You can prevent other people from using the site by using the Windows Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.
+> The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). You can prevent other people from using the site by using the Windows Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.
 
 
 ![](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image35.png)
