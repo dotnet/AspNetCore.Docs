@@ -13,6 +13,8 @@ uid: fundamentals/portable-object-localization
 ---
 # Configure Portable Object localization in ASP.NET Core
 
+By [Sébastien Ros](https://github.com/sebastienros) and [Scott Addie](https://twitter.com/Scott_Addie)
+
 This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization)
@@ -50,11 +52,11 @@ In the case of pluralization support, more entries can be defined.
 - `msgstr[0]`: The translated string for the case 0.
 - `msgstr[N]`: The translated string for the case N.
 
-The PO file specification can be found here: https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html
+The PO file specification can be found [here](https://www.gnu.org/savannah-checkouts/gnu/gettext/manual/html_node/PO-Files.html).
 
 ## Configuring PO file support in ASP.NET Core
 
-This example is based on a sample ASP.NET Core MVC application generated from a Visual Studio 2017 project template.
+This example is based on an ASP.NET Core MVC application generated from a Visual Studio 2017 project template.
 
 ### Referencing the package
 
@@ -116,7 +118,7 @@ msgstr[1] "Il y a {0} éléments."
 English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that
 a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
 
-Unfortunately, not all languages share the same rules. To illustrate, let's use the Czech language. It has three plural forms.
+Unfortunately, not all languages share the same rules. This is illustrated with the Czech language, which has three plural forms.
 
 Create the `cs.po` file as follows, and note how the pluralization needs three different translations:
 
@@ -181,7 +183,7 @@ Applications often contain the same strings to be translated in several places, 
 
 The PO localization services can use the name of the full class or the view that is used when translating a string. This is accomplished by setting the value on the `msgctx` entry.
 
-Consider the previous example. The entry could have been written as:
+Considering the previous example, the entry could have been written as:
 
 *fr.po*
 
