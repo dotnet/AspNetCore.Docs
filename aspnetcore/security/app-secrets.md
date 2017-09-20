@@ -1,11 +1,11 @@
 ---
-title: Safe storage of app secrets during developmentin ASP.NET Core
+title: Safe storage of app secrets during development in ASP.NET Core
 author: rick-anderson
 description: Shows how to safely store secrets during development
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 7/14/2017
+ms.date: 09/15/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -37,37 +37,20 @@ The Secret Manager tool stores sensitive data for development work outside of yo
 >[!WARNING]
 > The Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store. It is for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
-### Visual Studio 2017: Installing the Secret Manager tool
+## Installing the Secret Manager tool
+
+# [Visual Studio](#tab/visual-studio)
 
 Right-click the project in Solution Explorer, and select **Edit \<project_name\>.csproj** from the context menu. 
 Add the highlighted line to the *.csproj* file, and save to restore the associated NuGet package:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?highlight=21)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
-Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file. It also opens a `secrets.json` file in the text editor.
+Right-click the project in Solution Explorer again, and select **Manage User Secrets** from the context menu. This gesture adds a new `UserSecretsId` node within a `PropertyGroup` of the *.csproj* file, as highlighted in the following sample:
 
-Add the following to `secrets.json`:
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
-```json
-{
-    "MySecret": "ValueOfMySecret"
-}
-```
-
-### Visual Studio 2015: Installing the Secret Manager tool
-
-Open the project's `project.json` file. Add a reference to `Microsoft.Extensions.SecretManager.Tools` within the `tools` property, and save to restore the associated NuGet package:
-
-```json
-"tools": {
-    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
-},
-```
-
-Right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a new `userSecretsId` property to `project.json`. It also opens a `secrets.json` file in the text editor.
-
-Add the following to `secrets.json`:
+Saving the modified *.csproj* file also opens a `secrets.json` file in the text editor. Replace the contents of the `secrets.json` file with the following code:
 
 ```json
 {
@@ -75,11 +58,11 @@ Add the following to `secrets.json`:
 }
 ```
 
-### Visual Studio Code or Command Line: Installing the Secret Manager tool
+# [Visual Studio Code](#tab/visual-studio-code)
 
-Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run `dotnet restore`.
+Add `Microsoft.Extensions.SecretManager.Tools` to the *.csproj* file and run `dotnet restore`. You can use the same steps to install the Secret Manager Tool using for the command line.
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?highlight=21)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-before.csproj?highlight=10)]
 
 Test the Secret Manager tool by running the following command:
 
@@ -96,7 +79,7 @@ The Secret Manager tool operates on project-specific configuration settings that
 
 Add a `UserSecretsId` for your project in the *.csproj* file:
 
-[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets.csproj?range=7-9&highlight=2)]
+[!code-xml[Main](app-secrets/sample/UserSecrets/UserSecrets-after.csproj?highlight=4)]
 
 Use the Secret Manager tool to set a secret. For example, in a command window from the project directory, enter the following:
 
@@ -111,6 +94,8 @@ dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\w
 ```
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.
+
+-----
 
 ## Accessing user secrets via configuration
 

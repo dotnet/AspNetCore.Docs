@@ -270,7 +270,7 @@ Notice the UI enhancements with these additional comments.
 
 ### Data Annotations
 
-Decorate the API controller with attributes, found in `System.ComponentModel.DataAnnotations`, to help drive the Swagger UI components.
+Decorate the model with attributes, found in `System.ComponentModel.DataAnnotations`, to help drive the Swagger UI components.
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 

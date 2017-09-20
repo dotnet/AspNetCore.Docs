@@ -28,7 +28,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > ## Software versions used in the tutorial
 > 
 > 
-> - [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads)
+> - [Visual Studio 2017](https://www.visualstudio.com/vs/)
 > - Web API 2
 
 
@@ -52,12 +52,12 @@ If you have already completed the steps in [Unit Testing with ASP.NET Web API 2]
 <a id="prereqs"></a>
 ## Prerequisites
 
-Visual Studio 2013 or Visual Studio Express 2013 for Web
+Visual Studio 2017 Community, Professional or Enterprise editioo
 
 <a id="download"></a>
 ## Download code
 
-Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-e2867d4d). The downloadable project includes unit test code for this topic and for the [Unit Testing ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md) topic.
+Download the [completed project](https://code.msdn.microsoft.com/Unit-Testing-with-ASPNET-1374bc11). The downloadable project includes unit test code for this topic and for the [Unit Testing ASP.NET Web API 2](unit-testing-with-aspnet-web-api.md) topic.
 
 <a id="appwithunittest"></a>
 ## Create application with unit test project

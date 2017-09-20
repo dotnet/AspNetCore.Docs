@@ -21,21 +21,20 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 > The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio 2013. For information about the tutorial series, see [the first tutorial in the series](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
-
-So far the application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial you'll deploy the Contoso University application to the cloud in Azure.
+So far the application has been running locally in IIS Express on your development computer. To make a real application available for other people to use over the Internet, you have to deploy it to a web hosting provider. In this tutorial, you'll deploy the Contoso University application to the cloud in Azure.
 
 The tutorial contains the following sections:
 
 - Enable Code First Migrations. The Migrations feature enables you to change the data model and deploy your changes to production by updating the database schema without having to drop and re-create the database.
 - Deploy to Azure. This step is optional; you can continue with the remaining tutorials without having deployed the project.
 
-We recommend that you use a continuous integration process with source control for deployment, but this tutorial does not cover those topics. For more information, see the [source control](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md) and [continuous integration](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) chapters of the [Building Real-World Cloud Apps with Azure](../../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction.md) e-book.
+We recommend that you use a continuous integration process with source control for deployment, but this tutorial does not cover those topics. For more information, see the [source control](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control) and [continuous integration](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) chapters of the [Building Real-World Cloud Apps with Azure](xref:aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction) e-book.
 
 ## Enable Code First Migrations
 
 When you develop a new application, your data model changes frequently, and each time the model changes, it gets out of sync with the database. You have configured the Entity Framework to automatically drop and re-create the database each time you change the data model. When you add, remove, or change entity classes or change your `DbContext` class, the next time you run the application it automatically deletes your existing database, creates a new one that matches the model, and seeds it with test data.
 
-This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production it is usually storing data that you want to keep, and you don't want to lose everything each time you make a change such as adding a new column. The [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591621) feature solves this problem by enabling Code First to update the database schema instead of dropping and re-creating the database. In this tutorial, you'll deploy the application, and to prepare for that you'll enable Migrations.
+This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production, it is usually storing data that you want to keep, and you don't want to lose everything each time you make a change such as adding a new column. The [Code First Migrations](https://msdn.microsoft.com/data/jj591621) feature solves this problem by enabling Code First to update the database schema instead of dropping and re-creating the database. In this tutorial, you'll deploy the application, and to prepare for that you'll enable Migrations.
 
 1. Disable the initializer that you set up earlier by commenting out or deleting the `contexts` element that you added to the application Web.config file.
 
@@ -65,11 +64,11 @@ This method of keeping the database in sync with the data model works well until
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs)]
 
-    The purpose of the [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method is to enable you to insert or update test data after Code First creates or updates the database. The method is called when the database is created and every time the database schema is updated after a data model change.
+    The purpose of the [Seed](https://msdn.microsoft.com/library/hh829453(v=vs.103).aspx) method is to enable you to insert or update test data after Code First creates or updates the database. The method is called when the database is created and every time the database schema is updated after a data model change.
 
 ### Set up the Seed Method
 
-When you are dropping and re-creating the database for every data model change, you use the initializer class's `Seed` method to insert test data, because after every model change the database is dropped and all the test data is lost. With Code First Migrations, test data is retained after database changes, so including test data in the [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method is typically not necessary. In fact, you don't want the `Seed` method to insert test data if you'll be using Migrations to deploy the database to production, because the `Seed` method will run in production. In that case you want the `Seed` method to insert into the database only the data that you need in production. For example, you might want the database to include actual department names in the `Department` table when the application becomes available in production.
+When you are dropping and re-creating the database for every data model change, you use the initializer class's `Seed` method to insert test data, because after every model change the database is dropped and all the test data is lost. With Code First Migrations, test data is retained after database changes, so including test data in the [Seed](https://msdn.microsoft.com/library/hh829453(v=vs.103).aspx) method is typically not necessary. In fact, you don't want the `Seed` method to insert test data if you'll be using Migrations to deploy the database to production, because the `Seed` method will run in production. In that case you want the `Seed` method to insert into the database only the data that you need in production. For example, you might want the database to include actual department names in the `Department` table when the application becomes available in production.
 
 For this tutorial, you'll be using Migrations for deployment, but your `Seed` method will insert test data anyway in order to make it easier to see how application functionality works without having to manually insert a lot of data.
 
@@ -77,11 +76,11 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs)]
 
-    The [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new entities, adds them to the appropriate [DbSet](https://msdn.microsoft.com/en-us/library/system.data.entity.dbset(v=vs.103).aspx) property, and then saves the changes to the database. It isn't necessary to call the [SaveChanges](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
+    The [Seed](https://msdn.microsoft.com/library/hh829453(v=vs.103).aspx) method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new entities, adds them to the appropriate [DbSet](https://msdn.microsoft.com/library/system.data.entity.dbset(v=vs.103).aspx) property, and then saves the changes to the database. It isn't necessary to call the [SaveChanges](https://msdn.microsoft.com/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
 
-    Some of the statements that insert data use the [AddOrUpdate](https://msdn.microsoft.com/en-us/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method to perform an "upsert" operation. Because the `Seed` method runs every time you execute the `update-database` command, typically after each migration, you can't just insert data, because the rows you are trying to add will already be there after the first migration that creates the database. The "upsert" operation prevents errors that would happen if you try to insert a row that already exists, but it ***overrides*** any changes to data that you may have made while testing the application. With test data in some tables you might not want that to happen: in some cases when you change data while testing you want your changes to remain after database updates. In that case you want to do a conditional insert operation: insert a row only if it doesn't already exist. The Seed method uses both approaches.
+    Some of the statements that insert data use the [AddOrUpdate](https://msdn.microsoft.com/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method to perform an "upsert" operation. Because the `Seed` method runs every time you execute the `update-database` command, typically after each migration, you can't just insert data, because the rows you are trying to add will already be there after the first migration that creates the database. The "upsert" operation prevents errors that would happen if you try to insert a row that already exists, but it ***overrides*** any changes to data that you may have made while testing the application. With test data in some tables you might not want that to happen: in some cases when you change data while testing you want your changes to remain after database updates. In that case you want to do a conditional insert operation: insert a row only if it doesn't already exist. The Seed method uses both approaches.
 
-    The first parameter passed to the [AddOrUpdate](https://msdn.microsoft.com/en-us/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method specifies the property to use to check if a row already exists. For the test student data that you are providing, the `LastName` property can be used for this purpose since each last name in the list is unique:
+    The first parameter passed to the [AddOrUpdate](https://msdn.microsoft.com/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method specifies the property to use to check if a row already exists. For the test student data that you are providing, the `LastName` property can be used for this purpose since each last name in the list is unique:
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cs)]
 
@@ -97,7 +96,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     You can use the `ID` property here because the `ID` value is set when you call `SaveChanges` for the `students` collection. EF automatically gets the primary key value when it inserts an entity into the database, and it updates the `ID` property of the entity in memory.
 
-    The code that adds each `Enrollment` entity to the `Enrollments` entity set doesn't use the `AddOrUpdate` method. It checks if an entity already exists and inserts the entity if it doesn't exist. This approach will preserve changes you make to an enrollment grade by using the application UI. The code loops through each member of the `Enrollment`[List](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) and if the enrollment is not found in the database, it adds the enrollment to the database. The first time you update the database, the database will be empty, so it will add each enrollment.
+    The code that adds each `Enrollment` entity to the `Enrollments` entity set doesn't use the `AddOrUpdate` method. It checks if an entity already exists and inserts the entity if it doesn't exist. This approach will preserve changes you make to an enrollment grade by using the application UI. The code loops through each member of the `Enrollment`[List](https://msdn.microsoft.com/library/6sh2ey19.aspx) and if the enrollment is not found in the database, it adds the enrollment to the database. The first time you update the database, the database will be empty, so it will add each enrollment.
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs)]
 2. Build the project.
@@ -129,7 +128,7 @@ So far the application has been running locally in IIS Express on your developme
 
 ### Using Code First Migrations to Deploy the Database
 
-To deploy the database you'll use Code First Migrations. When you create the publish profile that you use to configure settings for deploying from Visual Studio, you'll select a check box labeled **Execute Code First Migrations (runs on application start)**. This setting causes the deployment process to automatically configure the application *Web.config* file on the destination server so that Code First uses the `MigrateDatabaseToLatestVersion` initializer class.
+To deploy the database you'll use Code First Migrations. When you create the publish profile that you use to configure settings for deploying from Visual Studio, you'll select a check box labeled **Update Database**. This setting causes the deployment process to automatically configure the application *Web.config* file on the destination server so that Code First uses the `MigrateDatabaseToLatestVersion` initializer class.
 
 Visual Studio doesn't do anything with the database during the deployment process while it is copying your project to the destination server. When you run the deployed application and it accesses the database for the first time after deployment, Code First checks if the database matches the data model. If there's a mismatch, Code First automatically creates the database (if it doesn't exist yet) or updates the database schema to the latest version (if a database exists but doesn't match the model). If the application implements a Migrations `Seed` method, the method runs after the database is created or the schema is updated.
 
@@ -137,116 +136,88 @@ Your Migrations `Seed` method inserts test data. If you were deploying to a prod
 
 ### Get an Azure account
 
-You'll need an Azure account. If you don't already have one, but you do have an MSDN subscription, you can [activate your MSDN subscription benefits](https://www.windowsazure.com/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604). Otherwise, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
+You'll need an Azure account. If you don't already have one, but you do have a Visual Studio subscription, you can [activate your subscription benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). Otherwise, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/free/).
 
 ### Create a web site and a SQL database in Azure
 
-Your web app in Azure will run in a shared hosting environment, which means it runs on virtual machines (VMs) that are shared with other Azure clients. A shared hosting environment is a low-cost way to get started in the cloud. Later, if your web traffic increases, the application can scale to meet the need by running on dedicated VMs.
+Your web app in Azure will run in a shared hosting environment, which means it runs on virtual machines (VMs) that are shared with other Azure clients. A shared hosting environment is a low-cost way to get started in the cloud. Later, if your web traffic increases, the application can scale to meet the need by running on dedicated VMs. To learn more about Pricing Options for Azure App Service, read the documentation on [Azure Docs](https://azure.microsoft.com/pricing/details/app-service/)
 
 You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based relational database service that is built on SQL Server technologies. Tools and applications that work with SQL Server also work with SQL Database.
 
-1. In the [Azure Management Portal](https://manage.windowsazure.com/), click **Web Sites** in the left tab, and then click **New**.
+1. In the [Azure Management Portal](https://portal.azure.com), click **New** in the left tab, click **See all** in new blade, and then click **Web App & SQL** in the **Web** Section and finally **Create**.
 
-    ![New button in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image4.png)
-2. Click **CUSTOM CREATE**.
+    ![New button in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/CreateWeb-Sql.png)
 
-    ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
+ The **New Web App & SQL - Create** wizard opens.
 
- The **New Web Site - Custom Create** wizard opens.
-3. In the **New Web Site** step of the wizard, enter a string in the **URL** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the suffix that you see next to the text box. The illustration shows "ConU", but that URL is probably taken so you will have to choose a different one.
+2. In the blade, enter a string in the **App name** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the default domain of Azure App Services (.azurewebsites.net). If the **App name** is already taken, the Wizard will notify you of this with a red *The app name is not available* message. If the **App name** is available, you will get a green checkmark.
 
-    ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
-4. In the **Region** drop-down list, choose a region close to you. This setting specifies which data center your web site will run in.
-5. In the **Database** drop-down list, choose **Create a free 20 MB SQL database**.
+    ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Create-WebApp.png)
 
-    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image7.png)
-6. In the **DB CONNECTION STRING NAME**, enter *SchoolContext*.
+3. In the **Subscription** Dropdown, please choose the Azure Subscription in which you want the **App Service** to reside.
 
-    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
-7. Click the arrow that points to the right at the bottom of the box. The wizard advances to the **Database Settings** step.
-8. In the **Name** box, enter *ContosoUniversityDB*.
-9. In the **Server** box, select **New SQL Database server**. Alternatively, if you previously created a server, you can select that server from the drop-down list.
-10. Enter an administrator **LOGIN NAME** and **PASSWORD**. If you selected **New SQL Database server** you aren't entering an existing name and password here, you're entering a new name and password that you're defining now to use later when you access the database. If you selected a server that you created previously, you'll enter credentials for that server. For this tutorial, you won't select the ***Advanced*** check box. The ***Advanced*** options enable you to set the database [collation](https://msdn.microsoft.com/en-us/library/aa174903(v=SQL.80).aspx).
-11. Choose the same **Region** that you chose for the web site.
-12. Click the check mark at the bottom right of the box to indicate that you're finished.   
+4. In the **Resource Group** text box, choose a Resource Group or create a new one. This setting specifies which data center your web site will run in. For more information about Resource Groups, read the documentation on [Azure Docs](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups).
+5. Create a new **App Service Plan** by clicking the *App Service section*, **Create New**, and fill in **App Service plan** (can be same name as App Service), **Location**, and **Pricing tier** (there is a free option).
+
+    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Create-AppService.png)
+6. Click the **SQL Database**, and choose *Create New* or select an existing database
+
+    ![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Create-Database.png)
+
+7. In the **Name** box, enter a name for your database.
+8. Click the **Target Server** box, select **Create a new server**. Alternatively, if you previously created a server, you can select that server from list of available servers.
+9. Choose **Pricing tier** section, choose *Free*. If additional resources are needed, the database can be scaled up at any time. To learn more on Azure SQL Pricing, read the documentation on [Azure Docs](https://azure.microsoft.com/pricing/details/sql-database/).
+10. Modify [collation](https://docs.microsoft.com/sql/relational-databases/collations/collation-and-unicode-support) as needed.
+11. Enter an administrator **SQL Admin Username** and **SQL Admin Password**. If you selected **New SQL Database server**, you aren't entering an existing name and password here, you're entering a new name and password that you're defining now to use later when you access the database. If you selected a server that you created previously, you'll enter credentials for that server.
+12. Telemetry collection can be enabled for App Service using Application Insights. Application Insights with little configuration collects valuable event, exception, dependency, request, and trace information. To learn more about Application Insights, get started in [Azure Docs](https://azure.microsoft.com/services/application-insights/).
+12. Click **Create** at the bottom of the blade to indicate that you're finished.
   
-    ![Database Settings step of New Web Site - Create with Database wizard](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)  
-  
- The Management Portal returns to the Web Sites page, and the **Status** column shows that the site is being created. After a while (typically less than a minute), the **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the **Web Sites** icon, and the number of databases appears next to the **SQL Databases** icon.
+ The Management Portal returns to the Dashboards page, and the **Notifications** blade at the top of the page shows that the site is being created. After a while (typically less than a minute), there will be a notification that the Deployment succeeded. In the navigation bar at the left, the new **App Service** appears in the *App Services* section and the new **SQL Database** appears in the *SQL Databases* section.
 
 ### Deploy the application to Azure
 
-1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.  
+1. In Visual Studio, right-click the project in **Solution Explorer** and select **Publish** from the context menu.
   
     ![Publish in project context menu](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image10.png)
-2. In the **Profile** tab of the **Publish Web** wizard, click **Import**.  
+2. In the **Profile** tab of the **Publish Web** wizard, click **Microsoft Azure App Service**.
   
-    ![Import publish settings](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image11.png)
-3. If you have not previously added your Azure subscription in Visual Studio, perform the following steps. These steps enable Visual Studio to connect to your Azure subscription so that the drop-down list under **Import from Azure** will include your web site.
+    ![Import publish settings](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-ChooseTarget.png)
+3. If you have not previously added your Azure subscription in Visual Studio, perform the steps on the screen. These steps enable Visual Studio to connect to your Azure subscription so that the list of **App Services** will include your web site.
+ 
+4. Select the **Subscription** you added the App Service to, then the **App Service Plan** folder your App Service is a part of, and finally the **App Service** itself followed by **Ok**.
 
-    As an alternative, you can sign in directly to your Azure account without downloading a subscription file. To use this method, click **Sign In** instead of **Manage subscriptions** in the next step. This alternative is simpler, but as this tutorial is being written in November, 2013, only the subscription file download enables **Server Explorer** to connect to Azure SQL Database.
+    ![Select App Service](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-AppService.png)
+5. After the Profile has been configured, the **Connection** tab will be shown. Click **Validate Connection** to make sure that the settings are correct
 
-    a. In the **Import Publish Profile** dialog box, click **Manage subscriptions**.
-
-    ![add Windows Azure subscription](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
-
-    b. In the **Manage Azure Subscriptions** dialog box, click the **Certificates** tab, and then click **Import**.
-
-    ![download subscription file](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
-
-    c. In the **Import Azure Subscriptions** dialog box, click **Download subscription file** .
-
-    ![download .publishsettings file](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image14.png)
-
-    d. In your browser window, save the *.publishsettings* file.
-
-    ![download .publishsettings file](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image15.png)
-
-    > [!WARNING]
-    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the *Downloads* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Azure services.
-
-    e. In the **Import Azure Subscriptions** dialog box, click **Browse** and navigate to the *.publishsettings* file.
-
-    ![download sub](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image16.png)
-
-    e. Click **Import**.
-
-    ![import](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image17.png)
-4. Close the **Manage Azure Subscriptions** box.
-5. In the **Import Publish Profile** dialog box, select **Import from an Azure**, select your web site from the drop-down list, and then click **OK**.  
+    ![Validate connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Connection.png)
+7. When the connection has been validated, a green check mark is shown next to the **Validate Connection** button. Click **Next**.
   
-    ![Import Publish Profile](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image18.png)
-6. In the **Connection** tab, click **Validate Connection** to make sure that the settings are correct.  
-  
-    ![Validate connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image19.png)
-7. When the connection has been validated, a green check mark is shown next to the **Validate Connection** button. Click **Next**.  
-  
-    ![Successfully validated connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image20.png)
+    ![Successfully validated connection](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-SettingsValidated.png)
 8. Open the **Remote connection string** drop-down list under **SchoolContext** and select the connection string for the database you created.
-9. Select **Execute Code First Migrations (runs on application start)**.  
+9. Select **Update database**.
 
-    ![Settings tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image21.png)
+    ![Settings tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Settings.png)
 
     This setting causes the deployment process to automatically configure the application *Web.config* file on the destination server so that Code First uses the `MigrateDatabaseToLatestVersion` initializer class.
 10. Click **Next**.
-11. In the **Preview** tab, click **Start Preview**.  
+11. In the **Preview** tab, click **Start Preview**.
   
-    ![StartPreview button in the Preview tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image22.png)  
+    ![StartPreview button in the Preview tab](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Preview.png)
   
- The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.  
-  
-    ![StartPreview file output](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image23.png)
-12. Click **Publish**.  
- Visual Studio begins the process of copying the files to the Azure server.
-13. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.  
-  
-    ![Output window reporting successful deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image24.png)
-14. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.  
- The application you created is now running in the cloud. Click the Students tab.  
-  
-    ![Students_index_page_with_paging](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image25.png)
+ The tab displays a list of the files that will be copied to the server. Displaying the preview isn't required to publish the application but is a useful function to be aware of. In this case, you don't need to do anything with the list of files that is displayed. The next time you deploy this application, only the files that have changed will be in this list.
+    ![StartPreview file output](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-PreviewLoaded.png)
 
-At this point your *SchoolContext* database has been created in the Azure SQL Database because you selected **Execute Code First Migrations (runs on app start)**. The *Web.config* file in the deployed web site has been changed so that the [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/en-us/library/hh829476(v=vs.103).aspx) initializer runs the first time your code reads or writes data in the database (which happened when you selected the **Students** tab):
+12. Click **Publish**.
+ Visual Studio begins the process of copying the files to the Azure server.
+13. The **Output** window shows what deployment actions were taken and reports successful completion of the deployment.
+  
+    ![Output window reporting successful deployment](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-BuildOutput.png)
+14. Upon successful deployment, the default browser automatically opens to the URL of the deployed web site.
+ The application you created is now running in the cloud. 
+  
+    ![Students_index_page_with_paging](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Publish-Site.png)
+
+At this point your *SchoolContext* database has been created in the Azure SQL Database because you selected **Execute Code First Migrations (runs on app start)**. The *Web.config* file in the deployed web site has been changed so that the [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) initializer runs the first time your code reads or writes data in the database (which happened when you selected the **Students** tab):
 
 ![](https://asp.net/media/4367421/mig.png)
 
@@ -254,23 +225,23 @@ The deployment process also created a new connection string *(SchoolContext\_Dat
 
 ![Database_Publish connection string](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
 
-You can find the deployed version of the Web.config file on your own computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
+You can find the deployed version of the Web.config file on your own computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](xref:web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
 
 > [!NOTE]
-> The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). You can prevent other people from using the site by using the Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.
+> The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to Azure](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). You can prevent other people from using the site by using the Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.
 
 
-![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image27.png)
+![](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/Stop-Service.png)
 
 ## Advanced Migrations Scenarios
 
-If you deploy a database by running migrations automatically as shown in this tutorial, and you are deploying to a web site that runs on multiple servers, you could get mutiple servers trying to run migrations at the same time. Migrations are atomic, so if two servers try to run the same migration, one will succeed and the other will fail (assuming the operations can't be done twice). In that scenario if you want to avoid those issues, you can call migrations manually and set up your own code so that it only happens once. For more information, see [Running and Scripting Migrations from Code](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) on Rowan Miller's blog and [Migrate.exe](https://msdn.microsoft.com/en-us/data/jj618307) (for executing migrations from the command line) on MSDN.
+If you deploy a database by running migrations automatically as shown in this tutorial, and you are deploying to a web site that runs on multiple servers, you could get multiple servers trying to run migrations at the same time. Migrations are atomic, so if two servers try to run the same migration, one will succeed and the other will fail (assuming the operations can't be done twice). In that scenario if you want to avoid those issues, you can call migrations manually and set up your own code so that it only happens once. For more information, see [Running and Scripting Migrations from Code](http://romiller.com/2012/02/09/running-scripting-migrations-from-code/) on Rowan Miller's blog and [Migrate.exe](https://msdn.microsoft.com/data/jj618307) (for executing migrations from the command line) on MSDN.
 
 For information about other migrations scenarios, see [Migrations Screencast Series](https://blogs.msdn.com/b/adonet/archive/2014/03/12/migrations-screencast-series.aspx).
 
 ## Code First Initializers
 
-In the deployment section you saw the [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/en-us/library/hh829476(v=vs.103).aspx) initializer being used. Code First also provides other initializers, including [CreateDatabaseIfNotExists](https://msdn.microsoft.com/en-us/library/gg679221(v=vs.103).aspx) (the default), [DropCreateDatabaseIfModelChanges](https://msdn.microsoft.com/en-us/library/gg679604(v=VS.103).aspx) (which you used earlier) and [DropCreateDatabaseAlways](https://msdn.microsoft.com/en-us/library/gg679506(v=VS.103).aspx). The `DropCreateAlways` initializer can be useful for setting up conditions for unit tests. You can also write your own initializers, and you can call an initializer explicitly if you don't want to wait until the application reads from or writes to the database. At the time this tutorial is being written in November, 2013, you can only use the Create and DropCreate initializers before you enable migrations. The Entity Framework team is working on making these initializers usable with migrations as well.
+In the deployment section you saw the [MigrateDatabaseToLatestVersion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) initializer being used. Code First also provides other initializers, including [CreateDatabaseIfNotExists](https://msdn.microsoft.com/library/gg679221(v=vs.103).aspx) (the default), [DropCreateDatabaseIfModelChanges](https://msdn.microsoft.com/library/gg679604(v=VS.103).aspx) (which you used earlier) and [DropCreateDatabaseAlways](https://msdn.microsoft.com/library/gg679506(v=VS.103).aspx). The `DropCreateAlways` initializer can be useful for setting up conditions for unit tests. You can also write your own initializers, and you can call an initializer explicitly if you don't want to wait until the application reads from or writes to the database. At the time this tutorial is being written in November, 2013, you can only use the Create and DropCreate initializers before you enable migrations. The Entity Framework team is working on making these initializers usable with migrations as well.
 
 For more information about initializers, see [Understanding Database Initializers in Entity Framework Code First](http://www.codeguru.com/csharp/article.php/c19999/Understanding-Database-Initializers-in-Entity-Framework-Code-First.htm) and chapter 6 of the book [Programming Entity Framework: Code First](http://shop.oreilly.com/product/0636920022220.do) by Julie Lerman and Rowan Miller.
 
@@ -280,8 +251,8 @@ In this tutorial you've seen how to enable migrations and deploy the application
 
 Please leave feedback on how you liked this tutorial and what we could improve. You can also request new topics at [Show Me How With Code](http://aspnet.uservoice.com/forums/228522-show-me-how-with-code).
 
-Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](../../../../whitepapers/aspnet-data-access-content-map.md).
+Links to other Entity Framework resources can be found in [ASP.NET Data Access - Recommended Resources](xref:whitepapers/aspnet-data-access-content-map).
 
 >[!div class="step-by-step"]
-[Previous](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application.md)
-[Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+[Previous](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application)
+[Next](xref:mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application)

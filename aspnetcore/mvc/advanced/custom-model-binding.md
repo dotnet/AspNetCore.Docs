@@ -5,7 +5,7 @@ description: Customizing model binding in ASP.NET Core MVC.
 keywords: ASP.NET Core, model binding, custom model binder
 ms.author: riande
 manager: wpickett
-ms.date: 4/10/2017
+ms.date: 04/10/2017
 ms.topic: article
 ms.assetid: ebd98159-a028-4a94-b06c-43981c79c6be
 ms.technology: aspnet

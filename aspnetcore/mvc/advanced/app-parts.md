@@ -5,7 +5,7 @@ description: Learn how to use application parts, which are abstrations over the 
 keywords: ASP.NET Core,application part,app part
 ms.author: riande
 manager: wpickett
-ms.date: 1/4/2017
+ms.date: 01/04/2017
 ms.topic: article
 ms.assetid: b355a48e-a15c-4d58-b69c-899963613a98
 ms.technology: aspnet

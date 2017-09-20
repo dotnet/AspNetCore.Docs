@@ -67,32 +67,49 @@ If you intend to deploy your applications with Web Deploy in Visual Studio, inst
 
 ### Enabling the IISIntegration components
 
-Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*. Note that code calling *.UseIISIntegration()* does not affect code portability.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+A typical *Program.cs* calls [CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder) to begin setting up a host. `CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) as the web server and enables IIS integration by configuring the base path and port for the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module):
+
+```csharp
+public static IWebHost BuildWebHost(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        ...
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Include a dependency on the [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/) package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *UseIISIntegration* extension method to *WebHostBuilder*:
 
 ```csharp
 var host = new WebHostBuilder()
     .UseKestrel()
-    .UseContentRoot(Directory.GetCurrentDirectory())
     .UseIISIntegration()
-    .UseStartup<Startup>()
-    .Build();
+    ...
 ```
 
-### Setting IISOptions for the IISIntegration service
+Both `UseKestrel` and `UseIISIntegration` are required. Code calling *UseIISIntegration* doesn't affect code portability. If the app isn't run behind IIS (for example, the app is run directly on Kestrel), `UseIISIntegration` no-ops.
 
-To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*.
+---
+
+For more information on hosting, see [Hosting in ASP.NET Core](xref:fundamentals/hosting).
+
+### IIS options
+
+To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*:
 
 ```csharp
-services.Configure<IISOptions>(options => {
-  ...
+services.Configure<IISOptions>(options => 
+{
+    ...
 });
 ```
 
-| Option | Setting|
-| --- | --- | 
-| AutomaticAuthentication | If true, the authentication middleware will alter the request user arriving and respond to generic challenges. If false,the authentication middleware will only provide identity and respond to challenges when explicitly indicated by theAuthenticationScheme |
-| ForwardClientCertificate | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` will be populated. |
-| ForwardWindowsAuthentication | If true, authentication middleware will attempt to authenticate using platform handler windows authentication. If false, authentication middleware won’t be added. |
+| Option                         | Default | Setting |
+| ------------------------------ | ------- | ------- |
+| `AutomaticAuthentication`      | `true`  | If `true`, the authentication middleware sets the `HttpContext.User` and responds to generic challenges. If `false`, the authentication middleware only provides an identity (`HttpContext.User`) and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. |
+| `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
+| `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
 ### web.config
 
@@ -428,7 +445,7 @@ Troubleshooting:
 
 * Confirm that the application runs locally on Kestrel. A process failure might be the result of a problem within the application. For more information, see [Troubleshooting tips](#troubleshooting-tips).
 
-* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is either (a) *.\my_applciation.dll* for a framework-dependent deployment; or (b) not present, an empty string (*arguments=""*), or a list of your application's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment.
+* Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it is either (a) *.\my_application.dll* for a framework-dependent deployment; or (b) not present, an empty string (*arguments=""*), or a list of your application's arguments (*arguments="arg1, arg2, ..."*) for a self-contained deployment.
 
 ### Missing .NET Framework version
 

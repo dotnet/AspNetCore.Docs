@@ -129,12 +129,12 @@ Firefox uses its own certificate store, so it will display a warning.
 ### Support for Azure App Service Web Apps in Visual Studio
 
 - **Support Azure sign in.**
-- **Remote debugging and Remote View for web apps**: We now support [remote debugging for web apps in Azure App Service](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/) and remote view of web app content files in the server explorer.
+- **Remote debugging and Remote View for web apps**: We now support [remote debugging for web apps in Azure App Service](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio) and remote view of web app content files in the server explorer.
 
 <a id="AzureResources"></a>
 ### Create remote Azure resources when creating a new Web project
 
-We added an Azure ["Create Remote Resources"](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-get-started/) checkbox on the new web application dialog. By choosing it, you will be able to integrate the experience of creating a new web application, setting up the Azure publishing site for testing, and creating publishing profile in a few simple steps.
+We added an Azure ["Create Remote Resources"](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet) checkbox on the new web application dialog. By choosing it, you will be able to integrate the experience of creating a new web application, setting up the Azure publishing site for testing, and creating publishing profile in a few simple steps.
 
 ![New Project with Azure resources](aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes/_static/image19.png)![Publishing to Azure](aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes/_static/image20.png)
 

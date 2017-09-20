@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesContacts.Data;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace RazorPagesContacts.Pages.Customers
 {
-#region snippetTemp
+#region snippet_Temp
     public class CreateDotModel : PageModel
     {
         private readonly AppDbContext _db;
@@ -18,7 +17,6 @@ namespace RazorPagesContacts.Pages.Customers
 
         [TempData]
         public string Message { get; set; }
-
 
         [BindProperty]
         public Customer Customer { get; set; }

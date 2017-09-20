@@ -139,7 +139,7 @@ In the [next chapter](design-to-survive-failures.md) we'll talk about the import
 For more information see the following resources:
 
 - [An Introduction to Azure BLOB Storage](https://www.simple-talk.com/cloud/cloud-data/an-introduction-to-windows-azure-blob-storage-/). Blog by Mike Wood.
-- [How to use the Azure Blob Storage Service in .NET](https://www.windowsazure.com/en-us/develop/net/how-to-guides/blob-storage/). Official documentation on the MicrosoftAzure.com site. A brief introduction to blob storage followed by code examples showing how to connect to blob storage, create containers, upload and download blobs, etc.
+- [How to use the Azure Blob Storage Service in .NET](https://docs.microsoft.com/azure/storage/blobs/storage-dotnet-how-to-use-blobs). Official documentation on the MicrosoftAzure.com site. A brief introduction to blob storage followed by code examples showing how to connect to blob storage, create containers, upload and download blobs, etc.
 - [FailSafe: Building Scalable, Resilient Cloud Services](https://channel9.msdn.com/Series/FailSafe). Nine-part video series by Ulrich Homann, Marc Mercuri, and Mark Simms. Presents high-level concepts and architectural principles in a very accessible and interesting way, with stories drawn from Microsoft Customer Advisory Team (CAT) experience with actual customers. For a discussion of Azure Storage service and blobs, see episode 5 starting at 35:13.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See Valet Key pattern.
 
