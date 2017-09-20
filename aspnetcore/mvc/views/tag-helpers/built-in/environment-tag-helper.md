@@ -9,7 +9,7 @@ ms.date: 07/14/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper
+uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---
 # Environment Tag Helper in ASP.NET Core
 

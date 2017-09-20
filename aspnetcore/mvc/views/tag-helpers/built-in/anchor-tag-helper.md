@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a011
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: mvc/views/tag-helpers/builtin-th/AnchorTagHelper
+uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper
 
