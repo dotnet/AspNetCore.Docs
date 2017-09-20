@@ -57,7 +57,7 @@ Add a using statement:
 
 [!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings2)]
 
-Run the About page. It displays the same data it did before.
+Run the app and go to the About page. It displays the same data it did before.
 
 ![About page](advanced/_static/about.png)
 
@@ -105,7 +105,7 @@ Sometimes it's helpful to be able to see the actual SQL queries that are sent to
 
 Open *StudentsController.cs* and in the `Details` method set a breakpoint on the `if (student == null)` statement.
 
-Run the application in debug mode, and go to the Details page for a student.
+Run the app in debug mode, and go to the Details page for a student.
 
 Go to the **Output** window showing debug output, and you see the query:
 
