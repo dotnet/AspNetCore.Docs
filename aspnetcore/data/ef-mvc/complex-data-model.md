@@ -57,7 +57,7 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 
 For more information, see the [\<input> tag helper documentation](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
-Run the Students Index page again and notice that times are no longer displayed for the enrollment dates. The same will be true for any view that uses the Student model.
+Run the app, go to the Students Index page and notice that times are no longer displayed for the enrollment dates. The same will be true for any view that uses the Student model.
 
 ![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
 
@@ -93,7 +93,7 @@ The `migrations add` command warns that data loss may occur, because the change 
 
 The timestamp prefixed to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the update-database command, and then all of the migrations are applied in the order in which they were created.
 
-Run the Create page, and enter either name longer than 50 characters. When you click Create, client side validation shows an error message.
+Run the app, select the **Students** tab, click **Create New**, and enter either name longer than 50 characters. When you click **Create**, client side validation shows an error message.
 
 ![Students index page showing string length errors](complex-data-model/_static/string-length-errors.png)
 
@@ -479,11 +479,11 @@ dotnet ef database update
 
 Run the app to cause the `DbInitializer.Initialize` method to run and populate the new database.
 
-Open the database in SSOX as you did earlier, and expand the **Tables** node to see that all of the tables have been created. (If you still have SSOX open from the earlier time, click the Refresh button.)
+Open the database in SSOX as you did earlier, and expand the **Tables** node to see that all of the tables have been created. (If you still have SSOX open from the earlier time, click the **Refresh** button.)
 
 ![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
 
-Run the application to trigger the initializer code that seeds the database.
+Run the app to trigger the initializer code that seeds the database.
 
 Right-click the **CourseAssignment** table and select **View Data** to verify that it has data in it.
 

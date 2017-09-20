@@ -180,9 +180,7 @@ In *Views/Departments/Edit.cshtml*, make the following changes:
 
 ## Test concurrency conflicts in the Edit page
 
-Run the site and click Departments to go to the Departments Index page.
-
-Right-click the **Edit** hyperlink for the English department and select **Open in new tab**, then click the **Edit** hyperlink for the English department. The two browser tabs now display the same information.
+Run the app and go to the Departments Index page. Right-click the **Edit** hyperlink for the English department and select **Open in new tab**, then click the **Edit** hyperlink for the English department. The two browser tabs now display the same information.
 
 Change a field in the first browser tab and click **Save**.
 
@@ -251,7 +249,7 @@ This makes the following changes:
 
 * Adds a hidden field for the `RowVersion` property.
 
-Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
+Run the app and go to the Departments Index page. Right-click the **Delete** hyperlink for the English department and select **Open in new tab**, then in the first tab click the **Edit** hyperlink for the English department.
 
 In the first window, change one of the values, and click **Save**:
 
