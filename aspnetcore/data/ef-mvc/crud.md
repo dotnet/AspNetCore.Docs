@@ -103,7 +103,7 @@ If code indentation is wrong after you paste the code, press CTRL-K-D to correct
 
 This code loops through the entities in the `Enrollments` navigation property. For each enrollment, it displays the course title and the grade. The course title is retrieved from the Course entity that's stored in the `Course` navigation property of the Enrollments entity.
 
-Run the application, select the **Students** tab, and click the **Details** link for a student. You see the list of courses and grades for the selected student:
+Run the app, select the **Students** tab, and click the **Details** link for a student. You see the list of courses and grades for the selected student:
 
 ![Student Details page](crud/_static/student-details.png)
 
@@ -151,7 +151,7 @@ An alternative way to prevent overposting that is preferred by many developers i
 
 The code in *Views/Students/Create.cshtml* uses `label`, `input`, and `span` (for validation messages) tag helpers for each field.
 
-Run the page by selecting the **Students** tab and clicking **Create New**.
+Run the app, select the **Students** tab, and click **Create New**.
 
 Enter names and a date. Try entering an invalid date if your browser lets you do that. (Some browsers force you to use a date picker.) Then click **Create** to see the error message.
 
@@ -217,7 +217,7 @@ If you want to avoid the read-first approach, but you also want the SQL UPDATE s
 
 ### Test the Edit page
 
-Run the application and select the **Students** tab, then click an **Edit** hyperlink.
+Run the app, select the **Students** tab, then click an **Edit** hyperlink.
 
 ![Students edit page](crud/_static/student-edit.png)
 
@@ -259,7 +259,7 @@ In *Views/Student/Delete.cshtml*, add an error message between the h2 heading an
 
 [!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
-Run the page by selecting the **Students** tab and clicking a **Delete** hyperlink:
+Run the app, select the **Students** tab, and click a **Delete** hyperlink:
 
 ![Delete confirmation page](crud/_static/student-delete.png)
 

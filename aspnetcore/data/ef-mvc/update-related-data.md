@@ -87,13 +87,13 @@ In *Views/Courses/Details.cshtml*, make the same change that you just did for *D
 
 ### Test the Course pages
 
-Run the **Create** page (display the Course Index page and click **Create New**) and enter data for a new course:
+Run the app, select the **Courses** tab, click **Create New**, and enter data for a new course:
 
 ![Course Create page](update-related-data/_static/course-create.png)
 
 Click **Create**. The Courses Index page is displayed with the new course added to the list. The department name in the Index page list comes from the navigation property, showing that the relationship was established correctly.
 
-Run the **Edit** page (click **Edit** on a course in the Course Index page ).
+Click **Edit** on a course in the Courses Index page.
 
 ![Course Edit page](update-related-data/_static/course-edit.png)
 
@@ -155,7 +155,7 @@ In *Views/Instructors/Edit.cshtml*, add a new field for editing the office locat
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
-Run the page (select the **Instructors** tab and then click **Edit** on an instructor). Change the **Office Location** and click **Save**.
+Run the app, select the **Instructors** tab, and then click **Edit** on an instructor. Change the **Office Location** and click **Save**.
 
 ![Instructor Edit page](update-related-data/_static/instructor-edit-office.png)
 
@@ -223,7 +223,7 @@ This code creates an HTML table that has three columns. In each column is a chec
 
 When the check boxes are initially rendered, those that are for courses assigned to the instructor have checked attributes, which selects them (displays them checked).
 
-Run the Instructor Index page, and click **Edit** on an instructor to see the **Edit** page.
+Run the app, select the **Instructors** tab, and click **Edit** on an instructor to see the **Edit** page.
 
 ![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses.png)
 
@@ -283,7 +283,7 @@ In *Views/Instructor/Create.cshtml*, add an office location text box and check b
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 
-Test by running the **Create** page and adding an instructor. 
+Test by running the app and creating an instructor. 
 
 ## Handling Transactions
 

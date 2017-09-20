@@ -127,7 +127,7 @@ dotnet ef database update
 
 ## Test with inheritance implemented
 
-Run the site and try various pages. Everything works the same as it did before.
+Run the app and try various pages. Everything works the same as it did before.
 
 In **SQL Server Object Explorer**, expand **Data Connections/SchoolContext** and then **Tables**, and you see that the Student and Instructor tables have been replaced by a Person table. Open the Person table designer and you see that it has all of the columns that used to be in the Student and Instructor tables.
 

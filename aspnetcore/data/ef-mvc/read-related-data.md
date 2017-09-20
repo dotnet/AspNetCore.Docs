@@ -81,7 +81,7 @@ You've made the following changes to the scaffolded code:
   @Html.DisplayFor(modelItem => item.Department.Name)
   ```
 
-Run the page (select the Courses tab on the Contoso University home page) to see the list with department names.
+Run the app and select the **Courses** tab to see the list with department names.
 
 ![Courses Index page](read-related-data/_static/courses-index.png)
 
@@ -199,7 +199,7 @@ You've made the following changes to the existing code:
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Run the application and select the Instructors tab. The page displays the Location property of related OfficeAssignment entities and an empty table cell when there's no related OfficeAssignment entity.
+Run the app and select the **Instructors** tab. The page displays the Location property of related OfficeAssignment entities and an empty table cell when there's no related OfficeAssignment entity.
 
 ![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
 
@@ -209,7 +209,7 @@ In the *Views/Instructors/Index.cshtml* file, after the closing table element (a
 
 This code reads the `Courses` property of the view model to display a list of courses. It also provides a **Select** hyperlink that sends the ID of the selected course to the `Index` action method.
 
-Run the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.
+Refresh the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.
 
 ![Instructors Index page instructor selected](read-related-data/_static/instructors-index-instructor-selected.png)
 
@@ -219,7 +219,7 @@ After the code block you just added, add the following code. This displays a lis
 
 This code reads the Enrollments property of the view model in order to display a list of students enrolled in the course.
 
-Run the page and select an instructor. Then select a course to see the list of enrolled students and their grades.
+Refresh the page again and select an instructor. Then select a course to see the list of enrolled students and their grades.
 
 ![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index.png)
 
@@ -233,7 +233,7 @@ Suppose you expected users to only rarely want to see enrollments in a selected 
 
 The new code drops the *ThenInclude* method calls for enrollment data from the code that retrieves instructor entities. If an instructor and course are selected, the highlighted code retrieves Enrollment entities for the selected course, and Student entities for each Enrollment.
 
-Run the Instructor Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
+Run the app, go to the Instructors Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
 
 ## Summary
 
