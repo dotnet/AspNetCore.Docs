@@ -1,4 +1,4 @@
-﻿---
+---
 title: Image Tag Helper | Microsoft Docs
 author: pkellner
 description: Shows how to work with Image Tag Helper
