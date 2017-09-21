@@ -1,17 +1,14 @@
 ---
-uid: mvc/overview/getting-started/introduction/adding-a-view
-title: "Adding a View | Microsoft Docs"
+title: Adding a View to an MVC app
 author: Rick-Anderson
-description: ""
-ms.author: aspnetcontent
+description: Adding a view to an MVC app
+ms.author: riande
 manager: wpickett
-ms.date: 10/17/2013
+ms.date: 09/1721/2017
 ms.topic: article
-ms.assetid: 185ae290-2952-44d6-b420-ddd97ef18fa2
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
-msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-view
-msc.type: authoredcontent
+uid: mvc/overview/getting-started/introduction/adding-a-view
 ---
 Adding a View
 ====================
