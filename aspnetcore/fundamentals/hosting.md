@@ -5,13 +5,11 @@ description: Learn about the web host in ASP.NET Core, which is responsible for 
 keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder,IHostingEnvironment,IApplicationLifetime
 ms.author: riande
 manager: wpickett
-ms.date: 09/10/2017
+ms.date: 09/21/2017
 ms.topic: article
-ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/hosting
-ms.custom: H1Hack27Feb2017
 ---
 # Hosting in ASP.NET Core
 
