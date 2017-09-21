@@ -1,4 +1,4 @@
-﻿---
+---
 title: Distributed Cache Tag Helper | Microsoft Docs
 author: pkellner
 description: Shows how to work with Cache Tag Helper

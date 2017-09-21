@@ -91,7 +91,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 * In a command-line window, navigate to the appropriate folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
 
    ```
-   docfx -t default --serve
+   docfx --serve
    ```
 	
 * In a browser, navigate to `http://localhost:8080`.
