@@ -2,7 +2,7 @@
 title: Testing and debugging ASP.NET Core
 author: ardalis
 description: Links to resources for testing and debugging ASP.NET Core applications.
-keywords: ASP.NET Core, unit testing, integration testing, controllers, debugging, remote debugging
+keywords: ASP.NET Core,unit testing,integration testing,controllers,debugging,remote debugging
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

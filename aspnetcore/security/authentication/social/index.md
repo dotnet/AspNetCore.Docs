@@ -2,7 +2,7 @@
 title: Enabling authentication using Facebook, Google and other external
 author: rick-anderson
 description: 
-keywords: ASP.NET Core, authentication, social, authentication providers, google, facebook, twitter, microsoft account
+keywords: ASP.NET Core,authentication,social,authentication providers,google,facebook,twitter,microsoft account
 ms.author: riande
 manager: wpickett
 ms.date: 11/01/2016

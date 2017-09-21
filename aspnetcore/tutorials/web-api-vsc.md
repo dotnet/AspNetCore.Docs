@@ -10,7 +10,7 @@ helpviewer_keywords: ASP.NET Core, WebAPI, Web API, REST, Mac, Linux,HTTP, Servi
 
 #ROBOTS:
 ms.technology: aspnet
-keywords: ASP.NET Core, WebAPI, Web API, REST, Mac, Linux,HTTP, Service, HTTP Service, VS Code
+keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 #ms.devlang: 
 manager: wpickett
 ms.assetid: 830b4bf5-dd14-423e-9f59-764a6f13a8f6

@@ -2,7 +2,7 @@
 title: Filters
 author: ardalis
 description: Learn how *Filters* work and how to use them in ASP.NET Core MVC.
-keywords: ASP.NET Core, filters, mvc filters, action filters, authorization filters, resource filters, result filters, exception filters
+keywords: ASP.NET Core,filters,mvc filters,action filters,authorization filters,resource filters,result filters,exception filters
 ms.author: tdykstra
 manager: wpickett
 ms.date: 12/12/2016
