@@ -126,7 +126,7 @@ To connect to authentication providers like Google and Facebook, you will need t
  The image below shows the enabled APIs.  
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image16.png)
-7. Copy and paste the **AppId** and **App Secret** into the `UseGoogleAuthentication` method. The **AppId** and **App Secret** values shown below are samples and will not work.
+7. From the Google APIs API Manager, visit the **Credentials** tab to obtain the **Client ID**. Download to save a JSON file with application secrets. Copy and paste the **ClientId** and **ClientSecret** into the `UseGoogleAuthentication` method found in the *Startup.Auth.cs* file in the *App_Start* folder. The **ClientId** and **ClientSecret** values shown below are samples and don't work.
 
     [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample2.cs?highlight=37-39)]
 
