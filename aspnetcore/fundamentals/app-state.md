@@ -42,19 +42,25 @@ ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/aspnet/core/a
 
 ## Cookie-based TempData provider 
 
-In ASP.NET Core 2.0 and higher, the cookie-based TempData provider is used by default to store a user's TempData in a cookie. In ASP.NET Core 1.0 and 1.1 the session state TempData provider is the default. To configure the TempData provider for an application, register a TempData provider implementation in `ConfigureServices`:
+In ASP.NET Core 2.0 and higher, the cookie-based TempData provider is used by default to store a user's TempData in a cookie.
+
+The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed, because compressing encryped data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
+
+In ASP.NET Core 1.0 and 1.1, the session state TempData provider is the default.
+
+To configure the TempData provider for an application, register a TempData provider implementation in `ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddMvc();
-    // Add a TempData provider after AddMvc and include the ViewFeatures namespace:
-    // using Microsoft.AspNetCore.Mvc.ViewFeatures;
-    services.AddSingleton<ITempDataProvider, SessionStateTempDataProvider>();
+    services
+        .AddMvc()
+        .AddSessionStateTempDataProvider();
+
+    // The Session State TempData Provider requires adding the session state service
+    services.AddSession();
 }
 ```
-
-The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed, because compressing encryped data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
 
 ### Query strings
 
