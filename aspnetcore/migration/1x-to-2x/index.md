@@ -147,7 +147,7 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
 3. Remove the Application Insights client-side API call from *_Layout.cshtml*. It comprises the following two lines of code:
 
-    [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Shared/_Layout.cshtml?range=1,19)]
+    [!code-cshtml[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Shared/_Layout.cshtml?range=1,19&dedent=4)]
 
 If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](xref:fundamentals/metapackage) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 

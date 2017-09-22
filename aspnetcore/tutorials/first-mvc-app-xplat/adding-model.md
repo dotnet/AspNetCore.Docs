@@ -8,7 +8,7 @@ ms.topic: get-started-article
 
 #ROBOTS:
 ms.technology: aspnet
-keywords: ASP.NET Core, WebAPI, Web API, REST, Mac, Linux,HTTP, Service, HTTP Service, VS Code
+keywords: ASP.NET Core,WebAPI,Web API,REST,Mac,Linux,HTTP,Service,HTTP Service,VS Code
 ms.prod: asp.net-core
 #ms.devlang: 
 manager: wpickett

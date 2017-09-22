@@ -3,7 +3,7 @@ title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
 author: tdykstra
 author: tdykstra
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
-keywords: ASP.NET Core, Entity Framework Core, sort, filter, paging, grouping
+keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
 ms.author: tdykstra
 ms.date: 03/15/2017
 ms.topic: get-started-article

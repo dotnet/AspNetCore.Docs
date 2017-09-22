@@ -2,7 +2,7 @@
 title: Enabling QR Code generation for authenticator apps in ASP.NET Core
 author: rick-anderson
 description: Enabling QR Code generation for authenticator apps in ASP.NET Core
-keywords: ASP.NET Core, MVC, QR Code generation, authenticator, 2FA
+keywords: ASP.NET Core,MVC,QR Code generation,authenticator,2FA
 ms.author: riande
 manager: wpickett
 ms.date: 07/24/2017

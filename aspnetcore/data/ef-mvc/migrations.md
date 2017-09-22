@@ -2,7 +2,7 @@
 title: ASP.NET Core MVC with EF Core - Migrations - 4 of 10
 author: tdykstra
 description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application.
-keywords: ASP.NET Core, Entity Framework Core, migrations
+keywords: ASP.NET Core,Entity Framework Core,migrations
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017

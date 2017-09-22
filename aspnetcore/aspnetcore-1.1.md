@@ -2,7 +2,7 @@
 title: What's new in ASP.NET Core 1.1
 author: rick-anderson
 description: What's new in ASP.NET Core 1.1
-keywords: ASP.NET Core, bower
+keywords: ASP.NET Core,bower
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017

@@ -2,7 +2,7 @@
 title: Razor Syntax Reference for ASP.NET Core
 author: rick-anderson
 description: Details Razor syntax
-keywords: ASP.NET Core, Razor
+keywords: ASP.NET Core,Razor
 ms.author: riande
 manager: wpickett
 ms.date: 07/04/2017

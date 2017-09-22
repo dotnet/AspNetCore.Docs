@@ -2,7 +2,7 @@
 title: Using Bower in ASP.NET Core
 author: rick-anderson
 description: Managing client-side packages with Bower.
-keywords: ASP.NET Core, bower
+keywords: ASP.NET Core,bower
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017

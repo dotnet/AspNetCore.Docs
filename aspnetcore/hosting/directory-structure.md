@@ -2,7 +2,7 @@
 title: ASP.NET Core directory structure
 author: guardrex
 description: The directory structure of published ASP.NET Core applications.
-keywords: ASP.NET Core, directory structure
+keywords: ASP.NET Core,directory structure
 ms.author: riande
 manager: wpickett
 ms.date: 03/15/2017

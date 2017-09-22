@@ -2,7 +2,7 @@
 title: Custom storage providers for ASP.NET Core Identity | Microsoft Docs
 author: ardalis
 description: How to configure custom storage providers for ASP.NET Core Identity.
-keywords: ASP.NET Core, Identity, custom storage providers
+keywords: ASP.NET Core,Identity,custom storage providers
 ms.author: riande
 manager: wpickett
 ms.date: 05/24/2017

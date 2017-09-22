@@ -2,7 +2,7 @@
 title: Caching
 author: ardalis
 description: Demonstrates how to use caching for higher performance.
-keywords: ASP.NET Core, caching, performance
+keywords: ASP.NET Core,caching,performance
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
