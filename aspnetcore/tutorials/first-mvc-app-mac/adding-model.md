@@ -6,12 +6,11 @@ keywords: ASP.NET Core,MVC,scaffold,scaffolding
 ms.author: riande
 manager: wpickett  
 ms.devlang: csharp 
-ms.date: 09/15/2017
+ms.date: 09/22/2017
 ms.topic: get-started-article
 ms.assetid: 8dc28498-eeee-1638-b903-b593059e9f39
 ms.technology: aspnet
 ms.prod: .net-core
-helpviewer_keywords: aspnet, csharp, mvc
 uid: tutorials/first-mvc-app-mac/adding-model
 ---
 
