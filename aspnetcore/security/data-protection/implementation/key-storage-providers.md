@@ -2,7 +2,7 @@
 title: Key storage providers
 author: rick-anderson
 description:  Key storage providers
-keywords: encryption, ASP.NET Core,
+keywords: encryption,ASP.NET Core
 ms.author: riande
 manager: wpickett
 ms.date: 01/14/2017

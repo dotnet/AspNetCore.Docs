@@ -2,7 +2,7 @@
 title: Sharing cookies between applications
 author: rick-anderson
 description: 
-keywords: ASP.NET Core, ASP.NET, cookies, Interop, cookie sharing
+keywords: ASP.NET Core,ASP.NET,cookies,Interop,cookie sharing
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

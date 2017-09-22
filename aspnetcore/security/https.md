@@ -2,7 +2,7 @@
 title: Setting up HTTPS for development in ASP.NET Core
 author: Rick-Anderson
 description: Shows how to set up HTTPS for development in ASP.NET Core 2.0.
-keywords: ASP.NET Core, SSL, HTTPS
+keywords: ASP.NET Core,SSL,HTTPS
 ms.author: riande
 manager: wpickett
 ms.date: 05/10/2017

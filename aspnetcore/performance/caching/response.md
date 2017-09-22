@@ -2,7 +2,7 @@
 title: Response Caching
 author: rick-anderson
 description: Explains how to use Response caching to lower bandwidth and increase performance.
-keywords: ASP.NET Core, Response caching, HTTP headers
+keywords: ASP.NET Core,Response caching,HTTP headers
 ms.author: riande
 manager: wpickett
 ms.date: 07/10/2017

@@ -2,7 +2,7 @@
 title: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
 author: tdykstra
 description: This tutorial introduces several topics that are useful to be aware of when you go beyond the basics of developing ASP.NET web applications that use Entity Framework Core.
-keywords: ASP.NET Core, Entity Framework Core, raw sql, examine sql, repository pattern, unit of work pattern, automatic change detection, existing database
+keywords: ASP.NET Core,Entity Framework Core,raw sql,examine sql,repository pattern,unit of work pattern,automatic change detection,existing database
 ms.author: tdykstra
 manager: wpickett
 ms.date: 03/15/2017

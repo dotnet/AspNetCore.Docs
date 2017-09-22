@@ -1,7 +1,7 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
-keywords: ASP.NET Core, MVC, authorization, roles, security, administrator
+keywords: ASP.NET Core,MVC,authorization,roles,security,administrator
 ms.author: riande
 manager: wpickett
 ms.date: 05/22/2017
