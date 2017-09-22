@@ -2,7 +2,7 @@
 title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: What's new in ASP.NET Core 2.0
-keywords: ASP.NET Core, release notes, what's new
+keywords: ASP.NET Core,release notes,what's new
 ms.author: riande
 manager: wpickett
 ms.date: 07/10/2017

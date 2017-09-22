@@ -2,7 +2,7 @@
 title: Add a model to an ASP.NET MVC Core app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
-keywords: ASP.NET Core, MVC, scaffold, scaffolding
+keywords: ASP.NET Core,MVC,scaffold,scaffolding
 ms.author: riande
 manager: wpickett  
 ms.devlang: csharp 

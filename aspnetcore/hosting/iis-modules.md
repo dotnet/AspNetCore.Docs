@@ -2,7 +2,7 @@
 title: Using IIS modules with ASP.NET Core
 author: guardrex
 description: Reference document describing active and inactive IIS modules for ASP.NET Core applications.
-keywords: ASP.NET Core, iis, module, reverse-proxy
+keywords: ASP.NET Core,iis,module,reverse-proxy
 ms.author: riande
 manager: wpickett
 ms.date: 03/08/2017
