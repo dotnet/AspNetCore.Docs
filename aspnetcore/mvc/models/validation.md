@@ -1,7 +1,7 @@
 ---
 title: Model validation in ASP.NET Core MVC
 author: rick-anderson
-description: Introduces model validation in ASP.NET Core MVC.
+description: Learn about model validation in ASP.NET Core MVC.
 keywords: ASP.NET Core,MVC,validation
 ms.author: riande
 manager: wpickett
@@ -47,7 +47,7 @@ Simply reading through the model reveals the rules about data for this app, maki
 
 * `[RegularExpression]`: Validates that the data matches the specified regular expression.
 
-* `[Required]`: Makes a property required.
+* `[Required]`: Makes a property required. Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. If you create a [nullable type](/dotnet/csharp/programming-guide/nullable-types/) (for example `decimal?`), you can provide a functional `Required` attribute.
 
 * `[StringLength]`: Validates that a string property has at most the given maximum length.
 

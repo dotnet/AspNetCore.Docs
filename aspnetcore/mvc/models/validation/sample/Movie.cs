@@ -11,7 +11,6 @@ namespace MVCMovie.Models
         [StringLength(100)]
         public string Title { get; set; }
 
-        [Required]
         [ClassicMovie(1960)]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
@@ -20,7 +19,6 @@ namespace MVCMovie.Models
         [StringLength(1000)]
         public string Description { get; set; }
 
-        [Required]
         [Range(0, 999.99)]
         public decimal Price { get; set; }
 
