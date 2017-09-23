@@ -144,7 +144,7 @@ In the original version of the code, `students` is typed as an `IQueryable` obje
 
 The following section shows how to implement repository methods that enable you to specify that this work should be done by the database.
 
-You've now created an abstraction layer between the controller and the Entity Framework database context. If you were going to perform automated unit testing with this application, you could create an alternative repository class in a unit test project that implements `IStudentRepository`*.*Instead of calling the context to read and write data, this mock repository class could manipulate in-memory collections in order to test controller functions.
+You've now created an abstraction layer between the controller and the Entity Framework database context. If you were going to perform automated unit testing with this application, you could create an alternative repository class in a unit test project that implements `IStudentRepository`*.* Instead of calling the context to read and write data, this mock repository class could manipulate in-memory collections in order to test controller functions.
 
 ## Implement a Generic Repository and a Unit of Work Class
 
