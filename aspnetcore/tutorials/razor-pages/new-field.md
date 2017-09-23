@@ -39,7 +39,7 @@ Update *Create.cshtml* with a `Rating` field. You can copy/paste the previous `<
 
 The following code shows *Create.cshtml* with a `Rating` field:
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=31-35)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?highlight=36-40)]
 
 Add the `Rating` field to the Edit Page.
 
