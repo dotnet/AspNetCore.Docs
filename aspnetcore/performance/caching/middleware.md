@@ -105,7 +105,7 @@ Response caching by the middleware is configured via HTTP headers. The relevant 
 
 The middleware respects the rules of the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234#section-5.2). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force a server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
 
-[Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96) will permit configuring the middleware for caching scenarios where the request `Cache-Control` header is ignored when deciding to serve a cached response. If you seek more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
+[Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96) will permit configuring the middleware for caching scenarios where the request `Cache-Control` header should be ignored when deciding to serve a cached response. If you seek more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
 * [Introduction to in-memory caching in ASP.NET Core](xref:performance/caching/memory)
 * [Working with a distributed cache](xref:performance/caching/distributed)
