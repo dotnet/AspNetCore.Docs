@@ -14,7 +14,7 @@ uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
 
-By [Luke Latham](https://github.com/GuardRex) and [Mikael Mengistu](https://github.com/mikaelm12)
+By [Luke Latham](https://github.com/guardrex) and [Mikael Mengistu](https://github.com/mikaelm12)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)
 
