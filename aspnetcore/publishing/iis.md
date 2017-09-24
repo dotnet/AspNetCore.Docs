@@ -14,7 +14,7 @@ uid: publishing/iis
 ---
 # Set up a hosting environment for ASP.NET Core on Windows with IIS, and deploy to it
 
-By [Luke Latham](https://github.com/GuardRex) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Luke Latham](https://github.com/guardrex) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Supported operating systems
 
