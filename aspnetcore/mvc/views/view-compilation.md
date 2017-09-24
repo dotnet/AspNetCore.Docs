@@ -19,7 +19,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 Razor views are compiled at runtime when the view is invoked. ASP.NET Core 1.1.0 and higher can optionally compile Razor views and deploy them with the app &mdash; a process known as precompilation. The ASP.NET Core 2.x project templates enable precompilation by default.
 
 > [!NOTE]
-> Razor view precompilation is unavailable when doing a [Self-Contained Deployment](https://docs.microsoft.com/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core versions 2.0.0 and earlier.
+> Razor view precompilation is currently unavailable when performing a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) in ASP.NET Core 2.0. The feature will be available for SCDs when 2.1 releases. For more information, see [View compilation fails when cross-compiling for Linux on Windows](https://github.com/aspnet/MvcPrecompilation/issues/102).
 
 Precompilation considerations:
 
