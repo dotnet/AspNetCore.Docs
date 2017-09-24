@@ -130,9 +130,8 @@ You can explicitly add an antiforgery token to a ``<form>`` element without usin
 </form>
 ```
 
-```html
 In each of the preceding cases, ASP.NET Core will add a hidden form field similar to the following:
-
+```html
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkSldwD9CpLRyOtm6FiJB1Jr_F3FQJQDvhlHoLNJJrLA6zaMUmhjMsisu2D2tFkAiYgyWQawJk9vNm36sYP1esHOtamBEPvSk1_x--Sg8Ey2a-d9CV2zHVWIN9MVhvKHOSyKqdZFlYDVd69XYx-rOWPw3ilHGLN6K0Km-1p83jZzF0E4WU5OGg5ns2-m9Yw" />
 ```
 
