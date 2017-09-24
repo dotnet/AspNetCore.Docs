@@ -29,13 +29,13 @@ The ASP.NET Core 2.x **Web Application**, **Empty**, and **Web API** template pr
 
 The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. The **Empty** or **Web API** template projects require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
-Since this is a Visual Studio feature, the easiest way to add the package to a **Empty** or **Web API** template project is to open the **Package Manager Console** (**View** > **Other Windows** > **Package Manager Console**) and run the following command:
+Since this is a Visual Studio feature, the easiest way to add the package to an **Empty** or **Web API** template project is to open the **Package Manager Console** (**View** > **Other Windows** > **Package Manager Console**) and run the following command:
 
 ```console
 install-package Microsoft.VisualStudio.Web.BrowserLink
 ```
 
-Alternatively, you can use **NuGet Package Manager**.  Right-click the project name in **Solution Explorer** and choose **Manage NuGet Packages**:
+Alternatively, you can use **NuGet Package Manager**. Right-click the project name in **Solution Explorer** and choose **Manage NuGet Packages**:
 
 ![Open NuGet Package Manager](using-browserlink/_static/open-nuget-package-manager.png)
 
