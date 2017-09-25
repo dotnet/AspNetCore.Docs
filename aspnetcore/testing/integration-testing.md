@@ -60,6 +60,21 @@ Note that you're not really trying to test the correctness of the prime number c
 
 You can learn more about the unit tests in the [Unit testing](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test) article.
 
+
+### Integration testing Mvc/Razor
+If your test project contains Razor views which should be used by your test host then we'll need to make a little fix inside your csproj:
+
+```xml
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+```
+
+Otherwise you may encounter errors during Razor view compilation like:
+```
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: 'One or more compilation failures occurred:
+ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that is not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
+```
+
+
 ## Refactoring to use middleware
 
 Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in the web application's `Configure` method, you see:
