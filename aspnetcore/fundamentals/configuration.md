@@ -349,7 +349,7 @@ Create a [ConfigurationBuilder](/api/microsoft.extensions.configuration.configur
 
 ### Arguments
 
-Arguments passed on the command line must conform to one of two formats:
+Arguments passed on the command line must conform to one of two formats shown in the following table.
 
 | Argument format                                                     | Example        |
 | ------------------------------------------------------------------- | :------------: |
@@ -360,7 +360,7 @@ Arguments passed on the command line must conform to one of two formats:
 
 The value must follow an equals sign (`=`). The value can be null (for example, `mykey=`).
 
-The key may have a prefix:
+The key may have a prefix.
 
 | Key prefix               | Example         |
 | ------------------------ | :-------------: |
@@ -383,7 +383,7 @@ Note: If `-key1` isn't present in the [switch mappings](#switch-mappings) given 
 
 The value can't be null and must follow the key separated by a space.
 
-The key must have a prefix:
+The key must have a prefix.
 
 | Key prefix               | Example         |
 | ------------------------ | :-------------: |
@@ -446,7 +446,7 @@ MachineName: DahliaPC
 Left: 1984
 ```
 
-After the switch mappings dictionary is created, it contains the following data:
+After the switch mappings dictionary is created, it contains the data shown in the following table.
 
 | Key            | Value                 |
 | -------------- | --------------------- |
