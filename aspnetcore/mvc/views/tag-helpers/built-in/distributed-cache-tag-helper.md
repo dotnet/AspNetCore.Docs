@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a022
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper
+uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
 # Distributed Cache Tag Helper
 
@@ -64,7 +64,7 @@ There are no tag attributes specifically associated with using any specific impl
 
 ## Additional resources
 
-* <xref:mvc/views/tag-helpers/builtin-th/CacheTagHelper>
+* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:fundamentals/dependency-injection#service-lifetimes-and-registration-options>
 * <xref:performance/caching/distributed>
 * <xref:performance/caching/memory>

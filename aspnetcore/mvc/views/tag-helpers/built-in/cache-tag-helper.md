@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: c045d485-d1dc-4cea-a675-46be83b7a012
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: mvc/views/tag-helpers/builtin-th/CacheTagHelper
+uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
