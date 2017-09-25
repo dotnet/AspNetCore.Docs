@@ -10,7 +10,7 @@ Artigos são armazenados no repositório como arquivos com Estilo de Marcação.
 
 Você vai precisar de um entendimento básico do [Git e GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Abrir uma [questão](https://github.com/aspnet/Docs/issues/new), descrevendo o que você quer fazer, como alterar um artigo existênte ou criar um novo. Aguarde a aprovação do time antes de você investir muito tempo.
+* Abrir uma [questão](https://github.com/aspnet/Docs/issues/new), descrevendo o que você quer fazer, como alterar um artigo existente ou criar um novo. Aguarde a aprovação do time antes de você investir muito tempo.
 * Bifurcar o repositório [aspnet/Docs] (https://github.com/aspnet/Docs/) e criar uma ramificação para suas mudanças.
 * Enviar uma solicitação de mudança (PR) para o repositório principal, juntamente com suas alterações.
 * Se o rótulo 'grupo-requerido' for atribuído à sua solicitação de mudança, [preencha o Termo de Licenciamente de Contribuição (CLA)](https://cla2.dotnetfoundation.org/)
