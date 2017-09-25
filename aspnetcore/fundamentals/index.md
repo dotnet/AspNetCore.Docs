@@ -21,7 +21,7 @@ Uma aplicação ASP.NET Core é um aplicativo de console que cria um servidor we
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!código-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
+[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
 O método `Main` invoca o `WebHost.CreateDefaultBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo anterior, um servidor web [Kestrel](xref:fundamentals/servers/kestrel) é automaticamente alocado. O host web do ASP.NET Core tentará executar via IIS, se este estiver disponível. Outros servidores web, como um [HTTP.sys](xref:fundamentals/servers/httpsys), podem ser usados ao invocar o método de extensão apropriado. `UseStartup` será explicado depois, na próxima seção.
 
@@ -29,7 +29,7 @@ O método `Main` invoca o `WebHost.CreateDefaultBuilder`, que segue o Padrão de
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!código-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
+[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
 O método `Main` usa o `WebHostBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo sguinte, o servidor web [Kestrel](xref:fundamentals/servers/kestrel) é usado. Outros servidores web, como [WebListener](xref:fundamentals/servers/weblistener), podem ser usados invocando o método de extensão apropriado. `UseStartup` será explicado depois, na seção seguinte.
 
