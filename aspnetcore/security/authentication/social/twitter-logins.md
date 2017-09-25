@@ -67,8 +67,6 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 });
 ```
 
-The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
-
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Add the Twitter middleware in the `Configure` method in *Startup.cs* file:
