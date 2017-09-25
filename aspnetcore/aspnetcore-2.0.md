@@ -145,7 +145,6 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 * [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
 * [Configuring Google authentication](xref:security/authentication/google-logins)
 * [Configuring Microsoft Account authentication](xref:security/authentication/microsoft-logins)
-* [Setting up HTTPS for development in ASP.NET Core](xref:security/https)
 
 ## Migration guidance
 

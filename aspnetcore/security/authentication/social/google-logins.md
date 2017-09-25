@@ -96,12 +96,18 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 });
 ```
+
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

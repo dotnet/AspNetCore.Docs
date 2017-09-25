@@ -78,12 +78,18 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Microsoft Account service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 {
     microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
     microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
 });
 ```
+
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
