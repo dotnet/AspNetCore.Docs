@@ -4,36 +4,36 @@ autor: rick-anderson
 tradutor: calkines
 descrição: Este artigo fornece uma visão geral dos conceitos fundamentais a serem entendidos na criação de aplicações ASP.NET Core. 
 palavras-chave: ASP.NET Core,fundamentals,overview
-ms.author: riande
-manager: wpickett
-ms.date: 08/18/2017
-ms.topic: get-started-article
+ms.autor: riande
+gerente: wpickett
+ms.data: 08/18/2017
+ms.tópico: get-started-article
 ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.tecnologia: aspnet
+ms.produto: asp.net-core
 uid: fundamentals/index
 ms.custom: H1Hack27Feb2017
 ---
 
-# ASP.NET Core fundamentals overview
+# Visão geral sobre os fundamentos do ASP.NET Core
 
-An ASP.NET Core application is a console app that creates a web server in its `Main` method:
+Uma aplicação ASP.NET Core é um aplicativo de console que cria um servidor web em seu método `Main`:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
+[!código-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
-The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, a [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host will attempt to run on IIS, if it is available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+O método `Main` invoca o `WebHost.CreateDefaultBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo anterior, um servidor web [Kestrel](xref:fundamentals/servers/kestrel) é automaticamente alocado. O host web do ASP.NET Core tentará executar via IIS, se este estiver disponível. Outros servidores web, como um [HTTP.sys](xref:fundamentals/servers/httpsys), podem ser usados ao invocar o método de extensão apropriado. `UseStartup` será explicado depois, na próxima seção.
 
-`IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the application in HTTP.sys, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
+`IWebHostBuilder`, o tipo de retorno da invocação ao `WebHost.CreateDefaultBuilder` fornece muitos métodos opcionais. Muitos destes métodos incluem `UseHttpSys` para hospedar a aplicação no HTTP.sys, e `UseContextRoot` para especificar o diretório de conteúdo raiz. Os métodos `Build` e `Run` criam o objeto `IWebHost` que hospedará a aplicação e começará a escutar as requisições HTTP.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
+[!código-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
-The `Main` method uses `WebHostBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+O método `Main` usa o `WebHostBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo sguinte, o servidor web [Kestrel](xref:fundamentals/servers/kestrel) é usado. Outros servidores web, como [WebListener](xref:fundamentals/servers/weblistener), podem ser usados invocando o método de extensão apropriado. `UseStartup` será explicado depois, na seção seguinte.
 
-`WebHostBuilder` provides many optional methods, including `UseIISIntegration` for hosting in IIS and IIS Express, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
+O `WebHostBuilder` fornece diversos métodos opcionais, incluindo `UseIISIntegration` para hosts que usam IIS e IIS Express, e `UseContextRoot` para especificar o diretório de conteúdo raiz. Os métodos `Build` e `Run` constroem o objeto `IWebHost` que hospedará a aplicação e começará a escutar as requisições HTTP.
 
 ---
 
