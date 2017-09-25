@@ -2,10 +2,10 @@
 title: Integration testing in ASP.NET Core
 author: ardalis
 description: How to use ASP.NET Core integration testing to ensure that an application's components function correctly.
-keywords: ASP.NET Core,integration testing
+keywords: ASP.NET Core,integration testing,Razor
 ms.author: riande
 manager: wpickett
-ms.date: 02/14/2017
+ms.date: 09/25/2017
 ms.topic: article
 ms.assetid: 40d534f2-89b3-4b09-9c2c-3494bf9991c9
 ms.technology: aspnet
@@ -62,13 +62,15 @@ You can learn more about the unit tests in the [Unit testing](https://docs.micro
 
 
 ### Integration testing Mvc/Razor
-If your test project contains Razor views which should be used by your test host then we'll need to make a little fix inside your csproj:
+
+Test projects that contain Razor views require `<PreserveCompilationContext>` be set to true in the *.csproj* file:
+
 
 ```xml
     <PreserveCompilationContext>true</PreserveCompilationContext>
 ```
 
-Otherwise you may encounter errors during Razor view compilation like:
+Projects missing this element will generate an error similar to the following:
 ```
 Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: 'One or more compilation failures occurred:
 ooebhccx.1bd(4,62): error CS0012: The type 'Attribute' is defined in an assembly that is not referenced. You must add a reference to assembly 'netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'.
