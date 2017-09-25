@@ -36,7 +36,3 @@ See [URL Rewriting Middleware](xref:fundamentals/url-rewriting) for more informa
 
 Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) is a security best practice. Applying the 
 `[RequireHttps]` attribute to all controller is not considered as secure as requiring HTTPS globally. You can't guarantee new controllers added to your app will remember to apply the `[RequireHttps]` attribute.
-
-## Set up IIS Express for SSL/HTTPS
-
-See [Setting up HTTPS for development in ASP.NET Core](xref:security/https#iisxpress).
