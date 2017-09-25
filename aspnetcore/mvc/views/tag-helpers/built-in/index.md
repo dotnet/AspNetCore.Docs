@@ -23,29 +23,29 @@ ASP.NET Core includes many built-in Tag Helpers to boost your productivity. This
 
 ## Built-in ASP.NET Core Tag Helpers
 
-**[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)**
+**[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)**
 
-**[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/CacheTagHelper)**
+**[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)**
 
-**[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper)**
+**[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)**
 
-**[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper)**
+**[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
 
-[comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormActionTagHelper)**
+[comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/form-action-tag-helper)**
 
 **[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper)**
 
-**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/ImageTagHelper)**
+**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
 
 **[Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)**
 
 **[Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper)**
 
-[comment]: **[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/LinkTagHelper)**
+[comment]: **[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
 
-[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/OptionTagHelper)**
+[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/option-tag-helper)**
 
-[comment]: **[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/ScriptTagTagHelper)**
+[comment]: **[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
 
 **[Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper)**
 

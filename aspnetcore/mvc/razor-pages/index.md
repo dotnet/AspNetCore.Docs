@@ -157,8 +157,8 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
 ```
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)
-used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper#route)
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
+used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#route)
 attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
