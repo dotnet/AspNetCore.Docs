@@ -25,7 +25,7 @@ The web server can cache responses when you add [Response Caching Middleware](xr
 
 The [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234) describes how Internet caches should behave. The primary HTTP header used for caching is [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), which is used to specify cache *directives*. The directives control caching behavior as requests make their way from clients to servers and as reponses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.
 
-Common `Cache-Control` directives are:
+Common `Cache-Control` directives are shown in the following table.
 
 | Directive                                                       | Action |
 | --------------------------------------------------------------- | ------ |
@@ -35,7 +35,7 @@ Common `Cache-Control` directives are:
 | [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **On requests**: A cache must not use a stored response to satisfy the request. Note: The origin server re-generates the response for the client, and the middleware updates the stored response in its cache.<br><br>**On responses**: The response must not be used for a subsequent request without validation on the origin server. |
 | [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **On requests**: A cache must not store the request.<br><br>**On responses**: A cache must not store any part of the response. |
 
-Other cache headers also play a role in caching:
+Other cache headers that play a role in caching are shown in the following table.
 
 | Header                                                     | Function |
 | ---------------------------------------------------------- | -------- |
@@ -85,7 +85,7 @@ The `ResponseCacheAttribute` specifies the parameters necessary for setting appr
 > [!WARNING]
 > Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn't change based on a user's identity or whether a user is logged in.
 
-`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1 and higher): When set, the Response Caching Middleware varies the stored response by the values of the given list of query keys. The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There's no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the following sequence of requests:
+`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1 and higher): When set, the Response Caching Middleware varies the stored response by the values of the given list of query keys. The Response Caching Middleware must be enabled to set the `VaryByQueryKeys` property; otherwise, a runtime exception is thrown. There's no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                   |
 | -------------------------------- | ------------------------ |
