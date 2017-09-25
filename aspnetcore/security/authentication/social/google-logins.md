@@ -96,12 +96,18 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Google service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
 });
 ```
+
+**Note:** The call to `AddIdentity` configures the default scheme settings. The `AddAuthentication(string defaultScheme)` overload sets the `DefaultScheme` property; and, the `AddAuthentication(Action<AuthenticationOptions> configureOptions)` overload sets only the properties you explicitly set. Either of these overloads should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
