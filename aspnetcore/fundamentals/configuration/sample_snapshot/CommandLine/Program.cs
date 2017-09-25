@@ -7,29 +7,18 @@ public class Program
 {
     public static IConfigurationRoot Configuration { get; set; }
 
-    public static Dictionary<string, string> GetSwitchMappings(
-        IReadOnlyDictionary<string, string> configurationStrings)
-    {
-        return configurationStrings.Select(item =>
-            new KeyValuePair<string, string>(
-                "-" + item.Key.Substring(item.Key.LastIndexOf(':') + 1),
-                item.Key))
-                .ToDictionary(
-                    item => item.Key, item => item.Value);
-    }
-
     public static void Main(string[] args = null)
     {
         var dict = new Dictionary<string, string>
             {
-                {"Profile:MachineName", "RickPC"},
+                {"Profile:MachineName", "MairaPC"},
                 {"App:MainWindow:Left", "1980"}
             };
 
         var builder = new ConfigurationBuilder();
 
         builder.AddInMemoryCollection(dict)
-            .AddCommandLine(args, GetSwitchMappings(dict));
+            .AddCommandLine(args);
 
         Configuration = builder.Build();
 
