@@ -60,12 +60,18 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddTwitter(twitterOptions =>
 {
     twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
     twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
 });
 ```
+
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

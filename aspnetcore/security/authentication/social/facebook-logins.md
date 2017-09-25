@@ -74,12 +74,18 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 });
 ```
+
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
