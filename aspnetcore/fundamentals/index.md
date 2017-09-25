@@ -1,8 +1,9 @@
 ---
-title: ASP.NET Core fundamentals
-author: rick-anderson
-description: This article provides a high-level overview of the foundational concepts to be understood when building ASP.NET Core applications.
-keywords: ASP.NET Core,fundamentals,overview
+título: Fundamentos ASP.NET Core
+autor: rick-anderson
+tradutor: calkines
+descrição: Este artigo fornece uma visão geral dos conceitos fundamentais a serem entendidos na criação de aplicações ASP.NET Core. 
+palavras-chave: ASP.NET Core,fundamentals,overview
 ms.author: riande
 manager: wpickett
 ms.date: 08/18/2017
