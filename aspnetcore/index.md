@@ -1,8 +1,9 @@
 ---
-title: Introduction to ASP.NET Core
+título: Introdução ao ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+tradutor: Calkines
+descrição: 
+palavra-chave: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 08/03/2017
@@ -11,56 +12,62 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: index
 ---
-# Introduction to ASP.NET Core
 
-By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
+# Intrudução ao ASP.NET Core
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
+Por [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), e [Shaun Luttin](https://twitter.com/dicshaunary)
 
-* Build web apps and services, IoT apps, and mobile backends.
-* Use your favorite development tools on Windows, macOS, and Linux.
-* Deploy to the cloud or on-premises
-* Run on [.NET Core or .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+O ASP.NET Core é um framework multi-plataforma, alta-performance, [open-source](https://github.com/aspnet/home) para construção moderna, baseada na nuvem e aplicações conectadas à internet. Com o ASP.NET Core, você pode:
 
-## Why use ASP.NET Core?
+* Construir apps e serviços web, IoT apps, e backends para mobile.
+* Usar suas ferramentas de desenvolvimento favoritas no Windows, macOS e Linux.
+* Implementar para nuvem ou local
+* Executar no[.NET Core ou .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
-Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.
+## Por que usar o ASP.NET Core?
 
-ASP.NET Core provides the following benefits:
+Milhões de devenvolvedores tem usado ASP.NET (e continuam a usá-lo) para criar web apps. O ASP.NET Core é um novo design do ASP.NET, com mudanças arquiteturais que resultaram em um framework 
 
-* A unified story for building web UI and web APIs.
-* Integration of [modern client-side frameworks](xref:client-side/index) and development workflows.
-* A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration).
-* Built-in [dependency injection](xref:fundamentals/dependency-injection).
-* A lightweight, high-performance, and modular HTTP request pipeline.
-* Ability to host on IIS or self-host in your own process.
-* Can run on [.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server), which supports true side-by-side app versioning.
-* Tooling that simplifies modern web development.
-* Ability to build and run on Windows, macOS, and Linux.
-* Open-source and community-focused.
+Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, 
+com mudanças arquitetônicas que resultam em uma estrutura mais enxuta e modular.
 
-ASP.NET Core ships entirely as [NuGet](https://www.nuget.org/) packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.
+O ASP.NET fornece os seguintes benefícios:
 
-## Build web APIs and web UI using ASP.NET Core MVC
+* Um meio unificado para contrução de web UI e web APIs.
+* Integração com [modernos frameworks de cliente](xref:client-side/index) e fluxos de desenvolvimento.
+* Um [sistema de configuração](xref:fundamentals/configuration) preparado para nuvem e beaseado em ambiente.
+* Um sistema de [injeção de dependendência](xref:fundamentals/dependency-injection) embutido.
+* Um pipeline de requicições HTTP, leve, de alta performance e modular.
+* Habilidade de hospagem em IIS ou em seu próprio processo.
+* Pode executar no [.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server), que suporta um verdadeiro sistema de versionamente lado-a-lado.
+* Ferrametas que simplificam o desenvolvimento web moderno.
+* Habilidade de executar no Windows, macOS e Linux.
+* Código aberto e com foco na comunidade.
 
-ASP.NET Core MVC provides features that help you build [web APIs](xref:tutorials/index#building-web-apis) and [web apps](xref:tutorials/index#building-web-applications):
+O ASP.NET Core é entregue totalmente via pacotes [NuGet](https://www.nuget.org/). Isso lhe permite otimizar seu aplicativo para incluir somente os pacotes NuGet que você precisa. Os benefícios de uma de aplicação menor incluem maior segurança, serviços reduzidos e melhoria de performance.
 
-* The [Model-View-Controller (MVC) pattern](xref:mvc/overview) helps make your web APIs and web apps [testable](testing/index.md).
-* [Razor Pages](xref:mvc/razor-pages/index) (new in 2.0) is a page-based programming model that makes building web UI easier and more productive.
-* [Razor syntax](xref:mvc/views/razor) provides a productive language for [Razor Pages](xref:mvc/razor-pages/index) and [MVC Views](xref:mvc/views/overview).
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
-* Built-in support for [multiple data formats and content negotiation](mvc/models/formatting.md) lets your web APIs reach a broad range of clients, including browsers and mobile devices.
-* [Model Binding](xref:mvc/models/model-binding) automatically maps data from HTTP requests to action method parameters.
-* [Model Validation](xref:mvc/models/validation) automatically performs client and server-side validation.
+## Construir web APIs e web UI usando ASP.NET Core MVC
 
-## Client-side development
+O ASP.NET Core MVC fornece recursos que ajudam na você a construir [web APIs](xref:tutorials/index#building-web-apis) e [web apps](xref:tutorials/index#building-web-applications):
 
-ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including [AngularJS](xref:client-side/angular), [KnockoutJS](xref:client-side/knockout), and [Bootstrap](xref:client-side/bootstrap). See [Client-side development](client-side/index.md) for more details.
+* O [Padrão Model-View-Controller (MVC)](xref:mvc/overview) ajuda tornar seus web APIs e web apps mais [testáveis](testing/index.md).
+* [Páginas Razor](xref:mvc/razor-pages/index) (novas na versão 2.0) é um modelo de programação baseada em páginas que fazem a construção de web UI mais fáceis e produtivas.
+* A [sintaxe razor](xref:mvc/views/razor) fornece um linguagem produtiva para [Páginas Razor](xref:mvc/razor-pages/index) e [Exibições MVC](xref:mvc/views/overview).
+* [Tags Facilitadoras](xref:mvc/views/tag-helpers/intro) habilita o lado servidor a participar da criação e renderização de elementos HTML nos arquivos Razor.
+* Suporte nativo para [negociação de conteúdo e multiplo formato de dados](xref:mvc/models/formatting.md) permite aos seus web APIs 
+atinjam um ampla gama de clientes, incluindo navegadores e dispositivos móveis.
+* O [Vinculo de Modelo](xref:mvc/models/model-binding) mapeia automaticamente dados de requisições HTTP para parâmetros de métodos de ação.
+* A [Validação de Modelo](xref:mvc/model/validation) realiza automaticamente validações do lado do cliente ou servidor.
 
-## Next steps
+## Desenvolvimento do lado Cliente.
 
-For more information, see the following resources:
+O ASP.NET Core foi desenvolvido para integrar perfeitamente com uma variedade de frameworks para cliente, incluindo [AngularJS](xref:client-side/angular), [KnockoutJS](xref:client-side/knockout), e [Bootstrap](xref:client-side/bootstrap). Veja [Desenvolvimento client-side](xref:client-side/index.md) para mais detalhes.
 
-* [ASP.NET Core tutorials](xref:tutorials/index)
-* [ASP.NET Core fundamentals](xref:fundamentals/index)
-* [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans and features new blogs and third-party software.
+
+## Próximas etapas
+
+Para mais informações, veja os recursos seguintes:
+
+* [Tutoriais ASP.NET Core](xref:tutorials/index)
+* [Fundamentos ASP.NET Core](xref:fundamentals/index)
+* [Boletim semanal da comunidade ASP.NET](https://live.asp.net/) cobre o progresso do time e seus planos, novos blogs funcionais e software de terceiros.
