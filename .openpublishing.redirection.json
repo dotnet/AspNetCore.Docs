@@ -94,6 +94,11 @@
         "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/ImageTagHelper.md",
         "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/image-tag-helper/",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/https.md",
+        "redirect_url": "/aspnet/core/security/enforcing-ssl",
+        "redirect_document_id": false
     }
   ] 
 }

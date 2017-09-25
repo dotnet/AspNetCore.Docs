@@ -52,7 +52,7 @@ If you have already completed the steps in [Unit Testing with ASP.NET Web API 2]
 <a id="prereqs"></a>
 ## Prerequisites
 
-Visual Studio 2017 Community, Professional or Enterprise editioo
+Visual Studio 2017 Community, Professional or Enterprise edition
 
 <a id="download"></a>
 ## Download code

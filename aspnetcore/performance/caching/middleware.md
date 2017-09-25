@@ -13,7 +13,7 @@ uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
 
-By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/JunTaoLuo)
+By [Luke Latham](https://github.com/guardrex) and [John Luo](https://github.com/JunTaoLuo)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/samples)
 

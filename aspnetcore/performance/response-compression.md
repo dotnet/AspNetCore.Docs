@@ -14,7 +14,7 @@ uid: performance/response-compression
 ---
 # Response Compression Middleware for ASP.NET Core
 
-By [Luke Latham](https://github.com/GuardRex)
+By [Luke Latham](https://github.com/guardrex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples)
 

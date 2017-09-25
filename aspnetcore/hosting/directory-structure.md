@@ -14,7 +14,7 @@ uid: hosting/directory-structure
 ---
 # Directory structure of published ASP.NET Core apps
 
-By [Luke Latham](https://github.com/GuardRex)
+By [Luke Latham](https://github.com/guardrex)
 
 In ASP.NET Core, the application directory, *publish*, is comprised of application files, config files, static assets, packages, and the runtime (for self-contained apps). This is the same directory structure as previous versions of ASP.NET, where the entire application lives inside the web root directory.
 

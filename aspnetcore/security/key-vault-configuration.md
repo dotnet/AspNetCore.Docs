@@ -13,7 +13,7 @@ uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider
 
-By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https://github.com/anurse)
+By [Luke Latham](https://github.com/guardrex) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
