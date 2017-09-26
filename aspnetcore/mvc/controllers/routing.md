@@ -155,7 +155,7 @@ app.UseMvc(routes =>
    routes.MapRoute("blog", "blog/{*article}",
             defaults: new { controller = "Blog", action = "Article" });
    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-}
+});
 ```
 
 The `blog` route here is a *dedicated conventional route*, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since `controller` and `action` don't appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action `BlogController.Article`.
