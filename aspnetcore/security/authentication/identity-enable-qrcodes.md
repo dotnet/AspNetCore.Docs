@@ -40,7 +40,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
-    <script type="text/javascript" src="/lib/qrcode.js"></script>
+    <script type="text/javascript" src="~/lib/qrcode.js"></script>
     <script type="text/javascript">
         new QRCode(document.getElementById("qrCode"),
             {
