@@ -338,7 +338,9 @@ Enable the static files middleware:
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/Startup.cs?name=snippet_Configure&highlight=3)]
 
-Acquire the contents of the *dist* folder from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/2.x/dist). This folder contains the necessary assets for the Swagger UI page. Copy the contents of that folder into the *wwwroot/swagger/ui* folder.
+Acquire the contents of the *dist* folder from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/2.x/dist). This folder contains the necessary assets for the Swagger UI page.
+
+Create a *wwwroot/swagger/ui* folder, and copy into it the contents of the *dist* folder.
 
 Create a *wwwroot/swagger/ui/css/custom.css* file with the following CSS to customize the page header:
 
