@@ -22,7 +22,7 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 ## The Create, Delete, Details, and Edit pages.
 
 Examine the *Pages/Movies/Index.cshtml.cs* code-behind file:
-[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml.cs)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern.
 
@@ -30,7 +30,7 @@ When a request is made for the page, the `OnGetAsync` method returns a list of m
 
 Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
-[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml)]
 
 Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords), it transitions into Razor-specific markup, otherwise it transitions into C#.
 
@@ -38,14 +38,16 @@ The `@page` Razor directive makes the file into an MVC action &mdash; which mean
 
 Examine the lambda expression used in the following HTML Helper:
 
-`@Html.DisplayNameFor(model => model.Movie[0].Title))`
+```cshtml
+@Html.DisplayNameFor(model => model.Movies[0].Title))
+```
 
 The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. The lambda expression is inspected rather than evaluated. That means there is no access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, with `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
 <a name="md"></a>
 ### The @model directive
 
-[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-2&highlight=2)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
 The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel`-derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayName` [HTML Helpers](https://docs.microsoft.com/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
@@ -58,9 +60,9 @@ The `@model` directive specifies the type of the model passed to the Razor Page.
 
 Consider the following code:
 
-[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Index.cshtml?range=1-6&highlight=4-)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?range=1-6&highlight=4-)]
 
-The preceding highligted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
+The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
 The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary. The "Title" property is used in the *Pages/_Layout.cshtml* file. The following markup shows the first few lines of the *Pages/_Layout.cshtml* file.
 
@@ -80,7 +82,7 @@ The preceding markup sets the layout file to *Pages/_Layout.cshtml* for all Razo
 
 Change the `<title>` element in the *Pages/_Layout.cshtml* file to use a shorter string.
 
-[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6-)]
+[!code-cshtml[Main](razor-pages-start/sample/RazorPagesMovie/Pages/_Layout.cshtml?range=1-6&highlight=6)]
 
 Find the following anchor element in the *Pages/_Layout.cshtml* file.
 
@@ -101,7 +103,7 @@ Save your changes, and test the app by clicking on the **RpMovie** link. See the
 
 Examine the *Pages/Movies/Create.cshtml.cs* code-behind file:
 
-[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetALL)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
@@ -109,7 +111,7 @@ The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model bin
 
 The `OnPostAsync` method is run when the page posts form data:
 
-[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client-side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. We'll talk more about client-side validation and model validation later in the tutorial.
 
@@ -119,7 +121,7 @@ If there are no model errors, the data is saved, and the browser is redirected t
 
 Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
-[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml)]
 
 Visual Studio displays the `<form method="post">` tag in a distinctive font used for Tag Helpers. The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
 
@@ -127,7 +129,7 @@ Visual Studio displays the `<form method="post">` tag in a distinctive font used
 
 The scaffolding engine creates Razor markup for each field in the model (except the ID) similar to the following:
 
-[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movie/Create.cshtml?range=15-20)]
+[!code-cshtml[Main](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=15-20)]
 
 The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` and ` <span asp-validation-for`) display validation errors. Validation is covered in more detail later in this series.
 

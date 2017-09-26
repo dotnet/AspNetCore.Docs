@@ -17,13 +17,13 @@ namespace RazorPagesMovie.Models
                 serviceProvider.GetRequiredService<DbContextOptions<MovieContext>>()))
             {
                 // Look for any movies.
-                if (context.Movie.Any())
+                if (context.Movies.Any())
                 {
                     return;   // DB has been seeded
                 }
 
                 #region snippet1
-                context.Movie.AddRange(
+                context.Movies.AddRange(
                      new Movie
                      {
                          Title = "When Harry Met Sally",
@@ -32,7 +32,7 @@ namespace RazorPagesMovie.Models
                          Price = 7.99M,
                          Rating = "R"
                      },
-#endregion
+                #endregion
 
                      new Movie
                      {

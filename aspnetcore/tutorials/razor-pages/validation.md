@@ -11,7 +11,6 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/razor-pages/validation
 ---
-
 # Adding validation to a Razor Page
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -124,8 +123,6 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-Thanks for completing this introduction to Razor Pages. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
-
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
@@ -135,3 +132,4 @@ Thanks for completing this introduction to Razor Pages. We appreciate any commen
 
 >[!div class="step-by-step"]
 [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
+[Next: Uploading files](xref:tutorials/razor-pages/uploading-files)

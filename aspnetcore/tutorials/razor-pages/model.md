@@ -19,7 +19,7 @@ uid: tutorials/razor-pages/modelz
 
 In Solution Explorer, right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
 
-Right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
+Right click the *Models* folder. Select **Add** > **Class**. Name the class **Movie** and add the following properties:
 
 [!INCLUDE[model 2](../../includes/RP/model2.md)]
 
@@ -48,7 +48,7 @@ In this section, you use the Package Manager Console (PMC) to:
 * Add an initial migration.
 * Update the database with the initial migration.
 
-From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
   ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
 

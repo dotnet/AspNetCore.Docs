@@ -43,15 +43,15 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 
 To edit a *.csproj* file:
 
-* Select **File > Open**, and then select the *.csproj* file.
+* Select **File** > **Open**, and then select the *.csproj* file.
 * Select **Options**.
 * Change **Open with** to **Source Code Editor**.
 
 ![Edit csproj file](model/csproj.png)
 
-The following code shows the updated *csproj* file.
+Add the `Microsoft.EntityFrameworkCore.Tools.DotNet` tool reference to the second **\<ItemGroup>**:
 
-[!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
+[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?range=12-16&highlight=4)]
 
 [!INCLUDE[model3](../../includes/RP/model3.md)]
 [!INCLUDE[model 4x](../../includes/RP/model4x.md)]

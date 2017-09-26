@@ -34,15 +34,15 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine that 
 
   ![View menu](sql/_static/ssox.png)
 
-* Right click on the `Movie` table **> View Designer**
+* Right click on the `Movie` table and select **View Designer**:
 
   ![Contextual menu open on Movie table](sql/_static/design.png)
 
   ![Movie table open in Designer](sql/_static/dv.png)
 
-Note the key icon next to `ID`. By default, EF will make a property named `ID` the primary key.
+Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
-* Right click on the `Movie` table **> View Data**
+* Right click on the `Movie` table and select **View Data**:
 
   ![Movie table open showing table data](sql/_static/vd22.png)
 
@@ -55,7 +55,7 @@ Create a new class named `SeedData` in the *Models* folder. Replace the generate
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
 ```csharp
-if (context.Movie.Any())
+if (context.Movies.Any())
 {
     return;   // DB has been seeded.
 }
@@ -72,7 +72,7 @@ Test the app
 * Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
-  * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
+  * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
     ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
@@ -81,12 +81,12 @@ Test the app
    * If you were running VS in non-debug mode, press F5 to run in debug mode.
    * If you were running VS in debug mode, stop the debugger and press F5.
    
-The app shows the seeded data.
+The app shows the seeded data:
 
 ![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
 The next tutorial will clean up the presentation of the data.
 
 >[!div class="step-by-step"]
-[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)   
+[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 [Next: Updating the pages](xref:tutorials/razor-pages/da1)

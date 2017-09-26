@@ -23,11 +23,11 @@ This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app
 
 ## Create a Razor web app
 
-* From the Visual Studio **File** menu, select **New > Project**.
+* From the Visual Studio **File** menu, select **New** > **Project**.
 * Create a new ASP.NET Core Web Application. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy/paste code.
- ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
+  ![new ASP.NET Core Web Application](../../mvc/razor-pages/index/_static/np.png)
 * Select **ASP.NET Core 2.0** in the dropdown, and then select **Web Application**.
- ![Web Application (Razor Pages)](../../mvc/razor-pages/index/_static/np2.png)
+  ![Web Application (Razor Pages)](../../mvc/razor-pages/index/_static/np2.png)
 
 The Visual Studio template creates a starter project:
 
@@ -43,4 +43,4 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 [!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
 
 >[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/modelz)  
+[Next: Adding a model](xref:tutorials/razor-pages/modelz)
