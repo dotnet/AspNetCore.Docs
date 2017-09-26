@@ -4,24 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Schedules
 {
-#region snippet2
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly RazorPagesMovie.Models.MovieContext _context;
 
-        public EditModel(RazorPagesMovie.Models.MovieContext context)
+        public DeleteModel(RazorPagesMovie.Models.MovieContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public Schedule Schedule { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,46 +28,33 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
+            Schedule = await _context.Schedules.SingleOrDefaultAsync(m => m.ID == id);
 
-            if (Movie == null)
+            if (Schedule == null)
             {
                 return NotFound();
             }
             return Page();
         }
-        
+
         #region snippet1
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            Schedule = await _context.Schedules.FindAsync(id);
 
-            try
+            if (Schedule != null)
             {
+                _context.Schedules.Remove(Schedule);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-
-                if (!_context.Movie.Any(e => e.ID == Movie.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-
             }
 
             return RedirectToPage("./Index");
         }
         #endregion
     }
-#endregion
 }

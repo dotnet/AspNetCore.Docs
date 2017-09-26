@@ -11,7 +11,6 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/razor-pages/search
 ---
-
 # Adding search to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)

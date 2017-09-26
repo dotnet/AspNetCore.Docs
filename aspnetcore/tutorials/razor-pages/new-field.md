@@ -45,7 +45,9 @@ Add the `Rating` field to the Edit Page.
 
 The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
 
-`SqlException: Invalid column name 'Rating'.`
+```
+SqlException: Invalid column name 'Rating'.
+```
 
 This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
 
@@ -68,7 +70,6 @@ See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/
 Build the solution.
 
 <a name="pmc"></a>
-
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
@@ -89,13 +90,13 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 
 * Select the database in SSOX.
 * Right click on the database, and select *Delete*.
-* Check **Close existing connections*
-* Select **OK**
-* In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database 
+* Check **Close existing connections**.
+* Select **OK**.
+* In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
 
-    ```PMC
-    Update-Database
-    ```
+  ```PMC
+  Update-Database
+  ```
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database is not seeded, stop IIS Express, and then run the app.
 

@@ -35,10 +35,11 @@ The EF tools for the command-line interface (CLI) are provided in [Microsoft.Ent
 
 Edit the *RazorPagesMovie.csproj* file:
 
-* Select **File > Open File**, and then select the *RazorPagesMovie.csproj* file.
-* Add `<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />` as highlighted in the following code:
+* Select **File** > **Open File**, and then select the *RazorPagesMovie.csproj* file.
+* Add tool reference for `Microsoft.EntityFrameworkCore.Tools.DotNet` to the second **\<ItemGroup>**:
 
-[!code-xml[](../../tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?highlight=10)]
+[!code-xml[Main](../../tutorials/razor-pages/razor-pages-start/snapshot_cli_sample/RazorPagesMovie/RazorPagesMovie.cli.csproj?range=12-16&highlight=4)]
+
 [!INCLUDE[model 3](../../includes/RP/model3.md)]
 
 <a name="scaffold"></a>
