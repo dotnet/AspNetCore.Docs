@@ -22,7 +22,7 @@ O ASP.NET Core é um framework multi-plataforma, alta-performance, [open-source]
 * Construir apps e serviços web, IoT apps, e backends para mobile.
 * Usar suas ferramentas de desenvolvimento favoritas no Windows, macOS e Linux.
 * Implementar para nuvem ou local
-* Executar no[.NET Core ou .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+* Executar no [.NET Core ou .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
 ## Por que usar o ASP.NET Core?
 
