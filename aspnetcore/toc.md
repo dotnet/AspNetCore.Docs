@@ -79,7 +79,7 @@
 ## [Error Handling](fundamentals/error-handling.md)
 ## [WebSockets](fundamentals/websockets.md)
 ## [Globalization and localization](xref:fundamentals/localization)
-### [Configure Portable Object localization](xref:fundamentals/portable-object-localization)
+### [Configure Portable Object localization with Orchard Core](xref:fundamentals/portable-object-localization)
 ## [Configuration](fundamentals/configuration.md)
 ## [Logging](fundamentals/logging.md)
 ## [File Providers](fundamentals/file-providers.md)

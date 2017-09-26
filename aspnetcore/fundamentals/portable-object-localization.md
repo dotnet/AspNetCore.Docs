@@ -1,27 +1,30 @@
 ---
 title: Configure Portable Object localization
 author: sebastienros
-description: This article introduces Portable Object files and outlines the necessary steps for using them in an ASP.NET Core application.
+description: This article introduces Portable Object files and outlines steps for using them in an ASP.NET Core application with the Orchard Core framework.
 keywords: ASP.NET Core,localization,culture,language,portable object
 ms.author: scaddie
 manager: wpickett
-ms.date: 09/18/2017
+ms.date: 09/26/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/portable-object-localization
 ---
-# Configure Portable Object localization in ASP.NET Core
+# Configure Portable Object localization with Orchard Core
 
 By [Sébastien Ros](https://github.com/sebastienros) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application.
+This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application with the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) framework.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization)
 
 ## What is a PO file?
 
-PO files contain the translated strings for a given language. They prove very useful, as opposed to standard *.resx* files. PO files support pluralization and are distributed as plain text files.
+PO files are distributed as text files containing the translated strings for a given language. Some advantages of using PO files instead *.resx* files include:
+- PO files support pluralization; *.resx* files don't support pluralization.
+- PO files aren't compiled like *.resx* files. As such, specialized tooling and build steps aren't required.
+- PO files work well with collaborative online editing tools.
 
 ### Example
 
@@ -81,11 +84,11 @@ Add the following code to your Razor view of choice. *About.cshtml* is used in t
 
 [!code-cshtml[Main](localization/sample/POLocalization/Views/Home/About.cshtml)]
 
-An `IViewLocalizer` instance is injected and used to translate the text `"Hello world!"`.
+An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
 ### Creating a PO file
 
-Create a file named *fr.po*, in your application root folder, containing the following:
+Create a file named *<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
 [!code-text[Main](localization/sample/POLocalization/fr.po)]
 
@@ -114,18 +117,19 @@ msgstr[0] "Il y a un élément."
 msgstr[1] "Il y a {0} éléments."
 ```
 
+See [What is a PO file?](#what-is-a-po-file) for an explanation of what each entry in this example represents.
+
 ### Adding a language using different pluralization forms
 
-English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that
-a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
+English and French strings were used in the previous example. English and French have only two pluralization forms and share the same form rules, which is that a cardinality of one is mapped to the first plural form. Any other cardinality is mapped to the second plural form.
 
-Unfortunately, not all languages share the same rules. This is illustrated with the Czech language, which has three plural forms.
+Not all languages share the same rules. This is illustrated with the Czech language, which has three plural forms.
 
 Create the `cs.po` file as follows, and note how the pluralization needs three different translations:
 
 [!code-text[Main](localization/sample/POLocalization/cs.po)]
 
-To accept Czech localizations, add `"cs"` to the list of supported cultures in the `ConfigureServices` method of *Startup.cs*:
+To accept Czech localizations, add `"cs"` to the list of supported cultures in the `ConfigureServices` method:
 
 ```csharp
 var supportedCultures = new List<CultureInfo>
@@ -180,25 +184,27 @@ Note that for the Czech culture, the three translations are different. The Frenc
 
 ### Contextualizing strings
 
-Applications often contain the same strings to be translated in several places, while requiring the flexibility to define different translations. A PO file supports the notion of a *context*, which can be used to categorize the string being represented.
+Applications often contain the strings to be translated in several places. The same string may have a different translation in certain locations within an app (Razor views or class files). A PO file supports the notion of a file context, which can be used to categorize the string being represented. Using a file context, a string can be translated differently, depending on the file context (or lack of a file context).
 
-The PO localization services can use the name of the full class or the view that is used when translating a string. This is accomplished by setting the value on the `msgctx` entry.
+The PO localization services use the name of the full class or the view that is used when translating a string. This is accomplished by setting the value on the `msgctxt` entry.
 
-Considering the previous example, the entry could have been written as:
-
-*fr.po*
+Consider a minor addition to the previous *fr.po* example. A Razor view located at *Views/Home/About.cshtml* can be defined as the file context by setting the reserved `msgctxt` entry's value:
 
 ```text
-msgctx Views.Home.About
+msgctxt "Views.Home.About"
 msgid "Hello world!"
 msgstr "Bonjour le monde!"
 ```
 
-When no context is specified, it's used as a fallback for any string whose context doesn't match any specific one.
+With the `msgctxt` set as such, text translation occurs when navigating to `/Home/About?culture=fr-FR`. The translation won't occur when navigating to `/Home/Contact?culture=fr-FR`.
+
+When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there is no specific file context defined for *Views/Home/Contact.cshtml*, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
+
+[!code-text[Main](localization/sample/POLocalization/fr.po)]
 
 ### Changing the location of PO files
 
-You can change the default location of PO files in the application by setting a base folder name. This is accomplished with the following code in the `ConfigureServices` method of *Startup.cs*:
+The default location of PO files can be changed in `ConfigureServices`:
 
 ```csharp
 services.AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
@@ -213,6 +219,6 @@ and registered as a service. This is useful when PO files can be stored in varyi
 
 ### Using a different default pluralized language
 
-The package includes a `Plural` extension method that is specific to two plural forms, as this is the most common. If your main language is different and requires more plural forms, for instance, create your own extension method. This way, you won't need to provide any localization file for the default language &mdash; the original strings are already available directly in the code.
+The package includes a `Plural` extension method that is specific to two plural forms. For languages requiring more plural forms, create an extension method. With an extension method, you won't need to provide any localization file for the default language &mdash; the original strings are already available directly in the code.
 
 You can use the more generic `Plural(int count, string[] pluralForms, params object[] arguments)` overload which accepts a string array of translations.
