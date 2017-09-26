@@ -26,10 +26,7 @@ O ASP.NET Core é um framework multi-plataforma, alta-performance, [open-source]
 
 ## Por que usar o ASP.NET Core?
 
-Milhões de devenvolvedores tem usado ASP.NET (e continuam a usá-lo) para criar web apps. O ASP.NET Core é um novo design do ASP.NET, com mudanças arquiteturais que resultaram em um framework 
-
-Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, 
-com mudanças arquitetônicas que resultam em uma estrutura mais enxuta e modular.
+Milhões de devenvolvedores tem usado ASP.NET (e continuam a usá-lo) para criar web apps. O ASP.NET Core é um novo design do ASP.NET, com mudanças arquiteturais que resultaram em um framework mais exuto e modular.
 
 O ASP.NET fornece os seguintes benefícios:
 
