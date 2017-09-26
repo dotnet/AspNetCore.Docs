@@ -47,7 +47,7 @@ Simply reading through the model reveals the rules about data for this app, maki
 
 * `[RegularExpression]`: Validates that the data matches the specified regular expression.
 
-* `[Required]`: Makes a property required. Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. If you create a [nullable type](/dotnet/csharp/programming-guide/nullable-types/) (for example `decimal?`), you can provide a functional `Required` attribute.
+* `[Required]`: Makes a property required.
 
 * `[StringLength]`: Validates that a string property has at most the given maximum length.
 
@@ -56,6 +56,18 @@ Simply reading through the model reveals the rules about data for this app, maki
 MVC supports any attribute that derives from `ValidationAttribute` for validation purposes. Many useful validation attributes can be found in the [System.ComponentModel.DataAnnotations](https://docs.microsoft.com/dotnet/api/system.componentmodel.dataannotations) namespace.
 
 There may be instances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from `ValidationAttribute` or changing your model to implement `IValidatableObject`.
+
+## Notes on the use of the Required attribute
+
+Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. The app performs no validation checks server-side for non-nullable types decorated with `Required`.
+
+MVC model binding rejects a property submission in the form data containing an empty string for a non-nullable value type. Model binding usually ignores missing data for properties.
+
+`Required` can be used to change the client-side validation error message for a non-nullable value type property.
+
+The [BindRequired attribute](/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
+
+When you create a [nullable type](/dotnet/csharp/programming-guide/nullable-types/) (for example, `decimal?`), the `Required` attribute works just like it does for ordinary nullable types.
 
 ## Model State
 
