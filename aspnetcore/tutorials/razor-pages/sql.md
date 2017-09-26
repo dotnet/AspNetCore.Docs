@@ -21,7 +21,7 @@ The `MovieContext` object handles the task of connecting to the database and map
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
-[!code-javascript[Main](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
+[!code-json[Main](razor-pages-start/sample/RazorPagesMovie/appsettings.json?highlight=2&range=8-10)]
 
 When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See [Configuration](xref:fundamentals/configuration) for more information.
 
