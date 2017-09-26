@@ -65,6 +65,6 @@ O ASP.NET Core foi desenvolvido para integrar perfeitamente com uma variedade de
 
 Para mais informações, veja os recursos seguintes:
 
-* [Tutoriais ASP.NET Core](xref:tutorials/index)
-* [Fundamentos ASP.NET Core](xref:fundamentals/index)
+* [Tutoriais ASP.NET Core](xref:/tutorials/index)
+* [Fundamentos ASP.NET Core](xref:/fundamentals/index)
 * [Boletim semanal da comunidade ASP.NET](https://live.asp.net/) cobre o progresso do time e seus planos, novos blogs funcionais e software de terceiros.
