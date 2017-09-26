@@ -1,18 +1,14 @@
-## Microsoft Open Source Code of Conduct
+## Código de Conduta de Código Aberto da Microsoft
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Este projeto adotou o [Código de Conduta de Código Aberto da Microsoft](https://opensource.microsoft.com/codeofconduct/).
+Para mais informações veja [FAQ Código de Conduta](https://opensource.microsoft.com/codeofconduct/faq/) ou entre em contato [opencode@microsoft.com](mailto:opencode@microsoft.com) para alguma pergunta adicional ou comentários.
 
 ASP.NET Docs
 ============
 
-This project provides the source for [docs.microsoft.com/aspnet](https://docs.microsoft.com/aspnet). You can learn more about ASP.NET Core at the [Home](https://github.com/aspnet/home) repo. See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](\https://github.com/aspnet/Docs/issues) if you would like to help out.
+Este projeto fornece a fonte para [docs.microsoft.com/aspnet](https://docs.microsoft.com/aspnet). Você pode aprender mais sobre ASP.NET Core no repositório [Inicial](https://github.com/aspnet/home). Veja o [Guia de Contribuição](CONTRIBUTING.md) e a [lista de problemas](https://github.com/aspnet/Docs/issues) se você quiser ajudar.
 
-API PR's ( *api/autoapi/...* ) should not be made here. Changes to API documentation should be made in the source repository against the triple slash /// comments. 
+API PR's ( *api/autoapi/...* ) não devem ser feitas aqui. Mudanças na API de documentação devem ser feitas no repositório fonte, acompanhando de barras triplas de comentário ///.
 
-This project has adopted the [Microsoft Open Source Code of
-Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct
-FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com)
-with any additional questions or comments.
+Este projeto adotou o [Código de Conduta de Código Aberto da Microsoft](https://opensource.microsoft.com/codeofconduct/).
+Para mais informações veja [FAQ Código de Conduta](https://opensource.microsoft.com/codeofconduct/faq/) ou entre em contato [opencode@microsoft.com](mailto:opencode@microsoft.com) para alguma pergunta adicional ou comentários.

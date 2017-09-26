@@ -1,44 +1,45 @@
 ---
-title: ASP.NET Core fundamentals
-author: rick-anderson
-description: This article provides a high-level overview of the foundational concepts to be understood when building ASP.NET Core applications.
-keywords: ASP.NET Core,fundamentals,overview
-ms.author: riande
-manager: wpickett
-ms.date: 08/18/2017
-ms.topic: get-started-article
+título: Fundamentos ASP.NET Core
+autor: rick-anderson
+tradutor: calkines
+descrição: Este artigo fornece uma visão geral dos conceitos fundamentais a serem entendidos na criação de aplicações ASP.NET Core. 
+palavras-chave: ASP.NET Core,fundamentals,overview
+ms.autor: riande
+gerente: wpickett
+ms.data: 08/18/2017
+ms.tópico: get-started-article
 ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.tecnologia: aspnet
+ms.produto: asp.net-core
 uid: fundamentals/index
 ms.custom: H1Hack27Feb2017
 ---
 
-# ASP.NET Core fundamentals overview
+# Visão geral sobre os fundamentos do ASP.NET Core
 
-An ASP.NET Core application is a console app that creates a web server in its `Main` method:
+Uma aplicação ASP.NET Core é um aplicativo de console que cria um servidor web em seu método `Main`:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program2x.cs)]
 
-The `Main` method invokes `WebHost.CreateDefaultBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, a [Kestrel](xref:fundamentals/servers/kestrel) web server is automatically allocated. ASP.NET Core's web host will attempt to run on IIS, if it is available. Other web servers, such as [HTTP.sys](xref:fundamentals/servers/httpsys), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+O método `Main` invoca o `WebHost.CreateDefaultBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo anterior, um servidor web [Kestrel](xref:fundamentals/servers/kestrel) é automaticamente alocado. O host web do ASP.NET Core tentará executar via IIS, se este estiver disponível. Outros servidores web, como um [HTTP.sys](xref:fundamentals/servers/httpsys), podem ser usados ao invocar o método de extensão apropriado. `UseStartup` será explicado depois, na próxima seção.
 
-`IWebHostBuilder`, the return type of the `WebHost.CreateDefaultBuilder` invocation, provides many optional methods. Some of these methods include `UseHttpSys` for hosting the application in HTTP.sys, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
+`IWebHostBuilder`, o tipo de retorno da invocação ao `WebHost.CreateDefaultBuilder` fornece muitos métodos opcionais. Muitos destes métodos incluem `UseHttpSys` para hospedar a aplicação no HTTP.sys, e `UseContextRoot` para especificar o diretório de conteúdo raiz. Os métodos `Build` e `Run` criam o objeto `IWebHost` que hospedará a aplicação e começará a escutar as requisições HTTP.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 [!code-csharp[Main](../getting-started/sample/aspnetcoreapp/Program.cs)]
 
-The `Main` method uses `WebHostBuilder`, which follows the builder pattern to create a web application host. The builder has methods that define the web server (for example, `UseKestrel`) and the startup class (`UseStartup`). In the preceding example, the [Kestrel](xref:fundamentals/servers/kestrel) web server is used. Other web servers, such as [WebListener](xref:fundamentals/servers/weblistener), can be used by invoking the appropriate extension method. `UseStartup` is explained further in the next section.
+O método `Main` usa o `WebHostBuilder`, que segue o Padrão de Construção para criar um host de aplicação web. O construtor tem métodos que definem o servidor web (por exemplo, `UseKestrel`) e a classe Startup (`UseStartup`). No exemplo sguinte, o servidor web [Kestrel](xref:fundamentals/servers/kestrel) é usado. Outros servidores web, como [WebListener](xref:fundamentals/servers/weblistener), podem ser usados invocando o método de extensão apropriado. `UseStartup` será explicado depois, na seção seguinte.
 
-`WebHostBuilder` provides many optional methods, including `UseIISIntegration` for hosting in IIS and IIS Express, and `UseContentRoot` for specifying the root content directory. The `Build` and `Run` methods build the `IWebHost` object that will host the application and begin listening for HTTP requests.
+O `WebHostBuilder` fornece diversos métodos opcionais, incluindo `UseIISIntegration` para hosts que usam IIS e IIS Express, e `UseContextRoot` para especificar o diretório de conteúdo raiz. Os métodos `Build` e `Run` constroem o objeto `IWebHost` que hospedará a aplicação e começará a escutar as requisições HTTP.
 
 ---
 
-## Startup
+## A Classe Startup
 
-The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for your app:
+O método `UseStartup` no `WebHostBuilder` especifica a classe `Startup` para seu aplicativo:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -50,87 +51,89 @@ The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for yo
 
 ---
 
-The `Startup` class is where you define the request handling pipeline and where any services needed by the application are configured. The `Startup` class must be public and contain the following methods:
+É na classe `Startup` que você define o pipeline de tratamento de solicitações e configura qualquer serviço exigido pela aplicação.
+A classe `Startup` precisa ser pública e conter os seguintes métodos:
 
 ```csharp
 public class Startup
 {
-    // This method gets called by the runtime. Use this method to add services to the container.
+    // Este método será chamado pelo runtime. Use este método para adicionar serviços ao recipiente.
     public void ConfigureServices(IServiceCollection services)
     {
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    // Este método será chamado pelo runtime. Use este método para configurar o pipeline de requisições HTTP.
     public void Configure(IApplicationBuilder app)
     {
     }
 }
 ```
 
-* `ConfigureServices` defines the [Services](#services) used by your application (such as ASP.NET Core MVC, Entity Framework Core, Identity, etc.).
+* `ConfigureServices` define os [Serviços](#services) usados por sua aplicação (como exemplo, ASP.NET Core MVC, Entity Framework Core, Idnetity, etc.).
 
-* `Configure` defines the [middleware](xref:fundamentals/middleware) in the request pipeline.
+* `Configure` define o [middleware](xref:fundamentals/middleware) no pipeline de requisições.
 
-For more information, see [Application startup](xref:fundamentals/startup).
+Para mais informações, veja [Startup de aplicação](xref:fundamentals/startup).
 
-## Services
+## Serviços
 
-A service is a component that is intended for common consumption in an application. Services are made available through [dependency injection](xref:fundamentals/dependency-injection) (DI). ASP.NET Core includes a native inversion of control (IoC) container that supports [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) by default. The native container can be replaced with your container of choice. In addition to its loose coupling benefit, DI makes services available throughout your application. For example, [logging](xref:fundamentals/logging) is available throughout your application.
+Um serviço é um componente que é projetado para ser consumido de forma comum na aplicação. Serviços são disponibilizados através de [injeção de dependência](xref:fundamentals/dependency-injection) (DI, dependency injection). O ASP.NET Core inclui um controle nativo de inversão de dependência (IoC, inversion of control), que suporta [injeção de construtor](xref:mvc/controllers/dependency-injection#constructor-injection) por padrão. O container nativo pode ser substituído pelo container de sua escolha. Além disso, traz o benefício do baixo acopalhamento, DI faz que os serviços permaneçam disponíveis através de sua aplicação. Por exemplo, [logging](xref:fundamentals/logging) está disponível através de sua aplicação.
 
-For more information, see [Dependency injection](xref:fundamentals/dependency-injection).
+Para mais informações, veja [Injeção de Dependência](xref:fundamentals/dependency-injection).
 
 ## Middleware
 
-In ASP.NET Core, you compose your request pipeline using [Middleware](xref:fundamentals/middleware). ASP.NET Core middleware performs asynchronous logic on an `HttpContext` and then either invokes the next middleware in the sequence or terminates the request directly. A middleware component called "XYZ" is added by invoking a `UseXYZ` extension method in the `Configure` method.
+No ASP.NET Core, você compõem seu pipeline de requisições usando [Middleware](xref:fundamentals/middleware). O ASP.NET Core middleware realiza uma lógica assíncrona no `HttpContext` e então invoca o próximo middleware ou termina a requisição diretamente. Um componente middleware chamado "XYZ" é adicionado invocando um método de extensão `UseXYZ` no método `Configure`.
 
-ASP.NET Core comes with a rich set of built-in middleware:
+O ASP.NET Core vem com um rico conjunto de middlewares pré-fábricados:
 
-* [Static files](xref:fundamentals/static-files)
+* [Arquivos Estáticos](xref:fundamentals/static-files)
 
-* [Routing](xref:fundamentals/routing)
+* [Rotas](xref:fundamentals/routes)
 
 * [Authentication](xref:security/authentication/index)
 
-You can use any [OWIN](http://owin.org)-based middleware with ASP.NET Core, and you can write your own custom middleware.
+Você pode usar qualquer [OWIN](http://owin.org)-based middleware com ASP.NET Core, além de poder escrever seus próprio middleware customizado.
 
-For more information, see [Middleware](xref:fundamentals/middleware) and [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin).
+Para mais informações, veja [Middleware](xref:fundamentals/middleware) e [Interface Web Aberta para .NET (OWIN)](xref:fundamentals/owin).
 
-## Servers
+## Servidores
 
-The ASP.NET Core hosting model does not directly listen for requests; rather, it relies on an HTTP server implementation to forward the request to the application. The forwarded request is wrapped as a set of feature objects that you can access through interfaces. The application composes this set into an `HttpContext`. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is typically run behind a production web server like [IIS](https://www.iis.net/) or [nginx](http://nginx.org).
+O modelo de host do ASP.NET Core não escuta requisições diretamente; em vez disso, ele depende de uma implementação de um servidor HTTP para encaminhar as requisições para a aplicação. A requisição encaminhada é envolvida por um conjunto de objetos característicos que você pode acessar através de interfaces. A aplicação compõe este conjunto em um `HttpContext`. O ASP.NET Core incluí um servidor web gerenciado, multi-plataforma, chamado [Kestrel](xref:fundamentals/servers/kestrel). O Kestrel é geralmente executado por trás de um servidor web de produção como o [IIS](https://www.iis.net/) ou [ngix](http://ngix.org).
 
-For more information, see [Servers](xref:fundamentals/servers/index) and [Hosting](xref:fundamentals/hosting).
+Para mais informações, veja [Servidores](xref:fundamentals/servers/index) e [Hospedagem](xref:fundamentals/hosting).
 
-## Content root
+## Diretório de Conteúdo Raiz
 
-The content root is the base path to any content used by the app, such as views, [Razor Pages](xref:mvc/razor-pages/index), and static assets. By default, the content root is the same as application base path for the executable hosting the application. An alternative location for content root is specified with `WebHostBuilder`.
+O diretório de conteúdo raiz é o diretório base de qualquer conteúdo usado pelo aplicativo, como exibições, [Páginas Razor](xref:mvc/razor-pages/index), e ativos estáticos. Por padrão, o direitório de conteúdo raiz é o mesmo daquele em que a aplicação está sendo hospedada. Um local alternativo para o diretório de conteúdo raiz é especificado no `WebHostBuilder`.
 
-## Web root
+## Diretório Web
 
-The web root of an application is the directory in the project containing public, static resources like CSS, JavaScript, and image files. By default, the static files middleware will only serve files from the web root directory and its sub-directories. See [working with static files](xref:fundamentals/static-files) for more info. The web root path defaults to */wwwroot*, but you can specify a different location using the `WebHostBuilder`.
+O diretório de web raiz de um aplicação é aquele diretório do projeto que contem recursos, públicos ou estáticos, como CSS, JavaScript e arquivos de imagem. Por padrão, o middleware de arquivos estáticos servirá apenas arquivos do direitório de web raiz e seus sub-diretórios. Veja [trabalhando com arquivos estáticos](xref:fundamentals/static-files) para mais informações. O caminho do diretório de web raiz padrão é */wwwroot*, mas você pode especificar um local diferente usando o `WebHostBuilder`.
 
-## Configuration
+## Configuração
 
-ASP.NET Core uses a new configuration model for handling simple name-value pairs. The new configuration model is not based on `System.Configuration` or *web.config*; rather, it pulls from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and environment variables to enable environment-based configuration. You can also write your own custom configuration providers.
+O ASP.NET Core usa um novo modelo de configuração para manipular pares simples de nome-valor. O novo modelo de configuração não é baseado no `System.Configuration` ou *web.config*; em vez disso, ele resgata as configurações de um conjunto de provedores de configuração. Os provedores de configuração embutidos suportam um variedade de formato de arquivos (XML, JSON, INI) e variáveis de ambiente para permitir configuração baseada em ambiente. Você também pode escrever seu próprio providor de configuração.
 
-For more information, see [Configuration](xref:fundamentals/configuration).
+Para mais informações, veja [Configuração](xref:fundamentals/configuration).
 
-## Environments
+## Ambientes
 
-Environments, like "Development" and "Production", are a first-class notion in ASP.NET Core and can be set using environment variables.
+Ambientes, como "Desenvolvimento" ou "Produção", são a primeira noção de classe no ASP.NET Core e podem ser configurados usando variáveis de ambiente.
 
-For more information, see [Working with Multiple Environments](xref:fundamentals/environments).
+Para mais informações, veja [Trabalhando com Ambientes Múltiplos](xref:fundamentals/environments).
 
 ## .NET Core vs. .NET Framework runtime
 
-An ASP.NET Core application can target the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+Uma aplicação ASP.NET Core pode objetivar um runtime .NET Core ou um runtime .NET Framework. Para mais informações, veja [Escolhendo entre .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
-## Additional information
+## Informações Adicionais
 
-See also the following topics:
+Veja também os tópicos seguintes:
 
-- [Error Handling](xref:fundamentals/error-handling)
-- [File Providers](xref:fundamentals/file-providers)
-- [Globalization and localization](xref:fundamentals/localization)
+- [Manipulação de Erro](xref:fundamentals/error-handling)
+- [Provedores de Arquivo](xref:fundamentlas/file-providers)
+- [Localização e Globalização](xref:fundamentals/localization)
 - [Logging](xref:fundamentals/logging)
-- [Managing Application State](xref:fundamentals/app-state)
+- [Gerenciamente de Estado da Aplicação](xref:fundamentals/app-state)
+
