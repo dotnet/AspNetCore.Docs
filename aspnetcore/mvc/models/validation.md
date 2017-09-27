@@ -61,13 +61,13 @@ There may be instances where you need more features than built-in attributes pro
 
 Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. The app performs no validation checks server-side for non-nullable types that are marked `Required`.
 
-MVC model binding, which isn't concerned with validation and validation attributes, rejects a form field submission containing only whitespace for a non-nullable type. Model binding usually ignores missing data for non-nullable types.
+MVC model binding, which isn't concerned with validation and validation attributes, rejects a form field submission containing a missing value or whitespace for a non-nullable type. Model binding usually ignores missing data for non-nullable types, where the form field is absent from the incoming form data.
 
 Client-side validation always requires a value for a form field that corresponds to a C# property marked `Required`. `Required` can be used to control the client-side validation error message.
 
 The [BindRequired attribute](/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
 
-When you create a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) from a value type (for example, `decimal?` or `System.Nullable<decimal>`) for a property of a model and mark it `Required`, a server-side validation check is performed just as if the property were a nullable type.
+When you create a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) from a value type (for example, `decimal?` or `System.Nullable<decimal>`) for a property of a model and mark it `Required`, a server-side validation check is performed just as if the property were a standard nullable type (for example, a `string`).
 
 ## Model State
 
