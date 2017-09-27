@@ -416,11 +416,11 @@ The HTTP POST `Index` method displays the selection:
 
 The `Index` view:
 
-[!code-HTML[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
+[!code-cshtml[Main](working-with-forms/sample/final/Views/Home/Index.cshtml?highlight=4)]
 
 Which generates the following HTML (with "CA" selected):
 
-```HTML
+```cshtml
 <form method="post" action="/">
      <select id="Country" name="Country">
        <option value="MX">Mexico</option>

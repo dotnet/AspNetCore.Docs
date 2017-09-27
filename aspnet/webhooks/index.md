@@ -34,7 +34,7 @@ WebHooks is a pattern which means that it varies how it is used from service to 
 
 Typically the HTTP POST request contains a JSON object or HTML form data determined by the WebHook sender including information about the event causing the WebHook to trigger. For example, an example of a WebHook POST request body from [GitHub](http://www.github.com/) looks like this as a result of a new issue being opened in a particular repository:
 
-```javascript
+```json
 {
   "action": "opened",
   "issue": {

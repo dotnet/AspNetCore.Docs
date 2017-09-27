@@ -37,13 +37,13 @@ Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor e
 
 HTML containing `@` symbols may need to be escaped with a second `@` symbol. For example:
 
-```html
+```cshtml
 <p>@@Username</p>
 ```
 
 would render the following HTML:
 
-```html
+```cshtml
 <p>@Username</p>
 ```
 
@@ -106,7 +106,7 @@ Without the explicit expression, `<p>Age@joe.Age</p>` would be treated as an ema
 
 C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to `IHtmlContent` are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
 
-```html
+```cshtml
 @("<span>Hello World</span>")
 ```
 
@@ -127,7 +127,7 @@ Which the browser renders as:
 
 The following Razor markup:
 
-```html
+```cshtml
 @Html.Raw("<span>Hello World</span>")
 ```
 
@@ -426,13 +426,13 @@ The `@model` directive specifies the type of the model passed to the Razor page.
 
 For example, if you create an ASP.NET Core MVC app with individual user accounts, the *Views/Account/Login.cshtml* Razor view contains the following model declaration:
 
-```csharp
+```cshtml
 @model LoginViewModel
 ```
 
 In the preceding class example, the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
 
-```csharp
+```cshtml
 @model LoginViewModel
 ```
 
@@ -444,7 +444,7 @@ public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
 
 Razor pages expose a `Model` property for accessing the model passed to the page.
 
-```html
+```cshtml
 <div>The Login Email: @Model.Email</div>
 ```
 

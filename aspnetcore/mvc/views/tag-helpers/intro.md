@@ -67,7 +67,7 @@ To expose all of the Tag Helpers in this project (which creates an assembly name
 
 If your project contains an `EmailTagHelper` with the default namespace (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), you can provide the fully qualified name (FQN) of the Tag Helper:
 
-```html
+```cshtml
 @using AuthoringTagHelpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers

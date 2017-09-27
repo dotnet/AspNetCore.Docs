@@ -101,7 +101,7 @@ With identity services configured for the application and data access configured
 
 Update _Layout.cshtml; uncomment the @Html.Partial line:
 
-```none
+```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
     @*@Html.Partial("_LoginPartial")*@
@@ -113,7 +113,7 @@ Now, add a new MVC View Page called _LoginPartial to the Views/Shared folder:
 
 Update _LoginPartial.cshtml with the following code (replace all of its contents):
 
-```csharp
+```cshtml
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
