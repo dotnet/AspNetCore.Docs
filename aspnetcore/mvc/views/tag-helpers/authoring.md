@@ -240,8 +240,6 @@ The condition tag helper renders output when passed a true value.
 
 2.  Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
-    <!-- literal_block {"xml:space": "preserve", "source": "mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
-    
     ```cshtml
     @using AuthoringTagHelpers.Models
     @model WebsiteContext

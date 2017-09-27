@@ -194,8 +194,6 @@ Routes must be configured in the `Configure` method in the `Startup` class. The 
 * `MapGet`  Matches only HTTP GET requests
 * `UseRouter`
 
-<!-- literal_block {"xml:space": "preserve", "source": "fundamentals/routing/sample/RoutingSample/Startup.cs", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
-
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
 {
