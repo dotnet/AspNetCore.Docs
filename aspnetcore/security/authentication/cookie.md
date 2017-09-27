@@ -40,7 +40,7 @@ Complete the following steps:
 
     ```csharp
     services.AddAuthentication("MyCookieAuthenticationScheme")
-            .AddCookie(options => {
+            .AddCookie("MyCookieAuthenticationScheme", options => {
                 options.AccessDeniedPath = "/Account/Forbidden/";
                 options.LoginPath = "/Account/Unauthorized/";
             });
@@ -173,7 +173,7 @@ This would then be wired up during cookie service registration in the `Configure
 
 ```csharp
 services.AddAuthentication("MyCookieAuthenticationScheme")
-        .AddCookie(options =>
+        .AddCookie("MyCookieAuthenticationScheme", options =>
         {
             options.Events = new CookieAuthenticationEvents
             {

@@ -37,7 +37,7 @@ namespace CustomModelBindingSample.Binders
 
             if (valueProviderResult == ValueProviderResult.None)
             {
-                return TaskCache.CompletedTask;
+                return Task.CompletedTask;
             }
 
             bindingContext.ModelState.SetModelValue(modelName,
@@ -48,7 +48,7 @@ namespace CustomModelBindingSample.Binders
             // Check if the argument value is null or empty
             if (string.IsNullOrEmpty(value))
             {
-                return TaskCache.CompletedTask;
+                return Task.CompletedTask;
             }
 
             int id = 0;
@@ -58,14 +58,14 @@ namespace CustomModelBindingSample.Binders
                 bindingContext.ModelState.TryAddModelError(
                                         bindingContext.ModelName,
                                         "Author Id must be an integer.");
-                return TaskCache.CompletedTask;
+                return Task.CompletedTask;
             }
 
             // Model will be null if not found, including for 
             // out of range id values (0, -3, etc.)
             var model = _db.Authors.Find(id);
             bindingContext.Result = ModelBindingResult.Success(model);
-            return TaskCache.CompletedTask;
+            return Task.CompletedTask;
         }
     }
     #endregion

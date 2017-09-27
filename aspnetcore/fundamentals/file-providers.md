@@ -74,8 +74,6 @@ You can use [globbing patterns](#globbing-patterns) when specifying files to emb
 
 When creating an `EmbeddedFileProvider`, pass the assembly it will read to its constructor.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
 ```
