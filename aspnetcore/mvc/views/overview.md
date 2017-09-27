@@ -39,7 +39,7 @@ Views help to establish a [**S**eparation **o**f **C**oncerns (SoC) design](http
 
 Views that are specific to a controller are created in the *Views/[ControllerName]* folder. Views that are shared among controllers are placed in the *Views/Shared* folder. To create a view, add a new file and give it the same name as its associated controller action with the *.cshtml* file extension. To create a view for the *About* action in the *Home* controller, create an *About.cshtml* file in the *Views/Home* folder:
 
-[!code-html[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
+[!code-cshtml[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
 *Razor* markup starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown above. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements above.
 
@@ -282,7 +282,7 @@ Read the properties but reverse the use of `ViewData` and `ViewBag`. In the *_La
     ...
 ```
 
-Note: Remember that strings don't require a cast for `ViewData`, so you can use `@ViewData["Title"]` without casting.
+Remember that strings don't require a cast for `ViewData`. You can use `@ViewData["Title"]` without casting.
 
 Using both `ViewData` and `ViewBag` at the same time works, as does mixing and matching reading and writing the properties. The following markup is rendered:
 
@@ -325,7 +325,7 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 
 ## More view features
 
-[Tag helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
 
 Generating custom HTML markup can be achieved with many built-in HTML Helpers. More complex user interface logic can be handled by [View Components](xref:mvc/views/view-components). View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
