@@ -59,15 +59,15 @@ There may be instances where you need more features than built-in attributes pro
 
 ## Notes on the use of the Required attribute
 
-Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. The app performs no validation checks server-side for non-nullable types decorated with `Required`.
+Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute. The app performs no validation checks server-side for non-nullable types that are marked `Required`.
 
-MVC model binding rejects a property submission in the form data containing an empty string for a non-nullable value type. Model binding usually ignores missing data for properties.
+MVC model binding, which isn't concerned with validation and validation attributes, rejects a form field submission containing only whitespace for a non-nullable type. Model binding usually ignores missing data for non-nullable types.
 
-`Required` can be used to change the client-side validation error message for a non-nullable value type property.
+Client-side validation always requires a value for a form field that corresponds to a C# property marked `Required`. `Required` can be used to control the client-side validation error message.
 
 The [BindRequired attribute](/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
 
-When you create a [nullable type](/dotnet/csharp/programming-guide/nullable-types/) (for example, `decimal?`), the `Required` attribute works just like it does for ordinary nullable types.
+When you create a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) from a value type (for example, `decimal?` or `System.Nullable<decimal>`) for a property of a model and mark it `Required`, a server-side validation check is performed just as if the property were a nullable type.
 
 ## Model State
 
