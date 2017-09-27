@@ -32,7 +32,12 @@ Update the `Movie` class to take advantage of the `Required`, `StringLength`, `R
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-Validation attributes specify behavior that is enforced on model properties. The `Required` and `MinimumLength` attributes indicate that a property must have a value, but nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, `Genre` and `Rating` must use only letters (white space, numbers and special characters aren't allowed). The `Range` attribute constrains a value to a specified range. The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
+Validation attributes specify behavior that's enforced on model properties:
+
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
+* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` and `Rating` must use only letters (whitespace, numbers, and special characters aren't allowed).
+* The `Range` attribute constrains a value to a specified range.
+* The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
 
 Having validation rules automatically enforced by ASP.NET Core helps make an app more robust. Automatic validation on models helps protect the app because you don't have to remember to apply them when new code is added.
 
