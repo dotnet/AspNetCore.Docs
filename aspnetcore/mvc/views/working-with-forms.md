@@ -420,7 +420,7 @@ The `Index` view:
 
 Which generates the following HTML (with "CA" selected):
 
-```cshtml
+```html
 <form method="post" action="/">
      <select id="Country" name="Country">
        <option value="MX">Mexico</option>
