@@ -23,7 +23,7 @@ Browser Link is a feature in Visual Studio that creates a communication channel 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The ASP.NET Core 2.x **Web Application**, **Empty**, and **Web API** template projects use the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) meta-package, which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` meta-package requires no further action to make Brower Link available for use.
+The ASP.NET Core 2.x **Web Application**, **Empty**, and **Web API** template projects use the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All/) meta-package, which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` meta-package requires no further action to make Browser Link available for use.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
