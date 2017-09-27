@@ -1,7 +1,7 @@
 ---
 title: Working with static files in ASP.NET Core
 author: rick-anderson
-description: Working with Static Files
+description: Working with static files on ASP.NET Core
 keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 ms.author: riande
 manager: wpickett
@@ -13,7 +13,8 @@ ms.prod: asp.net-core
 uid: fundamentals/static-files
 ms.custom: H1Hack27Feb2017
 ---
-# Introduction to working with static files in ASP.NET Core
+
+# Working with static files in ASP.NET Core
 
 <a name=fundamentals-static-files></a>
 
