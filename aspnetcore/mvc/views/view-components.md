@@ -218,8 +218,6 @@ If the PVC view is not rendered, verify you are calling the view component with 
 * Temporarily rename the *Views/Todo/Components/PriorityList/Default.cshtml* to *1Default.cshtml*.
 * Test the app, you'll get the following error:
 
-   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
    ```
    An unhandled exception occurred while processing the request.
    InvalidOperationException: The view 'Components/PriorityList/Default' was not found. The following locations were searched:
