@@ -14,6 +14,7 @@
 ### [Adding search](xref:tutorials/razor-pages/search)
 ### [Adding a new field](xref:tutorials/razor-pages/new-field)
 ### [Adding validation](xref:tutorials/razor-pages/validation)
+### [Uploading files](xref:tutorials/razor-pages/uploading-files)
 ## [Create a Razor Pages web app on a Mac](xref:tutorials/razor-pages-mac/index)
 ### [Getting started with Razor Pages](xref:tutorials/razor-pages-mac/razor-pages-start)
 ### [Adding a model](xref:tutorials/razor-pages-mac/model)
