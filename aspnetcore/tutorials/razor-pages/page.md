@@ -140,5 +140,5 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movi
 The next tutorial explains SQL Server LocalDB and seeding the database.
 
 >[!div class="step-by-step"]
-[Previous: Adding a model](xref:tutorials/razor-pages/modelz)
+[Previous: Adding a model](xref:tutorials/razor-pages/model)
 [Next: SQL Server LocalDB](xref:tutorials/razor-pages/sql)
