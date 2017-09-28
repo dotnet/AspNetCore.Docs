@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/identity-primary-key-configuration
 ---
-# Configure ASP.NET Core Identity primary keys data type
+# Configure the ASP.NET Core Identity primary key data type
 
 ASP.NET Core Identity allows you to configure the data type used to represent a primary key. Identity uses the `string` data type by default. You can override this behavior.
 
@@ -33,13 +33,13 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The `AddEntityFrameworkStores` method doesn't accept a `TKey` argument as it did in ASP.NET Core 1.x. The data type for primary keys is inferred by analyzing the `DbContext` object.
+The `AddEntityFrameworkStores` method doesn't accept a `TKey` argument as it did in ASP.NET Core 1.x. The primary key's data type is inferred by analyzing the `DbContext` object.
 
 [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=6-8&range=25-37)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the primary keys data type.
+The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the primary key's data type.
 
 [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-55)]
 
