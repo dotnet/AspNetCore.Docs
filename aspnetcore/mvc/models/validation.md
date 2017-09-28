@@ -65,9 +65,9 @@ MVC model binding, which isn't concerned with validation and validation attribut
 
 The [BindRequired attribute](/aspnet/core/api/microsoft.aspnetcore.mvc.modelbinding.bindrequiredattribute) (also see [Customize model binding behavior with attributes](xref:mvc/models/model-binding#customize-model-binding-behavior-with-attributes)) is useful to ensure form data is complete. When applied to a property, the model binding system requires a value for that property. When applied to a type, the model binding system requires values for all of the properties of that type.
 
-Client-side validation requires a value for a form field that corresponds to a model property that you've marked `Required` and for a non-nullable type property that you haven't marked `Required`. `Required` can be used to control the client-side validation error message.
-
 When you use a [Nullable\<T> type](/dotnet/csharp/programming-guide/nullable-types/) (for example, `decimal?` or `System.Nullable<decimal>`) and mark it `Required`, a server-side validation check is performed as if the property were a standard nullable type (for example, a `string`).
+
+Client-side validation requires a value for a form field that corresponds to a model property that you've marked `Required` and for a non-nullable type property that you haven't marked `Required`. `Required` can be used to control the client-side validation error message.
 
 ## Model State
 
