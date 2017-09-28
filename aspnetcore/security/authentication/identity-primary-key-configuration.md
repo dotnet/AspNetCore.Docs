@@ -13,9 +13,9 @@ uid: security/authentication/identity-primary-key-configuration
 ---
 # Configure ASP.NET Core Identity primary keys data type
 
-ASP.NET Core Identity allows you to easily configure the data type you want for the primary key. By default, Identity uses the `string` data type. You can override this behavior.
+ASP.NET Core Identity allows you to configure the data type used to represent a primary key. Identity uses the `string` data type by default. You can override this behavior.
 
-## How to configure
+## Customize the primary key data type
 
 1. Create a custom implementation of the [IdentityUser](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser-1) class. It represents the type to be used for creating user objects. In the following example, the default `string` type is replaced with `Guid`.
 
@@ -44,3 +44,9 @@ The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the p
 [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-55)]
 
 ---
+
+## Test the changes
+
+Upon completion of the configuration changes, the property representing the primary key reflects the new data type:
+
+[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Controllers/AccountController.cs?name=snippet_GetCurrentUserId&highlight=6)]
