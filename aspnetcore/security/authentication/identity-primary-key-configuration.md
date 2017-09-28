@@ -13,7 +13,7 @@ uid: security/authentication/identity-primary-key-configuration
 ---
 # Configure ASP.NET Core Identity primary keys data type
 
-ASP.NET Core Identity allows you to easily configure the data type you want for the primary keys. By default, Identity uses the `string` data type. You can override this behavior.
+ASP.NET Core Identity allows you to easily configure the data type you want for the primary key. By default, Identity uses the `string` data type. You can override this behavior.
 
 ## How to configure
 
@@ -29,7 +29,7 @@ ASP.NET Core Identity allows you to easily configure the data type you want for 
 
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Data/ApplicationDbContext.cs?highlight=3&range=9-26)]
 	
-1. Register your custom `DbContext` class when adding the Identity service in the app's startup class.
+1. Register your custom database context class when adding the Identity service in the app's startup class.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
