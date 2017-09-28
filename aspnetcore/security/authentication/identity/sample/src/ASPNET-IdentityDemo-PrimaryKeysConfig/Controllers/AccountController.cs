@@ -34,7 +34,7 @@ namespace webapptemplate.Controllers
 
         #region snippet_GetCurrentUserId
         [HttpGet]
-		[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<Guid> GetCurrentUserId()
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
