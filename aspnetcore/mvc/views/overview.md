@@ -24,7 +24,11 @@ In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming lang
 
 The *Home* controller is represented by a *Home* folder inside the *Views* folder. The *Home* folder contains the views for the *About*, *Contact*, and *Index* (homepage) webpages. When a user requests one of these three webpages, controller actions in the *Home* controller determine which of the three views is used to build and return a webpage to the user.
 
-In addition to views that are matched to controller actions, you can use [partial views](xref:mvc/views/partial) for reusable parts of webpages. For example, a partial view is useful for a login panel that appears in several views. You can also use [layouts](xref:mvc/views/layout) to reduce the repetition of common user interface elements. A layout can include the app's header with navigation elements and the app's footer for use with several views.
+Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and reduce code repetition. Layouts often contain the header, navigation and menu elements, and the footer. The header and footer usually contain boilerplate markup for many metadata elements and links to script and style assets. Layouts help you avoid this boilerplate markup in your views.
+
+[Partial views](xref:mvc/views/partial) reduce code duplication by managing reusable parts of views. For example, a partial view is useful for an author biography on a blog website that appears in several views. An author biography is ordinary view content and doesn't require code to execute in order to produce the content for the webpage. Author biography content is available to the view by model binding alone, so using a partial view for this type of content is ideal.
+
+[View components](xref:mvc/views/view-components) are similar to partial views in that they allow you to reduce repetitive code, but they're appropriate for view content that requires code to run on the server in order to render the webpage. View components are useful when the rendered content requires database interaction, such as for a website shopping cart. View components aren't limited to model binding in order to produce webpage output.
 
 ## Benefits of using views
 
