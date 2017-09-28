@@ -15,7 +15,7 @@ uid: tutorials/razor-pages/page
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/page). 
+This tutorial examines the Razor Pages created by scaffolding in the previous tutorial topic [Adding a model](xref:tutorials/razor-pages/model#scaffold-the-movie-model). 
 
 [View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie) sample.
 
