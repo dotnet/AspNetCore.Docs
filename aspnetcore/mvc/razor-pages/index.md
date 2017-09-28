@@ -171,7 +171,7 @@ The *Index.cshtml* file also contains markup to create a delete button for each 
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
 
-When the delete button is rendered in HTML, it's `formaction` includes parameters for:
+When the delete button is rendered in HTML, its `formaction` includes parameters for:
 
 * The customer contact ID specified by the `asp-route-id` attribute.
 * The `handler` specified by the `asp-page-handler` attribute.
