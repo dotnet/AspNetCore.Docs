@@ -232,8 +232,6 @@ Running the following command will zip up the publish contents and publish it to
 
 `dotnet publish /p:PublishProfile=Azure /p:Configuration=Release`
 
-To use publish profiles, use `dotnet build`. `dotnet build` invokes MSBuild on the project. Alternatively, call `msbuild` directly.
-
 Set the following MSBuild properties when using a publish profile:
 
 - `DeployOnBuild=true`
