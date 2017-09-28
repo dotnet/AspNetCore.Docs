@@ -15,7 +15,7 @@ uid: security/authentication/identity-primary-key-configuration
 
 ASP.NET Core Identity allows you to easily configure the data type you want for the primary keys. By default, Identity uses the `string` data type. You can override this behavior.
 
-## How to
+## How to configure
 
 1. Implement the Identity's model, and override the `string` type with the data type you want.
 
