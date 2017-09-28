@@ -61,6 +61,8 @@ namespace WebApplication5
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied"; 
                 options.SlidingExpiration = true;
+                // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
             #endregion
 
