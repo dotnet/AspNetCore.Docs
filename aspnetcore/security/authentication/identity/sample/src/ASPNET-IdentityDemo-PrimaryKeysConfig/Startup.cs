@@ -76,8 +76,9 @@ namespace webapptemplate
                 options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
                 options.Cookies.ApplicationCookie.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookies.ApplicationCookie.AutomaticAuthenticate = true;
-                options.Cookies.ApplicationCookie.AuthenticationScheme = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Cookies.ApplicationCookie.ReturnUrlParameter = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.ReturnUrlParameter;
+                // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`
+                options.Cookies.ApplicationCookie.AuthenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.Cookies.ApplicationCookie.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 
                 // User settings
                 options.User.RequireUniqueEmail = true;
