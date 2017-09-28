@@ -86,6 +86,6 @@ The correctly formatted URL for the QR Code is available in the:
 
 Use `@Html.Raw` to access the model property in a view (otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored).
 
-## TOTP client and server times
+## TOTP client and server time skew
 
 TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If your TOP 2FA logins are failing check that your server time is accurate, and preferably synchronized to an accurate NTP service.
