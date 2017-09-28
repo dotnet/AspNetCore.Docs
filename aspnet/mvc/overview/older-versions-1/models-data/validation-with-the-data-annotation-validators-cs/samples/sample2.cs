@@ -16,7 +16,6 @@ namespace MvcApplication1.Models
         public string Description { get; set; }
 
         [DisplayName("Price")]
-        [Required]
         [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public decimal UnitPrice { get; set; }
     }

@@ -11,13 +11,11 @@ namespace MvcMovie.Models
         [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Date is required")]
         public DateTime ReleaseDate { get; set; }
 
         [Required(ErrorMessage = "Genre must be specified")]
         public string Genre { get; set; }
 
-        [Required(ErrorMessage = "Price Required")]
         [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
         public decimal Price { get; set; }
 
