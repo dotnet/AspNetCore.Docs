@@ -47,6 +47,6 @@ The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the p
 
 ## Test the changes
 
-Upon completion of the configuration changes, the property representing the primary key reflects the new data type:
+Upon completion of the configuration changes, the property representing the primary key reflects the new data type. The following example demonstrates accessing the property in an MVC controller.
 
 [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Controllers/AccountController.cs?name=snippet_GetCurrentUserId&highlight=6)]
