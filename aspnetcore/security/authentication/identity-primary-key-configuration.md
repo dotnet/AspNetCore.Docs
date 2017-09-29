@@ -1,7 +1,7 @@
 ---
-title: Configure Identity primary keys data type
+title: Configure Identity primary key data type
 author: AdrienTorris
-description: This article outlines the steps for configuring the desired data type used for the ASP.NET Core Identity primary keys.
+description: This article outlines the steps for configuring the desired data type used for the ASP.NET Core Identity primary key.
 keywords: ASP.NET Core,Identity,primary key
 ms.author: scaddie
 manager: wpickett
@@ -31,19 +31,19 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 	
 1. Register your custom database context class when adding the Identity service in the app's startup class.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-The `AddEntityFrameworkStores` method doesn't accept a `TKey` argument as it did in ASP.NET Core 1.x. The primary key's data type is inferred by analyzing the `DbContext` object.
-
-[!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=6-8&range=25-37)]
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the primary key's data type.
-
-[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-55)]
-
----
+    # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+    
+    The `AddEntityFrameworkStores` method doesn't accept a `TKey` argument as it did in ASP.NET Core 1.x. The primary key's data type is inferred by analyzing the `DbContext` object.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=6-8&range=25-37)]
+    
+    # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+    
+    The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the primary key's data type.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-55)]
+    
+    ---
 
 ## Test the changes
 
