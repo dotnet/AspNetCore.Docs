@@ -26,7 +26,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * Download the  [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-* In *Pages\Account\Manage\EnableAuthenticator.cshtml* (Razor Pages) or Views\Account\Manage\EnableAuthenticator.cshtml (MVC), locate the `Scripts` section at the end of the file:
+* In *Pages\Account\Manage\EnableAuthenticator.cshtml* (Razor Pages) or *Views\Account\Manage\EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:
 
 ```cshtml
 @section Scripts {
@@ -88,4 +88,4 @@ Use `@Html.Raw` to access the model property in a view (otherwise the ampersands
 
 ## TOTP client and server time skew
 
-TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If TOTP 2FA logins are failing check that the server time is accurate, and preferably synchronized to an accurate NTP service.
+TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If TOTP 2FA logins are failing, check that the server time is accurate, and preferably synchronized to an accurate NTP service.
