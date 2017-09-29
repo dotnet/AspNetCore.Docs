@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Migrating From ASP.NET MVC to ASP.NET Core MVC </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Migrating From ASP.NET MVC to ASP.NET Core MVC ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="migration/mvc">
+<h1 id="migrating-from-aspnet-mvc-to-aspnet-core-mvc" sourcefile="migration/mvc.md" sourcestartlinenumber="15" sourceendlinenumber="15">Migrating From ASP.NET MVC to ASP.NET Core MVC</h1>
+
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="migration/mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rick Anderson</a>, <a href="https://github.com/danroth27" data-raw-source="[Daniel Roth](https://github.com/danroth27)" sourcefile="migration/mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">Daniel Roth</a>, <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="migration/mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">Steve Smith</a>, and <a href="https://scottaddie.com" data-raw-source="[Scott Addie](https://scottaddie.com)" sourcefile="migration/mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">Scott Addie</a></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">This article shows how to get started migrating an ASP.NET MVC project to <a href="../mvc/overview.html" data-raw-source="[ASP.NET Core MVC](../mvc/overview.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">ASP.NET Core MVC</a>. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies. Additional articles cover migrating configuration and identity code found in many ASP.NET MVC projects.</p>
+<div class="NOTE" sourcefile="migration/mvc.md" sourcestartlinenumber="21" sourceendlinenumber="21"><h5>Note</h5><p sourcefile="migration/mvc.md" sourcestartlinenumber="22" sourceendlinenumber="22">The version numbers in the samples might not be current. You may need to update your projects accordingly.</p>
+</div>
+<h2 id="create-the-starter-aspnet-mvc-project" sourcefile="migration/mvc.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create the starter ASP.NET MVC project</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="26" sourceendlinenumber="26">To demonstrate the upgrade, we&#39;ll start by creating a ASP.NET MVC app. Create it with the name <em>WebApp1</em> so the namespace will match the ASP.NET Core project we create in the next step.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="28" sourceendlinenumber="28"><img src="mvc/_static/new-project.png" alt="Visual Studio New Project dialog" sourcefile="migration/mvc.md" sourcestartlinenumber="28" sourceendlinenumber="28"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="30" sourceendlinenumber="30"><img src="mvc/_static/new-project-select-mvc-template.png" alt="New Web Application dialog: MVC project template selected in ASP.NET templates panel" sourcefile="migration/mvc.md" sourcestartlinenumber="30" sourceendlinenumber="30"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="32" sourceendlinenumber="32"><em>Optional:</em> Change the name of the Solution from <em>WebApp1</em> to <em>Mvc5</em>. Visual Studio will display the new solution name (<em>Mvc5</em>), which will make it easier to tell this project from the next project.</p>
+<h2 id="create-the-aspnet-core-project" sourcefile="migration/mvc.md" sourcestartlinenumber="34" sourceendlinenumber="34">Create the ASP.NET Core project</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="36" sourceendlinenumber="36">Create a new <em>empty</em> ASP.NET Core web app with the same name as the previous project (<em>WebApp1</em>) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. You&#39;ll have to create this project in a different directory than the previous project to use the same name.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="mvc/_static/new_core.png" alt="New Project dialog" sourcefile="migration/mvc.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="40" sourceendlinenumber="40"><img src="mvc/_static/new-project-select-empty-aspnet5-template.png" alt="New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel" sourcefile="migration/mvc.md" sourcestartlinenumber="40" sourceendlinenumber="40"></p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="42" sourceendlinenumber="42">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="42" sourceendlinenumber="42"><em>Optional:</em> Create a new ASP.NET Core app using the <em>Web Application</em> project template. Name the project <em>WebApp1</em>, and select an authentication option of <strong>Individual User Accounts</strong>. Rename this app to <em>FullAspNetCore</em>. Creating this project will save you time in the conversion. You can look at the template-generated code to see the end result or to copy code to the conversion project. It&#39;s also helpful when you get stuck on a conversion step to compare with the template-generated project.</li>
+</ul>
+<h2 id="configure-the-site-to-use-mvc" sourcefile="migration/mvc.md" sourcestartlinenumber="44" sourceendlinenumber="44">Configure the site to use MVC</h2>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="46" sourceendlinenumber="60">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="46" sourceendlinenumber="48"><p sourcefile="migration/mvc.md" sourcestartlinenumber="46" sourceendlinenumber="46">Install the <code>Microsoft.AspNetCore.Mvc</code> and <code>Microsoft.AspNetCore.StaticFiles</code> NuGet packages.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="48" sourceendlinenumber="48"><code>Microsoft.AspNetCore.Mvc</code> is the ASP.NET Core MVC framework. <code>Microsoft.AspNetCore.StaticFiles</code> is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see <a href="../fundamentals/static-files.html" data-raw-source="[Working with Static Files](../fundamentals/static-files.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="48" sourceendlinenumber="48">Working with Static Files</a>).</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="50" sourceendlinenumber="54"><p sourcefile="migration/mvc.md" sourcestartlinenumber="50" sourceendlinenumber="50">Open the <em>.csproj</em> file (right-click the project in <strong>Solution Explorer</strong> and select <strong>Edit WebApp1.csproj</strong>) and add a <code>PrepareForPublish</code> target:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="52" sourceendlinenumber="52"><code class="lang-xml" name="Main">&lt;Target Name=&quot;PrepublishScript&quot; BeforeTargets=&quot;PrepareForPublish&quot;&gt;
+  &lt;Exec Command=&quot;bower install&quot; /&gt;
+&lt;/Target&gt;
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="54" sourceendlinenumber="54">The <code>PrepareForPublish</code> target is needed for acquiring client-side libraries via Bower. We&#39;ll talk about that later.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="56" sourceendlinenumber="60"><p sourcefile="migration/mvc.md" sourcestartlinenumber="56" sourceendlinenumber="56">Open the <em>Startup.cs</em> file and change the code to match the following:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="58" sourceendlinenumber="58"><code class="lang-csharp" name="Main" highlight-lines="14,27-34">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace WebApp1
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =&gt;
+            {
+                routes.MapRoute(
+                    name: &quot;default&quot;,
+                    template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+            });
+        }
+    }
+}
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="60" sourceendlinenumber="60">The <code>UseStaticFiles</code> extension method adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. The <code>UseMvc</code> extension method adds routing. For more information, see <a href="../fundamentals/startup.html" data-raw-source="[Application Startup](../fundamentals/startup.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="60" sourceendlinenumber="60">Application Startup</a> and <a href="../fundamentals/routing.html" data-raw-source="[Routing](../fundamentals/routing.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="60" sourceendlinenumber="60">Routing</a>.</p>
+</li>
+</ul>
+<h2 id="add-a-controller-and-view" sourcefile="migration/mvc.md" sourcestartlinenumber="62" sourceendlinenumber="62">Add a controller and view</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="64" sourceendlinenumber="64">In this section, you&#39;ll add a minimal controller and view to serve as placeholders for the ASP.NET MVC controller and views you&#39;ll migrate in the next section.</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="66" sourceendlinenumber="68">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="66" sourceendlinenumber="66"><p sourcefile="migration/mvc.md" sourcestartlinenumber="66" sourceendlinenumber="66">Add a <em>Controllers</em> folder.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="68" sourceendlinenumber="68"><p sourcefile="migration/mvc.md" sourcestartlinenumber="68" sourceendlinenumber="68">Add an <strong>MVC controller class</strong> with the name <em>HomeController.cs</em> to the <em>Controllers</em> folder.</p>
+</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="70" sourceendlinenumber="70"><img src="mvc/_static/add_mvc_ctl.png" alt="Add New Item dialog" sourcefile="migration/mvc.md" sourcestartlinenumber="70" sourceendlinenumber="70"></p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="72" sourceendlinenumber="76">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="72" sourceendlinenumber="72"><p sourcefile="migration/mvc.md" sourcestartlinenumber="72" sourceendlinenumber="72">Add a <em>Views</em> folder.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="74" sourceendlinenumber="74"><p sourcefile="migration/mvc.md" sourcestartlinenumber="74" sourceendlinenumber="74">Add a <em>Views/Home</em> folder.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="76" sourceendlinenumber="76"><p sourcefile="migration/mvc.md" sourcestartlinenumber="76" sourceendlinenumber="76">Add an <em>Index.cshtml</em> MVC view page to the <em>Views/Home</em> folder.</p>
+</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="78" sourceendlinenumber="78"><img src="mvc/_static/view.png" alt="Add New Item dialog" sourcefile="migration/mvc.md" sourcestartlinenumber="78" sourceendlinenumber="78"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="80" sourceendlinenumber="80">The project structure is shown below:</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="82" sourceendlinenumber="82"><img src="mvc/_static/project-structure-controller-view.png" alt="Solution Explorer showing files and folders of WebApp1" sourcefile="migration/mvc.md" sourcestartlinenumber="82" sourceendlinenumber="82"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="84" sourceendlinenumber="84">Replace the contents of the <em>Views/Home/Index.cshtml</em> file with the following:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="86" sourceendlinenumber="88"><code class="lang-html">&lt;h1&gt;Hello world!&lt;/h1&gt;
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="90" sourceendlinenumber="90">Run the app.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="92" sourceendlinenumber="92"><img src="mvc/_static/hello-world.png" alt="Web application open in Microsoft Edge" sourcefile="migration/mvc.md" sourcestartlinenumber="92" sourceendlinenumber="92"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="94" sourceendlinenumber="94">See <a href="../mvc/controllers/index.html" data-raw-source="[Controllers](../mvc/controllers/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="94" sourceendlinenumber="94">Controllers</a> and <a href="../mvc/views/index.html" data-raw-source="[Views](../mvc/views/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="94" sourceendlinenumber="94">Views</a> for more information.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="96" sourceendlinenumber="96">Now that we have a minimal working ASP.NET Core project, we can start migrating functionality from the ASP.NET MVC project. We will need to move the following:</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="98" sourceendlinenumber="110">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="98" sourceendlinenumber="98"><p sourcefile="migration/mvc.md" sourcestartlinenumber="98" sourceendlinenumber="98">client-side content (CSS, fonts, and scripts)</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="100" sourceendlinenumber="100"><p sourcefile="migration/mvc.md" sourcestartlinenumber="100" sourceendlinenumber="100">controllers</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="102" sourceendlinenumber="102"><p sourcefile="migration/mvc.md" sourcestartlinenumber="102" sourceendlinenumber="102">views</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="104" sourceendlinenumber="104"><p sourcefile="migration/mvc.md" sourcestartlinenumber="104" sourceendlinenumber="104">models</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="106" sourceendlinenumber="106"><p sourcefile="migration/mvc.md" sourcestartlinenumber="106" sourceendlinenumber="106">bundling</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="108" sourceendlinenumber="108"><p sourcefile="migration/mvc.md" sourcestartlinenumber="108" sourceendlinenumber="108">filters</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="110" sourceendlinenumber="110"><p sourcefile="migration/mvc.md" sourcestartlinenumber="110" sourceendlinenumber="110">Log in/out, identity (This will be done in the next tutorial.)</p>
+</li>
+</ul>
+<h2 id="controllers-and-views" sourcefile="migration/mvc.md" sourcestartlinenumber="112" sourceendlinenumber="112">Controllers and views</h2>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="114" sourceendlinenumber="122">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="114" sourceendlinenumber="114"><p sourcefile="migration/mvc.md" sourcestartlinenumber="114" sourceendlinenumber="114">Copy each of the methods from the ASP.NET MVC <code>HomeController</code> to the new <code>HomeController</code>. Note that in ASP.NET MVC, the built-in template&#39;s controller action method return type is <a href="https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx" data-raw-source="[ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)" sourcefile="migration/mvc.md" sourcestartlinenumber="114" sourceendlinenumber="114">ActionResult</a>; in ASP.NET Core MVC, the action methods return <code>IActionResult</code> instead. <code>ActionResult</code> implements <code>IActionResult</code>, so there is no need to change the return type of your action methods.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="116" sourceendlinenumber="116"><p sourcefile="migration/mvc.md" sourcestartlinenumber="116" sourceendlinenumber="116">Copy the <em>About.cshtml</em>, <em>Contact.cshtml</em>, and <em>Index.cshtml</em> Razor view files from the ASP.NET MVC project to the ASP.NET Core project.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="118" sourceendlinenumber="122"><p sourcefile="migration/mvc.md" sourcestartlinenumber="118" sourceendlinenumber="118">Run the ASP.NET Core app and test each method. We haven&#39;t migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won&#39;t have the layout file generated links for the <code>About</code> and <code>Contact</code> views, so you&#39;ll have to invoke them from the browser (replace <strong>4492</strong> with the port number used in your project).</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="120" sourceendlinenumber="122">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="120" sourceendlinenumber="120"><p sourcefile="migration/mvc.md" sourcestartlinenumber="120" sourceendlinenumber="120"><code>http://localhost:4492/home/about</code></p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="122" sourceendlinenumber="122"><p sourcefile="migration/mvc.md" sourcestartlinenumber="122" sourceendlinenumber="122"><code>http://localhost:4492/home/contact</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="124" sourceendlinenumber="124"><img src="mvc/_static/contact-page.png" alt="Contact page" sourcefile="migration/mvc.md" sourcestartlinenumber="124" sourceendlinenumber="124"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="126" sourceendlinenumber="126">Note the lack of styling and menu items. We&#39;ll fix that in the next section.</p>
+<h2 id="static-content" sourcefile="migration/mvc.md" sourcestartlinenumber="128" sourceendlinenumber="128">Static content</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="130" sourceendlinenumber="130">In previous versions of  ASP.NET MVC, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the <em>wwwroot</em> folder. You&#39;ll want to copy the static content from your old ASP.NET MVC app to the <em>wwwroot</em> folder in your ASP.NET Core project. In this sample conversion:</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="132" sourceendlinenumber="132">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="132" sourceendlinenumber="132">Copy the <em>favicon.ico</em> file from the old MVC project to the <em>wwwroot</em> folder in the ASP.NET Core project.</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="134" sourceendlinenumber="134">The old ASP.NET MVC project uses <a href="http://getbootstrap.com/" data-raw-source="[Bootstrap](http://getbootstrap.com/)" sourcefile="migration/mvc.md" sourcestartlinenumber="134" sourceendlinenumber="134">Bootstrap</a> for its styling and stores the Bootstrap files in the <em>Content</em> and <em>Scripts</em> folders. The template, which generated the old ASP.NET MVC project, references Bootstrap in the layout file (<em>Views/Shared/_Layout.cshtml</em>). You could copy the <em>bootstrap.js</em> and <em>bootstrap.css</em> files from the ASP.NET MVC project to the <em>wwwroot</em> folder in the new project, but that approach doesn&#39;t use the improved mechanism for managing client-side dependencies in ASP.NET Core.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="136" sourceendlinenumber="136">In the new project, we&#39;ll add support for Bootstrap (and other client-side libraries) using <a href="https://bower.io/" data-raw-source="[Bower](https://bower.io/)" sourcefile="migration/mvc.md" sourcestartlinenumber="136" sourceendlinenumber="136">Bower</a>:</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="140">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="140"><p sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="138">Add a <a href="https://bower.io/" data-raw-source="[Bower](https://bower.io/)" sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="138">Bower</a> configuration file named <em>bower.json</em> to the project root (Right-click on the project, and then <strong>Add &gt; New Item &gt; Bower Configuration File</strong>). Add <a href="http://getbootstrap.com/" data-raw-source="[Bootstrap](http://getbootstrap.com/)" sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="138">Bootstrap</a> and <a href="https://jquery.com/" data-raw-source="[jQuery](https://jquery.com/)" sourcefile="migration/mvc.md" sourcestartlinenumber="138" sourceendlinenumber="138">jQuery</a> to the file (see the highlighted lines below).</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="140" sourceendlinenumber="140"><code class="lang-json" name="Main" highlight-lines="5-6">{
+  &quot;name&quot;: &quot;asp.net&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;bootstrap&quot;: &quot;3.3.6&quot;,
+    &quot;jquery&quot;: &quot;2.2.0&quot;
+  }
+}
+</code></pre></li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="142" sourceendlinenumber="142">Upon saving the file, Bower will automatically download the dependencies to the <em>wwwroot/lib</em> folder. You can use the <strong>Search Solution Explorer</strong> box to find the path of the assets:</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="144" sourceendlinenumber="144"><img src="mvc/_static/search.png" alt="jquery assets shown in the Solution Explorer search results" sourcefile="migration/mvc.md" sourcestartlinenumber="144" sourceendlinenumber="144"></p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="146" sourceendlinenumber="146">See <a href="../client-side/bower.html" data-raw-source="[Manage Client-Side Packages with Bower](../client-side/bower.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="146" sourceendlinenumber="146">Manage Client-Side Packages with Bower</a> for more information.</p>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="148" sourceendlinenumber="148"><a name="migrate-layout-file"></a></p>
+<h2 id="migrate-the-layout-file" sourcefile="migration/mvc.md" sourcestartlinenumber="150" sourceendlinenumber="150">Migrate the layout file</h2>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="152" sourceendlinenumber="158">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="152" sourceendlinenumber="152"><p sourcefile="migration/mvc.md" sourcestartlinenumber="152" sourceendlinenumber="152">Copy the <em>_ViewStart.cshtml</em> file from the old ASP.NET MVC project&#39;s <em>Views</em> folder into the ASP.NET Core project&#39;s <em>Views</em> folder. The <em>_ViewStart.cshtml</em> file has not changed in ASP.NET Core MVC.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="154" sourceendlinenumber="154"><p sourcefile="migration/mvc.md" sourcestartlinenumber="154" sourceendlinenumber="154">Create a <em>Views/Shared</em> folder.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="156" sourceendlinenumber="156"><p sourcefile="migration/mvc.md" sourcestartlinenumber="156" sourceendlinenumber="156"><em>Optional:</em> Copy <em>_ViewImports.cshtml</em> from the <em>FullAspNetCore</em> MVC project&#39;s <em>Views</em> folder into the ASP.NET Core project&#39;s <em>Views</em> folder. Remove any namespace declaration in the <em>_ViewImports.cshtml</em> file. The <em>_ViewImports.cshtml</em> file provides namespaces for all the view files and brings in <a href="../mvc/views/tag-helpers/index.html" data-raw-source="[Tag Helpers](../mvc/views/tag-helpers/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="156" sourceendlinenumber="156">Tag Helpers</a>. Tag Helpers are used in the new layout file. The <em>_ViewImports.cshtml</em> file is new for ASP.NET Core.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="158" sourceendlinenumber="158"><p sourcefile="migration/mvc.md" sourcestartlinenumber="158" sourceendlinenumber="158">Copy the <em>_Layout.cshtml</em> file from the old ASP.NET MVC project&#39;s <em>Views/Shared</em> folder into the ASP.NET Core project&#39;s <em>Views/Shared</em> folder.</p>
+</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="160" sourceendlinenumber="160">Open <em>_Layout.cshtml</em> file and make the following changes (the completed code is shown below):</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="162" sourceendlinenumber="170">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="162" sourceendlinenumber="162"><p sourcefile="migration/mvc.md" sourcestartlinenumber="162" sourceendlinenumber="162">Replace <code>@Styles.Render(&quot;~/Content/css&quot;)</code> with a <code>&lt;link&gt;</code> element to load <em>bootstrap.css</em> (see below).</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="164" sourceendlinenumber="164"><p sourcefile="migration/mvc.md" sourcestartlinenumber="164" sourceendlinenumber="164">Remove <code>@Scripts.Render(&quot;~/bundles/modernizr&quot;)</code>.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="166" sourceendlinenumber="166"><p sourcefile="migration/mvc.md" sourcestartlinenumber="166" sourceendlinenumber="166">Comment out the <code>@Html.Partial(&quot;_LoginPartial&quot;)</code> line (surround the line with <code>@*...*@</code>). We&#39;ll return to it in a future tutorial.</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="168" sourceendlinenumber="168"><p sourcefile="migration/mvc.md" sourcestartlinenumber="168" sourceendlinenumber="168">Replace <code>@Scripts.Render(&quot;~/bundles/jquery&quot;)</code> with a <code>&lt;script&gt;</code> element (see below).</p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="170" sourceendlinenumber="170"><p sourcefile="migration/mvc.md" sourcestartlinenumber="170" sourceendlinenumber="170">Replace <code>@Scripts.Render(&quot;~/bundles/bootstrap&quot;)</code> with a <code>&lt;script&gt;</code> element (see below)..</p>
+</li>
+</ul>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="172" sourceendlinenumber="172">The replacement CSS link:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="174" sourceendlinenumber="176"><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="178" sourceendlinenumber="178">The replacement script tags:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="180" sourceendlinenumber="183"><code class="lang-html">&lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="185" sourceendlinenumber="185">The updated <em>_Layout.cshtml</em> file is shown below:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="187" sourceendlinenumber="187"><code class="lang-html" name="Main" highlight-lines="7,27,39-40">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;@ViewBag.Title - My ASP.NET Application&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;navbar-header&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                @Html.ActionLink(&quot;Application name&quot;, &quot;Index&quot;, &quot;Home&quot;, new { area = &quot;&quot; }, new { @class = &quot;navbar-brand&quot; })
+            &lt;/div&gt;
+            &lt;div class=&quot;navbar-collapse collapse&quot;&gt;
+                &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                    &lt;li&gt;@Html.ActionLink(&quot;Home&quot;, &quot;Index&quot;, &quot;Home&quot;)&lt;/li&gt;
+                    &lt;li&gt;@Html.ActionLink(&quot;About&quot;, &quot;About&quot;, &quot;Home&quot;)&lt;/li&gt;
+                    &lt;li&gt;@Html.ActionLink(&quot;Contact&quot;, &quot;Contact&quot;, &quot;Home&quot;)&lt;/li&gt;
+                &lt;/ul&gt;
+                @*@Html.Partial(&quot;_LoginPartial&quot;)*@
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;container body-content&quot;&gt;
+        @RenderBody()
+        &lt;hr /&gt;
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; @DateTime.Now.Year - My ASP.NET Application&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+    @RenderSection(&quot;scripts&quot;, required: false)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="189" sourceendlinenumber="189">View the site in the browser. It should now load correctly, with the expected styles in place.</p>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="191" sourceendlinenumber="191">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="191" sourceendlinenumber="191"><em>Optional:</em> You might want to try using the new layout file. For this project you can copy the layout file from the <em>FullAspNetCore</em> project. The new layout file uses <a href="../mvc/views/tag-helpers/index.html" data-raw-source="[Tag Helpers](../mvc/views/tag-helpers/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="191" sourceendlinenumber="191">Tag Helpers</a> and has other improvements.</li>
+</ul>
+<h2 id="configure-bundling--minification" sourcefile="migration/mvc.md" sourcestartlinenumber="193" sourceendlinenumber="193">Configure Bundling &amp; Minification</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="195" sourceendlinenumber="195">For information about how to configure bundling and minification, see <a href="../client-side/bundling-and-minification.html" data-raw-source="[Bundling and Minification](../client-side/bundling-and-minification.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="195" sourceendlinenumber="195">Bundling and Minification</a>.</p>
+<h2 id="solving-http-500-errors" sourcefile="migration/mvc.md" sourcestartlinenumber="197" sourceendlinenumber="197">Solving HTTP 500 errors</h2>
+<p sourcefile="migration/mvc.md" sourcestartlinenumber="199" sourceendlinenumber="199">There are many problems that can cause a HTTP 500 error message that contain no information on the source of the problem. For example, if the <em>Views/_ViewImports.cshtml</em> file contains a namespace that doesn&#39;t exist in your project, you&#39;ll get a HTTP 500 error. To get a detailed error message, add the following code:</p>
+<pre sourcefile="migration/mvc.md" sourcestartlinenumber="201" sourceendlinenumber="218"><code class="lang-csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    if (env.IsDevelopment())
+    {
+         app.UseDeveloperExceptionPage();
+    }
+
+    app.UseStaticFiles();
+
+    app.UseMvc(routes =&gt;
+    {
+        routes.MapRoute(
+            name: &quot;default&quot;,
+            template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+    });
+}
+</code></pre><p sourcefile="migration/mvc.md" sourcestartlinenumber="220" sourceendlinenumber="220">See <strong>Using the Developer Exception Page</strong> in <a href="../fundamentals/error-handling.html" data-raw-source="[Error Handling](../fundamentals/error-handling.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="220" sourceendlinenumber="220">Error Handling</a> for more information.</p>
+<h2 id="additional-resources" sourcefile="migration/mvc.md" sourcestartlinenumber="222" sourceendlinenumber="222">Additional Resources</h2>
+<ul sourcefile="migration/mvc.md" sourcestartlinenumber="224" sourceendlinenumber="226">
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="224" sourceendlinenumber="224"><p sourcefile="migration/mvc.md" sourcestartlinenumber="224" sourceendlinenumber="224"><a href="../client-side/index.html" data-raw-source="[Client-Side Development](../client-side/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="224" sourceendlinenumber="224">Client-Side Development</a></p>
+</li>
+<li sourcefile="migration/mvc.md" sourcestartlinenumber="226" sourceendlinenumber="226"><p sourcefile="migration/mvc.md" sourcestartlinenumber="226" sourceendlinenumber="226"><a href="../mvc/views/tag-helpers/index.html" data-raw-source="[Tag Helpers](../mvc/views/tag-helpers/index.md)" sourcefile="migration/mvc.md" sourcestartlinenumber="226" sourceendlinenumber="226">Tag Helpers</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/migration/mvc.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

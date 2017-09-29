@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enabling authentication using Facebook, Google and other external </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enabling authentication using Facebook, Google and other external ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/social/index">
+<h1 id="enabling-authentication-using-facebook-google-and-other-external-providers">Enabling authentication using Facebook, Google and other external providers</h1>
+
+<p><a name="security-authentication-social-logins"></a></p>
+<p>By <a href="https://github.com/01binary">Valeriy Novytskyy</a> and <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>This tutorial demonstrates how to build an ASP.NET Core 2.x app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.</p>
+<p><a href="facebook-logins.html">Facebook</a>, <a href="twitter-logins.html">Twitter</a>, <a href="google-logins.html">Google</a>, and <a href="microsoft-logins.html">Microsoft</a> providers are covered in the following sections. Other providers are available in third-party packages such as <a href="https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers">AspNet.Security.OAuth.Providers</a> and <a href="https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers">AspNet.Security.OpenId.Providers</a>.</p>
+<p><img src="index/_static/social.png" alt="Social media icons for Facebook, Twitter, Google plus, and Windows"></p>
+<p>Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by <a href="https://www.facebook.com/unsupportedbrowser">Facebook</a> and <a href="https://dev.twitter.com/resources/case-studies">Twitter</a>.</p>
+<p>Note: Packages presented here abstract a great deal of complexity of the OAuth authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2">Introduction to OAuth 2</a> or <a href="http://www.bubblecode.net/2016/01/22/understanding-oauth2/">Understanding OAuth 2</a>. Some issues can be resolved by looking at the <a href="https://github.com/aspnet/Security/tree/dev/src">ASP.NET Core source code for the provider packages</a>.</p>
+<h2 id="create-a-new-aspnet-core-project">Create a New ASP.NET Core Project</h2>
+<ul>
+<li><p>In Visual Studio 2017, create a new project from the Start Page, or via <strong>File &gt; New &gt; Project</strong>.</p>
+</li>
+<li><p>Select the <strong>ASP.NET Core Web Application</strong> template available in <strong>Visual C# &gt; .NET Core</strong> category:</p>
+</li>
+</ul>
+<p><img src="index/_static/new-project.png" alt="New Project dialog"></p>
+<ul>
+<li>Tap <strong>Web Application</strong> and verify <strong>Authentication</strong> is set to <strong>Individual User Accounts</strong>:</li>
+</ul>
+<p><img src="index/_static/select-project.png" alt="New Web Application dialog"></p>
+<p>Note: This tutorial applies to ASP.NET Core 2.0 SDK version which can be selected at the top of the wizard.</p>
+<h2 id="require-ssl">Require SSL</h2>
+<p>OAuth 2.0 requires the use of SSL for authentication over the HTTPS protocol.</p>
+<p>Note: Projects created using <strong>Web Application</strong> or <strong>Web API</strong> project templates for ASP.NET Core 2.x are automatically configured to enable SSL and launch with https URL if the <strong>Individual User Accounts</strong> option was selected on <strong>Change Authentication dialog</strong> in the project wizard as shown above.</p>
+<ul>
+<li>Require SSL on your site by following the steps in <a class="xref" href="../../enforcing-ssl.html">Enforcing SSL in an ASP.NET Core app</a> topic.</li>
+</ul>
+<h2 id="use-secretmanager-to-store-tokens-assigned-by-login-providers">Use SecretManager to store tokens assigned by login providers</h2>
+<p>Social login providers assign <strong>Application Id</strong> and <strong>Application Secret</strong> tokens during the registration process (exact naming varies by provider).</p>
+<p>These values are effectively the <em>user name</em> and <em>password</em> your application uses to access their API, and constitute the &quot;secrets&quot; that can be linked to your application configuration with the help of <strong>Secret Manager</strong> instead of storing them in configuration files directly or hard-coding them.</p>
+<p>Follow the steps in <a class="xref" href="../../app-secrets.html">Safe storage of app secrets during development in ASP.NET Core</a> topic so that you can store tokens assigned by each login provider below.</p>
+<h2 id="setup-login-providers-required-by-your-application">Setup login providers required by your application</h2>
+<p>Use the following topics to configure your application to use the respective providers:</p>
+<ul>
+<li><a href="facebook-logins.html">Facebook</a> instructions</li>
+<li><a href="twitter-logins.html">Twitter</a> instructions</li>
+<li><a href="google-logins.html">Google</a> instructions</li>
+<li><a href="microsoft-logins.html">Microsoft</a> instructions</li>
+<li><a href="other-logins.html">Other provider</a> instructions</li>
+</ul>
+<h2 id="optionally-set-password">Optionally set password</h2>
+<p>When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won&#39;t be able to log in to the web site.</p>
+<p>To create a password and sign in using your email that you set during the sign in process with external providers:</p>
+<ul>
+<li>Tap the <strong>Hello <email alias=""></email></strong> link at the top right corner to navigate to the <strong>Manage</strong> view.</li>
+</ul>
+<p><img src="index/_static/pass1a.png" alt="Web application Manage view"></p>
+<ul>
+<li>Tap <strong>Create</strong></li>
+</ul>
+<p><img src="index/_static/pass2a.png" alt="Set your password page"></p>
+<ul>
+<li>Set a valid password and you can use this to sign in with your email.</li>
+</ul>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><p>This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.</p>
+</li>
+<li><p>Reference provider-specific pages to configure logins for the providers required by your app.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/social/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

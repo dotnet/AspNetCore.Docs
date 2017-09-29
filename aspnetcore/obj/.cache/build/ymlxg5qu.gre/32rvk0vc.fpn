@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Google external login setup in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Google external login setup in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/google-logins">
+<h1 id="configuring-google-authentication-in-aspnet-core" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="14" sourceendlinenumber="14">Configuring Google authentication in ASP.NET Core</h1>
+
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="16" sourceendlinenumber="16"><a name="security-authentication-google-logins"></a></p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/01binary" data-raw-source="[Valeriy Novytskyy](https://github.com/01binary)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="18" sourceendlinenumber="18">Valeriy Novytskyy</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="18" sourceendlinenumber="18">Rick Anderson</a></p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core 2.0 project created on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">previous page</a>. We start by following the <a href="https://developers.google.com/identity/sign-in/web/devconsole-project" data-raw-source="[official steps](https://developers.google.com/identity/sign-in/web/devconsole-project)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">official steps</a> to create a new app in Google API Console.</p>
+<h2 id="create-the-app-in-google-api-console" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="22" sourceendlinenumber="22">Create the app in Google API Console</h2>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">Navigate to <a href="https://console.developers.google.com/projectselector/apis/library" data-raw-source="[https://console.developers.google.com/projectselector/apis/library](https://console.developers.google.com/projectselector/apis/library)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">https://console.developers.google.com/projectselector/apis/library</a> and sign in. If you don&#39;t already have a Google account, use <strong>More options</strong> &gt; <strong><a href="https://accounts.google.com/SignUpWithoutGmail?service=cloudconsole&amp;continue=https%3A%2F%2Fconsole.developers.google.com%2Fprojectselector%2Fapis%2Flibrary&amp;ltmpl=api" data-raw-source="[Create account](https://accounts.google.com/SignUpWithoutGmail?service=cloudconsole&amp;continue=https%3A%2F%2Fconsole.developers.google.com%2Fprojectselector%2Fapis%2Flibrary&amp;ltmpl=api)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create account</a></strong> link to create one:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26"><img src="index/_static/GoogleConsoleLogin.png" alt="Google API Console" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28">You are redirected to <strong>API Manager Library</strong> page:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30"><img src="index/_static/GoogleConsoleSwitchboard.png" alt="API Manager Library page" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32">Tap <strong>Create</strong> and enter your <strong>Project name</strong>:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34"><img src="index/_static/GoogleConsoleNewProj.png" alt="New Project dialog" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36">After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. Find <strong>Google+ API</strong> in the list and click on its link to add the API feature:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="index/_static/GoogleConsoleChooseApi.png" alt="API Manager Library page" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40">The page for the newly added API is displayed. Tap <strong>Enable</strong> to add Google+ sign in feature to your app:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42"><img src="index/_static/GoogleConsoleEnableApi.png" alt="API Manager Google+API page" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44">After enabling the API, tap <strong>Create credentials</strong> to configure the secrets:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="46" sourceendlinenumber="46"><img src="index/_static/GoogleConsoleGoCredentials.png" alt="API Manager Google+API page" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="46" sourceendlinenumber="46"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="48" sourceendlinenumber="51">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="48" sourceendlinenumber="51">Choose:<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="49" sourceendlinenumber="51">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="49" sourceendlinenumber="49"><strong>Google+ API</strong></li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="50" sourceendlinenumber="50"><strong>Web server (e.g. node.js, Tomcat)</strong>, and</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="51" sourceendlinenumber="51"><strong>User data</strong>:</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="53" sourceendlinenumber="53"><img src="index/_static/GoogleConsoleChooseCred.png" alt="API Manager Credentials page: Find out what kind of credentials you need panel" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="53" sourceendlinenumber="53"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="55" sourceendlinenumber="55">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="55" sourceendlinenumber="55">Tap <strong>What credentials do I need?</strong> which takes you to the second step of app configuration, <strong>Create an OAuth 2.0 client ID</strong>:</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="57" sourceendlinenumber="57"><img src="index/_static/GoogleConsoleCreateClient.png" alt="API Manager Credentials page: Create an OAuth 2.0 client ID" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="57" sourceendlinenumber="57"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="59" sourceendlinenumber="65">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="59" sourceendlinenumber="59"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="59" sourceendlinenumber="59">Because we are creating a Google+ project with just one feature (sign in), we can enter the same <strong>Name</strong> for the OAuth 2.0 client ID as the one we used for the project.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="61" sourceendlinenumber="61"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="61" sourceendlinenumber="61">Enter your development URI with <em>/signin-google</em> appended into the <strong>Authorized redirect URIs</strong> field (for example: <code>https://localhost:44320/signin-google</code>). The Google authentication configured later in this tutorial will automatically handle requests at <em>/signin-google</em> route to implement the OAuth flow.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="63" sourceendlinenumber="63"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="63" sourceendlinenumber="63">Press TAB to add the <strong>Authorized redirect URIs</strong> entry.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="65" sourceendlinenumber="65"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="65" sourceendlinenumber="65">Tap <strong>Create client ID</strong>, which takes you to the third step, <strong>Set up the OAuth 2.0 consent screen</strong>:</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="67" sourceendlinenumber="67"><img src="index/_static/GoogleConsoleAddCred.png" alt="API Manager Credentials page: Set up the OAuth 2.0 consent screen" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="67" sourceendlinenumber="67"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="69" sourceendlinenumber="71">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="69" sourceendlinenumber="69"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="69" sourceendlinenumber="69">Enter your public facing <strong>Email address</strong> and the <strong>Product name</strong> shown for your app when Google+ prompts the user to sign in. Additional options are available under <strong>More customization options</strong>.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="71" sourceendlinenumber="71"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="71" sourceendlinenumber="71">Tap <strong>Continue</strong> to proceed to the last step, <strong>Download credentials</strong>:</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="73" sourceendlinenumber="73"><img src="index/_static/GoogleConsoleFinish.png" alt="API Manager Credentials page: Download credentials" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="73" sourceendlinenumber="73"></p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="75" sourceendlinenumber="77">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="75" sourceendlinenumber="75"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="75" sourceendlinenumber="75">Tap <strong>Download</strong> to save a JSON file with application secrets, and <strong>Done</strong> to complete creation of the new app.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="77" sourceendlinenumber="77"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="77" sourceendlinenumber="77">When deploying the site you&#39;ll need to revisit the <strong>Google Console</strong> and register a new public url.</p>
+</li>
+</ul>
+<h2 id="store-google-clientid-and-clientsecret" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="79" sourceendlinenumber="79">Store Google ClientID and ClientSecret</h2>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="81" sourceendlinenumber="81">Link sensitive settings like Google <code>Client ID</code> and <code>Client Secret</code> to your application configuration using the <a href="../../app-secrets.html" data-raw-source="[Secret Manager](../../app-secrets.md)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="81" sourceendlinenumber="81">Secret Manager</a>. For the purposes of this tutorial, name the tokens <code>Authentication:Google:ClientId</code> and <code>Authentication:Google:ClientSecret</code>.</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="83" sourceendlinenumber="83">The values for these tokens can be found in the JSON file downloaded in the previous step under <code>web.client_id</code> and <code>web.client_secret</code>.</p>
+<h2 id="configure-google-authentication" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="85" sourceendlinenumber="85">Configure Google Authentication</h2>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="87" sourceendlinenumber="87">The project template used in this tutorial ensures that <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google" data-raw-source="[Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="87" sourceendlinenumber="87">Microsoft.AspNetCore.Authentication.Google</a> package is installed.</p>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="89" sourceendlinenumber="92">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="89" sourceendlinenumber="89">To install this package with Visual Studio 2017, right-click on the project and select <strong>Manage NuGet Packages</strong>.</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="90" sourceendlinenumber="92"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="90" sourceendlinenumber="90">To install with .NET Core CLI, execute the following in your project directory:</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="92" sourceendlinenumber="92"><code>dotnet add package Microsoft.AspNetCore.Authentication.Google</code></p>
+</li>
+</ul>
+<div class="tabGroup" id="tabgroup_+H0u2wFuvS" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="94" sourceendlinenumber="120">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+H0u2wFuvS_aspnetcore2x" role="tab" aria-controls="tabpanel_+H0u2wFuvS_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="94" sourceendlinenumber="94">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+H0u2wFuvS_aspnetcore1x" role="tab" aria-controls="tabpanel_+H0u2wFuvS_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="112" sourceendlinenumber="112">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_+H0u2wFuvS_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="96" sourceendlinenumber="96">Add the Google service in the <code>ConfigureServices</code> method in <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="98" sourceendlinenumber="108"><code class="lang-csharp">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+services.AddAuthentication().AddGoogle(googleOptions =&gt;
+{
+    googleOptions.ClientId = Configuration[&quot;Authentication:Google:ClientId&quot;];
+    googleOptions.ClientSecret = Configuration[&quot;Authentication:Google:ClientSecret&quot;];
+});
+</code></pre><p sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1"><strong>Note:</strong> The call to <code>AddIdentity</code> configures the default scheme settings. The <code>AddAuthentication(string defaultScheme)</code> overload sets the <code>DefaultScheme</code> property; and, the <code>AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions)</code> overload sets only the properties you explicitly set. Either of these overloads should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions" data-raw-source="[AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions)" sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1">AuthenticationOptions</a> properties.</p>
+</section>
+<section id="tabpanel_+H0u2wFuvS_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="114" sourceendlinenumber="114">Add the Google middleware in the <code>Configure</code> method in <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="116" sourceendlinenumber="122"><code class="lang-csharp">app.UseGoogleAuthentication(new GoogleOptions()
+{
+    ClientId = Configuration[&quot;Authentication:Google:ClientId&quot;],
+    ClientSecret = Configuration[&quot;Authentication:Google:ClientSecret&quot;]
+});
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="126" sourceendlinenumber="126">See the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.googleoptions" data-raw-source="[GoogleOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.googleoptions)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="126" sourceendlinenumber="126">GoogleOptions</a> API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.</p>
+<h2 id="sign-in-with-google" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="128" sourceendlinenumber="128">Sign in with Google</h2>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="130" sourceendlinenumber="130">Run your application and click <strong>Log in</strong>. An option to sign in with Google appears:</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="132" sourceendlinenumber="132"><img src="index/_static/DoneGoogle.png" alt="Web application running in Microsoft Edge: User not authenticated" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="132" sourceendlinenumber="132"></p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="134" sourceendlinenumber="134">When you click on Google, you are redirected to Google for authentication:</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="136" sourceendlinenumber="136"><img src="index/_static/GoogleLogin.png" alt="Google authentication dialog" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="136" sourceendlinenumber="136"></p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="138" sourceendlinenumber="138">After entering your Google credentials, then you are redirected back to the web site where you can set your email.</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="140" sourceendlinenumber="140">You are now logged in using your Google credentials:</p>
+<p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="142" sourceendlinenumber="142"><img src="index/_static/Done.png" alt="Web application running in Microsoft Edge: User authenticated" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="142" sourceendlinenumber="142"></p>
+<h2 id="troubleshooting" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="144" sourceendlinenumber="144">Troubleshooting</h2>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="146" sourceendlinenumber="148">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="146" sourceendlinenumber="146">If you receive a <code>403 (Forbidden)</code> error page from your own app when running in development mode (or break into the debugger with the same error), ensure that <strong>Google+ API</strong> has been enabled in the <strong>API Manager Library</strong> by following the steps listed <a href="#create-the-app-in-google-api-console" data-raw-source="[earlier on this page](#create-the-app-in-google-api-console)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="146" sourceendlinenumber="146">earlier on this page</a>. If the sign in doesn&#39;t work and you aren&#39;t getting any errors, switch to development mode to make the issue easier to debug.</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="147" sourceendlinenumber="147"><strong>ASP.NET Core 2.x only:</strong> If Identity is not configured by calling <code>services.AddIdentity</code> in <code>ConfigureServices</code>, attempting to authenticate will result in <em>ArgumentException: The &#39;SignInScheme&#39; option must be provided</em>. The project template used in this tutorial ensures that this is done.</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="148" sourceendlinenumber="148">If the site database has not been created by applying the initial migration, you will get <em>A database operation failed while processing the request</em> error. Tap <strong>Apply Migrations</strong> to create the database and refresh to continue past the error.</li>
+</ul>
+<h2 id="next-steps" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="150" sourceendlinenumber="150">Next steps</h2>
+<ul sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="152" sourceendlinenumber="156">
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="152" sourceendlinenumber="152"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="152" sourceendlinenumber="152">This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="152" sourceendlinenumber="152">previous page</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="154" sourceendlinenumber="154"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="154" sourceendlinenumber="154">Once you publish your web site to Azure web app, you should reset the <code>ClientSecret</code> in the Google API Console.</p>
+</li>
+<li sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="156" sourceendlinenumber="156"><p sourcefile="security/authentication/social/google-logins.md" sourcestartlinenumber="156" sourceendlinenumber="156">Set the <code>Authentication:Google:ClientId</code> and <code>Authentication:Google:ClientSecret</code> as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/social/google-logins.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

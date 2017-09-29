@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Host in a Windows Service </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Host in a Windows Service ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="hosting/windows-service">
+<h1 id="host-an-aspnet-core-app-in-a-windows-service" sourcefile="hosting/windows-service.md" sourcestartlinenumber="16" sourceendlinenumber="16">Host an ASP.NET Core app in a Windows Service</h1>
+
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a></p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="20" sourceendlinenumber="20">The recommended way to host an ASP.NET Core app on Windows when you don&#39;t use IIS is to run it in a <a href="https://docs.microsoft.com/dotnet/framework/windows-services/introduction-to-windows-service-applications" data-raw-source="[Windows Service](https://docs.microsoft.com/dotnet/framework/windows-services/introduction-to-windows-service-applications)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="20" sourceendlinenumber="20">Windows Service</a>. That way it can automatically start after reboots and crashes, without waiting for someone to log in.</p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="22" sourceendlinenumber="22">View or download sample code</a> See the <a href="#next-steps" data-raw-source="[Next Steps](#next-steps)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="22" sourceendlinenumber="22">Next Steps</a> section for instructions on how to run it.</p>
+<h2 id="prerequisites" sourcefile="hosting/windows-service.md" sourcestartlinenumber="24" sourceendlinenumber="24">Prerequisites</h2>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="26" sourceendlinenumber="32">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="26" sourceendlinenumber="30"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="26" sourceendlinenumber="26">The app must run on the .NET framework runtime.  In the <em>.csproj</em> file, specify appropriate values for <a href="https://docs.microsoft.com/nuget/schema/target-frameworks" data-raw-source="[TargetFramework](https://docs.microsoft.com/nuget/schema/target-frameworks)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="26" sourceendlinenumber="26">TargetFramework</a> and <a href="https://docs.microsoft.com/dotnet/articles/core/rid-catalog" data-raw-source="[RuntimeIdentifier](https://docs.microsoft.com/dotnet/articles/core/rid-catalog)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="26" sourceendlinenumber="26">RuntimeIdentifier</a>. Here&#39;s an example:</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="28" sourceendlinenumber="28"><code class="lang-xml">&lt;PropertyGroup&gt;
+  &lt;TargetFramework&gt;net452&lt;/TargetFramework&gt;
+  &lt;RuntimeIdentifier&gt;win7-x86&lt;/RuntimeIdentifier&gt;
+&lt;/PropertyGroup&gt;
+</code></pre><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="30" sourceendlinenumber="30">When creating a project in Visual Studio, use the <strong>ASP.NET Core Application (.NET Framework)</strong> template.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="32" sourceendlinenumber="32"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="32" sourceendlinenumber="32">If the app will get requests from the internet (not just from an internal network), it must use the <a class="xref" href="../fundamentals/servers/weblistener.html" data-raw-source="[WebListener](xref:fundamentals/servers/weblistener)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="32" sourceendlinenumber="32">WebListener</a> web server rather than <a class="xref" href="../fundamentals/servers/kestrel.html" data-raw-source="[Kestrel](xref:fundamentals/servers/kestrel)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="32" sourceendlinenumber="32">Kestrel</a>.  Kestrel must be used with IIS for edge deployments.  For more information, see <a class="xref" href="../fundamentals/servers/kestrel.html#when-to-use-kestrel-with-a-reverse-proxy" data-raw-source="[When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="32" sourceendlinenumber="32">When to use Kestrel with a reverse proxy</a>.</p>
+</li>
+</ul>
+<h2 id="getting-started" sourcefile="hosting/windows-service.md" sourcestartlinenumber="34" sourceendlinenumber="34">Getting started</h2>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="36" sourceendlinenumber="36">This section explains the minimum changes required to set up an existing ASP.NET Core project to run in a service.</p>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="38" sourceendlinenumber="68">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="38" sourceendlinenumber="38"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="38" sourceendlinenumber="38">Install the NuGet package <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/" data-raw-source="[Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="38" sourceendlinenumber="38">Microsoft.AspNetCore.Hosting.WindowsServices</a>.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="40" sourceendlinenumber="46"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="40" sourceendlinenumber="40">Make the following changes in <code>Program.Main</code>:</p>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="42" sourceendlinenumber="44">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="42" sourceendlinenumber="42"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="42" sourceendlinenumber="42">Call <code>host.RunAsService</code> instead of <code>host.Run</code>.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="44" sourceendlinenumber="44"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="44" sourceendlinenumber="44">If your code calls <code>UseContentRoot</code>, use a path to the publish location instead of <code>Directory.GetCurrentDirectory()</code> </p>
+</li>
+</ul>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="46" sourceendlinenumber="46"><code class="lang-csharp" highlight-lines="3-4,8,14">public static void Main(string[] args)
+{
+    var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+    var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+
+    var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(pathToContentRoot)
+    .UseIISIntegration()
+    .UseStartup&lt;Startup&gt;()
+    .UseApplicationInsights()
+    .Build();
+
+    host.RunAsService();
+}
+</code></pre></li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="48" sourceendlinenumber="50"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="48" sourceendlinenumber="48">Publish the application to a folder.</p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="50" sourceendlinenumber="50">Use <a href="https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish" data-raw-source="[dotnet publish](https://docs.microsoft.com/dotnet/articles/core/tools/dotnet-publish)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="50" sourceendlinenumber="50">dotnet publish</a> or a <a class="xref" href="../publishing/web-publishing-vs.html" data-raw-source="[Visual Studio publish profile](xref:publishing/web-publishing-vs)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="50" sourceendlinenumber="50">Visual Studio publish profile</a> that publishes to a folder.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="52" sourceendlinenumber="68"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="52" sourceendlinenumber="52">Test by creating and starting the service.</p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="54" sourceendlinenumber="54">Open an administrator command prompt window to use the <a href="https://technet.microsoft.com/library/bb490995" data-raw-source="[sc.exe](https://technet.microsoft.com/library/bb490995)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="54" sourceendlinenumber="54">sc.exe</a> command-line tool to create and start a service.  </p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="56" sourceendlinenumber="56">If you name your service MyService, you publish your app to <code>c:\svc</code>, and the app itself is named AspNetCoreService, the commands would look like this:</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="58" sourceendlinenumber="61"><code class="lang-console">sc create MyService binPath=&quot;C:\Svc\AspNetCoreService.exe&quot;
+sc start MyService
+</code></pre><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="62" sourceendlinenumber="62">The <code>binPath</code> value is the path to your app&#39;s executable, including the executable filename itself.</p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="64" sourceendlinenumber="64"><img src="windows-service/_static/create-start.png" alt="Console window create and start example" sourcefile="hosting/windows-service.md" sourcestartlinenumber="64" sourceendlinenumber="64"></p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="66" sourceendlinenumber="66">When these commands finish, you can browse to the same path as when you run as a console app (by default, <code>http://localhost:5000</code>)</p>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="68" sourceendlinenumber="68"><img src="windows-service/_static/running-in-service.png" alt="Running in a service" sourcefile="hosting/windows-service.md" sourcestartlinenumber="68" sourceendlinenumber="68"></p>
+</li>
+</ul>
+<h2 id="provide-a-way-to-run-outside-of-a-service" sourcefile="hosting/windows-service.md" sourcestartlinenumber="71" sourceendlinenumber="71">Provide a way to run outside of a service</h2>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="73" sourceendlinenumber="73">It&#39;s easier to test and debug when you&#39;re running outside of a service, so it&#39;s customary to add code that calls <code>host.RunAsService</code> only under certain conditions.  For example, you could run as a console app if you get a <code>--console</code> command-line argument or if the debugger is attached.</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="75" sourceendlinenumber="75"><code class="lang-csharp">public static void Main(string[] args)
+{
+    bool isService = true;
+    if (Debugger.IsAttached || args.Contains(&quot;--console&quot;))
+    {
+        isService = false;
+    }
+
+    var pathToContentRoot = Directory.GetCurrentDirectory();
+    if (isService)
+    {
+        var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+        pathToContentRoot = Path.GetDirectoryName(pathToExe);
+    }
+
+    var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(pathToContentRoot)
+    .UseIISIntegration()
+    .UseStartup&lt;Startup&gt;()
+    .UseApplicationInsights()
+    .Build();
+
+    if (isService)
+    {
+        host.RunAsService();
+    }
+    else
+    {
+        host.Run();
+    }
+}
+</code></pre><h2 id="handle-stopping-and-starting-events" sourcefile="hosting/windows-service.md" sourcestartlinenumber="77" sourceendlinenumber="77">Handle stopping and starting events</h2>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="79" sourceendlinenumber="79">If you want to handle <code>OnStarting</code>, <code>OnStarted</code>, and <code>OnStopping</code> events, make the following additional changes:</p>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="81" sourceendlinenumber="91">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="81" sourceendlinenumber="83"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="81" sourceendlinenumber="81">Create a class that derives from <code>WebHostService</code>.</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="83" sourceendlinenumber="83"><code class="lang-csharp">internal class CustomWebHostService : WebHostService
+{
+    public CustomWebHostService(IWebHost host) : base(host)
+    {
+    }
+
+    protected override void OnStarting(string[] args)
+    {
+        base.OnStarting(args);
+    }
+
+    protected override void OnStarted()
+    {
+        base.OnStarted();
+    }
+
+    protected override void OnStopping()
+    {
+        base.OnStopping();
+    }
+}
+</code></pre></li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="85" sourceendlinenumber="87"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="85" sourceendlinenumber="85">Create an extension method for <code>IWebHost</code> that passes your custom <code>WebHostService</code> to <code>ServiceBase.Run</code>.</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="87" sourceendlinenumber="87"><code class="lang-csharp">public static class WebHostServiceExtensions
+{
+    public static void RunAsCustomService(this IWebHost host)
+    {
+        var webHostService = new CustomWebHostService(host);
+        ServiceBase.Run(webHostService);
+    }
+}
+</code></pre></li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="89" sourceendlinenumber="91"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="89" sourceendlinenumber="89">In <code>Program.Main</code> change call the new extension method instead of <code>host.RunAsService</code>.</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="91" sourceendlinenumber="91"><code class="lang-csharp" highlight-lines="26">public static void Main(string[] args)
+{
+    bool isService = true;
+    if (Debugger.IsAttached || args.Contains(&quot;--console&quot;))
+    {
+        isService = false;
+    }
+
+    var pathToContentRoot = Directory.GetCurrentDirectory();
+    if (isService)
+    {
+        var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+        pathToContentRoot = Path.GetDirectoryName(pathToExe);
+    }
+
+    var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(pathToContentRoot)
+    .UseIISIntegration()
+    .UseStartup&lt;Startup&gt;()
+    .UseApplicationInsights()
+    .Build();
+
+    if (isService)
+    {
+        host.RunAsCustomService();
+    }
+    else
+    {
+        host.Run();
+    }
+}
+</code></pre></li>
+</ul>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="93" sourceendlinenumber="93">If your custom <code>WebHostService</code> code needs to get a service from dependency injection (such as a logger), you can get it from the <code>Services</code> property of <code>IWebHost</code>.</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="95" sourceendlinenumber="95"><code class="lang-csharp" highlight-lines="7">internal class CustomWebHostService : WebHostService
+{
+    private ILogger _logger;
+
+    public CustomWebHostService(IWebHost host) : base(host)
+    {
+        _logger = host.Services.GetRequiredService&lt;ILogger&lt;CustomWebHostService&gt;&gt;();
+    }
+
+    protected override void OnStarting(string[] args)
+    {
+        _logger.LogDebug(&quot;OnStarting method called.&quot;);
+        base.OnStarting(args);
+    }
+
+    protected override void OnStarted()
+    {
+        _logger.LogDebug(&quot;OnStarted method called.&quot;);
+        base.OnStarted();
+    }
+
+    protected override void OnStopping()
+    {
+        _logger.LogDebug(&quot;OnStopping method called.&quot;);
+        base.OnStopping();
+    }
+}
+</code></pre><h2 id="next-steps" sourcefile="hosting/windows-service.md" sourcestartlinenumber="97" sourceendlinenumber="97">Next steps</h2>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="99" sourceendlinenumber="99">The <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample" data-raw-source="[sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/windows-service/sample)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="99" sourceendlinenumber="99">sample application</a> that accompanies this article is a simple MVC web app that has been modified as shown in preceding code examples.  To run it in a service, do the following steps:</p>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="101" sourceendlinenumber="112">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="101" sourceendlinenumber="101"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="101" sourceendlinenumber="101">Publish to <em>c:\svc</em>.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="103" sourceendlinenumber="103"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="103" sourceendlinenumber="103">Open an administrator window.</p>
+</li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="105" sourceendlinenumber="112"><p sourcefile="hosting/windows-service.md" sourcestartlinenumber="105" sourceendlinenumber="105">Enter the following commands:</p>
+<pre sourcefile="hosting/windows-service.md" sourcestartlinenumber="107" sourceendlinenumber="110"><code class="lang-console">sc create MyService binPath=&quot;c:\svc\aspnetcoreservice.exe&quot;
+sc start MyService
+</code></pre><ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="112" sourceendlinenumber="112">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="112" sourceendlinenumber="112">In a browser, go to <a href="http://localhost:5000" data-raw-source="http://localhost:5000" sourcefile="hosting/windows-service.md" sourcestartlinenumber="112" sourceendlinenumber="112">http://localhost:5000</a> to verify that it&#39;s running.</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="114" sourceendlinenumber="114">If the app doesn&#39;t start up as expected when running in a service, a quick way to make error messages accessible is to add a logging provider such as the <a class="xref" href="../fundamentals/logging.html#eventlog" data-raw-source="[Windows EventLog provider](xref:fundamentals/logging#eventlog)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="114" sourceendlinenumber="114">Windows EventLog provider</a>.</p>
+<h2 id="acknowledgments" sourcefile="hosting/windows-service.md" sourcestartlinenumber="116" sourceendlinenumber="116">Acknowledgments</h2>
+<p sourcefile="hosting/windows-service.md" sourcestartlinenumber="118" sourceendlinenumber="118">This article was written with the help of sources that were already published. The earliest and most useful of them were these:</p>
+<ul sourcefile="hosting/windows-service.md" sourcestartlinenumber="120" sourceendlinenumber="121">
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="120" sourceendlinenumber="120"><a href="https://stackoverflow.com/questions/37346383/hosting-asp-net-core-as-windows-service/37464074" data-raw-source="[Hosting ASP.NET Core as Windows service](https://stackoverflow.com/questions/37346383/hosting-asp-net-core-as-windows-service/37464074)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="120" sourceendlinenumber="120">Hosting ASP.NET Core as Windows service</a></li>
+<li sourcefile="hosting/windows-service.md" sourcestartlinenumber="121" sourceendlinenumber="121"><a href="https://dotnetthoughts.net/how-to-host-your-aspnet-core-in-a-windows-service/" data-raw-source="[How to host your ASP.NET Core in a Windows Service](https://dotnetthoughts.net/how-to-host-your-aspnet-core-in-a-windows-service/)" sourcefile="hosting/windows-service.md" sourcestartlinenumber="121" sourceendlinenumber="121">How to host your ASP.NET Core in a Windows Service</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/hosting/windows-service.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

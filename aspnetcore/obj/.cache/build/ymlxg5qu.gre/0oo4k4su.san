@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Twitter external login setup </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Twitter external login setup ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/twitter-logins">
+<h1 id="configuring-twitter-authentication" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="15" sourceendlinenumber="15">Configuring Twitter authentication</h1>
+
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="security-authentication-twitter-logins"></a></p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">By <a href="https://github.com/01binary" data-raw-source="[Valeriy Novytskyy](https://github.com/01binary)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">Valeriy Novytskyy</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">Rick Anderson</a></p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">This tutorial shows you how to enable your users to <a href="https://dev.twitter.com/web/sign-in/desktop-browser" data-raw-source="[sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">sign in with their Twitter account</a> using a sample ASP.NET Core 2.0 project created on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">previous page</a>.</p>
+<h2 id="create-the-app-in-twitter" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create the app in Twitter</h2>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">Navigate to <a href="https://apps.twitter.com/" data-raw-source="[https://apps.twitter.com/](https://apps.twitter.com/)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">https://apps.twitter.com/</a> and sign in. If you don&#39;t already have a Twitter account, use the <strong><a href="https://twitter.com/signup" data-raw-source="[Sign up now](https://twitter.com/signup)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">Sign up now</a></strong> link to create one. After signing in, the <strong>Application Management</strong> page is shown:</li>
+</ul>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="27" sourceendlinenumber="27"><img src="index/_static/TwitterAppManage.png" alt="Twitter Application Management open in Microsoft Edge" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="27" sourceendlinenumber="27"></p>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="29" sourceendlinenumber="29">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="29" sourceendlinenumber="29">Tap <strong>Create New App</strong> and fill out the application <strong>Name</strong>, <strong>Description</strong> and public <strong>Website</strong> URI (this can be temporary until you register the domain name):</li>
+</ul>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="31" sourceendlinenumber="31"><img src="index/_static/TwitterCreate.png" alt="Create an application page" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="31" sourceendlinenumber="31"></p>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="33" sourceendlinenumber="35">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="33" sourceendlinenumber="33"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="33" sourceendlinenumber="33">Enter your development URI with <em>/signin-twitter</em> appended into the <strong>Valid OAuth Redirect URIs</strong> field (for example: <code>https://localhost:44320/signin-twitter</code>). The Twitter authentication scheme configured later in this tutorial will automatically handle requests at <em>/signin-twitter</em> route to implement the OAuth flow.</p>
+</li>
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="35" sourceendlinenumber="35"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="35" sourceendlinenumber="35">Fill out the rest of the form and tap <strong>Create your Twitter application</strong>. New application details are displayed:</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="37" sourceendlinenumber="37"><img src="index/_static/TwitterAppDetails.png" alt="Details tab on Application page" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="37" sourceendlinenumber="37"></p>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="39" sourceendlinenumber="39">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="39" sourceendlinenumber="39">When deploying the site you&#39;ll need to revisit the <strong>Application Management</strong> page and register a new public URI.</li>
+</ul>
+<h2 id="storing-twitter-consumerkey-and-consumersecret" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="41" sourceendlinenumber="41">Storing Twitter ConsumerKey and ConsumerSecret</h2>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="43" sourceendlinenumber="43">Link sensitive settings like Twitter <code>Consumer Key</code> and <code>Consumer Secret</code> to your application configuration using the <a href="../../app-secrets.html" data-raw-source="[Secret Manager](../../app-secrets.md)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="43" sourceendlinenumber="43">Secret Manager</a>. For the purposes of this tutorial, name the tokens <code>Authentication:Twitter:ConsumerKey</code> and <code>Authentication:Twitter:ConsumerSecret</code>.</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="45" sourceendlinenumber="45">These tokens can be found on the <strong>Keys and Access Tokens</strong> tab after creating your new Twitter application:</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="47" sourceendlinenumber="47"><img src="index/_static/TwitterKeys.png" alt="Keys and Access Tokens tab" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="47" sourceendlinenumber="47"></p>
+<h2 id="configure-twitter-authentication" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="49" sourceendlinenumber="49">Configure Twitter Authentication</h2>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="51" sourceendlinenumber="51">The project template used in this tutorial ensures that <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter" data-raw-source="[Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="51" sourceendlinenumber="51">Microsoft.AspNetCore.Authentication.Twitter</a> package is already installed.</p>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="53" sourceendlinenumber="56">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="53" sourceendlinenumber="53">To install this package with Visual Studio 2017, right-click on the project and select <strong>Manage NuGet Packages</strong>.</li>
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="54" sourceendlinenumber="56"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="54" sourceendlinenumber="54">To install with .NET Core CLI, execute the following in your project directory:</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="56" sourceendlinenumber="56"> <code>dotnet add package Microsoft.AspNetCore.Authentication.Twitter</code></p>
+</li>
+</ul>
+<div class="tabGroup" id="tabgroup_9cFts33DuB" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="58" sourceendlinenumber="84">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9cFts33DuB_aspnetcore2x" role="tab" aria-controls="tabpanel_9cFts33DuB_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="58" sourceendlinenumber="58">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9cFts33DuB_aspnetcore1x" role="tab" aria-controls="tabpanel_9cFts33DuB_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="76" sourceendlinenumber="76">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_9cFts33DuB_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="60" sourceendlinenumber="60">Add the Twitter service in the <code>ConfigureServices</code> method in <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="62" sourceendlinenumber="72"><code class="lang-csharp">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+services.AddAuthentication().AddTwitter(twitterOptions =&gt;
+{
+    twitterOptions.ConsumerKey = Configuration[&quot;Authentication:Twitter:ConsumerKey&quot;];
+    twitterOptions.ConsumerSecret = Configuration[&quot;Authentication:Twitter:ConsumerSecret&quot;];
+});
+</code></pre><p sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1"><strong>Note:</strong> The call to <code>AddIdentity</code> configures the default scheme settings. The <code>AddAuthentication(string defaultScheme)</code> overload sets the <code>DefaultScheme</code> property; and, the <code>AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions)</code> overload sets only the properties you explicitly set. Either of these overloads should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions" data-raw-source="[AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions)" sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1">AuthenticationOptions</a> properties.</p>
+</section>
+<section id="tabpanel_9cFts33DuB_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="78" sourceendlinenumber="78">Add the Twitter middleware in the <code>Configure</code> method in <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="80" sourceendlinenumber="86"><code class="lang-csharp">app.UseTwitterAuthentication(new TwitterOptions()
+{
+    ConsumerKey = Configuration[&quot;Authentication:Twitter:ConsumerKey&quot;],
+    ConsumerSecret = Configuration[&quot;Authentication:Twitter:ConsumerSecret&quot;]
+});
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="90" sourceendlinenumber="90">See the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.twitteroptions" data-raw-source="[TwitterOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.twitteroptions)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="90" sourceendlinenumber="90">TwitterOptions</a> API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.</p>
+<h2 id="sign-in-with-twitter" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="92" sourceendlinenumber="92">Sign in with Twitter</h2>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="94" sourceendlinenumber="94">Run your application and click <strong>Log in</strong>. An option to sign in with Twitter appears:</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="96" sourceendlinenumber="96"><img src="index/_static/DoneTwitter.png" alt="Web application: User not authenticated" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="96" sourceendlinenumber="96"></p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="98" sourceendlinenumber="98">Clicking on <strong>Twitter</strong> redirects to Twitter for authentication:</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="100" sourceendlinenumber="100"><img src="index/_static/TwitterLogin.png" alt="Twitter authentication page" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="100" sourceendlinenumber="100"></p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="102" sourceendlinenumber="102">After entering your Twitter credentials, you are redirected back to the web site where you can set your email.</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="104" sourceendlinenumber="104">You are now logged in using your Twitter credentials:</p>
+<p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="106" sourceendlinenumber="106"><img src="index/_static/Done.png" alt="Web application: User authenticated" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="106" sourceendlinenumber="106"></p>
+<h2 id="troubleshooting" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="108" sourceendlinenumber="108">Troubleshooting</h2>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="110" sourceendlinenumber="111">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="110" sourceendlinenumber="110"><strong>ASP.NET Core 2.x only:</strong> If Identity is not configured by calling <code>services.AddIdentity</code> in <code>ConfigureServices</code>, attempting to authenticate will result in <em>ArgumentException: The &#39;SignInScheme&#39; option must be provided</em>. The project template used in this tutorial ensures that this is done.</li>
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="111" sourceendlinenumber="111">If the site database has not been created by applying the initial migration, you will get <em>A database operation failed while processing the request</em> error. Tap <strong>Apply Migrations</strong> to create the database and refresh to continue past the error.</li>
+</ul>
+<h2 id="next-steps" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="113" sourceendlinenumber="113">Next steps</h2>
+<ul sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="115" sourceendlinenumber="119">
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="115" sourceendlinenumber="115"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="115" sourceendlinenumber="115">This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="115" sourceendlinenumber="115">previous page</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="117" sourceendlinenumber="117"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="117" sourceendlinenumber="117">Once you publish your web site to Azure web app, you should reset the <code>ConsumerSecret</code> in the Twitter developer portal.</p>
+</li>
+<li sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="119" sourceendlinenumber="119"><p sourcefile="security/authentication/social/twitter-logins.md" sourcestartlinenumber="119" sourceendlinenumber="119">Set the <code>Authentication:Twitter:ConsumerKey</code> and <code>Authentication:Twitter:ConsumerSecret</code> as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/social/twitter-logins.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HTTP.sys web server implementation in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="HTTP.sys web server implementation in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/servers/httpsys">
+<h1 id="httpsys-web-server-implementation-in-aspnet-core">HTTP.sys web server implementation in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a> and <a href="https://github.com/Tratcher">Chris Ross</a></p>
+<div class="NOTE"><h5>Note</h5><p>This topic applies only to ASP.NET Core 2.0 and later. In earlier versions of ASP.NET Core, HTTP.sys is named <a class="xref" href="weblistener.html">WebListener</a>.</p>
+</div>
+<p>HTTP.sys is a <a href="index.html">web server for ASP.NET Core</a> that runs only on Windows. It&#39;s built on the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx">Http.Sys kernel mode driver</a>. HTTP.sys is an alternative to <a href="kestrel.html">Kestrel</a> that offers some features that Kestel doesn&#39;t. <strong>HTTP.sys can&#39;t be used with IIS or IIS Express, as it isn&#39;t compatible with the <a href="aspnet-core-module.html">ASP.NET Core Module</a>.</strong></p>
+<p>HTTP.sys supports the following features:</p>
+<ul>
+<li><a class="xref" href="../../security/authentication/windowsauth.html">Windows Authentication</a></li>
+<li>Port sharing</li>
+<li>HTTPS with SNI</li>
+<li>HTTP/2 over TLS (Windows 10)</li>
+<li>Direct file transmission</li>
+<li>Response caching</li>
+<li>WebSockets (Windows 8)</li>
+</ul>
+<p>Supported Windows versions:</p>
+<ul>
+<li>Windows 7 and Windows Server 2008 R2 and later</li>
+</ul>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample">View or download sample code</a></p>
+<h2 id="when-to-use-httpsys">When to use HTTP.sys</h2>
+<p>HTTP.sys is useful for deployments where you need to expose the server directly to the Internet without using IIS.</p>
+<p><img src="httpsys/_static/httpsys-to-internet.png" alt="HTTP.sys communicates directly with the Internet"></p>
+<p>Because it&#39;s built on Http.Sys, HTTP.sys doesn&#39;t require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. </p>
+<p>HTTP.sys is a good choice for internal deployments when you need a feature not available in Kestrel, such as Windows authentication.</p>
+<p><img src="httpsys/_static/httpsys-to-internal.png" alt="HTTP.sys communicates directly with your internal network"></p>
+<h2 id="how-to-use-httpsys">How to use HTTP.sys</h2>
+<p>Here&#39;s an overview of setup tasks for the host OS and your ASP.NET Core application.</p>
+<h3 id="configure-windows-server">Configure Windows Server</h3>
+<ul>
+<li><p>Install the version of .NET that your application requires, such as <a href="https://www.microsoft.com/net/download/core">.NET Core</a> or <a href="https://www.microsoft.com/net/download/framework">.NET Framework</a>.</p>
+</li>
+<li><p>Preregister URL prefixes to bind to HTTP.sys, and set up SSL certificates</p>
+<p> If you don&#39;t preregister URL prefixes in Windows, you have to run your application with administrator privileges. The only exception is if you bind to localhost using HTTP (not HTTPS) with a port number greater than 1024; in that case, administrator privileges aren&#39;t required.</p>
+<p> For details, see <a href="#preregister-url-prefixes-and-configure-ssl">How to preregister prefixes and configure SSL</a> later in this article.</p>
+</li>
+<li><p>Open firewall ports to allow traffic to reach HTTP.sys.</p>
+<p> You can use <em>netsh.exe</em> or <a href="https://technet.microsoft.com/library/jj554906">PowerShell cmdlets</a>.</p>
+</li>
+</ul>
+<p>There are also <a href="https://support.microsoft.com/kb/820129">Http.Sys registry settings</a>.</p>
+<h3 id="configure-your-aspnet-core-application-to-use-httpsys">Configure your ASP.NET Core application to use HTTP.sys</h3>
+<ul>
+<li><p>No package install is needed if you use the <a class="xref" href="../metapackage.html">Microsoft.AspNetCore.All</a> metapackage. The <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/">Microsoft.AspNetCore.Server.HttpSys</a> package is included in the metapackage.</p>
+</li>
+<li><p>Call the <code>UseHttpSys</code> extension method on <code>WebHostBuilder</code> in your <code>Main</code> method, specifying any <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs">HTTP.sys options</a> that you need, as shown in the following example:</p>
+<pre><code class="lang-csharp" highlight-lines="11-19">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with HTTP.sys.&quot;);
+
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseHttpSys(options =&gt;
+        {
+            options.Authentication.Schemes = AuthenticationSchemes.None;
+            options.Authentication.AllowAnonymous = true;
+            options.MaxConnections = 100;
+            options.MaxRequestBodySize = 30000000;
+            options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+        })
+        .Build();
+</code></pre></li>
+</ul>
+<h3 id="configure-httpsys-options">Configure HTTP.sys options</h3>
+<p>Here are some of the HTTP.sys settings and limits that you can configure.</p>
+<p><strong>Maximum client connections</strong></p>
+<p>The maximum number of concurrent open TCP connections can be set for the entire application with the following code in <em>Program.cs</em>:</p>
+<pre><code class="lang-csharp" highlight-lines="5">.UseHttpSys(options =&gt;
+{
+    options.Authentication.Schemes = AuthenticationSchemes.None;
+    options.Authentication.AllowAnonymous = true;
+    options.MaxConnections = 100;
+    options.MaxRequestBodySize = 30000000;
+    options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+})
+</code></pre><p>The maximum number of connections is unlimited (null) by default.</p>
+<p><strong>Maximum request body size</strong></p>
+<p>The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB.</p>
+<p>The recommended way to override the limit in an ASP.NET Core MVC app is to use the <a href="https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs">RequestSizeLimit</a> attribute on an action method:</p>
+<pre><code class="lang-csharp">[RequestSizeLimit(100000000)]
+public IActionResult MyActionMethod()
+</code></pre><p>Here&#39;s an example that shows how to configure the constraint for the entire application, every request:</p>
+<pre><code class="lang-csharp" highlight-lines="6">.UseHttpSys(options =&gt;
+{
+    options.Authentication.Schemes = AuthenticationSchemes.None;
+    options.Authentication.AllowAnonymous = true;
+    options.MaxConnections = 100;
+    options.MaxRequestBodySize = 30000000;
+    options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+})
+</code></pre><p>You can override the setting on a specific request in <em>Startup.cs</em>:</p>
+<pre><code class="lang-csharp" highlight-lines="9-10">public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+{
+    var serverAddressesFeature = app.ServerFeatures.Get&lt;IServerAddressesFeature&gt;();
+
+    app.UseStaticFiles();
+
+    app.Run(async (context) =&gt;
+    {
+        context.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;()
+            .MaxRequestBodySize = 10 * 1024;
+
+        context.Response.ContentType = &quot;text/html&quot;;
+        await context.Response.WriteAsync(&quot;&lt;p&gt;Hosted by HTTP.sys&lt;/p&gt;&quot;);
+
+        if (serverAddressesFeature != null)
+        {
+            await context.Response.WriteAsync($&quot;&lt;p&gt;Listening on the following addresses: {string.Join(&quot;, &quot;, serverAddressesFeature.Addresses)}&lt;/p&gt;&quot;);
+        }
+
+        await context.Response.WriteAsync($&quot;&lt;p&gt;Request URL: {context.Request.GetDisplayUrl()}&lt;/p&gt;&quot;);
+    });
+}
+</code></pre><p>An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There&#39;s an <code>IsReadOnly</code> property that tells you if the <code>MaxRequestBodySize</code> property is in read-only state, meaning it&#39;s too late to configure the limit.</p>
+<p>For information about other HTTP.sys options, see <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs">HttpSysOptions</a>. </p>
+<h3 id="configure-urls-and-ports-to-listen-on">Configure URLs and ports to listen on</h3>
+<p>By default ASP.NET Core binds to <code>http://localhost:5000</code>. To configure URL prefixes and ports, you can use the <code>UseUrls</code> extension method, the <code>urls</code> command-line argument, the ASPNETCORE_URLS environment variable, or the <code>UrlPrefixes</code> property on <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs">HttpSysOptions</a>. The following code example uses <code>UrlPrefixes</code>.</p>
+<pre><code class="lang-csharp" highlight-lines="17">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with HTTP.sys.&quot;);
+
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseHttpSys(options =&gt;
+        {
+            options.Authentication.Schemes = AuthenticationSchemes.None;
+            options.Authentication.AllowAnonymous = true;
+            options.MaxConnections = 100;
+            options.MaxRequestBodySize = 30000000;
+            options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+        })
+        .Build();
+</code></pre><p>An advantage of <code>UrlPrefixes</code> is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of <code>UseUrls</code> (shared with <code>urls</code> and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HTTP.sys.</p>
+<p>If you use both <code>UseUrls</code> (or <code>urls</code> or ASPNETCORE_URLS) and <code>UrlPrefixes</code>, the settings in <code>UrlPrefixes</code> override the ones in <code>UseUrls</code>. For more information, see <a class="xref" href="../hosting.html">Hosting</a>.</p>
+<p>HTTP.sys uses the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx">HTTP Server API UrlPrefix string formats</a>.</p>
+<div class="NOTE"><h5>Note</h5><p>Make sure that you specify the same prefix strings in <code>UseUrls</code> or <code>UrlPrefixes</code> that you preregister on the server. </p>
+</div>
+<h3 id="dont-use-iis">Don&#39;t use IIS</h3>
+<p>Make sure your application isn&#39;t configured to run IIS or IIS Express.</p>
+<p>In Visual Studio, the default launch profile is for IIS Express. To run the project as a console application, manually change the selected profile, as shown in the following screen shot.</p>
+<p><img src="httpsys/_static/vs-choose-profile.png" alt="Select console app profile"></p>
+<h2 id="preregister-url-prefixes-and-configure-ssl">Preregister URL prefixes and configure SSL</h2>
+<p>Both IIS and HTTP.sys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, you need to configure Http.Sys yourself. The built-in tool for doing that is <em>netsh.exe</em>. </p>
+<p>With <em>netsh.exe</em> you can reserve URL prefixes and assign SSL certificates. The tool requires administrative privileges.</p>
+<p>The following example shows the minimum needed to reserve URL prefixes for ports 80 and 443:</p>
+<pre><code class="lang-console">netsh http add urlacl url=http://+:80/ user=Users
+netsh http add urlacl url=https://+:443/ user=Users
+</code></pre><p>The following example shows how to assign an SSL certificate:</p>
+<pre><code class="lang-console">netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid={00000000-0000-0000-0000-000000000000}&quot;
+</code></pre><p>Here is the reference documentation for <em>netsh.exe</em>:</p>
+<ul>
+<li><a href="https://technet.microsoft.com/library/cc725882.aspx">Netsh Commands for Hypertext Transfer Protocol (HTTP)</a></li>
+<li><a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx">UrlPrefix Strings</a></li>
+</ul>
+<p>The following resources provide detailed instructions for several scenarios. Articles that refer to HttpListener apply equally to HTTP.sys, as both are based on Http.Sys.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-configure-a-port-with-an-ssl-certificate">How to: Configure a Port with an SSL Certificate</a></li>
+<li><a href="http://sunshaking.blogspot.com/2012/11/https-communication-httplistener-based.html">HTTPS Communication - HttpListener based Hosting and Client Certification</a> This is a third-party blog and is fairly old but still has useful information.</li>
+<li><a href="https://blogs.msdn.microsoft.com/jpsanders/2009/09/29/how-to-walkthrough-using-httplistener-or-http-server-unmanaged-code-c-as-an-ssl-simple-server/">How To: Walkthrough Using HttpListener or Http Server unmanaged code (C++) as an SSL Simple Server</a> This too is an older blog with useful information.</li>
+</ul>
+<p>Here are some third-party tools that can be easier to use than the <em>netsh.exe</em> command line. These are not provided by or endorsed by Microsoft. The tools run as administrator by default, since <em>netsh.exe</em> itself requires administrator privileges.</p>
+<ul>
+<li><a href="http://httpsysmanager.codeplex.com/">http.sys Manager</a> provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. </li>
+<li><a href="http://www.stevestechspot.com/ABetterHttpcfg.aspx">HttpConfig</a> lets you list or configure SSL certificates and URL prefixes. The UI is more refined than http.sys Manager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.</li>
+</ul>
+<p>For generating self-signed SSL certificates on Windows, you can use the PowerShell cmdlet <a href="/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps">New-SelfSignedCertificate</a>. For a third-party tool that makes it easier for you to generate self-signed certificates, see <a href="https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net">SelfCert</a>.</p>
+<p>On macOS and Linux you can create a self-signed certificate using <a href="https://www.openssl.org/">OpenSSL</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>For more information, see the following resources:</p>
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample">Sample app for this article</a></li>
+<li><a href="https://github.com/aspnet/HttpSysServer/">HTTP.sys source code</a></li>
+<li><a class="xref" href="../hosting.html">Hosting</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/servers/httpsys.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

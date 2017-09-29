@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enabling QR Code generation for authenticator apps in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enabling QR Code generation for authenticator apps in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/identity-enable-qrcodes">
+<h1 id="enabling-qr-code-generation-for-authenticator-apps-in-aspnet-core" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="15" sourceendlinenumber="15">Enabling QR Code generation for authenticator apps in ASP.NET Core</h1>
+
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="17" sourceendlinenumber="17">Note: This topic applies to ASP.NET Core 2.x with Razor Pages.</p>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="19" sourceendlinenumber="19">ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approch for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.</p>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="21" sourceendlinenumber="21">The ASP.NET Core web app templates support authenticators, but do not provide support for QRCode generation. QRCode generators ease the setup of 2FA. This document will guide you through adding <a href="https://wikipedia.org/wiki/QR_code" data-raw-source="[QR Code](https://wikipedia.org/wiki/QR_code)" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="21" sourceendlinenumber="21">QR Code</a> generation to the 2FA configuration page.</p>
+<h2 id="adding-qr-codes-to-the-2fa-configuration-page" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="23" sourceendlinenumber="23">Adding QR Codes to the 2FA configuration page</h2>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="25" sourceendlinenumber="25">These instructions use <em>qrcode.js</em> from the <a href="https://davidshimjs.github.io/qrcodejs/" data-raw-source="https://davidshimjs.github.io/qrcodejs/" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="25" sourceendlinenumber="25">https://davidshimjs.github.io/qrcodejs/</a> repo.</p>
+<ul sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="27" sourceendlinenumber="29">
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="27" sourceendlinenumber="27"><p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="27" sourceendlinenumber="27">Download the  <a href="https://davidshimjs.github.io/qrcodejs/" data-raw-source="[qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/)" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="27" sourceendlinenumber="27">qrcode.js javascript library</a> to the <code>wwwroot\lib</code> folder in your project.</p>
+</li>
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="29" sourceendlinenumber="29"><p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="29" sourceendlinenumber="29">In the <em>Pages\Account\Manage\EnableAuthenticator.cshtml</em> file, locate the <code>Scripts</code> section at the end of the file:</p>
+</li>
+</ul>
+<pre sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="31" sourceendlinenumber="35"><code class="lang-cshtml">@section Scripts {
+    @await Html.PartialAsync(&quot;_ValidationScriptsPartial&quot;)
+}
+</code></pre><ul sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="37" sourceendlinenumber="37">
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="37" sourceendlinenumber="37">Update the <code>Scripts</code> section to add a reference to the <code>qrcodejs</code> library you added and a call to generate the QR Code. It should look as follows:</li>
+</ul>
+<pre sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="39" sourceendlinenumber="53"><code class="lang-cshtml">@section Scripts {
+    @await Html.PartialAsync(&quot;_ValidationScriptsPartial&quot;)
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;~/lib/qrcode.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        new QRCode(document.getElementById(&quot;qrCode&quot;),
+            {
+                text: &quot;@Html.Raw(Model.AuthenticatorUri)&quot;,
+                width: 150,
+                height: 150
+            });
+    &lt;/script&gt;
+}
+</code></pre><ul sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="55" sourceendlinenumber="55">
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="55" sourceendlinenumber="55">Delete the paragraph which links you to these instructions.</li>
+</ul>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="57" sourceendlinenumber="57">Run your app and ensure that you can scan the QR code and validate the code the authenticator proves.</p>
+<h2 id="change-the-site-name-in-the-qr-code" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="59" sourceendlinenumber="59">Change the site name in the QR Code</h2>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="61" sourceendlinenumber="61">The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the <code>GenerateQrCodeUri(string email, string unformattedKey)</code> method in  the <em>EnableAuthenticator.cshtml.cs</em> file. </p>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="63" sourceendlinenumber="63">The default code from the template looks as follows:</p>
+<pre sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="65" sourceendlinenumber="74"><code class="lang-c#">private string GenerateQrCodeUri(string email, string unformattedKey)
+{
+    return string.Format(
+        AuthenicatorUriFormat,
+        _urlEncoder.Encode(&quot;Razor Pages&quot;),
+        _urlEncoder.Encode(email),
+        unformattedKey);
+}
+</code></pre><p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="76" sourceendlinenumber="76">The second parameter in the call to <code>string.Format</code> is your site name, taken from your solution name. It can be changed to any value, but it must always be URL encoded.</p>
+<h2 id="using-a-different-qr-code-library" sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="78" sourceendlinenumber="78">Using a different QR Code library</h2>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="80" sourceendlinenumber="80">You can replace the QR Code library with your preferred library. The HTML contains a <code>qrCode</code> element into which you can place a QR Code by whatever mechanism your library provides.</p>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="82" sourceendlinenumber="82">The correctly formatted URL for the QR Code is available in the:</p>
+<ul sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="84" sourceendlinenumber="85">
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="84" sourceendlinenumber="84"><code>AuthenticatorUri</code> property of the model.</li>
+<li sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="85" sourceendlinenumber="85"><code>data-url</code> property in the <code>qrCodeData</code> element. </li>
+</ul>
+<p sourcefile="security/authentication/identity-enable-qrcodes.md" sourcestartlinenumber="87" sourceendlinenumber="87">Use <code>@Html.Raw</code> to access the model property in a view (otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored).</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/identity-enable-qrcodes.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

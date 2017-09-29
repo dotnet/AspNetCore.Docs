@@ -1,0 +1,11 @@
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\bin\Debug\netcoreapp2.0\ContosoUniversity.deps.json
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\bin\Debug\netcoreapp2.0\ContosoUniversity.runtimeconfig.json
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\bin\Debug\netcoreapp2.0\ContosoUniversity.runtimeconfig.dev.json
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\bin\Debug\netcoreapp2.0\ContosoUniversity.dll
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\bin\Debug\netcoreapp2.0\ContosoUniversity.pdb
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.csprojResolveAssemblyReference.cache
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.csproj.CoreCompileInputs.cache
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.AssemblyInfoInputs.cache
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.AssemblyInfo.cs
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.dll
+D:\GH\Docs\aspnetcore\data\ef-rp\intro\samples\cu\obj\Debug\netcoreapp2.0\ContosoUniversity.pdb

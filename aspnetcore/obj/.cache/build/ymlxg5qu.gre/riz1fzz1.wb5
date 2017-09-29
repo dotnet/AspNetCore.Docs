@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Short survey of other authentication providers. </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Short survey of other authentication providers. ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/otherlogins">
+<h1 id="short-survey-of-other-authentication-providers" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="12" sourceendlinenumber="12">Short survey of other authentication providers</h1>
+
+<p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="14" sourceendlinenumber="14"><a name="security-authentication-other-logins"></a></p>
+<p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a>, <a href="https://github.com/rustd" data-raw-source="[Pranav Rastogi](https://github.com/rustd)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="16" sourceendlinenumber="16">Pranav Rastogi</a>, and <a href="https://github.com/01binary" data-raw-source="[Valeriy Novytskyy](https://github.com/01binary)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="16" sourceendlinenumber="16">Valeriy Novytskyy</a></p>
+<p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="18" sourceendlinenumber="18">Here are set up instructions for some other common OAuth providers. Third-party NuGet packages such as the ones maintained by <a href="https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth" data-raw-source="[aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="18" sourceendlinenumber="18">aspnet-contrib</a> can be used to complement authentication providers implemented by the ASP.NET Core team.</p>
+<ul sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="20" sourceendlinenumber="44">
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">Set up <strong>LinkedIn</strong> sign in: <a href="https://www.linkedin.com/developer/apps" data-raw-source="[https://www.linkedin.com/developer/apps](https://www.linkedin.com/developer/apps)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">https://www.linkedin.com/developer/apps</a>. See <a href="https://developer.linkedin.com/docs/oauth2" data-raw-source="[official steps](https://developer.linkedin.com/docs/oauth2)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="20" sourceendlinenumber="20">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="22" sourceendlinenumber="22"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="22" sourceendlinenumber="22">Set up <strong>Instagram</strong> sign in: <a href="https://www.instagram.com/developer/register/" data-raw-source="[https://www.instagram.com/developer/register/](https://www.instagram.com/developer/register/)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="22" sourceendlinenumber="22">https://www.instagram.com/developer/register/</a>. See <a href="https://www.instagram.com/developer/authentication/" data-raw-source="[official steps](https://www.instagram.com/developer/authentication/)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="22" sourceendlinenumber="22">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">Set up <strong>Reddit</strong> sign in: <a href="https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps" data-raw-source="[https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps</a>. See <a href="https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example" data-raw-source="[official steps](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="24" sourceendlinenumber="24">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26">Set up <strong>Github</strong> sign in: <a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew" data-raw-source="[https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26">https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew</a>. See <a href="https://developer.github.com/v3/oauth/" data-raw-source="[official steps](https://developer.github.com/v3/oauth/)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="26" sourceendlinenumber="26">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28">Set up <strong>Yahoo</strong> sign in: <a href="https://login.yahoo.com/config/login?src=devnet&amp;.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F" data-raw-source="[https://login.yahoo.com/config/login?src=devnet&amp;.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F](https://login.yahoo.com/config/login?src=devnet&amp;.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28">https://login.yahoo.com/config/login?src=devnet&amp;.done=http%3A%2F%2Fdeveloper.yahoo.com%2Fapps%2Fcreate%2F</a>. See <a href="https://developer.yahoo.com/bbauth/user.html" data-raw-source="[official steps](https://developer.yahoo.com/bbauth/user.html)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="28" sourceendlinenumber="28">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30">Set up <strong>Tumblr</strong> sign in: <a href="https://www.tumblr.com/oauth/apps" data-raw-source="[https://www.tumblr.com/oauth/apps](https://www.tumblr.com/oauth/apps)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30">https://www.tumblr.com/oauth/apps</a>. See <a href="https://www.tumblr.com/docs/api/v2#auth" data-raw-source="[official steps](https://www.tumblr.com/docs/api/v2#auth)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="30" sourceendlinenumber="30">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32">Set up <strong>Pinterest</strong> sign in: <a href="https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F" data-raw-source="[https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F](https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32">https://www.pinterest.com/login/?next=http%3A%2F%2Fdevsite%2Fapps%2F</a>. See <a href="https://developers.pinterest.com/docs/api/overview/?" data-raw-source="[official steps](https://developers.pinterest.com/docs/api/overview/?)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="32" sourceendlinenumber="32">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34">Set up <strong>Pocket</strong> sign in: <a href="https://getpocket.com/developer/apps/new" data-raw-source="[https://getpocket.com/developer/apps/new](https://getpocket.com/developer/apps/new)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34">https://getpocket.com/developer/apps/new</a>. See <a href="https://getpocket.com/developer/docs/authentication" data-raw-source="[official steps](https://getpocket.com/developer/docs/authentication)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="34" sourceendlinenumber="34">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36">Set up <strong>Flickr</strong> sign in: <a href="https://www.flickr.com/services/apps/create" data-raw-source="[https://www.flickr.com/services/apps/create](https://www.flickr.com/services/apps/create)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36">https://www.flickr.com/services/apps/create</a>. See <a href="https://www.flickr.com/services/api/auth.oauth.html" data-raw-source="[official steps](https://www.flickr.com/services/api/auth.oauth.html)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="36" sourceendlinenumber="36">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38">Set up <strong>Dribble</strong> sign in: <a href="https://dribbble.com/signup" data-raw-source="[https://dribbble.com/signup](https://dribbble.com/signup)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38">https://dribbble.com/signup</a>. See <a href="http://developer.dribbble.com/v1/oauth/" data-raw-source="[official steps](http://developer.dribbble.com/v1/oauth/)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="38" sourceendlinenumber="38">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40">Set up <strong>Vimeo</strong> sign in: <a href="https://vimeo.com/join" data-raw-source="[https://vimeo.com/join](https://vimeo.com/join)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40">https://vimeo.com/join</a>. See <a href="https://developer.vimeo.com/api/authentication" data-raw-source="[official steps](https://developer.vimeo.com/api/authentication)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="40" sourceendlinenumber="40">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42">Set up <strong>SoundCloud</strong> sign in: <a href="https://soundcloud.com/you/apps/new" data-raw-source="[https://soundcloud.com/you/apps/new](https://soundcloud.com/you/apps/new)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42">https://soundcloud.com/you/apps/new</a>. See <a href="https://developers.soundcloud.com/blog/we-love-oauth-2" data-raw-source="[official steps](https://developers.soundcloud.com/blog/we-love-oauth-2)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="42" sourceendlinenumber="42">official steps</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44"><p sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44">Set up <strong>VK</strong> sign in: <a href="https://vk.com/apps?act=manage" data-raw-source="[https://vk.com/apps?act=manage](https://vk.com/apps?act=manage)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44">https://vk.com/apps?act=manage</a>. See <a href="https://vk.com/pages?oid=-17680044&amp;p=Authorizing_Sites" data-raw-source="[official steps](https://vk.com/pages?oid=-17680044&amp;p=Authorizing_Sites)" sourcefile="security/authentication/social/other-logins.md" sourcestartlinenumber="44" sourceendlinenumber="44">official steps</a>.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/social/other-logins.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

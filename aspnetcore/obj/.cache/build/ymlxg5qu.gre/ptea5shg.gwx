@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core tutorials </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core tutorials ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/index">
+<h1 id="aspnet-core-tutorials" sourcefile="tutorials/index.md" sourcestartlinenumber="14" sourceendlinenumber="14">ASP.NET Core tutorials</h1>
+
+<p sourcefile="tutorials/index.md" sourcestartlinenumber="16" sourceendlinenumber="16">The following step-by-step guides for developing ASP.NET Core applications are available:</p>
+<h2 id="building-web-applications" sourcefile="tutorials/index.md" sourcestartlinenumber="18" sourceendlinenumber="18">Building web applications</h2>
+<p sourcefile="tutorials/index.md" sourcestartlinenumber="20" sourceendlinenumber="20"><a class="xref" href="../mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="tutorials/index.md" sourcestartlinenumber="20" sourceendlinenumber="20">Razor Pages</a> is the recommended approach to create a Web UI with ASP.NET Core 2.0.</p>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="22" sourceendlinenumber="33">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a class="xref" href="../mvc/razor-pages/index.html" data-raw-source="[Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)" sourcefile="tutorials/index.md" sourcestartlinenumber="22" sourceendlinenumber="22">Introduction to Razor Pages in ASP.NET Core</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="23" sourceendlinenumber="23"><a class="xref" href="razor-pages/index.html" data-raw-source="[Create a Razor Pages web app with ASP.NET Core on Windows](xref:tutorials/razor-pages/index)" sourcefile="tutorials/index.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create a Razor Pages web app with ASP.NET Core on Windows</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a class="xref" href="razor-pages-mac/index.html" data-raw-source="[Create a Razor Pages web app with ASP.NET Core on Mac](xref:tutorials/razor-pages-mac/index)" sourcefile="tutorials/index.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create a Razor Pages web app with ASP.NET Core on Mac</a>  </li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="25" sourceendlinenumber="25"><a class="xref" href="razor-pages-vsc/index.html" data-raw-source="[Create a Razor Pages web app with ASP.NET Core with VS Code](xref:tutorials/razor-pages-vsc/index)" sourcefile="tutorials/index.md" sourcestartlinenumber="25" sourceendlinenumber="25">Create a Razor Pages web app with ASP.NET Core with VS Code</a> </li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="26" sourceendlinenumber="26"><a href="first-mvc-app/index.html" data-raw-source="[Create an ASP.NET Core MVC web app with Visual Studio on Windows](first-mvc-app/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="26" sourceendlinenumber="26">Create an ASP.NET Core MVC web app with Visual Studio on Windows</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="27" sourceendlinenumber="27"><a href="first-mvc-app-mac/index.html" data-raw-source="[Create an ASP.NET Core MVC web app with Visual Studio on Mac](first-mvc-app-mac/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="27" sourceendlinenumber="27">Create an ASP.NET Core MVC web app with Visual Studio on Mac</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="28" sourceendlinenumber="28"><a href="first-mvc-app-xplat/index.html" data-raw-source="[Create an ASP.NET Core MVC web app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="28" sourceendlinenumber="28">Create an ASP.NET Core MVC web app with Visual Studio Code on Mac or Linux </a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="29" sourceendlinenumber="29"><a href="../data/ef-mvc/index.html" data-raw-source="[Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="29" sourceendlinenumber="29">Getting started with ASP.NET Core and Entity Framework Core using Visual Studio</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="30" sourceendlinenumber="30"><a href="../client-side/yeoman.html" data-raw-source="[Building projects with Yeoman](../client-side/yeoman.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="30" sourceendlinenumber="30">Building projects with Yeoman</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="31" sourceendlinenumber="31"><a href="../mvc/views/tag-helpers/authoring.html" data-raw-source="[Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="31" sourceendlinenumber="31">Authoring Tag Helpers</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="32" sourceendlinenumber="32"><a href="../mvc/views/view-components.html#walkthrough-creating-a-simple-view-component" data-raw-source="[Creating a simple view component](../mvc/views/view-components.md#walkthrough-creating-a-simple-view-component)" sourcefile="tutorials/index.md" sourcestartlinenumber="32" sourceendlinenumber="32">Creating a simple view component</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="33" sourceendlinenumber="33"><a href="dotnet-watch.html" data-raw-source="[Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="33" sourceendlinenumber="33">Developing ASP.NET Core applications using dotnet watch</a></li>
+</ul>
+<h2 id="building-web-apis" sourcefile="tutorials/index.md" sourcestartlinenumber="35" sourceendlinenumber="35">Building web APIs</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="36" sourceendlinenumber="40">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="36" sourceendlinenumber="36"><a class="xref" href="first-web-api-mac.html" data-raw-source="[Create a Web API with ASP.NET Core and Visual Studio for Mac](xref:tutorials/first-web-api-mac)" sourcefile="tutorials/index.md" sourcestartlinenumber="36" sourceendlinenumber="36">Create a Web API with ASP.NET Core and Visual Studio for Mac</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="37" sourceendlinenumber="37"><a href="first-web-api.html" data-raw-source="[Create a Web API with ASP.NET Core and Visual Studio for Windows](first-web-api.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="37" sourceendlinenumber="37">Create a Web API with ASP.NET Core and Visual Studio for Windows</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="38" sourceendlinenumber="38"><a href="web-api-vsc.html" data-raw-source="[Create a Web API with ASP.NET Core and Visual Studio Code](web-api-vsc.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="38" sourceendlinenumber="38">Create a Web API with ASP.NET Core and Visual Studio Code</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="39" sourceendlinenumber="39"><a href="web-api-help-pages-using-swagger.html" data-raw-source="[ASP.NET Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="39" sourceendlinenumber="39">ASP.NET Web API Help Pages using Swagger</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="40" sourceendlinenumber="40"><a href="../mobile/native-mobile-backend.html" data-raw-source="[Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="40" sourceendlinenumber="40">Creating backend web services for native mobile applications</a></li>
+</ul>
+<h2 id="working-with-data" sourcefile="tutorials/index.md" sourcestartlinenumber="42" sourceendlinenumber="42">Working with data</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="43" sourceendlinenumber="45">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="43" sourceendlinenumber="43"><a href="../data/ef-mvc/index.html" data-raw-source="[Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="43" sourceendlinenumber="43">Getting started with ASP.NET Core and Entity Framework Core using Visual Studio</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="44" sourceendlinenumber="44"><a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db" data-raw-source="[ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)" sourcefile="tutorials/index.md" sourcestartlinenumber="44" sourceendlinenumber="44">ASP.NET Core with EF Core - new database</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="45" sourceendlinenumber="45"><a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db" data-raw-source="[ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)" sourcefile="tutorials/index.md" sourcestartlinenumber="45" sourceendlinenumber="45">ASP.NET Core with EF Core - existing database</a></li>
+</ul>
+<h2 id="authentication-and-authorization" sourcefile="tutorials/index.md" sourcestartlinenumber="47" sourceendlinenumber="47">Authentication and authorization</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="48" sourceendlinenumber="50">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="48" sourceendlinenumber="48"><a href="../security/authentication/social/index.html" data-raw-source="[Enabling authentication using Facebook, Google and other external providers](../security/authentication/social/index.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="48" sourceendlinenumber="48">Enabling authentication using Facebook, Google and other external providers</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="49" sourceendlinenumber="49"><a href="../security/authentication/accconfirm.html" data-raw-source="[Account Confirmation and Password Recovery](../security/authentication/accconfirm.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="49" sourceendlinenumber="49">Account Confirmation and Password Recovery</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="50" sourceendlinenumber="50"><a href="../security/authentication/2fa.html" data-raw-source="[Two-factor authentication with SMS](../security/authentication/2fa.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="50" sourceendlinenumber="50">Two-factor authentication with SMS</a></li>
+</ul>
+<h2 id="client-side-development" sourcefile="tutorials/index.md" sourcestartlinenumber="52" sourceendlinenumber="52">Client-side development</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="53" sourceendlinenumber="56">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="53" sourceendlinenumber="53"><a href="../client-side/using-gulp.html" data-raw-source="[Using Gulp](../client-side/using-gulp.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="53" sourceendlinenumber="53">Using Gulp</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="54" sourceendlinenumber="54"><a href="../client-side/using-grunt.html" data-raw-source="[Using Grunt](../client-side/using-grunt.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="54" sourceendlinenumber="54">Using Grunt</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="55" sourceendlinenumber="55"><a href="../client-side/bower.html" data-raw-source="[Manage client-side packages with Bower](../client-side/bower.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="55" sourceendlinenumber="55">Manage client-side packages with Bower</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="56" sourceendlinenumber="56"><a href="../client-side/bootstrap.html" data-raw-source="[Building beautiful, responsive sites with Bootstrap](../client-side/bootstrap.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="56" sourceendlinenumber="56">Building beautiful, responsive sites with Bootstrap</a></li>
+</ul>
+<h2 id="testing" sourcefile="tutorials/index.md" sourcestartlinenumber="58" sourceendlinenumber="58">Testing</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="59" sourceendlinenumber="59">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="59" sourceendlinenumber="59"><a href="https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test" data-raw-source="[Unit Testing in .NET Core using dotnet test](https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test)" sourcefile="tutorials/index.md" sourcestartlinenumber="59" sourceendlinenumber="59">Unit Testing in .NET Core using dotnet test</a></li>
+</ul>
+<h2 id="publishing-and-deployment" sourcefile="tutorials/index.md" sourcestartlinenumber="61" sourceendlinenumber="61">Publishing and deployment</h2>
+<ul sourcefile="tutorials/index.md" sourcestartlinenumber="62" sourceendlinenumber="66">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="62" sourceendlinenumber="62"><a href="publish-to-azure-webapp-using-vs.html" data-raw-source="[Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="62" sourceendlinenumber="62">Deploy an ASP.NET Core web app to Azure using Visual Studio</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="63" sourceendlinenumber="63"><a href="../publishing/azure-continuous-deployment.html" data-raw-source="[Publishing to an Azure Web App with Continuous Deployment](../publishing/azure-continuous-deployment.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="63" sourceendlinenumber="63">Publishing to an Azure Web App with Continuous Deployment</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="64" sourceendlinenumber="64"><a href="https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker" data-raw-source="[Deploy an ASP.NET container to a remote Docker host](https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)" sourcefile="tutorials/index.md" sourcestartlinenumber="64" sourceendlinenumber="64">Deploy an ASP.NET container to a remote Docker host</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="65" sourceendlinenumber="65"><a href="nano-server.html" data-raw-source="[ASP.NET Core on Nano Server](nano-server.md)" sourcefile="tutorials/index.md" sourcestartlinenumber="65" sourceendlinenumber="65">ASP.NET Core on Nano Server</a></li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="66" sourceendlinenumber="66"><a href="https://docs.microsoft.com/azure/service-fabric/service-fabric-add-a-web-frontend" data-raw-source="[ASP.NET Core and Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-add-a-web-frontend)" sourcefile="tutorials/index.md" sourcestartlinenumber="66" sourceendlinenumber="66">ASP.NET Core and Azure Service Fabric</a></li>
+</ul>
+<p sourcefile="tutorials/index.md" sourcestartlinenumber="68" sourceendlinenumber="68"><a name="download"></a> </p>
+<h2 id="how-to-download-a-sample" sourcefile="tutorials/index.md" sourcestartlinenumber="69" sourceendlinenumber="69">How to download a sample</h2>
+<ol sourcefile="tutorials/index.md" sourcestartlinenumber="70" sourceendlinenumber="72">
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="70" sourceendlinenumber="70"><a href="https://codeload.github.com/aspnet/Docs/zip/master" data-raw-source="[Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/Docs/zip/master)" sourcefile="tutorials/index.md" sourcestartlinenumber="70" sourceendlinenumber="70">Download the ASP.NET repository zip file</a>.</li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="71" sourceendlinenumber="71">Unzip the <em>Docs-master.zip</em> file.</li>
+<li sourcefile="tutorials/index.md" sourcestartlinenumber="72" sourceendlinenumber="72">Use the URL in the sample link to help you navigate to the sample directory. </li>
+</ol>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

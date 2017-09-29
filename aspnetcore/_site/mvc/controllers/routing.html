@@ -1,0 +1,802 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Routing to Controller Actions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Routing to Controller Actions ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/controllers/routing">
+<h1 id="routing-to-controller-actions">Routing to Controller Actions</h1>
+
+<p>By <a href="https://github.com/rynowak">Ryan Nowak</a> and <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>ASP.NET Core MVC uses the Routing <a href="../../fundamentals/middleware.html">middleware</a> to match the URLs of incoming requests and map them to actions. Routes are defined in startup code or attributes. Routes describe how URL paths should be matched to actions. Routes are also used to generate URLs (for links) sent out in responses. </p>
+<p>Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See <a href="#routing-mixed-ref-label">Mixed routing</a> for more information.</p>
+<p>This document will explain the interactions between MVC and routing, and how typical MVC apps make use of routing features. See <a class="xref" href="../../fundamentals/routing.html">Routing</a> for details on advanced routing.</p>
+<h2 id="setting-up-routing-middleware">Setting up Routing Middleware</h2>
+<p>In your <em>Configure</em> method you may see code similar to:</p>
+<pre><code class="lang-csharp">app.UseMvc(routes =&gt;
+{
+   routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p>Inside the call to <code>UseMvc</code>, <code>MapRoute</code> is used to create a single route, which we&#39;ll refer to as the <code>default</code> route. Most MVC apps will use a route with a template similar to the <code>default</code> route.</p>
+<p>The route template <code>&quot;{controller=Home}/{action=Index}/{id?}&quot;</code> can match a URL path like <code>/Products/Details/5</code> and will extract the route values <code>{ controller = Products, action = Details, id = 5 }</code> by tokenizing the path. MVC will attempt to locate a controller named <code>ProductsController</code> and run the action <code>Details</code>:</p>
+<pre><code class="lang-csharp">public class ProductsController : Controller
+{
+   public IActionResult Details(int id) { ... }
+}
+</code></pre><p>Note that in this example, model binding would use the value of <code>id = 5</code> to set the <code>id</code> parameter to <code>5</code> when invoking this action. See the <a href="../models/model-binding.html">Model Binding</a> for more details.</p>
+<p>Using the <code>default</code> route:</p>
+<pre><code class="lang-csharp">routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+</code></pre><p>The route template:</p>
+<ul>
+<li><p><code>{controller=Home}</code> defines <code>Home</code> as the default <code>controller</code></p>
+</li>
+<li><p><code>{action=Index}</code> defines <code>Index</code> as the default <code>action</code></p>
+</li>
+<li><p><code>{id?}</code> defines <code>id</code> as optional</p>
+</li>
+</ul>
+<p>Default and optional route parameters do not need to be present in the URL path for a match. See <a href="../../fundamentals/routing.html#route-template-reference">Route Template Reference</a> for a detailed description of route template syntax.</p>
+<p><code>&quot;{controller=Home}/{action=Index}/{id?}&quot;</code> can match the URL path <code>/</code> and will produce the route values <code>{ controller = Home, action = Index }</code>. The values for <code>controller</code> and <code>action</code> make use of the default values, <code>id</code> does not produce a value since there is no corresponding segment in the URL path. MVC would use these route values to select the <code>HomeController</code> and <code>Index</code> action:</p>
+<pre><code class="lang-csharp">public class HomeController : Controller
+{
+  public IActionResult Index() { ... }
+}
+</code></pre><p>Using this controller definition and route template, the <code>HomeController.Index</code> action would be executed for any of the following URL paths:</p>
+<ul>
+<li><p><code>/Home/Index/17</code></p>
+</li>
+<li><p><code>/Home/Index</code></p>
+</li>
+<li><p><code>/Home</code></p>
+</li>
+<li><p><code>/</code></p>
+</li>
+</ul>
+<p>The convenience method <code>UseMvcWithDefaultRoute</code>:</p>
+<pre><code class="lang-csharp">app.UseMvcWithDefaultRoute();
+</code></pre><p>Can be used to replace:</p>
+<pre><code class="lang-csharp">app.UseMvc(routes =&gt;
+{
+   routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p><code>UseMvc</code> and <code>UseMvcWithDefaultRoute</code> add an instance of <code>RouterMiddleware</code> to the middleware pipeline. MVC doesn&#39;t interact directly with middleware, and uses routing to handle requests. MVC is connected to the routes through an instance of <code>MvcRouteHandler</code>. The code inside of <code>UseMvc</code> is similar to the following:</p>
+<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
+<pre><code class="lang-csharp">var routes = new RouteBuilder(app);
+
+// Add connection to MVC, will be hooked up by calls to MapRoute.
+routes.DefaultHandler = new MvcRouteHandler(...);
+
+// Execute callback to register routes.
+// routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+
+// Create route collection and add the middleware.
+app.UseRouter(routes.Build());
+</code></pre><p><code>UseMvc</code> does not directly define any routes, it adds a placeholder to the route collection for the <code>attribute</code> route. The overload <code>UseMvc(Action&lt;IRouteBuilder&gt;)</code> lets you add your own routes and also supports attribute routing.  <code>UseMvc</code> and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure <code>UseMvc</code>. <code>UseMvcWithDefaultRoute</code> defines a default route and supports attribute routing. The <a href="#attribute-routing-ref-label">Attribute Routing</a> section includes more details on attribute routing.</p>
+<p><a name="routing-conventional-ref-label"></a></p>
+<h2 id="conventional-routing">Conventional routing</h2>
+<p>The <code>default</code> route:</p>
+<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
+<pre><code class="lang-csharp">routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+</code></pre><p>is an example of a <em>conventional routing</em>. We call this style <em>conventional routing</em> because it establishes a <em>convention</em> for URL paths:</p>
+<ul>
+<li><p>the first path segment maps to the controller name</p>
+</li>
+<li><p>the second maps to the action name.</p>
+</li>
+<li><p>the third segment is used for an optional <code>id</code> used to map to a model entity</p>
+</li>
+</ul>
+<p>Using this <code>default</code> route, the URL path <code>/Products/List</code> maps to the <code>ProductsController.List</code> action, and <code>/Blog/Article/17</code> maps to <code>BlogController.Article</code>. This mapping is based on the controller and action names <strong>only</strong> and is not based on namespaces, source file locations, or method parameters.</p>
+<div class="TIP"><h5>Tip</h5><p>Using conventional routing with the default route allows you to build the application quickly without having to come up with a new URL pattern for each action you define. For an application with CRUD style actions, having consistency for the URLs across your controllers can help simplify your code and make your UI more predictable.</p>
+</div>
+<div class="WARNING"><h5>Warning</h5><p>The <code>id</code> is defined as optional by the route template, meaning that your actions can execute without the ID provided as part of the URL. Usually what will happen if <code>id</code> is omitted from the URL is that it will be set to <code>0</code> by model binding, and as a result no entity will be found in the database matching <code>id == 0</code>. Attribute routing can give you fine-grained control to make the ID required for some actions and not for others. By convention the documentation will include optional parameters like <code>id</code> when they are likely to appear in correct usage.</p>
+</div>
+<h2 id="multiple-routes">Multiple routes</h2>
+<p>You can add multiple routes inside <code>UseMvc</code> by adding more calls to <code>MapRoute</code>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:</p>
+<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
+<pre><code class="lang-csharp">app.UseMvc(routes =&gt;
+{
+   routes.MapRoute(&quot;blog&quot;, &quot;blog/{*article}&quot;,
+            defaults: new { controller = &quot;Blog&quot;, action = &quot;Article&quot; });
+   routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p>The <code>blog</code> route here is a <em>dedicated conventional route</em>, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since <code>controller</code> and <code>action</code> don&#39;t appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action <code>BlogController.Article</code>.</p>
+<p>Routes in the route collection are ordered, and will be processed in the order they are added. So in this example, the <code>blog</code> route will be tried before the <code>default</code> route.</p>
+<div class="NOTE"><h5>Note</h5><p><em>Dedicated conventional routes</em> often use catch-all route parameters like <code>{*article}</code> to capture the remaining portion of the URL path. This can make a route &#39;too greedy&#39; meaning that it matches URLs that you intended to be matched by other routes. Put the &#39;greedy&#39; routes later in the route table to solve this.</p>
+</div>
+<h3 id="fallback">Fallback</h3>
+<p>As part of request processing, MVC will verify that the route values can be used to find a controller and action in your application. If the route values don&#39;t match an action then the route is not considered a match, and the next route will be tried. This is called <em>fallback</em>, and it&#39;s intended to simplify cases where conventional routes overlap.</p>
+<h3 id="disambiguating-actions">Disambiguating actions</h3>
+<p>When two actions match through routing, MVC must disambiguate to choose the &#39;best&#39; candidate or else throw an exception. For example:</p>
+<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
+<pre><code class="lang-csharp">public class ProductsController : Controller
+{
+   public IActionResult Edit(int id) { ... }
+
+   [HttpPost]
+   public IActionResult Edit(int id, Product product) { ... }
+}
+</code></pre><p>This controller defines two actions that would match the URL path <code>/Products/Edit/17</code> and route data <code>{ controller = Products, action = Edit, id = 17 }</code>. This is a typical pattern for MVC controllers where <code>Edit(int)</code> shows a form to edit a product, and <code>Edit(int, Product)</code> processes  the posted form. To make this possible MVC would need to choose <code>Edit(int, Product)</code> when the request is an HTTP <code>POST</code> and <code>Edit(int)</code> when the HTTP verb is anything else.</p>
+<p>The <code>HttpPostAttribute</code> ( <code>[HttpPost]</code> ) is an implementation of <code>IActionConstraint</code> that will only allow the action to be selected when the HTTP verb is <code>POST</code>. The presence of an <code>IActionConstraint</code> makes the <code>Edit(int, Product)</code> a &#39;better&#39; match than <code>Edit(int)</code>, so <code>Edit(int, Product)</code> will be tried first.</p>
+<p>You will only need to write custom <code>IActionConstraint</code> implementations in specialized scenarios, but it&#39;s important to understand the role of attributes like <code>HttpPostAttribute</code>  - similar attributes are defined for other HTTP verbs. In conventional routing it&#39;s common for actions to use the same action name when they are part of a <code>show form -&gt; submit form</code> workflow. The convenience of this pattern will become more apparent after reviewing the <a href="#understanding-iactionconstraint">Understanding IActionConstraint</a> section.</p>
+<p>If multiple routes match, and MVC can&#39;t find a &#39;best&#39; route, it will throw an <code>AmbiguousActionException</code>.</p>
+<p><a name="routing-route-name-ref-label"></a></p>
+<h3 id="route-names">Route names</h3>
+<p>The strings  <code>&quot;blog&quot;</code> and <code>&quot;default&quot;</code> in the following examples are route names:</p>
+<pre><code class="lang-csharp">app.UseMvc(routes =&gt;
+{
+   routes.MapRoute(&quot;blog&quot;, &quot;blog/{*article}&quot;,
+               defaults: new { controller = &quot;Blog&quot;, action = &quot;Article&quot; });
+   routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p>The route names give the route a logical name so that the named route can be used for URL generation. This greatly simplifies URL creation when the ordering of routes could make URL generation complicated. Routes names must be unique application-wide.</p>
+<p>Route names have no impact on URL matching or handling of requests; they are used only for URL generation. <a class="xref" href="../../fundamentals/routing.html">Routing</a> has more detailed information on URL generation including URL generation in MVC-specific helpers.</p>
+<p><a name="attribute-routing-ref-label"></a></p>
+<h2 id="attribute-routing">Attribute routing</h2>
+<p>Attribute routing uses a set of attributes to map actions directly to route templates. In the following example, <code>app.UseMvc();</code> is used in the <code>Configure</code> method and no route is passed. The <code>HomeController</code> will match a set of URLs similar to what the default route <code>{controller=Home}/{action=Index}/{id?}</code> would match:</p>
+<pre><code class="lang-csharp">public class HomeController : Controller
+{
+   [Route(&quot;&quot;)]
+   [Route(&quot;Home&quot;)]
+   [Route(&quot;Home/Index&quot;)]
+   public IActionResult Index()
+   {
+      return View();
+   }
+   [Route(&quot;Home/About&quot;)]
+   public IActionResult About()
+   {
+      return View();
+   }
+   [Route(&quot;Home/Contact&quot;)]
+   public IActionResult Contact()
+   {
+      return View();
+   }
+}
+</code></pre><p>The <code>HomeController.Index()</code> action will be executed for any of the URL paths <code>/</code>, <code>/Home</code>, or <code>/Home/Index</code>.</p>
+<div class="NOTE"><h5>Note</h5><p>This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route; the conventional default route handles routes more succinctly. However, attribute routing allows (and requires) precise control of which route templates apply to each action.</p>
+</div>
+<p>With attribute routing the controller name and action names play <strong>no</strong> role in which action is selected. This example will match the same URLs as the previous example.</p>
+<pre><code class="lang-csharp">public class MyDemoController : Controller
+{
+   [Route(&quot;&quot;)]
+   [Route(&quot;Home&quot;)]
+   [Route(&quot;Home/Index&quot;)]
+   public IActionResult MyIndex()
+   {
+      return View(&quot;Index&quot;);
+   }
+   [Route(&quot;Home/About&quot;)]
+   public IActionResult MyAbout()
+   {
+      return View(&quot;About&quot;);
+   }
+   [Route(&quot;Home/Contact&quot;)]
+   public IActionResult MyContact()
+   {
+      return View(&quot;Contact&quot;);
+   }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>The route templates above don&#39;t define route parameters for <code>action</code>, <code>area</code>, and <code>controller</code>. In fact, these route parameters are not allowed in attribute routes. Since the route template is already associated with an action, it wouldn&#39;t make sense to parse the action name from the URL.</p>
+</div>
+<h2 id="attribute-routing-with-httpverb-attributes">Attribute routing with Http[Verb] attributes</h2>
+<p>Attribute routing can also make use of the <code>Http[Verb]</code> attributes such as <code>HttpPostAttribute</code>. All of these attributes can accept a route template. This example shows two actions that match the same route template:</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[HttpGet(&quot;/products&quot;)]
+public IActionResult ListProducts()
+{
+   // ...
+}
+
+[HttpPost(&quot;/products&quot;)]
+public IActionResult CreateProduct(...)
+{
+   // ...
+}
+</code></pre><p>For a URL path like <code>/products</code> the <code>ProductsApi.ListProducts</code> action will be executed when the HTTP verb is <code>GET</code> and <code>ProductsApi.CreateProduct</code> will be executed when the HTTP verb is <code>POST</code>. Attribute routing first matches the URL against the set of route templates defined by route attributes. Once a route template matches, <code>IActionConstraint</code> constraints are applied to determine which actions can be executed.</p>
+<div class="TIP"><h5>Tip</h5><p>When building a REST API, it&#39;s rare that you will want to use <code>[Route(...)]</code> on an action method. It&#39;s better to use the more specific <code>Http*Verb*Attributes</code> to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.</p>
+</div>
+<p>Since an attribute route applies to a specific action, it&#39;s easy to make parameters required as part of the route template definition. In this example, <code>id</code> is required as part of the URL path.</p>
+<pre><code class="lang-csharp">public class ProductsApiController : Controller
+{
+   [HttpGet(&quot;/products/{id}&quot;, Name = &quot;Products_List&quot;)]
+   public IActionResult GetProduct(int id) { ... }
+}
+</code></pre><p>The <code>ProductsApi.GetProduct(int)</code> action will be executed for a URL path like <code>/products/3</code> but not for a URL path like <code>/products</code>. See <a href="../../fundamentals/routing.html">Routing</a> for a full description of route templates and related options.</p>
+<h2 id="route-name">Route Name</h2>
+<p>The following code  defines a <em>route name</em> of <code>Products_List</code>:</p>
+<pre><code class="lang-csharp">public class ProductsApiController : Controller
+{
+   [HttpGet(&quot;/products/{id}&quot;, Name = &quot;Products_List&quot;)]
+   public IActionResult GetProduct(int id) { ... }
+}
+</code></pre><p>Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.</p>
+<div class="NOTE"><h5>Note</h5><p>Contrast this with the conventional <em>default route</em>, which defines the <code>id</code> parameter as optional (<code>{id?}</code>). This ability to precisely specify APIs has advantages, such as  allowing <code>/products</code> and <code>/products/5</code> to be dispatched to different actions.</p>
+</div>
+<p><a name="routing-combining-ref-label"></a></p>
+<h3 id="combining-routes">Combining routes</h3>
+<p>To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes <strong>all</strong> actions in the controller use attribute routing.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[Route(&quot;products&quot;)]
+public class ProductsApiController : Controller
+{
+   [HttpGet]
+   public IActionResult ListProducts() { ... }
+
+   [HttpGet(&quot;{id}&quot;)]
+   public ActionResult GetProduct(int id) { ... }
+}
+</code></pre><p>In this example the URL path <code>/products</code> can match <code>ProductsApi.ListProducts</code>, and the URL path <code>/products/5</code> can match <code>ProductsApi.GetProduct(int)</code>. Both of these actions only match HTTP <code>GET</code> because they are decorated with the <code>HttpGetAttribute</code>.</p>
+<p>Route templates applied to an action that begin with a <code>/</code> do not get combined with route templates applied to the controller. This example matches a set of URL paths similar to the <em>default route</em>.</p>
+<pre><code class="lang-csharp">[Route(&quot;Home&quot;)]
+public class HomeController : Controller
+{
+    [Route(&quot;&quot;)]      // Combines to define the route template &quot;Home&quot;
+    [Route(&quot;Index&quot;)] // Combines to define the route template &quot;Home/Index&quot;
+    [Route(&quot;/&quot;)]     // Does not combine, defines the route template &quot;&quot;
+    public IActionResult Index()
+    {
+        ViewData[&quot;Message&quot;] = &quot;Home index&quot;;
+        var url = Url.Action(&quot;Index&quot;, &quot;Home&quot;);
+        ViewData[&quot;Message&quot;] = &quot;Home index&quot; + &quot;var url = Url.Action; =  &quot; + url;
+        return View();
+    }
+
+    [Route(&quot;About&quot;)] // Combines to define the route template &quot;Home/About&quot;
+    public IActionResult About()
+    {
+        return View();
+    }   
+}
+</code></pre><p><a name="routing-ordering-ref-label"></a></p>
+<h3 id="ordering-attribute-routes">Ordering attribute routes</h3>
+<p>In contrast to conventional routes which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.</p>
+<p>For example, a route like <code>blog/search/{topic}</code> is more specific than a route like <code>blog/{*article}</code>. Logically speaking the <code>blog/search/{topic}</code> route &#39;runs&#39; first, by default, because that&#39;s the only sensible ordering. Using conventional routing, the developer is  responsible for placing routes in the desired order.</p>
+<p>Attribute routes can configure an order, using the <code>Order</code> property of all of the framework provided route attributes. Routes are processed according to an ascending sort of the <code>Order</code> property. The default order is <code>0</code>. Setting a route using <code>Order = -1</code> will run before routes that don&#39;t set an order. Setting a route using <code>Order = 1</code> will run after default route ordering.</p>
+<div class="TIP"><h5>Tip</h5><p>Avoid depending on <code>Order</code>. If your URL-space requires explicit order values to route correctly, then it&#39;s likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn&#39;t working, using route name as an override is usually simpler than applying the <code>Order</code> property.</p>
+</div>
+<p><a name="routing-token-replacement-templates-ref-label"></a></p>
+<h2 id="token-replacement-in-route-templates-controller-action-area">Token replacement in route templates ([controller], [action], [area])</h2>
+<p>For convenience, attribute routes support <em>token replacement</em> by enclosing a token in square-braces (<code>[</code>, <code>]</code>). The tokens <code>[action]</code>, <code>[area]</code>, and <code>[controller]</code> will be replaced with the values of the action name, area name, and controller name from the action where the route is defined. In this example the actions can match URL paths as described in the comments:</p>
+<pre><code class="lang-csharp" name="Main">[Route(&quot;[controller]/[action]&quot;)]
+public class ProductsController : Controller
+{
+    [HttpGet] // Matches &#39;/Products/List&#39;
+    public IActionResult List() {
+        // ...
+    }
+
+    [HttpGet(&quot;{id}&quot;)] // Matches &#39;/Products/Edit/{id}&#39;
+    public IActionResult Edit(int id) {
+        // ...
+    }
+}
+</code></pre><p>Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:</p>
+<pre><code class="lang-csharp" name="Main">
+public class ProductsController : Controller
+{
+    [HttpGet(&quot;[controller]/[action]&quot;)] // Matches &#39;/Products/List&#39;
+    public IActionResult List() {
+        // ...
+    }
+
+    [HttpGet(&quot;[controller]/[action]/{id}&quot;)] // Matches &#39;/Products/Edit/{id}&#39;
+    public IActionResult Edit(int id) {
+        // ...
+    }
+}
+</code></pre><p>Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.</p>
+<pre><code class="lang-csharp">[Route(&quot;api/[controller]&quot;)]
+public abstract class MyBaseController : Controller { ... }
+
+public class ProductsController : MyBaseController
+{
+   [HttpGet] // Matches &#39;/api/Products&#39;
+   public IActionResult List() { ... }
+
+   [HttpPost(&quot;{id}&quot;)] // Matches &#39;/api/Products/{id}&#39;
+   public IActionResult Edit(int id) { ... }
+}
+</code></pre><p>Token replacement also applies to route names defined by attribute routes. <code>[Route(&quot;[controller]/[action]&quot;, Name=&quot;[controller]_[action]&quot;)]</code> will generate a unique route name for each action.</p>
+<p>To match the literal token replacement delimiter <code>[</code> or  <code>]</code>, escape it by repeating the character (<code>[[</code> or <code>]]</code>).</p>
+<p><a name="routing-multiple-routes-ref-label"></a></p>
+<h3 id="multiple-routes">Multiple Routes</h3>
+<p>Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the <em>default conventional route</em> as shown in the following example:</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[Route(&quot;[controller]&quot;)]
+public class ProductsController : Controller
+{
+   [Route(&quot;&quot;)]     // Matches &#39;Products&#39;
+   [Route(&quot;Index&quot;)] // Matches &#39;Products/Index&#39;
+   public IActionResult Index()
+}
+</code></pre><p>Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[Route(&quot;Store&quot;)]
+[Route(&quot;[controller]&quot;)]
+public class ProductsController : Controller
+{
+   [HttpPost(&quot;Buy&quot;)]     // Matches &#39;Products/Buy&#39; and &#39;Store/Buy&#39;
+   [HttpPost(&quot;Checkout&quot;)] // Matches &#39;Products/Checkout&#39; and &#39;Store/Checkout&#39;
+   public IActionResult Buy()
+}
+</code></pre><p>When multiple route attributes (that implement <code>IActionConstraint</code>) are placed on an action, then each action constraint combines with the route template from the attribute that defined it.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[Route(&quot;api/[controller]&quot;)]
+public class ProductsController : Controller
+{
+   [HttpPut(&quot;Buy&quot;)]      // Matches PUT &#39;api/Products/Buy&#39;
+   [HttpPost(&quot;Checkout&quot;)] // Matches POST &#39;api/Products/Checkout&#39;
+   public IActionResult Buy()
+}
+</code></pre><div class="TIP"><h5>Tip</h5><p>While using multiple routes on actions can seem powerful, it&#39;s better to keep your application&#39;s URL space simple and well-defined. Use multiple routes on actions only where needed, for example to support existing clients.</p>
+</div>
+<p><a name="routing-attr-options"></a></p>
+<h3 id="specifying-attribute-route-optional-parameters-default-values-and-constraints">Specifying attribute route optional parameters, default values, and constraints</h3>
+<p>Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.</p>
+<pre><code class="lang-csharp">[HttpPost(&quot;product/{id:int}&quot;)]
+public IActionResult ShowProduct(int id)
+{
+   // ...
+}
+</code></pre><p>See <a href="../../fundamentals/routing.html#route-template-reference">Route Template Reference</a> for a detailed description of route template syntax.</p>
+<p><a name="routing-cust-rt-attr-irt-ref-label"></a></p>
+<h3 id="custom-route-attributes-using-iroutetemplateprovider">Custom route attributes using <code>IRouteTemplateProvider</code></h3>
+<p>All of the route attributes provided in the framework ( <code>[Route(...)]</code>, <code>[HttpGet(...)]</code> , etc.) implement the <code>IRouteTemplateProvider</code> interface. MVC looks for attributes on controller classes and action methods when the app starts and uses the ones that implement <code>IRouteTemplateProvider</code> to build the initial set of routes.</p>
+<p>You can implement <code>IRouteTemplateProvider</code> to define your own route attributes. Each <code>IRouteTemplateProvider</code> allows you to define a single route with a custom route template, order, and name:</p>
+<pre><code class="lang-csharp">public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
+{
+   public string Template =&gt; &quot;api/[controller]&quot;;
+
+   public int? Order { get; set; }
+
+   public string Name { get; set; }
+}
+</code></pre><p>The attribute from the above example automatically sets the <code>Template</code> to <code>&quot;api/[controller]&quot;</code> when <code>[MyApiController]</code> is applied.</p>
+<p><a name="routing-app-model-ref-label"></a></p>
+<h3 id="using-application-model-to-customize-attribute-routes">Using Application Model to customize attribute routes</h3>
+<p>The <em>application model</em> is an object model created at startup with all of the metadata used by MVC to route and execute your actions. The <em>application model</em> includes all of the data gathered from route attributes (through <code>IRouteTemplateProvider</code>). You can write <em>conventions</em> to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using System.Linq;
+using System.Text;
+public class NamespaceRoutingConvention : IControllerModelConvention
+{
+    private readonly string _baseNamespace;
+
+    public NamespaceRoutingConvention(string baseNamespace)
+    {
+        _baseNamespace = baseNamespace;
+    }
+
+    public void Apply(ControllerModel controller)
+    {
+        var hasRouteAttributes = controller.Selectors.Any(selector =&gt;
+                                                selector.AttributeRouteModel != null);
+        if (hasRouteAttributes)
+        {
+            // This controller manually defined some routes, so treat this 
+            // as an override and not apply the convention here.
+            return;
+        }
+
+        // Use the namespace and controller name to infer a route for the controller.
+        //
+        // Example:
+        //
+        //  controller.ControllerTypeInfo -&gt;    &quot;My.Application.Admin.UsersController&quot;
+        //  baseNamespace -&gt;                    &quot;My.Application&quot;
+        //
+        //  template =&gt;                         &quot;Admin/[controller]&quot;
+        //
+        // This makes your routes roughly line up with the folder structure of your project.
+        //
+        var namespc = controller.ControllerType.Namespace;
+
+        var template = new StringBuilder();
+        template.Append(namespc, _baseNamespace.Length + 1,
+                        namespc.Length - _baseNamespace.Length - 1);
+        template.Replace(&#39;.&#39;, &#39;/&#39;);
+        template.Append(&quot;/[controller]&quot;);
+
+        foreach (var selector in controller.Selectors)
+        {
+            selector.AttributeRouteModel = new AttributeRouteModel()
+            {
+                Template = template.ToString()
+            };
+        }
+    }
+}
+</code></pre><p><a name="routing-mixed-ref-label"></a></p>
+<h2 id="mixed-routing-attribute-routing-vs-conventional-routing">Mixed routing: Attribute routing vs conventional routing</h2>
+<p>MVC applications can mix the use of conventional routing and attribute routing. It&#39;s typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.</p>
+<p>Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. <strong>Any</strong> route attribute on the controller makes all actions in the controller attribute routed.</p>
+<div class="NOTE"><h5>Note</h5><p>What distinguishes the two types of routing systems is the process applied after a URL matches a route template. In conventional routing, the route values from the match are used to choose the action and controller from a lookup table of all conventional routed actions. In attribute routing, each template is already associated with an action, and no further lookup is needed.</p>
+</div>
+<p><a name="routing-url-gen-ref-label"></a></p>
+<h2 id="url-generation">URL Generation</h2>
+<p>MVC applications can use routing&#39;s URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See <a href="../../fundamentals/routing.html">Routing</a> for a detailed description of URL generation.</p>
+<p>The <code>IUrlHelper</code> interface is the underlying piece of infrastructure between MVC and routing for URL generation. You&#39;ll find an instance of <code>IUrlHelper</code> available through the <code>Url</code> property in controllers, views, and view components.</p>
+<p>In this example, the <code>IUrlHelper</code> interface is used through the <code>Controller.Url</code> property to generate a URL to another action.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+public class UrlGenerationController : Controller
+{
+    public IActionResult Source()
+    {
+        // Generates /UrlGeneration/Destination
+        var url = Url.Action(&quot;Destination&quot;);
+        return Content($&quot;Go check out {url}, it&#39;s really great.&quot;);
+    }
+
+    public IActionResult Destination()
+    {
+        return View();
+    }
+}
+</code></pre><p>If the application is using the default conventional route, the value of the <code>url</code> variable will be the URL path string <code>/UrlGeneration/Destination</code>. This URL path is created by routing by combining the route values from the current request (ambient values), with the values passed to <code>Url.Action</code> and substituting those values into the route template:</p>
+<pre><code>ambient values: { controller = &quot;UrlGeneration&quot;, action = &quot;Source&quot; }
+values passed to Url.Action: { controller = &quot;UrlGeneration&quot;, action = &quot;Destination&quot; }
+route template: {controller}/{action}/{id?}
+
+result: /UrlGeneration/Destination
+</code></pre><p>Each route parameter in the route template has its value substituted by matching names with the values and ambient values. A route parameter that does not have a value can use a default value if it has one, or be skipped if it is optional (as in the case of <code>id</code> in this example). URL generation will fail if any required route parameter doesn&#39;t have a corresponding value. If URL generation fails for a route, the next route is tried until all routes have been tried or a match is found.</p>
+<p>The example of <code>Url.Action</code> above assumes conventional routing, but URL generation works similarly with attribute routing, though the concepts are different. With conventional routing, the route values are used to expand a template, and the route values for <code>controller</code> and <code>action</code> usually appear in that template - this works because the URLs matched by routing adhere to a <em>convention</em>. In attribute routing, the route values for <code>controller</code> and <code>action</code> are not allowed to appear in the template - they are instead used to look up which template to use.</p>
+<p>This example uses attribute routing:</p>
+<pre><code class="lang-csharp" name="Main">// In Startup class
+public void Configure(IApplicationBuilder app)
+{
+    app.UseMvc();
+}
+</code></pre><pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+public class UrlGenerationController : Controller
+{
+    [HttpGet(&quot;&quot;)]
+    public IActionResult Source()
+    {
+        var url = Url.Action(&quot;Destination&quot;); // Generates /custom/url/to/destination
+        return Content($&quot;Go check out {url}, it&#39;s really great.&quot;);
+    }
+
+    [HttpGet(&quot;custom/url/to/destination&quot;)]
+    public IActionResult Destination() {
+        return View();
+    }
+}
+</code></pre><p>MVC builds a lookup table of all attribute routed actions and will match the <code>controller</code> and <code>action</code> values to select the route template to use for URL generation. In the sample above,   <code>custom/url/to/destination</code> is generated.</p>
+<h3 id="generating-urls-by-action-name">Generating URLs by action name</h3>
+<p><code>Url.Action</code> (<code>IUrlHelper</code> . <code>Action</code>) and all related overloads all are based on that idea that you want to specify what you&#39;re linking to by specifying a controller name and action name.</p>
+<div class="NOTE"><h5>Note</h5><p>When using <code>Url.Action</code>, the current route values for <code>controller</code> and <code>action</code> are specified for you - the value of <code>controller</code> and <code>action</code> are part of both <em>ambient values</em> <strong>and</strong> <em>values</em>. The method <code>Url.Action</code>, always uses the current values of <code>action</code> and <code>controller</code> and will generate a URL path that routes to the current action.</p>
+</div>
+<p>Routing attempts to use the values in ambient values to fill in information that you didn&#39;t provide when generating a URL. Using a route like <code>{a}/{b}/{c}/{d}</code> and ambient values <code>{ a = Alice, b = Bob, c = Carol, d = David }</code>, routing has enough information to generate a URL without any additional values - since all route parameters have a value. If you added the value <code>{ d = Donovan }</code>, the value <code>{ d = David }</code> would be ignored, and the generated URL path would be <code>Alice/Bob/Carol/Donovan</code>.</p>
+<div class="WARNING"><h5>Warning</h5><p>URL paths are hierarchical. In the example above, if you added the value <code>{ c = Cheryl }</code>, both of the values <code>{ c = Carol, d = David }</code> would be ignored. In this case we no longer have a value for <code>d</code> and URL generation will fail. You would need to specify the desired value of <code>c</code> and <code>d</code>.  You might expect to hit this problem with the default route (<code>{controller}/{action}/{id?}</code>) - but you will rarely encounter this behavior in practice as <code>Url.Action</code> will always explicitly specify a <code>controller</code> and <code>action</code> value.</p>
+</div>
+<p>Longer overloads of <code>Url.Action</code> also take an additional <em>route values</em> object to provide values for route parameters other than <code>controller</code> and <code>action</code>. You will most commonly see this used with <code>id</code> like <code>Url.Action(&quot;Buy&quot;, &quot;Products&quot;, new { id = 17 })</code>. By convention the <em>route values</em> object is usually an object of anonymous type, but it can also be an <code>IDictionary&lt;&gt;</code> or a <em>plain old .NET object</em>. Any additional route values that don&#39;t match route parameters are put in the query string.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+public class TestController : Controller
+{
+    public IActionResult Index()
+    {
+        // Generates /Products/Buy/17?color=red
+        var url = Url.Action(&quot;Buy&quot;, &quot;Products&quot;, new { id = 17, color = &quot;red&quot; });
+        return Content(url);
+    }
+}
+</code></pre><div class="TIP"><h5>Tip</h5><p>To create an absolute URL, use an overload that accepts a <code>protocol</code>: <code>Url.Action(&quot;Buy&quot;, &quot;Products&quot;, new { id = 17 }, protocol: Request.Scheme)</code></p>
+</div>
+<p><a name="routing-gen-urls-route-ref-label"></a></p>
+<h3 id="generating-urls-by-route">Generating URLs by route</h3>
+<p>The code above demonstrated generating a URL by passing in the controller and action name. <code>IUrlHelper</code> also provides the <code>Url.RouteUrl</code> family of methods. These methods are similar to <code>Url.Action</code>, but they do not copy the current values of <code>action</code> and <code>controller</code> to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally <em>without</em> specifying a controller or action name.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+public class UrlGenerationController : Controller
+{
+    [HttpGet(&quot;&quot;)]
+    public IActionResult Source()
+    {
+        var url = Url.RouteUrl(&quot;Destination_Route&quot;); // Generates /custom/url/to/destination
+        return Content($&quot;See {url}, it&#39;s really great.&quot;);
+    }
+
+    [HttpGet(&quot;custom/url/to/destination&quot;, Name = &quot;Destination_Route&quot;)]
+    public IActionResult Destination() {
+        return View();
+    }
+}
+</code></pre><p><a name="routing-gen-urls-html-ref-label"></a></p>
+<h3 id="generating-urls-in-html">Generating URLs in HTML</h3>
+<p><code>IHtmlHelper</code> provides the <code>HtmlHelper</code> methods <code>Html.BeginForm</code> and <code>Html.ActionLink</code> to generate <code>&lt;form&gt;</code> and <code>&lt;a&gt;</code> elements respectively. These methods use the <code>Url.Action</code> method to generate a URL and they accept similar arguments. The <code>Url.RouteUrl</code> companions for <code>HtmlHelper</code> are <code>Html.BeginRouteForm</code> and <code>Html.RouteLink</code> which have similar functionality.</p>
+<p>TagHelpers generate URLs through the <code>form</code> TagHelper and the <code>&lt;a&gt;</code> TagHelper. Both of these use <code>IUrlHelper</code> for their implementation. See <a href="../views/working-with-forms.html">Working with Forms</a> for more information.</p>
+<p>Inside views, the <code>IUrlHelper</code> is available through the <code>Url</code> property for any ad-hoc URL generation not covered by the above.</p>
+<p><a name="routing-gen-urls-action-ref-label"></a></p>
+<h3 id="generating-urls-in-action-results">Generating URLS in Action Results</h3>
+<p>The examples above have shown using <code>IUrlHelper</code> in a controller, while the most common usage in a controller is to generate a URL as part of an action result.</p>
+<p>The <code>ControllerBase</code> and <code>Controller</code> base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input.</p>
+<pre><code class="lang-csharp">public Task&lt;IActionResult&gt; Edit(int id, Customer customer)
+{
+    if (ModelState.IsValid)
+    {
+        // Update DB with new details.
+        return RedirectToAction(&quot;Index&quot;);
+    }
+}
+</code></pre><p>The action results factory methods follow a similar pattern to the methods on <code>IUrlHelper</code>.</p>
+<p><a name="routing-dedicated-ref-label"></a></p>
+<h3 id="special-case-for-dedicated-conventional-routes">Special case for dedicated conventional routes</h3>
+<p>Conventional routing can use a special kind of route definition called a <em>dedicated conventional route</em>. In the example below, the route named <code>blog</code> is a dedicated conventional route.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(&quot;blog&quot;, &quot;blog/{*article}&quot;,
+        defaults: new { controller = &quot;Blog&quot;, action = &quot;Article&quot; });
+    routes.MapRoute(&quot;default&quot;, &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p>Using these route definitions, <code>Url.Action(&quot;Index&quot;, &quot;Home&quot;)</code> will generate the URL path <code>/</code> with the <code>default</code> route, but why? You might guess the route values <code>{ controller = Home, action = Index }</code> would be enough to generate a URL using <code>blog</code>, and the result would be <code>/blog?action=Index&amp;controller=Home</code>.</p>
+<p>Dedicated conventional routes rely on a special behavior of default values that don&#39;t have a corresponding route parameter that prevents the route from being &quot;too greedy&quot; with URL generation. In this case the default values are <code>{ controller = Blog, action = Article }</code>, and neither <code>controller</code> nor <code>action</code> appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using <code>blog</code> will fail because the values <code>{ controller = Home, action = Index }</code> don&#39;t match <code>{ controller = Blog, action = Article }</code>. Routing then falls back to try <code>default</code>, which succeeds.</p>
+<p><a name="routing-areas-ref-label"></a></p>
+<h2 id="areas">Areas</h2>
+<p><a href="areas.html">Areas</a> are an MVC feature used to organize related functionality into a group as a separate routing-namespace (for controller actions) and folder structure (for views). Using areas allows an application to have multiple controllers with the same name - as long as they have different <em>areas</em>. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, <code>area</code> to <code>controller</code> and <code>action</code>. This section will discuss how routing interacts with areas - see <a href="areas.html">Areas</a> for details about how areas are used with views.</p>
+<p>The following example configures MVC to use the default conventional route and an <em>area route</em> for an area named <code>Blog</code>:</p>
+<pre><code class="lang-csharp" name="Main">app.UseMvc(routes =&gt;
+{
+    routes.MapAreaRoute(&quot;blog_route&quot;, &quot;Blog&quot;,
+        &quot;Manage/{controller}/{action}/{id?}&quot;);
+    routes.MapRoute(&quot;default_route&quot;, &quot;{controller}/{action}/{id?}&quot;);
+});
+</code></pre><p>When matching a URL path like <code>/Manage/Users/AddUser</code>, the first route will produce the route values <code>{ area = Blog, controller = Users, action = AddUser }</code>. The <code>area</code> route value is produced by a default value for <code>area</code>, in fact the route created by <code>MapAreaRoute</code> is equivalent to the following:</p>
+<pre><code class="lang-csharp" name="Main">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(&quot;blog_route&quot;, &quot;Manage/{controller}/{action}/{id?}&quot;,
+        defaults: new { area = &quot;Blog&quot; }, constraints: new { area = &quot;Blog&quot; });
+    routes.MapRoute(&quot;default_route&quot;, &quot;{controller}/{action}/{id?}&quot;);
+});
+</code></pre><p><code>MapAreaRoute</code> creates a route using both a default value and constraint for <code>area</code> using the provided area name, in this case <code>Blog</code>. The default value ensures that the route always produces <code>{ area = Blog, ... }</code>, the constraint requires the value <code>{ area = Blog, ... }</code> for URL generation.</p>
+<div class="TIP"><h5>Tip</h5><p>Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they are more specific than routes without an area.</p>
+</div>
+<p>Using the above example, the route values would match the following action:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace1
+{
+    [Area(&quot;Blog&quot;)]
+    public class UsersController : Controller
+    {
+        public IActionResult AddUser()
+        {
+            return View();
+        }        
+    }
+}
+</code></pre><p>The <code>AreaAttribute</code> is what denotes a controller as part of an area, we say that this controller is in the <code>Blog</code> area. Controllers without an <code>[Area]</code> attribute are not members of any area, and will <strong>not</strong> match when the <code>area</code> route value is provided by routing. In the following example, only the first controller listed can match the route values <code>{ area = Blog, controller = Users, action = AddUser }</code>.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace1
+{
+    [Area(&quot;Blog&quot;)]
+    public class UsersController : Controller
+    {
+        public IActionResult AddUser()
+        {
+            return View();
+        }        
+    }
+}
+</code></pre><pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace2
+{
+    // Matches { area = Zebra, controller = Users, action = AddUser }
+    [Area(&quot;Zebra&quot;)]
+    public class UsersController : Controller
+    {
+        public IActionResult AddUser()
+        {
+            return View();
+        }        
+    }
+}
+</code></pre><pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace3
+{
+    // Matches { area = string.Empty, controller = Users, action = AddUser }
+    // Matches { area = null, controller = Users, action = AddUser }
+    // Matches { controller = Users, action = AddUser }
+    public class UsersController : Controller
+    {
+        public IActionResult AddUser()
+        {
+            return View();
+
+        }
+    }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>The namespace of each controller is shown here for completeness - otherwise the controllers would have a naming conflict and generate a compiler error. Class namespaces have no effect on MVC&#39;s routing.</p>
+</div>
+<p>The first two controllers are members of areas, and only match when their respective area name is provided by the <code>area</code> route value. The third controller is not a member of any area, and can only match when no value for <code>area</code> is provided by routing.</p>
+<div class="NOTE"><h5>Note</h5><p>In terms of matching <em>no value</em>, the absence of the <code>area</code> value is the same as if the value for <code>area</code> were null or the empty string.</p>
+</div>
+<p>When executing an action inside an area, the route value for <code>area</code> will be available as an <em>ambient value</em> for routing to use for URL generation. This means that by default areas act <em>sticky</em> for URL generation as demonstrated by the following sample.</p>
+<pre><code class="lang-csharp" name="Main">app.UseMvc(routes =&gt;
+{
+    routes.MapAreaRoute(&quot;duck_route&quot;, &quot;Duck&quot;,
+        &quot;Manage/{controller}/{action}/{id?}&quot;);
+    routes.MapRoute(&quot;default&quot;, &quot;Manage/{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/mvc/controllers/routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs"} -->
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace4
+{
+    [Area(&quot;Duck&quot;)]
+    public class UsersController : Controller
+    {
+        public IActionResult GenerateURLInArea()
+        {
+            // Uses the &#39;ambient&#39; value of area
+            var url = Url.Action(&quot;Index&quot;, &quot;Home&quot;); 
+            // returns /Manage
+            return Content(url);
+        }
+
+        public IActionResult GenerateURLOutsideOfArea()
+        {
+            // Uses the empty value for area
+            var url = Url.Action(&quot;Index&quot;, &quot;Home&quot;, new { area = &quot;&quot; }); 
+            // returns /Manage/Home/Index
+            return Content(url);
+        }
+    }
+}
+</code></pre><p><a name="iactionconstraint-ref-label"></a></p>
+<h2 id="understanding-iactionconstraint">Understanding IActionConstraint</h2>
+<div class="NOTE"><h5>Note</h5><p>This section is a deep-dive on framework internals and how MVC chooses an action to execute. A typical application won&#39;t need a custom <code>IActionConstraint</code></p>
+</div>
+<p>You have likely already used <code>IActionConstraint</code> even if you&#39;re not familiar with the interface. The <code>[HttpGet]</code> Attribute and similar <code>[Http-VERB]</code> attributes implement <code>IActionConstraint</code> in order to limit the execution of an action method.</p>
+<pre><code class="lang-csharp">public class ProductsController : Controller
+{
+    [HttpGet]
+    public IActionResult Edit() { }
+
+    public IActionResult Edit(...) { }
+}
+</code></pre><p>Assuming the default conventional route, the URL path <code>/Products/Edit</code> would produce the values <code>{ controller = Products, action = Edit }</code>, which would match <strong>both</strong> of the actions shown here. In <code>IActionConstraint</code> terminology we would say that both of these actions are considered candidates - as they both match the route data.</p>
+<p>When the <code>HttpGetAttribute</code> executes, it will say that <em>Edit()</em> is a match for <em>GET</em> and is not a match for any other HTTP verb. The <code>Edit(...)</code> action doesn&#39;t have any constraints defined, and so will match any HTTP verb. So assuming a <code>POST</code> - only <code>Edit(...)</code> matches. But, for a <code>GET</code> both actions can still match - however, an action with an <code>IActionConstraint</code> is always considered <em>better</em> than an action without. So because <code>Edit()</code> has <code>[HttpGet]</code> it is considered more specific, and will be selected if both actions can match.</p>
+<p>Conceptually, <code>IActionConstraint</code> is a form of <em>overloading</em>, but instead of overloading methods with the same name, it is overloading between actions that match the same URL. Attribute routing also uses <code>IActionConstraint</code> and can result in actions from different controllers both being considered candidates.</p>
+<p><a name="iactionconstraint-impl-ref-label"></a></p>
+<h3 id="implementing-iactionconstraint">Implementing IActionConstraint</h3>
+<p>The simplest way to implement an <code>IActionConstraint</code> is to create a class derived from <code>System.Attribute</code> and place it on your actions and controllers. MVC will automatically discover any <code>IActionConstraint</code> that are applied as attributes. You can use the application model to apply constraints, and this is probably the most flexible approach as it allows you to metaprogram how they are applied.</p>
+<p>In the following example a constraint chooses an action based on a <em>country code</em> from the route data. The <a href="https://github.com/aspnet/Entropy/blob/dev/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs">full sample on GitHub</a>.</p>
+<pre><code class="lang-csharp">public class CountrySpecificAttribute : Attribute, IActionConstraint
+{
+    private readonly string _countryCode;
+
+    public CountrySpecificAttribute(string countryCode)
+    {
+        _countryCode = countryCode;
+    }
+
+    public int Order
+    {
+        get
+        {
+            return 0;
+        }
+    }
+
+    public bool Accept(ActionConstraintContext context)
+    {
+        return string.Equals(
+            context.RouteContext.RouteData.Values[&quot;country&quot;].ToString(),
+            _countryCode,
+            StringComparison.OrdinalIgnoreCase);
+    }
+}
+</code></pre><p>You are responsible for implementing the <code>Accept</code> method and choosing an &#39;Order&#39; for the constraint to execute. In this case, the <code>Accept</code> method returns <code>true</code> to denote the action is a match when the <code>country</code> route value matches. This is different from a <code>RouteValueAttribute</code> in that it allows fallback to a non-attributed action. The sample shows that if you define an <code>en-US</code> action then a country code like <code>fr-FR</code> will fall back to a more generic controller that does not have <code>[CountrySpecific(...)]</code> applied.</p>
+<p>The <code>Order</code> property decides which <em>stage</em> the constraint is part of. Action constraints run in groups based on the <code>Order</code>. For example, all of the framework provided HTTP method attributes use the same <code>Order</code> value so that they run in the same stage. You can have as many stages as you need to implement your desired policies.</p>
+<div class="TIP"><h5>Tip</h5><p>To decide on a value for <code>Order</code> think about whether or not your constraint should be applied before HTTP methods. Lower numbers run first.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/controllers/routing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

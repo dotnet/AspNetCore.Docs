@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Development-time IIS support in Visual Studio for ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Development-time IIS support in Visual Studio for ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="publishing/development-time-iis-support">
+<h1 id="development-time-iis-support-in-visual-studio-for-aspnet-core">Development-time IIS support in Visual Studio for ASP.NET Core</h1>
+
+<p>By: <a href="https://twitter.com/sshirhatti">Sourabh Shirhatti</a></p>
+<p>This article describes <a href="https://www.visualstudio.com/vs/">Visual Studio</a> support for debugging ASP.NET Core applications running behind IIS on Windows Server. This topic walks you through enabling this feature and setting up your project.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Visual Studio (2017/version 15.3 or later)</li>
+<li>ASP.NET and web development workload <em>OR</em> the .NET Core cross-platform development workload</li>
+</ul>
+<h2 id="enable-iis">Enable IIS</h2>
+<p>Enable IIS on your system. Navigate to <strong>Control Panel</strong> &gt; <strong>Programs</strong> &gt; <strong>Programs and Features</strong> &gt; <strong>Turn Windows features on or off</strong> (left side of the screen). Select the <strong>Internet Information Services</strong> checkbox.</p>
+<p><img src="development-time-iis-support/_static/enable_iis.png" alt="Windows Features showing Internet Information Services checkbox checked as a black square (not a checkmark) indicating that some of the IIS features are enabled"></p>
+<p>If your IIS installation requires a reboot, reboot your system.</p>
+<h2 id="enable-development-time-iis-support">Enable development-time IIS support</h2>
+<p>Once you&#39;ve installed IIS, launch the Visual Studio installer to modify your existing Visual Studio installation. In the installer, select the <strong>Development time IIS support</strong> component. The component is listed as an optional component in the <strong>Summary</strong> panel for the <strong>ASP.NET and web development</strong> workload. This installs the <a class="xref" href="../fundamentals/servers/aspnet-core-module.html">ASP.NET Core Module</a>, which is a native IIS module required to run ASP.NET Core applications.</p>
+<p><img src="development-time-iis-support/_static/development_time_support.png" alt="Modifying Visual Studio features: The Workloads tab is selected. In the Web and Cloud section, the ASP.NET and web development panel is selected. On the right in the Optional area of the Summary panel, there is a checkbox for Development time IIS support."></p>
+<h2 id="configure-the-project">Configure the project</h2>
+<p>Create a new launch profile to add development-time IIS support. In Visual Studio&#39;s <strong>Solution Explorer</strong>, right-click the project and select <strong>Properties</strong>. Select the <strong>Debug</strong> tab. Select <strong>IIS</strong> from the <strong>Launch</strong> dropdown. Confirm that the <strong>Launch browser</strong> feature is enabled with the correct URL.</p>
+<p><img src="development-time-iis-support/_static/project_properties.png" alt="Project properties window with the Debug tab selected. The Profile and Launch settings are set to IIS. The Launch browser feature is enabled with an address of http://localhost/WebApplication2. The same address is also provided in the App URL field of the Web Server Settings area with Enable Anonymous Authentication enabled."></p>
+<p>Alternatively, you can manually add a launch profile to your <a href="http://json.schemastore.org/launchsettings">launchSettings.json</a> file in the app:</p>
+<pre><code class="lang-json">{
+    &quot;iisSettings&quot;: {
+        &quot;windowsAuthentication&quot;: false,
+        &quot;anonymousAuthentication&quot;: true,
+        &quot;iis&quot;: {
+            &quot;applicationUrl&quot;: &quot;http://localhost/WebApplication2&quot;,
+            &quot;sslPort&quot;: 0
+        }
+    },
+    &quot;profiles&quot;: {
+        &quot;IIS&quot;: {
+            &quot;commandName&quot;: &quot;IIS&quot;,
+            &quot;launchBrowser&quot;: &quot;true&quot;,
+            &quot;launchUrl&quot;: &quot;http://localhost/WebApplication2&quot;,
+            &quot;environmentVariables&quot;: {
+                &quot;ASPNETCORE_ENVIRONMENT&quot;: &quot;Development&quot;
+            }
+        }
+    }
+}
+</code></pre><p>You may be prompted to restart Visual Studio if you weren&#39;t running as an administrator. If prompted, restart Visual Studio.</p>
+<p>Congratulations! At this point, your project is configured for development-time IIS support. </p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a class="xref" href="iis.html">Host ASP.NET Core on Windows with IIS</a></li>
+<li><a class="xref" href="../fundamentals/servers/aspnet-core-module.html">Introduction to ASP.NET Core Module</a></li>
+<li><a class="xref" href="../hosting/aspnet-core-module.html">ASP.NET Core Module configuration reference</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/publishing/development-time-iis-support.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

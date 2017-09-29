@@ -1,0 +1,1 @@
+{"data/ef-rp/intro.md":[{"File":"data/ef-rp/intro.md","Line":"33","LogLevel":"warning","Message":"Invalid file link:(~/data/ef-rp/advanced.md#common-errors).","Phase":"BuildCommand.BuildCore.Build Document.LinkPhaseHandlerWithIncremental.ConceptualDocumentProcessor.Save","Code":"InvalidFileLink"}]}

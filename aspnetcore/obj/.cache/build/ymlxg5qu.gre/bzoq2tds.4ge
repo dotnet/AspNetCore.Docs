@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core directory structure </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core directory structure ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="hosting/directory-structure">
+<h1 id="directory-structure-of-published-aspnet-core-apps" sourcefile="hosting/directory-structure.md" sourcestartlinenumber="15" sourceendlinenumber="15">Directory structure of published ASP.NET Core apps</h1>
+
+<p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://github.com/guardrex" data-raw-source="[Luke Latham](https://github.com/guardrex)" sourcefile="hosting/directory-structure.md" sourcestartlinenumber="17" sourceendlinenumber="17">Luke Latham</a></p>
+<p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="19" sourceendlinenumber="19">In ASP.NET Core, the application directory, <em>publish</em>, is comprised of application files, config files, static assets, packages, and the runtime (for self-contained apps). This is the same directory structure as previous versions of ASP.NET, where the entire application lives inside the web root directory.</p>
+<table sourcefile="hosting/directory-structure.md" sourcestartlinenumber="21" sourceendlinenumber="24">
+<thead>
+<tr>
+<th>App Type</th>
+<th>Directory Structure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework-dependent Deployment</td>
+<td><ul><li>publish*<ul><li>logs* (if included in publishOptions)</li><li>refs*</li><li>runtimes*</li><li>Views* (if included in publishOptions)</li><li>wwwroot* (if included in publishOptions)</li><li>.dll files</li><li>myapp.deps.json</li><li>myapp.dll</li><li>myapp.pdb</li><li>myapp.PrecompiledViews.dll (if precompiling Razor Views)</li><li>myapp.PrecompiledViews.pdb (if precompiling Razor Views)</li><li>myapp.runtimeconfig.json</li><li>web.config (if included in publishOptions)</li></ul></li></ul></td>
+</tr>
+<tr>
+<td>Self-contained Deployment</td>
+<td><ul><li>publish*<ul><li>logs* (if included in publishOptions)</li><li>refs*</li><li>Views* (if included in publishOptions)</li><li>wwwroot* (if included in publishOptions)</li><li>.dll files</li><li>myapp.deps.json</li><li>myapp.exe</li><li>myapp.pdb</li><li>myapp.PrecompiledViews.dll (if precompiling Razor Views)</li><li>myapp.PrecompiledViews.pdb (if precompiling Razor Views)</li><li>myapp.runtimeconfig.json</li><li>web.config (if included in publishOptions)</li></ul></li></ul></td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="25" sourceendlinenumber="25">* Indicates a directory</p>
+<p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="27" sourceendlinenumber="27">The contents of the <em>publish</em> directory represents the <em>content root path</em>, also called the <em>application base path</em>, of the deployment. Whatever name is given to the <em>publish</em> directory in the deployment, its location serves as the server&#39;s physical path to the hosted application. The <em>wwwroot</em> directory, if present, only contains static assets. The <em>logs</em> directory may be included in the deployment by creating it in the project and adding the <code>&lt;Target&gt;</code> element shown below to your <em>.csproj</em> file or by physically creating the directory on the server.</p>
+<pre sourcefile="hosting/directory-structure.md" sourcestartlinenumber="29" sourceendlinenumber="34"><code class="lang-xml">&lt;Target Name=&quot;CreateLogsFolder&quot; AfterTargets=&quot;AfterPublish&quot;&gt;
+  &lt;MakeDir Directories=&quot;$(PublishDir)logs&quot; Condition=&quot;!Exists(&#39;$(PublishDir)logs&#39;)&quot; /&gt;
+  &lt;MakeDir Directories=&quot;$(PublishUrl)Logs&quot; Condition=&quot;!Exists(&#39;$(PublishUrl)Logs&#39;)&quot; /&gt;
+&lt;/Target&gt;
+</code></pre><p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="36" sourceendlinenumber="36">The first <code>&lt;MakeDir&gt;</code> element, which uses the <code>PublishDir</code> property, is used by the .NET Core CLI to determine the target location for the publish operation. The second <code>&lt;MakeDir&gt;</code> element, which uses the <code>PublishUrl</code> property, is used by Visual Studio to determine the target location. Visual Studio uses the <code>PublishUrl</code> property for compatibility with non-.NET Core projects.</p>
+<p sourcefile="hosting/directory-structure.md" sourcestartlinenumber="38" sourceendlinenumber="38">The deployment directory requires Read/Execute permissions, while the <em>logs</em> directory requires Read/Write permissions. Additional directories where assets will be written require Read/Write permissions.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/hosting/directory-structure.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

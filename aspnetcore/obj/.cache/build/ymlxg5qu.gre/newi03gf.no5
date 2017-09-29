@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction to ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction to ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="index">
+<h1 id="introduction-to-aspnet-core" sourcefile="index.md" sourcestartlinenumber="14" sourceendlinenumber="14">Introduction to ASP.NET Core</h1>
+
+<p sourcefile="index.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://github.com/danroth27" data-raw-source="[Daniel Roth](https://github.com/danroth27)" sourcefile="index.md" sourcestartlinenumber="16" sourceendlinenumber="16">Daniel Roth</a>, <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="index.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a>, and <a href="https://twitter.com/dicshaunary" data-raw-source="[Shaun Luttin](https://twitter.com/dicshaunary)" sourcefile="index.md" sourcestartlinenumber="16" sourceendlinenumber="16">Shaun Luttin</a></p>
+<p sourcefile="index.md" sourcestartlinenumber="18" sourceendlinenumber="18">ASP.NET Core is a cross-platform, high-performance, <a href="https://github.com/aspnet/home" data-raw-source="[open-source](https://github.com/aspnet/home)" sourcefile="index.md" sourcestartlinenumber="18" sourceendlinenumber="18">open-source</a> framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:</p>
+<ul sourcefile="index.md" sourcestartlinenumber="20" sourceendlinenumber="23">
+<li sourcefile="index.md" sourcestartlinenumber="20" sourceendlinenumber="20">Build web apps and services, IoT apps, and mobile backends.</li>
+<li sourcefile="index.md" sourcestartlinenumber="21" sourceendlinenumber="21">Use your favorite development tools on Windows, macOS, and Linux.</li>
+<li sourcefile="index.md" sourcestartlinenumber="22" sourceendlinenumber="22">Deploy to the cloud or on-premises</li>
+<li sourcefile="index.md" sourcestartlinenumber="23" sourceendlinenumber="23">Run on <a href="https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server" data-raw-source="[.NET Core or .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)" sourcefile="index.md" sourcestartlinenumber="23" sourceendlinenumber="23">.NET Core or .NET Framework</a>.</li>
+</ul>
+<h2 id="why-use-aspnet-core" sourcefile="index.md" sourcestartlinenumber="25" sourceendlinenumber="25">Why use ASP.NET Core?</h2>
+<p sourcefile="index.md" sourcestartlinenumber="27" sourceendlinenumber="27">Millions of developers have used ASP.NET (and continue to use it) to create web apps. ASP.NET Core is a redesign of ASP.NET, with architectural changes that result in a leaner and modular framework.</p>
+<p sourcefile="index.md" sourcestartlinenumber="29" sourceendlinenumber="29">ASP.NET Core provides the following benefits:</p>
+<ul sourcefile="index.md" sourcestartlinenumber="31" sourceendlinenumber="40">
+<li sourcefile="index.md" sourcestartlinenumber="31" sourceendlinenumber="31">A unified story for building web UI and web APIs.</li>
+<li sourcefile="index.md" sourcestartlinenumber="32" sourceendlinenumber="32">Integration of <a class="xref" href="client-side/index.html" data-raw-source="[modern client-side frameworks](xref:client-side/index)" sourcefile="index.md" sourcestartlinenumber="32" sourceendlinenumber="32">modern client-side frameworks</a> and development workflows.</li>
+<li sourcefile="index.md" sourcestartlinenumber="33" sourceendlinenumber="33">A cloud-ready, environment-based <a class="xref" href="fundamentals/configuration.html" data-raw-source="[configuration system](xref:fundamentals/configuration)" sourcefile="index.md" sourcestartlinenumber="33" sourceendlinenumber="33">configuration system</a>.</li>
+<li sourcefile="index.md" sourcestartlinenumber="34" sourceendlinenumber="34">Built-in <a class="xref" href="fundamentals/dependency-injection.html" data-raw-source="[dependency injection](xref:fundamentals/dependency-injection)" sourcefile="index.md" sourcestartlinenumber="34" sourceendlinenumber="34">dependency injection</a>.</li>
+<li sourcefile="index.md" sourcestartlinenumber="35" sourceendlinenumber="35">A lightweight, high-performance, and modular HTTP request pipeline.</li>
+<li sourcefile="index.md" sourcestartlinenumber="36" sourceendlinenumber="36">Ability to host on IIS or self-host in your own process.</li>
+<li sourcefile="index.md" sourcestartlinenumber="37" sourceendlinenumber="37">Can run on <a href="https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server" data-raw-source="[.NET Core](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)" sourcefile="index.md" sourcestartlinenumber="37" sourceendlinenumber="37">.NET Core</a>, which supports true side-by-side app versioning.</li>
+<li sourcefile="index.md" sourcestartlinenumber="38" sourceendlinenumber="38">Tooling that simplifies modern web development.</li>
+<li sourcefile="index.md" sourcestartlinenumber="39" sourceendlinenumber="39">Ability to build and run on Windows, macOS, and Linux.</li>
+<li sourcefile="index.md" sourcestartlinenumber="40" sourceendlinenumber="40">Open-source and community-focused.</li>
+</ul>
+<p sourcefile="index.md" sourcestartlinenumber="42" sourceendlinenumber="42">ASP.NET Core ships entirely as <a href="https://www.nuget.org/" data-raw-source="[NuGet](https://www.nuget.org/)" sourcefile="index.md" sourcestartlinenumber="42" sourceendlinenumber="42">NuGet</a> packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, and improved performance.</p>
+<h2 id="build-web-apis-and-web-ui-using-aspnet-core-mvc" sourcefile="index.md" sourcestartlinenumber="44" sourceendlinenumber="44">Build web APIs and web UI using ASP.NET Core MVC</h2>
+<p sourcefile="index.md" sourcestartlinenumber="46" sourceendlinenumber="46">ASP.NET Core MVC provides features that help you build <a class="xref" href="tutorials/index.html#building-web-apis" data-raw-source="[web APIs](xref:tutorials/index#building-web-apis)" sourcefile="index.md" sourcestartlinenumber="46" sourceendlinenumber="46">web APIs</a> and <a class="xref" href="tutorials/index.html#building-web-applications" data-raw-source="[web apps](xref:tutorials/index#building-web-applications)" sourcefile="index.md" sourcestartlinenumber="46" sourceendlinenumber="46">web apps</a>:</p>
+<ul sourcefile="index.md" sourcestartlinenumber="48" sourceendlinenumber="54">
+<li sourcefile="index.md" sourcestartlinenumber="48" sourceendlinenumber="48">The <a class="xref" href="mvc/overview.html" data-raw-source="[Model-View-Controller (MVC) pattern](xref:mvc/overview)" sourcefile="index.md" sourcestartlinenumber="48" sourceendlinenumber="48">Model-View-Controller (MVC) pattern</a> helps make your web APIs and web apps <a href="testing/index.html" data-raw-source="[testable](testing/index.md)" sourcefile="index.md" sourcestartlinenumber="48" sourceendlinenumber="48">testable</a>.</li>
+<li sourcefile="index.md" sourcestartlinenumber="49" sourceendlinenumber="49"><a class="xref" href="mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="index.md" sourcestartlinenumber="49" sourceendlinenumber="49">Razor Pages</a> (new in 2.0) is a page-based programming model that makes building web UI easier and more productive.</li>
+<li sourcefile="index.md" sourcestartlinenumber="50" sourceendlinenumber="50"><a class="xref" href="mvc/views/razor.html" data-raw-source="[Razor syntax](xref:mvc/views/razor)" sourcefile="index.md" sourcestartlinenumber="50" sourceendlinenumber="50">Razor syntax</a> provides a productive language for <a class="xref" href="mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="index.md" sourcestartlinenumber="50" sourceendlinenumber="50">Razor Pages</a> and <a class="xref" href="mvc/views/overview.html" data-raw-source="[MVC Views](xref:mvc/views/overview)" sourcefile="index.md" sourcestartlinenumber="50" sourceendlinenumber="50">MVC Views</a>.</li>
+<li sourcefile="index.md" sourcestartlinenumber="51" sourceendlinenumber="51"><a class="xref" href="mvc/views/tag-helpers/intro.html" data-raw-source="[Tag Helpers](xref:mvc/views/tag-helpers/intro)" sourcefile="index.md" sourcestartlinenumber="51" sourceendlinenumber="51">Tag Helpers</a> enable server-side code to participate in creating and rendering HTML elements in Razor files.</li>
+<li sourcefile="index.md" sourcestartlinenumber="52" sourceendlinenumber="52">Built-in support for <a href="mvc/models/formatting.html" data-raw-source="[multiple data formats and content negotiation](mvc/models/formatting.md)" sourcefile="index.md" sourcestartlinenumber="52" sourceendlinenumber="52">multiple data formats and content negotiation</a> lets your web APIs reach a broad range of clients, including browsers and mobile devices.</li>
+<li sourcefile="index.md" sourcestartlinenumber="53" sourceendlinenumber="53"><a class="xref" href="mvc/models/model-binding.html" data-raw-source="[Model Binding](xref:mvc/models/model-binding)" sourcefile="index.md" sourcestartlinenumber="53" sourceendlinenumber="53">Model Binding</a> automatically maps data from HTTP requests to action method parameters.</li>
+<li sourcefile="index.md" sourcestartlinenumber="54" sourceendlinenumber="54"><a class="xref" href="mvc/models/validation.html" data-raw-source="[Model Validation](xref:mvc/models/validation)" sourcefile="index.md" sourcestartlinenumber="54" sourceendlinenumber="54">Model Validation</a> automatically performs client and server-side validation.</li>
+</ul>
+<h2 id="client-side-development" sourcefile="index.md" sourcestartlinenumber="56" sourceendlinenumber="56">Client-side development</h2>
+<p sourcefile="index.md" sourcestartlinenumber="58" sourceendlinenumber="58">ASP.NET Core is designed to integrate seamlessly with a variety of client-side frameworks, including <a class="xref" href="client-side/angular.html" data-raw-source="[AngularJS](xref:client-side/angular)" sourcefile="index.md" sourcestartlinenumber="58" sourceendlinenumber="58">AngularJS</a>, <a class="xref" href="client-side/knockout.html" data-raw-source="[KnockoutJS](xref:client-side/knockout)" sourcefile="index.md" sourcestartlinenumber="58" sourceendlinenumber="58">KnockoutJS</a>, and <a class="xref" href="client-side/bootstrap.html" data-raw-source="[Bootstrap](xref:client-side/bootstrap)" sourcefile="index.md" sourcestartlinenumber="58" sourceendlinenumber="58">Bootstrap</a>. See <a href="client-side/index.html" data-raw-source="[Client-side development](client-side/index.md)" sourcefile="index.md" sourcestartlinenumber="58" sourceendlinenumber="58">Client-side development</a> for more details.</p>
+<h2 id="next-steps" sourcefile="index.md" sourcestartlinenumber="60" sourceendlinenumber="60">Next steps</h2>
+<p sourcefile="index.md" sourcestartlinenumber="62" sourceendlinenumber="62">For more information, see the following resources:</p>
+<ul sourcefile="index.md" sourcestartlinenumber="64" sourceendlinenumber="66">
+<li sourcefile="index.md" sourcestartlinenumber="64" sourceendlinenumber="64"><a class="xref" href="tutorials/index.html" data-raw-source="[ASP.NET Core tutorials](xref:tutorials/index)" sourcefile="index.md" sourcestartlinenumber="64" sourceendlinenumber="64">ASP.NET Core tutorials</a></li>
+<li sourcefile="index.md" sourcestartlinenumber="65" sourceendlinenumber="65"><a class="xref" href="fundamentals/index.html" data-raw-source="[ASP.NET Core fundamentals](xref:fundamentals/index)" sourcefile="index.md" sourcestartlinenumber="65" sourceendlinenumber="65">ASP.NET Core fundamentals</a></li>
+<li sourcefile="index.md" sourcestartlinenumber="66" sourceendlinenumber="66"><a href="https://live.asp.net/" data-raw-source="[The weekly ASP.NET community standup](https://live.asp.net/)" sourcefile="index.md" sourcestartlinenumber="66" sourceendlinenumber="66">The weekly ASP.NET community standup</a> covers the team&#39;s progress and plans and features new blogs and third-party software.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,891 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Hosting in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Hosting in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/hosting">
+<h1 id="hosting-in-aspnet-core">Hosting in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/guardrex">Luke Latham</a></p>
+<p>ASP.NET Core apps configure and launch a <em>host</em>, which is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline.</p>
+<h2 id="setting-up-a-host">Setting up a host</h2>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>Create a host using an instance of <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder">WebHostBuilder</a>. This is typically performed in your app&#39;s entry point, the <code>Main</code> method. In the project templates, <code>Main</code> is located in <em>Program.cs</em>. A typical <em>Program.cs</em> calls <a href="/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder">CreateDefaultBuilder</a> to start setting up a host:</p>
+<pre><code class="lang-csharp" name="Main">public class Program
+{
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
+    }
+
+    public static IWebHost BuildWebHost(string[] args) =&gt;
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup&lt;Startup&gt;()
+            .Build();
+}
+</code></pre><p><code>CreateDefaultBuilder</code> performs the following tasks:</p>
+<ul>
+<li>Configures <a href="servers/kestrel.html">Kestrel</a> as the web server. For the Kestrel default options, see <a class="xref" href="servers/kestrel.html#kestrel-options">the Kestrel options section of Kestrel web server implementation in ASP.NET Core</a>.</li>
+<li>Sets the content root to <a href="/dotnet/api/system.io.directory.getcurrentdirectory">Directory.GetCurrentDirectory</a>.</li>
+<li>Loads optional configuration from:<ul>
+<li><em>appsettings.json</em>.</li>
+<li><em>appsettings.{Environment}.json</em>.</li>
+<li><a class="xref" href="../security/app-secrets.html">User secrets</a> when the app runs in the <code>Development</code> environment.</li>
+<li>Environment variables.</li>
+<li>Command-line arguments.</li>
+</ul>
+</li>
+<li>Configures <a class="xref" href="logging.html">logging</a> for console and debug output with <a class="xref" href="logging.html#log-filtering">log filtering</a> rules specified in a Logging configuration section of an <em>appsettings.json</em> or <em>appsettings.{Environment}.json</em> file.</li>
+<li>When running behind IIS, enables <a class="xref" href="../publishing/iis.html">IIS integration</a> by configuring the base path and port the server should listen on when using the <a class="xref" href="servers/aspnet-core-module.html">ASP.NET Core Module</a>. The module creates a reverse-proxy between IIS and Kestrel. Also configures the app to <a href="#capture-startup-errors">capture startup errors</a>. For the IIS default options, see <a class="xref" href="../publishing/iis.html#iis-options">the IIS options section of Host ASP.NET Core on Windows with IIS</a>.</li>
+</ul>
+<p>The <em>content root</em> determines where the host searches for content files, such as MVC view files. The default content root is <a href="/dotnet/api/system.io.directory.getcurrentdirectory">Directory.GetCurrentDirectory</a>. This results in using the web project&#39;s root folder as the content root when the app is started from the root folder (for example, calling <a href="/dotnet/core/tools/dotnet-run">dotnet run</a> from the project folder). This is the default used in <a href="https://www.visualstudio.com/">Visual Studio</a> and the <a href="/dotnet/core/tools/dotnet-new">dotnet new templates</a>.</p>
+<p>See <a class="xref" href="configuration.html">Configuration in ASP.NET Core</a> for more information on app configuration.</p>
+<div class="NOTE"><h5>Note</h5><p>As an alternative to using the static <code>CreateDefaultBuilder</code> method, creating a host from <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder">WebHostBuilder</a> is a supported approach with ASP.NET Core 2.x. See the ASP.NET Core 1.x tab for more information.</p>
+</div>
+</section>
+<section id="tabpanel_uJoo4eryA3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>Create a host using an instance of <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder">WebHostBuilder</a>. This is typically performed in your app&#39;s entry point, the <code>Main</code> method. In the project templates, <code>Main</code> is located in <em>Program.cs</em>. The following <em>Program.cs</em> demonstrates how to use <code>WebHostBuilder</code> to build the host:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+
+namespace WebApplication1
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+</code></pre><p><code>WebHostBuilder</code> requires a <a href="servers/index.html">server that implements IServer</a>. The built-in servers are <a href="servers/kestrel.html">Kestrel</a> and <a href="servers/httpsys.html">HTTP.sys</a> (prior to the release of ASP.NET Core 2.0, HTTP.sys was called <a class="xref" href="servers/weblistener.html">WebListener</a>). In this example, the <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1">UseKestrel extension method</a> specifies the Kestrel server.</p>
+<p>The <em>content root</em> determines where the host searches for content files, such as MVC view files. The default content root supplied to <code>UseContentRoot</code> is <a href="/dotnet/api/system.io.directory.getcurrentdirectory?view=netcore-1.1">Directory.GetCurrentDirectory</a>. This results in using the web project&#39;s root folder as the content root when the app is started from the root folder (for example, calling <a href="/dotnet/core/tools/dotnet-run">dotnet run</a> from the project folder). This is the default used in <a href="https://www.visualstudio.com/">Visual Studio</a> and the <a href="/dotnet/core/tools/dotnet-new">dotnet new templates</a>.</p>
+<p>To use IIS as a reverse proxy, call <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderiisextensions">UseIISIntegration</a> as part of building the host. <code>UseIISIntegration</code> doesn&#39;t configure a <em>server</em>, like <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel?view=aspnetcore-1.1">UseKestrel</a> does. <code>UseIISIntegration</code> configures the base path and port the server should listen on when using the <a class="xref" href="servers/aspnet-core-module.html">ASP.NET Core Module</a> to create a reverse-proxy between Kestrel and IIS. To use IIS with ASP.NET Core, you must specify both <code>UseKestrel</code> and <code>UseIISIntegration</code>. <code>UseIISIntegration</code> only activates when running behind IIS or IIS Express. For more information, see <a class="xref" href="servers/aspnet-core-module.html">Introduction to ASP.NET Core Module</a> and <a class="xref" href="../hosting/aspnet-core-module.html">ASP.NET Core Module configuration reference</a>.</p>
+<p>A minimal implementation that configures a host (and an ASP.NET Core app) includes specifying a server and configuration of the app&#39;s request pipeline:</p>
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseKestrel()
+    .Configure(app =&gt;
+    {
+        app.Run(context =&gt; context.Response.WriteAsync(&quot;Hello World!&quot;));
+    })
+    .Build();
+
+host.Run();
+</code></pre></section>
+</div>
+<p>When setting up a host, you can provide <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.configure?view=aspnetcore-1.1">Configure</a> and <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.configureservices?view=aspnetcore-1.1">ConfigureServices</a> methods. If you specify a <code>Startup</code> class, it must define a <code>Configure</code> method. For more information, see <a href="startup.html">Application Startup in ASP.NET Core</a>. Multiple calls to <code>ConfigureServices</code> append to one another. Multiple calls to <code>Configure</code> or <code>UseStartup</code> on the <code>WebHostBuilder</code> replace previous settings.</p>
+<h2 id="host-configuration-values">Host configuration values</h2>
+<p><a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder">WebHostBuilder</a> provides methods for setting most of the available configuration values for the host, which can also be set directly with <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder.usesetting">UseSetting</a> and the associated key. When setting a value with <code>UseSetting</code>, the value is set as a string (in quotes) regardless of the type.</p>
+<h3 id="capture-startup-errors">Capture Startup Errors</h3>
+<p>This setting controls the capture of startup errors.</p>
+<p><strong>Key</strong>: captureStartupErrors<br><strong>Type</strong>: <em>bool</em> (<code>true</code> or <code>1</code>)<br><strong>Default</strong>: Defaults to <code>false</code> unless the app runs with Kestrel behind IIS, where the default is <code>true</code>.<br><strong>Set using</strong>: <code>CaptureStartupErrors</code></p>
+<p>When <code>false</code>, errors during startup result in the host exiting. When <code>true</code>, the host captures exceptions during startup and attempts to start the server.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-1_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-1_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .CaptureStartupErrors(true)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .CaptureStartupErrors(true)
+    ...
+</code></pre></section>
+</div>
+<h3 id="content-root">Content Root</h3>
+<p>This setting determines where ASP.NET Core begins searching for content files, such as MVC views. </p>
+<p><strong>Key</strong>: contentRoot<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: Defaults to the folder where the app assembly resides.<br><strong>Set using</strong>: <code>UseContentRoot</code></p>
+<p>The content root is also used as the base path for the <a href="#web-root">Web Root setting</a>. If the path doesn&#39;t exist, the host fails to start.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-2_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-2_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseContentRoot(&quot;c:\\mywebsite&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseContentRoot(&quot;c:\\mywebsite&quot;)
+    ...
+</code></pre></section>
+</div>
+<h3 id="detailed-errors">Detailed Errors</h3>
+<p>Determines if detailed errors should be captured.</p>
+<p><strong>Key</strong>: detailedErrors<br><strong>Type</strong>: <em>bool</em> (<code>true</code> or <code>1</code>)<br><strong>Default</strong>: false<br><strong>Set using</strong>: <code>UseSetting</code></p>
+<p>When enabled (or when the <a href="#environment">Environment</a> is set to <code>Development</code>), the app captures detailed exceptions.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-3_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-3_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseSetting(WebHostDefaults.DetailedErrorsKey, &quot;true&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseSetting(WebHostDefaults.DetailedErrorsKey, &quot;true&quot;)
+    ...
+</code></pre></section>
+</div>
+<h3 id="environment">Environment</h3>
+<p>Sets the app&#39;s environment.</p>
+<p><strong>Key</strong>: environment<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: Production<br><strong>Set using</strong>: <code>UseEnvironment</code></p>
+<p>You can set the <em>Environment</em> to any value. Framework-defined values include <code>Development</code>, <code>Staging</code>, and <code>Production</code>. Values aren&#39;t case sensitive. By default, the <em>Environment</em> is read from the <code>ASPNETCORE_ENVIRONMENT</code> environment variable. When using <a href="https://www.visualstudio.com/">Visual Studio</a>, environment variables may be set in the <em>launchSettings.json</em> file. For more information, see <a class="xref" href="environments.html">Working with Multiple Environments</a>.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-4_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-4_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-4_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-4_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-4_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseEnvironment(&quot;Development&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-4_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseEnvironment(&quot;Development&quot;)
+    ...
+</code></pre></section>
+</div>
+<h3 id="hosting-startup-assemblies">Hosting Startup Assemblies</h3>
+<p>Sets the app&#39;s hosting startup assemblies.</p>
+<p><strong>Key</strong>: hostingStartupAssemblies<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: Empty string<br><strong>Set using</strong>: <code>UseSetting</code></p>
+<p>A semicolon-delimited string of hosting startup assemblies to load on startup. This feature is new in ASP.NET Core 2.0.</p>
+<p>Although the configuration value defaults to an empty string, the hosting startup assemblies always include the app&#39;s assembly. When you provide hosting startup assemblies, they&#39;re added to the app&#39;s assembly for loading when the app builds its common services during startup.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-5">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-5_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-5_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-5_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-5_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-5_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, &quot;assembly1;assembly2&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-5_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>This feature is unavailable in ASP.NET Core 1.x.</p>
+</section>
+</div>
+<h3 id="prefer-hosting-urls">Prefer Hosting URLs</h3>
+<p>Indicates whether the host should listen on the URLs configured with the <code>WebHostBuilder</code> instead of those configured with the <code>IServer</code> implementation.</p>
+<p><strong>Key</strong>: preferHostingUrls<br><strong>Type</strong>: <em>bool</em> (<code>true</code> or <code>1</code>)<br><strong>Default</strong>: true<br><strong>Set using</strong>: <code>PreferHostingUrls</code></p>
+<p>This feature is new in ASP.NET Core 2.0.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-6_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-6_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-6_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-6_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-6_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .PreferHostingUrls(false)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-6_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>This feature is unavailable in ASP.NET Core 1.x.</p>
+</section>
+</div>
+<h3 id="prevent-hosting-startup">Prevent Hosting Startup</h3>
+<p>Prevents the automatic loading of hosting startup assemblies, including the app&#39;s assembly.</p>
+<p><strong>Key</strong>: preventHostingStartup<br><strong>Type</strong>: <em>bool</em> (<code>true</code> or <code>1</code>)<br><strong>Default</strong>: false<br><strong>Set using</strong>: <code>UseSetting</code></p>
+<p>This feature is new in ASP.NET Core 2.0.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-7">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-7_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-7_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-7_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-7_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-7_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseSetting(WebHostDefaults.PreventHostingStartupKey, &quot;true&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-7_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>This feature is unavailable in ASP.NET Core 1.x.</p>
+</section>
+</div>
+<h3 id="server-urls">Server URLs</h3>
+<p>Indicates the IP addresses or host addresses with ports and protocols that the server should listen on for requests.</p>
+<p><strong>Key</strong>: urls<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: <a href="http://localhost:5000">http://localhost:5000</a><br><strong>Set using</strong>: <code>UseUrls</code></p>
+<p>Set to a semicolon-separated (;) list of URL prefixes to which the server should respond. For example, <code>http://localhost:123</code>. Use &quot;*&quot; to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, <code>http://*:5000</code>). The protocol (<code>http://</code> or <code>https://</code>) must be included with each URL. Supported formats vary between servers.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-8">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-8_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-8_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-8_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-8_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-8_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseUrls(&quot;http://*:5000;http://localhost:5001;https://hostname:5002&quot;)
+    ...
+</code></pre><p>Kestrel has its own endpoint configuration API. For more information, see <a class="xref" href="servers/kestrel.html#endpoint-configuration">Kestrel web server implementation in ASP.NET Core</a>.</p>
+</section>
+<section id="tabpanel_uJoo4eryA3-8_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseUrls(&quot;http://*:5000;http://localhost:5001;https://hostname:5002&quot;)
+    ...
+</code></pre></section>
+</div>
+<h3 id="shutdown-timeout">Shutdown Timeout</h3>
+<p>Specifies the amount of time to wait for the web host to shutdown.</p>
+<p><strong>Key</strong>: shutdownTimeoutSeconds<br><strong>Type</strong>: <em>int</em><br><strong>Default</strong>: 5<br><strong>Set using</strong>: <code>UseShutdownTimeout</code></p>
+<p>Although the key accepts an <em>int</em> with <code>UseSetting</code> (for example, <code>.UseSetting(WebHostDefaults.ShutdownTimeoutKey, &quot;10&quot;)</code>), the <code>UseShutdownTimeout</code> extension method takes a <code>TimeSpan</code>. This feature is new in ASP.NET Core 2.0.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-9">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-9_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-9_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-9_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-9_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-9_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseShutdownTimeout(TimeSpan.FromSeconds(10))
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-9_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>This feature is unavailable in ASP.NET Core 1.x.</p>
+</section>
+</div>
+<h3 id="startup-assembly">Startup Assembly</h3>
+<p>Determines the assembly to search for the <code>Startup</code> class.</p>
+<p><strong>Key</strong>: startupAssembly<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: The app&#39;s assembly<br><strong>Set using</strong>: <code>UseStartup</code></p>
+<p>You can reference the assembly by name (<code>string</code>) or type (<code>TStartup</code>). If multiple <code>UseStartup</code> methods are called, the last one takes precedence.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-10">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-10_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-10_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-10_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-10_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-10_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseStartup(&quot;StartupAssemblyName&quot;)
+    ...
+</code></pre><pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseStartup&lt;TStartup&gt;()
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-10_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseStartup(&quot;StartupAssemblyName&quot;)
+    ...
+</code></pre><pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseStartup&lt;TStartup&gt;()
+    ...
+</code></pre></section>
+</div>
+<h3 id="web-root">Web Root</h3>
+<p>Sets the relative path to the app&#39;s static assets.</p>
+<p><strong>Key</strong>: webroot<br><strong>Type</strong>: <em>string</em><br><strong>Default</strong>: If not specified, the default is &quot;(Content Root)/wwwroot&quot;, if the path exists. If the path doesn&#39;t exist, then a no-op file provider is used.<br><strong>Set using</strong>: <code>UseWebRoot</code></p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-11">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-11_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-11_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-11_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-11_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-11_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseWebRoot(&quot;public&quot;)
+    ...
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-11_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">var host = new WebHostBuilder()
+    .UseWebRoot(&quot;public&quot;)
+    ...
+</code></pre></section>
+</div>
+<h2 id="overriding-configuration">Overriding configuration</h2>
+<p>Use <a href="configuration.html">Configuration</a> to configure the host. In the following example, host configuration is optionally specified in a <em>hosting.json</em> file. Any configuration loaded from the <em>hosting.json</em> file may be overridden by command-line arguments. The built configuration (in <code>config</code>) is used to configure the host with <code>UseConfiguration</code>.</p>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-12">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-12_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-12_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-12_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-12_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-12_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p><em>hosting.json</em>:</p>
+<pre><code class="lang-json">{
+    urls: &quot;http://*:5005&quot;
+}
+</code></pre><p>Overriding the configuration provided by <code>UseUrls</code> with <em>hosting.json</em> config first, command-line argument config second:</p>
+<pre><code class="lang-csharp">public class Program
+{
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
+    }
+
+    public static IWebHost BuildWebHost(string[] args)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(&quot;hosting.json&quot;, optional: true)
+            .AddCommandLine(args)
+            .Build();
+
+        return WebHost.CreateDefaultBuilder(args)
+            .UseUrls(&quot;http://*:5000&quot;)
+            .UseConfiguration(config)
+            .Configure(app =&gt;
+            {
+                app.Run(context =&gt; 
+                    context.Response.WriteAsync(&quot;Hello, World!&quot;));
+            })
+            .Build();
+    }
+}
+</code></pre></section>
+<section id="tabpanel_uJoo4eryA3-12_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p><em>hosting.json</em>:</p>
+<pre><code class="lang-json">{
+    urls: &quot;http://*:5005&quot;
+}
+</code></pre><p>Overriding the configuration provided by <code>UseUrls</code> with <em>hosting.json</em> config first, command-line argument config second:</p>
+<pre><code class="lang-csharp">public class Program
+{
+    public static void Main(string[] args)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(&quot;hosting.json&quot;, optional: true)
+            .AddCommandLine(args)
+            .Build();
+
+        var host = new WebHostBuilder()
+            .UseUrls(&quot;http://*:5000&quot;)
+            .UseConfiguration(config)
+            .UseKestrel()
+            .Configure(app =&gt;
+            {
+                app.Run(context =&gt; 
+                    context.Response.WriteAsync(&quot;Hello, World!&quot;));
+            })
+            .Build();
+
+        host.Run();
+    }
+}
+</code></pre></section>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The <code>UseConfiguration</code> extension method isn&#39;t currently capable of parsing a configuration section returned by <code>GetSection</code> (for example, <code>.UseConfiguration(Configuration.GetSection(&quot;section&quot;))</code>. The <code>GetSection</code> method filters the configuration keys to the section requested but leaves the section name on the keys (for example, <code>section:urls</code>, <code>section:environment</code>). The <code>UseConfiguration</code> method expects the keys to match the <code>WebHostBuilder</code> keys (for example, <code>urls</code>, <code>environment</code>). The presence of the section name on the keys prevents the section&#39;s values from configuring the host. This issue will be addressed in an upcoming release. For more information and workarounds, see <a href="https://github.com/aspnet/Hosting/issues/839">Passing configuration section into WebHostBuilder.UseConfiguration uses full keys</a>.</p>
+</div>
+<p>To specify the host run on a particular URL, you could pass in the desired value from a command prompt when executing <code>dotnet run</code>. The command-line argument overrides the <code>urls</code> value from the <em>hosting.json</em> file, and the server listens on port 8080:</p>
+<pre><code class="lang-console">dotnet run --urls &quot;http://*:8080&quot;
+</code></pre><h2 id="ordering-importance">Ordering importance</h2>
+<p>Some of the <code>WebHostBuilder</code> settings are first read from environment variables, if set. These environment variables use the format <code>ASPNETCORE_{configurationKey}</code>. To set the URLs that the server listens on by default, you set <code>ASPNETCORE_URLS</code>.</p>
+<p>You can override any of these environment variable values by specifying configuration (using <code>UseConfiguration</code>) or by setting the value explicitly (using <code>UseSetting</code> or one of the explicit extension methods, such as <code>UseUrls</code>). The host uses whichever option sets the value last. If you want to programmatically set the default URL to one value but allow it to be overridden with configuration, you can use command-line configuration after setting the URL. See <a href="#overriding-configuration">Overriding configuration</a>.</p>
+<h2 id="starting-the-host">Starting the host</h2>
+<div class="tabGroup" id="tabgroup_uJoo4eryA3-13">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-13_aspnetcore2x" role="tab" aria-controls="tabpanel_uJoo4eryA3-13_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_uJoo4eryA3-13_aspnetcore1x" role="tab" aria-controls="tabpanel_uJoo4eryA3-13_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_uJoo4eryA3-13_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p><strong>Run</strong></p>
+<p>The <code>Run</code> method starts the web app and blocks the calling thread until the host is shutdown:</p>
+<pre><code class="lang-csharp">host.Run();
+</code></pre><p><strong>Start</strong></p>
+<p>You can run the host in a non-blocking manner by calling its <code>Start</code> method:</p>
+<pre><code class="lang-csharp">using (host)
+{
+    host.Start();
+    Console.ReadLine();
+}
+</code></pre><p>If you pass a list of URLs to the <code>Start</code> method, it listens on the URLs specified:</p>
+<pre><code class="lang-csharp">var urls = new List&lt;string&gt;()
+{
+    &quot;http://*:5000&quot;,
+    &quot;http://localhost:5001&quot;
+};
+
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup&lt;Startup&gt;()
+    .Start(urls.ToArray());
+
+using (host)
+{
+    Console.ReadLine();
+}
+</code></pre><p>You can initialize and start a new host using the pre-configured defaults of <code>CreateDefaultBuilder</code> using a static convenience method. These methods start the server without console output and with <a href="/dotnet/api/microsoft.aspnetcore.hosting.webhostextensions.waitforshutdown">WaitForShutdown</a> wait for a break (Ctrl-C/SIGINT or SIGTERM):</p>
+<p><strong>Start(RequestDelegate app)</strong></p>
+<p>Start with a <code>RequestDelegate</code>:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.Start(app =&gt; app.Response.WriteAsync(&quot;Hello, World!&quot;)))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Make a request in the browser to <code>http://localhost:5000</code> to receive the response &quot;Hello World!&quot; <code>WaitForShutdown</code> blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the <code>Console.WriteLine</code> message and waits for a keypress to exit.</p>
+<p><strong>Start(string url, RequestDelegate app)</strong></p>
+<p>Start with a URL and <code>RequestDelegate</code>:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.Start(&quot;http://localhost:8080&quot;, app =&gt; app.Response.WriteAsync(&quot;Hello, World!&quot;)))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Produces the same result as <strong>Start(RequestDelegate app)</strong>, except the app responds on <code>http://localhost:8080</code>.</p>
+<p><strong>Start(Action<iroutebuilder> routeBuilder)</iroutebuilder></strong></p>
+<p>Use an instance of <code>IRouteBuilder</code> (<a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Routing/">Microsoft.AspNetCore.Routing</a>) to use routing middleware:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.Start(router =&gt; router
+    .MapGet(&quot;hello/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;Hello, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;buenosdias/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;Buenos dias, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;throw/{message?}&quot;, (req, res, data) =&gt; 
+        throw new Exception((string)data.Values[&quot;message&quot;] ?? &quot;Uh oh!&quot;))
+    .MapGet(&quot;{greeting}/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;{data.Values[&quot;greeting&quot;]}, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;&quot;, (req, res, data) =&gt; res.WriteAsync(&quot;Hello, World!&quot;))))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Use the following browser requests with the example:</p>
+<table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://localhost:5000/hello/Martin</code></td>
+<td>Hello, Martin!</td>
+</tr>
+<tr>
+<td><code>http://localhost:5000/buenosdias/Catrina</code></td>
+<td>Buenos dias, Catrina!</td>
+</tr>
+<tr>
+<td><code>http://localhost:5000/throw/ooops!</code></td>
+<td>Throws an exception with string &quot;ooops!&quot;</td>
+</tr>
+<tr>
+<td><code>http://localhost:5000/throw</code></td>
+<td>Throws an exception with string &quot;Uh oh!&quot;</td>
+</tr>
+<tr>
+<td><code>http://localhost:5000/Sante/Kevin</code></td>
+<td>Sante, Kevin!</td>
+</tr>
+<tr>
+<td><code>http://localhost:5000</code></td>
+<td>Hello World!</td>
+</tr>
+</tbody>
+</table>
+<p><code>WaitForShutdown</code> blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the <code>Console.WriteLine</code> message and waits for a keypress to exit.</p>
+<p><strong>Start(string url, Action<iroutebuilder> routeBuilder)</iroutebuilder></strong></p>
+<p>Use a URL and an instance of <code>IRouteBuilder</code>:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.Start(&quot;http://localhost:8080&quot;, router =&gt; router
+    .MapGet(&quot;hello/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;Hello, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;buenosdias/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;Buenos dias, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;throw/{message?}&quot;, (req, res, data) =&gt; 
+        throw new Exception((string)data.Values[&quot;message&quot;] ?? &quot;Uh oh!&quot;))
+    .MapGet(&quot;{greeting}/{name}&quot;, (req, res, data) =&gt; 
+        res.WriteAsync($&quot;{data.Values[&quot;greeting&quot;]}, {data.Values[&quot;name&quot;]}!&quot;))
+    .MapGet(&quot;&quot;, (req, res, data) =&gt; res.WriteAsync(&quot;Hello, World!&quot;))))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Produces the same result as <strong>Start(Action<iroutebuilder> routeBuilder)</iroutebuilder></strong>, except the app responds at <code>http://localhost:8080</code>.</p>
+<p><strong>StartWith(Action<iapplicationbuilder> app)</iapplicationbuilder></strong></p>
+<p>Provide a delegate to configure an <code>IApplicationBuilder</code>:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.StartWith(app =&gt; 
+    app.Use(next =&gt; 
+    {
+        return async context =&gt; 
+        {
+            await context.Response.WriteAsync(&quot;Hello World!&quot;);
+        };
+    })))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Make a request in the browser to <code>http://localhost:5000</code> to receive the response &quot;Hello World!&quot; <code>WaitForShutdown</code> blocks until a break (Ctrl-C/SIGINT or SIGTERM) is issued. The app displays the <code>Console.WriteLine</code> message and waits for a keypress to exit.</p>
+<p><strong>StartWith(string url, Action<iapplicationbuilder> app)</iapplicationbuilder></strong></p>
+<p>Provide a URL and a delegate to configure an <code>IApplicationBuilder</code>:</p>
+<pre><code class="lang-csharp">using (var host = WebHost.StartWith(&quot;http://localhost:8080&quot;, app =&gt; 
+    app.Use(next =&gt; 
+    {
+        return async context =&gt; 
+        {
+            await context.Response.WriteAsync(&quot;Hello World!&quot;);
+        };
+    })))
+{
+    Console.WriteLine(&quot;Use Ctrl-C to shutdown the host...&quot;);
+    host.WaitForShutdown();
+}
+</code></pre><p>Produces the same result as <strong>StartWith(Action<iapplicationbuilder> app)</iapplicationbuilder></strong>, except the app responds on <code>http://localhost:8080</code>.</p>
+</section>
+<section id="tabpanel_uJoo4eryA3-13_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p><strong>Run</strong></p>
+<p>The <code>Run</code> method starts the web app and blocks the calling thread until the host is shutdown:</p>
+<pre><code class="lang-csharp">host.Run();
+</code></pre><p><strong>Start</strong></p>
+<p>You can run the host in a non-blocking manner by calling its <code>Start</code> method:</p>
+<pre><code class="lang-csharp">using (host)
+{
+    host.Start();
+    Console.ReadLine();
+}
+</code></pre><p>If you pass a list of URLs to the <code>Start</code> method, it listens on the URLs specified:</p>
+<pre><code class="lang-csharp">var urls = new List&lt;string&gt;()
+{
+    &quot;http://*:5000&quot;,
+    &quot;http://localhost:5001&quot;
+};
+
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup&lt;Startup&gt;()
+    .Start(urls.ToArray());
+
+using (host)
+{
+    Console.ReadLine();
+}
+</code></pre></section>
+</div>
+<h2 id="ihostingenvironment-interface">IHostingEnvironment interface</h2>
+<p>The <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.ihostingenvironment">IHostingEnvironment interface</a> provides information about the app&#39;s web hosting environment. You can use <a class="xref" href="dependency-injection.html">constructor injection</a> to obtain the <code>IHostingEnvironment</code> in order to use its properties and extension methods:</p>
+<pre><code class="lang-csharp">public class CustomFileReader
+{
+    private readonly IHostingEnvironment _env;
+
+    public CustomFileReader(IHostingEnvironment env)
+    {
+        _env = env;
+    }
+
+    public string ReadFile(string filePath)
+    {
+        var fileProvider = _env.WebRootFileProvider;
+        // Process the file here
+    }
+}
+</code></pre><p>You can use a <a class="xref" href="environments.html#startup-conventions">convention-based approach</a> to configure your app at startup based on the environment. Alternatively, you can inject the <code>IHostingEnvironment</code> into the <code>Startup</code> constructor for use in <code>ConfigureServices</code>:</p>
+<pre><code class="lang-csharp">public class Startup
+{
+    public Startup(IHostingEnvironment env)
+    {
+        HostingEnvironment = env;
+    }
+
+    public IHostingEnvironment HostingEnvironment { get; }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (HostingEnvironment.IsDevelopment())
+        {
+            // Development configuration
+        }
+        else
+        {
+            // Staging/Production configuration
+        }
+
+        var contentRootPath = HostingEnvironment.ContentRootPath;
+    }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>In addition to the <code>IsDevelopment</code> extension method, <code>IHostingEnvironment</code> offers <code>IsStaging</code>, <code>IsProduction</code>, and <code>IsEnvironment(string environmentName)</code> methods. See <a class="xref" href="environments.html">Working with multiple environments</a> for details.</p>
+</div>
+<p>The <code>IHostingEnvironment</code> service can also be injected directly into the <code>Configure</code> method for setting up your processing pipeline:</p>
+<pre><code class="lang-csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // In Development, use the developer exception page
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        // In Staging/Production, route exceptions to /error
+        app.UseExceptionHandler(&quot;/error&quot;);
+    }
+
+    var contentRootPath = env.ContentRootPath;
+}
+</code></pre><p>You can inject <code>IHostingEnvironment</code> into the <code>Invoke</code> method when creating custom <a class="xref" href="middleware.html#writing-middleware">middleware</a>:</p>
+<pre><code class="lang-csharp">public async Task Invoke(HttpContext context, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // Configure middleware for Development
+    }
+    else
+    {
+        // Configure middleware for Staging/Production
+    }
+
+    var contentRootPath = env.ContentRootPath;
+}
+</code></pre><h2 id="iapplicationlifetime-interface">IApplicationLifetime interface</h2>
+<p>The <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.iapplicationlifetime">IApplicationLifetime interface</a> allows you to perform post-startup and shutdown activities. Three properties on the interface are cancellation tokens that you can register with <code>Action</code> methods to define startup and shutdown events. There&#39;s also a <code>StopApplication</code> method.</p>
+<table>
+<thead>
+<tr>
+<th>Cancellation Token</th>
+<th>Triggered when&#8230;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ApplicationStarted</code></td>
+<td>The host has fully started.</td>
+</tr>
+<tr>
+<td><code>ApplicationStopping</code></td>
+<td>The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes.</td>
+</tr>
+<tr>
+<td><code>ApplicationStopped</code></td>
+<td>The host is completing a graceful shutdown. All requests should be completely processed. Shutdown blocks until this event completes.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StopApplication</code></td>
+<td>Requests termination of the current application.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">public class Startup 
+{
+    public void Configure(IApplicationBuilder app, IApplicationLifetime appLifetime) 
+    {
+        appLifetime.ApplicationStarted.Register(OnStarted);
+        appLifetime.ApplicationStopping.Register(OnStopping);
+        appLifetime.ApplicationStopped.Register(OnStopped);
+
+        Console.CancelKeyPress += (sender, eventArgs) =&gt;
+        {
+            appLifetime.StopApplication();
+            // Don&#39;t terminate the process immediately, wait for the Main thread to exit gracefully.
+            eventArgs.Cancel = true;
+        };
+    }
+
+    private void OnStarted()
+    {
+        // Perform post-startup activities here
+    }
+
+    private void OnStopping()
+    {
+        // Perform on-stopping activities here
+    }
+
+    private void OnStopped()
+    {
+        // Perform post-stopped activities here
+    }
+}
+</code></pre><h2 id="troubleshooting-systemargumentexception">Troubleshooting System.ArgumentException</h2>
+<p><strong>Applies to ASP.NET Core 2.0 Only</strong></p>
+<p>If you build the host by injecting <code>IStartup</code> directly into the dependency injection container rather than calling <code>UseStartup</code> or <code>Configure</code>, you may encounter the following error: <code>Unhandled Exception: System.ArgumentException: A valid non-empty application name must be provided</code>.</p>
+<p>This occurs because the <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.webhostdefaults#Microsoft_AspNetCore_Hosting_WebHostDefaults_ApplicationKey">applicationName(ApplicationKey)</a> (the current assembly) is required to scan for <code>HostingStartupAttributes</code>. If you manually inject <code>IStartup</code> into the dependency injection container, add the following call to your <code>WebHostBuilder</code> with the assembly name specified:</p>
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .UseSetting(&quot;applicationName&quot;, &quot;&lt;Assembly Name&gt;&quot;)
+    ...
+</code></pre><p>Alternatively, add a dummy <code>Configure</code> to your <code>WebHostBuilder</code>, which sets the <code>applicationName</code>(<code>ApplicationKey</code>) automatically:</p>
+<pre><code class="lang-csharp">WebHost.CreateDefaultBuilder(args)
+    .Configure(_ =&gt; { })
+    ...
+</code></pre><p><strong>NOTE</strong>: This is only required with the ASP.NET Core 2.0 release and only when you don&#39;t call <code>UseStartup</code> or <code>Configure</code>.</p>
+<p>For more information, see <a href="https://github.com/aspnet/Announcements/issues/237#issuecomment-323786938">Announcements: Microsoft.Extensions.PlatformAbstractions has been removed (comment)</a> and the <a href="https://github.com/aspnet/Hosting/blob/8377d226f1e6e1a97dabdb6769a845eeccc829ed/samples/SampleStartups/StartupInjection.cs">StartupInjection sample</a>.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="../publishing/iis.html">Publish to Windows using IIS</a></li>
+<li><a href="../publishing/linuxproduction.html">Publish to Linux using Nginx</a></li>
+<li><a href="../publishing/apache-proxy.html">Publish to Linux using Apache</a></li>
+<li><a class="xref" href="../hosting/windows-service.html">Host in a Windows Service</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/hosting.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

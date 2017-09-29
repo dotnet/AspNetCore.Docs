@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding Search </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding Search ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app/search">
+<h1 id="adding-search-to-an-aspnet-core-mvc-app" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="1" sourceendlinenumber="1">Adding Search to an ASP.NET Core MVC app</h1>
+
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="3" sourceendlinenumber="3">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="3" sourceendlinenumber="3">Rick Anderson</a></p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="5" sourceendlinenumber="5">In this section you add search capability to the <code>Index</code> action method that lets you search movies by <em>genre</em> or <em>name</em>.</p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="7" sourceendlinenumber="7">Update the <code>Index</code> method with the following code:</p>
+<!--
+[!code-html[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
+-->
+<pre sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="12" sourceendlinenumber="12"><code class="lang-csharp" name="Main">public async Task&lt;IActionResult&gt; Index(string searchString)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    return View(await movies.ToListAsync());
+}
+</code></pre><p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="14" sourceendlinenumber="14">The first line of the <code>Index</code> action method creates a <a href="https://docs.microsoft.com/dotnet/standard/using-linq" data-raw-source="[LINQ](https://docs.microsoft.com/dotnet/standard/using-linq)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="14" sourceendlinenumber="14">LINQ</a> query to select the movies:</p>
+<pre sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="16" sourceendlinenumber="19"><code class="lang-csharp">var movies = from m in _context.Movie
+             select m;
+</code></pre><p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="21" sourceendlinenumber="21">The query is <em>only</em> defined at this point, it has <strong>not</strong> been run against the database.</p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="23" sourceendlinenumber="23">If the <code>searchString</code> parameter contains a string, the movies query is modified to filter on the value of the search string:</p>
+<pre sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="25" sourceendlinenumber="25"><code class="lang-csharp" name="Main">if (!String.IsNullOrEmpty(id))
+{
+    movies = movies.Where(s =&gt; s.Title.Contains(id));
+}
+</code></pre><p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="27" sourceendlinenumber="27">The <code>s =&gt; s.Title.Contains()</code> code above is a <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions" data-raw-source="[Lambda Expression](https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="27" sourceendlinenumber="27">Lambda Expression</a>. Lambdas are used in method-based <a href="https://docs.microsoft.com/dotnet/standard/using-linq" data-raw-source="[LINQ](https://docs.microsoft.com/dotnet/standard/using-linq)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="27" sourceendlinenumber="27">LINQ</a> queries as arguments to standard query operator methods such as the <a href="https://docs.microsoft.com//dotnet/api/system.linq.enumerable.where" data-raw-source="[Where](https://docs.microsoft.com//dotnet/api/system.linq.enumerable.where)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="27" sourceendlinenumber="27">Where</a> method or <code>Contains</code> (used in the code above). LINQ queries are not executed when they are defined or when they are modified by calling a method such as <code>Where</code>, <code>Contains</code>  or <code>OrderBy</code>. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the <code>ToListAsync</code> method is called. For more information about deferred query execution, see <a href="https://docs.microsoft.com/dotnet/framework/data/adonet/ef/language-reference/query-execution" data-raw-source="[Query Execution](https://docs.microsoft.com/dotnet/framework/data/adonet/ef/language-reference/query-execution)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="27" sourceendlinenumber="27">Query Execution</a>.</p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="29" sourceendlinenumber="29">Note: The <a href="https://docs.microsoft.com//dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains" data-raw-source="[Contains](https://docs.microsoft.com//dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="29" sourceendlinenumber="29">Contains</a> method is run on the database, not in the c# code shown above. The case sensitivity on the query depends on the database and the collation. On SQL Server, <a href="https://docs.microsoft.com//dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains" data-raw-source="[Contains](https://docs.microsoft.com//dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="29" sourceendlinenumber="29">Contains</a> maps to <a href="https://docs.microsoft.com/sql/t-sql/language-elements/like-transact-sql" data-raw-source="[SQL LIKE](https://docs.microsoft.com/sql/t-sql/language-elements/like-transact-sql)" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="29" sourceendlinenumber="29">SQL LIKE</a>, which is case insensitive. In SQLlite, with the default collation, it&#39;s case sensitive.</p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="31" sourceendlinenumber="31">Navigate to <code>/Movies/Index</code>. Append a query string such as <code>?searchString=Ghost</code> to the URL. The filtered movies are displayed.</p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="33" sourceendlinenumber="33"><img src="search/_static/ghost.png" alt="Index view" sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="33" sourceendlinenumber="33"></p>
+<p sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="35" sourceendlinenumber="35">If you change the signature of the <code>Index</code> method to have a parameter named <code>id</code>, the <code>id</code> parameter will match the optional <code>{id}</code> placeholder for the default routes set in <em>Startup.cs</em>.</p>
+<pre sourcefile="includes/mvc-intro/search1.md" sourcestartlinenumber="37" sourceendlinenumber="37"><code class="lang-csharp" name="Main" highlight-lines="5">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="18" sourceendlinenumber="18">You can quickly rename the <code>searchString</code> parameter to <code>id</code> with the <strong>rename</strong> command. Right click on <code>searchString</code> <strong>&gt; Rename</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="20" sourceendlinenumber="20"><img src="search/_static/rename.png" alt="Contextual menu" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="20" sourceendlinenumber="20"></p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="22" sourceendlinenumber="22">The rename targets are highlighted.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="24" sourceendlinenumber="24"><img src="search/_static/rename2.png" alt="Code editor showing the variable highlighted throughout the Index ActionResult method" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="24" sourceendlinenumber="24"></p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="26" sourceendlinenumber="26">Change the parameter to <code>id</code> and all occurrences of <code>searchString</code> change to <code>id</code>.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="28" sourceendlinenumber="28"><img src="search/_static/rename3.png" alt="Code editor showing the variable has been changed to id" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="28" sourceendlinenumber="28"></p>
+<!--
+[!code-html[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
+
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchNull)]
+
+![Index view](../../tutorials/first-mvc-app/search/_static/ghost.png)
+
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
+
+--> 
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="16" sourceendlinenumber="16">The previous <code>Index</code> method:</p>
+<pre sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="18" sourceendlinenumber="18"><code class="lang-csharp" name="Main" highlight-lines="1,8">public async Task&lt;IActionResult&gt; Index(string searchString)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    return View(await movies.ToListAsync());
+}
+</code></pre><p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="20" sourceendlinenumber="20">The updated <code>Index</code> method with <code>id</code> parameter:</p>
+<pre sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="22" sourceendlinenumber="22"><code class="lang-csharp" name="Main" highlight-lines="1,8">public async Task&lt;IActionResult&gt; Index(string id)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(id))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(id));
+    }
+
+    return View(await movies.ToListAsync());
+}
+</code></pre><p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="24" sourceendlinenumber="24">You can now pass the search title as route data (a URL segment) instead of as a query string value.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="26" sourceendlinenumber="26"><img src="search/_static/g2.png" alt="Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="26" sourceendlinenumber="26"></p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="28" sourceendlinenumber="28">However, you can&#39;t expect users to modify the URL every time they want to search for a movie. So now you&#39;ll add UI to help them filter movies. If you changed the signature of the <code>Index</code> method to test how to pass the route-bound <code>ID</code> parameter, change it back so that it takes a parameter named <code>searchString</code>:</p>
+<pre sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="30" sourceendlinenumber="30"><code class="lang-csharp" name="Main" highlight-lines="1">public async Task&lt;IActionResult&gt; Index(string searchString)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    return View(await movies.ToListAsync());
+}
+</code></pre><p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="32" sourceendlinenumber="32">Open the <em>Views/Movies/Index.cshtml</em> file, and add the <code>&lt;form&gt;</code> markup highlighted below:</p>
+<pre sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="34" sourceendlinenumber="34"><code class="lang-HTML" name="Main" highlight-lines="10-16">    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form asp-controller=&quot;Movies&quot; asp-action=&quot;Index&quot;&gt;
+    &lt;p&gt;
+        Title: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Filter&quot; /&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+</code></pre><p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="36" sourceendlinenumber="36">The HTML <code>&lt;form&gt;</code> tag uses the <a href="../../mvc/views/working-with-forms.html" data-raw-source="[Form Tag Helper](../../mvc/views/working-with-forms.md)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="36" sourceendlinenumber="36">Form Tag Helper</a>, so when you submit the form, the filter string is posted to the <code>Index</code> action of the movies controller. Save your changes and then test the filter.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="search/_static/filter.png" alt="Index view with the word ghost typed into the Title filter textbox" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="40" sourceendlinenumber="40">There&#39;s no <code>[HttpPost]</code> overload of the <code>Index</code> method as you might expect. You don&#39;t need it, because the method isn&#39;t changing the state of the app, just filtering data.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="42" sourceendlinenumber="42">You could add the following <code>[HttpPost] Index</code> method.</p>
+<pre sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="44" sourceendlinenumber="44"><code class="lang-csharp" name="Main" highlight-lines="1">[HttpPost]
+public string Index(string searchString, bool notUsed)
+{
+    return &quot;From [HttpPost]Index: filter on &quot; + searchString;
+}
+</code></pre><p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="46" sourceendlinenumber="46">The <code>notUsed</code> parameter is used to create an overload for the <code>Index</code> method. We&#39;ll talk about that later in the tutorial.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="48" sourceendlinenumber="48">If you add this method, the action invoker would match the <code>[HttpPost] Index</code> method, and the <code>[HttpPost] Index</code> method would run as shown in the image below.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="50" sourceendlinenumber="50"><img src="search/_static/fo.png" alt="Browser window with application response of From HttpPost Index: filter on ghost" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="50" sourceendlinenumber="50"></p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="52" sourceendlinenumber="52">However, even if you add this <code>[HttpPost]</code> version of the <code>Index</code> method, there&#39;s a limitation in how this has all been implemented. Imagine that you want to bookmark a particular search or you want to send a link to friends that they can click in order to see the same filtered list of movies. Notice that the URL for the HTTP POST request is the same as the URL for the GET request (localhost:xxxxx/Movies/Index) -- there&#39;s no search information in the URL. The search string information is sent to the server as a <a href="https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data" data-raw-source="[form field value](https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="52" sourceendlinenumber="52">form field value</a>. You can verify that with the browser Developer tools or the excellent <a href="http://www.telerik.com/fiddler" data-raw-source="[Fiddler tool](http://www.telerik.com/fiddler)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="52" sourceendlinenumber="52">Fiddler tool</a>. The image below shows the Chrome browser Developer tools:</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="54" sourceendlinenumber="54"><img src="search/_static/f12_rb.png" alt="Network tab of Developer Tools in Microsoft Edge showing a request body with a searchString value of ghost" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="54" sourceendlinenumber="54"></p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="56" sourceendlinenumber="56">You can see the search parameter and <a href="../../security/anti-request-forgery.html" data-raw-source="[XSRF](../../security/anti-request-forgery.md)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="56" sourceendlinenumber="56">XSRF</a> token in the request body. Note, as mentioned in the previous tutorial, the <a href="../../mvc/views/working-with-forms.html" data-raw-source="[Form Tag Helper](../../mvc/views/working-with-forms.md)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="56" sourceendlinenumber="56">Form Tag Helper</a> generates an <a href="../../security/anti-request-forgery.html" data-raw-source="[XSRF](../../security/anti-request-forgery.md)" sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="56" sourceendlinenumber="56">XSRF</a> anti-forgery token. We&#39;re not modifying data, so we don&#39;t need to validate the token in the controller method.</p>
+<p sourcefile="includes/mvc-intro/search2.md" sourcestartlinenumber="58" sourceendlinenumber="58">Because the search parameter is in the request body and not the URL, you can&#39;t capture that search information to bookmark or share with others. We&#39;ll fix this by specifying the request should be <code>HTTP GET</code>.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="32" sourceendlinenumber="32">Notice how intelliSense helps us update the markup.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="34" sourceendlinenumber="34"><img src="search/_static/int_m.png" alt="Intellisense contextual menu with method selected in the list of attributes for the form element" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="34" sourceendlinenumber="34"></p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="36" sourceendlinenumber="36"><img src="search/_static/int_get.png" alt="Intellisense contextual menu with get selected in the list of method attribute values" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="36" sourceendlinenumber="36"></p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="38" sourceendlinenumber="38">Notice the distinctive font in the <code>&lt;form&gt;</code> tag. That distinctive font indicates the tag is supported by <a href="../../mvc/views/tag-helpers/intro.html" data-raw-source="[Tag Helpers](../../mvc/views/tag-helpers/intro.md)" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="38" sourceendlinenumber="38">Tag Helpers</a>.</p>
+<p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="40" sourceendlinenumber="40"><img src="search/_static/th_font.png" alt="form tag with purple text" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="40" sourceendlinenumber="40"></p>
+<!--
+[!code-html[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Shared/_Layout.cshtml?highlight=7,31)]
+
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchNull)]
+
+![Index view](../../tutorials/first-mvc-app/search/_static/ghost.png)
+
+
+[!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
+
+--> 
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="16" sourceendlinenumber="16">Now when you submit a search, the URL contains the search query string. Searching will also go to the <code>HttpGet Index</code> action method, even if you have a <code>HttpPost Index</code> method.</p>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="18" sourceendlinenumber="18"><img src="search/_static/search_get.png" alt="Browser window showing the searchString=ghost in the Url and the movies returned, Ghostbusters and Ghostbusters 2, contain the word ghost" sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="18" sourceendlinenumber="18"></p>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="20" sourceendlinenumber="20">The following markup shows the change to the <code>form</code> tag:</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="22" sourceendlinenumber="24"><code class="lang-html">&lt;form asp-controller=&quot;Movies&quot; asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+</code></pre><h2 id="adding-search-by-genre" sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="26" sourceendlinenumber="26">Adding Search by genre</h2>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="28" sourceendlinenumber="28">Add the following <code>MovieGenreViewModel</code> class to the <em>Models</em> folder:</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="30" sourceendlinenumber="30"><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+
+namespace MvcMovie.Models
+{
+    public class MovieGenreViewModel
+    {
+        public List&lt;Movie&gt; movies;
+        public SelectList genres;
+        public string movieGenre { get; set; }
+    }
+}
+</code></pre><p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="32" sourceendlinenumber="32">The movie-genre view model will contain:</p>
+<ul sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="34" sourceendlinenumber="36">
+<li sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="34" sourceendlinenumber="34">A list of movies.</li>
+<li sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="35" sourceendlinenumber="35">A <code>SelectList</code> containing the list of genres. This will allow the user to select a genre from the list.</li>
+<li sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code>movieGenre</code>, which contains the selected genre.</li>
+</ul>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="38" sourceendlinenumber="38">Replace the <code>Index</code> method in <code>MoviesController.cs</code> with the following code:</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="40" sourceendlinenumber="40"><code class="lang-csharp" name="Main">// Requires using Microsoft.AspNetCore.Mvc.Rendering;
+public async Task&lt;IActionResult&gt; Index(string movieGenre, string searchString)
+{
+    // Use LINQ to get list of genres.
+    IQueryable&lt;string&gt; genreQuery = from m in _context.Movie
+                                    orderby m.Genre
+                                    select m.Genre;
+
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    if (!String.IsNullOrEmpty(movieGenre))
+    {
+        movies = movies.Where(x =&gt; x.Genre == movieGenre);
+    }
+
+    var movieGenreVM = new MovieGenreViewModel();
+    movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+    movieGenreVM.movies = await movies.ToListAsync();
+
+    return View(movieGenreVM);
+}
+</code></pre><p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="42" sourceendlinenumber="42">The following code is a <code>LINQ</code> query that retrieves all the genres from the database.</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="44" sourceendlinenumber="44"><code class="lang-csharp" name="Main">// Use LINQ to get list of genres.
+IQueryable&lt;string&gt; genreQuery = from m in _context.Movie
+                                orderby m.Genre
+                                select m.Genre;
+</code></pre><p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="46" sourceendlinenumber="46">The <code>SelectList</code> of genres is created by projecting the distinct genres (we don&#39;t want our select list to have duplicate genres).</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="48" sourceendlinenumber="50"><code class="lang-csharp">movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
+</code></pre><h2 id="adding-search-by-genre-to-the-index-view" sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="52" sourceendlinenumber="52">Adding search by genre to the Index view</h2>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="54" sourceendlinenumber="54">Update <code>Index.cshtml</code> as follows:</p>
+<pre sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="56" sourceendlinenumber="56"><code class="lang-HTML" name="Main" highlight-lines="1,15,16,17,28,31,34,37,43">@model MvcMovie.Models.MovieGenreViewModel
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form asp-controller=&quot;Movies&quot; asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+    &lt;p&gt;
+        &lt;select asp-for=&quot;movieGenre&quot; asp-items=&quot;Model.genres&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;All&lt;/option&gt;
+        &lt;/select&gt;
+
+        Title: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Filter&quot; /&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.movies[0].Title)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.movies[0].ReleaseDate)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.movies[0].Genre)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.movies[0].Price)
+            &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @foreach (var item in Model.movies)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Title)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.ReleaseDate)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Genre)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Price)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="58" sourceendlinenumber="58">Examine the lambda expression used in the following HTML Helper:</p>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="60" sourceendlinenumber="60"><code>@Html.DisplayNameFor(model =&gt; model.movies[0].Title)</code></p>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="62" sourceendlinenumber="62">In the preceding code, the <code>DisplayNameFor</code> HTML Helper inspects the <code>Title</code> property referenced in the lambda expression to determine the display name. Since the lambda expression is inspected rather than evaluated, you don&#39;t receive an access violation when <code>model</code>, <code>model.movies</code>, or <code>model.movies[0]</code> are <code>null</code> or empty. When the lambda expression is evaluated (for example, <code>@Html.DisplayFor(modelItem =&gt; item.Title)</code>), the model&#39;s property values are evaluated.</p>
+<p sourcefile="includes/mvc-intro/search3.md" sourcestartlinenumber="64" sourceendlinenumber="64">Test the app by searching by genre, by movie title, and by both.</p>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="44" sourceendlinenumber="44"><p sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="45" sourceendlinenumber="46"><a href="controller-methods-views.html" data-raw-source="[Previous](controller-methods-views.md)" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="45" sourceendlinenumber="45">Previous</a>
+<a href="new-field.html" data-raw-source="[Next](new-field.md)" sourcefile="tutorials/first-mvc-app/search.md" sourcestartlinenumber="46" sourceendlinenumber="46">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app/search.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

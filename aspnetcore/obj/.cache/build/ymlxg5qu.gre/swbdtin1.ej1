@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using Gulp in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using Gulp in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/using-gulp">
+<h1 id="introduction-to-using-gulp-in-aspnet-core">Introduction to using Gulp in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/Erikre">Erik Reitan</a>, <a href="https://scottaddie.com">Scott Addie</a>, <a href="https://github.com/danroth27">Daniel Roth</a>, and <a href="https://twitter.com/spboyer">Shayne Boyer</a></p>
+<p>In a typical modern web application, the build process might:</p>
+<ul>
+<li>Bundle and minify JavaScript and CSS files.</li>
+<li>Run tools to call the bundling and minification tasks before each build.</li>
+<li>Compile LESS or SASS files to CSS.</li>
+<li>Compile CoffeeScript or TypeScript files to JavaScript.</li>
+</ul>
+<p>A <em>task runner</em> is a tool which automates these routine development tasks and more. Visual Studio provides built-in support for two popular JavaScript-based task runners: <a href="https://gulpjs.com/">Gulp</a> and <a href="using-grunt.html">Grunt</a>.</p>
+<h2 id="gulp">Gulp</h2>
+<p>Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. For instance, Gulp can be used to automate <a href="bundling-and-minification.html">bundling and minification</a> or the cleansing of a development environment before a new build.</p>
+<p>A set of Gulp tasks is defined in <em>gulpfile.js</em>. The following JavaScript includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:</p>
+<pre><code class="lang-javascript">/// &lt;binding Clean=&#39;clean&#39; /&gt;
+&quot;use strict&quot;;
+
+var gulp = require(&quot;gulp&quot;),
+  rimraf = require(&quot;rimraf&quot;),
+  concat = require(&quot;gulp-concat&quot;),
+  cssmin = require(&quot;gulp-cssmin&quot;),
+  uglify = require(&quot;gulp-uglify&quot;);
+
+var paths = {
+  webroot: &quot;./wwwroot/&quot;
+};
+
+paths.js = paths.webroot + &quot;js/**/*.js&quot;;
+paths.minJs = paths.webroot + &quot;js/**/*.min.js&quot;;
+paths.css = paths.webroot + &quot;css/**/*.css&quot;;
+paths.minCss = paths.webroot + &quot;css/**/*.min.css&quot;;
+paths.concatJsDest = paths.webroot + &quot;js/site.min.js&quot;;
+paths.concatCssDest = paths.webroot + &quot;css/site.min.css&quot;;
+</code></pre><p>The above code specifies which Node modules are required. The <code>require</code> function imports each module so that the dependent tasks can utilize their features. Each of the imported modules is assigned to a variable. The modules can be located either by name or path. In this example, the modules named <code>gulp</code>, <code>rimraf</code>, <code>gulp-concat</code>, <code>gulp-cssmin</code>, and <code>gulp-uglify</code> are retrieved by name. Additionally, a series of paths are created so that the locations of CSS and JavaScript files can be reused and referenced within the tasks. The following table provides descriptions of the modules included in <em>gulpfile.js</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Module Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gulp</td>
+<td>The Gulp streaming build system. For more information, see <a href="https://www.npmjs.com/package/gulp">gulp</a>.</td>
+</tr>
+<tr>
+<td>rimraf</td>
+<td>A Node deletion module. For more information, see <a href="https://www.npmjs.com/package/rimraf">rimraf</a>.</td>
+</tr>
+<tr>
+<td>gulp-concat</td>
+<td>A module that concatenates files based on the operating system’s newline character. For more information, see <a href="https://www.npmjs.com/package/gulp-concat">gulp-concat</a>.</td>
+</tr>
+<tr>
+<td>gulp-cssmin</td>
+<td>A module that minifies CSS files. For more information, see <a href="https://www.npmjs.com/package/gulp-cssmin">gulp-cssmin</a>.</td>
+</tr>
+<tr>
+<td>gulp-uglify</td>
+<td>A module that minifies <em>.js</em> files. For more information, see <a href="https://www.npmjs.com/package/gulp-uglify">gulp-uglify</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:</p>
+<pre><code class="lang-javascript">gulp.task(&quot;clean:js&quot;, function (cb) {
+  rimraf(paths.concatJsDest, cb);
+});
+
+gulp.task(&quot;clean:css&quot;, function (cb) {
+  rimraf(paths.concatCssDest, cb);
+});
+
+gulp.task(&quot;clean&quot;, [&quot;clean:js&quot;, &quot;clean:css&quot;]);
+
+gulp.task(&quot;min:js&quot;, function () {
+  return gulp.src([paths.js, &quot;!&quot; + paths.minJs], { base: &quot;.&quot; })
+    .pipe(concat(paths.concatJsDest))
+    .pipe(uglify())
+    .pipe(gulp.dest(&quot;.&quot;));
+});
+
+gulp.task(&quot;min:css&quot;, function () {
+  return gulp.src([paths.css, &quot;!&quot; + paths.minCss])
+    .pipe(concat(paths.concatCssDest))
+    .pipe(cssmin())
+    .pipe(gulp.dest(&quot;.&quot;));
+});
+
+gulp.task(&quot;min&quot;, [&quot;min:js&quot;, &quot;min:css&quot;]);
+</code></pre><p>The following table provides an explanation of the tasks specified in the code above:</p>
+<table>
+<thead>
+<tr>
+<th>Task Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clean:js</td>
+<td>A task that uses the rimraf Node deletion module to remove the minified version of the site.js file.</td>
+</tr>
+<tr>
+<td>clean:css</td>
+<td>A task that uses the rimraf Node deletion module to remove the minified version of the site.css file.</td>
+</tr>
+<tr>
+<td>clean</td>
+<td>A task that calls the <code>clean:js</code> task, followed by the <code>clean:css</code> task.</td>
+</tr>
+<tr>
+<td>min:js</td>
+<td>A task that minifies and concatenates all .js files within the js folder. The .min.js files are excluded.</td>
+</tr>
+<tr>
+<td>min:css</td>
+<td>A task that minifies and concatenates all .css files within the css folder. The .min.css files are excluded.</td>
+</tr>
+<tr>
+<td>min</td>
+<td>A task that calls the <code>min:js</code> task, followed by the <code>min:css</code> task.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="running-default-tasks">Running default tasks</h2>
+<p>If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.</p>
+<ol>
+<li><p>Add a new JavaScript file to your project and name it <em>gulpfile.js</em>, then copy the following code.</p>
+<pre><code class="lang-javascript">/// &lt;binding Clean=&#39;clean&#39; /&gt;
+&quot;use strict&quot;;
+
+var gulp = require(&quot;gulp&quot;),
+  rimraf = require(&quot;rimraf&quot;),
+  concat = require(&quot;gulp-concat&quot;),
+  cssmin = require(&quot;gulp-cssmin&quot;),
+  uglify = require(&quot;gulp-uglify&quot;);
+
+var paths = {
+  webroot: &quot;./wwwroot/&quot;
+};
+
+paths.js = paths.webroot + &quot;js/**/*.js&quot;;
+paths.minJs = paths.webroot + &quot;js/**/*.min.js&quot;;
+paths.css = paths.webroot + &quot;css/**/*.css&quot;;
+paths.minCss = paths.webroot + &quot;css/**/*.min.css&quot;;
+paths.concatJsDest = paths.webroot + &quot;js/site.min.js&quot;;
+paths.concatCssDest = paths.webroot + &quot;css/site.min.css&quot;;
+
+gulp.task(&quot;clean:js&quot;, function (cb) {
+  rimraf(paths.concatJsDest, cb);
+});
+
+gulp.task(&quot;clean:css&quot;, function (cb) {
+  rimraf(paths.concatCssDest, cb);
+});
+
+gulp.task(&quot;clean&quot;, [&quot;clean:js&quot;, &quot;clean:css&quot;]);
+
+gulp.task(&quot;min:js&quot;, function () {
+  return gulp.src([paths.js, &quot;!&quot; + paths.minJs], { base: &quot;.&quot; })
+    .pipe(concat(paths.concatJsDest))
+    .pipe(uglify())
+    .pipe(gulp.dest(&quot;.&quot;));
+});
+
+gulp.task(&quot;min:css&quot;, function () {
+  return gulp.src([paths.css, &quot;!&quot; + paths.minCss])
+    .pipe(concat(paths.concatCssDest))
+    .pipe(cssmin())
+    .pipe(gulp.dest(&quot;.&quot;));
+});
+
+gulp.task(&quot;min&quot;, [&quot;min:js&quot;, &quot;min:css&quot;]);
+</code></pre></li>
+<li><p>Open the <em>package.json</em> file (add if not there) and add the following.</p>
+<pre><code class="lang-json">{
+  &quot;devDependencies&quot;: {
+    &quot;gulp&quot;: &quot;3.9.1&quot;,
+    &quot;gulp-concat&quot;: &quot;2.6.1&quot;,
+    &quot;gulp-cssmin&quot;: &quot;0.1.7&quot;,
+    &quot;gulp-uglify&quot;: &quot;2.0.1&quot;,
+    &quot;rimraf&quot;: &quot;2.6.1&quot;
+  }
+}
+</code></pre></li>
+<li><p>In <strong>Solution Explorer</strong>, right-click <em>gulpfile.js</em>, and select <strong>Task Runner Explorer</strong>.</p>
+<p><img src="using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png" alt="Open Task Runner Explorer from Solution Explorer"></p>
+<p><strong>Task Runner Explorer</strong> shows the list of Gulp tasks. (You might have to click the <strong>Refresh</strong> button that appears to the left of the project name.)</p>
+<p><img src="using-gulp/_static/03-TaskRunnerExplorer.png" alt="Task Runner Explorer"></p>
+</li>
+<li><p>Underneath <strong>Tasks</strong> in <strong>Task Runner Explorer</strong>, right-click <strong>clean</strong>, and select <strong>Run</strong> from the pop-up menu.</p>
+<p><img src="using-gulp/_static/04-TaskRunner-clean.png" alt="Task Runner Explorer clean task"></p>
+<p><strong>Task Runner Explorer</strong> will create a new tab named <strong>clean</strong> and execute the clean task as it is defined in <em>gulpfile.js</em>.</p>
+</li>
+<li><p>Right-click the <strong>clean</strong> task, then select <strong>Bindings</strong> &gt; <strong>Before Build</strong>.</p>
+<p><img src="using-gulp/_static/05-TaskRunner-BeforeBuild.png" alt="Task Runner Explorer binding BeforeBuild"></p>
+<p>The <strong>Before Build</strong> binding configures the clean task to run automatically before each build of the project.</p>
+</li>
+</ol>
+<p>The bindings you set up with <strong>Task Runner Explorer</strong> are stored in the form of a comment at the top of your <em>gulpfile.js</em> and are effective only in Visual Studio. An alternative that doesn&#39;t require Visual Studio is to configure automatic execution of gulp tasks in your <em>.csproj</em> file. For example, put this in your <em>.csproj</em> file:</p>
+<pre><code class="lang-xml">&lt;Target Name=&quot;MyPreCompileTarget&quot; BeforeTargets=&quot;Build&quot;&gt;
+  &lt;Exec Command=&quot;gulp clean&quot; /&gt;
+&lt;/Target&gt;
+</code></pre><p>Now the clean task is executed when you run the project in Visual Studio or from a command prompt using the <code>dotnet run</code> command (run <code>npm install</code> first).</p>
+<h2 id="defining-and-running-a-new-task">Defining and running a new task</h2>
+<p>To define a new Gulp task, modify <em>gulpfile.js</em>.</p>
+<ol>
+<li><p>Add the following JavaScript to the end of <em>gulpfile.js</em>:</p>
+<pre><code class="lang-javascript">gulp.task(&quot;first&quot;, function () {
+  console.log(&#39;first task! &lt;-----&#39;);
+});
+</code></pre><p>This task is named <code>first</code>, and it simply displays a string.</p>
+</li>
+<li><p>Save <em>gulpfile.js</em>.</p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click <em>gulpfile.js</em>, and select <em>Task Runner Explorer</em>.</p>
+</li>
+<li><p>In <strong>Task Runner Explorer</strong>, right-click <strong>first</strong>, and select <strong>Run</strong>.</p>
+<p><img src="using-gulp/_static/06-TaskRunner-First.png" alt="Task Runner Explorer run first task"></p>
+<p>You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.</p>
+</li>
+</ol>
+<h2 id="defining-and-running-tasks-in-a-series">Defining and running tasks in a series</h2>
+<p>When you run multiple tasks, the tasks run concurrently by default. However, if you need to run tasks in a specific order, you must specify when each task is complete, as well as which tasks depend on the completion of another task.</p>
+<ol>
+<li><p>To define a series of tasks to run in order, replace the <code>first</code> task that you added above in <em>gulpfile.js</em> with the following:</p>
+<pre><code class="lang-javascript">gulp.task(&quot;series:first&quot;, function () {
+  console.log(&#39;first task! &lt;-----&#39;);
+});
+
+gulp.task(&quot;series:second&quot;, [&quot;series:first&quot;], function () {
+  console.log(&#39;second task! &lt;-----&#39;);
+});
+
+gulp.task(&quot;series&quot;, [&quot;series:first&quot;, &quot;series:second&quot;], function () {});
+</code></pre><p>You now have three tasks: <code>series:first</code>, <code>series:second</code>, and <code>series</code>. The <code>series:second</code> task includes a second parameter which specifies an array of tasks to be run and completed before the <code>series:second</code> task will run.  As specified in the code above, only the <code>series:first</code> task must be completed before the <code>series:second</code> task will run.</p>
+</li>
+<li><p>Save <em>gulpfile.js</em>.</p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click <em>gulpfile.js</em> and select <strong>Task Runner Explorer</strong> if it isn’t already open.</p>
+</li>
+<li><p>In <strong>Task Runner Explorer</strong>, right-click <strong>series</strong> and select <strong>Run</strong>.</p>
+<p><img src="using-gulp/_static/07-TaskRunner-Series.png" alt="Task Runner Explorer run series task"></p>
+</li>
+</ol>
+<h2 id="intellisense">IntelliSense</h2>
+<p>IntelliSense provides code completion, parameter descriptions, and other features to boost productivity and to decrease errors. Gulp tasks are written in JavaScript; therefore, IntelliSense can provide assistance while developing. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. Select a coding option from the pop-up list provided by IntelliSense to complete the code.</p>
+<p><img src="using-gulp/_static/08-IntelliSense.png" alt="gulp IntelliSense"></p>
+<p>For more information about IntelliSense, see <a href="https://docs.microsoft.com/visualstudio/ide/javascript-intellisense">JavaScript IntelliSense</a>.</p>
+<h2 id="development-staging-and-production-environments">Development, staging, and production environments</h2>
+<p>When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The <em>_Layout.cshtml</em> file uses the <strong>environment</strong> tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio 2017, when you change the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <code>Production</code>, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the <strong>environment</strong> tag helpers containing link tags to the <code>Development</code> CSS files and the minified <code>Staging, Production</code> CSS files.</p>
+<pre><code class="lang-html">&lt;environment names=&quot;Development&quot;&gt;
+    &lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;~/js/site.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+&lt;/environment&gt;
+&lt;environment names=&quot;Staging,Production&quot;&gt;
+    &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js&quot;
+            asp-fallback-src=&quot;~/lib/jquery/dist/jquery.min.js&quot;
+            asp-fallback-test=&quot;window.jQuery&quot;
+            crossorigin=&quot;anonymous&quot;
+            integrity=&quot;sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk&quot;&gt;
+    &lt;/script&gt;
+    &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js&quot;
+            asp-fallback-src=&quot;~/lib/bootstrap/dist/js/bootstrap.min.js&quot;
+            asp-fallback-test=&quot;window.jQuery &amp;&amp; window.jQuery.fn &amp;&amp; window.jQuery.fn.modal&quot;
+            crossorigin=&quot;anonymous&quot;
+            integrity=&quot;sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa&quot;&gt;
+    &lt;/script&gt;
+    &lt;script src=&quot;~/js/site.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+&lt;/environment&gt;
+</code></pre><h2 id="switching-between-environments">Switching between environments</h2>
+<p>To switch between compiling for different environments, modify the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable&#39;s value.</p>
+<ol>
+<li><p>In <strong>Task Runner Explorer</strong>, verify that the <strong>min</strong> task has been set to run <strong>Before Build</strong>.</p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the project name and select <strong>Properties</strong>.</p>
+<p>The property sheet for the Web app is displayed.</p>
+</li>
+<li><p>Click the <strong>Debug</strong> tab.</p>
+</li>
+<li><p>Set the value of the <strong>Hosting:Environment</strong> environment variable to <code>Production</code>.</p>
+</li>
+<li><p>Press <strong>F5</strong> to run the application in a browser.</p>
+</li>
+<li><p>In the browser window, right-click the page and select <strong>View Source</strong> to view the HTML for the page.</p>
+<p>Notice that the stylesheet links point to the minified CSS files.</p>
+</li>
+<li><p>Close the browser to stop the Web app.</p>
+</li>
+<li><p>In Visual Studio, return to the property sheet for the Web app and change the <strong>Hosting:Environment</strong> environment variable back to <code>Development</code>.</p>
+</li>
+<li><p>Press <strong>F5</strong> to run the application in a browser again.</p>
+</li>
+<li><p>In the browser window, right-click the page and select <strong>View Source</strong> to see the HTML for the page.</p>
+<p>Notice that the stylesheet links point to the unminified versions of the CSS files.</p>
+</li>
+</ol>
+<p>For more information related to environments in ASP.NET Core, see <a href="../fundamentals/environments.html">Working with Multiple Environments</a>.</p>
+<h2 id="task-and-module-details">Task and module details</h2>
+<p>A Gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (<em>src</em>) and destination (<em>dest</em>) of the files being modified. The following are the primary Gulp API functions:</p>
+<table>
+<thead>
+<tr>
+<th>Gulp Function</th>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task</td>
+<td><code>gulp.task(name[, deps], fn) { }</code></td>
+<td>The <code>task</code> function creates a task. The <code>name</code> parameter defines the name of the task. The <code>deps</code> parameter contains an array of tasks to be completed before this task runs. The <code>fn</code> parameter represents a callback function which performs the operations of the task.</td>
+</tr>
+<tr>
+<td>watch</td>
+<td><code>gulp.watch(glob [, opts], tasks) { }</code></td>
+<td>The <code>watch</code> function monitors files and runs tasks when a file change occurs. The <code>glob</code> parameter is a <code>string</code> or <code>array</code> that determines which files to watch. The <code>opts</code> parameter provides additional file watching options.</td>
+</tr>
+<tr>
+<td>src</td>
+<td><code>gulp.src(globs[, options]) { }</code></td>
+<td>The <code>src</code> function provides files that match the glob value(s). The <code>glob</code> parameter is a <code>string</code> or <code>array</code> that determines which files to read. The <code>options</code> parameter provides additional file options.</td>
+</tr>
+<tr>
+<td>dest</td>
+<td><code>gulp.dest(path[, options]) { }</code></td>
+<td>The <code>dest</code> function defines a location to which files can be written. The <code>path</code> parameter is a string or function that determines the destination folder. The <code>options</code> parameter is an object that specifies output folder options.</td>
+</tr>
+</tbody>
+</table>
+<p>For additional Gulp API reference information, see <a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md">Gulp Docs API</a>.</p>
+<h2 id="gulp-recipes">Gulp recipes</h2>
+<p>The Gulp community provides Gulp <a href="https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md">recipes</a>. These recipes consist of Gulp tasks to address common scenarios.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Gulp documentation</a></li>
+<li><a href="bundling-and-minification.html">Bundling and minification in ASP.NET Core</a></li>
+<li><a href="using-grunt.html">Using Grunt in ASP.NET Core</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/using-gulp.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

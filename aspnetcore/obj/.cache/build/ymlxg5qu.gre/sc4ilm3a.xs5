@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Migrating from ASP.NET Core 1.x to 2.0 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Migrating from ASP.NET Core 1.x to 2.0 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="migration/1x-to-2x/index">
+<h1 id="migrating-from-aspnet-core-1x-to-aspnet-core-20" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="14" sourceendlinenumber="14">Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0</h1>
+
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://github.com/scottaddie" data-raw-source="[Scott Addie](https://github.com/scottaddie)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="16" sourceendlinenumber="16">Scott Addie</a></p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="18" sourceendlinenumber="18">In this article, we&#39;ll walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of <a href="https://docs.microsoft.com/aspnet/core/aspnetcore-2.0" data-raw-source="[many new features and performance improvements](https://docs.microsoft.com/aspnet/core/aspnetcore-2.0)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="18" sourceendlinenumber="18">many new features and performance improvements</a>. </p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="20" sourceendlinenumber="20">Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code contained within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a name="prerequisites"></a></p>
+<h2 id="prerequisites" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="24" sourceendlinenumber="24">Prerequisites</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="25" sourceendlinenumber="25">Please see <a class="xref" href="../../getting-started.html" data-raw-source="[Getting Started with ASP.NET Core](xref:getting-started)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="25" sourceendlinenumber="25">Getting Started with ASP.NET Core</a>.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="27" sourceendlinenumber="27"><a name="tfm"></a></p>
+<h2 id="update-target-framework-moniker-tfm" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="29" sourceendlinenumber="29">Update Target Framework Moniker (TFM)</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="30" sourceendlinenumber="30">Projects targeting .NET Core should use the <a href="/dotnet/standard/frameworks#referring-to-frameworks" data-raw-source="[TFM](/dotnet/standard/frameworks#referring-to-frameworks)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="30" sourceendlinenumber="30">TFM</a> of a version greater than or equal to .NET Core 2.0. Search for the <code>&lt;TargetFramework&gt;</code> node in the <em>.csproj</em> file, and replace its inner text with <code>netcoreapp2.0</code>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="32" sourceendlinenumber="32"><code class="lang-xml" name="Main">&lt;TargetFramework&gt;netcoreapp2.0&lt;/TargetFramework&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="34" sourceendlinenumber="34">Projects targeting .NET Framework should use the TFM of a version greater than or equal to .NET Framework 4.6.1. Search for the <code>&lt;TargetFramework&gt;</code> node in the <em>.csproj</em> file, and replace its inner text with <code>net461</code>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code class="lang-xml" name="Main">&lt;TargetFramework&gt;net461&lt;/TargetFramework&gt;
+</code></pre><div class="NOTE" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="38" sourceendlinenumber="38"><h5>Note</h5><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="39" sourceendlinenumber="39">.NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you&#39;re targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.</p>
+</div>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="41" sourceendlinenumber="41"><a name="global-json"></a></p>
+<h2 id="update-net-core-sdk-version-in-globaljson" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="43" sourceendlinenumber="43">Update .NET Core SDK version in global.json</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="44" sourceendlinenumber="44">If your solution relies upon a <a href="https://docs.microsoft.com/dotnet/core/tools/global-json" data-raw-source="[*global.json*](https://docs.microsoft.com/dotnet/core/tools/global-json)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="44" sourceendlinenumber="44"><em>global.json</em></a> file to target a specific .NET Core SDK version, update its <code>version</code> property to use the 2.0 version installed on your machine:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="46" sourceendlinenumber="46"><code class="lang-json" name="Main" highlight-lines="3">{
+  &quot;sdk&quot;: {
+    &quot;version&quot;: &quot;2.0.0&quot;
+  }
+}
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="48" sourceendlinenumber="48"><a name="package-reference"></a></p>
+<h2 id="update-package-references" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="50" sourceendlinenumber="50">Update package references</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="51" sourceendlinenumber="51">The <em>.csproj</em> file in a 1.x project lists each NuGet package used by the project.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="53" sourceendlinenumber="53">In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single <a class="xref" href="../../fundamentals/metapackage.html" data-raw-source="[metapackage](xref:fundamentals/metapackage)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="53" sourceendlinenumber="53">metapackage</a> reference in the <em>.csproj</em> file replaces the collection of packages:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="55" sourceendlinenumber="55"><code class="lang-xml" name="Main">&lt;ItemGroup&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.All&quot; Version=&quot;2.0.0&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="57" sourceendlinenumber="57">All the features of ASP.NET Core 2.0 and Entity Framework Core 2.0 are included in the metapackage.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="59" sourceendlinenumber="59">ASP.NET Core 2.0 projects targeting .NET Framework should continue to reference individual NuGet packages. Update the <code>Version</code> attribute of each <code>&lt;PackageReference /&gt;</code> node to 2.0.0.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="61" sourceendlinenumber="61">For example, here&#39;s the list of <code>&lt;PackageReference /&gt;</code> nodes used in a typical ASP.NET Core 2.0 project targeting .NET Framework:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="63" sourceendlinenumber="63"><code class="lang-xml" name="Main">&lt;ItemGroup&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Authentication.Cookies&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Identity.EntityFrameworkCore&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Mvc&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Mvc.Razor.ViewCompilation&quot; Version=&quot;2.0.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.AspNetCore.StaticFiles&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.EntityFrameworkCore.Design&quot; Version=&quot;2.0.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.EntityFrameworkCore.SqlServer&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.EntityFrameworkCore.Tools&quot; Version=&quot;2.0.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.VisualStudio.Web.BrowserLink&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;PackageReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Design&quot; Version=&quot;2.0.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="65" sourceendlinenumber="65"><a name="dot-net-cli-tool-reference"></a></p>
+<h2 id="update-net-core-cli-tools" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="67" sourceendlinenumber="67">Update .NET Core CLI tools</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="68" sourceendlinenumber="68">In the <em>.csproj</em> file, update the <code>Version</code> attribute of each <code>&lt;DotNetCliToolReference /&gt;</code> node to 2.0.0.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="70" sourceendlinenumber="70">For example, here&#39;s the list of CLI tools used in a typical ASP.NET Core 2.0 project targeting .NET Core 2.0:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="72" sourceendlinenumber="72"><code class="lang-xml" name="Main">&lt;ItemGroup&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.Extensions.SecretManager.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="74" sourceendlinenumber="74"><a name="package-target-fallback"></a></p>
+<h2 id="rename-package-target-fallback-property" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="76" sourceendlinenumber="76">Rename Package Target Fallback property</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="77" sourceendlinenumber="77">The <em>.csproj</em> file of a 1.x project used a <code>PackageTargetFallback</code> node and variable:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="79" sourceendlinenumber="79"><code class="lang-xml" name="Main">&lt;PackageTargetFallback&gt;$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;&lt;/PackageTargetFallback&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="81" sourceendlinenumber="81">Rename both the node and variable to <code>AssetTargetFallback</code>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="83" sourceendlinenumber="83"><code class="lang-xml" name="Main">&lt;AssetTargetFallback&gt;$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;&lt;/AssetTargetFallback&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="85" sourceendlinenumber="85"><a name="program-cs"></a></p>
+<h2 id="update-main-method-in-programcs" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="87" sourceendlinenumber="87">Update Main method in Program.cs</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="88" sourceendlinenumber="88">In 1.x projects, the <code>Main</code> method of <em>Program.cs</em> looked like this:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="90" sourceendlinenumber="90"><code class="lang-csharp" name="Main" highlight-lines="8-19">using System.IO;
+using Microsoft.AspNetCore.Hosting;
+
+namespace AspNetCoreDotNetCore1App
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup&lt;Startup&gt;()
+                .UseApplicationInsights()
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="92" sourceendlinenumber="92">In 2.0 projects, the <code>Main</code> method of <em>Program.cs</em> has been simplified:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="94" sourceendlinenumber="94"><code class="lang-csharp" name="Main" highlight-lines="8-11">using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+
+namespace AspNetCoreDotNetCore2App
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =&gt;
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+    }
+}
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="96" sourceendlinenumber="96">The adoption of this new 2.0 pattern is highly recommended and is required for product features like <a class="xref" href="../../data/ef-mvc/migrations.html" data-raw-source="[Entity Framework (EF) Core Migrations](xref:data/ef-mvc/migrations)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="96" sourceendlinenumber="96">Entity Framework (EF) Core Migrations</a> to work. For example, running <code>Update-Database</code> from the Package Manager Console window or <code>dotnet ef database update</code> from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="98" sourceendlinenumber="100"><code>Unable to create an object of type &#39;&lt;Context&gt;&#39;. Add an implementation of &#39;IDesignTimeDbContextFactory&lt;Context&gt;&#39; to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="102" sourceendlinenumber="102"><a name="db-init-code"></a></p>
+<h2 id="move-database-initialization-code" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="104" sourceendlinenumber="104">Move database initialization code</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="105" sourceendlinenumber="105">In 1.x projects using EF Core 1.x, a command such as <code>dotnet ef migrations add</code> does the following:</p>
+<ol sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="106" sourceendlinenumber="108">
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="106" sourceendlinenumber="106">Instantiates a <code>Startup</code> instance</li>
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="107" sourceendlinenumber="107">Invokes the <code>ConfigureServices</code> method to register all services with dependency injection (including <code>DbContext</code> types)</li>
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="108" sourceendlinenumber="108">Performs its requisite tasks</li>
+</ol>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="110" sourceendlinenumber="110">In 2.0 projects using EF Core 2.0, <code>Program.BuildWebHost</code> is invoked to obtain the application services. Unlike 1.x, this has the additional side effect of invoking <code>Startup.Configure</code>. If your 1.x app invoked database initialization code in its <code>Configure</code> method, unexpected problems can occur. For example, if the database doesn&#39;t yet exist, the seeding code runs before the EF Core Migrations command execution. This problem causes a <code>dotnet ef migrations list</code> command to fail if the database doesn&#39;t yet exist.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="112" sourceendlinenumber="112">Consider the following 1.x seed initialization code in the <code>Configure</code> method of <em>Startup.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="114" sourceendlinenumber="114"><code class="lang-csharp" name="Main" highlight-lines="8">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+
+SeedData.Initialize(app.ApplicationServices);
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="116" sourceendlinenumber="116">In 2.0 projects, move the <code>SeedData.Initialize</code> call to the <code>Main</code> method of <em>Program.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="118" sourceendlinenumber="118"><code class="lang-csharp" name="Main" highlight-lines="10">var host = BuildWebHost(args);
+
+using (var scope = host.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        // Requires using RazorPagesMovie.Models;
+        SeedData.Initialize(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService&lt;ILogger&lt;Program&gt;&gt;();
+        logger.LogError(ex, &quot;An error occurred seeding the DB.&quot;);
+    }
+}
+
+host.Run();
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="120" sourceendlinenumber="120">As of 2.0, it&#39;s bad practice to do anything in <code>BuildWebHost</code> except build and configure the web host. Anything that is about running the application should be handled outside of <code>BuildWebHost</code> &mdash; typically in the <code>Main</code> method of <em>Program.cs</em>.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="122" sourceendlinenumber="122"><a name="view-compilation"></a></p>
+<h2 id="review-your-razor-view-compilation-setting" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="124" sourceendlinenumber="124">Review your Razor View Compilation setting</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="125" sourceendlinenumber="125">Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, <a class="xref" href="../../mvc/views/view-compilation.html" data-raw-source="[Razor view compilation](xref:mvc/views/view-compilation)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="125" sourceendlinenumber="125">Razor view compilation</a> is enabled by default in ASP.NET Core 2.0.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="127" sourceendlinenumber="127">Setting the <code>MvcRazorCompileOnPublish</code> property to true is no longer required. Unless you&#39;re disabling view compilation, the property may be removed from the <em>.csproj</em> file.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="129" sourceendlinenumber="129">When targeting .NET Framework, you still need to explicitly reference the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" data-raw-source="[Microsoft.AspNetCore.Mvc.Razor.ViewCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.ViewCompilation)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="129" sourceendlinenumber="129">Microsoft.AspNetCore.Mvc.Razor.ViewCompilation</a> NuGet package in your <em>.csproj</em> file:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="131" sourceendlinenumber="131"><code class="lang-xml" name="Main">&lt;PackageReference Include=&quot;Microsoft.AspNetCore.Mvc.Razor.ViewCompilation&quot; Version=&quot;2.0.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+</code></pre><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="133" sourceendlinenumber="133"><a name="app-insights"></a></p>
+<h2 id="rely-on-application-insights-light-up-features" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="135" sourceendlinenumber="135">Rely on Application Insights &quot;Light-Up&quot; features</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="136" sourceendlinenumber="136">Effortless setup of application performance instrumentation is important. You can now rely on the new <a href="https://docs.microsoft.com/azure/application-insights/app-insights-overview" data-raw-source="[Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="136" sourceendlinenumber="136">Application Insights</a> &quot;light-up&quot; features available in the Visual Studio 2017 tooling.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="138" sourceendlinenumber="138">ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you&#39;re not using the Application Insights SDK directly, outside of <em>Program.cs</em> and <em>Startup.cs</em>, follow these steps:</p>
+<ol sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="140" sourceendlinenumber="150">
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="140" sourceendlinenumber="142"><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="140" sourceendlinenumber="140">Remove the following <code>&lt;PackageReference /&gt;</code> node from the <em>.csproj</em> file:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="142" sourceendlinenumber="142"><code class="lang-xml" name="Main">&lt;PackageReference Include=&quot;Microsoft.ApplicationInsights.AspNetCore&quot; Version=&quot;2.0.0&quot; /&gt;
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="144" sourceendlinenumber="146"><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="144" sourceendlinenumber="144">Remove the <code>UseApplicationInsights</code> extension method invocation from <em>Program.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="146" sourceendlinenumber="146"><code class="lang-csharp" name="Main" highlight-lines="8">public static void Main(string[] args)
+{
+    var host = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseIISIntegration()
+        .UseStartup&lt;Startup&gt;()
+        .UseApplicationInsights()
+        .Build();
+
+    host.Run();
+}
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="148" sourceendlinenumber="150"><p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="148" sourceendlinenumber="148">Remove the Application Insights client-side API call from <em>_Layout.cshtml</em>. It comprises the following two lines of code:</p>
+<pre sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="150" sourceendlinenumber="150"><code class="lang-cshtml" name="Main">@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@Html.Raw(JavaScriptSnippet.FullScript)
+</code></pre></li>
+</ol>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="152" sourceendlinenumber="152">If you are using the Application Insights SDK directly, continue to do so. The 2.0 <a class="xref" href="../../fundamentals/metapackage.html" data-raw-source="[metapackage](xref:fundamentals/metapackage)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="152" sourceendlinenumber="152">metapackage</a> includes the latest version of Application Insights, so a package downgrade error appears if you&#39;re referencing an older version.</p>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="154" sourceendlinenumber="154"><a name="auth-and-identity"></a></p>
+<h2 id="adopt-authentication--identity-improvements" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="156" sourceendlinenumber="156">Adopt Authentication / Identity Improvements</h2>
+<p sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="157" sourceendlinenumber="157">ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see <a class="xref" href="identity-2x.html" data-raw-source="[Migrating Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="157" sourceendlinenumber="157">Migrating Authentication and Identity to ASP.NET Core 2.0</a>.</p>
+<h2 id="additional-resources" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="159" sourceendlinenumber="159">Additional Resources</h2>
+<ul sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="160" sourceendlinenumber="160">
+<li sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="160" sourceendlinenumber="160"><a href="https://github.com/aspnet/announcements/issues?page=1&amp;q=is%3Aissue+is%3Aopen+label%3A2.0.0+label%3A%22Breaking+change%22&amp;utf8=%E2%9C%93" data-raw-source="[Breaking Changes in ASP.NET Core 2.0](https://github.com/aspnet/announcements/issues?page=1&amp;q=is%3Aissue+is%3Aopen+label%3A2.0.0+label%3A%22Breaking+change%22&amp;utf8=%E2%9C%93)" sourcefile="migration/1x-to-2x/index.md" sourcestartlinenumber="160" sourceendlinenumber="160">Breaking Changes in ASP.NET Core 2.0</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/migration/1x-to-2x/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

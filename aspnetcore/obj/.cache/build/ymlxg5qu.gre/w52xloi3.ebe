@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Key Encryption At Rest </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Key Encryption At Rest ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/implementation/key-encryption-at-rest">
+<h1 id="key-encryption-at-rest" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="15" sourceendlinenumber="15">Key Encryption At Rest</h1>
+
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="data-protection-implementation-key-encryption-at-rest"></a></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="19" sourceendlinenumber="19">By default the data protection system <a href="../configuration/default-settings.html#data-protection-default-settings" data-raw-source="[employs a heuristic](../configuration/default-settings.md#data-protection-default-settings)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="19" sourceendlinenumber="19">employs a heuristic</a> to determine how cryptographic key material should be encrypted at rest. The developer can override the heuristic and manually specify how keys should be encrypted at rest.</p>
+<div class="NOTE" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="21" sourceendlinenumber="21"><h5>Note</h5><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="22" sourceendlinenumber="22">If you specify an explicit key encryption at rest mechanism, the data protection system will deregister the default key storage mechanism that the heuristic provided. You must <a href="key-storage-providers.html#data-protection-implementation-key-storage-providers" data-raw-source="[specify an explicit key storage mechanism](key-storage-providers.md#data-protection-implementation-key-storage-providers)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="22" sourceendlinenumber="22">specify an explicit key storage mechanism</a>, otherwise the data protection system will fail to start.</p>
+</div>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a name="data-protection-implementation-key-encryption-at-rest-providers"></a></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="26" sourceendlinenumber="26">The data protection system ships with three in-box key encryption mechanisms.</p>
+<h2 id="windows-dpapi" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="28" sourceendlinenumber="28">Windows DPAPI</h2>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="30" sourceendlinenumber="30"><em>This mechanism is available only on Windows.</em></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="32" sourceendlinenumber="32">When Windows DPAPI is used, key material will be encrypted via <a href="https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx" data-raw-source="[CryptProtectData](https://msdn.microsoft.com/library/windows/desktop/aa380261(v=vs.85).aspx)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="32" sourceendlinenumber="32">CryptProtectData</a> before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that will never be read outside of the current machine (though it is possible to back these keys up to Active Directory; see <a href="https://support.microsoft.com/kb/309408/#6" data-raw-source="[DPAPI and Roaming Profiles](https://support.microsoft.com/kb/309408/#6)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="32" sourceendlinenumber="32">DPAPI and Roaming Profiles</a>). For example to configure DPAPI key-at-rest encryption.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="34" sourceendlinenumber="38"><code class="lang-csharp">sc.AddDataProtection()
+       // only the local user account can decrypt the keys
+       .ProtectKeysWithDpapi();
+</code></pre><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="40" sourceendlinenumber="40">If ProtectKeysWithDpapi is called with no parameters, only the current Windows user account can decipher the persisted key material. You can optionally specify that any user account on the machine (not just the current user account) should be able to decipher the key material, as shown in the below example.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="42" sourceendlinenumber="46"><code class="lang-csharp">sc.AddDataProtection()
+       // all user accounts on the machine can decrypt the keys
+       .ProtectKeysWithDpapi(protectToLocalMachine: true);
+</code></pre><h2 id="x509-certificate" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="48" sourceendlinenumber="48">X.509 certificate</h2>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="50" sourceendlinenumber="50"><em>This mechanism is not available on <code>.NET Core 1.0</code> or <code>1.1</code>.</em></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="52" sourceendlinenumber="52">If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="54" sourceendlinenumber="58"><code class="lang-csharp">sc.AddDataProtection()
+       // searches the cert store for the cert with this thumbprint
+       .ProtectKeysWithCertificate(&quot;3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0&quot;);
+</code></pre><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="60" sourceendlinenumber="60">Due to .NET Framework limitations only certificates with CAPI private keys are supported. See <a href="#data-protection-implementation-key-encryption-at-rest-dpapi-ng" data-raw-source="[Certificate-based encryption with Windows DPAPI-NG](#data-protection-implementation-key-encryption-at-rest-dpapi-ng)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="60" sourceendlinenumber="60">Certificate-based encryption with Windows DPAPI-NG</a> below for possible workarounds to these limitations.</p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="62" sourceendlinenumber="62"><a name="data-protection-implementation-key-encryption-at-rest-dpapi-ng"></a></p>
+<h2 id="windows-dpapi-ng" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="64" sourceendlinenumber="64">Windows DPAPI-NG</h2>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="66" sourceendlinenumber="66"><em>This mechanism is available only on Windows 8 / Windows Server 2012 and later.</em></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="68" sourceendlinenumber="68">Beginning with Windows 8, the operating system supports DPAPI-NG (also called CNG DPAPI). Microsoft lays out its usage scenario as follows.</p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="70" sourceendlinenumber="70">   Cloud computing, however, often requires that content encrypted on one computer be decrypted on another. Therefore, beginning with Windows 8, Microsoft extended the idea of using a relatively straightforward API to encompass cloud scenarios. This new API, called DPAPI-NG, enables you to securely share secrets (keys, passwords, key material) and messages by protecting them to a set of principals that can be used to unprotect them on different computers after proper authentication and authorization.</p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="72" sourceendlinenumber="72">   From <a href="https://msdn.microsoft.com/library/windows/desktop/hh706794(v=vs.85).aspx" data-raw-source="[About CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794(v=vs.85).aspx)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="72" sourceendlinenumber="72">About CNG DPAPI</a></p>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="74" sourceendlinenumber="74">The principal is encoded as a protection descriptor rule. Consider the below example, which encrypts key material such that only the domain-joined user with the specified SID can decrypt the key material.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="76" sourceendlinenumber="81"><code class="lang-csharp">sc.AddDataProtection()
+     // uses the descriptor rule &quot;SID=S-1-5-21-...&quot;
+     .ProtectKeysWithDpapiNG(&quot;SID=S-1-5-21-...&quot;,
+       flags: DpapiNGProtectionDescriptorFlags.None);
+</code></pre><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="83" sourceendlinenumber="83">There is also a parameterless overload of ProtectKeysWithDpapiNG. This is a convenience method for specifying the rule &quot;SID=mine&quot;, where mine is the SID of the current Windows user account.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="85" sourceendlinenumber="89"><code class="lang-csharp">sc.AddDataProtection()
+     // uses the descriptor rule &quot;SID={current account SID}&quot;
+     .ProtectKeysWithDpapiNG();
+</code></pre><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="91" sourceendlinenumber="91">In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user will be able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).</p>
+<h2 id="certificate-based-encryption-with-windows-dpapi-ng" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="93" sourceendlinenumber="93">Certificate-based encryption with Windows DPAPI-NG</h2>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="95" sourceendlinenumber="95">If you&#39;re running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on <a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core](https://www.microsoft.com/net/core)" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="95" sourceendlinenumber="95">.NET Core</a>. To take advantage of this, use the rule descriptor string &quot;CERTIFICATE=HashId:thumbprint&quot;, where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.</p>
+<pre sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="97" sourceendlinenumber="102"><code class="lang-csharp">sc.AddDataProtection()
+       // searches the cert store for the cert with this thumbprint
+       .ProtectKeysWithDpapiNG(&quot;CERTIFICATE=HashId:3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0&quot;,
+           flags: DpapiNGProtectionDescriptorFlags.None);
+</code></pre><p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="104" sourceendlinenumber="104">Any application which is pointed at this repository must be running on Windows 8.1 / Windows Server 2012 R2 or later to be able to decipher this key.</p>
+<h2 id="custom-key-encryption" sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="106" sourceendlinenumber="106">Custom key encryption</h2>
+<p sourcefile="security/data-protection/implementation/key-encryption-at-rest.md" sourcestartlinenumber="108" sourceendlinenumber="108">If the in-box mechanisms are not appropriate, the developer can specify their own key encryption mechanism by providing a custom IXmlEncryptor.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/implementation/key-encryption-at-rest.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using Bower in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using Bower in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/bower">
+<h1 id="manage-client-side-packages-with-bower-in-aspnet-core">Manage client-side packages with Bower in ASP.NET Core</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a>, <a href="https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/">Noel Rice</a>, and <a href="https://scottaddie.com">Scott Addie</a> </p>
+<p><a href="https://bower.io/">Bower</a> calls itself &quot;A package manager for the web.&quot; Within the .NET ecosystem, it fills the void left by NuGet’s inability to deliver static content files. For ASP.NET Core projects, these static files are inherent to client-side libraries like <a href="http://jquery.com/">jQuery</a> and <a href="http://getbootstrap.com/">Bootstrap</a>. For .NET libraries, you still use <a href="https://www.nuget.org/">NuGet</a> package manager.</p>
+<p>New projects created with the ASP.NET Core project templates set up the client-side build process. <a href="http://jquery.com/">jQuery</a> and <a href="http://getbootstrap.com/">Bootstrap</a> are installed, and Bower is supported.</p>
+<p>Client-side packages are listed in the <em>bower.json</em> file. The ASP.NET Core project templates configures <em>bower.json</em> with jQuery, jQuery validation, and Bootstrap.</p>
+<p>In this tutorial, we&#39;ll add support for <a href="http://fontawesome.io">Font Awesome</a>. Bower packages can be installed with the <strong>Manage Bower Packages</strong> UI or manually in the <em>bower.json</em> file.</p>
+<h3 id="installation-via-manage-bower-packages-ui">Installation via Manage Bower Packages UI</h3>
+<ul>
+<li><p>Create a new ASP.NET Core Web app with the <strong>ASP.NET Core Web Application (.NET Core)</strong> template. Select <strong>Web Application</strong> and <strong>No Authentication</strong>.</p>
+</li>
+<li><p>Right-click the project in Solution Explorer and select <strong>Manage Bower Packages</strong> (alternatively from the main menu, <strong>Project</strong> &gt; <strong>Manage Bower Packages</strong>).</p>
+</li>
+<li><p>In the <strong>Bower: &lt;project name></strong> window, click the &quot;Browse&quot; tab, and then filter the packages list by entering <code>font-awesome</code> in the search box:</p>
+<p><img src="bower/_static/manage-bower-packages.png" alt="manage bower packages"></p>
+</li>
+<li><p>Confirm that the &quot;Save changes to <em>bower.json</em>&quot; checkbox is checked. Select a version from the drop-down list and click the <strong>Install</strong> button. The <strong>Output</strong> window shows the installation details.</p>
+</li>
+</ul>
+<h3 id="manual-installation-in-bowerjson">Manual installation in bower.json</h3>
+<p>Open the <em>bower.json</em> file and add &quot;font-awesome&quot; to the dependencies. IntelliSense shows the available packages. When a package is selected, the available versions are displayed. The images below are older and will not match what you see.</p>
+<p><img src="bower/_static/add-package.png" alt="IntelliSense of bower package explorer"></p>
+<p><img src="bower/_static/version-intellisense.png" alt="bower version IntelliSense"></p>
+<p>Bower uses <a href="http://semver.org/">semantic versioning</a> to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;. IntelliSense simplifies semantic versioning by showing only a few common choices. The top item in the IntelliSense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.</p>
+<p>Save the <em>bower.json</em> file. Visual Studio watches the <em>bower.json</em> file for changes. Upon saving, the <em>bower install</em> command is executed. See the Output window&#39;s <strong>Bower/npm</strong> view for the exact command executed.</p>
+<p>Open the <em>.bowerrc</em> file under <em>bower.json</em>. The <code>directory</code> property is set to <em>wwwroot/lib</em> which indicates the location Bower will install the package assets.</p>
+<pre><code class="lang-json">{
+ &quot;directory&quot;: &quot;wwwroot/lib&quot;
+}
+</code></pre><p>You can use the search box in Solution Explorer to find and display the font-awesome package.</p>
+<p>Open the <em>Views\Shared_Layout.cshtml</em> file and add the font-awesome CSS file to the environment <a class="xref" href="../mvc/views/tag-helpers/intro.html">Tag Helper</a> for <code>Development</code>. From Solution Explorer, drag and drop <em>font-awesome.css</em> inside the <code>&lt;environment names=&quot;Development&quot;&gt;</code> element.</p>
+<pre><code class="lang-html" name="Main" highlight-lines="4">&lt;environment names=&quot;Development&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.css&quot; /&gt;
+    &lt;link href=&quot;~/lib/font-awesome/css/font-awesome.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/environment&gt;
+</code></pre><p>In a production app you would add <em>font-awesome.min.css</em> to the environment tag helper for <code>Staging,Production</code>.</p>
+<p>Replace the contents of the <em>Views\Home\About.cshtml</em> Razor file with the following markup:</p>
+<pre><code class="lang-html" name="Main">@{
+    ViewData[&quot;Title&quot;] = &quot;About&quot;;
+}
+
+&lt;div class=&quot;list-group&quot;&gt;
+    &lt;a class=&quot;list-group-item&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-home fa-fw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&amp;nbsp; Home&lt;/a&gt;
+    &lt;a class=&quot;list-group-item&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-book fa-fw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&amp;nbsp; Library&lt;/a&gt;
+    &lt;a class=&quot;list-group-item&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-pencil fa-fw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&amp;nbsp; Applications&lt;/a&gt;
+    &lt;a class=&quot;list-group-item&quot; href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-cog fa-fw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&amp;nbsp; Settings&lt;/a&gt;
+&lt;/div&gt;
+</code></pre><p>Run the app and navigate to the About view to verify the font-awesome package works.</p>
+<h2 id="exploring-the-client-side-build-process">Exploring the client-side build process</h2>
+<p>Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. You see can what happens to the project structure and the runtime output as each configuration change is made.</p>
+<p>The general steps to use the client-side build process with Bower are:</p>
+<ul>
+<li>Define packages used in your project. <!-- once defined, you don't need to download them, VS does --></li>
+<li>Reference packages from your web pages.</li>
+</ul>
+<h3 id="define-packages">Define packages</h3>
+<p>Once you list packages in the <em>bower.json</em> file, Visual Studio will download them. The following example uses Bower to load jQuery and Bootstrap to the <em>wwwroot</em> folder.</p>
+<ul>
+<li><p>Create a new ASP.NET Core Web app with the <strong>ASP.NET Core Web Application (.NET Core)</strong> template. Select the <strong>Empty</strong> project template and click <strong>OK</strong>.</p>
+</li>
+<li><p>In Solution Explorer, right-click the project &gt; <strong>Add New Item</strong> and select <strong>Bower Configuration File</strong>. Note: A <em>.bowerrc</em> file is also added.</p>
+</li>
+<li><p>Open <em>bower.json</em>, and add jquery and bootstrap to the <code>dependencies</code> section. The resulting <em>bower.json</em> file will look like the following example. The versions will change over time and may not match the image below.</p>
+</li>
+</ul>
+<pre><code class="lang-json" name="Main" highlight-lines="5,6">{
+  &quot;name&quot;: &quot;asp.net&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;jquery&quot;: &quot;3.1.1&quot;,
+    &quot;bootstrap&quot;: &quot;3.3.7&quot;
+  }
+}
+</code></pre><ul>
+<li><p>Save the <em>bower.json</em> file.</p>
+<p>Verify the project includes the <em>bootstrap</em> and <em>jQuery</em> directories in <em>wwwroot/lib</em>. Bower uses the <em>.bowerrc</em> file to install the assets in <em>wwwroot/lib</em>.</p>
+<p>Note: The &quot;Manage Bower Packages&quot; UI provides an alternative to manual file editing.</p>
+</li>
+</ul>
+<h3 id="enable-static-files">Enable static files</h3>
+<ul>
+<li>Add the <code>Microsoft.AspNetCore.StaticFiles</code> NuGet package to the project.</li>
+<li>Enable static files to be served with the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions">Static file middleware</a>. Add a call to <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.staticfileextensions">UseStaticFiles</a> to the <code>Configure</code> method of <code>Startup</code>.</li>
+</ul>
+<pre><code class="lang-csharp" name="Main" highlight-lines="9">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+
+public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseStaticFiles();
+
+        app.Run(async (context) =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Hello World!&quot;);
+        });
+    }
+}
+
+</code></pre><h3 id="reference-packages">Reference packages</h3>
+<p>In this section, you will create an HTML page to verify it can access the deployed packages.</p>
+<ul>
+<li><p>Add a new HTML page named <em>Index.html</em> to the <em>wwwroot</em> folder. Note: You must add the HTML file to the <em>wwwroot</em> folder. By default, static content cannot be served outside <em>wwwroot</em>. See <a class="xref" href="../fundamentals/static-files.html">Working with static files</a> for more information.</p>
+<p>Replace the contents of <em>Index.html</em> with the following markup:</p>
+</li>
+</ul>
+<pre><code class="lang-html" name="Main">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Bower Example&lt;/title&gt;
+    &lt;link href=&quot;lib/bootstrap/dist/css/bootstrap.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;jumbotron&quot;&gt;
+        &lt;h1&gt;Using the jumbotron style&lt;/h1&gt;
+        &lt;p&gt;
+            &lt;a class=&quot;btn btn-primary btn-lg&quot; role=&quot;button&quot;&gt;Stateful button&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(&quot;.btn&quot;).click(function () {
+            $(this).text(&#39;loading&#39;)
+                .delay(1000)
+                .queue(function () {
+                    $(this).text(&#39;reset&#39;);
+                    $(this).dequeue();
+                });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><ul>
+<li><p>Run the app and navigate to <code>http://localhost:&lt;port&gt;/Index.html</code>. Alternatively, with <em>Index.html</em> opened, press <code>Ctrl+Shift+W</code>. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.</p>
+<p><img src="bower/_static/jumbotron.png" alt="jumbotron style applied"></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/bower.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

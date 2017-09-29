@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Response caching in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Response caching in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="performance/caching/response">
+<h1 id="response-caching-in-aspnet-core" sourcefile="performance/caching/response.md" sourcestartlinenumber="14" sourceendlinenumber="14">Response caching in ASP.NET Core</h1>
+
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://github.com/JunTaoLuo" data-raw-source="[John Luo](https://github.com/JunTaoLuo)" sourcefile="performance/caching/response.md" sourcestartlinenumber="16" sourceendlinenumber="16">John Luo</a>, <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="performance/caching/response.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a>, <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="performance/caching/response.md" sourcestartlinenumber="16" sourceendlinenumber="16">Steve Smith</a>, and <a href="https://github.com/guardrex" data-raw-source="[Luke Latham](https://github.com/guardrex)" sourcefile="performance/caching/response.md" sourcestartlinenumber="16" sourceendlinenumber="16">Luke Latham</a></p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="18" sourceendlinenumber="18"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample)" sourcefile="performance/caching/response.md" sourcestartlinenumber="18" sourceendlinenumber="18">View or download sample code</a></p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="20" sourceendlinenumber="20">Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="22" sourceendlinenumber="22">The web server can cache responses when you add <a class="xref" href="middleware.html" data-raw-source="[Response Caching Middleware](xref:performance/caching/middleware)" sourcefile="performance/caching/response.md" sourcestartlinenumber="22" sourceendlinenumber="22">Response Caching Middleware</a>.</p>
+<h2 id="http-based-response-caching" sourcefile="performance/caching/response.md" sourcestartlinenumber="24" sourceendlinenumber="24">HTTP-based response caching</h2>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="26" sourceendlinenumber="26">The <a href="https://tools.ietf.org/html/rfc7234" data-raw-source="[HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234)" sourcefile="performance/caching/response.md" sourcestartlinenumber="26" sourceendlinenumber="26">HTTP 1.1 Caching specification</a> describes how Internet caches should behave. The primary HTTP header used for caching is <a href="https://tools.ietf.org/html/rfc7234#section-5.2" data-raw-source="[Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2)" sourcefile="performance/caching/response.md" sourcestartlinenumber="26" sourceendlinenumber="26">Cache-Control</a>, which is used to specify cache <em>directives</em>. The directives control caching behavior as requests make their way from clients to servers and as reponses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="28" sourceendlinenumber="28">Common <code>Cache-Control</code> directives are shown in the following table.</p>
+<table sourcefile="performance/caching/response.md" sourcestartlinenumber="30" sourceendlinenumber="36">
+<thead>
+<tr>
+<th>Directive</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.5" data-raw-source="[public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)" sourcefile="performance/caching/response.md" sourcestartlinenumber="32" sourceendlinenumber="32">public</a></td>
+<td>A cache may store the response.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.6" data-raw-source="[private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)" sourcefile="performance/caching/response.md" sourcestartlinenumber="33" sourceendlinenumber="33">private</a></td>
+<td>The response must not be stored by a shared cache. A private cache may store and reuse the response.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.2.1.1" data-raw-source="[max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)" sourcefile="performance/caching/response.md" sourcestartlinenumber="34" sourceendlinenumber="34">max-age</a></td>
+<td>The client won&#39;t accept a response whose age is greater than the specified number of seconds. Examples: <code>max-age=60</code> (60 seconds), <code>max-age=2592000</code> (1 month)</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.2.1.4" data-raw-source="[no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4)" sourcefile="performance/caching/response.md" sourcestartlinenumber="35" sourceendlinenumber="35">no-cache</a></td>
+<td><strong>On requests</strong>: A cache must not use a stored response to satisfy the request. Note: The origin server re-generates the response for the client, and the middleware updates the stored response in its cache.<br><br><strong>On responses</strong>: The response must not be used for a subsequent request without validation on the origin server.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.2.1.5" data-raw-source="[no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5)" sourcefile="performance/caching/response.md" sourcestartlinenumber="36" sourceendlinenumber="36">no-store</a></td>
+<td><strong>On requests</strong>: A cache must not store the request.<br><br><strong>On responses</strong>: A cache must not store any part of the response.</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="38" sourceendlinenumber="38">Other cache headers that play a role in caching are shown in the following table.</p>
+<table sourcefile="performance/caching/response.md" sourcestartlinenumber="40" sourceendlinenumber="45">
+<thead>
+<tr>
+<th>Header</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.1" data-raw-source="[Age](https://tools.ietf.org/html/rfc7234#section-5.1)" sourcefile="performance/caching/response.md" sourcestartlinenumber="42" sourceendlinenumber="42">Age</a></td>
+<td>An estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.3" data-raw-source="[Expires](https://tools.ietf.org/html/rfc7234#section-5.3)" sourcefile="performance/caching/response.md" sourcestartlinenumber="43" sourceendlinenumber="43">Expires</a></td>
+<td>The date/time after which the response is considered stale.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7234#section-5.4" data-raw-source="[Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)" sourcefile="performance/caching/response.md" sourcestartlinenumber="44" sourceendlinenumber="44">Pragma</a></td>
+<td>Exists for backwards compatibility with HTTP/1.0 caches for setting <code>no-cache</code> behavior. If the <code>Cache-Control</code> header is present, the <code>Pragma</code> header is ignored.</td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-7.1.4" data-raw-source="[Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4)" sourcefile="performance/caching/response.md" sourcestartlinenumber="45" sourceendlinenumber="45">Vary</a></td>
+<td>Specifies that a cached response must not be sent unless all of the <code>Vary</code> header fields match in both the cached response&#39;s original request and the new request.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="http-based-caching-respects-request-cache-control-directives" sourcefile="performance/caching/response.md" sourcestartlinenumber="47" sourceendlinenumber="47">HTTP-based caching respects request Cache-Control directives</h2>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="49" sourceendlinenumber="49">The <a href="https://tools.ietf.org/html/rfc7234#section-5.2" data-raw-source="[HTTP 1.1 Caching specification for the Cache-Control header](https://tools.ietf.org/html/rfc7234#section-5.2)" sourcefile="performance/caching/response.md" sourcestartlinenumber="49" sourceendlinenumber="49">HTTP 1.1 Caching specification for the Cache-Control header</a> requires a cache to honor a valid <code>Cache-Control</code> header sent by the client. A client can make requests with a <code>no-cache</code> header value and force the server to generate a new response for every request.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="51" sourceendlinenumber="51">Always honoring client <code>Cache-Control</code> request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn&#39;t necessarily a way to control the load on an origin server.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="53" sourceendlinenumber="53">There&#39;s no current developer control over this caching behavior when using the <a class="xref" href="middleware.html" data-raw-source="[Response Caching Middleware](xref:performance/caching/middleware)" sourcefile="performance/caching/response.md" sourcestartlinenumber="53" sourceendlinenumber="53">Response Caching Middleware</a> because the middleware adheres to the official caching specification. <a href="https://github.com/aspnet/ResponseCaching/issues/96" data-raw-source="[Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96)" sourcefile="performance/caching/response.md" sourcestartlinenumber="53" sourceendlinenumber="53">Future enhancements to the middleware</a> will permit configuring the middleware to ignore a request&#39;s <code>Cache-Control</code> header when deciding to serve a cached response. This will offer you an opportunity to better control the load on your server when you use the middleware.</p>
+<h2 id="other-caching-technology-in-aspnet-core" sourcefile="performance/caching/response.md" sourcestartlinenumber="55" sourceendlinenumber="55">Other caching technology in ASP.NET Core</h2>
+<h3 id="in-memory-caching" sourcefile="performance/caching/response.md" sourcestartlinenumber="57" sourceendlinenumber="57">In-memory caching</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="59" sourceendlinenumber="59">In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using <em>sticky sessions</em>. Sticky sessions means that the requests from a client are always routed to the same server for processing.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="61" sourceendlinenumber="61">For more information, see <a class="xref" href="memory.html" data-raw-source="[Introduction to in-memory caching in ASP.NET Core](xref:performance/caching/memory)" sourcefile="performance/caching/response.md" sourcestartlinenumber="61" sourceendlinenumber="61">Introduction to in-memory caching in ASP.NET Core</a>.</p>
+<h3 id="distributed-cache" sourcefile="performance/caching/response.md" sourcestartlinenumber="63" sourceendlinenumber="63">Distributed Cache</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="65" sourceendlinenumber="65">Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that is handled by any server in the group and cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="67" sourceendlinenumber="67">For more information, see <a class="xref" href="distributed.html" data-raw-source="[Working with a distributed cache](xref:performance/caching/distributed)" sourcefile="performance/caching/response.md" sourcestartlinenumber="67" sourceendlinenumber="67">Working with a distributed cache</a>.</p>
+<h3 id="cache-tag-helper" sourcefile="performance/caching/response.md" sourcestartlinenumber="69" sourceendlinenumber="69">Cache Tag Helper</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="71" sourceendlinenumber="71">You can cache the content from an MVC view or Razor Page with the Cache Tag Helper. The Cache Tag Helper uses in-memory caching to store data.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="73" sourceendlinenumber="73">For more information, see <a class="xref" href="../../mvc/views/tag-helpers/built-in/cache-tag-helper.html" data-raw-source="[Cache Tag Helper in ASP.NET Core MVC](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)" sourcefile="performance/caching/response.md" sourcestartlinenumber="73" sourceendlinenumber="73">Cache Tag Helper in ASP.NET Core MVC</a>.</p>
+<h3 id="distributed-cache-tag-helper" sourcefile="performance/caching/response.md" sourcestartlinenumber="75" sourceendlinenumber="75">Distributed Cache Tag Helper</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="77" sourceendlinenumber="77">You can cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper. The Distributed Cache Tag Helper uses SQL Server or Redis to store data.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="79" sourceendlinenumber="79">For more information, see <a class="xref" href="../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.html" data-raw-source="[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)" sourcefile="performance/caching/response.md" sourcestartlinenumber="79" sourceendlinenumber="79">Distributed Cache Tag Helper</a>.</p>
+<h2 id="responsecache-attribute" sourcefile="performance/caching/response.md" sourcestartlinenumber="81" sourceendlinenumber="81">ResponseCache attribute</h2>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="83" sourceendlinenumber="83">The <code>ResponseCacheAttribute</code> specifies the parameters necessary for setting appropriate headers in response caching. See <a href="/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute" data-raw-source="[ResponseCacheAttribute](/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)" sourcefile="performance/caching/response.md" sourcestartlinenumber="83" sourceendlinenumber="83">ResponseCacheAttribute</a> for a description of the parameters.</p>
+<div class="WARNING" sourcefile="performance/caching/response.md" sourcestartlinenumber="85" sourceendlinenumber="85"><h5>Warning</h5><p sourcefile="performance/caching/response.md" sourcestartlinenumber="86" sourceendlinenumber="86">Disable caching for content that contains information for authenticated clients. Caching should only be enabled for content that doesn&#39;t change based on a user&#39;s identity or whether a user is logged in.</p>
+</div>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="88" sourceendlinenumber="88"><code>VaryByQueryKeys string[]</code> (requires ASP.NET Core 1.1 and higher): When set, the Response Caching Middleware varies the stored response by the values of the given list of query keys. The Response Caching Middleware must be enabled to set the <code>VaryByQueryKeys</code> property; otherwise, a runtime exception is thrown. There&#39;s no corresponding HTTP header for the <code>VaryByQueryKeys</code> property. This property is an HTTP feature handled by the Response Caching Middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.</p>
+<table sourcefile="performance/caching/response.md" sourcestartlinenumber="90" sourceendlinenumber="94">
+<thead>
+<tr>
+<th>Request</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://example.com?key1=value1</code></td>
+<td>Returned from server</td>
+</tr>
+<tr>
+<td><code>http://example.com?key1=value1</code></td>
+<td>Returned from middleware</td>
+</tr>
+<tr>
+<td><code>http://example.com?key1=value2</code></td>
+<td>Returned from server</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="96" sourceendlinenumber="96">The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request is not in the middleware cache because the query string value doesn&#39;t match a previous request. </p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="98" sourceendlinenumber="98">The <code>ResponseCacheAttribute</code> is used to configure and create (via <code>IFilterFactory</code>) a <code>ResponseCacheFilter</code>. The <code>ResponseCacheFilter</code> performs the work of updating the appropriate HTTP headers and features of the response. The filter:</p>
+<ul sourcefile="performance/caching/response.md" sourcestartlinenumber="100" sourceendlinenumber="102">
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="100" sourceendlinenumber="100">Removes any existing headers for <code>Vary</code>, <code>Cache-Control</code>, and <code>Pragma</code>. </li>
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="101" sourceendlinenumber="101">Writes out the appropriate headers based on the properties set in the <code>ResponseCacheAttribute</code>. </li>
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="102" sourceendlinenumber="102">Updates the response caching HTTP feature if <code>VaryByQueryKeys</code> is set.</li>
+</ul>
+<h3 id="vary" sourcefile="performance/caching/response.md" sourcestartlinenumber="104" sourceendlinenumber="104">Vary</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="106" sourceendlinenumber="106">This header is only written when the <code>VaryByHeader</code> property is set. It&#39;s set to the <code>Vary</code> property&#39;s value. The following sample uses the <code>VaryByHeader</code> property:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="108" sourceendlinenumber="108"><code class="lang-csharp" name="Main" highlight-lines="1">[ResponseCache(VaryByHeader = &quot;User-Agent&quot;, Duration = 30)]
+public IActionResult About2()
+{
+</code></pre><p sourcefile="performance/caching/response.md" sourcestartlinenumber="110" sourceendlinenumber="110">You can view the response headers with your browser&#39;s network tools. The following image shows the Edge F12 output on the <strong>Network</strong> tab when the <code>About2</code> action method is refreshed:</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="112" sourceendlinenumber="112"><img src="response/_static/vary.png" alt="Edge F12 output on the Network tab when the About2 action method is called" sourcefile="performance/caching/response.md" sourcestartlinenumber="112" sourceendlinenumber="112"></p>
+<h3 id="nostore-and-locationnone" sourcefile="performance/caching/response.md" sourcestartlinenumber="114" sourceendlinenumber="114">NoStore and Location.None</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="116" sourceendlinenumber="116"><code>NoStore</code> overrides most of the other properties. When this property is set to <code>true</code>, the <code>Cache-Control</code> header is set to <code>no-store</code>. If <code>Location</code> is set to <code>None</code>:</p>
+<ul sourcefile="performance/caching/response.md" sourcestartlinenumber="118" sourceendlinenumber="119">
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="118" sourceendlinenumber="118"><code>Cache-Control</code> is set to <code>no-store,no-cache</code>.</li>
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="119" sourceendlinenumber="119"><code>Pragma</code> is set to <code>no-cache</code>.</li>
+</ul>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="121" sourceendlinenumber="121">If <code>NoStore</code> is <code>false</code> and <code>Location</code> is <code>None</code>, <code>Cache-Control</code> and <code>Pragma</code> are set to <code>no-cache</code>.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="123" sourceendlinenumber="123">You typically set <code>NoStore</code> to <code>true</code> on error pages. For example:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="125" sourceendlinenumber="125"><code class="lang-csharp" name="Main" highlight-lines="1">[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+public IActionResult Error()
+{
+    return View();
+}
+</code></pre><p sourcefile="performance/caching/response.md" sourcestartlinenumber="127" sourceendlinenumber="127">This results in the following headers:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="129" sourceendlinenumber="132"><code>Cache-Control: no-store,no-cache
+Pragma: no-cache
+</code></pre><h3 id="location-and-duration" sourcefile="performance/caching/response.md" sourcestartlinenumber="134" sourceendlinenumber="134">Location and Duration</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="136" sourceendlinenumber="136">To enable caching, <code>Duration</code> must be set to a positive value and <code>Location</code> must be either <code>Any</code> (the default) or <code>Client</code>. In this case, the <code>Cache-Control</code> header is set to the location value followed by the <code>max-age</code> of the response.</p>
+<div class="NOTE" sourcefile="performance/caching/response.md" sourcestartlinenumber="138" sourceendlinenumber="138"><h5>Note</h5><p sourcefile="performance/caching/response.md" sourcestartlinenumber="139" sourceendlinenumber="139"><code>Location</code>&#39;s options of <code>Any</code> and <code>Client</code> translate into <code>Cache-Control</code> header values of <code>public</code> and <code>private</code>, respectively. As noted previously, setting <code>Location</code> to <code>None</code> sets both <code>Cache-Control</code> and <code>Pragma</code> headers to <code>no-cache</code>.</p>
+</div>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="141" sourceendlinenumber="141">Below is an example showing the headers produced by setting <code>Duration</code> and leaving the default <code>Location</code> value:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="143" sourceendlinenumber="143"><code class="lang-csharp" name="Main" highlight-lines="1">[ResponseCache(Duration = 60)]
+public IActionResult Contact()
+{
+    ViewData[&quot;Message&quot;] = &quot;Your contact page.&quot;;
+
+    return View();
+}
+</code></pre><p sourcefile="performance/caching/response.md" sourcestartlinenumber="145" sourceendlinenumber="145">This produces the following header:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="147" sourceendlinenumber="149"><code>Cache-Control: public,max-age=60
+</code></pre><h3 id="cache-profiles" sourcefile="performance/caching/response.md" sourcestartlinenumber="151" sourceendlinenumber="151">Cache profiles</h3>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="153" sourceendlinenumber="153">Instead of duplicating <code>ResponseCache</code> settings on many controller action attributes, cache profiles can be configured as options when setting up MVC in the <code>ConfigureServices</code> method in <code>Startup</code>. Values found in a referenced cache profile are used as the defaults by the <code>ResponseCache</code> attribute and are overridden by any properties specified on the attribute.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="155" sourceendlinenumber="155">Setting up a cache profile:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="157" sourceendlinenumber="157"><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =&gt;
+    {
+        options.CacheProfiles.Add(&quot;Default&quot;,
+            new CacheProfile()
+            {
+                Duration = 60
+            });
+        options.CacheProfiles.Add(&quot;Never&quot;,
+            new CacheProfile()
+            {
+                Location = ResponseCacheLocation.None,
+                NoStore = true
+            });
+    });
+}
+</code></pre><p sourcefile="performance/caching/response.md" sourcestartlinenumber="159" sourceendlinenumber="159">Referencing a cache profile:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="161" sourceendlinenumber="161"><code class="lang-csharp" name="Main" highlight-lines="1,4">[ResponseCache(Duration = 30)]
+public class HomeController : Controller
+{
+    [ResponseCache(CacheProfileName = &quot;Default&quot;)]
+    public IActionResult Index()
+    {
+        return View();
+    }
+</code></pre><p sourcefile="performance/caching/response.md" sourcestartlinenumber="163" sourceendlinenumber="163">The <code>ResponseCache</code> attribute can be applied both to actions (methods) and controllers (classes). Method-level attributes override the settings specified in class-level attributes.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="165" sourceendlinenumber="165">In the above example, a class-level attribute specifies a duration of 30 seconds, while a method-level attribute references a cache profile with a duration set to 60 seconds.</p>
+<p sourcefile="performance/caching/response.md" sourcestartlinenumber="167" sourceendlinenumber="167">The resulting header:</p>
+<pre sourcefile="performance/caching/response.md" sourcestartlinenumber="169" sourceendlinenumber="171"><code>Cache-Control: public,max-age=60
+</code></pre><h2 id="additional-resources" sourcefile="performance/caching/response.md" sourcestartlinenumber="173" sourceendlinenumber="173">Additional resources</h2>
+<ul sourcefile="performance/caching/response.md" sourcestartlinenumber="175" sourceendlinenumber="177">
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="175" sourceendlinenumber="175"><a href="https://tools.ietf.org/html/rfc7234#section-3" data-raw-source="[Caching in HTTP from the specification](https://tools.ietf.org/html/rfc7234#section-3)" sourcefile="performance/caching/response.md" sourcestartlinenumber="175" sourceendlinenumber="175">Caching in HTTP from the specification</a></li>
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="176" sourceendlinenumber="176"><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9" data-raw-source="[Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)" sourcefile="performance/caching/response.md" sourcestartlinenumber="176" sourceendlinenumber="176">Cache-Control</a></li>
+<li sourcefile="performance/caching/response.md" sourcestartlinenumber="177" sourceendlinenumber="177"><a class="xref" href="middleware.html" data-raw-source="[Response Caching Middleware](xref:performance/caching/middleware)" sourcefile="performance/caching/response.md" sourcestartlinenumber="177" sourceendlinenumber="177">Response Caching Middleware</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/performance/caching/response.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

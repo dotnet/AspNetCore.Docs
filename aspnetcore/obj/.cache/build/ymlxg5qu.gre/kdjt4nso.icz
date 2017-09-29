@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>URL Rewriting Middleware in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="URL Rewriting Middleware in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/url-rewriting">
+<h1 id="url-rewriting-middleware-in-aspnet-core" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="15" sourceendlinenumber="15">URL Rewriting Middleware in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://github.com/guardrex" data-raw-source="[Luke Latham](https://github.com/guardrex)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="17" sourceendlinenumber="17">Luke Latham</a> and <a href="https://github.com/mikaelm12" data-raw-source="[Mikael Mengistu](https://github.com/mikaelm12)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="17" sourceendlinenumber="17">Mikael Mengistu</a></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="19" sourceendlinenumber="19"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="19" sourceendlinenumber="19">View or download sample code</a></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="21" sourceendlinenumber="21">URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses are not tightly linked. There are several scenarios where URL rewriting is valuable:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="22" sourceendlinenumber="28">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="22" sourceendlinenumber="22">Moving or replacing server resources temporarily or permanently while maintaining stable locators for those resources</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="23" sourceendlinenumber="23">Splitting request processing across different apps or across areas of one app</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="24" sourceendlinenumber="24">Removing, adding, or reorganizing URL segments on incoming requests</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="25" sourceendlinenumber="25">Optimizing public URLs for Search Engine Optimization (SEO)</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="26" sourceendlinenumber="26">Permitting the use of friendly public URLs to help people predict the content they will find by following a link</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="27" sourceendlinenumber="27">Redirecting insecure requests to secure endpoints</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="28" sourceendlinenumber="28">Preventing image hotlinking</li>
+</ul>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="30" sourceendlinenumber="30">You can define rules for changing the URL in several ways, including regex, Apache mod_rewrite module rules, IIS Rewrite Module rules, and using custom rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.</p>
+<div class="NOTE" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="32" sourceendlinenumber="32"><h5>Note</h5><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="33" sourceendlinenumber="33">URL rewriting can reduce the performance of an app. Where feasible, you should limit the number and complexity of rules.</p>
+</div>
+<h2 id="url-redirect-and-url-rewrite" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="35" sourceendlinenumber="35">URL redirect and URL rewrite</h2>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="36" sourceendlinenumber="36">The difference in wording between <em>URL redirect</em> and <em>URL rewrite</em> may seem subtle at first but has important implications for providing resources to clients. ASP.NET Core&#39;s URL Rewriting Middleware is capable of meeting the need for both.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="38" sourceendlinenumber="38">A <em>URL redirect</em> is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client appears in the browser&#39;s address bar when the client makes a new request for the resource. If <code>/resource</code> is <em>redirected</em> to <code>/different-resource</code>, the client requests <code>/resource</code>, and the server responds that the client should obtain the resource at <code>/different-resource</code> with a status code indicating that the redirect is either temporary or permanent. The client executes a new request for the resource at the redirect URL.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="40" sourceendlinenumber="40"><img src="url-rewriting/_static/url_redirect.png" alt="A WebAPI service endpoint has been temporarily changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The server sends back a 302 (Found) response with the new, temporary path for the service at version 2 /v2/api. The client makes a second request to the service at the redirect URL. The server responds with a 200 (OK) status code." sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="40" sourceendlinenumber="40"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="42" sourceendlinenumber="42">When redirecting requests to a different URL, you indicate whether the redirect is permanent or temporary. The 301 (Moved Permanently) status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. <em>The client may cache the response when a 301 status code is received.</em> The 302 (Found) status code is used where the redirection is temporary or generally subject to change, such that the client shouldn&#39;t store and reuse the redirect URL in the future. For more information, see <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" data-raw-source="[RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="42" sourceendlinenumber="42">RFC 2616: Status Code Definitions</a>.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="44" sourceendlinenumber="44">A <em>URL rewrite</em> is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn&#39;t require a round-trip to the server. The rewritten URL isn&#39;t returned to the client and won&#39;t appear in the browser&#39;s address bar. When <code>/resource</code> is <em>rewritten</em> to <code>/different-resource</code>, the client requests <code>/resource</code>, and the server <em>internally</em> fetches the resource at <code>/different-resource</code>. Although the client might be able to retrieve the resource at the rewritten URL, the client won&#39;t be informed that the resource exists at the rewritten URL when it makes its request and receives the response.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="46" sourceendlinenumber="46"><img src="url-rewriting/_static/url_rewrite.png" alt="A WebAPI service endpoint has been changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The request URL is rewritten to access the service at the version 2 path /v2/api. The service responds to the client with a 200 (OK) status code." sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="46" sourceendlinenumber="46"></p>
+<h2 id="url-rewriting-sample-app" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="48" sourceendlinenumber="48">URL rewriting sample app</h2>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="49" sourceendlinenumber="49">You can explore the features of the URL Rewriting Middleware with the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/" data-raw-source="[URL rewriting sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="49" sourceendlinenumber="49">URL rewriting sample app</a>. The app applies rewrite and redirect rules and shows the rewritten or redirected URL.</p>
+<h2 id="when-to-use-url-rewriting-middleware" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="51" sourceendlinenumber="51">When to use URL Rewriting Middleware</h2>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">Use URL Rewriting Middleware when you are unable to use the <a href="https://www.iis.net/downloads/microsoft/url-rewrite" data-raw-source="[URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">URL Rewrite module</a> with IIS on Windows Server, the <a href="https://httpd.apache.org/docs/2.4/rewrite/" data-raw-source="[Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">Apache mod_rewrite module</a> on Apache Server, <a href="https://www.nginx.com/blog/creating-nginx-rewrite-rules/" data-raw-source="[URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">URL rewriting on Nginx</a>, or your app is hosted on <a class="xref" href="servers/httpsys.html" data-raw-source="[HTTP.sys server](xref:fundamentals/servers/httpsys)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">HTTP.sys server</a> (formerly called <a class="xref" href="servers/weblistener.html" data-raw-source="[WebListener](xref:fundamentals/servers/weblistener)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="52" sourceendlinenumber="52">WebListener</a>). The main reasons to use the server-based URL rewriting technologies in IIS, Apache, or Nginx are that the middleware doesn&#39;t support the full features of these modules and the performance of the middleware probably won&#39;t match that of the modules. However, there are some features of the server modules that don&#39;t work with ASP.NET Core projects, such as the <code>IsFile</code> and <code>IsDirectory</code> constraints of the IIS Rewrite module. In these scenarios, use the middleware instead.</p>
+<h2 id="package" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="54" sourceendlinenumber="54">Package</h2>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="55" sourceendlinenumber="55">To include the middleware in your project, add a reference to the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite/" data-raw-source="[`Microsoft.AspNetCore.Rewrite`](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="55" sourceendlinenumber="55"><code>Microsoft.AspNetCore.Rewrite</code></a> package. This feature is available for apps that target ASP.NET Core 1.1 or later.</p>
+<h2 id="extension-and-options" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="57" sourceendlinenumber="57">Extension and options</h2>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="58" sourceendlinenumber="58">Establish your URL rewrite and redirect rules by creating an instance of the <code>RewriteOptions</code> class with extension methods for each of your rules. Chain multiple rules in the order that you would like them processed. The <code>RewriteOptions</code> are passed into the URL Rewriting Middleware as it&#39;s added to the request pipeline with <code>app.UseRewriter(options);</code>.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="60" sourceendlinenumber="68">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="60" sourceendlinenumber="60">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="64" sourceendlinenumber="64">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="62" sourceendlinenumber="62"><code class="lang-csharp" name="Main">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code class="lang-csharp" name="Main">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<h3 id="url-redirect" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="70" sourceendlinenumber="70">URL redirect</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="71" sourceendlinenumber="71">Use <code>AddRedirect</code> to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don&#39;t specify the status code, it defaults to 302 (Found), which indicates that the resource is temporarily moved or replaced.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="73" sourceendlinenumber="81">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-1_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="73" sourceendlinenumber="73">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-1_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="77" sourceendlinenumber="77">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="75" sourceendlinenumber="75"><code class="lang-csharp" name="Main" highlight-lines="5">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="79" sourceendlinenumber="79"><code class="lang-csharp" name="Main" highlight-lines="2">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="83" sourceendlinenumber="83">In a browser with developer tools enabled, make a request to the sample app with the path <code>/redirect-rule/1234/5678</code>. The regex matches the request path on <code>redirect-rule/(.*)</code>, and the path is replaced with <code>/redirected/1234/5678</code>. The redirect URL is sent back to the client with a 302 (Found) status code. The browser makes a new request at the redirect URL, which appears in the browser&#39;s address bar. Since no rules in the sample app match on the redirect URL, the second request receives a 200 (OK) response from the app and the body of the response shows the redirect URL. A roundtrip is made to the server when a URL is <em>redirected</em>.</p>
+<div class="WARNING" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="85" sourceendlinenumber="85"><h5>Warning</h5><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="86" sourceendlinenumber="86">Be cautious when establishing your redirect rules. Your redirect rules are evaluated on each request to the app, including after a redirect. It&#39;s easy to accidently create a loop of infinite redirects.</p>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="88" sourceendlinenumber="88">Original Request: <code>/redirect-rule/1234/5678</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="90" sourceendlinenumber="90"><img src="url-rewriting/_static/add_redirect.png" alt="Browser window with Developer Tools tracking the requests and responses" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="90" sourceendlinenumber="90"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="92" sourceendlinenumber="92">The part of the expression contained within parentheses is called a <em>capture group</em>. The dot (<code>.</code>) of the expression means <em>match any character</em>. The asterisk (<code>*</code>) indicates <em>match the preceding character zero or more times</em>. Therefore, the last two path segments of the URL, <code>1234/5678</code>, are captured by capture group <code>(.*)</code>. Any value you provide in the request URL after <code>redirect-rule/</code> is captured by this single capture group.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="94" sourceendlinenumber="94">In the replacement string, captured groups are injected into the string with the dollar sign (<code>$</code>) followed by the sequence number of the capture. The first capture group value is obtained with <code>$1</code>, the second with <code>$2</code>, and they continue in sequence for the capture groups in your regex. There&#39;s only one captured group in the redirect rule regex in the sample app, so there&#39;s only one injected group in the replacement string, which is <code>$1</code>. When the rule is applied, the URL becomes <code>/redirected/1234/5678</code>.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="96" sourceendlinenumber="96"><a name="url-redirect-to-secure-endpoint"></a></p>
+<h3 id="url-redirect-to-a-secure-endpoint" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="97" sourceendlinenumber="97">URL redirect to a secure endpoint</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="98" sourceendlinenumber="98">Use <code>AddRedirectToHttps</code> to redirect HTTP requests to the same host and path using HTTPS (<code>https://</code>). If the status code isn&#39;t supplied, the middleware defaults to 302 (Found). If the port isn&#39;t supplied, the middleware defaults to <code>null</code>, which means the protocol changes to <code>https://</code> and the client accesses the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="99" sourceendlinenumber="104"><code class="lang-csharp">var options = new RewriteOptions()
+    .AddRedirectToHttps(301, 5001);
+
+app.UseRewriter(options);
+</code></pre><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="105" sourceendlinenumber="105">Use <code>AddRedirectToHttpsPermanent</code> to redirect insecure requests to the same host and path with secure HTTPS protocol (<code>https://</code> on port 443). The middleware sets the status code to 301 (Moved Permanently).</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="107" sourceendlinenumber="107">The sample app is capable of demonstrating how to use <code>AddRedirectToHttps</code> or <code>AddRedirectToHttpsPermanent</code>. Add the extension method to the <code>RewriteOptions</code>. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="109" sourceendlinenumber="109">Original Request using <code>AddRedirectToHttps(301, 5001)</code>: <code>/secure</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="111" sourceendlinenumber="111"><img src="url-rewriting/_static/add_redirect_to_https.png" alt="Browser window with Developer Tools tracking the requests and responses" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="111" sourceendlinenumber="111"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="113" sourceendlinenumber="113">Original Request using <code>AddRedirectToHttpsPermanent</code>: <code>/secure</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="115" sourceendlinenumber="115"><img src="url-rewriting/_static/add_redirect_to_https_permanent.png" alt="Browser window with Developer Tools tracking the requests and responses" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="115" sourceendlinenumber="115"></p>
+<h3 id="url-rewrite" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="117" sourceendlinenumber="117">URL rewrite</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="118" sourceendlinenumber="118">Use <code>AddRewrite</code> to create a rules for rewriting URLs. The first parameter contains your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, <code>skipRemainingRules: {true|false}</code>, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-2" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="120" sourceendlinenumber="128">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-2_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="120" sourceendlinenumber="120">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-2_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="124" sourceendlinenumber="124">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="122" sourceendlinenumber="122"><code class="lang-csharp" name="Main" highlight-lines="6">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="126" sourceendlinenumber="126"><code class="lang-csharp" name="Main" highlight-lines="3">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="130" sourceendlinenumber="130">Original Request: <code>/rewrite-rule/1234/5678</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="132" sourceendlinenumber="132"><img src="url-rewriting/_static/add_rewrite.png" alt="Browser window with Developer Tools tracking the request and response" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="132" sourceendlinenumber="132"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="134" sourceendlinenumber="134">The first thing you notice in the regex is the carat (<code>^</code>) at the beginning of the expression. This means that matching starts at the beginning of the URL path.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="136" sourceendlinenumber="136">In the earlier example with the redirect rule, <code>redirect-rule/(.*)</code>, there&#39;s no carat at the start of the regex; therefore, any characters may precede <code>redirect-rule/</code> in the path for a successful match.</p>
+<table sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="138" sourceendlinenumber="142">
+<thead>
+<tr>
+<th>Path</th>
+<th style="text-align:center">Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/redirect-rule/1234/5678</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td><code>/my-cool-redirect-rule/1234/5678</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td><code>/anotherredirect-rule/1234/5678</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="144" sourceendlinenumber="144">The rewrite rule, <code>^rewrite-rule/(\d+)/(\d+)</code>, only matches paths if they start with <code>rewrite-rule/</code>. Notice the difference in matching between the rewrite rule below and the redirect rule above.</p>
+<table sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="146" sourceendlinenumber="150">
+<thead>
+<tr>
+<th>Path</th>
+<th style="text-align:center">Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/rewrite-rule/1234/5678</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td><code>/my-cool-rewrite-rule/1234/5678</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td><code>/anotherrewrite-rule/1234/5678</code></td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="152" sourceendlinenumber="152">Following the <code>^rewrite-rule/</code> portion of the expression, there are two capture groups, <code>(\d+)/(\d+)</code>. The <code>\d</code> signifies <em>match a digit (number)</em>. The plus sign (<code>+</code>) means <em>match one or more of the preceding character</em>. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the rewritten URL as <code>$1</code> and <code>$2</code>. The rewrite rule replacement string places the captured groups into the querystring. The requested path of <code>/rewrite-rule/1234/5678</code> is rewritten to obtain the resource at <code>/rewritten?var1=1234&amp;var2=5678</code>. If a querystring is present on the original request, it&#39;s preserved when the URL is rewritten.</p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="154" sourceendlinenumber="154">There&#39;s no roundtrip to the server to obtain the resource. If the resource exists, it&#39;s fetched and returned to the client with a 200 (OK) status code. Because the client isn&#39;t redirected, the URL in the browser address bar doesn&#39;t change. As far as the client is concerned, the URL rewrite operation never occurred.</p>
+<div class="NOTE" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="156" sourceendlinenumber="156"><h5>Note</h5><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="157" sourceendlinenumber="157">Use <code>skipRemainingRules: true</code> whenever possible, because matching rules is an expensive process and reduces app response time. For the fastest app response:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="158" sourceendlinenumber="159">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="158" sourceendlinenumber="158">Order your rewrite rules from the most frequently matched rule to the least frequently matched rule.</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="159" sourceendlinenumber="159">Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.</li>
+</ul>
+</div>
+<h3 id="apache-modrewrite" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="161" sourceendlinenumber="161">Apache mod_rewrite</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="162" sourceendlinenumber="162">Apply Apache mod_rewrite rules with <code>AddApacheModRewrite</code>. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see <a href="https://httpd.apache.org/docs/2.4/rewrite/" data-raw-source="[Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="162" sourceendlinenumber="162">Apache mod_rewrite</a>.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-3" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="164" sourceendlinenumber="174">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-3_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="164" sourceendlinenumber="164">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-3_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="170" sourceendlinenumber="170">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="166" sourceendlinenumber="166">A <code>StreamReader</code> is used to read the rules from the <em>ApacheModRewrite.txt</em> rules file.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="168" sourceendlinenumber="168"><code class="lang-csharp" name="Main" highlight-lines="1,7">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="172" sourceendlinenumber="172">The first parameter takes an <code>IFileProvider</code>, which is provided via <a href="dependency-injection.html" data-raw-source="[Dependency Injection](dependency-injection.md)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="172" sourceendlinenumber="172">Dependency Injection</a>. The <code>IHostingEnvironment</code> is injected to provide the <code>ContentRootFileProvider</code>. The second parameter is the path to your rules file, which is <em>ApacheModRewrite.txt</em> in the sample app.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="174" sourceendlinenumber="174"><code class="lang-csharp" name="Main" highlight-lines="4">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="178" sourceendlinenumber="178">The sample app redirects requests from <code>/apache-mod-rules-redirect/(.\*)</code> to <code>/redirected?id=$1</code>. The response status code is 302 (Found).</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="180" sourceendlinenumber="180"><code name="Main"># Rewrite path with additional sub directory
+RewriteRule ^/apache-mod-rules-redirect/(.*) /redirected?id=$1 [L,R=302]
+</code></pre><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="182" sourceendlinenumber="182">Original Request: <code>/apache-mod-rules-redirect/1234</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="184" sourceendlinenumber="184"><img src="url-rewriting/_static/add_apache_mod_redirect.png" alt="Browser window with Developer Tools tracking the requests and responses" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="184" sourceendlinenumber="184"></p>
+<h5 id="supported-server-variables" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="186" sourceendlinenumber="186">Supported server variables</h5>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="187" sourceendlinenumber="187">The middleware supports the following Apache mod_rewrite server variables:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="188" sourceendlinenumber="216">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="188" sourceendlinenumber="188">CONN_REMOTE_ADDR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="189" sourceendlinenumber="189">HTTP_ACCEPT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="190" sourceendlinenumber="190">HTTP_CONNECTION</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="191" sourceendlinenumber="191">HTTP_COOKIE</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="192" sourceendlinenumber="192">HTTP_FORWARDED</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="193" sourceendlinenumber="193">HTTP_HOST</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="194" sourceendlinenumber="194">HTTP_REFERER</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="195" sourceendlinenumber="195">HTTP_USER_AGENT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="196" sourceendlinenumber="196">HTTPS</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="197" sourceendlinenumber="197">IPV6</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="198" sourceendlinenumber="198">QUERY_STRING</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="199" sourceendlinenumber="199">REMOTE_ADDR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="200" sourceendlinenumber="200">REMOTE_PORT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="201" sourceendlinenumber="201">REQUEST_FILENAME</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="202" sourceendlinenumber="202">REQUEST_METHOD</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="203" sourceendlinenumber="203">REQUEST_SCHEME</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="204" sourceendlinenumber="204">REQUEST_URI</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="205" sourceendlinenumber="205">SCRIPT_FILENAME</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="206" sourceendlinenumber="206">SERVER_ADDR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="207" sourceendlinenumber="207">SERVER_PORT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="208" sourceendlinenumber="208">SERVER_PROTOCOL</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="209" sourceendlinenumber="209">TIME</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="210" sourceendlinenumber="210">TIME_DAY</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="211" sourceendlinenumber="211">TIME_HOUR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="212" sourceendlinenumber="212">TIME_MIN</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="213" sourceendlinenumber="213">TIME_MON</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="214" sourceendlinenumber="214">TIME_SEC</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="215" sourceendlinenumber="215">TIME_WDAY</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="216" sourceendlinenumber="216">TIME_YEAR</li>
+</ul>
+<h3 id="iis-url-rewrite-module-rules" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="218" sourceendlinenumber="218">IIS URL Rewrite Module rules</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="219" sourceendlinenumber="219">To use rules that apply to the IIS URL Rewrite Module, use <code>AddIISUrlRewrite</code>. Make sure that the rules file is deployed with the app. Don&#39;t direct the middleware to use your <em>web.config</em> file when running on Windows Server IIS. With IIS, these rules should be stored outside of your <em>web.config</em> to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see <a href="https://docs.microsoft.com/iis/extensions/url-rewrite-module/using-url-rewrite-module-20" data-raw-source="[Using Url Rewrite Module 2.0](https://docs.microsoft.com/iis/extensions/url-rewrite-module/using-url-rewrite-module-20)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="219" sourceendlinenumber="219">Using Url Rewrite Module 2.0</a> and <a href="https://docs.microsoft.com/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference" data-raw-source="[URL Rewrite Module Configuration Reference](https://docs.microsoft.com/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="219" sourceendlinenumber="219">URL Rewrite Module Configuration Reference</a>.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-4" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="221" sourceendlinenumber="231">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-4_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-4_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="221" sourceendlinenumber="221">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-4_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-4_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="227" sourceendlinenumber="227">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-4_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="223" sourceendlinenumber="223">A <code>StreamReader</code> is used to read the rules from the <em>IISUrlRewrite.xml</em> rules file.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="225" sourceendlinenumber="225"><code class="lang-csharp" name="Main" highlight-lines="2,8">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-4_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="229" sourceendlinenumber="229">The first parameter takes an <code>IFileProvider</code>, while the second parameter is the path to your XML rules file, which is <em>IISUrlRewrite.xml</em> in the sample app.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="231" sourceendlinenumber="231"><code class="lang-csharp" name="Main" highlight-lines="5">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="235" sourceendlinenumber="235">The sample app rewrites requests from <code>/iis-rules-rewrite/(.*)</code> to <code>/rewritten?id=$1</code>. The response is sent to the client with a 200 (OK) status code.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="237" sourceendlinenumber="237"><code class="lang-xml" name="Main">&lt;rewrite&gt;
+  &lt;rules&gt;
+    &lt;rule name=&quot;Rewrite segment to id querystring&quot; stopProcessing=&quot;true&quot;&gt;
+      &lt;match url=&quot;^iis-rules-rewrite/(.*)$&quot; /&gt;
+      &lt;action type=&quot;Rewrite&quot; url=&quot;rewritten?id={R:1}&quot; appendQueryString=&quot;false&quot;/&gt;
+    &lt;/rule&gt;
+  &lt;/rules&gt;
+&lt;/rewrite&gt;
+</code></pre><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="239" sourceendlinenumber="239">Original Request: <code>/iis-rules-rewrite/1234</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="241" sourceendlinenumber="241"><img src="url-rewriting/_static/add_iis_url_rewrite.png" alt="Browser window with Developer Tools tracking the request and response" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="241" sourceendlinenumber="241"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="243" sourceendlinenumber="243">If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see <a class="xref" href="../hosting/iis-modules.html#disabling-iis-modules" data-raw-source="[Disabling IIS modules](xref:hosting/iis-modules#disabling-iis-modules)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="243" sourceendlinenumber="243">Disabling IIS modules</a>.</p>
+<h4 id="unsupported-features" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="245" sourceendlinenumber="245">Unsupported features</h4>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-5" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="247" sourceendlinenumber="267">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-5_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-5_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="247" sourceendlinenumber="247">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-5_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-5_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="255" sourceendlinenumber="255">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-5_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="249" sourceendlinenumber="249">The middleware released with ASP.NET Core 2.x doesn&#39;t support the following IIS URL Rewrite Module features:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="250" sourceendlinenumber="253">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="250" sourceendlinenumber="250">Outbound Rules</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="251" sourceendlinenumber="251">Custom Server Variables</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="252" sourceendlinenumber="252">Wildcards</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="253" sourceendlinenumber="253">LogRewrittenUrl</li>
+</ul>
+</section>
+<section id="tabpanel_FyOIoJyyWD-5_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="257" sourceendlinenumber="257">The middleware released with ASP.NET Core 1.x doesn&#39;t support the following IIS URL Rewrite Module features:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="258" sourceendlinenumber="265">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="258" sourceendlinenumber="258">Global Rules</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="259" sourceendlinenumber="259">Outbound Rules</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="260" sourceendlinenumber="260">Rewrite Maps</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="261" sourceendlinenumber="261">CustomResponse Action</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="262" sourceendlinenumber="262">Custom Server Variables</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="263" sourceendlinenumber="263">Wildcards</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="264" sourceendlinenumber="264">Action:CustomResponse</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="265" sourceendlinenumber="265">LogRewrittenUrl</li>
+</ul>
+</section>
+</div>
+<h4 id="supported-server-variables" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="269" sourceendlinenumber="269">Supported server variables</h4>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="270" sourceendlinenumber="270">The middleware supports the following IIS URL Rewrite Module server variables:</p>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="271" sourceendlinenumber="286">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="271" sourceendlinenumber="271">CONTENT_LENGTH</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="272" sourceendlinenumber="272">CONTENT_TYPE</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="273" sourceendlinenumber="273">HTTP_ACCEPT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="274" sourceendlinenumber="274">HTTP_CONNECTION</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="275" sourceendlinenumber="275">HTTP_COOKIE</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="276" sourceendlinenumber="276">HTTP_HOST</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="277" sourceendlinenumber="277">HTTP_REFERER</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="278" sourceendlinenumber="278">HTTP_URL</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="279" sourceendlinenumber="279">HTTP_USER_AGENT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="280" sourceendlinenumber="280">HTTPS</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="281" sourceendlinenumber="281">LOCAL_ADDR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="282" sourceendlinenumber="282">QUERY_STRING</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="283" sourceendlinenumber="283">REMOTE_ADDR</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="284" sourceendlinenumber="284">REMOTE_PORT</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="285" sourceendlinenumber="285">REQUEST_FILENAME</li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="286" sourceendlinenumber="286">REQUEST_URI</li>
+</ul>
+<div class="NOTE" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="288" sourceendlinenumber="288"><h5>Note</h5><p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="289" sourceendlinenumber="289">You can also obtain an <code>IFileProvider</code> via a <code>PhysicalFileProvider</code>. This approach may provide greater flexibility for the location of your rewrite rules files. Make sure that your rewrite rules files are deployed to the server at the path you provide.</p>
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="290" sourceendlinenumber="292"><code class="lang-csharp">PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+</code></pre></div>
+<h3 id="method-based-rule" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="294" sourceendlinenumber="294">Method-based rule</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="295" sourceendlinenumber="295">Use <code>Add(Action&lt;RewriteContext&gt; applyRule)</code> to implement your own rule logic in a method. The <code>RewriteContext</code> exposes the <code>HttpContext</code> for use in your method. The <code>context.Result</code> determines how additional pipeline processing is handled.</p>
+<table sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="297" sourceendlinenumber="301">
+<thead>
+<tr>
+<th>context.Result</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RuleResult.ContinueRules</code> (default)</td>
+<td>Continue applying rules</td>
+</tr>
+<tr>
+<td><code>RuleResult.EndResponse</code></td>
+<td>Stop applying rules and send the response</td>
+</tr>
+<tr>
+<td><code>RuleResult.SkipRemainingRules</code></td>
+<td>Stop applying rules and send the context to the next middleware</td>
+</tr>
+</tbody>
+</table>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-6" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="303" sourceendlinenumber="311">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-6_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-6_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="303" sourceendlinenumber="303">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-6_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-6_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="307" sourceendlinenumber="307">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-6_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="305" sourceendlinenumber="305"><code class="lang-csharp" name="Main" highlight-lines="9">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-6_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="309" sourceendlinenumber="309"><code class="lang-csharp" name="Main" highlight-lines="6">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="313" sourceendlinenumber="313">The sample app demonstrates a method that redirects requests for paths that end with <em>.xml</em>. If you make a request for <code>/file.xml</code>, it&#39;s redirected to <code>/xmlfiles/file.xml</code>. The status code is set to 301 (Moved Permanently). For a redirect, you must explicitly set the status code of the response; otherwise, a 200 (OK) status code is returned and the redirect won&#39;t occur on the client.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-7" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="315" sourceendlinenumber="323">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-7_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-7_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="315" sourceendlinenumber="315">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-7_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-7_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="319" sourceendlinenumber="319">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-7_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="317" sourceendlinenumber="317"><code class="lang-csharp" name="Main">public static void RedirectXMLRequests(RewriteContext context)
+{
+    var request = context.HttpContext.Request;
+
+    // Because we&#39;re redirecting back to the same app, stop 
+    // processing if the request has already been redirected
+    if (request.Path.StartsWithSegments(new PathString(&quot;/xmlfiles&quot;)))
+    {
+        return;
+    }
+
+    if (request.Path.Value.EndsWith(&quot;.xml&quot;, StringComparison.OrdinalIgnoreCase))
+    {
+        var response = context.HttpContext.Response;
+        response.StatusCode = StatusCodes.Status301MovedPermanently;
+        context.Result = RuleResult.EndResponse;
+        response.Headers[HeaderNames.Location] = 
+            &quot;/xmlfiles&quot; + request.Path + request.QueryString;
+    }
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-7_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="321" sourceendlinenumber="321"><code class="lang-csharp" name="Main">public static void RedirectXMLRequests(RewriteContext context)
+{
+    var request = context.HttpContext.Request;
+
+    // Because we&#39;re redirecting back to the same app, stop 
+    // processing if the request has already been redirected
+    if (request.Path.StartsWithSegments(new PathString(&quot;/xmlfiles&quot;)))
+    {
+        return;
+    }
+
+    if (request.Path.Value.EndsWith(&quot;.xml&quot;, StringComparison.OrdinalIgnoreCase))
+    {
+        var response = context.HttpContext.Response;
+        response.StatusCode = StatusCodes.Status301MovedPermanently;
+        context.Result = RuleResult.EndResponse;
+        response.Headers[HeaderNames.Location] = 
+            &quot;/xmlfiles&quot; + request.Path + request.QueryString;
+    }
+}
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="325" sourceendlinenumber="325">Original Request: <code>/file.xml</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="327" sourceendlinenumber="327"><img src="url-rewriting/_static/add_redirect_xml_requests.png" alt="Browser window with Developer Tools tracking the requests and responses for file.xml" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="327" sourceendlinenumber="327"></p>
+<h3 id="irule-based-rule" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="329" sourceendlinenumber="329">IRule-based rule</h3>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="330" sourceendlinenumber="330">Use <code>Add(IRule)</code> to implement your own rule logic in a class that derives from <code>IRule</code>. Using an <code>IRule</code> provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the <code>ApplyRule</code> method.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-8" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="332" sourceendlinenumber="340">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-8_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-8_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="332" sourceendlinenumber="332">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-8_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-8_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="336" sourceendlinenumber="336">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-8_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="334" sourceendlinenumber="334"><code class="lang-csharp" name="Main" highlight-lines="10-11">using (StreamReader apacheModRewriteStreamReader = File.OpenText(&quot;ApacheModRewrite.txt&quot;))
+using (StreamReader iisUrlRewriteStreamReader = File.OpenText(&quot;IISUrlRewrite.xml&quot;)) 
+{
+    var options = new RewriteOptions()
+        .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+        .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXMLRequests)
+        .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+        .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+    app.UseRewriter(options);
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-8_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="338" sourceendlinenumber="338"><code class="lang-csharp" name="Main" highlight-lines="7-8">var options = new RewriteOptions()
+    .AddRedirect(&quot;redirect-rule/(.*)&quot;, &quot;redirected/$1&quot;)
+    .AddRewrite(@&quot;^rewrite-rule/(\d+)/(\d+)&quot;, &quot;rewritten?var1=$1&amp;var2=$2&quot;, skipRemainingRules: true)
+    .AddApacheModRewrite(env.ContentRootFileProvider, &quot;ApacheModRewrite.txt&quot;)
+    .AddIISUrlRewrite(env.ContentRootFileProvider, &quot;IISUrlRewrite.xml&quot;)
+    .Add(RedirectXMLRequests)
+    .Add(new RedirectImageRequests(&quot;.png&quot;, &quot;/png-images&quot;))
+    .Add(new RedirectImageRequests(&quot;.jpg&quot;, &quot;/jpg-images&quot;));
+
+app.UseRewriter(options);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="342" sourceendlinenumber="342">The values of the parameters in the sample app for the <code>extension</code> and the <code>newPath</code> are checked to meet several conditions. The <code>extension</code> must contain a value, and the value must be <em>.png</em>, <em>.jpg</em>, or <em>.gif</em>. If the <code>newPath</code> isn&#39;t valid, an <code>ArgumentException</code> is thrown. If you make a request for <em>image.png</em>, it&#39;s redirected to <code>/png-images/image.png</code>. If you make a request for <em>image.jpg</em>, it&#39;s redirected to <code>/jpg-images/image.jpg</code>. The status code is set to 301 (Moved Permanently), and the <code>context.Result</code> is set to stop processing rules and send the response.</p>
+<div class="tabGroup" id="tabgroup_FyOIoJyyWD-9" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="344" sourceendlinenumber="352">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-9_aspnetcore2x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-9_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="344" sourceendlinenumber="344">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_FyOIoJyyWD-9_aspnetcore1x" role="tab" aria-controls="tabpanel_FyOIoJyyWD-9_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="348" sourceendlinenumber="348">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_FyOIoJyyWD-9_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="346" sourceendlinenumber="346"><code class="lang-csharp" name="Main">public class RedirectImageRequests : IRule
+{
+    private readonly string _extension;
+    private readonly PathString _newPath;
+
+    public RedirectImageRequests(string extension, string newPath)
+    {
+        if (string.IsNullOrEmpty(extension))
+        {
+            throw new ArgumentException(nameof(extension));
+        }
+
+        if (!Regex.IsMatch(extension, @&quot;^\.(png|jpg|gif)$&quot;))
+        {
+            throw new ArgumentException(&quot;Invalid extension&quot;, nameof(extension));
+        }
+
+        if (!Regex.IsMatch(newPath, @&quot;(/[A-Za-z0-9]+)+?&quot;))
+        {
+            throw new ArgumentException(&quot;Invalid path&quot;, nameof(newPath));
+        }
+
+        _extension = extension;
+        _newPath = new PathString(newPath);
+    }
+
+    public void ApplyRule(RewriteContext context)
+    {
+        var request = context.HttpContext.Request;
+
+        // Because we&#39;re redirecting back to the same app, stop 
+        // processing if the request has already been redirected
+        if (request.Path.StartsWithSegments(new PathString(_newPath)))
+        {
+            return;
+        }
+
+        if (request.Path.Value.EndsWith(_extension, StringComparison.OrdinalIgnoreCase))
+        {
+            var response = context.HttpContext.Response;
+            response.StatusCode = StatusCodes.Status301MovedPermanently;
+            context.Result = RuleResult.EndResponse;
+            response.Headers[HeaderNames.Location] = 
+                _newPath + request.Path + request.QueryString;
+        }
+    }
+}
+</code></pre></section>
+<section id="tabpanel_FyOIoJyyWD-9_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="350" sourceendlinenumber="350"><code class="lang-csharp" name="Main">public class RedirectImageRequests : IRule
+{
+    private readonly string _extension;
+    private readonly PathString _newPath;
+
+    public RedirectImageRequests(string extension, string newPath)
+    {
+        if (string.IsNullOrEmpty(extension))
+        {
+            throw new ArgumentException(nameof(extension));
+        }
+
+        if (!Regex.IsMatch(extension, @&quot;^\.(png|jpg|gif)$&quot;))
+        {
+            throw new ArgumentException(&quot;Invalid extension&quot;, nameof(extension));
+        }
+
+        if (!Regex.IsMatch(newPath, @&quot;(/[A-Za-z0-9]+)+?&quot;))
+        {
+            throw new ArgumentException(&quot;Invalid path&quot;, nameof(newPath));
+        }
+
+        _extension = extension;
+        _newPath = new PathString(newPath);
+    }
+
+    public void ApplyRule(RewriteContext context)
+    {
+        var request = context.HttpContext.Request;
+
+        // Because we&#39;re redirecting back to the same app, stop 
+        // processing if the request has already been redirected
+        if (request.Path.StartsWithSegments(new PathString(_newPath)))
+        {
+            return;
+        }
+
+        if (request.Path.Value.EndsWith(_extension, StringComparison.OrdinalIgnoreCase))
+        {
+            var response = context.HttpContext.Response;
+            response.StatusCode = StatusCodes.Status301MovedPermanently;
+            context.Result = RuleResult.EndResponse;
+            response.Headers[HeaderNames.Location] = 
+                _newPath + request.Path + request.QueryString;
+        }
+    }
+}
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="354" sourceendlinenumber="354">Original Request: <code>/image.png</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="356" sourceendlinenumber="356"><img src="url-rewriting/_static/add_redirect_png_requests.png" alt="Browser window with Developer Tools tracking the requests and responses for image.png" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="356" sourceendlinenumber="356"></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="358" sourceendlinenumber="358">Original Request: <code>/image.jpg</code></p>
+<p sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="360" sourceendlinenumber="360"><img src="url-rewriting/_static/add_redirect_jpg_requests.png" alt="Browser window with Developer Tools tracking the requests and responses for image.jpg" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="360" sourceendlinenumber="360"></p>
+<h2 id="regex-examples" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="362" sourceendlinenumber="362">Regex examples</h2>
+<table sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="364" sourceendlinenumber="371">
+<thead>
+<tr>
+<th>Goal</th>
+<th style="text-align:center">Regex String &amp;<br>Match Example</th>
+<th style="text-align:center">Replacement String &amp;<br>Output Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rewrite path into querystring</td>
+<td style="text-align:center"><code>^path/(.*)/(.*)</code><br><code>/path/abc/123</code></td>
+<td style="text-align:center"><code>path?var1=$1&amp;var2=$2</code><br><code>/path?var1=abc&amp;var2=123</code></td>
+</tr>
+<tr>
+<td>Strip trailing slash</td>
+<td style="text-align:center"><code>(.*)/$</code><br><code>/path/</code></td>
+<td style="text-align:center"><code>$1</code><br><code>/path</code></td>
+</tr>
+<tr>
+<td>Enforce trailing slash</td>
+<td style="text-align:center"><code>(.*[^/])$</code><br><code>/path</code></td>
+<td style="text-align:center"><code>$1/</code><br><code>/path/</code></td>
+</tr>
+<tr>
+<td>Avoid rewriting specific requests</td>
+<td style="text-align:center"><code>(.*[^(\.axd)])$</code><br>Yes: <code>/resource.htm</code><br>No: <code>/resource.axd</code></td>
+<td style="text-align:center"><code>rewritten/$1</code><br><code>/rewritten/resource.htm</code><br><code>/resource.axd</code></td>
+</tr>
+<tr>
+<td>Rearrange URL segments</td>
+<td style="text-align:center"><code>path/(.*)/(.*)/(.*)</code><br><code>path/1/2/3</code></td>
+<td style="text-align:center"><code>path/$3/$2/$1</code><br><code>path/3/2/1</code></td>
+</tr>
+<tr>
+<td>Replace a URL segment</td>
+<td style="text-align:center"><code>^(.*)/segment2/(.*)</code><br><code>/segment1/segment2/segment3</code></td>
+<td style="text-align:center"><code>$1/replaced/$2</code><br><code>/segment1/replaced/segment3</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="373" sourceendlinenumber="373">Additional resources</h2>
+<ul sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="374" sourceendlinenumber="384">
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="374" sourceendlinenumber="374"><a href="startup.html" data-raw-source="[Application Startup](startup.md)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="374" sourceendlinenumber="374">Application Startup</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="375" sourceendlinenumber="375"><a href="middleware.html" data-raw-source="[Middleware](middleware.md)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="375" sourceendlinenumber="375">Middleware</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="376" sourceendlinenumber="376"><a href="/dotnet/articles/standard/base-types/regular-expressions" data-raw-source="[Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="376" sourceendlinenumber="376">Regular expressions in .NET</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="377" sourceendlinenumber="377"><a href="/dotnet/articles/standard/base-types/quick-ref" data-raw-source="[Regular expression language - quick reference](/dotnet/articles/standard/base-types/quick-ref)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="377" sourceendlinenumber="377">Regular expression language - quick reference</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="378" sourceendlinenumber="378"><a href="https://httpd.apache.org/docs/2.4/rewrite/" data-raw-source="[Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="378" sourceendlinenumber="378">Apache mod_rewrite</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="379" sourceendlinenumber="379"><a href="https://docs.microsoft.com/iis/extensions/url-rewrite-module/using-url-rewrite-module-20" data-raw-source="[Using Url Rewrite Module 2.0 (for IIS)](https://docs.microsoft.com/iis/extensions/url-rewrite-module/using-url-rewrite-module-20)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="379" sourceendlinenumber="379">Using Url Rewrite Module 2.0 (for IIS)</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="380" sourceendlinenumber="380"><a href="https://docs.microsoft.com/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference" data-raw-source="[URL Rewrite Module Configuration Reference](https://docs.microsoft.com/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="380" sourceendlinenumber="380">URL Rewrite Module Configuration Reference</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="381" sourceendlinenumber="381"><a href="https://forums.iis.net/1152.aspx" data-raw-source="[IIS URL Rewrite Module Forum](https://forums.iis.net/1152.aspx)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="381" sourceendlinenumber="381">IIS URL Rewrite Module Forum</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="382" sourceendlinenumber="382"><a href="https://support.google.com/webmasters/answer/76329?hl=en" data-raw-source="[Keep a simple URL structure](https://support.google.com/webmasters/answer/76329?hl=en)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="382" sourceendlinenumber="382">Keep a simple URL structure</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="383" sourceendlinenumber="383"><a href="http://ruslany.net/2009/04/10-url-rewriting-tips-and-tricks/" data-raw-source="[10 URL Rewriting Tips and Tricks](http://ruslany.net/2009/04/10-url-rewriting-tips-and-tricks/)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="383" sourceendlinenumber="383">10 URL Rewriting Tips and Tricks</a></li>
+<li sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="384" sourceendlinenumber="384"><a href="https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html" data-raw-source="[To slash or not to slash](https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html)" sourcefile="fundamentals/url-rewriting.md" sourcestartlinenumber="384" sourceendlinenumber="384">To slash or not to slash</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/url-rewriting.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

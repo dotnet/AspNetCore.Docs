@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with the Application Model </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with the Application Model ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/controllers/application-model">
+<h1 id="working-with-the-application-model">Working with the Application Model</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>ASP.NET Core MVC defines an <em>application model</em> representing the components of an MVC app. You can read and manipulate this model to modify how MVC elements behave. By default, MVC follows certain conventions to determine which classes are considered to be controllers, which methods on those classes are actions, and how parameters and routing behave. You can customize this behavior to suit your app&#39;s needs by creating your own conventions and applying them globally or as attributes.</p>
+<h2 id="models-and-providers">Models and Providers</h2>
+<p>The ASP.NET Core MVC application model include both abstract interfaces and concrete implementation classes that describe an MVC application. This model is the result of MVC discovering the app&#39;s controllers, actions, action parameters, routes, and filters according to default conventions. By working with the application model, you can modify your app to follow different conventions from the default MVC behavior. The parameters, names, routes, and filters are all used as configuration data for actions and controllers.</p>
+<p>The ASP.NET Core MVC Application Model has the following structure:</p>
+<ul>
+<li>ApplicationModel<ul>
+<li>Controllers (ControllerModel)<ul>
+<li>Actions (ActionModel)<ul>
+<li>Parameters (ParameterModel)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Each level of the model has access to a common <code>Properties</code> collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy. The properties are persisted to the <code>ActionDescriptor.Properties</code> when the actions are created. Then when a request is being handled, any properties a convention added or modified can be accessed through <code>ActionContext.ActionDescriptor.Properties</code>. Using properties is a great way to configure your filters, model binders, etc. on a per-action basis.</p>
+<div class="NOTE"><h5>Note</h5><p>The <code>ActionDescriptor.Properties</code> collection is not thread safe (for writes) once app startup has finished. Conventions are the best way to safely add data to this collection.</p>
+</div>
+<h3 id="iapplicationmodelprovider">IApplicationModelProvider</h3>
+<p>ASP.NET Core MVC loads the application model using a provider pattern, defined by the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelprovider">IApplicationModelProvider</a> interface. This section covers some of the internal implementation details of how this provider functions. This is an advanced topic - most apps that leverage the application model should do so by working with conventions.</p>
+<p>Implementations of the <code>IApplicationModelProvider</code> interface &quot;wrap&quot; one another, with each implementation calling <code>OnProvidersExecuting</code> in ascending order based on its <code>Order</code> property. The <code>OnProvidersExecuted</code> method is then called in reverse order. The framework defines several providers:</p>
+<p>First (<code>Order=-1000</code>):</p>
+<ul>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.internal.defaultapplicationmodelprovider"><code>DefaultApplicationModelProvider</code></a></li>
+</ul>
+<p>Then (<code>Order=-990</code>):</p>
+<ul>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.internal.authorizationapplicationmodelprovider"><code>AuthorizationApplicationModelProvider</code></a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.cors.internal.corsapplicationmodelprovider"><code>CorsApplicationModelProvider</code></a></li>
+</ul>
+<div class="NOTE"><h5>Note</h5><p>The order in which two providers with the same value for <code>Order</code> are called is undefined, and therefore should not be relied upon.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p><code>IApplicationModelProvider</code> is an advanced concept for framework authors to extend. In general, apps should use conventions and frameworks should use providers. The key distinction is that providers always run before conventions.</p>
+</div>
+<p>The <code>DefaultApplicationModelProvider</code> establishes many of the default behaviors used by ASP.NET Core MVC. Its responsibilities include:</p>
+<ul>
+<li>Adding global filters to the context</li>
+<li>Adding controllers to the context</li>
+<li>Adding public controller methods as actions</li>
+<li>Adding action method parameters to the context</li>
+<li>Applying route and other attributes</li>
+</ul>
+<p>Some built-in behaviors are implemented by the <code>DefaultApplicationModelProvider</code>. This provider is responsible for constructing the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel"><code>ControllerModel</code></a>, which in turn references <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel"><code>ActionModel</code></a>, <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel"><code>PropertyModel</code></a>, and <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel"><code>ParameterModel</code></a> instances. The <code>DefaultApplicationModelProvider</code> class is an internal framework implementation detail that can and will change in the future. </p>
+<p>The <code>AuthorizationApplicationModelProvider</code> is responsible for applying the behavior associated with the <code>AuthorizeFilter</code> and <code>AllowAnonymousFilter</code> attributes. <a class="xref" href="../../security/authorization/simple.html">Learn more about these attributes</a>.</p>
+<p>The <code>CorsApplicationModelProvider</code> implements behavior associated with the <code>IEnableCorsAttribute</code> and <code>IDisableCorsAttribute</code>, and the <code>DisableCorsAuthorizationFilter</code>. <a class="xref" href="../../security/cors.html">Learn more about CORS</a>.</p>
+<h2 id="conventions">Conventions</h2>
+<p>The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app&#39;s behavior. Conventions provide a way for you to write code that will dynamically apply customizations. While <a class="xref" href="filters.html">filters</a> provide a means of modifying the framework&#39;s behavior, customizations let you control how the whole app is wired together.</p>
+<p>The following conventions are available:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelconvention"><code>IApplicationModelConvention</code></a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.icontrollermodelconvention"><code>IControllerModelConvention</code></a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iactionmodelconvention"><code>IActionModelConvention</code></a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iparametermodelconvention"><code>IParameterModelConvention</code></a></li>
+</ul>
+<p>Conventions are applied by adding them to MVC options or by implementing <code>Attribute</code>s and applying them to controllers, actions, or action parameters (similar to <a class="xref" href="filters.html"><code>Filters</code></a>). Unlike filters, conventions are only executed when the app is starting, not as part of each request.</p>
+<h3 id="sample-modifying-the-applicationmodel">Sample: Modifying the ApplicationModel</h3>
+<p>The following convention is used to add a property to the application model. </p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
+namespace AppModelSample.Conventions
+{
+    public class ApplicationDescription : IApplicationModelConvention
+    {
+        private readonly string _description;
+
+        public ApplicationDescription(string description)
+        {
+            _description = description;
+        }
+
+        public void Apply(ApplicationModel application)
+        {
+            application.Properties[&quot;description&quot;] = _description;
+        }
+    }
+}
+</code></pre><p>Application model conventions are applied as options when MVC is added in <code>ConfigureServices</code> in <code>Startup</code>.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="5">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =&gt;
+    {
+        options.Conventions.Add(new ApplicationDescription(&quot;My Application Description&quot;));
+        options.Conventions.Add(new NamespaceRoutingConvention());
+        //options.Conventions.Add(new IdsMustBeInRouteParameterModelConvention());
+    });
+}
+</code></pre><p>Properties are accessible from the <code>ActionDescriptor</code> properties collection within controller actions:</p>
+<pre><code class="lang-csharp" name="Main">public class AppModelController : Controller
+{
+    public string Description()
+    {
+        return &quot;Description: &quot; + ControllerContext.ActionDescriptor.Properties[&quot;description&quot;];
+    }
+}
+</code></pre><h3 id="sample-modifying-the-controllermodel-description">Sample: Modifying the ControllerModel Description</h3>
+<p>As in the previous example, the controller model can also be modified to include custom properties. These will override existing properties with the same name specified in the application model. The following convention attribute adds a description at the controller level:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
+namespace AppModelSample.Conventions
+{
+    public class ControllerDescriptionAttribute : Attribute, IControllerModelConvention
+    {
+        private readonly string _description;
+
+        public ControllerDescriptionAttribute(string description)
+        {
+            _description = description;
+        }
+
+        public void Apply(ControllerModel controllerModel)
+        {
+            controllerModel.Properties[&quot;description&quot;] = _description;
+        }
+    }
+}
+</code></pre><p>This convention is applied as an attribute on a controller.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="1">[ControllerDescription(&quot;Controller Description&quot;)]
+public class DescriptionAttributesController : Controller
+{
+    public string Index()
+    {
+        return &quot;Description: &quot; + ControllerContext.ActionDescriptor.Properties[&quot;description&quot;];
+    }
+</code></pre><p>The &quot;description&quot; property is accessed in the same manner as in previous examples.</p>
+<h3 id="sample-modifying-the-actionmodel-description">Sample: Modifying the ActionModel Description</h3>
+<p>A separate attribute convention can be applied to individual actions, overriding behavior already applied at the application or controller level.</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
+namespace AppModelSample.Conventions
+{
+    public class ActionDescriptionAttribute : Attribute, IActionModelConvention
+    {
+        private readonly string _description;
+
+        public ActionDescriptionAttribute(string description)
+        {
+            _description = description;
+        }
+
+        public void Apply(ActionModel actionModel)
+        {
+            actionModel.Properties[&quot;description&quot;] = _description;
+        }
+    }
+}
+</code></pre><p>Applying this to an action within the previous example&#39;s controller demonstrates how it overrides the controller-level convention:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="9">[ControllerDescription(&quot;Controller Description&quot;)]
+public class DescriptionAttributesController : Controller
+{
+    public string Index()
+    {
+        return &quot;Description: &quot; + ControllerContext.ActionDescriptor.Properties[&quot;description&quot;];
+    }
+
+    [ActionDescription(&quot;Action Description&quot;)]
+    public string UseActionDescriptionAttribute()
+    {
+        return &quot;Description: &quot; + ControllerContext.ActionDescriptor.Properties[&quot;description&quot;];
+    }
+}
+</code></pre><h3 id="sample-modifying-the-parametermodel">Sample: Modifying the ParameterModel</h3>
+<p>The following convention can be applied to action parameters to modify their <code>BindingInfo</code>. The following convention requires that the parameter be a route parameter; other potential binding sources (such as query string values) are ignored.</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+namespace AppModelSample.Conventions
+{
+    public class MustBeInRouteParameterModelConvention : Attribute, IParameterModelConvention
+    {
+        public void Apply(ParameterModel model)
+        {
+            if (model.BindingInfo == null)
+            {
+                model.BindingInfo = new BindingInfo();
+            }
+            model.BindingInfo.BindingSource = BindingSource.Path;
+        }
+    }
+}
+</code></pre><p>The attribute may be applied to any action parameter:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="5">public class ParameterModelController : Controller
+{
+    // Will bind:  /ParameterModel/GetById/123
+    // WON&#39;T bind: /ParameterModel/GetById?id=123
+    public string GetById([MustBeInRouteParameterModelConvention]int id)
+    {
+        return $&quot;Bound to id: {id}&quot;;
+    }
+}
+</code></pre><h3 id="sample-modifying-the-actionmodel-name">Sample: Modifying the ActionModel Name</h3>
+<p>The following convention modifies the <code>ActionModel</code> to update the <em>name</em> of the action to which it is applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it will affect the route used to reach this action method.</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
+namespace AppModelSample.Conventions
+{
+    public class CustomActionNameAttribute : Attribute, IActionModelConvention
+    {
+        private readonly string _actionName;
+
+        public CustomActionNameAttribute(string actionName)
+        {
+            _actionName = actionName;
+        }
+
+        public void Apply(ActionModel actionModel)
+        {
+            // this name will be used by routing
+            actionModel.ActionName = _actionName;
+        }
+    }
+}
+</code></pre><p>This attribute is applied to an action method in the <code>HomeController</code>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="2">// Route: /Home/MyCoolAction
+[CustomActionName(&quot;MyCoolAction&quot;)]
+public string SomeName()
+{
+    return ControllerContext.ActionDescriptor.ActionName;
+}
+</code></pre><p>Even though the method name is <code>SomeName</code>, the attribute overrides the MVC convention of using the method name and replaces the action name with <code>MyCoolAction</code>. Thus, the route used to reach this action is <code>/Home/MyCoolAction</code>.</p>
+<div class="NOTE"><h5>Note</h5><p>This example is essentially the same as using the built-in <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.actionnameattribute">ActionName</a> attribute.</p>
+</div>
+<h3 id="sample-custom-routing-convention">Sample: Custom Routing Convention</h3>
+<p>You can use an <code>IApplicationModelConvention</code> to customize how routing works. For example, the following convention will incorporate Controllers&#39; namespaces into their routes, replacing <code>.</code> in the namespace with <code>/</code> in the route:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using System.Linq;
+
+namespace AppModelSample.Conventions
+{
+    public class NamespaceRoutingConvention : IApplicationModelConvention
+    {
+        public void Apply(ApplicationModel application)
+        {
+            foreach (var controller in application.Controllers)
+            {
+                var hasAttributeRouteModels = controller.Selectors
+                    .Any(selector =&gt; selector.AttributeRouteModel != null);
+
+                if (!hasAttributeRouteModels
+                    &amp;&amp; controller.ControllerName.Contains(&quot;Namespace&quot;)) // affect one controller in this sample
+                {
+                    // Replace the . in the namespace with a / to create the attribute route
+                    // Ex: MySite.Admin namespace will correspond to MySite/Admin attribute route
+                    // Then attach [controller], [action] and optional {id?} token.
+                    // [Controller] and [action] is replaced with the controller and action
+                    // name to generate the final template
+                    controller.Selectors[0].AttributeRouteModel = new AttributeRouteModel()
+                    {
+                        Template = controller.ControllerType.Namespace.Replace(&#39;.&#39;, &#39;/&#39;) + &quot;/[controller]/[action]/{id?}&quot;
+                    };
+                }
+            }
+
+            // You can continue to put attribute route templates for the controller actions depending on the way you want them to behave
+        }
+    }
+}
+</code></pre><p>The convention is added as an option in Startup.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="6">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc(options =&gt;
+    {
+        options.Conventions.Add(new ApplicationDescription(&quot;My Application Description&quot;));
+        options.Conventions.Add(new NamespaceRoutingConvention());
+        //options.Conventions.Add(new IdsMustBeInRouteParameterModelConvention());
+    });
+}
+</code></pre><div class="TIP"><h5>Tip</h5><p>You can add conventions to your <a class="xref" href="../../fundamentals/middleware.html">middleware</a> by accessing <code>MvcOptions</code> using <code>services.Configure&lt;MvcOptions&gt;(c =&gt; c.Conventions.Add(YOURCONVENTION));</code></p>
+</div>
+<p>This sample applies this convention to routes that are not using attribute routing where the controller has  &quot;Namespace&quot; in its name. The following controller demonstrates this convention:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7-8">using Microsoft.AspNetCore.Mvc;
+
+namespace AppModelSample.Controllers
+{
+    public class NamespaceRoutingController : Controller
+    {
+        // using NamespaceRoutingConvention
+        // route: /AppModelSample/Controllers/NamespaceRouting/Index
+        public string Index()
+        {
+            return &quot;This demonstrates namespace routing.&quot;;
+        }
+    }
+}
+</code></pre><h2 id="application-model-usage-in-webapicompatshim">Application Model Usage in WebApiCompatShim</h2>
+<p>ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app&#39;s behavior to be consistent with that of a Web API app. Microsoft ships the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim/">WebApiCompatShim</a> specifically for this purpose.</p>
+<div class="NOTE"><h5>Note</h5><p>Learn more about <a class="xref" href="../../migration/webapi.html">migrating from ASP.NET Web API</a>.</p>
+</div>
+<p>To use the Web API Compatibility Shim, you need to add the package to your project and then add the conventions to MVC by calling <code>AddWebApiConventions</code> in <code>Startup</code>:</p>
+<pre><code class="lang-c#">services.AddMvc().AddWebApiConventions();
+</code></pre><p>The conventions provided by the shim are only applied to parts of the app that have had certain attributes applied to them. The following four attributes are used to control which controllers should have their conventions modified by the shim&#39;s conventions:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiactionconventionsattribute">UseWebApiActionConventionsAttribute</a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapioverloadingattribute">UseWebApiOverloadingAttribute</a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiparameterconventionsattribute">UseWebApiParameterConventionsAttribute</a></li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiroutesattribute">UseWebApiRoutesAttribute</a></li>
+</ul>
+<h3 id="action-conventions">Action Conventions</h3>
+<p>The <code>UseWebApiActionConventionsAttribute</code> is used to map the HTTP method to actions based on their name (for instance, <code>Get</code> would map to <code>HttpGet</code>). It only applies to actions that do not use attribute routing.</p>
+<h3 id="overloading">Overloading</h3>
+<p>The <code>UseWebApiOverloadingAttribute</code> is used to apply the <code>WebApiOverloadingApplicationModelConvention</code> convention. This convention adds an <code>OverloadActionConstraint</code> to the action selection process, which limits candidate actions to those for which the request satisfies all non-optional parameters.</p>
+<h3 id="parameter-conventions">Parameter Conventions</h3>
+<p>The <code>UseWebApiParameterConventionsAttribute</code> is used to apply the <code>WebApiParameterConventionsApplicationModelConvention</code> action convention. This convention specifies that simple types used as action parameters are bound from the URI by default, while complex types are bound from the request body.</p>
+<h3 id="routes">Routes</h3>
+<p>The <code>UseWebApiRoutesAttribute</code> controls whether the <code>WebApiApplicationModelConvention</code> controller convention is applied. When enabled, this convention is used to add support for <a class="xref" href="areas.html">areas</a> to the route.</p>
+<p>In addition to a set of conventions, the compatibility package includes a <code>System.Web.Http.ApiController</code> base class that replaces the one provided by Web API. This allows your controllers written for Web API and inheriting from its <code>ApiController</code> to work as they were designed, while running on ASP.NET Core MVC. This base controller class is decorated with all of the <code>UseWebApi*</code> attributes listed above. The <code>ApiController</code> exposes properties, methods, and result types that are compatible with those found in Web API.</p>
+<h2 id="using-apiexplorer-to-document-your-app">Using ApiExplorer to Document Your App</h2>
+<p>The application model exposes an <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.apiexplorermodel"><code>ApiExplorer</code></a> property at each level that can be used to traverse the app&#39;s structure. This can be used to <a href="https://docs.microsoft.com/aspnet/core/tutorials/web-api-help-pages-using-swagger">generate help pages for your Web APIs using tools like Swagger</a>. The <code>ApiExplorer</code> property exposes an <code>IsVisible</code> property that can be set to specify which parts of your app&#39;s model should be exposed. You can configure this setting using a convention:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
+namespace AppModelSample.Conventions
+{
+    public class EnableApiExplorerApplicationConvention : IApplicationModelConvention
+    {
+        public void Apply(ApplicationModel application)
+        {
+            application.ApiExplorer.IsVisible = true;
+        }
+    }
+}
+</code></pre><p>Using this approach (and additional conventions if required), you can enable or disable API visibility at any level within your app. </p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/controllers/application-model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

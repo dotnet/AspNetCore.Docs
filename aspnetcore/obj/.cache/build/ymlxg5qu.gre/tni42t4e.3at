@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Limiting identity by scheme </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Limiting identity by scheme ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authorization/limitingidentitybyscheme">
+<h1 id="limiting-identity-by-scheme" sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="15" sourceendlinenumber="15">Limiting identity by scheme</h1>
+
+<p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="security-authorization-limiting-by-scheme"></a></p>
+<p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="19" sourceendlinenumber="19">In some scenarios, such as Single Page Applications it is possible to end up with multiple authentication methods. For example, your application may use cookie-based authentication to log in and bearer authentication for JavaScript requests. In some cases you may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication has triggered because the user requested an operation that requires extra security.</p>
+<p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="21" sourceendlinenumber="21">Authentication schemes are named when authentication middleware is configured during authentication, for example</p>
+<pre sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="23" sourceendlinenumber="37"><code class="lang-csharp">app.UseCookieAuthentication(new CookieAuthenticationOptions()
+{
+    AuthenticationScheme = &quot;Cookie&quot;,
+    LoginPath = new PathString(&quot;/Account/Unauthorized/&quot;),
+    AccessDeniedPath = new PathString(&quot;/Account/Forbidden/&quot;),
+    AutomaticAuthenticate = false
+});
+
+app.UseBearerAuthentication(options =&gt;
+{
+    options.AuthenticationScheme = &quot;Bearer&quot;;
+    options.AutomaticAuthenticate = false;
+});
+</code></pre><p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="39" sourceendlinenumber="39">In this configuration two authentication middlewares have been added, one for cookies and one for bearer.</p>
+<div class="NOTE" sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="41" sourceendlinenumber="41"><h5>Note</h5><p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="42" sourceendlinenumber="42">When adding multiple authentication middleware you should ensure that no middleware is configured to run automatically. You do this by setting the <code>AutomaticAuthenticate</code> options property to false. If you fail to do this filtering by scheme will not work.</p>
+</div>
+<h2 id="selecting-the-scheme-with-the-authorize-attribute" sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="44" sourceendlinenumber="44">Selecting the scheme with the Authorize attribute</h2>
+<p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="46" sourceendlinenumber="46">As no authentication middleware is configured to automatically run and create an identity you must, at the point of authorization choose which middleware will be used. The simplest way to select the middleware you wish to authorize with is to use the <code>ActiveAuthenticationSchemes</code> property. This property accepts a comma delimited list of Authentication Schemes to use. For example;</p>
+<pre sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="48" sourceendlinenumber="51"><code class="lang-csharp">[Authorize(ActiveAuthenticationSchemes = &quot;Cookie,Bearer&quot;)]
+public class MixedController : Controller
+</code></pre><p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="53" sourceendlinenumber="53">In the example above both the cookie and bearer middlewares will run and have a chance to create and append an identity for the current user. By specifying a single scheme only the specified middleware will run;</p>
+<pre sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="55" sourceendlinenumber="57"><code class="lang-csharp">[Authorize(ActiveAuthenticationSchemes = &quot;Bearer&quot;)]
+</code></pre><p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="59" sourceendlinenumber="59">In this case only the middleware with the Bearer scheme would run, and any cookie based identities would be ignored.</p>
+<h2 id="selecting-the-scheme-with-policies" sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="61" sourceendlinenumber="61">Selecting the scheme with policies</h2>
+<p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="63" sourceendlinenumber="63">If you prefer to specify the desired schemes in <a href="policies.html#security-authorization-policies-based" data-raw-source="[policy](policies.md#security-authorization-policies-based)" sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="63" sourceendlinenumber="63">policy</a> you can set the <code>AuthenticationSchemes</code> collection when adding your policy.</p>
+<pre sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="65" sourceendlinenumber="72"><code class="lang-csharp">options.AddPolicy(&quot;Over18&quot;, policy =&gt;
+{
+    policy.AuthenticationSchemes.Add(&quot;Bearer&quot;);
+    policy.RequireAuthenticatedUser();
+    policy.Requirements.Add(new Over18Requirement());
+});
+</code></pre><p sourcefile="security/authorization/limitingidentitybyscheme.md" sourcestartlinenumber="74" sourceendlinenumber="74">In this example the Over18 policy will only run against the identity created by the <code>Bearer</code> middleware.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authorization/limitingidentitybyscheme.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

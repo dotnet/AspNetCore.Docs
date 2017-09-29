@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>WebListener web server implementation in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="WebListener web server implementation in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/servers/weblistener">
+<h1 id="weblistener-web-server-implementation-in-aspnet-core">WebListener web server implementation in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a> and <a href="https://github.com/Tratcher">Chris Ross</a></p>
+<div class="NOTE"><h5>Note</h5><p>This topic applies only to ASP.NET Core 1.x. In ASP.NET Core 2.0, WebListener is named <a href="httpsys.html">HTTP.sys</a>.</p>
+</div>
+<p>WebListener is a <a href="index.html">web server for ASP.NET Core</a> that runs only on Windows. It&#39;s built on the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx">Http.Sys kernel mode driver</a>. WebListener is an alternative to <a href="kestrel.html">Kestrel</a> that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, <strong>WebListener can&#39;t be used with IIS or IIS Express, as it isn&#39;t compatible with the <a href="aspnet-core-module.html">ASP.NET Core Module</a>.</strong></p>
+<p>Although WebListener was developed for ASP.NET Core, it can be used directly in any .NET Core or .NET Framework application via the <a href="https://www.nuget.org/packages/Microsoft.Net.Http.Server/">Microsoft.Net.Http.Server</a> NuGet package.</p>
+<p>WebListener supports the following features:</p>
+<ul>
+<li><a class="xref" href="../../security/authentication/windowsauth.html">Windows Authentication</a></li>
+<li>Port sharing</li>
+<li>HTTPS with SNI</li>
+<li>HTTP/2 over TLS (Windows 10)</li>
+<li>Direct file transmission</li>
+<li>Response caching</li>
+<li>WebSockets (Windows 8)</li>
+</ul>
+<p>Supported Windows versions:</p>
+<ul>
+<li>Windows 7 and Windows Server 2008 R2 and later</li>
+</ul>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/weblistener/sample">View or download sample code</a></p>
+<h2 id="when-to-use-weblistener">When to use WebListener</h2>
+<p>WebListener is useful for deployments where you need to expose the server directly to the Internet without using IIS.</p>
+<p><img src="weblistener/_static/weblistener-to-internet.png" alt="Weblistener communicates directly with the Internet"></p>
+<p>Because it&#39;s built on Http.Sys, WebListener doesn&#39;t require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. </p>
+<p>WebListener is also a good choice for internal deployments when you need one of the features it offers that you can&#39;t get by using Kestrel.</p>
+<p><img src="weblistener/_static/weblistener-to-internal.png" alt="Weblistener communicates directly with your internal network"></p>
+<h2 id="how-to-use-weblistener">How to use WebListener</h2>
+<p>Here&#39;s an overview of setup tasks for the host OS and your ASP.NET Core application.</p>
+<h3 id="configure-windows-server">Configure Windows Server</h3>
+<ul>
+<li><p>Install the version of .NET that your application requires, such as <a href="https://download.microsoft.com/download/0/A/3/0A372822-205D-4A86-BFA7-084D2CBE9EDF/DotNetCore.1.0.1-SDK.1.0.0.Preview2-003133-x64.exe">.NET Core</a> or .NET Framework 4.5.1.</p>
+</li>
+<li><p>Preregister URL prefixes to bind to WebListener, and set up SSL certificates</p>
+<p> If you don&#39;t preregister URL prefixes in Windows, you have to run your application with administrator privileges. The only exception is if you bind to localhost using HTTP (not HTTPS) with a port number greater than 1024; in that case administrator privileges aren&#39;t required.</p>
+<p> For details, see <a href="#preregister-url-prefixes-and-configure-ssl">How to preregister prefixes and configure SSL</a> later in this article.</p>
+</li>
+<li><p>Open firewall ports to allow traffic to reach WebListener.</p>
+<p> You can use netsh.exe or <a href="https://technet.microsoft.com/library/jj554906">PowerShell cmdlets</a>.</p>
+</li>
+</ul>
+<p>There are also <a href="https://support.microsoft.com/kb/820129">Http.Sys registry settings</a>.</p>
+<h3 id="configure-your-aspnet-core-application">Configure your ASP.NET Core application</h3>
+<ul>
+<li><p>Install the NuGet package <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.WebListener/">Microsoft.AspNetCore.Server.WebListener</a>. This also installs <a href="https://www.nuget.org/packages/Microsoft.Net.Http.Server/">Microsoft.Net.Http.Server</a> as a dependency.</p>
+</li>
+<li><p>Call the <code>UseWebListener</code> extension method on <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilder">WebHostBuilder</a> in your <code>Main</code> method, specifying any WebListener <a href="https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.AspNetCore.Server.WebListener/WebListenerOptions.cs">options</a> and <a href="https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.Net.Http.Server/WebListenerSettings.cs">settings</a> that you need, as shown in the following example:</p>
+<pre><code class="lang-csharp" highlight-lines="13-17">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with WebListener.&quot;);
+
+    var config = new ConfigurationBuilder()
+        .AddCommandLine(args)
+        .Build();
+
+    var builder = new WebHostBuilder()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseConfiguration(config)
+        .UseStartup&lt;Startup&gt;()
+        .UseWebListener(options =&gt;
+        {
+            options.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
+            options.ListenerSettings.Authentication.AllowAnonymous = true;
+        });
+
+    var host = builder.Build();
+    host.Run();
+}
+</code></pre></li>
+<li><p>Configure URLs and ports to listen on </p>
+<p>By default ASP.NET Core binds to <code>http://localhost:5000</code>. To configure URL prefixes and ports, you can use the <code>UseURLs</code> extension method, the <code>urls</code> command-line argument or the ASP.NET Core configuration system. For more information, see <a href="../hosting.html">Hosting</a>.</p>
+<p>Web Listener uses the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx">Http.Sys prefix string formats</a>. There are no prefix string format requirements that are specific to WebListener.</p>
+<div class="NOTE"><h5>Note</h5><p>Make sure that you specify the same prefix strings in <code>UseUrls</code> that you preregister on the server. </p>
+</div>
+</li>
+<li><p>Make sure your application is not configured to run IIS or IIS Express.</p>
+<p>In Visual Studio, the default launch profile is for IIS Express.  To run the project as a console application you have to manually change the selected profile, as shown in the following screen shot.</p>
+<p><img src="weblistener/_static/vs-choose-profile.png" alt="Select console app profile"></p>
+</li>
+</ul>
+<h2 id="how-to-use-weblistener-outside-of-aspnet-core">How to use WebListener outside of ASP.NET Core</h2>
+<ul>
+<li><p>Install the <a href="https://www.nuget.org/packages/Microsoft.Net.Http.Server/">Microsoft.Net.Http.Server</a> NuGet package.</p>
+</li>
+<li><p><a href="#preregister-url-prefixes-and-configure-ssl">Preregister URL prefixes to bind to WebListener, and set up SSL certificates</a> as you would for use in ASP.NET Core.</p>
+</li>
+</ul>
+<p>There are also <a href="https://support.microsoft.com/kb/820129">Http.Sys registry settings</a>.</p>
+<p>Here&#39;s a code sample that demonstrates WebListener use outside of ASP.NET Core:</p>
+<pre><code class="lang-csharp">var settings = new WebListenerSettings();
+settings.UrlPrefixes.Add(&quot;http://localhost:8080&quot;);
+
+using (WebListener listener = new WebListener(settings))
+{
+    listener.Start();
+
+    while (true)
+    {
+        var context = await listener.AcceptAsync();
+        byte[] bytes = Encoding.ASCII.GetBytes(&quot;Hello World: &quot; + DateTime.Now);
+        context.Response.ContentLength = bytes.Length;
+        context.Response.ContentType = &quot;text/plain&quot;;
+
+        await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
+        context.Dispose();
+    }
+}
+</code></pre><h2 id="preregister-url-prefixes-and-configure-ssl">Preregister URL prefixes and configure SSL</h2>
+<p>Both IIS and WebListener rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, if you&#39;re using WebListener you need to configure Http.Sys yourself. The built-in tool for doing that is netsh.exe. </p>
+<p>The most common tasks you need to use netsh.exe for are reserving URL prefixes and assigning SSL certificates.</p>
+<p>NetSh.exe is not an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:</p>
+<pre><code class="lang-console">netsh http add urlacl url=http://+:80/ user=Users
+netsh http add urlacl url=https://+:443/ user=Users
+</code></pre><p>The following example shows how to assign an SSL certificate:</p>
+<pre><code class="lang-console">netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid={00000000-0000-0000-0000-000000000000}&quot;.
+</code></pre><p>Here is the official reference documentation:</p>
+<ul>
+<li><a href="https://technet.microsoft.com/library/cc725882.aspx">Netsh Commands for Hypertext Transfer Protocol (HTTP)</a></li>
+<li><a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx">UrlPrefix Strings</a></li>
+</ul>
+<p>The following resources provide detailed instructions for several scenarios. Articles that refer to <code>HttpListener</code> apply equally to <code>WebListener</code>, as both are based on Http.Sys.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-configure-a-port-with-an-ssl-certificate">How to: Configure a Port with an SSL Certificate</a></li>
+<li><a href="http://sunshaking.blogspot.com/2012/11/https-communication-httplistener-based.html">HTTPS Communication - HttpListener based Hosting and Client Certification</a> This is a third-party blog and is fairly old but still has useful information.</li>
+<li><a href="https://blogs.msdn.microsoft.com/jpsanders/2009/09/29/how-to-walkthrough-using-httplistener-or-http-server-unmanaged-code-c-as-an-ssl-simple-server/">How To: Walkthrough Using HttpListener or Http Server unmanaged code (C++) as an SSL Simple Server</a> This too is an older blog with useful information.</li>
+<li><a href="https://blogs.msdn.microsoft.com/timomta/2016/11/04/how-do-i-set-up-a-net-core-weblistener-with-ssl/">How Do I Set Up A .NET Core WebListener With SSL?</a></li>
+</ul>
+<p>Here are some third-party tools that can be easier to use than the netsh.exe command line. These are not provided by or endorsed by Microsoft. The tools run as administrator by default, since netsh.exe itself requires administrator privileges.</p>
+<ul>
+<li><a href="http://httpsysmanager.codeplex.com/">http.sys Manager</a> provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. </li>
+<li><a href="http://www.stevestechspot.com/ABetterHttpcfg.aspx">HttpConfig</a> lets you list or configure SSL certificates and URL prefixes. The UI is more refined than http.sys Manager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.</li>
+</ul>
+<p>For generating self-signed SSL certificates, Microsoft provides command-line tools: <a href="https://msdn.microsoft.com/library/windows/desktop/aa386968">MakeCert.exe</a> and the PowerShell cmdlet <a href="https://technet.microsoft.com/itpro/powershell/windows/pki/new-selfsignedcertificate">New-SelfSignedCertificate</a>. There are also third-party UI tools that make it easier for you to generate self-signed SSL certificates:</p>
+<ul>
+<li><a href="https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net">SelfCert</a></li>
+<li><a href="http://makecertui.codeplex.com/">Makecert UI</a></li>
+</ul>
+<h2 id="next-steps">Next steps</h2>
+<p>For more information, see the following resources:</p>
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/weblistener/sample">Sample app for this article</a></li>
+<li><a href="https://github.com/aspnet/HttpSysServer/">WebListener source code</a></li>
+<li><a href="../hosting.html">Hosting</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/servers/weblistener.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

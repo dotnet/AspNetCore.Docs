@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Key Storage Format </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Key Storage Format ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/implementation/key-storage-format">
+<h1 id="key-storage-format" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="15" sourceendlinenumber="15">Key Storage Format</h1>
+
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="data-protection-implementation-key-storage-format"></a></p>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="19" sourceendlinenumber="19">Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\ASP.NET\DataProtection-Keys.</p>
+<h2 id="the-key-element" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="21" sourceendlinenumber="21">The &lt;key&gt; element</h2>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="23" sourceendlinenumber="23">Keys exist as top-level objects in the key repository. By convention keys have the filename <strong>key-{guid}.xml</strong>, where {guid} is the id of the key. Each such file contains a single key. The format of the file is as follows.</p>
+<pre sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="25" sourceendlinenumber="44"><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;key id=&quot;80732141-ec8f-4b80-af9c-c4d2d1ff8901&quot; version=&quot;1&quot;&gt;
+  &lt;creationDate&gt;2015-03-19T23:32:02.3949887Z&lt;/creationDate&gt;
+  &lt;activationDate&gt;2015-03-19T23:32:02.3839429Z&lt;/activationDate&gt;
+  &lt;expirationDate&gt;2015-06-17T23:32:02.3839429Z&lt;/expirationDate&gt;
+  &lt;descriptor deserializerType=&quot;{deserializerType}&quot;&gt;
+    &lt;descriptor&gt;
+      &lt;encryption algorithm=&quot;AES_256_CBC&quot; /&gt;
+      &lt;validation algorithm=&quot;HMACSHA256&quot; /&gt;
+      &lt;enc:encryptedSecret decryptorType=&quot;{decryptorType}&quot; xmlns:enc=&quot;...&quot;&gt;
+        &lt;encryptedKey&gt;
+          &lt;!-- This key is encrypted with Windows DPAPI. --&gt;
+          &lt;value&gt;AQAAANCM...8/zeP8lcwAg==&lt;/value&gt;
+        &lt;/encryptedKey&gt;
+      &lt;/enc:encryptedSecret&gt;
+    &lt;/descriptor&gt;
+  &lt;/descriptor&gt;
+&lt;/key&gt;
+</code></pre><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="46" sourceendlinenumber="46">The &lt;key&gt; element contains the following attributes and child elements:</p>
+<ul sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="48" sourceendlinenumber="54">
+<li sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="48" sourceendlinenumber="48"><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="48" sourceendlinenumber="48">The key id. This value is treated as authoritative; the filename is simply a nicety for human readability.</p>
+</li>
+<li sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="50" sourceendlinenumber="50"><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="50" sourceendlinenumber="50">The version of the &lt;key&gt; element, currently fixed at 1.</p>
+</li>
+<li sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="52" sourceendlinenumber="52"><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="52" sourceendlinenumber="52">The key&#39;s creation, activation, and expiration dates.</p>
+</li>
+<li sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="54" sourceendlinenumber="54"><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="54" sourceendlinenumber="54">A &lt;descriptor&gt; element, which contains information on the authenticated encryption implementation contained within this key.</p>
+</li>
+</ul>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="56" sourceendlinenumber="56">In the above example, the key&#39;s id is {80732141-ec8f-4b80-af9c-c4d2d1ff8901}, it was created and activated on March 19, 2015, and it has a lifetime of 90 days. (Occasionally the activation date might be slightly before the creation date as in this example. This is due to a nit in how the APIs work and is harmless in practice.)</p>
+<h2 id="the-descriptor-element" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="58" sourceendlinenumber="58">The &lt;descriptor&gt; element</h2>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="60" sourceendlinenumber="60">The outer &lt;descriptor&gt; element contains an attribute deserializerType, which is the assembly-qualified name of a type which implements IAuthenticatedEncryptorDescriptorDeserializer. This type is responsible for reading the inner &lt;descriptor&gt; element and for parsing the information contained within.</p>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="62" sourceendlinenumber="62">The particular format of the &lt;descriptor&gt; element depends on the authenticated encryptor implementation encapsulated by the key, and each deserializer type expects a slightly different format for this. In general, though, this element will contain algorithmic information (names, types, OIDs, or similar) and secret key material. In the above example, the descriptor specifies that this key wraps AES-256-CBC encryption + HMACSHA256 validation.</p>
+<h2 id="the-encryptedsecret-element" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="64" sourceendlinenumber="64">The &lt;encryptedSecret&gt; element</h2>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="66" sourceendlinenumber="66">An <encryptedsecret> element which contains the encrypted form of the secret key material may be present if <a href="key-encryption-at-rest.html#data-protection-implementation-key-encryption-at-rest" data-raw-source="[encryption of secrets at rest is enabled](key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest)" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="66" sourceendlinenumber="66">encryption of secrets at rest is enabled</a>. The attribute decryptorType will be the assembly-qualified name of a type which implements IXmlDecryptor. This type is responsible for reading the inner <encryptedkey> element and decrypting it to recover the original plaintext.<p>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="68" sourceendlinenumber="68">As with &lt;descriptor&gt;, the particular format of the <encryptedsecret> element depends on the at-rest encryption mechanism in use. In the above example, the master key is encrypted using Windows DPAPI per the comment.<p>
+<h2 id="the-revocation-element" sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="70" sourceendlinenumber="70">The &lt;revocation&gt; element</h2>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="72" sourceendlinenumber="72">Revocations exist as top-level objects in the key repository. By convention revocations have the filename <strong>revocation-{timestamp}.xml</strong> (for revoking all keys before a specific date) or <strong>revocation-{guid}.xml</strong> (for revoking a specific key). Each file contains a single &lt;revocation&gt; element.</p>
+<p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="74" sourceendlinenumber="74">For revocations of individual keys, the file contents will be as below.</p>
+<pre sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="76" sourceendlinenumber="83"><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;revocation version=&quot;1&quot;&gt;
+  &lt;revocationDate&gt;2015-03-20T22:45:30.2616742Z&lt;/revocationDate&gt;
+  &lt;key id=&quot;eb4fc299-8808-409d-8a34-23fc83d026c9&quot; /&gt;
+  &lt;reason&gt;human-readable reason&lt;/reason&gt;
+&lt;/revocation&gt;
+</code></pre><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="85" sourceendlinenumber="85">In this case, only the specified key is revoked. If the key id is &quot;*&quot;, however, as in the below example, all keys whose creation date is prior to the specified revocation date are revoked.</p>
+<pre sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="87" sourceendlinenumber="95"><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;revocation version=&quot;1&quot;&gt;
+  &lt;revocationDate&gt;2015-03-20T15:45:45.7366491-07:00&lt;/revocationDate&gt;
+  &lt;!-- All keys created before the revocation date are revoked. --&gt;
+  &lt;key id=&quot;*&quot; /&gt;
+  &lt;reason&gt;human-readable reason&lt;/reason&gt;
+&lt;/revocation&gt;
+</code></pre><p sourcefile="security/data-protection/implementation/key-storage-format.md" sourcestartlinenumber="97" sourceendlinenumber="97">The &lt;reason&gt; element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.</p>
+</encryptedsecret></encryptedkey></encryptedsecret></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/implementation/key-storage-format.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

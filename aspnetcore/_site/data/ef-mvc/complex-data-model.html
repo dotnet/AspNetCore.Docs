@@ -1,0 +1,904 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core MVC with EF Core - Data Model - 5 of 10 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core MVC with EF Core - Data Model - 5 of 10 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="data/ef-mvc/complex-data-model">
+<h1 id="creating-a-complex-data-model---ef-core-with-aspnet-core-mvc-tutorial-5-of-10">Creating a complex data model - EF Core with ASP.NET Core MVC tutorial (5 of 10)</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see <a href="intro.html">the first tutorial in the series</a>.</p>
+<p>In the previous tutorials, you worked with a simple data model that was composed of three entities. In this tutorial, you&#39;ll add more entities and relationships and you&#39;ll customize the data model by specifying formatting, validation, and database mapping rules.</p>
+<p>When you&#39;re finished, the entity classes will make up the completed data model that&#39;s shown in the following illustration:</p>
+<p><img src="complex-data-model/_static/diagram.png" alt="Entity diagram"></p>
+<h2 id="customize-the-data-model-by-using-attributes">Customize the Data Model by Using Attributes</h2>
+<p>In this section you&#39;ll see how to customize the data model by using attributes that specify formatting, validation, and database mapping rules. Then in several of the following sections you&#39;ll create the complete School data model by adding attributes to the classes you already created and creating new classes for the remaining entity types in the model.</p>
+<h3 id="the-datatype-attribute">The DataType attribute</h3>
+<p>For student enrollment dates, all of the web pages currently display the time along with the date, although all you care about for this field is the date. By using data annotation attributes, you can make one code change that will fix the display format in every view that shows the data. To see an example of how to do that, you&#39;ll add an attribute to the <code>EnrollmentDate</code> property in the <code>Student</code> class.</p>
+<p>In <em>Models/Student.cs</em>, add a <code>using</code> statement for the <code>System.ComponentModel.DataAnnotations</code> namespace and add <code>DataType</code> and <code>DisplayFormat</code> attributes to the <code>EnrollmentDate</code> property, as shown in the following example:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3,12-13">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace ContosoUniversity.Models
+{
+    public class Student
+    {
+        public int ID { get; set; }
+        public string LastName { get; set; }
+        public string FirstMidName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        public DateTime EnrollmentDate { get; set; }
+
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><p>The <code>DataType</code> attribute is used to specify a data type that is more specific than the database intrinsic type. In this case we only want to keep track of the date, not the date and time. The  <code>DataType</code> Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, and more. The <code>DataType</code> attribute can also enable the application to automatically provide type-specific features. For example, a <code>mailto:</code> link can be created for <code>DataType.EmailAddress</code>, and a date selector can be provided for <code>DataType.Date</code> in browsers that support HTML5. The <code>DataType</code> attribute emits HTML 5 <code>data-</code> (pronounced data dash) attributes that HTML 5 browsers can understand. The <code>DataType</code> attributes do not provide any validation.</p>
+<p><code>DataType.Date</code> does not specify the format of the date that is displayed. By default, the data field is displayed according to the default formats based on the server&#39;s CultureInfo.</p>
+<p>The <code>DisplayFormat</code> attribute is used to explicitly specify the date format:</p>
+<pre><code class="lang-csharp">[DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+</code></pre><p>The <code>ApplyFormatInEditMode</code> setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields -- for example, for currency values, you might not want the currency symbol in the text box for editing.)</p>
+<p>You can use the <code>DisplayFormat</code> attribute by itself, but it&#39;s generally a good idea to use the <code>DataType</code> attribute also. The <code>DataType</code> attribute conveys the semantics of the data as opposed to how to render it on a screen, and provides the following benefits that you don&#39;t get with <code>DisplayFormat</code>:</p>
+<ul>
+<li><p>The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, some client-side input validation, etc.).</p>
+</li>
+<li><p>By default, the browser will render data using the correct format based on your locale.</p>
+</li>
+</ul>
+<p>For more information, see the <a href="../../mvc/views/working-with-forms.html#the-input-tag-helper">&lt;input&gt; tag helper documentation</a>.</p>
+<p>Run the app, go to the Students Index page and notice that times are no longer displayed for the enrollment dates. The same will be true for any view that uses the Student model.</p>
+<p><img src="complex-data-model/_static/dates-no-times.png" alt="Students index page showing dates without times"></p>
+<h3 id="the-stringlength-attribute">The StringLength attribute</h3>
+<p>You can also specify data validation rules and validation error messages using attributes. The <code>StringLength</code> attribute sets the maximum length  in the database and provides client side and server side validation for ASP.NET MVC. You can also specify the minimum string length in this attribute, but the minimum value has no impact on the database schema.</p>
+<p>Suppose you want to ensure that users don&#39;t enter more than 50 characters for a name. To add this limitation, add <code>StringLength</code> attributes to the <code>LastName</code> and <code>FirstMidName</code> properties, as shown in the following example:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="10,12">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace ContosoUniversity.Models
+{
+    public class Student
+    {
+        public int ID { get; set; }
+        [StringLength(50)]
+        public string LastName { get; set; }
+        [StringLength(50, ErrorMessage = &quot;First name cannot be longer than 50 characters.&quot;)]
+        public string FirstMidName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        public DateTime EnrollmentDate { get; set; }
+
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><p>The <code>StringLength</code> attribute won&#39;t prevent a user from entering white space for a name. You can use the <code>RegularExpression</code> attribute to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:</p>
+<pre><code class="lang-csharp">[RegularExpression(@&quot;^[A-Z]+[a-zA-Z&#39;&#39;-&#39;\s]*$&quot;)]
+</code></pre><p>The <code>MaxLength</code> attribute provides functionality similar to the <code>StringLength</code> attribute but doesn&#39;t provide client side validation.</p>
+<p>The database model has now changed in a way that requires a change in the database schema. You&#39;ll use migrations to update the schema without losing any data that you may have added to the database by using the application UI.</p>
+<p>Save your changes and build the project. Then open the command window in the project folder and enter the following commands:</p>
+<pre><code class="lang-console">dotnet ef migrations add MaxLengthOnNames
+</code></pre><pre><code class="lang-console">dotnet ef database update
+</code></pre><p>The <code>migrations add</code> command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named <em>&lt;timeStamp&gt;_MaxLengthOnNames.cs</em>. This file contains code in the <code>Up</code> method that will update the database to match the current data model. The <code>database update</code> command ran that code.</p>
+<p>The timestamp prefixed to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the update-database command, and then all of the migrations are applied in the order in which they were created.</p>
+<p>Run the app, select the <strong>Students</strong> tab, click <strong>Create New</strong>, and enter either name longer than 50 characters. When you click <strong>Create</strong>, client side validation shows an error message.</p>
+<p><img src="complex-data-model/_static/string-length-errors.png" alt="Students index page showing string length errors"></p>
+<h3 id="the-column-attribute">The Column attribute</h3>
+<p>You can also use attributes to control how your classes and properties are mapped to the database. Suppose you had used the name <code>FirstMidName</code> for the first-name field because the field might also contain a middle name. But you want the database column to be named <code>FirstName</code>, because users who will be writing ad-hoc queries against the database are accustomed to that name. To make this mapping, you can use the <code>Column</code> attribute.</p>
+<p>The <code>Column</code> attribute specifies that when the database is created, the column of the <code>Student</code> table that maps to the <code>FirstMidName</code> property will be named <code>FirstName</code>. In other words, when your code refers to <code>Student.FirstMidName</code>, the data will come from or be updated in the <code>FirstName</code> column of the <code>Student</code> table. If you don&#39;t specify column names, they are given the same name as the property name.</p>
+<p>In the <em>Student.cs</em> file, add a <code>using</code> statement for <code>System.ComponentModel.DataAnnotations.Schema</code> and add the column name attribute to the <code>FirstMidName</code> property, as shown in the following highlighted code:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="4,14">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Student
+    {
+        public int ID { get; set; }
+        [StringLength(50)]
+        public string LastName { get; set; }
+        [StringLength(50, ErrorMessage = &quot;First name cannot be longer than 50 characters.&quot;)]
+        [Column(&quot;FirstName&quot;)]
+        public string FirstMidName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        public DateTime EnrollmentDate { get; set; }
+
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><p>The addition of the <code>Column</code> attribute changes the model backing the <code>SchoolContext</code>, so it won&#39;t match the database.</p>
+<p>Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:</p>
+<pre><code class="lang-console">dotnet ef migrations add ColumnFirstName
+</code></pre><pre><code class="lang-console">dotnet ef database update
+</code></pre><p>In <strong>SQL Server Object Explorer</strong>, open the Student table designer by double-clicking the <strong>Student</strong> table.</p>
+<p><img src="complex-data-model/_static/ssox-after-migration.png" alt="Students table in SSOX after migrations"></p>
+<p>Before you applied the first two migrations, the name columns were of type nvarchar(MAX). They are now nvarchar(50) and the column name has changed from FirstMidName to FirstName.</p>
+<div class="NOTE"><h5>Note</h5><p>If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.</p>
+</div>
+<h2 id="final-changes-to-the-student-entity">Final changes to the Student entity</h2>
+<p><img src="complex-data-model/_static/student-entity.png" alt="Student entity"></p>
+<p>In <em>Models/Student.cs</em>, replace the code you added earlier with the following code. The changes are highlighted.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="11,13,15,18,22,24-31">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Student
+    {
+        public int ID { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Display(Name = &quot;Last Name&quot;)]
+        public string LastName { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = &quot;First name cannot be longer than 50 characters.&quot;)]
+        [Column(&quot;FirstName&quot;)]
+        [Display(Name = &quot;First Name&quot;)]
+        public string FirstMidName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        [Display(Name = &quot;Enrollment Date&quot;)]
+        public DateTime EnrollmentDate { get; set; }
+        [Display(Name = &quot;Full Name&quot;)]
+        public string FullName
+        {
+            get
+            {
+                return LastName + &quot;, &quot; + FirstMidName;
+            }
+        }
+
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><h3 id="the-required-attribute">The Required attribute</h3>
+<p>The <code>Required</code> attribute makes the name properties required fields. The <code>Required</code> attribute is not needed for non-nullable types such as value types (DateTime, int, double, float, etc.). Types that can&#39;t be null are automatically treated as required fields.</p>
+<p>You could remove the <code>Required</code> attribute and replace it with a minimum length parameter for the <code>StringLength</code> attribute:</p>
+<pre><code class="lang-csharp">[Display(Name = &quot;Last Name&quot;)]
+[StringLength(50, MinimumLength=1)]
+public string LastName { get; set; }
+</code></pre><h3 id="the-display-attribute">The Display attribute</h3>
+<p>The <code>Display</code> attribute specifies that the caption for the text boxes should be &quot;First Name&quot;, &quot;Last Name&quot;, &quot;Full Name&quot;, and &quot;Enrollment Date&quot; instead of the property name in each instance (which has no space dividing the words).</p>
+<h3 id="the-fullname-calculated-property">The FullName calculated property</h3>
+<p><code>FullName</code> is a calculated property that returns a value that&#39;s created by concatenating two other properties. Therefore it has only a get accessor, and no <code>FullName</code> column will be generated in the database.</p>
+<h2 id="create-the-instructor-entity">Create the Instructor Entity</h2>
+<p><img src="complex-data-model/_static/instructor-entity.png" alt="Instructor entity"></p>
+<p>Create <em>Models/Instructor.cs</em>, replacing the template code with the following code:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Instructor
+    {
+        public int ID { get; set; }
+
+        [Required]
+        [Display(Name = &quot;Last Name&quot;)]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        [Required]
+        [Column(&quot;FirstName&quot;)]
+        [Display(Name = &quot;First Name&quot;)]
+        [StringLength(50)]
+        public string FirstMidName { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        [Display(Name = &quot;Hire Date&quot;)]
+        public DateTime HireDate { get; set; }
+
+        [Display(Name = &quot;Full Name&quot;)]
+        public string FullName
+        {
+            get { return LastName + &quot;, &quot; + FirstMidName; }
+        }
+
+        public ICollection&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+        public OfficeAssignment OfficeAssignment { get; set; }
+    }
+}
+</code></pre><p>Notice that several properties are the same in the Student and Instructor entities. In the <a href="inheritance.html">Implementing Inheritance</a> tutorial later in this series, you&#39;ll refactor this code to eliminate the redundancy.</p>
+<p>You can put multiple attributes on one line, so you could also write the <code>HireDate</code> attributes as follows:</p>
+<pre><code class="lang-csharp">[DataType(DataType.Date),Display(Name = &quot;Hire Date&quot;),DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+</code></pre><h3 id="the-courseassignments-and-officeassignment-navigation-properties">The CourseAssignments and OfficeAssignment navigation properties</h3>
+<p>The <code>CourseAssignments</code> and <code>OfficeAssignment</code> properties are navigation properties.</p>
+<p>An instructor can teach any number of courses, so <code>CourseAssignments</code> is defined as a collection.</p>
+<pre><code class="lang-csharp">public ICollection&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+</code></pre><p>If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated.  You can specify <code>ICollection&lt;T&gt;</code> or a type such as <code>List&lt;T&gt;</code> or <code>HashSet&lt;T&gt;</code>. If you specify <code>ICollection&lt;T&gt;</code>, EF creates a <code>HashSet&lt;T&gt;</code> collection by default.</p>
+<p>The reason why these are <code>CourseAssignment</code> entities is explained below in the section about many-to-many relationships.</p>
+<p>Contoso University business rules state that an instructor can only have at most one office, so the <code>OfficeAssignment</code> property holds a single OfficeAssignment entity (which may be null if no office is assigned).</p>
+<pre><code class="lang-csharp">public OfficeAssignment OfficeAssignment { get; set; }
+</code></pre><h2 id="create-the-officeassignment-entity">Create the OfficeAssignment entity</h2>
+<p><img src="complex-data-model/_static/officeassignment-entity.png" alt="OfficeAssignment entity"></p>
+<p>Create <em>Models/OfficeAssignment.cs</em> with the following code:</p>
+<pre><code class="lang-csharp" name="Main">using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class OfficeAssignment
+    {
+        [Key]
+        public int InstructorID { get; set; }
+        [StringLength(50)]
+        [Display(Name = &quot;Office Location&quot;)]
+        public string Location { get; set; }
+
+        public Instructor Instructor { get; set; }
+    }
+}
+</code></pre><h3 id="the-key-attribute">The Key attribute</h3>
+<p>There&#39;s a one-to-zero-or-one relationship  between the Instructor and the OfficeAssignment entities. An office assignment only exists in relation to the instructor it&#39;s assigned to, and therefore its primary key is also its foreign key to the Instructor entity. But the Entity Framework can&#39;t automatically recognize InstructorID as the primary key of this entity because its name doesn&#39;t follow the ID or classnameID naming convention. Therefore, the <code>Key</code> attribute is used to identify it as the key:</p>
+<pre><code class="lang-csharp">[Key]
+public int InstructorID { get; set; }
+</code></pre><p>You can also use the <code>Key</code> attribute if the entity does have its own primary key but you want to name the property something other than classnameID or ID.</p>
+<p>By default, EF treats the key as non-database-generated because the column is for an identifying relationship.</p>
+<h3 id="the-instructor-navigation-property">The Instructor navigation property</h3>
+<p>The Instructor entity has a nullable <code>OfficeAssignment</code> navigation property (because an instructor might not have an office assignment), and the OfficeAssignment entity has a non-nullable <code>Instructor</code> navigation property (because an office assignment can&#39;t exist without an instructor -- <code>InstructorID</code> is non-nullable). When an Instructor entity has a related OfficeAssignment entity, each entity will have a reference to the other one in its navigation property.</p>
+<p>You could put a <code>[Required]</code> attribute on the Instructor navigation property to specify that there must be a related instructor, but you don&#39;t have to do that because the <code>InstructorID</code> foreign key (which is also the key to this table) is non-nullable.</p>
+<h2 id="modify-the-course-entity">Modify the Course Entity</h2>
+<p><img src="complex-data-model/_static/course-entity.png" alt="Course entity"></p>
+<p>In <em>Models/Course.cs</em>, replace the code you added earlier with the following code. The changes are highlighted.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="2,10,13,16,19,21,23">using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Course
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = &quot;Number&quot;)]
+        public int CourseID { get; set; }
+
+        [StringLength(50, MinimumLength = 3)]
+        public string Title { get; set; }
+
+        [Range(0, 5)]
+        public int Credits { get; set; }
+
+        public int DepartmentID { get; set; }
+
+        public Department Department { get; set; }
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+        public ICollection&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+    }
+}
+</code></pre><p>The course entity has a foreign key property <code>DepartmentID</code> which points to the related Department entity and it has a <code>Department</code> navigation property.</p>
+<p>The Entity Framework doesn&#39;t require you to add a foreign key property to your data model when you have a navigation property for a related entity.  EF automatically creates foreign keys in the database wherever they are needed and creates <a href="https://docs.microsoft.com/ef/core/modeling/shadow-properties">shadow properties</a> for them. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the  Department entity is null if you don&#39;t load it, so when you update the course entity, you would have to first fetch the Department entity. When the foreign key property <code>DepartmentID</code> is included in the data model, you don&#39;t need to fetch the Department entity before you update.</p>
+<h3 id="the-databasegenerated-attribute">The DatabaseGenerated attribute</h3>
+<p>The <code>DatabaseGenerated</code> attribute with the <code>None</code> parameter on the <code>CourseID</code> property specifies that primary key values are provided by the user rather than generated by the database.</p>
+<pre><code class="lang-csharp">[DatabaseGenerated(DatabaseGeneratedOption.None)]
+[Display(Name = &quot;Number&quot;)]
+public int CourseID { get; set; }
+</code></pre><p>By default, Entity Framework assumes that primary key values are generated by the database. That&#39;s what you want in most scenarios. However, for Course entities, you&#39;ll use a user-specified course number such as a 1000 series for one department, a 2000 series for another department, and so on.</p>
+<p>The <code>DatabaseGenerated</code> attribute can also be used to generate default values, as in the case of database columns used to record the date a row was created or updated.  For more information, see <a href="https://docs.microsoft.com/ef/core/modeling/generated-properties">Generated Properties</a>.</p>
+<h3 id="foreign-key-and-navigation-properties">Foreign key and navigation properties</h3>
+<p>The foreign key properties and navigation properties in the Course entity reflect the following relationships:</p>
+<p>A course is assigned to one department, so there&#39;s a <code>DepartmentID</code> foreign key and a <code>Department</code> navigation property for the reasons mentioned above.</p>
+<pre><code class="lang-csharp">public int DepartmentID { get; set; }
+public Department Department { get; set; }
+</code></pre><p>A course can have any number of students enrolled in it, so the <code>Enrollments</code> navigation property is a collection:</p>
+<pre><code class="lang-csharp">public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+</code></pre><p>A course may be taught by multiple instructors, so the <code>CourseAssignments</code> navigation property is a collection (the type <code>CourseAssignment</code> is explained <a href="#many-to-many-relationships">later</a>):</p>
+<pre><code class="lang-csharp">public ICollection&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+</code></pre><h2 id="create-the-department-entity">Create the Department entity</h2>
+<p><img src="complex-data-model/_static/department-entity.png" alt="Department entity"></p>
+<p>Create <em>Models/Department.cs</em> with the following code:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Department
+    {
+        public int DepartmentID { get; set; }
+
+        [StringLength(50, MinimumLength = 3)]
+        public string Name { get; set; }
+
+        [DataType(DataType.Currency)]
+        [Column(TypeName = &quot;money&quot;)]
+        public decimal Budget { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        [Display(Name = &quot;Start Date&quot;)]
+        public DateTime StartDate { get; set; }
+
+        public int? InstructorID { get; set; }
+
+        public Instructor Administrator { get; set; }
+        public ICollection&lt;Course&gt; Courses { get; set; }
+    }
+}
+</code></pre><h3 id="the-column-attribute">The Column attribute</h3>
+<p>Earlier you used the <code>Column</code> attribute to change column name mapping. In the code for the Department entity, the <code>Column</code> attribute is being used to change SQL data type mapping so that the column will be defined using the SQL Server money type in the database:</p>
+<pre><code class="lang-csharp">[Column(TypeName=&quot;money&quot;)]
+public decimal Budget { get; set; }
+</code></pre><p>Column mapping is generally not required, because the Entity Framework chooses the appropriate SQL Server data type based on the CLR type that you define for the property. The CLR <code>decimal</code> type maps to a SQL Server <code>decimal</code> type. But in this case you know that the column will be holding currency amounts, and the money data type is more appropriate for that.</p>
+<h3 id="foreign-key-and-navigation-properties">Foreign key and navigation properties</h3>
+<p>The foreign key and navigation properties reflect the following relationships:</p>
+<p>A department may or may not have an administrator, and an administrator is always an instructor. Therefore the <code>InstructorID</code> property is included as the foreign key to the Instructor entity, and a question mark is added after the <code>int</code> type designation to mark the property as nullable. The navigation property is named <code>Administrator</code> but holds an Instructor entity:</p>
+<pre><code class="lang-csharp">public int? InstructorID { get; set; }
+public Instructor Administrator { get; set; }
+</code></pre><p>A department may have many courses, so there&#39;s a Courses navigation property:</p>
+<pre><code class="lang-csharp">public ICollection&lt;Course&gt; Courses { get; set; }
+</code></pre><div class="NOTE"><h5>Note</h5><p>By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn&#39;t define the Department.InstructorID property as nullable, EF would configure a cascade delete rule to delete the instructor when you delete the department, which is not what you want to have happen. If your business rules required the <code>InstructorID</code> property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship:</p>
+<pre><code class="lang-csharp">modelBuilder.Entity&lt;Department&gt;()
+   .HasOne(d =&gt; d.Administrator)
+   .WithMany()
+   .OnDelete(DeleteBehavior.Restrict)
+</code></pre></div>
+<h2 id="modify-the-enrollment-entity">Modify the Enrollment entity</h2>
+<p><img src="complex-data-model/_static/enrollment-entity.png" alt="Enrollment entity"></p>
+<p>In <em>Models/Enrollment.cs</em>, replace the code you added earlier with the following code:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="1-2,16">using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public enum Grade
+    {
+        A, B, C, D, F
+    }
+
+    public class Enrollment
+    {
+        public int EnrollmentID { get; set; }
+        public int CourseID { get; set; }
+        public int StudentID { get; set; }
+        [DisplayFormat(NullDisplayText = &quot;No grade&quot;)]
+        public Grade? Grade { get; set; }
+
+        public Course Course { get; set; }
+        public Student Student { get; set; }
+    }
+}
+</code></pre><h3 id="foreign-key-and-navigation-properties">Foreign key and navigation properties</h3>
+<p>The foreign key properties and navigation properties reflect the following relationships:</p>
+<p>An enrollment record is for a single course, so there&#39;s a <code>CourseID</code> foreign key property and a <code>Course</code> navigation property:</p>
+<pre><code class="lang-csharp">public int CourseID { get; set; }
+public Course Course { get; set; }
+</code></pre><p>An enrollment record is for a single student, so there&#39;s a <code>StudentID</code> foreign key property and a <code>Student</code> navigation property:</p>
+<pre><code class="lang-csharp">public int StudentID { get; set; }
+public Student Student { get; set; }
+</code></pre><h2 id="many-to-many-relationships">Many-to-Many Relationships</h2>
+<p>There&#39;s a many-to-many relationship between the Student and Course entities, and the Enrollment entity functions as a many-to-many join table <em>with payload</em> in the database. &quot;With payload&quot; means that the Enrollment table contains additional data besides foreign keys for the joined tables (in this case, a primary key and a Grade property).</p>
+<p>The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using the Entity Framework Power Tools for EF 6.x; creating the diagram isn&#39;t part of the tutorial, it&#39;s just being used here as an illustration.)</p>
+<p><img src="complex-data-model/_static/student-course.png" alt="Student-Course many to many relationship"></p>
+<p>Each relationship line has a 1 at one end and an asterisk (*) at the other, indicating a one-to-many relationship.</p>
+<p>If the Enrollment table didn&#39;t include grade information, it would only need to contain the two foreign keys CourseID and StudentID. In that case, it would be a many-to-many join table without payload (or a pure join table) in the database. The Instructor and Course entities have that kind of many-to-many relationship, and your next step is to create an entity class to function as a join table without payload.</p>
+<p>(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see the <a href="https://github.com/aspnet/EntityFramework/issues/1368">discussion in the EF Core GitHub repository</a>.) </p>
+<h2 id="the-courseassignment-entity">The CourseAssignment entity</h2>
+<p><img src="complex-data-model/_static/courseassignment-entity.png" alt="CourseAssignment entity"></p>
+<p>Create <em>Models/CourseAssignment.cs</em> with the following code:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class CourseAssignment
+    {
+        public int InstructorID { get; set; }
+        public int CourseID { get; set; }
+        public Instructor Instructor { get; set; }
+        public Course Course { get; set; }
+    }
+}
+</code></pre><h3 id="join-entity-names">Join entity names</h3>
+<p>A join table is required in the database for the Instructor-to-Courses many-to-many relationship, and it has to be represented by an entity set. It&#39;s common to name a join entity <code>EntityName1EntityName2</code>, which in this case would be <code>CourseInstructor</code>. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won&#39;t have to change the name later. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked through Ratings. For this relationship, <code>CourseAssignment</code> is a better choice than <code>CourseInstructor</code>.</p>
+<h3 id="composite-key">Composite key</h3>
+<p>Since the foreign keys are not nullable and together uniquely identify each row of the table, there is no need for a separate primary key. The <em>InstructorID</em> and <em>CourseID</em> properties should function as a composite primary key. The only way to identify composite primary keys to EF is by using the <em>fluent API</em> (it can&#39;t be done by using attributes). You&#39;ll see how to configure the composite primary key in the next section.</p>
+<p>The composite key ensures that while you can have multiple rows for one course, and multiple rows for one instructor, you can&#39;t have multiple rows for the same instructor and course. The <code>Enrollment</code> join entity defines its own primary key, so duplicates of this sort are possible. To prevent such duplicates, you could add a unique index on the foreign key fields, or configure <code>Enrollment</code> with a primary composite key similar to <code>CourseAssignment</code>. For more information, see <a href="https://docs.microsoft.com/ef/core/modeling/indexes">Indexes</a>.</p>
+<h2 id="update-the-database-context">Update the database context</h2>
+<p>Add the following highlighted code to the <em>Data/SchoolContext.cs</em> file:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="15-18,25-31">using ContosoUniversity.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace ContosoUniversity.Data
+{
+    public class SchoolContext : DbContext
+    {
+        public SchoolContext(DbContextOptions&lt;SchoolContext&gt; options) : base(options)
+        {
+        }
+
+        public DbSet&lt;Course&gt; Courses { get; set; }
+        public DbSet&lt;Enrollment&gt; Enrollments { get; set; }
+        public DbSet&lt;Student&gt; Students { get; set; }
+        public DbSet&lt;Department&gt; Departments { get; set; }
+        public DbSet&lt;Instructor&gt; Instructors { get; set; }
+        public DbSet&lt;OfficeAssignment&gt; OfficeAssignments { get; set; }
+        public DbSet&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity&lt;Course&gt;().ToTable(&quot;Course&quot;);
+            modelBuilder.Entity&lt;Enrollment&gt;().ToTable(&quot;Enrollment&quot;);
+            modelBuilder.Entity&lt;Student&gt;().ToTable(&quot;Student&quot;);
+            modelBuilder.Entity&lt;Department&gt;().ToTable(&quot;Department&quot;);
+            modelBuilder.Entity&lt;Instructor&gt;().ToTable(&quot;Instructor&quot;);
+            modelBuilder.Entity&lt;OfficeAssignment&gt;().ToTable(&quot;OfficeAssignment&quot;);
+            modelBuilder.Entity&lt;CourseAssignment&gt;().ToTable(&quot;CourseAssignment&quot;);
+
+            modelBuilder.Entity&lt;CourseAssignment&gt;()
+                .HasKey(c =&gt; new { c.CourseID, c.InstructorID });
+        }
+    }
+}
+</code></pre><p>This code adds the new entities and configures the CourseAssignment entity&#39;s composite primary key.</p>
+<h2 id="fluent-api-alternative-to-attributes">Fluent API alternative to attributes</h2>
+<p>The code in the <code>OnModelCreating</code> method of the <code>DbContext</code> class uses the <em>fluent API</em> to configure EF behavior. The API is called &quot;fluent&quot; because it&#39;s often used by stringing a series of method calls together into a single statement, as in this example from the <a href="https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration">EF Core documentation</a>:</p>
+<pre><code class="lang-csharp">protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity&lt;Blog&gt;()
+        .Property(b =&gt; b.Url)
+        .IsRequired();
+}
+</code></pre><p>In this tutorial, you&#39;re using the fluent API only for database mapping that you can&#39;t do with attributes. However, you can also use the fluent API to specify most of the formatting, validation, and mapping rules that you can do by using attributes. Some attributes such as <code>MinimumLength</code> can&#39;t be applied with the fluent API. As mentioned previously, <code>MinimumLength</code> doesn&#39;t change the schema, it only applies a client and server side validation rule.</p>
+<p>Some developers prefer to use the fluent API exclusively so that they can keep their entity classes &quot;clean.&quot; You can mix attributes and fluent API if you want, and there are a few customizations that can only be done by using fluent API, but in general the recommended practice is to choose one of these two approaches and use that consistently as much as possible. If you do use both, note that wherever there is a conflict, Fluent API overrides attributes.</p>
+<p>For more information about attributes vs. fluent API, see <a href="https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration">Methods of configuration</a>.</p>
+<h2 id="entity-diagram-showing-relationships">Entity Diagram Showing Relationships</h2>
+<p>The following illustration shows the diagram that the Entity Framework Power Tools create for the completed School model.</p>
+<p><img src="complex-data-model/_static/diagram.png" alt="Entity diagram"></p>
+<p>Besides the one-to-many relationship lines (1 to *), you can see here the one-to-zero-or-one relationship line (1 to 0..1) between the Instructor and OfficeAssignment entities and the zero-or-one-to-many relationship line (0..1 to *) between the Instructor and Department entities.</p>
+<h2 id="seed-the-database-with-test-data">Seed the Database with Test Data</h2>
+<p>Replace the code in the <em>Data/DbInitializer.cs</em> file with the following code in order to provide seed data for the new entities you&#39;ve created.</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ContosoUniversity.Models;
+
+namespace ContosoUniversity.Data
+{
+    public static class DbInitializer
+    {
+        public static void Initialize(SchoolContext context)
+        {
+            //context.Database.EnsureCreated();
+
+            // Look for any students.
+            if (context.Students.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var students = new Student[]
+            {
+                new Student { FirstMidName = &quot;Carson&quot;,   LastName = &quot;Alexander&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2010-09-01&quot;) },
+                new Student { FirstMidName = &quot;Meredith&quot;, LastName = &quot;Alonso&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2012-09-01&quot;) },
+                new Student { FirstMidName = &quot;Arturo&quot;,   LastName = &quot;Anand&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2013-09-01&quot;) },
+                new Student { FirstMidName = &quot;Gytis&quot;,    LastName = &quot;Barzdukas&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2012-09-01&quot;) },
+                new Student { FirstMidName = &quot;Yan&quot;,      LastName = &quot;Li&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2012-09-01&quot;) },
+                new Student { FirstMidName = &quot;Peggy&quot;,    LastName = &quot;Justice&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2011-09-01&quot;) },
+                new Student { FirstMidName = &quot;Laura&quot;,    LastName = &quot;Norman&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2013-09-01&quot;) },
+                new Student { FirstMidName = &quot;Nino&quot;,     LastName = &quot;Olivetto&quot;,
+                    EnrollmentDate = DateTime.Parse(&quot;2005-09-01&quot;) }
+            };
+
+            foreach (Student s in students)
+            {
+                context.Students.Add(s);
+            }
+            context.SaveChanges();
+
+            var instructors = new Instructor[]
+            {
+                new Instructor { FirstMidName = &quot;Kim&quot;,     LastName = &quot;Abercrombie&quot;,
+                    HireDate = DateTime.Parse(&quot;1995-03-11&quot;) },
+                new Instructor { FirstMidName = &quot;Fadi&quot;,    LastName = &quot;Fakhouri&quot;,
+                    HireDate = DateTime.Parse(&quot;2002-07-06&quot;) },
+                new Instructor { FirstMidName = &quot;Roger&quot;,   LastName = &quot;Harui&quot;,
+                    HireDate = DateTime.Parse(&quot;1998-07-01&quot;) },
+                new Instructor { FirstMidName = &quot;Candace&quot;, LastName = &quot;Kapoor&quot;,
+                    HireDate = DateTime.Parse(&quot;2001-01-15&quot;) },
+                new Instructor { FirstMidName = &quot;Roger&quot;,   LastName = &quot;Zheng&quot;,
+                    HireDate = DateTime.Parse(&quot;2004-02-12&quot;) }
+            };
+
+            foreach (Instructor i in instructors)
+            {
+                context.Instructors.Add(i);
+            }
+            context.SaveChanges();
+
+            var departments = new Department[]
+            {
+                new Department { Name = &quot;English&quot;,     Budget = 350000,
+                    StartDate = DateTime.Parse(&quot;2007-09-01&quot;),
+                    InstructorID  = instructors.Single( i =&gt; i.LastName == &quot;Abercrombie&quot;).ID },
+                new Department { Name = &quot;Mathematics&quot;, Budget = 100000,
+                    StartDate = DateTime.Parse(&quot;2007-09-01&quot;),
+                    InstructorID  = instructors.Single( i =&gt; i.LastName == &quot;Fakhouri&quot;).ID },
+                new Department { Name = &quot;Engineering&quot;, Budget = 350000,
+                    StartDate = DateTime.Parse(&quot;2007-09-01&quot;),
+                    InstructorID  = instructors.Single( i =&gt; i.LastName == &quot;Harui&quot;).ID },
+                new Department { Name = &quot;Economics&quot;,   Budget = 100000,
+                    StartDate = DateTime.Parse(&quot;2007-09-01&quot;),
+                    InstructorID  = instructors.Single( i =&gt; i.LastName == &quot;Kapoor&quot;).ID }
+            };
+
+            foreach (Department d in departments)
+            {
+                context.Departments.Add(d);
+            }
+            context.SaveChanges();
+
+            var courses = new Course[]
+            {
+                new Course {CourseID = 1050, Title = &quot;Chemistry&quot;,      Credits = 3,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;Engineering&quot;).DepartmentID
+                },
+                new Course {CourseID = 4022, Title = &quot;Microeconomics&quot;, Credits = 3,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;Economics&quot;).DepartmentID
+                },
+                new Course {CourseID = 4041, Title = &quot;Macroeconomics&quot;, Credits = 3,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;Economics&quot;).DepartmentID
+                },
+                new Course {CourseID = 1045, Title = &quot;Calculus&quot;,       Credits = 4,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;Mathematics&quot;).DepartmentID
+                },
+                new Course {CourseID = 3141, Title = &quot;Trigonometry&quot;,   Credits = 4,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;Mathematics&quot;).DepartmentID
+                },
+                new Course {CourseID = 2021, Title = &quot;Composition&quot;,    Credits = 3,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;English&quot;).DepartmentID
+                },
+                new Course {CourseID = 2042, Title = &quot;Literature&quot;,     Credits = 4,
+                    DepartmentID = departments.Single( s =&gt; s.Name == &quot;English&quot;).DepartmentID
+                },
+            };
+
+            foreach (Course c in courses)
+            {
+                context.Courses.Add(c);
+            }
+            context.SaveChanges();
+
+            var officeAssignments = new OfficeAssignment[]
+            {
+                new OfficeAssignment {
+                    InstructorID = instructors.Single( i =&gt; i.LastName == &quot;Fakhouri&quot;).ID,
+                    Location = &quot;Smith 17&quot; },
+                new OfficeAssignment {
+                    InstructorID = instructors.Single( i =&gt; i.LastName == &quot;Harui&quot;).ID,
+                    Location = &quot;Gowan 27&quot; },
+                new OfficeAssignment {
+                    InstructorID = instructors.Single( i =&gt; i.LastName == &quot;Kapoor&quot;).ID,
+                    Location = &quot;Thompson 304&quot; },
+            };
+
+            foreach (OfficeAssignment o in officeAssignments)
+            {
+                context.OfficeAssignments.Add(o);
+            }
+            context.SaveChanges();
+
+            var courseInstructors = new CourseAssignment[]
+            {
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Chemistry&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Kapoor&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Chemistry&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Harui&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Microeconomics&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Zheng&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Macroeconomics&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Zheng&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Calculus&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Fakhouri&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Trigonometry&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Harui&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Composition&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Abercrombie&quot;).ID
+                    },
+                new CourseAssignment {
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Literature&quot; ).CourseID,
+                    InstructorID = instructors.Single(i =&gt; i.LastName == &quot;Abercrombie&quot;).ID
+                    },
+            };
+
+            foreach (CourseAssignment ci in courseInstructors)
+            {
+                context.CourseAssignments.Add(ci);
+            }
+            context.SaveChanges();
+
+            var enrollments = new Enrollment[]
+            {
+                new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Alexander&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Chemistry&quot; ).CourseID,
+                    Grade = Grade.A
+                },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Alexander&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Microeconomics&quot; ).CourseID,
+                    Grade = Grade.C
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Alexander&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Macroeconomics&quot; ).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                        StudentID = students.Single(s =&gt; s.LastName == &quot;Alonso&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Calculus&quot; ).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                        StudentID = students.Single(s =&gt; s.LastName == &quot;Alonso&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Trigonometry&quot; ).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Alonso&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Composition&quot; ).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Anand&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Chemistry&quot; ).CourseID
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Anand&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Microeconomics&quot;).CourseID,
+                    Grade = Grade.B
+                    },
+                new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Barzdukas&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Chemistry&quot;).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Li&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Composition&quot;).CourseID,
+                    Grade = Grade.B
+                    },
+                    new Enrollment {
+                    StudentID = students.Single(s =&gt; s.LastName == &quot;Justice&quot;).ID,
+                    CourseID = courses.Single(c =&gt; c.Title == &quot;Literature&quot;).CourseID,
+                    Grade = Grade.B
+                    }
+            };
+
+            foreach (Enrollment e in enrollments)
+            {
+                var enrollmentInDataBase = context.Enrollments.Where(
+                    s =&gt;
+                            s.Student.ID == e.StudentID &amp;&amp;
+                            s.Course.CourseID == e.CourseID).SingleOrDefault();
+                if (enrollmentInDataBase == null)
+                {
+                    context.Enrollments.Add(e);
+                }
+            }
+            context.SaveChanges();
+        }
+    }
+}
+</code></pre><p>As you saw in the first tutorial, most of this code simply creates new entity objects and loads sample data into properties as required for testing. Notice how the many-to-many relationships are handled: the code creates relationships by creating entities in the <code>Enrollments</code> and <code>CourseAssignment</code> join entity sets.</p>
+<h2 id="add-a-migration">Add a migration</h2>
+<p>Save your changes and build the project. Then open the command window in the project folder and enter the <code>migrations add</code> command (don&#39;t do the update-database command yet):</p>
+<pre><code class="lang-console">dotnet ef migrations add ComplexDataModel
+</code></pre><p>You get a warning about possible data loss.</p>
+<pre><code class="lang-text">An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
+Done. To undo this action, use &#39;ef migrations remove&#39;
+</code></pre><p>If you tried to run the <code>database update</code> command at this point (don&#39;t do it yet), you would get the following error:</p>
+<blockquote><p>The ALTER TABLE statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Course_dbo.Department_DepartmentID&quot;. The conflict occurred in database &quot;ContosoUniversity&quot;, table &quot;dbo.Department&quot;, column &#39;DepartmentID&#39;.</p>
+</blockquote>
+<p>Sometimes when you execute migrations with existing data, you need to insert stub data into the database to satisfy foreign key constraints. The generated code in the <code>Up</code> method adds a non-nullable DepartmentID foreign key to the Course table. If there are already rows in the Course table when the code runs, the <code>AddColumn</code> operation fails because SQL Server doesn&#39;t know what value to put in the column that can&#39;t be null. For this tutorial you&#39;ll run the migration on a new database, but in a production application you&#39;d have to make the migration handle existing data, so the following directions show an example of how to do that.</p>
+<p>To make this migration work with existing data you have to change the code to give the new column a default value, and create a stub department named &quot;Temp&quot; to act as the default department. As a result, existing Course rows will all be related to the &quot;Temp&quot; department after the <code>Up</code> method runs.</p>
+<ul>
+<li><p>Open the <em>{timestamp}_ComplexDataModel.cs</em> file. </p>
+</li>
+<li><p>Comment out the line of code that adds the DepartmentID column to the Course table.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="9-13">migrationBuilder.AlterColumn&lt;string&gt;(
+    name: &quot;Title&quot;,
+    table: &quot;Course&quot;,
+    maxLength: 50,
+    nullable: true,
+    oldClrType: typeof(string),
+    oldNullable: true);
+            
+//migrationBuilder.AddColumn&lt;int&gt;(
+//    name: &quot;DepartmentID&quot;,
+//    table: &quot;Course&quot;,
+//    nullable: false,
+//    defaultValue: 0);
+</code></pre></li>
+<li><p>Add the following highlighted code after the code that creates the Department table:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="22-32">migrationBuilder.CreateTable(
+    name: &quot;Department&quot;,
+    columns: table =&gt; new
+    {
+        DepartmentID = table.Column&lt;int&gt;(nullable: false)
+            .Annotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn),
+        Budget = table.Column&lt;decimal&gt;(type: &quot;money&quot;, nullable: false),
+        InstructorID = table.Column&lt;int&gt;(nullable: true),
+        Name = table.Column&lt;string&gt;(maxLength: 50, nullable: true),
+        StartDate = table.Column&lt;DateTime&gt;(nullable: false)
+    },
+    constraints: table =&gt;
+    {
+        table.PrimaryKey(&quot;PK_Department&quot;, x =&gt; x.DepartmentID);
+        table.ForeignKey(
+            name: &quot;FK_Department_Instructor_InstructorID&quot;,
+            column: x =&gt; x.InstructorID,
+            principalTable: &quot;Instructor&quot;,
+            principalColumn: &quot;ID&quot;,
+            onDelete: ReferentialAction.Restrict);
+    });
+
+migrationBuilder.Sql(&quot;INSERT INTO dbo.Department (Name, Budget, StartDate) VALUES (&#39;Temp&#39;, 0.00, GETDATE())&quot;);
+// Default value for FK points to department created above, with
+// defaultValue changed to 1 in following AddColumn statement.
+
+migrationBuilder.AddColumn&lt;int&gt;(
+    name: &quot;DepartmentID&quot;,
+    table: &quot;Course&quot;,
+    nullable: false,
+    defaultValue: 1);
+</code></pre></li>
+</ul>
+<p>In a production application, you would write code or scripts to add Department rows and relate Course rows to the new Department rows. You would then no longer need the &quot;Temp&quot; department or the default value on the Course.DepartmentID column.</p>
+<p>Save your changes and build the project.</p>
+<h2 id="change-the-connection-string-and-update-the-database">Change the connection string and update the database</h2>
+<p>You now have new code in the <code>DbInitializer</code> class that adds seed data for the new entities to an empty database. To make EF create a new empty database, change the name of the database in the connection string in <em>appsettings.json</em> to ContosoUniversity3 or some other name that you haven&#39;t used on the computer you&#39;re using.</p>
+<pre><code class="lang-json">{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Server=(localdb)\\mssqllocaldb;Database=ContosoUniversity3;Trusted_Connection=True;MultipleActiveResultSets=true&quot;
+  },
+</code></pre><p>Save your change to <em>appsettings.json</em>.</p>
+<div class="NOTE"><h5>Note</h5><p>As an alternative to changing the database name, you can delete the database. Use <strong>SQL Server Object Explorer</strong> (SSOX) or the <code>database drop</code> CLI command:</p>
+<pre><code class="lang-console">dotnet ef database drop
+</code></pre></div>
+<p>After you have changed the database name or deleted the database, run the <code>database update</code> command in the command window to execute the migrations.</p>
+<pre><code class="lang-console">dotnet ef database update
+</code></pre><p>Run the app to cause the <code>DbInitializer.Initialize</code> method to run and populate the new database.</p>
+<p>Open the database in SSOX as you did earlier, and expand the <strong>Tables</strong> node to see that all of the tables have been created. (If you still have SSOX open from the earlier time, click the <strong>Refresh</strong> button.)</p>
+<p><img src="complex-data-model/_static/ssox-tables.png" alt="Tables in SSOX"></p>
+<p>Run the app to trigger the initializer code that seeds the database.</p>
+<p>Right-click the <strong>CourseAssignment</strong> table and select <strong>View Data</strong> to verify that it has data in it.</p>
+<p><img src="complex-data-model/_static/ssox-ci-data.png" alt="CourseAssignment data in SSOX"></p>
+<h2 id="summary">Summary</h2>
+<p>You now have a more complex data model and corresponding database. In the following tutorial, you&#39;ll learn more about how to access related data.</p>
+<div class="step-by-step"><p><a href="migrations.html">Previous</a>
+<a href="read-related-data.html">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-mvc/complex-data-model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

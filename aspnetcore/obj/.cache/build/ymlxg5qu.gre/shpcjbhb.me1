@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Password Hashing </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Password Hashing ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/consumer-apis/password-hashing">
+<h1 id="password-hashing" sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="15" sourceendlinenumber="15">Password Hashing</h1>
+
+<p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="17" sourceendlinenumber="17">The data protection code base includes a package <em>Microsoft.AspNetCore.Cryptography.KeyDerivation</em> which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.</p>
+<p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="19" sourceendlinenumber="19">The package currently offers a method <code>KeyDerivation.Pbkdf2</code> which allows hashing a password using the <a href="https://tools.ietf.org/html/rfc2898#section-5.2" data-raw-source="[PBKDF2 algorithm](https://tools.ietf.org/html/rfc2898#section-5.2)" sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="19" sourceendlinenumber="19">PBKDF2 algorithm</a>. This API is very similar to the .NET Framework&#39;s existing <a href="https://docs.microsoft.com/dotnet/api/system.security.cryptography.rfc2898derivebytes" data-raw-source="[Rfc2898DeriveBytes type](https://docs.microsoft.com/dotnet/api/system.security.cryptography.rfc2898derivebytes)" sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="19" sourceendlinenumber="19">Rfc2898DeriveBytes type</a>, but there are three important distinctions:</p>
+<ol sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="21" sourceendlinenumber="25">
+<li sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="21" sourceendlinenumber="21"><p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="21" sourceendlinenumber="21">The <code>KeyDerivation.Pbkdf2</code> method supports consuming multiple PRFs (currently <code>HMACSHA1</code>, <code>HMACSHA256</code>, and <code>HMACSHA512</code>), whereas the <code>Rfc2898DeriveBytes</code> type only supports <code>HMACSHA1</code>.</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="23" sourceendlinenumber="23"><p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="23" sourceendlinenumber="23">The <code>KeyDerivation.Pbkdf2</code> method detects the current operating system and attempts to choose the most optimized implementation of the routine, providing much better performance in certain cases. (On Windows 8, it offers around 10x the throughput of <code>Rfc2898DeriveBytes</code>.)</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="25" sourceendlinenumber="25"><p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="25" sourceendlinenumber="25">The <code>KeyDerivation.Pbkdf2</code> method requires the caller to specify all parameters (salt, PRF, and iteration count). The <code>Rfc2898DeriveBytes</code> type provides default values for these.</p>
+</li>
+</ol>
+<pre sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="27" sourceendlinenumber="27"><code class="lang-csharp" name="Main">using System;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+&#160;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.Write(&quot;Enter a password: &quot;);
+        string password = Console.ReadLine();
+&#160;
+        // generate a 128-bit salt using a secure PRNG
+        byte[] salt = new byte[128 / 8];
+        using (var rng = RandomNumberGenerator.Create())
+        {
+            rng.GetBytes(salt);
+        }
+        Console.WriteLine($&quot;Salt: {Convert.ToBase64String(salt)}&quot;);
+&#160;
+        // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+        string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            password: password,
+            salt: salt,
+            prf: KeyDerivationPrf.HMACSHA1,
+            iterationCount: 10000,
+            numBytesRequested: 256 / 8));
+        Console.WriteLine($&quot;Hashed: {hashed}&quot;);
+    }
+}
+&#160;
+/*
+ * SAMPLE OUTPUT
+ *
+ * Enter a password: Xtw9NMgx
+ * Salt: NZsP6NnmfBuYeJrrAKNuVQ==
+ * Hashed: /OOoOer10+tGwTRDTrQSoeCxVTFr6dtYly7d0cPxIak=
+ */
+</code></pre><p sourcefile="security/data-protection/consumer-apis/password-hashing.md" sourcestartlinenumber="29" sourceendlinenumber="29">See the source code for ASP.NET Core Identity&#39;s <code>PasswordHasher</code> type for a real-world use case.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/consumer-apis/password-hashing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Azure Key Vault configuration provider </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Azure Key Vault configuration provider ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/key-vault-configuration">
+<h1 id="azure-key-vault-configuration-provider" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="14" sourceendlinenumber="14">Azure Key Vault configuration provider</h1>
+
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://github.com/guardrex" data-raw-source="[Luke Latham](https://github.com/guardrex)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="16" sourceendlinenumber="16">Luke Latham</a> and <a href="https://github.com/anurse" data-raw-source="[Andrew Stanton-Nurse](https://github.com/anurse)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="16" sourceendlinenumber="16">Andrew Stanton-Nurse</a></p>
+<div class="tabGroup" id="tabgroup_bb5Rg6ih+x" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="18" sourceendlinenumber="30">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_bb5Rg6ih+x_aspnetcore2x" role="tab" aria-controls="tabpanel_bb5Rg6ih+x_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="18" sourceendlinenumber="18">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_bb5Rg6ih+x_aspnetcore1x" role="tab" aria-controls="tabpanel_bb5Rg6ih+x_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="25" sourceendlinenumber="25">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_bb5Rg6ih+x_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="20" sourceendlinenumber="20">View or download sample code for 2.x:</p>
+<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="22" sourceendlinenumber="23">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x" data-raw-source="[Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="22" sourceendlinenumber="22">Basic sample</a> - Reads secret values into an app.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="23" sourceendlinenumber="23"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x" data-raw-source="[Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="23" sourceendlinenumber="23">Key name prefix sample</a> - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.</li>
+</ul>
+</section>
+<section id="tabpanel_bb5Rg6ih+x_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="27" sourceendlinenumber="27">View or download sample code for 1.x:</p>
+<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="29" sourceendlinenumber="30">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="29" sourceendlinenumber="29"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x" data-raw-source="[Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="29" sourceendlinenumber="29">Basic sample</a> - Reads secret values into an app.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="30" sourceendlinenumber="30"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x" data-raw-source="[Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="30" sourceendlinenumber="30">Key name prefix sample</a> - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version. </li>
+</ul>
+</section>
+</div>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="34" sourceendlinenumber="34">This document explains how to use the <a href="https://azure.microsoft.com/services/key-vault/" data-raw-source="[Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="34" sourceendlinenumber="34">Microsoft Azure Key Vault</a> configuration provider to load application configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by apps and services. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM&#39;s) when storing configuration data. This feature is available for applications that target ASP.NET Core 1.1 or higher.</p>
+<h2 id="package" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="36" sourceendlinenumber="36">Package</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="37" sourceendlinenumber="37">To use the provider, add a reference to the <a href="https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/" data-raw-source="[Microsoft.Extensions.Configuration.AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="37" sourceendlinenumber="37">Microsoft.Extensions.Configuration.AzureKeyVault</a> package.</p>
+<h2 id="application-configuration" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="39" sourceendlinenumber="39">Application configuration</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="40" sourceendlinenumber="40">You can explore the provider with the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples" data-raw-source="[sample apps](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="40" sourceendlinenumber="40">sample apps</a>. Once you establish a key vault and create secrets in the vault, the sample apps securely load the secret values into their configurations and display them in webpages.</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="42" sourceendlinenumber="42">The provider is added to the <code>ConfigurationBuilder</code> with the <code>AddAzureKeyVault</code> extension. In the sample apps, the extension uses three configuration values loaded from the <em>appsettings.json</em> file.</p>
+<table sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="44" sourceendlinenumber="48">
+<thead>
+<tr>
+<th>App Setting</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vault</code></td>
+<td>Azure Key Vault name</td>
+<td>contosovault</td>
+</tr>
+<tr>
+<td><code>ClientId</code></td>
+<td>Azure Active Directory App Id</td>
+<td>627e911e-43cc-61d4-992e-12db9c81b413</td>
+</tr>
+<tr>
+<td><code>ClientSecret</code></td>
+<td>Azure Active Directory App Key</td>
+<td>g58K3dtg59o1Pa+e59v2Tx829w6VxTB2yv9sv/101di=</td>
+</tr>
+</tbody>
+</table>
+<pre sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="50" sourceendlinenumber="50"><code class="lang-csharp" name="Program" highlight-lines="2,7-10">config.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile(&quot;appsettings.json&quot;, optional: false)
+    .AddEnvironmentVariables();
+
+var builtConfig = config.Build();
+
+config.AddAzureKeyVault(
+    $&quot;https://{builtConfig[&quot;Vault&quot;]}.vault.azure.net/&quot;,
+    builtConfig[&quot;ClientId&quot;],
+    builtConfig[&quot;ClientSecret&quot;]);
+</code></pre><h2 id="creating-key-vault-secrets-and-loading-configuration-values-basic-sample" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="52" sourceendlinenumber="52">Creating key vault secrets and loading configuration values (basic-sample)</h2>
+<ol sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="53" sourceendlinenumber="67">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="53" sourceendlinenumber="61">Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in <a href="https://azure.microsoft.com/documentation/articles/key-vault-get-started/" data-raw-source="[Get started with Azure Key Vault](https://azure.microsoft.com/documentation/articles/key-vault-get-started/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="53" sourceendlinenumber="53">Get started with Azure Key Vault</a>.<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="61">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="59">Add secrets to the key vault using the <a href="/powershell/module/azurerm.keyvault" data-raw-source="[AzureRM Key Vault PowerShell Module](/powershell/module/azurerm.keyvault)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="54">AzureRM Key Vault PowerShell Module</a> available from the <a href="https://www.powershellgallery.com/packages/AzureRM.KeyVault" data-raw-source="[PowerShell Gallery](https://www.powershellgallery.com/packages/AzureRM.KeyVault)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="54">PowerShell Gallery</a>, the <a href="/rest/api/keyvault/" data-raw-source="[Azure Key Vault REST API](/rest/api/keyvault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="54">Azure Key Vault REST API</a>, or the <a href="https://portal.azure.com/" data-raw-source="[Azure Portal](https://portal.azure.com/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="54" sourceendlinenumber="54">Azure Portal</a>. Secrets are created as either <em>Manual</em> or <em>Certificate</em> secrets. <em>Certificate</em> secrets are certificates for use by apps and services but are not supported by the configuration provider. You should use the <em>Manual</em> option to create name-value pair secrets for use with the configuration provider.<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="55" sourceendlinenumber="59">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="55" sourceendlinenumber="55">Simple secrets are created as name-value pairs. Azure Key Vault secret names are limited to alphanumeric characters and dashes.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="56" sourceendlinenumber="56">Hierarchical values (configuration sections) use <code>--</code> (two dashes) as a separator in the sample. Colons, which are normally used to delimit a section from a subkey in <a class="xref" href="../fundamentals/configuration.html" data-raw-source="[ASP.NET Core configuration](xref:fundamentals/configuration)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="56" sourceendlinenumber="56">ASP.NET Core configuration</a>, aren&#39;t allowed in secret names. Therefore, two dashes are used and swapped for a colon when the secrets are loaded into the app&#39;s configuration.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="57" sourceendlinenumber="59">Create two <em>Manual</em> secrets with the following name-value pairs. The first secret is a simple name and value, and the second secret creates a secret value with a section and subkey in the secret name:<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="58" sourceendlinenumber="59">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="58" sourceendlinenumber="58"><code>SecretName</code>: <code>secret_value_1</code></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="59" sourceendlinenumber="59"><code>Section--SecretName</code>: <code>secret_value_2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="60" sourceendlinenumber="60">Register the sample app with Azure Active Directory.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="61" sourceendlinenumber="61">Authorize the app to access the key vault. When you use the <code>Set-AzureRmKeyVaultAccessPolicy</code> PowerShell cmdlet to authorize the app to access the key vault, provide <code>List</code> and <code>Get</code> access to secrets with <code>-PermissionsToKeys list,get</code>.</li>
+</ul>
+</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="62" sourceendlinenumber="62">Update the app&#39;s <em>appsettings.json</em> file with the values of <code>Vault</code>, <code>ClientId</code>, and <code>ClientSecret</code>.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="63" sourceendlinenumber="67">Run the sample app, which obtains its configuration values from <code>IConfigurationRoot</code> with the same name as the secret name.<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="64" sourceendlinenumber="67">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="64" sourceendlinenumber="64">Non-hierarchical values: The value for <code>SecretName</code> is obtained with <code>config[&quot;SecretName&quot;]</code>.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="65" sourceendlinenumber="67">Hierarchical values (sections): Use <code>:</code> (colon) notation or the <code>GetSection</code> extension method. Use either of these approaches to obtain the configuration value:<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="66" sourceendlinenumber="67">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code>config[&quot;Section:SecretName&quot;]</code></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="67" sourceendlinenumber="67"><code>config.GetSection(&quot;Section&quot;)[&quot;SecretName&quot;]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="69" sourceendlinenumber="69">When you run the app, a webpage shows the loaded secret values:</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="71" sourceendlinenumber="71"><img src="key-vault-configuration/_static/sample1.png" alt="Browser window showing secret values loaded via the Azure Key Vault Configuration Provider" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="71" sourceendlinenumber="71"></p>
+<h2 id="creating-prefixed-key-vault-secrets-and-loading-configuration-values-key-name-prefix-sample" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="73" sourceendlinenumber="73">Creating prefixed key vault secrets and loading configuration values (key-name-prefix-sample)</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="74" sourceendlinenumber="74"><code>AddAzureKeyVault</code> also provides an overload that accepts an implementation of <code>IKeyVaultSecretManager</code>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.</p>
+<div class="WARNING" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="76" sourceendlinenumber="76"><h5>Warning</h5><p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="77" sourceendlinenumber="77">Don&#39;t use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, <em>development</em> verus <em>production</em> secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.</p>
+</div>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="79" sourceendlinenumber="79">Using the second sample app, you create a secret in the key vault for <code>5000-AppSecret</code> (periods aren&#39;t allowed in key vault secret names) representing an app secret for version 5.0.0.0 of your app. For another version, 5.1.0.0, you create a secret for <code>5100-AppSecret</code>. Each app version loads its own secret value into its configuration as <code>AppSecret</code>, stripping off the version as it loads the secret. The sample&#39;s implementation is shown below:</p>
+<pre sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="81" sourceendlinenumber="81"><code class="lang-csharp" name="Configuration builder" highlight-lines="12">// The appVersion obtains the app version (5.0.0.0), which 
+// is set in the project file and obtained from the entry 
+// assembly. The versionPrefix holds the version without 
+// dot notation for the PrefixKeyVaultSecretManager.
+var appVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
+var versionPrefix = appVersion.Replace(&quot;.&quot;, string.Empty);
+
+config.AddAzureKeyVault(
+    $&quot;https://{builtConfig[&quot;Vault&quot;]}.vault.azure.net/&quot;,
+    builtConfig[&quot;ClientId&quot;],
+    builtConfig[&quot;ClientSecret&quot;],
+    new PrefixKeyVaultSecretManager(versionPrefix));
+</code></pre><pre sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="83" sourceendlinenumber="83"><code class="lang-csharp" name="PrefixKeyVaultSecretManager">public class PrefixKeyVaultSecretManager : IKeyVaultSecretManager
+{
+    private readonly string _prefix;
+
+    public PrefixKeyVaultSecretManager(string prefix)
+    {
+        _prefix = $&quot;{prefix}-&quot;;
+    }
+
+    public bool Load(SecretItem secret)
+    {
+        // Load a vault secret when its secret name starts with the 
+        // prefix. Other secrets won&#39;t be loaded.
+        return secret.Identifier.Name.StartsWith(_prefix);
+    }
+
+    public string GetKey(SecretBundle secret)
+    {
+        // Remove the prefix from the secret name and replace two 
+        // dashes in any name with the KeyDelimiter, which is the 
+        // delimiter used in configuration (usually a colon). Azure 
+        // Key Vault doesn&#39;t allow a colon in secret names.
+        return secret.SecretIdentifier.Name
+            .Substring(_prefix.Length)
+            .Replace(&quot;--&quot;, ConfigurationPath.KeyDelimiter);
+    }
+}
+</code></pre><p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="85" sourceendlinenumber="85">The <code>Load</code> method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with <code>Load</code>, the algorithm uses the <code>GetKey</code> method to return the configuration name of the secret name. It strips off the version prefix from the secret&#39;s name and returns the rest of the secret name for loading into the app&#39;s configuration name-value pairs.</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="87" sourceendlinenumber="87">When you implement this approach:</p>
+<ol sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="89" sourceendlinenumber="91">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="89" sourceendlinenumber="89">The key vault secrets are loaded.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="90" sourceendlinenumber="90">The string secret for <code>5000-AppSecret</code> is matched.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="91" sourceendlinenumber="91">The version, <code>5000</code> (with the dash), is stripped off of the key name leaving <code>AppSecret</code> to load with the secret value into the app&#39;s configuration.</li>
+</ol>
+<div class="NOTE" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="93" sourceendlinenumber="93"><h5>Note</h5><p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="94" sourceendlinenumber="94">You can also provide your own <code>KeyVaultClient</code> implementation to <code>AddAzureKeyVault</code>. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your app.</p>
+</div>
+<ol sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="96" sourceendlinenumber="111">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="96" sourceendlinenumber="103">Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in <a href="https://azure.microsoft.com/documentation/articles/key-vault-get-started/" data-raw-source="[Get started with Azure Key Vault](https://azure.microsoft.com/documentation/articles/key-vault-get-started/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="96" sourceendlinenumber="96">Get started with Azure Key Vault</a>.<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="103">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="101">Add secrets to the key vault using the <a href="/powershell/module/azurerm.keyvault" data-raw-source="[AzureRM Key Vault PowerShell Module](/powershell/module/azurerm.keyvault)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="97">AzureRM Key Vault PowerShell Module</a> available from the <a href="https://www.powershellgallery.com/packages/AzureRM.KeyVault" data-raw-source="[PowerShell Gallery](https://www.powershellgallery.com/packages/AzureRM.KeyVault)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="97">PowerShell Gallery</a>, the <a href="/rest/api/keyvault/" data-raw-source="[Azure Key Vault REST API](/rest/api/keyvault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="97">Azure Key Vault REST API</a>, or the <a href="https://portal.azure.com/" data-raw-source="[Azure Portal](https://portal.azure.com/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="97" sourceendlinenumber="97">Azure Portal</a>. Secrets are created as either <em>Manual</em> or <em>Certificate</em> secrets. <em>Certificate</em> secrets are certificates for use by apps and services but are not supported by the configuration provider. You should use the <em>Manual</em> option to create name-value pair secrets for use with the configuration provider.<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="98" sourceendlinenumber="101">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="98" sourceendlinenumber="98">Hierarchical values (configuration sections) use <code>--</code> (two dashes) as a separator.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="99" sourceendlinenumber="101">Create two <em>Manual</em> secrets with the following name-value pairs:<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="100" sourceendlinenumber="101">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="100" sourceendlinenumber="100"><code>5000-AppSecret</code>: <code>5.0.0.0_secret_value</code></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="101" sourceendlinenumber="101"><code>5100-AppSecret</code>: <code>5.1.0.0_secret_value</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="102" sourceendlinenumber="102">Register the sample app with Azure Active Directory.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="103" sourceendlinenumber="103">Authorize the app to access the key vault. When you use the <code>Set-AzureRmKeyVaultAccessPolicy</code> PowerShell cmdlet to authorize the app to access the key vault, provide <code>List</code> and <code>Get</code> access to secrets with <code>-PermissionsToKeys list,get</code>.</li>
+</ul>
+</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="104" sourceendlinenumber="104">Update the app&#39;s <em>appsettings.json</em> file with the values of <code>Vault</code>, <code>ClientId</code>, and <code>ClientSecret</code>.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="105" sourceendlinenumber="107"><p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="105" sourceendlinenumber="105">Run the sample app, which obtains its configuration values from <code>IConfigurationRoot</code> with the same name as the prefixed secret name. In this sample, the prefix is the app&#39;s version, which you provided to the <code>PrefixKeyVaultSecretManager</code> when you added the Azure Key Vault configuration provider. The value for <code>AppSecret</code> is obtained with <code>config[&quot;AppSecret&quot;]</code>. The webpage generated by the app shows the loaded value:</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="107" sourceendlinenumber="107"><img src="key-vault-configuration/_static/sample2-1.png" alt="Browser window showing a secret value loaded via the Azure Key Vault Configuration Provider when the app&#39;s version is 5.0.0.0" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="107" sourceendlinenumber="107"></p>
+</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="109" sourceendlinenumber="111"><p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="109" sourceendlinenumber="109">Change the version of the app assembly in the project file from <code>5.0.0.0</code> to <code>5.1.0.0</code> and run the app again. This time, the secret value returned is <code>5.1.0.0_secret_value</code>. The webpage generated by the app shows the loaded value:</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="111" sourceendlinenumber="111"><img src="key-vault-configuration/_static/sample2-2.png" alt="Browser window showing a secret value loaded via the Azure Key Vault Configuration Provider when the app&#39;s version is 5.1.0.0" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="111" sourceendlinenumber="111"></p>
+</li>
+</ol>
+<h2 id="controlling-access-to-the-clientsecret" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="113" sourceendlinenumber="113">Controlling access to the ClientSecret</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="114" sourceendlinenumber="114">Use the <a class="xref" href="app-secrets.html" data-raw-source="[Secret Manager tool](xref:security/app-secrets)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="114" sourceendlinenumber="114">Secret Manager tool</a> to maintain the <code>ClientSecret</code> outside of your project source tree. With Secret Manager, you associate app secrets with a specific project and share them across multiple projects.</p>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="116" sourceendlinenumber="116">When developing a .NET Framework app in an environment that supports certificates, you can authenticate to Azure Key Vault with an X.509 certificate. The X.509 certificate&#39;s private key is managed by the OS. For more information, see <a href="https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret" data-raw-source="[Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="116" sourceendlinenumber="116">Authenticate with a Certificate instead of a Client Secret</a>. Use the <code>AddAzureKeyVault</code> overload that accepts an <code>X509Certificate2</code>.</p>
+<pre sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="118" sourceendlinenumber="131"><code class="lang-csharp">var store = new X509Store(StoreLocation.CurrentUser);
+store.Open(OpenFlags.ReadOnly);
+var cert = store.Certificates.Find(X509FindType.FindByThumbprint, config[&quot;CertificateThumbprint&quot;], false);
+
+builder.AddAzureKeyVault(
+    config[&quot;Vault&quot;],
+    config[&quot;ClientId&quot;],
+    cert.OfType&lt;X509Certificate2&gt;().Single(),
+    new EnvironmentSecretManager(env.ApplicationName));
+store.Close();
+
+Configuration = builder.Build();
+</code></pre><h2 id="reloading-secrets" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="133" sourceendlinenumber="133">Reloading secrets</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="134" sourceendlinenumber="134">Secrets are cached until <code>IConfigurationRoot.Reload()</code> is called. Expired, disabled, and updated secrets in the key vault are not respected by the application until <code>Reload</code> is executed.</p>
+<pre sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="136" sourceendlinenumber="138"><code class="lang-csharp">Configuration.Reload();
+</code></pre><h2 id="disabled-and-expired-secrets" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="140" sourceendlinenumber="140">Disabled and expired secrets</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="141" sourceendlinenumber="141">Disabled and expired secrets throw a <code>KeyVaultClientException</code>. To prevent your app from throwing, replace your app or update the disabled/expired secret.</p>
+<h2 id="troubleshooting" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="143" sourceendlinenumber="143">Troubleshooting</h2>
+<p sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="144" sourceendlinenumber="144">When the application fails to load configuration using the provider, an error message is written to the <a class="xref" href="../fundamentals/logging.html" data-raw-source="[ASP.NET Logging infrastructure](xref:fundamentals/logging)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="144" sourceendlinenumber="144">ASP.NET Logging infrastructure</a>. The following conditions will prevent configuration from loading:</p>
+<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="145" sourceendlinenumber="152">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="145" sourceendlinenumber="145">The app isn&#39;t configured correctly in Azure Active Directory.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="146" sourceendlinenumber="146">The key vault doesn&#39;t exist in Azure Key Vault.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="147" sourceendlinenumber="147">The app isn&#39;t authorized to access the key vault.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="148" sourceendlinenumber="148">The access policy doesn&#39;t include <code>Get</code> and <code>List</code> permissions.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="149" sourceendlinenumber="149">In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="150" sourceendlinenumber="150">The app has the wrong key vault name (<code>Vault</code>), Azure AD App Id (<code>ClientId</code>), or Azure AD Key (<code>ClientSecret</code>).</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="151" sourceendlinenumber="151">The Azure AD Key (<code>ClientSecret</code>) is expired.</li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="152" sourceendlinenumber="152">The configuration key (name) is incorrect in the app for the value you&#39;re trying to load.</li>
+</ul>
+<h2 id="additional-resources" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="154" sourceendlinenumber="154">Additional resources</h2>
+<ul sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="155" sourceendlinenumber="159">
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="155" sourceendlinenumber="155"><a class="xref" href="../fundamentals/configuration.html" data-raw-source="&lt;xref:fundamentals/configuration&gt;" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="155" sourceendlinenumber="155">Configuration in ASP.NET Core</a></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="156" sourceendlinenumber="156"><a href="https://azure.microsoft.com/services/key-vault/" data-raw-source="[Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="156" sourceendlinenumber="156">Microsoft Azure: Key Vault</a></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="157" sourceendlinenumber="157"><a href="https://docs.microsoft.com/azure/key-vault/" data-raw-source="[Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/azure/key-vault/)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="157" sourceendlinenumber="157">Microsoft Azure: Key Vault Documentation</a></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="158" sourceendlinenumber="158"><a href="https://docs.microsoft.com/azure/key-vault/key-vault-hsm-protected-keys" data-raw-source="[How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-hsm-protected-keys)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="158" sourceendlinenumber="158">How to generate and transfer HSM-protected keys for Azure Key Vault</a></li>
+<li sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="159" sourceendlinenumber="159"><a href="https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclient" data-raw-source="[KeyVaultClient Class](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclient)" sourcefile="security/key-vault-configuration.md" sourcestartlinenumber="159" sourceendlinenumber="159">KeyVaultClient Class</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/key-vault-configuration.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

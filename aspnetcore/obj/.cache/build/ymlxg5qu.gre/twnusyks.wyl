@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting Started with ASP.NET Core 1.1 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting Started with ASP.NET Core 1.1 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="getting-started-1.1">
+<h1 id="getting-started-with-aspnet-core-11" sourcefile="getting-started-1.1.md" sourcestartlinenumber="15" sourceendlinenumber="15">Getting Started with ASP.NET Core 1.1</h1>
+
+<div class="NOTE" sourcefile="getting-started-1.1.md" sourcestartlinenumber="17" sourceendlinenumber="17"><h5>Note</h5><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="18" sourceendlinenumber="18">These instructions are for ASP.NET Core 1.1. Looking for the latest version? See <a class="xref" href="getting-started.html" data-raw-source="[the current version of this tutorial](xref:getting-started)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="18" sourceendlinenumber="18">the current version of this tutorial</a>.</p>
+</div>
+<ol sourcefile="getting-started-1.1.md" sourcestartlinenumber="20" sourceendlinenumber="59">
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="20" sourceendlinenumber="20"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="20" sourceendlinenumber="20">Install the .NET Core <strong>SDK Installer</strong> for SDK 1.0.4 from the <a href="https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.0.5-download.md" data-raw-source="[.NET Core 1.0.5 &amp; 1.1.2 SDK 1.0.4 downloads page](https://github.com/dotnet/core/blob/master/release-notes/download-archives/1.0.5-download.md)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="20" sourceendlinenumber="20">.NET Core 1.0.5 &amp; 1.1.2 SDK 1.0.4 downloads page</a>.</p>
+</li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="22" sourceendlinenumber="29"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="22" sourceendlinenumber="22">Create a folder for a new .NET Core project.</p>
+<p sourcefile="getting-started-1.1.md" sourcestartlinenumber="24" sourceendlinenumber="24">On macOS and Linux, open a terminal window. On Windows, open a command prompt.</p>
+<pre sourcefile="getting-started-1.1.md" sourcestartlinenumber="26" sourceendlinenumber="29"><code class="lang-terminal">mkdir aspnetcoreapp
+cd aspnetcoreapp
+</code></pre></li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="31" sourceendlinenumber="37"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="31" sourceendlinenumber="31">If you have installed a later SDK version on your machine, create a <em>global.json</em> file to select the 1.0.4 SDK.</p>
+<pre sourcefile="getting-started-1.1.md" sourcestartlinenumber="33" sourceendlinenumber="37"><code class="lang-json">{
+  &quot;sdk&quot;: { &quot;version&quot;: &quot;1.0.4&quot; }
+}
+</code></pre></li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="39" sourceendlinenumber="43"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="39" sourceendlinenumber="39">Create a new .NET Core project.</p>
+<pre sourcefile="getting-started-1.1.md" sourcestartlinenumber="41" sourceendlinenumber="43"><code class="lang-terminal">dotnet new web
+</code></pre></li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="45" sourceendlinenumber="49"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="45" sourceendlinenumber="45">Restore the packages.</p>
+<pre sourcefile="getting-started-1.1.md" sourcestartlinenumber="47" sourceendlinenumber="49"><code class="lang-terminal">dotnet restore
+</code></pre></li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="51" sourceendlinenumber="57"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="51" sourceendlinenumber="51">Run the app.</p>
+<p sourcefile="getting-started-1.1.md" sourcestartlinenumber="53" sourceendlinenumber="53">The <code>dotnet run</code> command builds the app first if needed.</p>
+<pre sourcefile="getting-started-1.1.md" sourcestartlinenumber="55" sourceendlinenumber="57"><code class="lang-terminal">dotnet run
+</code></pre></li>
+<li sourcefile="getting-started-1.1.md" sourcestartlinenumber="59" sourceendlinenumber="59"><p sourcefile="getting-started-1.1.md" sourcestartlinenumber="59" sourceendlinenumber="59">Browse to <code>http://localhost:5000</code></p>
+</li>
+</ol>
+<!-- H3 to avoid a single-entry internal TOC -->
+<h3 id="next-steps" sourcefile="getting-started-1.1.md" sourcestartlinenumber="62" sourceendlinenumber="62">Next steps</h3>
+<p sourcefile="getting-started-1.1.md" sourcestartlinenumber="64" sourceendlinenumber="64">For getting-started tutorials, see <a href="tutorials/index.html" data-raw-source="[ASP.NET Core Tutorials](tutorials/index.md)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="64" sourceendlinenumber="64">ASP.NET Core Tutorials</a></p>
+<p sourcefile="getting-started-1.1.md" sourcestartlinenumber="66" sourceendlinenumber="66">For an introduction to ASP.NET Core concepts and architecture, see <a href="index.html" data-raw-source="[ASP.NET Core Introduction](index.md)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="66" sourceendlinenumber="66">ASP.NET Core Introduction</a> and <a href="fundamentals/index.html" data-raw-source="[ASP.NET Core Fundamentals](fundamentals/index.md)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="66" sourceendlinenumber="66">ASP.NET Core Fundamentals</a>.</p>
+<p sourcefile="getting-started-1.1.md" sourcestartlinenumber="68" sourceendlinenumber="68">An ASP.NET Core app can use the .NET Core or .NET Framework Base Class Library and runtime. For more information, see <a href="https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server" data-raw-source="[Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)" sourcefile="getting-started-1.1.md" sourcestartlinenumber="68" sourceendlinenumber="68">Choosing between .NET Core and .NET Framework</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/getting-started-1.1.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Claims-Based Authorization </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Claims-Based Authorization ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authorization/claims">
+<h1 id="claims-based-authorization" sourcefile="security/authorization/claims.md" sourcestartlinenumber="15" sourceendlinenumber="15">Claims-Based Authorization</h1>
+
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="security-authorization-claims-based"></a></p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="19" sourceendlinenumber="19">When an identity is created it may be assigned one or more claims issued by a trusted party. A claim is name value pair that represents what the subject is, not what the subject can do. For example you may have a Drivers License, issued by a local driving license authority. Your driver&#39;s license has your date of birth on it. In this case the claim name would be <code>DateOfBirth</code>, the claim value would be your date of birth, for example <code>8th June 1970</code> and the issuer would be the driving license authority. Claims based authorization, at its simplest, checks the value of a claim and allows access to a resource based upon that value. For example if you want access to a night club the authorization process might be:</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="21" sourceendlinenumber="21">The door security officer would evaluate the value of your date of birth claim and whether they trust the issuer (the driving license authority) before granting you access.</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="23" sourceendlinenumber="23">An identity can contain multiple claims with multiple values and can contain multiple claims of the same type.</p>
+<h2 id="adding-claims-checks" sourcefile="security/authorization/claims.md" sourcestartlinenumber="25" sourceendlinenumber="25">Adding claims checks</h2>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="27" sourceendlinenumber="27">Claim based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="29" sourceendlinenumber="29">The simplest type of claim policy looks for the presence of a claim and does not check the value.</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="31" sourceendlinenumber="31">First you need to build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in <code>ConfigureServices()</code> in your <em>Startup.cs</em> file.</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="33" sourceendlinenumber="43"><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =&gt;
+    {
+        options.AddPolicy(&quot;EmployeeOnly&quot;, policy =&gt; policy.RequireClaim(&quot;EmployeeNumber&quot;));
+    });
+}
+</code></pre><p sourcefile="security/authorization/claims.md" sourcestartlinenumber="45" sourceendlinenumber="45">In this case the <code>EmployeeOnly</code> policy checks for the presence of an <code>EmployeeNumber</code> claim on the current identity.</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="47" sourceendlinenumber="47">You then apply the policy using the <code>Policy</code> property on the <code>AuthorizeAttribute</code> attribute to specify the policy name;</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="49" sourceendlinenumber="55"><code class="lang-csharp">[Authorize(Policy = &quot;EmployeeOnly&quot;)]
+public IActionResult VacationBalance()
+{
+    return View();
+}
+</code></pre><p sourcefile="security/authorization/claims.md" sourcestartlinenumber="57" sourceendlinenumber="57">The <code>AuthorizeAttribute</code> attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="59" sourceendlinenumber="67"><code class="lang-csharp">[Authorize(Policy = &quot;EmployeeOnly&quot;)]
+public class VacationController : Controller
+{
+    public ActionResult VacationBalance()
+    {
+    }
+}
+</code></pre><p sourcefile="security/authorization/claims.md" sourcestartlinenumber="69" sourceendlinenumber="69">If you have a controller that is protected by the <code>AuthorizeAttribute</code> attribute, but want to allow anonymous access to particular actions you apply the <code>AllowAnonymousAttribute</code> attribute.</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="71" sourceendlinenumber="84"><code class="lang-csharp">[Authorize(Policy = &quot;EmployeeOnly&quot;)]
+public class VacationController : Controller
+{
+    public ActionResult VacationBalance()
+    {
+    }
+
+    [AllowAnonymous]
+    public ActionResult VacationPolicy()
+    {
+    }
+}
+</code></pre><p sourcefile="security/authorization/claims.md" sourcestartlinenumber="86" sourceendlinenumber="86">Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="88" sourceendlinenumber="99"><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =&gt;
+    {
+        options.AddPolicy(&quot;Founders&quot;, policy =&gt;
+                          policy.RequireClaim(&quot;EmployeeNumber&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;));
+    });
+}
+</code></pre><h2 id="multiple-policy-evaluation" sourcefile="security/authorization/claims.md" sourcestartlinenumber="101" sourceendlinenumber="101">Multiple Policy Evaluation</h2>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="103" sourceendlinenumber="103">If you apply multiple policies to a controller or action then all policies must pass before access is granted. For example:</p>
+<pre sourcefile="security/authorization/claims.md" sourcestartlinenumber="105" sourceendlinenumber="118"><code class="lang-csharp">[Authorize(Policy = &quot;EmployeeOnly&quot;)]
+public class SalaryController : Controller
+{
+    public ActionResult Payslip()
+    {
+    }
+
+    [Authorize(Policy = &quot;HumanResources&quot;)]
+    public ActionResult UpdateSalary()
+    {
+    }
+}
+</code></pre><p sourcefile="security/authorization/claims.md" sourcestartlinenumber="120" sourceendlinenumber="120">In the above example any identity which fulfills the <code>EmployeeOnly</code> policy can access the <code>Payslip</code> action as that policy is enforced on the controller. However in order to call the <code>UpdateSalary</code> action the identity must fulfill <em>both</em> the <code>EmployeeOnly</code> policy and the <code>HumanResources</code> policy.</p>
+<p sourcefile="security/authorization/claims.md" sourcestartlinenumber="122" sourceendlinenumber="122">If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write <a href="policies.html#security-authorization-policies-based" data-raw-source="[custom policy handlers](policies.md#security-authorization-policies-based)" sourcefile="security/authorization/claims.md" sourcestartlinenumber="122" sourceendlinenumber="122">custom policy handlers</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authorization/claims.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

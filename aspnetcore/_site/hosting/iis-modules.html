@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using IIS modules with ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using IIS modules with ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="hosting/iis-modules">
+<h1 id="using-iis-modules-with-aspnet-core">Using IIS Modules with ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/guardrex">Luke Latham</a></p>
+<p>ASP.NET Core applications are hosted by IIS in a reverse-proxy configuration. Some of the native IIS modules and all of the IIS managed modules are not available to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the features of IIS native and managed modules.</p>
+<h2 id="native-modules">Native Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align:center">.NET Core Active</th>
+<th>ASP.NET Core Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anonymous Authentication</strong><br><code>AnonymousAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Basic Authentication</strong><br><code>BasicAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Client Certification Mapping Authentication</strong><br><code>CertificateMappingAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CGI</strong><br><code>CgiModule</code></td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Configuration Validation</strong><br><code>ConfigurationValidationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>HTTP Errors</strong><br><code>CustomErrorModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/error-handling.html#configuring-status-code-pages">Status Code Pages Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Custom Logging</strong><br><code>CustomLoggingModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Default Document</strong><br><code>DefaultDocumentModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/static-files.html#serving-a-default-document">Default Files Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Digest Authentication</strong><br><code>DigestAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Directory Browsing</strong><br><code>DirectoryListingModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/static-files.html#enabling-directory-browsing">Directory Browsing Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Dynamic Compression</strong><br><code>DynamicCompressionModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../performance/response-compression.html">Response Compression Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Tracing</strong><br><code>FailedRequestsTracingModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/logging.html#the-tracesource-provider">ASP.NET Core Logging</a></td>
+</tr>
+<tr>
+<td><strong>File Caching</strong><br><code>FileCacheModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../performance/caching/middleware.html">Response Caching Middleware</a></td>
+</tr>
+<tr>
+<td><strong>HTTP Caching</strong><br><code>HttpCacheModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../performance/caching/middleware.html">Response Caching Middleware</a></td>
+</tr>
+<tr>
+<td><strong>HTTP Logging</strong><br><code>HttpLoggingModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/logging.html">ASP.NET Core Logging</a><br>Implementations: <a href="https://github.com/elmahio/Elmah.Io.Extensions.Logging">elmah.io</a>, <a href="https://github.com/imobile3/Loggr.Extensions.Logging">Loggr</a>, <a href="https://github.com/NLog/NLog.Extensions.Logging">NLog</a>, <a href="https://github.com/serilog/serilog-extensions-logging">Serilog</a></td>
+</tr>
+<tr>
+<td><strong>HTTP Redirection</strong><br><code>HttpRedirectionModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/url-rewriting.html">URL Rewriting Middleware</a></td>
+</tr>
+<tr>
+<td><strong>IIS Client Certificate Mapping Authentication</strong><br><code>IISCertificateMappingAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>IP and Domain Restrictions</strong><br><code>IpRestrictionModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ISAPI Filters</strong><br><code>IsapiFilterModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/middleware.html">Middleware</a></td>
+</tr>
+<tr>
+<td><strong>ISAPI</strong><br><code>IsapiModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/middleware.html">Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Protocol Support</strong><br><code>ProtocolSupportModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Request Filtering</strong><br><code>RequestFilteringModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../fundamentals/url-rewriting.html#irule-based-rule">URL Rewriting Middleware <code>IRule</code></a></td>
+</tr>
+<tr>
+<td><strong>Request Monitor</strong><br><code>RequestMonitorModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>URL Rewriting</strong><br><code>RewriteModule</code></td>
+<td style="text-align:center">Yes†</td>
+<td><a class="xref" href="../fundamentals/url-rewriting.html">URL Rewriting Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Server Side Includes</strong><br><code>ServerSideIncludeModule</code></td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Static Compression</strong><br><code>StaticCompressionModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../performance/response-compression.html">Response Compression Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Static Content</strong><br><code>StaticFileModule</code></td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/static-files.html">Static File Middleware</a></td>
+</tr>
+<tr>
+<td><strong>Token Caching</strong><br><code>TokenCacheModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>URI Caching</strong><br><code>UriCacheModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>URL Authorization</strong><br><code>UrlAuthorizationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td><a class="xref" href="../security/authentication/identity.html">ASP.NET Core Identity</a></td>
+</tr>
+<tr>
+<td><strong>Windows Authentication</strong><br><code>WindowsAuthenticationModule</code></td>
+<td style="text-align:center">Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>†The URL Rewrite Module&#39;s <code>isFile</code> and <code>isDirectory</code> do not work with ASP.NET Core applications due to the changes in <a class="xref" href="directory-structure.html">directory structure</a>.</p>
+<h2 id="managed-modules">Managed Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align:center">.NET Core Active</th>
+<th>ASP.NET Core Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AnonymousIdentification</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>DefaultAuthentication</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>FileAuthorization</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>FormsAuthentication</td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../security/authentication/cookie.html">Cookie Authentication Middleware</a></td>
+</tr>
+<tr>
+<td>OutputCache</td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../performance/caching/middleware.html">Response Caching Middleware</a></td>
+</tr>
+<tr>
+<td>Profile</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>RoleManager</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>ScriptModule-4.0</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>Session</td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/app-state.html">Session Middleware</a></td>
+</tr>
+<tr>
+<td>UrlAuthorization</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+<tr>
+<td>UrlMappingsModule</td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../fundamentals/url-rewriting.html">URL Rewriting Middleware</a></td>
+</tr>
+<tr>
+<td>UrlRoutingModule-4.0</td>
+<td style="text-align:center">No</td>
+<td><a class="xref" href="../security/authentication/identity.html">ASP.NET Core  Identity</a></td>
+</tr>
+<tr>
+<td>WindowsAuthentication</td>
+<td style="text-align:center">No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="iis-manager-application-changes">IIS Manager application changes</h2>
+<p>When you use IIS Manager to configure settings, you&#39;re directly changing the <em>web.config</em> file of the app. If you deploy your app and include <em>web.config</em>, any changes you made with IIS Manger will be overwritten by the deployed <em>web.config file</em>. Therefore if you make changes to the server&#39;s <em>web.config</em> file, copy the updated <em>web.config</em> file to your local project immediately.</p>
+<h2 id="disabling-iis-modules">Disabling IIS modules</h2>
+<p>If you have an IIS module configured at the server level that you would like to disable for an application, you can do so with an addition to your <em>web.config</em> file. Either leave the module in place and deactivate it using a configuration setting (if available) or remove the module from the app.</p>
+<h3 id="module-deactivation">Module deactivation</h3>
+<p>Many modules offer a configuration setting that will allow you to disable them without removing them from the application. This is the simplest and quickest way to deactivate a module. For example if you wish to disable the IIS URL Rewrite Module, use the <code>&lt;httpRedirect&gt;</code> element as shown below. For more information on disabling modules with configuration settings, follow the links in the <em>Child Elements</em> section of <a href="https://docs.microsoft.com/iis/configuration/system.webServer/">IIS <code>&lt;system.webServer&gt;</code></a>.</p>
+<pre><code class="lang-xml">&lt;configuration&gt;
+  &lt;system.webServer&gt;
+     &lt;httpRedirect enabled=&quot;false&quot; /&gt;
+  &lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre><h3 id="module-removal">Module removal</h3>
+<p>If you opt to remove a module with a setting in <em>web.config</em>, you must unlock the module and unlock the <code>&lt;modules&gt;</code> section of <em>web.config</em> first. The steps are outlined below:</p>
+<ol>
+<li><p>Unlock the module at the server level. Click on the IIS server in the IIS Manager <strong>Connections</strong> sidebar. Open the <strong>Modules</strong> in the <strong>IIS</strong> area. Click on the module in the list. In the <strong>Actions</strong> sidebar on the right, click <strong>Unlock</strong>. Unlock as many modules as you plan to remove with <em>web.config</em> later.</p>
+</li>
+<li><p>Deploy your application without a <code>&lt;modules&gt;</code> section in <em>web.config</em>. If you deploy an app with a <em>web.config</em> containing the <code>&lt;modules&gt;</code> section without having unlocked the section first in the IIS Manager, the Configuration Manager will throw an exception when you try to unlock the section. Therefore, deploy your application without a <code>&lt;modules&gt;</code> section.</p>
+</li>
+<li><p>Unlock the <code>&lt;modules&gt;</code> section of <em>web.config</em>. In the <strong>Connections</strong> sidebar, click the website in <strong>Sites</strong>. In the <strong>Management</strong> area, open the <strong>Configuration Editor</strong>. Use the navigation controls to select the <code>system.webServer/modules</code> section. In the <strong>Actions</strong> sidebar on the right, click to <strong>Unlock</strong> the section.</p>
+</li>
+<li><p>At this point, you will be able to add a <code>&lt;modules&gt;</code> section to your <em>web.config</em> file with a <code>&lt;remove&gt;</code> element to remove the module from the application. You can add multiple <code>&lt;remove&gt;</code> elements to remove multiple modules. Don&#39;t forget that if you make <em>web.config</em> changes on the server to make them immediately in the project locally. Removing a module this way won&#39;t affect your use of the module with other apps on the server.</p>
+<pre><code class="lang-xml">&lt;configuration&gt; 
+ &lt;system.webServer&gt; 
+   &lt;modules&gt; 
+     &lt;remove name=&quot;MODULE_NAME&quot; /&gt; 
+   &lt;/modules&gt; 
+ &lt;/system.webServer&gt; 
+&lt;/configuration&gt;
+</code></pre></li>
+</ol>
+<p>For an IIS installation with the default modules installed, you can use the following <code>&lt;module&gt;</code> section to remove the default modules.</p>
+<pre><code class="lang-xml">&lt;modules&gt;
+  &lt;remove name=&quot;CustomErrorModule&quot; /&gt;
+  &lt;remove name=&quot;DefaultDocumentModule&quot; /&gt;
+  &lt;remove name=&quot;DirectoryListingModule&quot; /&gt;
+  &lt;remove name=&quot;HttpCacheModule&quot; /&gt;
+  &lt;remove name=&quot;HttpLoggingModule&quot; /&gt;
+  &lt;remove name=&quot;ProtocolSupportModule&quot; /&gt;
+  &lt;remove name=&quot;RequestFilteringModule&quot; /&gt;
+  &lt;remove name=&quot;StaticCompressionModule&quot; /&gt; 
+  &lt;remove name=&quot;StaticFileModule&quot; /&gt; 
+&lt;/modules&gt;
+</code></pre><p>You can also remove an IIS module with <em>Appcmd.exe</em>. Provide the <code>MODULE_NAME</code> and <code>APPLICATION_NAME</code> in the command shown below:</p>
+<pre><code class="lang-console">Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME
+</code></pre><p>Here&#39;s how to remove the <code>DynamicCompressionModule</code> from the Default Web Site:</p>
+<pre><code class="lang-console">%windir%\system32\inetsrv\appcmd.exe delete module DynamicCompressionModule /app.name:&quot;Default Web Site&quot;
+</code></pre><h2 id="minimal-module-configuration">Minimal module configuration</h2>
+<p>The only modules required to run an ASP.NET Core application are the Anonymous Authentication Module and the ASP.NET Core Module.</p>
+<p><img src="iis-modules/_static/modules.png" alt="IIS Manager open to Modules with the minimum module configuration shown"></p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a class="xref" href="../publishing/iis.html">Publishing to IIS</a></li>
+<li><a href="https://docs.microsoft.com/iis/get-started/introduction-to-iis/iis-modules-overview">IIS Modules Overview</a></li>
+<li><a href="https://technet.microsoft.com/library/cc627313.aspx">Customizing IIS 7.0 Roles and Modules</a></li>
+<li><a href="https://docs.microsoft.com/iis/configuration/system.webServer/">IIS <code>&lt;system.webServer&gt;</code></a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/hosting/iis-modules.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

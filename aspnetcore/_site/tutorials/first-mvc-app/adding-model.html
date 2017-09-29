@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding a model to an ASP.NET Core MVC app </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding a model to an ASP.NET Core MVC app ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app/adding-model">
+<h1 id="adding-a-model-to-an-aspnet-core-mvc-app">Adding a model to an ASP.NET Core MVC app</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a> and <a href="https://github.com/tdykstra">Tom Dykstra</a></p>
+<p>In this section, you&#39;ll add some classes for managing movies in a database. These classes will be the &quot;<strong>M</strong>odel&quot; part of the <strong>M</strong>VC app.</p>
+<p>You use these classes with <a href="https://docs.microsoft.com/ef/core">Entity Framework Core</a> (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write. <a href="https://docs.microsoft.com/ef/core/providers/">EF Core supports many database engines</a>.</p>
+<p>The model classes you&#39;ll create are known as POCO classes (from &quot;plain-old CLR objects&quot;) because they don&#39;t have any dependency on EF Core. They just define the properties of the data that will be stored in the database.</p>
+<p>In this tutorial you&#39;ll write the model classes first, and EF Core will create the database. An alternate approach not covered here is to generate model classes from an already-existing database. For information about that approach, see <a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db">ASP.NET Core - Existing Database</a>.</p>
+<h2 id="add-a-data-model-class">Add a data model class</h2>
+<p>Note: The ASP.NET Core 2.0 templates contain the <em>Models</em> folder.</p>
+<p>In Solution Explorer, right click the <strong>MvcMovie</strong> project &gt; <strong>Add</strong> &gt; <strong>New Folder</strong>. Name the folder <em>Models</em>.</p>
+<p>Right click the <em>Models</em> folder &gt; <strong>Add</strong> &gt; <strong>Class</strong>. Name the class <strong>Movie</strong> and add the following properties:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p>The <code>ID</code> field is required by the database for the primary key. </p>
+<p>Build the project to verify you don&#39;t have any errors. You now have a <strong>M</strong>odel in your <strong>M</strong>VC app.</p>
+<h2 id="scaffolding-a-controller">Scaffolding a controller</h2>
+<p>In <strong>Solution Explorer</strong>, right-click the <em>Controllers</em> folder <strong>&gt; Add &gt; Controller</strong>.</p>
+<p><img src="adding-model/_static/add_controller.png" alt="view of above step"></p>
+<p>In the <strong>Add MVC Dependencies</strong> dialog, select <strong>Minimal Dependencies</strong>, and select <strong>Add</strong>.</p>
+<p><img src="adding-model/_static/add_depend.png" alt="view of above step"></p>
+<p>Visual Studio adds the dependencies needed to scaffold a controller, but the controller itself is not created. The next invoke of <strong>&gt; Add &gt; Controller</strong> creates the controller. </p>
+<p>In <strong>Solution Explorer</strong>, right-click the <em>Controllers</em> folder <strong>&gt; Add &gt; Controller</strong>.</p>
+<p><img src="adding-model/_static/add_controller.png" alt="view of above step"></p>
+<p>In the <strong>Add Scaffold</strong> dialog, tap <strong>MVC Controller with views, using Entity Framework &gt; Add</strong>.</p>
+<p><img src="adding-model/_static/add_scaffold2.png" alt="Add Scaffold dialog"></p>
+<p>Complete the <strong>Add Controller</strong> dialog:</p>
+<ul>
+<li><strong>Model class:</strong> <em>Movie (MvcMovie.Models)</em></li>
+<li><strong>Data context class:</strong> Select the <strong>+</strong> icon and add the default <strong>MvcMovie.Models.MvcMovieContext</strong></li>
+</ul>
+<p><img src="adding-model/_static/dc.png" alt="Add Data context"></p>
+<ul>
+<li><strong>Views:</strong> Keep the default of each option checked</li>
+<li><strong>Controller name:</strong> Keep the default <em>MoviesController</em></li>
+<li>Tap <strong>Add</strong></li>
+</ul>
+<p><img src="adding-model/_static/add_controller2.png" alt="Add Controller dialog"></p>
+<p>Visual Studio creates:</p>
+<ul>
+<li>An Entity Framework Core <a class="xref" href="../../data/ef-mvc/intro.html#create-the-database-context">database context class</a> (<em>Data/MvcMovieContext.cs</em>)</li>
+<li>A movies controller (<em>Controllers/MoviesController.cs</em>)</li>
+<li>Razor view files for Create, Delete, Details, Edit and Index pages (<em>Views/Movies/&ast;.cshtml</em>)</li>
+</ul>
+<p>The automatic creation of the database context and <a href="https://wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> (create, read, update, and delete) action methods and views is known as <em>scaffolding</em>. You&#39;ll soon have a fully functional web application that lets you manage a movie database.</p>
+<p>If you run the app and click on the <strong>Mvc Movie</strong> link, you&#39;ll get an error similar to the following:</p>
+<pre><code>An unhandled exception occurred while processing the request.
+
+SqlException: Cannot open database &quot;MvcMovieContext-&lt;GUID removed&gt;&quot; requested by the login. The login failed.
+Login failed for user &#39;Rick&#39;.
+
+System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString 
+</code></pre><p>You need to create the database, and you&#39;ll use the EF Core <a class="xref" href="../../data/ef-mvc/migrations.html">Migrations</a> feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.</p>
+<h2 id="add-ef-tooling-and-perform-initial-migration">Add EF tooling and perform initial migration</h2>
+<p>In this section you&#39;ll use the Package Manager Console (PMC) to:</p>
+<ul>
+<li>Add the Entity Framework Core Tools package. This package is required to add migrations and update the database.</li>
+<li>Add an initial migration.</li>
+<li>Update the database with the initial migration.</li>
+</ul>
+<p>From the <strong>Tools</strong> menu, select <strong>NuGet Package Manager &gt; Package Manager Console</strong>.</p>
+<!-- following image shared with uid: tutorials/razor-pages/model -->
+<p>  <img src="adding-model/_static/pmc.png" alt="PMC menu"></p>
+<p>In the PMC, enter the following commands:</p>
+<pre><code class="lang-PMC">Install-Package Microsoft.EntityFrameworkCore.Tools
+Add-Migration Initial
+Update-Database
+</code></pre><p><strong>Note:</strong> If you receive an error with the <code>Install-Package</code> command, open NuGet Package Manager and search for the <code>Microsoft.EntityFrameworkCore.Tools</code> package. This allows you to install the package or check if it is already installed. Alternatively, see the <a href="#cli">CLI approach</a> if you have problems with the PMC.</p>
+<p>The <code>Add-Migration</code> command creates code to create the initial database schema. The schema is based on the model specified in the <code>DbContext</code>(In the <em>Data/MvcMovieContext.cs</em> file). The <code>Initial</code> argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See <a class="xref" href="../../data/ef-mvc/migrations.html#introduction-to-migrations">Introduction to migrations</a> for more information.</p>
+<p>The <code>Update-Database</code> command runs the <code>Up</code> method in the <em>Migrations/&lt;time-stamp&gt;_InitialCreate.cs</em> file, which creates the database.</p>
+<p><a name="cli"></a>
+You can perform the preceeding steps using the command-line interface (CLI) rather than the PMC:</p>
+<ul>
+<li>Add <a class="xref" href="../../data/ef-mvc/migrations.html#entity-framework-core-nuget-packages-for-migrations">EF Core tooling</a> to the <em>.csproj</em> file.</li>
+<li><p>Run the following commands from the console (in the project directory):</p>
+<pre><code class="lang-console">dotnet ef migrations add InitialCreate
+dotnet ef database update
+</code></pre></li>
+</ul>
+<h2 id="test-the-app">Test the app</h2>
+<ul>
+<li>Run the app and tap the <strong>Mvc Movie</strong> link.</li>
+<li><p>Tap the <strong>Create New</strong> link and create a movie.</p>
+<p><img src="adding-model/_static/movies.png" alt="Create view with fields for genre, price, release date, and title"></p>
+</li>
+<li><p>You may not be able to enter decimal points or commas in the <code>Price</code> field. To support <a href="https://jqueryvalidation.org/">jQuery validation</a> for non-English locales that use a comma (&quot;,&quot;) for a decimal point, and non US-English date formats, you must take steps to globalize your app. See <a href="https://github.com/aspnet/Docs/issues/4076">https://github.com/aspnet/Docs/issues/4076</a> and <a href="#additional-resources">Additional resources</a> for more information. For now, just enter whole numbers like 10.</p>
+</li>
+</ul>
+<p><a name="displayformatdatelocal"></a></p>
+<ul>
+<li>In some locales you need to specify the date format. See the highlighted code below.</li>
+</ul>
+<pre><code class="lang-csharp" name="Main" highlight-lines="2,10">using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p>We&#39;ll talk about <code>DataAnnotations</code> later in the tutorial.</p>
+<p>Tapping <strong>Create</strong> causes the form to be posted to the server, where the movie information is saved in a database. The app redirects to the <em>/Movies</em> URL, where the newly created movie information is displayed.</p>
+<p><img src="adding-model/_static/h.png" alt="Movies view showing newly created movie listing"></p>
+<p>Create a couple more movie entries. Try the <strong>Edit</strong>, <strong>Details</strong>, and <strong>Delete</strong> links, which are all functional.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="6-7">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddMvc();
+
+    services.AddDbContext&lt;MvcMovieContext&gt;(options =&gt;
+            options.UseSqlServer(Configuration.GetConnectionString(&quot;MvcMovieContext&quot;)));
+}
+</code></pre><p>The highlighted code above shows the movie database context being added to the <a class="xref" href="../../fundamentals/dependency-injection.html">Dependency Injection</a> container. The line following <code>services.AddDbContext&lt;MvcMovieContext&gt;(options =&gt;</code> is not shown (see your code). It specifies the database to use and the connection string. <code>=&gt;</code> is a <a href="https://docs.microsoft.com/dotnet/articles/csharp/language-reference/operators/lambda-operator">lambda operator</a>.</p>
+<p>Open the <em>Controllers/MoviesController.cs</em> file and examine the constructor:</p>
+<!-- l.. Make copy of Movies controller because we comment out the initial index method and update it later  -->
+<pre><code class="lang-csharp" name="Main">public class MoviesController : Controller
+{
+    private readonly MvcMovieContext _context;
+
+    public MoviesController(MvcMovieContext context)
+    {
+        _context = context;
+    }
+</code></pre><p>The constructor uses <a class="xref" href="../../fundamentals/dependency-injection.html">Dependency Injection</a> to inject the database context (<code>MvcMovieContext</code>) into the controller. The database context is used in each of the <a href="https://wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> methods in the controller.</p>
+<p><a name="strongly-typed-models-keyword-label"></a></p>
+<h2 id="strongly-typed-models-and-the-model-keyword">Strongly typed models and the @model keyword</h2>
+<p>Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the <code>ViewData</code> dictionary. The <code>ViewData</code> dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.</p>
+<p>MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile-time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the <code>MoviesController</code> class and views when it created the methods and views.</p>
+<p>Examine the generated <code>Details</code> method in the <em>Controllers/MoviesController.cs</em> file:</p>
+<pre><code class="lang-csharp" name="Main">// GET: Movies/Details/5
+public async Task&lt;IActionResult&gt; Details(int? id)
+{
+    if (id == null)
+    {
+        return NotFound();
+    }
+
+    var movie = await _context.Movie
+        .SingleOrDefaultAsync(m =&gt; m.ID == id);
+    if (movie == null)
+    {
+        return NotFound();
+    }
+
+    return View(movie);
+}
+</code></pre><p>The <code>id</code> parameter is generally passed as route data. For example <code>http://localhost:5000/movies/details/1</code> sets:</p>
+<ul>
+<li>The controller to the <code>movies</code> controller (the first URL segment).</li>
+<li>The action to <code>details</code> (the second URL segment).</li>
+<li>The id to 1 (the last URL segment).</li>
+</ul>
+<p>You can also pass in the <code>id</code> with a query string as follows:</p>
+<p><code>http://localhost:1234/movies/details?id=1</code></p>
+<p>The <code>id</code> parameter is defined as a <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/index">nullable type</a> (<code>int?</code>) in case an ID value is not provided.</p>
+<p>A <a href="https://docs.microsoft.com/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions">lambda expression</a> is passed in to <code>SingleOrDefaultAsync</code> to select movie entities that match the route data or query string value.</p>
+<pre><code class="lang-csharp">var movie = await _context.Movie
+    .SingleOrDefaultAsync(m =&gt; m.ID == id);
+</code></pre><p>If a movie is found, an instance of the <code>Movie</code> model is passed to the <code>Details</code> view:</p>
+<pre><code class="lang-csharp">return View(movie);
+</code></pre><p>Examine the contents of the <em>Views/Movies/Details.cshtml</em> file:</p>
+<pre><code class="lang-html" name="Main">@model MvcMovie.Models.Movie
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Details&quot;;
+}
+
+&lt;h2&gt;Details&lt;/h2&gt;
+
+&lt;div&gt;
+    &lt;h4&gt;Movie&lt;/h4&gt;
+    &lt;hr /&gt;
+    &lt;dl class=&quot;dl-horizontal&quot;&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Title)
+        &lt;/dt&gt;
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Title)
+        &lt;/dd&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.ReleaseDate)
+        &lt;/dt&gt;
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.ReleaseDate)
+        &lt;/dd&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Genre)
+        &lt;/dt&gt;
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Genre)
+        &lt;/dd&gt;
+        &lt;dt&gt;
+            @Html.DisplayNameFor(model =&gt; model.Price)
+        &lt;/dt&gt;
+        &lt;dd&gt;
+            @Html.DisplayFor(model =&gt; model.Price)
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@Model.ID&quot;&gt;Edit&lt;/a&gt; |
+    &lt;a asp-action=&quot;Index&quot;&gt;Back to List&lt;/a&gt;
+&lt;/div&gt;
+</code></pre><p>By including a <code>@model</code> statement at the top of the view file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following <code>@model</code> statement at the top of the <em>Details.cshtml</em> file:</p>
+<pre><code class="lang-HTML">@model MvcMovie.Models.Movie
+</code></pre><p>This <code>@model</code> directive allows you to access the movie that the controller passed to the view by using a <code>Model</code> object that&#39;s strongly typed. For example, in the <em>Details.cshtml</em> view, the code passes each movie field to the <code>DisplayNameFor</code> and <code>DisplayFor</code> HTML Helpers with the strongly typed <code>Model</code> object. The <code>Create</code> and <code>Edit</code> methods and views also pass a <code>Movie</code> model object.</p>
+<p>Examine the <em>Index.cshtml</em> view and the <code>Index</code> method in the Movies controller. Notice how the code creates a <code>List</code> object when it calls the <code>View</code> method. The code passes this <code>Movies</code> list from the <code>Index</code> action method to the view:</p>
+<pre><code class="lang-csharp" name="Main">// GET: Movies
+public async Task&lt;IActionResult&gt; Index()
+{
+    return View(await _context.Movie.ToListAsync());
+}
+</code></pre><p>When you created the movies controller, scaffolding automatically included the following <code>@model</code> statement at the top of the <em>Index.cshtml</em> file:</p>
+<!-- Copy Index.cshtml to IndexOriginal.cshtml -->
+<pre><code class="lang-html" name="Main">@model IEnumerable&lt;MvcMovie.Models.Movie&gt;
+</code></pre><p>The <code>@model</code> directive allows you to access the list of movies that the controller passed to the view by using a <code>Model</code> object that&#39;s strongly typed. For example, in the <em>Index.cshtml</em> view, the code loops through the movies with a <code>foreach</code> statement over the strongly typed <code>Model</code> object:</p>
+<pre><code class="lang-html" name="Main" highlight-lines="1,31,34,37,40,43,46-48">@model IEnumerable&lt;MvcMovie.Models.Movie&gt;
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+                &lt;th&gt;
+                    @Html.DisplayNameFor(model =&gt; model.Title)
+                &lt;/th&gt;
+                &lt;th&gt;
+                    @Html.DisplayNameFor(model =&gt; model.ReleaseDate)
+                &lt;/th&gt;
+                &lt;th&gt;
+                    @Html.DisplayNameFor(model =&gt; model.Genre)
+                &lt;/th&gt;
+                &lt;th&gt;
+                    @Html.DisplayNameFor(model =&gt; model.Price)
+                &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+@foreach (var item in Model) {
+        &lt;tr&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Title)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.ReleaseDate)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Genre)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Price)
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+}
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p>Because the <code>Model</code> object is strongly typed (as an <code>IEnumerable&lt;Movie&gt;</code> object), each item in the loop is typed as <code>Movie</code>. Among other benefits, this means that you get compile-time checking of the code:</p>
+<p><img src="adding-model/_static/ints.png" alt="Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title"></p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a class="xref" href="../../mvc/views/tag-helpers/intro.html">Tag Helpers</a></li>
+<li><a class="xref" href="../../fundamentals/localization.html">Globalization and localization</a></li>
+</ul>
+<div class="step-by-step"><p><a href="adding-view.html">Previous Adding a View</a>
+<a href="working-with-sql.html">Next Working with SQL</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app/adding-model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

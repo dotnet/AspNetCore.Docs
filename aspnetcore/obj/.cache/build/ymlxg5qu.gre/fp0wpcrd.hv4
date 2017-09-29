@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Logging in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Logging in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/logging">
+<h1 id="introduction-to-logging-in-aspnet-core" sourcefile="fundamentals/logging.md" sourcestartlinenumber="16" sourceendlinenumber="16">Introduction to Logging in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="18" sourceendlinenumber="18">Steve Smith</a> and <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="20" sourceendlinenumber="20">ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers let you send logs to one or more destinations, and you can plug in a third-party logging framework. This article shows how to use the built-in logging API and providers in your code.</p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc" sourcefile="fundamentals/logging.md" sourcestartlinenumber="22" sourceendlinenumber="28">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="22" sourceendlinenumber="22">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="26" sourceendlinenumber="26">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="24" sourceendlinenumber="24">View or download sample code</a></p>
+</section>
+<section id="tabpanel_J929VbWwYc_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="28" sourceendlinenumber="28"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="28" sourceendlinenumber="28">View or download sample code</a></p>
+</section>
+</div>
+<h2 id="how-to-create-logs" sourcefile="fundamentals/logging.md" sourcestartlinenumber="32" sourceendlinenumber="32">How to create logs</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="34" sourceendlinenumber="34">To create logs, get an <code>ILogger</code> object from the <a href="dependency-injection.html" data-raw-source="[dependency injection](dependency-injection.md)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="34" sourceendlinenumber="34">dependency injection</a> container:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code class="lang-csharp" highlight-lines="7">public class TodoController : Controller
+{
+    private readonly ITodoRepository _todoRepository;
+    private readonly ILogger _logger;
+
+    public TodoController(ITodoRepository todoRepository,
+        ILogger&lt;TodoController&gt; logger)
+    {
+        _todoRepository = todoRepository;
+        _logger = logger;
+    }
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="38" sourceendlinenumber="38">Then call logging methods on that logger object:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="40" sourceendlinenumber="40"><code class="lang-csharp" highlight-lines="3,7">public IActionResult GetById(string id)
+{
+    _logger.LogInformation(LoggingEvents.GetItem, &quot;Getting item {ID}&quot;, id);
+    var item = _todoRepository.Find(id);
+    if (item == null)
+    {
+        _logger.LogWarning(LoggingEvents.GetItemNotFound, &quot;GetById({ID}) NOT FOUND&quot;, id);
+        return NotFound();
+    }
+    return new ObjectResult(item);
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="42" sourceendlinenumber="42">This example creates logs with the <code>TodoController</code> class as the <em>category</em>.  Categories are explained <a href="#log-category" data-raw-source="[later in this article](#log-category)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="42" sourceendlinenumber="42">later in this article</a>.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="44" sourceendlinenumber="44">ASP.NET Core does not provide async logger methods because logging should be so fast that it isn&#39;t worth the cost of using async. If you&#39;re in a situation where that&#39;s not true, consider changing the way you log.  If your data store is slow, write the log messages to a fast store first, then move them to a slow store later. For example, log to a message queue that is read and persisted to slow storage by another process.</p>
+<h2 id="how-to-add-providers" sourcefile="fundamentals/logging.md" sourcestartlinenumber="46" sourceendlinenumber="46">How to add providers</h2>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="48" sourceendlinenumber="67">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-1_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="48" sourceendlinenumber="48">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-1_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="60" sourceendlinenumber="60">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="50" sourceendlinenumber="50">A logging provider takes the messages that you create with an <code>ILogger</code> object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="52" sourceendlinenumber="52">To use a provider, call the provider&#39;s <code>Add&lt;ProviderName&gt;</code> extension method in <em>Program.cs</em>:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="54" sourceendlinenumber="54"><code class="lang-csharp" highlight-lines="16,17">public static void Main(string[] args)
+{
+    var webHost = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .ConfigureAppConfiguration((hostingContext, config) =&gt;
+        {
+            var env = hostingContext.HostingEnvironment;
+            config.AddJsonFile(&quot;appsettings.json&quot;, optional: true, reloadOnChange: true)
+                  .AddJsonFile($&quot;appsettings.{env.EnvironmentName}.json&quot;, optional: true, reloadOnChange: true);
+            config.AddEnvironmentVariables();
+        })
+        .ConfigureLogging((hostingContext, logging) =&gt;
+        {
+            logging.AddConfiguration(hostingContext.Configuration.GetSection(&quot;Logging&quot;));
+            logging.AddConsole();
+            logging.AddDebug();
+        })
+        .UseStartup&lt;Startup&gt;()
+        .Build();
+
+    webHost.Run();
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="56" sourceendlinenumber="56">The default project template sets up logging the way you see it in the preceding code, but the <code>ConfigureLogging</code> call is done by the <code>CreateDefaultBuilder</code> method. Here&#39;s the code in <em>Program.cs</em> that is created by project templates:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="58" sourceendlinenumber="58"><code class="lang-csharp" highlight-lines="7">public static void Main(string[] args)
+{
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .Build();
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="62" sourceendlinenumber="62">A logging provider takes the messages that you create with an <code>ILogger</code> object and displays or stores them. For example, the Console provider displays messages on the console, and the Azure App Service provider can store them in Azure blob storage.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="64" sourceendlinenumber="64">To use a provider, install its NuGet package and call the provider&#39;s extension method on an instance of <code>ILoggerFactory</code>, as shown in the following example.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code class="lang-csharp" highlight-lines="3,5-7">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env,
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory
+        .AddConsole()
+        .AddDebug();
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="68" sourceendlinenumber="68">ASP.NET Core <a href="dependency-injection.html" data-raw-source="[dependency injection](dependency-injection.md)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="68" sourceendlinenumber="68">dependency injection</a> (DI) provides the <code>ILoggerFactory</code> instance. The <code>AddConsole</code> and <code>AddDebug</code> extension methods are defined in the <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/" data-raw-source="[Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="68" sourceendlinenumber="68">Microsoft.Extensions.Logging.Console</a> and <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/" data-raw-source="[Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="68" sourceendlinenumber="68">Microsoft.Extensions.Logging.Debug</a> packages. Each extension method calls the <code>ILoggerFactory.AddProvider</code> method, passing in an instance of the provider. </p>
+<div class="NOTE" sourcefile="fundamentals/logging.md" sourcestartlinenumber="70" sourceendlinenumber="70"><h5>Note</h5><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="71" sourceendlinenumber="71">The sample application for this article adds logging providers in the <code>Configure</code> method of the <code>Startup</code> class. If you want to get log output from code that executes earlier, add logging providers in the <code>Startup</code> class constructor instead. </p>
+</div>
+</section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="75" sourceendlinenumber="75">You&#39;ll find information about each <a href="#built-in-logging-providers" data-raw-source="[built-in logging provider](#built-in-logging-providers)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="75" sourceendlinenumber="75">built-in logging provider</a> and links to <a href="#third-party-logging-providers" data-raw-source="[third-party logging providers](#third-party-logging-providers)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="75" sourceendlinenumber="75">third-party logging providers</a> later in the article.</p>
+<h2 id="sample-logging-output" sourcefile="fundamentals/logging.md" sourcestartlinenumber="77" sourceendlinenumber="77">Sample logging output</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="79" sourceendlinenumber="79">With the sample code shown in the preceding section, you&#39;ll see logs in the console when you run from the command line. Here&#39;s an example of console output:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="81" sourceendlinenumber="96"><code class="lang-console">info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/api/todo/0
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
+info: TodoApi.Controllers.TodoController[1002]
+      Getting item 0
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(0) NOT FOUND
+info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
+      Executing HttpStatusCodeResult, setting HTTP status code 404
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 42.9286ms
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 148.889ms 404
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="98" sourceendlinenumber="98">These logs were created by going to <code>http://localhost:5000/api/todo/0</code>, which triggers execution of both <code>ILogger</code> calls shown in the preceding section.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="100" sourceendlinenumber="100">Here&#39;s an example of the same logs as they appear in the Debug window when you run the sample application in Visual Studio:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="102" sourceendlinenumber="110"><code class="lang-console">Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:53104/api/todo/0  
+Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
+TodoApi.Controllers.TodoController:Information: Getting item 0
+TodoApi.Controllers.TodoController:Warning: GetById(0) NOT FOUND
+Microsoft.AspNetCore.Mvc.StatusCodeResult:Information: Executing HttpStatusCodeResult, setting HTTP status code 404
+Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 152.5657ms
+Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 316.3195ms 404 
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="112" sourceendlinenumber="112">The logs that were created by the <code>ILogger</code> calls shown in the preceding section begin with &quot;TodoApi.Controllers.TodoController&quot;. The logs that begin with &quot;Microsoft&quot; categories are from ASP.NET Core. ASP.NET Core itself and your application code are using the same logging API and the same logging providers.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="114" sourceendlinenumber="114">The remainder of this article explains some details and options for logging.</p>
+<h2 id="nuget-packages" sourcefile="fundamentals/logging.md" sourcestartlinenumber="116" sourceendlinenumber="116">NuGet packages</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="118" sourceendlinenumber="118">The <code>ILogger</code> and <code>ILoggerFactory</code> interfaces are in <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/" data-raw-source="[Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="118" sourceendlinenumber="118">Microsoft.Extensions.Logging.Abstractions</a>, and default implementations for them are in <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging/" data-raw-source="[Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="118" sourceendlinenumber="118">Microsoft.Extensions.Logging</a>.</p>
+<h2 id="log-category" sourcefile="fundamentals/logging.md" sourcestartlinenumber="120" sourceendlinenumber="120">Log category</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="122" sourceendlinenumber="122">A <em>category</em> is included with each log that you create.  You specify the category when you create an <code>ILogger</code> object. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written.  For example: &quot;TodoApi.Controllers.TodoController&quot;.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="124" sourceendlinenumber="124">You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call <code>CreateLogger</code> on an <code>ILoggerFactory</code> instance, as shown below.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="126" sourceendlinenumber="126"><code class="lang-csharp" highlight-lines="7,10">public class TodoController : Controller
+{
+    private readonly ITodoRepository _todoRepository;
+    private readonly ILogger _logger;
+
+    public TodoController(ITodoRepository todoRepository,
+        ILoggerFactory logger)
+    {
+        _todoRepository = todoRepository;
+        _logger = logger.CreateLogger(&quot;TodoApi.Controllers.TodoController&quot;);
+    }
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="128" sourceendlinenumber="128">Most of the time, it will be easier to use  <code>ILogger&lt;T&gt;</code>, as in the following example.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="130" sourceendlinenumber="130"><code class="lang-csharp" highlight-lines="7">public class TodoController : Controller
+{
+    private readonly ITodoRepository _todoRepository;
+    private readonly ILogger _logger;
+
+    public TodoController(ITodoRepository todoRepository,
+        ILogger&lt;TodoController&gt; logger)
+    {
+        _todoRepository = todoRepository;
+        _logger = logger;
+    }
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="132" sourceendlinenumber="132">This is equivalent to calling <code>CreateLogger</code> with the fully qualified type name of <code>T</code>.</p>
+<h2 id="log-level" sourcefile="fundamentals/logging.md" sourcestartlinenumber="134" sourceendlinenumber="134">Log level</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="136" sourceendlinenumber="136">Each time you write a log, you specify its <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel" data-raw-source="[LogLevel](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="136" sourceendlinenumber="136">LogLevel</a>. The log level indicates the degree of severity or importance.  For example, you might write an <code>Information</code> log when a method ends normally, a <code>Warning</code> log when a method returns a 404 return code, and an <code>Error</code> log when you catch an unexpected exception.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="138" sourceendlinenumber="138">In the following code example, the names of the methods (for example, <code>LogWarning</code>) specify the log level.  The first parameter is the <a href="#log-event-id" data-raw-source="[Log event ID](#log-event-id)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="138" sourceendlinenumber="138">Log event ID</a> (explained later in this article).  The remaining parameters construct a log message string.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="140" sourceendlinenumber="140"><code class="lang-csharp" highlight-lines="3,7">public IActionResult GetById(string id)
+{
+    _logger.LogInformation(LoggingEvents.GetItem, &quot;Getting item {ID}&quot;, id);
+    var item = _todoRepository.Find(id);
+    if (item == null)
+    {
+        _logger.LogWarning(LoggingEvents.GetItemNotFound, &quot;GetById({ID}) NOT FOUND&quot;, id);
+        return NotFound();
+    }
+    return new ObjectResult(item);
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="142" sourceendlinenumber="142">Log methods that include the level in the method name are <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions" data-raw-source="[extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="142" sourceendlinenumber="142">extension methods for ILogger</a>. Behind the scenes, these methods call a <code>Log</code> method that takes a <code>LogLevel</code> parameter. You can call the <code>Log</code> method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger" data-raw-source="[ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="142" sourceendlinenumber="142">ILogger interface</a> and the <a href="https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs" data-raw-source="[logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="142" sourceendlinenumber="142">logger extensions source code</a>.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="144" sourceendlinenumber="144">ASP.NET Core defines the following <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel" data-raw-source="[log levels](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="144" sourceendlinenumber="144">log levels</a>, ordered here from least to highest severity.</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="146" sourceendlinenumber="168">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="146" sourceendlinenumber="148"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="146" sourceendlinenumber="146">Trace = 0</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="148" sourceendlinenumber="148">For information that is valuable only to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. <em>Disabled by default.</em> Example: <code>Credentials: {&quot;User&quot;:&quot;someuser&quot;, &quot;Password&quot;:&quot;P@ssword&quot;}</code></p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="150" sourceendlinenumber="152"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="150" sourceendlinenumber="150">Debug = 1</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="152" sourceendlinenumber="152">For information that has short-term usefulness during development and debugging. Example: <code>Entering method Configure with flag set to true.</code> You typically would not enable <code>Debug</code> level logs in production unless you are troubleshooting, due to the high volume of logs.</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="154" sourceendlinenumber="156"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="154" sourceendlinenumber="154">Information = 2</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="156" sourceendlinenumber="156">For tracking the general flow of the application. These logs typically have some long-term value. Example: <code>Request received for path /api/todo</code></p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="158" sourceendlinenumber="160"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="158" sourceendlinenumber="158">Warning = 3</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="160" sourceendlinenumber="160">For abnormal or unexpected events in the application flow. These may include errors or other conditions that do not cause the application to stop, but which may need to be investigated. Handled exceptions are a common place to use the <code>Warning</code> log level. Example: <code>FileNotFoundException for file quotes.txt.</code></p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="162" sourceendlinenumber="164"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="162" sourceendlinenumber="162">Error = 4</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="164" sourceendlinenumber="164">For errors and exceptions that cannot be handled. These messages indicate a failure in the current activity or operation (such as the current HTTP request), not an application-wide failure. Example log message: <code>Cannot insert record due to duplicate key violation.</code></p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="166" sourceendlinenumber="168"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="166" sourceendlinenumber="166">Critical = 5</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="168" sourceendlinenumber="168">For failures that require immediate attention. Examples: data loss scenarios, out of disk space.</p>
+</li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="170" sourceendlinenumber="170">You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of <code>Information</code> level and lower to go to a volume data store, and all logs of <code>Warning</code> level and higher to go to a value data store. During development, you might normally send logs of <code>Warning</code> or higher severity to the console. Then when you need to troubleshoot, you can add <code>Debug</code> level. The <a href="#log-filtering" data-raw-source="[Log filtering](#log-filtering)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="170" sourceendlinenumber="170">Log filtering</a> section later in this article explains how to control which log levels a provider handles.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="172" sourceendlinenumber="172">The ASP.NET Core framework writes <code>Debug</code> level logs for framework events. The log examples earlier in this article excluded logs below <code>Information</code> level, so no <code>Debug</code> level logs were shown. Here&#39;s an example of console logs if you run the sample application configured to show <code>Debug</code> and higher logs for the console provider.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="174" sourceendlinenumber="201"><code class="lang-console">info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:62555/api/todo/0
+dbug: Microsoft.AspNetCore.Routing.Tree.TreeRouter[1]
+      Request successfully matched the route with name &#39;GetTodo&#39; and template &#39;api/Todo/{id}&#39;.
+dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
+      Action &#39;TodoApi.Controllers.TodoController.Update (TodoApi)&#39; with id &#39;089d59b6-92ec-472d-b552-cc613dfd625d&#39; did not match the constraint &#39;Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint&#39;
+dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
+      Action &#39;TodoApi.Controllers.TodoController.Delete (TodoApi)&#39; with id &#39;f3476abe-4bd9-4ad3-9261-3ead09607366&#39; did not match the constraint &#39;Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint&#39;
+dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action TodoApi.Controllers.TodoController.GetById (TodoApi)
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
+info: TodoApi.Controllers.TodoController[1002]
+      Getting item 0
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(0) NOT FOUND
+dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method TodoApi.Controllers.TodoController.GetById (TodoApi), returned result Microsoft.AspNetCore.Mvc.NotFoundResult.
+info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
+      Executing HttpStatusCodeResult, setting HTTP status code 404
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 0.8788ms
+dbug: Microsoft.AspNetCore.Server.Kestrel[9]
+      Connection id &quot;0HL6L7NEFF2QD&quot; completed keep alive response.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 2.7286ms 404
+</code></pre><h2 id="log-event-id" sourcefile="fundamentals/logging.md" sourcestartlinenumber="203" sourceendlinenumber="203">Log event ID</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="205" sourceendlinenumber="205">Each time you write a log, you can specify an <em>event ID</em>. The sample app does this by using a locally-defined <code>LoggingEvents</code> class:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="207" sourceendlinenumber="207"><code class="lang-csharp" highlight-lines="3,7">public IActionResult GetById(string id)
+{
+    _logger.LogInformation(LoggingEvents.GetItem, &quot;Getting item {ID}&quot;, id);
+    var item = _todoRepository.Find(id);
+    if (item == null)
+    {
+        _logger.LogWarning(LoggingEvents.GetItemNotFound, &quot;GetById({ID}) NOT FOUND&quot;, id);
+        return NotFound();
+    }
+    return new ObjectResult(item);
+}
+</code></pre><pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="209" sourceendlinenumber="209"><code class="lang-csharp">public class LoggingEvents
+{
+    public const int GenerateItems = 1000;
+    public const int ListItems = 1001;
+    public const int GetItem = 1002;
+    public const int InsertItem = 1003;
+    public const int UpdateItem = 1004;
+    public const int DeleteItem = 1005;
+
+    public const int GetItemNotFound = 4000;
+    public const int UpdateItemNotFound = 4001;
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="211" sourceendlinenumber="211">An event ID is an integer value that you can use to associate a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="213" sourceendlinenumber="213">In logging output, the event ID may be stored in a field or included in the text message, depending on the provider.  The Debug provider doesn&#39;t show event IDs, but the console provider shows them in brackets after the category:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="215" sourceendlinenumber="220"><code class="lang-console">info: TodoApi.Controllers.TodoController[1002]
+      Getting item invalidid
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(invalidid) NOT FOUND
+</code></pre><h2 id="log-message-format-string" sourcefile="fundamentals/logging.md" sourcestartlinenumber="222" sourceendlinenumber="222">Log message format string</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="224" sourceendlinenumber="224">Each time you write a log, you provide a text message. The message string can contain named placeholders into which argument values are placed, as in the following example:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="226" sourceendlinenumber="226"><code class="lang-csharp" highlight-lines="3,7">public IActionResult GetById(string id)
+{
+    _logger.LogInformation(LoggingEvents.GetItem, &quot;Getting item {ID}&quot;, id);
+    var item = _todoRepository.Find(id);
+    if (item == null)
+    {
+        _logger.LogWarning(LoggingEvents.GetItemNotFound, &quot;GetById({ID}) NOT FOUND&quot;, id);
+        return NotFound();
+    }
+    return new ObjectResult(item);
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="228" sourceendlinenumber="228">The order of placeholders, not their names, determines which parameters are used for them. For example, if you have the following code:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="230" sourceendlinenumber="234"><code class="lang-csharp">string p1 = &quot;parm1&quot;;
+string p2 = &quot;parm2&quot;;
+_logger.LogInformation(&quot;Parameter values: {p2}, {p1}&quot;, p1, p2);
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="236" sourceendlinenumber="236">The resulting log message would look like this:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="238" sourceendlinenumber="240"><code>Parameter values: parm1, parm2
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="242" sourceendlinenumber="242">The logging framework does message formatting in this way to make it possible for logging providers to implement <a href="https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging" data-raw-source="[semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="242" sourceendlinenumber="242">semantic logging, also known as structured logging</a>. Because the arguments themselves are passed to the logging system, not just the formatted message string, logging providers can store the parameter values as fields in addition to the message string. For example, if you are directing your log output to Azure Table Storage, and your logger method call looks like this:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="244" sourceendlinenumber="246"><code class="lang-csharp">_logger.LogInformation(&quot;Getting item {ID} at {RequestTime}&quot;, id, DateTime.Now);
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="248" sourceendlinenumber="248">Each Azure Table entity could have <code>ID</code> and <code>RequestTime</code> properties, which would simplify queries on log data. You could find all logs within a particular <code>RequestTime</code> range, without having to parse the time out of the text message.</p>
+<h2 id="logging-exceptions" sourcefile="fundamentals/logging.md" sourcestartlinenumber="250" sourceendlinenumber="250">Logging exceptions</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="252" sourceendlinenumber="252">The logger methods have overloads that let you pass in an exception, as in the following example:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="254" sourceendlinenumber="254"><code class="lang-csharp" highlight-lines="3">catch (Exception ex)
+{
+    _logger.LogWarning(LoggingEvents.GetItemNotFound, ex, &quot;GetById({ID}) NOT FOUND&quot;, id);
+    return NotFound();
+}
+return new ObjectResult(item);
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="256" sourceendlinenumber="256">Different providers handle the exception information in different ways. Here&#39;s an example of Debug provider output from the code shown above.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="258" sourceendlinenumber="263"><code>TodoApi.Controllers.TodoController:Warning: GetById(036dd898-fb01-47e8-9a65-f92eb73cf924) NOT FOUND
+
+System.Exception: Item not found exception.
+ at TodoApi.Controllers.TodoController.GetById(String id) in C:\logging\sample\src\TodoApi\Controllers\TodoController.cs:line 226
+</code></pre><h2 id="log-filtering" sourcefile="fundamentals/logging.md" sourcestartlinenumber="265" sourceendlinenumber="265">Log filtering</h2>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-2" sourcefile="fundamentals/logging.md" sourcestartlinenumber="267" sourceendlinenumber="339">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-2_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="267" sourceendlinenumber="267">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-2_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="349" sourceendlinenumber="349">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="269" sourceendlinenumber="269">You can specify a minimum log level for a specific provider and category or for all providers or all categories.  Any logs below the minimum level aren&#39;t passed to that provider, so they don&#39;t get displayed or stored. </p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="271" sourceendlinenumber="271">If you want to suppress all logs, you can specify <code>LogLevel.None</code> as the minimum log level. The integer value of <code>LogLevel.None</code> is 6, which is higher than <code>LogLevel.Critical</code> (5).</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="273" sourceendlinenumber="273"><strong>Create filter rules in configuration</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="275" sourceendlinenumber="275">The project templates create code that calls <code>CreateDefaultBuilder</code> to set up logging for the Console and Debug providers. The <code>CreateDefaultBuilder</code> method also sets up logging to look for configuration in a <code>Logging</code> section, using code like the following:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="277" sourceendlinenumber="277"><code class="lang-csharp" highlight-lines="15">public static void Main(string[] args)
+{
+    var webHost = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .ConfigureAppConfiguration((hostingContext, config) =&gt;
+        {
+            var env = hostingContext.HostingEnvironment;
+            config.AddJsonFile(&quot;appsettings.json&quot;, optional: true, reloadOnChange: true)
+                  .AddJsonFile($&quot;appsettings.{env.EnvironmentName}.json&quot;, optional: true, reloadOnChange: true);
+            config.AddEnvironmentVariables();
+        })
+        .ConfigureLogging((hostingContext, logging) =&gt;
+        {
+            logging.AddConfiguration(hostingContext.Configuration.GetSection(&quot;Logging&quot;));
+            logging.AddConsole();
+            logging.AddDebug();
+        })
+        .UseStartup&lt;Startup&gt;()
+        .Build();
+
+    webHost.Run();
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="279" sourceendlinenumber="279">The configuration data specifies minimum log levels by provider and category, as in the following example:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="281" sourceendlinenumber="281"><code class="lang-json">{
+  &quot;Logging&quot;: {
+    &quot;IncludeScopes&quot;: false,
+    &quot;Debug&quot;: {
+      &quot;LogLevel&quot;: {
+        &quot;Default&quot;: &quot;Information&quot;
+      }
+    },
+    &quot;Console&quot;: {
+      &quot;LogLevel&quot;: {
+        &quot;Microsoft.AspNetCore.Mvc.Razor.Internal&quot;: &quot;Warning&quot;,
+        &quot;Microsoft.AspNetCore.Mvc.Razor.Razor&quot;: &quot;Debug&quot;,
+        &quot;Microsoft.AspNetCore.Mvc.Razor&quot;: &quot;Error&quot;,
+        &quot;Default&quot;: &quot;Information&quot;
+      }
+    },
+    &quot;LogLevel&quot;: {
+      &quot;Default&quot;: &quot;Debug&quot;
+    }
+  }
+}
+
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="283" sourceendlinenumber="283">This JSON creates six filter rules, one for the Debug provider, four for the Console provider, and one that applies to all providers. You&#39;ll see later how just one of these rules is chosen for each provider when an <code>ILogger</code> object is created.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="285" sourceendlinenumber="285"><strong>Filter rules in code</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="287" sourceendlinenumber="287">You can register filter rules in code, as shown in the following example:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="289" sourceendlinenumber="289"><code class="lang-csharp" highlight-lines="4-5">WebHost.CreateDefaultBuilder(args)
+    .UseStartup&lt;Startup&gt;()
+    .ConfigureLogging(logging =&gt;
+        logging.AddFilter(&quot;System&quot;, LogLevel.Debug)
+               .AddFilter&lt;DebugLoggerProvider&gt;(&quot;Microsoft&quot;, LogLevel.Trace))
+    .Build();
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="291" sourceendlinenumber="291">The second <code>AddFilter</code> specifies the Debug provider by using its type name. The first <code>AddFilter</code> applies to all providers because it doesn&#39;t specify a provider type.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="293" sourceendlinenumber="293"><strong>How filtering rules are applied</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="295" sourceendlinenumber="295">The configuration data and the <code>AddFilter</code> code shown in the preceding examples create the rules shown in the following table. The first six come from the configuration example and the last two come from the code example.</p>
+<table sourcefile="fundamentals/logging.md" sourcestartlinenumber="297" sourceendlinenumber="306">
+<thead>
+<tr>
+<th>Number</th>
+<th>Provider</th>
+<th>Categories that begin with</th>
+<th>Minimum log level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Debug</td>
+<td>All categories</td>
+<td>Information</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Console</td>
+<td>Microsoft.AspNetCore.Mvc.Razor.Internal</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Console</td>
+<td>Microsoft.AspNetCore.Mvc.Razor.Razor</td>
+<td>Debug</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Console</td>
+<td>Microsoft.AspNetCore.Mvc.Razor</td>
+<td>Error</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Console</td>
+<td>All categories</td>
+<td>Information</td>
+</tr>
+<tr>
+<td>6</td>
+<td>All providers</td>
+<td>All categories</td>
+<td>Debug</td>
+</tr>
+<tr>
+<td>7</td>
+<td>All providers</td>
+<td>System</td>
+<td>Debug</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Debug</td>
+<td>Microsoft</td>
+<td>Trace</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="308" sourceendlinenumber="308">When you create an <code>ILogger</code> object to write logs with, the <code>ILoggerFactory</code> object selects a single rule per provider to apply to that logger. All messages written by that <code>ILogger</code> object are filtered based on the selected rules. The most specific rule possible for each provider and category pair is selected from the available rules.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="310" sourceendlinenumber="310">The following algorithm is used for each provider when an <code>ILogger</code> is created for a given category:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="312" sourceendlinenumber="315">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="312" sourceendlinenumber="312">Select all rules that match the provider or its alias.  If none are found, select all rules with an empty provider.</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="313" sourceendlinenumber="313">From the result of the preceding step, select rules with longest matching category prefix. If none are found, select all rules that don&#39;t specify a category.</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="314" sourceendlinenumber="314">If multiple rules are selected take the <strong>last</strong> one.</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="315" sourceendlinenumber="315">If no rules are selected, use <code>MinimumLevel</code>.</li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="317" sourceendlinenumber="317">For example, suppose you have the preceding list of rules and you create an <code>ILogger</code> object for category &quot;Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine&quot;:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="319" sourceendlinenumber="320">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="319" sourceendlinenumber="319">For the Debug provider, rules 1, 6, and 8 apply. Rule 8 is most specific, so that&#39;s the one selected.</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="320" sourceendlinenumber="320">For the Console provider, rules 3, 4, 5, and 6 apply. Rule 3 is most specific.</li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="322" sourceendlinenumber="322">When you create logs with an <code>ILogger</code> for category &quot;Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine&quot;, logs of <code>Trace</code> level and above will go to the Debug provider, and logs of <code>Debug</code> level and above will go to the Console provider.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="324" sourceendlinenumber="324"><strong>Provider aliases</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="326" sourceendlinenumber="326">You can use the type name to specify a provider in configuration, but each provider defines a shorter <em>alias</em> that is easier to use. For the built-in providers, use the following aliases:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="328" sourceendlinenumber="333">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="328" sourceendlinenumber="328">Console</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="329" sourceendlinenumber="329">Debug</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="330" sourceendlinenumber="330">EventLog</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="331" sourceendlinenumber="331">AzureAppServices</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="332" sourceendlinenumber="332">TraceSource</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="333" sourceendlinenumber="333">EventSource</li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="335" sourceendlinenumber="335"><strong>Default minimum level</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="337" sourceendlinenumber="337">There is a minimum level setting that takes effect only if no rules from configuration or code apply for a given provider and category. The following example shows how to set the minimum level:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="339" sourceendlinenumber="339"><code class="lang-csharp" highlight-lines="3">WebHost.CreateDefaultBuilder(args)
+    .UseStartup&lt;Startup&gt;()
+    .ConfigureLogging(logging =&gt; logging.SetMinimumLevel(LogLevel.Warning))
+    .Build();
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="341" sourceendlinenumber="341">IF you don&#39;t explicitly set the minimum level, the default value is <code>Information</code>, which means that <code>Trace</code> and <code>Debug</code> logs are ignored.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="343" sourceendlinenumber="343"><strong>Filter functions</strong></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="345" sourceendlinenumber="345">You can write code in a filter function to apply filtering rules. A filter function is invoked for all providers and categories that do not have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level to decide whether or not a message should be logged. For example:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="347" sourceendlinenumber="347"><code class="lang-csharp" highlight-lines="5-13">WebHost.CreateDefaultBuilder(args)
+    .UseStartup&lt;Startup&gt;()
+    .ConfigureLogging(logBuilder =&gt;
+    {
+        logBuilder.AddFilter((provider, category, logLevel) =&gt;
+        {
+            if (provider == &quot;Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider&quot; &amp;&amp; 
+                category == &quot;TodoApi.Controllers.TodoController&quot;)
+            {
+                return false;
+            }
+            return true;
+        });
+    })
+    .Build();
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="351" sourceendlinenumber="351">Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="353" sourceendlinenumber="353">The <code>AddConsole</code> and <code>AddDebug</code> extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below <code>Warning</code> level, while the Debug provider ignores logs that the framework creates.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="355" sourceendlinenumber="355"><code class="lang-csharp" highlight-lines="6-7">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env,
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory
+        .AddConsole(LogLevel.Warning)
+        .AddDebug((category, logLevel) =&gt; (category.Contains(&quot;TodoApi&quot;) &amp;&amp; logLevel &gt;= LogLevel.Trace));
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="357" sourceendlinenumber="357">The <code>AddEventLog</code> method has an overload that takes an <code>EventLogSettings</code> instance, which may contain a filtering function in its <code>Filter</code> property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  <code>SourceSwitch</code> and <code>TraceListener</code> it uses.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="359" sourceendlinenumber="359">You can set filtering rules for all providers that are registered with an <code>ILoggerFactory</code> instance by using the <code>WithFilter</code> extension method. The example below limits framework logs (category begins with &quot;Microsoft&quot; or &quot;System&quot;) to warnings while letting the app log at debug level.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="361" sourceendlinenumber="361"><code class="lang-csharp" highlight-lines="6-11">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env,
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory
+        .WithFilter(new FilterLoggerSettings
+        {
+            { &quot;Microsoft&quot;, LogLevel.Warning },
+            { &quot;System&quot;, LogLevel.Warning },
+            { &quot;ToDoApi&quot;, LogLevel.Debug }
+        })
+        .AddConsole()
+        .AddDebug();
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="363" sourceendlinenumber="363">If you want to use filtering to prevent all logs from being written for a particular category, you can specify <code>LogLevel.None</code> as the minimum log level for that category. The integer value of <code>LogLevel.None</code> is 6, which is higher than <code>LogLevel.Critical</code> (5).</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="365" sourceendlinenumber="365">The <code>WithFilter</code> extension method is provided by the <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter" data-raw-source="[Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="365" sourceendlinenumber="365">Microsoft.Extensions.Logging.Filter</a> NuGet package. The method returns a new <code>ILoggerFactory</code> instance that will filter the log messages passed to all logger providers registered with it. It does not affect any other <code>ILoggerFactory</code> instances, including the original <code>ILoggerFactory</code> instance.</p>
+</section>
+</div>
+<h2 id="log-scopes" sourcefile="fundamentals/logging.md" sourcestartlinenumber="369" sourceendlinenumber="369">Log scopes</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="371" sourceendlinenumber="371">You can group a set of logical operations within a <em>scope</em> in order to attach the same data to each log that is created as part of that set.  For example, you might want every log created as part of processing a transaction to include the transaction ID.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="373" sourceendlinenumber="373">A scope is an <code>IDisposable</code> type that is returned by the <code>ILogger.BeginScope&lt;TState&gt;</code> method and lasts until it is disposed. You use a scope by wrapping your logger calls in a <code>using</code> block, as shown here:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="375" sourceendlinenumber="375"><code class="lang-csharp" highlight-lines="4-5,13">public IActionResult GetById(string id)
+{
+    TodoItem item;
+    using (_logger.BeginScope(&quot;Message attached to logs created in the using block&quot;))
+    {
+        _logger.LogInformation(LoggingEvents.GetItem, &quot;Getting item {ID}&quot;, id);
+        item = _todoRepository.Find(id);
+        if (item == null)
+        {
+            _logger.LogWarning(LoggingEvents.GetItemNotFound, &quot;GetById({ID}) NOT FOUND&quot;, id);
+            return NotFound();
+        }
+    }
+    return new ObjectResult(item);
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="377" sourceendlinenumber="377">The following code enables scopes for the console provider:</p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-3" sourcefile="fundamentals/logging.md" sourcestartlinenumber="379" sourceendlinenumber="389">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-3_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="379" sourceendlinenumber="379">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-3_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="385" sourceendlinenumber="385">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="381" sourceendlinenumber="381">In <em>Program.cs</em>:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="383" sourceendlinenumber="383"><code class="lang-csharp" highlight-lines="4">.ConfigureLogging((hostingContext, logging) =&gt;
+{
+    logging.AddConfiguration(hostingContext.Configuration.GetSection(&quot;Logging&quot;));
+    logging.AddConsole(options =&gt; options.IncludeScopes = true);
+    logging.AddDebug();
+})
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="387" sourceendlinenumber="387">In <em>Startup.cs</em>:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="389" sourceendlinenumber="389"><code class="lang-csharp" highlight-lines="6">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env,
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory
+        .AddConsole(includeScopes: true)
+        .AddDebug();
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="393" sourceendlinenumber="393">Each log message includes the scoped information:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="395" sourceendlinenumber="402"><code>info: TodoApi.Controllers.TodoController[1002]
+      =&gt; RequestId:0HKV9C49II9CK RequestPath:/api/todo/0 =&gt; TodoApi.Controllers.TodoController.GetById (TodoApi) =&gt; Message attached to logs created in the using block
+      Getting item 0
+warn: TodoApi.Controllers.TodoController[4000]
+      =&gt; RequestId:0HKV9C49II9CK RequestPath:/api/todo/0 =&gt; TodoApi.Controllers.TodoController.GetById (TodoApi) =&gt; Message attached to logs created in the using block
+      GetById(0) NOT FOUND
+</code></pre><h2 id="built-in-logging-providers" sourcefile="fundamentals/logging.md" sourcestartlinenumber="404" sourceendlinenumber="404">Built-in logging providers</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="406" sourceendlinenumber="406">ASP.NET Core ships the following providers:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="408" sourceendlinenumber="413">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="408" sourceendlinenumber="408"><a href="#console" data-raw-source="[Console](#console)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="408" sourceendlinenumber="408">Console</a></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="409" sourceendlinenumber="409"><a href="#debug" data-raw-source="[Debug](#debug)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="409" sourceendlinenumber="409">Debug</a></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="410" sourceendlinenumber="410"><a href="#eventsource" data-raw-source="[EventSource](#eventsource)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="410" sourceendlinenumber="410">EventSource</a></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="411" sourceendlinenumber="411"><a href="#eventlog" data-raw-source="[EventLog](#eventlog)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="411" sourceendlinenumber="411">EventLog</a></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="412" sourceendlinenumber="412"><a href="#tracesource" data-raw-source="[TraceSource](#tracesource)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="412" sourceendlinenumber="412">TraceSource</a></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="413" sourceendlinenumber="413"><a href="#appservice" data-raw-source="[Azure App Service](#appservice)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="413" sourceendlinenumber="413">Azure App Service</a></li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="415" sourceendlinenumber="415"><a id="console"></a></p>
+<h3 id="the-console-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="416" sourceendlinenumber="416">The console provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="418" sourceendlinenumber="418">The <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console" data-raw-source="[Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="418" sourceendlinenumber="418">Microsoft.Extensions.Logging.Console</a> provider package sends log output to the console. </p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-4" sourcefile="fundamentals/logging.md" sourcestartlinenumber="420" sourceendlinenumber="440">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-4_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-4_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="420" sourceendlinenumber="420">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-4_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-4_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="426" sourceendlinenumber="426">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-4_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="422" sourceendlinenumber="424"><code class="lang-csharp">logging.AddConsole()
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-4_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="428" sourceendlinenumber="430"><code class="lang-csharp">loggerFactory.AddConsole()
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="432" sourceendlinenumber="432"><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.consoleloggerextensions" data-raw-source="[AddConsole overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.consoleloggerextensions)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="432" sourceendlinenumber="432">AddConsole overloads</a> let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported.  Another option is to pass in an <code>IConfiguration</code> object, which can specify scopes support and logging levels. </p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="434" sourceendlinenumber="434">If you are considering the console provider for use in production, be aware that it has a significant impact on performance.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="436" sourceendlinenumber="436">When you create a new project in Visual Studio, the <code>AddConsole</code> method looks like this:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="438" sourceendlinenumber="440"><code class="lang-csharp">loggerFactory.AddConsole(Configuration.GetSection(&quot;Logging&quot;));
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="442" sourceendlinenumber="442">This code refers to the <code>Logging</code> section of the <em>appSettings.json</em> file:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="444" sourceendlinenumber="444"><code class="lang-json">{
+  &quot;Logging&quot;: {
+    &quot;IncludeScopes&quot;: false,
+    &quot;LogLevel&quot;: {
+      &quot;Default&quot;: &quot;Debug&quot;,
+      &quot;System&quot;: &quot;Information&quot;,
+      &quot;Microsoft&quot;: &quot;Information&quot;
+    }
+  }
+}
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="446" sourceendlinenumber="446">The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the <a href="#log-filtering" data-raw-source="[Log filtering](#log-filtering)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="446" sourceendlinenumber="446">Log filtering</a> section. For more information, see <a href="configuration.html" data-raw-source="[Configuration](configuration.md)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="446" sourceendlinenumber="446">Configuration</a>.</p>
+</section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="450" sourceendlinenumber="450"><a id="debug"></a></p>
+<h3 id="the-debug-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="451" sourceendlinenumber="451">The Debug provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="453" sourceendlinenumber="453">The <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug" data-raw-source="[Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="453" sourceendlinenumber="453">Microsoft.Extensions.Logging.Debug</a> provider package writes log output by using the <a href="https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug" data-raw-source="[System.Diagnostics.Debug](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="453" sourceendlinenumber="453">System.Diagnostics.Debug</a> class (<code>Debug.WriteLine</code> method calls).</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="455" sourceendlinenumber="455">On Linux, this provider writes logs to <em>/var/log/message</em>.</p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-5" sourcefile="fundamentals/logging.md" sourcestartlinenumber="457" sourceendlinenumber="468">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-5_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-5_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="457" sourceendlinenumber="457">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-5_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-5_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="463" sourceendlinenumber="463">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-5_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="459" sourceendlinenumber="461"><code class="lang-csharp">logging.AddDebug()
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-5_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="465" sourceendlinenumber="467"><code class="lang-csharp">loggerFactory.AddDebug()
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="469" sourceendlinenumber="469"><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.debugloggerfactoryextensions" data-raw-source="[AddDebug overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.debugloggerfactoryextensions)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="469" sourceendlinenumber="469">AddDebug overloads</a> let you pass in a minimum log level or a filter function.</p>
+</section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="473" sourceendlinenumber="473"><a id="eventsource"></a></p>
+<h3 id="the-eventsource-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="474" sourceendlinenumber="474">The EventSource provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="476" sourceendlinenumber="476">For apps that target ASP.NET Core 1.1.0 or higher, the <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource" data-raw-source="[Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="476" sourceendlinenumber="476">Microsoft.Extensions.Logging.EventSource</a> provider package can implement event tracing. On Windows, it uses <a href="https://msdn.microsoft.com/library/windows/desktop/bb968803" data-raw-source="[ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="476" sourceendlinenumber="476">ETW</a>. The provider is cross-platform, but there are no event collection and display tools yet for Linux or macOS. </p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-6" sourcefile="fundamentals/logging.md" sourcestartlinenumber="478" sourceendlinenumber="488">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-6_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-6_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="478" sourceendlinenumber="478">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-6_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-6_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="484" sourceendlinenumber="484">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-6_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="480" sourceendlinenumber="482"><code class="lang-csharp">logging.AddEventSourceLogger()
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-6_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="486" sourceendlinenumber="488"><code class="lang-csharp">loggerFactory.AddEventSourceLogger()
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="492" sourceendlinenumber="492">A good way to collect and view logs is to use the <a href="https://www.microsoft.com/download/details.aspx?id=28567" data-raw-source="[PerfView utility](https://www.microsoft.com/download/details.aspx?id=28567)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="492" sourceendlinenumber="492">PerfView utility</a>. There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET. </p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="494" sourceendlinenumber="494">To configure PerfView for collecting events logged by this provider, add the string <code>*Microsoft-Extensions-Logging</code> to the <strong>Additional Providers</strong> list. (Don&#39;t miss the asterisk at the start of the string.)</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="496" sourceendlinenumber="496"><img src="logging/_static/perfview-additional-providers.png" alt="Perfview Additional Providers" sourcefile="fundamentals/logging.md" sourcestartlinenumber="496" sourceendlinenumber="496"></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="498" sourceendlinenumber="498">Capturing events on Nano Server requires some additional setup:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="500" sourceendlinenumber="525">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="500" sourceendlinenumber="504"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="500" sourceendlinenumber="500">Connect PowerShell remoting to the Nano Server:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="502" sourceendlinenumber="504"><code class="lang-powershell">Enter-PSSession [name]
+</code></pre></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="506" sourceendlinenumber="510"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="506" sourceendlinenumber="506">Create an ETW session:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="508" sourceendlinenumber="510"><code class="lang-powershell">New-EtwTraceSession -Name &quot;MyAppTrace&quot; -LocalFilePath C:\trace.etl
+</code></pre></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="512" sourceendlinenumber="517"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="512" sourceendlinenumber="512">Add ETW providers for <a href="https://docs.microsoft.com/dotnet/framework/performance/clr-etw-providers" data-raw-source="[CLR](https://docs.microsoft.com/dotnet/framework/performance/clr-etw-providers)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="512" sourceendlinenumber="512">CLR</a>, ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is <code>3ac73b97-af73-50e9-0822-5da4367920d0</code>. </p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="514" sourceendlinenumber="517"><code class="lang-powershell">Add-EtwTraceProvider -Guid &quot;{e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}&quot; -SessionName MyAppTrace
+Add-EtwTraceProvider -Guid &quot;{3ac73b97-af73-50e9-0822-5da4367920d0}&quot; -SessionName MyAppTrace
+</code></pre></li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="519" sourceendlinenumber="519"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="519" sourceendlinenumber="519">Run the site and do whatever actions you want tracing information for.</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="521" sourceendlinenumber="525"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="521" sourceendlinenumber="521">Stop the tracing session when you&#39;re finished:</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="523" sourceendlinenumber="525"><code class="lang-powershell">Stop-EtwTraceSession -Name &quot;MyAppTrace&quot;
+</code></pre></li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="527" sourceendlinenumber="527">The resulting <em>C:\trace.etl</em> file can be analyzed with PerfView as on other editions of Windows.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="529" sourceendlinenumber="529"><a id="eventlog"></a></p>
+<h3 id="the-windows-eventlog-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="530" sourceendlinenumber="530">The Windows EventLog provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="532" sourceendlinenumber="532">The <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog" data-raw-source="[Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="532" sourceendlinenumber="532">Microsoft.Extensions.Logging.EventLog</a> provider package sends log output to the Windows Event Log.</p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-7" sourcefile="fundamentals/logging.md" sourcestartlinenumber="534" sourceendlinenumber="545">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-7_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-7_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="534" sourceendlinenumber="534">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-7_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-7_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="540" sourceendlinenumber="540">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-7_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="536" sourceendlinenumber="538"><code class="lang-csharp">logging.AddEventLog()
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-7_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="542" sourceendlinenumber="544"><code class="lang-csharp">loggerFactory.AddEventLog()
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="546" sourceendlinenumber="546"><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.eventloggerfactoryextensions" data-raw-source="[AddEventLog overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.eventloggerfactoryextensions)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="546" sourceendlinenumber="546">AddEventLog overloads</a> let you pass in <code>EventLogSettings</code> or a minimum log level.</p>
+</section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="550" sourceendlinenumber="550"><a id="tracesource"></a></p>
+<h3 id="the-tracesource-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="551" sourceendlinenumber="551">The TraceSource provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="553" sourceendlinenumber="553">The <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource" data-raw-source="[Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="553" sourceendlinenumber="553">Microsoft.Extensions.Logging.TraceSource</a> provider package uses the <a href="https://docs.microsoft.com/dotnet/api/system.diagnostics.tracesource" data-raw-source="[System.Diagnostics.TraceSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.tracesource)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="553" sourceendlinenumber="553">System.Diagnostics.TraceSource</a> libraries and providers.</p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-8" sourcefile="fundamentals/logging.md" sourcestartlinenumber="555" sourceendlinenumber="565">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-8_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-8_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="555" sourceendlinenumber="555">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-8_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-8_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="561" sourceendlinenumber="561">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-8_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="557" sourceendlinenumber="559"><code class="lang-csharp">logging.AddTraceSource(sourceSwitchName);
+</code></pre></section>
+<section id="tabpanel_J929VbWwYc-8_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="563" sourceendlinenumber="565"><code class="lang-csharp">loggerFactory.AddTraceSource(sourceSwitchName);
+</code></pre></section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="569" sourceendlinenumber="569"><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.tracesourcefactoryextensions" data-raw-source="[AddTraceSource overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.tracesourcefactoryextensions)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="569" sourceendlinenumber="569">AddTraceSource overloads</a> let you pass in a source switch and a trace listener.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="571" sourceendlinenumber="571">To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider lets you route messages to a variety of <a href="https://docs.microsoft.com/dotnet/framework/debug-trace-profile/trace-listeners" data-raw-source="[listeners](https://docs.microsoft.com/dotnet/framework/debug-trace-profile/trace-listeners)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="571" sourceendlinenumber="571">listeners</a>, such as the <a href="https://docs.microsoft.com/dotnet/api/system.diagnostics.textwritertracelistenerr" data-raw-source="[TextWriterTraceListener](https://docs.microsoft.com/dotnet/api/system.diagnostics.textwritertracelistenerr)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="571" sourceendlinenumber="571">TextWriterTraceListener</a> used in the sample application.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="573" sourceendlinenumber="573">The following example configures a <code>TraceSource</code> provider that logs <code>Warning</code> and higher messages to the console window.</p>
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="575" sourceendlinenumber="575"><code class="lang-csharp" highlight-lines="9-12">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env,
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory
+        .AddDebug();
+
+    // add Trace Source logging
+    var testSwitch = new SourceSwitch(&quot;sourceSwitch&quot;, &quot;Logging Sample&quot;);
+    testSwitch.Level = SourceLevels.Warning;
+    loggerFactory.AddTraceSource(testSwitch,
+        new TextWriterTraceListener(writer: Console.Out));
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="577" sourceendlinenumber="577"><a id="appservice"></a></p>
+<h3 id="the-azure-app-service-provider" sourcefile="fundamentals/logging.md" sourcestartlinenumber="578" sourceendlinenumber="578">The Azure App Service provider</h3>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="580" sourceendlinenumber="580">The <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices" data-raw-source="[Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="580" sourceendlinenumber="580">Microsoft.Extensions.Logging.AzureAppServices</a> provider package writes logs to text files in an Azure App Service app&#39;s file system and to <a href="https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage" data-raw-source="[blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="580" sourceendlinenumber="580">blob storage</a> in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. </p>
+<div class="tabGroup" id="tabgroup_J929VbWwYc-9" sourcefile="fundamentals/logging.md" sourcestartlinenumber="582" sourceendlinenumber="594">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-9_aspnetcore2x" role="tab" aria-controls="tabpanel_J929VbWwYc-9_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="fundamentals/logging.md" sourcestartlinenumber="582" sourceendlinenumber="582">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J929VbWwYc-9_aspnetcore1x" role="tab" aria-controls="tabpanel_J929VbWwYc-9_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="fundamentals/logging.md" sourcestartlinenumber="589" sourceendlinenumber="589">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_J929VbWwYc-9_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<div class="NOTE" sourcefile="fundamentals/logging.md" sourcestartlinenumber="584" sourceendlinenumber="584"><h5>Note</h5><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="585" sourceendlinenumber="585">ASP.NET Core 2.0 is in preview.  Apps created with the latest preview release may not run when deployed to Azure App Service. When ASP.NET Core 2.0 is released, Azure App Service will run 2.0 apps, and the Azure App Service provider will work as indicated here.</p>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="587" sourceendlinenumber="587">You don&#39;t have to install the provider package or call the <code>AddAzureWebAppDiagnostics</code> extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.</p>
+</section>
+<section id="tabpanel_J929VbWwYc-9_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="fundamentals/logging.md" sourcestartlinenumber="591" sourceendlinenumber="593"><code class="lang-csharp">loggerFactory.AddAzureWebAppDiagnostics();
+</code></pre><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="595" sourceendlinenumber="595">An <code>AddAzureWebAppDiagnostics</code> overload lets you pass in <a href="https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs" data-raw-source="[AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="595" sourceendlinenumber="595">AzureAppServicesDiagnosticsSettings</a>, with which you can override default settings such as the logging output template, blob name, and file size limit. (<em>Output template</em> is a message format string that is applied to all logs, on top of the one that you provide when you call an <code>ILogger</code> method.)  </p>
+</section>
+</div>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="599" sourceendlinenumber="599">When you deploy to an App Service app, your application honors the settings in the <a href="https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag" data-raw-source="[Diagnostic Logs](https://azure.microsoft.com/documentation/articles/web-sites-enable-diagnostic-log/#enablediag)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="599" sourceendlinenumber="599">Diagnostic Logs</a> section of the <strong>App Service</strong> page of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. </p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="601" sourceendlinenumber="601"><img src="logging/_static/azure-logging-settings.png" alt="Azure logging settings" sourcefile="fundamentals/logging.md" sourcestartlinenumber="601" sourceendlinenumber="601"></p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="603" sourceendlinenumber="603">The default location for log files is in the <em>D:\home\LogFiles\Application</em> folder, and the default file name is <em>diagnostics-yyyymmdd.txt</em>. The default file size limit is 10 MB, and the default maximum number of files retained is 2. The default blob name is <em>{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt</em>. For more information about default behavior, see <a href="https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs" data-raw-source="[AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="603" sourceendlinenumber="603">AzureAppServicesDiagnosticsSettings</a>.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="605" sourceendlinenumber="605">The provider only works when your project runs in the Azure environment.  It has no effect when you run locally &mdash; it does not write to local files or local development storage for blobs.</p>
+<h2 id="third-party-logging-providers" sourcefile="fundamentals/logging.md" sourcestartlinenumber="607" sourceendlinenumber="607">Third-party logging providers</h2>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="609" sourceendlinenumber="609">Here are some third-party logging frameworks that work with ASP.NET Core:</p>
+<ul sourcefile="fundamentals/logging.md" sourcestartlinenumber="611" sourceendlinenumber="619">
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="611" sourceendlinenumber="611"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="611" sourceendlinenumber="611"><a href="https://github.com/elmahio/Elmah.Io.Extensions.Logging" data-raw-source="[elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="611" sourceendlinenumber="611">elmah.io</a> - provider for the Elmah.Io service</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="613" sourceendlinenumber="613"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="613" sourceendlinenumber="613"><a href="http://jsnlog.com" data-raw-source="[JSNLog](http://jsnlog.com)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="613" sourceendlinenumber="613">JSNLog</a> - logs JavaScript exceptions and other client-side events in your server-side log.</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="615" sourceendlinenumber="615"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="615" sourceendlinenumber="615"><a href="https://github.com/imobile3/Loggr.Extensions.Logging" data-raw-source="[Loggr](https://github.com/imobile3/Loggr.Extensions.Logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="615" sourceendlinenumber="615">Loggr</a> - provider for the Loggr service</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="617" sourceendlinenumber="617"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="617" sourceendlinenumber="617"><a href="https://github.com/NLog/NLog.Extensions.Logging" data-raw-source="[NLog](https://github.com/NLog/NLog.Extensions.Logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="617" sourceendlinenumber="617">NLog</a> - provider for the NLog library</p>
+</li>
+<li sourcefile="fundamentals/logging.md" sourcestartlinenumber="619" sourceendlinenumber="619"><p sourcefile="fundamentals/logging.md" sourcestartlinenumber="619" sourceendlinenumber="619"><a href="https://github.com/serilog/serilog-extensions-logging" data-raw-source="[Serilog](https://github.com/serilog/serilog-extensions-logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="619" sourceendlinenumber="619">Serilog</a> - provider for the Serilog library</p>
+</li>
+</ul>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="621" sourceendlinenumber="621">Some third-party frameworks can do <a href="https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging" data-raw-source="[semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging)" sourcefile="fundamentals/logging.md" sourcestartlinenumber="621" sourceendlinenumber="621">semantic logging, also known as structured logging</a>.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="623" sourceendlinenumber="623">Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on <code>ILoggerFactory</code>. For more information, see each framework&#39;s documentation.</p>
+<p sourcefile="fundamentals/logging.md" sourcestartlinenumber="625" sourceendlinenumber="625">You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/logging.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

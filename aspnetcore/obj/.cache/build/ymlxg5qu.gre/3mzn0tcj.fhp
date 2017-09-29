@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using JavaScriptServices for Creating Single Page Applications </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using JavaScriptServices for Creating Single Page Applications ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/spa-services">
+<h1 id="using-javascriptservices-for-creating-single-page-applications-with-aspnet-core" sourcefile="client-side/spa-services.md" sourcestartlinenumber="16" sourceendlinenumber="16">Using JavaScriptServices for Creating Single Page Applications with ASP.NET Core</h1>
+
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/scottaddie" data-raw-source="[Scott Addie](https://github.com/scottaddie)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="18" sourceendlinenumber="18">Scott Addie</a> and <a href="http://fiyazhasan.me/" data-raw-source="[Fiyaz Hasan](http://fiyazhasan.me/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="18" sourceendlinenumber="18">Fiyaz Hasan</a></p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="20" sourceendlinenumber="20">A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as <a href="https://angular.io/" data-raw-source="[Angular](https://angular.io/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="20" sourceendlinenumber="20">Angular</a> or <a href="https://facebook.github.io/react/" data-raw-source="[React](https://facebook.github.io/react/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="20" sourceendlinenumber="20">React</a>, with server-side frameworks like ASP.NET Core can be difficult. <a href="https://github.com/aspnet/JavaScriptServices" data-raw-source="[JavaScriptServices](https://github.com/aspnet/JavaScriptServices)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="20" sourceendlinenumber="20">JavaScriptServices</a> was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/spa-services/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/spa-services/sample)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="22" sourceendlinenumber="22">View or download sample code</a></p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a name="what-is-js-services"></a></p>
+<h2 id="what-is-javascriptservices" sourcefile="client-side/spa-services.md" sourcestartlinenumber="26" sourceendlinenumber="26">What is JavaScriptServices?</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="28" sourceendlinenumber="28">JavaScriptServices is a collection of client-side technologies for ASP.NET Core. Its goal is to position ASP.NET Core as developers&#39; preferred server-side platform for building SPAs.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="30" sourceendlinenumber="30">JavaScriptServices consists of three distinct NuGet packages:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="31" sourceendlinenumber="33">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="31" sourceendlinenumber="31"><a href="https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/" data-raw-source="[Microsoft.AspNetCore.NodeServices](https://www.nuget.org/packages/Microsoft.AspNetCore.NodeServices/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="31" sourceendlinenumber="31">Microsoft.AspNetCore.NodeServices</a> (NodeServices)</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="32" sourceendlinenumber="32"><a href="https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/" data-raw-source="[Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="32" sourceendlinenumber="32">Microsoft.AspNetCore.SpaServices</a> (SpaServices)</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="33" sourceendlinenumber="33"><a href="https://www.nuget.org/packages/Microsoft.AspNetCore.SpaTemplates/" data-raw-source="[Microsoft.AspNetCore.SpaTemplates](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaTemplates/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="33" sourceendlinenumber="33">Microsoft.AspNetCore.SpaTemplates</a> (SpaTemplates)</li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="35" sourceendlinenumber="35">These packages are useful if you:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="36" sourceendlinenumber="38">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="36" sourceendlinenumber="36">Run JavaScript on the server</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="37" sourceendlinenumber="37">Use a SPA framework or library</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="38" sourceendlinenumber="38">Build client-side assets with Webpack</li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="40" sourceendlinenumber="40">Much of the focus in this article is placed on using the SpaServices package.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="42" sourceendlinenumber="42"><a name="what-is-spa-services"></a></p>
+<h2 id="what-is-spaservices" sourcefile="client-side/spa-services.md" sourcestartlinenumber="44" sourceendlinenumber="44">What is SpaServices?</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="46" sourceendlinenumber="46">SpaServices was created to position ASP.NET Core as developers&#39; preferred server-side platform for building SPAs. SpaServices is not required to develop SPAs with ASP.NET Core, and it doesn&#39;t lock you into a particular client framework.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="48" sourceendlinenumber="48">SpaServices provides useful infrastructure such as:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="49" sourceendlinenumber="52">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="49" sourceendlinenumber="49"><a href="#server-prerendering" data-raw-source="[Server-side prerendering](#server-prerendering)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="49" sourceendlinenumber="49">Server-side prerendering</a></li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="50" sourceendlinenumber="50"><a href="#webpack-dev-middleware" data-raw-source="[Webpack Dev Middleware](#webpack-dev-middleware)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="50" sourceendlinenumber="50">Webpack Dev Middleware</a></li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="51" sourceendlinenumber="51"><a href="#hot-module-replacement" data-raw-source="[Hot Module Replacement](#hot-module-replacement)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="51" sourceendlinenumber="51">Hot Module Replacement</a></li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="52" sourceendlinenumber="52"><a href="#routing-helpers" data-raw-source="[Routing helpers](#routing-helpers)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="52" sourceendlinenumber="52">Routing helpers</a></li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="54" sourceendlinenumber="54">Collectively, these infrastructure components enhance both the development workflow and the runtime experience. The components can be adopted individually.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="56" sourceendlinenumber="56"><a name="spa-services-prereqs"></a></p>
+<h2 id="prerequisites-for-using-spaservices" sourcefile="client-side/spa-services.md" sourcestartlinenumber="58" sourceendlinenumber="58">Prerequisites for using SpaServices</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="60" sourceendlinenumber="60">To work with SpaServices, install the following:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="61" sourceendlinenumber="66">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="61" sourceendlinenumber="66"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="61" sourceendlinenumber="61"><a href="https://nodejs.org/" data-raw-source="[Node.js](https://nodejs.org/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="61" sourceendlinenumber="61">Node.js</a> (version 6 or later) with npm</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="62" sourceendlinenumber="66">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="62" sourceendlinenumber="66"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="62" sourceendlinenumber="62">To verify these components are installed and can be found, run the following from the command line:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="64" sourceendlinenumber="66"><code class="lang-console">node -v &amp;&amp; npm -v
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="68" sourceendlinenumber="68">Note: If you&#39;re deploying to an Azure web site, you don&#39;t need to do anything here &mdash; Node.js is installed and available in the server environments.</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="70" sourceendlinenumber="73">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="70" sourceendlinenumber="71"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="70" sourceendlinenumber="70"><a href="https://www.microsoft.com/net/download/core" data-raw-source="[.NET Core SDK](https://www.microsoft.com/net/download/core)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="70" sourceendlinenumber="70">.NET Core SDK</a> 1.0 (or later)</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="71" sourceendlinenumber="71">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="71" sourceendlinenumber="71">If you&#39;re on Windows, this can be installed by selecting Visual Studio 2017&#39;s <strong>.NET Core cross-platform development</strong> workload.</li>
+</ul>
+</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="73" sourceendlinenumber="73"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="73" sourceendlinenumber="73"><a href="https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/" data-raw-source="[Microsoft.AspNetCore.SpaServices](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="73" sourceendlinenumber="73">Microsoft.AspNetCore.SpaServices</a> NuGet package</p>
+</li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="75" sourceendlinenumber="75"><a name="server-prerendering"></a></p>
+<h2 id="server-side-prerendering" sourcefile="client-side/spa-services.md" sourcestartlinenumber="77" sourceendlinenumber="77">Server-side prerendering</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="79" sourceendlinenumber="79">A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js, and then delegate further execution to the client.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="81" sourceendlinenumber="81">ASP.NET Core <a class="xref" href="../mvc/views/tag-helpers/intro.html" data-raw-source="[Tag Helpers](xref:mvc/views/tag-helpers/intro)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="81" sourceendlinenumber="81">Tag Helpers</a> provided by SpaServices simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server.</p>
+<h3 id="prerequisites" sourcefile="client-side/spa-services.md" sourcestartlinenumber="83" sourceendlinenumber="83">Prerequisites</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="85" sourceendlinenumber="85">Install the following:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="86" sourceendlinenumber="90">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="86" sourceendlinenumber="90"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="86" sourceendlinenumber="86"><a href="https://www.npmjs.com/package/aspnet-prerendering" data-raw-source="[aspnet-prerendering](https://www.npmjs.com/package/aspnet-prerendering)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="86" sourceendlinenumber="86">aspnet-prerendering</a> npm package:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="88" sourceendlinenumber="90"><code class="lang-console">npm i -S aspnet-prerendering
+</code></pre></li>
+</ul>
+<h3 id="configuration" sourcefile="client-side/spa-services.md" sourcestartlinenumber="92" sourceendlinenumber="92">Configuration</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="94" sourceendlinenumber="94">The Tag Helpers are made discoverable via namespace registration in the project&#39;s <em>_ViewImports.cshtml</em> file:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="96" sourceendlinenumber="96"><code class="lang-csharp" name="Main" highlight-lines="3">@using SpaServicesSampleApp
+@addTagHelper &quot;*, Microsoft.AspNetCore.Mvc.TagHelpers&quot;
+@addTagHelper &quot;*, Microsoft.AspNetCore.SpaServices&quot;
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="98" sourceendlinenumber="98">These Tag Helpers abstract away the intricacies of communicating directly with low-level APIs by leveraging an HTML-like syntax inside the Razor view:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="100" sourceendlinenumber="100"><code class="lang-html" name="Main">&lt;app asp-prerender-module=&quot;ClientApp/dist/main-server&quot;&gt;Loading...&lt;/app&gt;
+</code></pre><h3 id="the-asp-prerender-module-tag-helper" sourcefile="client-side/spa-services.md" sourcestartlinenumber="102" sourceendlinenumber="102">The <code>asp-prerender-module</code> Tag Helper</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="104" sourceendlinenumber="104">The <code>asp-prerender-module</code> Tag Helper, used in the preceding code example, executes <em>ClientApp/dist/main-server.js</em> on the server via Node.js. For clarity&#39;s sake, <em>main-server.js</em> file is an artifact of the TypeScript-to-JavaScript transpilation task in the <a href="http://webpack.github.io/" data-raw-source="[Webpack](http://webpack.github.io/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="104" sourceendlinenumber="104">Webpack</a> build process. Webpack defines an entry point alias of <code>main-server</code>; and, traversal of the dependency graph for this alias begins at the <em>ClientApp/boot-server.ts</em> file:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="106" sourceendlinenumber="106"><code class="lang-javascript" name="Main">entry: { &#39;main-server&#39;: &#39;./ClientApp/boot-server.ts&#39; },
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="108" sourceendlinenumber="108">In the following Angular example, the <em>ClientApp/boot-server.ts</em> file utilizes the <code>createServerRenderer</code> function and <code>RenderResult</code> type of the <code>aspnet-prerendering</code> npm package to configure server rendering via Node.js. The HTML markup destined for server-side rendering is passed to a resolve function call, which is wrapped in a strongly-typed JavaScript <code>Promise</code> object. The <code>Promise</code> object&#39;s significance is that it asynchronously supplies the HTML markup to the page for injection in the DOM&#39;s placeholder element.</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="110" sourceendlinenumber="110"><code class="lang-typescript" name="Main">import { createServerRenderer, RenderResult } from &#39;aspnet-prerendering&#39;;
+
+export default createServerRenderer(params =&gt; {
+    const providers = [
+        { provide: INITIAL_CONFIG, useValue: { document: &#39;&lt;app&gt;&lt;/app&gt;&#39;, url: params.url } },
+        { provide: &#39;ORIGIN_URL&#39;, useValue: params.origin }
+    ];
+
+    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef =&gt; {
+        const appRef = moduleRef.injector.get(ApplicationRef);
+        const state = moduleRef.injector.get(PlatformState);
+        const zone = moduleRef.injector.get(NgZone);
+        
+        return new Promise&lt;RenderResult&gt;((resolve, reject) =&gt; {
+            zone.onError.subscribe(errorInfo =&gt; reject(errorInfo));
+            appRef.isStable.first(isStable =&gt; isStable).subscribe(() =&gt; {
+                // Because &#39;onStable&#39; fires before &#39;onError&#39;, we have to delay slightly before
+                // completing the request in case there&#39;s an error to report
+                setImmediate(() =&gt; {
+                    resolve({
+                        html: state.renderToString()
+                    });
+                    moduleRef.destroy();
+                });
+            });
+        });
+    });
+});
+</code></pre><h3 id="the-asp-prerender-data-tag-helper" sourcefile="client-side/spa-services.md" sourcestartlinenumber="112" sourceendlinenumber="112">The <code>asp-prerender-data</code> Tag Helper</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="114" sourceendlinenumber="114">When coupled with the <code>asp-prerender-module</code> Tag Helper, the <code>asp-prerender-data</code> Tag Helper can be used to pass contextual information from the Razor view to the server-side JavaScript. For example, the following markup passes user data to the <code>main-server</code> module:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="116" sourceendlinenumber="116"><code class="lang-html" name="Main">&lt;app asp-prerender-module=&quot;ClientApp/dist/main-server&quot;
+        asp-prerender-data=&#39;new {
+            UserName = &quot;John Doe&quot;
+        }&#39;&gt;Loading...&lt;/app&gt;
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="118" sourceendlinenumber="118">The received <code>UserName</code> argument is serialized using the built-in JSON serializer and is stored in the <code>params.data</code> object. In the following Angular example, the data is used to construct a personalized greeting within an <code>h1</code> element:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="120" sourceendlinenumber="120"><code class="lang-typescript" name="Main">import { createServerRenderer, RenderResult } from &#39;aspnet-prerendering&#39;;
+
+export default createServerRenderer(params =&gt; {
+    const providers = [
+        { provide: INITIAL_CONFIG, useValue: { document: &#39;&lt;app&gt;&lt;/app&gt;&#39;, url: params.url } },
+        { provide: &#39;ORIGIN_URL&#39;, useValue: params.origin }
+    ];
+
+    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef =&gt; {
+        const appRef = moduleRef.injector.get(ApplicationRef);
+        const state = moduleRef.injector.get(PlatformState);
+        const zone = moduleRef.injector.get(NgZone);
+        
+        return new Promise&lt;RenderResult&gt;((resolve, reject) =&gt; {
+            const result = `&lt;h1&gt;Hello, ${params.data.userName}&lt;/h1&gt;`;
+
+            zone.onError.subscribe(errorInfo =&gt; reject(errorInfo));
+            appRef.isStable.first(isStable =&gt; isStable).subscribe(() =&gt; {
+                // Because &#39;onStable&#39; fires before &#39;onError&#39;, we have to delay slightly before
+                // completing the request in case there&#39;s an error to report
+                setImmediate(() =&gt; {
+                    resolve({
+                        html: result
+                    });
+                    moduleRef.destroy();
+                });
+            });
+        });
+    });
+});
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="122" sourceendlinenumber="122">Note: Property names passed in Tag Helpers are represented with <strong>PascalCase</strong> notation. Contrast that to JavaScript, where the same property names are represented with <strong>camelCase</strong>. The default JSON serialization configuration is responsible for this difference.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="124" sourceendlinenumber="124">To expand upon the preceding code example, data can be passed from the server to the view by hydrating the <code>globals</code> property provided to the <code>resolve</code> function:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="126" sourceendlinenumber="126"><code class="lang-typescript" name="Main">import { createServerRenderer, RenderResult } from &#39;aspnet-prerendering&#39;;
+
+export default createServerRenderer(params =&gt; {
+    const providers = [
+        { provide: INITIAL_CONFIG, useValue: { document: &#39;&lt;app&gt;&lt;/app&gt;&#39;, url: params.url } },
+        { provide: &#39;ORIGIN_URL&#39;, useValue: params.origin }
+    ];
+
+    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef =&gt; {
+        const appRef = moduleRef.injector.get(ApplicationRef);
+        const state = moduleRef.injector.get(PlatformState);
+        const zone = moduleRef.injector.get(NgZone);
+        
+        return new Promise&lt;RenderResult&gt;((resolve, reject) =&gt; {
+            const result = `&lt;h1&gt;Hello, ${params.data.userName}&lt;/h1&gt;`;
+
+            zone.onError.subscribe(errorInfo =&gt; reject(errorInfo));
+            appRef.isStable.first(isStable =&gt; isStable).subscribe(() =&gt; {
+                // Because &#39;onStable&#39; fires before &#39;onError&#39;, we have to delay slightly before
+                // completing the request in case there&#39;s an error to report
+                setImmediate(() =&gt; {
+                    resolve({
+                        html: result,
+                        globals: {
+                            postList: [
+                                &#39;Introduction to ASP.NET Core&#39;,
+                                &#39;Making apps with Angular and ASP.NET Core&#39;
+                            ]
+                        }
+                    });
+                    moduleRef.destroy();
+                });
+            });
+        });
+    });
+});
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="128" sourceendlinenumber="128">The <code>postList</code> array defined inside the <code>globals</code> object is attached to the browser&#39;s global <code>window</code> object. This variable hoisting to global scope eliminates duplication of effort, particularly as it pertains to loading the same data once on the server and again on the client.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="130" sourceendlinenumber="130"><img src="spa-services/_static/global_variable.png" alt="global postList variable attached to window object" sourcefile="client-side/spa-services.md" sourcestartlinenumber="130" sourceendlinenumber="130"></p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="132" sourceendlinenumber="132"><a name="webpack-dev-middleware"></a></p>
+<h2 id="webpack-dev-middleware" sourcefile="client-side/spa-services.md" sourcestartlinenumber="134" sourceendlinenumber="134">Webpack Dev Middleware</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="136" sourceendlinenumber="136"><a href="https://webpack.github.io/docs/webpack-dev-middleware.html" data-raw-source="[Webpack Dev Middleware](https://webpack.github.io/docs/webpack-dev-middleware.html)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="136" sourceendlinenumber="136">Webpack Dev Middleware</a> introduces a streamlined development workflow whereby Webpack builds resources on demand. The middleware automatically compiles and serves client-side resources when a page is reloaded in the browser. The alternate approach is to manually invoke Webpack via the project&#39;s npm build script when a third-party dependency or the custom code changes. An npm build script in the <em>package.json</em> file is shown in the following example:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="138" sourceendlinenumber="138"><code class="lang-json" name="Main">&quot;build&quot;: &quot;npm run build:vendor &amp;&amp; npm run build:custom&quot;,
+</code></pre><h3 id="prerequisites" sourcefile="client-side/spa-services.md" sourcestartlinenumber="140" sourceendlinenumber="140">Prerequisites</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="142" sourceendlinenumber="142">Install the following:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="143" sourceendlinenumber="147">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="143" sourceendlinenumber="147"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="143" sourceendlinenumber="143"><a href="https://www.npmjs.com/package/aspnet-webpack" data-raw-source="[aspnet-webpack](https://www.npmjs.com/package/aspnet-webpack)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="143" sourceendlinenumber="143">aspnet-webpack</a> npm package:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="145" sourceendlinenumber="147"><code class="lang-console">npm i -D aspnet-webpack
+</code></pre></li>
+</ul>
+<h3 id="configuration" sourcefile="client-side/spa-services.md" sourcestartlinenumber="149" sourceendlinenumber="149">Configuration</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="151" sourceendlinenumber="151">Webpack Dev Middleware is registered into the HTTP request pipeline via the following code in the <em>Startup.cs</em> file&#39;s <code>Configure</code> method:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="153" sourceendlinenumber="153"><code class="lang-csharp" name="Main" highlight-lines="4">if (env.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseWebpackDevMiddleware();
+}
+else
+{
+    app.UseExceptionHandler(&quot;/Home/Error&quot;);
+}
+
+// Call UseWebpackDevMiddleware before UseStaticFiles
+app.UseStaticFiles();
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="155" sourceendlinenumber="155">The <code>UseWebpackDevMiddleware</code> extension method must be called before <a class="xref" href="../fundamentals/static-files.html" data-raw-source="[registering static file hosting](xref:fundamentals/static-files)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="155" sourceendlinenumber="155">registering static file hosting</a> via the <code>UseStaticFiles</code> extension method. For security reasons, register the middleware only when the app runs in development mode.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="157" sourceendlinenumber="157">The <em>webpack.config.js</em> file&#39;s <code>output.publicPath</code> property tells the middleware to watch the <code>dist</code> folder for changes:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="159" sourceendlinenumber="159"><code class="lang-javascript" name="Main">module.exports = (env) =&gt; {
+        output: {
+            filename: &#39;[name].js&#39;,
+            publicPath: &#39;/dist/&#39; // Webpack dev middleware, if enabled, handles requests for this URL prefix
+        },
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="161" sourceendlinenumber="161"><a name="hot-module-replacement"></a></p>
+<h2 id="hot-module-replacement" sourcefile="client-side/spa-services.md" sourcestartlinenumber="163" sourceendlinenumber="163">Hot Module Replacement</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="165" sourceendlinenumber="165">Think of Webpack&#39;s <a href="https://webpack.github.io/docs/hot-module-replacement-with-webpack.html" data-raw-source="[Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="165" sourceendlinenumber="165">Hot Module Replacement</a> (HMR) feature as an evolution of <a href="#webpack-dev-middleware" data-raw-source="[Webpack Dev Middleware](#webpack-dev-middleware)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="165" sourceendlinenumber="165">Webpack Dev Middleware</a>. HMR introduces all the same benefits, but it further streamlines the development workflow by automatically updating page content after compiling the changes. Don&#39;t confuse this with a refresh of the browser, which would interfere with the current in-memory state and debugging session of the SPA. There is a live link between the Webpack Dev Middleware service and the browser, which means changes are ~simply another banned word~ pushed to the browser.</p>
+<h3 id="prerequisites" sourcefile="client-side/spa-services.md" sourcestartlinenumber="167" sourceendlinenumber="167">Prerequisites</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="169" sourceendlinenumber="169">Install the following:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="170" sourceendlinenumber="174">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="170" sourceendlinenumber="174"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="170" sourceendlinenumber="170"><a href="https://www.npmjs.com/package/webpack-hot-middleware" data-raw-source="[webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="170" sourceendlinenumber="170">webpack-hot-middleware</a> npm package:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="172" sourceendlinenumber="174"><code class="lang-console">npm i -D webpack-hot-middleware
+</code></pre></li>
+</ul>
+<h3 id="configuration" sourcefile="client-side/spa-services.md" sourcestartlinenumber="176" sourceendlinenumber="176">Configuration</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="178" sourceendlinenumber="178">The HMR component must be registered into MVC&#39;s HTTP request pipeline in the <code>Configure</code> method:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="180" sourceendlinenumber="184"><code class="lang-csharp">app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+    HotModuleReplacement = true
+});
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="186" sourceendlinenumber="186">As was true with <a href="#webpack-dev-middleware" data-raw-source="[Webpack Dev Middleware](#webpack-dev-middleware)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="186" sourceendlinenumber="186">Webpack Dev Middleware</a>, the <code>UseWebpackDevMiddleware</code> extension method must be called before the <code>UseStaticFiles</code> extension method. For security reasons, register the middleware only when the app runs in development mode.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="188" sourceendlinenumber="188">The <em>webpack.config.js</em> file must define a <code>plugins</code> array, even if it&#39;s left empty:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="190" sourceendlinenumber="190"><code class="lang-javascript" name="Main">module.exports = (env) =&gt; {
+        plugins: [new CheckerPlugin()]
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="192" sourceendlinenumber="192">After loading the app in the browser, the developer tools&#39; Console tab provides confirmation of HMR activation:</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="194" sourceendlinenumber="194"><img src="spa-services/_static/hmr_connected.png" alt="Hot Module Replacement connected message" sourcefile="client-side/spa-services.md" sourcestartlinenumber="194" sourceendlinenumber="194"></p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="196" sourceendlinenumber="196"><a name="routing-helpers"></a></p>
+<h2 id="routing-helpers" sourcefile="client-side/spa-services.md" sourcestartlinenumber="198" sourceendlinenumber="198">Routing helpers</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="200" sourceendlinenumber="200">In most ASP.NET Core-based SPAs, you&#39;ll want client-side routing in addition to server-side routing. The SPA and MVC routing systems can work independently without interference. There is, however, one edge case posing challenges: identifying 404 HTTP responses.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="202" sourceendlinenumber="202">Consider the scenario in which an extensionless route of <code>/some/page</code> is used. Assume the request doesn&#39;t pattern-match a server-side route, but its pattern does match a client-side route. Now consider an incoming request for <code>/images/user-512.png</code>, which generally expects to find an image file on the server. If that requested resource path doesn&#39;t match any server-side route or static file, it&#39;s unlikely that the client-side application would handle it — you generally want to return a 404 HTTP status code.</p>
+<h3 id="prerequisites" sourcefile="client-side/spa-services.md" sourcestartlinenumber="204" sourceendlinenumber="204">Prerequisites</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="206" sourceendlinenumber="206">Install the following:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="207" sourceendlinenumber="211">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="207" sourceendlinenumber="211"><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="207" sourceendlinenumber="207">The client-side routing npm package. Using Angular as an example:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="209" sourceendlinenumber="211"><code class="lang-console">npm i -S @angular/router
+</code></pre></li>
+</ul>
+<h3 id="configuration" sourcefile="client-side/spa-services.md" sourcestartlinenumber="213" sourceendlinenumber="213">Configuration</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="215" sourceendlinenumber="215">An extension method named <code>MapSpaFallbackRoute</code> is used in the <code>Configure</code> method:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="217" sourceendlinenumber="217"><code class="lang-csharp" name="Main" highlight-lines="7-9">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+
+    routes.MapSpaFallbackRoute(
+        name: &quot;spa-fallback&quot;,
+        defaults: new { controller = &quot;Home&quot;, action = &quot;Index&quot; });
+});
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="219" sourceendlinenumber="219">Tip: Routes are evaluated in the order in which they&#39;re configured. Consequently, the <code>default</code> route in the preceding code example is used first for pattern matching.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="221" sourceendlinenumber="221"><a name="new-project-creation"></a></p>
+<h2 id="creating-a-new-project" sourcefile="client-side/spa-services.md" sourcestartlinenumber="223" sourceendlinenumber="223">Creating a new project</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="225" sourceendlinenumber="225">JavaScriptServices provides pre-configured application templates. SpaServices is used in these templates, in conjunction with different frameworks and libraries such as Angular, Aurelia, Knockout, React, and Vue.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="227" sourceendlinenumber="227">These templates can be installed via the .NET Core CLI by running the following command:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="229" sourceendlinenumber="231"><code class="lang-console">dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="233" sourceendlinenumber="233">A list of available SPA templates is displayed:</p>
+<table sourcefile="client-side/spa-services.md" sourcestartlinenumber="235" sourceendlinenumber="242">
+<thead>
+<tr>
+<th style="text-align:left">Templates</th>
+<th style="text-align:left">Short Name</th>
+<th style="text-align:left">Language</th>
+<th style="text-align:left">Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with Angular</td>
+<td style="text-align:left">angular</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with Aurelia</td>
+<td style="text-align:left">aurelia</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with Knockout.js</td>
+<td style="text-align:left">knockout</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with React.js</td>
+<td style="text-align:left">react</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with React.js and Redux</td>
+<td style="text-align:left">reactredux</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+<tr>
+<td style="text-align:left">MVC ASP.NET Core with Vue.js</td>
+<td style="text-align:left">vue</td>
+<td style="text-align:left">[C#]</td>
+<td style="text-align:left">Web/MVC/SPA</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="244" sourceendlinenumber="244">To create a new project using one of the SPA templates, include the <strong>Short Name</strong> of the template in the <code>dotnet new</code> command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="246" sourceendlinenumber="248"><code class="lang-console">dotnet new angular
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="250" sourceendlinenumber="250"><a name="runtime-config-mode"></a></p>
+<h3 id="set-the-runtime-configuration-mode" sourcefile="client-side/spa-services.md" sourcestartlinenumber="252" sourceendlinenumber="252">Set the runtime configuration mode</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="254" sourceendlinenumber="254">Two primary runtime configuration modes exist:</p>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="255" sourceendlinenumber="260">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="255" sourceendlinenumber="257"><strong>Development</strong>:<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="256" sourceendlinenumber="257">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="256" sourceendlinenumber="256">Includes source maps to ease debugging.</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="257" sourceendlinenumber="257">Doesn&#39;t optimize the client-side code for performance.</li>
+</ul>
+</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="258" sourceendlinenumber="260"><strong>Production</strong>:<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="259" sourceendlinenumber="260">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="259" sourceendlinenumber="259">Excludes source maps.</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="260" sourceendlinenumber="260">Optimizes the client-side code via bundling &amp; minification.</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="262" sourceendlinenumber="262">ASP.NET Core uses an environment variable named <code>ASPNETCORE_ENVIRONMENT</code> to store the configuration mode. See <strong><a class="xref" href="../fundamentals/environments.html#setting-the-environment" data-raw-source="[Setting the environment](xref:fundamentals/environments#setting-the-environment)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="262" sourceendlinenumber="262">Setting the environment</a></strong> for more information.</p>
+<h3 id="running-with-net-core-cli" sourcefile="client-side/spa-services.md" sourcestartlinenumber="264" sourceendlinenumber="264">Running with .NET Core CLI</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="266" sourceendlinenumber="266">Restore the required NuGet and npm packages by running the following command at the project root:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="268" sourceendlinenumber="270"><code class="lang-console">dotnet restore &amp;&amp; npm i
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="272" sourceendlinenumber="272">Build and run the application:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="274" sourceendlinenumber="276"><code class="lang-console">dotnet run
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="278" sourceendlinenumber="278">The application starts on localhost according to the <a href="#runtime-config-mode" data-raw-source="[runtime configuration mode](#runtime-config-mode)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="278" sourceendlinenumber="278">runtime configuration mode</a>. Navigating to <code>http://localhost:5000</code> in the browser displays the landing page.</p>
+<h3 id="running-with-visual-studio-2017" sourcefile="client-side/spa-services.md" sourcestartlinenumber="280" sourceendlinenumber="280">Running with Visual Studio 2017</h3>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="282" sourceendlinenumber="282">Open the <em>.csproj</em> file generated by the <code>dotnet new</code> command. The required NuGet and npm packages are restored automatically upon project open. This restoration process may take up to a few minutes, and the application is ready to run when it completes. Click the green run button or press <code>Ctrl + F5</code>, and the browser opens to the application&#39;s landing page. The application runs on localhost according to the <a href="#runtime-config-mode" data-raw-source="[runtime configuration mode](#runtime-config-mode)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="282" sourceendlinenumber="282">runtime configuration mode</a>. </p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="284" sourceendlinenumber="284"><a name="app-testing"></a></p>
+<h2 id="testing-the-app" sourcefile="client-side/spa-services.md" sourcestartlinenumber="286" sourceendlinenumber="286">Testing the app</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="288" sourceendlinenumber="288">SpaServices templates are pre-configured to run client-side tests using <a href="https://karma-runner.github.io/1.0/index.html" data-raw-source="[Karma](https://karma-runner.github.io/1.0/index.html)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="288" sourceendlinenumber="288">Karma</a> and <a href="https://jasmine.github.io/" data-raw-source="[Jasmine](https://jasmine.github.io/)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="288" sourceendlinenumber="288">Jasmine</a>. Jasmine is a popular unit testing framework for JavaScript, whereas Karma is a test runner for those tests. Karma is configured to work with the <a href="#webpack-dev-middleware" data-raw-source="[Webpack Dev Middleware](#webpack-dev-middleware)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="288" sourceendlinenumber="288">Webpack Dev Middleware</a> such that you don’t have to stop and run the test every time changes are made. Whether it&#39;s the code running against the test case or the test case itself, the test runs automatically.</p>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="290" sourceendlinenumber="290">Using the Angular application as an example, two Jasmine test cases are already provided for the <code>CounterComponent</code> in the <em>counter.component.spec.ts</em> file:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="292" sourceendlinenumber="292"><code class="lang-typescript" name="Main">it(&#39;should display a title&#39;, async(() =&gt; {
+    const titleText = fixture.nativeElement.querySelector(&#39;h1&#39;).textContent;
+    expect(titleText).toEqual(&#39;Counter&#39;);
+}));
+
+it(&#39;should start with count 0, then increments by 1 when clicked&#39;, async(() =&gt; {
+    const countElement = fixture.nativeElement.querySelector(&#39;strong&#39;);
+    expect(countElement.textContent).toEqual(&#39;0&#39;);
+
+    const incrementButton = fixture.nativeElement.querySelector(&#39;button&#39;);
+    incrementButton.click();
+    fixture.detectChanges();
+    expect(countElement.textContent).toEqual(&#39;1&#39;);
+}));
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="294" sourceendlinenumber="294">Open the command prompt at the project root, and run the following command:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="296" sourceendlinenumber="298"><code class="lang-console">npm test
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="300" sourceendlinenumber="300">The script launches the Karma test runner, which reads the settings defined in the <em>karma.conf.js</em> file. Among other settings, the <em>karma.conf.js</em> identifies the test files to be executed via its <code>files</code> array:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="302" sourceendlinenumber="302"><code class="lang-javascript" name="Main">module.exports = function (config) {
+    config.set({
+        files: [
+            &#39;../../wwwroot/dist/vendor.js&#39;,
+            &#39;./boot-tests.ts&#39;
+        ],
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="304" sourceendlinenumber="304"><a name="app-publishing"></a></p>
+<h2 id="publishing-the-application" sourcefile="client-side/spa-services.md" sourcestartlinenumber="306" sourceendlinenumber="306">Publishing the application</h2>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="308" sourceendlinenumber="308">Combining the generated client-side assets and the published ASP.NET Core artifacts into a ready-to-deploy package can be cumbersome. Thankfully, SpaServices orchestrates that entire publication process with a custom MSBuild target named <code>RunWebpack</code>:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="310" sourceendlinenumber="310"><code class="lang-xml" name="Main">&lt;Target Name=&quot;RunWebpack&quot; AfterTargets=&quot;ComputeFilesToPublish&quot;&gt;
+  &lt;!-- As part of publishing, ensure the JS resources are freshly built in production mode --&gt;
+  &lt;Exec Command=&quot;npm install&quot; /&gt;
+  &lt;Exec Command=&quot;node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod&quot; /&gt;
+  &lt;Exec Command=&quot;node node_modules/webpack/bin/webpack.js --env.prod&quot; /&gt;
+
+  &lt;!-- Include the newly-built files in the publish output --&gt;
+  &lt;ItemGroup&gt;
+    &lt;DistFiles Include=&quot;wwwroot\dist\**; ClientApp\dist\**&quot; /&gt;
+    &lt;ResolvedFileToPublish Include=&quot;@(DistFiles-&gt;&#39;%(FullPath)&#39;)&quot; Exclude=&quot;@(ResolvedFileToPublish)&quot;&gt;
+      &lt;RelativePath&gt;%(DistFiles.Identity)&lt;/RelativePath&gt;
+      &lt;CopyToPublishDirectory&gt;PreserveNewest&lt;/CopyToPublishDirectory&gt;
+    &lt;/ResolvedFileToPublish&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Target&gt;
+</code></pre><p sourcefile="client-side/spa-services.md" sourcestartlinenumber="312" sourceendlinenumber="312">The MSBuild target has the following responsibilities:</p>
+<ol sourcefile="client-side/spa-services.md" sourcestartlinenumber="313" sourceendlinenumber="316">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="313" sourceendlinenumber="313">Restore the npm packages</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="314" sourceendlinenumber="314">Create a production-grade build of the third-party, client-side assets</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="315" sourceendlinenumber="315">Create a production-grade build of the custom client-side assets</li>
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="316" sourceendlinenumber="316">Copy the Webpack-generated assets to the publish folder</li>
+</ol>
+<p sourcefile="client-side/spa-services.md" sourcestartlinenumber="318" sourceendlinenumber="318">The MSBuild target is invoked when running:</p>
+<pre sourcefile="client-side/spa-services.md" sourcestartlinenumber="320" sourceendlinenumber="322"><code class="lang-console">dotnet publish -c Release
+</code></pre><h2 id="additional-resources" sourcefile="client-side/spa-services.md" sourcestartlinenumber="324" sourceendlinenumber="324">Additional resources</h2>
+<ul sourcefile="client-side/spa-services.md" sourcestartlinenumber="326" sourceendlinenumber="326">
+<li sourcefile="client-side/spa-services.md" sourcestartlinenumber="326" sourceendlinenumber="326"><a href="https://angular.io/docs" data-raw-source="[Angular Docs](https://angular.io/docs)" sourcefile="client-side/spa-services.md" sourcestartlinenumber="326" sourceendlinenumber="326">Angular Docs</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/spa-services.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

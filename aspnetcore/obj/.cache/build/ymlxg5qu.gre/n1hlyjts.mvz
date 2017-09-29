@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Preventing Cross-Site Scripting </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Preventing Cross-Site Scripting ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/cross-site-scripting">
+<h1 id="preventing-cross-site-scripting">Preventing Cross-Site Scripting</h1>
+
+<p><a name="security-cross-site-scripting"></a></p>
+<p>Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.</p>
+<h2 id="protecting-your-application-against-xss">Protecting your application against XSS</h2>
+<p>At a basic level XSS works by tricking your application into inserting a <code>&lt;script&gt;</code> tag into your rendered page, or by inserting an <code>On*</code> event into an element. Developers should use the following prevention steps to avoid introducing XSS into their application.</p>
+<ol>
+<li><p>Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings, HTTP headers, even data sourced from a database as an attacker may be able to breach your database even if they cannot breach your application.</p>
+</li>
+<li><p>Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;</p>
+</li>
+<li><p>Before putting untrusted data into an HTML attribute ensure it is HTML attribute encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as &quot; and &#39;.</p>
+</li>
+<li><p>Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example &lt; would be encoded as <code>\u003C</code>.</p>
+</li>
+<li><p>Before putting untrusted data into a URL query string ensure it is URL encoded.</p>
+</li>
+</ol>
+<h2 id="html-encoding-using-razor">HTML Encoding using Razor</h2>
+<p>The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work really hard to prevent it doing so. It uses HTML Attribute encoding rules whenever you use the <em>@</em> directive. As HTML attribute encoding is a superset of HTML encoding this means you don&#39;t have to concern yourself with whether you should use HTML encoding or HTML attribute encoding. You must ensure that you only use @ in an HTML context, not when attempting to insert untrusted input directly into JavaScript. Tag helpers will also encode input you use in tag parameters.</p>
+<p>Take the following Razor view;</p>
+<pre><code class="lang-none">@{
+       var untrustedInput = &quot;&lt;\&quot;123\&quot;&gt;&quot;;
+   }
+
+   @untrustedInput
+</code></pre><p>This view outputs the contents of the <em>untrustedInput</em> variable. This variable includes some characters which are used in XSS attacks, namely &lt;, &quot; and &gt;. Examining the source shows the rendered output encoded as:</p>
+<pre><code class="lang-html">&amp;lt;&amp;quot;123&amp;quot;&amp;gt;
+</code></pre><div class="WARNING"><h5>Warning</h5><p>ASP.NET Core MVC provides an <code>HtmlString</code> class which is not automatically encoded upon output. This should never be used in combination with untrusted input as this will expose an XSS vulnerability.</p>
+</div>
+<h2 id="javascript-encoding-using-razor">Javascript Encoding using Razor</h2>
+<p>There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:</p>
+<pre><code class="lang-none">@{
+       var untrustedInput = &quot;&lt;\&quot;123\&quot;&gt;&quot;;
+   }
+
+   &lt;div
+       id=&quot;injectedData&quot;
+       data-untrustedinput=&quot;@untrustedInput&quot; /&gt;
+
+   &lt;script&gt;
+     var injectedData = document.getElementById(&quot;injectedData&quot;);
+
+     // All clients
+     var clientSideUntrustedInputOldStyle =
+         injectedData.getAttribute(&quot;data-untrustedinput&quot;);
+
+     // HTML 5 clients only
+     var clientSideUntrustedInputHtml5 =
+         injectedData.dataset.untrustedinput;
+
+     document.write(clientSideUntrustedInputOldStyle);
+     document.write(&quot;&lt;br /&gt;&quot;)
+     document.write(clientSideUntrustedInputHtml5);
+   &lt;/script&gt;
+</code></pre><p>This will produce the following HTML</p>
+<pre><code class="lang-html">&lt;div
+     id=&quot;injectedData&quot;
+     data-untrustedinput=&quot;&amp;lt;&amp;quot;123&amp;quot;&amp;gt;&quot; /&gt;
+
+   &lt;script&gt;
+     var injectedData = document.getElementById(&quot;injectedData&quot;);
+
+     var clientSideUntrustedInputOldStyle =
+         injectedData.getAttribute(&quot;data-untrustedinput&quot;);
+
+     var clientSideUntrustedInputHtml5 =
+         injectedData.dataset.untrustedinput;
+
+     document.write(clientSideUntrustedInputOldStyle);
+     document.write(&quot;&lt;br /&gt;&quot;)
+     document.write(clientSideUntrustedInputHtml5);
+   &lt;/script&gt;
+</code></pre><p>Which, when it runs, will render the following;</p>
+<pre><code class="lang-none">&lt;&quot;123&quot;&gt;
+   &lt;&quot;123&quot;&gt;
+</code></pre><p>You can also call the JavaScript encoder directly,</p>
+<pre><code class="lang-none">@using System.Text.Encodings.Web;
+   @inject JavaScriptEncoder encoder;
+
+   @{
+       var untrustedInput = &quot;&lt;\&quot;123\&quot;&gt;&quot;;
+   }
+
+   &lt;script&gt;
+       document.write(&quot;@encoder.Encode(untrustedInput)&quot;);
+   &lt;/script&gt;
+</code></pre><p>This will render in the browser as follows;</p>
+<pre><code class="lang-html">&lt;script&gt;
+       document.write(&quot;\u003C\u0022123\u0022\u003E&quot;);
+   &lt;/script&gt;
+</code></pre><div class="WARNING"><h5>Warning</h5><p>Do not concatenate untrusted input in JavaScript to create DOM elements. You should use <code>createElement()</code> and assign property values appropriately such as <code>node.TextContent=</code>, or use <code>element.SetAttribute()</code>/<code>element[attribute]=</code> otherwise you expose yourself to DOM-based XSS.</p>
+</div>
+<h2 id="accessing-encoders-in-code">Accessing encoders in code</h2>
+<p>The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via <a href="../fundamentals/dependency-injection.html#fundamentals-dependency-injection">dependency injection</a> or you can use the default encoders contained in the <code>System.Text.Encodings.Web</code> namespace. If you use the default encoders then any  you applied to character ranges to be treated as safe will not take effect - the default encoders use the safest encoding rules possible.</p>
+<p>To use the configurable encoders via DI your constructors should take an <em>HtmlEncoder</em>, <em>JavaScriptEncoder</em> and <em>UrlEncoder</em> parameter as appropriate. For example;</p>
+<pre><code class="lang-csharp">public class HomeController : Controller
+   {
+       HtmlEncoder _htmlEncoder;
+       JavaScriptEncoder _javaScriptEncoder;
+       UrlEncoder _urlEncoder;
+
+       public HomeController(HtmlEncoder htmlEncoder,
+                             JavaScriptEncoder javascriptEncoder,
+                             UrlEncoder urlEncoder)
+       {
+           _htmlEncoder = htmlEncoder;
+           _javaScriptEncoder = javascriptEncoder;
+           _urlEncoder = urlEncoder;
+       }
+   }
+</code></pre><h2 id="encoding-url-parameters">Encoding URL Parameters</h2>
+<p>If you want to build a URL query string with untrusted input as a value use the <code>UrlEncoder</code> to encode the value. For example,</p>
+<pre><code class="lang-csharp">var example = &quot;\&quot;Quoted Value with spaces and &amp;\&quot;&quot;;
+   var encodedValue = _urlEncoder.Encode(example);
+</code></pre><p>After encoding the encodedValue variable will contain <code>%22Quoted%20Value%20with%20spaces%20and%20%26%22</code>. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.</p>
+<div class="WARNING"><h5>Warning</h5><p>Do not use untrusted input as part of a URL path. Always pass untrusted input as a query string value.</p>
+</div>
+<p><a name="security-cross-site-scripting-customization"></a></p>
+<h2 id="customizing-the-encoders">Customizing the Encoders</h2>
+<p>By default encoders use a safe list limited to the Basic Latin Unicode range and encode all characters outside of that range as their character code equivalents. This behavior also affects Razor TagHelper and HtmlHelper rendering as it will use the encoders to output your strings.</p>
+<p>The reasoning behind this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your web site makes heavy use of non-Latin characters, such as Chinese, Cyrillic or others this is probably not the behavior you want.</p>
+<p>You can customize the encoder safe lists to include Unicode ranges appropriate to your application during startup, in <code>ConfigureServices()</code>.</p>
+<p>For example, using the default configuration you might use a Razor HtmlHelper like so;</p>
+<pre><code class="lang-html">&lt;p&gt;This link text is in Chinese: @Html.ActionLink(&quot;汉语/漢語&quot;, &quot;Index&quot;)&lt;/p&gt;
+</code></pre><p>When you view the source of the web page you will see it has been rendered as follows, with the Chinese text encoded;</p>
+<pre><code class="lang-html">&lt;p&gt;This link text is in Chinese: &lt;a href=&quot;/&quot;&gt;&amp;#x6C49;&amp;#x8BED;/&amp;#x6F22;&amp;#x8A9E;&lt;/a&gt;&lt;/p&gt;
+</code></pre><p>To widen the characters treated as safe by the encoder you would insert the following line into the <code>ConfigureServices()</code> method in <code>startup.cs</code>;</p>
+<pre><code class="lang-csharp">services.AddSingleton&lt;HtmlEncoder&gt;(
+     HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                               UnicodeRanges.CjkUnifiedIdeographs }));
+</code></pre><p>This example widens the safe list to include the Unicode Range CjkUnifiedIdeographs. The rendered output would now become</p>
+<pre><code class="lang-html">&lt;p&gt;This link text is in Chinese: &lt;a href=&quot;/&quot;&gt;汉语/漢語&lt;/a&gt;&lt;/p&gt;
+</code></pre><p>Safe list ranges are specified as Unicode code charts, not languages. The <a href="http://unicode.org/">Unicode standard</a> has a list of <a href="http://www.unicode.org/charts/index.html">code charts</a> you can use to find the chart containing your characters. Each encoder, Html, JavaScript and Url, must be configured separately.</p>
+<div class="NOTE"><h5>Note</h5><p>Customization of the safe list only affects encoders sourced via DI. If you directly access an encoder via <code>System.Text.Encodings.Web.*Encoder.Default</code> then the default, Basic Latin only safelist will be used.</p>
+</div>
+<h2 id="where-should-encoding-take-place">Where should encoding take place?</h2>
+<p>The general accepted practice is that encoding takes place at the point of output and encoded values should never be stored in a database. Encoding at the point of output allows you to change the use of data, for example, from HTML to a query string value. It also enables you to easily search your data without having to encode values before searching and allows you to take advantage of any changes or bug fixes made to encoders.</p>
+<h2 id="validation-as-an-xss-prevention-technique">Validation as an XSS prevention technique</h2>
+<p>Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 will not trigger an XSS attack. Validation becomes more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/cross-site-scripting.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

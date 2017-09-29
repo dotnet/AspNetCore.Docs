@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with static files in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with static files in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/static-files">
+<h1 id="introduction-to-working-with-static-files-in-aspnet-core" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="16" sourceendlinenumber="16">Introduction to working with static files in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="18" sourceendlinenumber="18"><a name="fundamentals-static-files"></a></p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="20" sourceendlinenumber="20">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="20" sourceendlinenumber="20">Rick Anderson</a></p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="22" sourceendlinenumber="22">Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.NET Core app can serve directly to clients.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="24" sourceendlinenumber="24">View or download sample code</a></p>
+<h2 id="serving-static-files" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="26" sourceendlinenumber="26">Serving static files</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="28" sourceendlinenumber="28">Static files are typically located in the <code>web root</code> (<em>&lt;content-root&gt;/wwwroot</em>) folder. See <a class="xref" href="index.html#content-root" data-raw-source="[Content root](xref:fundamentals/index#content-root)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="28" sourceendlinenumber="28">Content root</a> and <a class="xref" href="index.html#web-root" data-raw-source="[Web root](xref:fundamentals/index#web-root)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="28" sourceendlinenumber="28">Web root</a> for more information. You generally set the content root to be the current directory so that your project&#39;s <code>web root</code> will be found while in development.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="30" sourceendlinenumber="30"><code class="lang-csharp" name="Main" highlight-lines="5">public static void Main(string[] args)
+{
+    var host = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseIISIntegration()
+        .UseStartup&lt;Startup&gt;()
+        .Build();
+
+    host.Run();
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="32" sourceendlinenumber="32">Static files can be stored in any folder under the <code>web root</code> and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the <em>wwwroot</em>  folder - <em>css</em>, <em>images</em>, and <em>js</em>. The URI to access an image in the <em>images</em> subfolder:</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="34" sourceendlinenumber="35">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="34" sourceendlinenumber="34"><code>http://&lt;app&gt;/images/&lt;imageFileName&gt;</code></li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="35" sourceendlinenumber="35"><code>http://localhost:9189/images/banner3.svg</code></li>
+</ul>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="37" sourceendlinenumber="37">In order for static files to be served, you must configure the <a href="middleware.html" data-raw-source="[Middleware](middleware.md)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="37" sourceendlinenumber="37">Middleware</a> to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the <em>Microsoft.AspNetCore.StaticFiles</em> package to your project and then calling the <code>UseStaticFiles</code> extension method from <code>Startup.Configure</code>:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="39" sourceendlinenumber="39"><code class="lang-csharp" name="Main" highlight-lines="3">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles();
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="41" sourceendlinenumber="41"><code>app.UseStaticFiles();</code> makes the files in <code>web root</code> (<em>wwwroot</em> by default) servable. Later I&#39;ll show how to make other directory contents servable with <code>UseStaticFiles</code>.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="43" sourceendlinenumber="43">You must include the NuGet package &quot;Microsoft.AspNetCore.StaticFiles&quot;.</p>
+<div class="NOTE" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="45" sourceendlinenumber="45"><h5>Note</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="46" sourceendlinenumber="46"><code>web root</code> defaults to the <em>wwwroot</em> directory, but you can set the <code>web root</code> directory with <code>UseWebRoot</code>.</p>
+</div>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="48" sourceendlinenumber="48">Suppose you have a project hierarchy where the static files you wish to serve are outside the <code>web root</code>. For example:</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="50" sourceendlinenumber="55">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="50" sourceendlinenumber="53">wwwroot<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="51" sourceendlinenumber="53">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="51" sourceendlinenumber="51">css</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="52" sourceendlinenumber="52">images</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="53" sourceendlinenumber="53">...</li>
+</ul>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="54" sourceendlinenumber="55">MyStaticFiles<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="55" sourceendlinenumber="55">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="55" sourceendlinenumber="55">test.png</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="57" sourceendlinenumber="57">For a request to access <em>test.png</em>, configure the static files middleware as follows:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="59" sourceendlinenumber="59"><code class="lang-csharp" name="Main" highlight-lines="5,6,7,8,9,10">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(); // For the wwwroot folder
+
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;MyStaticFiles&quot;)),
+        RequestPath = new PathString(&quot;/StaticFiles&quot;)
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="61" sourceendlinenumber="61">A request to <code>http://&lt;app&gt;/StaticFiles/test.png</code> will serve the <em>test.png</em> file.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="63" sourceendlinenumber="63"><code>StaticFileOptions()</code> can set response headers. For example, the code below sets up static file serving from the <em>wwwroot</em> folder and sets the <code>Cache-Control</code> header to make them publicly cacheable for 10 minutes (600 seconds):</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="65" sourceendlinenumber="65"><code class="lang-csharp" name="Main">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        OnPrepareResponse = ctx =&gt;
+        {
+            ctx.Context.Response.Headers.Append(&quot;Cache-Control&quot;, &quot;public,max-age=600&quot;);
+        }
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="67" sourceendlinenumber="67"><img src="static-files/_static/add-header.png" alt="Response headers showing the Cache-Control header has been added" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="67" sourceendlinenumber="67"></p>
+<h2 id="static-file-authorization" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="69" sourceendlinenumber="69">Static file authorization</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="71" sourceendlinenumber="71">The static file module provides <strong>no</strong> authorization checks. Any files served by it, including those under <em>wwwroot</em> are publicly available. To serve files based on authorization:</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="73" sourceendlinenumber="75">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="73" sourceendlinenumber="73"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="73" sourceendlinenumber="73">Store them outside of <em>wwwroot</em> and any directory accessible to the static file middleware <strong>and</strong></p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="75" sourceendlinenumber="75"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="75" sourceendlinenumber="75">Serve them through a controller action, returning a <code>FileResult</code> where authorization is applied</p>
+</li>
+</ul>
+<h2 id="enabling-directory-browsing" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="77" sourceendlinenumber="77">Enabling directory browsing</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="79" sourceendlinenumber="79">Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see <a href="#considerations" data-raw-source="[Considerations](#considerations)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="79" sourceendlinenumber="79">Considerations</a>). To enable directory browsing, call the <code>UseDirectoryBrowser</code> extension method from  <code>Startup.Configure</code>:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="81" sourceendlinenumber="81"><code class="lang-csharp" name="Main">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(); // For the wwwroot folder
+
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;)
+    });
+
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;)
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="83" sourceendlinenumber="83">And add required services by calling <code>AddDirectoryBrowser</code> extension method from <code>Startup.ConfigureServices</code>:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="85" sourceendlinenumber="85"><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDirectoryBrowser();
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="87" sourceendlinenumber="87">The code above allows directory browsing of the <em>wwwroot/images</em> folder using the URL http://&lt;app&gt;/MyImages, with links to each file and folder:</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="89" sourceendlinenumber="89"><img src="static-files/_static/dir-browse.png" alt="directory browsing" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="89" sourceendlinenumber="89"></p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="91" sourceendlinenumber="91">See <a href="#considerations" data-raw-source="[Considerations](#considerations)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="91" sourceendlinenumber="91">Considerations</a> on the security risks when enabling browsing.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="93" sourceendlinenumber="93">Note the two <code>app.UseStaticFiles</code> calls. The first one is required to serve the CSS, images and JavaScript in the <em>wwwroot</em> folder, and the second call for directory browsing of the <em>wwwroot/images</em> folder using the URL http://&lt;app&gt;/MyImages:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="95" sourceendlinenumber="95"><code class="lang-csharp" name="Main" highlight-lines="3,5">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(); // For the wwwroot folder
+
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;)
+    });
+
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;)
+    });
+}
+</code></pre><h2 id="serving-a-default-document" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="97" sourceendlinenumber="97">Serving a default document</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="99" sourceendlinenumber="99">Setting a default home page gives site visitors a place to start when visiting your site. In order for your Web app to serve a default page without the user having to fully qualify the URI, call the <code>UseDefaultFiles</code> extension method from <code>Startup.Configure</code> as follows.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="101" sourceendlinenumber="101"><code class="lang-csharp" name="Main" highlight-lines="3">public void Configure(IApplicationBuilder app)
+{
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+}
+</code></pre><div class="NOTE" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="103" sourceendlinenumber="103"><h5>Note</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="104" sourceendlinenumber="104"><code>UseDefaultFiles</code> must be called before <code>UseStaticFiles</code> to serve the default file. <code>UseDefaultFiles</code> is a URL re-writer that doesn&#39;t actually serve the file. You must enable the static file middleware (<code>UseStaticFiles</code>) to serve the file.</p>
+</div>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="106" sourceendlinenumber="106">With <code>UseDefaultFiles</code>, requests to a folder will search for:</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="108" sourceendlinenumber="111">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="108" sourceendlinenumber="108">default.htm</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="109" sourceendlinenumber="109">default.html</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="110" sourceendlinenumber="110">index.htm</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="111" sourceendlinenumber="111">index.html</li>
+</ul>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="113" sourceendlinenumber="113">The first file found from the list will be served as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="115" sourceendlinenumber="115">The following code shows how to change the default file name to <em>mydefault.html</em>.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="117" sourceendlinenumber="117"><code class="lang-csharp" name="Main">public void Configure(IApplicationBuilder app)
+{
+    // Serve my app-specific default file, if present.
+    DefaultFilesOptions options = new DefaultFilesOptions();
+    options.DefaultFileNames.Clear();
+    options.DefaultFileNames.Add(&quot;mydefault.html&quot;);
+    app.UseDefaultFiles(options);
+    app.UseStaticFiles();
+}
+</code></pre><h2 id="usefileserver" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="119" sourceendlinenumber="119">UseFileServer</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="121" sourceendlinenumber="121"><code>UseFileServer</code> combines the functionality of <code>UseStaticFiles</code>, <code>UseDefaultFiles</code>, and <code>UseDirectoryBrowser</code>.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="123" sourceendlinenumber="123">The following code enables static files and the default file to be served, but does not allow directory browsing:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="125" sourceendlinenumber="127"><code class="lang-csharp">app.UseFileServer();
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="129" sourceendlinenumber="129">The following code enables static files, default files and  directory browsing:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="131" sourceendlinenumber="133"><code class="lang-csharp">app.UseFileServer(enableDirectoryBrowsing: true);
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="135" sourceendlinenumber="135">See <a href="#considerations" data-raw-source="[Considerations](#considerations)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="135" sourceendlinenumber="135">Considerations</a> on the security risks when enabling browsing. As with <code>UseStaticFiles</code>, <code>UseDefaultFiles</code>, and <code>UseDirectoryBrowser</code>, if you wish to serve files that exist outside the <code>web root</code>, you instantiate and configure an <code>FileServerOptions</code> object that you pass as a parameter to <code>UseFileServer</code>. For example, given the following directory hierarchy in your Web app:</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="137" sourceendlinenumber="149">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="137" sourceendlinenumber="143"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="137" sourceendlinenumber="137">wwwroot</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="139" sourceendlinenumber="143">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="139" sourceendlinenumber="139"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="139" sourceendlinenumber="139">css</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="141" sourceendlinenumber="141"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="141" sourceendlinenumber="141">images</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="143" sourceendlinenumber="143"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="143" sourceendlinenumber="143">...</p>
+</li>
+</ul>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="145" sourceendlinenumber="149"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="145" sourceendlinenumber="145">MyStaticFiles</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="147" sourceendlinenumber="149">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="147" sourceendlinenumber="147"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="147" sourceendlinenumber="147">test.png</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="149" sourceendlinenumber="149"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="149" sourceendlinenumber="149">default.html</p>
+</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="151" sourceendlinenumber="151">Using the hierarchy example above, you might want to enable static files, default files, and browsing for the <code>MyStaticFiles</code> directory. In the following code snippet, that is accomplished with a single call to <code>FileServerOptions</code>.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="153" sourceendlinenumber="153"><code class="lang-csharp" name="Main" highlight-lines="5,6,7,8,9,10,11">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(); // For the wwwroot folder
+
+    app.UseFileServer(new FileServerOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;MyStaticFiles&quot;)),
+        RequestPath = new PathString(&quot;/StaticFiles&quot;),
+        EnableDirectoryBrowsing = true
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="155" sourceendlinenumber="155">If <code>enableDirectoryBrowsing</code> is set to <code>true</code> you are required to call <code>AddDirectoryBrowser</code> extension method from  <code>Startup.ConfigureServices</code>:</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="157" sourceendlinenumber="157"><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDirectoryBrowser();
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="159" sourceendlinenumber="159">Using the file hierarchy and code above:</p>
+<table sourcefile="fundamentals/static-files.md" sourcestartlinenumber="161" sourceendlinenumber="164">
+<thead>
+<tr>
+<th>URI</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://&lt;app&gt;/StaticFiles/test.png</code></td>
+<td>MyStaticFiles/test.png</td>
+</tr>
+<tr>
+<td><code>http://&lt;app&gt;/StaticFiles</code></td>
+<td>MyStaticFiles/default.html</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="166" sourceendlinenumber="166">If no default named files are in the <em>MyStaticFiles</em> directory, http://&lt;app&gt;/StaticFiles returns the directory listing with clickable links:</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="168" sourceendlinenumber="168"><img src="static-files/_static/db2.PNG" alt="Static files list" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="168" sourceendlinenumber="168"></p>
+<div class="NOTE" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="170" sourceendlinenumber="170"><h5>Note</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="171" sourceendlinenumber="171"><code>UseDefaultFiles</code> and <code>UseDirectoryBrowser</code> will take the url http://&lt;app&gt;/StaticFiles without the trailing slash and cause a client side redirect to http://&lt;app&gt;/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.</p>
+</div>
+<h2 id="fileextensioncontenttypeprovider" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="173" sourceendlinenumber="173">FileExtensionContentTypeProvider</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="175" sourceendlinenumber="175">The <code>FileExtensionContentTypeProvider</code> class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the &quot;.rtf&quot; is replaced, and &quot;.mp4&quot; is removed.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="177" sourceendlinenumber="177"><code class="lang-csharp" name="Main" highlight-lines="3,4,5,6,7,8,9,10,11,12,19">public void Configure(IApplicationBuilder app)
+{
+    // Set up custom content types -associating file extension to MIME type
+    var provider = new FileExtensionContentTypeProvider();
+    // Add new mappings
+    provider.Mappings[&quot;.myapp&quot;] = &quot;application/x-msdownload&quot;;
+    provider.Mappings[&quot;.htm3&quot;] = &quot;text/html&quot;;
+    provider.Mappings[&quot;.image&quot;] = &quot;image/png&quot;;
+    // Replace an existing mapping
+    provider.Mappings[&quot;.rtf&quot;] = &quot;application/x-msdownload&quot;;
+    // Remove MP4 videos.
+    provider.Mappings.Remove(&quot;.mp4&quot;);
+
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;),
+        ContentTypeProvider = provider
+    });
+
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @&quot;wwwroot&quot;, &quot;images&quot;)),
+        RequestPath = new PathString(&quot;/MyImages&quot;)
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="179" sourceendlinenumber="179">See   <a href="http://www.iana.org/assignments/media-types/media-types.xhtml" data-raw-source="[MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="179" sourceendlinenumber="179">MIME content types</a>.</p>
+<h2 id="non-standard-content-types" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="181" sourceendlinenumber="181">Non-standard content types</h2>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="183" sourceendlinenumber="183">The ASP.NET static file middleware understands almost 400 known file content types. If the user requests a file of an unknown file type, the static file middleware returns a HTTP 404 (Not found) response. If directory browsing is enabled, a link to the file will be displayed, but the URI will return an HTTP 404 error.</p>
+<p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="185" sourceendlinenumber="185">The following code enables serving unknown types and will render the unknown file as an image.</p>
+<pre sourcefile="fundamentals/static-files.md" sourcestartlinenumber="187" sourceendlinenumber="187"><code class="lang-csharp" name="Main">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        ServeUnknownFileTypes = true,
+        DefaultContentType = &quot;image/png&quot;
+    });
+}
+</code></pre><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="189" sourceendlinenumber="189">With the code above, a request for a file with an unknown content type will be returned as an image.</p>
+<div class="WARNING" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="191" sourceendlinenumber="191"><h5>Warning</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="192" sourceendlinenumber="192">Enabling <code>ServeUnknownFileTypes</code> is a security risk and using it is discouraged.  <code>FileExtensionContentTypeProvider</code>  (explained above) provides a safer alternative to serving files with non-standard extensions.</p>
+</div>
+<h3 id="considerations" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="194" sourceendlinenumber="194">Considerations</h3>
+<div class="WARNING" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="196" sourceendlinenumber="196"><h5>Warning</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="197" sourceendlinenumber="197"><code>UseDirectoryBrowser</code> and <code>UseStaticFiles</code> can leak secrets. We recommend that you <strong>not</strong> enable directory browsing in production. Be careful about which directories you enable with <code>UseStaticFiles</code> or <code>UseDirectoryBrowser</code> as the entire directory and all sub-directories will be accessible. We recommend keeping public content in its own directory such as <em>&lt;content root&gt;/wwwroot</em>, away from application views, configuration files, etc.</p>
+</div>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="199" sourceendlinenumber="209">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="199" sourceendlinenumber="199"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="199" sourceendlinenumber="199">The URLs for content exposed with <code>UseDirectoryBrowser</code> and <code>UseStaticFiles</code> are subject to the case sensitivity and character restrictions of their underlying file system. For example, Windows is case insensitive, but Mac and Linux are not.</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="201" sourceendlinenumber="201"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="201" sourceendlinenumber="201">ASP.NET Core applications hosted in IIS use the ASP.NET Core Module to forward all requests to the application including requests for static files. The IIS static file handler is not used because it doesn&#39;t get a chance to handle requests before they are handled by the ASP.NET Core Module.</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="203" sourceendlinenumber="209"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="203" sourceendlinenumber="203">To remove the IIS static file handler (at the server or website level):</p>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="205" sourceendlinenumber="209">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="205" sourceendlinenumber="205"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="205" sourceendlinenumber="205">Navigate to the <strong>Modules</strong> feature</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="207" sourceendlinenumber="207"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="207" sourceendlinenumber="207">Select <strong>StaticFileModule</strong> in the list</p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="209" sourceendlinenumber="209"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="209" sourceendlinenumber="209">Tap <strong>Remove</strong> in the <strong>Actions</strong> sidebar</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="WARNING" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="211" sourceendlinenumber="211"><h5>Warning</h5><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="212" sourceendlinenumber="212">If the IIS static file handler is enabled <strong>and</strong> the ASP.NET Core Module (ANCM) is not correctly configured (for example if <em>web.config</em> was not deployed), static files will be served.</p>
+</div>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="214" sourceendlinenumber="214">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="214" sourceendlinenumber="214">Code files (including c# and Razor) should be placed outside of the app project&#39;s <code>web root</code> (<em>wwwroot</em> by default). This creates a clean separation between your app&#39;s client side content and server side source code, which prevents server side code from being leaked.</li>
+</ul>
+<h2 id="additional-resources" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="216" sourceendlinenumber="216">Additional Resources</h2>
+<ul sourcefile="fundamentals/static-files.md" sourcestartlinenumber="218" sourceendlinenumber="220">
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="218" sourceendlinenumber="218"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="218" sourceendlinenumber="218"><a href="middleware.html" data-raw-source="[Middleware](middleware.md)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="218" sourceendlinenumber="218">Middleware</a></p>
+</li>
+<li sourcefile="fundamentals/static-files.md" sourcestartlinenumber="220" sourceendlinenumber="220"><p sourcefile="fundamentals/static-files.md" sourcestartlinenumber="220" sourceendlinenumber="220"><a href="../index.html" data-raw-source="[Introduction to ASP.NET Core](../index.md)" sourcefile="fundamentals/static-files.md" sourcestartlinenumber="220" sourceendlinenumber="220">Introduction to ASP.NET Core</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/static-files.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

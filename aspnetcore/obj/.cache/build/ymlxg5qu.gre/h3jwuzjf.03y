@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with SQLite </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with SQLite ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-xplat/working-with-sql">
+<h1 id="working-with-sqlite-in-an-aspnet-core-mvc-project" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="1" sourceendlinenumber="1">Working with SQLite in an ASP.NET Core MVC project</h1>
+
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="3" sourceendlinenumber="3">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="3" sourceendlinenumber="3">Rick Anderson</a></p>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="5" sourceendlinenumber="5">The <code>MvcMovieContext</code> object handles the task of connecting to the database and mapping <code>Movie</code> objects to database records. The database context is registered with the <a class="xref" href="../../fundamentals/dependency-injection.html" data-raw-source="[Dependency Injection](xref:fundamentals/dependency-injection)" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="5" sourceendlinenumber="5">Dependency Injection</a> container in the <code>ConfigureServices</code> method in the <em>Startup.cs</em> file:</p>
+<pre sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="7" sourceendlinenumber="7"><code class="lang-csharp" name="Main" highlight-lines="6-8">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddMvc();
+
+    services.AddDbContext&lt;MvcMovieContext&gt;(options =&gt;
+            options.UseSqlite(&quot;Data Source=MvcMovie.db&quot;));
+
+}
+</code></pre><h2 id="sqlite" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="9" sourceendlinenumber="9">SQLite</h2>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="11" sourceendlinenumber="11">The <a href="https://www.sqlite.org/" data-raw-source="[SQLite](https://www.sqlite.org/)" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="11" sourceendlinenumber="11">SQLite</a> website states:</p>
+<blockquote sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="13" sourceendlinenumber="13"><p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="13" sourceendlinenumber="13">SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.</p>
+</blockquote>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="15" sourceendlinenumber="15">There are many third party tools you can download to manage and view a SQLite database. The image below is from <a href="http://sqlitebrowser.org/" data-raw-source="[DB Browser for SQLite](http://sqlitebrowser.org/)" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="15" sourceendlinenumber="15">DB Browser for SQLite</a>. If you have a favorite SQLite tool, leave a comment on what you like about it.</p>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="17" sourceendlinenumber="17"><img src="working-with-sql/_static/dbb.png" alt="DB Browser for SQLite showing movie db" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="17" sourceendlinenumber="17"></p>
+<h2 id="seed-the-database" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="19" sourceendlinenumber="19">Seed the database</h2>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="21" sourceendlinenumber="21">Create a new class named <code>SeedData</code> in the <em>Models</em> folder. Replace the generated code with the following:</p>
+<pre sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="23" sourceendlinenumber="23"><code class="lang-csharp" name="Main">using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+
+namespace MvcMovie.Models
+{
+    public static class SeedData
+    {
+        public static void Initialize(IServiceProvider serviceProvider)
+        {
+            using (var context = new MvcMovieContext(
+                serviceProvider.GetRequiredService&lt;DbContextOptions&lt;MvcMovieContext&gt;&gt;()))
+            {
+                // Look for any movies.
+                if (context.Movie.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Movie.AddRange(
+                     new Movie
+                     {
+                         Title = &quot;When Harry Met Sally&quot;,
+                         ReleaseDate = DateTime.Parse(&quot;1989-1-11&quot;),
+                         Genre = &quot;Romantic Comedy&quot;,
+                         Price = 7.99M
+                     },
+
+                     new Movie
+                     {
+                         Title = &quot;Ghostbusters &quot;,
+                         ReleaseDate = DateTime.Parse(&quot;1984-3-13&quot;),
+                         Genre = &quot;Comedy&quot;,
+                         Price = 8.99M
+                     },
+
+                     new Movie
+                     {
+                         Title = &quot;Ghostbusters 2&quot;,
+                         ReleaseDate = DateTime.Parse(&quot;1986-2-23&quot;),
+                         Genre = &quot;Comedy&quot;,
+                         Price = 9.99M
+                     },
+
+                   new Movie
+                   {
+                       Title = &quot;Rio Bravo&quot;,
+                       ReleaseDate = DateTime.Parse(&quot;1959-4-15&quot;),
+                       Genre = &quot;Western&quot;,
+                       Price = 3.99M
+                   }
+                );
+                context.SaveChanges();
+            }
+        }
+    }
+}
+</code></pre><p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="25" sourceendlinenumber="25">If there are any movies in the DB, the seed initializer returns.</p>
+<pre sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="27" sourceendlinenumber="32"><code class="lang-csharp">if (context.Movie.Any())
+{
+    return;   // DB has been seeded.
+}
+</code></pre><p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="34" sourceendlinenumber="34"><a name="si"></a></p>
+<h3 id="add-the-seed-initializer" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="35" sourceendlinenumber="35">Add the seed initializer</h3>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="37" sourceendlinenumber="37">Add the seed initializer to the <code>Main</code> method in the <em>Program.cs</em> file:</p>
+<pre sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="39" sourceendlinenumber="39"><code class="lang-csharp" name="Main" highlight-lines="6,16-32">using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MvcMovie.Models;
+using System;
+
+namespace MvcMovie
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    // Requires using RazorPagesMovie.Models;
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService&lt;ILogger&lt;Program&gt;&gt;();
+                    logger.LogError(ex, &quot;An error occurred seeding the DB.&quot;);
+                }
+            }
+
+            host.Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =&gt;
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+    }
+}
+</code></pre><h3 id="test-the-app" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="41" sourceendlinenumber="41">Test the app</h3>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="43" sourceendlinenumber="43">Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.</p>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="45" sourceendlinenumber="45">The app shows the seeded data.</p>
+<p sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="47" sourceendlinenumber="47"><img src="../first-mvc-app/working-with-sql/_static/m55.png" alt="MVC Movie application open browser showing movie data" sourcefile="includes/mvc-intro/sql.md" sourcestartlinenumber="47" sourceendlinenumber="47"></p>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app-xplat/working-with-sql.md" sourcestartlinenumber="17" sourceendlinenumber="17"><p sourcefile="tutorials/first-mvc-app-xplat/working-with-sql.md" sourcestartlinenumber="18" sourceendlinenumber="19"><a href="adding-model.html" data-raw-source="[Previous - Add a model](adding-model.md)" sourcefile="tutorials/first-mvc-app-xplat/working-with-sql.md" sourcestartlinenumber="18" sourceendlinenumber="18">Previous - Add a model</a>
+<a href="controller-methods-views.html" data-raw-source="[Next - Controller methods and views](controller-methods-views.md)" sourcefile="tutorials/first-mvc-app-xplat/working-with-sql.md" sourcestartlinenumber="19" sourceendlinenumber="19">Next - Controller methods and views</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-xplat/working-with-sql.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

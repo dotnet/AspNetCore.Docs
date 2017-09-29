@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding search to ASP.NET Core Razor Pages </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding search to ASP.NET Core Razor Pages ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/razor-pages/search">
+<h1 id="adding-search-to-an-aspnet-core-mvc-app">Adding search to an ASP.NET Core MVC app</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>In this document, search capability is added to the Index page that enables searching movies by <em>genre</em> or <em>name</em>.</p>
+<p>Update the Index page&#39;s <code>OnGetAsync</code> method with the following code:</p>
+<pre><code class="lang-csharp" name="Main">public async Task OnGetAsync(string searchString)
+{
+    var movies = from m in _context.Movies
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    Movies = await movies.ToListAsync();
+}
+</code></pre><p>The first line of the <code>OnGetAsync</code> method creates a <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/">LINQ</a> query to select the movies:</p>
+<pre><code class="lang-csharp"> var movies = from m in _context.Movie
+              select m;
+</code></pre><p>The query is <em>only</em> defined at this point, it has <strong>not</strong> been run against the database.</p>
+<p>If the <code>searchString</code> parameter contains a string, the movies query is modified to filter on the search string:</p>
+<pre><code class="lang-csharp" name="Main">if (!String.IsNullOrEmpty(searchString))
+{
+    movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+}
+</code></pre><p>The <code>s =&gt; s.Title.Contains()</code> code is a <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions">Lambda Expression</a>. Lambdas are used in method-based <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/">LINQ</a> queries as arguments to standard query operator methods such as the <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq">Where</a> method or <code>Contains</code> (used in the preceding code). LINQ queries are not executed when they are defined or when they are modified by calling a method (such as <code>Where</code>, <code>Contains</code>  or <code>OrderBy</code>). Rather, query execution is deferred. That means the evaluation of an expression is delayed until its realized value is iterated over or the <code>ToListAsync</code> method is called. See <a href="https://docs.microsoft.com/dotnet/framework/data/adonet/ef/language-reference/query-execution">Query Execution</a> for more information.</p>
+<p><strong>Note:</strong> The <a href="https://docs.microsoft.com//dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains">Contains</a> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, <code>Contains</code> maps to <a href="https://docs.microsoft.com/sql/t-sql/language-elements/like-transact-sql">SQL LIKE</a>, which is case insensitive. In SQLite, with the default collation, it&#39;s case sensitive.</p>
+<p>Navigate to the Movies page and append a query string such as <code>?searchString=Ghost</code> to the URL (for example, <code>http://localhost:5000/Movies?searchString=Ghost</code>). The filtered movies are displayed.</p>
+<p><img src="search/_static/ghost.png" alt="Index view"></p>
+<p>If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, <code>http://localhost:5000/Movies/ghost</code>).</p>
+<pre><code class="lang-cshtml">@page &quot;{searchString?}&quot;
+</code></pre><p>The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The <code>?</code> in <code>&quot;{searchString?}&quot;</code> means this is an optional route parameter.</p>
+<p><img src="search/_static/g2.png" alt="Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2"></p>
+<p>However, you can&#39;t expect users to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint <code>&quot;{searchString?}&quot;</code>, remove it.</p>
+<p>Open the <em>Pages/Movies/Index.cshtml</em> file, and add the <code>&lt;form&gt;</code> markup highlighted in the following code:</p>
+<pre><code class="lang-cshtml" name="Main" highlight-lines="14-19">@page
+@model RazorPagesMovie.Pages.Movies.IndexModel
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-page=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form&gt;
+    &lt;p&gt;
+        Title: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Filter&quot; /&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+@*Markup removed for brevity.*@
+</code></pre><p>The HTML <code>&lt;form&gt;</code> tag uses the <a class="xref" href="../../mvc/views/working-with-forms.html#the-form-tag-helper">Form Tag Helper</a>. When the form is submitted, the filter string is sent to the <em>Pages/Movies/Index</em> page. Save the changes and test the filter.</p>
+<p><img src="search/_static/filter.png" alt="Index view with the word ghost typed into the Title filter textbox"></p>
+<h2 id="search-by-genre">Search by genre</h2>
+<p>Add the the following highlighted properties to <em>Pages/Movies/Index.cshtml.cs</em>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="11-">public class IndexModel : PageModel
+{
+    private readonly RazorPagesMovie.Models.MovieContext _context;
+
+    public IndexModel(RazorPagesMovie.Models.MovieContext context)
+    {
+        _context = context;
+    }
+
+    public List&lt;Movie&gt; Movies;
+    public SelectList Genres;
+    public string MovieGenre { get; set; }
+</code></pre><p>The <code>SelectList Genres</code> contains the list of genres. This allows the user to select a genre from the list.</p>
+<p>The <code>MovieGenre</code> property contains the specific genre the user selects (for example, &quot;Western&quot;).</p>
+<p>Update the <code>OnGetAsync</code> method with the following code:</p>
+<pre><code class="lang-csharp" name="Main">// Requires using Microsoft.AspNetCore.Mvc.Rendering;
+public async Task OnGetAsync(string movieGenre, string searchString)
+{
+    // Use LINQ to get list of genres.
+    IQueryable&lt;string&gt; genreQuery = from m in _context.Movies
+                                    orderby m.Genre
+                                    select m.Genre;
+
+    var movies = from m in _context.Movies
+                 select m;
+
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s =&gt; s.Title.Contains(searchString));
+    }
+
+    if (!String.IsNullOrEmpty(movieGenre))
+    {
+        movies = movies.Where(x =&gt; x.Genre == movieGenre);
+    }
+    Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+    Movies = await movies.ToListAsync();
+}
+</code></pre><p>The following code is a LINQ query that retrieves all the genres from the database.</p>
+<pre><code class="lang-csharp" name="Main">// Use LINQ to get list of genres.
+IQueryable&lt;string&gt; genreQuery = from m in _context.Movies
+                                orderby m.Genre
+                                select m.Genre;
+</code></pre><p>The <code>SelectList</code> of genres is created by projecting the distinct genres.</p>
+<!-- BUG in OPS
+Tag snippet_selectlist's start line '75' should be less than end line '29' when resolving "[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]"
+
+There is no start line.
+
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
+-->
+<pre><code class="lang-csharp">Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+</code></pre><h3 id="adding-search-by-genre">Adding search by genre</h3>
+<p>Update <em>Index.cshtml</em> as follows:</p>
+<pre><code class="lang-cshtml" name="Main" highlight-lines="16-18">@page
+@model RazorPagesMovie.Pages.Movies.IndexModel
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-page=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form&gt;
+    &lt;p&gt;
+        &lt;select asp-for=&quot;MovieGenre&quot; asp-items=&quot;Model.Genres&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;All&lt;/option&gt;
+        &lt;/select&gt;
+
+        Title: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Filter&quot; /&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+</code></pre><p>Test the app by searching by genre, by movie title, and by both.</p>
+<div class="step-by-step"><p><a class="xref" href="da1.html">Previous: Updating the pages</a>
+<a class="xref" href="new-field.html">Next: Adding a new field</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/razor-pages/search.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

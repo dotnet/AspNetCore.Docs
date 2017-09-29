@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Configuring Data Protection </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Configuring Data Protection ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/configuration/overview">
+<h1 id="configuring-data-protection">Configuring data protection</h1>
+
+<p><a name="data-protection-configuring"></a></p>
+<p>When the data protection system is initialized it applies some <a href="default-settings.html#data-protection-default-settings">default settings</a> based on the operational environment. These settings are generally good for applications running on a single machine. There are some cases where a developer may want to change these (perhaps because their application is spread across multiple machines or for compliance reasons), and for these scenarios the data protection system offers a rich configuration API.</p>
+<p><a name="data-protection-configuration-callback"></a></p>
+<p>There is an extension method AddDataProtection which returns an IDataProtectionBuilder which itself exposes extension methods that you can chain together to configure various data protection options. For instance, to store keys at a UNC share instead of %LOCALAPPDATA% (the default), configure the system as follows:</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(@&quot;\\server\share\directory\&quot;));
+}
+</code></pre><div class="WARNING"><h5>Warning</h5><p>If you change the key persistence location, the system will no longer automatically encrypt keys at rest since it doesn&#39;t know whether DPAPI is an appropriate encryption mechanism.</p>
+</div>
+<p><a name="configuring-x509-certificate"></a></p>
+<p>You can configure the system to protect keys at rest by calling any of the ProtectKeysWith* configuration APIs. Consider the example below, which stores keys at a UNC share and encrypts those keys at rest with a specific X.509 certificate.</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(@&quot;\\server\share\directory\&quot;))
+        .ProtectKeysWithCertificate(&quot;thumbprint&quot;);
+}
+</code></pre><p>See <a href="../implementation/key-encryption-at-rest.html#data-protection-implementation-key-encryption-at-rest">key encryption at rest</a> for more examples and for discussion on the built-in key encryption mechanisms.</p>
+<p>To configure the system to use a default key lifetime of 14 days instead of 90 days, consider the following example:</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+}
+</code></pre><p>By default the data protection system isolates applications from one another, even if they&#39;re sharing the same physical key repository. This prevents the applications from understanding each other&#39;s protected payloads. To share protected payloads between two different applications, configure the system passing in the same application name for both applications as in the below example:</p>
+<p><a name="data-protection-code-sample-application-name"></a></p>
+<!-- literal_block {"ids": ["data-protection-code-sample-application-name"], "linenos": false, "names": ["data-protection-code-sample-application-name"], "xml:space": "preserve", "language": "csharp"} -->
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .SetApplicationName(&quot;my application&quot;);
+}
+</code></pre><p><a name="data-protection-configuring-disable-automatic-key-generation"></a></p>
+<p>Finally, you may have a scenario where you do not want an application to automatically roll keys as they approach expiration. One example of this might be applications set up in a primary / secondary relationship, where only the primary application is responsible for key management concerns, and all secondary applications simply have a read-only view of the key ring. The secondary applications can be configured to treat the key ring as read-only by configuring the system as below:</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .DisableAutomaticKeyGeneration();
+}
+</code></pre><p><a name="data-protection-configuration-per-app-isolation"></a></p>
+<h2 id="per-application-isolation">Per-application isolation</h2>
+<p>When the data protection system is provided by an ASP.NET Core host, it will automatically isolate applications from one another, even if those applications are running under the same worker process account and are using the same master keying material. This is somewhat similar to the IsolateApps modifier from System.Web&#39;s <machinekey> element.<p>
+<p>The isolation mechanism works by considering each application on the local machine as a unique tenant, thus the IDataProtector rooted for any given application automatically includes the application ID as a discriminator. The application&#39;s unique ID comes from one of two places.</p>
+<ol>
+<li><p>If the application is hosted in IIS, the unique identifier is the application&#39;s configuration path. If an application is deployed in a farm environment, this value should be stable assuming that the IIS environments are configured similarly across all machines in the farm.</p>
+</li>
+<li><p>If the application is not hosted in IIS, the unique identifier is the physical path of the application.</p>
+</li>
+</ol>
+<p>The unique identifier is designed to survive resets - both of the individual application and of the machine itself.</p>
+<p>This isolation mechanism assumes that the applications are not malicious. A malicious application can always impact any other application running under the same worker process account. In a shared hosting environment where applications are mutually untrusted, the hosting provider should take steps to ensure OS-level isolation between applications, including separating the applications&#39; underlying key repositories.</p>
+<p>If the data protection system is not provided by an ASP.NET Core host (e.g., if the developer instantiates it himself via the DataProtectionProvider concrete type), application isolation is disabled by default, and all applications backed by the same keying material can share payloads as long as they provide the appropriate purposes. To provide application isolation in this environment, call the SetApplicationName method on the configuration object, see the <a href="#data-protection-code-sample-application-name">code sample</a> above.</p>
+<p><a name="data-protection-changing-algorithms"></a></p>
+<h2 id="changing-algorithms">Changing algorithms</h2>
+<p>The data protection stack allows changing the default algorithm used by newly-generated keys. The simplest way to do this is to call UseCryptographicAlgorithms from the configuration callback, as in the below example.</p>
+<div class="tabGroup" id="tabgroup_SLC0JHVO81">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81_aspnetcore2x" role="tab" aria-controls="tabpanel_SLC0JHVO81_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81_aspnetcore1x" role="tab" aria-controls="tabpanel_SLC0JHVO81_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_SLC0JHVO81_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+    {
+        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+    });
+</code></pre></section>
+<section id="tabpanel_SLC0JHVO81_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
+    {
+        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+    });
+</code></pre></section>
+</div>
+<p>The default EncryptionAlgorithm and ValidationAlgorithm are AES-256-CBC and HMACSHA256, respectively. The default policy can be set by a system administrator via <a href="machine-wide-policy.html">Machine Wide Policy</a>, but an explicit call to UseCryptographicAlgorithms will override the default policy.</p>
+<p>Calling UseCryptographicAlgorithms will allow the developer to specify the desired algorithm (from a predefined built-in list), and the developer does not need to worry about the implementation of the algorithm. For instance, in the scenario above the data protection system will attempt to use the CNG implementation of AES if running on Windows, otherwise it will fall back to the managed System.Security.Cryptography.Aes class.</p>
+<p>The developer can manually specify an implementation if desired via a call to UseCustomCryptographicAlgorithms, as show in the below examples.</p>
+<div class="TIP"><h5>Tip</h5><p>Changing algorithms does not affect existing keys in the key ring. It only affects newly-generated keys.</p>
+</div>
+<p><a name="data-protection-changing-algorithms-custom-managed"></a></p>
+<h3 id="specifying-custom-managed-algorithms">Specifying custom managed algorithms</h3>
+<div class="tabGroup" id="tabgroup_SLC0JHVO81-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-1_aspnetcore2x" role="tab" aria-controls="tabpanel_SLC0JHVO81-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-1_aspnetcore1x" role="tab" aria-controls="tabpanel_SLC0JHVO81-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_SLC0JHVO81-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>To specify custom managed algorithms, create a ManagedAuthenticatedEncryptorConfiguration instance that points to the implementation types.</p>
+<pre><code class="lang-csharp">serviceCollection.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptorConfiguration()
+    {
+        // a type that subclasses SymmetricAlgorithm
+        EncryptionAlgorithmType = typeof(Aes),
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // a type that subclasses KeyedHashAlgorithm
+        ValidationAlgorithmType = typeof(HMACSHA256)
+    });
+</code></pre></section>
+<section id="tabpanel_SLC0JHVO81-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.</p>
+<pre><code class="lang-csharp">serviceCollection.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
+    {
+        // a type that subclasses SymmetricAlgorithm
+        EncryptionAlgorithmType = typeof(Aes),
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // a type that subclasses KeyedHashAlgorithm
+        ValidationAlgorithmType = typeof(HMACSHA256)
+    });
+</code></pre></section>
+</div>
+<p>Generally the *Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.</p>
+<div class="NOTE"><h5>Note</h5><p>The SymmetricAlgorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The KeyedHashAlgorithm must have a digest size of &gt;= 128 bits, and it must support keys of length equal to the hash algorithm&#39;s digest length. The KeyedHashAlgorithm is not strictly required to be HMAC.</p>
+</div>
+<p><a name="data-protection-changing-algorithms-cng"></a></p>
+<h3 id="specifying-custom-windows-cng-algorithms">Specifying custom Windows CNG algorithms</h3>
+<div class="tabGroup" id="tabgroup_SLC0JHVO81-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-2_aspnetcore2x" role="tab" aria-controls="tabpanel_SLC0JHVO81-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-2_aspnetcore1x" role="tab" aria-controls="tabpanel_SLC0JHVO81-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_SLC0JHVO81-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.</p>
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = &quot;AES&quot;,
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // passed to BCryptOpenAlgorithmProvider
+        HashAlgorithm = &quot;SHA256&quot;,
+        HashAlgorithmProvider = null
+    });
+</code></pre></section>
+<section id="tabpanel_SLC0JHVO81-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.</p>
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = &quot;AES&quot;,
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256,
+
+        // passed to BCryptOpenAlgorithmProvider
+        HashAlgorithm = &quot;SHA256&quot;,
+        HashAlgorithmProvider = null
+    });
+</code></pre></section>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of &gt;= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The *Provider properties can be set to null to use the default provider for the specified algorithm. See the <a href="https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx">BCryptOpenAlgorithmProvider</a> documentation for more information.</p>
+</div>
+<div class="tabGroup" id="tabgroup_SLC0JHVO81-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-3_aspnetcore2x" role="tab" aria-controls="tabpanel_SLC0JHVO81-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_SLC0JHVO81-3_aspnetcore1x" role="tab" aria-controls="tabpanel_SLC0JHVO81-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_SLC0JHVO81-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptorConfiguration instance that contains the algorithmic information.</p>
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = &quot;AES&quot;,
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256
+    });
+</code></pre></section>
+<section id="tabpanel_SLC0JHVO81-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionSettings instance that contains the algorithmic information.</p>
+<pre><code class="lang-csharp">services.AddDataProtection()
+    .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
+    {
+        // passed to BCryptOpenAlgorithmProvider
+        EncryptionAlgorithm = &quot;AES&quot;,
+        EncryptionAlgorithmProvider = null,
+
+        // specified in bits
+        EncryptionAlgorithmKeySize = 256
+    });
+</code></pre></section>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of exactly 128 bits, and it must support GCM encryption. The EncryptionAlgorithmProvider property can be set to null to use the default provider for the specified algorithm. See the <a href="https://msdn.microsoft.com/library/windows/desktop/aa375479(v=vs.85).aspx">BCryptOpenAlgorithmProvider</a> documentation for more information.</p>
+</div>
+<h3 id="specifying-other-custom-algorithms">Specifying other custom algorithms</h3>
+<p>Though not exposed as a first-class API, the data protection system is extensible enough to allow specifying almost any kind of algorithm. For example, it is possible to keep all keys contained within an HSM and to provide a custom implementation of the core encryption and decryption routines. See IAuthenticatedEncryptorConfiguration in the core cryptography extensibility section for more information.</p>
+<h3 id="see-also">See also</h3>
+<ul>
+<li><a href="non-di-scenarios.html">Non DI Aware Scenarios</a></li>
+<li><a href="machine-wide-policy.html">Machine Wide Policy</a></li>
+</ul>
+</machinekey></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/configuration/overview.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

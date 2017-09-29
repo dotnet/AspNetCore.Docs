@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Key management extensibility </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Key management extensibility ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/extensibility/key-management">
+<h1 id="key-management-extensibility" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="15" sourceendlinenumber="15">Key management extensibility</h1>
+
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="data-protection-extensibility-key-management"></a></p>
+<div class="TIP" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="19" sourceendlinenumber="19"><h5>Tip</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="20" sourceendlinenumber="20">Read the <a href="../implementation/key-management.html#data-protection-implementation-key-management" data-raw-source="[key management](../implementation/key-management.md#data-protection-implementation-key-management)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="20" sourceendlinenumber="20">key management</a> section before reading this section, as it explains some of the fundamental concepts behind these APIs.</p>
+</div>
+<div class="WARNING" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="22" sourceendlinenumber="22"><h5>Warning</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="23" sourceendlinenumber="23">Types that implement any of the following interfaces should be thread-safe for multiple callers.</p>
+</div>
+<h2 id="key" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="25" sourceendlinenumber="25">Key</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="27" sourceendlinenumber="27">The IKey interface is the basic representation of a key in cryptosystem. The term key is used here in the abstract sense, not in the literal sense of &quot;cryptographic key material&quot;. A key has the following properties:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="29" sourceendlinenumber="33">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="29" sourceendlinenumber="29"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="29" sourceendlinenumber="29">Activation, creation, and expiration dates</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="31" sourceendlinenumber="31"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="31" sourceendlinenumber="31">Revocation status</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="33" sourceendlinenumber="33"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="33" sourceendlinenumber="33">Key identifier (a GUID)</p>
+</li>
+</ul>
+<div class="tabGroup" id="tabgroup_+OKgET2ql3" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="35" sourceendlinenumber="41">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3_aspnetcore2x" role="tab" aria-controls="tabpanel_+OKgET2ql3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="35" sourceendlinenumber="35">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3_aspnetcore1x" role="tab" aria-controls="tabpanel_+OKgET2ql3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="39" sourceendlinenumber="39">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_+OKgET2ql3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="37" sourceendlinenumber="37">Additionally, IKey exposes a CreateEncryptor method which can be used to create an <a href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptor" data-raw-source="[IAuthenticatedEncryptor](core-crypto.md#data-protection-extensibility-core-crypto-iauthenticatedencryptor)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="37" sourceendlinenumber="37">IAuthenticatedEncryptor</a> instance tied to this key.</p>
+</section>
+<section id="tabpanel_+OKgET2ql3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="41" sourceendlinenumber="41">Additionally, IKey exposes a CreateEncryptorInstance method which can be used to create an <a href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptor" data-raw-source="[IAuthenticatedEncryptor](core-crypto.md#data-protection-extensibility-core-crypto-iauthenticatedencryptor)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="41" sourceendlinenumber="41">IAuthenticatedEncryptor</a> instance tied to this key.</p>
+</section>
+</div>
+<div class="NOTE" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="45" sourceendlinenumber="45"><h5>Note</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="46" sourceendlinenumber="46">There is no API to retrieve the raw cryptographic material from an IKey instance.</p>
+</div>
+<h2 id="ikeymanager" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="48" sourceendlinenumber="48">IKeyManager</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="50" sourceendlinenumber="50">The IKeyManager interface represents an object responsible for general key storage, retrieval, and manipulation. It exposes three high-level operations:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="52" sourceendlinenumber="56">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="52" sourceendlinenumber="52"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="52" sourceendlinenumber="52">Create a new key and persist it to storage.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="54" sourceendlinenumber="54"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="54" sourceendlinenumber="54">Get all keys from storage.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="56" sourceendlinenumber="56"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="56" sourceendlinenumber="56">Revoke one or more keys and persist the revocation information to storage.</p>
+</li>
+</ul>
+<div class="WARNING" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="58" sourceendlinenumber="58"><h5>Warning</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="59" sourceendlinenumber="59">Writing an IKeyManager is a very advanced task, and the majority of developers should not attempt it. Instead, most developers should take advantage of the facilities offered by the <a class="xref" href="key-management.html#data-protection-extensibility-key-management-xmlkeymanager" data-raw-source="[XmlKeyManager](xref:security/data-protection/extensibility/key-management#data-protection-extensibility-key-management-xmlkeymanager)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="59" sourceendlinenumber="59">XmlKeyManager</a> class.</p>
+</div>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="61" sourceendlinenumber="61"><a name="data-protection-extensibility-key-management-xmlkeymanager"></a></p>
+<h2 id="xmlkeymanager" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="63" sourceendlinenumber="63">XmlKeyManager</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="65" sourceendlinenumber="65">The XmlKeyManager type is the in-box concrete implementation of IKeyManager. It provides several useful facilities, including key escrow and encryption of keys at rest. Keys in this system are represented as XML elements (specifically, <a href="https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview" data-raw-source="[XElement](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="65" sourceendlinenumber="65">XElement</a>.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="67" sourceendlinenumber="67">XmlKeyManager depends on several other components in the course of fulfilling its tasks:</p>
+<div class="tabGroup" id="tabgroup_+OKgET2ql3-1" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="69" sourceendlinenumber="87">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-1_aspnetcore2x" role="tab" aria-controls="tabpanel_+OKgET2ql3-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="69" sourceendlinenumber="69">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-1_aspnetcore1x" role="tab" aria-controls="tabpanel_+OKgET2ql3-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="79" sourceendlinenumber="79">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_+OKgET2ql3-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="71" sourceendlinenumber="77">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="71" sourceendlinenumber="71"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="71" sourceendlinenumber="71">AlgorithmConfiguration, which dictates the algorithms used by new keys.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="73" sourceendlinenumber="73"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="73" sourceendlinenumber="73">IXmlRepository, which controls where keys are persisted in storage.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="75" sourceendlinenumber="75"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="75" sourceendlinenumber="75">IXmlEncryptor [optional], which allows encrypting keys at rest.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="77" sourceendlinenumber="77"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="77" sourceendlinenumber="77">IKeyEscrowSink [optional], which provides key escrow services.</p>
+</li>
+</ul>
+</section>
+<section id="tabpanel_+OKgET2ql3-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="81" sourceendlinenumber="85">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="81" sourceendlinenumber="81"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="81" sourceendlinenumber="81">IXmlRepository, which controls where keys are persisted in storage.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="83" sourceendlinenumber="83"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="83" sourceendlinenumber="83">IXmlEncryptor [optional], which allows encrypting keys at rest.</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="85" sourceendlinenumber="85"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="85" sourceendlinenumber="85">IKeyEscrowSink [optional], which provides key escrow services.</p>
+</li>
+</ul>
+</section>
+</div>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="89" sourceendlinenumber="89">Below are high-level diagrams which indicate how these components are wired together within XmlKeyManager.</p>
+<div class="tabGroup" id="tabgroup_+OKgET2ql3-2" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="91" sourceendlinenumber="101">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-2_aspnetcore2x" role="tab" aria-controls="tabpanel_+OKgET2ql3-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="91" sourceendlinenumber="91">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-2_aspnetcore1x" role="tab" aria-controls="tabpanel_+OKgET2ql3-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="99" sourceendlinenumber="99">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_+OKgET2ql3-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="93" sourceendlinenumber="93">   <img src="key-management/_static/keycreation2.png" alt="Key Creation" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="93" sourceendlinenumber="93"></p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="95" sourceendlinenumber="95">   <em>Key Creation / CreateNewKey</em></p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="97" sourceendlinenumber="97">In the implementation of CreateNewKey, the AlgorithmConfiguration component is used to create a unique IAuthenticatedEncryptorDescriptor, which is then serialized as XML. If a key escrow sink is present, the raw (unencrypted) XML is provided to the sink for long-term storage. The unencrypted XML is then run through an IXmlEncryptor (if required) to generate the encrypted XML document. This encrypted document is persisted to long-term storage via the IXmlRepository. (If no IXmlEncryptor is configured, the unencrypted document is persisted in the IXmlRepository.)</p>
+</section>
+<section id="tabpanel_+OKgET2ql3-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="101" sourceendlinenumber="101">   <img src="key-management/_static/keycreation1.png" alt="Key Creation" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="101" sourceendlinenumber="101"></p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="103" sourceendlinenumber="103">   <em>Key Creation / CreateNewKey</em></p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="105" sourceendlinenumber="105">In the implementation of CreateNewKey, the IAuthenticatedEncryptorConfiguration component is used to create a unique IAuthenticatedEncryptorDescriptor, which is then serialized as XML. If a key escrow sink is present, the raw (unencrypted) XML is provided to the sink for long-term storage. The unencrypted XML is then run through an IXmlEncryptor (if required) to generate the encrypted XML document. This encrypted document is persisted to long-term storage via the IXmlRepository. (If no IXmlEncryptor is configured, the unencrypted document is persisted in the IXmlRepository.)</p>
+</section>
+</div>
+<div class="tabGroup" id="tabgroup_+OKgET2ql3-3" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="109" sourceendlinenumber="115">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-3_aspnetcore2x" role="tab" aria-controls="tabpanel_+OKgET2ql3-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="109" sourceendlinenumber="109">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+OKgET2ql3-3_aspnetcore1x" role="tab" aria-controls="tabpanel_+OKgET2ql3-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="113" sourceendlinenumber="113">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_+OKgET2ql3-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="111" sourceendlinenumber="111">   <img src="key-management/_static/keyretrieval2.png" alt="Key Retrieval" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="111" sourceendlinenumber="111"></p>
+</section>
+<section id="tabpanel_+OKgET2ql3-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="115" sourceendlinenumber="115">   <img src="key-management/_static/keyretrieval1.png" alt="Key Retrieval" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="115" sourceendlinenumber="115"></p>
+</section>
+</div>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="119" sourceendlinenumber="119">   <em>Key Retrieval / GetAllKeys</em></p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="121" sourceendlinenumber="121">In the implementation of GetAllKeys, the XML documents representing keys and revocations are read from the underlying IXmlRepository. If these documents are encrypted, the system will automatically decrypt them. XmlKeyManager creates the appropriate IAuthenticatedEncryptorDescriptorDeserializer instances to deserialize the documents back into IAuthenticatedEncryptorDescriptor instances, which are then wrapped in individual IKey instances. This collection of IKey instances is returned to the caller.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="123" sourceendlinenumber="123">Further information on the particular XML elements can be found in the <a href="../implementation/key-storage-format.html#data-protection-implementation-key-storage-format" data-raw-source="[key storage format document](../implementation/key-storage-format.md#data-protection-implementation-key-storage-format)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="123" sourceendlinenumber="123">key storage format document</a>.</p>
+<h2 id="ixmlrepository" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="125" sourceendlinenumber="125">IXmlRepository</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="127" sourceendlinenumber="127">The IXmlRepository interface represents a type that can persist XML to and retrieve XML from a backing store. It exposes two APIs:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="129" sourceendlinenumber="131">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="129" sourceendlinenumber="129"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="129" sourceendlinenumber="129">GetAllElements() : IReadOnlyCollection<xelement><p>
+</xelement></li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="131" sourceendlinenumber="131"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="131" sourceendlinenumber="131">StoreElement(XElement element, string friendlyName)</p>
+</li>
+</ul>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="133" sourceendlinenumber="133">Implementations of IXmlRepository don&#39;t need to parse the XML passing through them. They should treat the XML documents as opaque and let higher layers worry about generating and parsing the documents.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="135" sourceendlinenumber="135">There are two built-in concrete types which implement IXmlRepository: FileSystemXmlRepository and RegistryXmlRepository. See the <a href="../implementation/key-storage-providers.html#data-protection-implementation-key-storage-providers" data-raw-source="[key storage providers document](../implementation/key-storage-providers.md#data-protection-implementation-key-storage-providers)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="135" sourceendlinenumber="135">key storage providers document</a> for more information. Registering a custom IXmlRepository would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage. To change the default repository application-wide, register a custom singleton IXmlRepository in the service provider.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="137" sourceendlinenumber="137"><a name="data-protection-extensibility-key-management-ixmlencryptor"></a></p>
+<h2 id="ixmlencryptor" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="139" sourceendlinenumber="139">IXmlEncryptor</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="141" sourceendlinenumber="141">The IXmlEncryptor interface represents a type that can encrypt a plaintext XML element. It exposes a single API:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="143" sourceendlinenumber="143">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="143" sourceendlinenumber="143">Encrypt(XElement plaintextElement) : EncryptedXmlInfo</li>
+</ul>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="145" sourceendlinenumber="145">If a serialized IAuthenticatedEncryptorDescriptor contains any elements marked as &quot;requires encryption&quot;, then XmlKeyManager will run those elements through the configured IXmlEncryptor&#39;s Encrypt method, and it will persist the enciphered element rather than the plaintext element to the IXmlRepository. The output of the Encrypt method is an EncryptedXmlInfo object. This object is a wrapper which contains both the resultant enciphered XElement and the Type which represents an IXmlDecryptor which can be used to decipher the corresponding element.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="147" sourceendlinenumber="147">There are four built-in concrete types which implement IXmlEncryptor: CertificateXmlEncryptor, DpapiNGXmlEncryptor, DpapiXmlEncryptor, and NullXmlEncryptor. See the <a href="../implementation/key-encryption-at-rest.html#data-protection-implementation-key-encryption-at-rest" data-raw-source="[key encryption at rest document](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="147" sourceendlinenumber="147">key encryption at rest document</a> for more information. To change the default key-encryption-at-rest mechanism application-wide, register a custom singleton IXmlEncryptor in the service provider.</p>
+<h2 id="ixmldecryptor" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="149" sourceendlinenumber="149">IXmlDecryptor</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="151" sourceendlinenumber="151">The IXmlDecryptor interface represents a type that knows how to decrypt an XElement that was enciphered via an IXmlEncryptor. It exposes a single API:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="153" sourceendlinenumber="153">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="153" sourceendlinenumber="153">Decrypt(XElement encryptedElement) : XElement</li>
+</ul>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="155" sourceendlinenumber="155">The Decrypt method undoes the encryption performed by IXmlEncryptor.Encrypt. Generally each concrete IXmlEncryptor implementation will have a corresponding concrete IXmlDecryptor implementation.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="157" sourceendlinenumber="157">Types which implement IXmlDecryptor should have one of the following two public constructors:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="159" sourceendlinenumber="161">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="159" sourceendlinenumber="159"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="159" sourceendlinenumber="159">.ctor(IServiceProvider)</p>
+</li>
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="161" sourceendlinenumber="161"><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="161" sourceendlinenumber="161">.ctor()</p>
+</li>
+</ul>
+<div class="NOTE" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="163" sourceendlinenumber="163"><h5>Note</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="164" sourceendlinenumber="164">The IServiceProvider passed to the constructor may be null.</p>
+</div>
+<h2 id="ikeyescrowsink" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="166" sourceendlinenumber="166">IKeyEscrowSink</h2>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="168" sourceendlinenumber="168">The IKeyEscrowSink interface represents a type that can perform escrow of sensitive information. Recall that serialized descriptors might contain sensitive information (such as cryptographic material), and this is what led to the introduction of the <a class="xref" href="key-management.html#data-protection-extensibility-key-management-ixmlencryptor" data-raw-source="[IXmlEncryptor](xref:security/data-protection/extensibility/key-management#data-protection-extensibility-key-management-ixmlencryptor)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="168" sourceendlinenumber="168">IXmlEncryptor</a> type in the first place. However, accidents happen, and keyrings can be deleted or become corrupted.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="170" sourceendlinenumber="170">The escrow interface provides an emergency escape hatch, allowing access to the raw serialized XML before it is transformed by any configured <a class="xref" href="key-management.html#data-protection-extensibility-key-management-ixmlencryptor" data-raw-source="[IXmlEncryptor](xref:security/data-protection/extensibility/key-management#data-protection-extensibility-key-management-ixmlencryptor)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="170" sourceendlinenumber="170">IXmlEncryptor</a>. The interface exposes a single API:</p>
+<ul sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="172" sourceendlinenumber="172">
+<li sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="172" sourceendlinenumber="172">Store(Guid keyId, XElement element)</li>
+</ul>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="174" sourceendlinenumber="174">It is up to the IKeyEscrowSink implementation to handle the provided element in a secure manner consistent with business policy. One possible implementation could be for the escrow sink to encrypt the XML element using a known corporate X.509 certificate where the certificate&#39;s private key has been escrowed; the CertificateXmlEncryptor type can assist with this. The IKeyEscrowSink implementation is also responsible for persisting the provided element appropriately.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="176" sourceendlinenumber="176">By default no escrow mechanism is enabled, though server administrators can <a href="../configuration/machine-wide-policy.html#data-protection-configuration-machinewidepolicy" data-raw-source="[configure this globally](../configuration/machine-wide-policy.md#data-protection-configuration-machinewidepolicy)" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="176" sourceendlinenumber="176">configure this globally</a>. It can also be configured programmatically via the <em>IDataProtectionBuilder.AddKeyEscrowSink</em> method as shown in the sample below. The <em>AddKeyEscrowSink</em> method overloads mirror the <em>IServiceCollection.AddSingleton</em> and <em>IServiceCollection.AddInstance</em> overloads, as IKeyEscrowSink instances are intended to be singletons. If multiple IKeyEscrowSink instances are registered, each one will be called during key generation, so keys can be escrowed to multiple mechanisms simultaneously.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="178" sourceendlinenumber="178">There is no API to read material from an IKeyEscrowSink instance. This is consistent with the design theory of the escrow mechanism: it&#39;s intended to make the key material accessible to a trusted authority, and since the application is itself not a trusted authority, it shouldn&#39;t have access to its own escrowed material.</p>
+<p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="180" sourceendlinenumber="180">The following sample code demonstrates creating and registering an IKeyEscrowSink where keys are escrowed such that only members of &quot;CONTOSODomain Admins&quot; can recover them.</p>
+<div class="NOTE" sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="182" sourceendlinenumber="182"><h5>Note</h5><p sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="183" sourceendlinenumber="183">To run this sample, you must be on a domain-joined Windows 8 / Windows Server 2012 machine, and the domain controller must be Windows Server 2012 or later.</p>
+</div>
+<pre sourcefile="security/data-protection/extensibility/key-management.md" sourcestartlinenumber="185" sourceendlinenumber="185"><code class="lang-none" name="Main">using System;
+using System.IO;
+using System.Xml.Linq;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.DataProtection.XmlEncryption;
+using Microsoft.Extensions.DependencyInjection;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo(@&quot;c:\temp-keys&quot;))
+            .ProtectKeysWithDpapi()
+            .AddKeyEscrowSink(sp =&gt; new MyKeyEscrowSink(sp));
+        var services = serviceCollection.BuildServiceProvider();
+
+        // get a reference to the key manager and force a new key to be generated
+        Console.WriteLine(&quot;Generating new key...&quot;);
+        var keyManager = services.GetService&lt;IKeyManager&gt;();
+        keyManager.CreateNewKey(
+            activationDate: DateTimeOffset.Now,
+            expirationDate: DateTimeOffset.Now.AddDays(7));
+    }
+
+    // A key escrow sink where keys are escrowed such that they
+    // can be read by members of the CONTOSO\Domain Admins group.
+    private class MyKeyEscrowSink : IKeyEscrowSink
+    {
+        private readonly IXmlEncryptor _escrowEncryptor;
+
+        public MyKeyEscrowSink(IServiceProvider services)
+        {
+            // Assuming I&#39;m on a machine that&#39;s a member of the CONTOSO
+            // domain, I can use the Domain Admins SID to generate an
+            // encrypted payload that only they can read. Sample SID from
+            // https://technet.microsoft.com/library/cc778824(v=ws.10).aspx.
+            _escrowEncryptor = new DpapiNGXmlEncryptor(
+                &quot;SID=S-1-5-21-1004336348-1177238915-682003330-512&quot;,
+                DpapiNGProtectionDescriptorFlags.None,
+                services);
+        }
+
+        public void Store(Guid keyId, XElement element)
+        {
+            // Encrypt the key element to the escrow encryptor.
+            var encryptedXmlInfo = _escrowEncryptor.Encrypt(element);
+
+            // A real implementation would save the escrowed key to a
+            // write-only file share or some other stable storage, but
+            // in this sample we&#39;ll just write it out to the console.
+            Console.WriteLine($&quot;Escrowing key {keyId}&quot;);
+            Console.WriteLine(encryptedXmlInfo.EncryptedElement);
+
+            // Note: We cannot read the escrowed key material ourselves.
+            // We need to get a member of CONTOSO\Domain Admins to read
+            // it for us in the event we need to recover it.
+        }
+    }
+}
+
+/*
+ * SAMPLE OUTPUT
+ *
+ * Generating new key...
+ * Escrowing key 38e74534-c1b8-4b43-aea1-79e856a822e5
+ * &lt;encryptedKey&gt;
+ *   &lt;!-- This key is encrypted with Windows DPAPI-NG. --&gt;
+ *   &lt;!-- Rule: SID=S-1-5-21-1004336348-1177238915-682003330-512 --&gt;
+ *   &lt;value&gt;MIIIfAYJKoZIhvcNAQcDoIIIbTCCCGkCAQ...T5rA4g==&lt;/value&gt;
+ * &lt;/encryptedKey&gt;
+ */
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/extensibility/key-management.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

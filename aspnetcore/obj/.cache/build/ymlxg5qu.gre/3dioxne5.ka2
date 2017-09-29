@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HTTP.sys web server implementation in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="HTTP.sys web server implementation in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/servers/httpsys">
+<h1 id="httpsys-web-server-implementation-in-aspnet-core" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="15" sourceendlinenumber="15">HTTP.sys web server implementation in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="17" sourceendlinenumber="17">Tom Dykstra</a> and <a href="https://github.com/Tratcher" data-raw-source="[Chris Ross](https://github.com/Tratcher)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="17" sourceendlinenumber="17">Chris Ross</a></p>
+<div class="NOTE" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="19" sourceendlinenumber="19"><h5>Note</h5><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="20" sourceendlinenumber="20">This topic applies only to ASP.NET Core 2.0 and later. In earlier versions of ASP.NET Core, HTTP.sys is named <a class="xref" href="weblistener.html" data-raw-source="[WebListener](xref:fundamentals/servers/weblistener)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="20" sourceendlinenumber="20">WebListener</a>.</p>
+</div>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="22" sourceendlinenumber="22">HTTP.sys is a <a href="index.html" data-raw-source="[web server for ASP.NET Core](index.md)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="22" sourceendlinenumber="22">web server for ASP.NET Core</a> that runs only on Windows. It&#39;s built on the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx" data-raw-source="[Http.Sys kernel mode driver](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="22" sourceendlinenumber="22">Http.Sys kernel mode driver</a>. HTTP.sys is an alternative to <a href="kestrel.html" data-raw-source="[Kestrel](kestrel.md)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="22" sourceendlinenumber="22">Kestrel</a> that offers some features that Kestel doesn&#39;t. <strong>HTTP.sys can&#39;t be used with IIS or IIS Express, as it isn&#39;t compatible with the <a href="aspnet-core-module.html" data-raw-source="[ASP.NET Core Module](aspnet-core-module.md)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="22" sourceendlinenumber="22">ASP.NET Core Module</a>.</strong></p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="24" sourceendlinenumber="24">HTTP.sys supports the following features:</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="26" sourceendlinenumber="32">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="26" sourceendlinenumber="26"><a class="xref" href="../../security/authentication/windowsauth.html" data-raw-source="[Windows Authentication](xref:security/authentication/windowsauth)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="26" sourceendlinenumber="26">Windows Authentication</a></li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="27" sourceendlinenumber="27">Port sharing</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="28" sourceendlinenumber="28">HTTPS with SNI</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="29" sourceendlinenumber="29">HTTP/2 over TLS (Windows 10)</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="30" sourceendlinenumber="30">Direct file transmission</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="31" sourceendlinenumber="31">Response caching</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="32" sourceendlinenumber="32">WebSockets (Windows 8)</li>
+</ul>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="34" sourceendlinenumber="34">Supported Windows versions:</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="36" sourceendlinenumber="36">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="36" sourceendlinenumber="36">Windows 7 and Windows Server 2008 R2 and later</li>
+</ul>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="38" sourceendlinenumber="38"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="38" sourceendlinenumber="38">View or download sample code</a></p>
+<h2 id="when-to-use-httpsys" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="40" sourceendlinenumber="40">When to use HTTP.sys</h2>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="42" sourceendlinenumber="42">HTTP.sys is useful for deployments where you need to expose the server directly to the Internet without using IIS.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="44" sourceendlinenumber="44"><img src="httpsys/_static/httpsys-to-internet.png" alt="HTTP.sys communicates directly with the Internet" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="44" sourceendlinenumber="44"></p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="46" sourceendlinenumber="46">Because it&#39;s built on Http.Sys, HTTP.sys doesn&#39;t require a reverse proxy server for protection against attacks. Http.Sys is mature technology that protects against many kinds of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of Http.Sys. </p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="48" sourceendlinenumber="48">HTTP.sys is a good choice for internal deployments when you need a feature not available in Kestrel, such as Windows authentication.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="50" sourceendlinenumber="50"><img src="httpsys/_static/httpsys-to-internal.png" alt="HTTP.sys communicates directly with your internal network" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="50" sourceendlinenumber="50"></p>
+<h2 id="how-to-use-httpsys" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="52" sourceendlinenumber="52">How to use HTTP.sys</h2>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="54" sourceendlinenumber="54">Here&#39;s an overview of setup tasks for the host OS and your ASP.NET Core application.</p>
+<h3 id="configure-windows-server" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="56" sourceendlinenumber="56">Configure Windows Server</h3>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="58" sourceendlinenumber="68">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="58" sourceendlinenumber="58"><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="58" sourceendlinenumber="58">Install the version of .NET that your application requires, such as <a href="https://www.microsoft.com/net/download/core" data-raw-source="[.NET Core](https://www.microsoft.com/net/download/core)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="58" sourceendlinenumber="58">.NET Core</a> or <a href="https://www.microsoft.com/net/download/framework" data-raw-source="[.NET Framework](https://www.microsoft.com/net/download/framework)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="58" sourceendlinenumber="58">.NET Framework</a>.</p>
+</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="60" sourceendlinenumber="64"><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="60" sourceendlinenumber="60">Preregister URL prefixes to bind to HTTP.sys, and set up SSL certificates</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="62" sourceendlinenumber="62"> If you don&#39;t preregister URL prefixes in Windows, you have to run your application with administrator privileges. The only exception is if you bind to localhost using HTTP (not HTTPS) with a port number greater than 1024; in that case, administrator privileges aren&#39;t required.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="64" sourceendlinenumber="64"> For details, see <a href="#preregister-url-prefixes-and-configure-ssl" data-raw-source="[How to preregister prefixes and configure SSL](#preregister-url-prefixes-and-configure-ssl)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="64" sourceendlinenumber="64">How to preregister prefixes and configure SSL</a> later in this article.</p>
+</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="66" sourceendlinenumber="68"><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="66" sourceendlinenumber="66">Open firewall ports to allow traffic to reach HTTP.sys.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="68" sourceendlinenumber="68"> You can use <em>netsh.exe</em> or <a href="https://technet.microsoft.com/library/jj554906" data-raw-source="[PowerShell cmdlets](https://technet.microsoft.com/library/jj554906)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="68" sourceendlinenumber="68">PowerShell cmdlets</a>.</p>
+</li>
+</ul>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="70" sourceendlinenumber="70">There are also <a href="https://support.microsoft.com/kb/820129" data-raw-source="[Http.Sys registry settings](https://support.microsoft.com/kb/820129)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="70" sourceendlinenumber="70">Http.Sys registry settings</a>.</p>
+<h3 id="configure-your-aspnet-core-application-to-use-httpsys" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="72" sourceendlinenumber="72">Configure your ASP.NET Core application to use HTTP.sys</h3>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="74" sourceendlinenumber="78">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="74" sourceendlinenumber="74"><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="74" sourceendlinenumber="74">No package install is needed if you use the <a class="xref" href="../metapackage.html" data-raw-source="[Microsoft.AspNetCore.All](xref:fundamentals/metapackage)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="74" sourceendlinenumber="74">Microsoft.AspNetCore.All</a> metapackage. The <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/" data-raw-source="[Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="74" sourceendlinenumber="74">Microsoft.AspNetCore.Server.HttpSys</a> package is included in the metapackage.</p>
+</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="76" sourceendlinenumber="78"><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="76" sourceendlinenumber="76">Call the <code>UseHttpSys</code> extension method on <code>WebHostBuilder</code> in your <code>Main</code> method, specifying any <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs" data-raw-source="[HTTP.sys options](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="76" sourceendlinenumber="76">HTTP.sys options</a> that you need, as shown in the following example:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="78" sourceendlinenumber="78"><code class="lang-csharp" highlight-lines="11-19">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with HTTP.sys.&quot;);
+
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseHttpSys(options =&gt;
+        {
+            options.Authentication.Schemes = AuthenticationSchemes.None;
+            options.Authentication.AllowAnonymous = true;
+            options.MaxConnections = 100;
+            options.MaxRequestBodySize = 30000000;
+            options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+        })
+        .Build();
+</code></pre></li>
+</ul>
+<h3 id="configure-httpsys-options" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="80" sourceendlinenumber="80">Configure HTTP.sys options</h3>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="82" sourceendlinenumber="82">Here are some of the HTTP.sys settings and limits that you can configure.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="84" sourceendlinenumber="84"><strong>Maximum client connections</strong></p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="86" sourceendlinenumber="86">The maximum number of concurrent open TCP connections can be set for the entire application with the following code in <em>Program.cs</em>:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="88" sourceendlinenumber="88"><code class="lang-csharp" highlight-lines="5">.UseHttpSys(options =&gt;
+{
+    options.Authentication.Schemes = AuthenticationSchemes.None;
+    options.Authentication.AllowAnonymous = true;
+    options.MaxConnections = 100;
+    options.MaxRequestBodySize = 30000000;
+    options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+})
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="90" sourceendlinenumber="90">The maximum number of connections is unlimited (null) by default.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="92" sourceendlinenumber="92"><strong>Maximum request body size</strong></p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="94" sourceendlinenumber="94">The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="96" sourceendlinenumber="96">The recommended way to override the limit in an ASP.NET Core MVC app is to use the <a href="https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs" data-raw-source="[RequestSizeLimit](https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="96" sourceendlinenumber="96">RequestSizeLimit</a> attribute on an action method:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="98" sourceendlinenumber="101"><code class="lang-csharp">[RequestSizeLimit(100000000)]
+public IActionResult MyActionMethod()
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="103" sourceendlinenumber="103">Here&#39;s an example that shows how to configure the constraint for the entire application, every request:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="105" sourceendlinenumber="105"><code class="lang-csharp" highlight-lines="6">.UseHttpSys(options =&gt;
+{
+    options.Authentication.Schemes = AuthenticationSchemes.None;
+    options.Authentication.AllowAnonymous = true;
+    options.MaxConnections = 100;
+    options.MaxRequestBodySize = 30000000;
+    options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+})
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="107" sourceendlinenumber="107">You can override the setting on a specific request in <em>Startup.cs</em>:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="109" sourceendlinenumber="109"><code class="lang-csharp" highlight-lines="9-10">public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+{
+    var serverAddressesFeature = app.ServerFeatures.Get&lt;IServerAddressesFeature&gt;();
+
+    app.UseStaticFiles();
+
+    app.Run(async (context) =&gt;
+    {
+        context.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;()
+            .MaxRequestBodySize = 10 * 1024;
+
+        context.Response.ContentType = &quot;text/html&quot;;
+        await context.Response.WriteAsync(&quot;&lt;p&gt;Hosted by HTTP.sys&lt;/p&gt;&quot;);
+
+        if (serverAddressesFeature != null)
+        {
+            await context.Response.WriteAsync($&quot;&lt;p&gt;Listening on the following addresses: {string.Join(&quot;, &quot;, serverAddressesFeature.Addresses)}&lt;/p&gt;&quot;);
+        }
+
+        await context.Response.WriteAsync($&quot;&lt;p&gt;Request URL: {context.Request.GetDisplayUrl()}&lt;/p&gt;&quot;);
+    });
+}
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="111" sourceendlinenumber="111">An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There&#39;s an <code>IsReadOnly</code> property that tells you if the <code>MaxRequestBodySize</code> property is in read-only state, meaning it&#39;s too late to configure the limit.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="113" sourceendlinenumber="113">For information about other HTTP.sys options, see <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs" data-raw-source="[HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="113" sourceendlinenumber="113">HttpSysOptions</a>. </p>
+<h3 id="configure-urls-and-ports-to-listen-on" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="115" sourceendlinenumber="115">Configure URLs and ports to listen on</h3>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="117" sourceendlinenumber="117">By default ASP.NET Core binds to <code>http://localhost:5000</code>. To configure URL prefixes and ports, you can use the <code>UseUrls</code> extension method, the <code>urls</code> command-line argument, the ASPNETCORE_URLS environment variable, or the <code>UrlPrefixes</code> property on <a href="https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs" data-raw-source="[HttpSysOptions](https://github.com/aspnet/HttpSysServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="117" sourceendlinenumber="117">HttpSysOptions</a>. The following code example uses <code>UrlPrefixes</code>.</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="119" sourceendlinenumber="119"><code class="lang-csharp" highlight-lines="17">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with HTTP.sys.&quot;);
+
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseHttpSys(options =&gt;
+        {
+            options.Authentication.Schemes = AuthenticationSchemes.None;
+            options.Authentication.AllowAnonymous = true;
+            options.MaxConnections = 100;
+            options.MaxRequestBodySize = 30000000;
+            options.UrlPrefixes.Add(&quot;http://localhost:5000&quot;);
+        })
+        .Build();
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="121" sourceendlinenumber="121">An advantage of <code>UrlPrefixes</code> is that you get an error message immediately if you try to add a prefix that is formatted wrong. An advantage of <code>UseUrls</code> (shared with <code>urls</code> and ASPNETCORE_URLS) is that you can more easily switch between Kestrel and HTTP.sys.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="123" sourceendlinenumber="123">If you use both <code>UseUrls</code> (or <code>urls</code> or ASPNETCORE_URLS) and <code>UrlPrefixes</code>, the settings in <code>UrlPrefixes</code> override the ones in <code>UseUrls</code>. For more information, see <a class="xref" href="../hosting.html" data-raw-source="[Hosting](xref:fundamentals/hosting)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="123" sourceendlinenumber="123">Hosting</a>.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="125" sourceendlinenumber="125">HTTP.sys uses the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx" data-raw-source="[HTTP Server API UrlPrefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="125" sourceendlinenumber="125">HTTP Server API UrlPrefix string formats</a>.</p>
+<div class="NOTE" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="127" sourceendlinenumber="127"><h5>Note</h5><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="128" sourceendlinenumber="128">Make sure that you specify the same prefix strings in <code>UseUrls</code> or <code>UrlPrefixes</code> that you preregister on the server. </p>
+</div>
+<h3 id="dont-use-iis" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="130" sourceendlinenumber="130">Don&#39;t use IIS</h3>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="132" sourceendlinenumber="132">Make sure your application isn&#39;t configured to run IIS or IIS Express.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="134" sourceendlinenumber="134">In Visual Studio, the default launch profile is for IIS Express. To run the project as a console application, manually change the selected profile, as shown in the following screen shot.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="136" sourceendlinenumber="136"><img src="httpsys/_static/vs-choose-profile.png" alt="Select console app profile" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="136" sourceendlinenumber="136"></p>
+<h2 id="preregister-url-prefixes-and-configure-ssl" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="138" sourceendlinenumber="138">Preregister URL prefixes and configure SSL</h2>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="140" sourceendlinenumber="140">Both IIS and HTTP.sys rely on the underlying Http.Sys kernel mode driver to listen for requests and do initial processing. In IIS, the management UI gives you a relatively easy way to configure everything. However, you need to configure Http.Sys yourself. The built-in tool for doing that is <em>netsh.exe</em>. </p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="142" sourceendlinenumber="142">With <em>netsh.exe</em> you can reserve URL prefixes and assign SSL certificates. The tool requires administrative privileges.</p>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="144" sourceendlinenumber="144">The following example shows the minimum needed to reserve URL prefixes for ports 80 and 443:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="146" sourceendlinenumber="149"><code class="lang-console">netsh http add urlacl url=http://+:80/ user=Users
+netsh http add urlacl url=https://+:443/ user=Users
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="151" sourceendlinenumber="151">The following example shows how to assign an SSL certificate:</p>
+<pre sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="153" sourceendlinenumber="155"><code class="lang-console">netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid={00000000-0000-0000-0000-000000000000}&quot;
+</code></pre><p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="157" sourceendlinenumber="157">Here is the reference documentation for <em>netsh.exe</em>:</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="159" sourceendlinenumber="160">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="159" sourceendlinenumber="159"><a href="https://technet.microsoft.com/library/cc725882.aspx" data-raw-source="[Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="159" sourceendlinenumber="159">Netsh Commands for Hypertext Transfer Protocol (HTTP)</a></li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="160" sourceendlinenumber="160"><a href="https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx" data-raw-source="[UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="160" sourceendlinenumber="160">UrlPrefix Strings</a></li>
+</ul>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="162" sourceendlinenumber="162">The following resources provide detailed instructions for several scenarios. Articles that refer to HttpListener apply equally to HTTP.sys, as both are based on Http.Sys.</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="164" sourceendlinenumber="166">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="164" sourceendlinenumber="164"><a href="https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-configure-a-port-with-an-ssl-certificate" data-raw-source="[How to: Configure a Port with an SSL Certificate](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-configure-a-port-with-an-ssl-certificate)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="164" sourceendlinenumber="164">How to: Configure a Port with an SSL Certificate</a></li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="165" sourceendlinenumber="165"><a href="http://sunshaking.blogspot.com/2012/11/https-communication-httplistener-based.html" data-raw-source="[HTTPS Communication - HttpListener based Hosting and Client Certification](http://sunshaking.blogspot.com/2012/11/https-communication-httplistener-based.html)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="165" sourceendlinenumber="165">HTTPS Communication - HttpListener based Hosting and Client Certification</a> This is a third-party blog and is fairly old but still has useful information.</li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="166" sourceendlinenumber="166"><a href="https://blogs.msdn.microsoft.com/jpsanders/2009/09/29/how-to-walkthrough-using-httplistener-or-http-server-unmanaged-code-c-as-an-ssl-simple-server/" data-raw-source="[How To: Walkthrough Using HttpListener or Http Server unmanaged code (C++) as an SSL Simple Server](https://blogs.msdn.microsoft.com/jpsanders/2009/09/29/how-to-walkthrough-using-httplistener-or-http-server-unmanaged-code-c-as-an-ssl-simple-server/)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="166" sourceendlinenumber="166">How To: Walkthrough Using HttpListener or Http Server unmanaged code (C++) as an SSL Simple Server</a> This too is an older blog with useful information.</li>
+</ul>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="168" sourceendlinenumber="168">Here are some third-party tools that can be easier to use than the <em>netsh.exe</em> command line. These are not provided by or endorsed by Microsoft. The tools run as administrator by default, since <em>netsh.exe</em> itself requires administrator privileges.</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="170" sourceendlinenumber="171">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="170" sourceendlinenumber="170"><a href="http://httpsysmanager.codeplex.com/" data-raw-source="[http.sys Manager](http://httpsysmanager.codeplex.com/)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="170" sourceendlinenumber="170">http.sys Manager</a> provides UI for listing and configuring SSL certificates and options, prefix reservations, and certificate trust lists. </li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="171" sourceendlinenumber="171"><a href="http://www.stevestechspot.com/ABetterHttpcfg.aspx" data-raw-source="[HttpConfig](http://www.stevestechspot.com/ABetterHttpcfg.aspx)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="171" sourceendlinenumber="171">HttpConfig</a> lets you list or configure SSL certificates and URL prefixes. The UI is more refined than http.sys Manager and exposes a few more configuration options, but otherwise it provides similar functionality. It cannot create a new certificate trust list (CTL), but can assign existing ones.</li>
+</ul>
+<p sourcefile="includes/make-ssl-cert.md" sourcestartlinenumber="1" sourceendlinenumber="1">For generating self-signed SSL certificates on Windows, you can use the PowerShell cmdlet <a href="/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps" data-raw-source="[New-SelfSignedCertificate](/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps)" sourcefile="includes/make-ssl-cert.md" sourcestartlinenumber="1" sourceendlinenumber="1">New-SelfSignedCertificate</a>. For a third-party tool that makes it easier for you to generate self-signed certificates, see <a href="https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net" data-raw-source="[SelfCert](https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net)" sourcefile="includes/make-ssl-cert.md" sourcestartlinenumber="1" sourceendlinenumber="1">SelfCert</a>.</p>
+<p sourcefile="includes/make-ssl-cert.md" sourcestartlinenumber="3" sourceendlinenumber="3">On macOS and Linux you can create a self-signed certificate using <a href="https://www.openssl.org/" data-raw-source="[OpenSSL](https://www.openssl.org/)" sourcefile="includes/make-ssl-cert.md" sourcestartlinenumber="3" sourceendlinenumber="3">OpenSSL</a>.</p>
+<h2 id="next-steps" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="175" sourceendlinenumber="175">Next steps</h2>
+<p sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="177" sourceendlinenumber="177">For more information, see the following resources:</p>
+<ul sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="179" sourceendlinenumber="181">
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="179" sourceendlinenumber="179"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample" data-raw-source="[Sample app for this article](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/sample)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="179" sourceendlinenumber="179">Sample app for this article</a></li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="180" sourceendlinenumber="180"><a href="https://github.com/aspnet/HttpSysServer/" data-raw-source="[HTTP.sys source code](https://github.com/aspnet/HttpSysServer/)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="180" sourceendlinenumber="180">HTTP.sys source code</a></li>
+<li sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="181" sourceendlinenumber="181"><a class="xref" href="../hosting.html" data-raw-source="[Hosting](xref:fundamentals/hosting)" sourcefile="fundamentals/servers/httpsys.md" sourcestartlinenumber="181" sourceendlinenumber="181">Hosting</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/servers/httpsys.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

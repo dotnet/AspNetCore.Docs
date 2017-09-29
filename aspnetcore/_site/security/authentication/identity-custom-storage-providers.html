@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Custom storage providers for ASP.NET Core Identity | Microsoft Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Custom storage providers for ASP.NET Core Identity | Microsoft Docs ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/identity-custom-storage-providers">
+<h1 id="custom-storage-providers-for-aspnet-core-identity">Custom storage providers for ASP.NET Core Identity</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but is not a step-by-step walkthrough.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/identity/sample">View or download sample from GitHub</a>.</p>
+<h2 id="introduction">Introduction</h2>
+<p>By default, the ASP.NET Core Identity system stores user information in a SQL Server database using Entity Framework Core. For many apps, this approach works well. However, you may prefer to use a different persistence mechanism or data schema. For example:</p>
+<ul>
+<li>You use <a href="https://docs.microsoft.com/azure/storage/">Azure Table Storage</a> or another data store.</li>
+<li>Your database tables have a different structure. </li>
+<li>You may wish to use a different data access approach, such as <a href="https://github.com/StackExchange/Dapper">Dapper</a>. </li>
+</ul>
+<p>In each of these cases, you can write a customized provider for your storage mechanism and plug that provider into your app.</p>
+<p>ASP.NET Core Identity is included in project templates in Visual Studio with the &quot;Individual User Accounts&quot; option.</p>
+<p>When using the .NET Core CLI, add <code>-au Individual</code>:</p>
+<pre><code>dotnet new mvc -au Individual
+dotnet new webapi -au Individual
+</code></pre><h2 id="the-aspnet-core-identity-architecture">The ASP.NET Core Identity architecture</h2>
+<p>ASP.NET Core Identity consists of classes called managers and stores. <em>Managers</em> are high-level classes which an app developer uses to perform operations, such as creating an Identity user. <em>Stores</em> are lower-level classes that specify how entities, such as users and roles, are persisted. Stores follow the <a href="http://deviq.com/repository-pattern/">repository pattern</a> and are closely coupled with the persistence mechanism. Managers are decoupled from stores, which means you can replace the persistence mechanism without changing your application code (except for configuration).</p>
+<p>The following diagram shows how a web app interacts with the managers, while stores interact with the data access layer.</p>
+<p><img src="identity-custom-storage-providers/_static/identity-architecture-diagram.png" alt="ASP.NET Core Apps work with Managers (for example, `UserManager`, `RoleManager`). Managers work with Stores (for example, `UserStore`) which communicate with a Data Source using a library like Entity Framework Core."></p>
+<p>To create a custom storage provider, create the data source, the data access layer, and the store classes that interact with this data access layer (the green and grey boxes in the diagram above). You don&#39;t need to customize the managers or your app code that interacts with them (the blue boxes above).</p>
+<p>When creating a new instance of <code>UserManager</code> or <code>RoleManager</code> you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into ASP.NET Core. </p>
+<p><a href="#reconfigure-app-to-use-new-storage-provider">Reconfigure app to use new storage provider</a> shows how to instantiate <code>UserManager</code> and <code>RoleManager</code> with a customized store.</p>
+<h2 id="aspnet-core-identity-stores-data-types">ASP.NET Core Identity stores data types</h2>
+<p><a href="https://github.com/aspnet/identity">ASP.NET Core Identity</a> data types are detailed in the following sections:</p>
+<h3 id="users">Users</h3>
+<p>Registered users of your web site. The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuser">IdentityUser</a> type may be extended or used as an example for your own custom type. You do not need to inherit from a particular type to implement your own custom identity storage solution.</p>
+<h3 id="user-claims">User Claims</h3>
+<p>A set of statements (or <a href="https://docs.microsoft.com//dotnet/api/system.security.claims.claim">Claims</a> about the user that represent the user&#39;s identity. Can enable greater expression of the user&#39;s identity than can be achieved through roles.</p>
+<h3 id="user-logins">User Logins</h3>
+<p>Information about the external authentication provider (like Facebook or a Microsoft account) to use when logging in a user. <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin">Example</a></p>
+<h3 id="roles">Roles</h3>
+<p>Authorization groups for your site. Includes the role Id and role name (like &quot;Admin&quot; or &quot;Employee&quot;). <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityrole">Example</a></p>
+<h2 id="the-data-access-layer">The data access layer</h2>
+<p>This topic assumes you are familiar with the persistence mechanism that you are going to use and how to create entities for that mechanism. This topic does not provide details about how to create the repositories or data access classes; it provides some suggestions about design decisions when working with ASP.NET Core Identity.</p>
+<p>You have a lot of freedom when designing the data access layer for a customized store provider. You only need to create persistence mechanisms for features that you intend to use in your app. For example, if you are not using roles in your app, you do not need to create storage for roles or user role associations. Your technology and existing infrastructure may require a structure that is very different from the default implementation of ASP.NET Core Identity. In your data access layer, you provide the logic to work with the structure of your storage implementation.</p>
+<p>The data access layer provides the logic to save the data from ASP.NET Core Identity to a data source. The data access layer for your customized storage provider might include the following classes to store user and role information.</p>
+<h3 id="context-class">Context class</h3>
+<p>Encapsulates the information to connect to your persistence mechanism and execute queries. Several data classes require an instance of this class, typically provided through dependency injection. <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identitydbcontext-1">Example</a>.</p>
+<h3 id="user-storage">User Storage</h3>
+<p>Stores and retrieves user information (such as user name and password hash). <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1">Example</a></p>
+<h3 id="role-storage">Role Storage</h3>
+<p>Stores and retrieves role information (such as the role name). <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1">Example</a></p>
+<h3 id="userclaims-storage">UserClaims Storage</h3>
+<p>Stores and retrieves user claim information (such as the claim type and value). <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1">Example</a></p>
+<h3 id="userlogins-storage">UserLogins Storage</h3>
+<p>Stores and retrieves user login information (such as an external authentication provider). <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1">Example</a></p>
+<h3 id="userrole-storage">UserRole Storage</h3>
+<p>Stores and retrieves which roles are assigned to which users. <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.userstore-1">Example</a></p>
+<p><strong>TIP:</strong> Only implement the classes you intend to use in your app.</p>
+<p>In the data access classes, provide code to perform data operations for your persistence mechanism. For example, within a custom provider, you might have the following code to create a new user in the <em>store</em> class:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7">public async Task&lt;IdentityResult&gt; CreateAsync(ApplicationUser user, 
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    cancellationToken.ThrowIfCancellationRequested();
+    if (user == null) throw new ArgumentNullException(nameof(user));
+
+    return await _usersTable.CreateAsync(user);
+}
+</code></pre><p>The implementation logic for creating the user is in the <code>_usersTable.CreateAsync</code> method, shown below.</p>
+<h2 id="customize-the-user-class">Customize the user class</h2>
+<p>When implementing a storage provider, create a user class which is equivalent to the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuser"><code>IdentityUser</code> class</a>.</p>
+<p>At a minimum, your user class must include an <code>Id</code> and a <code>UserName</code> property.</p>
+<p>The <code>IdentityUser</code> class defines the properties that the <code>UserManager</code> calls when performing requested operations. The default type of the <code>Id</code> property is a string, but you can inherit from <code>IdentityUser&lt;TKey, TUserClaim, TUserRole, TUserLogin, TUserToken&gt;</code> and specify a different type. The framework expects the storage implementation to handle data type conversions.</p>
+<h2 id="customize-the-user-store">Customize the user store</h2>
+<p>Create a <code>UserStore</code> class that provides the methods for all data operations on the user. This class is equivalent to the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.userstore-1">UserStore<tuser></tuser></a> class. In your <code>UserStore</code> class, implement <code>IUserStore&lt;TUser&gt;</code> and the optional interfaces required. You select which optional interfaces to implement based on on the functionality provided in your app.</p>
+<h3 id="optional-interfaces">Optional interfaces</h3>
+<ul>
+<li>IUserRoleStore <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserrolestore-1">https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserrolestore-1</a></li>
+<li>IUserClaimStore <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserclaimstore-1">https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserclaimstore-1</a></li>
+<li>IUserPasswordStore <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserpasswordstore-1">https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserpasswordstore-1</a></li>
+<li>IUserSecurityStampStore <!-- make these all links and remove / --></li>
+<li>IUserEmailStore</li>
+<li>IPhoneNumberStore</li>
+<li>IQueryableUserStore</li>
+<li>IUserLoginStore</li>
+<li>IUserTwoFactorStore</li>
+<li>IUserLockoutStore</li>
+</ul>
+<p>The optional interfaces inherit from <code>IUserStore</code>. You can see a partially implemented sample user store <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample/CustomProvider/CustomUserStore.cs">here</a>.</p>
+<p>Within the <code>UserStore</code> class, you use the data access classes that you created to perform operations. These are passed in using dependency injection. For example, in the SQL Server with Dapper implementation, the <code>UserStore</code> class has the <code>CreateAsync</code> method which uses an instance of <code>DapperUsersTable</code> to insert a new record:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7">public async Task&lt;IdentityResult&gt; CreateAsync(ApplicationUser user)
+{
+    string sql = &quot;INSERT INTO dbo.CustomUser &quot; +
+        &quot;VALUES (@id, @Email, @EmailConfirmed, @PasswordHash, @UserName)&quot;;
+
+    int rows = await _connection.ExecuteAsync(sql, new { user.Id, user.Email, user.EmailConfirmed, user.PasswordHash, user.UserName });
+
+    if(rows &gt; 0)
+    {
+        return IdentityResult.Success;
+    }
+    return IdentityResult.Failed(new IdentityError { Description = $&quot;Could not insert user {user.Email}.&quot; });
+}
+</code></pre><h3 id="interfaces-to-implement-when-customizing-user-store">Interfaces to implement when customizing user store</h3>
+<ul>
+<li><strong>IUserStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserstore-1">IUserStore&lt;TUser&gt;</a> interface is the only interface you must implement in the user store. It defines methods for creating, updating, deleting, and retrieving users.</li>
+<li><strong>IUserClaimStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserclaimstore-1">IUserClaimStore&lt;TUser&gt;</a> interface defines the methods you implement to enable user claims. It contains methods for adding, removing and retrieving user claims.</li>
+<li><strong>IUserLoginStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserloginstore-1">IUserLoginStore&lt;TUser&gt;</a> defines the methods you implement to enable external authentication providers. It contains methods for adding, removing and retrieving user logins, and a method for retrieving a user based on the login information.</li>
+<li><strong>IUserRoleStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserrolestore-1">IUserRoleStore&lt;TUser&gt;</a> interface defines the methods you implement to map a user to a role. It contains methods to add, remove, and retrieve a user&#39;s roles, and a method to check if a user is assigned to a role.</li>
+<li><strong>IUserPasswordStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserpasswordstore-1">IUserPasswordStore&lt;TUser&gt;</a> interface defines the methods you implement to persist hashed passwords. It contains methods for getting and setting the hashed password, and a method that indicates whether the user has set a password.</li>
+<li><strong>IUserSecurityStampStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iusersecuritystampstore-1">IUserSecurityStampStore&lt;TUser&gt;</a> interface defines the methods you implement to use a security stamp for indicating whether the user&#39;s account information has changed. This stamp is updated when a user changes the password, or adds or removes logins. It contains methods for getting and setting the security stamp.</li>
+<li><strong>IUserTwoFactorStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iusertwofactorstore-1">IUserTwoFactorStore&lt;TUser&gt;</a> interface defines the methods you implement to support two factor authentication. It contains methods for getting and setting whether two factor authentication is enabled for a user.</li>
+<li><strong>IUserPhoneNumberStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserphonenumberstore-1">IUserPhoneNumberStore&lt;TUser&gt;</a> interface defines the methods you implement to store user phone numbers. It contains methods for getting and setting the phone number and whether the phone number is confirmed.</li>
+<li><strong>IUserEmailStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuseremailstore-1">IUserEmailStore&lt;TUser&gt;</a> interface defines the methods you implement to store user email addresses. It contains methods for getting and setting the email address and whether the email is confirmed.</li>
+<li><strong>IUserLockoutStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iuserlockoutstore-1">IUserLockoutStore&lt;TUser&gt;</a> interface defines the methods you implement to store information about locking an account. It contains methods for tracking failed access attempts and lockouts.</li>
+<li><strong>IQueryableUserStore</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.iqueryableuserstore-1">IQueryableUserStore&lt;TUser&gt;</a> interface defines the members implement to provide a queryable user store.</li>
+</ul>
+<p>You implement only the interfaces that are needed in your app. For example:</p>
+<pre><code class="lang-csharp">public class UserStore : IUserStore&lt;IdentityUser&gt;,
+                         IUserClaimStore&lt;IdentityUser&gt;,
+                         IUserLoginStore&lt;IdentityUser&gt;,
+                         IUserRoleStore&lt;IdentityUser&gt;,
+                         IUserPasswordStore&lt;IdentityUser&gt;,
+                         IUserSecurityStampStore&lt;IdentityUser&gt;
+{
+    // interface implementations not shown
+}
+</code></pre><h3 id="identityuserclaim-identityuserlogin-and-identityuserrole">IdentityUserClaim, IdentityUserLogin, and IdentityUserRole</h3>
+<p>The <code>Microsoft.AspNet.Identity.EntityFramework</code> namespace contains implementations of the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserclaim-1">IdentityUserClaim</a>, <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet.identity.corecompat.identityuserlogin">IdentityUserLogin</a>, and <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuserrole-1">IdentityUserRole</a> classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your app. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user&#39;s claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the <code>UserStore.GetClaimsAsync</code> method can call the <code>userClaimTable.FindByUserId(user.Id)</code> method to execute a query on that table directly and return a list of claims.</p>
+<h2 id="customize-the-role-class">Customize the role class</h2>
+<p>When implementing a role storage provider, you can create a custom role type. It need not implement a particular interface, but it must have an <code>Id</code> and typically it will have a <code>Name</code> property.</p>
+<p>The following is an example role class:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+
+namespace CustomIdentityProviderSample.CustomProvider
+{
+    public class ApplicationRole
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; }
+    }
+}
+</code></pre><h2 id="customize-the-role-store">Customize the role store</h2>
+<p>You can create a <code>RoleStore</code> class that provides the methods for all data operations on roles. This class is equivalent to the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1">RoleStore<trole></trole></a> class. In the <code>RoleStore</code> class, you implement the <code>IRoleStore&lt;TRole&gt;</code> and optionally the <code>IQueryableRoleStore&lt;TRole&gt;</code> interface.</p>
+<ul>
+<li><strong>IRoleStore&lt;TRole&gt;</strong><br>The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.irolestore-1">IRoleStore</a> interface defines the methods to implement in the role store class. It contains methods for creating, updating, deleting and retrieving roles.</li>
+<li><strong>RoleStore&lt;TRole&gt;</strong><br>To customize <code>RoleStore</code>, create a class that implements the <code>IRoleStore</code> interface. </li>
+</ul>
+<h2 id="reconfigure-app-to-use-new-storage-provider">Reconfigure app to use new storage provider</h2>
+<p>Once you have implemented a storage provider, you configure your app to use it. If your app used the default provider, replace it with your custom provider.</p>
+<ol>
+<li>Remove the <code>Microsoft.AspNetCore.EntityFramework.Identity</code> NuGet package.</li>
+<li>If the storage provider resides in a separate project or package, add a reference to it.</li>
+<li>Replace all references to <code>Microsoft.AspNetCore.EntityFramework.Identity</code> with a using statement for the namespace of your storage provider.</li>
+<li>In the <code>ConfigureServices</code> method, change the <code>AddIdentity</code> method to use your custom types. You can create your own extension methods for this purpose. See <a href="https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs">IdentityServiceCollectionExtensions</a> for an example.</li>
+<li>If you are using Roles, update the <code>RoleManager</code> to use your <code>RoleStore</code> class.</li>
+<li>Update the connection string and credentials to your app&#39;s configuration.</li>
+</ol>
+<p>Example:</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    // Add identity types
+    services.AddIdentity&lt;ApplicationUser, ApplicationRole&gt;()
+        .AddDefaultTokenProviders();
+
+    // Identity Services
+    services.AddTransient&lt;IUserStore&lt;ApplicationUser&gt;, CustomUserStore&gt;();
+    services.AddTransient&lt;IRoleStore&lt;ApplicationRole&gt;, CustomRoleStore&gt;();
+    string connectionString = Configuration.GetConnectionString(&quot;DefaultConnection&quot;);
+    services.AddTransient&lt;SqlConnection&gt;(e =&gt; new SqlConnection(connectionString));
+    services.AddTransient&lt;DapperUsersTable&gt;();
+
+    // additional configuration
+}
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity">Custom Storage Providers for ASP.NET Identity</a></li>
+<li><a href="https://github.com/aspnet/identity">ASP.NET Core Identity</a> - This repository includes links to community maintained store providers.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/identity-custom-storage-providers.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

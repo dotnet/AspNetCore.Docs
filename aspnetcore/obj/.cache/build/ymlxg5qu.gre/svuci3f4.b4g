@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Facebook external login setup in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Facebook external login setup in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/facebook-logins">
+<h1 id="configuring-facebook-authentication" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="15" sourceendlinenumber="15">Configuring Facebook authentication</h1>
+
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="security-authentication-facebook-logins"></a></p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">By <a href="https://github.com/01binary" data-raw-source="[Valeriy Novytskyy](https://github.com/01binary)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">Valeriy Novytskyy</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="19" sourceendlinenumber="19">Rick Anderson</a></p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">previous page</a>. We start by creating a Facebook App ID by following the <a href="https://www.facebook.com/unsupportedbrowser" data-raw-source="[official steps](https://www.facebook.com/unsupportedbrowser)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="21" sourceendlinenumber="21">official steps</a>.</p>
+<h2 id="create-the-app-in-facebook" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create the app in Facebook</h2>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="25" sourceendlinenumber="43">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">Navigate to the <a href="https://www.facebook.com/unsupportedbrowser" data-raw-source="[Facebook for Developers](https://www.facebook.com/unsupportedbrowser)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="25" sourceendlinenumber="25">Facebook for Developers</a> page and sign in. If you don&#39;t already have a Facebook account, use the <strong>Sign up for Facebook</strong> link on the login page to create one.</p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="27" sourceendlinenumber="29"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="27" sourceendlinenumber="27">Tap the <strong>Create App</strong> button in the upper right corner to create a new App ID.</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="29" sourceendlinenumber="29"> <img src="index/_static/FBMyApps.png" alt="Facebook for developers portal open in Microsoft Edge" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="29" sourceendlinenumber="29"></p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="31" sourceendlinenumber="33"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="31" sourceendlinenumber="31">Fill out the form and tap the <strong>Create App ID</strong> button.</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="33" sourceendlinenumber="33"> <img src="index/_static/FBNewAppId.png" alt="Create a New App ID form" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="33" sourceendlinenumber="33"></p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="35" sourceendlinenumber="37"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="35" sourceendlinenumber="35">When presented with <strong>Select a product</strong> prompt, Click <strong>Set Up</strong> on the <strong>Facebook Login</strong> card.</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="37" sourceendlinenumber="37"> <img src="index/_static/FBProductSetup.png" alt="Product Setup page" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="37" sourceendlinenumber="37"></p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="39" sourceendlinenumber="41"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="39" sourceendlinenumber="39">The <strong>Quickstart</strong> wizard will launch with <strong>Choose a Platform</strong> as the first page. Bypass the wizard for now by clicking the <strong>Settings</strong> link in the menu on the left:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="41" sourceendlinenumber="41"> <img src="index/_static/FBSkipQuickStart.png" alt="Skip Quick Start" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="41" sourceendlinenumber="41"></p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="43" sourceendlinenumber="43"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="43" sourceendlinenumber="43">You are presented with the <strong>Client OAuth Settings</strong> page:</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="45" sourceendlinenumber="45"><img src="index/_static/FBOAuthSetup.png" alt="Client OAuth Settings page" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="45" sourceendlinenumber="45"></p>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="47" sourceendlinenumber="57">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="47" sourceendlinenumber="47"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="47" sourceendlinenumber="47">Enter your development URI with <em>/signin-facebook</em> appended into the <strong>Valid OAuth Redirect URIs</strong> field (for example: <code>https://localhost:44320/signin-facebook</code>). The Facebook authentication configured later in this tutorial will automatically handle requests at <em>/signin-facebook</em> route to implement the OAuth flow.</p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="49" sourceendlinenumber="49"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="49" sourceendlinenumber="49">Click <strong>Save Changes</strong>.</p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="51" sourceendlinenumber="55"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="51" sourceendlinenumber="51">Click the <strong>Dashboard</strong> link in the left navigation. </p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="53" sourceendlinenumber="53">  On this page, make a note of your <code>App ID</code> and your <code>App Secret</code>. You will add both into your ASP.NET Core application in the next section:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="55" sourceendlinenumber="55"> <img src="index/_static/FBDashboard.png" alt="Facebook Developer Dashboard" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="55" sourceendlinenumber="55"></p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="57" sourceendlinenumber="57"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="57" sourceendlinenumber="57">When deploying the site you need to revisit the <strong>Facebook Login</strong> setup page and register a new public URI.</p>
+</li>
+</ul>
+<h2 id="store-facebook-app-id-and-app-secret" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="59" sourceendlinenumber="59">Store Facebook App ID and App Secret</h2>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="61" sourceendlinenumber="61">Link sensitive settings like Facebook <code>App ID</code> and <code>App Secret</code> to your application configuration using the <a class="xref" href="../../app-secrets.html" data-raw-source="[Secret Manager](xref:security/app-secrets)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="61" sourceendlinenumber="61">Secret Manager</a>. For the purposes of this tutorial, name the tokens <code>Authentication:Facebook:AppId</code> and <code>Authentication:Facebook:AppSecret</code>.</p>
+<h2 id="configure-facebook-authentication" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="63" sourceendlinenumber="63">Configure Facebook Authentication</h2>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="65" sourceendlinenumber="65">The project template used in this tutorial ensures that <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook" data-raw-source="[Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="65" sourceendlinenumber="65">Microsoft.AspNetCore.Authentication.Facebook</a> package is already installed.</p>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="67" sourceendlinenumber="70">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="67" sourceendlinenumber="67">To install this package with Visual Studio 2017, right-click on the project and select <strong>Manage NuGet Packages</strong>.</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="68" sourceendlinenumber="70"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="68" sourceendlinenumber="68">To install with .NET Core CLI, execute the following in your project directory:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="70" sourceendlinenumber="70"> <code>dotnet add package Microsoft.AspNetCore.Authentication.Facebook</code></p>
+</li>
+</ul>
+<div class="tabGroup" id="tabgroup_mEl-z4BsBL" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="72" sourceendlinenumber="98">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_mEl-z4BsBL_aspnetcore2x" role="tab" aria-controls="tabpanel_mEl-z4BsBL_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="72" sourceendlinenumber="72">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_mEl-z4BsBL_aspnetcore1x" role="tab" aria-controls="tabpanel_mEl-z4BsBL_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="90" sourceendlinenumber="90">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_mEl-z4BsBL_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="74" sourceendlinenumber="74">Add the Facebook service in the <code>ConfigureServices</code> method in the <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="76" sourceendlinenumber="86"><code class="lang-csharp">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+services.AddAuthentication().AddFacebook(facebookOptions =&gt;
+{
+    facebookOptions.AppId = Configuration[&quot;Authentication:Facebook:AppId&quot;];
+    facebookOptions.AppSecret = Configuration[&quot;Authentication:Facebook:AppSecret&quot;];
+});
+</code></pre><p sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1"><strong>Note:</strong> The call to <code>AddIdentity</code> configures the default scheme settings. The <code>AddAuthentication(string defaultScheme)</code> overload sets the <code>DefaultScheme</code> property; and, the <code>AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions)</code> overload sets only the properties you explicitly set. Either of these overloads should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions" data-raw-source="[AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions)" sourcefile="security/authentication/social/includes/default-settings.md" sourcestartlinenumber="1" sourceendlinenumber="1">AuthenticationOptions</a> properties.</p>
+</section>
+<section id="tabpanel_mEl-z4BsBL_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="92" sourceendlinenumber="92">Add the Facebook middleware in the <code>Configure</code> method in <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="94" sourceendlinenumber="100"><code class="lang-csharp">app.UseFacebookAuthentication(new FacebookOptions()
+{
+    AppId = Configuration[&quot;Authentication:Facebook:AppId&quot;],
+    AppSecret = Configuration[&quot;Authentication:Facebook:AppSecret&quot;]
+});
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="104" sourceendlinenumber="104">See the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.facebookoptions" data-raw-source="[FacebookOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.facebookoptions)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="104" sourceendlinenumber="104">FacebookOptions</a> API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:</p>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="106" sourceendlinenumber="107">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="106" sourceendlinenumber="106">Request different information about the user.</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="107" sourceendlinenumber="107">Add query string arguments to customize the login experience.</li>
+</ul>
+<h2 id="sign-in-with-facebook" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="109" sourceendlinenumber="109">Sign in with Facebook</h2>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="111" sourceendlinenumber="111">Run your application and click <strong>Log in</strong>. You see an option to sign in with Facebook.</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="113" sourceendlinenumber="113"><img src="index/_static/DoneFacebook.png" alt="Web application: User not authenticated" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="113" sourceendlinenumber="113"></p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="115" sourceendlinenumber="115">When you click on <strong>Facebook</strong>, you are redirected to Facebook for authentication:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="117" sourceendlinenumber="117"><img src="index/_static/FBLogin.png" alt="Facebook authentication page" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="117" sourceendlinenumber="117"></p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="119" sourceendlinenumber="119">Facebook authentication requests public profile and email address by default:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="121" sourceendlinenumber="121"><img src="index/_static/FBLoginDone.png" alt="Facebook authentication page" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="121" sourceendlinenumber="121"></p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="123" sourceendlinenumber="123">Once you enter your Facebook credentials you are redirected back to your site where you can set your email.</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="125" sourceendlinenumber="125">You are now logged in using your Facebook credentials:</p>
+<p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="127" sourceendlinenumber="127"><img src="index/_static/Done.png" alt="Web application: User authenticated" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="127" sourceendlinenumber="127"></p>
+<h2 id="troubleshooting" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="129" sourceendlinenumber="129">Troubleshooting</h2>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="131" sourceendlinenumber="132">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="131" sourceendlinenumber="131"><strong>ASP.NET Core 2.x only:</strong> If Identity is not configured by calling <code>services.AddIdentity</code> in <code>ConfigureServices</code>, attempting to authenticate will result in <em>ArgumentException: The &#39;SignInScheme&#39; option must be provided</em>. The project template used in this tutorial ensures that this is done.</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="132" sourceendlinenumber="132">If the site database has not been created by applying the initial migration, you get <em>A database operation failed while processing the request</em> error. Tap <strong>Apply Migrations</strong> to create the database and refresh to continue past the error.</li>
+</ul>
+<h2 id="next-steps" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="134" sourceendlinenumber="134">Next steps</h2>
+<ul sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="136" sourceendlinenumber="140">
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="136" sourceendlinenumber="136"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="136" sourceendlinenumber="136">This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the <a href="index.html" data-raw-source="[previous page](index.md)" sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="136" sourceendlinenumber="136">previous page</a>.</p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="138" sourceendlinenumber="138"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="138" sourceendlinenumber="138">Once you publish your web site to Azure web app, you should reset the <code>AppSecret</code> in the Facebook developer portal.</p>
+</li>
+<li sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="140" sourceendlinenumber="140"><p sourcefile="security/authentication/social/facebook-logins.md" sourcestartlinenumber="140" sourceendlinenumber="140">Set the <code>Authentication:Facebook:AppId</code> and <code>Authentication:Facebook:AppSecret</code> as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/social/facebook-logins.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Building beautiful, responsive sites with Bootstrap </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Building beautiful, responsive sites with Bootstrap ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/bootstrap">
+<h1 id="building-beautiful-responsive-sites-with-bootstrap">Building beautiful, responsive sites with Bootstrap</h1>
+
+<p><a name="bootstrap-index"></a></p>
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Bootstrap is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users&#39; experience with your web site, whether you&#39;re a novice at front-end design and development or an expert. Bootstrap is deployed as a set of CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>There are several ways to get started with Bootstrap. If you&#39;re starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core, in which case Bootstrap will come pre-installed:</p>
+<p><img src="bootstrap/_static/bootstrap-in-starter-template.png" alt="Bootstrap in starter template solution view"></p>
+<p>Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to <em>bower.json</em> as a dependency:</p>
+<pre><code class="lang-json" name="Main" highlight-lines="5">{
+  &quot;name&quot;: &quot;asp.net&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;bootstrap&quot;: &quot;3.3.6&quot;,
+    &quot;jquery&quot;: &quot;2.2.0&quot;,
+    &quot;jquery-validation&quot;: &quot;1.14.0&quot;,
+    &quot;jquery-validation-unobtrusive&quot;: &quot;3.2.6&quot;
+  }
+}
+</code></pre><p>This is the recommended way to add Bootstrap to an ASP.NET Core project.</p>
+<p>You can also install bootstrap using one of several package managers, such as Bower, npm, or NuGet. In each case, the process is essentially the same:</p>
+<h3 id="bower">Bower</h3>
+<pre><code class="lang-console">bower install bootstrap
+</code></pre><h3 id="npm">npm</h3>
+<pre><code class="lang-console">npm install bootstrap
+</code></pre><h3 id="nuget">NuGet</h3>
+<pre><code class="lang-console">Install-Package bootstrap
+</code></pre><div class="NOTE"><h5>Note</h5><p>The recommended way to install client-side dependencies like Bootstrap in ASP.NET Core is via Bower (using <em>bower.json</em>, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.</p>
+</div>
+<p>If you&#39;re referencing your own local versions of Bootstrap, you&#39;ll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the <em>_Layout.cshtml</em> file does so like this:</p>
+<pre><code class="lang-html" name="Main" highlight-lines="9,13,51,59">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;@ViewData[&quot;Title&quot;] - WebApplication1&lt;/title&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.css&quot; /&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css&quot;
+              asp-fallback-href=&quot;~/lib/bootstrap/dist/css/bootstrap.min.css&quot;
+              asp-fallback-test-class=&quot;sr-only&quot; asp-fallback-test-property=&quot;position&quot; asp-fallback-test-value=&quot;absolute&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.min.css&quot; asp-append-version=&quot;true&quot; /&gt;
+    &lt;/environment&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;navbar-header&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+                    &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Index&quot; class=&quot;navbar-brand&quot;&gt;WebApplication1&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;navbar-collapse collapse&quot;&gt;
+                &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;About&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+                @await Html.PartialAsync(&quot;_LoginPartial&quot;)
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;container body-content&quot;&gt;
+        @RenderBody()
+        &lt;hr /&gt;
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; 2016 - WebApplication1&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/js/site.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js&quot;
+                asp-fallback-src=&quot;~/lib/jquery/dist/jquery.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js&quot;
+                asp-fallback-src=&quot;~/lib/bootstrap/dist/js/bootstrap.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery &amp;&amp; window.jQuery.fn &amp;&amp; window.jQuery.fn.modal&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;~/js/site.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+
+    @RenderSection(&quot;scripts&quot;, required: false)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><div class="NOTE"><h5>Note</h5><p>If you&#39;re going to be using any of Bootstrap&#39;s jQuery plugins, you will also need to reference jQuery.</p>
+</div>
+<h2 id="basic-templates-and-features">Basic templates and features</h2>
+<p>The most basic Bootstrap template looks very much like the <em>_Layout.cshtml</em> file shown above, and simply includes a basic menu for navigation and a place to render the rest of the page.</p>
+<h3 id="basic-navigation">Basic navigation</h3>
+<p>The default template uses a set of <code>&lt;div&gt;</code> elements to render a top navbar and the main body of the page. If you&#39;re using HTML5, you can replace the first <code>&lt;div&gt;</code> tag with a <code>&lt;nav&gt;</code> tag to get the same effect, but with more precise semantics.  Within this first <code>&lt;div&gt;</code> you can see there are several others. First, a <code>&lt;div&gt;</code> with a class of &quot;container&quot;, and then within that, two more <code>&lt;div&gt;</code> elements: &quot;navbar-header&quot; and &quot;navbar-collapse&quot;.  The navbar-header div includes a button that will appear when the screen is below a certain minimum width, showing 3 horizontal lines (a so-called &quot;hamburger icon&quot;). The icon is rendered using pure HTML and CSS; no image is required. This is the code that displays the icon, with each of the <span> tags rendering one of the white bars:<p>
+<pre><code class="lang-html">&lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+</code></pre><p>It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the <code>&lt;ul&gt;</code> element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29. Below the navigation, the main body of each page is rendered in another <code>&lt;div&gt;</code>, marked with the &quot;container&quot; and &quot;body-content&quot; classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple <code>&lt;footer&gt;</code> is added to the end of the <code>&lt;div&gt;</code> element.  You can see how the built-in About page appears using this template:</p>
+<p><img src="bootstrap/_static/about-page-wide.png" alt="about page"></p>
+<p>The collapsed navbar, with &quot;hamburger&quot; button in the top right, appears when the window drops below a certain width:</p>
+<p><img src="bootstrap/_static/about-page-hamburger.png" alt="about page with hamburger menu"></p>
+<p>Clicking the icon reveals the menu items in a vertical drawer that slides down from the top of the page:</p>
+<p><img src="bootstrap/_static/about-page-hamburger-open.png" alt="about page with hamburger menu expanded"></p>
+<h3 id="typography-and-links">Typography and links</h3>
+<p>Bootstrap sets up the site&#39;s basic typography, colors, and link formatting in its CSS file. This CSS file includes default styles for tables, buttons, form elements, images, and more (<a href="http://getbootstrap.com/css/">learn more</a>). One particularly useful feature is the grid layout system, covered next.</p>
+<h3 id="grids">Grids</h3>
+<p>One of the most popular features of Bootstrap is its grid layout system. Modern web applications should avoid using the <code>&lt;table&gt;</code> tag for layout, instead restricting the use of this element to actual tabular data. Instead, columns and rows can be laid out using a series of <code>&lt;div&gt;</code> elements and the appropriate CSS classes. There are several advantages to this approach, including the ability to adjust the layout of grids to display vertically on narrow screens, such as on phones.</p>
+<p><a href="http://getbootstrap.com/css/#grid">Bootstrap&#39;s grid layout system</a> is based on twelve columns. This number was chosen because it can be divided evenly into 1, 2, 3, or 4 columns, and column widths can vary to within 1/12th of the vertical width of the screen. To start using the grid layout system, you should begin with a container <code>&lt;div&gt;</code> and then add a row <code>&lt;div&gt;</code>, as shown here:</p>
+<pre><code class="lang-html">&lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>Next, add additional <code>&lt;div&gt;</code> elements for each column, and specify the number of columns that <code>&lt;div&gt;</code> should occupy (out of 12) as part of a CSS class starting with &quot;col-md-&quot;. For instance, if you want to simply have two columns of equal size, you would use a class of &quot;col-md-6&quot; for each one. In this case &quot;md&quot; is short for &quot;medium&quot; and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">CSS Class Prefix</th>
+<th style="text-align:center">Device Tier</th>
+<th style="text-align:center">Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">col-xs-</td>
+<td style="text-align:center">Phones</td>
+<td style="text-align:center">&lt; 768px</td>
+</tr>
+<tr>
+<td style="text-align:center">col-sm-</td>
+<td style="text-align:center">Tablets</td>
+<td style="text-align:center">&gt;= 768px</td>
+</tr>
+<tr>
+<td style="text-align:center">col-md-</td>
+<td style="text-align:center">Desktops</td>
+<td style="text-align:center">&gt;= 992px</td>
+</tr>
+<tr>
+<td style="text-align:center">col-lg-</td>
+<td style="text-align:center">Larger Desktop Displays</td>
+<td style="text-align:center">&gt;= 1200px</td>
+</tr>
+</tbody>
+</table>
+<p>When specifying two columns both with &quot;col-md-6&quot; the resulting layout will be two columns at desktop resolutions, but these two columns will stack vertically when rendered on smaller devices (or a narrower browser window on a desktop), allowing users to easily view content without the need to scroll horizontally.</p>
+<p>Bootstrap will always default to a single-column layout, so you only need to specify columns when you want more than one column. The only time you would want to explicitly specify that a <code>&lt;div&gt;</code> take up all 12 columns would be to override the behavior of a larger device tier. When specifying multiple device tier classes, you may need to reset the column rendering at certain points. Adding a clearfix div that is only visible within a certain viewport can achieve this, as shown here:</p>
+<p><img src="bootstrap/_static/narrow-and-wide-viewport-grid.png" alt="narrow and wide viewport grid"></p>
+<p>In the above example, One and Two share a row in the &quot;md&quot; layout, while Two and Three share a row in the &quot;xs&quot; layout. Without the clearfix <code>&lt;div&gt;</code>, Two and Three are not shown correctly in the &quot;xs&quot; view (note that only One, Four, and Five are shown):</p>
+<p><img src="bootstrap/_static/grid-without-clearfix.png" alt="grid without using clearfix"></p>
+<p>In this example, only a single row <code>&lt;div&gt;</code> was used, and Bootstrap still mostly did the right thing with regard to the layout and stacking of the columns. Typically, you should specify a row <code>&lt;div&gt;</code> for each horizontal row your layout requires, and of course you can nest Bootstrap grids within one another. When you do, each nested grid will occupy 100% of the width of the element in which it is placed, which can then be subdivided using column classes.</p>
+<h3 id="jumbotron">Jumbotron</h3>
+<p>If you&#39;ve used the default ASP.NET MVC templates in Visual Studio 2012 or 2013, you&#39;ve probably seen the Jumbotron in action. It refers to a large full-width section of a page that can be used to display a large background image, a call to action, a rotator, or similar elements. To add a jumbotron to a page, simply add a <code>&lt;div&gt;</code> and give it a class of &quot;jumbotron&quot;, then place a container <code>&lt;div&gt;</code> inside and add your content.  We can easily adjust the standard About page to use a jumbotron for the main headings it displays:</p>
+<p><img src="bootstrap/_static/jumbotron.png" alt="jumbotron example"></p>
+<h3 id="buttons">Buttons</h3>
+<p>The default button classes and their colors are shown in the figure below.</p>
+<p><img src="bootstrap/_static/theme-buttons.png" alt="themed buttons"></p>
+<h3 id="badges">Badges</h3>
+<p>Badges refer to small, usually numeric callouts next to a navigation item. They can indicate a number of messages or notifications waiting, or the presence of updates. Specifying such badges is as simple as adding a <span> containing the text, with a class of &quot;badge&quot;:<p>
+<p><img src="bootstrap/_static/theme-badges.png" alt="themed badges"></p>
+<h3 id="alerts">Alerts</h3>
+<p>You may need to display some kind of notification, alert, or error message to your application&#39;s users. That&#39;s where the standard alert classes are useful.  There are four different severity levels with associated color schemes:</p>
+<p><img src="bootstrap/_static/theme-alerts.png" alt="themed alerts"></p>
+<h3 id="navbars-and-menus">Navbars and menus</h3>
+<p>Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that&#39;s preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of <ul> elements. These can be created very simply by just providing them with the CSS classes &quot;nav&quot; and &quot;nav-tabs&quot;:<p>
+<p><img src="bootstrap/_static/theme-tabstrips.png" alt="themed tabstrips"></p>
+<p>Navbars are built similarly, but are a bit more complex.  They start with a <code>&lt;nav&gt;</code> or <code>&lt;div&gt;</code> with a class of &quot;navbar&quot;, within which a container div holds the rest of the elements. Our page includes a navbar in its header already – the one shown below simply expands on this, adding support for a dropdown menu:</p>
+<p><img src="bootstrap/_static/theme-navbars.png" alt="themed navbars"></p>
+<h3 id="additional-elements">Additional elements</h3>
+<p>The default theme can also be used to present HTML tables in a nicely formatted style, including support for striped views. There are labels with styles that are similar to those of the buttons. You can create custom Dropdown menus that support additional styling options beyond the standard HTML <code>&lt;select&gt;</code> element, along with Navbars like the one our default starter site is already using. If you need a progress bar, there are several styles to choose from, as well as List Groups and panels that include a title and content.  Explore additional options within the standard Bootstrap Theme here:</p>
+<p><a href="http://getbootstrap.com/examples/theme/">http://getbootstrap.com/examples/theme/</a></p>
+<h2 id="more-themes">More themes</h2>
+<p>You can extend the standard Bootstrap theme by overriding some or all of its CSS, adjusting the colors and styles to suit your own application&#39;s needs. If you&#39;d like to start from a ready-made theme, there are several theme galleries available online that specialize in Bootstrap themes, such as WrapBootstrap.com (which has a variety of commercial themes) and Bootswatch.com (which offers free themes).  Some of the paid templates available provide a great deal of functionality on top of the basic Bootstrap theme, such as rich support for administrative menus, and dashboards with rich charts and gauges. An example of a popular paid template is Inspinia, currently for sale for $18, which includes an ASP.NET MVC5 template in addition to AngularJS and static HTML versions. A sample screenshot is shown below.</p>
+<p><img src="bootstrap/_static/theme-inspinia.png" alt="Example theme inspinia"></p>
+<p>If you want to change your Bootstrap theme, put the <em>bootstrap.css</em> file for the theme you want in the <strong>wwwroot/css</strong> folder and change the references in <em>_Layout.cshtml</em> to point it.  Change the links for all environments:</p>
+<pre><code class="lang-html">&lt;environment names=&quot;Development&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/bootstrap.css&quot; /&gt;
+</code></pre><pre><code class="lang-html">&lt;environment names=&quot;Staging,Production&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/bootstrap.min.css&quot; /&gt;
+</code></pre><p>If you want to build your own dashboard, you can start from the free example available here: <a href="http://getbootstrap.com/examples/dashboard/">http://getbootstrap.com/examples/dashboard/</a>.</p>
+<h2 id="components">Components</h2>
+<p>In addition to those elements already discussed, Bootstrap includes support for a variety of <a href="http://getbootstrap.com/components/">built-in UI components</a>.</p>
+<h3 id="glyphicons">Glyphicons</h3>
+<p>Bootstrap includes icon sets from Glyphicons (<a href="http://glyphicons.com">http://glyphicons.com</a>), with over 200 icons freely available for use within your Bootstrap-enabled web application. Here&#39;s just a small sample:</p>
+<p><img src="bootstrap/_static/theme-glyphicons.png" alt="Glyphicons"></p>
+<h3 id="input-groups">Input groups</h3>
+<p>Input groups allow bundling of additional text or buttons with an input element, providing the user with a more intuitive experience:</p>
+<p><img src="bootstrap/_static/input-groups.png" alt="input groups"></p>
+<h3 id="breadcrumbs">Breadcrumbs</h3>
+<p>Breadcrumbs are a common UI component used to show a user their recent history or depth within a site&#39;s navigation hierarchy. Add them easily by applying the &quot;breadcrumb&quot; class to any <code>&lt;ol&gt;</code> list element. Include built-in support for pagination by using the &quot;pagination&quot; class on a <code>&lt;ul&gt;</code> element within a <code>&lt;nav&gt;</code>. Add responsive embedded slideshows and video by using <code>&lt;iframe&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;video&gt;</code>, or <code>&lt;object&gt;</code> elements, which Bootstrap will style automatically. Specify a particular aspect ratio by using specific classes like &quot;embed-responsive-16by9&quot;.</p>
+<h2 id="javascript-support">JavaScript support</h2>
+<p>Bootstrap&#39;s JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, <em>bootstrap.js</em> includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There&#39;s not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit <a href="http://getbootstrap.com/javascript/">http://getbootstrap.com/javascript/</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>Bootstrap provides a web framework that can be used to quickly and productively lay out and style a wide variety of websites and applications. Its basic typography and styles provide a pleasant look and feel that can easily be manipulated through custom theme support, which can be hand-crafted or purchased commercially. It supports a host of web components that in the past would have required expensive third-party controls to accomplish, while supporting modern and open web standards.</p>
+</ul></span></span></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/bootstrap.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Purpose Strings </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Purpose Strings ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/consumer-apis/purpose-strings">
+<h1 id="purpose-strings" sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="15" sourceendlinenumber="15">Purpose Strings</h1>
+
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="data-protection-consumer-apis-purposes"></a></p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="19" sourceendlinenumber="19">Components which consume IDataProtectionProvider must pass a unique <em>purposes</em> parameter to the CreateProtector method. The purposes <em>parameter</em> is inherent to the security of the data protection system, as it provides isolation between cryptographic consumers, even if the root cryptographic keys are the same.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="21" sourceendlinenumber="21">When a consumer specifies a purpose, the purpose string is used along with the root cryptographic keys to derive cryptographic subkeys unique to that consumer. This isolates the consumer from all other cryptographic consumers in the application: no other component can read its payloads, and it cannot read any other component&#39;s payloads. This isolation also renders infeasible entire categories of attack against the component.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="23" sourceendlinenumber="23"><img src="purpose-strings/_static/purposes.png" alt="Purpose Diagram Example" sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="23" sourceendlinenumber="23"></p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="25" sourceendlinenumber="25">In the diagram above IDataProtector instances A and B <strong>cannot</strong> read each other&#39;s payloads, only their own.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="27" sourceendlinenumber="27">The purpose string doesn&#39;t have to be secret. It should simply be unique in the sense that no other well-behaved component will ever provide the same purpose string.</p>
+<div class="TIP" sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="29" sourceendlinenumber="29"><h5>Tip</h5><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="30" sourceendlinenumber="30">Using the namespace and type name of the component consuming the data protection APIs is a good rule of thumb, as in practice this information will never conflict.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="32" sourceendlinenumber="32">A Contoso-authored component which is responsible for minting bearer tokens might use Contoso.Security.BearerToken as its purpose string. Or - even better - it might use Contoso.Security.BearerToken.v1 as its purpose string. Appending the version number allows a future version to use Contoso.Security.BearerToken.v2 as its purpose, and the different versions would be completely isolated from one another as far as payloads go.</p>
+</div>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="34" sourceendlinenumber="34">Since the purposes parameter to CreateProtector is a string array, the above could have been instead specified as [ &quot;Contoso.Security.BearerToken&quot;, &quot;v1&quot; ]. This allows establishing a hierarchy of purposes and opens up the possibility of multi-tenancy scenarios with the data protection system.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="36" sourceendlinenumber="36"><a name="data-protection-contoso-purpose"></a></p>
+<div class="WARNING" sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="38" sourceendlinenumber="38"><h5>Warning</h5><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="39" sourceendlinenumber="39">Components should not allow untrusted user input to be the sole source of input for the purposes chain.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="41" sourceendlinenumber="41">For example, consider a component Contoso.Messaging.SecureMessage which is responsible for storing secure messages. If the secure messaging component were to call CreateProtector([ username ]), then a malicious user might create an account with username &quot;Contoso.Security.BearerToken&quot; in an attempt to get the component to call CreateProtector([ &quot;Contoso.Security.BearerToken&quot; ]), thus inadvertently causing the secure messaging system to mint payloads that could be perceived as authentication tokens.</p>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="43" sourceendlinenumber="43">A better purposes chain for the messaging component would be CreateProtector([ &quot;Contoso.Messaging.SecureMessage&quot;, &quot;User: username&quot; ]), which provides proper isolation.</p>
+</div>
+<p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="45" sourceendlinenumber="45">The isolation provided by and behaviors of IDataProtectionProvider, IDataProtector, and purposes are as follows:</p>
+<ul sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="47" sourceendlinenumber="55">
+<li sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="47" sourceendlinenumber="47"><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="47" sourceendlinenumber="47">For a given IDataProtectionProvider object, the CreateProtector method will create an IDataProtector object uniquely tied to both the IDataProtectionProvider object which created it and the purposes parameter which was passed into the method.</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="49" sourceendlinenumber="49"><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="49" sourceendlinenumber="49">The purpose parameter must not be null. (If purposes is specified as an array, this means that the array must not be of zero length and all elements of the array must be non-null.) An empty string purpose is technically allowed but is discouraged.</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="51" sourceendlinenumber="51"><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="51" sourceendlinenumber="51">Two purposes arguments are equivalent if and only if they contain the same strings (using an ordinal comparer) in the same order. A single purpose argument is equivalent to the corresponding single-element purposes array.</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="53" sourceendlinenumber="53"><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="53" sourceendlinenumber="53">Two IDataProtector objects are equivalent if and only if they are created from equivalent IDataProtectionProvider objects with equivalent purposes parameters.</p>
+</li>
+<li sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="55" sourceendlinenumber="55"><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="55" sourceendlinenumber="55">For a given IDataProtector object, a call to Unprotect(protectedData) will return the original unprotectedData if and only if protectedData := Protect(unprotectedData) for an equivalent IDataProtector object.</p>
+</li>
+</ul>
+<div class="NOTE" sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="57" sourceendlinenumber="57"><h5>Note</h5><p sourcefile="security/data-protection/consumer-apis/purpose-strings.md" sourcestartlinenumber="58" sourceendlinenumber="58">We&#39;re not considering the case where some component intentionally chooses a purpose string which is known to conflict with another component. Such a component would essentially be considered malicious, and this system is not intended to provide security guarantees in the event that malicious code is already running inside of the worker process.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/consumer-apis/purpose-strings.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding a New Field to a Razor Page </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding a New Field to a Razor Page ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/razor-pages/new-field">
+<h1 id="adding-a-new-field-to-a-razor-page" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="14" sourceendlinenumber="14">Adding a new field to a Razor Page</h1>
+
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a></p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="18" sourceendlinenumber="18">In this section you&#39;ll use <a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db" data-raw-source="[Entity Framework](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="18" sourceendlinenumber="18">Entity Framework</a> Code First Migrations to add a new field to the model and migrate that change to the database.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="20" sourceendlinenumber="20">When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren&#39;t in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.</p>
+<h2 id="adding-a-rating-property-to-the-movie-model" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="22" sourceendlinenumber="22">Adding a Rating Property to the Movie Model</h2>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="24" sourceendlinenumber="24">Open the <em>Models/Movie.cs</em> file and add a <code>Rating</code> property:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="26" sourceendlinenumber="26"><code class="lang-csharp" name="Main" highlight-lines="11">public class Movie
+{
+    public int ID { get; set; }
+    public string Title { get; set; }
+
+    [Display(Name = &quot;Release Date&quot;)]
+    [DataType(DataType.Date)]
+    public DateTime ReleaseDate { get; set; }
+    public string Genre { get; set; }
+    public decimal Price { get; set; }
+    public string Rating { get; set; }
+}
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="28" sourceendlinenumber="28">Build the app (Ctrl+Shift+B).</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="30" sourceendlinenumber="30">Edit <em>Pages/Movies/Index.cshtml</em>, and add a <code>Rating</code> field:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="32" sourceendlinenumber="32"><code class="lang-cshtml" name="Main" highlight-lines="40-42,61-63">@page
+@model RazorPagesMovie.Pages.Movies.IndexModel
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-page=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form&gt;
+    &lt;p&gt;
+        &lt;select asp-for=&quot;MovieGenre&quot; asp-items=&quot;Model.Genres&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;All&lt;/option&gt;
+        &lt;/select&gt;
+
+        Title: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot;&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Filter&quot; /&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Movies[0].Title)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Movies[0].ReleaseDate)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Movies[0].Genre)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Movies[0].Price)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Movies[0].Rating)
+            &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    @foreach (var item in Model.Movies) {
+        &lt;tr&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Title)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.ReleaseDate)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Genre)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Price)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.Rating)
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;a asp-page=&quot;./Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                &lt;a asp-page=&quot;./Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                &lt;a asp-page=&quot;./Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="34" sourceendlinenumber="34">Add the <code>Rating</code> field to the Delete and Details pages.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="36" sourceendlinenumber="36">Update <em>Create.cshtml</em> with a <code>Rating</code> field. You can copy/paste the previous <code>&lt;div&gt;</code> element and let intelliSense help you update the fields. IntelliSense works with <a class="xref" href="../../mvc/views/tag-helpers/intro.html" data-raw-source="[Tag Helpers](xref:mvc/views/tag-helpers/intro)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="36" sourceendlinenumber="36">Tag Helpers</a>.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="new-field/_static/cr.png" alt="The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating." sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="40" sourceendlinenumber="40">The following code shows <em>Create.cshtml</em> with a <code>Rating</code> field:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="42" sourceendlinenumber="42"><code class="lang-cshtml" name="Main" highlight-lines="36-40">@page
+@model RazorPagesMovie.Pages.Movies.CreateModel
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Create&quot;;
+}
+
+&lt;h2&gt;Create&lt;/h2&gt;
+
+&lt;h4&gt;Movie&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;form method=&quot;post&quot;&gt;
+            &lt;div asp-validation-summary=&quot;ModelOnly&quot; class=&quot;text-danger&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label asp-for=&quot;Movie.Title&quot; class=&quot;control-label&quot;&gt;&lt;/label&gt;
+                &lt;input asp-for=&quot;Movie.Title&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span asp-validation-for=&quot;Movie.Title&quot; class=&quot;text-danger&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label asp-for=&quot;Movie.ReleaseDate&quot; class=&quot;control-label&quot;&gt;&lt;/label&gt;
+                &lt;input asp-for=&quot;Movie.ReleaseDate&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span asp-validation-for=&quot;Movie.ReleaseDate&quot; class=&quot;text-danger&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label asp-for=&quot;Movie.Genre&quot; class=&quot;control-label&quot;&gt;&lt;/label&gt;
+                &lt;input asp-for=&quot;Movie.Genre&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span asp-validation-for=&quot;Movie.Genre&quot; class=&quot;text-danger&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label asp-for=&quot;Movie.Price&quot; class=&quot;control-label&quot;&gt;&lt;/label&gt;
+                &lt;input asp-for=&quot;Movie.Price&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span asp-validation-for=&quot;Movie.Price&quot; class=&quot;text-danger&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label asp-for=&quot;Movie.Rating&quot; class=&quot;control-label&quot;&gt;&lt;/label&gt;
+                &lt;input asp-for=&quot;Movie.Rating&quot; class=&quot;form-control&quot; /&gt;
+                &lt;span asp-validation-for=&quot;Movie.Rating&quot; class=&quot;text-danger&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;input type=&quot;submit&quot; value=&quot;Create&quot; class=&quot;btn btn-default&quot; /&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;a asp-page=&quot;Index&quot;&gt;Back to List&lt;/a&gt;
+&lt;/div&gt;
+
+@section Scripts {
+    @{await Html.RenderPartialAsync(&quot;_ValidationScriptsPartial&quot;);}
+}
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="44" sourceendlinenumber="44">Add the <code>Rating</code> field to the Edit Page.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="46" sourceendlinenumber="46">The app won&#39;t work until the DB is updated to include the new field. If run now, the app throws a <code>SqlException</code>:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="48" sourceendlinenumber="50"><code>SqlException: Invalid column name &#39;Rating&#39;.
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="52" sourceendlinenumber="52">This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There&#39;s no <code>Rating</code> column in the database table.)</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="54" sourceendlinenumber="54">There are a few approaches to resolving the error:</p>
+<ol sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="56" sourceendlinenumber="60">
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="56" sourceendlinenumber="56"><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="56" sourceendlinenumber="56">Have the Entity Framework automatically drop and re-create the database using  the new model class schema. This approach is convenient early in the development cycle; it allows you to quickly evolve the model and database schema together. The downside is that you lose existing data in the database. You don&#39;t want to use this approach on a production database! Dropping the DB on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.</p>
+</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="58" sourceendlinenumber="58"><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="58" sourceendlinenumber="58">Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.</p>
+</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="60" sourceendlinenumber="60"><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="60" sourceendlinenumber="60">Use Code First Migrations to update the database schema.</p>
+</li>
+</ol>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="62" sourceendlinenumber="62">For this tutorial, use Code First Migrations.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="64" sourceendlinenumber="64">Update the <code>SeedData</code> class so that it provides a value for the new column. A sample change is shown below, but you&#39;ll want to make this change for each <code>new Movie</code> block.</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code class="lang-csharp" name="Main" highlight-lines="8">context.Movies.AddRange(
+     new Movie
+     {
+         Title = &quot;When Harry Met Sally&quot;,
+         ReleaseDate = DateTime.Parse(&quot;1989-2-12&quot;),
+         Genre = &quot;Romantic Comedy&quot;,
+         Price = 7.99M,
+         Rating = &quot;R&quot;
+     },
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="68" sourceendlinenumber="68">See the <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs" data-raw-source="[completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/SeedDataRating.cs)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="68" sourceendlinenumber="68">completed SeedData.cs file</a>.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="70" sourceendlinenumber="70">Build the solution.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="72" sourceendlinenumber="74"><a name="pmc"></a>
+From the <strong>Tools</strong> menu, select <strong>NuGet Package Manager &gt; Package Manager Console</strong>.
+In the PMC, enter the following commands:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="76" sourceendlinenumber="79"><code class="lang-PMC">Add-Migration Rating
+Update-Database
+</code></pre><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="81" sourceendlinenumber="81">The <code>Add-Migration</code> command tells the framework to:</p>
+<ul sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="83" sourceendlinenumber="84">
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="83" sourceendlinenumber="83">Compare the <code>Movie</code> model with the <code>Movie</code> DB schema.</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="84" sourceendlinenumber="84">Create code to migrate the DB schema to the new model.</li>
+</ul>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="86" sourceendlinenumber="86">The name &quot;Rating&quot; is arbitrary and is used to name the migration file. It&#39;s helpful to use a meaningful name for the migration file.</p>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="88" sourceendlinenumber="89"><a name="ssox"></a>
+If you delete all the records in the DB, the initializer will seed the DB and include the <code>Rating</code> field. You can do this with the delete links in the browser or from <a class="xref" href="sql.html#ssox" data-raw-source="[Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="89" sourceendlinenumber="89">Sql Server Object Explorer</a> (SSOX). To delete the database from SSOX:</p>
+<ul sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="91" sourceendlinenumber="99">
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="91" sourceendlinenumber="91">Select the database in SSOX.</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="92" sourceendlinenumber="92">Right click on the database, and select <em>Delete</em>.</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="93" sourceendlinenumber="93">Check <strong>Close existing connections</strong>.</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="94" sourceendlinenumber="94">Select <strong>OK</strong>.</li>
+<li sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="95" sourceendlinenumber="99"><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="95" sourceendlinenumber="95">In the <a class="xref" href="new-field.html#pmc" data-raw-source="[PMC](xref:tutorials/razor-pages/new-field#pmc)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="95" sourceendlinenumber="95">PMC</a>, update the database:</p>
+<pre sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="97" sourceendlinenumber="99"><code class="lang-PMC">Update-Database
+</code></pre></li>
+</ul>
+<p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="101" sourceendlinenumber="101">Run the app and verify you can create/edit/display movies with a <code>Rating</code> field. If the database is not seeded, stop IIS Express, and then run the app.</p>
+<div class="step-by-step" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="103" sourceendlinenumber="103"><p sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="104" sourceendlinenumber="105"><a class="xref" href="search.html" data-raw-source="[Previous: Adding Search](xref:tutorials/razor-pages/search)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="104" sourceendlinenumber="104">Previous: Adding Search</a>
+<a class="xref" href="validation.html" data-raw-source="[Next: Adding Validation](xref:tutorials/razor-pages/validation)" sourcefile="tutorials/razor-pages/new-field.md" sourcestartlinenumber="105" sourceendlinenumber="105">Next: Adding Validation</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/razor-pages/new-field.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

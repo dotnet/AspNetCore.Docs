@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding a controller to an ASP.NET Core MVC app </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding a controller to an ASP.NET Core MVC app ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-mac/adding-controller">
+<h1 id="adding-a-controller-to-an-aspnet-core-mvc-app-with-visual-studio-for-mac" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="15" sourceendlinenumber="15">Adding a controller to an ASP.NET Core MVC app with Visual Studio for Mac</h1>
+
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rick Anderson</a></p>
+<p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="1" sourceendlinenumber="1">The Model-View-Controller (MVC) architectural pattern separates an app into three main components: <strong>M</strong>odel, <strong>V</strong>iew, and <strong>C</strong>ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps. MVC-based apps contain:</p>
+<ul sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="3" sourceendlinenumber="7">
+<li sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="3" sourceendlinenumber="3"><p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="3" sourceendlinenumber="3"><strong>M</strong>odels: Classes that represent the data of the app. The model classes use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial, a <code>Movie</code> model retrieves movie data from a database, provides it to the view or updates it. Updated data is written to a database.</p>
+</li>
+<li sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="5" sourceendlinenumber="5"><p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="5" sourceendlinenumber="5"><strong>V</strong>iews: Views are the components that display the app&#39;s user interface (UI). Generally, this UI displays the model data.</p>
+</li>
+<li sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="7" sourceendlinenumber="7"><p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="7" sourceendlinenumber="7"><strong>C</strong>ontrollers: Classes that handle browser requests. They retrieve model data and call view templates that return a response. In an MVC app, the view only displays information; the controller handles and responds to user input and interaction. For example, the controller handles route data and query-string values, and passes these values to the model. The model might use these values to query the database. For example, <code>http://localhost:1234/Home/About</code> has route data of <code>Home</code> (the controller) and <code>About</code> (the action method to call on the home controller). <code>http://localhost:1234/Movies/Edit/5</code> is a request to edit the movie with ID=5 using the movie controller.  We&#39;ll talk about route data later in the tutorial.</p>
+</li>
+</ul>
+<p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="9" sourceendlinenumber="9">The MVC pattern helps you create apps that separate the different aspects of the app (input logic, business logic, and UI logic), while providing a loose coupling between these elements. The pattern specifies where each kind of logic should be located in the app. The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.</p>
+<p sourcefile="includes/mvc-intro/adding-controller1.md" sourcestartlinenumber="11" sourceendlinenumber="11">We cover these concepts in this tutorial series and show you how to use them to build a movie app. The MVC project contains folders for the <em>Controllers</em> and <em>Views</em>. A <em>Models</em> folder will be added in a later step.</p>
+<h2 id="add-a-controller" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="21" sourceendlinenumber="21">Add a controller</h2>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="23" sourceendlinenumber="23">In <strong>Solution Explorer</strong>, right-click <strong>Controllers &gt; Add &gt; New File</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="25" sourceendlinenumber="25"><img src="adding-controller/_static/add_controller.png" alt="Contextual menu" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="25" sourceendlinenumber="25"></p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="27" sourceendlinenumber="27">Select <strong>ASP.NET Core</strong> and <strong>MVC Controller Class</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="29" sourceendlinenumber="29">Name the controller <strong>HelloWorldController</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="31" sourceendlinenumber="31"><img src="adding-controller/_static/ac.png" alt="Add MVC controller and name it" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="31" sourceendlinenumber="31"></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="1" sourceendlinenumber="1">Replace the contents of <em>Controllers/HelloWorldController.cs</em> with the following:</p>
+<pre sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="3" sourceendlinenumber="3"><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
+
+namespace MvcMovie.Controllers
+{
+    public class HelloWorldController : Controller
+    {
+        // 
+        // GET: /HelloWorld/
+
+        public string Index()
+        {
+            return &quot;This is my default action...&quot;;
+        }
+
+        // 
+        // GET: /HelloWorld/Welcome/ 
+
+        public string Welcome()
+        {
+            return &quot;This is the Welcome action method...&quot;;
+        }
+    }
+}
+</code></pre><p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="5" sourceendlinenumber="5">Every <code>public</code> method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string.  Note the comments preceding each method.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="7" sourceendlinenumber="7">An HTTP endpoint is a targetable URL in the web application, such as <code>http://localhost:1234/HelloWorld</code>, and combines the protocol used: <code>HTTP</code>, the network location of the web server (including the TCP port): <code>localhost:1234</code> and the target URI <code>HelloWorld</code>.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="9" sourceendlinenumber="9">The first comment states this is an <a href="https://www.w3schools.com/tags/ref_httpmethods.asp" data-raw-source="[HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="9" sourceendlinenumber="9">HTTP GET</a> method that is invoked by appending &quot;/HelloWorld/&quot; to the base URL. The second comment specifies an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" data-raw-source="[HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="9" sourceendlinenumber="9">HTTP GET</a> method that is invoked by appending &quot;/HelloWorld/Welcome/&quot; to the URL. Later on in the tutorial you&#39;ll use the scaffolding engine to generate <code>HTTP POST</code> methods.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="11" sourceendlinenumber="11">Run the app in non-debug mode and append &quot;HelloWorld&quot; to the path in the address bar. The <code>Index</code> method returns a string.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="13" sourceendlinenumber="13"><img src="../first-mvc-app/adding-controller/_static/hell1.png" alt="Browser window showing an application response of This is my default action" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="13" sourceendlinenumber="13"></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="15" sourceendlinenumber="15">MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default <a href="../../mvc/controllers/routing.html" data-raw-source="[URL routing logic](../../mvc/controllers/routing.md)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="15" sourceendlinenumber="15">URL routing logic</a> used by MVC uses a format like this to determine what code to invoke:</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="17" sourceendlinenumber="17"><code>/[Controller]/[ActionName]/[Parameters]</code></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="19" sourceendlinenumber="19">You set the format for routing in the <em>Startup.cs</em> file.</p>
+<pre sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="21" sourceendlinenumber="21"><code class="lang-csharp" name="Main" highlight-lines="5">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="23" sourceendlinenumber="23">When you run the app and don&#39;t supply any URL segments, it defaults to the &quot;Home&quot; controller and the &quot;Index&quot; method specified in the template line highlighted above.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="25" sourceendlinenumber="25">The first URL segment determines the controller class to run. So <code>localhost:xxxx/HelloWorld</code> maps to the <code>HelloWorldController</code> class. The second part of the URL segment determines the action method on the class. So <code>localhost:xxxx/HelloWorld/Index</code> would cause the <code>Index</code> method of the <code>HelloWorldController</code> class to run. Notice that you only had to browse to <code>localhost:xxxx/HelloWorld</code> and the <code>Index</code> method was called by default. This is because <code>Index</code> is the default method that will be called on a controller if a method name is not explicitly specified. The third part of the URL segment ( <code>id</code>) is for route data. You&#39;ll see route data later on in this tutorial.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="27" sourceendlinenumber="27">Browse to <code>http://localhost:xxxx/HelloWorld/Welcome</code>. The <code>Welcome</code> method runs and returns the string &quot;This is the Welcome action method...&quot;. For this URL, the controller is <code>HelloWorld</code> and <code>Welcome</code> is the action method. You haven&#39;t used the <code>[Parameters]</code> part of the URL yet.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="29" sourceendlinenumber="29"><img src="../first-mvc-app/adding-controller/_static/welcome.png" alt="Browser window showing an application response of This is the Welcome action method" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="29" sourceendlinenumber="29"></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="31" sourceendlinenumber="31">Modify the code to pass some parameter information from the URL to the controller. For example, <code>/HelloWorld/Welcome?name=Rick&amp;numtimes=4</code>. Change the <code>Welcome</code> method to include two parameters as shown in the following code. </p>
+<pre sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="33" sourceendlinenumber="33"><code class="lang-csharp" name="Main">// GET: /HelloWorld/Welcome/ 
+// Requires using System.Text.Encodings.Web;
+public string Welcome(string name, int numTimes = 1)
+{
+    return HtmlEncoder.Default.Encode($&quot;Hello {name}, NumTimes is: {numTimes}&quot;);
+}
+</code></pre><p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="35" sourceendlinenumber="35">The preceding code:</p>
+<ul sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="37" sourceendlinenumber="39">
+<li sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="37" sourceendlinenumber="37">Uses the C# optional-parameter feature to indicate that the <code>numTimes</code> parameter defaults to 1 if no value is passed for that parameter.</li>
+<li sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="38" sourceendlinenumber="38">Uses<code>HtmlEncoder.Default.Encode</code> to protect the app from malicious input (namely JavaScript). </li>
+<li sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="39" sourceendlinenumber="39">Uses <a href="https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings" data-raw-source="[Interpolated Strings](https://docs.microsoft.com/dotnet/articles/csharp/language-reference/keywords/interpolated-strings)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="39" sourceendlinenumber="39">Interpolated Strings</a>.</li>
+</ul>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="41" sourceendlinenumber="41">Run your app and browse to:</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="43" sourceendlinenumber="43">   <code>http://localhost:xxxx/HelloWorld/Welcome?name=Rick&amp;numtimes=4</code></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="45" sourceendlinenumber="45">(Replace xxxx with your port number.) You can try different values for <code>name</code> and <code>numtimes</code> in  the URL. The MVC <a href="../../mvc/models/model-binding.html" data-raw-source="[model binding](../../mvc/models/model-binding.md)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="45" sourceendlinenumber="45">model binding</a> system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See <a href="../../mvc/models/model-binding.html" data-raw-source="[Model Binding](../../mvc/models/model-binding.md)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="45" sourceendlinenumber="45">Model Binding</a> for more information.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="47" sourceendlinenumber="47"><img src="../first-mvc-app/adding-controller/_static/rick4.png" alt="Browser window showing an application response of Hello Rick, NumTimes is: 4" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="47" sourceendlinenumber="47"></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="49" sourceendlinenumber="49">In the image above, the URL segment (<code>Parameters</code>) is not used, the <code>name</code> and <code>numTimes</code> parameters are passed as <a href="https://wikipedia.org/wiki/Query_string" data-raw-source="[query strings](https://wikipedia.org/wiki/Query_string)" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="49" sourceendlinenumber="49">query strings</a>. The <code>?</code> (question mark) in the above URL is a separator, and the query strings follow. The <code>&amp;</code> character separates query strings.</p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="51" sourceendlinenumber="51">Replace the <code>Welcome</code> method with the following code:</p>
+<pre sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="53" sourceendlinenumber="53"><code class="lang-csharp" name="Main">public string Welcome(string name, int ID = 1)
+{
+    return HtmlEncoder.Default.Encode($&quot;Hello {name}, ID: {ID}&quot;);
+}
+</code></pre><p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="55" sourceendlinenumber="55">Run the app and enter the following URL:  <code>http://localhost:xxx/HelloWorld/Welcome/3?name=Rick</code></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="57" sourceendlinenumber="57"><img src="../first-mvc-app/adding-controller/_static/rick_routedata.png" alt="Browser window showing an application response of Hello Rick, ID: 3" sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="57" sourceendlinenumber="57"></p>
+<p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="59" sourceendlinenumber="59">This time the third URL segment  matched the route parameter <code>id</code>. The <code>Welcome</code>  method contains a parameter  <code>id</code> that matched the URL template in the <code>MapRoute</code> method. The trailing <code>?</code>  (in <code>id?</code>) indicates the <code>id</code> parameter is optional.</p>
+<pre sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="61" sourceendlinenumber="61"><code class="lang-csharp" name="Main" highlight-lines="5">app.UseMvc(routes =&gt;
+{
+    routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+});
+</code></pre><p sourcefile="includes/mvc-intro/adding-controller2.md" sourcestartlinenumber="63" sourceendlinenumber="63">In these examples the controller has been doing the &quot;VC&quot; portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don&#39;t want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.</p>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="35" sourceendlinenumber="35"><p sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="36" sourceendlinenumber="37"><a href="../first-mvc-app/start-mvc.html" data-raw-source="[Previous](../first-mvc-app/start-mvc.md)" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="36" sourceendlinenumber="36">Previous</a>
+<a href="adding-view.html" data-raw-source="[Next](adding-view.md)" sourcefile="tutorials/first-mvc-app-mac/adding-controller.md" sourcestartlinenumber="37" sourceendlinenumber="37">Next</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-mac/adding-controller.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

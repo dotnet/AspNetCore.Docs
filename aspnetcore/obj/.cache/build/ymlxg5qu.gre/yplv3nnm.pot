@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting Started with ASP.NET Core 2.0 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting Started with ASP.NET Core 2.0 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="getting-started">
+<h1 id="getting-started-with-aspnet-core" sourcefile="getting-started.md" sourcestartlinenumber="15" sourceendlinenumber="15">Getting Started with ASP.NET Core</h1>
+
+<div class="NOTE" sourcefile="getting-started.md" sourcestartlinenumber="17" sourceendlinenumber="17"><h5>Note</h5><p sourcefile="getting-started.md" sourcestartlinenumber="18" sourceendlinenumber="18">These instructions are for the latest version of ASP.NET Core. Looking to get started with an earlier version? See <a class="xref" href="getting-started-1.1.html" data-raw-source="[the 1.1 version of this tutorial](xref:getting-started-1.1)" sourcefile="getting-started.md" sourcestartlinenumber="18" sourceendlinenumber="18">the 1.1 version of this tutorial</a>.</p>
+</div>
+<ol sourcefile="getting-started.md" sourcestartlinenumber="20" sourceendlinenumber="45">
+<li sourcefile="getting-started.md" sourcestartlinenumber="20" sourceendlinenumber="20"><p sourcefile="getting-started.md" sourcestartlinenumber="20" sourceendlinenumber="20">Install <a href="https://www.microsoft.com/net/core/" data-raw-source="[.NET Core](https://www.microsoft.com/net/core/)" sourcefile="getting-started.md" sourcestartlinenumber="20" sourceendlinenumber="20">.NET Core</a>.</p>
+</li>
+<li sourcefile="getting-started.md" sourcestartlinenumber="22" sourceendlinenumber="28"><p sourcefile="getting-started.md" sourcestartlinenumber="22" sourceendlinenumber="22">Create a new .NET Core project.</p>
+<p sourcefile="getting-started.md" sourcestartlinenumber="24" sourceendlinenumber="24">On macOS and Linux, open a terminal window. On Windows, open a command prompt.</p>
+<pre sourcefile="getting-started.md" sourcestartlinenumber="26" sourceendlinenumber="28"><code class="lang-terminal">dotnet new razor -o aspnetcoreapp
+</code></pre></li>
+<li sourcefile="getting-started.md" sourcestartlinenumber="30" sourceendlinenumber="37"><p sourcefile="getting-started.md" sourcestartlinenumber="30" sourceendlinenumber="30">Run the app.</p>
+<p sourcefile="getting-started.md" sourcestartlinenumber="32" sourceendlinenumber="32"> Use the following commands to run the app:</p>
+<pre sourcefile="getting-started.md" sourcestartlinenumber="34" sourceendlinenumber="37"><code class="lang-terminal">cd aspnetcoreapp
+dotnet run
+</code></pre></li>
+<li sourcefile="getting-started.md" sourcestartlinenumber="39" sourceendlinenumber="39"><p sourcefile="getting-started.md" sourcestartlinenumber="39" sourceendlinenumber="39">Browse to <a href="http://localhost:5000" data-raw-source="[http://localhost:5000](http://localhost:5000)" sourcefile="getting-started.md" sourcestartlinenumber="39" sourceendlinenumber="39">http://localhost:5000</a></p>
+</li>
+<li sourcefile="getting-started.md" sourcestartlinenumber="41" sourceendlinenumber="43"><p sourcefile="getting-started.md" sourcestartlinenumber="41" sourceendlinenumber="41">Open <em>Pages/About.cshtml</em> and modify the page to display the message &quot;Hello, world! The time on the server is @DateTime.Now&quot;:</p>
+<pre sourcefile="getting-started.md" sourcestartlinenumber="43" sourceendlinenumber="43"><code class="lang-html" name="Main" highlight-lines="9">@page
+@model AboutModel
+@{
+    ViewData[&quot;Title&quot;] = &quot;About&quot;;
+}
+&lt;h2&gt;@ViewData[&quot;Title&quot;]&lt;/h2&gt;
+&lt;h3&gt;@Model.Message&lt;/h3&gt;
+
+&lt;p&gt;Use this area to provide additional information.&lt;/p&gt;
+</code></pre></li>
+<li sourcefile="getting-started.md" sourcestartlinenumber="45" sourceendlinenumber="45"><p sourcefile="getting-started.md" sourcestartlinenumber="45" sourceendlinenumber="45">Browse to <a href="http://localhost:5000/About" data-raw-source="[http://localhost:5000/About](http://localhost:5000/About)" sourcefile="getting-started.md" sourcestartlinenumber="45" sourceendlinenumber="45">http://localhost:5000/About</a> and verify the changes.</p>
+</li>
+</ol>
+<h3 id="next-steps" sourcefile="getting-started.md" sourcestartlinenumber="47" sourceendlinenumber="47">Next steps</h3>
+<p sourcefile="getting-started.md" sourcestartlinenumber="49" sourceendlinenumber="49">For getting-started tutorials, see <a href="tutorials/index.html" data-raw-source="[ASP.NET Core Tutorials](tutorials/index.md)" sourcefile="getting-started.md" sourcestartlinenumber="49" sourceendlinenumber="49">ASP.NET Core Tutorials</a></p>
+<p sourcefile="getting-started.md" sourcestartlinenumber="51" sourceendlinenumber="51">For an introduction to ASP.NET Core concepts and architecture, see <a href="index.html" data-raw-source="[ASP.NET Core Introduction](index.md)" sourcefile="getting-started.md" sourcestartlinenumber="51" sourceendlinenumber="51">ASP.NET Core Introduction</a> and <a href="fundamentals/index.html" data-raw-source="[ASP.NET Core Fundamentals](fundamentals/index.md)" sourcefile="getting-started.md" sourcestartlinenumber="51" sourceendlinenumber="51">ASP.NET Core Fundamentals</a>.</p>
+<p sourcefile="getting-started.md" sourcestartlinenumber="53" sourceendlinenumber="53">An ASP.NET Core app can use the .NET Core or .NET Framework Base Class Library and runtime. For more information, see <a href="https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server" data-raw-source="[Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)" sourcefile="getting-started.md" sourcestartlinenumber="53" sourceendlinenumber="53">Choosing between .NET Core and .NET Framework</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/getting-started.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

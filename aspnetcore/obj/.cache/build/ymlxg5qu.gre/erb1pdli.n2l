@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Less, Sass, and Font Awesome in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Less, Sass, and Font Awesome in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/less-sass-fa">
+<h1 id="introduction-to-styling-applications-with-less-sass-and-font-awesome-in-aspnet-core">Introduction to styling applications with Less, Sass, and Font Awesome in ASP.NET Core</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Users of web applications have increasingly high expectations when it comes to style and overall experience. Modern web applications frequently leverage rich tools and frameworks for defining and managing their look and feel in a consistent manner. Frameworks like <a href="http://getbootstrap.com/">Bootstrap</a> can go a long way toward defining a common set of styles and layout options for web sites. However, most non-trivial sites also benefit from being able to effectively define and maintain styles and cascading style sheet (CSS) files, as well as having easy access to non-image icons that help make the site&#39;s interface more intuitive. That&#39;s where languages and tools that support <a href="http://lesscss.org/">Less</a> and <a href="http://sass-lang.com/">Sass</a>, and libraries like <a href="http://fontawesome.io/">Font Awesome</a>, come in.</p>
+<h2 id="css-preprocessor-languages">CSS preprocessor languages</h2>
+<p>Languages that are compiled into other languages, in order to improve the experience of working with the underlying language, are referred to as preprocessors. There are two popular preprocessors for CSS: Less and Sass.  These preprocessors add features to CSS, such as support for variables and nested rules, which improve the maintainability of large, complex stylesheets. CSS as a language is very basic, lacking support even for something as simple as variables, and this tends to make CSS files repetitive and bloated. Adding real programming language features via preprocessors can help reduce duplication and provide better organization of styling rules. Visual Studio provides built-in support for both Less and Sass, as well as extensions that can further improve the development experience when working with these languages.</p>
+<p>As a quick example of how preprocessors can improve readability and maintainability of style information, consider this CSS:</p>
+<pre><code class="lang-css">.header {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.small-header {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+</code></pre><p>Using Less, this can be rewritten to eliminate all of the duplication, using a <em>mixin</em> (so named because it allows you to &quot;mix in&quot; properties from one class or rule-set into another):</p>
+<pre><code class="lang-less">.header {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.small-header {
+    .header;
+    font-size: 14px;
+}
+</code></pre><h2 id="less">Less</h2>
+<p>The Less CSS preprocessor runs using Node.js. To install Less, use Node Package Manager (npm) from a command prompt (-g means &quot;global&quot;):</p>
+<pre><code class="lang-console">npm install -g less
+</code></pre><p>If you&#39;re using Visual Studio, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a <em>Styles</em> folder to your project, and then add a new Less file named <em>main.less</em> to this folder.</p>
+<p><img src="less-sass-fa/_static/add-less-file.png" alt="Add less file"></p>
+<p>Once added, your folder structure should look something like this:</p>
+<p><img src="less-sass-fa/_static/folder-structure.png" alt="folder structure"></p>
+<p>Now you can add some basic styling to the file, which will be compiled into CSS and deployed to the wwwroot folder by Gulp.</p>
+<p>Modify <em>main.less</em> to include the following content, which creates a simple color palette from a single base color.</p>
+<pre><code class="lang-less">@base: #663333;
+@background: spin(@base, 180);
+@lighter: lighten(spin(@base, 5), 10%);
+@lighter2: lighten(spin(@base, 10), 20%);
+@darker: darken(spin(@base, -5), 10%);
+@darker2: darken(spin(@base, -10), 20%);
+
+body {
+    background-color:@background;
+}
+.baseColor  {color:@base}
+.bgLight    {color:@lighter}
+.bgLight2   {color:@lighter2}
+.bgDark     {color:@darker}
+.bgDark2    {color:@darker2}
+</code></pre><p><code>@base</code> and the other @-prefixed items are variables. Each of them represents a color. Except for <code>@base</code>, they are set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The Less processor is smart enough to ignore variables that aren&#39;t used, so to demonstrate how these variables work, we need to use them somewhere. The classes <code>.baseColor</code>, etc. will demonstrate the calculated values of each of the variables in the CSS file that is produced.</p>
+<h3 id="getting-started">Getting started</h3>
+<p>Create an <strong>npm Configuration File</strong> (<em>package.json</em>) in your project folder and edit it to reference <code>gulp</code> and <code>gulp-less</code>:</p>
+<pre><code class="lang-json">{
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;name&quot;: &quot;asp.net&quot;,
+  &quot;private&quot;: true,
+  &quot;devDependencies&quot;: {
+    &quot;gulp&quot;: &quot;3.9.1&quot;,
+    &quot;gulp-less&quot;: &quot;3.3.0&quot;
+  }
+}
+</code></pre><p>Install the dependencies either at a command prompt in your project folder, or in Visual Studio <strong>Solution Explorer</strong> (<strong>Dependencies &gt; npm &gt; Restore packages</strong>).</p>
+<pre><code class="lang-console">npm install
+</code></pre><p><img src="less-sass-fa/_static/restore-packages.png" alt="VS restore packages"></p>
+<p>In the project folder, create a <strong>Gulp Configuration File</strong> (<em>gulpfile.js</em>) to define the automated process.  Add a variable at the top of the file to represent Less, and a task to run Less:</p>
+<pre><code class="lang-javascript">var gulp = require(&quot;gulp&quot;),
+  fs = require(&quot;fs&quot;),
+  less = require(&quot;gulp-less&quot;);
+
+gulp.task(&quot;less&quot;, function () {
+  return gulp.src(&#39;Styles/main.less&#39;)
+    .pipe(less())
+    .pipe(gulp.dest(&#39;wwwroot/css&#39;));
+});
+</code></pre><p>Open the <strong>Task Runner Explorer</strong> (<strong>View &gt; Other Windows &gt; Task Runner Explorer</strong>). Among the tasks, you should see a new task named <code>less</code>. You might have to refresh the window.</p>
+<p>Run the <code>less</code> task, and you see output similar to what is shown here:</p>
+<p><img src="less-sass-fa/_static/less-task-runner.png" alt="less task runner"></p>
+<p>The <em>wwwroot/css</em> folder now contains a new file, <em>main.css</em>:</p>
+<p><img src="less-sass-fa/_static/main-css-created.png" alt="main css created"></p>
+<p>Open <em>main.css</em> and you see something like the following:</p>
+<pre><code class="lang-css">body {
+    background-color: #336666;
+}
+.baseColor {
+    color: #663333;
+}
+.bgLight {
+    color: #884a44;
+}
+.bgLight2 {
+    color: #aa6355;
+}
+.bgDark {
+    color: #442225;
+}
+.bgDark2 {
+    color: #221114;
+}
+</code></pre><p>Add a simple HTML page to the <em>wwwroot</em> folder, and reference <em>main.css</em> to see the color palette in action.</p>
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;link href=&quot;css/main.css&quot; rel=&quot;stylesheet&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;div class=&quot;baseColor&quot;&gt;BaseColor&lt;/div&gt;
+        &lt;div class=&quot;bgLight&quot;&gt;Light&lt;/div&gt;
+        &lt;div class=&quot;bgLight2&quot;&gt;Light2&lt;/div&gt;
+        &lt;div class=&quot;bgDark&quot;&gt;Dark&lt;/div&gt;
+        &lt;div class=&quot;bgDark2&quot;&gt;Dark2&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>You can see that the 180 degree spin on <code>@base</code> used to produce <code>@background</code> resulted in the color wheel opposing color of <code>@base</code>:</p>
+<p><img src="less-sass-fa/_static/less-test-screenshot.png" alt="less testing example"></p>
+<p>Less also provides support for nested rules, as well as nested media queries. For example, defining nested hierarchies like menus can result in verbose CSS rules like these:</p>
+<pre><code class="lang-css">nav {
+    height: 40px;
+    width: 100%;
+}
+nav li {
+    height: 38px;
+    width: 100px;
+}
+nav li a:link {
+    color: #000;
+    text-decoration: none;
+}
+nav li a:visited {
+    text-decoration: none;
+    color: #CC3333;
+}
+nav li a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+nav li a:active {
+    text-decoration: underline;
+}
+</code></pre><p>Ideally all of the related style rules will be placed together within the CSS file, but in practice there is nothing enforcing this rule except convention and perhaps block comments.</p>
+<p>Defining these same rules using Less looks like this:</p>
+<pre><code class="lang-less">nav {
+    height: 40px;
+    width: 100%;
+    li {
+        height: 38px;
+        width: 100px;
+        a {
+            color: #000;
+            &amp;:link { text-decoration:none}
+            &amp;:visited { color: #CC3333; text-decoration:none}
+            &amp;:hover { text-decoration:underline; font-weight:bold}
+            &amp;:active {text-decoration:underline}
+        }
+    }
+}
+</code></pre><p>Note that in this case, all of the subordinate elements of <code>nav</code> are contained within its scope. There is no longer any repetition of parent elements (<code>nav</code>, <code>li</code>, <code>a</code>), and the total line count has dropped as well (though some of that is a result of putting values on the same lines in the second example). It can be very helpful, organizationally, to see all of the rules for a given UI element within an explicitly bounded scope, in this case set off from the rest of the file by curly braces.</p>
+<p>The <code>&amp;</code> syntax is a Less selector feature, with &amp; representing the current selector parent. So, within the a {...} block, <code>&amp;</code> represents an <code>a</code> tag, and thus <code>&amp;:link</code> is equivalent to <code>a:link</code>.</p>
+<p>Media queries, extremely useful in creating responsive designs, can also contribute heavily to repetition and complexity in CSS. Less allows media queries to be nested within classes, so that the entire class definition doesn&#39;t need to be repeated within different top-level <code>@media</code> elements. For example, here is CSS for a responsive menu:</p>
+<pre><code class="lang-css">.navigation {
+    margin-top: 30%;
+    width: 100%;
+}
+@media screen and (min-width: 40em) {
+    .navigation {
+        margin: 0;
+    }
+}
+@media screen and (min-width: 62em) {
+    .navigation {
+        width: 960px;
+        margin: 0;
+    }
+}
+</code></pre><p>This can be better defined in Less as:</p>
+<pre><code class="lang-less">.navigation {
+    margin-top: 30%;
+    width: 100%;
+    @media screen and (min-width: 40em) {
+        margin: 0;
+    }
+    @media screen and (min-width: 62em) {
+        width: 960px;
+        margin: 0;
+    }
+}
+</code></pre><p>Another feature of Less that we have already seen is its support for mathematical operations, allowing style attributes to be constructed from pre-defined variables. This makes updating related styles much easier, since the base variable can be modified and all dependent values change automatically.</p>
+<p>CSS files, especially for large sites (and especially if media queries are being used), tend to get quite large over time, making working with them unwieldy. Less files can be defined separately, then pulled together using <code>@import</code> directives. Less can also be used to import individual CSS files, as well, if desired.</p>
+<p><em>Mixins</em> can accept parameters, and Less supports conditional logic in the form of mixin guards, which provide a declarative way to define when certain mixins take effect. A common use for mixin guards is to adjust colors based on how light or dark the source color is. Given a mixin that accepts a parameter for color, a mixin guard can be used to modify the mixin based on that color:</p>
+<pre><code class="lang-less">.box (@color) when (lightness(@color) &gt;= 50%) {
+    background-color: #000;
+}
+.box (@color) when (lightness(@color) &lt; 50%) {
+    background-color: #FFF;
+}
+.box (@color) {
+    color: @color;
+}
+
+.feature {
+    .box (@base);
+}
+</code></pre><p>Given our current <code>@base</code> value of <code>#663333</code>, this Less script will produce the following CSS:</p>
+<pre><code class="lang-css">.feature {
+    background-color: #FFF;
+    color: #663333;
+}
+</code></pre><p>Less provides a number of additional features, but this should give you some idea of the power of this preprocessing language.</p>
+<h2 id="sass">Sass</h2>
+<p>Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It is built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language did not use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, <strong>SCSS</strong> (&quot;Sassy CSS&quot;). SCSS is similar to CSS in that it ignores indentation levels and whitespace, and instead uses semicolons and curly braces.</p>
+<p>To install Sass, typically you would first install Ruby (pre-installed on Mac), and then run:</p>
+<pre><code class="lang-console">gem install sass
+</code></pre><p>However, if you&#39;re running Visual Studio, you can get started with Sass in much the same way as you would with Less. Open <em>package.json</em> and add the &quot;gulp-sass&quot; package to <code>devDependencies</code>:</p>
+<pre><code class="lang-json">&quot;devDependencies&quot;: {
+  &quot;gulp&quot;: &quot;3.9.1&quot;,
+  &quot;gulp-less&quot;: &quot;3.3.0&quot;,
+  &quot;gulp-sass&quot;: &quot;3.1.0&quot;
+}
+</code></pre><p>Next, modify <em>gulpfile.js</em> to add a sass variable and a task to compile your Sass files and place the results in the wwwroot folder:</p>
+<pre><code class="lang-javascript">var gulp = require(&quot;gulp&quot;),
+  fs = require(&quot;fs&quot;),
+  less = require(&quot;gulp-less&quot;),
+  sass = require(&quot;gulp-sass&quot;);
+
+// other content removed
+
+gulp.task(&quot;sass&quot;, function () {
+  return gulp.src(&#39;Styles/main2.scss&#39;)
+    .pipe(sass())
+    .pipe(gulp.dest(&#39;wwwroot/css&#39;));
+});
+</code></pre><p>Now you can add the Sass file <em>main2.scss</em> to the <em>Styles</em> folder in the root of the project:</p>
+<p><img src="less-sass-fa/_static/add-scss-file.png" alt="add scss file"></p>
+<p>Open <em>main2.scss</em> and add the following:</p>
+<pre><code class="lang-sass">$base: #CC0000;
+body {
+    background-color: $base;
+}
+</code></pre><p>Save all of your files. Now when you refresh <strong>Task Runner Explorer</strong>, you see a <code>sass</code> task. Run it, and look in the <em>/wwwroot/css</em> folder. There is now a <em>main2.css</em> file, with these contents:</p>
+<pre><code class="lang-css">body {
+    background-color: #CC0000;
+}
+</code></pre><p>Sass supports nesting in much the same was that Less does, providing similar benefits. Files can be split up by function and included using the <code>@import</code> directive:</p>
+<pre><code class="lang-sass">@import &#39;anotherfile&#39;;
+</code></pre><p>Sass supports mixins as well, using the <code>@mixin</code> keyword to define them and <code>@include</code> to include them, as in this example from <a href="http://sass-lang.com">sass-lang.com</a>:</p>
+<pre><code class="lang-sass">@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
+</code></pre><p>In addition to mixins, Sass also supports the concept of inheritance, allowing one class to extend another. It&#39;s conceptually similar to a mixin, but results in less CSS code. It&#39;s accomplished using the <code>@extend</code> keyword. To try out mixins, add the following to your <em>main2.scss</em> file:</p>
+<pre><code class="lang-sass">@mixin alert {
+    border: 1px solid black;
+    padding: 5px;
+    color: #333333;
+}
+
+.success {
+    @include alert;
+    border-color: green;
+}
+
+.error {
+    @include alert;
+    color: red;
+    border-color: red;
+    font-weight:bold;
+}
+</code></pre><p>Examine the output in <em>main2.css</em> after running the <code>sass</code> task in <strong>Task Runner Explorer</strong>:</p>
+<pre><code class="lang-css">.success {
+    border: 1px solid black;
+    padding: 5px;
+    color: #333333;
+    border-color: green;
+ }
+
+.error {
+    border: 1px solid black;
+    padding: 5px;
+    color: #333333;
+    color: red;
+    border-color: red;
+    font-weight: bold;
+}
+</code></pre><p>Notice that all of the common properties of the alert mixin are repeated in each class. The mixin did a good job of helping eliminate duplication at development time, but it&#39;s still creating CSS with a lot of duplication in it, resulting in larger than necessary CSS files - a potential performance issue.</p>
+<p>Now replace the alert mixin with a <code>.alert</code> class, and change <code>@include</code> to <code>@extend</code> (remembering to extend <code>.alert</code>, not <code>alert</code>):</p>
+<pre><code class="lang-sass">.alert {
+    border: 1px solid black;
+    padding: 5px;
+    color: #333333;
+}
+
+.success {
+    @extend .alert;
+    border-color: green;
+}
+
+.error {
+    @extend .alert;
+    color: red;
+    border-color: red;
+    font-weight:bold;
+}
+</code></pre><p>Run Sass once more, and examine the resulting CSS:</p>
+<pre><code class="lang-css">.alert, .success, .error {
+    border: 1px solid black;
+    padding: 5px;
+    color: #333333;
+}
+
+.success {
+    border-color: green;
+}
+
+.error {
+    color: red;
+    border-color: red;
+    font-weight: bold;
+}
+</code></pre><p>Now the properties are defined only as many times as needed, and better CSS is generated.</p>
+<p>Sass also includes functions and conditional logic operations, similar to Less. In fact, the two languages&#39; capabilities are very similar.</p>
+<h2 id="less-or-sass">Less or Sass?</h2>
+<p>There is still no consensus as to whether it&#39;s generally better to use Less or Sass (or even whether to prefer the original Sass or the newer SCSS syntax within Sass). Probably the most important decision is to <strong>use one of these tools</strong>, as opposed to just hand-coding your CSS files. Once you&#39;ve made that decision, both Less and Sass are good choices.</p>
+<h2 id="font-awesome">Font Awesome</h2>
+<p>In addition to CSS preprocessors, another great resource for styling modern web applications is Font Awesome. Font Awesome is a toolkit that provides over 500 scalable vector icons that can be freely used in your web applications. It was originally designed to work with Bootstrap, but it has no dependency on that framework or on any JavaScript libraries.</p>
+<p>The easiest way to get started with Font Awesome is to add a reference to it, using its public content delivery network (CDN) location:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css&quot;&gt;
+</code></pre><p>You can also add it to your Visual Studio project by adding it to the &quot;dependencies&quot; in <em>bower.json</em>:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;ASP.NET&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;bootstrap&quot;: &quot;3.0.0&quot;,
+    &quot;jquery&quot;: &quot;1.10.2&quot;,
+    &quot;jquery-validation&quot;: &quot;1.11.1&quot;,
+    &quot;jquery-validation-unobtrusive&quot;: &quot;3.2.2&quot;,
+    &quot;hammer.js&quot;: &quot;2.0.4&quot;,
+    &quot;bootstrap-touch-carousel&quot;: &quot;0.8.0&quot;,
+    &quot;Font-Awesome&quot;: &quot;4.3.0&quot;
+  }
+}
+</code></pre><p>Once you have a reference to Font Awesome on a page, you can add icons to your application by applying Font Awesome classes, typically prefixed with &quot;fa-&quot;, to your inline HTML elements (such as <code>&lt;span&gt;</code> or <code>&lt;i&gt;</code>).  For example, you can add icons to simple lists and menus using code like this:</p>
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link href=&quot;lib/font-awesome/css/font-awesome.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul class=&quot;fa-ul&quot;&gt;
+        &lt;li&gt;&lt;i class=&quot;fa fa-li fa-home&quot;&gt;&lt;/i&gt; Home&lt;/li&gt;
+        &lt;li&gt;&lt;i class=&quot;fa fa-li fa-cog&quot;&gt;&lt;/i&gt; Settings&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>This produces the following in the browser - note the icon beside each item:</p>
+<p><img src="less-sass-fa/_static/list-icons-screenshot.png" alt="list icons"></p>
+<p>You can view a complete list of the available icons here:</p>
+<p><a href="http://fontawesome.io/icons/">http://fontawesome.io/icons/</a></p>
+<h2 id="summary">Summary</h2>
+<p>Modern web applications increasingly demand responsive, fluid designs that are clean, intuitive, and easy to use from a variety of devices. Managing the complexity of the CSS stylesheets required to achieve these goals is best done using a preprocessor like Less or Sass. In addition, toolkits like Font Awesome quickly provide well-known icons to textual navigation menus and buttons, improving the overall user experience of your application.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/less-sass-fa.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

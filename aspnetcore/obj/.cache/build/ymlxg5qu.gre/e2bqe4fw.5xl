@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Kestrel web server implementation in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Kestrel web server implementation in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/servers/kestrel">
+<h1 id="introduction-to-kestrel-web-server-implementation-in-aspnet-core">Introduction to Kestrel web server implementation in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a>, <a href="https://github.com/Tratcher">Chris Ross</a>, and <a href="https://twitter.com/halter73">Stephen Halter</a></p>
+<p>Kestrel is a cross-platform <a href="index.html">web server for ASP.NET Core</a> based on <a href="https://github.com/libuv/libuv">libuv</a>, a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core project templates. </p>
+<p>Kestrel supports the following features:</p>
+<ul>
+<li>HTTPS</li>
+<li>Opaque upgrade used to enable <a href="https://github.com/aspnet/websockets">WebSockets</a></li>
+<li>Unix sockets for high performance behind Nginx </li>
+</ul>
+<p>Kestrel is supported on all platforms and versions that .NET Core supports.</p>
+<div class="tabGroup" id="tabgroup_N8uGZe26A-">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A-_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A-_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A-_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A-_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A-_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2">View or download sample code for 2.x</a></p>
+</section>
+<section id="tabpanel_N8uGZe26A-_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1">View or download sample code for 1.x</a></p>
+</section>
+</div>
+<h2 id="when-to-use-kestrel-with-a-reverse-proxy">When to use Kestrel with a reverse proxy</h2>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--1_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--1_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>You can use Kestrel by itself or with a <em>reverse proxy server</em>, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.</p>
+<p><img src="kestrel/_static/kestrel-to-internet2.png" alt="Kestrel communicates directly with the Internet without a reverse proxy server"></p>
+<p><img src="kestrel/_static/kestrel-to-internet.png" alt="Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache"></p>
+<p>Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.</p>
+</section>
+<section id="tabpanel_N8uGZe26A--1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>If your application accepts requests only from an internal network, you can use Kestrel by itself.</p>
+<p><img src="kestrel/_static/kestrel-to-internal.png" alt="Kestrel communicates directly with your internal network"></p>
+<p>If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a <em>reverse proxy server</em>. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.</p>
+<p><img src="kestrel/_static/kestrel-to-internet.png" alt="Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache"></p>
+<p>A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. The 1.x versions of Kestrel don&#39;t have a full complement of defenses against attacks. This includes but isn&#39;t limited to appropriate timeouts, size limits, and concurrent connection limits.</p>
+</section>
+</div>
+<p>A scenario that requires a reverse proxy is when you have multiple applications that share the same IP and port running on a single server. That doesn&#39;t work with Kestrel directly because Kestrel doesn&#39;t support sharing the same IP and port between multiple processes. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header. A reverse proxy that can share ports must then forward to Kestrel on a unique IP and port.</p>
+<p>Even if a reverse proxy server isn&#39;t required, using one might be a good choice for other reasons:</p>
+<ul>
+<li>It can limit your exposed surface area.</li>
+<li>It provides an optional additional layer of configuration and defense.</li>
+<li>It might integrate better with existing infrastructure.</li>
+<li>It simplifies load balancing and SSL set-up. Only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.</li>
+</ul>
+<h2 id="how-to-use-kestrel-in-aspnet-core-apps">How to use Kestrel in ASP.NET Core apps</h2>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--2_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--2_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>The <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/">Microsoft.AspNetCore.Server.Kestrel</a> package is included in the <a class="xref" href="../metapackage.html">Microsoft.AspNetCore.All metapackage</a>.</p>
+<p>ASP.NET Core project templates use Kestrel by default. In <em>Program.cs</em>, the template code calls <code>CreateDefaultBuilder</code>, which calls <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_">UseKestrel</a> behind the scenes.</p>
+<pre><code class="lang-csharp" highlight-lines="7">public static void Main(string[] args)
+{
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseKestrel(options =&gt;
+        {
+            options.Listen(IPAddress.Loopback, 5000);
+            options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+            {
+                listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+            });
+        })
+        .Build();
+</code></pre><p>If you need to configure Kestrel options, call <code>UseKestrel</code> in <em>Program.cs</em> as shown in the following example:</p>
+<pre><code class="lang-csharp" highlight-lines="9-16">public static void Main(string[] args)
+{
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseKestrel(options =&gt;
+        {
+            options.Listen(IPAddress.Loopback, 5000);
+            options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+            {
+                listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+            });
+        })
+        .Build();
+</code></pre></section>
+<section id="tabpanel_N8uGZe26A--2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>Install the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/">Microsoft.AspNetCore.Server.Kestrel</a> NuGet package.</p>
+<p>Call the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_">UseKestrel</a> extension method on <code>WebHostBuilder</code> in your <code>Main</code> method, specifying any <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions">Kestrel options</a> that you need, as shown in the next section.</p>
+<pre><code class="lang-csharp" highlight-lines="13-19">public static void Main(string[] args)
+{
+    Console.WriteLine(&quot;Running demo with Kestrel.&quot;);
+
+    var config = new ConfigurationBuilder()
+        .AddCommandLine(args)
+        .Build();
+
+    var builder = new WebHostBuilder()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseConfiguration(config)
+        .UseStartup&lt;Startup&gt;()
+        .UseKestrel(options =&gt;
+        {
+            if (config[&quot;threadCount&quot;] != null)
+            {
+                options.ThreadCount = int.Parse(config[&quot;threadCount&quot;]);
+            }
+        })
+        .UseUrls(&quot;http://localhost:5000&quot;);
+
+    var host = builder.Build();
+    host.Run();
+}
+</code></pre></section>
+</div>
+<h3 id="kestrel-options">Kestrel options</h3>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--3_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--3_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. Here are some of the limits you can set:</p>
+<ul>
+<li>Maximum client connections</li>
+<li>Maximum request body size</li>
+<li>Minimum request body data rate</li>
+</ul>
+<p>You set these constraints and others in the <code>Limits</code> property of the <a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs">KestrelServerOptions</a> class. The <code>Limits</code> property holds an instance of the <a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs">KestrelServerLimits</a> class. </p>
+<p><strong>Maximum client connections</strong></p>
+<p>The maximum number of concurrent open TCP connections can be set for the entire application with the following code:</p>
+<pre><code class="lang-csharp" highlight-lines="3-4">.UseKestrel(options =&gt;
+{
+    options.Limits.MaxConcurrentConnections = 100;
+    options.Limits.MaxConcurrentUpgradedConnections = 100;
+    options.Limits.MaxRequestBodySize = 10 * 1024;
+    options.Limits.MinRequestBodyDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Limits.MinResponseDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Listen(IPAddress.Loopback, 5000);
+    options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+    {
+        listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+    });
+})
+</code></pre><p>There&#39;s a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn&#39;t counted against the <code>MaxConcurrentConnections</code> limit. </p>
+<p>The maximum number of connections is unlimited (null) by default.</p>
+<p><strong>Maximum request body size</strong></p>
+<p>The default maximum request body size is 30,000,000 bytes, which is approximately 28.6MB. </p>
+<p>The recommended way to override the limit in an ASP.NET Core MVC app is to use the <a href="https://github.com/aspnet/Mvc/blob/rel/2.0.0/src/Microsoft.AspNetCore.Mvc.Core/RequestSizeLimitAttribute.cs">RequestSizeLimit</a> attribute on an action method:</p>
+<pre><code class="lang-csharp">[RequestSizeLimit(100000000)]
+public IActionResult MyActionMethod()
+</code></pre><p>Here&#39;s an example that shows how to configure the constraint for the entire application, every request:</p>
+<pre><code class="lang-csharp" highlight-lines="5">.UseKestrel(options =&gt;
+{
+    options.Limits.MaxConcurrentConnections = 100;
+    options.Limits.MaxConcurrentUpgradedConnections = 100;
+    options.Limits.MaxRequestBodySize = 10 * 1024;
+    options.Limits.MinRequestBodyDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Limits.MinResponseDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Listen(IPAddress.Loopback, 5000);
+    options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+    {
+        listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+    });
+})
+</code></pre><p>You can override the setting on a specific request in middleware:</p>
+<pre><code class="lang-csharp" highlight-lines="3-4">app.Run(async (context) =&gt;
+{
+    context.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;()
+        .MaxRequestBodySize = 10 * 1024;
+    context.Features.Get&lt;IHttpMinRequestBodyDataRateFeature&gt;()
+        .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    context.Features.Get&lt;IHttpMinResponseDataRateFeature&gt;()
+        .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+</code></pre><p>An exception is thrown if you try to configure the limit on a request after the application has started reading the request. There&#39;s an <code>IsReadOnly</code> property that tells you if the <code>MaxRequestBodySize</code> property is in read-only state, meaning it&#39;s too late to configure the limit.</p>
+<p><strong>Minimum request body data rate</strong></p>
+<p>Kestrel checks every second if data is coming in at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate is not checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.</p>
+<p>The default minimum rate is 240 bytes/second, with a 5 second grace period.</p>
+<p>A minimum rate also applies to the response. The code to set the request limit and the response limit is the same except for having <code>RequestBody</code> or <code>Response</code> in the property and interface names. </p>
+<p>Here&#39;s an example that shows how to configure the minimum data rates in <em>Program.cs</em>:</p>
+<pre><code class="lang-csharp" highlight-lines="6-9">.UseKestrel(options =&gt;
+{
+    options.Limits.MaxConcurrentConnections = 100;
+    options.Limits.MaxConcurrentUpgradedConnections = 100;
+    options.Limits.MaxRequestBodySize = 10 * 1024;
+    options.Limits.MinRequestBodyDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Limits.MinResponseDataRate =
+        new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    options.Listen(IPAddress.Loopback, 5000);
+    options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+    {
+        listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+    });
+})
+</code></pre><p>You can configure the rates per request in middleware:</p>
+<pre><code class="lang-csharp" highlight-lines="5-8">app.Run(async (context) =&gt;
+{
+    context.Features.Get&lt;IHttpMaxRequestBodySizeFeature&gt;()
+        .MaxRequestBodySize = 10 * 1024;
+    context.Features.Get&lt;IHttpMinRequestBodyDataRateFeature&gt;()
+        .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+    context.Features.Get&lt;IHttpMinResponseDataRateFeature&gt;()
+        .MinDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+</code></pre><p>For information about other Kestrel options, see the following classes:</p>
+<ul>
+<li><a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerOptions.cs">KestrelServerOptions</a></li>
+<li><a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/KestrelServerLimits.cs">KestrelServerLimits</a></li>
+<li><a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs">ListenOptions</a></li>
+</ul>
+</section>
+<section id="tabpanel_N8uGZe26A--3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>For information about Kestrel options, see <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions">KestrelServerOptions class</a>.</p>
+</section>
+</div>
+<h3 id="endpoint-configuration">Endpoint configuration</h3>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--4_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--4_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--4_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--4_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--4_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>By default ASP.NET Core binds to <code>http://localhost:5000</code>. You configure URL prefixes and ports for Kestrel to listen on by calling <code>Listen</code> or <code>ListenUnixSocket</code> methods on <code>KestrelServerOptions</code>. (<code>UseUrls</code>, the <code>urls</code> command-line argument, and the ASPNETCORE_URLS environment variable also work but have the limitations noted <a href="#useurls-limitations">later in this article</a>.)</p>
+<p><strong>Bind to a TCP socket</strong></p>
+<p>The <code>Listen</code> method binds to a TCP socket, and an options lambda lets you configure an SSL certificate:</p>
+<pre><code class="lang-csharp" highlight-lines="9-16">public static void Main(string[] args)
+{
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =&gt;
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup&lt;Startup&gt;()
+        .UseKestrel(options =&gt;
+        {
+            options.Listen(IPAddress.Loopback, 5000);
+            options.Listen(IPAddress.Loopback, 5001, listenOptions =&gt;
+            {
+                listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;);
+            });
+        })
+        .Build();
+</code></pre><p>Notice how this example configures SSL for a particular endpoint by using <a href="https://github.com/aspnet/KestrelHttpServer/blob/rel/2.0.0/src/Microsoft.AspNetCore.Server.Kestrel.Core/ListenOptions.cs">ListenOptions</a>. You can use the same API to configure other Kestrel settings for particular endpoints.</p>
+<p>For generating self-signed SSL certificates on Windows, you can use the PowerShell cmdlet <a href="/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps">New-SelfSignedCertificate</a>. For a third-party tool that makes it easier for you to generate self-signed certificates, see <a href="https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net">SelfCert</a>.</p>
+<p>On macOS and Linux you can create a self-signed certificate using <a href="https://www.openssl.org/">OpenSSL</a>.</p>
+<p><strong>Bind to a Unix socket</strong></p>
+<p>You can listen on a Unix socket for improved performance with Nginx, as shown in this example:</p>
+<pre><code class="lang-csharp">.UseKestrel(options =&gt;
+{
+    options.ListenUnixSocket(&quot;/tmp/kestrel-test.sock&quot;);
+    options.ListenUnixSocket(&quot;/tmp/kestrel-test.sock&quot;, listenOptions =&gt;
+    {
+        listenOptions.UseHttps(&quot;testCert.pfx&quot;, &quot;testpassword&quot;);
+    });
+})
+</code></pre><p><strong>Port 0</strong></p>
+<p>If you specify port number 0, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound to at runtime:</p>
+<pre><code class="lang-csharp" highlight-lines="3,13,16-17">public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+{
+    var serverAddressesFeature = app.ServerFeatures.Get&lt;IServerAddressesFeature&gt;();
+
+    app.UseStaticFiles();
+
+    app.Run(async (context) =&gt;
+    {
+        context.Response.ContentType = &quot;text/html&quot;;
+        await context.Response
+            .WriteAsync(&quot;&lt;p&gt;Hosted by Kestrel&lt;/p&gt;&quot;);
+
+        if (serverAddressesFeature != null)
+        {
+            await context.Response
+                .WriteAsync(&quot;&lt;p&gt;Listening on the following addresses: &quot; +
+                    string.Join(&quot;, &quot;, serverAddressesFeature.Addresses) +
+                    &quot;&lt;/p&gt;&quot;);
+        }
+
+        await context.Response.WriteAsync($&quot;&lt;p&gt;Request URL: {context.Request.GetDisplayUrl()}&lt;p&gt;&quot;);
+    });
+}
+</code></pre><p><a id="useurls-limitations"></a></p>
+<p><strong>UseUrls limitations</strong></p>
+<p>You can configure endpoints by calling the <code>UseUrls</code> method or using the <code>urls</code> command-line argument or the ASPNETCORE_URLS environment variable. These methods are useful if you want your code to work with servers other than Kestrel. However, be aware of these limitations:</p>
+<ul>
+<li>You can&#39;t use SSL with these methods.</li>
+<li>If you use both the <code>Listen</code> method and <code>UseUrls</code>, the <code>Listen</code> endpoints override the <code>UseUrls</code> endpoints.</li>
+</ul>
+<p><strong>Endpoint configuration for IIS</strong></p>
+<p>If you use IIS, the URL bindings for IIS override any bindings that you set by calling either <code>Listen</code> or <code>UseUrls</code>. For more information, see <a href="aspnet-core-module.html">Introduction to ASP.NET Core Module</a>.</p>
+</section>
+<section id="tabpanel_N8uGZe26A--4_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>By default ASP.NET Core binds to <code>http://localhost:5000</code>. You can configure URL prefixes and ports for Kestrel to listen on by using the <code>UseUrls</code> extension method, the <code>urls</code> command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see <a href="../hosting.html">Hosting</a>. For information about how URL binding works when you use IIS as a reverse proxy, see <a href="aspnet-core-module.html">ASP.NET Core Module</a>. </p>
+</section>
+</div>
+<h3 id="url-prefixes">URL prefixes</h3>
+<p>If you call <code>UseUrls</code> or use the <code>urls</code> command-line argument or ASPNETCORE_URLS environment variable, the URL prefixes can be in any of the following formats. </p>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--5">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--5_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--5_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--5_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--5_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--5_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>Only HTTP URL prefixes are valid; Kestrel does not support SSL when you configure URL bindings by using <code>UseUrls</code>.</p>
+<ul>
+<li><p>IPv4 address with port number</p>
+<pre><code>http://65.55.39.10:80/
+</code></pre><p>0.0.0.0 is a special case that binds to all IPv4 addresses.</p>
+</li>
+<li><p>IPv6 address with port number</p>
+<pre><code>http://[0:0:0:0:0:ffff:4137:270a]:80/ 
+</code></pre><p>[::] is the IPv6 equivalent of IPv4 0.0.0.0.</p>
+</li>
+<li><p>Host name with port number</p>
+<pre><code>http://contoso.com:80/
+http://*:80/
+</code></pre><p>Host names, *, and +, are not special. Anything that is not a recognized IP address or &quot;localhost&quot; will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use <a href="httpsys.html">HTTP.sys</a> or a reverse proxy server such as IIS, Nginx, or Apache.</p>
+</li>
+<li><p>&quot;Localhost&quot; name with port number or loopback IP with port number</p>
+<pre><code>http://localhost:5000/
+http://127.0.0.1:5000/
+http://[::1]:5000/
+</code></pre><p>When <code>localhost</code> is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. </p>
+</li>
+</ul>
+</section>
+<section id="tabpanel_N8uGZe26A--5_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul>
+<li><p>IPv4 address with port number</p>
+<pre><code>http://65.55.39.10:80/
+https://65.55.39.10:443/
+</code></pre><p>0.0.0.0 is a special case that binds to all IPv4 addresses.</p>
+</li>
+<li><p>IPv6 address with port number</p>
+<pre><code>http://[0:0:0:0:0:ffff:4137:270a]:80/ 
+https://[0:0:0:0:0:ffff:4137:270a]:443/ 
+</code></pre><p>[::] is the IPv6 equivalent of IPv4 0.0.0.0.</p>
+</li>
+<li><p>Host name with port number</p>
+<pre><code>http://contoso.com:80/
+http://*:80/
+https://contoso.com:443/
+https://*:443/
+</code></pre><p>Host names, *, and + aren&#39;t special. Anything that isn&#39;t a recognized IP address or &quot;localhost&quot; binds to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use <a href="weblistener.html">WebListener</a> or a reverse proxy server such as IIS, Nginx, or Apache.</p>
+</li>
+<li><p>&quot;Localhost&quot; name with port number or loopback IP with port number</p>
+<pre><code>http://localhost:5000/
+http://127.0.0.1:5000/
+http://[::1]:5000/
+</code></pre><p>When <code>localhost</code> is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. </p>
+</li>
+<li><p>Unix socket</p>
+<pre><code>http://unix:/run/dan-live.sock  
+</code></pre></li>
+</ul>
+<p><strong>Port 0</strong></p>
+<p>If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for <code>localhost</code> name.</p>
+<p>The following example shows how to determine which port Kestrel actually bound to at runtime:</p>
+<pre><code class="lang-csharp">public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+
+    var serverAddressesFeature = app.ServerFeatures.Get&lt;IServerAddressesFeature&gt;();
+
+    app.UseStaticFiles();
+
+    app.Run(async (context) =&gt;
+    {
+        context.Response.ContentType = &quot;text/html&quot;;
+        await context.Response
+            .WriteAsync(&quot;&lt;p&gt;Hosted by Kestrel&lt;/p&gt;&quot;);
+
+        if (serverAddressesFeature != null)
+        {
+            await context.Response
+                .WriteAsync(&quot;&lt;p&gt;Listening on the following addresses: &quot; +
+                    string.Join(&quot;, &quot;, serverAddressesFeature.Addresses) +
+                    &quot;&lt;/p&gt;&quot;);
+        }
+
+        await context.Response.WriteAsync($&quot;&lt;p&gt;Request URL: {context.Request.GetDisplayUrl()}&lt;p&gt;&quot;);
+    });
+}
+</code></pre><p><strong>URL prefixes for SSL</strong></p>
+<p>Be sure to include URL prefixes with <code>https:</code> if you call the <code>UseHttps</code> extension method, as shown below.</p>
+<pre><code class="lang-csharp">var host = new WebHostBuilder() 
+    .UseKestrel(options =&gt; 
+    { 
+        options.UseHttps(&quot;testCert.pfx&quot;, &quot;testPassword&quot;); 
+    }) 
+   .UseUrls(&quot;http://localhost:5000&quot;, &quot;https://localhost:5001&quot;) 
+   .UseContentRoot(Directory.GetCurrentDirectory()) 
+   .UseStartup&lt;Startup&gt;() 
+   .Build(); 
+</code></pre><div class="NOTE"><h5>Note</h5><p>HTTPS and HTTP cannot be hosted on the same port.</p>
+</div>
+<p>For generating self-signed SSL certificates on Windows, you can use the PowerShell cmdlet <a href="/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps">New-SelfSignedCertificate</a>. For a third-party tool that makes it easier for you to generate self-signed certificates, see <a href="https://www.pluralsight.com/blog/software-development/selfcert-create-a-self-signed-certificate-interactively-gui-or-programmatically-in-net">SelfCert</a>.</p>
+<p>On macOS and Linux you can create a self-signed certificate using <a href="https://www.openssl.org/">OpenSSL</a>.</p>
+</section>
+</div>
+<h2 id="next-steps">Next steps</h2>
+<p>For more information, see the following resources:</p>
+<div class="tabGroup" id="tabgroup_N8uGZe26A--6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--6_aspnetcore2x" role="tab" aria-controls="tabpanel_N8uGZe26A--6_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N8uGZe26A--6_aspnetcore1x" role="tab" aria-controls="tabpanel_N8uGZe26A--6_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_N8uGZe26A--6_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2">Sample app for 2.x</a></li>
+<li><a href="https://github.com/aspnet/KestrelHttpServer">Kestrel source code</a></li>
+</ul>
+</section>
+<section id="tabpanel_N8uGZe26A--6_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1">Sample app for 1.x</a></li>
+<li><a href="https://github.com/aspnet/KestrelHttpServer">Kestrel source code</a></li>
+</ul>
+</section>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/servers/kestrel.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

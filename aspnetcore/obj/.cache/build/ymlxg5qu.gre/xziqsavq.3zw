@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started with ASP.NET Core MVC and Visual Studio </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting started with ASP.NET Core MVC and Visual Studio ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app/start-mvc">
+<h1 id="getting-started-with-aspnet-core-mvc-and-visual-studio" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="14" sourceendlinenumber="14">Getting started with ASP.NET Core MVC and Visual Studio</h1>
+
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a></p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="18" sourceendlinenumber="18">This tutorial will teach you the basics of building an ASP.NET Core MVC web app using <a href="https://www.visualstudio.com/" data-raw-source="[Visual Studio 2017](https://www.visualstudio.com/)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="18" sourceendlinenumber="18">Visual Studio 2017</a>. This tutorial teaches ASP.NET Core MVC with controllers and views. Razor Pages is a new alternative in ASP.NET Core 2.0, a page-based programming model that makes building web UI easier and more productive. We recommend you try the Razor Pages tutorial before the MVC version. For a Razor Pages version of this tutorial, see <a class="xref" href="../../mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="includes/razor.md" sourcestartlinenumber="1" sourceendlinenumber="1">Razor Pages</a>.</p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="20" sourceendlinenumber="20">There are 3 versions of this tutorial:</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="22" sourceendlinenumber="24">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="22" sourceendlinenumber="22">macOS: <a class="xref" href="../first-mvc-app-mac/start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="22" sourceendlinenumber="22">Create an ASP.NET Core MVC app with Visual Studio for Mac</a></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="23" sourceendlinenumber="23">Windows: <a class="xref" href="start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create an ASP.NET Core MVC app with Visual Studio</a></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="24" sourceendlinenumber="24">macOS, Linux, and Windows: <a class="xref" href="../first-mvc-app-xplat/start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create an ASP.NET Core MVC app with Visual Studio Code</a></li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="26" sourceendlinenumber="26">For the Visual Studio 2015 version of this tutorial, see the <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf" data-raw-source="[VS 2015 version of ASP.NET Core documentation in PDF format](https://github.com/aspnet/Docs/blob/master/aspnetcore/common/_static/aspnet-core-project-json.pdf)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="26" sourceendlinenumber="26">VS 2015 version of ASP.NET Core documentation in PDF format</a>.</p>
+<h2 id="install-visual-studio-and-net-core" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="28" sourceendlinenumber="28">Install Visual Studio and .NET Core</h2>
+<div class="tabGroup" id="tabgroup_QpO1Dgob1h" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="30" sourceendlinenumber="45">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_QpO1Dgob1h_aspnetcore2x" role="tab" aria-controls="tabpanel_QpO1Dgob1h_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="30" sourceendlinenumber="30">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_QpO1Dgob1h_aspnetcore1x" role="tab" aria-controls="tabpanel_QpO1Dgob1h_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="34" sourceendlinenumber="34">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_QpO1Dgob1h_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="includes/install2.0.md" sourcestartlinenumber="1" sourceendlinenumber="1">Install the following:</p>
+<ul sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="4">
+<li sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="3"><a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core)" sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="3">.NET Core 2.0.0 SDK</a> or later.</li>
+<li sourcefile="includes/install2.0.md" sourcestartlinenumber="4" sourceendlinenumber="4"><a href="https://www.visualstudio.com/downloads/" data-raw-source="[Visual Studio 2017](https://www.visualstudio.com/downloads/)" sourcefile="includes/install2.0.md" sourcestartlinenumber="4" sourceendlinenumber="4">Visual Studio 2017</a> version 15.3 or later with the <strong>ASP.NET and web development</strong> workload.</li>
+</ul>
+</section>
+<section id="tabpanel_QpO1Dgob1h_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="36" sourceendlinenumber="36">Install Visual Studio Community 2017. Select the Community download. Skip this step if you have Visual Studio 2017 installed.</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="38" sourceendlinenumber="38">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="38" sourceendlinenumber="38"><a href="https://www.visualstudio.com/" data-raw-source="[Visual Studio 2017 Home page installer](https://www.visualstudio.com/)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="38" sourceendlinenumber="38">Visual Studio 2017 Home page installer</a></li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="40" sourceendlinenumber="40">Run the installer and select the following workloads:</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="42" sourceendlinenumber="43">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="42" sourceendlinenumber="42"><strong>ASP.NET and web development</strong> (under <strong>Web &amp; Cloud</strong>)</li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="43" sourceendlinenumber="43"><strong>.NET Core cross-platform development</strong> (under <strong>Other Toolsets</strong>)</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="45" sourceendlinenumber="45"><img src="start-mvc/_static/web_workload.png" alt="**ASP.NET and web development** (under **Web &amp; Cloud**)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="45" sourceendlinenumber="45"></p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="47" sourceendlinenumber="47"><img src="start-mvc/_static/x_plat_wl.png" alt="**.NET Core cross-cross-platfrom development** (under **Other Toolsets**)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="47" sourceendlinenumber="47"></p>
+</section>
+</div>
+<h2 id="create-a-web-app" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="51" sourceendlinenumber="51">Create a web app</h2>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="53" sourceendlinenumber="53">From Visual Studio, select  <strong>File &gt; New &gt; Project</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="55" sourceendlinenumber="55"><img src="start-mvc/_static/alt_new_project.png" alt="File &gt; New &gt; Project" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="55" sourceendlinenumber="55"></p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="57" sourceendlinenumber="57">Complete the <strong>New Project</strong> dialog:</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="59" sourceendlinenumber="62">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="59" sourceendlinenumber="59">In the left pane, tap <strong>.NET Core</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="60" sourceendlinenumber="60">In the center pane, tap <strong>ASP.NET Core Web Application (.NET Core)</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="61" sourceendlinenumber="61">Name the project &quot;MvcMovie&quot; (It&#39;s important to name the project &quot;MvcMovie&quot; so when you copy code, the namespace will match.)</li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="62" sourceendlinenumber="62">Tap <strong>OK</strong></li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="64" sourceendlinenumber="64"><img src="start-mvc/_static/new_project2.png" alt="New project dialog, .Net core in left pane, ASP.NET Core web " sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="64" sourceendlinenumber="64"></p>
+<div class="tabGroup" id="tabgroup_QpO1Dgob1h-1" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="67" sourceendlinenumber="84">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_QpO1Dgob1h-1_aspnetcore2x" role="tab" aria-controls="tabpanel_QpO1Dgob1h-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="67" sourceendlinenumber="67">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_QpO1Dgob1h-1_aspnetcore1x" role="tab" aria-controls="tabpanel_QpO1Dgob1h-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="77" sourceendlinenumber="77">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_QpO1Dgob1h-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="69" sourceendlinenumber="69">Complete the <strong>New ASP.NET Core Web Application (.NET Core) - MvcMovie</strong> dialog:</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="71" sourceendlinenumber="73">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="71" sourceendlinenumber="71">In the version selector drop-down box select <strong>ASP.NET Core 2.-</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="72" sourceendlinenumber="72">Select <strong>Web Application(Model-View-Controller)</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="73" sourceendlinenumber="73">Tap <strong>OK</strong>.</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="75" sourceendlinenumber="75"><img src="start-mvc/_static/new_project22.png" alt="New project dialog, .Net core in left pane, ASP.NET Core web " sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="75" sourceendlinenumber="75"></p>
+</section>
+<section id="tabpanel_QpO1Dgob1h-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="79" sourceendlinenumber="79">Complete the <strong>New ASP.NET Core Web Application (.NET Core) - MvcMovie</strong> dialog:</p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="81" sourceendlinenumber="84">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="81" sourceendlinenumber="81">In the version selector drop-down box tap <strong>ASP.NET Core 1.1</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="82" sourceendlinenumber="82">Tap <strong>Web Application</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="83" sourceendlinenumber="83">Keep the default <strong>No Authentication</strong></li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="84" sourceendlinenumber="84">Tap <strong>OK</strong>.</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="86" sourceendlinenumber="86"><img src="start-mvc/_static/p3.png" alt="New ASP.NET Core web app" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="86" sourceendlinenumber="86"></p>
+</section>
+</div>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="90" sourceendlinenumber="90">Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a simple starter project, and it&#39;s a good place to start,</p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="92" sourceendlinenumber="92">Tap <strong>F5</strong> to run the app in debug mode or <strong>Ctrl-F5</strong> in non-debug mode.</p>
+<!-- These images are also used by uid: tutorials/first-mvc-app-xplat/start-mvc -->
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="94" sourceendlinenumber="94"><img src="start-mvc/_static/1.png" alt="running app" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="94" sourceendlinenumber="94"></p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="96" sourceendlinenumber="98">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="96" sourceendlinenumber="96">Visual Studio starts <a href="https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview" data-raw-source="[IIS Express](https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="96" sourceendlinenumber="96">IIS Express</a> and runs your app. Notice that the address bar shows <code>localhost:port#</code> and not something like <code>example.com</code>. That&#39;s because <code>localhost</code> is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. In the image above, the port number is 5000. When you run the app, you&#39;ll see a different port number.</li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="97" sourceendlinenumber="97">Launching the app with <strong>Ctrl+F5</strong> (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.</li>
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="98" sourceendlinenumber="98">You can launch the app in debug or non-debug mode from the <strong>Debug</strong> menu item:</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="100" sourceendlinenumber="100"><img src="start-mvc/_static/debug_menu.png" alt="Debug menu" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="100" sourceendlinenumber="100"></p>
+<ul sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="102" sourceendlinenumber="102">
+<li sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="102" sourceendlinenumber="102">You can debug the app by tapping the <strong>IIS Express</strong> button</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="104" sourceendlinenumber="104"><img src="start-mvc/_static/iis_express.png" alt="IIS Express" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="104" sourceendlinenumber="104"></p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="106" sourceendlinenumber="106">The default template gives you working <strong>Home, About</strong> and <strong>Contact</strong> links. The browser image above doesn&#39;t show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.</p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="108" sourceendlinenumber="108"><img src="start-mvc/_static/2.png" alt="navigation icon in upper right" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="108" sourceendlinenumber="108"></p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="110" sourceendlinenumber="110">If you were running in debug mode, tap <strong>Shift-F5</strong> to stop debugging.</p>
+<p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="112" sourceendlinenumber="112">In the next part of this tutorial, we&#39;ll learn about MVC and start writing some code.</p>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="114" sourceendlinenumber="114"><p sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="115" sourceendlinenumber="115"><a href="adding-controller.html" data-raw-source="[Next](adding-controller.md)" sourcefile="tutorials/first-mvc-app/start-mvc.md" sourcestartlinenumber="115" sourceendlinenumber="115">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app/start-mvc.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

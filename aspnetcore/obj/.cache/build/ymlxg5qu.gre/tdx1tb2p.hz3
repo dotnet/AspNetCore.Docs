@@ -1,0 +1,843 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction to Razor Pages in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction to Razor Pages in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/razor-pages/index">
+<h1 id="introduction-to-razor-pages-in-aspnet-core">Introduction to Razor Pages in ASP.NET Core</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a> and <a href="https://github.com/rynowak">Ryan Nowak</a></p>
+<p>Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.</p>
+<p>If you&#39;re looking for a tutorial that uses the Model-View-Controller approach, see <a class="xref" href="../../tutorials/first-mvc-app/start-mvc.html">Getting started with ASP.NET Core MVC</a>.</p>
+<p><a name="prerequisites"></a></p>
+<h2 id="aspnet-core-20-prerequisites">ASP.NET Core 2.0 prerequisites</h2>
+<p>Install <a href="https://www.microsoft.com/net/core">.NET Core</a> 2.0.0 or later.</p>
+<p>If you&#39;re using Visual Studio, install <a href="https://www.visualstudio.com/vs/">Visual Studio</a> 2017 version 15.3 or later with the following workloads:</p>
+<ul>
+<li><strong>ASP.NET and web development</strong></li>
+<li><strong>.NET Core cross-platform development</strong></li>
+</ul>
+<p><a name="rpvs17"></a></p>
+<h2 id="creating-a-razor-pages-project">Creating a Razor Pages project</h2>
+<div class="tabGroup" id="tabgroup_qRfKG5ySAy">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_qRfKG5ySAy_visual-studio" role="tab" aria-controls="tabpanel_qRfKG5ySAy_visual-studio" data-tab="visual-studio" tabindex="0" aria-selected="true">Visual Studio</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_qRfKG5ySAy_visual-studio-mac" role="tab" aria-controls="tabpanel_qRfKG5ySAy_visual-studio-mac" data-tab="visual-studio-mac" tabindex="-1">Visual Studio for Mac</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_qRfKG5ySAy_visual-studio-code" role="tab" aria-controls="tabpanel_qRfKG5ySAy_visual-studio-code" data-tab="visual-studio-code" tabindex="-1">Visual Studio Code</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_qRfKG5ySAy_netcore-cli" role="tab" aria-controls="tabpanel_qRfKG5ySAy_netcore-cli" data-tab="netcore-cli" tabindex="-1">.NET Core CLI</a>
+</li>
+</ul>
+<section id="tabpanel_qRfKG5ySAy_visual-studio" role="tabpanel" data-tab="visual-studio">
+<p>See <a class="xref" href="../../tutorials/razor-pages/razor-pages-start.html">Getting started with Razor Pages</a> for detailed instructions on how to create a Razor Pages project using Visual Studio.</p>
+</section>
+<section id="tabpanel_qRfKG5ySAy_visual-studio-mac" role="tabpanel" data-tab="visual-studio-mac" aria-hidden="true" hidden="hidden">
+<p>Run <code>dotnet new razor</code> from the command line.</p>
+<p>Open the generated <em>.csproj</em> file from Visual Studio for Mac.</p>
+</section>
+<section id="tabpanel_qRfKG5ySAy_visual-studio-code" role="tabpanel" data-tab="visual-studio-code" aria-hidden="true" hidden="hidden">
+<p>Run <code>dotnet new razor</code> from the command line.</p>
+</section>
+<section id="tabpanel_qRfKG5ySAy_netcore-cli" role="tabpanel" data-tab="netcore-cli" aria-hidden="true" hidden="hidden">
+<p>Run <code>dotnet new razor</code> from the command line.</p>
+</section>
+</div>
+<h2 id="razor-pages">Razor Pages</h2>
+<p>Razor Pages is enabled in <em>Startup.cs</em>:</p>
+<pre><code class="lang-cs" name="main">public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Includes support for Razor Pages and controllers.
+        services.AddMvc();
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseMvc();
+    }
+}
+</code></pre><p>Consider a basic page:
+<a name="OnGet"></a></p>
+<pre><code class="lang-cshtml" name="main">@page
+
+&lt;h1&gt;Hello, world!&lt;/h1&gt;
+&lt;h2&gt;The time on the server is @DateTime.Now&lt;/h2&gt;
+</code></pre><p>The preceding code looks a lot like a Razor view file. What makes it different is the <code>@page</code> directive. <code>@page</code> makes the file into an MVC action - which means that it handles requests directly, without going through a controller. <code>@page</code> must be the first Razor directive on a page. <code>@page</code> affects the behavior of other Razor constructs.</p>
+<p>A similar page, using a <code>PageModel</code> class, is shown in the following two files. The <em>Pages/Index2.cshtml</em> file:</p>
+<pre><code class="lang-cshtml" name="main">@page
+@using RazorPages
+@model IndexModel2
+
+&lt;h2&gt;Separate page model&lt;/h2&gt;
+&lt;p&gt;
+    @Model.Message
+&lt;/p&gt;
+</code></pre><p>The <em>Pages/Index2.cshtml.cs</em> &quot;code-behind&quot; file:</p>
+<pre><code class="lang-cs" name="main">using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+
+namespace RazorPages
+{
+    public class IndexModel2 : PageModel
+    {
+        public string Message { get; private set; } = &quot;PageModel in C#&quot;;
+
+        public void OnGet()
+        {
+            Message += $&quot; Server time is { DateTime.Now }&quot;;
+        }
+    }
+}
+</code></pre><p>By convention, the <code>PageModel</code> class file has the same name as the Razor Page file with <em>.cs</em> appended. For example, the previous Razor Page is <em>Pages/Index2.cshtml</em>. The file containing the <code>PageModel</code> class is named <em>Pages/Index2.cshtml.cs</em>.</p>
+<p>The associations of URL paths to pages are determined by the page&#39;s location in the file system. The following table shows a Razor Page path and the matching URL:</p>
+<table>
+<thead>
+<tr>
+<th>File name and path</th>
+<th>matching URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>/Pages/Index.cshtml</em></td>
+<td><code>/</code> or <code>/Index</code></td>
+</tr>
+<tr>
+<td><em>/Pages/Contact.cshtml</em></td>
+<td><code>/Contact</code></td>
+</tr>
+<tr>
+<td><em>/Pages/Store/Contact.cshtml</em></td>
+<td><code>/Store/Contact</code></td>
+</tr>
+<tr>
+<td><em>/Pages/Store/Index.cshtml</em></td>
+<td><code>/Store</code> or <code>/Store/Index</code></td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li>The runtime looks for Razor Pages files in the <em>Pages</em> folder by default.</li>
+<li><code>Index</code> is the default page when a URL doesn&#39;t include a page.</li>
+</ul>
+<h2 id="writing-a-basic-form">Writing a basic form</h2>
+<p>Razor Pages features are designed to make common patterns used with web browsers easy. <a class="xref" href="../models/model-binding.html">Model binding</a>, <a class="xref" href="../views/tag-helpers/intro.html">Tag Helpers</a>, and HTML helpers all <em>just work</em> with the properties defined in a Razor Page class. Consider a page that implements a basic &quot;contact us&quot; form for the <code>Contact</code> model:</p>
+<p>For the samples in this document, the <code>DbContext</code> is initialized in the <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/mvc/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16">Startup.cs</a> file.</p>
+<pre><code class="lang-cs" name="main" highlight-lines="15-16">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using RazorPagesContacts.Data;
+
+namespace RazorPagesContacts
+{
+    public class Startup
+    {
+        public IHostingEnvironment HostingEnvironment { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext&lt;AppDbContext&gt;(options =&gt;
+                              options.UseInMemoryDatabase(&quot;name&quot;));
+            services.AddMvc();
+        }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseMvc();
+        }
+    }
+}
+</code></pre><p>The data model:</p>
+<pre><code class="lang-cs" name="main">using System.ComponentModel.DataAnnotations;
+
+namespace RazorPagesContacts.Data
+{
+    public class Customer
+    {
+        public int Id { get; set; }
+
+        [Required, StringLength(100)]
+        public string Name { get; set; }
+    }
+}
+</code></pre><p>The <em>Pages/Create.cshtml</em> view file:</p>
+<pre><code class="lang-cshtml" name="main">@page
+@model RazorPagesContacts.Pages.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+&lt;html&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Enter your name.
+    &lt;/p&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Customer.Name&quot; /&gt;&lt;/div&gt;
+        &lt;input type=&quot;submit&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The <em>Pages/Create.cshtml.cs</em> code-behind file for the view:</p>
+<pre><code class="lang-cs" name="main">using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPagesContacts.Data;
+
+namespace RazorPagesContacts.Pages
+{
+    public class CreateModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public CreateModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        [BindProperty]
+        public Customer Customer { get; set; }
+
+        public async Task&lt;IActionResult&gt; OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _db.Customers.Add(Customer);
+            await _db.SaveChangesAsync();
+            return RedirectToPage(&quot;/Index&quot;);
+        }
+    }
+}
+</code></pre><p>By convention, the <code>PageModel</code> class is called <code>&lt;PageName&gt;Model</code> and is in the same namespace as the page.</p>
+<p>Using a <code>PageModel</code> code-behind file supports unit testing, but requires you to write an explicit constructor and class. Pages without <code>PageModel</code> code-behind files support runtime compilation, which can be an advantage in development.  <!-- review: advantage because you can make changes and refresh the browser without explicitly compiling the app --></p>
+<p>The page has an <code>OnPostAsync</code> <em>handler method</em>, which runs on <code>POST</code> requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:</p>
+<ul>
+<li><code>OnGet</code> to initialize state needed for the page. <a href="#OnGet">OnGet</a> sample.</li>
+<li><code>OnPost</code> to handle form submissions.</li>
+</ul>
+<p>The <code>Async</code> naming suffix is optional but is often used by convention for asynchronous functions. The <code>OnPostAsync</code> code in the preceding example looks similar to what you would normally write in a controller. The preceding code is typical for Razor Pages. Most of the MVC primitives like <a class="xref" href="../models/model-binding.html">model binding</a>, <a class="xref" href="../models/validation.html">validation</a>, and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? --></p>
+<p>The previous <code>OnPostAsync</code> method:</p>
+<pre><code class="lang-cs" name="main">public async Task&lt;IActionResult&gt; OnPostAsync()
+{
+    if (!ModelState.IsValid)
+    {
+        return Page();
+    }
+
+    _db.Customers.Add(Customer);
+    await _db.SaveChangesAsync();
+    return RedirectToPage(&quot;/Index&quot;);
+}
+</code></pre><p>The basic flow of <code>OnPostAsync</code>:</p>
+<p>Check for validation errors.</p>
+<ul>
+<li>If there are no errors, save the data and redirect.</li>
+<li>If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be detected on the client, and never submitted to the server.</li>
+</ul>
+<p>When the data is entered successfully, the <code>OnPostAsync</code> handler method calls the <code>RedirectToPage</code> helper method to return an instance of <code>RedirectToPageResult</code>. <code>RedirectToPage</code> is a new action result, similar to <code>RedirectToAction</code> or <code>RedirectToRoute</code>, but customized for pages. In the preceding sample, it redirects to the root Index page (<code>/Index</code>). <code>RedirectToPage</code> is detailed in the <a href="#url_gen">URL generation for Pages</a> section.</p>
+<p>When the submitted form has validation errors (that are passed to the server), the<code>OnPostAsync</code> handler method calls the <code>Page</code> helper method. <code>Page</code> returns an instance of <code>PageResult</code>. Returning <code>Page</code> is similar to how actions in controllers return <code>View</code>. <code>PageResult</code> is the default <!-- Review  --> return type for a handler method. A handler method that returns <code>void</code> renders the page.</p>
+<p>The <code>Customer</code> property uses <code>[BindProperty]</code> attribute to opt in to model binding.</p>
+<pre><code class="lang-cs" name="main" highlight-lines="10-11">public class CreateModel : PageModel
+{
+    private readonly AppDbContext _db;
+
+    public CreateModel(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    [BindProperty]
+    public Customer Customer { get; set; }
+
+    public async Task&lt;IActionResult&gt; OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        _db.Customers.Add(Customer);
+        await _db.SaveChangesAsync();
+        return RedirectToPage(&quot;/Index&quot;);
+    }
+}
+</code></pre><p>Razor Pages, by default, bind properties only with non-GET verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (<code>&lt;input asp-for=&quot;Customer.Name&quot; /&gt;</code>) and accept the input.</p>
+<p>The home page (<em>Index.cshtml</em>):</p>
+<pre><code class="lang-cshtml" name="main">@page
+@model RazorPagesContacts.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+&lt;h1&gt;Contacts&lt;/h1&gt;
+&lt;form method=&quot;post&quot;&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;ID&lt;/th&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            @foreach (var contact in Model.Customers)
+            {
+                &lt;tr&gt;
+                    &lt;td&gt;@contact.Id&lt;/td&gt;
+                    &lt;td&gt;@contact.Name&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;a asp-page=&quot;./Edit&quot; asp-route-id=&quot;@contact.Id&quot;&gt;edit&lt;/a&gt;
+                        &lt;button type=&quot;submit&quot; asp-page-handler=&quot;delete&quot; 
+                                asp-route-id=&quot;@contact.Id&quot;&gt;delete&lt;/button&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            }
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;a asp-page=&quot;./Create&quot;&gt;Create&lt;/a&gt;
+&lt;/form&gt;
+</code></pre><p>The code behind <em>Index.cshtml.cs</em> file:</p>
+<pre><code class="lang-cs" name="main">using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPagesContacts.Data;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace RazorPagesContacts.Pages
+{
+    public class IndexModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public IndexModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        public IList&lt;Customer&gt; Customers { get; private set; }
+
+        public async Task OnGetAsync()
+        {
+            Customers = await _db.Customers.AsNoTracking().ToListAsync();
+        }
+
+        public async Task&lt;IActionResult&gt; OnPostDeleteAsync(int id)
+        {
+            var contact = await _db.Customers.FindAsync(id);
+
+            if (contact != null)
+            {
+                _db.Customers.Remove(contact);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+    }
+}
+</code></pre><p>The <em>Index.cshtml</em> file contains the following markup to create an edit link for each contact:</p>
+<pre><code class="lang-cshtml">&lt;a asp-page=&quot;./Edit&quot; asp-route-id=&quot;@contact.Id&quot;&gt;edit&lt;/a&gt;
+</code></pre><p>The <a class="xref" href="../views/tag-helpers/built-in/anchor-tag-helper.html">Anchor Tag Helper</a>
+used the <a class="xref" href="../views/tag-helpers/built-in/anchor-tag-helper.html#route">asp-route-{value}</a>
+attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, <code>http://localhost:5000/Edit/1</code>.</p>
+<p>The <em>Pages/Edit.cshtml</em> file:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="1">@page &quot;{id:int}&quot;
+@model RazorPagesContacts.Pages.EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Edit Customer&quot;;
+}
+
+&lt;h1&gt;Edit Customer - @Model.Customer.Id&lt;/h1&gt;
+&lt;form method=&quot;post&quot;&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;input asp-for=&quot;Customer.Id&quot; type=&quot;hidden&quot; /&gt;
+    &lt;div&gt;
+        &lt;label asp-for=&quot;Customer.Name&quot;&gt;&lt;/label&gt;
+        &lt;div&gt;
+            &lt;input asp-for=&quot;Customer.Name&quot; /&gt;
+            &lt;span asp-validation-for=&quot;Customer.Name&quot; &gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+ 
+    &lt;div&gt;
+        &lt;button type=&quot;submit&quot;&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre><p>The first line contains the <code>@page &quot;{id:int}&quot;</code> directive. The routing constraint<code>&quot;{id:int}&quot;</code> tells the page to accept requests to the page that contain <code>int</code> route data. If a request to the page doesn&#39;t contain route data that can be converted to an <code>int</code>, the runtime returns an HTTP 404 (not found) error.</p>
+<p>The <em>Pages/Edit.cshtml.cs</em> file:</p>
+<pre><code class="lang-cs" name="main">using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using RazorPagesContacts.Data;
+
+namespace RazorPagesContacts.Pages
+{
+    public class EditModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public EditModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        [BindProperty]
+        public Customer Customer { get; set; }
+
+        public async Task&lt;IActionResult&gt; OnGetAsync(int id)
+        {
+            Customer = await _db.Customers.FindAsync(id);
+
+            if (Customer == null)
+            {
+                return RedirectToPage(&quot;/Index&quot;);
+            }
+
+            return Page();
+        }
+
+        public async Task&lt;IActionResult&gt; OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _db.Attach(Customer).State = EntityState.Modified;
+
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new Exception($&quot;Customer {Customer.Id} not found!&quot;);
+            }
+
+            return RedirectToPage(&quot;/Index&quot;);
+        }
+    }
+}
+</code></pre><p><a name="xsrf"></a></p>
+<h2 id="xsrfcsrf-and-razor-pages">XSRF/CSRF and Razor Pages</h2>
+<p>You don&#39;t have to write any code for <a class="xref" href="../../security/anti-request-forgery.html">antiforgery validation</a>. Antiforgery token generation and validation are automatically included in Razor Pages.</p>
+<p><a name="layout"></a></p>
+<h2 id="using-layouts-partials-templates-and-tag-helpers-with-razor-pages">Using Layouts, partials, templates, and Tag Helpers with Razor Pages</h2>
+<p>Pages work with all the features of the Razor view engine. Layouts, partials, templates, Tag Helpers, <em>_ViewStart.cshtml</em>, <em>_ViewImports.cshtml</em> work in the same way they do for conventional Razor views.</p>
+<p>Let&#39;s declutter this page by taking advantage of some of those features.</p>
+<p>Add a <a class="xref" href="../views/layout.html">layout page</a> to <em>Pages/_Layout.cshtml</em>:</p>
+<pre><code class="lang-cshtml" name="main">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt; 
+    &lt;title&gt;Razor Pages Sample&lt;/title&gt;      
+&lt;/head&gt;
+&lt;body&gt;    
+   &lt;a asp-page=&quot;/Index&quot;&gt;Home&lt;/a&gt;
+    @RenderBody()  
+    &lt;a asp-page=&quot;/Customers/Create&quot;&gt;Create&lt;/a&gt; &lt;br /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The <a class="xref" href="../views/layout.html">Layout</a>:</p>
+<ul>
+<li>Controls the layout of each page (unless the page opts out of layout).</li>
+<li>Imports HTML structures such as JavaScript and stylesheets.</li>
+</ul>
+<p>See <a class="xref" href="../views/layout.html">layout page</a> for more information.</p>
+<p>The <a class="xref" href="../views/layout.html#specifying-a-layout">Layout</a> property is set in <em>Pages/_ViewStart.cshtml</em>:</p>
+<pre><code class="lang-cshtml" name="main">@{
+    Layout = &quot;_Layout&quot;;
+}
+</code></pre><p><strong>Note:</strong> The layout is in the <em>Pages</em> folder. Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page. A layout in the <em>Pages</em> folder can be used from any Razor page under the <em>Pages</em> folder.</p>
+<p>We recommend you <strong>not</strong> put the layout file in the <em>Views/Shared</em> folder. <em>Views/Shared</em> is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.</p>
+<p>View search from a Razor Page includes the <em>Pages</em> folder. The layouts, templates, and partials you&#39;re using with MVC controllers and conventional Razor views <em>just work</em>.</p>
+<p>Add a <em>Pages/_ViewImports.cshtml</em> file:</p>
+<pre><code class="lang-cshtml" name="main">@namespace RazorPagesContacts.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+</code></pre><p><code>@namespace</code> is explained later in the tutorial. The <code>@addTagHelper</code> directive brings in the <a class="xref" href="../views/tag-helpers/built-in/index.html">built-in Tag Helpers</a> to all the pages in the <em>Pages</em> folder.</p>
+<p><a name="namespace"></a></p>
+<p>When the <code>@namespace</code> directive is used explicitly on a page:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="2">@page
+@namespace RazorPagesIntro.Pages.Customers
+
+@model NameSpaceModel
+
+&lt;h2&gt;Name space&lt;/h2&gt;
+&lt;p&gt;
+    @Model.Message
+&lt;/p&gt;
+</code></pre><p>The directive sets the namespace for the page. The <code>@model</code> directive doesn&#39;t need to include the namespace.</p>
+<p>When the <code>@namespace</code> directive is contained in <em>_ViewImports.cshtml</em>, the specified namespace supplies the prefix for the generated namespace in the Page that imports the <code>@namespace</code> directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing <em>_ViewImports.cshtml</em> and the folder containing the page.</p>
+<p>For example, the code behind file <em>Pages/Customers/Edit.cshtml.cs</em> explicitly sets the namespace:</p>
+<pre><code class="lang-cs" name="main">namespace RazorPagesContacts.Pages
+{
+    public class EditModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public EditModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        // Code removed for brevity.
+</code></pre><p>The <em>Pages/_ViewImports.cshtml</em> file sets the following namespace:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="1">@namespace RazorPagesContacts.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+</code></pre><p>The generated namespace for the <em>Pages/Customers/Edit.cshtml</em> Razor Page is the same as the code behind file. The <code>@namespace</code> directive was designed so the C# classes added to a project and pages-generated code <em>just work</em> without having to add an <code>@using</code> directive for the code behind file.</p>
+<p><strong>Note:</strong> <code>@namespace</code> also works with conventional Razor views.</p>
+<p>The original <em>Pages/Create.cshtml</em> view file:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="2">@page
+@model RazorPagesContacts.Pages.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+&lt;html&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Enter your name.
+    &lt;/p&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Customer.Name&quot; /&gt;&lt;/div&gt;
+        &lt;input type=&quot;submit&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The updated <em>Pages/Create.cshtml</em> view file:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="2">@page
+@model CreateModel
+
+&lt;html&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Enter your name.
+    &lt;/p&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Customer.Name&quot; /&gt;&lt;/div&gt;
+        &lt;input type=&quot;submit&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The <a href="#rpvs17">Razor Pages starter project</a> contains the <em>Pages/_ValidationScriptsPartial.cshtml</em>, which hooks up client-side validation.</p>
+<p><a name="url_gen"></a></p>
+<h2 id="url-generation-for-pages">URL generation for Pages</h2>
+<p>The <code>Create</code> page, shown previously, uses <code>RedirectToPage</code>:</p>
+<pre><code class="lang-cs" name="main" highlight-lines="10">public async Task&lt;IActionResult&gt; OnPostAsync()
+{
+    if (!ModelState.IsValid)
+    {
+        return Page();
+    }
+
+    _db.Customers.Add(Customer);
+    await _db.SaveChangesAsync();
+    return RedirectToPage(&quot;/Index&quot;);
+}
+</code></pre><p>The app has the following file/folder structure:</p>
+<ul>
+<li><p><em>/Pages</em></p>
+<ul>
+<li><em>Index.cshtml</em></li>
+<li><p><em>/Customer</em></p>
+<ul>
+<li><em>Create.cshtml</em></li>
+<li><em>Edit.cshtml</em></li>
+<li><em>Index.cshtml</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The <em>Pages/Customers/Create.cshtml</em> and <em>Pages/Customers/Edit.cshtml</em> pages redirect to <em>Pages/Index.cshtml</em> after success. The string <code>/Index</code> is part of the URI to access the preceding page. The string <code>/Index</code> can be used to generate URIs to the <em>Pages/Index.cshtml</em> page. For example:</p>
+<ul>
+<li><code>Url.Page(&quot;/Index&quot;, ...)</code></li>
+<li><code>&lt;a asp-page=&quot;/Index&quot;&gt;My Index Page&lt;/a&gt;</code></li>
+<li><code>RedirectToPage(&quot;/Index&quot;)</code></li>
+</ul>
+<p>The page name is the path to the page from the root <em>/Pages</em> folder (including a leading <code>/</code>, for example <code>/Index</code>). The preceding URL generation samples are much more feature rich than just hardcoding a URL. URL generation uses <a class="xref" href="../controllers/routing.html">routing</a> and can generate and encode parameters according to how the route is defined in the destination path.</p>
+<p>URL generation for pages supports relative names. The following table shows which Index page is selected with different <code>RedirectToPage</code> parameters from <em>Pages/Customers/Create.cshtml</em>:</p>
+<table>
+<thead>
+<tr>
+<th>RedirectToPage(x)</th>
+<th>Page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RedirectToPage(&quot;/Index&quot;)</td>
+<td><em>Pages/Index</em></td>
+</tr>
+<tr>
+<td>RedirectToPage(&quot;./Index&quot;);</td>
+<td><em>Pages/Customers/Index</em></td>
+</tr>
+<tr>
+<td>RedirectToPage(&quot;../Index&quot;)</td>
+<td><em>Pages/Index</em></td>
+</tr>
+<tr>
+<td>RedirectToPage(&quot;Index&quot;)</td>
+<td><em>Pages/Customers/Index</em></td>
+</tr>
+</tbody>
+</table>
+<p><code>RedirectToPage(&quot;Index&quot;)</code>, <code>RedirectToPage(&quot;./Index&quot;)</code>, and <code>RedirectToPage(&quot;../Index&quot;)</code>  are <em>relative names</em>. The <code>RedirectToPage</code> parameter is <em>combined</em> with the path of the current page to compute the name of the destination page.  <!-- Review: Original had The provided string is combined with the page name of the current page to compute the name of the destination page. -- page name, not page path --></p>
+<p>Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn&#39;t include the folder name).</p>
+<h2 id="tempdata">TempData</h2>
+<p>ASP.NET Core exposes the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData">TempData</a> property on a <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller">controller</a>. This property stores data until it is read. The <code>Keep</code> and <code>Peek</code> methods can be used to examine the data without deletion. <code>TempData</code> is  useful for redirection, when data is needed for more than a single request.</p>
+<p>The <code>[TempData]</code> attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.</p>
+<p>The following code sets the value of <code>Message</code> using <code>TempData</code>:</p>
+<pre><code class="lang-cs" name="main" highlight-lines="10-11,25">public class CreateDotModel : PageModel
+{
+    private readonly AppDbContext _db;
+
+    public CreateDotModel(AppDbContext db)
+    {
+        _db = db;
+    }
+
+    [TempData]
+    public string Message { get; set; }
+
+    [BindProperty]
+    public Customer Customer { get; set; }
+
+    public async Task&lt;IActionResult&gt; OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        _db.Customers.Add(Customer);
+        await _db.SaveChangesAsync();
+        Message = $&quot;Customer {Customer.Name} added&quot;;
+        return RedirectToPage(&quot;./Index&quot;);
+    }
+}
+</code></pre><p>The following markup in the <em>Pages/Customers/Index.cshtml</em> file displays the value of <code>Message</code> using <code>TempData</code>.</p>
+<pre><code class="lang-cshtml">&lt;h3&gt;Msg: @Model.Message&lt;/h3&gt;
+</code></pre><p>The <em>Pages/Customers/Index.cshtml.cs</em> code-behind file applies the <code>[TempData]</code> attribute to the <code>Message</code> property.</p>
+<pre><code class="lang-cs">[TempData]
+public string Message { get; set; }
+</code></pre><p>See <a class="xref" href="../../fundamentals/app-state.html#temp">TempData</a> for more information.</p>
+<p><a name="mhpp"></a></p>
+<h2 id="multiple-handlers-per-page">Multiple handlers per page</h2>
+<p>The following page generates markup for two page handlers using the <code>asp-page-handler</code> Tag Helper:</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="12-13">@page
+@model CreateFATHModel
+
+&lt;html&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Enter your name.
+    &lt;/p&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Customer.Name&quot; /&gt;&lt;/div&gt;
+        &lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinList&quot; value=&quot;Join&quot; /&gt;
+        &lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinListUC&quot; value=&quot;JOIN UC&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there is no `asp-` attribute   -->
+<p>The form in the preceding example has two submit buttons, each using the <code>FormActionTagHelper</code> to submit to a different URL. The <code>asp-page-handler</code> attribute is a companion to <code>asp-page</code>. <code>asp-page-handler</code> generates URLs that submit to each of the handler methods defined by a page. <code>asp-page</code> is not specified because the sample is linking to the current page.</p>
+<p>The code-behind file:</p>
+<pre><code class="lang-cs" name="main" highlight-lines="20,32">using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPagesContacts.Data;
+
+namespace RazorPagesContacts.Pages.Customers
+{
+    public class CreateFATHModel : PageModel
+    {
+        private readonly AppDbContext _db;
+
+        public CreateFATHModel(AppDbContext db)
+        {
+            _db = db;
+        }
+
+        [BindProperty]
+        public Customer Customer { get; set; }
+
+        public async Task&lt;IActionResult&gt; OnPostJoinListAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _db.Customers.Add(Customer);
+            await _db.SaveChangesAsync();
+            return RedirectToPage(&quot;/Index&quot;);
+        }
+
+        public async Task&lt;IActionResult&gt; OnPostJoinListUCAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            Customer.Name = Customer.Name?.ToUpper();
+            return await OnPostJoinListAsync();
+        }
+    }
+}
+</code></pre><p>The preceding code uses <em>named handler methods</em>. Named handler methods are created by taking the text in the name after <code>On&lt;HTTP Verb&gt;</code> and before <code>Async</code> (if present). In the preceding example, the page methods are OnPost<strong>JoinList</strong>Async and OnPost<strong>JoinListUC</strong>Async. With <em>OnPost</em> and <em>Async</em> removed, the handler names are <code>JoinList</code> and <code>JoinListUC</code>.</p>
+<pre><code class="lang-cshtml" name="main">&lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinList&quot; value=&quot;Join&quot; /&gt;
+&lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinListUC&quot; value=&quot;JOIN UC&quot; /&gt;
+</code></pre><p>Using the preceding code, the URL path that submits to <code>OnPostJoinListAsync</code> is <code>http://localhost:5000/Customers/CreateFATH?handler=JoinList</code>. The URL path that submits to <code>OnPostJoinListUCAsync</code> is <code>http://localhost:5000/Customers/CreateFATH?handler=JoinListUC</code>.</p>
+<h2 id="customizing-routing">Customizing Routing</h2>
+<p>If you don&#39;t like the query string <code>?handler=JoinList</code> in the URL, you can change the route to put the handler name in the path portion of the URL. You can customize the route by adding a route template enclosed in double quotes after the <code>@page</code> directive.</p>
+<pre><code class="lang-cshtml" name="main" highlight-lines="1">@page &quot;{handler?}&quot;
+@model CreateRouteModel
+
+&lt;html&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        Enter your name.
+    &lt;/p&gt;
+    &lt;div asp-validation-summary=&quot;All&quot;&gt;&lt;/div&gt;
+    &lt;form method=&quot;POST&quot;&gt;
+        &lt;div&gt;Name: &lt;input asp-for=&quot;Customer.Name&quot; /&gt;&lt;/div&gt;
+        &lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinList&quot; value=&quot;Join&quot; /&gt;
+        &lt;input type=&quot;submit&quot; asp-page-handler=&quot;JoinListUC&quot; value=&quot;JOIN UC&quot; /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>The preceding route puts the handler name in the URL path instead of the query string. The <code>?</code> following <code>handler</code> means the route parameter is optional.</p>
+<p>You can use <code>@page</code> to add additional segments and parameters to a page&#39;s route. Whatever&#39;s there is <strong>appended</strong> to the default route of the page. Using an absolute or virtual path to change the page&#39;s route (like <code>&quot;~/Some/Other/Path&quot;</code>) is not supported.</p>
+<h2 id="configuration-and-settings">Configuration and settings</h2>
+<p>To configure advanced options, use the extension method <code>AddRazorPagesOptions</code> on the MVC builder:</p>
+<pre><code class="lang-cs" name="main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc()
+        .AddRazorPagesOptions(options =&gt;
+        {
+            options.RootDirectory = &quot;/MyPages&quot;;
+            options.Conventions.AuthorizeFolder(&quot;/MyPages/Admin&quot;);
+        });
+}
+</code></pre><p>Currently you can use the <code>RazorPagesOptions</code> to set the root directory for pages, or add application model conventions for pages. We hope to enable more extensibility this way in the future.</p>
+<p>To precompile views, see <a class="xref" href="../views/view-compilation.html">Razor view compilation</a> .</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/index/sample">Download or view sample code</a>.</p>
+<p>See <a class="xref" href="../../tutorials/razor-pages/razor-pages-start.html">Getting started with Razor Pages in ASP.NET Core</a>, which builds on this introduction.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/razor-pages/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

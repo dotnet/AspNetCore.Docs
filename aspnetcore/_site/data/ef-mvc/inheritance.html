@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core MVC with EF Core - Inheritance - 9 of 10 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core MVC with EF Core - Inheritance - 9 of 10 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="data/ef-mvc/inheritance">
+<h1 id="inheritance---ef-core-with-aspnet-core-mvc-tutorial-9-of-10">Inheritance - EF Core with ASP.NET Core MVC tutorial (9 of 10)</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see <a href="intro.html">the first tutorial in the series</a>.</p>
+<p>In the previous tutorial, you handled concurrency exceptions. This tutorial will show you how to implement inheritance in the data model.</p>
+<p>In object-oriented programming, you can use inheritance to facilitate code reuse. In this tutorial, you&#39;ll change the <code>Instructor</code> and <code>Student</code> classes so that they derive from a <code>Person</code> base class which contains properties such as <code>LastName</code> that are common to both instructors and students. You won&#39;t add or change any web pages, but you&#39;ll change some of the code and those changes will be automatically reflected in the database.</p>
+<h2 id="options-for-mapping-inheritance-to-database-tables">Options for mapping inheritance to database tables</h2>
+<p>The <code>Instructor</code> and <code>Student</code> classes in the School data model have several properties that are identical:</p>
+<p><img src="inheritance/_static/no-inheritance.png" alt="Student and Instructor classes"></p>
+<p>Suppose you want to eliminate the redundant code for the properties that are shared by the <code>Instructor</code> and <code>Student</code> entities. Or you want to write a service that can format names without caring whether the name came from an instructor or a student. You could create a <code>Person</code> base class that contains only those shared properties, then make the <code>Instructor</code> and <code>Student</code> classes inherit from that base class, as shown in the following illustration:</p>
+<p><img src="inheritance/_static/inheritance.png" alt="Student and Instructor classes deriving from Person class"></p>
+<p>There are several ways this inheritance structure could be represented in the database. You could have a Person table that includes information about both students and instructors in a single table. Some of the columns could apply only to instructors (HireDate), some only to students (EnrollmentDate), some to both (LastName, FirstName). Typically, you&#39;d have a discriminator column to indicate which type each row represents. For example, the discriminator column might have &quot;Instructor&quot; for instructors and &quot;Student&quot; for students.</p>
+<p><img src="inheritance/_static/tph.png" alt="Table-per-hierarchy example"></p>
+<p>This pattern of generating an entity inheritance structure from a single database table is called table-per-hierarchy (TPH) inheritance.</p>
+<p>An alternative is to make the database look more like the inheritance structure. For example, you could have only the name fields in the Person table and have separate Instructor and Student tables with the date fields.</p>
+<p><img src="inheritance/_static/tpt.png" alt="Table-per-type inheritance"></p>
+<p>This pattern of making a database table for each entity class is called table per type (TPT) inheritance.</p>
+<p>Yet another option is to map all non-abstract types to individual tables. All properties of a class, including inherited properties, map to columns of the corresponding table. This pattern is called Table-per-Concrete Class (TPC) inheritance. If you implemented TPC inheritance for the Person, Student, and Instructor classes as shown earlier, the Student and Instructor tables would look no different after implementing inheritance than they did before.</p>
+<p>TPC and TPH inheritance patterns generally deliver better performance than TPT inheritance patterns, because TPT patterns can result in complex join queries.</p>
+<p>This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you&#39;ll do is create a <code>Person</code> class, change the <code>Instructor</code> and <code>Student</code> classes to derive from <code>Person</code>, add the new class to the <code>DbContext</code>, and create a migration.</p>
+<div class="TIP"><h5>Tip</h5><p>Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.</p>
+</div>
+<h2 id="create-the-person-class">Create the Person class</h2>
+<p>In the Models folder, create Person.cs and replace the template code with the following code:</p>
+<pre><code class="lang-csharp" name="Main">using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public abstract class Person
+    {
+        public int ID { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = &quot;Last Name&quot;)]
+        public string LastName { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = &quot;First name cannot be longer than 50 characters.&quot;)]
+        [Column(&quot;FirstName&quot;)]
+        [Display(Name = &quot;First Name&quot;)]
+        public string FirstMidName { get; set; }
+
+        [Display(Name = &quot;Full Name&quot;)]
+        public string FullName
+        {
+            get
+            {
+                return LastName + &quot;, &quot; + FirstMidName;
+            }
+        }
+    }
+}
+</code></pre><h2 id="make-student-and-instructor-classes-inherit-from-person">Make Student and Instructor classes inherit from Person</h2>
+<p>In <em>Instructor.cs</em>, derive the Instructor class from the Person class and remove the key and name fields. The code will look like the following example:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="8">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Instructor : Person
+    {
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        [Display(Name = &quot;Hire Date&quot;)]
+        public DateTime HireDate { get; set; }
+
+        public ICollection&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+        public OfficeAssignment OfficeAssignment { get; set; }
+    }
+}
+</code></pre><p>Make the same changes in <em>Student.cs</em>.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="8">using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Student : Person
+    {
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        [Display(Name = &quot;Enrollment Date&quot;)]
+        public DateTime EnrollmentDate { get; set; }
+
+
+        public ICollection&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><h2 id="add-the-person-entity-type-to-the-data-model">Add the Person entity type to the data model</h2>
+<p>Add the Person entity type to <em>SchoolContext.cs</em>. The new lines are highlighted.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="19,30">using ContosoUniversity.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace ContosoUniversity.Data
+{
+    public class SchoolContext : DbContext
+    {
+        public SchoolContext(DbContextOptions&lt;SchoolContext&gt; options) : base(options)
+        {
+        }
+
+        public DbSet&lt;Course&gt; Courses { get; set; }
+        public DbSet&lt;Enrollment&gt; Enrollments { get; set; }
+        public DbSet&lt;Student&gt; Students { get; set; }
+        public DbSet&lt;Department&gt; Departments { get; set; }
+        public DbSet&lt;Instructor&gt; Instructors { get; set; }
+        public DbSet&lt;OfficeAssignment&gt; OfficeAssignments { get; set; }
+        public DbSet&lt;CourseAssignment&gt; CourseAssignments { get; set; }
+        public DbSet&lt;Person&gt; People { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity&lt;Course&gt;().ToTable(&quot;Course&quot;);
+            modelBuilder.Entity&lt;Enrollment&gt;().ToTable(&quot;Enrollment&quot;);
+            modelBuilder.Entity&lt;Student&gt;().ToTable(&quot;Student&quot;);
+            modelBuilder.Entity&lt;Department&gt;().ToTable(&quot;Department&quot;);
+            modelBuilder.Entity&lt;Instructor&gt;().ToTable(&quot;Instructor&quot;);
+            modelBuilder.Entity&lt;OfficeAssignment&gt;().ToTable(&quot;OfficeAssignment&quot;);
+            modelBuilder.Entity&lt;CourseAssignment&gt;().ToTable(&quot;CourseAssignment&quot;);
+            modelBuilder.Entity&lt;Person&gt;().ToTable(&quot;Person&quot;);
+
+            modelBuilder.Entity&lt;CourseAssignment&gt;()
+                .HasKey(c =&gt; new { c.CourseID, c.InstructorID });
+        }
+    }
+}
+</code></pre><p>This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you&#39;ll see, when the database is updated, it will have a Person table in place of the Student and Instructor tables.</p>
+<h2 id="create-and-customize-migration-code">Create and customize migration code</h2>
+<p>Save your changes and build the project. Then open the command window in the project folder and enter the following command:</p>
+<pre><code class="lang-console">dotnet ef migrations add Inheritance
+</code></pre><p>Don&#39;t run the <code>database update</code> command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.</p>
+<p>Open <em>Migrations/&lt;timestamp&gt;_Inheritance.cs</em> and replace the <code>Up</code> method with the following code:</p>
+<pre><code class="lang-csharp" name="Main">protected override void Up(MigrationBuilder migrationBuilder)
+{
+    migrationBuilder.DropForeignKey(
+        name: &quot;FK_Enrollment_Student_StudentID&quot;,
+        table: &quot;Enrollment&quot;);
+
+    migrationBuilder.DropIndex(name: &quot;IX_Enrollment_StudentID&quot;, table: &quot;Enrollment&quot;);
+
+    migrationBuilder.RenameTable(name: &quot;Instructor&quot;, newName: &quot;Person&quot;);
+    migrationBuilder.AddColumn&lt;DateTime&gt;(name: &quot;EnrollmentDate&quot;, table: &quot;Person&quot;, nullable: true);
+    migrationBuilder.AddColumn&lt;string&gt;(name: &quot;Discriminator&quot;, table: &quot;Person&quot;, nullable: false, maxLength: 128, defaultValue: &quot;Instructor&quot;);
+    migrationBuilder.AlterColumn&lt;DateTime&gt;(name: &quot;HireDate&quot;, table: &quot;Person&quot;, nullable: true);
+    migrationBuilder.AddColumn&lt;int&gt;(name: &quot;OldId&quot;, table: &quot;Person&quot;, nullable: true);
+
+    // Copy existing Student data into new Person table.
+    migrationBuilder.Sql(&quot;INSERT INTO dbo.Person (LastName, FirstName, HireDate, EnrollmentDate, Discriminator, OldId) SELECT LastName, FirstName, null AS HireDate, EnrollmentDate, &#39;Student&#39; AS Discriminator, ID AS OldId FROM dbo.Student&quot;);
+    // Fix up existing relationships to match new PK&#39;s.
+    migrationBuilder.Sql(&quot;UPDATE dbo.Enrollment SET StudentId = (SELECT ID FROM dbo.Person WHERE OldId = Enrollment.StudentId AND Discriminator = &#39;Student&#39;)&quot;);
+
+    // Remove temporary key
+    migrationBuilder.DropColumn(name: &quot;OldID&quot;, table: &quot;Person&quot;);
+
+    migrationBuilder.DropTable(
+        name: &quot;Student&quot;);
+
+    migrationBuilder.CreateIndex(
+         name: &quot;IX_Enrollment_StudentID&quot;,
+         table: &quot;Enrollment&quot;,
+         column: &quot;StudentID&quot;);
+
+    migrationBuilder.AddForeignKey(
+        name: &quot;FK_Enrollment_Person_StudentID&quot;,
+        table: &quot;Enrollment&quot;,
+        column: &quot;StudentID&quot;,
+        principalTable: &quot;Person&quot;,
+        principalColumn: &quot;ID&quot;,
+        onDelete: ReferentialAction.Cascade);
+}
+</code></pre><p>This code takes care of the following database update tasks:</p>
+<ul>
+<li><p>Removes foreign key constraints and indexes that point to the Student table.</p>
+</li>
+<li><p>Renames the Instructor table as Person and makes changes needed for it to store Student data:</p>
+</li>
+<li><p>Adds nullable EnrollmentDate for students.</p>
+</li>
+<li><p>Adds Discriminator column to indicate whether a row is for a student or an instructor.</p>
+</li>
+<li><p>Makes HireDate nullable since student rows won&#39;t have hire dates.</p>
+</li>
+<li><p>Adds a temporary field that will be used to update foreign keys that point to students. When you copy students into the Person table they&#39;ll get new primary key values.</p>
+</li>
+<li><p>Copies data from the Student table into the Person table. This causes students to get assigned new primary key values.</p>
+</li>
+<li><p>Fixes foreign key values that point to students.</p>
+</li>
+<li><p>Re-creates foreign key constraints and indexes, now pointing them to the Person table.</p>
+</li>
+</ul>
+<p>(If you had used GUID instead of integer as the primary key type, the student primary key values wouldn&#39;t have to change, and several of these steps could have been omitted.)</p>
+<p>Run the <code>database update</code> command:</p>
+<pre><code class="lang-console">dotnet ef database update
+</code></pre><p>(In a production system you would make corresponding changes to the <code>Down</code> method in case you ever had to use that to go back to the previous database version. For this tutorial you won&#39;t be using the <code>Down</code> method.)</p>
+<div class="NOTE"><h5>Note</h5><p>It&#39;s possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can&#39;t resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the <code>database drop</code> CLI command.</p>
+</div>
+<h2 id="test-with-inheritance-implemented">Test with inheritance implemented</h2>
+<p>Run the app and try various pages. Everything works the same as it did before.</p>
+<p>In <strong>SQL Server Object Explorer</strong>, expand <strong>Data Connections/SchoolContext</strong> and then <strong>Tables</strong>, and you see that the Student and Instructor tables have been replaced by a Person table. Open the Person table designer and you see that it has all of the columns that used to be in the Student and Instructor tables.</p>
+<p><img src="inheritance/_static/ssox-person-table.png" alt="Person table in SSOX"></p>
+<p>Right-click the Person table, and then click <strong>Show Table Data</strong> to see the discriminator column.</p>
+<p><img src="inheritance/_static/ssox-person-data.png" alt="Person table in SSOX - table data"></p>
+<h2 id="summary">Summary</h2>
+<p>You&#39;ve implemented table-per-hierarchy inheritance for the <code>Person</code>, <code>Student</code>, and <code>Instructor</code> classes. For more information about inheritance in Entity Framework Core, see <a href="https://docs.microsoft.com/ef/core/modeling/inheritance">Inheritance</a>. In the next tutorial you&#39;ll see how to handle a variety of relatively advanced Entity Framework scenarios.</p>
+<div class="step-by-step"><p><a href="concurrency.html">Previous</a>
+<a href="advanced.html">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-mvc/inheritance.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding a model to a Razor Pages app with Visual Studio for Mac </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding a model to a Razor Pages app with Visual Studio for Mac ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/razor-pages-mac/model">
+<h1 id="adding-a-model-to-a-razor-pages-app-in-aspnet-core-with-visual-studio-for-mac" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="15" sourceendlinenumber="15">Adding a model to a Razor Pages app in ASP.NET Core with Visual Studio for Mac</h1>
+
+<p sourcefile="includes/RP/model1.md" sourcestartlinenumber="1" sourceendlinenumber="1">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="includes/RP/model1.md" sourcestartlinenumber="1" sourceendlinenumber="1">Rick Anderson</a></p>
+<p sourcefile="includes/RP/model1.md" sourcestartlinenumber="3" sourceendlinenumber="3">In this section, you add classes for managing movies in a database. You use these classes with <a href="https://docs.microsoft.com/ef/core" data-raw-source="[Entity Framework Core](https://docs.microsoft.com/ef/core)" sourcefile="includes/RP/model1.md" sourcestartlinenumber="3" sourceendlinenumber="3">Entity Framework Core</a> (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.</p>
+<p sourcefile="includes/RP/model1.md" sourcestartlinenumber="5" sourceendlinenumber="5">The model classes you create are known as POCO classes (from &quot;plain-old CLR objects&quot;) because they don&#39;t have any dependency on EF Core. They define the properties of the data that are stored in the database.</p>
+<p sourcefile="includes/RP/model1.md" sourcestartlinenumber="7" sourceendlinenumber="7">In this tutorial, you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to <a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db" data-raw-source="[generate model classes from an existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)" sourcefile="includes/RP/model1.md" sourcestartlinenumber="7" sourceendlinenumber="7">generate model classes from an existing database</a>.</p>
+<p sourcefile="includes/RP/model1.md" sourcestartlinenumber="9" sourceendlinenumber="9"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie" data-raw-source="[View or download](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie)" sourcefile="includes/RP/model1.md" sourcestartlinenumber="9" sourceendlinenumber="9">View or download</a> sample.</p>
+<h2 id="add-a-data-model" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="19" sourceendlinenumber="19">Add a data model</h2>
+<ul sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="21" sourceendlinenumber="27">
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="21" sourceendlinenumber="21">In Solution Explorer, right-click the <strong>RazorPagesMovie</strong> project, and then select <strong>Add</strong> &gt; <strong>New Folder</strong>. Name the folder <em>Models</em>.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="22" sourceendlinenumber="22">Right-click the <em>Models</em> folder, and then select <strong>Add</strong> &gt; <strong>New File</strong>.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="23" sourceendlinenumber="27"><p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="23" sourceendlinenumber="23">In the <strong>New File</strong> dialog:</p>
+<ul sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="25" sourceendlinenumber="27">
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="25" sourceendlinenumber="25">Select <strong>General</strong> in the left pane.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="26" sourceendlinenumber="26">Select <strong>Empty Class</strong> in the center pain.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="27" sourceendlinenumber="27">Name the class <strong>Movie</strong> and select <strong>New</strong>.</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="includes/RP/model2.md" sourcestartlinenumber="1" sourceendlinenumber="1">Add the following properties to the <code>Movie</code> class:</p>
+<pre sourcefile="includes/RP/model2.md" sourcestartlinenumber="3" sourceendlinenumber="3"><code class="lang-csharp" name="Main">using System;
+
+namespace RazorPagesMovie.Models
+{
+    public class Movie
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p sourcefile="includes/RP/model2.md" sourcestartlinenumber="5" sourceendlinenumber="5">The <code>ID</code> field is required by the database for the primary key.</p>
+<p sourcefile="includes/RP/model2.md" sourcestartlinenumber="7" sourceendlinenumber="7"><a name="dc"></a></p>
+<h3 id="add-a-database-context-class" sourcefile="includes/RP/model2.md" sourcestartlinenumber="8" sourceendlinenumber="8">Add a database context class</h3>
+<p sourcefile="includes/RP/model2.md" sourcestartlinenumber="10" sourceendlinenumber="10">Add a <code>DbContext</code> derived class named <em>MovieContext.cs</em> to the <em>Models</em> folder.</p>
+<pre sourcefile="includes/RP/model2.md" sourcestartlinenumber="12" sourceendlinenumber="12"><code class="lang-csharp" name="Main">using Microsoft.EntityFrameworkCore;
+
+namespace RazorPagesMovie.Models
+{
+    public class MovieContext : DbContext
+    {
+        public MovieContext(DbContextOptions&lt;MovieContext&gt; options)
+            : base(options)
+        {
+        }
+
+        public DbSet&lt;Movie&gt; Movies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity&lt;Movie&gt;().ToTable(&quot;Movie&quot;);
+        }
+    }
+}
+</code></pre><p sourcefile="includes/RP/model2.md" sourcestartlinenumber="14" sourceendlinenumber="14">The preceding code creates a <code>DbSet</code> property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The <code>DbSet</code> property name is <code>Movies</code>. Since the database uses singular names, the sample overrides <code>OnModelCreating</code> to use the singular form (<code>Movie</code>) for the table name.</p>
+<p sourcefile="includes/RP/model2a.md" sourcestartlinenumber="1" sourceendlinenumber="1"><a name="cs"></a></p>
+<h3 id="add-a-database-connection-string" sourcefile="includes/RP/model2a.md" sourcestartlinenumber="2" sourceendlinenumber="2">Add a database connection string</h3>
+<p sourcefile="includes/RP/model2a.md" sourcestartlinenumber="4" sourceendlinenumber="4">Add a connection string to the <em>appsettings.json</em> file.</p>
+<pre sourcefile="includes/RP/model2a.md" sourcestartlinenumber="6" sourceendlinenumber="6"><code class="lang-json" name="Main" highlight-lines="8-10">{
+  &quot;Logging&quot;: {
+    &quot;IncludeScopes&quot;: false,
+    &quot;LogLevel&quot;: {
+      &quot;Default&quot;: &quot;Warning&quot;
+    }
+  },
+  &quot;ConnectionStrings&quot;: {
+    &quot;MovieContext&quot;: &quot;Data Source=MvcMovie.db&quot;
+  }
+}
+</code></pre><p sourcefile="includes/RP/model2a.md" sourcestartlinenumber="8" sourceendlinenumber="8"><a name="reg"></a></p>
+<h3 id="register-the-database-context" sourcefile="includes/RP/model2a.md" sourcestartlinenumber="9" sourceendlinenumber="9">Register the database context</h3>
+<p sourcefile="includes/RP/model2a.md" sourcestartlinenumber="11" sourceendlinenumber="11">Register the database context with the <a class="xref" href="../../fundamentals/dependency-injection.html" data-raw-source="[dependency injection](xref:fundamentals/dependency-injection)" sourcefile="includes/RP/model2a.md" sourcestartlinenumber="11" sourceendlinenumber="11">dependency injection</a> container in the <em>Startup.cs</em> file.</p>
+<pre sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="32" sourceendlinenumber="32"><code class="lang-csharp" name="Main" highlight-lines="3-6">public void ConfigureServices(IServiceCollection services)
+{
+    // requires 
+    // using RazorPagesMovie.Models;
+    // using Microsoft.EntityFrameworkCore;
+
+    services.AddDbContext&lt;MovieContext&gt;(options =&gt;
+        options.UseSqlite(Configuration.GetConnectionString(&quot;MovieContext&quot;)));
+    services.AddMvc();
+}
+</code></pre><p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="34" sourceendlinenumber="34">Right click on a red squiggly line, for example <code>MovieContext</code> in the line <code>services.AddDbContext&lt;MovieContext&gt;(options =&gt;</code>. Select <strong>Quick Fix &gt; using RazorPagesMovie.Models;</strong>. Visual studio adds the using statement.</p>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="36" sourceendlinenumber="36">Build the project to verify you don&#39;t have any errors.</p>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="model/red.png" alt="Create page" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+<h3 id="entity-framework-core-nuget-packages-for-migrations" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="40" sourceendlinenumber="40">Entity Framework Core NuGet packages for migrations</h3>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="42" sourceendlinenumber="42">The EF tools for the command-line interface (CLI) are provided in <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet" data-raw-source="[Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet)" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="42" sourceendlinenumber="42">Microsoft.EntityFrameworkCore.Tools.DotNet</a>. To install this package, add it to the <code>DotNetCliToolReference</code> collection in the <em>.csproj</em> file. <strong>Note:</strong> You have to install this package by editing the <em>.csproj</em> file; you can&#39;t use the <code>install-package</code> command or the package manager GUI.</p>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="44" sourceendlinenumber="44">To edit a <em>.csproj</em> file:</p>
+<ul sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="46" sourceendlinenumber="48">
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="46" sourceendlinenumber="46">Select <strong>File</strong> &gt; <strong>Open</strong>, and then select the <em>.csproj</em> file.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="47" sourceendlinenumber="47">Select <strong>Options</strong>.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="48" sourceendlinenumber="48">Change <strong>Open with</strong> to <strong>Source Code Editor</strong>.</li>
+</ul>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="50" sourceendlinenumber="50"><img src="model/csproj.png" alt="Edit csproj file" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="50" sourceendlinenumber="50"></p>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="52" sourceendlinenumber="52">Add the <code>Microsoft.EntityFrameworkCore.Tools.DotNet</code> tool reference to the second <strong>&lt;ItemGroup&gt;</strong>:</p>
+<pre sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="54" sourceendlinenumber="54"><code class="lang-xml" name="Main" highlight-lines="4">&lt;ItemGroup&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;DotNetCliToolReference Include=&quot;BundlerMinifier.Core&quot; Version=&quot;2.5.357&quot; /&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot; Version=&quot;2.0.0&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p sourcefile="includes/RP/model3.md" sourcestartlinenumber="1" sourceendlinenumber="1"><a name="cli"></a></p>
+<h2 id="add-scaffold-tooling-and-perform-initial-migration" sourcefile="includes/RP/model3.md" sourcestartlinenumber="2" sourceendlinenumber="2">Add scaffold tooling and perform initial migration</h2>
+<p sourcefile="includes/RP/model3.md" sourcestartlinenumber="4" sourceendlinenumber="4">From the command line, run the following .NET Core CLI commands:</p>
+<pre sourcefile="includes/RP/model3.md" sourcestartlinenumber="6" sourceendlinenumber="11"><code class="lang-console">dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet restore
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+</code></pre><p sourcefile="includes/RP/model3.md" sourcestartlinenumber="13" sourceendlinenumber="13">The <code>add package</code> command installs the tooling required to run the scaffolding engine.</p>
+<p sourcefile="includes/RP/model3.md" sourcestartlinenumber="15" sourceendlinenumber="15">The <code>ef migrations add InitialCreate</code> command generates code to create the initial database schema. The schema is based on the model specified in the <code>DbContext</code> (In the <em>Models/MovieContext.cs</em> file). The <code>Initial</code> argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See <a class="xref" href="../../data/ef-mvc/migrations.html#introduction-to-migrations" data-raw-source="[Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations)" sourcefile="includes/RP/model3.md" sourcestartlinenumber="15" sourceendlinenumber="15">Introduction to migrations</a> for more information.</p>
+<p sourcefile="includes/RP/model3.md" sourcestartlinenumber="17" sourceendlinenumber="17">The <code>ef database update</code> command runs the <code>Up</code> method in the <em>Migrations/&lt;time-stamp&gt;_InitialCreate.cs</em> file, which creates the database.</p>
+<p sourcefile="includes/RP/model4x.md" sourcestartlinenumber="1" sourceendlinenumber="1"><a name="scaffold"></a></p>
+<h3 id="scaffold-the-movie-model" sourcefile="includes/RP/model4x.md" sourcestartlinenumber="2" sourceendlinenumber="2">Scaffold the Movie model</h3>
+<ul sourcefile="includes/RP/model4x.md" sourcestartlinenumber="4" sourceendlinenumber="9">
+<li sourcefile="includes/RP/model4x.md" sourcestartlinenumber="4" sourceendlinenumber="4">Open a command window in the project directory (The directory that contains the <em>Program.cs</em>, <em>Startup.cs</em>, and <em>.csproj</em> files).</li>
+<li sourcefile="includes/RP/model4x.md" sourcestartlinenumber="5" sourceendlinenumber="9"><p sourcefile="includes/RP/model4x.md" sourcestartlinenumber="5" sourceendlinenumber="5">Run the following command:</p>
+<pre sourcefile="includes/RP/model4x.md" sourcestartlinenumber="7" sourceendlinenumber="9"><code class="lang-console">dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+</code></pre></li>
+</ul>
+<p sourcefile="includes/RP/model4exit.md" sourcestartlinenumber="1" sourceendlinenumber="1">If you get the error:</p>
+<pre sourcefile="includes/RP/model4exit.md" sourcestartlinenumber="2" sourceendlinenumber="6"><code>The process cannot access the file 
+&#39;RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll&#39; 
+because it is being used by another process.
+</code></pre><p sourcefile="includes/RP/model4exit.md" sourcestartlinenumber="7" sourceendlinenumber="7">Exit Visual Studio and run the command again.</p>
+<p sourcefile="includes/RP/model4.md" sourcestartlinenumber="1" sourceendlinenumber="1">The following table details the ASP.NET Core code generators` parameters:</p>
+<table sourcefile="includes/RP/model4.md" sourcestartlinenumber="3" sourceendlinenumber="9">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-m</td>
+<td>The name of the model.</td>
+</tr>
+<tr>
+<td>-dc</td>
+<td>The data context.</td>
+</tr>
+<tr>
+<td>-udl</td>
+<td>Use the default layout.</td>
+</tr>
+<tr>
+<td>-outDir</td>
+<td>The relative output folder path to create the views.</td>
+</tr>
+<tr>
+<td>--referenceScriptLibraries</td>
+<td>Adds <code>_ValidationScriptsPartial</code> to Edit and Create pages</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="includes/RP/model4.md" sourcestartlinenumber="11" sourceendlinenumber="11">Use the <code>h</code> switch to get help on the <code>aspnet-codegenerator razorpage</code> command:</p>
+<pre sourcefile="includes/RP/model4.md" sourcestartlinenumber="13" sourceendlinenumber="15"><code class="lang-console">dotnet aspnet-codegenerator razorpage -h
+</code></pre><p sourcefile="includes/RP/model4.md" sourcestartlinenumber="16" sourceendlinenumber="16"><a name="test"></a></p>
+<h3 id="test-the-app" sourcefile="includes/RP/model4.md" sourcestartlinenumber="17" sourceendlinenumber="17">Test the app</h3>
+<ul sourcefile="includes/RP/model4.md" sourcestartlinenumber="19" sourceendlinenumber="22">
+<li sourcefile="includes/RP/model4.md" sourcestartlinenumber="19" sourceendlinenumber="19">Run the app and append <code>/Movies</code> to the URL in the browser (<code>http://localhost:port/movies</code>).</li>
+<li sourcefile="includes/RP/model4.md" sourcestartlinenumber="20" sourceendlinenumber="22"><p sourcefile="includes/RP/model4.md" sourcestartlinenumber="20" sourceendlinenumber="20">Test the <strong>Create</strong> link.</p>
+<p sourcefile="includes/RP/model4.md" sourcestartlinenumber="22" sourceendlinenumber="22"><img src="../razor-pages/model/_static/conan.png" alt="Create page" sourcefile="includes/RP/model4.md" sourcestartlinenumber="22" sourceendlinenumber="22"></p>
+</li>
+</ul>
+<p sourcefile="includes/RP/model4.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a name="scaffold"></a></p>
+<ul sourcefile="includes/RP/model4.md" sourcestartlinenumber="26" sourceendlinenumber="26">
+<li sourcefile="includes/RP/model4.md" sourcestartlinenumber="26" sourceendlinenumber="26">Test the <strong>Edit</strong>, <strong>Details</strong>, and <strong>Delete</strong> links.</li>
+</ul>
+<p sourcefile="includes/RP/model4.md" sourcestartlinenumber="28" sourceendlinenumber="28">If you get the following error, verify you have run migrations and updated the database:</p>
+<pre sourcefile="includes/RP/model4.md" sourcestartlinenumber="30" sourceendlinenumber="34"><code>An unhandled exception occurred while processing the request.
+SqliteException: SQLite Error 1: &#39;no such table: Movie&#39;.
+Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
+</code></pre><h3 id="add-the-pagesmovies-files-to-the-project" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="63" sourceendlinenumber="63">Add the Pages/Movies files to the project</h3>
+<ul sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="65" sourceendlinenumber="67">
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="65" sourceendlinenumber="65">In Visual Studio, Right-click the <em>Pages</em> folder and select <strong>Add &gt; Add existing Folder</strong>.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="66" sourceendlinenumber="66">Select the <em>Movies</em> folder.</li>
+<li sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="67" sourceendlinenumber="67">In the <em>Chosse files to include in the project</em> dialog, select <strong>Include All</strong>.</li>
+</ul>
+<p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="69" sourceendlinenumber="69">The next tutorial explains the files created by scaffolding.</p>
+<div class="step-by-step" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="71" sourceendlinenumber="71"><p sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="72" sourceendlinenumber="73"><a class="xref" href="razor-pages-start.html" data-raw-source="[Previous: Getting Started](xref:tutorials/razor-pages-mac/razor-pages-start)" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="72" sourceendlinenumber="72">Previous: Getting Started</a>
+<a class="xref" href="../razor-pages/page.html" data-raw-source="[Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)" sourcefile="tutorials/razor-pages-mac/model.md" sourcestartlinenumber="73" sourceendlinenumber="73">Next: Scaffolded Razor Pages</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/razor-pages-mac/model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

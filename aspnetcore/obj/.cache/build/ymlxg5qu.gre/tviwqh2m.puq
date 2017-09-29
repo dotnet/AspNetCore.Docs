@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Add a model to an ASP.NET MVC Core app </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Add a model to an ASP.NET MVC Core app ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-mac/adding-model">
+<h1 id="adding-a-model-to-an-aspnet-core-mvc-app" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="1" sourceendlinenumber="1">Adding a model to an ASP.NET Core MVC app</h1>
+
+<p sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="3" sourceendlinenumber="3">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="3" sourceendlinenumber="3">Rick Anderson</a> and <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="3" sourceendlinenumber="3">Tom Dykstra</a></p>
+<p sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="5" sourceendlinenumber="5">In this section, you&#39;ll add some classes for managing movies in a database. These classes will be the &quot;<strong>M</strong>odel&quot; part of the <strong>M</strong>VC app.</p>
+<p sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="7" sourceendlinenumber="7">You use these classes with <a href="https://docs.microsoft.com/ef/core" data-raw-source="[Entity Framework Core](https://docs.microsoft.com/ef/core)" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="7" sourceendlinenumber="7">Entity Framework Core</a> (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write. <a href="https://docs.microsoft.com/ef/core/providers/" data-raw-source="[EF Core supports many database engines](https://docs.microsoft.com/ef/core/providers/)" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="7" sourceendlinenumber="7">EF Core supports many database engines</a>.</p>
+<p sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="9" sourceendlinenumber="9">The model classes you&#39;ll create are known as POCO classes (from &quot;plain-old CLR objects&quot;) because they don&#39;t have any dependency on EF Core. They just define the properties of the data that will be stored in the database.</p>
+<p sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="11" sourceendlinenumber="11">In this tutorial you&#39;ll write the model classes first, and EF Core will create the database. An alternate approach not covered here is to generate model classes from an already-existing database. For information about that approach, see <a href="https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db" data-raw-source="[ASP.NET Core - Existing Database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="11" sourceendlinenumber="11">ASP.NET Core - Existing Database</a>.</p>
+<h2 id="add-a-data-model-class" sourcefile="includes/mvc-intro/adding-model1.md" sourcestartlinenumber="13" sourceendlinenumber="13">Add a data model class</h2>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="19" sourceendlinenumber="24">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="19" sourceendlinenumber="19">Right-click the <em>Models</em> folder, and then select <strong>Add</strong> &gt; <strong>New File</strong>. </li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="20" sourceendlinenumber="24"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="20" sourceendlinenumber="20">In the <strong>New File</strong> dialog:</p>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="22" sourceendlinenumber="24">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="22" sourceendlinenumber="22">Select <strong>General</strong> in the left pane.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="23" sourceendlinenumber="23">Select <strong>Empty Class</strong> in the center pain.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="24" sourceendlinenumber="24">Name the class <strong>Movie</strong> and select <strong>New</strong>.</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="26" sourceendlinenumber="26">Add the following properties to the <code>Movie</code> class:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="28" sourceendlinenumber="28"><code class="lang-csharp" name="Main">using System;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="30" sourceendlinenumber="30">The <code>ID</code> field is required by the database for the primary key.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="32" sourceendlinenumber="32">Build the project to verify you don&#39;t have any errors. You now have a <strong>M</strong>odel in your <strong>M</strong>VC app.</p>
+<h2 id="prepare-the-project-for-scaffolding" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="34" sourceendlinenumber="34">Prepare the project for scaffolding</h2>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="36" sourceendlinenumber="58">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="36" sourceendlinenumber="38"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="36" sourceendlinenumber="36">Right click on the project file, and then select <strong>Tools &gt; Edit File</strong>.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="38" sourceendlinenumber="38"><img src="adding-model/_static/1.png" alt="view of above step" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="38" sourceendlinenumber="38"></p>
+</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="40" sourceendlinenumber="42"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="40" sourceendlinenumber="40">Add the following highlighted NuGet packages to the <em>MvcMovie.csproj</em> file:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="42" sourceendlinenumber="42"><code class="lang-csharp" name="Main" highlight-lines="7,10">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp2.0&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.All&quot; Version=&quot;2.0.0&quot; /&gt;
+    &lt;PackageReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Design&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;/ItemGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;DotNetCliToolReference Include=&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot; Version=&quot;2.0.0&quot; /&gt;
+    &lt;DotNetCliToolReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+</code></pre></li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="44" sourceendlinenumber="44"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="44" sourceendlinenumber="44">Save the file.</p>
+</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="46" sourceendlinenumber="47"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="46" sourceendlinenumber="46">Create a <em>Models/MvcMovieContext.cs</em> file and add the following <code>MvcMovieContext</code> class:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="47" sourceendlinenumber="47"><code class="lang-csharp" name="Main">using Microsoft.EntityFrameworkCore;
+
+namespace MvcMovie.Models
+{
+    public class MvcMovieContext : DbContext
+    {
+        public MvcMovieContext (DbContextOptions&lt;MvcMovieContext&gt; options)
+            : base(options)
+        {
+        }
+
+        public DbSet&lt;MvcMovie.Models.Movie&gt; Movie { get; set; }
+    }
+}
+</code></pre></li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="49" sourceendlinenumber="50"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="49" sourceendlinenumber="49">Open the <em>Startup.cs</em> file and add two usings:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="50" sourceendlinenumber="50"><code class="lang-csharp" name="Main" highlight-lines="1,2">using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;
+
+namespace MvcMovie
+{
+    public class Startup
+    {
+</code></pre></li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="52" sourceendlinenumber="56"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="52" sourceendlinenumber="52">Add the database context to the <em>Startup.cs</em> file:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="54" sourceendlinenumber="54"><code class="lang-csharp" name="Main" highlight-lines="6-7">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddMvc();
+
+    services.AddDbContext&lt;MvcMovieContext&gt;(options =&gt;
+            options.UseSqlite(&quot;Data Source=MvcMovie.db&quot;));
+
+}
+</code></pre><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="56" sourceendlinenumber="56">This tells Entity Framework which model classes are included in the data model. You&#39;re defining one <em>entity set</em> of Movie objects, which will be represented in the database as a Movie table.</p>
+</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="58" sourceendlinenumber="58"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="58" sourceendlinenumber="58">Build the project to verify there are no errors.</p>
+</li>
+</ul>
+<h2 id="scaffold-the-moviecontroller" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="60" sourceendlinenumber="60">Scaffold the MovieController</h2>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="62" sourceendlinenumber="62">Open a terminal window in the project folder and run the following commands:</p>
+<pre sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="64" sourceendlinenumber="67"><code>dotnet restore
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
+</code></pre><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="68" sourceendlinenumber="68">If you get the error <code>No executable found matching command &quot;dotnet-aspnet-codegenerator&quot;, verify</code>:</p>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="70" sourceendlinenumber="72">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="70" sourceendlinenumber="70">You are in the project directory. The project directory has the <em>Program.cs</em>, <em>Startup.cs</em> and <em>.csproj</em> files.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="71" sourceendlinenumber="71">Your dotnet version is 1.1 or higher. Run <code>dotnet</code> to get the version.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="72" sourceendlinenumber="72">You have added the <code>&lt;DotNetCliToolReference&gt;</code> elment to the <a href="#prepare-the-project-for-scaffolding" data-raw-source="[MvcMovie.csproj file](#prepare-the-project-for-scaffolding)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="72" sourceendlinenumber="72">MvcMovie.csproj file</a>.</li>
+</ul>
+<!--
+> [!NOTE]
+> If you get an error when the scaffolding command runs, see [issue 444 in the scaffolding repository](https://github.com/aspnet/scaffolding/issues/444) for a workaround.
+-->
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="79" sourceendlinenumber="79">The scaffolding engine creates the following:</p>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="81" sourceendlinenumber="82">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="81" sourceendlinenumber="81">A movies controller (<em>Controllers/MoviesController.cs</em>)</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="82" sourceendlinenumber="82">Razor view files for Create, Delete, Details, Edit and Index pages (<em>Views/Movies/\</em>.cshtml*)</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="84" sourceendlinenumber="84">The automatic creation of <a href="https://wikipedia.org/wiki/Create,_read,_update_and_delete" data-raw-source="[CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="84" sourceendlinenumber="84">CRUD</a> (create, read, update, and delete) action methods and views is known as <em>scaffolding</em>. You&#39;ll soon have a fully functional web application that lets you manage a movie database.</p>
+<h3 id="add-the-files-to-visual-studio" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="86" sourceendlinenumber="86">Add the files to Visual Studio</h3>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="88" sourceendlinenumber="97">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="88" sourceendlinenumber="91"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="88" sourceendlinenumber="88">Add the <em>MovieController.cs</em> file to the Visual Studio project:</p>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="90" sourceendlinenumber="91">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="90" sourceendlinenumber="90">Right-click on the <em>Controllers</em> folder and select <strong>Add &gt; Add Files</strong>.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="91" sourceendlinenumber="91">Select the <em>MovieController.cs</em> file.</li>
+</ul>
+</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="93" sourceendlinenumber="97"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="93" sourceendlinenumber="93">Add the <em>Movies</em> folder and views:</p>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="95" sourceendlinenumber="97">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="95" sourceendlinenumber="95">Right-click on the <em>Views</em> folder and select <strong>Add &gt; Add Existing Folder</strong>.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="96" sourceendlinenumber="96">Navigate to the <em>Views</em> folder, select <em>Views\Movies</em>, and then select <strong>Open</strong>.</li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="97" sourceendlinenumber="97">In the <strong>Select files to add from Movies</strong> dialog, select <strong>Include All</strong>, and then <strong>OK</strong>.</li>
+</ul>
+</li>
+</ul>
+<p sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="1" sourceendlinenumber="1"><a name="cli"></a></p>
+<h2 id="perform-initial-migration" sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="2" sourceendlinenumber="2">Perform initial migration</h2>
+<p sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="4" sourceendlinenumber="4">From the command line, run the following .NET Core CLI commands:</p>
+<pre sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="6" sourceendlinenumber="9"><code class="lang-console">dotnet ef migrations add InitialCreate
+dotnet ef database update
+</code></pre><p sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="11" sourceendlinenumber="11">The <code>dotnet ef migrations add InitialCreate</code> command generates code to create the initial database schema. The schema is based on the model specified in the <code>DbContext</code> (In the <em>Models/MovieContext.cs</em> file). The <code>Initial</code> argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See <a class="xref" href="../../data/ef-mvc/migrations.html#introduction-to-migrations" data-raw-source="[Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations)" sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="11" sourceendlinenumber="11">Introduction to migrations</a> for more information.</p>
+<p sourcefile="includes/mvc-intro/adding-model2xp.md" sourcestartlinenumber="13" sourceendlinenumber="13">The <code>dotnet ef database update</code> command runs the <code>Up</code> method in the <em>Migrations/&lt;time-stamp&gt;_InitialCreate.cs</em> file, which creates the database.</p>
+<h2 id="test-the-app" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="2" sourceendlinenumber="2">Test the app</h2>
+<ul sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="4" sourceendlinenumber="9">
+<li sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="4" sourceendlinenumber="4">Run the app and tap the <strong>Mvc Movie</strong> link.</li>
+<li sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="5" sourceendlinenumber="7"><p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="5" sourceendlinenumber="5">Tap the <strong>Create New</strong> link and create a movie.</p>
+<p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="7" sourceendlinenumber="7"><img src="../first-mvc-app/adding-model/_static/movies.png" alt="Create view with fields for genre, price, release date, and title" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="7" sourceendlinenumber="7"></p>
+</li>
+<li sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="9" sourceendlinenumber="9"><p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="9" sourceendlinenumber="9">You may not be able to enter decimal points or commas in the <code>Price</code> field. To support <a href="https://jqueryvalidation.org/" data-raw-source="[jQuery validation](https://jqueryvalidation.org/)" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="9" sourceendlinenumber="9">jQuery validation</a> for non-English locales that use a comma (&quot;,&quot;) for a decimal point, and non US-English date formats, you must take steps to globalize your app. See <a href="https://github.com/aspnet/Docs/issues/4076" data-raw-source="https://github.com/aspnet/Docs/issues/4076" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="9" sourceendlinenumber="9">https://github.com/aspnet/Docs/issues/4076</a> and <a href="#additional-resources" data-raw-source="[Additional resources](#additional-resources)" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="9" sourceendlinenumber="9">Additional resources</a> for more information. For now, just enter whole numbers like 10.</p>
+</li>
+</ul>
+<p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="11" sourceendlinenumber="11"><a name="displayformatdatelocal"></a></p>
+<ul sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="13" sourceendlinenumber="13">
+<li sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="13" sourceendlinenumber="13">In some locales you need to specify the date format. See the highlighted code below.</li>
+</ul>
+<pre sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="15" sourceendlinenumber="15"><code class="lang-csharp" name="Main" highlight-lines="2,10">using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        [DisplayFormat(DataFormatString = &quot;{0:yyyy-MM-dd}&quot;, ApplyFormatInEditMode = true)]
+        public DateTime ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="17" sourceendlinenumber="17">We&#39;ll talk about <code>DataAnnotations</code> later in the tutorial.</p>
+<p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="19" sourceendlinenumber="19">Tapping <strong>Create</strong> causes the form to be posted to the server, where the movie information is saved in a database. The app redirects to the <em>/Movies</em> URL, where the newly created movie information is displayed.</p>
+<p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="21" sourceendlinenumber="21"><img src="../first-mvc-app/adding-model/_static/h.png" alt="Movies view showing newly created movie listing" sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="21" sourceendlinenumber="21"></p>
+<p sourcefile="includes/mvc-intro/adding-model3.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create a couple more movie entries. Try the <strong>Edit</strong>, <strong>Details</strong>, and <strong>Delete</strong> links, which are all functional.</p>
+<p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="103" sourceendlinenumber="103">You now have a database and pages to display, edit, update and delete data. In the next tutorial, we&#39;ll work with the database.</p>
+<h2 id="additional-resources" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="105" sourceendlinenumber="105">Additional resources</h2>
+<ul sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="107" sourceendlinenumber="108">
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="107" sourceendlinenumber="107"><a class="xref" href="../../mvc/views/tag-helpers/intro.html" data-raw-source="[Tag Helpers](xref:mvc/views/tag-helpers/intro)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="107" sourceendlinenumber="107">Tag Helpers</a></li>
+<li sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="108" sourceendlinenumber="108"><a class="xref" href="../../fundamentals/localization.html" data-raw-source="[Globalization and localization](xref:fundamentals/localization)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="108" sourceendlinenumber="108">Globalization and localization</a></li>
+</ul>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="110" sourceendlinenumber="110"><p sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="111" sourceendlinenumber="112"><a href="adding-view.html" data-raw-source="[Previous Adding a View](adding-view.md)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="111" sourceendlinenumber="111">Previous Adding a View</a>
+<a href="working-with-sql.html" data-raw-source="[Next Working with SQL](working-with-sql.md)" sourcefile="tutorials/first-mvc-app-mac/adding-model.md" sourcestartlinenumber="112" sourceendlinenumber="112">Next Working with SQL</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-mac/adding-model.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

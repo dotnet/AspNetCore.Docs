@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Formatting response data in ASP.NET Core MVC </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Formatting response data in ASP.NET Core MVC ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/models/formatting">
+<h1 id="introduction-to-formatting-response-data-in-aspnet-core-mvc" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="16" sourceendlinenumber="16">Introduction to formatting response data in ASP.NET Core MVC</h1>
+
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="18" sourceendlinenumber="18">Steve Smith</a></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="20" sourceendlinenumber="20">ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample" data-raw-source="[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="22" sourceendlinenumber="22">View or download sample from GitHub</a>.</p>
+<h2 id="format-specific-action-results" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="24" sourceendlinenumber="24">Format-Specific Action Results</h2>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="26" sourceendlinenumber="26">Some action result types are specific to a particular format, such as <code>JsonResult</code> and <code>ContentResult</code>. Actions can return specific results that are always formatted in a particular manner. For example, returning a <code>JsonResult</code> will return JSON-formatted data, regardless of client preferences. Likewise, returning a <code>ContentResult</code> will return plain-text-formatted string data (as will simply returning a string).</p>
+<div class="NOTE" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="28" sourceendlinenumber="28"><h5>Note</h5><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="29" sourceendlinenumber="29">An action isn&#39;t required to return any particular type; MVC supports any object return value. If an action returns an <code>IActionResult</code> implementation and the controller inherits from <code>Controller</code>, developers have many helper methods corresponding to many of the choices. Results from actions that return objects that are not <code>IActionResult</code> types will be serialized using the appropriate <code>IOutputFormatter</code> implementation.</p>
+</div>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="31" sourceendlinenumber="31">To return data in a specific format from a controller that inherits from the <code>Controller</code> base class, use the built-in helper method <code>Json</code> to return JSON and <code>Content</code> for plain text. Your action method should return either the specific result type (for instance, <code>JsonResult</code>) or <code>IActionResult</code>.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="33" sourceendlinenumber="33">Returning JSON-formatted data:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="35" sourceendlinenumber="35"><code class="lang-csharp" name="Main" highlight-lines="3,5">// GET: api/authors
+[HttpGet]
+public JsonResult Get()
+{
+    return Json(_authorRepository.List());
+}
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="37" sourceendlinenumber="37">Sample response from this action:</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="39" sourceendlinenumber="39"><img src="formatting/_static/json-response.png" alt="Network tab of Developer Tools in Microsoft Edge showing the Content type of the response is application/json" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="39" sourceendlinenumber="39"></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="41" sourceendlinenumber="41">Note that the content type of the response is <code>application/json</code>, shown both in the list of network requests and in the Response Headers section. Also note the list of options presented by the browser (in this case, Microsoft Edge) in the Accept header in the Request Headers section. The current technique is ignoring this header; obeying it is discussed below.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="43" sourceendlinenumber="43">To return plain text formatted data, use <code>ContentResult</code> and the <code>Content</code> helper:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="45" sourceendlinenumber="45"><code class="lang-csharp" name="Main" highlight-lines="3,5">// GET api/authors/about
+[HttpGet(&quot;About&quot;)]
+public ContentResult About()
+{
+    return Content(&quot;An API listing authors of docs.asp.net.&quot;);
+}
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="47" sourceendlinenumber="47">A response from this action:</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="49" sourceendlinenumber="49"><img src="formatting/_static/text-response.png" alt="Network tab of Developer Tools in Microsoft Edge showing the Content type of the response is text/plain" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="49" sourceendlinenumber="49"></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="51" sourceendlinenumber="51">Note in this case the <code>Content-Type</code> returned is <code>text/plain</code>. You can also achieve this same behavior using just a string response type:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="53" sourceendlinenumber="53"><code class="lang-csharp" name="Main" highlight-lines="3,5">// GET api/authors/version
+[HttpGet(&quot;version&quot;)]
+public string Version()
+{
+    return &quot;Version 1.0.0&quot;;
+}
+</code></pre><div class="TIP" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="55" sourceendlinenumber="55"><h5>Tip</h5><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="56" sourceendlinenumber="56">For non-trivial actions with multiple return types or options (for example, different HTTP status codes based on the result of operations performed), prefer <code>IActionResult</code> as the return type.</p>
+</div>
+<h2 id="content-negotiation" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="58" sourceendlinenumber="58">Content Negotiation</h2>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="60" sourceendlinenumber="60">Content negotiation (<em>conneg</em> for short) occurs when the client specifies an <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html" data-raw-source="[Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="60" sourceendlinenumber="60">Accept header</a>. The default format used by ASP.NET Core MVC is JSON. Content negotiation is implemented by <code>ObjectResult</code>. It is also built into the status code specific action results returned from the helper methods (which are all based on <code>ObjectResult</code>). You can also return a model type (a class you&#39;ve defined as your data transfer type) and the framework will automatically wrap it in an <code>ObjectResult</code> for you.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="62" sourceendlinenumber="62">The following action method uses the <code>Ok</code> and <code>NotFound</code> helper methods:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="64" sourceendlinenumber="64"><code class="lang-csharp" name="Main" highlight-lines="8,10">// GET: api/authors/search?namelike=th
+[HttpGet(&quot;Search&quot;)]
+public IActionResult Search(string namelike)
+{
+    var result = _authorRepository.GetByNameSubstring(namelike);
+    if (!result.Any())
+    {
+        return NotFound(namelike);
+    }
+    return Ok(result);
+}
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="66" sourceendlinenumber="66">A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like <a href="http://www.telerik.com/fiddler" data-raw-source="[Fiddler](http://www.telerik.com/fiddler)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="66" sourceendlinenumber="66">Fiddler</a> to create a request that includes an Accept header and specify another format. In that case, if the server has a <em>formatter</em> that can produce a response in the requested format, the result will be returned in the client-preferred format.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="68" sourceendlinenumber="68"><img src="formatting/_static/fiddler-composer.png" alt="Fiddler console showing a manually-created GET request with an Accept header value of application/xml" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="68" sourceendlinenumber="68"></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="70" sourceendlinenumber="70">In the above screenshot, the Fiddler Composer has been used to generate a request, specifying <code>Accept: application/xml</code>. By default, ASP.NET Core MVC only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. You&#39;ll see how to add additional formatters in the next section.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="72" sourceendlinenumber="72">Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.NET MVC will automatically create an <code>ObjectResult</code> for you that wraps the object. The client will get the formatted serialized object (JSON format is the default; you can configure XML or other formats). If the object being returned is <code>null</code>, then the framework will return a <code>204 No Content</code> response.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="74" sourceendlinenumber="74">Returning an object type:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="76" sourceendlinenumber="76"><code class="lang-csharp" name="Main" highlight-lines="3">// GET api/authors/ardalis
+[HttpGet(&quot;{alias}&quot;)]
+public Author Get(string alias)
+{
+    return _authorRepository.GetByAlias(alias);
+}
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="78" sourceendlinenumber="78">In the sample, a request for a valid author alias will receive a 200 OK response with the author&#39;s data. A request for an invalid alias will receive a 204 No Content response. Screenshots showing the response in XML and JSON formats are shown below.</p>
+<h3 id="content-negotiation-process" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="80" sourceendlinenumber="80">Content Negotiation Process</h3>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="82" sourceendlinenumber="83">Content <em>negotiation</em> only takes place if an <code>Accept</code> header appears in the request. When a request contains an accept header, the framework will enumerate the media types in the accept header in preference order and will try to find a formatter that can produce a response in one of the formats specified by the accept header. In case no formatter is found that can satisfy the client&#39;s request, the framework will try to find the first formatter that can produce a response (unless the developer has configured the option on <code>MvcOptions</code> to return 406 Not Acceptable instead). If the request specifies XML, but the XML formatter has not been configured, then the JSON formatter will be used. More generally, if no formatter is configured that can provide the requested format, then the first formatter than can format the object is used. If no header is given, the first formatter that can handle the object to be returned will be used to serialize the response. In this case, there isn&#39;t any
+negotiation taking place - the server is determining what format it will use.</p>
+<div class="NOTE" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="85" sourceendlinenumber="85"><h5>Note</h5><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="86" sourceendlinenumber="86">If the Accept header contains <code>*/*</code>, the Header will be ignored unless <code>RespectBrowserAcceptHeader</code> is set to true on <code>MvcOptions</code>.</p>
+</div>
+<h3 id="browsers-and-content-negotiation" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="88" sourceendlinenumber="88">Browsers and Content Negotiation</h3>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="90" sourceendlinenumber="90">Unlike typical API clients, web browsers tend to supply <code>Accept</code> headers that include a wide array of formats, including wildcards. By default, when the framework detects that the request is coming from a browser, it will ignore the <code>Accept</code> header and instead return the content in the application&#39;s configured default format (JSON unless otherwise configured). This provides a more consistent experience when using different browsers to consume APIs.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="92" sourceendlinenumber="92">If you would prefer your application honor browser accept headers, you can configure this as part of MVC&#39;s configuration by setting <code>RespectBrowserAcceptHeader</code> to <code>true</code> in the <code>ConfigureServices</code> method in <em>Startup.cs</em>.</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="94" sourceendlinenumber="99"><code class="lang-csharp">services.AddMvc(options =&gt;
+{
+    options.RespectBrowserAcceptHeader = true; // false by default
+}
+</code></pre><h2 id="configuring-formatters" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="101" sourceendlinenumber="101">Configuring Formatters</h2>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="103" sourceendlinenumber="103">If your application needs to support additional formats beyond the default of JSON, you can add NuGet packages and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by <a href="model-binding.html" data-raw-source="[Model Binding](model-binding.md)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="103" sourceendlinenumber="103">Model Binding</a>; output formatters are used to format responses. You can also configure <a href="../advanced/custom-formatters.html" data-raw-source="[Custom Formatters](../advanced/custom-formatters.md)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="103" sourceendlinenumber="103">Custom Formatters</a>.</p>
+<h3 id="adding-xml-format-support" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="105" sourceendlinenumber="105">Adding XML Format Support</h3>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="107" sourceendlinenumber="107">To add support for XML formatting, install the <code>Microsoft.AspNetCore.Mvc.Formatters.Xml</code> NuGet package.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="109" sourceendlinenumber="109">Add the XmlSerializerFormatters to MVC&#39;s configuration in <em>Startup.cs</em>:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="111" sourceendlinenumber="111"><code class="lang-csharp" name="Main" highlight-lines="2">services.AddMvc()
+    .AddXmlSerializerFormatters();
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="113" sourceendlinenumber="113">Alternately, you can add just the output formatter:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="115" sourceendlinenumber="120"><code class="lang-csharp">services.AddMvc(options =&gt;
+{
+    options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+});
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="122" sourceendlinenumber="122">These two approaches will serialize results using <code>System.Xml.Serialization.XmlSerializer</code>. If you prefer, you can use the <code>System.Runtime.Serialization.DataContractSerializer</code> by adding its associated formatter:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="124" sourceendlinenumber="129"><code class="lang-csharp">services.AddMvc(options =&gt;
+{
+    options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+});
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="131" sourceendlinenumber="131">Once you&#39;ve added support for XML formatting, your controller methods should return the appropriate format based on the request&#39;s <code>Accept</code> header, as this Fiddler example demonstrates:</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="133" sourceendlinenumber="133"><img src="formatting/_static/xml-response.png" alt="Fiddler console: The Raw tab for the request shows the Accept header value is application/xml. The Raw tab for the response shows the Content-Type header value of application/xml." sourcefile="mvc/models/formatting.md" sourcestartlinenumber="133" sourceendlinenumber="133"></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="135" sourceendlinenumber="135">You can see in the Inspectors tab that the Raw GET request was made with an <code>Accept: application/xml</code> header set. The response pane shows the <code>Content-Type: application/xml</code> header, and the <code>Author</code> object has been serialized to XML.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="137" sourceendlinenumber="137">Use the Composer tab to modify the request to specify <code>application/json</code> in the <code>Accept</code> header. Execute the request, and the response will be formatted as JSON:</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="139" sourceendlinenumber="139"><img src="formatting/_static/json-response-fiddler.png" alt="Fiddler console: The Raw tab for the request shows the Accept header value is application/json. The Raw tab for the response shows the Content-Type header value of application/json." sourcefile="mvc/models/formatting.md" sourcestartlinenumber="139" sourceendlinenumber="139"></p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="141" sourceendlinenumber="141">In this screenshot, you can see the request sets a header of <code>Accept: application/json</code> and the response specifies the same as its <code>Content-Type</code>. The <code>Author</code> object is shown in the body of the response, in JSON format.</p>
+<h3 id="forcing-a-particular-format" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="143" sourceendlinenumber="143">Forcing a Particular Format</h3>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="145" sourceendlinenumber="145">If you would like to restrict the response formats for a specific action you can, you can apply the <code>[Produces]</code> filter. The <code>[Produces]</code> filter specifies the response formats for a specific action (or controller). Like most <a href="../controllers/filters.html" data-raw-source="[Filters](../controllers/filters.md)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="145" sourceendlinenumber="145">Filters</a>, this can be applied at the action, controller, or global scope.</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="147" sourceendlinenumber="150"><code class="lang-csharp">[Produces(&quot;application/json&quot;)]
+public class AuthorsController
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="152" sourceendlinenumber="152">The <code>[Produces]</code> filter will force all actions within the <code>AuthorsController</code> to return JSON-formatted responses, even if other formatters were configured for the application and the client provided an <code>Accept</code> header requesting a different, available format. See <a href="../controllers/filters.html" data-raw-source="[Filters](../controllers/filters.md)" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="152" sourceendlinenumber="152">Filters</a> to learn more, including how to apply filters globally.</p>
+<h3 id="special-case-formatters" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="154" sourceendlinenumber="154">Special Case Formatters</h3>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="156" sourceendlinenumber="156">Some special cases are implemented using built-in formatters. By default, <code>string</code> return types will be formatted as <em>text/plain</em> (<em>text/html</em> if requested via <code>Accept</code> header). This behavior can be removed by removing the <code>TextOutputFormatter</code>. You remove formatters in the <code>Configure</code> method in <em>Startup.cs</em> (shown below). Actions that have a model object return type will return a 204 No Content response when returning <code>null</code>. This behavior can be removed by removing the <code>HttpNoContentOutputFormatter</code>. The following code removes the <code>TextOutputFormatter</code> and <code>HttpNoContentOutputFormatter</code>.</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="158" sourceendlinenumber="164"><code class="lang-csharp">services.AddMvc(options =&gt;
+{
+    options.OutputFormatters.RemoveType&lt;TextOutputFormatter&gt;();
+    options.OutputFormatters.RemoveType&lt;HttpNoContentOutputFormatter&gt;();
+});
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="166" sourceendlinenumber="166">Without the <code>TextOutputFormatter</code>, <code>string</code> return types return 406 Not Acceptable, for example. Note that if an XML formatter exists, it will format <code>string</code> return types if the <code>TextOutputFormatter</code> is removed.</p>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="168" sourceendlinenumber="168">Without the <code>HttpNoContentOutputFormatter</code>, null objects are formatted using the configured formatter. For example, the JSON formatter will simply return a response with a body of <code>null</code>, while the XML formatter will return an empty XML element with the attribute <code>xsi:nil=&quot;true&quot;</code> set.</p>
+<h2 id="response-format-url-mappings" sourcefile="mvc/models/formatting.md" sourcestartlinenumber="170" sourceendlinenumber="170">Response Format URL Mappings</h2>
+<p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="172" sourceendlinenumber="172">Clients can request a particular format as part of the URL, such as in the query string or part of the path, or by using a format-specific file extension such as .xml or .json. The mapping from request path should be specified in the route the API is using. For example:</p>
+<pre sourcefile="mvc/models/formatting.md" sourcestartlinenumber="174" sourceendlinenumber="180"><code class="lang-csharp">[FormatFilter]
+public class ProductsController
+{
+    [Route(&quot;[controller]/[action]/{id}.{format?}&quot;)]
+    public Product GetById(int id)
+</code></pre><p sourcefile="mvc/models/formatting.md" sourcestartlinenumber="182" sourceendlinenumber="182">This route would allow the requested format to be specified as an optional file extension. The <code>[FormatFilter]</code> attribute checks for the existence of the format value in the <code>RouteData</code> and will map the response format to the appropriate formatter when the response is created.</p>
+<table sourcefile="mvc/models/formatting.md" sourcestartlinenumber="184" sourceendlinenumber="188">
+<thead>
+<tr>
+<th>Route</th>
+<th>Formatter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/products/GetById/5</code></td>
+<td>The default output formatter</td>
+</tr>
+<tr>
+<td><code>/products/GetById/5.json</code></td>
+<td>The JSON formatter (if configured)</td>
+</tr>
+<tr>
+<td><code>/products/GetById/5.xml</code></td>
+<td>The XML formatter (if configured)</td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/models/formatting.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

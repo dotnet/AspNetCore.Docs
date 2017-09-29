@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction to Data Protection </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction to Data Protection ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/introduction">
+<h1 id="introduction-to-data-protection" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="15" sourceendlinenumber="15">Introduction to Data Protection</h1>
+
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="17" sourceendlinenumber="17">Web applications often need to store security-sensitive data. Windows provides DPAPI for desktop applications but this is unsuitable for web applications. The ASP.NET Core data protection stack provide a simple, easy to use cryptographic API a developer can use to protect data, including key management and rotation.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="19" sourceendlinenumber="19">The ASP.NET Core data protection stack is designed to serve as the long-term replacement for the <machinekey> element in ASP.NET 1.x - 4.x. It was designed to address many of the shortcomings of the old cryptographic stack while providing an out-of-the-box solution for the majority of use cases modern applications are likely to encounter.<p>
+<h2 id="problem-statement" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="21" sourceendlinenumber="21">Problem statement</h2>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="23" sourceendlinenumber="23">The overall problem statement can be succinctly stated in a single sentence: I need to persist trusted information for later retrieval, but I do not trust the persistence mechanism. In web terms, this might be written as &quot;I need to round-trip trusted state via an untrusted client.&quot;</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="25" sourceendlinenumber="25">The canonical example of this is an authentication cookie or bearer token. The server generates an &quot;I am Groot and have xyz permissions&quot; token and hands it to the client. At some future date the client will present that token back to the server, but the server needs some kind of assurance that the client hasn&#39;t forged the token. Thus the first requirement: authenticity (a.k.a. integrity, tamper-proofing).</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="27" sourceendlinenumber="27">Since the persisted state is trusted by the server, we anticipate that this state might contain information that is specific to the operating environment. This could be in the form of a file path, a permission, a handle or other indirect reference, or some other piece of server-specific data. Such information should generally not be disclosed to an untrusted client. Thus the second requirement: confidentiality.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="29" sourceendlinenumber="29">Finally, since modern applications are componentized, what we&#39;ve seen is that individual components will want to take advantage of this system without regard to other components in the system. For instance, if a bearer token component is using this stack, it should operate without interference from an anti-CSRF mechanism that might also be using the same stack. Thus the final requirement: isolation.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="31" sourceendlinenumber="31">We can provide further constraints in order to narrow the scope of our requirements. We assume that all services operating within the cryptosystem are equally trusted and that the data does not need to be generated or consumed outside of the services under our direct control. Furthermore, we require that operations are as fast as possible since each request to the web service might go through the cryptosystem one or more times. This makes symmetric cryptography ideal for our scenario, and we can discount asymmetric cryptography until such a time that it is needed.</p>
+<h2 id="design-philosophy" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="33" sourceendlinenumber="33">Design philosophy</h2>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="35" sourceendlinenumber="35">We started by identifying problems with the existing stack. Once we had that, we surveyed the landscape of existing solutions and concluded that no existing solution quite had the capabilities we sought. We then engineered a solution based on several guiding principles.</p>
+<ul sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="37" sourceendlinenumber="43">
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="37" sourceendlinenumber="37"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="37" sourceendlinenumber="37">The system should offer simplicity of configuration. Ideally the system would be zero-configuration and developers could hit the ground running. In situations where developers need to configure a specific aspect (such as the key repository), consideration should be given to making those specific configurations simple.</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="39" sourceendlinenumber="39"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="39" sourceendlinenumber="39">Offer a simple consumer-facing API. The APIs should be easy to use correctly and difficult to use incorrectly.</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="41" sourceendlinenumber="41"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="41" sourceendlinenumber="41">Developers should not learn key management principles. The system should handle algorithm selection and key lifetime on the developer&#39;s behalf. Ideally the developer should never even have access to the raw key material.</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="43" sourceendlinenumber="43"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="43" sourceendlinenumber="43">Keys should be protected at rest when possible. The system should figure out an appropriate default protection mechanism and apply it automatically.</p>
+</li>
+</ul>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="45" sourceendlinenumber="45">With these principles in mind we developed a simple, <a href="using-data-protection.html" data-raw-source="[easy to use](using-data-protection.md)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="45" sourceendlinenumber="45">easy to use</a> data protection stack.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="47" sourceendlinenumber="47">The ASP.NET Core data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like <a href="https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx" data-raw-source="[Windows CNG DPAPI](https://msdn.microsoft.com/library/windows/desktop/hh706794%28v=vs.85%29.aspx)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="47" sourceendlinenumber="47">Windows CNG DPAPI</a> and <a href="https://docs.microsoft.com/rights-management/" data-raw-source="[Azure Rights Management](https://docs.microsoft.com/rights-management/)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="47" sourceendlinenumber="47">Azure Rights Management</a> are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there is nothing prohibiting a developer from using the ASP.NET Core data protection APIs for long-term protection of confidential data.</p>
+<h2 id="audience" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="49" sourceendlinenumber="49">Audience</h2>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="51" sourceendlinenumber="51">The data protection system is divided into five main packages. Various aspects of these APIs target three main audiences;</p>
+<ol sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="53" sourceendlinenumber="63">
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="53" sourceendlinenumber="55"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="53" sourceendlinenumber="53">The <a href="consumer-apis/overview.html" data-raw-source="[Consumer APIs Overview](consumer-apis/overview.md)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="53" sourceendlinenumber="53">Consumer APIs Overview</a> target application and framework developers.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="55" sourceendlinenumber="55">&quot;I don&#39;t want to learn about how the stack operates or about how it is configured. I simply want to perform some operation in as simple a manner as possible with high probability of using the APIs successfully.&quot;</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="57" sourceendlinenumber="59"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="57" sourceendlinenumber="57">The <a href="configuration/overview.html" data-raw-source="[configuration APIs](configuration/overview.md)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="57" sourceendlinenumber="57">configuration APIs</a> target application developers and system administrators.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="59" sourceendlinenumber="59">&quot;I need to tell the data protection system that my environment requires non-default paths or settings.&quot;</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="61" sourceendlinenumber="63"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="61" sourceendlinenumber="61">The extensibility APIs target developers in charge of implementing custom policy. Usage of these APIs would be limited to rare situations and experienced, security aware developers.</p>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="63" sourceendlinenumber="63">&quot;I need to replace an entire component within the system because I have truly unique behavioral requirements. I am willing to learn uncommonly-used parts of the API surface in order to build a plugin that fulfills my requirements.&quot;</p>
+</li>
+</ol>
+<h2 id="package-layout" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="65" sourceendlinenumber="65">Package Layout</h2>
+<p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="67" sourceendlinenumber="67">The data protection stack consists of five packages.</p>
+<ul sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="69" sourceendlinenumber="77">
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="69" sourceendlinenumber="69"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="69" sourceendlinenumber="69">Microsoft.AspNetCore.DataProtection.Abstractions contains the basic IDataProtectionProvider and IDataProtector interfaces. It also contains useful extension methods that can assist working with these types (e.g., overloads of IDataProtector.Protect). See the consumer interfaces section for more information. If somebody else is responsible for instantiating the data protection system and you are simply consuming the APIs, you&#39;ll want to reference Microsoft.AspNetCore.DataProtection.Abstractions.</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="71" sourceendlinenumber="71"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="71" sourceendlinenumber="71">Microsoft.AspNetCore.DataProtection contains the core implementation of the data protection system, including the core cryptographic operations, key management, configuration, and extensibility. If you&#39;re responsible for instantiating the data protection system (e.g., adding it to an IServiceCollection) or modifying or extending its behavior, you&#39;ll want to reference Microsoft.AspNetCore.DataProtection.</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="73" sourceendlinenumber="73"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="73" sourceendlinenumber="73">Microsoft.AspNetCore.DataProtection.Extensions contains additional APIs which developers might find useful but which don&#39;t belong in the core package. For instance, this package contains a simple &quot;instantiate the system pointing at a specific key storage directory with no dependency injection setup&quot; API (more info). It also contains extension methods for limiting the lifetime of protected payloads (more info).</p>
+</li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="75" sourceendlinenumber="75"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="75" sourceendlinenumber="75">Microsoft.AspNetCore.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machinekey> operations to instead use the new data protection stack. See <a href="compatibility/replacing-machinekey.html#compatibility-replacing-machinekey" data-raw-source="[compatibility](compatibility/replacing-machinekey.md#compatibility-replacing-machinekey)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="75" sourceendlinenumber="75">compatibility</a> for more information.<p>
+</machinekey></li>
+<li sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="77" sourceendlinenumber="77"><p sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="77" sourceendlinenumber="77">Microsoft.AspNetCore.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See <a href="consumer-apis/password-hashing.html" data-raw-source="[Password Hashing](consumer-apis/password-hashing.md)" sourcefile="security/data-protection/introduction.md" sourcestartlinenumber="77" sourceendlinenumber="77">Password Hashing</a> for more information.</p>
+</li>
+</ul>
+</machinekey></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/introduction.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

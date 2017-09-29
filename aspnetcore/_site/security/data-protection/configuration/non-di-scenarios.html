@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Non DI Aware Scenarios </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Non DI Aware Scenarios ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/configuration/non-di-scenarios">
+<h1 id="non-di-aware-scenarios">Non DI aware scenarios</h1>
+
+<p>The data protection system is normally designed <a href="../consumer-apis/overview.html">to be added to a service container</a> and to be provided to dependent components via a DI mechanism. However, there may be some cases where this is not feasible, especially when importing the system into an existing application.</p>
+<p>To support these scenarios the package Microsoft.AspNetCore.DataProtection.Extensions provides a concrete type DataProtectionProvider which offers a simple way to use the data protection system without going through DI-specific code paths. The type itself implements IDataProtectionProvider, and constructing it is as easy as providing a DirectoryInfo where this provider&#39;s cryptographic keys should be stored.</p>
+<p>For example:</p>
+<pre><code class="lang-none" name="Main">using System;
+using System.IO;
+using Microsoft.AspNetCore.DataProtection;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // get the path to %LOCALAPPDATA%\myapp-keys
+        string destFolder = Path.Combine(
+            Environment.GetEnvironmentVariable(&quot;LOCALAPPDATA&quot;),
+            &quot;myapp-keys&quot;);
+
+        // instantiate the data protection system at this folder
+        var dataProtectionProvider = DataProtectionProvider.Create(
+            new DirectoryInfo(destFolder));
+
+        var protector = dataProtectionProvider.CreateProtector(&quot;Program.No-DI&quot;);
+        Console.Write(&quot;Enter input: &quot;);
+        string input = Console.ReadLine();
+
+        // protect the payload
+        string protectedPayload = protector.Protect(input);
+        Console.WriteLine($&quot;Protect returned: {protectedPayload}&quot;);
+
+        // unprotect the payload
+        string unprotectedPayload = protector.Unprotect(protectedPayload);
+        Console.WriteLine($&quot;Unprotect returned: {unprotectedPayload}&quot;);
+    }
+}
+
+/*
+ * SAMPLE OUTPUT
+ *
+ * Enter input: Hello world!
+ * Protect returned: CfDJ8FWbAn6...ch3hAPm1NJA
+ * Unprotect returned: Hello world!
+ */
+</code></pre><div class="WARNING"><h5>Warning</h5><p>By default the DataProtectionProvider concrete type does not encrypt raw key material before persisting it to the file system. This is to support scenarios where the developer points to a network share, in which case the data protection system cannot automatically deduce an appropriate at-rest key encryption mechanism.</p>
+<p>Additionally, the DataProtectionProvider concrete type does not <a href="overview.html#data-protection-configuration-per-app-isolation">isolate applications</a> by default, so all applications pointed at the same key directory can share payloads as long as their purpose parameters match.</p>
+</div>
+<p>The application developer can address both of these if desired. The DataProtectionProvider constructor accepts an <a href="overview.html#data-protection-configuration-callback">optional configuration callback</a> which can be used to tweak the behaviors of the system. The sample below demonstrates restoring isolation via an explicit call to SetApplicationName, and it also demonstrates configuring the system to automatically encrypt persisted keys using Windows DPAPI. If the directory points to a UNC share, you may wish to distribute a shared certificate across all relevant machines and to configure the system to use certificate-based encryption instead via a call to <a href="overview.html#configuring-x509-certificate">ProtectKeysWithCertificate</a>.</p>
+<pre><code class="lang-none" name="Main">using System;
+using System.IO;
+using Microsoft.AspNetCore.DataProtection;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // get the path to %LOCALAPPDATA%\myapp-keys
+        string destFolder = Path.Combine(
+            Environment.GetEnvironmentVariable(&quot;LOCALAPPDATA&quot;),
+            &quot;myapp-keys&quot;);
+
+        // instantiate the data protection system at this folder
+        var dataProtectionProvider = DataProtectionProvider.Create(
+            new DirectoryInfo(destFolder),
+            configuration =&gt;
+            {
+                configuration.SetApplicationName(&quot;my app name&quot;);
+                configuration.ProtectKeysWithDpapi();
+            });
+
+        var protector = dataProtectionProvider.CreateProtector(&quot;Program.No-DI&quot;);
+        Console.Write(&quot;Enter input: &quot;);
+        string input = Console.ReadLine();
+
+        // protect the payload
+        string protectedPayload = protector.Protect(input);
+        Console.WriteLine($&quot;Protect returned: {protectedPayload}&quot;);
+
+        // unprotect the payload
+        string unprotectedPayload = protector.Unprotect(protectedPayload);
+        Console.WriteLine($&quot;Unprotect returned: {unprotectedPayload}&quot;);
+    }
+}
+</code></pre><div class="TIP"><h5>Tip</h5><p>Instances of the DataProtectionProvider concrete type are expensive to create. If an application maintains multiple instances of this type and if they&#39;re all pointing at the same key storage directory, application performance may be degraded. The intended usage is that the application developer instantiate this type once then keep reusing this single reference as much as possible. The DataProtectionProvider type and all IDataProtector instances created from it are thread-safe for multiple callers.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/configuration/non-di-scenarios.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

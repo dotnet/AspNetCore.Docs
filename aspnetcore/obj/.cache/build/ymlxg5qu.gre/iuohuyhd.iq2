@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Configure ASP.NET Core Identity </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Configure ASP.NET Core Identity ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/identity-configuration">
+<h1 id="configure-identity">Configure Identity</h1>
+
+<p>ASP.NET Core Identity has some default behaviors that you can override easily in your application&#39;s <code>Startup</code> class.</p>
+<h2 id="passwords-policy">Passwords policy</h2>
+<p>By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and an alphanumeric character. There are also some other restrictions. If you want to simplify password restrictions, you can do that in the <code>Startup</code> class of your application.</p>
+<div class="tabGroup" id="tabgroup_UCTYjHNwtE">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_UCTYjHNwtE_aspnetcore2x" role="tab" aria-controls="tabpanel_UCTYjHNwtE_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_UCTYjHNwtE_aspnetcore1x" role="tab" aria-controls="tabpanel_UCTYjHNwtE_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_UCTYjHNwtE_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>ASP.NET Core 2.0 added the <code>RequiredUniqueChars</code> property. Otherwise, the options are the same from ASP.NET Core 1.x.</p>
+<pre><code class="lang-csharp" name="Main">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;(options =&gt;
+    {
+        // Password settings
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8; 
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequiredUniqueChars = 2;
+    })
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddDefaultTokenProviders();
+</code></pre></section>
+<section id="tabpanel_UCTYjHNwtE_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main">services.Configure&lt;IdentityOptions&gt;(options =&gt;
+{
+    // Password settings
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = false;
+});
+</code></pre></section>
+</div>
+<p><code>IdentityOptions.Password</code> has the following properties:</p>
+<ul>
+<li><code>RequireDigit</code>: Requires a number between 0-9 in the password. Defaults to true.</li>
+<li><code>RequiredLength</code>: The minimum length of the password. Defaults to 6.</li>
+<li><code>RequireNonAlphanumeric</code>: Requires a non-alphanumeric character in the password. Defaults to true.</li>
+<li><code>RequireUppercase</code>: Requires an upper case character in the password. Defaults to true.</li>
+<li><code>RequireLowercase</code>: Requires a lower case character in the password. Defaults to true.</li>
+<li><code>RequiredUniqueChars</code>: Requires the number of distinct characters in the password. Defaults to 1.</li>
+</ul>
+<h2 id="users-lockout">User&#39;s lockout</h2>
+<pre><code class="lang-csharp" name="Main">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;(options =&gt;
+    {
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        options.Lockout.MaxFailedAccessAttempts = 5; 
+        options.Lockout.AllowedForNewUsers = true;
+    })
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddDefaultTokenProviders();
+</code></pre><p><code>IdentityOptions.Lockout</code> has the following properties:</p>
+<ul>
+<li><code>DefaultLockoutTimeSpan</code>: The amount of time a user is locked out when a lockout occurs. Defaults to 5 minutes.</li>
+<li><code>MaxFailedAccessAttempts</code>: The number of failed access attempts until a user is locked out, if lockout is enabled. Defaults to 5.</li>
+<li><code>AllowedForNewUsers</code>: Determines if a new user can be locked out. Defaults to true.</li>
+</ul>
+<h2 id="sign-in-settings">Sign in settings</h2>
+<pre><code class="lang-csharp" name="Main">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;(options =&gt;
+    {
+        // Signin settings
+        options.SignIn.RequireConfirmedEmail = true;
+        options.SignIn.RequireConfirmedPhoneNumber = false;
+    })
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddDefaultTokenProviders();
+</code></pre><p><code>IdentityOptions.SignIn</code> has the following properties:</p>
+<ul>
+<li><code>RequireConfirmedEmail</code>: Requires a confirmed email to sign in. Defaults to false.</li>
+<li><code>RequireConfirmedPhoneNumber</code>: Requires a confirmed phone number to sign in. Defaults to false.</li>
+</ul>
+<h2 id="user-validation-settings">User validation settings</h2>
+<pre><code class="lang-csharp" name="Main">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;(options =&gt;
+    {
+        // User settings
+        options.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+    .AddDefaultTokenProviders();
+</code></pre><p><code>IdentityOptions.User</code> has the following properties:</p>
+<ul>
+<li><code>RequireUniqueEmail</code>: Requires each User to have a unique email. Defaults to false.</li>
+<li><code>AllowedUserNameCharacters</code>: Allowed characters in the username. Defaults to abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+.</li>
+</ul>
+<h2 id="applications-cookie-settings">Application&#39;s cookie settings</h2>
+<p>Like the passwords policy, all the settings of the application&#39;s cookie can be changed in the <code>Startup</code> class.</p>
+<div class="tabGroup" id="tabgroup_UCTYjHNwtE-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_UCTYjHNwtE-1_aspnetcore2x" role="tab" aria-controls="tabpanel_UCTYjHNwtE-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_UCTYjHNwtE-1_aspnetcore1x" role="tab" aria-controls="tabpanel_UCTYjHNwtE-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_UCTYjHNwtE-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>Under <code>ConfigureServices</code> in the <code>Startup</code> class, you can configure the application&#39;s cookie.</p>
+<pre><code class="lang-csharp" name="Main">services.ConfigureApplicationCookie(options =&gt;
+{
+    options.Cookie.Name = &quot;YourAppCookieName&quot;;
+    options.Cookie.HttpOnly = true; 
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
+    options.LoginPath = &quot;/Account/Login&quot;;
+    options.LogoutPath = &quot;/Account/Logout&quot;;
+    options.AccessDeniedPath = &quot;/Account/AccessDenied&quot;; 
+    options.SlidingExpiration = true;
+});
+</code></pre></section>
+<section id="tabpanel_UCTYjHNwtE-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main">services.Configure&lt;IdentityOptions&gt;(options =&gt;
+{
+    // Cookie settings
+    options.Cookies.ApplicationCookie.CookieName = &quot;YourAppCookieName&quot;;
+    options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+    options.Cookies.ApplicationCookie.LoginPath = &quot;/Account/LogIn&quot;;
+    options.Cookies.ApplicationCookie.LogoutPath = &quot;/Account/LogOff&quot;;
+    options.Cookies.ApplicationCookie.AccessDeniedPath = &quot;/Account/AccessDenied&quot;;
+    options.Cookies.ApplicationCookie.AutomaticAuthenticate = true;
+    options.Cookies.ApplicationCookie.AuthenticationScheme = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Cookies.ApplicationCookie.ReturnUrlParameter = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.ReturnUrlParameter;
+});
+</code></pre></section>
+</div>
+<p><code>CookieAuthenticationOptions</code> has the following properties:</p>
+<ul>
+<li><code>Cookie.Name</code>: The name of the cookie. Defaults to .AspNetCore.Cookies.</li>
+<li><code>Cookie.HttpOnly</code>: When true, the cookie is not accessible from client-side scripts. Defaults to true.</li>
+<li><code>ExpireTimeSpan</code>: Controls how much time the authentication ticket stored in the cookie will remain valid from the point it is created. Defaults to 14 days.</li>
+<li><code>LoginPath</code>: When a user is unauthorized, they will be redirected to this path to login. Defaults to /Account/Login.</li>
+<li><code>LogoutPath</code>: When a user is logged out, they will be redirected to this path. Defaults to /Account/Logout.</li>
+<li><code>AccessDeniedPath</code>: When a user fails an authorization check, they will be redirected to this path. Defaults to /Account/AccessDenied.</li>
+<li><code>SlidingExpiration</code>: When true, a new cookie will be issued with a new expiration time when the current cookie is more than halfway through the expiration window. Defaults to true.</li>
+<li><code>ReturnUrlParameter</code>: The ReturnUrlParameter determines the name of the query string parameter which is appended by the middleware when a 401 Unauthorized status code is changed to a 302 redirect onto the login path.</li>
+<li><code>AuthenticationScheme</code>: This is only relevant for ASP.NET Core 1.x. The logical name for a particular authentication scheme.</li>
+<li><code>AutomaticAuthenticate</code>: This flag is only relevant for ASP.NET Core 1.x. When true, cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/identity-configuration.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

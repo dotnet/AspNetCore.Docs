@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Create publish profiles for Visual Studio and MSBuild </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Create publish profiles for Visual Studio and MSBuild ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="publishing/web-publishing-vs">
+<h1 id="create-publish-profiles-for-visual-studio-and-msbuild-to-deploy-aspnet-core-apps">Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps</h1>
+
+<p>By <a href="https://github.com/sayedihashimi">Sayed Ibrahim Hashimi</a> and <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>This article focuses on using Visual Studio 2017 to create publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio 2017. The article provides details of the publishing process. See <a class="xref" href="../tutorials/publish-to-azure-webapp-using-vs.html">Publish an ASP.NET Core web app to Azure App Service using Visual Studio</a> for instructions on publishing to Azure.</p>
+<p>The following <em>.csproj</em> file was created with the command <code>dotnet new mvc</code>:</p>
+<div class="tabGroup" id="tabgroup_W0FX84RQOU">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_W0FX84RQOU_aspnetcore2x" role="tab" aria-controls="tabpanel_W0FX84RQOU_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_W0FX84RQOU_aspnetcore1x" role="tab" aria-controls="tabpanel_W0FX84RQOU_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_W0FX84RQOU_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp2.0&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.All&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;DotNetCliToolReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+</code></pre></section>
+<section id="tabpanel_W0FX84RQOU_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp1.1&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore&quot; Version=&quot;1.1.1&quot; /&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Mvc&quot; Version=&quot;1.1.2&quot; /&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.StaticFiles&quot; Version=&quot;1.1.1&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+</code></pre></section>
+</div>
+<p>The <code>Sdk</code> attribute in the <code>&lt;Project&gt;</code> element (in the first line) of the markup above does the following:</p>
+<ul>
+<li>Imports the <code>props</code> file from <em>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.Props</em> at the beginning.</li>
+<li>Imports the targets file from <em>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets</em> at the end.</li>
+</ul>
+<p>The default location for <code>MSBuildSDKsPath</code> (with Visual Studio 2017 Enterprise) is the <em>%programfiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks</em> folder.</p>
+<p><code>Microsoft.NET.Sdk.Web</code> depends on:</p>
+<ul>
+<li><em>Microsoft.NET.Sdk.Web.ProjectSystem</em></li>
+<li><em>Microsoft.NET.Sdk.Publish</em></li>
+</ul>
+<p>Which causes the following <code>props</code> and <code>targets</code> to be imported:</p>
+<ul>
+<li>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.Props</li>
+<li>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk\Sdk.targets</li>
+<li>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.Props</li>
+<li>$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Publish\Sdk\Sdk.targets</li>
+</ul>
+<p>Publish targets will again import the right set of targets based on the publish method used.</p>
+<p>When MSBuild or Visual Studio loads a project, the following high level actions are performed:</p>
+<ul>
+<li>Build project</li>
+<li>Compute files to publish</li>
+<li>Publish files to destination</li>
+</ul>
+<h3 id="compute-project-items">Compute project items</h3>
+<p>When the project is loaded, the project items (files) are computed. The <code>item type</code> attribute determines how the file is processed. By default, <em>.cs</em> files are included in the <code>Compile</code> item list. Files in the <code>Compile</code> item list are compiled.</p>
+<p>The <code>Content</code> item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the <code>Content</code> item. <a href="https://gruntjs.com/configuring-tasks#globbing-patterns">wwwroot/** is a globbing pattern</a> that specifies all files in the <em>wwwroot</em> folder <strong>and</strong> subfolders. To explicitly add a file to the publish list, add the file directly in the <em>.csproj</em> file as shown in <a href="#including-files">Including Files</a>.</p>
+<p>When you select the <strong>Publish</strong> button in Visual Studio or when you publish from command line:</p>
+<ul>
+<li>The properties/items are computed (the files that are needed to build).</li>
+<li>Visual Studio only: NuGet packages are restored.  (Restore needs to be explicit by the user on the CLI.)</li>
+<li>The project builds.</li>
+<li>The publish items are computed (the files that are needed to publish).</li>
+<li>The project is published. (The computed files are copied to the publish destination.)</li>
+</ul>
+<h2 id="basic-command-line-publishing">Basic command line publishing</h2>
+<p>This section works on all .NET Core supported platforms and doesn&#39;t require Visual Studio. In the samples below, the <code>dotnet publish</code> command is run from the project directory (which contains the <em>.csproj</em> file). If you&#39;re not in the project folder, you can explicitly pass in the project file path. For example:</p>
+<pre><code class="lang-console">dotnet publish  c:/webs/web1
+</code></pre><p>Run the following commands to create and publish a web app:</p>
+<div class="tabGroup" id="tabgroup_W0FX84RQOU-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_W0FX84RQOU-1_aspnetcore2x" role="tab" aria-controls="tabpanel_W0FX84RQOU-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_W0FX84RQOU-1_aspnetcore1x" role="tab" aria-controls="tabpanel_W0FX84RQOU-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_W0FX84RQOU-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-console">dotnet new mvc
+dotnet publish
+</code></pre></section>
+<section id="tabpanel_W0FX84RQOU-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-console">dotnet new mvc
+dotnet restore
+dotnet publish
+</code></pre></section>
+</div>
+<p>The <code>dotnet publish</code> produces output similar to the following:</p>
+<pre><code class="lang-console">C:\Webs\Web1&gt;dotnet publish
+Microsoft (R) Build Engine version 15.3.409.57025 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Web1 -&gt; C:\Webs\Web1\bin\Debug\netcoreapp2.0\Web1.dll
+  Web1 -&gt; C:\Webs\Web1\bin\Debug\netcoreapp2.0\publish\
+</code></pre><p>The default publish folder is <code>bin\$(Configuration)\netcoreapp&lt;version&gt;\publish</code>. The default for <code>$(Configuration)</code> is Debug. In the sample above, the <code>&lt;TargetFramework&gt;</code> is <code>netcoreapp2.0</code>.</p>
+<p><code>dotnet publish -h</code> displays help information for publish.</p>
+<p>The following command specifies a <code>Release</code> build and the publishing directory:</p>
+<pre><code class="lang-console">dotnet publish -c Release -o C:/MyWebs/test
+</code></pre><p>The <code>dotnet publish</code> command calls <code>MSBuild</code> which invokes the <code>Publish</code> target. Any parameters passed to <code>dotnet publish</code> are passed to <code>MSBuild</code>. The <code>-c</code> parameter maps to the <code>Configuration</code> MSBuild property. The <code>-o</code> parameter maps to <code>OutputPath</code>.</p>
+<p>You can pass MSBuild properties using either of the following formats:</p>
+<ul>
+<li><code>p:&lt;NAME&gt;=&lt;VALUE&gt;</code></li>
+<li><code>/p:&lt;NAME&gt;=&lt;VALUE&gt;</code></li>
+</ul>
+<p>The following command publishes a <code>Release</code> build to a network share:</p>
+<p><code>dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb</code></p>
+<p>The network share is specified with forward slashes (<em>//r8/</em>) and works on all .NET Core supported platforms.</p>
+<p>Confirm that the published app for deployment isn&#39;t running. Files in the <em>publish</em> folder are locked when the app is running. Deployment can&#39;t occur because locked files can&#39;t be copied.</p>
+<h2 id="publish-profiles">Publish profiles</h2>
+<p>This section uses Visual Studio 2017 and higher to create publishing profiles. Once created, you can publish from Visual Studio or the command line.</p>
+<p>Publish profiles can simplify the publishing process. You can have multiple publish profiles. To create a publish profile in Visual Studio, right click on the project in Solution Explore and select <strong>Publish</strong>. Alternatively, you can select <strong>Publish     &lt;project name&gt;</strong> from the build menu. The <strong>Publish</strong> tab of the application capacities page is displayed. If the project doesn&#39;t contain a publish profile, the following page is displayed:</p>
+<p><img src="web-publishing-vs/_static/az.png" alt="The **Publish** tab of the application capacities page showing Azure, IIS, FTB, Folder with Azure selected. Also shows create new and Select Exiting radio buttons"></p>
+<p>When <strong>Folder</strong> is selected, the <strong>Publish</strong> button creates a folder publish profile and publishes.</p>
+<p><img src="web-publishing-vs/_static/pub1.png" alt="The **Publish** tab of the application capacities page showing Azure, IIS, FTB, Folder"></p>
+<p>Once a publish profile is created, the <strong>Publish</strong> tab changes, and you select <strong>Create new profile</strong> to create a new profile.</p>
+<p><img src="web-publishing-vs/_static/create_new.png" alt="The **Publish** tab of the application capacities page showing FolderProfile -created in the last step and Create new profile link"></p>
+<p>The Publish wizard supports the following publish targets:</p>
+<ul>
+<li>Microsoft Azure App Service</li>
+<li>IIS, FTP, etc (for any web server)</li>
+<li>Folder</li>
+<li>Import profile (allows you to import a profile).</li>
+<li>Microsoft Azure Virtual Machines</li>
+</ul>
+<p>See <a href="https://docs.microsoft.com/visualstudio/ide/not-in-toc/web-publish-options">What publishing options are right for me?</a> for more information.</p>
+<p>When you create a publish profile with Visual Studio, a <em>Properties/PublishProfiles/&lt;publish name&gt;.pubxml</em> MSBuild file is created. This <em>.pubxml</em> file is a MSBuild file and contains publish configuration settings. You can change this file to customize the build and publish process. This file is read by the publishing process. <code>&lt;LastUsedBuildConfiguration&gt;</code> is special because it’s a global property and shouldn’t be in any file that’s imported in the build. See <a href="http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx">MSBuild: how to set the configuration property</a> for more info.
+The <em>.pubxml</em> file should not be checked into source control because it depends on the <em>.user</em> file. The <em>.user</em> file should never be checked into source control because it can contain sensitive information and it&#39;s only valid for one user and machine.</p>
+<p>Sensitive information (like the publish password) is encrypted on a per user/machine level and stored in the <em>Properties/PublishProfiles/&lt;publish name&gt;.pubxml.user</em> file. Because this file can contain sensitive information, it should <strong>not</strong> be checked into source control.</p>
+<p>For an overview of how to publish a web app on ASP.NET Core see <a href="index.html">Publishing and Deployment</a>. <a href="index.html">Publishing and Deployment</a> is an open source project at <a href="https://github.com/aspnet/websdk">https://github.com/aspnet/websdk</a>.</p>
+<p>Currently <code>dotnet publish</code> doesn’t have the ability to use publish profiles. To use publish profiles, use <code>dotnet build</code>. <code>dotnet build</code> invokes MSBuild on the project. Alternatively, call <code>msbuild</code> directly.</p>
+<p>Set the following MSBuild properties when using a publish profile:</p>
+<ul>
+<li><code>DeployOnBuild=true</code></li>
+<li><code>PublishProfile=&lt;Publish profile name&gt;</code></li>
+</ul>
+<p>For example, when publishing with a profile named <em>FolderProfile</em> you can execute either of the commands below.</p>
+<ul>
+<li><code>dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile</code></li>
+<li><code>msbuild      /p:DeployOnBuild=true /p:PublishProfile=FolderProfile</code></li>
+</ul>
+<p>When you invoke <code>dotnet build</code> it will call <code>msbuild</code> to run the build and publish process. Calling <code>dotnet build</code> or <code>msbuild</code> is essentially equivalent when you pass in a folder profile. When calling MSBuild directly on Windows you get the .NET Framework version of MSBuild.  MSDeploy is currently limited to Windows machines for publishing. Calling <code>dotnet build</code> on a non-folder profile invokes MSBuild, and MSBuild uses MSDeploy on non-folder profiles. Calling <code>dotnet build</code> on a non-folder profile invokes MSBuild (using MSDeploy) and results in a failure (even when running on a Windows platform). To publish with a non-folder profile, call MSBuild directly.</p>
+<p>The following folder publish profile was created with Visual Studio and publishes to a network share:</p>
+<pre><code class="lang-xml" name="Main" highlight-lines="5,9,11,18">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!--
+This file is used by the publish/package process of your Web project.
+You can customize the behavior of this process by editing this 
+MSBuild file.
+--&gt;
+&lt;Project ToolsVersion=&quot;4.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;WebPublishMethod&gt;FileSystem&lt;/WebPublishMethod&gt;
+    &lt;PublishProvider&gt;FileSystem&lt;/PublishProvider&gt;
+    &lt;LastUsedBuildConfiguration&gt;Release&lt;/LastUsedBuildConfiguration&gt;
+    &lt;LastUsedPlatform&gt;Any CPU&lt;/LastUsedPlatform&gt;
+    &lt;SiteUrlToLaunchAfterPublish /&gt;
+    &lt;LaunchSiteAfterPublish&gt;True&lt;/LaunchSiteAfterPublish&gt;
+    &lt;ExcludeApp_Data&gt;False&lt;/ExcludeApp_Data&gt;
+    &lt;PublishFramework&gt;netcoreapp1.1&lt;/PublishFramework&gt;
+    &lt;ProjectGuid&gt;c30c453c-312e-40c4-aec9-394a145dee0b&lt;/ProjectGuid&gt;
+    &lt;publishUrl&gt;\\r8\Release\AdminWeb&lt;/publishUrl&gt;
+    &lt;DeleteExistingFiles&gt;False&lt;/DeleteExistingFiles&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
+</code></pre><p>Note <code>&lt;LastUsedBuildConfiguration&gt;</code> is set to <code>Release</code>.  When publishing from Visual Studio, the <code>&lt;LastUsedBuildConfiguration&gt;</code> configuration property value is set using the value when the publish process is started. The <code>&lt;LastUsedBuildConfiguration&gt;</code> configuration property is special and shouldn’t be overridden in an imported MSBuild file. You can override this property from the command line. For example:</p>
+<p><code>dotnet build -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile</code></p>
+<p>Using MSBuild:</p>
+<p><code>msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile</code></p>
+<h2 id="publish-to-an-msdeploy-endpoint-from-the-command-line">Publish to an MSDeploy endpoint from the command line</h2>
+<p>As previously mentioned, you can publish using <code>dotnet publish</code> or the <code>msbuild</code> command. <code>dotnet publish</code> runs in the context of .NET Core. <code>msbuild</code> requires .NET framework, and is therefore limited to Windows environments.</p>
+<p>The easiest way to publish with MSDeploy is to first create a publish profile in Visual Studio 2017 and use the profile from the command line.</p>
+<p>In the following sample, an ASP.NET Core web app is created ( using <code>dotnet new mvc</code>) and an Azure publish profile is added with Visual Studio.</p>
+<p>You run <code>msbuild</code> from a <strong>Developer Command Prompt for VS 2017</strong>. The Developer Command Prompt will have the correct <em>msbuild.exe</em> in its path and set some MSBuild variables.</p>
+<p>MSBuild uses the following syntax:</p>
+<p><code>msbuild &lt;path-to-project-file&gt; /p:DeployOnBuild=true /p:PublishProfile=&lt;Publish Profile&gt;  /p:Username=&lt;USERNAME&gt; /p:Password=&lt;PASSWORD&gt;</code></p>
+<p>You can get the <code>Password</code> from the <em>&lt;Publish name&gt;.PublishSettings</em> file. You can download the <em>.PublishSettings</em> file from:</p>
+<ul>
+<li>Solution Explorer: Right click on the Web App and select <strong>Download Publish Profile</strong>.</li>
+<li>The Azure Management Portal: Select <strong>Get publish profile</strong> from the  Web App blade.</li>
+</ul>
+<p><code>Username</code> can be found in the publish profile.</p>
+<p>The following sample uses the &quot;Web11112 - Web Deploy&quot; publish profile:</p>
+<pre><code class="lang-console">msbuild &quot;C:\Webs\Web1\Web1.csproj&quot; /p:DeployOnBuild=true
+ /p:PublishProfile=&quot;Web11112 - Web Deploy&quot;  /p:Username=&quot;$Web11112&quot;
+ /p:Password=&quot;&lt;password removed&gt;&quot;
+</code></pre><h2 id="excluding-files">Excluding files</h2>
+<p>When publishing ASP.NET Core web apps, the build artifacts and contents of the <em>wwwroot</em> folder are included. <code>msbuild</code> supports <a href="https://gruntjs.com/configuring-tasks#globbing-patterns">globbing patterns</a>. For example, the following <code>&lt;Content&gt;</code> element markup will exclude all text (<em>.txt</em>) files from the <em>wwwroot/content</em> folder and all its subfolders.</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;Content Update=&quot;wwwroot/content/**/*.txt&quot; CopyToPublishDirectory=&quot;Never&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p>The markup above can be added to a publish profile or the <em>.csproj</em> file. When added to the <em>.csproj</em> file, the rule is added to all publish profiles in the project.</p>
+<p>The following <code>&lt;MsDeploySkipRules&gt;</code> element markup exludes all files from the <em>wwwroot/content</em> folder:</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;MsDeploySkipRules Include=&quot;CustomSkipFolder&quot;&gt;
+    &lt;ObjectName&gt;dirPath&lt;/ObjectName&gt;
+    &lt;AbsolutePath&gt;wwwroot\content&lt;/AbsolutePath&gt;
+  &lt;/MsDeploySkipRules&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p><code>&lt;MsDeploySkipRules&gt;</code>  will not delete the <em>skip</em> targets from the deployment site. <code>&lt;Content&gt;</code> targeted files and folders will be deleted from the deployment site. For example, suppose you had deployed a web app with the following files:</p>
+<ul>
+<li><em>Views/Home/About1.cshtml</em></li>
+<li><em>Views/Home/About2.cshtml</em></li>
+<li><em>Views/Home/About3.cshtml</em></li>
+</ul>
+<p>If you added the following <code>&lt;MsDeploySkipRules&gt;</code> markup, those files would not be deleted on the deployment site.</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;MsDeploySkipRules Include=&quot;CustomSkipFile&quot;&gt;
+    &lt;ObjectName&gt;filePath&lt;/ObjectName&gt;
+    &lt;AbsolutePath&gt;Views\\Home\\About1.cshtml&lt;/AbsolutePath&gt;
+  &lt;/MsDeploySkipRules&gt;
+
+  &lt;MsDeploySkipRules Include=&quot;CustomSkipFile&quot;&gt;
+    &lt;ObjectName&gt;filePath&lt;/ObjectName&gt;
+    &lt;AbsolutePath&gt;Views\\Home\\About2.cshtml&lt;/AbsolutePath&gt;
+  &lt;/MsDeploySkipRules&gt;
+
+  &lt;MsDeploySkipRules Include=&quot;CustomSkipFile&quot;&gt;
+    &lt;ObjectName&gt;filePath&lt;/ObjectName&gt;
+    &lt;AbsolutePath&gt;Views\\Home\\About3.cshtml&lt;/AbsolutePath&gt;
+  &lt;/MsDeploySkipRules&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p>The <code>&lt;MsDeploySkipRules&gt;</code> markup shown above prevents the <em>skipped</em> files from being depoyed, but will not delete those files once they are deployed.</p>
+<p>The following <code>&lt;Content&gt;</code> markup would delete the targeted files at the deployment site:</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;Content Update=&quot;Views/Home/About?.cshtml&quot; CopyToPublishDirectory=&quot;Never&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p>Using command line deployment with the <code>&lt;Content&gt;</code> markup above would result in output similar to the following:</p>
+<pre><code class="lang-console">MSDeployPublish:
+  Starting Web deployment task from source: manifest(C:\Webs\Web1\obj\Release\netcoreapp1.1\PubTmp\Web1.SourceManifest.
+  xml) to Destination: auto().
+  Deleting file (Web11112\Views\Home\About1.cshtml).
+  Deleting file (Web11112\Views\Home\About2.cshtml).
+  Deleting file (Web11112\Views\Home\About3.cshtml).
+  Updating file (Web11112\web.config).
+  Updating file (Web11112\Web1.deps.json).
+  Updating file (Web11112\Web1.dll).
+  Updating file (Web11112\Web1.pdb).
+  Updating file (Web11112\Web1.runtimeconfig.json).
+  Successfully executed Web deployment task.
+  Publish Succeeded.
+Done Building Project &quot;C:\Webs\Web1\Web1.csproj&quot; (default targets).
+</code></pre><h2 id="including-files">Including files</h2>
+<p>The following markup can be used to include an <em>images</em> folder outside the project directory to the <em>wwwroot/images</em> folder of the publish site.</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+  &lt;_CustomFiles Include=&quot;$(MSBuildProjectDirectory)/../images/**/*&quot; /&gt;
+  &lt;DotnetPublishFiles Include=&quot;@(_CustomFiles)&quot;&gt;
+    &lt;DestinationRelativePath&gt;wwwroot/images/%(RecursiveDir)%(Filename)%(Extension)&lt;/DestinationRelativePath&gt;
+  &lt;/DotnetPublishFiles&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p>The markup can be added to the <em>.csproj</em> file or the publish profile. If it&#39;s added to the <em>.csproj</em> file, it will be included in each publish profile in the project.</p>
+<p>The following highlighted markup shows how to:</p>
+<ul>
+<li>Copy a file from outside the project into the <em>wwwroot</em> folder.</li>
+<li>Exclude the <em>wwwroot\Content</em> folder.</li>
+<li>Exclude <em>Views\Home\About2.cshtml</em>.</li>
+</ul>
+<pre><code class="lang-xml" name="Main" highlight-lines="21-29">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!--
+This file is used by the publish/package process of your Web project.
+You can customize the behavior of this process by editing this 
+MSBuild file.
+--&gt;
+&lt;Project ToolsVersion=&quot;4.0&quot; xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;WebPublishMethod&gt;FileSystem&lt;/WebPublishMethod&gt;
+    &lt;PublishProvider&gt;FileSystem&lt;/PublishProvider&gt;
+    &lt;LastUsedBuildConfiguration&gt;Release&lt;/LastUsedBuildConfiguration&gt;
+    &lt;LastUsedPlatform&gt;Any CPU&lt;/LastUsedPlatform&gt;
+    &lt;SiteUrlToLaunchAfterPublish /&gt;
+    &lt;LaunchSiteAfterPublish&gt;True&lt;/LaunchSiteAfterPublish&gt;
+    &lt;ExcludeApp_Data&gt;False&lt;/ExcludeApp_Data&gt;
+    &lt;PublishFramework /&gt;
+    &lt;ProjectGuid&gt;afa9f185-7ce0-4935-9da1-ab676229d68a&lt;/ProjectGuid&gt;
+    &lt;publishUrl&gt;bin\Release\PublishOutput&lt;/publishUrl&gt;
+    &lt;DeleteExistingFiles&gt;False&lt;/DeleteExistingFiles&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;ResolvedFileToPublish Include=&quot;..\ReadMe2.MD&quot;&gt;
+      &lt;RelativePath&gt;wwwroot\ReadMe2.MD&lt;/RelativePath&gt;
+    &lt;/ResolvedFileToPublish&gt;
+
+    &lt;Content Update=&quot;wwwroot\Content\**\*&quot; CopyToPublishDirectory=&quot;Never&quot; /&gt;
+    &lt;Content Update=&quot;Views\Home\About2.cshtml&quot; CopyToPublishDirectory=&quot;Never&quot; /&gt;
+
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+</code></pre><p>See the <a href="https://github.com/aspnet/websdk">WebSDK Readme</a> for more deployment samples.</p>
+<h3 id="run-a-target-before-or-after-publishing">Run a target before or after publishing</h3>
+<p>The builtin <code>BeforePublish</code> and <code>AfterPublish</code> targets can be used to execute a target before or after the publish target. The following markup can be added to the publish profile to log messages to the console output before and after publishing:</p>
+<pre><code class="lang-xml">&lt;Target Name=&quot;CustomActionsBeforePublish&quot; BeforeTargets=&quot;BeforePublish&quot;&gt;
+    &lt;Message Text=&quot;Inside BeforePublish&quot; Importance=&quot;high&quot; /&gt;
+  &lt;/Target&gt;
+  &lt;Target Name=&quot;CustomActionsAfterPublish&quot; AfterTargets=&quot;AfterPublish&quot;&gt;
+    &lt;Message Text=&quot;Inside AfterPublish&quot; Importance=&quot;high&quot; /&gt;
+&lt;/Target&gt;
+</code></pre><h2 id="the-kudu-service">The Kudu service</h2>
+<p>To view the files on your Azure Web App, use the <a href="https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service">kudu service</a>. Append the <code>scm</code> token to the name or your Web App. For example:</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://mysite.azurewebsites.net/</code></td>
+<td>Web App</td>
+</tr>
+<tr>
+<td><code>http://mysite.scm.azurewebsites.net/</code></td>
+<td>Kudu sevice</td>
+</tr>
+</tbody>
+</table>
+<p>Select the <a href="https://github.com/projectkudu/kudu/wiki/Kudu-console">Debug Console</a> menu item to view/edit/delete/add files.</p>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><p><a href="https://www.iis.net/downloads/microsoft/web-deploy">Web Deploy</a>  (msdeploy) simplifies deployment of Web applications and Web sites to IIS servers.</p>
+</li>
+<li><p><a href="https://github.com/aspnet/websdk/issues">https://github.com/aspnet/websdk</a>: File issues and request features for deployment.</p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/publishing/web-publishing-vs.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

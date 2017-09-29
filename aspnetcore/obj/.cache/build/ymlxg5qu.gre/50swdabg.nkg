@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Web server implementations in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Web server implementations in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/servers/index">
+<h1 id="web-server-implementations-in-aspnet-core">Web server implementations in ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a>, <a href="https://ardalis.com/">Steve Smith</a>, <a href="https://twitter.com/halter73">Stephen Halter</a>, and <a href="https://github.com/Tratcher">Chris Ross</a></p>
+<p>An ASP.NET Core application runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the application as sets of <a href="https://docs.microsoft.com/aspnet/core/fundamentals/request-features">request features</a> composed into an <code>HttpContext</code>.</p>
+<p>ASP.NET Core ships two server implementations:</p>
+<div class="tabGroup" id="tabgroup_rtwGeMo7X1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1_aspnetcore2x" role="tab" aria-controls="tabpanel_rtwGeMo7X1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1_aspnetcore1x" role="tab" aria-controls="tabpanel_rtwGeMo7X1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_rtwGeMo7X1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<ul>
+<li><p><a href="kestrel.html">Kestrel</a> is a cross-platform HTTP server based on <a href="https://github.com/libuv/libuv">libuv</a>, a cross-platform asynchronous I/O library.</p>
+</li>
+<li><p><a href="httpsys.html">HTTP.sys</a> is a Windows-only HTTP server based on the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx">Http.Sys kernel driver</a>.</p>
+</li>
+</ul>
+</section>
+<section id="tabpanel_rtwGeMo7X1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul>
+<li><p><a href="kestrel.html">Kestrel</a> is a cross-platform HTTP server based on <a href="https://github.com/libuv/libuv">libuv</a>, a cross-platform asynchronous I/O library.</p>
+</li>
+<li><p><a href="weblistener.html">WebListener</a> is a Windows-only HTTP server based on the <a href="https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx">Http.Sys kernel driver</a>.</p>
+</li>
+</ul>
+</section>
+</div>
+<h2 id="kestrel">Kestrel</h2>
+<p>Kestrel is the web server that is included by default in ASP.NET Core new-project templates. </p>
+<div class="tabGroup" id="tabgroup_rtwGeMo7X1-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-1_aspnetcore2x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-1_aspnetcore1x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_rtwGeMo7X1-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>You can use Kestrel by itself or with a <em>reverse proxy server</em>, such as IIS, Nginx, or Apache. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.</p>
+<p><img src="kestrel/_static/kestrel-to-internet2.png" alt="Kestrel communicates directly with the Internet without a reverse proxy server"></p>
+<p><img src="kestrel/_static/kestrel-to-internet.png" alt="Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache"></p>
+<p>Either configuration &mdash; with or without a reverse proxy server &mdash; can also be used if Kestrel is exposed only to an internal network.</p>
+<p>For information about when to use Kestrel with a reverse proxy, see <a href="kestrel.html">Introduction to Kestrel</a>.</p>
+</section>
+<section id="tabpanel_rtwGeMo7X1-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>If your application accepts requests only from an internal network, you can use Kestrel by itself.</p>
+<p><img src="kestrel/_static/kestrel-to-internal.png" alt="Kestrel communicates directly with your internal network"></p>
+<p>If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a <em>reverse proxy server</em>. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling, as shown in the following diagram.</p>
+<p><img src="kestrel/_static/kestrel-to-internet.png" alt="Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache"></p>
+<p>The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. The 1.x versions of Kestrel don&#39;t have a full complement of defenses against attacks. This includes, but isn&#39;t limited to, appropriate timeouts, size limits, and concurrent connection limits.</p>
+<p>For information about when to use Kestrel with a reverse proxy, see <a href="kestrel.html">Introduction to Kestrel</a>.</p>
+</section>
+</div>
+<p>You can&#39;t use IIS, Nginx, or Apache without Kestrel or a <a href="#custom-servers">custom server implementation</a>. ASP.NET Core was designed to run in its own process so that it can behave consistently across platforms. IIS, Nginx, and Apache dictate their own startup process and environment; to use them directly, ASP.NET Core would have to adapt to the needs of each one. Using a web server implementation such as Kestrel gives ASP.NET Core control over the startup process and environment. So rather than trying to adapt ASP.NET Core to IIS, Nginx, or Apache, you just set up those web servers to proxy requests to Kestrel. This arrangement allows your <code>Program.Main</code> and <code>Startup</code> classes to be essentially the same no matter where you deploy.</p>
+<h3 id="iis-with-kestrel">IIS with Kestrel</h3>
+<p>When you use IIS or IIS Express as a reverse proxy for ASP.NET Core, the ASP.NET Core application runs in a process separate from the IIS worker process. In the IIS process, a special IIS module runs to coordinate the reverse proxy relationship.  This is the <em>ASP.NET Core Module</em>. The primary functions of the ASP.NET Core Module are to start the ASP.NET Core application, restart it when it crashes, and forward HTTP traffic to it. For more information, see <a href="aspnet-core-module.html">ASP.NET Core Module</a>. </p>
+<h3 id="nginx-with-kestrel">Nginx with Kestrel</h3>
+<p>For information about how to use Nginx on Linux as a reverse proxy server for Kestrel, see <a href="../../publishing/linuxproduction.html">Publish to a Linux Production Environment</a>.</p>
+<h3 id="apache-with-kestrel">Apache with Kestrel</h3>
+<p>For information about how to use Apache on Linux as a reverse proxy server for Kestrel, see <a href="../../publishing/apache-proxy.html">Using Apache Web Server as a reverse proxy</a>.</p>
+<h2 id="httpsys">HTTP.sys</h2>
+<div class="tabGroup" id="tabgroup_rtwGeMo7X1-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-2_aspnetcore2x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-2_aspnetcore1x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_rtwGeMo7X1-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>If you run your ASP.NET Core app on Windows, HTTP.sys is an alternative to Kestrel. You can use HTTP.sys for scenarios where you expose your app to the Internet and you need HTTP.sys features that Kestrel doesn&#39;t support. </p>
+<p><img src="httpsys/_static/httpsys-to-internet.png" alt="HTTP.sys communicates directly with the Internet"></p>
+<p>HTTP.sys can also be used for applications that are exposed only to an internal network. </p>
+<p><img src="httpsys/_static/httpsys-to-internal.png" alt="HTTP.sys communicates directly with your internal network"></p>
+<p>For internal network scenarios, Kestrel is generally recommended for best performance; but in some scenarios, you might want to use a feature that only HTTP.sys offers. For information about HTTP.sys features, see <a href="httpsys.html">HTTP.sys</a>.</p>
+</section>
+<section id="tabpanel_rtwGeMo7X1-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>HTTP.sys is named WebListener in ASP.NET Core 1.x. If you run your ASP.NET Core app on Windows, WebListener is an alternative that you can use for scenarios where you want to expose your app to the Internet but you can&#39;t use IIS.</p>
+<p><img src="weblistener/_static/weblistener-to-internet.png" alt="Weblistener communicates directly with the Internet"></p>
+<p>WebListener can also be used in place of Kestrel for applications that are exposed only to an internal network, if you need WebListener features that Kestrel doesn&#39;t support. </p>
+<p><img src="weblistener/_static/weblistener-to-internal.png" alt="Weblistener communicates directly with your internal network"></p>
+<p>For internal network scenarios, Kestrel is generally recommended for best performance, but in some scenarios you might want to use a feature that only WebListener offers. For information about WebListener features, see <a href="weblistener.html">WebListener</a>.</p>
+</section>
+</div>
+<h2 id="notes-about-aspnet-core-server-infrastructure">Notes about ASP.NET Core server infrastructure</h2>
+<p>The <a href="/aspnet/core/api/microsoft.aspnetcore.builder.iapplicationbuilder"><code>IApplicationBuilder</code></a> available in the <code>Startup</code> class <code>Configure</code> method exposes the <code>ServerFeatures</code> property of type <a href="/aspnet/core/api/microsoft.aspnetcore.http.features.ifeaturecollection"><code>IFeatureCollection</code></a>. Kestrel and WebListener both expose only a single feature, <a href="/aspnet/core/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature"><code>IServerAddressesFeature</code></a>, but different server implementations may expose additional functionality.</p>
+<p><code>IServerAddressesFeature</code> can be used to find out which port the server implementation has bound to at runtime.</p>
+<h2 id="custom-servers">Custom servers</h2>
+<p>If the built-in servers don&#39;t meet your needs, you can create a custom server implementation. The <a href="../owin.html">Open Web Interface for .NET (OWIN) guide</a> demonstrates how to write a <a href="https://github.com/Bobris/Nowin">Nowin</a>-based <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver">IServer</a> implementation. You&#39;re free to implement just the feature interfaces your application needs, though at a minimum you must support <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.ihttprequestfeature">IHttpRequestFeature</a> and <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpresponsefeature">IHttpResponseFeature</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>For more information, see the following resources:</p>
+<div class="tabGroup" id="tabgroup_rtwGeMo7X1-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-3_aspnetcore2x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_rtwGeMo7X1-3_aspnetcore1x" role="tab" aria-controls="tabpanel_rtwGeMo7X1-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_rtwGeMo7X1-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<ul>
+<li><a href="kestrel.html">Kestrel</a></li>
+<li><a href="aspnet-core-module.html">Kestrel with IIS</a></li>
+<li><a href="../../publishing/linuxproduction.html">Kestrel with Nginx</a></li>
+<li><a href="../../publishing/apache-proxy.html">Kestrel with Apache</a></li>
+<li><a href="httpsys.html">HTTP.sys</a></li>
+</ul>
+</section>
+<section id="tabpanel_rtwGeMo7X1-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul>
+<li><a href="kestrel.html">Kestrel</a></li>
+<li><a href="aspnet-core-module.html">Kestrel with IIS</a></li>
+<li><a href="../../publishing/linuxproduction.html">Kestrel with Nginx</a></li>
+<li><a href="../../publishing/apache-proxy.html">Kestrel with Apache</a></li>
+<li><a href="weblistener.html">WebListener</a></li>
+</ul>
+</section>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/servers/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

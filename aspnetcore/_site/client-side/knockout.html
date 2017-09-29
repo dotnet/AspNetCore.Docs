@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Knockout.js MVVM Framework in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Knockout.js MVVM Framework in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/knockout">
+<h1 id="knockoutjs-mvvm-framework-in-aspnet-core">Knockout.js MVVM Framework in ASP.NET Core</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Knockout is a popular JavaScript library that simplifies the creation of complex data-based user interfaces. It can be used alone or with other libraries, such as jQuery. Its primary purpose is to bind UI elements to an underlying data model defined as a JavaScript object, such that when changes are made to the UI, the model is updated, and vice versa. Knockout facilitates the use of a Model-View-ViewModel (MVVM) pattern in a web application&#39;s client-side behavior. The two main concepts one must learn when working with Knockout&#39;s MVVM implementation are Observables and Bindings.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward using <a href="bower.html">bower</a>. Assuming you already have <a href="bower.html">bower</a> and <a href="using-gulp.html">gulp</a> configured, open <em>bower.json</em> in your ASP.NET Core project and add the knockout dependency as shown here:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;KnockoutDemo&quot;,
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;knockout&quot; : &quot;^3.3.0&quot;
+  },
+  &quot;exportsOverride&quot;: {
+  }
+}
+</code></pre><p>With this in place, you can then manually run bower by opening the Task Runner Explorer (under View ‣ Other Windows ‣ Task Runner Explorer) and then under Tasks, right-click on bower and select Run. The result should appear similar to this:</p>
+<p><img src="knockout/_static/bower-knockout.png" alt="bower running knockout in Task Runner Explorer"></p>
+<p>Now if you look in your project&#39;s <code>wwwroot</code> folder, you should see knockout installed under the lib folder.</p>
+<p><img src="knockout/_static/wwwroot-knockout.png" alt="knockout installed in lib folder"></p>
+<p>It&#39;s recommended that in your production environment you reference knockout via a Content Delivery Network, or CDN, as this increases the likelihood that your users will already have a cached copy of the file and thus will not need to download it at all. Knockout is available on several CDNs, including the Microsoft Ajax CDN, here:</p>
+<p><a href="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js">http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js</a></p>
+<p>To include Knockout on a page that will use it, simply add a <code>&lt;script&gt;</code> element referencing the file from wherever you will be hosting it (with your application, or via a CDN):</p>
+<pre><code class="lang-html">&lt;script type=&quot;text/javascript&quot; src=&quot;knockout-3.3.0.js&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="observables-viewmodels-and-simple-binding">Observables, ViewModels, and simple binding</h2>
+<p>You may already be familiar with using JavaScript to manipulate elements on a web page, either via direct access to the DOM or using a library like jQuery. Typically this kind of behavior is achieved by writing code to directly set element values in response to certain user actions. With Knockout, a declarative approach is taken instead, through which elements on the page are bound to properties on an object. Instead of writing code to manipulate DOM elements, user actions simply interact with the ViewModel object, and Knockout takes care of ensuring the page elements are synchronized.</p>
+<p>As a simple example, consider the page list below. It includes a <code>&lt;span&gt;</code> element with a <code>data-bind</code> attribute indicating that the text content should be bound to authorName. Next, in a JavaScript block a variable viewModel is defined with a single property, <code>authorName</code>, set to some value. Finally, a call to <code>ko.applyBindings</code> is made, passing in this viewModel variable.</p>
+<pre><code class="lang-html">&lt;html&gt;
+&lt;head&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;lib/knockout/knockout.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Some Article&lt;/h1&gt;
+    &lt;p&gt;
+        By &lt;span data-bind=&quot;text: authorName&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+      var viewModel = {
+        authorName: &#39;Steve Smith&#39;
+      };
+      ko.applyBindings(viewModel);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>When viewed in the browser, the content of the <span> element is replaced with the value in the viewModel variable:<p>
+<p><img src="knockout/_static/simple-binding-screenshot.png" alt="knockout simple binding"></p>
+<p>We now have simple one-way binding working. Notice that nowhere in the code did we write JavaScript to assign a value to the span&#39;s contents. If we want to manipulate the ViewModel, we can take this a step further and add an HTML input textbox, and bind to its value, like so:</p>
+<pre><code class="lang-html">&lt;p&gt;
+    Author Name: &lt;input type=&quot;text&quot; data-bind=&quot;value: authorName&quot; /&gt;
+&lt;/p&gt;
+</code></pre><p>Reloading the page, we see that this value is indeed bound to the input box:</p>
+<p><img src="knockout/_static/input-binding-screenshot.png" alt="knockout input binding"></p>
+<p>However, if we change the value in the textbox, the corresponding value in the <code>&lt;span&gt;</code> element doesn&#39;t change. Why not?</p>
+<p>The issue is that nothing notified the <code>&lt;span&gt;</code> that it needed to be updated. Simply updating the ViewModel isn&#39;t by itself sufficient, unless the ViewModel&#39;s properties are wrapped in a special type. We need to use <strong>observables</strong> in the ViewModel for any properties that need to have changes automatically updated as they occur. By changing the ViewModel to use <code>ko.observable(&quot;value&quot;)</code> instead of just &quot;value&quot;, the ViewModel will update any HTML elements that are bound to its value whenever a change occurs. Note that input boxes don&#39;t update their value until they lose focus, so you won&#39;t see changes to bound elements as you type.</p>
+<div class="NOTE"><h5>Note</h5><p>Adding support for live updating after each keypress is simply a matter of adding <code>valueUpdate: &quot;afterkeydown&quot;</code> to the <code>data-bind</code> attribute&#39;s contents. You can also get this behavior by using <code>data-bind=&quot;textInput: authorName&quot;</code> to get instant updates of values. </p>
+</div>
+<p>Our viewModel, after updating it to use ko.observable:</p>
+<pre><code class="lang-javascript">var viewModel = {
+  authorName: ko.observable(&#39;Steve Smith&#39;)
+};
+ko.applyBindings(viewModel);
+</code></pre><p>Knockout supports a number of different kinds of bindings. So far we&#39;ve seen how to bind to <code>text</code> and to <code>value</code>. You can also bind to any given attribute. For instance, to create a hyperlink with an anchor tag, the <code>src</code> attribute can be bound to the viewModel. Knockout also supports binding to functions. To demonstrate this, let&#39;s update the viewModel to include the author&#39;s twitter handle, and display the twitter handle as a link to the author&#39;s twitter page. We&#39;ll do this in three stages.</p>
+<p>First, add the HTML to display the hyperlink, which we&#39;ll show in parentheses after the author&#39;s name:</p>
+<pre><code class="lang-html">&lt;h1&gt;Some Article&lt;/h1&gt;
+&lt;p&gt;
+    By &lt;span data-bind=&quot;text: authorName&quot;&gt;&lt;/span&gt;
+    (&lt;a data-bind=&quot;attr: { href: twitterUrl}, text: twitterAlias&quot; &gt;&lt;/a&gt;)
+&lt;/p&gt;
+</code></pre><p>Next, update the viewModel to include the twitterUrl and twitterAlias properties:</p>
+<pre><code class="lang-javascript">var viewModel = {
+  authorName: ko.observable(&#39;Steve Smith&#39;),
+  twitterAlias: ko.observable(&#39;@ardalis&#39;),
+  twitterUrl: ko.computed(function() {
+    return &quot;https://twitter.com/&quot;;
+  }, this)
+};
+ko.applyBindings(viewModel);
+</code></pre><p>Notice that at this point we haven&#39;t yet updated the twitterUrl to go to the correct URL for this twitter alias – it&#39;s just pointing at twitter.com. Also notice that we&#39;re using a new Knockout function, <code>computed</code>, for twitterUrl. This is an observable function that will notify any UI elements if it changes. However, for it to have access to other properties in the viewModel, we need to change how we are creating the viewModel, so that each property is its own statement.</p>
+<p>The revised viewModel declaration is shown below. It is now declared as a function. Notice that each property is its own statement now, ending with a semicolon. Also notice that to access the twitterAlias property value, we need to execute it, so its reference includes ().</p>
+<pre><code class="lang-javascript">function viewModel() {
+  this.authorName = ko.observable(&#39;Steve Smith&#39;);
+  this.twitterAlias = ko.observable(&#39;@ardalis&#39;);
+
+  this.twitterUrl = ko.computed(function() {
+    return &quot;https://twitter.com/&quot; + this.twitterAlias().replace(&#39;@&#39;,&#39;&#39;);
+  }, this)
+};
+ko.applyBindings(viewModel);
+</code></pre><p>The result works as expected in the browser:</p>
+<p><img src="knockout/_static/hyperlink-screenshot.png" alt="knockout hyperlink"></p>
+<p>Knockout also supports binding to certain UI element events, such as the click event. This allows you to easily and declaratively bind UI elements to functions within the application&#39;s viewModel. As a simple example, we can add a button that, when clicked, modifies the author&#39;s twitterAlias to be all caps.</p>
+<p>First, we add the button, binding to the button&#39;s click event, and referencing the function name we&#39;re going to add to the viewModel:</p>
+<pre><code class="lang-html">&lt;p&gt;
+    &lt;button data-bind=&quot;click: capitalizeTwitterAlias&quot;&gt;Capitalize&lt;/button&gt;
+&lt;/p&gt;
+</code></pre><p>Then, add the function to the viewModel, and wire it up to modify the viewModel&#39;s state. Notice that to set a new value to the twitterAlias property, we call it as a method and pass in the new value.</p>
+<pre><code class="lang-javascript">function viewModel() {
+  this.authorName = ko.observable(&#39;Steve Smith&#39;);
+  this.twitterAlias = ko.observable(&#39;@ardalis&#39;);
+
+  this.twitterUrl = ko.computed(function() {
+    return &quot;https://twitter.com/&quot; + this.twitterAlias().replace(&#39;@&#39;,&#39;&#39;);
+  }, this);
+
+  this.capitalizeTwitterAlias = function() {
+    var currentValue = this.twitterAlias();
+    this.twitterAlias(currentValue.toUpperCase());
+  }
+};
+ko.applyBindings(viewModel);
+</code></pre><p>Running the code and clicking the button modifies the displayed link as expected:</p>
+<p><img src="knockout/_static/hyperlink-caps-screenshot.png" alt="hyperlink capitalize"></p>
+<h2 id="control-flow">Control flow</h2>
+<p>Knockout includes bindings that can perform conditional and looping operations. Looping operations are especially useful for binding lists of data to UI lists, menus, and grids or tables. The foreach binding will iterate over an array. When used with an observable array, it will automatically update the UI elements when items are added or removed from the array, without re-creating every element in the UI tree. The following example uses a new viewModel which includes an observable array of game results. It is bound to a simple table with two columns using a <code>foreach</code> binding on the <code>&lt;tbody&gt;</code> element. Each <code>&lt;tr&gt;</code> element within <code>&lt;tbody&gt;</code> will be bound to an element of the gameResults collection.</p>
+<pre><code class="lang-html">&lt;h1&gt;Record&lt;/h1&gt;
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Opponent&lt;/th&gt;
+            &lt;th&gt;Result&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody data-bind=&quot;foreach: gameResults&quot;&gt;
+        &lt;tr&gt;
+            &lt;td data-bind=&quot;text:opponent&quot;&gt;&lt;/td&gt;
+            &lt;td data-bind=&quot;text:result&quot;&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  function GameResult(opponent, result) {
+    var self = this;
+    self.opponent = opponent;
+    self.result = ko.observable(result);
+  }
+
+  function ViewModel() {
+    var self = this;
+
+    self.resultChoices = [&quot;Win&quot;, &quot;Loss&quot;, &quot;Tie&quot;];
+
+    self.gameResults = ko.observableArray([
+      new GameResult(&quot;Brendan&quot;, self.resultChoices[0]),
+      new GameResult(&quot;Brendan&quot;, self.resultChoices[0]),
+      new GameResult(&quot;Michelle&quot;, self.resultChoices[1])
+    ]);
+  };
+  ko.applyBindings(new ViewModel);
+&lt;/script&gt;
+</code></pre><p>Notice that this time we&#39;re using ViewModel with a capital “V&quot; because we expect to construct it using “new&quot; (in the applyBindings call). When executed, the page results in the following output:</p>
+<p><img src="knockout/_static/record-screenshot.png" alt="knockout record view model"></p>
+<p>To demonstrate that the observable collection is working, let&#39;s add a bit more functionality. We can include the ability to record the results of another game to the ViewModel, and then add a button and some UI to work with this new function.  First, let&#39;s create the addResult method:</p>
+<pre><code class="lang-javascript">// add this to ViewModel()
+self.addResult = function() {
+  self.gameResults.push(new GameResult(&quot;&quot;, self.resultChoices[0]));
+}
+</code></pre><p>Bind this method to a button using the <code>click</code> binding:</p>
+<pre><code class="lang-html">&lt;button data-bind=&quot;click: addResult&quot;&gt;Add New Result&lt;/button&gt;
+</code></pre><p>Open the page in the browser and click the button a couple of times, resulting in a new table row with each click:</p>
+<p><img src="knockout/_static/record-addresult-screenshot.png" alt="Add Results"></p>
+<p>There are a few ways to support adding new records in the UI, typically either inline or in a separate form. We can easily modify the table to use textboxes and dropdownlists so that the whole thing is editable. Just change the <code>&lt;tr&gt;</code> element as shown:</p>
+<pre><code class="lang-html">&lt;tbody data-bind=&quot;foreach: gameResults&quot;&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;input data-bind=&quot;value:opponent&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;select data-bind=&quot;options: $root.resultChoices, value:result, optionsText: $data&quot;&gt;&lt;/select&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;
+</code></pre><p>Note that <code>$root</code> refers to the root ViewModel, which is where the possible choices are exposed. <code>$data</code> refers to whatever the current model is within a given context - in this case it refers to an individual element of the resultChoices array, each of which is a simple string.</p>
+<p>With this change, the entire grid becomes editable:</p>
+<p><img src="knockout/_static/editable-grid-screenshot.png" alt="Editable Grid"></p>
+<p>If we weren&#39;t using Knockout, we could achieve all of this using jQuery, but most likely it would not be nearly as efficient. Knockout tracks which bound data items in the ViewModel correspond to which UI elements, and only updates those elements that need to be added, removed, or updated. It would take significant effort to achieve this ourselves using jQuery or direct DOM manipulation, and even then if we then wanted to display aggregate results (such as a win-loss record) based on the table&#39;s data, we would need to once more loop through it and parse the HTML elements.  With Knockout, displaying the win-loss record is trivial. We can perform the calculations within the ViewModel itself, and then display it with a simple text binding and a <code>&lt;span&gt;</code>.</p>
+<p>To build the win-loss record string, we can use a computed observable. Note that references to observable properties within the ViewModel must be function calls, otherwise they will not retrieve the value of the observable (i.e. <code>gameResults()</code> not <code>gameResults</code> in the code shown):</p>
+<pre><code class="lang-javascript">self.displayRecord = ko.computed(function () {
+  var wins = self.gameResults().filter(function (value) { return value.result() == &quot;Win&quot;; }).length;
+  var losses = self.gameResults().filter(function (value) { return value.result() == &quot;Loss&quot;; }).length;
+  var ties = self.gameResults().filter(function (value) { return value.result() == &quot;Tie&quot;; }).length;
+  return wins + &quot; - &quot; + losses + &quot; - &quot; + ties;
+}, this);
+</code></pre><p>Bind this function to a span within the <code>&lt;h1&gt;</code> element at the top of the page:</p>
+<pre><code class="lang-html">&lt;h1&gt;Record &lt;span data-bind=&quot;text: displayRecord&quot;&gt;&lt;/span&gt;&lt;/h1&gt;
+</code></pre><p>The result:</p>
+<p><img src="knockout/_static/record-winloss-screenshot.png" alt="Win Loss"></p>
+<p>Adding rows or modifying the selected element in any row&#39;s Result column will update the record shown at the top of the window.</p>
+<p>In addition to binding to values, you can also use almost any legal JavaScript expression within a binding. For example, if a UI element should only appear under certain conditions, such as when a value exceeds a certain threshold, you can specify this logically within the binding expression:</p>
+<pre><code class="lang-html">&lt;div data-bind=&quot;visible: customerValue &gt; 100&quot;&gt;&lt;/div&gt;
+</code></pre><p>This <code>&lt;div&gt;</code> will only be visible when the customerValue is over 100.</p>
+<h2 id="templates">Templates</h2>
+<p>Knockout has support for templates, so that you can easily separate your UI from your behavior, or incrementally load UI elements into a large application on demand. We can update our previous example to make each row its own template by simply pulling the HTML out into a template and specifying the template by name in the data-bind call on <code>&lt;tbody&gt;</code>.</p>
+<pre><code class="lang-html">&lt;tbody data-bind=&quot;template: { name: &#39;rowTemplate&#39;, foreach: gameResults }&quot;&gt;
+&lt;/tbody&gt;
+&lt;script type=&quot;text/html&quot; id=&quot;rowTemplate&quot;&gt;
+  &lt;tr&gt;
+      &lt;td&gt;&lt;input data-bind=&quot;value:opponent&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;select data-bind=&quot;options: $root.resultChoices, value:result, optionsText: $data&quot;&gt;&lt;/select&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/script&gt;
+</code></pre><p>Knockout also supports other templating engines, such as the jQuery.tmpl library and Underscore.js&#39;s templating engine.</p>
+<h2 id="components">Components</h2>
+<p>Components allow you to organize and reuse UI code, usually along with the ViewModel data on which the UI code depends. To create a component, you simply need to specify its template and its viewModel, and give it a name. This is done by calling <code>ko.components.register()</code>. In addition to defining the templates and viewmodel inline, they can be loaded from external files using a library like <em>require.js</em>, resulting in very clean and efficient code.</p>
+<h2 id="communicating-with-apis">Communicating with APIs</h2>
+<p>Knockout can work with any data in JSON format. A common way to retrieve and save data using Knockout is with jQuery, which supports the <code>$.getJSON()</code> function to retrieve data, and the <code>$.post()</code> method to send data from the browser to an API endpoint. Of course, if you prefer a different way to send and receive JSON data, Knockout will work with it as well.</p>
+<h2 id="summary">Summary</h2>
+<p>Knockout provides a simple, elegant way to bind UI elements to the current state of the client application, defined in a ViewModel. Knockout&#39;s binding syntax uses the data-bind attribute, applied to HTML elements that are to be processed. Knockout is able to efficiently render and update large data sets by tracking UI elements and only processing changes to affected elements. Large applications can break up UI logic using templates and components, which can be loaded on demand from external files. Currently version 3, Knockout is a stable JavaScript library that can improve web applications that require rich client interactivity.</p>
+</span></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/knockout.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Preventing Open Redirect Attacks in an ASP.NET Core app | Microsoft Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Preventing Open Redirect Attacks in an ASP.NET Core app | Microsoft Docs ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/preventing-open-redirects">
+<h1 id="preventing-open-redirect-attacks-in-an-aspnet-core-app">Preventing Open Redirect Attacks in an ASP.NET Core app</h1>
+
+<p>A web app that redirects to a URL that is specified via the request such as the querystring or form data can potentially be tampered with to redirect users to an external, malicious URL. This tampering is called an open redirection attack.</p>
+<p>Whenever your application logic redirects to a specified URL, you must verify that the redirection URL hasn&#39;t been tampered with. ASP.NET Core has built-in functionality to help protect apps from open redirect (also known as open redirection) attacks.</p>
+<h2 id="what-is-an-open-redirect-attack">What is an open redirect attack?</h2>
+<p>Web applications frequently redirect users to a login page when they access resources that require authentication. The redirection typlically includes a <code>returnUrl</code> querystring parameter so that the user can be returned to the originally requested URL after they have successfully logged in. After the user authenticates, they are redirected to the URL they had originally requested.</p>
+<p>Because the destination URL is specified in the querystring of the request, a malicious user could tamper with the querystring. A tampered querystring could allow the site to redirect the user to an external, malicious site. This technique is called an open redirect (or redirection) attack.</p>
+<h3 id="an-example-attack">An example attack</h3>
+<p>A malicious user could develop an attack intended to allow the malicious user access to a user&#39;s credentials or sensitive information on your app. To begin the attack, they convince the user to click a link to your site&#39;s login page, with a <code>returnUrl</code> querystring value added to the URL. For example, the <a href="http://nerddinner.com">NerdDinner.com</a> sample application (written for ASP.NET MVC) includes such a login page here: <code>http://nerddinner.com/Account/LogOn?returnUrl=/Home/About</code>. The attack then follows these steps:</p>
+<ol>
+<li>User clicks a link to <code>http://nerddinner.com/Account/LogOn?returnUrl=http://nerddiner.com/Account/LogOn</code> (note, second URL is nerddi<strong>n</strong>er, not nerddi<strong>nn</strong>er).</li>
+<li>The user logs in successfully.</li>
+<li>The user is redirected (by the site) to <code>http://nerddiner.com/Account/LogOn</code> (malicious site that looks like real site).</li>
+<li>The user logs in again (giving malicious site their credentials) and is redirected back to the real site.</li>
+</ol>
+<p>The user will likely believe their first attempt to log in failed, and their second one was successful. They&#39;ll most likely remain unaware their credentials have been compromised.</p>
+<p><img src="preventing-open-redirects/_static/open-redirection-attack-process.png" alt="Open Redirection Attack Process"></p>
+<p>In addition to login pages, some sites provide redirect pages or endpoints. Imagine your app has a page with an open redirect, <code>/Home/Redirect</code>. An attacker could create, for example, a link in an email that goes to <code>[yoursite]/Home/Redirect?url=http://phishingsite.com/Home/Login</code>. A typical user will look at the URL and see it begins with your site name. Trusting that, they will click the link. The open redirect would then send the user to the phishing site, which looks identical to yours, and the user would likely login to what they believe is your site.</p>
+<h2 id="protecting-against-open-redirect-attacks">Protecting against open redirect attacks</h2>
+<p>When developing web applications, treat all user-provided data as untrustworthy. If your application has functionality that redirects the user based on the contents of the URL,  ensure that such redirects are only done locally within your app (or to a known URL, not any URL that may be supplied in the querystring).</p>
+<h3 id="localredirect">LocalRedirect</h3>
+<p>Use the <code>LocalRedirect</code> helper method from the base <code>Controller</code> class:</p>
+<pre><code>public IActionResult SomeAction(string redirectUrl)
+{
+    return LocalRedirect(redirectUrl);
+}
+</code></pre><p><code>LocalRedirect</code> will throw an exception if a non-local URL is specified. Otherwise, it behaves just like the <code>Redirect</code> method.</p>
+<h3 id="islocalurl">IsLocalUrl</h3>
+<p>Use the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iurlhelper#Microsoft_AspNetCore_Mvc_IUrlHelper_IsLocalUrl_System_String_">IsLocalUrl</a> method to test URLs before redirecting:</p>
+<p>The following example shows how to check whether a URL is local before redirecting.</p>
+<pre><code>private IActionResult RedirectToLocal(string returnUrl)
+{
+    if (Url.IsLocalUrl(returnUrl))
+    {
+        return Redirect(returnUrl);
+    }
+    else
+    {
+        return RedirectToAction(nameof(HomeController.Index), &quot;Home&quot;);
+    }
+}
+</code></pre><p>The <code>IsLocalUrl</code> method protects users from being inadvertently redirected to a malicious site. You can log the details of the URL that was provided when a non-local URL is supplied in a situation where you expected a local URL. Logging redirect URLs may help in diagnosing redirection attacks.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/preventing-open-redirects.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

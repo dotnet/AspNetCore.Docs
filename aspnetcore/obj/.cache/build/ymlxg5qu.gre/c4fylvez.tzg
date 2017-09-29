@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>uid: data/ef-rp/intro </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="uid: data/ef-rp/intro ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<hr>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="2" sourceendlinenumber="11">title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
+author: tdykstra
+description: 
+keywords:ASP.NET Core,Entity Framework Core,tutorial, Razor Pages
+ms.author: riande
+manager: wpickett
+ms.date: 03/15/2017
+ms.topic: get-started-article
+ms.technology: aspnet
+ms.prod: asp.net-core</p>
+<h2 id="uid-dataef-rpintro" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="12" sourceendlinenumber="13">uid: data/ef-rp/intro</h2>
+<h1 id="getting-started-with-razor-pages-and-entity-framework-core-using-visual-studio-1-of-10" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="14" sourceendlinenumber="14">Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 10)</h1>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="16" sourceendlinenumber="16">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="18" sourceendlinenumber="18">The Contoso University sample web application demonstrates how to create ASP.NET Core 2.0 MVC web applications using Entity Framework (EF) Core 2.0 and Visual Studio 2017.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="20" sourceendlinenumber="20">The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final" data-raw-source="[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="22" sourceendlinenumber="22">Download or view the completed application.</a></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="24" sourceendlinenumber="24">EF Core 2.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core, see <a href="https://docs.microsoft.com/ef/efcore-and-ef6/" data-raw-source="[EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="24" sourceendlinenumber="24">EF Core vs. EF6.x</a>. If you choose EF 6.x, see <a href="https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application" data-raw-source="[the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="24" sourceendlinenumber="24">the previous version of this tutorial series</a>.</p>
+<h2 id="prerequisites" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="27" sourceendlinenumber="27">Prerequisites</h2>
+<p sourcefile="includes/install2.0.md" sourcestartlinenumber="1" sourceendlinenumber="1">Install the following:</p>
+<ul sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="4">
+<li sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="3"><a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core)" sourcefile="includes/install2.0.md" sourcestartlinenumber="3" sourceendlinenumber="3">.NET Core 2.0.0 SDK</a> or later.</li>
+<li sourcefile="includes/install2.0.md" sourcestartlinenumber="4" sourceendlinenumber="4"><a href="https://www.visualstudio.com/downloads/" data-raw-source="[Visual Studio 2017](https://www.visualstudio.com/downloads/)" sourcefile="includes/install2.0.md" sourcestartlinenumber="4" sourceendlinenumber="4">Visual Studio 2017</a> version 15.3 or later with the <strong>ASP.NET and web development</strong> workload.</li>
+</ul>
+<h2 id="troubleshooting" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="31" sourceendlinenumber="31">Troubleshooting</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="33" sourceendlinenumber="33">If you run into a problem you can&#39;t resolve, you can generally find the solution by comparing your code to the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-final" data-raw-source="[completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-final)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="33" sourceendlinenumber="33">completed project</a>. For a list of common errors and how to solve them, see <a href="advanced.md#common-errors" data-raw-source="[the Troubleshooting section of the last tutorial in the series](advanced.md#common-errors)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="33" sourceendlinenumber="33">the Troubleshooting section of the last tutorial in the series</a>. If you don&#39;t find what you need there, you can post a question to StackOverflow.com for <a href="https://stackoverflow.com/questions/tagged/asp.net-core" data-raw-source="[ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="33" sourceendlinenumber="33">ASP.NET Core</a> or <a href="https://stackoverflow.com/questions/tagged/entity-framework-core" data-raw-source="[EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="33" sourceendlinenumber="33">EF Core</a>.</p>
+<div class="TIP" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="35" sourceendlinenumber="35"><h5>Tip</h5><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="36" sourceendlinenumber="36">This is a series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems, you can start over from the previous tutorial instead of going back to the beginning of the whole series.</p>
+</div>
+<h2 id="the-contoso-university-web-app" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="38" sourceendlinenumber="38">The Contoso University web app</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="40" sourceendlinenumber="40">The app you build in these tutorials is a basic university web site.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="42" sourceendlinenumber="42">Users can view and update student, course, and instructor information. Here are a few of the screens you create.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="44" sourceendlinenumber="44"><img src="../ef-mvc/intro/_static/students-index.png" alt="Students Index page" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="44" sourceendlinenumber="44"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="46" sourceendlinenumber="46"><img src="../ef-mvc/intro/_static/student-edit.png" alt="Students Edit page" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="46" sourceendlinenumber="46"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="48" sourceendlinenumber="48">The UI style of this site has been kept close to what&#39;s generated by the built-in templates, so that the tutorial can focus mainly on how to use the Entity Framework.</p>
+<h2 id="create-a-razor-pages-web-app" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="50" sourceendlinenumber="50">Create a Razor Pages web app</h2>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="52" sourceendlinenumber="56">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="52" sourceendlinenumber="52">From the Visual Studio <strong>File</strong> menu, select <strong>New</strong> &gt; <strong>Project</strong>.</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="53" sourceendlinenumber="54">Create a new ASP.NET Core Web Application. Name the project <strong>ContosoUniversity</strong>. It&#39;s important to name the project <em>ContosoUniversity</em> so the namespaces will match when you copy/paste code.
+<img src="intro/_static/np.png" alt="new ASP.NET Core Web Application" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="54" sourceendlinenumber="54"></li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="55" sourceendlinenumber="56">Select <strong>ASP.NET Core 2.0</strong> in the dropdown, and then select <strong>Web Application</strong>.
+<img src="../../mvc/razor-pages/index/_static/np2.png" alt="Web Application (Razor Pages)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="56" sourceendlinenumber="56"></li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="58" sourceendlinenumber="58">Press <strong>F5</strong> to run the app in debug mode or <strong>Ctrl-F5</strong> to run without attaching the debugger</p>
+<h2 id="set-up-the-site-style" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="60" sourceendlinenumber="60">Set up the site style</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="62" sourceendlinenumber="62">A few changes will set up the site menu, layout, and home page.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="64" sourceendlinenumber="64">Open <em>Pages/_Layout.cshtml</em> and make the following changes:</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="66" sourceendlinenumber="68">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="66" sourceendlinenumber="66"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="66" sourceendlinenumber="66">Change each occurrence of &quot;ContosoUniversity&quot; to &quot;Contoso University&quot;. There are three occurrences.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="68" sourceendlinenumber="68"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="68" sourceendlinenumber="68">Add menu entries for <strong>Students</strong>, <strong>Courses</strong>, <strong>Instructors</strong>, and <strong>Departments</strong>, and delete the <strong>Contact</strong> menu entry.</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="70" sourceendlinenumber="70">The changes are highlighted.</p>
+<!-- Can not find reference intro/samples/cu/Views/Shared/_Layout.cshtml -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="74" sourceendlinenumber="74">In <em>Views/Home/Index.cshtml</em>, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:</p>
+<!-- Can not find reference intro/samples/cu/Views/Home/Index.cshtml -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="78" sourceendlinenumber="78">Press CTRL+F5 to run the project or choose <strong>Debug &gt; Start Without Debugging</strong> from the menu. You see the home page with tabs for the pages you&#39;ll create in these tutorials.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="80" sourceendlinenumber="80"><img src="../ef-mvc/intro/_static/home-page.png" alt="Contoso University home page" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="80" sourceendlinenumber="80"></p>
+<h2 id="entity-framework-core-nuget-packages" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="82" sourceendlinenumber="82">Entity Framework Core NuGet packages</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="84" sourceendlinenumber="84">To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/" data-raw-source="[Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="84" sourceendlinenumber="84">Microsoft.EntityFrameworkCore.SqlServer</a>. This package is included in the <a class="xref" href="../../fundamentals/metapackage.html" data-raw-source="[Microsoft.AspNetCore.All](xref:fundamentals/metapackage)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="84" sourceendlinenumber="84">Microsoft.AspNetCore.All</a> metapackage, so you don&#39;t have to install it.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="86" sourceendlinenumber="86">This package and its dependencies (<code>Microsoft.EntityFrameworkCore</code> and <code>Microsoft.EntityFrameworkCore.Relational</code>) provide runtime support for EF. You&#39;ll add a tooling package later, in the <a href="migrations.md" data-raw-source="[Migrations](migrations.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="86" sourceendlinenumber="86">Migrations</a> tutorial. </p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="88" sourceendlinenumber="88">For information about other database providers that are available for Entity Framework Core, see <a href="https://docs.microsoft.com/ef/core/providers/" data-raw-source="[Database providers](https://docs.microsoft.com/ef/core/providers/)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="88" sourceendlinenumber="88">Database providers</a>.</p>
+<h2 id="create-the-data-model" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="90" sourceendlinenumber="90">Create the data model</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="92" sourceendlinenumber="92">Next you&#39;ll create entity classes for the Contoso University application. You&#39;ll start with the following three entities.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="94" sourceendlinenumber="94"><img src="intro/_static/data-model-diagram.png" alt="Course-Enrollment-Student data model diagram" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="94" sourceendlinenumber="94"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="96" sourceendlinenumber="96">There&#39;s a one-to-many relationship between <code>Student</code> and <code>Enrollment</code> entities, and there&#39;s a one-to-many relationship between <code>Course</code> and <code>Enrollment</code> entities. In other words, a student can be enrolled in any number of courses, and a course can have any number of students enrolled in it.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="98" sourceendlinenumber="98">In the following sections you&#39;ll create a class for each one of these entities.</p>
+<h3 id="the-student-entity" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="100" sourceendlinenumber="100">The Student entity</h3>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="102" sourceendlinenumber="102"><img src="intro/_static/student-entity.png" alt="Student entity diagram" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="102" sourceendlinenumber="102"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="104" sourceendlinenumber="104">In the <em>Models</em> folder, create a class file named <em>Student.cs</em> and replace the template code with the following code.</p>
+<!-- Can not find reference intro/samples/cu/Models/Student.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="108" sourceendlinenumber="108">The <code>ID</code> property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that&#39;s named <code>ID</code> or <code>classnameID</code> as the primary key.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="110" sourceendlinenumber="110">The <code>Enrollments</code> property is a navigation property. Navigation properties hold other entities that are related to this entity. In this case, the <code>Enrollments</code> property of a <code>Student entity</code> will hold all of the <code>Enrollment</code> entities that are related to that <code>Student</code> entity. In other words, if a given Student row in the database has two related Enrollment rows (rows that contain that student&#39;s primary key value in their StudentID foreign key column), that <code>Student</code> entity&#39;s <code>Enrollments</code> navigation property will contain those two <code>Enrollment</code> entities.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="112" sourceendlinenumber="112">If a navigation property can hold multiple entities (as in many-to-many or one-to-many relationships), its type must be a list in which entries can be added, deleted, and updated, such as <code>ICollection&lt;T&gt;</code>.  You can specify <code>ICollection&lt;T&gt;</code> or a type such as <code>List&lt;T&gt;</code> or <code>HashSet&lt;T&gt;</code>. If you specify <code>ICollection&lt;T&gt;</code>, EF creates a <code>HashSet&lt;T&gt;</code> collection by default.</p>
+<h3 id="the-enrollment-entity" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="114" sourceendlinenumber="114">The Enrollment entity</h3>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="116" sourceendlinenumber="116"><img src="intro/_static/enrollment-entity.png" alt="Enrollment entity diagram" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="116" sourceendlinenumber="116"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="118" sourceendlinenumber="118">In the <em>Models</em> folder, create <em>Enrollment.cs</em> and replace the existing code with the following code:</p>
+<!-- Can not find reference intro/samples/cu/Models/Enrollment.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="122" sourceendlinenumber="122">The <code>EnrollmentID</code> property will be the primary key; this entity uses the <code>classnameID</code> pattern instead of <code>ID</code> by itself as you saw in the <code>Student</code> entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a <a href="inheritance.md" data-raw-source="[later tutorial](inheritance.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="122" sourceendlinenumber="122">later tutorial</a>, you&#39;ll see how using ID without classname makes it easier to implement inheritance in the data model.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="124" sourceendlinenumber="124">The <code>Grade</code> property is an <code>enum</code>. The question mark after the <code>Grade</code> type declaration indicates that the <code>Grade</code> property is nullable. A grade that&#39;s null is different from a zero grade -- null means a grade isn&#39;t known or hasn&#39;t been assigned yet.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="126" sourceendlinenumber="126">The <code>StudentID</code> property is a foreign key, and the corresponding navigation property is <code>Student</code>. An <code>Enrollment</code> entity is associated with one <code>Student</code> entity, so the property can only hold a single <code>Student</code> entity (unlike the <code>Student.Enrollments</code> navigation property you saw earlier, which can hold multiple <code>Enrollment</code> entities).</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="128" sourceendlinenumber="128">The <code>CourseID</code> property is a foreign key, and the corresponding navigation property is <code>Course</code>. An <code>Enrollment</code> entity is associated with one <code>Course</code> entity.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="130" sourceendlinenumber="130">Entity Framework interprets a property as a foreign key property if it&#39;s named <code>&lt;navigation property name&gt;&lt;primary key property name&gt;</code> (for example, <code>StudentID</code> for the <code>Student</code> navigation property since the <code>Student</code> entity&#39;s primary key is <code>ID</code>). Foreign key properties can also be named simply <code>&lt;primary key property name&gt;</code> (for example, <code>CourseID</code> since the <code>Course</code> entity&#39;s primary key is <code>CourseID</code>).</p>
+<h3 id="the-course-entity" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="132" sourceendlinenumber="132">The Course entity</h3>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="134" sourceendlinenumber="134"><img src="intro/_static/course-entity.png" alt="Course entity diagram" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="134" sourceendlinenumber="134"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="136" sourceendlinenumber="136">In the <em>Models</em> folder, create <em>Course.cs</em> and replace the existing code with the following code:</p>
+<!-- Can not find reference intro/samples/cu/Models/Course.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="140" sourceendlinenumber="140">The <code>Enrollments</code> property is a navigation property. A <code>Course</code> entity can be related to any number of <code>Enrollment</code> entities.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="142" sourceendlinenumber="142">We&#39;ll say more about the <code>DatabaseGenerated</code> attribute in a <a href="complex-data-model.md" data-raw-source="[later tutorial](complex-data-model.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="142" sourceendlinenumber="142">later tutorial</a> in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.</p>
+<h2 id="create-the-database-context" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="144" sourceendlinenumber="144">Create the Database Context</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="146" sourceendlinenumber="146">The main class that coordinates Entity Framework functionality for a given data model is the database context class. You create this class by deriving from the <code>Microsoft.EntityFrameworkCore.DbContext</code> class. In your code you specify which entities are included in the data model. You can also customize certain Entity Framework behavior. In this project, the class is named <code>SchoolContext</code>.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="148" sourceendlinenumber="148">In the project folder, create a folder named <em>Data</em>.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="150" sourceendlinenumber="150">In the <em>Data</em> folder create a new class file named <em>SchoolContext.cs</em>, and replace the template code with the following code:</p>
+<!-- Can not find reference intro/samples/cu/Data/SchoolContext.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="154" sourceendlinenumber="154">This code creates a <code>DbSet</code> property for each entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="156" sourceendlinenumber="156">You could have omitted the <code>DbSet&lt;Enrollment&gt;</code> and <code>DbSet&lt;Course&gt;</code> statements and it would work the same. The Entity Framework would include them implicitly because the <code>Student</code> entity references the <code>Enrollment</code> entity and the <code>Enrollment</code> entity references the <code>Course</code> entity.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="158" sourceendlinenumber="158">When the database is created, EF creates tables that have names the same as the <code>DbSet</code> property names. Property names for collections are typically plural (Students rather than Student), but developers disagree about whether table names should be pluralized or not. For these tutorials you&#39;ll override the default behavior by specifying singular table names in the DbContext. To do that, add the following highlighted code after the last DbSet property.</p>
+<!-- Can not find reference intro/samples/cu/Data/SchoolContext.cs -->
+<h2 id="register-the-context-with-dependency-injection" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="162" sourceendlinenumber="162">Register the context with dependency injection</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="164" sourceendlinenumber="164">ASP.NET Core implements <a href="../../fundamentals/dependency-injection.html" data-raw-source="[dependency injection](../../fundamentals/dependency-injection.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="164" sourceendlinenumber="164">dependency injection</a> by default. Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as MVC controllers) are provided these services via constructor parameters. You&#39;ll see the controller constructor code that gets a context instance later in this tutorial.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="166" sourceendlinenumber="166">To register <code>SchoolContext</code> as a service, open <em>Startup.cs</em>, and add the highlighted lines to the <code>ConfigureServices</code> method.</p>
+<!-- Tag name snippet_SchoolContext is not found -->
+<pre sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="168" sourceendlinenumber="168"><code class="lang-csharp" name="Main" highlight-lines="3-4">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace ContosoUniversity
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler(&quot;/Error&quot;);
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =&gt;
+            {
+                routes.MapRoute(
+                    name: &quot;default&quot;,
+                    template: &quot;{controller}/{action=Index}/{id?}&quot;);
+            });
+        }
+    }
+}
+</code></pre><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="170" sourceendlinenumber="170">The name of the connection string is passed in to the context by calling a method on a <code>DbContextOptionsBuilder</code> object. For local development, the <a href="../../fundamentals/configuration.html" data-raw-source="[ASP.NET Core configuration system](../../fundamentals/configuration.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="170" sourceendlinenumber="170">ASP.NET Core configuration system</a> reads the connection string from the <em>appsettings.json</em> file.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="172" sourceendlinenumber="172">Add <code>using</code> statements for <code>ContosoUniversity.Data</code>  and <code>Microsoft.EntityFrameworkCore</code> namespaces, and then build the project.</p>
+<!-- Tag name snippet_Usings is not found -->
+<pre sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="174" sourceendlinenumber="174"><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace ContosoUniversity
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler(&quot;/Error&quot;);
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =&gt;
+            {
+                routes.MapRoute(
+                    name: &quot;default&quot;,
+                    template: &quot;{controller}/{action=Index}/{id?}&quot;);
+            });
+        }
+    }
+}
+</code></pre><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="176" sourceendlinenumber="176">Open the <em>appsettings.json</em> file and add a connection string as shown in the following example.</p>
+<!-- Can not find reference ./intro/samples/cu/appsettings1.json -->
+<h3 id="sql-server-express-localdb" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="180" sourceendlinenumber="180">SQL Server Express LocalDB</h3>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="182" sourceendlinenumber="182">The connection string specifies a SQL Server LocalDB database. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for application development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates <em>.mdf</em> database files in the <code>C:/Users/&lt;user&gt;</code> directory.</p>
+<h2 id="add-code-to-initialize-the-database-with-test-data" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="184" sourceendlinenumber="184">Add code to initialize the database with test data</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="186" sourceendlinenumber="186">The Entity Framework will create an empty database for you.  In this section, you write a method that is called after the database is created in order to populate it with test data.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="188" sourceendlinenumber="188">Here you&#39;ll use the <code>EnsureCreated</code> method to automatically create the database. In a <a href="migrations.md" data-raw-source="[later tutorial](migrations.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="188" sourceendlinenumber="188">later tutorial</a> you&#39;ll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="190" sourceendlinenumber="190">In the <em>Data</em> folder, create a new class file named <em>DbInitializer.cs</em> and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.</p>
+<!-- Can not find reference intro/samples/cu/Data/DbInitializer.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="194" sourceendlinenumber="194">The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data.  It loads test data into arrays rather than <code>List&lt;T&gt;</code> collections to optimize performance.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="196" sourceendlinenumber="196">In <em>Program.cs</em>, modify the <code>Main</code> method to do the following on application startup:</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="198" sourceendlinenumber="200">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="198" sourceendlinenumber="198">Get a database context instance from the dependency injection container.</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="199" sourceendlinenumber="199">Call the seed method, passing to it the context.</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="200" sourceendlinenumber="200">Dispose the context when the seed method is done.</li>
+</ul>
+<!-- Tag name snippet_Seed is not found -->
+<pre sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="202" sourceendlinenumber="202"><code class="lang-csharp" name="Main" highlight-lines="3-20">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace ContosoUniversity
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =&gt;
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+    }
+}
+</code></pre><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="204" sourceendlinenumber="204">Add <code>using</code> statements:</p>
+<!-- Tag name snippet_Usings is not found -->
+<pre sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="206" sourceendlinenumber="206"><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace ContosoUniversity
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =&gt;
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+    }
+}
+</code></pre><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="208" sourceendlinenumber="208">In older tutorials, you may see similar code in the <code>Configure</code> method in <em>Startup.cs</em>. We recommend that you use the <code>Configure</code> method only to set up the request pipeline. Application startup code belongs in the <code>Main</code> method.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="210" sourceendlinenumber="210">Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials, you&#39;ll see how to modify the database when the data model changes, without deleting and re-creating it.</p>
+<h2 id="create-a-controller-and-views" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="212" sourceendlinenumber="212">Create a controller and views</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="214" sourceendlinenumber="214">Next, you&#39;ll use the scaffolding engine in Visual Studio to add an MVC controller and views that will use EF to query and save data.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="216" sourceendlinenumber="216">The automatic creation of CRUD action methods and views is known as scaffolding. Scaffolding differs from code generation in that the scaffolded code is a starting point that you can modify to suit your own requirements, whereas you typically don&#39;t modify generated code. When you need to customize generated code, you use partial classes or you regenerate the code when things change.</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="218" sourceendlinenumber="248">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="218" sourceendlinenumber="218"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="218" sourceendlinenumber="218">Right-click the <strong>Controllers</strong> folder in <strong>Solution Explorer</strong> and select <strong>Add &gt; New Scaffolded Item</strong>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="220" sourceendlinenumber="226"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="220" sourceendlinenumber="220">In the <strong>Add MVC Dependencies</strong> dialog, select <strong>Minimal Dependencies</strong>, and select <strong>Add</strong>.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="222" sourceendlinenumber="222"><img src="intro/_static/add-depend.png" alt="Add dependencies" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="222" sourceendlinenumber="222"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="224" sourceendlinenumber="224">Visual Studio adds the dependencies needed to scaffold a controller. The only change in the project file is the addition of the <code>Microsoft.VisualStudio.Web.CodeGeneration.Design</code> package.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="226" sourceendlinenumber="226">A <em>ScaffoldingReadMe.txt</em> file is created which you can delete.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="228" sourceendlinenumber="228"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="228" sourceendlinenumber="228">Once again, right-click the <strong>Controllers</strong> folder in <strong>Solution Explorer</strong> and select <strong>Add &gt; New Scaffolded Item</strong>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="230" sourceendlinenumber="234"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="230" sourceendlinenumber="230">In the <strong>Add Scaffold</strong> dialog box:</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="232" sourceendlinenumber="234">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="232" sourceendlinenumber="232"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="232" sourceendlinenumber="232">Select <strong>MVC controller with views, using Entity Framework</strong>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="234" sourceendlinenumber="234"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="234" sourceendlinenumber="234">Click <strong>Add</strong>.</p>
+</li>
+</ul>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="236" sourceendlinenumber="248"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="236" sourceendlinenumber="236">In the <strong>Add Controller</strong> dialog box:</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="238" sourceendlinenumber="244">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="238" sourceendlinenumber="238"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="238" sourceendlinenumber="238">In <strong>Model class</strong> select <strong>Student</strong>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="240" sourceendlinenumber="240"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="240" sourceendlinenumber="240">In <strong>Data context class</strong> select <strong>SchoolContext</strong>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="242" sourceendlinenumber="242"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="242" sourceendlinenumber="242">Accept the default <strong>StudentsController</strong> as the name.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="244" sourceendlinenumber="244"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="244" sourceendlinenumber="244">Click <strong>Add</strong>.</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="246" sourceendlinenumber="246"><img src="intro/_static/scaffold-student.png" alt="Scaffold Student" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="246" sourceendlinenumber="246"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="248" sourceendlinenumber="248">When you click <strong>Add</strong>, the Visual Studio scaffolding engine creates a <em>StudentsController.cs</em> file and a set of views (<em>.cshtml</em> files) that work with the controller.</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="250" sourceendlinenumber="250">(The scaffolding engine can also create the database context for you if you don&#39;t create it manually first as you did earlier for this tutorial. You can specify a new context class in the <strong>Add Controller</strong> box by clicking the plus sign to the right of <strong>Data context class</strong>.  Visual Studio will then create your <code>DbContext</code> class as well as the controller and views.)</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="252" sourceendlinenumber="252">You&#39;ll notice that the controller takes a <code>SchoolContext</code> as a constructor parameter.</p>
+<!-- Can not find reference intro/samples/cu/Controllers/StudentsController.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="256" sourceendlinenumber="256">ASP.NET dependency injection will take care of passing an instance of <code>SchoolContext</code> into the controller. You configured that in the <em>Startup.cs</em> file earlier.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="258" sourceendlinenumber="258">The controller contains an <code>Index</code> action method, which displays all students in the database. The method gets a list of students from the Students entity set by reading the <code>Students</code> property of the database context instance:</p>
+<!-- Can not find reference intro/samples/cu/Controllers/StudentsController.cs -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="262" sourceendlinenumber="262">You&#39;ll learn about the asynchronous programming elements in this code later in the tutorial.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="264" sourceendlinenumber="264">The <em>Views/Students/Index.cshtml</em> view displays this list in a table:</p>
+<!-- Can not find reference intro/samples/cu/Views/Students/Index1.cshtml -->
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="268" sourceendlinenumber="268">Press CTRL+F5 to run the project or choose <strong>Debug &gt; Start Without Debugging</strong> from the menu.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="270" sourceendlinenumber="270">Click the Students tab to see the test data that the <code>DbInitializer.Initialize</code> method inserted. Depending on how narrow your browser window is, you&#39;ll see the <code>Student</code> tab link at the top of the page or you&#39;ll have to click the navigation icon in the upper right corner to see the link.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="272" sourceendlinenumber="272"><img src="intro/_static/home-page-narrow.png" alt="Contoso University home page narrow" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="272" sourceendlinenumber="272"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="274" sourceendlinenumber="274"><img src="intro/_static/students-index.png" alt="Students Index page" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="274" sourceendlinenumber="274"></p>
+<h2 id="view-the-database" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="276" sourceendlinenumber="276">View the Database</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="278" sourceendlinenumber="278">When you started the application, the <code>DbInitializer.Initialize</code> method calls <code>EnsureCreated</code>. EF saw that there was no database and so it created one, then the remainder of the <code>Initialize</code> method code populated the database with data. You can use <strong>SQL Server Object Explorer</strong> (SSOX) to view the database in Visual Studio.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="280" sourceendlinenumber="280">Close the browser.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="282" sourceendlinenumber="282">If the SSOX window isn&#39;t already open, select it from the <strong>View</strong> menu in Visual Studio.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="284" sourceendlinenumber="284">In SSOX, click <strong>(localdb)\MSSQLLocalDB &gt; Databases</strong>, and then click the entry for the database name that is in the connection string in your <em>appsettings.json</em> file.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="286" sourceendlinenumber="286">Expand the <strong>Tables</strong> node to see the tables in your database.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="288" sourceendlinenumber="288"><img src="intro/_static/ssox-tables.png" alt="Tables in SSOX" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="288" sourceendlinenumber="288"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="290" sourceendlinenumber="290">Right-click the <strong>Student</strong> table and click <strong>View Data</strong> to see the columns that were created and the rows that were inserted into the table.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="292" sourceendlinenumber="292"><img src="intro/_static/ssox-student-table.png" alt="Student table in SSOX" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="292" sourceendlinenumber="292"></p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="294" sourceendlinenumber="294">The <em>.mdf</em> and <em>.ldf</em> database files are in the <em>C:\Users&lt;yourusername&gt;</em> folder.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="296" sourceendlinenumber="296">Because you&#39;re calling <code>EnsureCreated</code> in the initializer method that runs on app start, you could now make a change to the <code>Student</code> class, delete the database, run the application again, and the database would automatically be re-created to match your change. For example, if you add an <code>EmailAddress</code> property to the <code>Student</code> class, you&#39;ll see a new <code>EmailAddress</code> column in the re-created table.</p>
+<h2 id="conventions" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="298" sourceendlinenumber="298">Conventions</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="300" sourceendlinenumber="300">The amount of code you had to write in order for the Entity Framework to be able to create a complete database for you is minimal because of the use of conventions, or assumptions that the Entity Framework makes.</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="302" sourceendlinenumber="308">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="302" sourceendlinenumber="302"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="302" sourceendlinenumber="302">The names of <code>DbSet</code> properties are used as table names. For entities not referenced by a <code>DbSet</code> property, entity class names are used as table names.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="304" sourceendlinenumber="304"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="304" sourceendlinenumber="304">Entity property names are used for column names.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="306" sourceendlinenumber="306"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="306" sourceendlinenumber="306">Entity properties that are named ID or classnameID are recognized as primary key properties.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="308" sourceendlinenumber="308"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="308" sourceendlinenumber="308">A property is interpreted as a foreign key property if it&#39;s named <em><navigation property="" name=""><primary key="" property="" name=""></primary></navigation></em> (for example, <code>StudentID</code> for the <code>Student</code> navigation property since the <code>Student</code> entity&#39;s primary key is <code>ID</code>). Foreign key properties can also be named simply <em><primary key="" property="" name=""></primary></em> (for example, <code>EnrollmentID</code> since the <code>Enrollment</code> entity&#39;s primary key is <code>EnrollmentID</code>).</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="310" sourceendlinenumber="310">Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you&#39;ll see in a <a href="complex-data-model.md" data-raw-source="[later tutorial](complex-data-model.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="310" sourceendlinenumber="310">later tutorial</a> in this series.</p>
+<h2 id="asynchronous-code" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="312" sourceendlinenumber="312">Asynchronous code</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="314" sourceendlinenumber="314">Asynchronous programming is the default mode for ASP.NET Core and EF Core.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="316" sourceendlinenumber="316">A web server has a limited number of threads available, and in high load situations all of the available threads might be in use. When that happens, the server can&#39;t process new requests until the threads are freed up. With synchronous code, many threads may be tied up while they aren&#39;t actually doing any work because they&#39;re waiting for I/O to complete. With asynchronous code, when a process is waiting for I/O to complete, its thread is freed up for the server to use for processing other requests. As a result, asynchronous code enables server resources to be used more efficiently, and the server is enabled to handle more traffic without delays.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="318" sourceendlinenumber="318">Asynchronous code does introduce a small amount of overhead at run time, but for low traffic situations the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.</p>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="320" sourceendlinenumber="320">In the following code, the <code>async</code> keyword, <code>Task&lt;T&gt;</code> return value, <code>await</code> keyword, and <code>ToListAsync</code> method make the code execute asynchronously.</p>
+<!-- Can not find reference intro/samples/cu/Controllers/StudentsController.cs -->
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="324" sourceendlinenumber="330">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="324" sourceendlinenumber="324"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="324" sourceendlinenumber="324">The <code>async</code> keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the <code>Task&lt;IActionResult&gt;</code> object that is returned.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="326" sourceendlinenumber="326"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="326" sourceendlinenumber="326">The return type <code>Task&lt;IActionResult&gt;</code> represents ongoing work with a result of type <code>IActionResult</code>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="328" sourceendlinenumber="328"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="328" sourceendlinenumber="328">The <code>await</code> keyword causes the compiler to split the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="330" sourceendlinenumber="330"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="330" sourceendlinenumber="330"><code>ToListAsync</code> is the asynchronous version of the <code>ToList</code> extension method.</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="332" sourceendlinenumber="332">Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:</p>
+<ul sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="334" sourceendlinenumber="338">
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="334" sourceendlinenumber="334"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="334" sourceendlinenumber="334">Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, <code>ToListAsync</code>, <code>SingleOrDefaultAsync</code>, and <code>SaveChangesAsync</code>.  It does not include, for example, statements that just change an <code>IQueryable</code>, such as <code>var students = context.Students.Where(s =&gt; s.LastName == &quot;Davolio&quot;)</code>.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="336" sourceendlinenumber="336"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="336" sourceendlinenumber="336">An EF context is not thread safe: don&#39;t try to do multiple operations in parallel. When you call any async EF method, always use the <code>await</code> keyword.</p>
+</li>
+<li sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="338" sourceendlinenumber="338"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="338" sourceendlinenumber="338">If you want to take advantage of the performance benefits of async code, make sure that any library packages that you&#39;re using (such as for paging), also use async if they call any Entity Framework methods that cause queries to be sent to the database.</p>
+</li>
+</ul>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="340" sourceendlinenumber="340">For more information about asynchronous programming in .NET, see <a href="https://docs.microsoft.com/dotnet/articles/standard/async" data-raw-source="[Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="340" sourceendlinenumber="340">Async Overview</a>.</p>
+<h2 id="summary" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="342" sourceendlinenumber="342">Summary</h2>
+<p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="344" sourceendlinenumber="344">You&#39;ve now created a simple application that uses the Entity Framework Core and SQL Server Express LocalDB to store and display data. In the following tutorial, you&#39;ll learn how to perform basic CRUD (create, read, update, delete) operations.</p>
+<div class="step-by-step" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="346" sourceendlinenumber="346"><p sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="347" sourceendlinenumber="347"><a href="crud.md" data-raw-source="[Next](crud.md)" sourcefile="data/ef-rp/intro.md" sourcestartlinenumber="347" sourceendlinenumber="347">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-rp/intro.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with a Distributed Cache </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with a Distributed Cache ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="performance/caching/distributed">
+<h1 id="working-with-a-distributed-cache">Working with a distributed cache</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Distributed caches can improve the performance and scalability of ASP.NET Core apps, especially when hosted in a cloud or server farm environment. This article explains how to work with ASP.NET Core&#39;s built-in distributed cache abstractions and implementations.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/distributed/sample">View or download sample code</a></p>
+<h2 id="what-is-a-distributed-cache">What is a Distributed Cache</h2>
+<p>A distributed cache is shared by multiple app servers (see <a href="memory.html#caching-basics">Caching Basics</a>). The information in the cache is not stored in the memory of individual web servers, and the cached data is available to all of the app&#39;s servers. This provides several advantages:</p>
+<ol>
+<li><p>Cached data is coherent on all web servers. Users don&#39;t see different results depending on which web server handles their request</p>
+</li>
+<li><p>Cached data survives web server restarts and deployments. Individual web servers can be removed or added without impacting the cache.</p>
+</li>
+<li><p>The source data store has fewer requests made to it (than with multiple in-memory caches or no cache at all).</p>
+</li>
+</ol>
+<div class="NOTE"><h5>Note</h5><p>If using a SQL Server Distributed Cache, some of these advantages are only true if a separate database instance is used for the cache than for the app&#39;s source data.</p>
+</div>
+<p>Like any cache, a distributed cache can dramatically improve an app&#39;s responsiveness, since typically data can be retrieved from the cache much faster than from a relational database (or web service).</p>
+<p>Cache configuration is implementation specific. This article describes how to configure both Redis and SQL Server distributed caches. Regardless of which implementation is selected, the app interacts with the cache using a common <code>IDistributedCache</code> interface.</p>
+<h2 id="the-idistributedcache-interface">The IDistributedCache Interface</h2>
+<p>The <code>IDistributedCache</code> interface includes synchronous and asynchronous methods. The interface allows items to be added, retrieved, and removed from the distributed cache implementation. The <code>IDistributedCache</code> interface includes the following methods:</p>
+<p><strong>Get, GetAsync</strong></p>
+<p>Takes a string key and retrieves a cached item as a <code>byte[]</code> if found in the cache.</p>
+<p><strong>Set, SetAsync</strong></p>
+<p>Adds an item (as <code>byte[]</code>) to the cache using a string key.</p>
+<p><strong>Refresh, RefreshAsync</strong></p>
+<p>Refreshes an item in the cache based on its key, resetting its sliding expiration timeout (if any).</p>
+<p><strong>Remove, RemoveAsync</strong></p>
+<p>Removes a cache entry based on its key.</p>
+<p>To use the <code>IDistributedCache</code> interface:</p>
+<ol>
+<li><p>Add the required NuGet packages to your project file.</p>
+</li>
+<li><p>Configure the specific implementation of <code>IDistributedCache</code> in your <code>Startup</code> class&#39;s <code>ConfigureServices</code> method, and add it to the container there.</p>
+</li>
+<li><p>From the app&#39;s <a href="../../fundamentals/middleware.html">`Middleware</a> or MVC controller classes, request an instance of <code>IDistributedCache</code> from the constructor. The instance will be provided by <a href="../../fundamentals/dependency-injection.html">Dependency Injection</a> (DI).</p>
+</li>
+</ol>
+<div class="NOTE"><h5>Note</h5><p>There is no need to use a Singleton or Scoped lifetime for <code>IDistributedCache</code> instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using <a href="../../fundamentals/dependency-injection.html">Dependency Injection</a>), but this can make your code harder to test, and violates the <a href="http://deviq.com/explicit-dependencies-principle/">Explicit Dependencies Principle</a>.</p>
+</div>
+<p>The following example shows how to use an instance of <code>IDistributedCache</code> in a simple middleware component:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="15,18,21,27,28,29,30,31">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Distributed;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DistCacheSample
+{
+    public class StartTimeHeader
+    {
+        private readonly RequestDelegate _next;
+        private readonly IDistributedCache _cache;
+
+        public StartTimeHeader(RequestDelegate next,
+           IDistributedCache cache)
+        {
+            _next = next;
+            _cache = cache;
+        }
+
+        public async Task Invoke(HttpContext httpContext)
+        {
+            string startTimeString = &quot;Not found.&quot;;
+            var value = await _cache.GetAsync(&quot;lastServerStartTime&quot;);
+            if (value != null)
+            {
+                startTimeString = Encoding.UTF8.GetString(value);
+            }
+
+            httpContext.Response.Headers.Append(&quot;Last-Server-Start-Time&quot;, startTimeString);
+
+            await _next.Invoke(httpContext);
+        }
+    }
+
+
+    // Extension method used to add the middleware to the HTTP request pipeline.
+    public static class StartTimeHeaderExtensions
+    {
+        public static IApplicationBuilder UseStartTimeHeader(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware&lt;StartTimeHeader&gt;();
+        }
+    }
+}
+</code></pre><p>In the code above, the cached value is read, but never written. In this sample, the value is only set when a server starts up, and doesn&#39;t change. In a multi-server scenario, the most recent server to start will overwrite any previous values that were set by other servers. The <code>Get</code> and <code>Set</code> methods use the <code>byte[]</code> type. Therefore, the string value must be converted using <code>Encoding.UTF8.GetString</code> (for <code>Get</code>) and <code>Encoding.UTF8.GetBytes</code> (for <code>Set</code>).</p>
+<p>The following code from <em>Startup.cs</em> shows the value being set:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="2,4,5,6">public void Configure(IApplicationBuilder app,
+    IDistributedCache cache)
+{
+    var serverStartTimeString = DateTime.Now.ToString();
+    byte[] val = Encoding.UTF8.GetBytes(serverStartTimeString);
+    var cacheEntryOptions = new DistributedCacheEntryOptions()
+        .SetSlidingExpiration(TimeSpan.FromSeconds(30));
+    cache.Set(&quot;lastServerStartTime&quot;, val, cacheEntryOptions);
+
+</code></pre><div class="NOTE"><h5>Note</h5><p>Since <code>IDistributedCache</code> is configured in the <code>ConfigureServices</code> method, it is available to the <code>Configure</code> method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.</p>
+</div>
+<h2 id="using-a-redis-distributed-cache">Using a Redis Distributed Cache</h2>
+<p><a href="https://redis.io/">Redis</a> is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an <a href="https://azure.microsoft.com/services/cache/">Azure Redis Cache</a> for your Azure-hosted ASP.NET Core apps. Your ASP.NET Core app configures the cache implementation using a <code>RedisDistributedCache</code> instance.</p>
+<p>You configure the Redis implementation in <code>ConfigureServices</code> and access it in your app code by requesting an instance of <code>IDistributedCache</code> (see the code above).</p>
+<p>In the sample code, a <code>RedisCache</code> implementation is used when the server is configured for a <code>Staging</code> environment. Thus the <code>ConfigureStagingServices</code> method configures the <code>RedisCache</code>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="8,9,10,11,12,13">/// &lt;summary&gt;
+/// Use Redis Cache in Staging
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;services&quot;&gt;&lt;/param&gt;
+public void ConfigureStagingServices(IServiceCollection services)
+{
+
+    services.AddDistributedRedisCache(options =&gt;
+    {
+        options.Configuration = &quot;localhost&quot;;
+        options.InstanceName = &quot;SampleInstance&quot;;
+    });
+}
+
+</code></pre><div class="NOTE"><h5>Note</h5><p>To install Redis on your local machine, install the chocolatey package <a href="https://chocolatey.org/packages/redis-64/">https://chocolatey.org/packages/redis-64/</a> and run <code>redis-server</code> from a command prompt.</p>
+</div>
+<h2 id="using-a-sql-server-distributed-cache">Using a SQL Server Distributed Cache</h2>
+<p>The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. To create SQL Server table you can use sql-cache tool, the tool creates a table with the name and schema you specify.</p>
+<p>To use the sql-cache tool, add <code>SqlConfig.Tools</code> to the <code>&lt;ItemGroup&gt;</code> element of the <em>.csproj</em> file and run dotnet restore.</p>
+<pre><code class="lang-csharp" name="Main">&lt;ItemGroup&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.Extensions.Caching.SqlConfig.Tools&quot; Version=&quot;1.0.0-msbuild3-final&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p>Test SqlConfig.Tools by running the following command</p>
+<pre><code class="lang-none">C:\DistCacheSample\src\DistCacheSample&gt;dotnet sql-cache create --help
+</code></pre><p>sql-cache tool  will display usage, options and command help, now you can create tables into sql server, running &quot;sql-cache create&quot; command :</p>
+<pre><code class="lang-none">C:\DistCacheSample\src\DistCacheSample&gt;dotnet sql-cache create &quot;Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;&quot; dbo TestCache
+   info: Microsoft.Extensions.Caching.SqlConfig.Tools.Program[0]
+       Table and index were created successfully.
+</code></pre><p>The created table has the following schema:</p>
+<p><img src="distributed/_static/SqlServerCacheTable.png" alt="SqlServer Cache Table"></p>
+<p>Like all cache implementations, your app should get and set cache values using an instance of <code>IDistributedCache</code>, not a <code>SqlServerCache</code>. The sample implements <code>SqlServerCache</code> in the <code>Production</code> environment (so it is configured in <code>ConfigureProductionServices</code>).</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7,8,9,10,11,12">/// Use SQL Server Cache in Production
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;services&quot;&gt;&lt;/param&gt;
+public void ConfigureProductionServices(IServiceCollection services)
+{
+
+    services.AddDistributedSqlServerCache(options =&gt;
+    {
+        options.ConnectionString = @&quot;Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;&quot;;
+        options.SchemaName = &quot;dbo&quot;;
+        options.TableName = &quot;TestCache&quot;;
+    });
+
+}
+
+</code></pre><div class="NOTE"><h5>Note</h5><p>The <code>ConnectionString</code> (and optionally, <code>SchemaName</code> and <code>TableName</code>) should typically be stored outside of source control (such as UserSecrets), as they may contain credentials.</p>
+</div>
+<h2 id="recommendations">Recommendations</h2>
+<p>When deciding which implementation of <code>IDistributedCache</code> is right for your app, choose between Redis and SQL Server based on your existing infrastructure and environment, your performance requirements, and your team&#39;s experience. If your team is more comfortable working with Redis, it&#39;s an excellent choice. If your team prefers SQL Server, you can be confident in that implementation as well. Note that A traditional caching solution stores data in-memory which allows for fast retrieval of data. You should store commonly used data in a cache and store the entire data in a backend persistent store such as SQL Server or Azure Storage. Redis Cache is a caching solution which gives you high throughput and low latency as compared to SQL Cache.</p>
+<p>Additional resources:</p>
+<ul>
+<li><a href="memory.html">In memory caching</a></li>
+<li><a href="https://azure.microsoft.com/documentation/services/redis-cache/">Redis Cache on Azure</a></li>
+<li><a href="https://azure.microsoft.com/documentation/services/sql-database/">SQL Database on Azure</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/performance/caching/distributed.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

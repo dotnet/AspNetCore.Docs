@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Using Cookie Authentication without ASP.NET Core Identity </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Using Cookie Authentication without ASP.NET Core Identity ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/cookie">
+<h1 id="using-cookie-authentication-without-aspnet-core-identity" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="15" sourceendlinenumber="15">Using Cookie Authentication without ASP.NET Core Identity</h1>
+
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="17" sourceendlinenumber="17"><a name="security-authentication-cookie-middleware"></a></p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="19" sourceendlinenumber="19">ASP.NET Core 1.x provides cookie <a href="../../fundamentals/middleware.html#fundamentals-middleware" data-raw-source="[middleware](../../fundamentals/middleware.md#fundamentals-middleware)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="19" sourceendlinenumber="19">middleware</a> which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal, and assigns it to the <code>HttpContext.User</code> property. If you want to provide your own login screens and user databases, you can use the cookie middleware as a standalone feature.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="21" sourceendlinenumber="21">A major change in ASP.NET Core 2.x is that the cookie middleware is absent. Instead, the <code>UseAuthentication</code> method invocation in the <code>Configure</code> method of <em>Startup.cs</em> adds the AuthenticationMiddleware which sets the <code>HttpContext.User</code> property.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="23" sourceendlinenumber="23"><a name="security-authentication-cookie-middleware-configuring"></a></p>
+<h2 id="adding-and-configuring" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="25" sourceendlinenumber="25">Adding and configuring</h2>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="27" sourceendlinenumber="66">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="27" sourceendlinenumber="27">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="49" sourceendlinenumber="49">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="29" sourceendlinenumber="29">Complete the following steps:</p>
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="31" sourceendlinenumber="47">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="31" sourceendlinenumber="31"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="31" sourceendlinenumber="31">If not using the <code>Microsoft.AspNetCore.All</code> <a class="xref" href="../../fundamentals/metapackage.html" data-raw-source="[metapackage](xref:fundamentals/metapackage)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="31" sourceendlinenumber="31">metapackage</a>, install version 2.0+ of the <code>Microsoft.AspNetCore.Authentication.Cookies</code> NuGet package in your project.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="33" sourceendlinenumber="37"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="33" sourceendlinenumber="33">Invoke the <code>UseAuthentication</code> method in the <code>Configure</code> method of the <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="35" sourceendlinenumber="37"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="39" sourceendlinenumber="47"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="39" sourceendlinenumber="39">Invoke the <code>AddAuthentication</code> and <code>AddCookie</code> methods in the <code>ConfigureServices</code> method of the <em>Startup.cs</em> file:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="41" sourceendlinenumber="47"><code class="lang-csharp">services.AddAuthentication(&quot;MyCookieAuthenticationScheme&quot;)
+        .AddCookie(options =&gt; {
+            options.AccessDeniedPath = &quot;/Account/Forbidden/&quot;;
+            options.LoginPath = &quot;/Account/Unauthorized/&quot;;
+        });
+</code></pre></li>
+</ul>
+</section>
+<section id="tabpanel_o9XcN0Bk3e_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="51" sourceendlinenumber="51">Complete the following steps:</p>
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="53" sourceendlinenumber="66">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="53" sourceendlinenumber="53"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="53" sourceendlinenumber="53">Install the <code>Microsoft.AspNetCore.Authentication.Cookies</code> NuGet package in your project. This package contains the cookie middleware.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="55" sourceendlinenumber="66"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="55" sourceendlinenumber="55">Add the following lines to the <code>Configure</code> method in your <em>Startup.cs</em> file before the <code>app.UseMvc()</code> statement:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="57" sourceendlinenumber="66"><code class="lang-csharp">app.UseCookieAuthentication(new CookieAuthenticationOptions()
+{
+    AccessDeniedPath = &quot;/Account/Forbidden/&quot;,
+    AuthenticationScheme = &quot;MyCookieAuthenticationScheme&quot;,
+    AutomaticAuthenticate = true,
+    AutomaticChallenge = true,
+    LoginPath = &quot;/Account/Unauthorized/&quot;
+});
+</code></pre></li>
+</ul>
+</section>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="70" sourceendlinenumber="70">The code snippets above configure some or all of the following options:</p>
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="72" sourceendlinenumber="80">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="72" sourceendlinenumber="72"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="72" sourceendlinenumber="72"><code>AccessDeniedPath</code> - This is the relative path to which requests redirect when a user attempts to access a resource but does not pass any <a class="xref" href="../authorization/policies.html#security-authorization-policies-based" data-raw-source="[authorization policies](xref:security/authorization/policies#security-authorization-policies-based)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="72" sourceendlinenumber="72">authorization policies</a> for that resource.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="74" sourceendlinenumber="74"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="74" sourceendlinenumber="74"><code>AuthenticationScheme</code> - This is a value by which a particular cookie authentication scheme is known. This is useful when there are multiple instances of cookie authentication and you want to <a class="xref" href="../authorization/limitingidentitybyscheme.html#security-authorization-limiting-by-scheme" data-raw-source="[limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="74" sourceendlinenumber="74">limit authorization to one instance</a>.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="76" sourceendlinenumber="76"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="76" sourceendlinenumber="76"><code>AutomaticAuthenticate</code> - This flag is relevant only for ASP.NET Core 1.x. It indicates that the cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="78" sourceendlinenumber="78"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="78" sourceendlinenumber="78"><code>AutomaticChallenge</code> - This flag is relevant only for ASP.NET Core 1.x. It indicates that the 1.x cookie authentication should redirect the browser to the <code>LoginPath</code> or <code>AccessDeniedPath</code> when authorization fails.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="80" sourceendlinenumber="80"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="80" sourceendlinenumber="80"><code>LoginPath</code> - This is the relative path to which requests redirect when a user attempts to access a resource but has not been authenticated.</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="82" sourceendlinenumber="82"><a class="xref" href="cookie.html#security-authentication-cookie-options" data-raw-source="[Other options](xref:security/authentication/cookie#security-authentication-cookie-options)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="82" sourceendlinenumber="82">Other options</a> include the ability to set the issuer for any claims the cookie authentication creates, the name of the cookie the authentication drops, the domain for the cookie and various security properties on the cookie. By default, the cookie authentication uses appropriate security options for any cookies it creates, such as:</p>
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="83" sourceendlinenumber="84">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="83" sourceendlinenumber="83">Setting the HttpOnly flag to prevent cookie access in client-side JavaScript</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="84" sourceendlinenumber="84">Limiting the cookie to HTTPS if a request has traveled over HTTPS</li>
+</ul>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="86" sourceendlinenumber="86"><a name="security-authentication-cookie-middleware-creating-a-cookie"></a></p>
+<h2 id="creating-an-identity-cookie" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="88" sourceendlinenumber="88">Creating an Identity cookie</h2>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="90" sourceendlinenumber="90">To create a cookie holding your user information, you must construct a <a href="https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal" data-raw-source="[ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="90" sourceendlinenumber="90">ClaimsPrincipal</a> holding the information you wish to be serialized in the cookie. Once you have a suitable <code>ClaimsPrincipal</code> object, call the following inside your controller method:</p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="92" sourceendlinenumber="102">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-1_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="92" sourceendlinenumber="92">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-1_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="98" sourceendlinenumber="98">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="94" sourceendlinenumber="96"><code class="lang-csharp">await HttpContext.SignInAsync(&quot;MyCookieAuthenticationScheme&quot;, principal);
+</code></pre></section>
+<section id="tabpanel_o9XcN0Bk3e-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="100" sourceendlinenumber="102"><code class="lang-csharp">await HttpContext.Authentication.SignInAsync(&quot;MyCookieAuthenticationScheme&quot;, principal);
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="106" sourceendlinenumber="106">This creates an encrypted cookie and adds it to the current response. The <code>AuthenticationScheme</code> specified during <a class="xref" href="cookie.html#security-authentication-cookie-middleware-configuring" data-raw-source="[configuration](xref:security/authentication/cookie#security-authentication-cookie-middleware-configuring)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="106" sourceendlinenumber="106">configuration</a> must be used when calling <code>SignInAsync</code>.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="108" sourceendlinenumber="108">Under the covers, the encryption used is ASP.NET Core&#39;s <a class="xref" href="../data-protection/using-data-protection.html#security-data-protection-getting-started" data-raw-source="[Data Protection](xref:security/data-protection/using-data-protection#security-data-protection-getting-started)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="108" sourceendlinenumber="108">Data Protection</a> system. If you are hosting on multiple machines, load balancing, or using a web farm, then you need to <a class="xref" href="../data-protection/configuration/overview.html#data-protection-configuring" data-raw-source="[configure data protection](xref:security/data-protection/configuration/overview#data-protection-configuring)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="108" sourceendlinenumber="108">configure data protection</a> to use the same key ring and application identifier.</p>
+<h2 id="signing-out" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="110" sourceendlinenumber="110">Signing out</h2>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="112" sourceendlinenumber="112">To sign out the current user and delete their cookie, call the following inside your controller:</p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-2" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="114" sourceendlinenumber="124">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-2_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="114" sourceendlinenumber="114">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-2_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="120" sourceendlinenumber="120">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="116" sourceendlinenumber="118"><code class="lang-csharp">await HttpContext.SignOutAsync(&quot;MyCookieAuthenticationScheme&quot;);
+</code></pre></section>
+<section id="tabpanel_o9XcN0Bk3e-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="122" sourceendlinenumber="124"><code class="lang-csharp">await HttpContext.Authentication.SignOutAsync(&quot;MyCookieAuthenticationScheme&quot;);
+</code></pre></section>
+</div>
+<h2 id="reacting-to-back-end-changes" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="128" sourceendlinenumber="128">Reacting to back-end changes</h2>
+<div class="WARNING" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="130" sourceendlinenumber="130"><h5>Warning</h5><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="131" sourceendlinenumber="131">Once a principal cookie has been created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie authentication has no knowledge of this, and a user stays logged in as long as their cookie is valid.</p>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="133" sourceendlinenumber="133">The cookie authentication provides a series of events in its option class. The <code>ValidateAsync()</code> event can be used to intercept and override validation of the cookie identity.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="135" sourceendlinenumber="135">Consider a back-end user database that may have a &quot;LastChanged&quot; column. In order to invalidate a cookie when the database changes, you should first, when <a class="xref" href="cookie.html#security-authentication-cookie-middleware-creating-a-cookie" data-raw-source="[creating the cookie](xref:security/authentication/cookie#security-authentication-cookie-middleware-creating-a-cookie)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="135" sourceendlinenumber="135">creating the cookie</a>, add a &quot;LastChanged&quot; claim containing the current value. When the database changes, the &quot;LastChanged&quot; value should be updated.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="137" sourceendlinenumber="137">To implement an override for the <code>ValidateAsync()</code> event, you must write a method with the following signature:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="139" sourceendlinenumber="141"><code class="lang-csharp">Task ValidateAsync(CookieValidatePrincipalContext context);
+</code></pre><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="143" sourceendlinenumber="143">ASP.NET Core Identity implements this check as part of its <code>SecurityStampValidator</code>. An example looks like the following:</p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-3" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="145" sourceendlinenumber="218">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-3_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="145" sourceendlinenumber="145">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-3_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="185" sourceendlinenumber="185">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="147" sourceendlinenumber="170"><code class="lang-csharp">public static class LastChangedValidator
+{
+    public static async Task ValidateAsync(CookieValidatePrincipalContext context)
+    {
+        // Pull database from registered DI services.
+        var userRepository = context.HttpContext.RequestServices.GetRequiredService&lt;IUserRepository&gt;();
+        var userPrincipal = context.Principal;
+
+        // Look for the last changed claim.
+        string lastChanged;
+        lastChanged = (from c in userPrincipal.Claims
+                        where c.Type == &quot;LastUpdated&quot;
+                        select c.Value).FirstOrDefault();
+
+        if (string.IsNullOrEmpty(lastChanged) ||
+            !userRepository.ValidateLastChanged(userPrincipal, lastChanged))
+        {
+            context.RejectPrincipal();
+            await context.HttpContext.SignOutAsync(&quot;MyCookieAuthenticationScheme&quot;);
+        }
+    }
+}
+</code></pre><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="172" sourceendlinenumber="172">This would then be wired up during cookie service registration in the <code>ConfigureServices</code> method of <em>Startup.cs</em>:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="174" sourceendlinenumber="183"><code class="lang-csharp">services.AddAuthentication(&quot;MyCookieAuthenticationScheme&quot;)
+        .AddCookie(options =&gt;
+        {
+            options.Events = new CookieAuthenticationEvents
+            {
+                OnValidatePrincipal = LastChangedValidator.ValidateAsync
+            };
+        });
+</code></pre></section>
+<section id="tabpanel_o9XcN0Bk3e-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="187" sourceendlinenumber="210"><code class="lang-csharp">public static class LastChangedValidator
+{
+    public static async Task ValidateAsync(CookieValidatePrincipalContext context)
+    {
+        // Pull database from registered DI services.
+        var userRepository = context.HttpContext.RequestServices.GetRequiredService&lt;IUserRepository&gt;();
+        var userPrincipal = context.Principal;
+
+        // Look for the last changed claim.
+        string lastChanged;
+        lastChanged = (from c in userPrincipal.Claims
+                        where c.Type == &quot;LastUpdated&quot;
+                        select c.Value).FirstOrDefault();
+
+        if (string.IsNullOrEmpty(lastChanged) ||
+            !userRepository.ValidateLastChanged(userPrincipal, lastChanged))
+        {
+            context.RejectPrincipal();
+            await context.HttpContext.Authentication.SignOutAsync(&quot;MyCookieAuthenticationScheme&quot;);
+        }
+    }
+}
+</code></pre><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="212" sourceendlinenumber="212">This would then be wired up during cookie authentication configuration in the <code>Configure</code> method of <em>Startup.cs</em>:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="214" sourceendlinenumber="222"><code class="lang-csharp">app.UseCookieAuthentication(new CookieAuthenticationOptions
+{
+    Events = new CookieAuthenticationEvents
+    {
+        OnValidatePrincipal = LastChangedValidator.ValidateAsync
+    }
+});
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="226" sourceendlinenumber="226">Consider the example in which their name has been updated &mdash; a decision which doesn&#39;t affect security in any way. If you want to non-destructively update the user principal, you can call <code>context.ReplacePrincipal()</code> and set the <code>context.ShouldRenew</code> property to <code>true</code>.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="228" sourceendlinenumber="228"><a name="security-authentication-cookie-options"></a></p>
+<h2 id="controlling-cookie-options" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="230" sourceendlinenumber="230">Controlling cookie options</h2>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="232" sourceendlinenumber="232">The <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.cookieauthenticationoptions" data-raw-source="[CookieAuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.cookieauthenticationoptions)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="232" sourceendlinenumber="232">CookieAuthenticationOptions</a> class comes with various configuration options to fine-tune the cookies being created.</p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-4" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="234" sourceendlinenumber="293">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-4_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-4_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="234" sourceendlinenumber="234">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-4_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-4_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="269" sourceendlinenumber="269">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-4_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="236" sourceendlinenumber="236">ASP.NET Core 2.x unifies the APIs used for configuring cookies. The 1.x APIs have been marked as obsolete, and a new <code>Cookie</code> property of type <code>CookieBuilder</code> has been introduced in the <code>CookieAuthenticationOptions</code> class. It&#39;s recommended that you migrate to the 2.x APIs.</p>
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="238" sourceendlinenumber="252">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="238" sourceendlinenumber="238"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="238" sourceendlinenumber="238"><code>ClaimsIssuer</code> is the issuer to be used for the <a href="https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer" data-raw-source="[Issuer](https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="238" sourceendlinenumber="238">Issuer</a> property on any claims created by the cookie authentication.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="240" sourceendlinenumber="240"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="240" sourceendlinenumber="240"><code>CookieBuilder.Domain</code> is the domain name to which the cookie is served. By default, this is the host name the request was sent to. The browser only serves the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example, setting the cookie domain to <code>.contoso.com</code> makes it available to <code>contoso.com</code>, <code>www.contoso.com</code>, <code>staging.www.contoso.com</code>, etc.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="242" sourceendlinenumber="242"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="242" sourceendlinenumber="242"><code>CookieBuilder.HttpOnly</code> is a flag indicating if the cookie should be accessible only to servers. This defaults to <code>true</code>. Changing this value may open your application to cookie theft should your application have a Cross-Site Scripting bug.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="244" sourceendlinenumber="244"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="244" sourceendlinenumber="244"><code>CookieBuilder.Path</code> can be used to isolate applications running on the same host name. If you have an app running in <code>/app1</code> and want to limit the cookies issued to just be sent to that application, then you should set the <code>CookiePath</code> property to <code>/app1</code>. By doing so, the cookie is only available to requests to <code>/app1</code> or anything underneath it.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="246" sourceendlinenumber="246"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="246" sourceendlinenumber="246"><code>CookieBuilder.SameSite</code> indicates whether the browser should allow the cookie to be attached to same-site or cross-site requests. This defaults to <code>SameSiteMode.Lax</code>.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="248" sourceendlinenumber="248"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="248" sourceendlinenumber="248"><code>CookieBuilder.SecurePolicy</code> is a flag indicating if the cookie created should be limited to HTTPS, HTTP or HTTPS, or the same protocol as the request. This defaults to <code>SameAsRequest</code>.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="250" sourceendlinenumber="250"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="250" sourceendlinenumber="250"><code>ExpireTimeSpan</code> is the <code>TimeSpan</code> after which the cookie expires. It&#39;s added to the current date and time to create the expiry date for the cookie.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="252" sourceendlinenumber="252"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="252" sourceendlinenumber="252"><code>SlidingExpiration</code> is a flag indicating whether the cookie expiration date resets when more than half of the <code>ExpireTimeSpan</code> interval has passed. The new expiry date is moved forward to be the current date plus the <code>ExpireTimespan</code>. An <a class="xref" href="cookie.html#security-authentication-absolute-expiry" data-raw-source="[absolute expiry time](xref:security/authentication/cookie#security-authentication-absolute-expiry)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="252" sourceendlinenumber="252">absolute expiry time</a> can be set by using the <code>AuthenticationProperties</code> class when calling <code>SignInAsync</code>. An absolute expiry can improve the security of your application by limiting the amount of time for which the authentication cookie is valid.</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="254" sourceendlinenumber="254">An example of using <code>CookieAuthenticationOptions</code> in the <code>ConfigureServices</code> method of <em>Startup.cs</em> follows:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="256" sourceendlinenumber="267"><code class="lang-csharp">services.AddAuthentication()
+        .AddCookie(options =&gt;
+        {
+            options.Cookie.Name = &quot;AuthCookie&quot;;
+            options.Cookie.Domain = &quot;contoso.com&quot;;
+            options.Cookie.Path = &quot;/&quot;;
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SameSite = SameSiteMode.Lax;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        });
+</code></pre></section>
+<section id="tabpanel_o9XcN0Bk3e-4_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<ul sourcefile="security/authentication/cookie.md" sourcestartlinenumber="271" sourceendlinenumber="283">
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="271" sourceendlinenumber="271"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="271" sourceendlinenumber="271"><code>ClaimsIssuer</code> is the issuer to be used for the <a href="https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer" data-raw-source="[Issuer](https://docs.microsoft.com/dotnet/api/system.security.claims.claim.issuer)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="271" sourceendlinenumber="271">Issuer</a> property on any claims created by the middleware.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="273" sourceendlinenumber="273"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="273" sourceendlinenumber="273"><code>CookieDomain</code> is the domain name to which the cookie is served. By default, this is the host name the request was sent to. The browser only serves the cookie to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example, setting the cookie domain to <code>.contoso.com</code> makes it available to <code>contoso.com</code>, <code>www.contoso.com</code>, <code>staging.www.contoso.com</code>, etc.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="275" sourceendlinenumber="275"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="275" sourceendlinenumber="275"><code>CookieHttpOnly</code> is a flag indicating if the cookie should be accessible only to servers. This defaults to <code>true</code>. Changing this value may open your application to cookie theft should your application have a Cross-Site Scripting bug.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="277" sourceendlinenumber="277"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="277" sourceendlinenumber="277"><code>CookiePath</code> can be used to isolate applications running on the same host name. If you have an app running in <code>/app1</code> and want to limit the cookies issued to just be sent to that application, then you should set the <code>CookiePath</code> property to <code>/app1</code>. By doing so, the cookie is only available to requests to <code>/app1</code> or anything underneath it.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="279" sourceendlinenumber="279"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="279" sourceendlinenumber="279"><code>CookieSecure</code> is a flag indicating if the cookie created should be limited to HTTPS, HTTP or HTTPS, or the same protocol as the request. This defaults to <code>SameAsRequest</code>.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="281" sourceendlinenumber="281"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="281" sourceendlinenumber="281"><code>ExpireTimeSpan</code> is the <code>TimeSpan</code> after which the cookie expires. It&#39;s added to the current date and time to create the expiry date for the cookie.</p>
+</li>
+<li sourcefile="security/authentication/cookie.md" sourcestartlinenumber="283" sourceendlinenumber="283"><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="283" sourceendlinenumber="283"><code>SlidingExpiration</code> is a flag indicating whether the cookie expiration date resets when more than half of the <code>ExpireTimeSpan</code> interval has passed. The new expiry date is moved forward to be the current date plus the <code>ExpireTimespan</code>. An <a class="xref" href="cookie.html#security-authentication-absolute-expiry" data-raw-source="[absolute expiry time](xref:security/authentication/cookie#security-authentication-absolute-expiry)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="283" sourceendlinenumber="283">absolute expiry time</a> can be set by using the <code>AuthenticationProperties</code> class when calling <code>SignInAsync</code>. An absolute expiry can improve the security of your application by limiting the amount of time for which the authentication cookie is valid.</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="285" sourceendlinenumber="285">An example of using <code>CookieAuthenticationOptions</code> in the <code>Configure</code> method of <em>Startup.cs</em> follows:</p>
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="287" sourceendlinenumber="296"><code class="lang-csharp">app.UseCookieAuthentication(new CookieAuthenticationOptions
+{
+    CookieName = &quot;AuthCookie&quot;,
+    CookieDomain = &quot;contoso.com&quot;,
+    CookiePath = &quot;/&quot;,
+    CookieHttpOnly = true,
+    CookieSecure = CookieSecurePolicy.Always
+});
+</code></pre></section>
+</div>
+<h2 id="persistent-cookies-and-absolute-expiry-times" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="300" sourceendlinenumber="300">Persistent cookies and absolute expiry times</h2>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="302" sourceendlinenumber="302">You may want the cookie expiry to persist across browser sessions and want an absolute expiry to the identity and the cookie transporting it. This persistence should only be enabled with explicit user consent, via a &quot;Remember Me&quot; checkbox on login or a similar mechanism. You can do these things by using the <code>AuthenticationProperties</code> parameter on the <code>SignInAsync</code> method called when <a class="xref" href="cookie.html#security-authentication-cookie-middleware-creating-a-cookie" data-raw-source="[signing in an identity and creating the cookie](xref:security/authentication/cookie#security-authentication-cookie-middleware-creating-a-cookie)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="302" sourceendlinenumber="302">signing in an identity and creating the cookie</a>. For example:</p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-5" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="304" sourceendlinenumber="328">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-5_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-5_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="304" sourceendlinenumber="304">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-5_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-5_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="318" sourceendlinenumber="318">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-5_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="306" sourceendlinenumber="314"><code class="lang-csharp">await HttpContext.SignInAsync(
+    &quot;MyCookieAuthenticationScheme&quot;,
+    principal,
+    new AuthenticationProperties
+    {
+        IsPersistent = true
+    });
+</code></pre><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="316" sourceendlinenumber="316">The <code>AuthenticationProperties</code> class, used in the preceding code snippet, resides in the <code>Microsoft.AspNetCore.Authentication</code> namespace.</p>
+</section>
+<section id="tabpanel_o9XcN0Bk3e-5_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="320" sourceendlinenumber="328"><code class="lang-csharp">await HttpContext.Authentication.SignInAsync(
+    &quot;MyCookieAuthenticationScheme&quot;,
+    principal,
+    new AuthenticationProperties
+    {
+        IsPersistent = true
+    });
+</code></pre><p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="330" sourceendlinenumber="330">The <code>AuthenticationProperties</code> class, used in the preceding code snippet, resides in the <code>Microsoft.AspNetCore.Http.Authentication</code> namespace.</p>
+</section>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="334" sourceendlinenumber="334">The preceding code snippet creates an identity and corresponding cookie which survives through browser closures. Any sliding expiration settings previously configured via <a class="xref" href="cookie.html#security-authentication-cookie-options" data-raw-source="[cookie options](xref:security/authentication/cookie#security-authentication-cookie-options)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="334" sourceendlinenumber="334">cookie options</a> are still honored. If the cookie expires whilst the browser is closed, the browser clears it once it is restarted.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="336" sourceendlinenumber="336"><a name="security-authentication-absolute-expiry"></a></p>
+<div class="tabGroup" id="tabgroup_o9XcN0Bk3e-6" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="338" sourceendlinenumber="360">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-6_aspnetcore2x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-6_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="338" sourceendlinenumber="338">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_o9XcN0Bk3e-6_aspnetcore1x" role="tab" aria-controls="tabpanel_o9XcN0Bk3e-6_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="350" sourceendlinenumber="350">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_o9XcN0Bk3e-6_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="340" sourceendlinenumber="348"><code class="lang-csharp">await HttpContext.SignInAsync(
+    &quot;MyCookieAuthenticationScheme&quot;,
+    principal,
+    new AuthenticationProperties
+    {
+        ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
+    });
+</code></pre></section>
+<section id="tabpanel_o9XcN0Bk3e-6_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre sourcefile="security/authentication/cookie.md" sourcestartlinenumber="352" sourceendlinenumber="360"><code class="lang-csharp">await HttpContext.Authentication.SignInAsync(
+    &quot;MyCookieAuthenticationScheme&quot;,
+    principal,
+    new AuthenticationProperties
+    {
+        ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
+    });
+</code></pre></section>
+</div>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="364" sourceendlinenumber="364">The preceding code snippet creates an identity and corresponding cookie which lasts for 20 minutes. This ignores any sliding expiration settings previously configured via <a class="xref" href="cookie.html#security-authentication-cookie-options" data-raw-source="[cookie options](xref:security/authentication/cookie#security-authentication-cookie-options)" sourcefile="security/authentication/cookie.md" sourcestartlinenumber="364" sourceendlinenumber="364">cookie options</a>.</p>
+<p sourcefile="security/authentication/cookie.md" sourcestartlinenumber="366" sourceendlinenumber="366">The <code>ExpiresUtc</code> and <code>IsPersistent</code> properties are mutually exclusive.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/cookie.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

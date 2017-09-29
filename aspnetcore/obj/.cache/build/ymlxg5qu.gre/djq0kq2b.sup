@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Routing in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Routing in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/routing">
+<h1 id="routing-in-aspnet-core" sourcefile="fundamentals/routing.md" sourcestartlinenumber="15" sourceendlinenumber="15">Routing in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://github.com/rynowak" data-raw-source="[Ryan Nowak](https://github.com/rynowak)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="17" sourceendlinenumber="17">Ryan Nowak</a>, <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="17" sourceendlinenumber="17">Steve Smith</a>, and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rick Anderson</a></p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="19" sourceendlinenumber="19">Routing functionality is responsible for mapping an incoming request to a route handler. Routes are defined in the ASP.NET app and configured when the app starts up. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the ASP.NET app, the routing functionality is also able to generate URLs that map to route handlers. Therefore, routing can find a route handler based on a URL, or the URL corresponding to a given route handler based on route handler information.</p>
+<div class="IMPORTANT" sourcefile="fundamentals/routing.md" sourcestartlinenumber="21" sourceendlinenumber="21"><h5>Important</h5><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="22" sourceendlinenumber="22">This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see <a href="../mvc/controllers/routing.html" data-raw-source="[Routing to Controller Actions](../mvc/controllers/routing.md)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="22" sourceendlinenumber="22">Routing to Controller Actions</a></p>
+</div>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/routing/sample)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="24" sourceendlinenumber="24">View or download sample code</a></p>
+<h2 id="routing-basics" sourcefile="fundamentals/routing.md" sourcestartlinenumber="26" sourceendlinenumber="26">Routing basics</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="28" sourceendlinenumber="28">Routing uses <em>routes</em> (implementations of <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.routing.irouter" data-raw-source="[IRouter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.routing.irouter)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="28" sourceendlinenumber="28">IRouter</a>) to:</p>
+<ul sourcefile="fundamentals/routing.md" sourcestartlinenumber="30" sourceendlinenumber="32">
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="30" sourceendlinenumber="30"><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="30" sourceendlinenumber="30">map incoming requests to <em>route handlers</em></p>
+</li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="32" sourceendlinenumber="32"><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="32" sourceendlinenumber="32">generate URLs used in responses</p>
+</li>
+</ul>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="34" sourceendlinenumber="34">Generally, an app has a single collection of routes. When a request arrives, the route collection is processed in order. The incoming request looks for a route that matches the request URL by calling the <code>RouteAsync</code> method on each available route in the route collection. By contrast, a response can use routing to generate URLs (for example, for redirection or links) based on route information, and thus avoid having to hard-code URLs, which helps maintainability.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="36" sourceendlinenumber="36">Routing is connected to the <a href="middleware.html" data-raw-source="[middleware](middleware.md)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="36" sourceendlinenumber="36">middleware</a> pipeline by the <code>RouterMiddleware</code> class. <a href="../mvc/overview.html" data-raw-source="[ASP.NET MVC](../mvc/overview.md)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="36" sourceendlinenumber="36">ASP.NET MVC</a> adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see <a href="#using-routing-middleware" data-raw-source="[using-routing-middleware](#using-routing-middleware)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="36" sourceendlinenumber="36">using-routing-middleware</a>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="38" sourceendlinenumber="38"><a name="url-matching-ref"></a></p>
+<h3 id="url-matching" sourcefile="fundamentals/routing.md" sourcestartlinenumber="40" sourceendlinenumber="40">URL matching</h3>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="42" sourceendlinenumber="42">URL matching is the process by which routing dispatches an incoming request to a <em>handler</em>. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="44" sourceendlinenumber="45">Incoming requests enter the <code>RouterMiddleware</code>, which calls the <code>RouteAsync</code> method on each route in sequence. The <code>IRouter</code> instance chooses whether to <em>handle</em> the request by setting the <code>RouteContext</code> <code>Handler</code> to a non-null
+<code>RequestDelegate</code>. If a route sets a handler for the request, route processing stops and the handler will be invoked to process the request. If all routes are tried and no handler is found for the request, the middleware calls <em>next</em> and the next middleware in the request pipeline is invoked.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="47" sourceendlinenumber="47">The primary input to <code>RouteAsync</code> is the <code>RouteContext</code> <code>HttpContext</code> associated with the current request. The <code>RouteContext.Handler</code> and <code>RouteContext</code> <code>RouteData</code> are outputs that will be set after a route matches.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="49" sourceendlinenumber="49">A match during <code>RouteAsync</code> will also set the properties of the <code>RouteContext.RouteData</code> to appropriate values based on the request processing done so far. If a route matches a request, the <code>RouteContext.RouteData</code> will contain important state information about the <em>result</em>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="51" sourceendlinenumber="51"><code>RouteData</code> <code>Values</code> is a dictionary of <em>route values</em> produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="53" sourceendlinenumber="53"><code>RouteData</code> <code>DataTokens</code>  is a property bag of additional data related to the matched route. <code>DataTokens</code> are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do <strong>not</strong> affect the behavior of routing in any way. Additionally, values stashed in data tokens can be of any type, in contrast to route values, which must be easily convertible to and from strings.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="55" sourceendlinenumber="55"><code>RouteData</code> <code>Routers</code> is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the <code>Routers</code> property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in <code>Routers</code> is the route collection, and should be used for URL generation. The last item in <code>Routers</code> is the route handler that matched.</p>
+<h3 id="url-generation" sourcefile="fundamentals/routing.md" sourcestartlinenumber="57" sourceendlinenumber="57">URL generation</h3>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="59" sourceendlinenumber="59">URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers and the URLs that access them.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="61" sourceendlinenumber="61">URL generation follows a similar iterative process, but starts with user or framework code calling into the <code>GetVirtualPath</code> method of the route collection. Each <em>route</em> will then have its <code>GetVirtualPath</code> method called in sequence until a non-null <code>VirtualPathData</code> is returned.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="63" sourceendlinenumber="63">The primary inputs to <code>GetVirtualPath</code> are:</p>
+<ul sourcefile="fundamentals/routing.md" sourcestartlinenumber="65" sourceendlinenumber="69">
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="65" sourceendlinenumber="65"><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="65" sourceendlinenumber="65"><code>VirtualPathContext</code> <code>HttpContext</code></p>
+</li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="67" sourceendlinenumber="67"><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="67" sourceendlinenumber="67"><code>VirtualPathContext</code> <code>Values</code></p>
+</li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="69" sourceendlinenumber="69"><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="69" sourceendlinenumber="69"><code>VirtualPathContext</code> <code>AmbientValues</code></p>
+</li>
+</ul>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="71" sourceendlinenumber="71">Routes primarily use the route values provided by the <code>Values</code> and <code>AmbientValues</code> to decide where it is possible to generate a URL and what values to include. The <code>AmbientValues</code> are the set of route values that were produced from matching the current request with the routing system. In contrast, <code>Values</code> are the route values that specify how to generate the desired URL for the current operation. The <code>HttpContext</code> is provided in case a route needs to get services or additional data associated with the current context.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="73" sourceendlinenumber="73">Tip: Think of <code>Values</code> as being a set of overrides for the <code>AmbientValues</code>. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="75" sourceendlinenumber="75">The output of <code>GetVirtualPath</code> is a <code>VirtualPathData</code>. <code>VirtualPathData</code> is a parallel of <code>RouteData</code>; it contains the <code>VirtualPath</code> for the output URL as well as the some additional properties that should be set by the route.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="77" sourceendlinenumber="77">The <code>VirtualPathData</code> <code>VirtualPath</code> property contains the <em>virtual path</em> produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="79" sourceendlinenumber="79">The <code>VirtualPathData</code> <code>Router</code> is a reference to the route that successfully generated the URL.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="81" sourceendlinenumber="81">The <code>VirtualPathData</code> <code>DataTokens</code> properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of <code>RouteData.DataTokens</code>.</p>
+<h3 id="creating-routes" sourcefile="fundamentals/routing.md" sourcestartlinenumber="83" sourceendlinenumber="83">Creating routes</h3>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="85" sourceendlinenumber="85">Routing provides the <code>Route</code> class as the standard implementation of <code>IRouter</code>. <code>Route</code> uses the <em>route template</em> syntax to define patterns that will match against the URL path when <code>RouteAsync</code> is called. <code>Route</code> will use the same route template to generate a URL when <code>GetVirtualPath</code> is called.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="87" sourceendlinenumber="87">Most applications will create routes by calling <code>MapRoute</code> or one of the similar extension methods defined on <code>IRouteBuilder</code>. All of these methods will create an instance of <code>Route</code> and add it to the route collection.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="89" sourceendlinenumber="89">Note: <code>MapRoute</code> doesn&#39;t take a route handler parameter - it only adds routes that will be handled by the <code>DefaultHandler</code>. Since the default handler is an <code>IRouter</code>, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see <a href="../mvc/controllers/routing.html" data-raw-source="[Routing to Controller Actions](../mvc/controllers/routing.md)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="89" sourceendlinenumber="89">Routing to Controller Actions</a>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="91" sourceendlinenumber="91">This is an example of a <code>MapRoute</code> call used by a typical ASP.NET MVC route definition:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="93" sourceendlinenumber="97"><code class="lang-csharp">routes.MapRoute(
+    name: &quot;default&quot;,
+    template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="99" sourceendlinenumber="99">This template will match a URL path like <code>/Products/Details/17</code> and extract the route values <code>{ controller = Products, action = Details, id = 17 }</code>. The route values are determined by splitting the URL path into segments, and matching each segment with the <em>route parameter</em> name in the route template. Route parameters are named. They are defined by enclosing the parameter name in braces <code>{ }</code>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="101" sourceendlinenumber="101">The template above could also match the URL path <code>/</code> and would produce the values <code>{ controller = Home, action = Index }</code>. This happens because the <code>{controller}</code> and <code>{action}</code> route parameters have default values, and the <code>id</code> route parameter is optional. An equals <code>=</code> sign followed by a value after the route parameter name defines a default value for the parameter. A question mark <code>?</code> after the route parameter name defines the parameter as optional. Route parameters with a default value <em>always</em> produce a route value when the route matches - optional parameters will not produce a route value if there was no corresponding URL path segment.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="103" sourceendlinenumber="103">See <a href="#route-template-reference" data-raw-source="[route-template-reference](#route-template-reference)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="103" sourceendlinenumber="103">route-template-reference</a> for a thorough description of route template features and syntax.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="105" sourceendlinenumber="105">This example includes a <em>route constraint</em>:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="107" sourceendlinenumber="111"><code class="lang-csharp">routes.MapRoute(
+    name: &quot;default&quot;,
+    template: &quot;{controller=Home}/{action=Index}/{id:int}&quot;);
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="113" sourceendlinenumber="113">This template will match a URL path like <code>/Products/Details/17</code>, but not <code>/Products/Details/Apples</code>. The route parameter definition <code>{id:int}</code> defines a <em>route constraint</em> for the <code>id</code> route parameter. Route constraints implement <code>IRouteConstraint</code> and inspect route values to verify them. In this example the route value <code>id</code> must be convertible to an integer. See <a href="#route-constraint-reference" data-raw-source="[route-constraint-reference](#route-constraint-reference)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="113" sourceendlinenumber="113">route-constraint-reference</a> for a more detailed explanation of route constraints that are provided by the framework.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="115" sourceendlinenumber="115">Additional overloads of <code>MapRoute</code> accept values for <code>constraints</code>, <code>dataTokens</code>, and <code>defaults</code>. These additional parameters of <code>MapRoute</code> are defined as type <code>object</code>. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="117" sourceendlinenumber="117">The following two examples create equivalent routes:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="119" sourceendlinenumber="128"><code class="lang-csharp">routes.MapRoute(
+    name: &quot;default_route&quot;,
+    template: &quot;{controller}/{action}/{id?}&quot;,
+    defaults: new { controller = &quot;Home&quot;, action = &quot;Index&quot; });
+
+routes.MapRoute(
+    name: &quot;default_route&quot;,
+    template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="130" sourceendlinenumber="130">Tip: The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="132" sourceendlinenumber="132">This example demonstrates a few more features:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="134" sourceendlinenumber="139"><code class="lang-csharp">routes.MapRoute(
+  name: &quot;blog&quot;,
+  template: &quot;Blog/{*article}&quot;,
+  defaults: new { controller = &quot;Blog&quot;, action = &quot;ReadArticle&quot; });
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="141" sourceendlinenumber="141">This template will match a URL path like <code>/Blog/All-About-Routing/Introduction</code> and will extract the values <code>{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }</code>. The default route values for <code>controller</code> and <code>action</code> are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The <code>article</code> route parameter is defined as a <em>catch-all</em> by the appearance of an asterisk <code>*</code> before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="143" sourceendlinenumber="143">This example adds route constraints and data tokens:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="145" sourceendlinenumber="152"><code class="lang-csharp">routes.MapRoute(
+    name: &quot;us_english_products&quot;,
+    template: &quot;en-US/Products/{id}&quot;,
+    defaults: new { controller = &quot;Products&quot;, action = &quot;Details&quot; },
+    constraints: new { id = new IntRouteConstraint() },
+    dataTokens: new { locale = &quot;en-US&quot; });
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="154" sourceendlinenumber="154">This template will match a URL path like <code>/Products/5</code> and will extract the values <code>{ controller = Products, action = Details, id = 5 }</code> and the data tokens <code>{ locale = en-US }</code>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="156" sourceendlinenumber="156"><img src="routing/_static/tokens.png" alt="Locals Windows tokens" sourcefile="fundamentals/routing.md" sourcestartlinenumber="156" sourceendlinenumber="156"></p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="158" sourceendlinenumber="158"><a name="id1"></a></p>
+<h3 id="url-generation" sourcefile="fundamentals/routing.md" sourcestartlinenumber="160" sourceendlinenumber="160">URL generation</h3>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="162" sourceendlinenumber="162">The <code>Route</code> class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="164" sourceendlinenumber="164">Tip: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the <code>Route</code> class.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="166" sourceendlinenumber="166">This example uses a basic ASP.NET MVC style route:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="168" sourceendlinenumber="172"><code class="lang-csharp">routes.MapRoute(
+    name: &quot;default&quot;,
+    template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="174" sourceendlinenumber="174">With the route values <code>{ controller = Products, action = List }</code>, this route will generate the URL <code>/Products/List</code>. The route values are substituted for the corresponding route parameters to form the URL path. Since <code>id</code> is an optional route parameter, it&#39;s no problem that it doesn&#39;t have a value.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="176" sourceendlinenumber="176">With the route values <code>{ controller = Home, action = Index }</code>, this route will generate the URL <code>/</code>. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="178" sourceendlinenumber="178">Tip: An app using ASP.NET MVC should use <code>UrlHelper</code> to generate URLs instead of calling into routing directly.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="180" sourceendlinenumber="180">For more details about the URL generation process, see <a href="#url-generation-reference" data-raw-source="[url-generation-reference](#url-generation-reference)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="180" sourceendlinenumber="180">url-generation-reference</a>.</p>
+<h2 id="using-routing-middleware" sourcefile="fundamentals/routing.md" sourcestartlinenumber="182" sourceendlinenumber="182">Using Routing Middleware</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="184" sourceendlinenumber="184">Add the NuGet package &quot;Microsoft.AspNetCore.Routing&quot;.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="186" sourceendlinenumber="186">Add routing to the service container in <em>Startup.cs</em>:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="188" sourceendlinenumber="188"><code class="lang-csharp" name="Main" highlight-lines="3">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRouting();
+}
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="190" sourceendlinenumber="190">Routes must be configured in the <code>Configure</code> method in the <code>Startup</code> class. The sample below uses these APIs:</p>
+<ul sourcefile="fundamentals/routing.md" sourcestartlinenumber="192" sourceendlinenumber="195">
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="192" sourceendlinenumber="192"><code>RouteBuilder</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="193" sourceendlinenumber="193"><code>Build</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="194" sourceendlinenumber="194"><code>MapGet</code>  Matches only HTTP GET requests</li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="195" sourceendlinenumber="195"><code>UseRouter</code></li>
+</ul>
+<!-- literal_block {"xml:space": "preserve", "source": "fundamentals/routing/sample/RoutingSample/Startup.cs", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="199" sourceendlinenumber="227"><code class="lang-csharp">public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+{
+    var trackPackageRouteHandler = new RouteHandler(context =&gt;
+    {
+        var routeValues = context.GetRouteData().Values;
+        return context.Response.WriteAsync(
+            $&quot;Hello! Route values: {string.Join(&quot;, &quot;, routeValues)}&quot;);
+    });
+
+    var routeBuilder = new RouteBuilder(app, trackPackageRouteHandler);
+
+    routeBuilder.MapRoute(
+        &quot;Track Package Route&quot;,
+        &quot;package/{operation:regex(^(track|create|detonate)$)}/{id:int}&quot;);
+
+    routeBuilder.MapGet(&quot;hello/{name}&quot;, context =&gt;
+    {
+        var name = context.GetRouteValue(&quot;name&quot;);
+        // This is the route handler when HTTP GET &quot;hello/&lt;anything&gt;&quot;  matches
+        // To match HTTP GET &quot;hello/&lt;anything&gt;/&lt;anything&gt;,
+        // use routeBuilder.MapGet(&quot;hello/{*name}&quot;
+        return context.Response.WriteAsync($&quot;Hi, {name}!&quot;);
+    });
+
+    var routes = routeBuilder.Build();
+    app.UseRouter(routes);
+}
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="229" sourceendlinenumber="229">The table below shows the responses with the given URIs.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="231" sourceendlinenumber="239">
+<thead>
+<tr>
+<th>URI</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/package/create/3</td>
+<td>Hello! Route values: [operation, create], [id, 3]</td>
+</tr>
+<tr>
+<td>/package/track/-3</td>
+<td>Hello! Route values: [operation, track], [id, -3]</td>
+</tr>
+<tr>
+<td>/package/track/-3/</td>
+<td>Hello! Route values: [operation, track], [id, -3]</td>
+</tr>
+<tr>
+<td>/package/track/</td>
+<td>&lt;Fall through, no match&gt;</td>
+</tr>
+<tr>
+<td>GET /hello/Joe</td>
+<td>Hi, Joe!</td>
+</tr>
+<tr>
+<td>POST /hello/Joe</td>
+<td>&lt;Fall through, matches HTTP GET only&gt;</td>
+</tr>
+<tr>
+<td>GET /hello/Joe/Smith</td>
+<td>&lt;Fall through, no match&gt;</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="241" sourceendlinenumber="241">If you are configuring a single route, call <code>app.UseRouter</code> passing in an <code>IRouter</code> instance. You won&#39;t need to call <code>RouteBuilder</code>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="243" sourceendlinenumber="243">The framework provides a set of extension methods for creating routes such as:</p>
+<ul sourcefile="fundamentals/routing.md" sourcestartlinenumber="245" sourceendlinenumber="250">
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="245" sourceendlinenumber="245"><code>MapRoute</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="246" sourceendlinenumber="246"><code>MapGet</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="247" sourceendlinenumber="247"><code>MapPost</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="248" sourceendlinenumber="248"><code>MapPut</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="249" sourceendlinenumber="249"><code>MapDelete</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="250" sourceendlinenumber="250"><code>MapVerb</code></li>
+</ul>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="252" sourceendlinenumber="252">Some of these methods such as <code>MapGet</code> require a <code>RequestDelegate</code> to be provided. The <code>RequestDelegate</code> will be used as the <em>route handler</em> when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the <em>Map</em> method doesn&#39;t accept a handler, such as <code>MapRoute</code>, then it will use the <code>DefaultHandler</code>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="254" sourceendlinenumber="254">The <code>Map[Verb]</code> methods use constraints to limit the route to the HTTP Verb in the method name. For example, see <a href="https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L85-L88" data-raw-source="[MapGet](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L85-L88)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="254" sourceendlinenumber="254">MapGet</a> and <a href="https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L156-L180" data-raw-source="[MapVerb](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L156-L180)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="254" sourceendlinenumber="254">MapVerb</a>.</p>
+<h2 id="route-template-reference" sourcefile="fundamentals/routing.md" sourcestartlinenumber="256" sourceendlinenumber="256">Route Template Reference</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="258" sourceendlinenumber="258">Tokens within curly braces (<code>{ }</code>) define <em>route parameters</em> which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example <code>{controller=Home}{action=Index}</code> would not be a valid route, since there is no literal value between <code>{controller}</code> and <code>{action}</code>. These route parameters must have a name, and may have additional attributes specified.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="260" sourceendlinenumber="260">Literal text other than route parameters (for example, <code>{id}</code>) and the path separator <code>/</code> must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter <code>{</code> or  <code>}</code>, escape it by repeating the character (<code>{{</code> or <code>}}</code>).</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="262" sourceendlinenumber="262">URL patterns that attempt to capture a filename with an optional file extension have additional considerations. For example, using the template <code>files/{filename}.{ext?}</code> - When both <code>filename</code> and <code>ext</code> exist, both values will be populated. If only <code>filename</code> exists in the URL, the route matches because the trailing period <code>.</code> is  optional. The following URLs would match this route:</p>
+<ul sourcefile="fundamentals/routing.md" sourcestartlinenumber="264" sourceendlinenumber="266">
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="264" sourceendlinenumber="264"><code>/files/myFile.txt</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="265" sourceendlinenumber="265"><code>/files/myFile.</code></li>
+<li sourcefile="fundamentals/routing.md" sourcestartlinenumber="266" sourceendlinenumber="266"><code>/files/myFile</code></li>
+</ul>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="268" sourceendlinenumber="268">You can use the <code>*</code> character as a prefix to a route parameter to bind to the rest of the URI - this is called a <em>catch-all</em> parameter. For example, <code>blog/{*slug}</code> would match any URI that started with <code>/blog</code> and had any value following it (which would be assigned to the <code>slug</code> route value). Catch-all parameters can also match the empty string.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="270" sourceendlinenumber="270">Route parameters may have <em>default values</em>, designated by specifying the default after the parameter name, separated by an <code>=</code>. For example, <code>{controller=Home}</code> would define <code>Home</code> as the default value for <code>controller</code>. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional (specified by appending a <code>?</code> to the end of the parameter name, as in <code>id?</code>). The difference between optional and &quot;has default&quot; is that a route parameter with a default value always produces a value; an optional parameter has a value only when one is provided.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="272" sourceendlinenumber="273">Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon <code>:</code> and constraint name after the route parameter name specifies an <em>inline constraint</em> on a route parameter. If the constraint requires arguments those are provided enclosed in parentheses <code>( )</code> after the constraint name. Multiple inline constraints can be specified by appending another colon <code>:</code> and constraint name. The constraint name is passed to the <code>IInlineConstraintResolver</code> service to create an instance of <code>IRouteConstraint</code> to use in URL processing. For example, the route template <code>blog/{article:minlength(10)}</code> specifies the
+<code>minlength</code> constraint with the argument <code>10</code>. For more description route constraints, and a listing of the constraints provided by the framework, see <a href="#route-constraint-reference" data-raw-source="[route-constraint-reference](#route-constraint-reference)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="273" sourceendlinenumber="273">route-constraint-reference</a>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="275" sourceendlinenumber="275">The following table demonstrates some route templates and their behavior.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="277" sourceendlinenumber="284">
+<thead>
+<tr>
+<th>Route Template</th>
+<th>Example Matching URL</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hello</td>
+<td>/hello</td>
+<td>Only matches the single path <code>/hello</code></td>
+</tr>
+<tr>
+<td>{Page=Home}</td>
+<td>/</td>
+<td>Matches and sets <code>Page</code> to <code>Home</code></td>
+</tr>
+<tr>
+<td>{Page=Home}</td>
+<td>/Contact</td>
+<td>Matches and sets <code>Page</code> to <code>Contact</code></td>
+</tr>
+<tr>
+<td>{controller}/{action}/{id?}</td>
+<td>/Products/List</td>
+<td>Maps to <code>Products</code> controller and <code>List</code>  action</td>
+</tr>
+<tr>
+<td>{controller}/{action}/{id?}</td>
+<td>/Products/Details/123</td>
+<td>Maps to <code>Products</code> controller and  <code>Details</code> action.  <code>id</code> set to 123</td>
+</tr>
+<tr>
+<td>{controller=Home}/{action=Index}/{id?}</td>
+<td>/</td>
+<td>Maps to <code>Home</code> controller and <code>Index</code>  method; <code>id</code> is ignored.</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="286" sourceendlinenumber="286">Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="288" sourceendlinenumber="288">Tip: Enable <a href="logging.html" data-raw-source="[Logging](logging.md)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="288" sourceendlinenumber="288">Logging</a> to see how the built in routing implementations, such as <code>Route</code>, match requests.</p>
+<h2 id="route-constraint-reference" sourcefile="fundamentals/routing.md" sourcestartlinenumber="290" sourceendlinenumber="290">Route Constraint Reference</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="292" sourceendlinenumber="292">Route constraints execute when a <code>Route</code> has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a simple yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <code>HttpMethodRouteConstraint</code> can accept or reject a request based on its HTTP verb.</p>
+<div class="WARNING" sourcefile="fundamentals/routing.md" sourcestartlinenumber="294" sourceendlinenumber="294"><h5>Warning</h5><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="295" sourceendlinenumber="295">Avoid using constraints for <strong>input validation</strong>, because doing so means that invalid input will result in a 404 (Not Found) instead of a 400 with an appropriate error message. Route constraints should be used to <strong>disambiguate</strong> between similar routes, not to validate the inputs for a particular route.</p>
+</div>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="297" sourceendlinenumber="297">The following table demonstrates some route constraints and their expected behavior.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="299" sourceendlinenumber="318">
+<thead>
+<tr>
+<th>constraint</th>
+<th>Example</th>
+<th>Example Matches</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>{id:int}</code></td>
+<td><code>123456789</code>, <code>-123456789</code></td>
+<td>Matches any integer</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>{active:bool}</code></td>
+<td><code>true</code>, <code>FALSE</code></td>
+<td>Matches <code>true</code> or <code>false</code> (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td><code>{dob:datetime}</code></td>
+<td><code>2016-12-31</code>, <code>2016-12-31 7:32pm</code></td>
+<td>Matches a valid <code>DateTime</code> value (in the invariant culture - see warning)</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td><code>{price:decimal}</code></td>
+<td><code>49.99</code>, <code>-1,000.01</code></td>
+<td>Matches a valid <code>decimal</code> value (in the invariant culture - see warning)</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td><code>{weight:double}</code></td>
+<td><code>1.234</code>, <code>-1,001.01e8</code></td>
+<td>Matches a valid <code>double</code> value (in the invariant culture - see warning)</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>{weight:float}</code></td>
+<td><code>1.234</code>, <code>-1,001.01e8</code></td>
+<td>Matches a valid <code>float</code> value (in the invariant culture - see warning)</td>
+</tr>
+<tr>
+<td><code>guid</code></td>
+<td><code>{id:guid}</code></td>
+<td><code>CD2C1638-1638-72D5-1638-DEADBEEF1638</code>, <code>{CD2C1638-1638-72D5-1638-DEADBEEF1638}</code></td>
+<td>Matches a valid <code>Guid</code> value</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>{ticks:long}</code></td>
+<td><code>123456789</code>, <code>-123456789</code></td>
+<td>Matches a valid <code>long</code> value</td>
+</tr>
+<tr>
+<td><code>minlength(value)</code></td>
+<td><code>{username:minlength(4)}</code></td>
+<td><code>Rick</code></td>
+<td>String must be at least 4 characters</td>
+</tr>
+<tr>
+<td><code>maxlength(value)</code></td>
+<td><code>{filename:maxlength(8)}</code></td>
+<td><code>Richard</code></td>
+<td>String must be no more than 8 characters</td>
+</tr>
+<tr>
+<td><code>length(length)</code></td>
+<td><code>{filename:length(12)}</code></td>
+<td><code>somefile.txt</code></td>
+<td>String must be exactly 12 characters long</td>
+</tr>
+<tr>
+<td><code>length(min,max)</code></td>
+<td><code>{filename:length(8,16)}</code></td>
+<td><code>somefile.txt</code></td>
+<td>String must be at least 8 and no more than 16 characters long</td>
+</tr>
+<tr>
+<td><code>min(value)</code></td>
+<td><code>{age:min(18)}</code></td>
+<td><code>19</code></td>
+<td>Integer value must be at least 18</td>
+</tr>
+<tr>
+<td><code>max(value)</code></td>
+<td><code>{age:max(120)}</code></td>
+<td><code>91</code></td>
+<td>Integer value must be no more than 120</td>
+</tr>
+<tr>
+<td><code>range(min,max)</code></td>
+<td><code>{age:range(18,120)}</code></td>
+<td><code>91</code></td>
+<td>Integer value must be at least 18 but no more than 120</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td><code>{name:alpha}</code></td>
+<td><code>Rick</code></td>
+<td>String must consist of one or more alphabetical characters (<code>a</code>-<code>z</code>, case-insensitive)</td>
+</tr>
+<tr>
+<td><code>regex(expression)</code></td>
+<td><code>{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}</code></td>
+<td><code>123-45-6789</code></td>
+<td>String must match the regular expression (see tips about defining a regular expression)</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>{name:required}</code></td>
+<td><code>Rick</code></td>
+<td>Used to enforce that a non-parameter value is present during URL generation</td>
+</tr>
+</tbody>
+</table>
+<div class="WARNING" sourcefile="fundamentals/routing.md" sourcestartlinenumber="320" sourceendlinenumber="320"><h5>Warning</h5><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="321" sourceendlinenumber="321">Route constraints that verify the URL can be converted to a CLR type (such as <code>int</code> or <code>DateTime</code>) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the <a href="https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60" data-raw-source="[Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="321" sourceendlinenumber="321">Float route constraint</a> will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.</p>
+</div>
+<h2 id="regular-expressions" sourcefile="fundamentals/routing.md" sourcestartlinenumber="323" sourceendlinenumber="323">Regular expressions</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="325" sourceendlinenumber="325">The ASP.NET Core framework adds <code>RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant</code> to the regular expression constructor. See <a href="https://docs.microsoft.com/dotnet/api/system.text.regularexpressions.regexoptions" data-raw-source="[RegexOptions Enumeration](https://docs.microsoft.com/dotnet/api/system.text.regularexpressions.regexoptions)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="325" sourceendlinenumber="325">RegexOptions Enumeration</a> for a description of these members.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="327" sourceendlinenumber="327">Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. For example, to use the regular expression <code>^\d{3}-\d{2}-\d{4}$</code> in Routing, it needs to have the <code>\</code> characters typed in as <code>\\</code> in the C# source file to escape the <code>\</code> string escape character (unless using <a href="https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/string" data-raw-source="[verbatim string literals](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/string)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="327" sourceendlinenumber="327">verbatim string literals</a>. The <code>{</code> , <code>}</code> , &#39;[&#39; and &#39;]&#39; characters need to be escaped by doubling them to escape the Routing parameter delimiter characters.  The table below shows a regular expression and the escaped version.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="329" sourceendlinenumber="334">
+<thead>
+<tr>
+<th>Expression</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>^\d{3}-\d{2}-\d{4}$</code></td>
+<td>Regular expression</td>
+</tr>
+<tr>
+<td><code>^\\d{{3}}-\\d{{2}}-\\d{{4}}$</code></td>
+<td>Escaped</td>
+</tr>
+<tr>
+<td><code>^[a-z]{2}$</code></td>
+<td>Regular expression</td>
+</tr>
+<tr>
+<td><code>^[[a-z]]{{2}}$</code></td>
+<td>Escaped</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="336" sourceendlinenumber="336">Regular expressions used in routing will often start with the <code>^</code> character (match starting position of the string) and end with the <code>$</code> character (match ending position of the string). The <code>^</code> and <code>$</code> characters ensure that the regular expression match the entire route parameter value. Without the <code>^</code> and <code>$</code> characters the regular expression will match any sub-string within the string, which is often not what you want. The table below shows some examples and explains why they match or fail to match.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="338" sourceendlinenumber="345">
+<thead>
+<tr>
+<th>Expression</th>
+<th>String</th>
+<th>Match</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[a-z]{2}</code></td>
+<td>hello</td>
+<td>yes</td>
+<td>substring matches</td>
+</tr>
+<tr>
+<td><code>[a-z]{2}</code></td>
+<td>123abc456</td>
+<td>yes</td>
+<td>substring matches</td>
+</tr>
+<tr>
+<td><code>[a-z]{2}</code></td>
+<td>mz</td>
+<td>yes</td>
+<td>matches expression</td>
+</tr>
+<tr>
+<td><code>[a-z]{2}</code></td>
+<td>MZ</td>
+<td>yes</td>
+<td>not case sensitive</td>
+</tr>
+<tr>
+<td><code>^[a-z]{2}$</code></td>
+<td>hello</td>
+<td>no</td>
+<td>see <code>^</code> and <code>$</code> above</td>
+</tr>
+<tr>
+<td><code>^[a-z]{2}$</code></td>
+<td>123abc456</td>
+<td>no</td>
+<td>see <code>^</code> and <code>$</code> above</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="347" sourceendlinenumber="347">Refer to <a href="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference" data-raw-source="[.NET Framework Regular Expressions](https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference)" sourcefile="fundamentals/routing.md" sourcestartlinenumber="347" sourceendlinenumber="347">.NET Framework Regular Expressions</a> for more information on regular expression syntax.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="349" sourceendlinenumber="349">To constrain a parameter to a known set of possible values, use a regular expression. For example <code>{action:regex(^(list|get|create)$)}</code> only matches the <code>action</code> route value to <code>list</code>, <code>get</code>, or <code>create</code>. If passed into the constraints dictionary, the string &quot;^(list|get|create)$&quot; would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don&#39;t match one of the known constraints are also treated as regular expressions.</p>
+<h2 id="url-generation-reference" sourcefile="fundamentals/routing.md" sourcestartlinenumber="351" sourceendlinenumber="351">URL Generation Reference</h2>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="353" sourceendlinenumber="353">The example below shows how to generate a link to a route given a dictionary of route values and a <code>RouteCollection</code>.</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="355" sourceendlinenumber="355"><code class="lang-csharp" name="Main">app.Run(async (context) =&gt;
+{
+    var dictionary = new RouteValueDictionary
+    {
+        { &quot;operation&quot;, &quot;create&quot; },
+        { &quot;id&quot;, 123}
+    };
+
+    var vpc = new VirtualPathContext(context, null, dictionary, &quot;Track Package Route&quot;);
+    var path = routes.GetVirtualPath(vpc).VirtualPath;
+
+    context.Response.ContentType = &quot;text/html&quot;;
+    await context.Response.WriteAsync(&quot;Menu&lt;hr/&gt;&quot;);
+    await context.Response.WriteAsync($&quot;&lt;a href=&#39;{path}&#39;&gt;Create Package 123&lt;/a&gt;&lt;br/&gt;&quot;);
+});
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="357" sourceendlinenumber="357">The <code>VirtualPath</code> generated at the end of the sample above is <code>/package/create/123</code>.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="359" sourceendlinenumber="359">The second parameter to the <code>VirtualPathContext</code> constructor is a collection of <em>ambient values</em>. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET MVC app if you are in the <code>About</code> action of the <code>HomeController</code>, you don&#39;t need to specify the controller route value to link to the <code>Index</code> action (the ambient value of <code>Home</code> will be used).</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="361" sourceendlinenumber="361">Ambient values that don&#39;t match a parameter are ignored, and ambient values are also ignored when an explicitly-provided value overrides it, going from left to right in the URL.</p>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="363" sourceendlinenumber="363">Values that are explicitly provided but which don&#39;t match anything are added to the query string. The following table shows the result when using the route template <code>{controller}/{action}/{id?}</code>.</p>
+<table sourcefile="fundamentals/routing.md" sourcestartlinenumber="365" sourceendlinenumber="370">
+<thead>
+<tr>
+<th>Ambient Values</th>
+<th>Explicit Values</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>controller=&quot;Home&quot;</td>
+<td>action=&quot;About&quot;</td>
+<td><code>/Home/About</code></td>
+</tr>
+<tr>
+<td>controller=&quot;Home&quot;</td>
+<td>controller=&quot;Order&quot;,action=&quot;About&quot;</td>
+<td><code>/Order/About</code></td>
+</tr>
+<tr>
+<td>controller=&quot;Home&quot;,color=&quot;Red&quot;</td>
+<td>action=&quot;About&quot;</td>
+<td><code>/Home/About</code></td>
+</tr>
+<tr>
+<td>controller=&quot;Home&quot;</td>
+<td>action=&quot;About&quot;,color=&quot;Red&quot;</td>
+<td><code>/Home/About?color=Red</code></td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="fundamentals/routing.md" sourcestartlinenumber="372" sourceendlinenumber="372">If a route has a default value that doesn&#39;t correspond to a parameter and that value is explicitly provided, it must match the default value. For example:</p>
+<pre sourcefile="fundamentals/routing.md" sourcestartlinenumber="374" sourceendlinenumber="377"><code class="lang-csharp">routes.MapRoute(&quot;blog_route&quot;, &quot;blog/{*slug}&quot;,
+  defaults: new { controller = &quot;Blog&quot;, action = &quot;ReadPost&quot; });
+</code></pre><p sourcefile="fundamentals/routing.md" sourcestartlinenumber="379" sourceendlinenumber="379">Link generation would only generate a link for this route when the matching values for controller and action are provided.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/routing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

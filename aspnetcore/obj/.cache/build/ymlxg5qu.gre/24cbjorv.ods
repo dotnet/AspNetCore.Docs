@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started with Razor Pages in ASP.NET Core with Visual Studio Code </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting started with Razor Pages in ASP.NET Core with Visual Studio Code ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/razor-pages-vsc/razor-pages-start">
+<h1 id="getting-started-with-razor-pages-in-aspnet-core-with-visual-studio-code" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="14" sourceendlinenumber="14">Getting started with Razor Pages in ASP.NET Core with Visual Studio Code</h1>
+
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a></p>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="18" sourceendlinenumber="18">This tutorial teaches the basics of building an ASP.NET Core Razor Pages web app. We recommend you complete <a class="xref" href="../../mvc/razor-pages/index.html" data-raw-source="[Introduction to Razor Pages](xref:mvc/razor-pages/index)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="18" sourceendlinenumber="18">Introduction to Razor Pages</a> before starting this tutorial. Razor Pages is the recommended way to build UI for web applications in ASP.NET Core.</p>
+<h2 id="prerequisites" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="20" sourceendlinenumber="20">Prerequisites</h2>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="22" sourceendlinenumber="22">Install the following:</p>
+<ul sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="24" sourceendlinenumber="26">
+<li sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="24" sourceendlinenumber="24">.NET Core 2.0.0 SDK</a> or later</li>
+<li sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="25" sourceendlinenumber="25"><a href="https://code.visualstudio.com" data-raw-source="[Visual Studio Code](https://code.visualstudio.com)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="25" sourceendlinenumber="25">Visual Studio Code</a></li>
+<li sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="26" sourceendlinenumber="26">VS Code <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp" data-raw-source="[C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="26" sourceendlinenumber="26">C# extension</a> </li>
+</ul>
+<h2 id="create-a-razor-web-app" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="28" sourceendlinenumber="28">Create a Razor web app</h2>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="30" sourceendlinenumber="30">From a terminal, run the following commands:</p>
+<pre sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="32" sourceendlinenumber="36"><code class="lang-console">dotnet new razor -o RazorPagesMovie
+cd RazorPagesMovie
+dotnet run
+</code></pre><p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="38" sourceendlinenumber="38">The preceding commands use the <a href="https://docs.microsoft.com/dotnet/core/tools/dotnet" data-raw-source="[.NET Core CLI](https://docs.microsoft.com/dotnet/core/tools/dotnet)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="38" sourceendlinenumber="38">.NET Core CLI</a> to create and run a Razor Pages project. Open a browser to <a href="http://localhost:5000" data-raw-source="http://localhost:5000" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="38" sourceendlinenumber="38">http://localhost:5000</a> to view the application.</p>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="40" sourceendlinenumber="40"><img src="../razor-pages/razor-pages-start/_static/home.png" alt="Home or Index page" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="40" sourceendlinenumber="40"></p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="1" sourceendlinenumber="1">The default template creates <strong>RazorPagesMovie</strong>, <strong>Home</strong>, <strong>About</strong> and <strong>Contact</strong> links and pages. Depending on the size of your browser window, you might need to click the navigation icon to show the links.</p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="3" sourceendlinenumber="3"><img src="../razor-pages/razor-pages-start/_static/home2.png" alt="Home or Index page" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="3" sourceendlinenumber="3"></p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="5" sourceendlinenumber="5">Test the links. The <strong>RazorPagesMovie</strong> and <strong>Home</strong> links go to the Index page. The <strong>About</strong> and <strong>Contact</strong> links go to the <code>About</code> and <code>Contact</code> pages, respectively.</p>
+<h2 id="project-files-and-folders" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="7" sourceendlinenumber="7">Project files and folders</h2>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="9" sourceendlinenumber="9">The following table lists the files and folders in the project. For this tutorial, the <em>Startup.cs</em> file is the most important to understand. You don&#39;t need to review each link provided below. The links are provided as a reference when you need more information on a file or folder in the project.</p>
+<table sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="11" sourceendlinenumber="18">
+<thead>
+<tr>
+<th>File or folder</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wwwroot</td>
+<td>Contains static files. See <a class="xref" href="../../fundamentals/static-files.html" data-raw-source="[Working with static files](xref:fundamentals/static-files)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="13" sourceendlinenumber="13">Working with static files</a>.</td>
+</tr>
+<tr>
+<td>Pages</td>
+<td>Folder for <a class="xref" href="../../mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="14" sourceendlinenumber="14">Razor Pages</a>.</td>
+</tr>
+<tr>
+<td><em>appsettings.json</em></td>
+<td><a class="xref" href="../../fundamentals/configuration.html" data-raw-source="[Configuration](xref:fundamentals/configuration)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="15" sourceendlinenumber="15">Configuration</a></td>
+</tr>
+<tr>
+<td><em>bower.json</em></td>
+<td>Client-side package management. See <a class="xref" href="../../client-side/bower.html" data-raw-source="[Bower](xref:client-side/bower)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="16" sourceendlinenumber="16">Bower</a>.</td>
+</tr>
+<tr>
+<td><em>Program.cs</em></td>
+<td><a class="xref" href="../../fundamentals/hosting.html" data-raw-source="[Hosts](xref:fundamentals/hosting)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="17" sourceendlinenumber="17">Hosts</a> the ASP.NET Core app.</td>
+</tr>
+<tr>
+<td><em>Startup.cs</em></td>
+<td>Configures services and the request pipeline. See <a class="xref" href="../../fundamentals/startup.html" data-raw-source="[Startup](xref:fundamentals/startup)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="18" sourceendlinenumber="18">Startup</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-pages-folder" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="20" sourceendlinenumber="20">The Pages folder</h3>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="22" sourceendlinenumber="22">The <em>_Layout.cshtml</em> file contains common HTML elements (scripts and stylesheets) and sets the layout for the application. For example, when you click on <strong>RazorPagesMovie</strong>, <strong>Home</strong>, <strong>About</strong> or <strong>Contact</strong>, you see the same elements. The common elements include the navigation menu on the top and the header on the bottom of the window. See <a class="xref" href="../../mvc/views/layout.html" data-raw-source="[Layout](xref:mvc/views/layout)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="22" sourceendlinenumber="22">Layout</a> for more information.</p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="24" sourceendlinenumber="24">The <em>_ViewStart.cshtml</em> sets the Razor Pages <code>Layout</code> property to use the <em>_Layout.cshtml</em> file. See <a class="xref" href="../../mvc/views/layout.html" data-raw-source="[Layout](xref:mvc/views/layout)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="24" sourceendlinenumber="24">Layout</a> for more information.</p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="26" sourceendlinenumber="26">The <em>_ViewImports.cshtml</em> file contains Razor directives that are imported into each Razor Page. See <a class="xref" href="../../mvc/views/layout.html#importing-shared-directives" data-raw-source="[Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="26" sourceendlinenumber="26">Importing Shared Directives</a> for more information.</p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="28" sourceendlinenumber="28">The <em>_ValidationScriptsPartial.cshtml</em> file provides a reference to <a href="https://jquery.com/" data-raw-source="[jQuery](https://jquery.com/)" sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="28" sourceendlinenumber="28">jQuery</a> validation scripts. When we add <code>Create</code> and <code>Edit</code> pages later in the tutorial, the <em>_ValidationScriptsPartial.cshtml</em> file will be used.</p>
+<p sourcefile="includes/RP/razor-pages-start.md" sourcestartlinenumber="30" sourceendlinenumber="30">The <code>About</code>, <code>Contact</code> and <code>Index</code> pages are basic pages you can use to start an app. The <code>Error</code> page is used to display error information.</p>
+<h2 id="open-the-project" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="44" sourceendlinenumber="44">Open the project</h2>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="46" sourceendlinenumber="46">Press Ctrl+C to shut down the application.</p>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="48" sourceendlinenumber="48">From Visual Studio Code (VS Code), select <strong>File &gt; Open Folder</strong>, and then select the <em>RazorPagesMovie</em> folder.</p>
+<ul sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="50" sourceendlinenumber="51">
+<li sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="50" sourceendlinenumber="50">Select <strong>Yes</strong> to the <strong>Warn</strong> message &quot;Required assets to build and debug are missing from &#39;RazorPagesMovie&#39;. Add them?&quot;</li>
+<li sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="51" sourceendlinenumber="51">Select <strong>Restore</strong> to the <strong>Info</strong> message &quot;There are unresolved dependencies&quot;.</li>
+</ul>
+<h3 id="launch-the-app" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="53" sourceendlinenumber="53">Launch the app</h3>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="55" sourceendlinenumber="55">Press Ctrl+F5 to start the app without debugging. Alternatively, from the <strong>Debug</strong> menu, select <strong>Start Without Debugging</strong>.</p>
+<p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="57" sourceendlinenumber="57">In the next tutorial, we add a model to the project. </p>
+<div class="step-by-step" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="59" sourceendlinenumber="59"><p sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="60" sourceendlinenumber="60"><a class="xref" href="model.html" data-raw-source="[Next: Adding a model](xref:tutorials/razor-pages-vsc/model)" sourcefile="tutorials/razor-pages-vsc/razor-pages-start.md" sourcestartlinenumber="60" sourceendlinenumber="60">Next: Adding a model</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/razor-pages-vsc/razor-pages-start.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

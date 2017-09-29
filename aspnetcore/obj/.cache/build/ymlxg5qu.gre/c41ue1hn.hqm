@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dependency injection into views </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Dependency injection into views ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/views/dependency-injection">
+<h1 id="dependency-injection-into-views" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="15" sourceendlinenumber="15">Dependency injection into views</h1>
+
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="17" sourceendlinenumber="17">Steve Smith</a></p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="19" sourceendlinenumber="19">ASP.NET Core supports <a class="xref" href="../../fundamentals/dependency-injection.html" data-raw-source="[dependency injection](xref:fundamentals/dependency-injection)" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="19" sourceendlinenumber="19">dependency injection</a> into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain <a href="http://deviq.com/separation-of-concerns/" data-raw-source="[separation of concerns](http://deviq.com/separation-of-concerns/)" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="19" sourceendlinenumber="19">separation of concerns</a> between your controllers and views. Most of the data your views display should be passed in from the controller.</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="21" sourceendlinenumber="21"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample)" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="21" sourceendlinenumber="21">View or download sample code</a></p>
+<h2 id="a-simple-example" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="23" sourceendlinenumber="23">A Simple Example</h2>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="25" sourceendlinenumber="25">You can inject a service into a view using the <code>@inject</code> directive. You can think of <code>@inject</code> as adding a property to your view, and populating the property using DI.</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="27" sourceendlinenumber="28">The syntax for <code>@inject</code>:
+   <code>@inject &lt;type&gt; &lt;name&gt;</code></p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="30" sourceendlinenumber="30">An example of <code>@inject</code> in action:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="32" sourceendlinenumber="32"><code class="lang-csharp" name="Main" highlight-lines="4,5,15,16,17">@using System.Threading.Tasks
+@using ViewInjectSample.Model
+@using ViewInjectSample.Model.Services
+@model IEnumerable&lt;ToDoItem&gt;
+@inject StatisticsService StatsService
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;To Do Items&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;h1&gt;To Do Items&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Total Items: @StatsService.GetCount()&lt;/li&gt;
+            &lt;li&gt;Completed: @StatsService.GetCompletedCount()&lt;/li&gt;
+            &lt;li&gt;Avg. Priority: @StatsService.GetAveragePriority()&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;Priority&lt;/th&gt;
+                &lt;th&gt;Is Done?&lt;/th&gt;
+            &lt;/tr&gt;
+            @foreach (var item in Model)
+            {
+                &lt;tr&gt;
+                    &lt;td&gt;@item.Name&lt;/td&gt;
+                    &lt;td&gt;@item.Priority&lt;/td&gt;
+                    &lt;td&gt;@item.IsDone&lt;/td&gt;
+                &lt;/tr&gt;
+            }
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="34" sourceendlinenumber="34">This view displays a list of <code>ToDoItem</code> instances, along with a summary showing overall statistics. The summary is populated from the injected <code>StatisticsService</code>. This service is registered for dependency injection in <code>ConfigureServices</code> in <em>Startup.cs</em>:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code class="lang-csharp" name="Main" highlight-lines="6,7">// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddTransient&lt;IToDoItemRepository, ToDoItemRepository&gt;();
+    services.AddTransient&lt;StatisticsService&gt;();
+    services.AddTransient&lt;ProfileOptionsService&gt;();
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="38" sourceendlinenumber="38">The <code>StatisticsService</code> performs some calculations on the set of <code>ToDoItem</code> instances, which it accesses via a repository:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="40" sourceendlinenumber="40"><code class="lang-csharp" name="Main" highlight-lines="15,20,26">using System.Linq;
+using ViewInjectSample.Interfaces;
+
+namespace ViewInjectSample.Model.Services
+{
+    public class StatisticsService
+    {
+        private readonly IToDoItemRepository _toDoItemRepository;
+
+        public StatisticsService(IToDoItemRepository toDoItemRepository)
+        {
+            _toDoItemRepository = toDoItemRepository;
+        }
+
+        public int GetCount()
+        {
+            return _toDoItemRepository.List().Count();
+        }
+
+        public int GetCompletedCount()
+        {
+            return _toDoItemRepository.List().Count(x =&gt; x.IsDone);
+        }
+
+        public double GetAveragePriority()
+        {
+            if (_toDoItemRepository.List().Count() == 0)
+            {
+                return 0.0;
+            }
+
+            return _toDoItemRepository.List().Average(x =&gt; x.Priority);
+        }
+    }
+}
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="42" sourceendlinenumber="42">The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="44" sourceendlinenumber="44">The sample displays data from the model bound to the view and the service injected into the view:</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="46" sourceendlinenumber="46"><img src="dependency-injection/_static/screenshot.png" alt="To Do view listing total items, completed items, average priority, and a list of tasks with their priority levels and boolean values indicating completion." sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="46" sourceendlinenumber="46"></p>
+<h2 id="populating-lookup-data" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="48" sourceendlinenumber="48">Populating Lookup Data</h2>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="50" sourceendlinenumber="50">View injection can be useful to populate options in UI elements, such as dropdown lists. Consider a user profile form that includes options for specifying gender, state, and other preferences. Rendering such a form using a standard MVC approach would require the controller to request data access services for each of these sets of options, and then populate a model or <code>ViewBag</code> with each set of options to be bound.</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="52" sourceendlinenumber="52">An alternative approach injects services directly into the view to obtain the options. This minimizes the amount of code required by the controller, moving this view element construction logic into the view itself. The controller action to display a profile editing form only needs to pass the form the profile instance:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="54" sourceendlinenumber="54"><code class="lang-csharp" name="Main" highlight-lines="9,19">using Microsoft.AspNetCore.Mvc;
+using ViewInjectSample.Model;
+
+namespace ViewInjectSample.Controllers
+{
+    public class ProfileController : Controller
+    {
+        [Route(&quot;Profile&quot;)]
+        public IActionResult Index()
+        {
+            // TODO: look up profile based on logged-in user
+            var profile = new Profile()
+            {
+                Name = &quot;Steve&quot;,
+                FavColor = &quot;Blue&quot;,
+                Gender = &quot;Male&quot;,
+                State = new State(&quot;Ohio&quot;,&quot;OH&quot;)
+            };
+            return View(profile);
+        }
+    }
+}
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="56" sourceendlinenumber="56">The HTML form used to update these preferences includes dropdown lists for three of the properties:</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="58" sourceendlinenumber="58"><img src="dependency-injection/_static/updateprofile.png" alt="Update Profile view with a form allowing the entry of name, gender, state, and favorite Color." sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="58" sourceendlinenumber="58"></p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="60" sourceendlinenumber="60">These lists are populated by a service that has been injected into the view:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="62" sourceendlinenumber="62"><code class="lang-csharp" name="Main" highlight-lines="4,16,17,21,22,26,27">@using System.Threading.Tasks
+@using ViewInjectSample.Model.Services
+@model ViewInjectSample.Model.Profile
+@inject ProfileOptionsService Options
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Update Profile&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+    &lt;h1&gt;Update Profile&lt;/h1&gt;
+    Name: @Html.TextBoxFor(m =&gt; m.Name)
+    &lt;br/&gt;
+    Gender: @Html.DropDownList(&quot;Gender&quot;,
+           Options.ListGenders().Select(g =&gt; 
+                new SelectListItem() { Text = g, Value = g }))
+    &lt;br/&gt;
+
+    State: @Html.DropDownListFor(m =&gt; m.State.Code,
+           Options.ListStates().Select(s =&gt; 
+                new SelectListItem() { Text = s.Name, Value = s.Code}))
+    &lt;br /&gt;
+
+    Fav. Color: @Html.DropDownList(&quot;FavColor&quot;,
+           Options.ListColors().Select(c =&gt; 
+                new SelectListItem() { Text = c, Value = c }))
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="64" sourceendlinenumber="64">The <code>ProfileOptionsService</code> is a UI-level service designed to provide just the data needed for this form:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code class="lang-csharp" name="Main" highlight-lines="7,13,24">using System.Collections.Generic;
+
+namespace ViewInjectSample.Model.Services
+{
+    public class ProfileOptionsService
+    {
+        public List&lt;string&gt; ListGenders()
+        {
+            // keeping this simple
+            return new List&lt;string&gt;() {&quot;Female&quot;, &quot;Male&quot;};
+        }
+
+        public List&lt;State&gt; ListStates()
+        {
+            // a few states from USA
+            return new List&lt;State&gt;()
+            {
+                new State(&quot;Alabama&quot;, &quot;AL&quot;),
+                new State(&quot;Alaska&quot;, &quot;AK&quot;),
+                new State(&quot;Ohio&quot;, &quot;OH&quot;)
+            };
+        }
+
+        public List&lt;string&gt; ListColors()
+        {
+            return new List&lt;string&gt;() { &quot;Blue&quot;,&quot;Green&quot;,&quot;Red&quot;,&quot;Yellow&quot; };
+        }
+    }
+}
+</code></pre><div class="TIP" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="68" sourceendlinenumber="68"><h5>Tip</h5><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="69" sourceendlinenumber="69">Don&#39;t forget to register types you will request through dependency injection in the  <code>ConfigureServices</code> method in <em>Startup.cs</em>.</p>
+</div>
+<h2 id="overriding-services" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="71" sourceendlinenumber="71">Overriding Services</h2>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="73" sourceendlinenumber="73">In addition to injecting new services, this technique can also be used to override previously injected services on a page. The figure below shows all of the fields available on the page used in the first example:</p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="75" sourceendlinenumber="75"><img src="dependency-injection/_static/razor-fields.png" alt="Intellisense contextual menu on a typed @ symbol listing Html, Component, StatsService, and Url fields" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="75" sourceendlinenumber="75"></p>
+<p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="77" sourceendlinenumber="77">As you can see, the default fields include <code>Html</code>, <code>Component</code>, and <code>Url</code> (as well as the <code>StatsService</code> that we injected). If for instance you wanted to replace the default HTML Helpers with your own, you could easily do so using <code>@inject</code>:</p>
+<pre sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="79" sourceendlinenumber="79"><code class="lang-html" name="Main" highlight-lines="3,11">@using System.Threading.Tasks
+@using ViewInjectSample.Helpers
+@inject MyHtmlHelper Html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Helper&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        Test: @Html.Value
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="81" sourceendlinenumber="81">If you want to extend existing services, you can simply use this technique while inheriting from or wrapping the existing implementation with your own.</p>
+<h2 id="see-also" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="83" sourceendlinenumber="83">See Also</h2>
+<ul sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="85" sourceendlinenumber="85">
+<li sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="85" sourceendlinenumber="85">Simon Timms Blog: <a href="http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/" data-raw-source="[Getting Lookup Data Into Your View](http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)" sourcefile="mvc/views/dependency-injection.md" sourcestartlinenumber="85" sourceendlinenumber="85">Getting Lookup Data Into Your View</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/views/dependency-injection.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

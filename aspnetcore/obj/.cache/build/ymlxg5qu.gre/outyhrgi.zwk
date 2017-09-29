@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Create a web app with ASP.NET Core MVC on Windows </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Create a web app with ASP.NET Core MVC on Windows ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app/index">
+<h1 id="create-a-web-app-with-aspnet-core-mvc-using-visual-studio-on-windows" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="15" sourceendlinenumber="15">Create a web app with ASP.NET Core MVC using Visual Studio on Windows</h1>
+
+<p sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="17" sourceendlinenumber="17">This series of tutorials teaches you the basics of building an ASP.NET Core MVC web app using Visual Studio. This tutorial teaches ASP.NET Core MVC with controllers and views. Razor Pages is a new alternative in ASP.NET Core 2.0, a page-based programming model that makes building web UI easier and more productive. We recommend you try the Razor Pages tutorial before the MVC version. For a Razor Pages version of this tutorial, see <a class="xref" href="../../mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="includes/razor.md" sourcestartlinenumber="1" sourceendlinenumber="1">Razor Pages</a>.</p>
+<ol sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="19" sourceendlinenumber="28">
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="19" sourceendlinenumber="19"><a href="start-mvc.html" data-raw-source="[Getting started](start-mvc.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="19" sourceendlinenumber="19">Getting started</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="20" sourceendlinenumber="20"><a href="adding-controller.html" data-raw-source="[Adding a controller](adding-controller.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="20" sourceendlinenumber="20">Adding a controller</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="21" sourceendlinenumber="21"><a href="adding-view.html" data-raw-source="[Adding a view](adding-view.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="21" sourceendlinenumber="21">Adding a view</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="adding-model.html" data-raw-source="[Adding a model](adding-model.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="22" sourceendlinenumber="22">Adding a model</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="23" sourceendlinenumber="23"><a href="working-with-sql.html" data-raw-source="[Working with SQL Server LocalDB](working-with-sql.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="23" sourceendlinenumber="23">Working with SQL Server LocalDB</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="24" sourceendlinenumber="24"><a href="controller-methods-views.html" data-raw-source="[Controller methods and views](controller-methods-views.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="24" sourceendlinenumber="24">Controller methods and views</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="25" sourceendlinenumber="25"><a href="search.html" data-raw-source="[Adding Search](search.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="25" sourceendlinenumber="25">Adding Search</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="26" sourceendlinenumber="26"><a href="new-field.html" data-raw-source="[Adding a New Field](new-field.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="26" sourceendlinenumber="26">Adding a New Field</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="27" sourceendlinenumber="27"><a href="validation.html" data-raw-source="[Adding Validation](validation.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="27" sourceendlinenumber="27">Adding Validation</a></li>
+<li sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="28" sourceendlinenumber="28"><a href="details.html" data-raw-source="[Examining the Details and Delete methods](details.md)" sourcefile="tutorials/first-mvc-app/index.md" sourcestartlinenumber="28" sourceendlinenumber="28">Examining the Details and Delete methods</a></li>
+</ol>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

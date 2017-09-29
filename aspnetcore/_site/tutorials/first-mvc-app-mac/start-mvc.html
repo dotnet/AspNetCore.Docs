@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started with ASP.NET Core MVC and Visual Studio for Mac </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting started with ASP.NET Core MVC and Visual Studio for Mac ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-mac/start-mvc">
+<h1 id="getting-started-with-aspnet-core-mvc-and-visual-studio-for-mac">Getting started with ASP.NET Core MVC and Visual Studio for Mac</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>This tutorial teaches you the basics of building an ASP.NET Core MVC web app using <a href="https://www.visualstudio.com/vs/visual-studio-mac/">Visual Studio for Mac</a>. This tutorial teaches ASP.NET Core MVC with controllers and views. Razor Pages is a new alternative in ASP.NET Core 2.0, a page-based programming model that makes building web UI easier and more productive. We recommend you try the Razor Pages tutorial before the MVC version. For a Razor Pages version of this tutorial, see <a class="xref" href="../../mvc/razor-pages/index.html">Razor Pages</a>.</p>
+<p>There are 3 versions of this tutorial:</p>
+<ul>
+<li>macOS: <a class="xref" href="start-mvc.html">Build an ASP.NET Core MVC app with Visual Studio for Mac</a></li>
+<li>Windows: <a class="xref" href="../first-mvc-app/start-mvc.html">Build an ASP.NET Core MVC app with Visual Studio</a></li>
+<li>Linux, macOS, and Windows: <a class="xref" href="../first-mvc-app-xplat/start-mvc.html">Build an ASP.NET Core MVC app with Visual Studio Code</a></li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This tutorial requires the <a href="https://www.microsoft.com/net/core">.NET Core 2.0.0 SDK</a> or later. See <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf">the pdf</a> for the ASP.NET Core 1.1 version.</p>
+<p>Install the following:</p>
+<ul>
+<li><a href="https://www.microsoft.com/net/core">.NET Core 2.0.0 SDK</a> or later</li>
+<li><a href="https://www.visualstudio.com/vs/visual-studio-mac/">Visual Studio for Mac</a></li>
+</ul>
+<h2 id="create-a-web-app">Create a web app</h2>
+<p>From Visual Studio, select <strong>File &gt; New Solution</strong>.</p>
+<p><img src="../first-web-api-mac/_static/sln.png" alt="macOS New solution"></p>
+<p>Select <strong>.NET Core App &gt;  ASP.NET Core &gt; Web App &gt; Next</strong>.</p>
+<p><img src="start-mvc/1.png" alt="macOS New project dialog"></p>
+<p>Name the project <strong>MvcMovie</strong>, and then select <strong>Create</strong>.</p>
+<p><img src="start-mvc/2.png" alt="macOS New project dialog"></p>
+<h3 id="launch-the-app">Launch the app</h3>
+<p>In Visual Studio, select <strong>Run &gt; Start Without Debugging</strong> to launch the app. Visual Studio starts <a href="https://docs.microsoft.com/iis/extensions/introduction-to-iis-express/iis-express-overview">IIS Express</a>, launches a browser, and navigates to <code>http://localhost:port</code>, where <em>port</em> is a randomly chosen port number.</p>
+<p><img src="start-mvc/b1.png" alt="Browser with new project"></p>
+<ul>
+<li>The address bar shows <code>localhost:port#</code> and not something like <code>example.com</code>. That&#39;s because <code>localhost</code> is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you&#39;ll see a different port number.</li>
+<li>You can launch the app in debug or non-debug mode from the <strong>Run</strong> menu.</li>
+</ul>
+<p>The default template gives you <strong>Home, About</strong> and <strong>Contact</strong> links. The browser image above doesn&#39;t show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.</p>
+<p><img src="start-mvc/b2.png" alt="Browser with New project"></p>
+<p>In the next part of this tutorial, you learn about MVC and start writing some code.</p>
+<div class="step-by-step"><p><a href="adding-controller.html">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

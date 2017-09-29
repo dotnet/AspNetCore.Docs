@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Custom Policy-Based Authorization </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Custom Policy-Based Authorization ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authorization/policies">
+<h1 id="custom-policy-based-authorization">Custom Policy-Based Authorization</h1>
+
+<p><a name="security-authorization-policies-based"></a></p>
+<p>Underneath the covers the <a href="roles.html#security-authorization-role-based">role authorization</a> and <a href="claims.html#security-authorization-claims-based">claims authorization</a> make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.</p>
+<p>An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, in <code>ConfigureServices</code> in the <em>Startup.cs</em> file.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =&gt;
+    {
+        options.AddPolicy(&quot;Over21&quot;,
+                          policy =&gt; policy.Requirements.Add(new MinimumAgeRequirement(21)));
+    });
+}
+</code></pre><p>Here you can see an &quot;Over21&quot; policy is created with a single requirement, that of a minimum age, which is passed as a parameter to the requirement.</p>
+<p>Policies are applied using the <code>Authorize</code> attribute by specifying the policy name, for example;</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">[Authorize(Policy=&quot;Over21&quot;)]
+public class AlcoholPurchaseRequirementsController : Controller
+{
+    public ActionResult Login()
+    {
+    }
+
+    public ActionResult Logout()
+    {
+    }
+}
+</code></pre><h2 id="requirements">Requirements</h2>
+<p>An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our Minimum Age policy the requirement we have is a single parameter, the minimum age. A requirement must implement <code>IAuthorizationRequirement</code>. This is an empty, marker interface. A parameterized minimum age requirement might be implemented as follows;</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">public class MinimumAgeRequirement : IAuthorizationRequirement
+{
+    public int MinimumAge { get; private set; }
+
+    public MinimumAgeRequirement(int minimumAge)
+    {
+        MinimumAge = minimumAge;
+    }
+}
+</code></pre><p>A requirement doesn&#39;t need to have data or properties.</p>
+<p><a name="security-authorization-policies-based-authorization-handler"></a></p>
+<h2 id="authorization-handlers">Authorization Handlers</h2>
+<p>An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided <code>AuthorizationHandlerContext</code> to decide if authorization is allowed. A requirement can have <a href="policies.html#security-authorization-policies-based-multiple-handlers">multiple handlers</a>. Handlers must inherit <code>AuthorizationHandler&lt;T&gt;</code> where T is the requirement it handles.</p>
+<p><a name="security-authorization-handler-example"></a></p>
+<p>The minimum age handler might look like this:</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">public class MinimumAgeHandler : AuthorizationHandler&lt;MinimumAgeRequirement&gt;
+{
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
+    {
+        if (!context.User.HasClaim(c =&gt; c.Type == ClaimTypes.DateOfBirth &amp;&amp;
+                                   c.Issuer == &quot;http://contoso.com&quot;))
+        {
+            // .NET 4.x -&gt; return Task.FromResult(0);
+            return Task.CompletedTask;
+        }
+
+        var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(
+            c =&gt; c.Type == ClaimTypes.DateOfBirth &amp;&amp; c.Issuer == &quot;http://contoso.com&quot;).Value);
+
+        int calculatedAge = DateTime.Today.Year - dateOfBirth.Year;
+        if (dateOfBirth &gt; DateTime.Today.AddYears(-calculatedAge))
+        {
+            calculatedAge--;
+        }
+
+        if (calculatedAge &gt;= requirement.MinimumAge)
+        {
+            context.Succeed(requirement);
+        }
+        return Task.CompletedTask;
+    }
+}
+</code></pre><p>In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can&#39;t authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call <code>context.Succeed()</code> passing in the requirement that has been successful as a parameter.</p>
+<p><a name="security-authorization-policies-based-handler-registration"></a></p>
+<p>Handlers must be registered in the services collection during configuration, for example;</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =&gt;
+    {
+        options.AddPolicy(&quot;Over21&quot;,
+                          policy =&gt; policy.Requirements.Add(new MinimumAgeRequirement(21)));
+    });
+
+    services.AddSingleton&lt;IAuthorizationHandler, MinimumAgeHandler&gt;();
+}
+</code></pre><p>Each handler is added to the services collection by using <code>services.AddSingleton&lt;IAuthorizationHandler, YourHandlerClass&gt;();</code> passing in your handler class.</p>
+<h2 id="what-should-a-handler-return">What should a handler return?</h2>
+<p>You can see in our <a href="policies.html#security-authorization-handler-example">handler example</a> that the <code>Handle()</code> method has no return value, so how do we indicate success or failure?</p>
+<ul>
+<li><p>A handler indicates success by calling <code>context.Succeed(IAuthorizationRequirement requirement)</code>, passing the requirement that has been successfully validated.</p>
+</li>
+<li><p>A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.</p>
+</li>
+<li><p>To guarantee failure even if other handlers for a requirement succeed, call <code>context.Fail</code>.</p>
+</li>
+</ul>
+<p>Regardless of what you call inside your handler all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if <code>context.Fail()</code> has been called in another handler.</p>
+<p><a name="security-authorization-policies-based-multiple-handlers"></a></p>
+<h2 id="why-would-i-want-multiple-handlers-for-a-requirement">Why would I want multiple handlers for a requirement?</h2>
+<p>In cases where you want evaluation to be on an <strong>OR</strong> basis you implement multiple handlers for a single requirement. For example, Microsoft has doors which only open with key cards. If you leave your key card at home the receptionist prints a temporary sticker and opens the door for you. In this scenario you&#39;d have a single requirement, <em>EnterBuilding</em>, but multiple handlers, each one examining a single requirement.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">public class EnterBuildingRequirement : IAuthorizationRequirement
+{
+}
+
+public class BadgeEntryHandler : AuthorizationHandler&lt;EnterBuildingRequirement&gt;
+{
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
+    {
+        if (context.User.HasClaim(c =&gt; c.Type == ClaimTypes.BadgeId &amp;&amp;
+                                       c.Issuer == &quot;http://microsoftsecurity&quot;))
+        {
+            context.Succeed(requirement);
+        }
+        return Task.CompletedTask;
+    }
+}
+
+public class HasTemporaryStickerHandler : AuthorizationHandler&lt;EnterBuildingRequirement&gt;
+{
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
+    {
+        if (context.User.HasClaim(c =&gt; c.Type == ClaimTypes.TemporaryBadgeId &amp;&amp;
+                                       c.Issuer == &quot;https://microsoftsecurity&quot;))
+        {
+            // We&#39;d also check the expiration date on the sticker.
+            context.Succeed(requirement);
+        }
+        return Task.CompletedTask;
+    }
+}
+</code></pre><p>Now, assuming both handlers are <a class="xref" href="policies.html#security-authorization-policies-based-handler-registration">registered</a> when a policy evaluates the <code>EnterBuildingRequirement</code> if either handler succeeds the policy evaluation will succeed.</p>
+<h2 id="using-a-func-to-fulfill-a-policy">Using a func to fulfill a policy</h2>
+<p>There may be occasions where fulfilling a policy is simple to express in code. It is possible to simply supply a <code>Func&lt;AuthorizationHandlerContext, bool&gt;</code> when configuring your policy with the <code>RequireAssertion</code> policy builder.</p>
+<p>For example the previous <code>BadgeEntryHandler</code> could be rewritten as follows;</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">services.AddAuthorization(options =&gt;
+    {
+        options.AddPolicy(&quot;BadgeEntry&quot;,
+                          policy =&gt; policy.RequireAssertion(context =&gt;
+                                  context.User.HasClaim(c =&gt;
+                                     (c.Type == ClaimTypes.BadgeId ||
+                                      c.Type == ClaimTypes.TemporaryBadgeId)
+                                      &amp;&amp; c.Issuer == &quot;https://microsoftsecurity&quot;));
+                          }));
+    }
+ }
+</code></pre><h2 id="accessing-mvc-request-context-in-handlers">Accessing MVC Request Context In Handlers</h2>
+<p>The <code>Handle</code> method you must implement in an authorization handler has two parameters, an <code>AuthorizationContext</code> and the <code>Requirement</code> you are handling. Frameworks such as MVC or Jabbr are free to add any object to the <code>Resource</code> property on the <code>AuthorizationContext</code> to pass through extra information.</p>
+<p>For example MVC passes an instance of <code>Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext</code> in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.</p>
+<p>The use of the <code>Resource</code> property is framework specific. Using information in the <code>Resource</code> property will limit your authorization policies to particular frameworks. You should cast the <code>Resource</code> property using the <code>as</code> keyword, and then check the cast has succeed to ensure your code doesn&#39;t crash with <code>InvalidCastExceptions</code> when run on other frameworks;</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">if (context.Resource is Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext mvcContext)
+{
+    // Examine MVC specific things like routing data.
+}
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authorization/policies.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

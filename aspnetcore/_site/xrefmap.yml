@@ -1,0 +1,732 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: aspnetcore-1.1
+  name: What's new in ASP.NET Core 1.1
+  href: aspnetcore-1.1.html
+- uid: aspnetcore-2.0
+  name: What's new in ASP.NET Core 2.0
+  href: aspnetcore-2.0.html
+- uid: client-side/angular
+  name: Using AngularJS for Single Page Applications (SPAs)
+  href: client-side/angular.html
+- uid: client-side/bootstrap
+  name: Building beautiful, responsive sites with Bootstrap
+  href: client-side/bootstrap.html
+- uid: client-side/bower
+  name: Using Bower in ASP.NET Core
+  href: client-side/bower.html
+- uid: client-side/bundling-and-minification
+  name: Bundling and minification in ASP.NET Core
+  href: client-side/bundling-and-minification.html
+- uid: client-side/index
+  name: Client-Side Development in ASP.NET Core
+  href: client-side/index.html
+- uid: client-side/knockout
+  name: Knockout.js MVVM Framework in ASP.NET Core
+  href: client-side/knockout.html
+- uid: client-side/less-sass-fa
+  name: Less, Sass, and Font Awesome in ASP.NET Core
+  href: client-side/less-sass-fa.html
+- uid: client-side/spa-services
+  name: Using JavaScriptServices for Creating Single Page Applications
+  href: client-side/spa-services.html
+- uid: client-side/using-browserlink
+  name: Browser Link in ASP.NET Core
+  href: client-side/using-browserlink.html
+- uid: client-side/using-grunt
+  name: Using Grunt in ASP.NET Core
+  href: client-side/using-grunt.html
+- uid: client-side/using-gulp
+  name: Using Gulp in ASP.NET Core
+  href: client-side/using-gulp.html
+- uid: client-side/yeoman
+  name: Building projects with Yeoman in ASP.NET Core
+  href: client-side/yeoman.html
+- uid: data/azure-storage/index
+  name: Azure Storage in ASP.NET Core
+  href: data/azure-storage/index.html
+- uid: data/ef-mvc/advanced
+  name: ASP.NET Core MVC with EF Core - Advanced - 10 of 10
+  href: data/ef-mvc/advanced.html
+- uid: data/ef-mvc/complex-data-model
+  name: ASP.NET Core MVC with EF Core - Data Model - 5 of 10
+  href: data/ef-mvc/complex-data-model.html
+- uid: data/ef-mvc/concurrency
+  name: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10
+  href: data/ef-mvc/concurrency.html
+- uid: data/ef-mvc/crud
+  name: ASP.NET Core MVC with EF Core - CRUD - 2 of 10
+  href: data/ef-mvc/crud.html
+- uid: data/ef-mvc/index
+  name: ASP.NET Core MVC with EF Core - tutorial series
+  href: data/ef-mvc/index.html
+- uid: data/ef-mvc/inheritance
+  name: ASP.NET Core MVC with EF Core - Inheritance - 9 of 10
+  href: data/ef-mvc/inheritance.html
+- uid: data/ef-mvc/intro
+  name: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
+  href: data/ef-mvc/intro.html
+- uid: data/ef-mvc/migrations
+  name: ASP.NET Core MVC with EF Core - Migrations - 4 of 10
+  href: data/ef-mvc/migrations.html
+- uid: data/ef-mvc/read-related-data
+  name: ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10
+  href: data/ef-mvc/read-related-data.html
+- uid: data/ef-mvc/sort-filter-page
+  name: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
+  href: data/ef-mvc/sort-filter-page.html
+- uid: data/ef-mvc/update-related-data
+  name: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
+  href: data/ef-mvc/update-related-data.html
+- uid: data/ef-rp/index
+  name: ASP.NET Core Razor Pages with EF Core - tutorial series
+  href: data/ef-rp/index.html
+- uid: data/entity-framework-6
+  name: Getting Started with ASP.NET Core and Entity Framework 6
+  href: data/entity-framework-6.html
+- uid: fundamentals/app-state
+  name: Session and application state in ASP.NET Core
+  href: fundamentals/app-state.html
+- uid: fundamentals/configuration
+  name: Configuration in ASP.NET Core
+  href: fundamentals/configuration.html
+- uid: fundamentals/dependency-injection
+  name: Dependency Injection in ASP.NET Core
+  href: fundamentals/dependency-injection.html
+- uid: fundamentals/environments
+  name: Working with Multiple Environments
+  href: fundamentals/environments.html
+- uid: fundamentals/error-handling
+  name: Error Handling in ASP.NET Core
+  href: fundamentals/error-handling.html
+- uid: fundamentals/file-providers
+  name: File Providers in ASP.NET Core
+  href: fundamentals/file-providers.html
+- uid: fundamentals/hosting
+  name: Hosting in ASP.NET Core
+  href: fundamentals/hosting.html
+- uid: fundamentals/index
+  name: ASP.NET Core fundamentals
+  href: fundamentals/index.html
+- uid: fundamentals/localization
+  name: Globalization and localization in ASP.NET Core
+  href: fundamentals/localization.html
+- uid: fundamentals/logging
+  name: Logging in ASP.NET Core
+  href: fundamentals/logging.html
+- uid: fundamentals/metapackage
+  name: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x and later
+  href: fundamentals/metapackage.html
+- uid: fundamentals/middleware
+  name: ASP.NET Core Middleware
+  href: fundamentals/middleware.html
+- uid: fundamentals/owin
+  name: Open Web Interface for .NET (OWIN)
+  href: fundamentals/owin.html
+- uid: fundamentals/request-features
+  name: Request Features in ASP.NET Core
+  href: fundamentals/request-features.html
+- uid: fundamentals/routing
+  name: Routing in ASP.NET Core
+  href: fundamentals/routing.html
+- uid: fundamentals/servers/aspnet-core-module
+  name: ASP.NET Core Module
+  href: fundamentals/servers/aspnet-core-module.html
+- uid: fundamentals/servers/httpsys
+  name: HTTP.sys web server implementation in ASP.NET Core
+  href: fundamentals/servers/httpsys.html
+- uid: fundamentals/servers/index
+  name: Web server implementations in ASP.NET Core
+  href: fundamentals/servers/index.html
+- uid: fundamentals/servers/kestrel
+  name: Kestrel web server implementation in ASP.NET Core
+  href: fundamentals/servers/kestrel.html
+- uid: fundamentals/servers/weblistener
+  name: WebListener web server implementation in ASP.NET Core
+  href: fundamentals/servers/weblistener.html
+- uid: fundamentals/startup
+  name: Application Startup in ASP.NET Core
+  href: fundamentals/startup.html
+- uid: fundamentals/static-files
+  name: Working with static files in ASP.NET Core
+  href: fundamentals/static-files.html
+- uid: fundamentals/url-rewriting
+  name: URL Rewriting Middleware in ASP.NET Core
+  href: fundamentals/url-rewriting.html
+- uid: fundamentals/websockets
+  name: WebSockets support in ASP.NET Core
+  href: fundamentals/websockets.html
+- uid: getting-started
+  name: Getting Started with ASP.NET Core 2.0
+  href: getting-started.html
+- uid: getting-started-1.1
+  name: Getting Started with ASP.NET Core 1.1
+  href: getting-started-1.1.html
+- uid: hosting/aspnet-core-module
+  name: ASP.NET Core Module configuration reference
+  href: hosting/aspnet-core-module.html
+- uid: hosting/directory-structure
+  name: ASP.NET Core directory structure
+  href: hosting/directory-structure.html
+- uid: hosting/iis-modules
+  name: Using IIS modules with ASP.NET Core
+  href: hosting/iis-modules.html
+- uid: hosting/windows-service
+  name: Host in a Windows Service
+  href: hosting/windows-service.html
+- uid: index
+  name: Introduction to ASP.NET Core
+  href: index.html
+- uid: migration/1x-to-2x/identity-2x
+  name: Migrating Auth and Identity to ASP.NET Core 2.0
+  href: migration/1x-to-2x/identity-2x.html
+- uid: migration/1x-to-2x/index
+  name: Migrating from ASP.NET Core 1.x to 2.0
+  href: migration/1x-to-2x/index.html
+- uid: migration/configuration
+  name: Migrating Configuration
+  href: migration/configuration.html
+- uid: migration/http-modules
+  name: Migrating HTTP handlers and modules to ASP.NET Core middleware
+  href: migration/http-modules.html
+- uid: migration/identity
+  name: Migrating Authentication and Identity
+  href: migration/identity.html
+- uid: migration/index
+  name: Migration to ASP.NET Core
+  href: migration/index.html
+- uid: migration/mvc
+  name: Migrating From ASP.NET MVC to ASP.NET Core MVC
+  href: migration/mvc.html
+- uid: migration/mvc2
+  name: Migrating From ASP.NET to ASP.NET Core 2.0
+  href: migration/proper-to-2x/mvc2.html
+- uid: migration/proper-to-2x/index
+  name: Migrating from ASP.NET to ASP.NET Core 2.0
+  href: migration/proper-to-2x/index.html
+- uid: migration/webapi
+  name: Migrating from ASP.NET Web API
+  href: migration/webapi.html
+- uid: mobile/index
+  name: Mobile
+  href: mobile/index.html
+- uid: mobile/native-mobile-backend
+  name: Creating Backend Services for Native Mobile Applications
+  href: mobile/native-mobile-backend.html
+- uid: mvc/advanced/custom-model-binding
+  name: Custom Model Binding
+  href: mvc/advanced/custom-model-binding.html
+- uid: mvc/controllers/actions
+  name: Handling requests with controllers in ASP.NET Core MVC
+  href: mvc/controllers/actions.html
+- uid: mvc/controllers/application-model
+  name: Working with the Application Model
+  href: mvc/controllers/application-model.html
+- uid: mvc/controllers/areas
+  name: Areas
+  href: mvc/controllers/areas.html
+- uid: mvc/controllers/dependency-injection
+  name: Dependency injection into controllers
+  href: mvc/controllers/dependency-injection.html
+- uid: mvc/controllers/filters
+  name: Filters
+  href: mvc/controllers/filters.html
+- uid: mvc/controllers/routing
+  name: Routing to Controller Actions
+  href: mvc/controllers/routing.html
+- uid: mvc/controllers/testing
+  name: Testing controller logic in ASP.NET Core
+  href: mvc/controllers/testing.html
+- uid: mvc/extensibility/app-parts
+  name: Application Parts in ASP.NET Core
+  href: mvc/advanced/app-parts.html
+- uid: mvc/models/custom-formatters
+  name: Custom formatters in ASP.NET Core MVC web APIs
+  href: mvc/advanced/custom-formatters.html
+- uid: mvc/models/file-uploads
+  name: File uploads in ASP.NET Core
+  href: mvc/models/file-uploads.html
+- uid: mvc/models/formatting
+  name: Formatting response data in ASP.NET Core MVC
+  href: mvc/models/formatting.html
+- uid: mvc/models/model-binding
+  name: Model Binding
+  href: mvc/models/model-binding.html
+- uid: mvc/models/validation
+  name: Model validation in ASP.NET Core MVC
+  href: mvc/models/validation.html
+- uid: mvc/overview
+  name: Overview of ASP.NET Core MVC
+  href: mvc/overview.html
+- uid: mvc/razor-pages/index
+  name: Introduction to Razor Pages in ASP.NET Core
+  href: mvc/razor-pages/index.html
+- uid: mvc/views/dependency-injection
+  name: Dependency injection into views
+  href: mvc/views/dependency-injection.html
+- uid: mvc/views/layout
+  name: Layout
+  href: mvc/views/layout.html
+- uid: mvc/views/overview
+  name: Views Overview
+  href: mvc/views/overview.html
+- uid: mvc/views/partial
+  name: Partial Views
+  href: mvc/views/partial.html
+- uid: mvc/views/razor
+  name: Razor Syntax Reference for ASP.NET Core
+  href: mvc/views/razor.html
+- uid: mvc/views/tag-helpers/authoring
+  name: Authoring Tag Helpers in ASP.NET Core
+  href: mvc/views/tag-helpers/authoring.html
+- uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+  name: Anchor Tag Helper | Microsoft Docs
+  href: mvc/views/tag-helpers/built-in/anchor-tag-helper.html
+- uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+  name: Cache Tag Helper in ASP.NET Core MVC
+  href: mvc/views/tag-helpers/built-in/cache-tag-helper.html
+- uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
+  name: Distributed Cache Tag Helper | Microsoft Docs
+  href: mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.html
+- uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
+  name: Environment Tag Helper in ASP.NET Core
+  href: mvc/views/tag-helpers/built-in/environment-tag-helper.html
+- uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
+  name: Image Tag Helper | Microsoft Docs
+  href: mvc/views/tag-helpers/built-in/image-tag-helper.html
+- uid: mvc/views/tag-helpers/builtin-th/Index
+  name: ASP.NET Core built-in Tag Helpers
+  href: mvc/views/tag-helpers/built-in/index.html
+- uid: mvc/views/tag-helpers/intro
+  name: Tag Helpers in ASP.NET Core
+  href: mvc/views/tag-helpers/intro.html
+- uid: mvc/views/view-compilation
+  name: Razor view compilation and precompilation
+  href: mvc/views/view-compilation.html
+- uid: mvc/views/view-components
+  name: View components
+  href: mvc/views/view-components.html
+- uid: mvc/views/working-with-forms
+  name: Tag helpers in forms in ASP.NET Core
+  href: mvc/views/working-with-forms.html
+- uid: performance/caching/distributed
+  name: Working with a Distributed Cache
+  href: performance/caching/distributed.html
+- uid: performance/caching/index
+  name: Caching
+  href: performance/caching/index.html
+- uid: performance/caching/memory
+  name: In-memory caching in ASP.NET Core
+  href: performance/caching/memory.html
+- uid: performance/caching/middleware
+  name: Response Caching Middleware in ASP.NET Core
+  href: performance/caching/middleware.html
+- uid: performance/caching/response
+  name: Response caching in ASP.NET Core
+  href: performance/caching/response.html
+- uid: performance/index
+  name: Performance
+  href: performance/index.html
+- uid: performance/response-compression
+  name: Response Compression Middleware for ASP.NET Core
+  href: performance/response-compression.html
+- uid: publishing/apache-proxy
+  name: Host ASP.NET Core on Linux with Apache
+  href: publishing/apache-proxy.html
+- uid: publishing/azure-continuous-deployment
+  name: Continuous deployment to Azure with Visual Studio and Git
+  href: publishing/azure-continuous-deployment.html
+- uid: publishing/development-time-iis-support
+  name: Development-time IIS support in Visual Studio for ASP.NET Core
+  href: publishing/development-time-iis-support.html
+- uid: publishing/docker
+  name: Host ASP.NET Core in Docker containers
+  href: publishing/docker.html
+- uid: publishing/iis
+  name: Host ASP.NET Core on Windows with IIS
+  href: publishing/iis.html
+- uid: publishing/index
+  name: Hosting and deployment overview - ASP.NET Core
+  href: publishing/index.html
+- uid: publishing/linuxproduction
+  name: Host ASP.NET Core on Linux with Nginx
+  href: publishing/linuxproduction.html
+- uid: publishing/web-publishing-vs
+  name: Create publish profiles for Visual Studio and MSBuild
+  href: publishing/web-publishing-vs.html
+- uid: security/anti-request-forgery
+  name: Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core
+  href: security/anti-request-forgery.html
+- uid: security/app-secrets
+  name: Safe storage of app secrets during development in ASP.NET Core
+  href: security/app-secrets.html
+- uid: security/authentication/2fa
+  name: Two-factor authentication with SMS
+  href: security/authentication/2fa.html
+- uid: security/authentication/accconfirm
+  name: Account Confirmation and Password Recovery in ASP.NET Core
+  href: security/authentication/accconfirm.html
+- uid: security/authentication/azure-active-directory/index
+  name: Azure Active Directory
+  href: security/authentication/azure-active-directory/index.html
+- uid: security/authentication/community
+  name: Community OSS authentication options
+  href: security/authentication/community.html
+- uid: security/authentication/cookie
+  name: Using Cookie Authentication without ASP.NET Core Identity
+  href: security/authentication/cookie.html
+- uid: security/authentication/facebook-logins
+  name: Facebook external login setup in ASP.NET Core
+  href: security/authentication/social/facebook-logins.html
+- uid: security/authentication/google-logins
+  name: Google external login setup in ASP.NET Core
+  href: security/authentication/social/google-logins.html
+- uid: security/authentication/identity
+  name: Introduction to Identity on ASP.NET Core
+  href: security/authentication/identity.html
+- uid: security/authentication/identity-configuration
+  name: Configure ASP.NET Core Identity
+  href: security/authentication/identity-configuration.html
+- uid: security/authentication/identity-custom-storage-providers
+  name: Custom storage providers for ASP.NET Core Identity | Microsoft Docs
+  href: security/authentication/identity-custom-storage-providers.html
+- uid: security/authentication/identity-enable-qrcodes
+  name: Enabling QR Code generation for authenticator apps in ASP.NET Core
+  href: security/authentication/identity-enable-qrcodes.html
+- uid: security/authentication/identity-primary-key-configuration
+  name: Configure Identity primary keys data type
+  href: security/authentication/identity-primary-key-configuration.html
+- uid: security/authentication/index
+  name: Authentication
+  href: security/authentication/index.html
+- uid: security/authentication/microsoft-logins
+  name: Microsoft Account external login setup
+  href: security/authentication/social/microsoft-logins.html
+- uid: security/authentication/otherlogins
+  name: Short survey of other authentication providers.
+  href: security/authentication/social/other-logins.html
+- uid: security/authentication/social/index
+  name: Enabling authentication using Facebook, Google and other external
+  href: security/authentication/social/index.html
+- uid: security/authentication/twitter-logins
+  name: Twitter external login setup
+  href: security/authentication/social/twitter-logins.html
+- uid: security/authentication/windowsauth
+  name: Configure Windows Authentication in ASP.NET Core
+  href: security/authentication/windowsauth.html
+- uid: security/authorization/claims
+  name: Claims-Based Authorization
+  href: security/authorization/claims.html
+- uid: security/authorization/dependencyinjection
+  name: Dependency Injection in requirement handlers
+  href: security/authorization/dependencyinjection.html
+- uid: security/authorization/index
+  name: Authorization in ASP.NET Core
+  href: security/authorization/index.html
+- uid: security/authorization/introduction
+  name: Introduction
+  href: security/authorization/introduction.html
+- uid: security/authorization/limitingidentitybyscheme
+  name: Limiting identity by scheme
+  href: security/authorization/limitingidentitybyscheme.html
+- uid: security/authorization/policies
+  name: Custom Policy-Based Authorization
+  href: security/authorization/policies.html
+- uid: security/authorization/resourcebased
+  name: Resource Based Authorization
+  href: security/authorization/resourcebased.html
+- uid: security/authorization/roles
+  name: Role based Authorization
+  href: security/authorization/roles.html
+- uid: security/authorization/secure-data
+  name: Create an ASP.NET Core app with user data protected by authorization
+  href: security/authorization/secure-data.html
+- uid: security/authorization/simple
+  name: Simple Authorization
+  href: security/authorization/simple.html
+- uid: security/authorization/views
+  name: View Based Authorization
+  href: security/authorization/views.html
+- uid: security/cors
+  name: Enabling Cross-Origin Requests (CORS)
+  href: security/cors.html
+- uid: security/cross-site-scripting
+  name: Preventing Cross-Site Scripting
+  href: security/cross-site-scripting.html
+- uid: security/data-protection/compatibility/cookie-sharing
+  name: Sharing cookies between applications
+  href: security/data-protection/compatibility/cookie-sharing.html
+- uid: security/data-protection/compatibility/index
+  name: Compatibility in ASP.NET Core
+  href: security/data-protection/compatibility/index.html
+- uid: security/data-protection/compatibility/replacing-machinekey
+  name: Replacing `<machineKey>` in ASP.NET
+  href: security/data-protection/compatibility/replacing-machinekey.html
+- uid: security/data-protection/configuration/default-settings
+  name: Key management and lifetime
+  href: security/data-protection/configuration/default-settings.html
+- uid: security/data-protection/configuration/index
+  name: Configuration in ASP.NET Core
+  href: security/data-protection/configuration/index.html
+- uid: security/data-protection/configuration/machine-wide-policy
+  name: Machine Wide Policy
+  href: security/data-protection/configuration/machine-wide-policy.html
+- uid: security/data-protection/configuration/non-di-scenarios
+  name: Non DI Aware Scenarios
+  href: security/data-protection/configuration/non-di-scenarios.html
+- uid: security/data-protection/configuration/overview
+  name: Configuring Data Protection
+  href: security/data-protection/configuration/overview.html
+- uid: security/data-protection/consumer-apis/dangerous-unprotect
+  name: Unprotecting payloads whose keys have been revoked
+  href: security/data-protection/consumer-apis/dangerous-unprotect.html
+- uid: security/data-protection/consumer-apis/index
+  name: Consumer APIs
+  href: security/data-protection/consumer-apis/index.html
+- uid: security/data-protection/consumer-apis/limited-lifetime-payloads
+  name: Limiting the lifetime of protected payloads
+  href: security/data-protection/consumer-apis/limited-lifetime-payloads.html
+- uid: security/data-protection/consumer-apis/overview
+  name: Consumer APIs Overview
+  href: security/data-protection/consumer-apis/overview.html
+- uid: security/data-protection/consumer-apis/password-hashing
+  name: Password Hashing
+  href: security/data-protection/consumer-apis/password-hashing.html
+- uid: security/data-protection/consumer-apis/purpose-strings
+  name: Purpose Strings
+  href: security/data-protection/consumer-apis/purpose-strings.html
+- uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
+  name: Purpose Strings in ASP.NET Core
+  href: security/data-protection/consumer-apis/purpose-strings-multitenancy.html
+- uid: security/data-protection/extensibility/core-crypto
+  name: Core cryptography extensibility
+  href: security/data-protection/extensibility/core-crypto.html
+- uid: security/data-protection/extensibility/index
+  name: Extensibility APIs
+  href: security/data-protection/extensibility/index.html
+- uid: security/data-protection/extensibility/key-management
+  name: Key management extensibility
+  href: security/data-protection/extensibility/key-management.html
+- uid: security/data-protection/extensibility/misc-apis
+  name: Miscellaneous APIs
+  href: security/data-protection/extensibility/misc-apis.html
+- uid: security/data-protection/implementation/authenticated-encryption-details
+  name: Authenticated encryption details.
+  href: security/data-protection/implementation/authenticated-encryption-details.html
+- uid: security/data-protection/implementation/context-headers
+  name: Context headers
+  href: security/data-protection/implementation/context-headers.html
+- uid: security/data-protection/implementation/index
+  name: Implementation
+  href: security/data-protection/implementation/index.html
+- uid: security/data-protection/implementation/key-encryption-at-rest
+  name: Key Encryption At Rest
+  href: security/data-protection/implementation/key-encryption-at-rest.html
+- uid: security/data-protection/implementation/key-immutability
+  name: Key Immutability and Changing Settings
+  href: security/data-protection/implementation/key-immutability.html
+- uid: security/data-protection/implementation/key-management
+  name: Key Management
+  href: security/data-protection/implementation/key-management.html
+- uid: security/data-protection/implementation/key-storage-ephemeral
+  name: Ephemeral data protection providers
+  href: security/data-protection/implementation/key-storage-ephemeral.html
+- uid: security/data-protection/implementation/key-storage-format
+  name: Key Storage Format
+  href: security/data-protection/implementation/key-storage-format.html
+- uid: security/data-protection/implementation/key-storage-providers
+  name: Key storage providers
+  href: security/data-protection/implementation/key-storage-providers.html
+- uid: security/data-protection/implementation/subkeyderivation
+  name: Subkey Derivation and Authenticated Encryption
+  href: security/data-protection/implementation/subkeyderivation.html
+- uid: security/data-protection/index
+  name: Data Protection in ASP.NET Core
+  href: security/data-protection/index.html
+- uid: security/data-protection/introduction
+  name: Introduction to Data Protection
+  href: security/data-protection/introduction.html
+- uid: security/data-protection/using-data-protection
+  name: Getting Started with the Data Protection APIs
+  href: security/data-protection/using-data-protection.html
+- uid: security/enforcing-ssl
+  name: Enforcing SSL in an ASP.NET Core app
+  href: security/enforcing-ssl.html
+- uid: security/index
+  name: Security
+  href: security/index.html
+- uid: security/key-vault-configuration
+  name: Azure Key Vault configuration provider
+  href: security/key-vault-configuration.html
+- uid: security/preventing-open-redirects
+  name: Preventing Open Redirect Attacks in an ASP.NET Core app | Microsoft Docs
+  href: security/preventing-open-redirects.html
+- uid: testing/integration-testing
+  name: Integration testing in ASP.NET Core
+  href: testing/integration-testing.html
+- uid: tutorials/dotnet-watch
+  name: Developing ASP.NET Core apps using dotnet watch
+  href: tutorials/dotnet-watch.html
+- uid: tutorials/first-mvc-app/adding-controller
+  name: Adding a controller
+  href: tutorials/first-mvc-app/adding-controller.html
+- uid: tutorials/first-mvc-app/adding-model
+  name: Adding a model to an ASP.NET Core MVC app
+  href: tutorials/first-mvc-app/adding-model.html
+- uid: tutorials/first-mvc-app/adding-view
+  name: Adding a view
+  href: tutorials/first-mvc-app/adding-view.html
+- uid: tutorials/first-mvc-app/controller-methods-views
+  name: Controller methods and views
+  href: tutorials/first-mvc-app/controller-methods-views.html
+- uid: tutorials/first-mvc-app/details
+  name: Examining the Details and Delete methods
+  href: tutorials/first-mvc-app/details.html
+- uid: tutorials/first-mvc-app/index
+  name: Create a web app with ASP.NET Core MVC on Windows
+  href: tutorials/first-mvc-app/index.html
+- uid: tutorials/first-mvc-app/new-field
+  name: Adding a New Field
+  href: tutorials/first-mvc-app/new-field.html
+- uid: tutorials/first-mvc-app/search
+  name: Adding Search
+  href: tutorials/first-mvc-app/search.html
+- uid: tutorials/first-mvc-app/start-mvc
+  name: Getting started with ASP.NET Core MVC and Visual Studio
+  href: tutorials/first-mvc-app/start-mvc.html
+- uid: tutorials/first-mvc-app/validation
+  name: Adding Validation
+  href: tutorials/first-mvc-app/validation.html
+- uid: tutorials/first-mvc-app/working-with-sql
+  name: Working with SQL Server LocalDB
+  href: tutorials/first-mvc-app/working-with-sql.html
+- uid: tutorials/first-mvc-app-mac/adding-controller
+  name: Adding a controller to an ASP.NET Core MVC app
+  href: tutorials/first-mvc-app-mac/adding-controller.html
+- uid: tutorials/first-mvc-app-mac/adding-model
+  name: Add a model to an ASP.NET MVC Core app
+  href: tutorials/first-mvc-app-mac/adding-model.html
+- uid: tutorials/first-mvc-app-mac/adding-view
+  name: Adding a view
+  href: tutorials/first-mvc-app-mac/adding-view.html
+- uid: tutorials/first-mvc-app-mac/controller-methods-views
+  name: Controller methods and views in an ASP.NET Core MVC app
+  href: tutorials/first-mvc-app-mac/controller-methods-views.html
+- uid: tutorials/first-mvc-app-mac/index
+  name: Create a web app with ASP.NET Core MVC on a Mac
+  href: tutorials/first-mvc-app-mac/index.html
+- uid: tutorials/first-mvc-app-mac/new-field
+  name: Adding a New Field to an ASP.NET Core app
+  href: tutorials/first-mvc-app-mac/new-field.html
+- uid: tutorials/first-mvc-app-mac/search
+  name: Adding Search to an ASP.NET Core MVC app
+  href: tutorials/first-mvc-app-mac/search.html
+- uid: tutorials/first-mvc-app-mac/start-mvc
+  name: Getting started with ASP.NET Core MVC and Visual Studio for Mac
+  href: tutorials/first-mvc-app-mac/start-mvc.html
+- uid: tutorials/first-mvc-app-mac/validation
+  name: Adding Validation to an ASP.NET Core app
+  href: tutorials/first-mvc-app-mac/validation.html
+- uid: tutorials/first-mvc-app-mac/working-with-sql
+  name: Working with SQLite and ASP.NET Core MVC
+  href: tutorials/first-mvc-app-mac/working-with-sql.html
+- uid: tutorials/first-mvc-app-xplat/adding-controller
+  name: Adding a controller
+  href: tutorials/first-mvc-app-xplat/adding-controller.html
+- uid: tutorials/first-mvc-app-xplat/adding-model
+  name: Adding a model to an ASP.NET Core MVC app.
+  href: tutorials/first-mvc-app-xplat/adding-model.html
+- uid: tutorials/first-mvc-app-xplat/adding-view
+  name: Adding a view
+  href: tutorials/first-mvc-app-xplat/adding-view.html
+- uid: tutorials/first-mvc-app-xplat/controller-methods-views
+  name: Controller methods and views
+  href: tutorials/first-mvc-app-xplat/controller-methods-views.html
+- uid: tutorials/first-mvc-app-xplat/index
+  name: Create an ASP.NET Core MVC app with Visual Studio Code
+  href: tutorials/first-mvc-app-xplat/index.html
+- uid: tutorials/first-mvc-app-xplat/new-field
+  name: Adding a New Field to an ASP.NET Core app
+  href: tutorials/first-mvc-app-xplat/new-field.html
+- uid: tutorials/first-mvc-app-xplat/search
+  name: Adding Search
+  href: tutorials/first-mvc-app-xplat/search.html
+- uid: tutorials/first-mvc-app-xplat/start-mvc
+  name: Introduction to ASP.NET Core MVC on Mac, Linux, or Windows
+  href: tutorials/first-mvc-app-xplat/start-mvc.html
+- uid: tutorials/first-mvc-app-xplat/validation
+  name: Adding Validation
+  href: tutorials/first-mvc-app-xplat/validation.html
+- uid: tutorials/first-mvc-app-xplat/working-with-sql
+  name: Working with SQLite
+  href: tutorials/first-mvc-app-xplat/working-with-sql.html
+- uid: tutorials/first-web-api
+  name: Create a Web API with ASP.NET Core and Visual Studio for Windows
+  href: tutorials/first-web-api.html
+- uid: tutorials/first-web-api-mac
+  name: Create a Web API with ASP.NET Core and Visual Studio for Mac
+  href: tutorials/first-web-api-mac.html
+- uid: tutorials/index
+  name: ASP.NET Core tutorials
+  href: tutorials/index.html
+- uid: tutorials/nano-server
+  name: ASP.NET Core on Nano Server
+  href: tutorials/nano-server.html
+- uid: tutorials/publish-to-azure-webapp-using-vs
+  name: Publish an ASP.NET Core app to Azure using Visual Studio
+  href: tutorials/publish-to-azure-webapp-using-vs.html
+- uid: tutorials/razor-pages/da1
+  name: Updating the generated pages
+  href: tutorials/razor-pages/da1.html
+- uid: tutorials/razor-pages/index
+  name: Create a Razor Pages web app with ASP.NET Core
+  href: tutorials/razor-pages/index.html
+- uid: tutorials/razor-pages/modelz
+  name: Adding a model to a Razor Pages app in ASP.NET Core
+  href: tutorials/razor-pages/model.html
+- uid: tutorials/razor-pages/new-field
+  name: Adding a New Field to a Razor Page
+  href: tutorials/razor-pages/new-field.html
+- uid: tutorials/razor-pages/page
+  name: Scaffolded Razor Pages in ASP.NET Core
+  href: tutorials/razor-pages/page.html
+- uid: tutorials/razor-pages/razor-pages-start
+  name: Getting started with Razor Pages in ASP.NET Core
+  href: tutorials/razor-pages/razor-pages-start.html
+- uid: tutorials/razor-pages/search
+  name: Adding search to ASP.NET Core Razor Pages
+  href: tutorials/razor-pages/search.html
+- uid: tutorials/razor-pages/sql
+  name: Working with SQL Server LocalDB and ASP.NET Core
+  href: tutorials/razor-pages/sql.html
+- uid: tutorials/razor-pages/uploading-files
+  name: Uploading files to a Razor Page in ASP.NET Core
+  href: tutorials/razor-pages/uploading-files.html
+- uid: tutorials/razor-pages/validation
+  name: Adding Validation
+  href: tutorials/razor-pages/validation.html
+- uid: tutorials/razor-pages-mac/index
+  name: Create a Razor Pages web app with ASP.NET Core on Mac
+  href: tutorials/razor-pages-mac/index.html
+- uid: tutorials/razor-pages-mac/model
+  name: Adding a model to a Razor Pages app with Visual Studio for Mac
+  href: tutorials/razor-pages-mac/model.html
+- uid: tutorials/razor-pages-mac/razor-pages-start
+  name: Getting started with Razor Pages in ASP.NET Core on Mac
+  href: tutorials/razor-pages-mac/razor-pages-start.html
+- uid: tutorials/razor-pages-vsc/index
+  name: Create a Razor Pages web app with ASP.NET Core and Visual Studio Code
+  href: tutorials/razor-pages-vsc/index.html
+- uid: tutorials/razor-pages-vsc/model
+  name: Adding a model to a Razor Pages app with Visual Studio for Mac
+  href: tutorials/razor-pages-vsc/model.html
+- uid: tutorials/razor-pages-vsc/razor-pages-start
+  name: Getting started with Razor Pages in ASP.NET Core with Visual Studio Code
+  href: tutorials/razor-pages-vsc/razor-pages-start.html
+- uid: tutorials/web-api-help-pages-using-swagger
+  name: ASP.NET Core Web API Help Pages using Swagger
+  href: tutorials/web-api-help-pages-using-swagger.html
+- uid: tutorials/web-api-vsc
+  name: Create a Web API with ASP.NET Core and VS Code
+  href: tutorials/web-api-vsc.html

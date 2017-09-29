@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Adding a view </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Adding a view ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-mac/adding-view">
+<h1 id="adding-a-view-to-an-aspnet-core-mvc-app">Adding a view to an ASP.NET Core MVC app</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>In this section you modify the <code>HelloWorldController</code> class to use Razor view template files to cleanly encapsulate the process of generating HTML responses to a client.</p>
+<p>You create a view template file using Razor. Razor-based view templates have a <em>.cshtml</em> file extension. They provide an elegant way to create HTML output using C#.</p>
+<p>Currently the <code>Index</code> method returns a string with a message that is hard-coded in the controller class. In the <code>HelloWorldController</code> class, replace the <code>Index</code> method with the following code:</p>
+<pre><code class="lang-csharp" name="Main">public IActionResult Index()
+{
+    return View();
+}
+</code></pre><p>The preceding code returns a <code>View</code> object. It uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the <code>Index</code> method above, generally return an <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a> (or a class derived from <code>ActionResult</code>), not primitive types like string.</p>
+<h2 id="add-a-view">Add a view</h2>
+<ul>
+<li>Right click on the <em>Views</em> folder, and then <strong>Add &gt; New Folder</strong> and name the folder <em>HelloWorld</em>.</li>
+<li>Right click on the <em>Views/HelloWorld</em> folder, and then <strong>Add &gt; New File</strong>.</li>
+<li><p>In the <strong>New File</strong> dialog:</p>
+<ul>
+<li>Select <strong>Web</strong> in the left pane.</li>
+<li>Select <strong>Empty HTML file</strong> in the center pane.</li>
+<li>Type <em>Index.cshtml</em> in the <strong>Name</strong> box.</li>
+<li>Select <strong>New</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><img src="adding-view/_static/add_view.png" alt="Add New Item dialog"></p>
+<p>Replace the contents of the <em>Views/HelloWorld/Index.cshtml</em> Razor view file with the following:</p>
+<pre><code class="lang-HTML" name="Main">@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;Hello from our View Template!&lt;/p&gt;
+</code></pre><p>Navigate to <code>http://localhost:xxxx/HelloWorld</code>. The <code>Index</code> method in the <code>HelloWorldController</code> didn&#39;t do much; it ran the statement <code>return View();</code>, which specified that the method should use a view template file to render a response to the browser. Because you didn&#39;t explicitly specify the name of the view template file, MVC defaulted to using the <em>Index.cshtml</em> view file in the <em>/Views/HelloWorld</em> folder. The image below shows the string &quot;Hello from our View Template!&quot; hard-coded in the view.</p>
+<p><img src="../first-mvc-app/adding-view/_static/hell_template.png" alt="Browser window"></p>
+<p>If your browser window is small (for example on a mobile device), you might need to toggle (tap) the <a href="http://getbootstrap.com/components/#navbar">Bootstrap navigation button</a> in the upper right to see the <strong>Home</strong>, <strong>About</strong>, and <strong>Contact</strong> links.</p>
+<p><img src="../first-mvc-app/adding-view/_static/1.png" alt="Browser window highlighting the Bootstrap navigation button"></p>
+<h2 id="changing-views-and-layout-pages">Changing views and layout pages</h2>
+<p>Tap the menu links (<strong>MvcMovie</strong>, <strong>Home</strong>, <strong>About</strong>). Each page shows the same menu layout. The menu layout is implemented in the <em>Views/Shared/_Layout.cshtml</em> file. Open the <em>Views/Shared/_Layout.cshtml</em> file.</p>
+<p><a class="xref" href="../../mvc/views/layout.html">Layout</a> templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the <code>@RenderBody()</code> line. <code>RenderBody</code> is a placeholder where all the view-specific pages you create show up, <em>wrapped</em> in the layout page. For example, if you select the <strong>About</strong> link, the <strong>Views/Home/About.cshtml</strong> view is rendered inside the <code>RenderBody</code> method.</p>
+<h2 id="change-the-title-and-menu-link-in-the-layout-file">Change the title and menu link in the layout file</h2>
+<p>Change the contents of the title element. Change the anchor text in the layout template to &quot;Movie App&quot; and the controller from <code>Home</code> to <code>Movies</code> as highlighted below:</p>
+<p>Note: The ASP.NET Core 2.0 version is slightly different. It doesn&#39;t contain <code>@inject ApplicationInsights</code> and <code>@Html.Raw(JavaScriptSnippet.FullScript)</code>.</p>
+<pre><code class="lang-html" name="Main" highlight-lines="7,31">@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;@ViewData[&quot;Title&quot;] - Movie App&lt;/title&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.css&quot; /&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css&quot;
+              asp-fallback-href=&quot;~/lib/bootstrap/dist/css/bootstrap.min.css&quot;
+              asp-fallback-test-class=&quot;sr-only&quot; asp-fallback-test-property=&quot;position&quot; asp-fallback-test-value=&quot;absolute&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.min.css&quot; asp-append-version=&quot;true&quot; /&gt;
+    &lt;/environment&gt;
+    @Html.Raw(JavaScriptSnippet.FullScript)
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;navbar-header&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+                    &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;a asp-area=&quot;&quot; asp-controller=&quot;Movies&quot; asp-action=&quot;Index&quot; class=&quot;navbar-brand&quot;&gt;MvcMovie&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;navbar-collapse collapse&quot;&gt;
+                &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;About&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    &lt;div class=&quot;container body-content&quot;&gt;
+        @RenderBody()
+        &lt;hr /&gt;
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; 2017 - MvcMovie&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/js/site.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js&quot;
+                asp-fallback-src=&quot;~/lib/jquery/dist/jquery.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery&quot;
+                crossorigin=&quot;anonymous&quot;
+                integrity=&quot;sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js&quot;
+                asp-fallback-src=&quot;~/lib/bootstrap/dist/js/bootstrap.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery &amp;&amp; window.jQuery.fn &amp;&amp; window.jQuery.fn.modal&quot;
+                crossorigin=&quot;anonymous&quot;
+                integrity=&quot;sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;~/js/site.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+
+    @RenderSection(&quot;Scripts&quot;, required: false)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><div class="WARNING"><h5>Warning</h5><p>We haven&#39;t implemented the <code>Movies</code> controller yet, so if you click on that link, you&#39;ll get a 404 (Not found) error.</p>
+</div>
+<p>Save your changes and tap the <strong>About</strong> link. Notice how the title on the browser tab now displays <strong>About - Movie App</strong> instead of <strong>About - Mvc Movie</strong>. Tap the <strong>Contact</strong> link and notice that it also displays <strong>Movie App</strong>. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.</p>
+<p>Examine the <em>Views/_ViewStart.cshtml</em> file:</p>
+<pre><code class="lang-HTML">@{
+    Layout = &quot;_Layout&quot;;
+}
+</code></pre><p>The <em>Views/_ViewStart.cshtml</em> file brings in the <em>Views/Shared/_Layout.cshtml</em> file to each view. You can use the <code>Layout</code> property to set a different layout view, or set it to <code>null</code> so no layout file will be used.</p>
+<p>Change the title of the <code>Index</code> view.</p>
+<p>Open <em>Views/HelloWorld/Index.cshtml</em>. There are two places to make a change:</p>
+<ul>
+<li>The text that appears in the title of the browser.</li>
+<li>The secondary header (<code>&lt;h2&gt;</code> element).</li>
+</ul>
+<p>You&#39;ll make them slightly different so you can see which bit of code changes which part of the app.</p>
+<pre><code class="lang-HTML">@{
+    ViewData[&quot;Title&quot;] = &quot;Movie List&quot;;
+}
+
+&lt;h2&gt;My Movie List&lt;/h2&gt;
+
+&lt;p&gt;Hello from our View Template!&lt;/p&gt;
+</code></pre><p><code>ViewData[&quot;Title&quot;] = &quot;Movie List&quot;;</code> in the code above sets the <code>Title</code> property of the <code>ViewData</code> dictionary to &quot;Movie List&quot;. The <code>Title</code> property is used in the <code>&lt;title&gt;</code> HTML element in the layout page:</p>
+<pre><code class="lang-HTML">&lt;title&gt;@ViewData[&quot;Title&quot;] - Movie App&lt;/title&gt;
+</code></pre><p>Save your change and navigate to <code>http://localhost:xxxx/HelloWorld</code>. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don&#39;t see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with <code>ViewData[&quot;Title&quot;]</code> we set in the <em>Index.cshtml</em> view template and the additional &quot;- Movie App&quot; added in the layout file.</p>
+<p>Also notice how the content in the <em>Index.cshtml</em> view template was merged with the <em>Views/Shared/_Layout.cshtml</em> view template and a single HTML response was sent to the browser. Layout templates make it really easy to make changes that apply across all of the pages in your application. To learn more see <a href="../../mvc/views/layout.html">Layout</a>.</p>
+<p><img src="../first-mvc-app/adding-view/_static/hell3.png" alt="Movie List view"></p>
+<p>Our little bit of &quot;data&quot; (in this case the &quot;Hello from our View Template!&quot; message) is hard-coded, though. The MVC application has a &quot;V&quot; (view) and you&#39;ve got a &quot;C&quot; (controller), but no &quot;M&quot; (model) yet.</p>
+<h2 id="passing-data-from-the-controller-to-the-view">Passing Data from the Controller to the View</h2>
+<p>Controller actions are invoked in response to an incoming URL request. A controller class is where you write the code that handles the incoming browser requests. The controller retrieves data from a data source and decides what type of response to send back to the browser. View templates can be used from a controller to generate and format an HTML response to the browser.</p>
+<p>Controllers are responsible for providing the data required in order for a view template to render a response. A best practice: View templates should <strong>not</strong> perform business logic or interact with a database directly. Rather, a view template should work only with the data that&#39;s provided to it by the controller. Maintaining this &quot;separation of concerns&quot; helps keep your code clean, testable, and maintainable.</p>
+<p>Currently, the <code>Welcome</code> method in the <code>HelloWorldController</code> class takes a <code>name</code> and a <code>ID</code> parameter and then outputs the values directly to the browser. Rather than have the controller render this response as a string, let’s change the controller to use a view template instead. The view template will generate a dynamic response, which means that you need to pass appropriate bits of data from the controller to the view in order to generate the response. You can do this by having the controller put the dynamic data (parameters) that the view template needs in a <code>ViewData</code> dictionary that the view template can then access.</p>
+<p>Return to the <em>HelloWorldController.cs</em> file and change the <code>Welcome</code> method to add a <code>Message</code> and <code>NumTimes</code> value to the <code>ViewData</code> dictionary. The <code>ViewData</code> dictionary is a dynamic object, which means you can put whatever you want in to it; the <code>ViewData</code> object has no defined properties until you put something inside it. The <a class="xref" href="../../mvc/models/model-binding.html">MVC model binding system</a> automatically maps the named parameters (<code>name</code> and <code>numTimes</code>) from the query string in the address bar to parameters in your method. The complete <em>HelloWorldController.cs</em> file looks like this:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
+
+namespace MvcMovie.Controllers
+{
+    public class HelloWorldController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Welcome(string name, int numTimes = 1)
+        {
+            ViewData[&quot;Message&quot;] = &quot;Hello &quot; + name;
+            ViewData[&quot;NumTimes&quot;] = numTimes;
+
+            return View();
+        }
+    }
+}
+</code></pre><p>The <code>ViewData</code> dictionary object contains data that will be passed to the view. </p>
+<p>Create a Welcome view template named <em>Views/HelloWorld/Welcome.cshtml</em>.</p>
+<p>You&#39;ll create a loop in the <em>Welcome.cshtml</em> view template that displays &quot;Hello&quot; <code>NumTimes</code>. Replace the contents of <em>Views/HelloWorld/Welcome.cshtml</em> with the following:</p>
+<pre><code class="lang-html" name="Main">@{
+    ViewData[&quot;Title&quot;] = &quot;Welcome&quot;;
+}
+
+&lt;h2&gt;Welcome&lt;/h2&gt;
+
+&lt;ul&gt;
+    @for (int i = 0; i &lt; (int)ViewData[&quot;NumTimes&quot;]; i++)
+    {
+        &lt;li&gt;@ViewData[&quot;Message&quot;]&lt;/li&gt;
+    }
+&lt;/ul&gt;
+</code></pre><p>Save your changes and browse to the following URL:</p>
+<p><code>http://localhost:xxxx/HelloWorld/Welcome?name=Rick&amp;numtimes=4</code></p>
+<p>Data is taken from the URL and passed to the controller using the <a class="xref" href="../../mvc/models/model-binding.html">MVC model binder</a> . The controller packages the data into a <code>ViewData</code> dictionary and passes that object to the view. The view then renders the data as HTML to the browser.</p>
+<p><img src="../first-mvc-app/adding-view/_static/rick.png" alt="About view showing a Welcome label and the phrase Hello Rick shown four times"></p>
+<p>In the sample above, we used the <code>ViewData</code> dictionary to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the <code>ViewData</code> dictionary approach. See <a href="http://www.mytecbits.com/microsoft/dot-net/viewmodel-viewdata-viewbag-tempdata-mvc">ViewModel vs ViewData vs ViewBag vs TempData vs Session in MVC</a> for more information.</p>
+<p>Well, that was a kind of an &quot;M&quot; for model, but not the database kind. Let&#39;s take what we&#39;ve learned and create a database of movies.</p>
+<div class="step-by-step"><p><a href="adding-controller.html">Previous</a>
+<a href="adding-model.html">Next</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-mac/adding-view.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

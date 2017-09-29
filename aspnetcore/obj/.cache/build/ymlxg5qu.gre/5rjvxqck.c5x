@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction to ASP.NET Core MVC on Mac, Linux, or Windows </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction to ASP.NET Core MVC on Mac, Linux, or Windows ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/first-mvc-app-xplat/start-mvc">
+<h1 id="getting-started-with-aspnet-core-mvc--on-mac-linux-or-windows" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="15" sourceendlinenumber="15">Getting started with ASP.NET Core MVC  on Mac, Linux, or Windows</h1>
+
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rick Anderson</a></p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">This tutorial will teach you the basics of building an ASP.NET Core MVC web app using <a href="https://code.visualstudio.com" data-raw-source="[Visual Studio Code](https://code.visualstudio.com)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">Visual Studio Code</a> (VS Code). The tutorial assumes familarity with VS Code. See <a href="https://code.visualstudio.com/docs" data-raw-source="[Getting started with VS Code](https://code.visualstudio.com/docs)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">Getting started with VS Code</a> and <a href="#visual-studio-code-help" data-raw-source="[Visual Studio Code help](#visual-studio-code-help)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="19" sourceendlinenumber="19">Visual Studio Code help</a> for more information. This tutorial teaches ASP.NET Core MVC with controllers and views. Razor Pages is a new alternative in ASP.NET Core 2.0, a page-based programming model that makes building web UI easier and more productive. We recommend you try the Razor Pages tutorial before the MVC version. For a Razor Pages version of this tutorial, see <a class="xref" href="../../mvc/razor-pages/index.html" data-raw-source="[Razor Pages](xref:mvc/razor-pages/index)" sourcefile="includes/razor.md" sourcestartlinenumber="1" sourceendlinenumber="1">Razor Pages</a>.</p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="21" sourceendlinenumber="21">There are 3 versions of this tutorial:</p>
+<ul sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="23" sourceendlinenumber="25">
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="23" sourceendlinenumber="23">macOS: <a class="xref" href="../first-mvc-app-mac/start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio for Mac](xref:tutorials/first-mvc-app-mac/start-mvc)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="23" sourceendlinenumber="23">Create an ASP.NET Core MVC app with Visual Studio for Mac</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="24" sourceendlinenumber="24">Windows: <a class="xref" href="../first-mvc-app/start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio](xref:tutorials/first-mvc-app/start-mvc)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create an ASP.NET Core MVC app with Visual Studio</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="25" sourceendlinenumber="25">macOS, Linux, and Windows: <a class="xref" href="start-mvc.html" data-raw-source="[Create an ASP.NET Core MVC app with Visual Studio Code](xref:tutorials/first-mvc-app-xplat/start-mvc)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="25" sourceendlinenumber="25">Create an ASP.NET Core MVC app with Visual Studio Code</a> </li>
+</ul>
+<h2 id="install-vs-code-and-net-core" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="27" sourceendlinenumber="27">Install VS Code and .NET Core</h2>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="29" sourceendlinenumber="29">This tutorial requires the <a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="29" sourceendlinenumber="29">.NET Core 2.0.0 SDK</a> or later. See <a href="https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf" data-raw-source="[the pdf](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/first-mvc-app-mac/start-mvc/8-23-17.pdf)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="29" sourceendlinenumber="29">the pdf</a> for the ASP.NET Core 1.1 version.</p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="31" sourceendlinenumber="31">Install the following:</p>
+<ul sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="33" sourceendlinenumber="35">
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="33" sourceendlinenumber="33"><a href="https://www.microsoft.com/net/core" data-raw-source="[.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="33" sourceendlinenumber="33">.NET Core 2.0.0 SDK</a> or later.</li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="34" sourceendlinenumber="34"><a href="https://code.visualstudio.com" data-raw-source="[Visual Studio Code](https://code.visualstudio.com)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="34" sourceendlinenumber="34">Visual Studio Code</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="35" sourceendlinenumber="35">VS Code <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp" data-raw-source="[C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="35" sourceendlinenumber="35">C# extension</a> </li>
+</ul>
+<h2 id="create-a-web-app-with-dotnet" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="37" sourceendlinenumber="37">Create a web app with dotnet</h2>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="39" sourceendlinenumber="39">From a terminal, run the following commands:</p>
+<pre sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="41" sourceendlinenumber="45"><code class="lang-console">mkdir MvcMovie
+cd MvcMovie
+dotnet new mvc
+</code></pre><p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="47" sourceendlinenumber="47">Open the <em>MvcMovie</em> folder in Visual Studio Code (VS Code) and select the <em>Startup.cs</em> file.</p>
+<ul sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="49" sourceendlinenumber="50">
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="49" sourceendlinenumber="49">Select <strong>Yes</strong> to the <strong>Warn</strong> message &quot;Required assets to build and debug are missing from &#39;MvcMovie&#39;. Add them?&quot;</li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="50" sourceendlinenumber="50">Select <strong>Restore</strong> to the <strong>Info</strong> message &quot;There are unresolved dependencies&quot;.</li>
+</ul>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="52" sourceendlinenumber="52"><img src="../web-api-vsc/_static/vsc_restore.png" alt="VS Code with Warn Required assets to build and debug are missing from &#39;MvcMovie&#39;. Add them? Don&#39;t ask Again, Not Now, Yes and also Info - there are unresolved dependencies  - Restore - Close" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="52" sourceendlinenumber="52"></p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="54" sourceendlinenumber="54">Press <strong>Debug</strong> (F5) to build and run the program.</p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="56" sourceendlinenumber="56"><img src="../first-mvc-app/start-mvc/_static/1.png" alt="running app" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="56" sourceendlinenumber="56"></p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="58" sourceendlinenumber="58">VS Code starts the <a class="xref" href="../../fundamentals/servers/kestrel.html" data-raw-source="[Kestrel](xref:fundamentals/servers/kestrel)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="58" sourceendlinenumber="58">Kestrel</a> web server and runs your app. Notice that the address bar shows <code>localhost:5000</code> and not something like <code>example.com</code>. That&#39;s because <code>localhost</code> is the standard hostname for your local computer.</p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="60" sourceendlinenumber="60">The default template gives you working <strong>Home, About</strong> and <strong>Contact</strong> links. The browser image above doesn&#39;t show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.</p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="62" sourceendlinenumber="62"><img src="../first-mvc-app/start-mvc/_static/2.png" alt="navigation icon in upper right" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="62" sourceendlinenumber="62"></p>
+<p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="64" sourceendlinenumber="64">In the next part of this tutorial, we&#39;ll learn about MVC and start writing some code.</p>
+<h2 id="visual-studio-code-help" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="66" sourceendlinenumber="66">Visual Studio Code help</h2>
+<ul sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="68" sourceendlinenumber="75">
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="68" sourceendlinenumber="68"><a href="https://code.visualstudio.com/docs" data-raw-source="[Getting started](https://code.visualstudio.com/docs)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="68" sourceendlinenumber="68">Getting started</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="69" sourceendlinenumber="69"><a href="https://code.visualstudio.com/docs/editor/debugging" data-raw-source="[Debugging](https://code.visualstudio.com/docs/editor/debugging)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="69" sourceendlinenumber="69">Debugging</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="70" sourceendlinenumber="70"><a href="https://code.visualstudio.com/docs/editor/integrated-terminal" data-raw-source="[Integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="70" sourceendlinenumber="70">Integrated terminal</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="71" sourceendlinenumber="75"><p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="71" sourceendlinenumber="71"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference" data-raw-source="[Keyboard shortcuts](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="71" sourceendlinenumber="71">Keyboard shortcuts</a></p>
+<ul sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="73" sourceendlinenumber="75">
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="73" sourceendlinenumber="73"><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf" data-raw-source="[Mac keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="73" sourceendlinenumber="73">Mac keyboard shortcuts</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="74" sourceendlinenumber="74"><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf" data-raw-source="[Linux keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="74" sourceendlinenumber="74">Linux keyboard shortcuts</a></li>
+<li sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="75" sourceendlinenumber="75"><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf" data-raw-source="[Windows keyboard shortcuts](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="75" sourceendlinenumber="75">Windows keyboard shortcuts</a></li>
+</ul>
+</li>
+</ul>
+<div class="step-by-step" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="77" sourceendlinenumber="77"><p sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="78" sourceendlinenumber="78"><a href="adding-controller.html" data-raw-source="[Next - Add a controller](adding-controller.md)" sourcefile="tutorials/first-mvc-app-xplat/start-mvc.md" sourcestartlinenumber="78" sourceendlinenumber="78">Next - Add a controller</a></p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/first-mvc-app-xplat/start-mvc.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

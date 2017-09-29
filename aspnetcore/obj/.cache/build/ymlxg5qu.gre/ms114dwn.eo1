@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Migrating Auth and Identity to ASP.NET Core 2.0 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Migrating Auth and Identity to ASP.NET Core 2.0 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="migration/1x-to-2x/identity-2x">
+<h1 id="migrating-authentication-and-identity-to-aspnet-core-20" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="15" sourceendlinenumber="15">Migrating Authentication and Identity to ASP.NET Core 2.0</h1>
+
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://github.com/scottaddie" data-raw-source="[Scott Addie](https://github.com/scottaddie)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="17" sourceendlinenumber="17">Scott Addie</a> and <a href="https://github.com/HaoK" data-raw-source="[Hao Kung](https://github.com/HaoK)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="17" sourceendlinenumber="17">Hao Kung</a></p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="19" sourceendlinenumber="19">ASP.NET Core 2.0 has a new model for authentication and <a class="xref" href="../../security/authentication/identity.html" data-raw-source="[Identity](xref:security/authentication/identity)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="19" sourceendlinenumber="19">Identity</a> which simplifies configuration by using services. ASP.NET Core 1.x applications that use authentication or Identity can be updated to use the new model as outlined below.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="21" sourceendlinenumber="21"><a name="auth-middleware"></a></p>
+<h2 id="authentication-middleware-and-services" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="23" sourceendlinenumber="23">Authentication Middleware and Services</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="24" sourceendlinenumber="24">In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="26" sourceendlinenumber="26">The following 1.x example configures Facebook authentication with Identity in <em>Startup.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="28" sourceendlinenumber="43"><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+            .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();
+}
+
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
+{
+    app.UseIdentity();
+    app.UseFacebookAuthentication(new FacebookOptions { 
+        AppId = Configuration[&quot;auth:facebook:appid&quot;],
+        AppSecret = Configuration[&quot;auth:facebook:appsecret&quot;]
+    });
+} 
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="45" sourceendlinenumber="45">In 2.0 projects, authentication is configured via services. Each authentication scheme is registered in the <code>ConfigureServices</code> method of <em>Startup.cs</em>. The <code>UseIdentity</code> method is replaced with <code>UseAuthentication</code>.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="47" sourceendlinenumber="47">The following 2.0 example configures Facebook authentication with Identity in <em>Startup.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="49" sourceendlinenumber="67"><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+            .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;();
+
+    // If you want to tweak Identity cookies, they&#39;re no longer part of IdentityOptions.
+    services.ConfigureApplicationCookie(options =&gt; options.LoginPath = &quot;/Account/LogIn&quot;);
+    services.AddAuthentication()
+            .AddFacebook(options =&gt; {
+                options.AppId = Configuration[&quot;auth:facebook:appid&quot;];
+                options.AppSecret = Configuration[&quot;auth:facebook:appsecret&quot;];
+            });
+}
+
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
+    app.UseAuthentication();
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="69" sourceendlinenumber="69">The <code>UseAuthentication</code> method adds a single authentication middleware component which is responsible for automatic authentication and the handling of remote authentication requests. It replaces all of the individual middleware components with a single, common middleware component.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="71" sourceendlinenumber="71">Below are 2.0 migration instructions for each major authentication scheme.</p>
+<h3 id="cookie-based-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="73" sourceendlinenumber="73">Cookie-based Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="74" sourceendlinenumber="74">Select one of the two options below, and make the necessary changes in <em>Startup.cs</em>:</p>
+<ol sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="76" sourceendlinenumber="111">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="76" sourceendlinenumber="92"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="76" sourceendlinenumber="76">Use cookies with Identity</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="77" sourceendlinenumber="92">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="77" sourceendlinenumber="81"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="77" sourceendlinenumber="77">Replace <code>UseIdentity</code> with <code>UseAuthentication</code> in the <code>Configure</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="79" sourceendlinenumber="81"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="83" sourceendlinenumber="83"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="83" sourceendlinenumber="83">Invoke the <code>AddIdentity</code> method in the <code>ConfigureServices</code> method to add the cookie authentication services.</p>
+</li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="84" sourceendlinenumber="92"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="84" sourceendlinenumber="84">Optionally, invoke the <code>ConfigureApplicationCookie</code> or <code>ConfigureExternalCookie</code> method in the <code>ConfigureServices</code> method to tweak the Identity cookie settings.</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="86" sourceendlinenumber="92"><code class="lang-csharp">services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+services.ConfigureApplicationCookie(options =&gt; options.LoginPath = &quot;/Account/LogIn&quot;);
+</code></pre></li>
+</ul>
+</li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="94" sourceendlinenumber="111"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="94" sourceendlinenumber="94">Use cookies without Identity</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="95" sourceendlinenumber="111">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="95" sourceendlinenumber="99"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="95" sourceendlinenumber="95">Replace the <code>UseCookieAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="97" sourceendlinenumber="99"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="101" sourceendlinenumber="111"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="101" sourceendlinenumber="101">Invoke the <code>AddAuthentication</code> and <code>AddCookie</code> methods in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="103" sourceendlinenumber="111"><code class="lang-csharp">// If you don&#39;t want the cookie to be automatically authenticated and assigned to HttpContext.User, 
+// remove the CookieAuthenticationDefaults.AuthenticationScheme parameter passed to AddAuthentication.
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =&gt; {
+            options.LoginPath = &quot;/Account/LogIn&quot;;
+            options.LogoutPath = &quot;/Account/LogOff&quot;;
+        });
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<h3 id="jwt-bearer-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="113" sourceendlinenumber="113">JWT Bearer Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="114" sourceendlinenumber="114">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="115" sourceendlinenumber="131">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="115" sourceendlinenumber="119"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="115" sourceendlinenumber="115">Replace the <code>UseJwtBearerAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="117" sourceendlinenumber="119"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="121" sourceendlinenumber="131"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="121" sourceendlinenumber="121">Invoke the <code>AddJwtBearer</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="123" sourceendlinenumber="129"><code class="lang-csharp">services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =&gt; {
+            options.Audience = &quot;http://localhost:5001/&quot;;
+            options.Authority = &quot;http://localhost:5000/&quot;;
+        });
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="131" sourceendlinenumber="131">  This code snippet doesn&#39;t use Identity, so the default scheme should be set by passing <code>JwtBearerDefaults.AuthenticationScheme</code> to the <code>AddAuthentication</code> method.</p>
+</li>
+</ul>
+<h3 id="openid-connect-oidc-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="133" sourceendlinenumber="133">OpenID Connect (OIDC) Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="134" sourceendlinenumber="134">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="136" sourceendlinenumber="154">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="136" sourceendlinenumber="140"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="136" sourceendlinenumber="136">Replace the <code>UseOpenIdConnectAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="138" sourceendlinenumber="140"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="142" sourceendlinenumber="154"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="142" sourceendlinenumber="142">Invoke the <code>AddOpenIdConnect</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="144" sourceendlinenumber="154"><code class="lang-csharp">services.AddAuthentication(options =&gt; {
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =&gt; {
+    options.Authority = Configuration[&quot;auth:oidc:authority&quot;];
+    options.ClientId = Configuration[&quot;auth:oidc:clientid&quot;];
+});
+</code></pre></li>
+</ul>
+<h3 id="facebook-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="156" sourceendlinenumber="156">Facebook Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="157" sourceendlinenumber="157">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="158" sourceendlinenumber="172">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="158" sourceendlinenumber="162"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="158" sourceendlinenumber="158">Replace the <code>UseFacebookAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="160" sourceendlinenumber="162"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="164" sourceendlinenumber="172"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="164" sourceendlinenumber="164">Invoke the <code>AddFacebook</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="166" sourceendlinenumber="172"><code class="lang-csharp">services.AddAuthentication()
+        .AddFacebook(options =&gt; {
+            options.AppId = Configuration[&quot;auth:facebook:appid&quot;];
+            options.AppSecret = Configuration[&quot;auth:facebook:appsecret&quot;];
+        });
+</code></pre></li>
+</ul>
+<h3 id="google-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="174" sourceendlinenumber="174">Google Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="175" sourceendlinenumber="175">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="176" sourceendlinenumber="190">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="176" sourceendlinenumber="180"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="176" sourceendlinenumber="176">Replace the <code>UseGoogleAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="178" sourceendlinenumber="180"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="182" sourceendlinenumber="190"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="182" sourceendlinenumber="182">Invoke the <code>AddGoogle</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="184" sourceendlinenumber="190"><code class="lang-csharp">services.AddAuthentication()
+        .AddGoogle(options =&gt; {
+            options.ClientId = Configuration[&quot;auth:google:clientid&quot;];
+            options.ClientSecret = Configuration[&quot;auth:google:clientsecret&quot;];
+        });    
+</code></pre></li>
+</ul>
+<h3 id="microsoft-account-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="192" sourceendlinenumber="192">Microsoft Account Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="193" sourceendlinenumber="193">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="194" sourceendlinenumber="208">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="194" sourceendlinenumber="198"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="194" sourceendlinenumber="194">Replace the <code>UseMicrosoftAccountAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="196" sourceendlinenumber="198"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="200" sourceendlinenumber="208"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="200" sourceendlinenumber="200">Invoke the <code>AddMicrosoftAccount</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="202" sourceendlinenumber="208"><code class="lang-csharp">services.AddAuthentication()
+        .AddMicrosoftAccount(options =&gt; {
+            options.ClientId = Configuration[&quot;auth:microsoft:clientid&quot;];
+            options.ClientSecret = Configuration[&quot;auth:microsoft:clientsecret&quot;];
+        });
+</code></pre></li>
+</ul>
+<h3 id="twitter-authentication" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="210" sourceendlinenumber="210">Twitter Authentication</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="211" sourceendlinenumber="211">Make the following changes in <em>Startup.cs</em>:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="212" sourceendlinenumber="226">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="212" sourceendlinenumber="216"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="212" sourceendlinenumber="212">Replace the <code>UseTwitterAuthentication</code> method call in the <code>Configure</code> method with <code>UseAuthentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="214" sourceendlinenumber="216"><code class="lang-csharp">app.UseAuthentication();
+</code></pre></li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="218" sourceendlinenumber="226"><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="218" sourceendlinenumber="218">Invoke the <code>AddTwitter</code> method in the <code>ConfigureServices</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="220" sourceendlinenumber="226"><code class="lang-csharp">services.AddAuthentication()
+        .AddTwitter(options =&gt; {
+            options.ConsumerKey = Configuration[&quot;auth:twitter:consumerkey&quot;];
+            options.ConsumerSecret = Configuration[&quot;auth:twitter:consumersecret&quot;];
+        });
+</code></pre></li>
+</ul>
+<h3 id="setting-default-authentication-schemes" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="228" sourceendlinenumber="228">Setting Default Authentication Schemes</h3>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="229" sourceendlinenumber="229">In 1.x, the <code>AutomaticAuthenticate</code> and <code>AutomaticChallenge</code> properties were intended to be set on a single authentication scheme. There was no good way to enforce this.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="231" sourceendlinenumber="231">In 2.0, these two properties have been removed as flags on the individual <code>AuthenticationOptions</code> instance and have moved into the base <a href="/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions" data-raw-source="[AuthenticationOptions](/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="231" sourceendlinenumber="231">AuthenticationOptions</a> class. The properties can be configured in the <code>AddAuthentication</code> method call within the <code>ConfigureServices</code> method of <em>Startup.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="233" sourceendlinenumber="235"><code class="lang-csharp">services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="237" sourceendlinenumber="237">Alternatively, use an overloaded version of the <code>AddAuthentication</code> method to set more than one property. In the following overloaded method example, the default scheme is set to <code>CookieAuthenticationDefaults.AuthenticationScheme</code>. The authentication scheme may alternatively be specified within your individual <code>[Authorize]</code> attributes or authorization policies.</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="239" sourceendlinenumber="244"><code class="lang-csharp">services.AddAuthentication(options =&gt; {
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+});
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="246" sourceendlinenumber="246">Define a default scheme in 2.0 if one of the following conditions is true:</p>
+<ul sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="247" sourceendlinenumber="248">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="247" sourceendlinenumber="247">You want the user to be automatically signed in</li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="248" sourceendlinenumber="248">You use the <code>[Authorize]</code> attribute or authorization policies without specifying schemes</li>
+</ul>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="250" sourceendlinenumber="250">An exception to this rule is the <code>AddIdentity</code> method. This method adds cookies for you and sets the default authenticate and challenge schemes to the application cookie <code>IdentityConstants.ApplicationScheme</code>. Additionally, it sets the default sign-in scheme to the external cookie <code>IdentityConstants.ExternalScheme</code>.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="252" sourceendlinenumber="252"><a name="obsolete-interface"></a></p>
+<h2 id="use-httpcontext-authentication-extensions" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="254" sourceendlinenumber="254">Use HttpContext Authentication Extensions</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="255" sourceendlinenumber="255">The <code>IAuthenticationManager</code> interface is the main entry point into the 1.x authentication system. It has been replaced with a new set of <code>HttpContext</code> extension methods in the <code>Microsoft.AspNetCore.Authentication</code> namespace.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="257" sourceendlinenumber="257">For example, 1.x projects reference an <code>Authentication</code> property:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="259" sourceendlinenumber="259"><code class="lang-csharp" name="Main">// Clear the existing external cookie to ensure a clean login process
+await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="261" sourceendlinenumber="261">In 2.0 projects, import the <code>Microsoft.AspNetCore.Authentication</code> namespace, and delete the <code>Authentication</code> property references:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="263" sourceendlinenumber="263"><code class="lang-csharp" name="Main">// Clear the existing external cookie to ensure a clean login process
+await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="265" sourceendlinenumber="265"><a name="windows-auth-changes"></a></p>
+<h2 id="windows-authentication-httpsys--iisintegration" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="267" sourceendlinenumber="267">Windows Authentication (HTTP.sys / IISIntegration)</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="268" sourceendlinenumber="268">There are two variations of Windows authentication:</p>
+<ol sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="269" sourceendlinenumber="270">
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="269" sourceendlinenumber="269">The host only allows authenticated users</li>
+<li sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="270" sourceendlinenumber="270">The host allows both anonymous and authenticated users</li>
+</ol>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="272" sourceendlinenumber="272">The first variation described above is unaffected by the 2.0 changes.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="274" sourceendlinenumber="274">The second variation described above is affected by the 2.0 changes. As an example, you may be allowing anonymous users into your application at the IIS or <a class="xref" href="../../fundamentals/servers/weblistener.html" data-raw-source="[HTTP.sys](xref:fundamentals/servers/weblistener)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="274" sourceendlinenumber="274">HTTP.sys</a> layer but authorizing users at the Controller level. In this scenario, set the default scheme to <code>IISDefaults.AuthenticationScheme</code> in the <code>ConfigureServices</code> method of <em>Startup.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="276" sourceendlinenumber="278"><code class="lang-csharp">services.AddAuthentication(IISDefaults.AuthenticationScheme);
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="280" sourceendlinenumber="280">Failure to set the default scheme accordingly prevents the authorize request to challenge from working.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="282" sourceendlinenumber="282"><a name="identity-cookie-options"></a></p>
+<h2 id="identitycookieoptions-instances" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="284" sourceendlinenumber="284">IdentityCookieOptions Instances</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="285" sourceendlinenumber="285">A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.</p>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="287" sourceendlinenumber="287">For example, 1.x projects use <a class="xref" href="../../mvc/controllers/dependency-injection.html#constructor-injection" data-raw-source="[constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="287" sourceendlinenumber="287">constructor injection</a> to pass an <code>IdentityCookieOptions</code> parameter into <em>AccountController.cs</em>. The external cookie authentication scheme is accessed from the provided instance:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="289" sourceendlinenumber="289"><code class="lang-csharp" name="Main" highlight-lines="4,11">public AccountController(
+    UserManager&lt;ApplicationUser&gt; userManager,
+    SignInManager&lt;ApplicationUser&gt; signInManager,
+    IOptions&lt;IdentityCookieOptions&gt; identityCookieOptions,
+    IEmailSender emailSender,
+    ISmsSender smsSender,
+    ILoggerFactory loggerFactory)
+{
+    _userManager = userManager;
+    _signInManager = signInManager;
+    _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
+    _emailSender = emailSender;
+    _smsSender = smsSender;
+    _logger = loggerFactory.CreateLogger&lt;AccountController&gt;();
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="291" sourceendlinenumber="291">The aforementioned constructor injection becomes unnecessary in 2.0 projects, and the <code>_externalCookieScheme</code> field can be deleted:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="293" sourceendlinenumber="293"><code class="lang-csharp" name="Main">public AccountController(
+    UserManager&lt;ApplicationUser&gt; userManager,
+    SignInManager&lt;ApplicationUser&gt; signInManager,
+    IEmailSender emailSender,
+    ISmsSender smsSender,
+    ILoggerFactory loggerFactory)
+{
+    _userManager = userManager;
+    _signInManager = signInManager;
+    _emailSender = emailSender;
+    _smsSender = smsSender;
+    _logger = loggerFactory.CreateLogger&lt;AccountController&gt;();
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="295" sourceendlinenumber="295">The <code>IdentityConstants.ExternalScheme</code> constant can be used directly:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="297" sourceendlinenumber="297"><code class="lang-csharp" name="Main">// Clear the existing external cookie to ensure a clean login process
+await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="299" sourceendlinenumber="299"><a name="navigation-properties"></a></p>
+<h2 id="add-identityuser-poco-navigation-properties" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="301" sourceendlinenumber="301">Add IdentityUser POCO Navigation Properties</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="302" sourceendlinenumber="302">The Entity Framework (EF) Core navigation properties of the base <code>IdentityUser</code> POCO (Plain Old CLR Object) have been removed. If your 1.x project used these properties, manually add them back to the 2.0 project:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="304" sourceendlinenumber="319"><code class="lang-csharp">/// &lt;summary&gt;
+/// Navigation property for the roles this user belongs to.
+/// &lt;/summary&gt;
+public virtual ICollection&lt;IdentityUserRole&lt;int&gt;&gt; Roles { get; } = new List&lt;IdentityUserRole&lt;int&gt;&gt;();
+
+/// &lt;summary&gt;
+/// Navigation property for the claims this user possesses.
+/// &lt;/summary&gt;
+public virtual ICollection&lt;IdentityUserClaim&lt;int&gt;&gt; Claims { get; } = new List&lt;IdentityUserClaim&lt;int&gt;&gt;();
+
+/// &lt;summary&gt;
+/// Navigation property for this users login accounts.
+/// &lt;/summary&gt;
+public virtual ICollection&lt;IdentityUserLogin&lt;int&gt;&gt; Logins { get; } = new List&lt;IdentityUserLogin&lt;int&gt;&gt;();
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="321" sourceendlinenumber="321">To prevent duplicate foreign keys when running EF Core Migrations, add the following to your <code>IdentityDbContext</code> class&#39; <code>OnModelCreating</code> method (after the <code>base.OnModelCreating();</code> call):</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="323" sourceendlinenumber="352"><code class="lang-csharp">protected override void OnModelCreating(ModelBuilder builder)
+{
+    base.OnModelCreating(builder);
+    // Customize the ASP.NET Identity model and override the defaults if needed.
+    // For example, you can rename the ASP.NET Identity table names and more.
+    // Add your customizations after calling base.OnModelCreating(builder);
+
+    builder.Entity&lt;ApplicationUser&gt;()
+        .HasMany(e =&gt; e.Claims)
+        .WithOne()
+        .HasForeignKey(e =&gt; e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity&lt;ApplicationUser&gt;()
+        .HasMany(e =&gt; e.Logins)
+        .WithOne()
+        .HasForeignKey(e =&gt; e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+    builder.Entity&lt;ApplicationUser&gt;()
+        .HasMany(e =&gt; e.Roles)
+        .WithOne()
+        .HasForeignKey(e =&gt; e.UserId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="354" sourceendlinenumber="354"><a name="synchronous-method-removal"></a></p>
+<h2 id="replace-getexternalauthenticationschemes" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="356" sourceendlinenumber="356">Replace GetExternalAuthenticationSchemes</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="357" sourceendlinenumber="357">The synchronous method <code>GetExternalAuthenticationSchemes</code> was removed in favor of an asynchronous version. 1.x projects have the following code in <em>ManageController.cs</em>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="359" sourceendlinenumber="359"><code class="lang-csharp" name="Main">var otherLogins = _signInManager.GetExternalAuthenticationSchemes().Where(auth =&gt; userLogins.All(ul =&gt; auth.AuthenticationScheme != ul.LoginProvider)).ToList();
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="361" sourceendlinenumber="361">This method appears in <em>Login.cshtml</em> too:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="363" sourceendlinenumber="363"><code class="lang-cshtml" name="Main">var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+        &lt;div&gt;
+            &lt;p&gt;
+                @foreach (var provider in loginProviders)
+                {
+                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot; name=&quot;provider&quot; value=&quot;@provider.AuthenticationScheme&quot; title=&quot;Log in using your @provider.DisplayName account&quot;&gt;@provider.AuthenticationScheme&lt;/button&gt;
+                }
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="365" sourceendlinenumber="365">In 2.0 projects, use the <code>GetExternalAuthenticationSchemesAsync</code> method:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="367" sourceendlinenumber="367"><code class="lang-csharp" name="Main">var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
+var otherLogins = schemes.Where(auth =&gt; userLogins.All(ul =&gt; auth.Name != ul.LoginProvider)).ToList();
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="369" sourceendlinenumber="369">In <em>Login.cshtml</em>, the <code>AuthenticationScheme</code> property accessed in the <code>foreach</code> loop changes to <code>Name</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="371" sourceendlinenumber="371"><code class="lang-cshtml" name="Main">var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+        &lt;div&gt;
+            &lt;p&gt;
+                @foreach (var provider in loginProviders)
+                {
+                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot; name=&quot;provider&quot; value=&quot;@provider.Name&quot; title=&quot;Log in using your @provider.DisplayName account&quot;&gt;@provider.DisplayName&lt;/button&gt;
+                }
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="373" sourceendlinenumber="373"><a name="property-change"></a></p>
+<h2 id="manageloginsviewmodel-property-change" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="375" sourceendlinenumber="375">ManageLoginsViewModel Property Change</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="376" sourceendlinenumber="376">A <code>ManageLoginsViewModel</code> object is used in the <code>ManageLogins</code> action of <em>ManageController.cs</em>. In 1.x projects, the object&#39;s <code>OtherLogins</code> property return type is <code>IList&lt;AuthenticationDescription&gt;</code>. This return type requires an import of <code>Microsoft.AspNetCore.Http.Authentication</code>:</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="378" sourceendlinenumber="378"><code class="lang-csharp" name="Main" highlight-lines="2,11">using System.Collections.Generic;
+using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Identity;
+
+namespace AspNetCoreDotNetCore1App.Models.ManageViewModels
+{
+    public class ManageLoginsViewModel
+    {
+        public IList&lt;UserLoginInfo&gt; CurrentLogins { get; set; }
+
+        public IList&lt;AuthenticationDescription&gt; OtherLogins { get; set; }
+    }
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="380" sourceendlinenumber="380">In 2.0 projects, the return type changes to <code>IList&lt;AuthenticationScheme&gt;</code>. This new return type requires replacing the <code>Microsoft.AspNetCore.Http.Authentication</code> import with a <code>Microsoft.AspNetCore.Authentication</code> import.</p>
+<pre sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="382" sourceendlinenumber="382"><code class="lang-csharp" name="Main" highlight-lines="2,11">using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+
+namespace AspNetCoreDotNetCore2App.Models.ManageViewModels
+{
+    public class ManageLoginsViewModel
+    {
+        public IList&lt;UserLoginInfo&gt; CurrentLogins { get; set; }
+
+        public IList&lt;AuthenticationScheme&gt; OtherLogins { get; set; }
+    }
+}
+</code></pre><p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="384" sourceendlinenumber="384"><a name="additional-resources"></a></p>
+<h2 id="additional-resources" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="386" sourceendlinenumber="386">Additional Resources</h2>
+<p sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="387" sourceendlinenumber="387">For additional details and discussion, see the <a href="https://github.com/aspnet/Security/issues/1338" data-raw-source="[Discussion for Auth 2.0](https://github.com/aspnet/Security/issues/1338)" sourcefile="migration/1x-to-2x/identity-2x.md" sourcestartlinenumber="387" sourceendlinenumber="387">Discussion for Auth 2.0</a> issue on GitHub.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/migration/1x-to-2x/identity-2x.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

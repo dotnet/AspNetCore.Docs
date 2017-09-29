@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Open Web Interface for .NET (OWIN) </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Open Web Interface for .NET (OWIN) ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/owin">
+<h1 id="introduction-to-open-web-interface-for-net-owin">Introduction to Open Web Interface for .NET (OWIN)</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a> and  <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a></p>
+<p>ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers. It defines a standard way for middleware to be used in a pipeline to handle requests and associated responses. ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middleware.</p>
+<p>OWIN provides a decoupling layer that allows two frameworks with disparate object models to be used together. The <code>Microsoft.AspNetCore.Owin</code> package provides two adapter implementations:</p>
+<ul>
+<li>ASP.NET Core to OWIN </li>
+<li>OWIN to ASP.NET Core</li>
+</ul>
+<p>This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host, or for other OWIN compatible components to be run on top of ASP.NET Core.</p>
+<p>Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components should not use the Owin package or adapters.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample">View or download sample code</a></p>
+<h2 id="running-owin-middleware-in-the-aspnet-pipeline">Running OWIN middleware in the ASP.NET pipeline</h2>
+<p>ASP.NET Core&#39;s OWIN support is deployed as part of the <code>Microsoft.AspNetCore.Owin</code> package. You can import OWIN support into your project by installing this package.</p>
+<p>OWIN middleware conforms to the <a href="http://owin.org/spec/spec/owin-1.0.0.html">OWIN specification</a>, which requires a <code>Func&lt;IDictionary&lt;string, object&gt;, Task&gt;</code> interface, and specific keys be set (such as <code>owin.ResponseBody</code>). The following simple OWIN middleware displays &quot;Hello World&quot;:</p>
+<pre><code class="lang-csharp">public Task OwinHello(IDictionary&lt;string, object&gt; environment)
+{
+    string responseText = &quot;Hello World via OWIN&quot;;
+    byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
+
+    // OWIN Environment Keys: http://owin.org/spec/spec/owin-1.0.0.html
+    var responseStream = (Stream)environment[&quot;owin.ResponseBody&quot;];
+    var responseHeaders = (IDictionary&lt;string, string[]&gt;)environment[&quot;owin.ResponseHeaders&quot;];
+
+    responseHeaders[&quot;Content-Length&quot;] = new string[] { responseBytes.Length.ToString(CultureInfo.InvariantCulture) };
+    responseHeaders[&quot;Content-Type&quot;] = new string[] { &quot;text/plain&quot; };
+
+    return responseStream.WriteAsync(responseBytes, 0, responseBytes.Length);
+}
+</code></pre><p>The sample signature returns a <code>Task</code> and accepts an <code>IDictionary&lt;string, object&gt;</code> as required by OWIN.</p>
+<p>The following code shows how to add the <code>OwinHello</code> middleware (shown above) to the ASP.NET pipeline with the <code>UseOwin</code> extension method.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/OwinSample/Startup.cs"} -->
+<pre><code class="lang-csharp">public void Configure(IApplicationBuilder app)
+{
+    app.UseOwin(pipeline =&gt;
+    {
+        pipeline(next =&gt; OwinHello);
+    });
+}
+</code></pre><p>You can configure other actions to take place within the OWIN pipeline.</p>
+<div class="NOTE"><h5>Note</h5><p>Response headers should only be modified prior to the first write to the response stream.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>Multiple calls to <code>UseOwin</code> is discouraged for performance reasons. OWIN components will operate best if grouped together.</p>
+</div>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">app.UseOwin(pipeline =&gt;
+{
+    pipeline(next =&gt;
+    {
+        // do something before
+        return OwinHello;
+        // do something after
+    });
+});
+</code></pre><p><a name="hosting-on-owin"></a></p>
+<h2 id="using-aspnet-hosting-on-an-owin-based-server">Using ASP.NET Hosting on an OWIN-based server</h2>
+<p>OWIN-based servers can host ASP.NET applications. One such server is <a href="https://github.com/Bobris/Nowin">Nowin</a>, a .NET OWIN web server. In the sample for this article, I&#39;ve included a project that references Nowin and uses it to create an <code>IServer</code> capable of self-hosting ASP.NET Core.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="15">using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+
+namespace NowinSample
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseNowin()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+</code></pre><p><code>IServer</code> is an interface that requires an <code>Features</code> property and a <code>Start</code> method.</p>
+<p><code>Start</code> is responsible for configuring and starting the server, which in this case is done through a series of fluent API calls that set addresses parsed from the IServerAddressesFeature. Note that the fluent configuration of the <code>_builder</code> variable specifies that requests will be handled by the <code>appFunc</code> defined earlier in the method. This <code>Func</code> is called on each request to process incoming requests.</p>
+<p>We&#39;ll also add an <code>IWebHostBuilder</code> extension to make it easy to add and configure the Nowin server.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [11], "linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/NowinSample/NowinWebHostBuilderExtensions.cs"} -->
+<pre><code class="lang-csharp">using System;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.Extensions.DependencyInjection;
+using Nowin;
+using NowinSample;
+
+namespace Microsoft.AspNetCore.Hosting
+{
+    public static class NowinWebHostBuilderExtensions
+    {
+        public static IWebHostBuilder UseNowin(this IWebHostBuilder builder)
+        {
+            return builder.ConfigureServices(services =&gt;
+            {
+                services.AddSingleton&lt;IServer, NowinServer&gt;();
+            });
+        }
+
+        public static IWebHostBuilder UseNowin(this IWebHostBuilder builder, Action&lt;ServerBuilder&gt; configure)
+        {
+            builder.ConfigureServices(services =&gt;
+            {
+                services.Configure(configure);
+            });
+            return builder.UseNowin();
+        }
+    }
+}
+</code></pre><p>With this in place, all that&#39;s required to run an ASP.NET application using this custom server to call the extension in <em>Program.cs</em>:</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [15], "linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/NowinSample/Program.cs"} -->
+<pre><code class="lang-csharp">
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+
+namespace NowinSample
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseNowin()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup&lt;Startup&gt;()
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+</code></pre><p>Learn more about ASP.NET <a href="servers/index.html">Servers</a>.</p>
+<h2 id="run-aspnet-core-on-an-owin-based-server-and-use-its-websockets-support">Run ASP.NET Core on an OWIN-based server and use its WebSockets support</h2>
+<p>Another example of how OWIN-based servers&#39; features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web app that supports Web Sockets and echoes back everything sent to the server through WebSockets.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [7, 9, 10], "linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": true, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/NowinWebSockets/Startup.cs"} -->
+<pre><code class="lang-csharp">public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Use(async (context, next) =&gt;
+        {
+            if (context.WebSockets.IsWebSocketRequest)
+            {
+                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                await EchoWebSocket(webSocket);
+            }
+            else
+            {
+                await next();
+            }
+        });
+
+        app.Run(context =&gt;
+        {
+            return context.Response.WriteAsync(&quot;Hello World&quot;);
+        });
+    }
+
+    private async Task EchoWebSocket(WebSocket webSocket)
+    {
+        byte[] buffer = new byte[1024];
+        WebSocketReceiveResult received = await webSocket.ReceiveAsync(
+            new ArraySegment&lt;byte&gt;(buffer), CancellationToken.None);
+
+        while (!webSocket.CloseStatus.HasValue)
+        {
+            // Echo anything we receive
+            await webSocket.SendAsync(new ArraySegment&lt;byte&gt;(buffer, 0, received.Count), 
+                received.MessageType, received.EndOfMessage, CancellationToken.None);
+
+            received = await webSocket.ReceiveAsync(new ArraySegment&lt;byte&gt;(buffer), 
+                CancellationToken.None);
+        }
+
+        await webSocket.CloseAsync(webSocket.CloseStatus.Value, 
+            webSocket.CloseStatusDescription, CancellationToken.None);
+    }
+}
+</code></pre><p>This <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample">sample</a> is configured using the same <code>NowinServer</code> as the previous one - the only difference is in how the application is configured in its <code>Configure</code> method. A test using <a href="https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en">a simple websocket client</a> demonstrates  the application:</p>
+<p><img src="owin/_static/websocket-test.png" alt="Web Socket Test Client"></p>
+<h2 id="owin-environment">OWIN environment</h2>
+<p>You can construct a OWIN environment using the <code>HttpContext</code>.</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+<pre><code class="lang-csharp">
+   var environment = new OwinEnvironment(HttpContext);
+   var features = new OwinFeatureCollection(environment);
+</code></pre><h2 id="owin-keys">OWIN keys</h2>
+<p>OWIN depends on an <code>IDictionary&lt;string,object&gt;</code> object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the <a href="http://owin.org/#spec">primary specification, extensions</a>, and <a href="http://owin.org/spec/spec/CommonKeys.html">OWIN Key Guidelines and Common Keys</a>.</p>
+<h3 id="request-data-owin-v100">Request Data (OWIN v1.0.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owin.RequestScheme</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestMethod</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestPathBase</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestPath</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestQueryString</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestProtocol</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestHeaders</td>
+<td><code>IDictionary&lt;string,string[]&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.RequestBody</td>
+<td><code>Stream</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="request-data-owin-v110">Request Data (OWIN v1.1.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owin.RequestId</td>
+<td><code>String</code></td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-data-owin-v100">Response Data (OWIN v1.0.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owin.ResponseStatusCode</td>
+<td><code>int</code></td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>owin.ResponseReasonPhrase</td>
+<td><code>String</code></td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>owin.ResponseHeaders</td>
+<td><code>IDictionary&lt;string,string[]&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.ResponseBody</td>
+<td><code>Stream</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-data-owin-v100">Other Data (OWIN v1.0.0)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owin.CallCancelled</td>
+<td><code>CancellationToken</code></td>
+<td></td>
+</tr>
+<tr>
+<td>owin.Version</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-keys">Common Keys</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssl.ClientCertificate</td>
+<td><code>X509Certificate</code></td>
+<td></td>
+</tr>
+<tr>
+<td>ssl.LoadClientCertAsync</td>
+<td><code>Func&lt;Task&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.RemoteIpAddress</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.RemotePort</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.LocalIpAddress</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.LocalPort</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.IsLocal</td>
+<td><code>bool</code></td>
+<td></td>
+</tr>
+<tr>
+<td>server.OnSendingHeaders</td>
+<td><code>Action&lt;Action&lt;object&gt;,object&gt;</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sendfiles-v030">SendFiles v0.3.0</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sendfile.SendAsync</td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+<td>Per Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="opaque-v030">Opaque v0.3.0</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opaque.Version</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>opaque.Upgrade</td>
+<td><code>OpaqueUpgrade</code></td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+</tr>
+<tr>
+<td>opaque.Stream</td>
+<td><code>Stream</code></td>
+<td></td>
+</tr>
+<tr>
+<td>opaque.CallCancelled</td>
+<td><code>CancellationToken</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="websocket-v030">WebSocket v0.3.0</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value (type)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>websocket.Version</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>websocket.Accept</td>
+<td><code>WebSocketAccept</code></td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+</tr>
+<tr>
+<td>websocket.AcceptAlt</td>
+<td></td>
+<td>Non-spec</td>
+</tr>
+<tr>
+<td>websocket.SubProtocol</td>
+<td><code>String</code></td>
+<td>See <a href="https://tools.ietf.org/html/rfc6455#section-4.2.2">RFC6455 Section 4.2.2</a> Step 5.5</td>
+</tr>
+<tr>
+<td>websocket.SendAsync</td>
+<td><code>WebSocketSendAsync</code></td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+</tr>
+<tr>
+<td>websocket.ReceiveAsync</td>
+<td><code>WebSocketReceiveAsync</code></td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+</tr>
+<tr>
+<td>websocket.CloseAsync</td>
+<td><code>WebSocketCloseAsync</code></td>
+<td>See <a href="http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm">delegate signature</a></td>
+</tr>
+<tr>
+<td>websocket.CallCancelled</td>
+<td><code>CancellationToken</code></td>
+<td></td>
+</tr>
+<tr>
+<td>websocket.ClientCloseStatus</td>
+<td><code>int</code></td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>websocket.ClientCloseDescription</td>
+<td><code>String</code></td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p><a href="middleware.html">Middleware</a></p>
+</li>
+<li><p><a href="servers/index.html">Servers</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/owin.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

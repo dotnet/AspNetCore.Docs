@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Layout </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Layout ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/views/layout">
+<h1 id="layout">Layout</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Views frequently share visual and programmatic elements. In this article, you&#39;ll learn how to use common layouts, share directives, and run common code before rendering views in your ASP.NET app.</p>
+<h2 id="what-is-a-layout">What is a Layout</h2>
+<p>Most web apps have a common layout that provides the user with a consistent experience as they navigate from page to page. The layout typically includes common user interface elements such as the app header, navigation or menu elements, and footer.</p>
+<p><img src="layout/_static/page-layout.png" alt="Page Layout example"></p>
+<p>Common HTML structures such as scripts and stylesheets are also frequently used by many pages within an app. All of these shared elements may be defined in a <em>layout</em> file, which can then be referenced by any view used within the app. Layouts reduce duplicate code in views, helping them follow the <a href="http://deviq.com/don-t-repeat-yourself/">Don&#39;t Repeat Yourself (DRY) principle</a>.</p>
+<p>By convention, the default layout for an ASP.NET app is named <code>_Layout.cshtml</code>. The Visual Studio ASP.NET Core MVC project template includes this layout file in the <code>Views/Shared</code> folder:</p>
+<p><img src="layout/_static/web-project-views.png" alt="views folder in solutions explorer"></p>
+<p>This layout defines a top level template for views in the app. Apps do not require a layout, and apps can define more than one layout, with different views specifying different layouts.</p>
+<p>An example <code>_Layout.cshtml</code>:</p>
+<pre><code class="lang-html" name="Main" highlight-lines="42,66">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;@ViewData[&quot;Title&quot;] - WebApplication1&lt;/title&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.css&quot; /&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css&quot;
+              asp-fallback-href=&quot;~/lib/bootstrap/dist/css/bootstrap.min.css&quot;
+              asp-fallback-test-class=&quot;sr-only&quot; asp-fallback-test-property=&quot;position&quot; asp-fallback-test-value=&quot;absolute&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.min.css&quot; asp-append-version=&quot;true&quot; /&gt;
+    &lt;/environment&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;navbar-header&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+                    &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Index&quot; class=&quot;navbar-brand&quot;&gt;WebApplication1&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;navbar-collapse collapse&quot;&gt;
+                &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;About&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a asp-area=&quot;&quot; asp-controller=&quot;Home&quot; asp-action=&quot;Contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+                @await Html.PartialAsync(&quot;_LoginPartial&quot;)
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;container body-content&quot;&gt;
+        @RenderBody()
+        &lt;hr /&gt;
+        &lt;footer&gt;
+            &lt;p&gt;&amp;copy; 2016 - WebApplication1&lt;/p&gt;
+        &lt;/footer&gt;
+    &lt;/div&gt;
+
+    &lt;environment names=&quot;Development&quot;&gt;
+        &lt;script src=&quot;~/lib/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/lib/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;~/js/site.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+    &lt;environment names=&quot;Staging,Production&quot;&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js&quot;
+                asp-fallback-src=&quot;~/lib/jquery/dist/jquery.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js&quot;
+                asp-fallback-src=&quot;~/lib/bootstrap/dist/js/bootstrap.min.js&quot;
+                asp-fallback-test=&quot;window.jQuery &amp;&amp; window.jQuery.fn &amp;&amp; window.jQuery.fn.modal&quot;&gt;
+        &lt;/script&gt;
+        &lt;script src=&quot;~/js/site.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    &lt;/environment&gt;
+
+    @RenderSection(&quot;scripts&quot;, required: false)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="specifying-a-layout">Specifying a Layout</h2>
+<p>Razor views have a <code>Layout</code> property. Individual views specify a layout by setting this property:</p>
+<pre><code class="lang-html" name="Main" highlight-lines="2">@{
+    Layout = &quot;_Layout&quot;;
+}
+</code></pre><p>The layout specified can use a full path (example: <code>/Views/Shared/_Layout.cshtml</code>) or a partial name (example: <code>_Layout</code>). When a partial name is provided, the Razor view engine will search for the layout file using its standard discovery process. The controller-associated folder is searched first, followed by the <code>Shared</code> folder. This discovery process is identical to the one used to discover <a href="partial.html">partial views</a>.</p>
+<p>By default, every layout must call <code>RenderBody</code>. Wherever the call to <code>RenderBody</code> is placed, the contents of the view will be rendered.</p>
+<p><a name="layout-sections-label"></a></p>
+<h3 id="sections">Sections</h3>
+<p>A layout can optionally reference one or more <em>sections</em>, by calling <code>RenderSection</code>. Sections provide a way to organize where certain page elements should be placed. Each call to <code>RenderSection</code> can specify whether that section is required or optional. If a required section is not found, an exception will be thrown. Individual views specify the content to be rendered within a section using the <code>@section</code> Razor syntax. If a view defines a section, it must be rendered (or an error will occur).</p>
+<p>An example <code>@section</code> definition in a view:</p>
+<pre><code class="lang-html">@section Scripts {
+     &lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/main.js&quot;&gt;&lt;/script&gt;
+   }
+</code></pre><p>In the code above, validation scripts are added to the <code>scripts</code> section on a view that includes a form. Other views in the same application might not require any additional scripts, and so wouldn&#39;t need to define a scripts section.</p>
+<p>Sections defined in a view are available only in its immediate layout page. They cannot be referenced from partials, view components, or other parts of the view system.</p>
+<h3 id="ignoring-sections">Ignoring sections</h3>
+<p>By default, the body and all sections in a content page must all be rendered by the layout page. The Razor view engine enforces this by tracking whether the body and each section have been rendered.</p>
+<p>To instruct the view engine to ignore the body or sections, call the <code>IgnoreBody</code> and <code>IgnoreSection</code> methods.</p>
+<p>The body and every section in a Razor page must be either rendered or ignored.</p>
+<p><a name="viewimports"></a></p>
+<h2 id="importing-shared-directives">Importing Shared Directives</h2>
+<p>Views can use Razor directives to do many things, such as importing namespaces or performing <a href="dependency-injection.html">dependency injection</a>. Directives shared by many views may be specified in a common <code>_ViewImports.cshtml</code> file. The <code>_ViewImports</code> file supports the following directives:</p>
+<ul>
+<li><p><code>@addTagHelper</code></p>
+</li>
+<li><p><code>@removeTagHelper</code></p>
+</li>
+<li><p><code>@tagHelperPrefix</code></p>
+</li>
+<li><p><code>@using</code></p>
+</li>
+<li><p><code>@model</code></p>
+</li>
+<li><p><code>@inherits</code></p>
+</li>
+<li><p><code>@inject</code></p>
+</li>
+</ul>
+<p>The file does not support other Razor features, such as functions and section definitions.</p>
+<p>A sample <code>_ViewImports.cshtml</code> file:</p>
+<pre><code class="lang-html" name="Main">@using WebApplication1
+@using WebApplication1.Models
+@using WebApplication1.Models.AccountViewModels
+@using WebApplication1.Models.ManageViewModels
+@using Microsoft.AspNetCore.Identity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+</code></pre><p>The <code>_ViewImports.cshtml</code> file for an ASP.NET Core MVC app is typically placed in the <code>Views</code> folder. A <code>_ViewImports.cshtml</code> file can be placed within any folder, in which case it will only be applied to views within that folder and its subfolders. <code>_ViewImports</code> files are processed starting at the root level, and then for each folder leading up to the location of the view itself, so settings specified at the root level may be overridden at the folder level.</p>
+<p>For example, if a root level <code>_ViewImports.cshtml</code> file specifies <code>@model</code> and <code>@addTagHelper</code>, and another <code>_ViewImports.cshtml</code> file in the controller-associated folder of the view specifies a different <code>@model</code> and adds another <code>@addTagHelper</code>, the view will have access to both tag helpers and will use the latter <code>@model</code>.</p>
+<p>If multiple <code>_ViewImports.cshtml</code> files are run for a view, combined behavior of the directives included in the <code>ViewImports.cshtml</code> files will be as follows:</p>
+<ul>
+<li><p><code>@addTagHelper</code>, <code>@removeTagHelper</code>: all run, in order</p>
+</li>
+<li><p><code>@tagHelperPrefix</code>: the closest one to the view overrides any others</p>
+</li>
+<li><p><code>@model</code>: the closest one to the view overrides any others</p>
+</li>
+<li><p><code>@inherits</code>: the closest one to the view overrides any others</p>
+</li>
+<li><p><code>@using</code>: all are included; duplicates are ignored</p>
+</li>
+<li><p><code>@inject</code>: for each property, the closest one to the view overrides any others with the same property name</p>
+</li>
+</ul>
+<p><a name="viewstart"></a></p>
+<h2 id="running-code-before-each-view">Running Code Before Each View</h2>
+<p>If you have code you need to run before every view, this should be placed in the <code>_ViewStart.cshtml</code> file. By convention, the <code>_ViewStart.cshtml</code> file is located in the <code>Views</code> folder. The statements listed in <code>_ViewStart.cshtml</code> are run before every full view (not layouts, and not partial views). Like <a class="xref" href="layout.html#viewimports">ViewImports.cshtml</a>, <code>_ViewStart.cshtml</code> is hierarchical. If a <code>_ViewStart.cshtml</code> file is defined in the controller-associated view folder, it will be run after the one defined in the root of the <code>Views</code> folder (if any).</p>
+<p>A sample <code>_ViewStart.cshtml</code> file:</p>
+<pre><code class="lang-html" name="Main">@{
+    Layout = &quot;_Layout&quot;;
+}
+</code></pre><p>The file above specifies that all views will use the <code>_Layout.cshtml</code> layout.</p>
+<div class="NOTE"><h5>Note</h5><p>Neither <code>_ViewStart.cshtml</code> nor <code>_ViewImports.cshtml</code> are typically placed in the <code>/Views/Shared</code> folder. The app-level versions of these files should be placed directly in the <code>/Views</code> folder.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/views/layout.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

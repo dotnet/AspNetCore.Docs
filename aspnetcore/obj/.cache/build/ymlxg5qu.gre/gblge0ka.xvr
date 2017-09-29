@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Error Handling in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Error Handling in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/error-handling">
+<h1 id="introduction-to-error-handling-in-aspnet-core" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="16" sourceendlinenumber="16">Introduction to Error Handling in ASP.NET Core</h1>
+
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://ardalis.com/" data-raw-source="[Steve Smith](https://ardalis.com/)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="18" sourceendlinenumber="18">Steve Smith</a> and <a href="https://github.com/tdykstra/" data-raw-source="[Tom Dykstra](https://github.com/tdykstra/)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a></p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="20" sourceendlinenumber="20">This article covers common appoaches to handling errors in ASP.NET Core apps.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="22" sourceendlinenumber="22"><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample" data-raw-source="[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="22" sourceendlinenumber="22">View or download sample code</a></p>
+<h2 id="the-developer-exception-page" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="24" sourceendlinenumber="24">The developer exception page</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="26" sourceendlinenumber="26">To configure an app to display a page that shows detailed information about exceptions, install the <code>Microsoft.AspNetCore.Diagnostics</code> NuGet package and add a line to the <a href="startup.html" data-raw-source="[Configure method in the Startup class](startup.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="26" sourceendlinenumber="26">Configure method in the Startup class</a>:</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="28" sourceendlinenumber="28"><code class="lang-csharp" name="Main" highlight-lines="7">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+    env.EnvironmentName = EnvironmentName.Production;
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/error&quot;);
+    }
+</code></pre><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="30" sourceendlinenumber="30">Put <code>UseDeveloperExceptionPage</code> before any middleware you want to catch exceptions in, such as <code>app.UseMvc</code>.</p>
+<div class="WARNING" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="32" sourceendlinenumber="32"><h5>Warning</h5><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="33" sourceendlinenumber="33">Enable the developer exception page <strong>only when the app is running in the Development environment</strong>. You don&#39;t want to share detailed exception information publicly when the app runs in production. <a href="environments.html" data-raw-source="[Learn more about configuring environments](environments.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="33" sourceendlinenumber="33">Learn more about configuring environments</a>.</p>
+</div>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="35" sourceendlinenumber="35">To see the developer exception page, run the sample application with the environment set to <code>Development</code>, and add <code>?throw=true</code> to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace. </p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="37" sourceendlinenumber="37"><img src="error-handling/_static/developer-exception-page.png" alt="Stack trace" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="37" sourceendlinenumber="37"></p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="39" sourceendlinenumber="39">The next tab shows the query string parameters, if any.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="41" sourceendlinenumber="41"><img src="error-handling/_static/developer-exception-page-query.png" alt="Query string parameters" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="41" sourceendlinenumber="41"></p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="43" sourceendlinenumber="43">This request didn&#39;t have any cookies, but if it did, they would appear on the <strong>Cookies</strong> tab. You can see the headers that were passed in the last tab.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="45" sourceendlinenumber="45"><img src="error-handling/_static/developer-exception-page-headers.png" alt="Headers" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="45" sourceendlinenumber="45"></p>
+<h2 id="configuring-a-custom-exception-handling-page" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="47" sourceendlinenumber="47">Configuring a custom exception handling page</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="49" sourceendlinenumber="49">It&#39;s a good idea to configure an exception handler page to use when the app is not running in the <code>Development</code> environment.</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="51" sourceendlinenumber="51"><code class="lang-csharp" name="Main" highlight-lines="11">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+    env.EnvironmentName = EnvironmentName.Production;
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/error&quot;);
+    }
+</code></pre><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="53" sourceendlinenumber="53">In an MVC app, don&#39;t explicitly decorate the error handler action method with HTTP method attributes, such as <code>HttpGet</code>. Using explicit verbs could prevent some requests from reaching the method.</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="55" sourceendlinenumber="61"><code class="lang-csharp">[Route(&quot;/Error&quot;)]
+public IActionResult Index()
+{
+    // Handle error here
+}
+</code></pre><h2 id="configuring-status-code-pages" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="63" sourceendlinenumber="63">Configuring status code pages</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="65" sourceendlinenumber="65">By default, your app will not provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the <code>StatusCodePagesMiddleware</code> by adding a line to the <code>Configure</code> method:</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="67" sourceendlinenumber="69"><code class="lang-csharp">app.UseStatusCodePages();
+</code></pre><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="71" sourceendlinenumber="71">By default, this middleware adds simple, text-only handlers for common status codes, such as 404:</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="73" sourceendlinenumber="73"><img src="error-handling/_static/default-404-status-code.png" alt="404 page" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="73" sourceendlinenumber="73"></p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="75" sourceendlinenumber="75">The middleware supports several different extension methods. One takes a lambda expression, another takes a content type and format string.</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="77" sourceendlinenumber="77"><code class="lang-csharp" name="Main">app.UseStatusCodePages(async context =&gt;
+{
+    context.HttpContext.Response.ContentType = &quot;text/plain&quot;;
+    await context.HttpContext.Response.WriteAsync(
+        &quot;Status code page, status code: &quot; + 
+        context.HttpContext.Response.StatusCode);
+});
+</code></pre><pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="79" sourceendlinenumber="81"><code class="lang-csharp">app.UseStatusCodePages(&quot;text/plain&quot;, &quot;Status code page, status code: {0}&quot;);
+</code></pre><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="83" sourceendlinenumber="83">There are also redirect extension methods. One sends a 302 status code to the client, and one returns the original status code to the client but also executes the handler for the redirect URL.</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="85" sourceendlinenumber="85"><code class="lang-csharp" name="Main">app.UseStatusCodePagesWithRedirects(&quot;/error/{0}&quot;);
+</code></pre><pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="87" sourceendlinenumber="89"><code class="lang-csharp">app.UseStatusCodePagesWithReExecute(&quot;/error/{0}&quot;);
+</code></pre><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="91" sourceendlinenumber="91">If you need to disable status code pages for certain requests, you can do so:</p>
+<pre sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="93" sourceendlinenumber="99"><code class="lang-csharp">var statusCodePagesFeature = context.Features.Get&lt;IStatusCodePagesFeature&gt;();
+if (statusCodePagesFeature != null)
+{
+  statusCodePagesFeature.Enabled = false;
+}
+</code></pre><h2 id="exception-handling-code" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="101" sourceendlinenumber="101">Exception-handling code</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="103" sourceendlinenumber="103">Code in exception handling pages can throw exceptions. It&#39;s often a good idea for production error pages to consist of purely static content.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="105" sourceendlinenumber="105">Also, be aware that once the headers for a response have been sent, you can&#39;t change the response&#39;s status code, nor can any exception pages or handlers run. The response must be completed or the connection aborted.</p>
+<h2 id="server-exception-handling" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="107" sourceendlinenumber="107">Server exception handling</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="109" sourceendlinenumber="109">In addition to the exception handling logic in your app, the <a href="servers/index.html" data-raw-source="[server](servers/index.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="109" sourceendlinenumber="109">server</a> hosting your app performs some exception handling. If the server catches an exception before the headers are sent, the server sends a 500 Internal Server Error response with no body. If the server catches an exception after the headers have been sent, the server closes the connection. Requests that aren&#39;t handled by your app are handled by the server. Any exception that occurs is handled by the server&#39;s exception handling. Any configured custom error pages or exception handling middleware or filters don&#39;t affect this behavior.</p>
+<h2 id="startup-exception-handling" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="111" sourceendlinenumber="111">Startup exception handling</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="113" sourceendlinenumber="113">Only the hosting layer can handle exceptions that take place during app startup. You can <a href="hosting.html#detailed-errors" data-raw-source="[configure how the host behaves in response to errors during startup](hosting.md#detailed-errors)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="113" sourceendlinenumber="113">configure how the host behaves in response to errors during startup</a> using <code>captureStartupErrors</code> and the <code>detailedErrors</code> key.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="115" sourceendlinenumber="115">Hosting can only show an error page for a captured startup error if the error occurs after host address/port binding. If any binding fails for any reason, the hosting layer logs a critical exception, the dotnet process crashes, and no error page is displayed.</p>
+<h2 id="aspnet-mvc-error-handling" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="117" sourceendlinenumber="117">ASP.NET MVC error handling</h2>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="119" sourceendlinenumber="119"><a href="../mvc/index.html" data-raw-source="[MVC](../mvc/index.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="119" sourceendlinenumber="119">MVC</a> apps have some additional options for handling errors, such as configuring exception filters and performing model validation.</p>
+<h3 id="exception-filters" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="121" sourceendlinenumber="121">Exception Filters</h3>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="123" sourceendlinenumber="123">Exception filters can be configured globally or on a per-controller or per-action basis in an MVC app. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter, and are not called otherwise. Learn more about exception filters in <a href="../mvc/controllers/filters.html" data-raw-source="[Filters](../mvc/controllers/filters.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="123" sourceendlinenumber="123">Filters</a>.</p>
+<div class="TIP" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="125" sourceendlinenumber="125"><h5>Tip</h5><p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="126" sourceendlinenumber="126">Exception filters are good for trapping exceptions that occur within MVC actions, but they&#39;re not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling <em>differently</em> based on which MVC action was chosen.</p>
+</div>
+<h3 id="handling-model-state-errors" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="128" sourceendlinenumber="128">Handling Model State Errors</h3>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="130" sourceendlinenumber="130"><a href="../mvc/models/validation.html" data-raw-source="[Model validation](../mvc/models/validation.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="130" sourceendlinenumber="130">Model validation</a> occurs prior to each controller action being invoked, and it is the action method’s responsibility to inspect <code>ModelState.IsValid</code> and react appropriately.</p>
+<p sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="132" sourceendlinenumber="132">Some apps will choose to follow a standard convention for dealing with model validation errors, in which case a <a href="../mvc/controllers/filters.html" data-raw-source="[filter](../mvc/controllers/filters.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="132" sourceendlinenumber="132">filter</a> may be an appropriate place to implement such a policy. You should test how your actions behave with invalid model states. Learn more in <a href="../mvc/controllers/testing.html" data-raw-source="[Testing controller logic](../mvc/controllers/testing.md)" sourcefile="fundamentals/error-handling.md" sourcestartlinenumber="132" sourceendlinenumber="132">Testing controller logic</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/error-handling.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>View Based Authorization </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="View Based Authorization ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authorization/views">
+<h1 id="view-based-authorization">View Based Authorization</h1>
+
+<p><a name="security-authorization-views"></a></p>
+<p>Often a developer will want to show, hide or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via <a href="../../fundamentals/dependency-injection.html#fundamentals-dependency-injection">dependency injection</a>. To inject the authorization service into a Razor view use the <code>@inject</code> directive, for example <code>@inject IAuthorizationService AuthorizationService</code> (requires <code>@using Microsoft.AspNetCore.Authorization</code>). If you want the authorization service in every view then place the <code>@inject</code> directive into the <code>_ViewImports.cshtml</code> file in the <code>Views</code> directory. For more information on dependency injection into views see <a href="../../mvc/views/dependency-injection.html">Dependency injection into views</a>.</p>
+<p>Once you have injected the authorization service you use it by calling the <code>AuthorizeAsync</code> method in exactly the same way as you would check during <a href="resourcebased.html#security-authorization-resource-based-imperative">resource based authorization</a>.</p>
+<pre><code class="lang-csharp">@if (await AuthorizationService.AuthorizeAsync(User, &quot;PolicyName&quot;))
+   {
+       &lt;p&gt;This paragraph is displayed because you fulfilled PolicyName.&lt;/p&gt;
+   }
+</code></pre><p>In some cases the resource will be your view model, and you can call <code>AuthorizeAsync</code> in exactly the same way as you would check during <a href="resourcebased.html#security-authorization-resource-based-imperative">resource based authorization</a>;</p>
+<div class="tabGroup" id="tabgroup_mLWcRh5-Sa">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_mLWcRh5-Sa_aspnetcore2x" role="tab" aria-controls="tabpanel_mLWcRh5-Sa_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_mLWcRh5-Sa_aspnetcore1x" role="tab" aria-controls="tabpanel_mLWcRh5-Sa_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_mLWcRh5-Sa_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp">   @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
+   {
+       &lt;p&gt;&lt;a class=&quot;btn btn-default&quot; role=&quot;button&quot;
+           href=&quot;@Url.Action(&quot;Edit&quot;, &quot;Document&quot;, new { id = Model.Id })&quot;&gt;Edit&lt;/a&gt;&lt;/p&gt;
+   }
+</code></pre></section>
+<section id="tabpanel_mLWcRh5-Sa_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp">   @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
+   {
+       &lt;p&gt;&lt;a class=&quot;btn btn-default&quot; role=&quot;button&quot;
+           href=&quot;@Url.Action(&quot;Edit&quot;, &quot;Document&quot;, new { id = Model.Id })&quot;&gt;Edit&lt;/a&gt;&lt;/p&gt;
+   }
+</code></pre></section>
+</div>
+<p>Here you can see the model is passed as the resource authorization should take into consideration.</p>
+<div class="WARNING"><h5>Warning</h5><p>Do not rely on showing or hiding parts of your UI as your only authorization method. Hiding a UI element does not mean a user cannot access it. You must also authorize the user within your controller code.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authorization/views.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

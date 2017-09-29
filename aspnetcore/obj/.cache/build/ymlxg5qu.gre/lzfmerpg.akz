@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Publish an ASP.NET Core app to Azure using Visual Studio </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Publish an ASP.NET Core app to Azure using Visual Studio ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="tutorials/publish-to-azure-webapp-using-vs">
+<h1 id="publish-an-aspnet-core-web-app-to-azure-app-service-using-visual-studio" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="15" sourceendlinenumber="15">Publish an ASP.NET Core web app to Azure App Service using Visual Studio</h1>
+
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="17" sourceendlinenumber="17">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rick Anderson</a>, <a href="https://github.com/cesarbs" data-raw-source="[Cesar Blum Silveira](https://github.com/cesarbs)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="17" sourceendlinenumber="17">Cesar Blum Silveira</a>, and <a href="https://twitter.com/rachelappel" data-raw-source="[Rachel Appel](https://twitter.com/rachelappel)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="17" sourceendlinenumber="17">Rachel Appel</a></p>
+<h2 id="set-up-the-development-environment" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="19" sourceendlinenumber="19">Set up the development environment</h2>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="21" sourceendlinenumber="23">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="21" sourceendlinenumber="21"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="21" sourceendlinenumber="21">Install the latest <a href="https://www.visualstudio.com/vs/azure-tools/" data-raw-source="[Azure SDK for Visual Studio](https://www.visualstudio.com/vs/azure-tools/)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="21" sourceendlinenumber="21">Azure SDK for Visual Studio</a>. The SDK installs Visual Studio if you don&#39;t already have it.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="23" sourceendlinenumber="23"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="23" sourceendlinenumber="23">Verify your <a href="https://portal.azure.com/" data-raw-source="[Azure account](https://portal.azure.com/)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="23" sourceendlinenumber="23">Azure account</a>. You can <a href="https://azure.microsoft.com/pricing/free-trial/" data-raw-source="[open a free Azure account](https://azure.microsoft.com/pricing/free-trial/)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="23" sourceendlinenumber="23">open a free Azure account</a> or <a href="https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/" data-raw-source="[Activate Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="23" sourceendlinenumber="23">Activate Visual Studio subscriber benefits</a>.</p>
+</li>
+</ul>
+<h2 id="create-a-web-app" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="25" sourceendlinenumber="25">Create a web app</h2>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="27" sourceendlinenumber="27">In the Visual Studio Start Page, select <strong>File &gt; New &gt; Project...</strong></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="29" sourceendlinenumber="29"><img src="publish-to-azure-webapp-using-vs/_static/file_new_project.png" alt="File menu" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="29" sourceendlinenumber="29"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="31" sourceendlinenumber="31">Complete the <strong>New Project</strong> dialog:</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="33" sourceendlinenumber="37">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="33" sourceendlinenumber="33"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="33" sourceendlinenumber="33">In the left pane, select <strong>.NET Core</strong>.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="35" sourceendlinenumber="35"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="35" sourceendlinenumber="35">In the center pane, select <strong>ASP.NET Core Web Application</strong>.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="37" sourceendlinenumber="37"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="37" sourceendlinenumber="37">Select <strong>OK</strong>.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="39" sourceendlinenumber="39"><img src="publish-to-azure-webapp-using-vs/_static/new_prj.png" alt="New Project dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="39" sourceendlinenumber="39"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="41" sourceendlinenumber="41">In the <strong>New ASP.NET Core Web Application</strong> dialog:</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="43" sourceendlinenumber="45">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="43" sourceendlinenumber="43"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="43" sourceendlinenumber="43">Select <strong>Web Application</strong>.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="45" sourceendlinenumber="45"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="45" sourceendlinenumber="45">Select <strong>Change Authentication</strong>.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="47" sourceendlinenumber="47"><img src="publish-to-azure-webapp-using-vs/_static/new_prj_2.png" alt="New Project dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="47" sourceendlinenumber="47"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="49" sourceendlinenumber="49">The <strong>Change Authentication</strong> dialog appears. </p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="51" sourceendlinenumber="53">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="51" sourceendlinenumber="51"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="51" sourceendlinenumber="51">Select <strong>Individual User Accounts</strong>.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="53" sourceendlinenumber="53"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="53" sourceendlinenumber="53">Select <strong>OK</strong> to return to the <strong>New ASP.NET Core Web Application</strong>, then select <strong>OK</strong> again.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="55" sourceendlinenumber="55"><img src="publish-to-azure-webapp-using-vs/_static/new_prj_auth.png" alt="New ASP.NET Core Web authentication dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="55" sourceendlinenumber="55"> </p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="57" sourceendlinenumber="57">Visual Studio creates the solution.</p>
+<h2 id="run-the-app-locally" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="59" sourceendlinenumber="59">Run the app locally</h2>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="61" sourceendlinenumber="63">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="61" sourceendlinenumber="61"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="61" sourceendlinenumber="61">Choose <strong>Debug</strong> then <strong>Start Without Debugging</strong> to run the app locally.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="63" sourceendlinenumber="63"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="63" sourceendlinenumber="63">Click the <strong>About</strong> and <strong>Contact</strong> links to verify the web application works.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="65" sourceendlinenumber="65"><img src="publish-to-azure-webapp-using-vs/_static/show.png" alt="Web application open in Microsoft Edge on localhost" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="65" sourceendlinenumber="65"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="67" sourceendlinenumber="71">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="67" sourceendlinenumber="69"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="67" sourceendlinenumber="67">Select <strong>Register</strong> and register a new user. You can use a fictitious email address. When you submit, the page displays the following error:</p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="69" sourceendlinenumber="69">  <em>&quot;Internal Server Error: A database operation failed while processing the request. SQL exception: Cannot open the database. Applying existing migrations for Application DB context may resolve this issue.&quot;</em></p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="71" sourceendlinenumber="71"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="71" sourceendlinenumber="71">Select <strong>Apply Migrations</strong> and, once the page updates, refresh the page.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="73" sourceendlinenumber="73"><img src="publish-to-azure-webapp-using-vs/_static/mig.png" alt="Internal Server Error: A database operation failed while processing the request. SQL exception: Cannot open the database. Applying existing migrations for Application DB context may resolve this issue." sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="73" sourceendlinenumber="73"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="75" sourceendlinenumber="75">The app displays the email used to register the new user and a <strong>Log out</strong> link.</p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="77" sourceendlinenumber="77"><img src="publish-to-azure-webapp-using-vs/_static/hello.png" alt="Web application open in Microsoft Edge. The Register link is replaced by the text Hello email@domain.com!" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="77" sourceendlinenumber="77"></p>
+<h2 id="deploy-the-app-to-azure" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="79" sourceendlinenumber="79">Deploy the app to Azure</h2>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="81" sourceendlinenumber="81">Close the web page, return to Visual Studio, and select <strong>Stop Debugging</strong> from the <strong>Debug</strong> menu.</p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="83" sourceendlinenumber="83">Right-click on the project in Solution Explorer and select <strong>Publish...</strong>.</p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="85" sourceendlinenumber="85"><img src="publish-to-azure-webapp-using-vs/_static/pub.png" alt="Contextual menu open with Publish link highlighted" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="85" sourceendlinenumber="85"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="87" sourceendlinenumber="87">In the <strong>Publish</strong> dialog, select <strong>Microsoft Azure App Service</strong> and click <strong>Publish</strong>.</p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="89" sourceendlinenumber="89"><img src="publish-to-azure-webapp-using-vs/_static/maas1.png" alt="Publish dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="89" sourceendlinenumber="89"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="91" sourceendlinenumber="97">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="91" sourceendlinenumber="91"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="91" sourceendlinenumber="91">Name the app a unique name. </p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="93" sourceendlinenumber="93"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="93" sourceendlinenumber="93">Select a subscription.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="95" sourceendlinenumber="95"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="95" sourceendlinenumber="95">Select <strong>New...</strong> for the resource group and enter a name for the new resource group.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="97" sourceendlinenumber="97"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="97" sourceendlinenumber="97">Select <strong>New...</strong> for the app service plan and select a location near you. You can keep the name that is generated by default.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="99" sourceendlinenumber="99"><img src="publish-to-azure-webapp-using-vs/_static/newrg1.png" alt="App Service dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="99" sourceendlinenumber="99"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="101" sourceendlinenumber="103">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="101" sourceendlinenumber="101"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="101" sourceendlinenumber="101">Select the <strong>Services</strong> tab to create a new database.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="103" sourceendlinenumber="103"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="103" sourceendlinenumber="103">Select the green <strong>+</strong> icon to create a new SQL Database</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="105" sourceendlinenumber="105"><img src="publish-to-azure-webapp-using-vs/_static/sql.png" alt="New SQL Database" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="105" sourceendlinenumber="105"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="107" sourceendlinenumber="107">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="107" sourceendlinenumber="107">Select <strong>New...</strong> on the <strong>Configure SQL Database</strong> dialog to create a new database.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="109" sourceendlinenumber="109"><img src="publish-to-azure-webapp-using-vs/_static/conf.png" alt="New SQL Database and server" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="109" sourceendlinenumber="109"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="111" sourceendlinenumber="111">The <strong>Configure SQL Server</strong> dialog appears.</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="113" sourceendlinenumber="115">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="113" sourceendlinenumber="113"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="113" sourceendlinenumber="113">Enter an administrator user name and password, and then select <strong>OK</strong>. Don&#39;t forget the user name and password you create in this step. You can keep the default <strong>Server Name</strong>. </p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="115" sourceendlinenumber="115"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="115" sourceendlinenumber="115">Enter names for the database and connection string.</p>
+</li>
+</ul>
+<div class="NOTE" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="117" sourceendlinenumber="117"><h5>Note</h5><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="118" sourceendlinenumber="118">&quot;admin&quot; is not allowed as the administrator user name.</p>
+</div>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="120" sourceendlinenumber="120"><img src="publish-to-azure-webapp-using-vs/_static/conf_servername.png" alt="Configure SQL Server dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="120" sourceendlinenumber="120"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="122" sourceendlinenumber="122">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="122" sourceendlinenumber="122">Select <strong>OK</strong>.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="124" sourceendlinenumber="124">Visual Studio returns to the <strong>Create App Service</strong> dialog.</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="126" sourceendlinenumber="126">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="126" sourceendlinenumber="126">Select <strong>Create</strong> on the <strong>Create App Service</strong> dialog.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="128" sourceendlinenumber="128"><img src="publish-to-azure-webapp-using-vs/_static/conf_final.png" alt="Configure SQL Database dialog" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="128" sourceendlinenumber="128"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="130" sourceendlinenumber="130">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="130" sourceendlinenumber="130">Click the <strong>Settings</strong> link in the <strong>Publish</strong> dialog.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="132" sourceendlinenumber="132"><img src="publish-to-azure-webapp-using-vs/_static/pubc.png" alt="Publish dialog: Connection panel" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="132" sourceendlinenumber="132"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="134" sourceendlinenumber="134">On the <strong>Settings</strong> page of the <strong>Publish</strong> dialog:</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="136" sourceendlinenumber="138">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="136" sourceendlinenumber="136"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="136" sourceendlinenumber="136">Expand <strong>Databases</strong> and check <strong>Use this connection string at runtime</strong>.</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="138" sourceendlinenumber="138"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="138" sourceendlinenumber="138">Expand <strong>Entity Framework Migrations</strong> and check <strong>Apply this migration on publish</strong>.</p>
+</li>
+</ul>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="140" sourceendlinenumber="140">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="140" sourceendlinenumber="140">Select <strong>Save</strong>. Visual Studio returns to the <strong>Publish</strong> dialog. </li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="142" sourceendlinenumber="142"><img src="publish-to-azure-webapp-using-vs/_static/pubs.png" alt="Publish dialog: Settings panel" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="142" sourceendlinenumber="142"></p>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="144" sourceendlinenumber="144">Click <strong>Publish</strong>. Visual Studio will publish your app to Azure and launch the cloud app in your browser.</p>
+<h3 id="test-your-app-in-azure" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="146" sourceendlinenumber="146">Test your app in Azure</h3>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="148" sourceendlinenumber="150">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="148" sourceendlinenumber="148"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="148" sourceendlinenumber="148">Test the <strong>About</strong> and <strong>Contact</strong> links</p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="150" sourceendlinenumber="150"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="150" sourceendlinenumber="150">Register a new user</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="152" sourceendlinenumber="152"><img src="publish-to-azure-webapp-using-vs/_static/register.png" alt="Web application opened in Microsoft Edge on Azure App Service" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="152" sourceendlinenumber="152"></p>
+<h3 id="update-the-app" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="154" sourceendlinenumber="154">Update the app</h3>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="156" sourceendlinenumber="160">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="156" sourceendlinenumber="158"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="156" sourceendlinenumber="156">Edit the <em>Pages/About.cshtml</em> Razor page and change its contents. For example, you can modify the paragraph to say &quot;Hello ASP.NET Core!&quot;:</p>
+<pre sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="158" sourceendlinenumber="158"><code class="lang-html" name="About" highlight-lines="9">@page
+@model AboutModel
+@{
+    ViewData[&quot;Title&quot;] = &quot;About&quot;;
+}
+&lt;h2&gt;@ViewData[&quot;Title&quot;]&lt;/h2&gt;
+&lt;h3&gt;@Model.Message&lt;/h3&gt;
+
+&lt;p&gt;Hello ASP.NET Core!&lt;/p&gt;
+</code></pre></li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="160" sourceendlinenumber="160"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="160" sourceendlinenumber="160">Right-click on the project and select <strong>Publish...</strong> again.</p>
+</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="162" sourceendlinenumber="162"><img src="publish-to-azure-webapp-using-vs/_static/pub.png" alt="Contextual menu open with Publish link highlighted" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="162" sourceendlinenumber="162"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="164" sourceendlinenumber="164">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="164" sourceendlinenumber="164">After the app is published, verify the changes you made are available on Azure.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="166" sourceendlinenumber="166"><img src="publish-to-azure-webapp-using-vs/_static/final.png" alt="Verify task is complete" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="166" sourceendlinenumber="166"></p>
+<h3 id="clean-up" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="168" sourceendlinenumber="168">Clean up</h3>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="170" sourceendlinenumber="170">When you have finished testing the app, go to the <a href="https://portal.azure.com/" data-raw-source="[Azure portal](https://portal.azure.com/)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="170" sourceendlinenumber="170">Azure portal</a> and delete the app.</p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="172" sourceendlinenumber="172">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="172" sourceendlinenumber="172">Select <strong>Resource groups</strong>, then select the resource group you created.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="174" sourceendlinenumber="174"><img src="publish-to-azure-webapp-using-vs/_static/portalrg.png" alt="Azure Portal: Resource Groups in sidebar menu" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="174" sourceendlinenumber="174"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="176" sourceendlinenumber="176">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="176" sourceendlinenumber="176">In the <strong>Resource groups</strong> page, select <strong>Delete</strong>.</li>
+</ul>
+<p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="178" sourceendlinenumber="178"><img src="publish-to-azure-webapp-using-vs/_static/rgd.png" alt="Azure Portal: Resource Groups page" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="178" sourceendlinenumber="178"></p>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="180" sourceendlinenumber="180">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="180" sourceendlinenumber="180">Enter the name of the resource group and select <strong>Delete</strong>. Your app and all other resources created in this tutorial are now deleted from Azure.</li>
+</ul>
+<h3 id="next-steps" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="182" sourceendlinenumber="182">Next steps</h3>
+<ul sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="184" sourceendlinenumber="188">
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="184" sourceendlinenumber="184"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="184" sourceendlinenumber="184"><a href="first-mvc-app/start-mvc.html" data-raw-source="[Getting started with ASP.NET Core MVC and Visual Studio](first-mvc-app/start-mvc.md)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="184" sourceendlinenumber="184">Getting started with ASP.NET Core MVC and Visual Studio</a></p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="186" sourceendlinenumber="186"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="186" sourceendlinenumber="186"><a href="../index.html" data-raw-source="[Introduction to ASP.NET Core](../index.md)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="186" sourceendlinenumber="186">Introduction to ASP.NET Core</a></p>
+</li>
+<li sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="188" sourceendlinenumber="188"><p sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="188" sourceendlinenumber="188"><a href="../fundamentals/index.html" data-raw-source="[Fundamentals](../fundamentals/index.md)" sourcefile="tutorials/publish-to-azure-webapp-using-vs.md" sourcestartlinenumber="188" sourceendlinenumber="188">Fundamentals</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/tutorials/publish-to-azure-webapp-using-vs.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

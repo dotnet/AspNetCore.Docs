@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core MVC with EF Core - Read Related Data - 6 of 10 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="data/ef-mvc/read-related-data">
+<h1 id="reading-related-data---ef-core-with-aspnet-core-mvc-tutorial-6-of-10" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="16" sourceendlinenumber="16">Reading related data - EF Core with ASP.NET Core MVC tutorial (6 of 10)</h1>
+
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="18" sourceendlinenumber="18">Rick Anderson</a></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="20" sourceendlinenumber="20">The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see <a href="intro.html" data-raw-source="[the first tutorial in the series](intro.md)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="20" sourceendlinenumber="20">the first tutorial in the series</a>.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="22" sourceendlinenumber="22">In the previous tutorial, you completed the School data model. In this tutorial, you&#39;ll read and display related data -- that is, data that the Entity Framework loads into navigation properties.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="24" sourceendlinenumber="24">The following illustrations show the pages that you&#39;ll work with.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="26" sourceendlinenumber="26"><img src="read-related-data/_static/courses-index.png" alt="Courses Index page" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="26" sourceendlinenumber="26"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="28" sourceendlinenumber="28"><img src="read-related-data/_static/instructors-index.png" alt="Instructors Index page" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="28" sourceendlinenumber="28"></p>
+<h2 id="eager-explicit-and-lazy-loading-of-related-data" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="30" sourceendlinenumber="30">Eager, explicit, and lazy Loading of related data</h2>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="32" sourceendlinenumber="32">There are several ways that Object-Relational Mapping (ORM) software such as Entity Framework can load related data into the navigation properties of an entity:</p>
+<ul sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="34" sourceendlinenumber="46">
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="34" sourceendlinenumber="40"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="34" sourceendlinenumber="34">Eager loading. When the entity is read, related data is retrieved along with it. This typically results in a single join query that retrieves all of the data that&#39;s needed. You specify eager loading in Entity Framework Core by using the <code>Include</code> and <code>ThenInclude</code> methods.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="36" sourceendlinenumber="36"><img src="read-related-data/_static/eager-loading.png" alt="Eager loading example" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="36" sourceendlinenumber="36"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="38" sourceendlinenumber="38">You can retrieve some of the data in separate queries, and EF &quot;fixes up&quot; the navigation properties.  That is, EF automatically adds the separately retrieved entities where they belong in navigation properties of previously retrieved entities. For the query that retrieves related data, you can use the <code>Load</code> method instead of a method that returns a list or object, such as <code>ToList</code> or <code>Single</code>.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="40" sourceendlinenumber="40"><img src="read-related-data/_static/separate-queries.png" alt="Separate queries example" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="40" sourceendlinenumber="40"></p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="42" sourceendlinenumber="44"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="42" sourceendlinenumber="42">Explicit loading. When the entity is first read, related data isn&#39;t retrieved. You write code that retrieves the related data if it&#39;s needed. As in the case of eager loading with separate queries, explicit loading results in multiple queries sent to the database. The difference is that with explicit loading, the code specifies the navigation properties to be loaded. In Entity Framework Core 1.1 you can use the <code>Load</code> method to do explicit loading. For example:</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="44" sourceendlinenumber="44"><img src="read-related-data/_static/explicit-loading.png" alt="Explicit loading example" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="44" sourceendlinenumber="44"></p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="46" sourceendlinenumber="46"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="46" sourceendlinenumber="46">Lazy loading. When the entity is first read, related data isn&#39;t retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the database each time you try to get data from a navigation property for the first time. Entity Framework Core 1.0 does not support lazy loading.</p>
+</li>
+</ul>
+<h3 id="performance-considerations" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="48" sourceendlinenumber="48">Performance considerations</h3>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="50" sourceendlinenumber="50">If you know you need related data for every entity retrieved, eager loading often offers the best performance, because a single query sent to the database is typically more efficient than separate queries for each entity retrieved. For example, suppose that each department has ten related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the database. A separate query for courses for each department would result in eleven round trips to the database. The extra round trips to the database are especially detrimental to performance when latency is high.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="52" sourceendlinenumber="52">On the other hand, in some scenarios separate queries is more efficient. Eager loading of all related data in one query might cause a very complex join to be generated, which SQL Server can&#39;t process efficiently. Or if you need to access an entity&#39;s navigation properties only for a subset of a set of the entities you&#39;re processing, separate queries might perform better because eager loading of everything up front would retrieve more data than you need. If performance is critical, it&#39;s best to test performance both ways in order to make the best choice.</p>
+<h2 id="create-a-courses-page-that-displays-department-name" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="54" sourceendlinenumber="54">Create a Courses page that displays Department name</h2>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="56" sourceendlinenumber="56">The Course entity includes a navigation property that contains the Department entity of the department that the course is assigned to. To display the name of the assigned department in a list of courses, you need to get the Name property from the Department entity that is in the <code>Course.Department</code> navigation property.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="58" sourceendlinenumber="58">Create a controller named CoursesController for the Course entity type, using the same options for the <strong>MVC Controller with views, using Entity Framework</strong> scaffolder that you did earlier for the Students controller, as shown in the following illustration:</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="60" sourceendlinenumber="60"><img src="read-related-data/_static/add-courses-controller.png" alt="Add Courses controller" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="60" sourceendlinenumber="60"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="62" sourceendlinenumber="62">Open <em>CoursesController.cs</em> and examine the <code>Index</code> method. The automatic scaffolding has specified eager loading for the <code>Department</code> navigation property by using the <code>Include</code> method.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="64" sourceendlinenumber="64">Replace the <code>Index</code> method with the following code that uses a more appropriate name for the <code>IQueryable</code> that returns Course entities (<code>courses</code> instead of <code>schoolContext</code>):</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="66" sourceendlinenumber="66"><code class="lang-csharp" name="Main">public async Task&lt;IActionResult&gt; Index()
+{
+    var courses = _context.Courses
+        .Include(c =&gt; c.Department)
+        .AsNoTracking();
+    return View(await courses.ToListAsync());
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="68" sourceendlinenumber="68">Open <em>Views/Courses/Index.cshtml</em> and replace the template code with the following code. The changes are highlighted:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="70" sourceendlinenumber="70"><code class="lang-html" highlight-lines="4,7,15-17,34-36,44">@model IEnumerable&lt;ContosoUniversity.Models.Course&gt;
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Courses&quot;;
+}
+
+&lt;h2&gt;Courses&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.CourseID)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Title)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Credits)
+            &lt;/th&gt;
+            &lt;th&gt;
+                @Html.DisplayNameFor(model =&gt; model.Department)
+            &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @foreach (var item in Model)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.CourseID)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Title)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Credits)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Department.Name)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.CourseID&quot;&gt;Edit&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.CourseID&quot;&gt;Details&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.CourseID&quot;&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="72" sourceendlinenumber="72">You&#39;ve made the following changes to the scaffolded code:</p>
+<ul sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="74" sourceendlinenumber="82">
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="74" sourceendlinenumber="74"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="74" sourceendlinenumber="74">Changed the heading from Index to Courses.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="76" sourceendlinenumber="76"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="76" sourceendlinenumber="76">Added a <strong>Number</strong> column that shows the <code>CourseID</code> property value. By default, primary keys aren&#39;t scaffolded because normally they are meaningless to end users. However, in this case the primary key is meaningful and you want to show it.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="78" sourceendlinenumber="82"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="78" sourceendlinenumber="78">Changed the <strong>Department</strong> column to display the department name. The code displays the <code>Name</code> property of the Department entity that&#39;s loaded into the <code>Department</code> navigation property:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="80" sourceendlinenumber="82"><code class="lang-html">@Html.DisplayFor(modelItem =&gt; item.Department.Name)
+</code></pre></li>
+</ul>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="84" sourceendlinenumber="84">Run the app and select the <strong>Courses</strong> tab to see the list with department names.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="86" sourceendlinenumber="86"><img src="read-related-data/_static/courses-index.png" alt="Courses Index page" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="86" sourceendlinenumber="86"></p>
+<h2 id="create-an-instructors-page-that-shows-courses-and-enrollments" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="88" sourceendlinenumber="88">Create an Instructors page that shows Courses and Enrollments</h2>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="90" sourceendlinenumber="90">In this section, you&#39;ll create a controller and view for the Instructor entity in order to display the Instructors page:</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="92" sourceendlinenumber="92"><img src="read-related-data/_static/instructors-index.png" alt="Instructors Index page" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="92" sourceendlinenumber="92"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="94" sourceendlinenumber="94">This page reads and displays related data in the following ways:</p>
+<ul sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="96" sourceendlinenumber="100">
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="96" sourceendlinenumber="96"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="96" sourceendlinenumber="96">The list of instructors displays related data from the OfficeAssignment entity. The Instructor and OfficeAssignment entities are in a one-to-zero-or-one relationship. You&#39;ll use eager loading for the OfficeAssignment entities. As explained earlier, eager loading is typically more efficient when you need the related data for all retrieved rows of the primary table. In this case, you want to display office assignments for all displayed instructors.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="98" sourceendlinenumber="98"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="98" sourceendlinenumber="98">When the user selects an instructor, related Course entities are displayed. The Instructor and Course entities are in a many-to-many relationship. You&#39;ll use eager loading for the Course entities and their related Department entities. In this case, separate queries might be more efficient because you need courses only for the selected instructor. However, this example shows how to use eager loading for navigation properties within entities that are themselves in navigation properties.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="100" sourceendlinenumber="100"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="100" sourceendlinenumber="100">When the user selects a course, related data from the Enrollments entity set is displayed. The Course and Enrollment entities are in a one-to-many relationship. You&#39;ll use separate queries for Enrollment entities and their related Student entities.</p>
+</li>
+</ul>
+<h3 id="create-a-view-model-for-the-instructor-index-view" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="102" sourceendlinenumber="102">Create a view model for the Instructor Index view</h3>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="104" sourceendlinenumber="104">The Instructors page shows data from three different tables. Therefore, you&#39;ll create a view model that includes three properties, each holding the data for one of the tables.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="106" sourceendlinenumber="106">In the <em>SchoolViewModels</em> folder, create <em>InstructorIndexData.cs</em> and replace the existing code with the following code:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="108" sourceendlinenumber="108"><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ContosoUniversity.Models.SchoolViewModels
+{
+    public class InstructorIndexData
+    {
+        public IEnumerable&lt;Instructor&gt; Instructors { get; set; }
+        public IEnumerable&lt;Course&gt; Courses { get; set; }
+        public IEnumerable&lt;Enrollment&gt; Enrollments { get; set; }
+    }
+}
+</code></pre><h3 id="create-the-instructor-controller-and-views" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="110" sourceendlinenumber="110">Create the Instructor controller and views</h3>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="112" sourceendlinenumber="112">Create an Instructors controller with EF read/write actions as shown in the following illustration:</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="114" sourceendlinenumber="114"><img src="read-related-data/_static/add-instructors-controller.png" alt="Add Instructors controller" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="114" sourceendlinenumber="114"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="116" sourceendlinenumber="116">Open <em>InstructorsController.cs</em> and add a using statement for the ViewModels namespace:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="118" sourceendlinenumber="118"><code class="lang-csharp" name="Main">using ContosoUniversity.Models.SchoolViewModels;
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="120" sourceendlinenumber="120">Replace the Index method with the following code to do eager loading of related data and put it in the view model.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="122" sourceendlinenumber="122"><code class="lang-csharp" name="Main">public async Task&lt;IActionResult&gt; Index(int? id, int? courseID)
+{
+    var viewModel = new InstructorIndexData();
+    viewModel.Instructors = await _context.Instructors
+          .Include(i =&gt; i.OfficeAssignment)
+          .Include(i =&gt; i.CourseAssignments)
+            .ThenInclude(i =&gt; i.Course)
+                .ThenInclude(i =&gt; i.Enrollments)
+                    .ThenInclude(i =&gt; i.Student)
+          .Include(i =&gt; i.CourseAssignments)
+            .ThenInclude(i =&gt; i.Course)
+                .ThenInclude(i =&gt; i.Department)
+          .AsNoTracking()
+          .OrderBy(i =&gt; i.LastName)
+          .ToListAsync();
+    
+    if (id != null)
+    {
+        ViewData[&quot;InstructorID&quot;] = id.Value;
+        Instructor instructor = viewModel.Instructors.Where(
+            i =&gt; i.ID == id.Value).Single();
+        viewModel.Courses = instructor.CourseAssignments.Select(s =&gt; s.Course);
+    }
+
+    if (courseID != null)
+    {
+        ViewData[&quot;CourseID&quot;] = courseID.Value;
+        viewModel.Enrollments = viewModel.Courses.Where(
+            x =&gt; x.CourseID == courseID).Single().Enrollments;
+    }
+
+    return View(viewModel);
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="124" sourceendlinenumber="124">The method accepts optional route data (<code>id</code>) and a query string parameter (<code>courseID</code>) that provide the ID values of the selected instructor and selected course. The parameters are provided by the <strong>Select</strong> hyperlinks on the page.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="126" sourceendlinenumber="126">The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the <code>Instructor.OfficeAssignment</code> and the <code>Instructor.CourseAssignments</code> navigation properties. Within the <code>CourseAssignments</code> property, the <code>Course</code> property is loaded, and within that, the <code>Enrollments</code> and <code>Department</code> properties are loaded, and within each <code>Enrollment</code> entity the <code>Student</code> property is loaded.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="128" sourceendlinenumber="128"><code class="lang-csharp" name="Main">viewModel.Instructors = await _context.Instructors
+      .Include(i =&gt; i.OfficeAssignment)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Enrollments)
+                .ThenInclude(i =&gt; i.Student)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Department)
+      .AsNoTracking()
+      .OrderBy(i =&gt; i.LastName)
+      .ToListAsync();
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="130" sourceendlinenumber="130">Since the view always requires the OfficeAssignment entity, it&#39;s more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="132" sourceendlinenumber="132">The code repeats <code>CourseAssignments</code> and <code>Course</code> because you need two properties from <code>Course</code>. The first string of <code>ThenInclude</code> calls gets <code>CourseAssignment.Course</code>, <code>Course.Enrollments</code>, and <code>Enrollment.Student</code>.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="134" sourceendlinenumber="134"><code class="lang-csharp" name="Main" highlight-lines="3-6">viewModel.Instructors = await _context.Instructors
+      .Include(i =&gt; i.OfficeAssignment)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Enrollments)
+                .ThenInclude(i =&gt; i.Student)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Department)
+      .AsNoTracking()
+      .OrderBy(i =&gt; i.LastName)
+      .ToListAsync();
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="136" sourceendlinenumber="136">At that point in the code, another <code>ThenInclude</code> would be for navigation properties of <code>Student</code>, which you don&#39;t need. But calling <code>Include</code> starts over with <code>Instructor</code> properties, so you have to go through the chain again, this time specifying <code>Course.Department</code> instead of <code>Course.Enrollments</code>.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="138" sourceendlinenumber="138"><code class="lang-csharp" name="Main" highlight-lines="7-9">viewModel.Instructors = await _context.Instructors
+      .Include(i =&gt; i.OfficeAssignment)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Enrollments)
+                .ThenInclude(i =&gt; i.Student)
+      .Include(i =&gt; i.CourseAssignments)
+        .ThenInclude(i =&gt; i.Course)
+            .ThenInclude(i =&gt; i.Department)
+      .AsNoTracking()
+      .OrderBy(i =&gt; i.LastName)
+      .ToListAsync();
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="140" sourceendlinenumber="140">The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model&#39;s <code>Courses</code> property is then loaded with the Course entities from that instructor&#39;s <code>CourseAssignments</code> navigation property.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="142" sourceendlinenumber="142"><code class="lang-csharp" name="Main">if (id != null)
+{
+    ViewData[&quot;InstructorID&quot;] = id.Value;
+    Instructor instructor = viewModel.Instructors.Where(
+        i =&gt; i.ID == id.Value).Single();
+    viewModel.Courses = instructor.CourseAssignments.Select(s =&gt; s.Course);
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="144" sourceendlinenumber="144">The <code>Where</code> method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The <code>Single</code> method converts the collection into a single Instructor entity, which gives you access to that entity&#39;s <code>CourseAssignments</code> property. The <code>CourseAssignments</code> property contains <code>CourseAssignment</code> entities, from which you want only the related <code>Course</code> entities.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="146" sourceendlinenumber="146">You use the <code>Single</code> method on a collection when you know the collection will have only one item. The Single method throws an exception if the collection passed to it is empty or if there&#39;s more than one item. An alternative is <code>SingleOrDefault</code>, which returns a default value (null in this case) if the collection is empty. However, in this case that would still result in an exception (from trying to find a <code>Courses</code> property on a null reference), and the exception message would less clearly indicate the cause of the problem. When you call the <code>Single</code> method, you can also pass in the Where condition instead of calling the <code>Where</code> method separately:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="148" sourceendlinenumber="150"><code class="lang-csharp">.Single(i =&gt; i.ID == id.Value)
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="152" sourceendlinenumber="152">Instead of:</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="154" sourceendlinenumber="156"><code class="lang-csharp">.Where(I =&gt; i.ID == id.Value).Single()
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="158" sourceendlinenumber="158">Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model&#39;s <code>Enrollments</code> property is loaded with the Enrollment entities from that course&#39;s <code>Enrollments</code> navigation property.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="160" sourceendlinenumber="160"><code class="lang-csharp" name="Main">if (courseID != null)
+{
+    ViewData[&quot;CourseID&quot;] = courseID.Value;
+    viewModel.Enrollments = viewModel.Courses.Where(
+        x =&gt; x.CourseID == courseID).Single().Enrollments;
+}
+</code></pre><h3 id="modify-the-instructor-index-view" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="162" sourceendlinenumber="162">Modify the Instructor Index view</h3>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="164" sourceendlinenumber="164">In <em>Views/Instructors/Index.cshtml</em>, replace the template code with the following code. The changes are highlighted.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="166" sourceendlinenumber="166"><code class="lang-html" highlight-lines="1,3-7,15-19,24,26-31,41-54,56">@model ContosoUniversity.Models.SchoolViewModels.InstructorIndexData
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Instructors&quot;;
+}
+
+&lt;h2&gt;Instructors&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Hire Date&lt;/th&gt;
+            &lt;th&gt;Office&lt;/th&gt;
+            &lt;th&gt;Courses&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @foreach (var item in Model.Instructors)
+        {
+            string selectedRow = &quot;&quot;;
+            if (item.ID == (int?)ViewData[&quot;InstructorID&quot;])
+            {
+                selectedRow = &quot;success&quot;;
+            }
+            &lt;tr class=&quot;@selectedRow&quot;&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.LastName)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.FirstMidName)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.HireDate)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @if (item.OfficeAssignment != null)
+                    {
+                        @item.OfficeAssignment.Location
+                    }
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @{
+                        foreach (var course in item.CourseAssignments)
+                        {
+                            @course.Course.CourseID @:  @course.Course.Title &lt;br /&gt;
+                        }
+                    }
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a asp-action=&quot;Index&quot; asp-route-id=&quot;@item.ID&quot;&gt;Select&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+           }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="168" sourceendlinenumber="168">You&#39;ve made the following changes to the existing code:</p>
+<ul sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="170" sourceendlinenumber="200">
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="170" sourceendlinenumber="170"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="170" sourceendlinenumber="170">Changed the model class to <code>InstructorIndexData</code>.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="172" sourceendlinenumber="172"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="172" sourceendlinenumber="172">Changed the page title from <strong>Index</strong> to <strong>Instructors</strong>.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="174" sourceendlinenumber="181"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="174" sourceendlinenumber="174">Added an <strong>Office</strong> column that displays <code>item.OfficeAssignment.Location</code> only if <code>item.OfficeAssignment</code> is not null. (Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.)</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="176" sourceendlinenumber="181"><code class="lang-html">@if (item.OfficeAssignment != null)
+{
+    @item.OfficeAssignment.Location
+}
+</code></pre></li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="183" sourceendlinenumber="183"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="183" sourceendlinenumber="183">Added a <strong>Courses</strong> column that displays courses taught by each instructor. See <a class="xref" href="../../mvc/views/razor.html#explicit-line-transition-with-label" data-raw-source="[Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-label)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="183" sourceendlinenumber="183">Explicit Line Transition with <code>@:</code></a> for more about this razor syntax.</p>
+</li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="185" sourceendlinenumber="194"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="185" sourceendlinenumber="185">Added code that dynamically adds <code>class=&quot;success&quot;</code> to the <code>tr</code> element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="187" sourceendlinenumber="194"><code class="lang-html">string selectedRow = &quot;&quot;;
+if (item.ID == (int?)ViewData[&quot;InstructorID&quot;])
+{
+    selectedRow = &quot;success&quot;;
+}
+&lt;tr class=&quot;@selectedRow&quot;&gt;
+</code></pre></li>
+<li sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="196" sourceendlinenumber="200"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="196" sourceendlinenumber="196">Added a new hyperlink labeled <strong>Select</strong> immediately before the other links in each row, which causes the selected instructor&#39;s ID to be sent to the <code>Index</code> method.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="198" sourceendlinenumber="200"><code class="lang-html">&lt;a asp-action=&quot;Index&quot; asp-route-id=&quot;@item.ID&quot;&gt;Select&lt;/a&gt; |
+</code></pre></li>
+</ul>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="202" sourceendlinenumber="202">Run the app and select the <strong>Instructors</strong> tab. The page displays the Location property of related OfficeAssignment entities and an empty table cell when there&#39;s no related OfficeAssignment entity.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="204" sourceendlinenumber="204"><img src="read-related-data/_static/instructors-index-no-selection.png" alt="Instructors Index page nothing selected" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="204" sourceendlinenumber="204"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="206" sourceendlinenumber="206">In the <em>Views/Instructors/Index.cshtml</em> file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="208" sourceendlinenumber="208"><code class="lang-html">@if (Model.Courses != null)
+{
+    &lt;h3&gt;Courses Taught by Selected Instructor&lt;/h3&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;&lt;/th&gt;
+            &lt;th&gt;Number&lt;/th&gt;
+            &lt;th&gt;Title&lt;/th&gt;
+            &lt;th&gt;Department&lt;/th&gt;
+        &lt;/tr&gt;
+
+        @foreach (var item in Model.Courses)
+        {
+            string selectedRow = &quot;&quot;;
+            if (item.CourseID == (int?)ViewData[&quot;CourseID&quot;])
+            {
+                selectedRow = &quot;success&quot;;
+            }
+            &lt;tr class=&quot;@selectedRow&quot;&gt;
+                &lt;td&gt;
+                    @Html.ActionLink(&quot;Select&quot;, &quot;Index&quot;, new { courseID = item.CourseID })
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @item.CourseID
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @item.Title
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @item.Department.Name
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+
+    &lt;/table&gt;
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="210" sourceendlinenumber="210">This code reads the <code>Courses</code> property of the view model to display a list of courses. It also provides a <strong>Select</strong> hyperlink that sends the ID of the selected course to the <code>Index</code> action method.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="212" sourceendlinenumber="212">Refresh the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="214" sourceendlinenumber="214"><img src="read-related-data/_static/instructors-index-instructor-selected.png" alt="Instructors Index page instructor selected" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="214" sourceendlinenumber="214"></p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="216" sourceendlinenumber="216">After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="218" sourceendlinenumber="218"><code class="lang-html">@if (Model.Enrollments != null)
+{
+    &lt;h3&gt;
+        Students Enrolled in Selected Course
+    &lt;/h3&gt;
+    &lt;table class=&quot;table&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Grade&lt;/th&gt;
+        &lt;/tr&gt;
+        @foreach (var item in Model.Enrollments)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    @item.Student.FullName
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.Grade)
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/table&gt;
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="220" sourceendlinenumber="220">This code reads the Enrollments property of the view model in order to display a list of students enrolled in the course.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="222" sourceendlinenumber="222">Refresh the page again and select an instructor. Then select a course to see the list of enrolled students and their grades.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="224" sourceendlinenumber="224"><img src="read-related-data/_static/instructors-index.png" alt="Instructors Index page instructor and course selected" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="224" sourceendlinenumber="224"></p>
+<h2 id="explicit-loading" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="226" sourceendlinenumber="226">Explicit loading</h2>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="228" sourceendlinenumber="228">When you retrieved the list of instructors in <em>InstructorsController.cs</em>, you specified eager loading for the <code>CourseAssignments</code> navigation property.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="230" sourceendlinenumber="230">Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it&#39;s requested. To see an example of how to do explicit loading, replace the <code>Index</code> method with the following code, which removes eager loading for Enrollments and loads that property explicitly. The code changes are highlighted.</p>
+<pre sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="232" sourceendlinenumber="232"><code class="lang-csharp" name="Main" highlight-lines="23-29">public async Task&lt;IActionResult&gt; Index(int? id, int? courseID)
+{
+    var viewModel = new InstructorIndexData();
+    viewModel.Instructors = await _context.Instructors
+          .Include(i =&gt; i.OfficeAssignment)
+          .Include(i =&gt; i.CourseAssignments)
+            .ThenInclude(i =&gt; i.Course)
+                .ThenInclude(i =&gt; i.Department)
+          .OrderBy(i =&gt; i.LastName)
+          .ToListAsync();
+
+    if (id != null)
+    {
+        ViewData[&quot;InstructorID&quot;] = id.Value;
+        Instructor instructor = viewModel.Instructors.Where(
+            i =&gt; i.ID == id.Value).Single();
+        viewModel.Courses = instructor.CourseAssignments.Select(s =&gt; s.Course);
+    }
+
+    if (courseID != null)
+    {
+        ViewData[&quot;CourseID&quot;] = courseID.Value;
+        var selectedCourse = viewModel.Courses.Where(x =&gt; x.CourseID == courseID).Single();
+        await _context.Entry(selectedCourse).Collection(x =&gt; x.Enrollments).LoadAsync();
+        foreach (Enrollment enrollment in selectedCourse.Enrollments)
+        {
+            await _context.Entry(enrollment).Reference(x =&gt; x.Student).LoadAsync();
+        }
+        viewModel.Enrollments = selectedCourse.Enrollments;
+    }
+
+    return View(viewModel);
+}
+</code></pre><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="234" sourceendlinenumber="234">The new code drops the <em>ThenInclude</em> method calls for enrollment data from the code that retrieves instructor entities. If an instructor and course are selected, the highlighted code retrieves Enrollment entities for the selected course, and Student entities for each Enrollment.</p>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="236" sourceendlinenumber="236">Run the app, go to the Instructors Index page now and you&#39;ll see no difference in what&#39;s displayed on the page, although you&#39;ve changed how the data is retrieved.</p>
+<h2 id="summary" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="238" sourceendlinenumber="238">Summary</h2>
+<p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="240" sourceendlinenumber="240">You&#39;ve now used eager loading with one query and with multiple queries to read related data into navigation properties. In the next tutorial you&#39;ll learn how to update related data.</p>
+<div class="step-by-step" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="242" sourceendlinenumber="242"><p sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="243" sourceendlinenumber="244"><a href="complex-data-model.html" data-raw-source="[Previous](complex-data-model.md)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="243" sourceendlinenumber="243">Previous</a>
+<a href="update-related-data.html" data-raw-source="[Next](update-related-data.md)" sourcefile="data/ef-mvc/read-related-data.md" sourcestartlinenumber="244" sourceendlinenumber="244">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-mvc/read-related-data.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

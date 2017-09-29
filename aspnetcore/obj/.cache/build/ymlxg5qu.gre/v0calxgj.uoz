@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>What's new in ASP.NET Core 2.0 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="What's new in ASP.NET Core 2.0 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="aspnetcore-2.0">
+<h1 id="whats-new-in-aspnet-core-20">What&#39;s new in ASP.NET Core 2.0</h1>
+
+<p>This article highlights the most significant changes in ASP.NET Core 2.0, with links to relevant documentation.</p>
+<h2 id="razor-pages">Razor Pages</h2>
+<p>Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.</p>
+<p>For more information, see the introduction and tutorial:</p>
+<ul>
+<li><a class="xref" href="mvc/razor-pages/index.html">Introduction to Razor Pages</a></li>
+<li><a class="xref" href="tutorials/razor-pages/razor-pages-start.html">Getting started with Razor Pages</a></li>
+</ul>
+<h2 id="aspnet-core-metapackage">ASP.NET Core metapackage</h2>
+<p>A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.All">Microsoft.AspNetCore.All</a> package. The default templates use this package.</p>
+<p>For more information, see <a class="xref" href="fundamentals/metapackage.html">Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0</a>.</p>
+<h2 id="runtime-store">Runtime Store</h2>
+<p>Applications that use the <code>Microsoft.AspNetCore.All</code> metapackage automatically take advantage of the new .NET Core Runtime Store. The Store contains all the runtime assets needed to run ASP.NET Core 2.0 applications. When you use the <code>Microsoft.AspNetCore.All</code> metapackage, no assets from the referenced ASP.NET Core NuGet packages are deployed with the application because they already reside on the target system. The assets in the Runtime Store are also precompiled to improve application startup time.</p>
+<p>For more information, see <a href="https://docs.microsoft.com/dotnet/core/deploying/runtime-store">Runtime store</a></p>
+<h2 id="net-standard-20">.NET Standard 2.0</h2>
+<p>The ASP.NET Core 2.0 packages target .NET Standard 2.0. The packages can be referenced by other .NET Standard 2.0 libraries, and they can run on .NET Standard 2.0-compliant implementations of .NET, including .NET Core 2.0 and .NET Framework 4.6.1. </p>
+<p>The <code>Microsoft.AspNetCore.All</code> metapackage targets .NET Core 2.0 only, because it is intended to be used with the .NET Core 2.0 Runtime Store.</p>
+<h2 id="configuration-update">Configuration update</h2>
+<p>An <code>IConfiguration</code> instance is added to the services container by default in ASP.NET Core 2.0. <code>IConfiguration</code> in the services container makes it easier for applications to retrieve configuration values from the container.</p>
+<p>For information about the status of planned documentation, see the <a href="https://github.com/aspnet/Docs/issues/3387">GitHub issue</a>.</p>
+<h2 id="logging-update">Logging update</h2>
+<p>In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the <em>Program.cs</em> file instead of in the <em>Startup.cs</em> file. And the default <code>ILoggerFactory</code> supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.</p>
+<p>For more information, see <a class="xref" href="fundamentals/logging.html">Introduction to Logging</a>.</p>
+<h2 id="authentication-update">Authentication update</h2>
+<p>A new authentication model makes it easier to configure authentication for an application using DI.</p>
+<p>New templates are available for configuring authentication for web apps and web APIs using <a href="https://azure.microsoft.com/services/active-directory-b2c/">Azure AD B2C</a>.</p>
+<p>For information about the status of planned documentation, see the <a href="https://github.com/aspnet/Docs/issues/3054">GitHub issue</a>.</p>
+<h2 id="identity-update">Identity update</h2>
+<p>We&#39;ve made it easier to build secure web APIs using Identity in ASP.NET Core 2.0. You can acquire access tokens for accessing your web APIs using the <a href="https://www.nuget.org/packages/Microsoft.Identity.Client">Microsoft Authentication Library (MSAL)</a>.</p>
+<p>For more information on authentication changes in 2.0, see the following resources:</p>
+<ul>
+<li><a class="xref" href="security/authentication/accconfirm.html">Account confirmation and password recovery in ASP.NET Core</a></li>
+<li><a class="xref" href="security/authentication/identity-enable-qrcodes.html">Enabling QR Code generation for authenticator apps in ASP.NET Core</a></li>
+<li><a class="xref" href="migration/1x-to-2x/identity-2x.html">Migrating Authentication and Identity to ASP.NET Core 2.0</a></li>
+</ul>
+<h2 id="spa-templates">SPA templates</h2>
+<p>Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see <a class="xref" href="client-side/spa-services.html#creating-a-new-project">Creating a new SPA project</a>. For information about how to build a SPA in ASP.NET Core, see <a class="xref" href="client-side/spa-services.html">Using JavaScriptServices for Creating Single Page Applications</a>.</p>
+<h2 id="kestrel-improvements">Kestrel improvements</h2>
+<p>The Kestrel web server has new features that make it more suitable as an Internet-facing server. We’ve added a number of server constraint configuration options in the <code>KestrelServerOptions</code> class’s new <code>Limits</code> property. You can now add limits for the following:</p>
+<ul>
+<li>Maximum client connections</li>
+<li>Maximum request body size</li>
+<li>Minimum request body data rate</li>
+</ul>
+<p>For more information, see <a class="xref" href="fundamentals/servers/kestrel.html">Kestrel web server implementation in ASP.NET Core</a>.</p>
+<h2 id="weblistener-renamed-to-httpsys">WebListener renamed to HTTP.sys</h2>
+<p>The packages <code>Microsoft.AspNetCore.Server.WebListener</code> and <code>Microsoft.Net.Http.Server</code> have been merged into a new package <code>Microsoft.AspNetCore.Server.HttpSys</code>. The namespaces have been updated to match.</p>
+<p>For more information, see <a class="xref" href="fundamentals/servers/httpsys.html">HTTP.sys web server implementation in ASP.NET Core</a>.</p>
+<h2 id="enhanced-http-header-support">Enhanced HTTP header support</h2>
+<p>When using MVC to transmit a <code>FileStreamResult</code> or a <code>FileContentResult</code>, you now have the option to set an <code>ETag</code> or a <code>LastModified</code> date on the content you transmit. You can set these values on the returned content with code similar to the following:</p>
+<pre><code class="lang-csharp">var data = Encoding.UTF8.GetBytes(&quot;This is a sample text from a binary array&quot;);
+var entityTag = new EntityTagHeaderValue(&quot;\&quot;MyCalculatedEtagValue\&quot;&quot;);
+return File(data, &quot;text/plain&quot;, &quot;downloadName.txt&quot;, lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
+</code></pre><p>The file returned to your visitors will be decorated with the appropriate HTTP headers for the <code>ETag</code> and <code>LastModified</code> values.</p>
+<p>If an application visitor requests content with a Range Request header, ASP.NET will recognize that and handle that header. If the requested content can be partially delivered, ASP.NET will appropriately skip and return just the requested set of bytes.  You do not need to write any special handlers into your methods to adapt or handle this feature; it is automatically handled for you.</p>
+<h2 id="hosting-startup-and-application-insights">Hosting startup and Application Insights</h2>
+<p>Hosting environments can now inject extra package dependencies and execute code during application startup, without the application needing to explicitly take a dependency or call any methods. This feature can be used to enable certain environments to &quot;light-up&quot; features unique to that environment without the application needing to know ahead of time. </p>
+<p>In ASP.NET Core 2.0, this feature is used to automatically enable Application Insights diagnostics when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.</p>
+<p>For information about the status of planned documentation, see the <a href="https://github.com/aspnet/Docs/issues/3389">GitHub issue</a>.</p>
+<h2 id="automatic-use-of-anti-forgery-tokens">Automatic use of anti-forgery tokens</h2>
+<p>ASP.NET Core has always helped HTML-encode your content by default, but with the new version we’re taking an extra step to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.</p>
+<p>For more information, see <a class="xref" href="security/anti-request-forgery.html">Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core</a>.</p>
+<h2 id="automatic-precompilation">Automatic precompilation</h2>
+<p>Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.</p>
+<h2 id="razor-support-for-c-71">Razor support for C# 7.1</h2>
+<p>The Razor view engine has been updated to work with the new Roslyn compiler. That includes support for C# 7.1 features like Default Expressions, Inferred Tuple Names, and Pattern-Matching with Generics. To use C# 7.1 in your project, add the following property in your project file and then reload the solution:</p>
+<pre><code class="lang-xml">&lt;LangVersion&gt;latest&lt;/LangVersion&gt;
+</code></pre><p>For information about the status of C# 7.1 features, see <a href="https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md">the Roslyn GitHub repository</a>.</p>
+<h2 id="other-documentation-updates-for-20">Other documentation updates for 2.0</h2>
+<ul>
+<li><a class="xref" href="publishing/web-publishing-vs.html">Create publish profiles for Visual Studio and MSBuild, to deploy ASP.NET Core apps</a></li>
+<li><a class="xref" href="security/data-protection/implementation/key-management.html">Key Management</a></li>
+<li><a class="xref" href="security/authentication/social/facebook-logins.html">Configuring Facebook authentication</a></li>
+<li><a class="xref" href="security/authentication/social/twitter-logins.html">Configuring Twitter authentication</a></li>
+<li><a class="xref" href="security/authentication/social/google-logins.html">Configuring Google authentication</a></li>
+<li><a class="xref" href="security/authentication/social/microsoft-logins.html">Configuring Microsoft Account authentication</a></li>
+</ul>
+<h2 id="migration-guidance">Migration guidance</h2>
+<p>For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:</p>
+<ul>
+<li><a class="xref" href="migration/1x-to-2x/index.html">Migrating from ASP.NET Core 1.x to ASP.NET Core 2.0</a></li>
+<li><a class="xref" href="migration/1x-to-2x/identity-2x.html">Migrating Authentication and Identity to ASP.NET Core 2.0</a></li>
+</ul>
+<h2 id="additional-information">Additional Information</h2>
+<p>For the complete list of changes, see the <a href="https://github.com/aspnet/Home/releases/tag/2.0.0">ASP.NET Core 2.0 Release Notes</a>.</p>
+<p>If you’d like to connect with the ASP.NET Core development team’s progress and plans, tune in to the weekly <a href="https://live.asp.net/">ASP.NET Community Standup</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/aspnetcore-2.0.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

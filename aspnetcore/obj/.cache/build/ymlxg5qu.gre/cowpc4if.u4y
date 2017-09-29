@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core MVC with EF Core - Migrations - 4 of 10 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core MVC with EF Core - Migrations - 4 of 10 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="data/ef-mvc/migrations">
+<h1 id="migrations---ef-core-with-aspnet-core-mvc-tutorial-4-of-10" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="16" sourceendlinenumber="16">Migrations - EF Core with ASP.NET Core MVC tutorial (4 of 10)</h1>
+
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="18" sourceendlinenumber="18">Rick Anderson</a></p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="20" sourceendlinenumber="20">The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see <a href="intro.html" data-raw-source="[the first tutorial in the series](intro.md)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="20" sourceendlinenumber="20">the first tutorial in the series</a>.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="22" sourceendlinenumber="22">In this tutorial, you start using the EF Core migrations feature for managing data model changes. In later tutorials, you&#39;ll add more migrations as you change the data model.</p>
+<h2 id="introduction-to-migrations" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="24" sourceendlinenumber="24">Introduction to migrations</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="26" sourceendlinenumber="26">When you develop a new application, your data model changes frequently, and each time the model changes, it gets out of sync with the database. You started these tutorials by configuring the Entity Framework to create the database if it doesn&#39;t exist. Then each time you change the data model -- add, remove, or change entity classes or change your DbContext class -- you can delete the database and EF creates a new one that matches the model, and seeds it with test data.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="28" sourceendlinenumber="28">This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production it is usually storing data that you want to keep, and you don&#39;t want to lose everything each time you make a change such as adding a new column. The EF Core Migrations feature solves this problem by enabling EF to update the database schema instead of creating  a new database.</p>
+<h2 id="entity-framework-core-nuget-packages-for-migrations" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="30" sourceendlinenumber="30">Entity Framework Core NuGet packages for migrations</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="32" sourceendlinenumber="32">To work with migrations, you can use the <strong>Package Manager Console</strong> (PMC) or the command-line interface (CLI).  These tutorials show how to use CLI commands. Information about the PMC is at <a href="#pmc" data-raw-source="[the end of this tutorial](#pmc)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="32" sourceendlinenumber="32">the end of this tutorial</a>.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="34" sourceendlinenumber="34">The EF tools for the command-line interface (CLI) are provided in <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet" data-raw-source="[Microsoft.EntityFrameworkCore.Tools.DotNet](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools.DotNet)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="34" sourceendlinenumber="34">Microsoft.EntityFrameworkCore.Tools.DotNet</a>. To install this package, add it to the <code>DotNetCliToolReference</code> collection in the <em>.csproj</em> file, as shown. <strong>Note:</strong> You have to install this package by editing the <em>.csproj</em> file; you can&#39;t use the <code>install-package</code> command or the package manager GUI. You can edit the <em>.csproj</em> file by right-clicking the project name in <strong>Solution Explorer</strong> and selecting <strong>Edit ContosoUniversity.csproj</strong>.</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code class="lang-xml" highlight-lines="2">&lt;ItemGroup&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.EntityFrameworkCore.Tools.DotNet&quot; Version=&quot;2.0.0&quot; /&gt;
+  &lt;DotNetCliToolReference Include=&quot;Microsoft.VisualStudio.Web.CodeGeneration.Tools&quot; Version=&quot;2.0.0&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="38" sourceendlinenumber="38">(The version numbers in this example were current when the tutorial was written.) </p>
+<h2 id="change-the-connection-string" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="40" sourceendlinenumber="40">Change the connection string</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="42" sourceendlinenumber="42">In the <em>appsettings.json</em> file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven&#39;t used on the computer you&#39;re using.</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="44" sourceendlinenumber="44"><code class="lang-json" name="Main">{
+  &quot;ConnectionStrings&quot;: {
+    &quot;DefaultConnection&quot;: &quot;Server=(localdb)\\mssqllocaldb;Database=ContosoUniversity2;Trusted_Connection=True;MultipleActiveResultSets=true&quot;
+  },
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="46" sourceendlinenumber="46">This change sets up the project so that the first migration will create a new database. This isn&#39;t required for getting started with migrations, but you&#39;ll see later why it&#39;s a good idea.</p>
+<div class="NOTE" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="48" sourceendlinenumber="48"><h5>Note</h5><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="49" sourceendlinenumber="49">As an alternative to changing the database name, you can delete the database. Use <strong>SQL Server Object Explorer</strong> (SSOX) or the <code>database drop</code> CLI command:</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="50" sourceendlinenumber="52"><code class="lang-console">dotnet ef database drop
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="53" sourceendlinenumber="53">The following section explains how to run CLI commands.</p>
+</div>
+<h2 id="create-an-initial-migration" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="55" sourceendlinenumber="55">Create an initial migration</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="57" sourceendlinenumber="57">Save your changes and build the project. Then open a command window and navigate to the project folder. Here&#39;s a quick way to do that:</p>
+<ul sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="59" sourceendlinenumber="65">
+<li sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="59" sourceendlinenumber="61"><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="59" sourceendlinenumber="59">In <strong>Solution Explorer</strong>, right-click the project and choose <strong>Open in File Explorer</strong> from the context menu.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="61" sourceendlinenumber="61"><img src="migrations/_static/open-in-file-explorer.png" alt="Open in File Explorer menu item" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="61" sourceendlinenumber="61"></p>
+</li>
+<li sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="63" sourceendlinenumber="65"><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="63" sourceendlinenumber="63">Enter &quot;cmd&quot; in the address bar and press Enter.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="65" sourceendlinenumber="65"><img src="migrations/_static/open-command-window.png" alt="Open command window" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="65" sourceendlinenumber="65"></p>
+</li>
+</ul>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="67" sourceendlinenumber="67">Enter the following command in the command window:</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="69" sourceendlinenumber="71"><code class="lang-console">dotnet ef migrations add InitialCreate
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="73" sourceendlinenumber="73">You see output like the following in the command window:</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="75" sourceendlinenumber="81"><code class="lang-console">info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using &#39;C:\Users\username\AppData\Local\ASP.NET\DataProtection-Keys&#39; as key repository and Windows DPAPI to encrypt keys at rest.
+info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
+      Entity Framework Core 2.0.0-rtm-26452 initialized &#39;SchoolContext&#39; using provider &#39;Microsoft.EntityFrameworkCore.SqlServer&#39; with options: None
+Done. To undo this action, use &#39;ef migrations remove&#39;
+</code></pre><div class="NOTE" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="83" sourceendlinenumber="83"><h5>Note</h5><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="84" sourceendlinenumber="84">If you see an error message <em>No executable found matching command &quot;dotnet-ef&quot;</em>, see <a href="http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/" data-raw-source="[this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="84" sourceendlinenumber="84">this blog post</a> for help troubleshooting.</p>
+</div>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="86" sourceendlinenumber="86">If you see an error message &quot;<em>cannot access the file ... ContosoUniversity.dll because it is being used by another process.</em>&quot;, find the IIS Express icon in the Windows System Tray, and right-click it, then click <strong>ContosoUniversity &gt; Stop Site</strong>.</p>
+<h2 id="examine-the-up-and-down-methods" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="88" sourceendlinenumber="88">Examine the Up and Down methods</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="90" sourceendlinenumber="90">When you executed the <code>migrations add</code> command, EF generated the code that will create the database from scratch. This code is in the <em>Migrations</em> folder, in the file named <em>&lt;timestamp&gt;_InitialCreate.cs</em>. The <code>Up</code> method of the <code>InitialCreate</code> class creates the database tables that correspond to the data model entity sets, and the <code>Down</code> method deletes them, as shown in the following example.</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="92" sourceendlinenumber="92"><code class="lang-csharp" name="Main">public partial class InitialCreate : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: &quot;Course&quot;,
+            columns: table =&gt; new
+            {
+                CourseID = table.Column&lt;int&gt;(nullable: false),
+                Credits = table.Column&lt;int&gt;(nullable: false),
+                Title = table.Column&lt;string&gt;(nullable: true)
+            },
+            constraints: table =&gt;
+            {
+                table.PrimaryKey(&quot;PK_Course&quot;, x =&gt; x.CourseID);
+            });
+
+        // Additional code not shown
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: &quot;Enrollment&quot;);
+        // Additional code not shown
+    }
+}
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="94" sourceendlinenumber="94">Migrations calls the <code>Up</code> method to implement the data model changes for a migration. When you enter a command to roll back the update, Migrations calls the <code>Down</code> method.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="96" sourceendlinenumber="96">This code is for the initial migration that was created when you entered the <code>migrations add InitialCreate</code> command. The migration name parameter (&quot;InitialCreate&quot; in the example) is used for the file name and can be whatever you want. It&#39;s best to choose a word or phrase that summarizes what is being done in the migration. For example, you might name a later migration &quot;AddDepartmentTable&quot;.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="98" sourceendlinenumber="98">If you created the initial migration when the database already exists, the database creation code is generated but it doesn&#39;t have to run because the database already matches the data model. When you deploy the app to another environment where the database doesn&#39;t exist yet, this code will run to create your database, so it&#39;s a good idea to test it first. That&#39;s why you changed the name of the database in the connection string earlier -- so that migrations can create a new one from scratch.</p>
+<h2 id="examine-the-data-model-snapshot" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="100" sourceendlinenumber="100">Examine the data model snapshot</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="102" sourceendlinenumber="102">Migrations also creates a <em>snapshot</em> of the current database schema in <em>Migrations/SchoolContextModelSnapshot.cs</em>. Here&#39;s what that code looks like:</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="104" sourceendlinenumber="104"><code class="lang-csharp" name="Main">[DbContext(typeof(SchoolContext))]
+partial class SchoolContextModelSnapshot : ModelSnapshot
+{
+    protected override void BuildModel(ModelBuilder modelBuilder)
+    {
+        modelBuilder
+            .HasAnnotation(&quot;ProductVersion&quot;, &quot;2.0.0-rtm-26452&quot;)
+            .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+        modelBuilder.Entity(&quot;ContosoUniversity.Models.Course&quot;, b =&gt;
+            {
+                b.Property&lt;int&gt;(&quot;CourseID&quot;);
+
+                b.Property&lt;int&gt;(&quot;Credits&quot;);
+
+                b.Property&lt;string&gt;(&quot;Title&quot;);
+
+                b.HasKey(&quot;CourseID&quot;);
+
+                b.ToTable(&quot;Course&quot;);
+            });
+
+        // Additional code for Enrollment and Student tables not shown
+
+        modelBuilder.Entity(&quot;ContosoUniversity.Models.Enrollment&quot;, b =&gt;
+            {
+                b.HasOne(&quot;ContosoUniversity.Models.Course&quot;, &quot;Course&quot;)
+                    .WithMany(&quot;Enrollments&quot;)
+                    .HasForeignKey(&quot;CourseID&quot;)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne(&quot;ContosoUniversity.Models.Student&quot;, &quot;Student&quot;)
+                    .WithMany(&quot;Enrollments&quot;)
+                    .HasForeignKey(&quot;StudentID&quot;)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+    }
+}
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="106" sourceendlinenumber="106">Because the current database schema is represented in code, EF Core doesn&#39;t have to interact with the database to create migrations. When you add a migration, EF determines what changed by comparing the data model to the snapshot file. EF interacts with the database only when it has to update the database. </p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="108" sourceendlinenumber="108">The snapshot file has to be kept in sync with the migrations that create it, so you can&#39;t remove a migration just by deleting the file named  <em>&lt;timestamp&gt;_&lt;migrationname&gt;.cs</em>. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the <a href="https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove" data-raw-source="[dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="108" sourceendlinenumber="108">dotnet ef migrations remove</a> command.</p>
+<h2 id="apply-the-migration-to-the-database" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="110" sourceendlinenumber="110">Apply the migration to the database</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="112" sourceendlinenumber="112">In the command window, enter the following command to create the database and tables in it.</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="114" sourceendlinenumber="116"><code class="lang-console">dotnet ef database update
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="118" sourceendlinenumber="118">The output from the command is similar to the <code>migrations add</code> command, except that you see logs for the SQL commands that set up the database. Most of the logs are omitted in the following sample output. If you prefer not to see this level of detail in log messages, you can change the log levels in the <em>appsettings.Development.json</em> file. For more information, see <a class="xref" href="../../fundamentals/logging.html" data-raw-source="[Introduction to logging](xref:fundamentals/logging)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="118" sourceendlinenumber="118">Introduction to logging</a>.</p>
+<pre sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="120" sourceendlinenumber="143"><code class="lang-text">info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
+      User profile is available. Using &#39;C:\Users\username\AppData\Local\ASP.NET\DataProtection-Keys&#39; as key repository and Windows DPAPI to encrypt keys at rest.
+info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
+      Entity Framework Core 2.0.0-rtm-26452 initialized &#39;SchoolContext&#39; using provider &#39;Microsoft.EntityFrameworkCore.SqlServer&#39; with options: None
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (467ms) [Parameters=[], CommandType=&#39;Text&#39;, CommandTimeout=&#39;60&#39;]
+      CREATE DATABASE [ContosoUniversity2];
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (20ms) [Parameters=[], CommandType=&#39;Text&#39;, CommandTimeout=&#39;30&#39;]
+      CREATE TABLE [__EFMigrationsHistory] (
+          [MigrationId] nvarchar(150) NOT NULL,
+          [ProductVersion] nvarchar(32) NOT NULL,
+          CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+      );
+
+&lt;logs omitted for brevity&gt;
+
+info: Microsoft.EntityFrameworkCore.Database.Command[200101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType=&#39;Text&#39;, CommandTimeout=&#39;30&#39;]
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N&#39;20170816151242_InitialCreate&#39;, N&#39;2.0.0-rtm-26452&#39;);
+Done.
+</code></pre><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="145" sourceendlinenumber="145">Use <strong>SQL Server Object Explorer</strong> to inspect the database as you did in the first tutorial.  You&#39;ll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the database. View the data in that table and you&#39;ll see one row for the first migration. (The last log in the preceding CLI output example shows the INSERT statement that creates this row.)</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="147" sourceendlinenumber="147">Run the application to verify that everything still works the same as before.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="149" sourceendlinenumber="149"><img src="migrations/_static/students-index.png" alt="Students Index page" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="149" sourceendlinenumber="149"></p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="151" sourceendlinenumber="151"><a id="pmc"></a></p>
+<h2 id="command-line-interface-cli-vs-package-manager-console-pmc" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="152" sourceendlinenumber="152">Command-line interface (CLI) vs. Package Manager Console (PMC)</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="154" sourceendlinenumber="154">The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio <strong>Package Manager Console</strong> (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="156" sourceendlinenumber="156">The EF commands for the PMC commands are in the <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools" data-raw-source="[Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="156" sourceendlinenumber="156">Microsoft.EntityFrameworkCore.Tools</a> package. This package is already included in the <a class="xref" href="../../fundamentals/metapackage.html" data-raw-source="[Microsoft.AspNetCore.All](xref:fundamentals/metapackage)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="156" sourceendlinenumber="156">Microsoft.AspNetCore.All</a> metapackage, so you don&#39;t have to install it.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="158" sourceendlinenumber="158"><strong>Important:</strong> This is not the same package as the one you install for the CLI by editing the <em>.csproj</em> file. The name of this one ends in <code>Tools</code>, unlike the CLI package name which ends in <code>Tools.DotNet</code>.</p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="160" sourceendlinenumber="160">For more information about the CLI commands, see <a href="https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet" data-raw-source="[.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="160" sourceendlinenumber="160">.NET Core CLI</a>. </p>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="162" sourceendlinenumber="162">For more information about the PMC commands, see <a href="https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell" data-raw-source="[Package Manager Console (Visual Studio)](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="162" sourceendlinenumber="162">Package Manager Console (Visual Studio)</a>.</p>
+<h2 id="summary" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="164" sourceendlinenumber="164">Summary</h2>
+<p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="166" sourceendlinenumber="166">In this tutorial, you&#39;ve seen how to create and apply your first migration. In the next tutorial, you&#39;ll begin looking at more advanced topics by expanding the data model. Along the way you&#39;ll create and apply additional migrations.</p>
+<div class="step-by-step" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="168" sourceendlinenumber="168"><p sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="169" sourceendlinenumber="170"><a href="sort-filter-page.html" data-raw-source="[Previous](sort-filter-page.md)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="169" sourceendlinenumber="169">Previous</a>
+<a href="complex-data-model.html" data-raw-source="[Next](complex-data-model.md)" sourcefile="data/ef-mvc/migrations.md" sourcestartlinenumber="170" sourceendlinenumber="170">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-mvc/migrations.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

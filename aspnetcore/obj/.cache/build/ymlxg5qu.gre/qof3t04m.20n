@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10 </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10 ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="data/ef-mvc/sort-filter-page">
+<h1 id="sorting-filtering-paging-and-grouping---ef-core-with-aspnet-core-mvc-tutorial-3-of-10" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="16" sourceendlinenumber="16">Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial (3 of 10)</h1>
+
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="18" sourceendlinenumber="18">By <a href="https://github.com/tdykstra" data-raw-source="[Tom Dykstra](https://github.com/tdykstra)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="18" sourceendlinenumber="18">Tom Dykstra</a> and <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="18" sourceendlinenumber="18">Rick Anderson</a></p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="20" sourceendlinenumber="20">The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see <a href="intro.html" data-raw-source="[the first tutorial in the series](intro.md)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="20" sourceendlinenumber="20">the first tutorial in the series</a>.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="22" sourceendlinenumber="22">In the previous tutorial, you implemented a set of web pages for basic CRUD operations for Student entities. In this tutorial you&#39;ll add sorting, filtering, and paging functionality to the Students Index page. You&#39;ll also create a page that does simple grouping.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="24" sourceendlinenumber="24">The following illustration shows what the page will look like when you&#39;re done. The column headings are links that the user can click to sort by that column. Clicking a column heading repeatedly toggles between ascending and descending sort order.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="26" sourceendlinenumber="26"><img src="sort-filter-page/_static/paging.png" alt="Students index page" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="26" sourceendlinenumber="26"></p>
+<h2 id="add-column-sort-links-to-the-students-index-page" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="28" sourceendlinenumber="28">Add Column Sort Links to the Students Index Page</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="30" sourceendlinenumber="30">To add sorting to the Student Index page, you&#39;ll change the <code>Index</code> method of the Students controller and add code to the Student Index view.</p>
+<h3 id="add-sorting-functionality-to-the-index-method" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="32" sourceendlinenumber="32">Add sorting Functionality to the Index method</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="34" sourceendlinenumber="34">In <em>StudentsController.cs</em>, replace the <code>Index</code> method with the following code:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="36" sourceendlinenumber="36"><code class="lang-csharp" name="Main">public async Task&lt;IActionResult&gt; Index(string sortOrder)
+{
+    ViewData[&quot;NameSortParm&quot;] = String.IsNullOrEmpty(sortOrder) ? &quot;name_desc&quot; : &quot;&quot;;
+    ViewData[&quot;DateSortParm&quot;] = sortOrder == &quot;Date&quot; ? &quot;date_desc&quot; : &quot;Date&quot;;
+    var students = from s in _context.Students
+                   select s;
+    switch (sortOrder)
+    {
+        case &quot;name_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.LastName);
+            break;
+        case &quot;Date&quot;:
+            students = students.OrderBy(s =&gt; s.EnrollmentDate);
+            break;
+        case &quot;date_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.EnrollmentDate);
+            break;
+        default:
+            students = students.OrderBy(s =&gt; s.LastName);
+            break;
+    }
+    return View(await students.AsNoTracking().ToListAsync());
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="38" sourceendlinenumber="38">This code receives a <code>sortOrder</code> parameter from the query string in the URL. The query string value is provided by ASP.NET Core MVC as a parameter to the action method. The parameter will be a string that&#39;s either &quot;Name&quot; or &quot;Date&quot;, optionally followed by an underscore and the string &quot;desc&quot; to specify descending order. The default sort order is ascending.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="40" sourceendlinenumber="40">The first time the Index page is requested, there&#39;s no query string. The students are displayed in ascending order by last name, which is the default as established by the fall-through case in the <code>switch</code> statement. When the user clicks a column heading hyperlink, the appropriate <code>sortOrder</code> value is provided in the query string.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="42" sourceendlinenumber="42">The two <code>ViewData</code> elements (NameSortParm and DateSortParm) are used by the view to configure the column heading hyperlinks with the appropriate query string values.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="44" sourceendlinenumber="44"><code class="lang-csharp" name="Main" highlight-lines="3-4">public async Task&lt;IActionResult&gt; Index(string sortOrder)
+{
+    ViewData[&quot;NameSortParm&quot;] = String.IsNullOrEmpty(sortOrder) ? &quot;name_desc&quot; : &quot;&quot;;
+    ViewData[&quot;DateSortParm&quot;] = sortOrder == &quot;Date&quot; ? &quot;date_desc&quot; : &quot;Date&quot;;
+    var students = from s in _context.Students
+                   select s;
+    switch (sortOrder)
+    {
+        case &quot;name_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.LastName);
+            break;
+        case &quot;Date&quot;:
+            students = students.OrderBy(s =&gt; s.EnrollmentDate);
+            break;
+        case &quot;date_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.EnrollmentDate);
+            break;
+        default:
+            students = students.OrderBy(s =&gt; s.LastName);
+            break;
+    }
+    return View(await students.AsNoTracking().ToListAsync());
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="46" sourceendlinenumber="46">These are ternary statements. The first one specifies that if the <code>sortOrder</code> parameter is null or empty, NameSortParm should be set to &quot;name_desc&quot;; otherwise, it should be set to an empty string. These two statements enable the view to set the column heading hyperlinks as follows:</p>
+<table sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="48" sourceendlinenumber="53">
+<thead>
+<tr>
+<th style="text-align:center">Current sort order</th>
+<th style="text-align:center">Last Name Hyperlink</th>
+<th style="text-align:center">Date Hyperlink</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Last Name ascending</td>
+<td style="text-align:center">descending</td>
+<td style="text-align:center">ascending</td>
+</tr>
+<tr>
+<td style="text-align:center">Last Name descending</td>
+<td style="text-align:center">ascending</td>
+<td style="text-align:center">ascending</td>
+</tr>
+<tr>
+<td style="text-align:center">Date ascending</td>
+<td style="text-align:center">ascending</td>
+<td style="text-align:center">descending</td>
+</tr>
+<tr>
+<td style="text-align:center">Date descending</td>
+<td style="text-align:center">ascending</td>
+<td style="text-align:center">ascending</td>
+</tr>
+</tbody>
+</table>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="55" sourceendlinenumber="55">The method uses LINQ to Entities to specify the column to sort by. The code creates an <code>IQueryable</code> variable before the switch statement, modifies it in the switch statement, and calls the <code>ToListAsync</code> method after the <code>switch</code> statement. When you create and modify <code>IQueryable</code> variables, no query is sent to the database. The query is not executed until you convert the <code>IQueryable</code> object into a collection by calling a method such as <code>ToListAsync</code>. Therefore, this code results in a single query that is not executed until the <code>return View</code> statement.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="57" sourceendlinenumber="57">This code could get verbose with a large number of columns. <a href="advanced.html#dynamic-linq" data-raw-source="[The last tutorial in this series](advanced.md#dynamic-linq)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="57" sourceendlinenumber="57">The last tutorial in this series</a> shows how to write code that lets you pass the name of the <code>OrderBy</code> column in a string variable.</p>
+<h3 id="add-column-heading-hyperlinks-to-the-student-index-view" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="59" sourceendlinenumber="59">Add column heading hyperlinks to the Student Index view</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="61" sourceendlinenumber="61">Replace the code in <em>Views/Students/Index.cshtml</em>, with the following code to add column heading hyperlinks. The changed lines are highlighted.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="63" sourceendlinenumber="63"><code class="lang-html" highlight-lines="16,22">@model IEnumerable&lt;ContosoUniversity.Models.Student&gt;
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+                &lt;th&gt;
+                    &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;NameSortParm&quot;]&quot;&gt;@Html.DisplayNameFor(model =&gt; model.LastName)&lt;/a&gt;
+                &lt;/th&gt;
+                &lt;th&gt;
+                    @Html.DisplayNameFor(model =&gt; model.FirstMidName)
+                &lt;/th&gt;
+                &lt;th&gt;
+                    &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;DateSortParm&quot;]&quot;&gt;@Html.DisplayNameFor(model =&gt; model.EnrollmentDate)&lt;/a&gt;
+                &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+@foreach (var item in Model) {
+        &lt;tr&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.LastName)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.FirstMidName)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.EnrollmentDate)
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+}
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="65" sourceendlinenumber="65">This code uses the information in <code>ViewData</code> properties to set up hyperlinks with the appropriate query string values.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="67" sourceendlinenumber="67">Run the app, select the <strong>Students</strong> tab, and click the <strong>Last Name</strong> and <strong>Enrollment Date</strong> column headings to verify that sorting works.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="69" sourceendlinenumber="69"><img src="sort-filter-page/_static/name-order.png" alt="Students index page in name order" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="69" sourceendlinenumber="69"></p>
+<h2 id="add-a-search-box-to-the-students-index-page" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="71" sourceendlinenumber="71">Add a Search Box to the Students Index page</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="73" sourceendlinenumber="73">To add filtering to the Students Index page, you&#39;ll add a text box and a submit button to the view and make corresponding changes in the <code>Index</code> method. The text box will let you enter a string to search for in the first name and last name fields.</p>
+<h3 id="add-filtering-functionality-to-the-index-method" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="75" sourceendlinenumber="75">Add filtering functionality to the Index method</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="77" sourceendlinenumber="77">In <em>StudentsController.cs</em>, replace the <code>Index</code> method with the following code (the changes are highlighted).</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="79" sourceendlinenumber="79"><code class="lang-csharp" name="Main" highlight-lines="1,5,9-13">public async Task&lt;IActionResult&gt; Index(string sortOrder, string searchString)
+{
+    ViewData[&quot;NameSortParm&quot;] = String.IsNullOrEmpty(sortOrder) ? &quot;name_desc&quot; : &quot;&quot;;
+    ViewData[&quot;DateSortParm&quot;] = sortOrder == &quot;Date&quot; ? &quot;date_desc&quot; : &quot;Date&quot;;
+    ViewData[&quot;CurrentFilter&quot;] = searchString;
+
+    var students = from s in _context.Students
+                   select s;
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        students = students.Where(s =&gt; s.LastName.Contains(searchString)
+                               || s.FirstMidName.Contains(searchString));
+    }
+    switch (sortOrder)
+    {
+        case &quot;name_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.LastName);
+            break;
+        case &quot;Date&quot;:
+            students = students.OrderBy(s =&gt; s.EnrollmentDate);
+            break;
+        case &quot;date_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.EnrollmentDate);
+            break;
+        default:
+            students = students.OrderBy(s =&gt; s.LastName);
+            break;
+    }
+    return View(await students.AsNoTracking().ToListAsync());
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="81" sourceendlinenumber="81">You&#39;ve added a <code>searchString</code> parameter to the <code>Index</code> method. The search string value is received from a text box that you&#39;ll add to the Index view. You&#39;ve also added to the LINQ statement a where clause that selects only students whose first name or last name contains the search string. The statement that adds the where clause is executed only if there&#39;s a value to search for.</p>
+<div class="NOTE" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="83" sourceendlinenumber="83"><h5>Note</h5><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="84" sourceendlinenumber="84">Here you are calling the <code>Where</code> method on an <code>IQueryable</code> object, and the filter will be processed on the server. In some scenarios you might be calling the <code>Where</code> method as an extension method on an in-memory collection. (For example, suppose you change the reference to <code>_context.Students</code> so that instead of an EF <code>DbSet</code> it references a repository method that returns an <code>IEnumerable</code> collection.) The result would normally be the same but in some cases may be different.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="86" sourceendlinenumber="86">For example, the .NET Framework implementation of the <code>Contains</code> method performs a case-sensitive comparison by default, but in SQL Server this is determined by the collation setting of the SQL Server instance. That setting defaults to case-insensitive. You could call the <code>ToUpper</code> method to make the test explicitly case-insensitive:  <em>Where(s =&gt; s.LastName.ToUpper().Contains(searchString.ToUpper())</em>. That would ensure that results stay the same if you change the code later to use a repository which returns   an <code>IEnumerable</code> collection instead of an <code>IQueryable</code> object. (When you call the <code>Contains</code> method on an <code>IEnumerable</code> collection, you get the .NET Framework implementation; when you call it on an <code>IQueryable</code> object, you get the database provider implementation.) However, there is a performance penalty for this solution. The <code>ToUpper</code> code would put a function in the WHERE clause of the TSQL SELECT statement. That would prevent the optimizer from using an index. Given that SQL is mostly installed as case-insensitive, it&#39;s best to avoid the <code>ToUpper</code> code until you migrate to a case-sensitive data store.</p>
+</div>
+<h3 id="add-a-search-box-to-the-student-index-view" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="88" sourceendlinenumber="88">Add a Search Box to the Student Index View</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="90" sourceendlinenumber="90">In <em>Views/Student/Index.cshtml</em>, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a <strong>Search</strong> button.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="92" sourceendlinenumber="92"><code class="lang-html" highlight-lines="5-13">&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+    &lt;div class=&quot;form-actions no-color&quot;&gt;
+        &lt;p&gt;
+            Find by name: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot; value=&quot;@ViewData[&quot;currentFilter&quot;]&quot; /&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;btn btn-default&quot; /&gt; |
+            &lt;a asp-action=&quot;Index&quot;&gt;Back to Full List&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="94" sourceendlinenumber="94">This code uses the <code>&lt;form&gt;</code> <a class="xref" href="../../mvc/views/tag-helpers/intro.html" data-raw-source="[tag helper](xref:mvc/views/tag-helpers/intro)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="94" sourceendlinenumber="94">tag helper</a> to add the search text box and button. By default, the <code>&lt;form&gt;</code> tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action does not result in an update.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="96" sourceendlinenumber="96">Run the app, select the <strong>Students</strong> tab, enter a search string, and click Search to verify that filtering is working.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="98" sourceendlinenumber="98"><img src="sort-filter-page/_static/filtering.png" alt="Students index page with filtering" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="98" sourceendlinenumber="98"></p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="100" sourceendlinenumber="100">Notice that the URL contains the search string.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="102" sourceendlinenumber="104"><code class="lang-html">http://localhost:5813/Students?SearchString=an
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="106" sourceendlinenumber="106">If you bookmark this page, you&#39;ll get the filtered list when you use the bookmark. Adding <code>method=&quot;get&quot;</code> to the <code>form</code> tag is what caused the query string to be generated.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="108" sourceendlinenumber="108">At this stage, if you click a column heading sort link you&#39;ll lose the filter value that you entered in the <strong>Search</strong> box. You&#39;ll fix that in the next section.</p>
+<h2 id="add-paging-functionality-to-the-students-index-page" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="110" sourceendlinenumber="110">Add paging functionality to the Students Index page</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="112" sourceendlinenumber="112">To add paging to the Students Index page, you&#39;ll create a <code>PaginatedList</code> class that uses <code>Skip</code> and <code>Take</code> statements to filter data on the server instead of always retrieving all rows of the table. Then you&#39;ll make additional changes in the <code>Index</code> method and add paging buttons to the <code>Index</code> view. The following illustration shows the paging buttons.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="114" sourceendlinenumber="114"><img src="sort-filter-page/_static/paging.png" alt="Students index page with paging links" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="114" sourceendlinenumber="114"></p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="116" sourceendlinenumber="116">In the project folder, create <code>PaginatedList.cs</code>, and then replace the template code with the following code.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="118" sourceendlinenumber="118"><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
+namespace ContosoUniversity
+{
+    public class PaginatedList&lt;T&gt; : List&lt;T&gt;
+    {
+        public int PageIndex { get; private set; }
+        public int TotalPages { get; private set; }
+
+        public PaginatedList(List&lt;T&gt; items, int count, int pageIndex, int pageSize)
+        {
+            PageIndex = pageIndex;
+            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            this.AddRange(items);
+        }
+
+        public bool HasPreviousPage
+        {
+            get
+            {
+                return (PageIndex &gt; 1);
+            }
+        }
+
+        public bool HasNextPage
+        {
+            get
+            {
+                return (PageIndex &lt; TotalPages);
+            }
+        }
+
+        public static async Task&lt;PaginatedList&lt;T&gt;&gt; CreateAsync(IQueryable&lt;T&gt; source, int pageIndex, int pageSize)
+        {
+            var count = await source.CountAsync();
+            var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            return new PaginatedList&lt;T&gt;(items, count, pageIndex, pageSize);
+        }
+    }
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="120" sourceendlinenumber="120">The <code>CreateAsync</code> method in this code takes page size and page number and applies the appropriate <code>Skip</code> and <code>Take</code> statements to the <code>IQueryable</code>. When <code>ToListAsync</code> is called on the <code>IQueryable</code>, it will return a List containing only the requested page. The properties <code>HasPreviousPage</code> and <code>HasNextPage</code> can be used to enable or disable <strong>Previous</strong> and <strong>Next</strong> paging buttons.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="122" sourceendlinenumber="122">A <code>CreateAsync</code> method is used instead of a constructor to create the <code>PaginatedList&lt;T&gt;</code> object because constructors can&#39;t run asynchronous code.</p>
+<h2 id="add-paging-functionality-to-the-index-method" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="124" sourceendlinenumber="124">Add paging functionality to the Index method</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="126" sourceendlinenumber="126">In <em>StudentsController.cs</em>, replace the <code>Index</code> method with the following code.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="128" sourceendlinenumber="128"><code class="lang-csharp" name="Main" highlight-lines="1-5,7,11-18,45-46">public async Task&lt;IActionResult&gt; Index(
+    string sortOrder,
+    string currentFilter,
+    string searchString,
+    int? page)
+{
+    ViewData[&quot;CurrentSort&quot;] = sortOrder;
+    ViewData[&quot;NameSortParm&quot;] = String.IsNullOrEmpty(sortOrder) ? &quot;name_desc&quot; : &quot;&quot;;
+    ViewData[&quot;DateSortParm&quot;] = sortOrder == &quot;Date&quot; ? &quot;date_desc&quot; : &quot;Date&quot;;
+
+    if (searchString != null)
+    {
+        page = 1;
+    }
+    else
+    {
+        searchString = currentFilter;
+    }
+
+    ViewData[&quot;CurrentFilter&quot;] = searchString;
+
+    var students = from s in _context.Students
+                   select s;
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        students = students.Where(s =&gt; s.LastName.Contains(searchString)
+                               || s.FirstMidName.Contains(searchString));
+    }
+    switch (sortOrder)
+    {
+        case &quot;name_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.LastName);
+            break;
+        case &quot;Date&quot;:
+            students = students.OrderBy(s =&gt; s.EnrollmentDate);
+            break;
+        case &quot;date_desc&quot;:
+            students = students.OrderByDescending(s =&gt; s.EnrollmentDate);
+            break;
+        default:
+            students = students.OrderBy(s =&gt; s.LastName);
+            break;
+    }
+
+    int pageSize = 3;
+    return View(await PaginatedList&lt;Student&gt;.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="130" sourceendlinenumber="130">This code adds a page number parameter, a current sort order parameter, and a current filter parameter to the method signature.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="132" sourceendlinenumber="138"><code class="lang-csharp">public async Task&lt;IActionResult&gt; Index(
+    string sortOrder,
+    string currentFilter,
+    string searchString,
+    int? page)
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="140" sourceendlinenumber="140">The first time the page is displayed, or if the user hasn&#39;t clicked a paging or sorting link, all the parameters will be null.  If a paging link is clicked, the page variable will contain the page number to display.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="142" sourceendlinenumber="142">The <code>ViewData</code> element named CurrentSort provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="144" sourceendlinenumber="144">The <code>ViewData</code> element named CurrentFilter provides the view with the current filter string. This value must be included in the paging links in order to maintain the filter settings during paging, and it must be restored to the text box when the page is redisplayed.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="146" sourceendlinenumber="146">If the search string is changed during paging, the page has to be reset to 1, because the new filter can result in different data to display. The search string is changed when a value is entered in the text box and the Submit button is pressed. In that case, the <code>searchString</code> parameter is not null.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="148" sourceendlinenumber="157"><code class="lang-csharp">if (searchString != null)
+{
+    page = 1;
+}
+else
+{
+    searchString = currentFilter;
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="159" sourceendlinenumber="159">At the end of the <code>Index</code> method, the <code>PaginatedList.CreateAsync</code> method converts the student query to a single page of students in a collection type that supports paging. That single page of students is then passed to the view.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="161" sourceendlinenumber="163"><code class="lang-csharp">return View(await PaginatedList&lt;Student&gt;.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="165" sourceendlinenumber="165">The <code>PaginatedList.CreateAsync</code> method takes a page number. The two question marks represent the null-coalescing operator. The null-coalescing operator defines a default value for a nullable type; the expression <code>(page ?? 1)</code> means return the value of <code>page</code> if it has a value, or return 1 if <code>page</code> is null.</p>
+<h2 id="add-paging-links-to-the-student-index-view" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="167" sourceendlinenumber="167">Add paging links to the Student Index view</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="169" sourceendlinenumber="169">In <em>Views/Students/Index.cshtml</em>, replace the existing code with the following code. The changes are highlighted.</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="171" sourceendlinenumber="171"><code class="lang-html" highlight-lines="1,27,30,33,61-79">@model PaginatedList&lt;ContosoUniversity.Models.Student&gt;
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Index&quot;;
+}
+
+&lt;h2&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;
+    &lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;form asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+    &lt;div class=&quot;form-actions no-color&quot;&gt;
+        &lt;p&gt;
+            Find by name: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot; value=&quot;@ViewData[&quot;currentFilter&quot;]&quot; /&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;btn btn-default&quot; /&gt; |
+            &lt;a asp-action=&quot;Index&quot;&gt;Back to Full List&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;NameSortParm&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Last Name&lt;/a&gt;
+            &lt;/th&gt;
+            &lt;th&gt;
+                First Name
+            &lt;/th&gt;
+            &lt;th&gt;
+                &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;DateSortParm&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Enrollment Date&lt;/a&gt;
+            &lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @foreach (var item in Model)
+        {
+            &lt;tr&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.LastName)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.FirstMidName)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    @Html.DisplayFor(modelItem =&gt; item.EnrollmentDate)
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot;&gt;Edit&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot;&gt;Details&lt;/a&gt; |
+                    &lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot;&gt;Delete&lt;/a&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? &quot;disabled&quot; : &quot;&quot;;
+    var nextDisabled = !Model.HasNextPage ? &quot;disabled&quot; : &quot;&quot;;
+}
+
+&lt;a asp-action=&quot;Index&quot;
+   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+   asp-route-page=&quot;@(Model.PageIndex - 1)&quot;
+   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+   class=&quot;btn btn-default @prevDisabled&quot;&gt;
+    Previous
+&lt;/a&gt;
+&lt;a asp-action=&quot;Index&quot;
+   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+   asp-route-page=&quot;@(Model.PageIndex + 1)&quot;
+   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+   class=&quot;btn btn-default @nextDisabled&quot;&gt;
+    Next
+&lt;/a&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="173" sourceendlinenumber="173">The <code>@model</code> statement at the top of the page specifies that the view now gets a <code>PaginatedList&lt;T&gt;</code> object instead of a <code>List&lt;T&gt;</code> object.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="175" sourceendlinenumber="175">The column header links use the query string to pass the current search string to the controller so that the user can sort within filter results:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="177" sourceendlinenumber="179"><code class="lang-html">&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;DateSortParm&quot;]&quot; asp-route-currentFilter =&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Enrollment Date&lt;/a&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="181" sourceendlinenumber="181">The paging buttons are displayed by tag helpers:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="183" sourceendlinenumber="191"><code class="lang-html">&lt;a asp-action=&quot;Index&quot;
+   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+   asp-route-page=&quot;@(Model.PageIndex - 1)&quot;
+   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+   class=&quot;btn btn-default @prevDisabled&quot;&gt;
+   Previous
+&lt;/a&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="193" sourceendlinenumber="193">Run the app and go to the Students page.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="195" sourceendlinenumber="195"><img src="sort-filter-page/_static/paging.png" alt="Students index page with paging links" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="195" sourceendlinenumber="195"></p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="197" sourceendlinenumber="197">Click the paging links in different sort orders to make sure paging works. Then enter a search string and try paging again to verify that paging also works correctly with sorting and filtering.</p>
+<h2 id="create-an-about-page-that-shows-student-statistics" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="199" sourceendlinenumber="199">Create an About page that shows Student statistics</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="201" sourceendlinenumber="201">For the Contoso University website&#39;s <strong>About</strong> page, you&#39;ll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you&#39;ll do the following:</p>
+<ul sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="203" sourceendlinenumber="207">
+<li sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="203" sourceendlinenumber="203"><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="203" sourceendlinenumber="203">Create a view model class for the data that you need to pass to the view.</p>
+</li>
+<li sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="205" sourceendlinenumber="205"><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="205" sourceendlinenumber="205">Modify the About method in the Home controller.</p>
+</li>
+<li sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="207" sourceendlinenumber="207"><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="207" sourceendlinenumber="207">Modify the About view.</p>
+</li>
+</ul>
+<h3 id="create-the-view-model" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="209" sourceendlinenumber="209">Create the view model</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="211" sourceendlinenumber="211">Create a <em>SchoolViewModels</em> folder in the <em>Models</em> folder.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="213" sourceendlinenumber="213">In the new folder, add a class file <em>EnrollmentDateGroup.cs</em> and replace the template code with the following code:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="215" sourceendlinenumber="215"><code class="lang-csharp" name="Main">using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace ContosoUniversity.Models.SchoolViewModels
+{
+    public class EnrollmentDateGroup
+    {
+        [DataType(DataType.Date)]
+        public DateTime? EnrollmentDate { get; set; }
+
+        public int StudentCount { get; set; }
+    }
+}
+</code></pre><h3 id="modify-the-home-controller" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="217" sourceendlinenumber="217">Modify the Home Controller</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="219" sourceendlinenumber="219">In <em>HomeController.cs</em>, add the following using statements at the top of the file:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="221" sourceendlinenumber="221"><code class="lang-csharp" name="Main">using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models.SchoolViewModels;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="223" sourceendlinenumber="223">Add a class variable for the database context immediately after the opening curly brace for the class, and get an instance of the context from ASP.NET Core DI:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="225" sourceendlinenumber="225"><code class="lang-csharp" name="Main" highlight-lines="3,5,7">public class HomeController : Controller
+{
+    private readonly SchoolContext _context;
+
+    public HomeController(SchoolContext context)
+    {
+        _context = context;
+    }
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="227" sourceendlinenumber="227">Replace the <code>About</code> method with the following code:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="229" sourceendlinenumber="229"><code class="lang-csharp" name="Main">public async Task&lt;ActionResult&gt; About()
+{
+    IQueryable&lt;EnrollmentDateGroup&gt; data = 
+        from student in _context.Students
+        group student by student.EnrollmentDate into dateGroup
+        select new EnrollmentDateGroup()
+        {
+            EnrollmentDate = dateGroup.Key,
+            StudentCount = dateGroup.Count()
+        };
+    return View(await data.AsNoTracking().ToListAsync());
+}
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="231" sourceendlinenumber="231">The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of <code>EnrollmentDateGroup</code> view model objects.</p>
+<div class="NOTE" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="232" sourceendlinenumber="232"><h5>Note</h5><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="233" sourceendlinenumber="233">In the 1.0 version of Entity Framework Core, the entire result set is returned to the client, and grouping is done on the client. In some scenarios this could create performance problems. Be sure to test performance with production volumes of data, and if necessary use raw SQL to do the grouping on the server. For information about how to use raw SQL, see <a href="advanced.html" data-raw-source="[the last tutorial in this series](advanced.md)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="233" sourceendlinenumber="233">the last tutorial in this series</a>.</p>
+</div>
+<h3 id="modify-the-about-view" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="235" sourceendlinenumber="235">Modify the About View</h3>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="237" sourceendlinenumber="237">Replace the code in the <em>Views/Home/About.cshtml</em> file with the following code:</p>
+<pre sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="239" sourceendlinenumber="239"><code class="lang-html">@model IEnumerable&lt;ContosoUniversity.Models.SchoolViewModels.EnrollmentDateGroup&gt;
+
+@{
+    ViewData[&quot;Title&quot;] = &quot;Student Body Statistics&quot;;
+}
+
+&lt;h2&gt;Student Body Statistics&lt;/h2&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;
+            Enrollment Date
+        &lt;/th&gt;
+        &lt;th&gt;
+            Students
+        &lt;/th&gt;
+    &lt;/tr&gt;
+
+    @foreach (var item in Model)
+    {
+        &lt;tr&gt;
+            &lt;td&gt;
+                @Html.DisplayFor(modelItem =&gt; item.EnrollmentDate)
+            &lt;/td&gt;
+            &lt;td&gt;
+                @item.StudentCount
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    }
+&lt;/table&gt;
+</code></pre><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="241" sourceendlinenumber="241">Run the app and go to the About page. The count of students for each enrollment date is displayed in a table.</p>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="243" sourceendlinenumber="243"><img src="sort-filter-page/_static/about.png" alt="About page" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="243" sourceendlinenumber="243"></p>
+<h2 id="summary" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="245" sourceendlinenumber="245">Summary</h2>
+<p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="247" sourceendlinenumber="247">In this tutorial, you&#39;ve seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you&#39;ll learn how to handle data model changes by using migrations.</p>
+<div class="step-by-step" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="249" sourceendlinenumber="249"><p sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="250" sourceendlinenumber="251"><a href="crud.html" data-raw-source="[Previous](crud.md)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="250" sourceendlinenumber="250">Previous</a>
+<a href="migrations.html" data-raw-source="[Next](migrations.md)" sourcefile="data/ef-mvc/sort-filter-page.md" sourcestartlinenumber="251" sourceendlinenumber="251">Next</a>  </p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/data/ef-mvc/sort-filter-page.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

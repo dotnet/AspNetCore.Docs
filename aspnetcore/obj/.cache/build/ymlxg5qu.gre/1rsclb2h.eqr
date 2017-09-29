@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Two-factor authentication with SMS </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Two-factor authentication with SMS ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/2fa">
+<h1 id="two-factor-authentication-with-sms" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="14" sourceendlinenumber="14">Two-factor authentication with SMS</h1>
+
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="16" sourceendlinenumber="16">By <a href="https://twitter.com/RickAndMSFT" data-raw-source="[Rick Anderson](https://twitter.com/RickAndMSFT)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="16" sourceendlinenumber="16">Rick Anderson</a> and <a href="https://github.com/Swiss-Devs" data-raw-source="[Swiss-Devs](https://github.com/Swiss-Devs)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="16" sourceendlinenumber="16">Swiss-Devs</a></p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="18" sourceendlinenumber="18">This tutorial applies to ASP.NET Core 1.x only. See <a class="xref" href="identity-enable-qrcodes.html" data-raw-source="[Enabling QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="18" sourceendlinenumber="18">Enabling QR Code generation for authenticator apps in ASP.NET Core</a> for ASP.NET Core 2.0 and later.</p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="20" sourceendlinenumber="20">This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for <a href="https://www.twilio.com/" data-raw-source="[twilio](https://www.twilio.com/)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="20" sourceendlinenumber="20">twilio</a> and <a href="https://www.aspsms.com/asp.net/identity/core/testcredits/" data-raw-source="[ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="20" sourceendlinenumber="20">ASPSMS</a>, but you can use any other SMS provider. We recommend you complete <a href="accconfirm.html" data-raw-source="[Account Confirmation and Password Recovery](accconfirm.md)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="20" sourceendlinenumber="20">Account Confirmation and Password Recovery</a> before starting this tutorial.</p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="22" sourceendlinenumber="22">View the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA" data-raw-source="[completed sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="22" sourceendlinenumber="22">completed sample</a>. <a class="xref" href="../../tutorials/index.html#how-to-download-a-sample" data-raw-source="[How to download](xref:tutorials/index#how-to-download-a-sample)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="22" sourceendlinenumber="22">How to download</a>.</p>
+<h2 id="create-a-new-aspnet-core-project" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="24" sourceendlinenumber="24">Create a new ASP.NET Core project</h2>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="26" sourceendlinenumber="26">Create a new ASP.NET Core web app named <code>Web2FA</code> with individual user accounts. Follow the instructions in <a class="xref" href="../enforcing-ssl.html" data-raw-source="[Enforcing SSL in an ASP.NET Core app](xref:security/enforcing-ssl)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="26" sourceendlinenumber="26">Enforcing SSL in an ASP.NET Core app</a> to set up and require SSL.</p>
+<h3 id="create-an-sms-account" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="28" sourceendlinenumber="28">Create an SMS account</h3>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="30" sourceendlinenumber="30">Create an SMS account, for example, from <a href="https://www.twilio.com/" data-raw-source="[twilio](https://www.twilio.com/)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="30" sourceendlinenumber="30">twilio</a> or <a href="https://www.aspsms.com/asp.net/identity/core/testcredits/" data-raw-source="[ASPSMS](https://www.aspsms.com/asp.net/identity/core/testcredits/)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="30" sourceendlinenumber="30">ASPSMS</a>. Record the authentication credentials (for twilio: accountSid and authToken, for ASPSMS: Userkey and Password).</p>
+<h4 id="figuring-out-sms-provider-credentials" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="32" sourceendlinenumber="32">Figuring out SMS Provider credentials</h4>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="34" sourceendlinenumber="35"><strong>Twilio:</strong><br>From the Dashboard tab of your Twilio account, copy the <strong>Account SID</strong> and <strong>Auth token</strong>.</p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="37" sourceendlinenumber="38"><strong>ASPSMS:</strong><br>From your account settings, navigate to <strong>Userkey</strong> and copy it together with your <strong>Password</strong>.</p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="40" sourceendlinenumber="40">We will later store these values in with the secret-manager tool within the keys <code>SMSAccountIdentification</code> and <code>SMSAccountPassword</code>.</p>
+<h4 id="specifying-senderid--originator" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="42" sourceendlinenumber="42">Specifying SenderID / Originator</h4>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="44" sourceendlinenumber="45"><strong>Twilio:</strong><br>From the Numbers tab, copy your Twilio <strong>phone number</strong>. </p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="47" sourceendlinenumber="48"><strong>ASPSMS:</strong><br>Within the Unlock Originators Menu, unlock one or more Originators or choose an alphanumeric Originator (Not supported by all networks). </p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="50" sourceendlinenumber="50">We will later store this value with the secret-manager tool within the key <code>SMSAccountFrom</code>.</p>
+<h3 id="provide-credentials-for-the-sms-service" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="53" sourceendlinenumber="53">Provide credentials for the SMS service</h3>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="55" sourceendlinenumber="55">We&#39;ll use the <a class="xref" href="../../fundamentals/configuration.html#options-config-objects" data-raw-source="[Options pattern](xref:fundamentals/configuration#options-config-objects)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="55" sourceendlinenumber="55">Options pattern</a> to access the user account and key settings. </p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="57" sourceendlinenumber="57">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="57" sourceendlinenumber="57">Create a class to fetch the secure SMS key. For this sample, the <code>SMSoptions</code> class is created in the <em>Services/SMSoptions.cs</em> file.</li>
+</ul>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="59" sourceendlinenumber="59"><code class="lang-csharp" name="Main">namespace Web2FA.Services
+{
+    public class SMSoptions
+    {
+        public string SMSAccountIdentification { get; set; }
+        public string SMSAccountPassword { get; set; }
+        public string SMSAccountFrom { get; set; }
+    }
+}
+</code></pre><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="61" sourceendlinenumber="61">Set the <code>SMSAccountIdentification</code>, <code>SMSAccountPassword</code> and <code>SMSAccountFrom</code> with the <a class="xref" href="../app-secrets.html" data-raw-source="[secret-manager tool](xref:security/app-secrets)" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="61" sourceendlinenumber="61">secret-manager tool</a>. For example:</p>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="63" sourceendlinenumber="66"><code class="lang-none">C:/Web2FA/src/WebApp1&gt;dotnet user-secrets set SMSAccountIdentification 12345
+info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
+</code></pre><ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="67" sourceendlinenumber="67">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="67" sourceendlinenumber="67">Add the NuGet package for the SMS provider. From the Package Manager Console (PMC) run:</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="69" sourceendlinenumber="70"><strong>Twilio:</strong><br><code>Install-Package Twilio</code></p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="72" sourceendlinenumber="73"><strong>ASPSMS:</strong><br><code>Install-Package ASPSMS</code></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="76" sourceendlinenumber="76">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="76" sourceendlinenumber="76">Add code in the <em>Services/MessageServices.cs</em> file to enable SMS. Use either the Twilio or the ASPSMS section:</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="79" sourceendlinenumber="79"><strong>Twilio:</strong>  </p>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="80" sourceendlinenumber="80"><code class="lang-csharp" name="Main">using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
+namespace Web2FA.Services
+{
+    // This class is used by the application to send Email and SMS
+    // when you turn on two-factor authentication in ASP.NET Identity.
+    // For more details see this link https://go.microsoft.com/fwlink/?LinkID=532713
+    public class AuthMessageSender : IEmailSender, ISmsSender
+    {
+        public AuthMessageSender(IOptions&lt;SMSoptions&gt; optionsAccessor)
+        {
+            Options = optionsAccessor.Value;
+        }
+
+        public SMSoptions Options { get; }  // set only via Secret Manager
+
+        public Task SendEmailAsync(string email, string subject, string message)
+        {
+            // Plug in your email service here to send an email.
+            return Task.FromResult(0);
+        }
+
+        public Task SendSmsAsync(string number, string message)
+        {
+            // Plug in your SMS service here to send a text message.
+            // Your Account SID from twilio.com/console
+            var accountSid = Options.SMSAccountIdentification;
+            // Your Auth Token from twilio.com/console
+            var authToken = Options.SMSAccountPassword;
+            var 
+
+            TwilioClient.Init(accountSid, authToken);
+
+            var msg = MessageResource.Create(
+              to: new PhoneNumber(number),
+              from: new PhoneNumber(Options.SMSAccountFrom),
+              body: message);
+            return Task.FromResult(0);
+        }
+    }
+}
+</code></pre><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="82" sourceendlinenumber="82"><strong>ASPSMS:</strong>  </p>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="83" sourceendlinenumber="83"><code class="lang-csharp" name="Main">using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+
+namespace Web2FA.Services
+{
+    // This class is used by the application to send Email and SMS
+    // when you turn on two-factor authentication in ASP.NET Identity.
+    // For more details see this link https://go.microsoft.com/fwlink/?LinkID=532713
+    public class AuthMessageSender : IEmailSender, ISmsSender
+    {
+        public AuthMessageSender(IOptions&lt;SMSoptions&gt; optionsAccessor)
+        {
+            Options = optionsAccessor.Value;
+        }
+
+        public SMSoptions Options { get; }  // set only via Secret Manager
+
+        public Task SendEmailAsync(string email, string subject, string message)
+        {
+            // Plug in your email service here to send an email.
+            return Task.FromResult(0);
+        }
+
+        public Task SendSmsAsync(string number, string message)
+        {
+            ASPSMS.SMS SMSSender = new ASPSMS.SMS();
+
+            SMSSender.Userkey = Options.SMSAccountIdentification;
+            SMSSender.Password = Options.SMSAccountPassword;
+            SMSSender.Originator = Options.SMSAccountFrom;
+
+            SMSSender.AddRecipient(number);
+            SMSSender.MessageData = message;
+
+            SMSSender.SendTextSMS();
+
+            return Task.FromResult(0);
+        }
+    }
+}
+</code></pre><h3 id="configure-startup-to-use-smsoptions" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="85" sourceendlinenumber="85">Configure startup to use <code>SMSoptions</code></h3>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="87" sourceendlinenumber="87">Add <code>SMSoptions</code> to the service container in the <code>ConfigureServices</code> method in the <em>Startup.cs</em>:</p>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="89" sourceendlinenumber="89"><code class="lang-csharp" name="Main" highlight-lines="4">    // Add application services.
+    services.AddTransient&lt;IEmailSender, AuthMessageSender&gt;();
+    services.AddTransient&lt;ISmsSender, AuthMessageSender&gt;();
+    services.Configure&lt;SMSoptions&gt;(Configuration);
+}
+</code></pre><h3 id="enable-two-factor-authentication" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="91" sourceendlinenumber="91">Enable two-factor authentication</h3>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="93" sourceendlinenumber="93">Open the <em>Views/Manage/Index.cshtml</em> Razor view file and remove the comment characters (so no markup is commnted out).</p>
+<h2 id="log-in-with-two-factor-authentication" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="95" sourceendlinenumber="95">Log in with two-factor authentication</h2>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="97" sourceendlinenumber="97">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="97" sourceendlinenumber="97">Run the app and register a new user</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="99" sourceendlinenumber="99"><img src="2fa/_static/login2fa1.png" alt="Web application Register view open in Microsoft Edge" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="99" sourceendlinenumber="99"></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="101" sourceendlinenumber="101">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="101" sourceendlinenumber="101">Tap on your user name, which activates the <code>Index</code> action method in Manage controller. Then tap the phone number <strong>Add</strong> link.</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="103" sourceendlinenumber="103"><img src="2fa/_static/login2fa2.png" alt="Manage view" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="103" sourceendlinenumber="103"></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="105" sourceendlinenumber="105">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="105" sourceendlinenumber="105">Add a phone number that will receive the verification code, and tap <strong>Send verification code</strong>.</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="107" sourceendlinenumber="107"><img src="2fa/_static/login2fa3.png" alt="Add Phone Number page" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="107" sourceendlinenumber="107"></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="109" sourceendlinenumber="109">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="109" sourceendlinenumber="109">You will get a text message with the verification code. Enter it and tap <strong>Submit</strong></li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="111" sourceendlinenumber="111"><img src="2fa/_static/login2fa4.png" alt="Verify Phone Number page" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="111" sourceendlinenumber="111"></p>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="113" sourceendlinenumber="113">If you don&#39;t get a text message, see twilio log page.</p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="115" sourceendlinenumber="115">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="115" sourceendlinenumber="115">The Manage view shows your phone number was added successfully.</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="117" sourceendlinenumber="117"><img src="2fa/_static/login2fa5.png" alt="Manage view" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="117" sourceendlinenumber="117"></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="119" sourceendlinenumber="119">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="119" sourceendlinenumber="119">Tap <strong>Enable</strong> to enable two-factor authentication.</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="121" sourceendlinenumber="121"><img src="2fa/_static/login2fa6.png" alt="Manage view" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="121" sourceendlinenumber="121"></p>
+<h3 id="test-two-factor-authentication" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="123" sourceendlinenumber="123">Test two-factor authentication</h3>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="125" sourceendlinenumber="129">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="125" sourceendlinenumber="125"><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="125" sourceendlinenumber="125">Log off.</p>
+</li>
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="127" sourceendlinenumber="127"><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="127" sourceendlinenumber="127">Log in.</p>
+</li>
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="129" sourceendlinenumber="129"><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="129" sourceendlinenumber="129">The user account has enabled two-factor authentication, so you have to provide the second factor of authentication . In this tutorial you have enabled phone verification. The built in templates also allow you to set up email as the second factor. You can set up additional second factors for authentication such as QR codes. Tap <strong>Submit</strong>.</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="131" sourceendlinenumber="131"><img src="2fa/_static/login2fa7.png" alt="Send Verification Code view" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="131" sourceendlinenumber="131"></p>
+<ul sourcefile="security/authentication/2fa.md" sourcestartlinenumber="133" sourceendlinenumber="135">
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="133" sourceendlinenumber="133"><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="133" sourceendlinenumber="133">Enter the code you get in the SMS message.</p>
+</li>
+<li sourcefile="security/authentication/2fa.md" sourcestartlinenumber="135" sourceendlinenumber="135"><p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="135" sourceendlinenumber="135">Clicking on the <strong>Remember this browser</strong> check box will exempt you from needing to use 2FA to log on when using the same device and browser. Enabling 2FA and clicking on <strong>Remember this browser</strong> will provide you with strong 2FA protection from malicious users trying to access your account, as long as they don&#39;t have access to your device. You can do this on any private device you regularly use. By setting  <strong>Remember this browser</strong>, you get the added security of 2FA from devices you don&#39;t regularly use, and you get the convenience on not having to go through 2FA on your own devices.</p>
+</li>
+</ul>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="137" sourceendlinenumber="137"><img src="2fa/_static/login2fa8.png" alt="Verify view" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="137" sourceendlinenumber="137"></p>
+<h2 id="account-lockout-for-protecting-against-brute-force-attacks" sourcefile="security/authentication/2fa.md" sourcestartlinenumber="139" sourceendlinenumber="139">Account lockout for protecting against brute force attacks</h2>
+<p sourcefile="security/authentication/2fa.md" sourcestartlinenumber="141" sourceendlinenumber="141">We recommend you use account lockout with 2FA. Once a user logs in (through a local account or social account), each failed attempt at 2FA is stored, and if the maximum attempts (default is 5) is reached, the user is locked out for five minutes (you can set the lock out time with <code>DefaultAccountLockoutTimeSpan</code>). The following configures Account to be locked out for 10 minutes after 10 failed attempts.</p>
+<pre sourcefile="security/authentication/2fa.md" sourcestartlinenumber="143" sourceendlinenumber="143"><code class="lang-csharp" name="Main" highlight-lines="13-17">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+    services.AddMvc();
+
+    services.Configure&lt;IdentityOptions&gt;(options =&gt;
+    {
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+        options.Lockout.MaxFailedAccessAttempts = 10;
+    });
+
+    // Add application services.
+    services.AddTransient&lt;IEmailSender, AuthMessageSender&gt;();
+    services.AddTransient&lt;ISmsSender, AuthMessageSender&gt;();
+    services.Configure&lt;SMSoptions&gt;(Configuration);
+}
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/2fa.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
