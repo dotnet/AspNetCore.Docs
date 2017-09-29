@@ -10,7 +10,6 @@ ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/intro
-
 ---
 
 # Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 10)

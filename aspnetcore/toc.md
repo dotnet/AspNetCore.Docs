@@ -54,6 +54,9 @@
 ### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 ### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 ### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+## [Data access - Razor Pages with EF Core](xref:data/index)
+### [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
+
 ## [Data access - working with EF Core](data/ef-mvc/index.md)
 ### [Getting started](data/ef-mvc/intro.md)
 ### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
@@ -141,6 +144,7 @@
 ## [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)
 
 # [Working with Data](data/index.md)
+## [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/intro)
 ## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
 ## [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
