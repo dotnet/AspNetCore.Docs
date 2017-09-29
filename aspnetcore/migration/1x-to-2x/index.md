@@ -98,9 +98,10 @@ The adoption of this new 2.0 pattern is highly recommended and is required for p
 ```
 Unable to create an object of type '<Context>'. Add an implementation of 'IDesignTimeDbContextFactory<Context>' to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
 ```
+
 ## Adding additional configuration
 
-In 2.0 projects, the boilerplate configuration code runs behind the scenes. By default, environment variables and application settings are loaded into startup so all that is required in *Startup.cs* is initializing `IConfiguration` with the injected instance. To add additional providers, or change the existing providers, utilize `ConfigureAppConfiguration` on `IWebHostBuilder` in *Program.cs*. The setup is similar to 1.x
+In 2.0 projects, the boilerplate configuration code runs behind-the-scenes. By default, environment variables and app settings are loaded into startup so all that is required in *Startup.cs* is initializing `IConfiguration` with the injected instance. To add additional providers or to change existing providers, utilize `ConfigureAppConfiguration` on `IWebHostBuilder` in *Program.cs*:
 
 ```csharp
  var host = new WebHostBuilder()
@@ -111,7 +112,6 @@ In 2.0 projects, the boilerplate configuration code runs behind the scenes. By d
                     config.AddCommandLine(args);
                 });
 ```
-
 
 <a name="view-compilation"></a>
 
