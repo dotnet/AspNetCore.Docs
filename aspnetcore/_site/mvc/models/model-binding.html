@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Model Binding </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Model Binding ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/models/model-binding">
+<h1 id="model-binding">Model Binding</h1>
+
+<p>By <a href="https://github.com/rachelappel">Rachel Appel</a></p>
+<h2 id="introduction-to-model-binding">Introduction to model binding</h2>
+<p>Model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters. The parameters may be simple types such as strings, integers, or floats, or they may be complex types. This is a great feature of MVC because mapping incoming data to a counterpart is an often repeated scenario, regardless of size or complexity of the data. MVC solves this problem by abstracting binding away so developers don&#39;t have to keep rewriting a slightly different version of that same code in every app. Writing your own text to type converter code is tedious, and error prone.</p>
+<h2 id="how-model-binding-works">How model binding works</h2>
+<p>When MVC receives an HTTP request, it routes it to a specific action method of a controller. It determines which action method to run based on what is in the route data, then it binds values from the HTTP request to that action method&#39;s parameters. For example, consider the following URL:</p>
+<p><code>http://contoso.com/movies/edit/2</code></p>
+<p>Since the route template looks like this, <code>{controller=Home}/{action=Index}/{id?}</code>, <code>movies/edit/2</code> routes to the <code>Movies</code> controller, and its <code>Edit</code> action method. It also accepts an optional parameter called <code>id</code>. The code for the action method should look something like this:</p>
+<!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
+<pre><code class="lang-csharp">public IActionResult Edit(int? id)
+</code></pre><p>Note: The strings in the URL route are not case sensitive.</p>
+<p>MVC will try to bind request data to the action parameters by name. MVC will look for values for each parameter using the parameter name and the names of its public settable properties. In the above example, the only action parameter is named <code>id</code>, which MVC binds to the value with the same name in the route values. In addition to route values MVC will bind data from various parts of the request and it does so in a set order. Below is a list of the data sources in the order that model binding looks through them:</p>
+<ol>
+<li><p><code>Form values</code>: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).</p>
+</li>
+<li><p><code>Route values</code>: The set of route values provided by <a href="../../fundamentals/routing.html">Routing</a></p>
+</li>
+<li><p><code>Query strings</code>: The query string part of the URI.</p>
+</li>
+</ol>
+<!-- DocFX BUG
+The link works but generates an error when building with DocFX
+@fundamentals/routing
+[Routing](xref:fundamentals/routing)
+-->
+<p>Note: Form values, route data, and query strings are all stored as name-value pairs.</p>
+<p>Since model binding asked for a key named <code>id</code> and there is nothing named <code>id</code> in the form values, it moved on to the route values looking for that key. In our example, it&#39;s a match. Binding happens, and the value is converted to the integer 2. The same request using Edit(string id) would convert to the string &quot;2&quot;.</p>
+<p>So far the example uses simple types. In MVC simple types are any .NET primitive type or type with a string type converter. If the action method&#39;s parameter were a class such as the <code>Movie</code> type, which contains both simple and complex types as properties, MVC&#39;s model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern <em>parameter_name.property_name</em> to bind values to properties. If it doesn&#39;t find matching values of this form, it will attempt to bind using just the property name. For those types such as <code>Collection</code> types, model binding looks for matches to <em>parameter_name[index]</em> or just <em>[index]</em>. Model binding treats  <code>Dictionary</code> types similarly, asking for <em>parameter_name[key]</em> or just <em>[key]</em>, as long as the keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values
+so that the form fields remain filled with the user&#39;s input for their convenience, for example, when bound data from a create or edit did not pass validation.</p>
+<p>In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.</p>
+<p>When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. If binding fails, MVC does not throw an error. You can query for model state errors by checking the <code>ModelState.IsValid</code> property.</p>
+<p>Note: Each entry in the controller&#39;s <code>ModelState</code> property is a <code>ModelStateEntry</code> containing an <code>Errors property</code>. It&#39;s rarely necessary to query this collection yourself. Use <code>ModelState.IsValid</code> instead.</p>
+<p>Additionally, there are some special data types that MVC must consider when performing model binding:</p>
+<ul>
+<li><p><code>IFormFile</code>, <code>IEnumerable&lt;IFormFile&gt;</code>: One or more uploaded files that are part of the HTTP request.</p>
+</li>
+<li><p><code>CancelationToken</code>: Used to cancel activity in asynchronous controllers.</p>
+</li>
+</ul>
+<p>These types can be bound to action parameters or to properties on a class type.</p>
+<p>Once model binding is complete, <a href="validation.html">Validation</a> occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.</p>
+<h2 id="customize-model-binding-behavior-with-attributes">Customize model binding behavior with attributes</h2>
+<p>MVC contains several attributes that you can use to direct its default model binding behavior to a different source. For example, you can specify whether binding is required for a property, or if it should never happen at all by using the <code>[BindRequired]</code> or <code>[BindNever]</code> attributes. Alternatively, you can override the default data source, and specify the model binder&#39;s data source. Below is a list of model binding attributes:</p>
+<ul>
+<li><p><code>[BindRequired]</code>: This attribute adds a model state error if binding cannot occur.</p>
+</li>
+<li><p><code>[BindNever]</code>: Tells the model binder to never bind to this parameter.</p>
+</li>
+<li><p><code>[FromHeader]</code>, <code>[FromQuery]</code>, <code>[FromRoute]</code>, <code>[FromForm]</code>: Use these to specify the exact binding source you want to apply.</p>
+</li>
+<li><p><code>[FromServices]</code>: This attribute uses <a href="../../fundamentals/dependency-injection.html">dependency injection</a> to bind parameters from services.</p>
+</li>
+<li><p><code>[FromBody]</code>: Use the configured formatters to bind data from the request body. The formatter is selected based on content type of the request.</p>
+</li>
+<li><p><code>[ModelBinder]</code>: Used to override the default model binder, binding source and name.</p>
+</li>
+</ul>
+<p>Attributes are very helpful tools when you need to override the default behavior of model binding.</p>
+<h2 id="binding-formatted-data-from-the-request-body">Binding formatted data from the request body</h2>
+<p>Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a <code>JsonInputFormatter</code> class for handling JSON data, but you can add additional formatters for handling XML and other custom formats.</p>
+<div class="NOTE"><h5>Note</h5><p>There can be at most one parameter per action decorated with <code>[FromBody]</code>. The ASP.NET Core MVC run-time delegates the responsibility of reading the request stream to the formatter. Once the request stream is read for a parameter, it&#39;s generally not possible to read the request stream again for binding other <code>[FromBody]</code> parameters.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The <code>JsonInputFormatter</code> is the default formatter and is based on <a href="https://www.newtonsoft.com/json">Json.NET</a>.</p>
+</div>
+<p>ASP.NET selects input formatters based on the <a href="https://www.w3.org/Protocols/rfc1341/4_Content-Type.html">Content-Type</a> header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you&#39;d like to use XML or another format you must configure it in the <em>Startup.cs</em> file, but you may first have to obtain a reference to <code>Microsoft.AspNetCore.Mvc.Formatters.Xml</code> using NuGet. Your startup code should look something like this:</p>
+<!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+   {
+       services.AddMvc()
+          .AddXmlSerializerFormatters();
+   }
+</code></pre><p>Code in the <em>Startup.cs</em> file contains a <code>ConfigureServices</code> method with a <code>services</code> argument you can use to build up services for your ASP.NET app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The <code>options</code> argument passed into the <code>AddMvc</code> method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the <code>Consumes</code> attribute to controller classes or action methods to work with the format you want.</p>
+<h3 id="custom-model-binding">Custom Model Binding</h3>
+<p>You can extend model binding by writing your own custom model binders. Learn more about <a href="../advanced/custom-model-binding.html">custom model binding</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/models/model-binding.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

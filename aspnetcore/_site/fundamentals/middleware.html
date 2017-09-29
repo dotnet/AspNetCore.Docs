@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASP.NET Core Middleware </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="ASP.NET Core Middleware ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/middleware">
+<h1 id="aspnet-core-middleware-fundamentals">ASP.NET Core Middleware Fundamentals</h1>
+
+<p><a name="fundamentals-middleware"></a></p>
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a> and <a href="https://ardalis.com/">Steve Smith</a></p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample">View or download sample code</a></p>
+<h2 id="what-is-middleware">What is middleware</h2>
+<p>Middleware is software that is assembled into an application pipeline to handle requests and responses. Each component:</p>
+<ul>
+<li>Chooses whether to pass the request to the next component in the pipeline.</li>
+<li>Can perform work before and after the next component in the pipeline is invoked. </li>
+</ul>
+<p>Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.</p>
+<p>Request delegates are configured using <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.runextensions">Run</a>, <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions">Map</a>, and <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.useextensions">Use</a> extension methods. An individual request delegate can be specified in-line as an anonymous method (called in-line middleware), or it can be defined in a reusable class. These reusable classes and in-line anonymous methods are <em>middleware</em>, or <em>middleware components</em>. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline, or short-circuiting the chain if appropriate.</p>
+<p><a href="../migration/http-modules.html">Migrating HTTP Modules to Middleware</a> explains the difference between request pipelines in ASP.NET Core and the previous versions and provides more middleware samples.</p>
+<h2 id="creating-a-middleware-pipeline-with-iapplicationbuilder">Creating a middleware pipeline with IApplicationBuilder</h2>
+<p>The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other, as this diagram shows (the thread of execution follows the black arrows):</p>
+<p><img src="middleware/_static/request-delegate-pipeline.png" alt="Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, it&#39;s handed back through the prior two middlewares for additional processing after the next() statements each in turn before leaving the application as a response to the client."></p>
+<p>Each delegate can perform operations before and after the next delegate. A delegate can also decide to not pass a request to the next delegate, which is called short-circuiting the request pipeline. Short-circuiting is often desirable because it avoids unnecessary work. For example, the static file middleware can return a request for a static file and short-circuit the rest of the pipeline. Exception-handling delegates need to be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.</p>
+<p>The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn&#39;t include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+
+public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Hello, World!&quot;);
+        });
+    }
+}
+
+</code></pre><p>The first <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.runextensions">app.Run</a> delegate terminates the pipeline.</p>
+<p>You can chain multiple request delegates together with <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.useextensions">app.Use</a>. The <code>next</code> parameter represents the next delegate in the pipeline. (Remember that you can short-circuit the pipeline by <em>not</em> calling the <em>next</em> parameter.) You can typically perform actions both before and after the next delegate, as this example demonstrates:</p>
+<pre><code class="lang-csharp" name="Main">public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Use(async (context, next) =&gt;
+        {
+            // Do work that doesn&#39;t write to the Response.
+            await next.Invoke();
+            // Do logging or other work that doesn&#39;t write to the Response.
+        });
+
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Hello from 2nd delegate.&quot;);
+        });
+    }
+}
+</code></pre><div class="WARNING"><h5>Warning</h5><p>Do not call <code>next.Invoke</code> after the response has been sent to the client. Changes to <code>HttpResponse</code> after the response has started will throw an exception. For example, changes such as setting headers, status code, etc,  will throw an exception. Writing to the response body after calling <code>next</code>:</p>
+<ul>
+<li>May cause a protocol violation. For example, writing more than the stated <code>content-length</code>.</li>
+<li>May corrupt the body format. For example, writing an HTML footer to a CSS file.</li>
+</ul>
+<p><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.features.httpresponsefeature#Microsoft_AspNetCore_Http_Features_HttpResponseFeature_HasStarted">HttpResponse.HasStarted</a> is a useful hint to indicate if headers have been sent and/or the body has been written to.</p>
+</div>
+<h2 id="ordering">Ordering</h2>
+<p>The order that middleware components are added in the <code>Configure</code> method defines the order in which they are invoked on requests, and the reverse order for the response. This ordering is critical for security, performance, and functionality.</p>
+<p>The Configure method (shown below) adds the following middleware components:</p>
+<ol>
+<li>Exception/error handling</li>
+<li>Static file server</li>
+<li>Authentication</li>
+<li>MVC</li>
+</ol>
+<pre><code class="lang-csharp">public void Configure(IApplicationBuilder app)
+{
+    app.UseExceptionHandler(&quot;/Home/Error&quot;); // Call first to catch exceptions
+                                            // thrown in the following middleware.
+
+    app.UseStaticFiles();                   // Return static files and end pipeline.
+
+    app.UseIdentity();                     // Authenticate before you access
+                                           // secure resources.
+
+    app.UseMvcWithDefaultRoute();          // Add MVC to the request pipeline.
+}
+</code></pre><p>In the code above, <code>UseExceptionHandler</code> is the first middleware component added to the pipeline—therefore, it catches any exceptions that occur in later calls.</p>
+<p>The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides <strong>no</strong> authorization checks. Any files served by it, including those under <em>wwwroot</em>, are publicly available. See <a class="xref" href="static-files.html">Working with static files</a> for an approach to secure static files.</p>
+<p>If the request is not handled by the static file middleware, it&#39;s passed on to the Identity middleware (<code>app.UseIdentity</code>), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.</p>
+<p>The following example demonstrates a middleware ordering where requests for static files are handled by the static file middleware before the response compression middleware. Static files are not compressed with this ordering of the middleware. The MVC responses from <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_">UseMvcWithDefaultRoute</a> can be compressed.</p>
+<pre><code class="lang-csharp">public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles();         // Static files not compressed
+                                  // by middleware.
+    app.UseResponseCompression();
+    app.UseMvcWithDefaultRoute();
+}
+</code></pre><p><a name="middleware-run-map-use"></a></p>
+<h3 id="use-run-and-map">Use, Run, and Map</h3>
+<p>You configure the HTTP pipeline using <code>Use</code>, <code>Run</code>, and <code>Map</code>. The <code>Use</code> method can short-circuit the pipeline (that is, if it does not call a <code>next</code> request delegate). <code>Run</code> is a convention, and some middleware components may expose <code>Run[Middleware]</code> methods that run at the end of the pipeline.</p>
+<p><code>Map*</code> extensions are used as a convention for branching the pipeline. <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapextensions">Map</a> branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.</p>
+<pre><code class="lang-csharp" name="Main">public class Startup
+{
+    private static void HandleMapTest1(IApplicationBuilder app)
+    {
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Map Test 1&quot;);
+        });
+    }
+
+    private static void HandleMapTest2(IApplicationBuilder app)
+    {
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Map Test 2&quot;);
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Map(&quot;/map1&quot;, HandleMapTest1);
+
+        app.Map(&quot;/map2&quot;, HandleMapTest2);
+
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Hello from non-Map delegate. &lt;p&gt;&quot;);
+        });
+    }
+}
+</code></pre><p>The following table shows the requests and responses from <code>http://localhost:1234</code> using the previous code:</p>
+<table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>localhost:1234</td>
+<td>Hello from non-Map delegate.</td>
+</tr>
+<tr>
+<td>localhost:1234/map1</td>
+<td>Map Test 1</td>
+</tr>
+<tr>
+<td>localhost:1234/map2</td>
+<td>Map Test 2</td>
+</tr>
+<tr>
+<td>localhost:1234/map3</td>
+<td>Hello from non-Map delegate.</td>
+</tr>
+</tbody>
+</table>
+<p>When <code>Map</code> is used, the matched path segment(s) are removed from <code>HttpRequest.Path</code> and appended to <code>HttpRequest.PathBase</code> for each request.</p>
+<p><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mapwhenextensions">MapWhen</a> branches the request pipeline based on the result of the given predicate. Any predicate of type <code>Func&lt;HttpContext, bool&gt;</code> can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable <code>branch</code>:</p>
+<pre><code class="lang-csharp" name="Main">public class Startup
+{
+    private static void HandleBranch(IApplicationBuilder app)
+    {
+        app.Run(async context =&gt;
+        {
+            var branchVer = context.Request.Query[&quot;branch&quot;];
+            await context.Response.WriteAsync($&quot;Branch used = {branchVer}&quot;);
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.MapWhen(context =&gt; context.Request.Query.ContainsKey(&quot;branch&quot;),
+                               HandleBranch);
+
+        app.Run(async context =&gt;
+        {
+            await context.Response.WriteAsync(&quot;Hello from non-Map delegate. &lt;p&gt;&quot;);
+        });
+    }
+}
+</code></pre><p>The following table shows the requests and responses from <code>http://localhost:1234</code> using the previous code:</p>
+<table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>localhost:1234</td>
+<td>Hello from non-Map delegate.</td>
+</tr>
+<tr>
+<td>localhost:1234/?branch=master</td>
+<td>Branch used = master</td>
+</tr>
+</tbody>
+</table>
+<p><code>Map</code> supports nesting, for example:</p>
+<pre><code class="lang-csharp">app.Map(&quot;/level1&quot;, level1App =&gt; {
+       level1App.Map(&quot;/level2a&quot;, level2AApp =&gt; {
+           // &quot;/level1/level2a&quot;
+           //...
+       });
+       level1App.Map(&quot;/level2b&quot;, level2BApp =&gt; {
+           // &quot;/level1/level2b&quot;
+           //...
+       });
+   });
+</code></pre><p><code>Map</code> can also match multiple segments at once, for example:</p>
+<pre><code class="lang-csharp">app.Map(&quot;/level1/level2&quot;, HandleMultiSeg);
+</code></pre><h2 id="built-in-middleware">Built-in middleware</h2>
+<p>ASP.NET Core ships with the following middleware components:</p>
+<table>
+<thead>
+<tr>
+<th>Middleware</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../security/authentication/identity.html">Authentication</a></td>
+<td>Provides authentication support.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../security/cors.html">CORS</a></td>
+<td>Configures Cross-Origin Resource Sharing.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../performance/caching/middleware.html">Response Caching</a></td>
+<td>Provides support for caching responses.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../performance/response-compression.html">Response Compression</a></td>
+<td>Provides support for compressing responses.</td>
+</tr>
+<tr>
+<td><a class="xref" href="routing.html">Routing</a></td>
+<td>Defines and constrains request routes.</td>
+</tr>
+<tr>
+<td><a class="xref" href="app-state.html">Session</a></td>
+<td>Provides support for managing user sessions.</td>
+</tr>
+<tr>
+<td><a class="xref" href="static-files.html">Static Files</a></td>
+<td>Provides support for serving static files and directory browsing.</td>
+</tr>
+<tr>
+<td><a class="xref" href="url-rewriting.html">URL Rewriting Middleware</a></td>
+<td>Provides support for rewriting URLs and redirecting requests.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="middleware-writing-middleware"></a></p>
+<h2 id="writing-middleware">Writing middleware</h2>
+<p>Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from the query string:</p>
+<pre><code class="lang-csharp" name="Main">public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.Use((context, next) =&gt;
+        {
+            var cultureQuery = context.Request.Query[&quot;culture&quot;];
+            if (!string.IsNullOrWhiteSpace(cultureQuery))
+            {
+                var culture = new CultureInfo(cultureQuery);
+
+                CultureInfo.CurrentCulture = culture;
+                CultureInfo.CurrentUICulture = culture;
+            }
+
+            // Call the next delegate/middleware in the pipeline
+            return next();
+        });
+
+        app.Run(async (context) =&gt;
+        {
+            await context.Response.WriteAsync(
+                $&quot;Hello {CultureInfo.CurrentCulture.DisplayName}&quot;);
+        });
+
+    }
+}
+</code></pre><p>Note: The sample code above is used to demonstrate creating a middleware component. See <a class="xref" href="localization.html">
+Globalization and localization</a> for ASP.NET Core&#39;s built-in localization support.</p>
+<p>You can test the middleware by passing in the culture, for example <code>http://localhost:7997/?culture=no</code>.</p>
+<p>The following code moves the middleware delegate to a class:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Http;
+using System.Globalization;
+using System.Threading.Tasks;
+
+namespace Culture
+{
+    public class RequestCultureMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public RequestCultureMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public Task Invoke(HttpContext context)
+        {
+            var cultureQuery = context.Request.Query[&quot;culture&quot;];
+            if (!string.IsNullOrWhiteSpace(cultureQuery))
+            {
+                var culture = new CultureInfo(cultureQuery);
+
+                CultureInfo.CurrentCulture = culture;
+                CultureInfo.CurrentUICulture = culture;
+
+            }
+
+            // Call the next delegate/middleware in the pipeline
+            return this._next(context);
+        }
+    }
+}
+</code></pre><p>The following extension method exposes the middleware through <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a>:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Builder;
+
+namespace Culture
+{
+    public static class RequestCultureMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseRequestCulture(
+            this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware&lt;RequestCultureMiddleware&gt;();
+        }
+    }
+}
+</code></pre><p>The following code calls the middleware from <code>Configure</code>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="5">public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseRequestCulture();
+
+        app.Run(async (context) =&gt;
+        {
+            await context.Response.WriteAsync(
+                $&quot;Hello {CultureInfo.CurrentCulture.DisplayName}&quot;);
+        });
+
+    }
+}
+</code></pre><p>Middleware should follow the <a href="http://deviq.com/explicit-dependencies-principle/">Explicit Dependencies Principle</a> by exposing its dependencies in its constructor. Middleware is constructed once per <em>application lifetime</em>. See <em>Per-request dependencies</em> below if you need to share services with middleware within a request.</p>
+<p>Middleware components can resolve their dependencies from dependency injection through constructor parameters. <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.usemiddlewareextensions#methods_summary"><code>UseMiddleware&lt;T&gt;</code></a> can also accept additional parameters directly.</p>
+<h3 id="per-request-dependencies">Per-request dependencies</h3>
+<p>Because middleware is constructed at app startup, not per-request, <em>scoped</em> lifetime services used by middleware constructors are not  shared with other dependency-injected types during each request. If you must share a <em>scoped</em> service between your middleware and other types, add these services to the <code>Invoke</code> method&#39;s signature. The <code>Invoke</code> method can accept additional parameters that are populated by dependency injection. For example:</p>
+<pre><code class="lang-c#">public class MyMiddleware
+{
+    private readonly RequestDelegate _next;
+
+    public MyMiddleware(RequestDelegate next)
+    {
+        _next = next;
+    }
+
+    public async Task Invoke(HttpContext httpContext, IMyScopedService svc)
+    {
+        svc.MyProperty = 1000;
+        await _next(httpContext);
+    }
+}
+</code></pre><h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample">Sample code used in this doc</a></li>
+<li><a href="../migration/http-modules.html">Migrating HTTP Modules to Middleware</a></li>
+<li><a href="startup.html">Application Startup</a></li>
+<li><a href="request-features.html">Request Features</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/middleware.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

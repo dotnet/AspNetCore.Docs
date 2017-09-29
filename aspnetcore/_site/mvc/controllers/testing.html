@@ -1,0 +1,995 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Testing controller logic in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Testing controller logic in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/controllers/testing">
+<h1 id="testing-controller-logic-in-aspnet-core">Testing controller logic in ASP.NET Core</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Controllers in ASP.NET MVC apps should be small and focused on user-interface concerns. Large controllers that deal with non-UI concerns are more difficult to test and maintain.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/testing/sample">View or download sample from GitHub</a></p>
+<h2 id="testing-controllers">Testing controllers</h2>
+<p>Controllers are a central part of any ASP.NET Core MVC application. As such, you should have confidence they behave as intended for your app. Automated tests can provide you with this confidence and can detect errors before they reach production. It&#39;s important to avoid placing unnecessary responsibilities within your controllers and ensure your tests focus only on controller responsibilities.</p>
+<p>Controller logic should be minimal and not be focused on business logic or infrastructure concerns (for example, data access). Test controller logic, not the framework. Test how the controller <em>behaves</em> based on valid or invalid inputs. Test controller responses based on the result of the business operation it performs.</p>
+<p>Typical controller responsibilities:</p>
+<ul>
+<li>Verify <code>ModelState.IsValid</code>.</li>
+<li>Return an error response if <code>ModelState</code> is invalid.</li>
+<li>Retrieve a business entity from persistence.</li>
+<li>Perform an action on the business entity.</li>
+<li>Save the business entity to persistence.</li>
+<li>Return an appropriate <code>IActionResult</code>.</li>
+</ul>
+<h2 id="unit-testing">Unit testing</h2>
+<p><a href="https://docs.microsoft.com/dotnet/articles/core/testing/unit-testing-with-dotnet-test">Unit testing</a> involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action is tested, not the behavior of its dependencies or of the framework itself. As you unit test your controller actions, make sure you focus only on its behavior. A controller unit test avoids things like <a href="filters.html">filters</a>, <a href="../../fundamentals/routing.html">routing</a>, or <a href="../models/model-binding.html">model binding</a>. By focusing on testing just one thing, unit tests are generally simple to write and quick to run. A well-written set of unit tests can be run frequently without much overhead. However, unit tests do not detect issues in the interaction between components, which is the purpose of <a class="xref" href="testing.html#integration-testing">integration testing</a>.</p>
+<p>If you&#39;re writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.</p>
+<div class="TIP"><h5>Tip</h5><p><a href="https://www.visualstudio.com/docs/code/create-and-run-unit-tests-vs">Create and run unit tests with Visual Studio</a>.</p>
+</div>
+<p>To demonstrate unit testing, review the following controller. It displays a list of brainstorming sessions and allows new brainstorming sessions to be created with a POST:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="12,16,21,42,43">using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+using TestingControllersSample.ViewModels;
+
+namespace TestingControllersSample.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly IBrainstormSessionRepository _sessionRepository;
+
+        public HomeController(IBrainstormSessionRepository sessionRepository)
+        {
+            _sessionRepository = sessionRepository;
+        }
+
+        public async Task&lt;IActionResult&gt; Index()
+        {
+            var sessionList = await _sessionRepository.ListAsync();
+
+            var model = sessionList.Select(session =&gt; new StormSessionViewModel()
+            {
+                Id = session.Id,
+                DateCreated = session.DateCreated,
+                Name = session.Name,
+                IdeaCount = session.Ideas.Count
+            });
+
+            return View(model);
+        }
+
+        public class NewSessionModel
+        {
+            [Required]
+            public string SessionName { get; set; }
+        }
+
+        [HttpPost]
+        public async Task&lt;IActionResult&gt; Index(NewSessionModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                await _sessionRepository.AddAsync(new BrainstormSession()
+                {
+                    DateCreated = DateTimeOffset.Now,
+                    Name = model.SessionName
+                });
+            }
+
+            return RedirectToAction(actionName: nameof(Index));
+        }
+    }
+}
+</code></pre><p>The controller is following the <a href="http://deviq.com/explicit-dependencies-principle/">explicit dependencies principle</a>, expecting dependency injection to provide it with an instance of <code>IBrainstormSessionRepository</code>. This makes it fairly easy to test using a mock object framework, like <a href="https://www.nuget.org/packages/Moq/">Moq</a>. The <code>HTTP GET Index</code> method has no looping or branching and only calls one method. To test this <code>Index</code> method, we need to verify that a <code>ViewResult</code> is returned, with a <code>ViewModel</code> from the repository&#39;s <code>List</code> method.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="17-18">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using TestingControllersSample.Controllers;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+using TestingControllersSample.ViewModels;
+using Xunit;
+
+namespace TestingControllersSample.Tests.UnitTests
+{
+    public class HomeControllerTests
+    {
+        [Fact]
+        public async Task Index_ReturnsAViewResult_WithAListOfBrainstormSessions()
+        {
+            // Arrange
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            mockRepo.Setup(repo =&gt; repo.ListAsync()).Returns(Task.FromResult(GetTestSessions()));
+            var controller = new HomeController(mockRepo.Object);
+
+            // Act
+            var result = await controller.Index();
+
+            // Assert
+            var viewResult = Assert.IsType&lt;ViewResult&gt;(result);
+            var model = Assert.IsAssignableFrom&lt;IEnumerable&lt;StormSessionViewModel&gt;&gt;(
+                viewResult.ViewData.Model);
+            Assert.Equal(2, model.Count());
+        }
+
+        private List&lt;BrainstormSession&gt; GetTestSessions()
+        {
+            var sessions = new List&lt;BrainstormSession&gt;();
+            sessions.Add(new BrainstormSession()
+            {
+                DateCreated = new DateTime(2016, 7, 2),
+                Id = 1,
+                Name = &quot;Test One&quot;
+            });
+            sessions.Add(new BrainstormSession()
+            {
+                DateCreated = new DateTime(2016, 7, 1),
+                Id = 2,
+                Name = &quot;Test Two&quot;
+            });
+            return sessions;
+        }
+    }
+}
+</code></pre><p>The <code>HomeController</code> <code>HTTP POST Index</code> method (shown above) should verify:</p>
+<ul>
+<li><p>The action method returns a Bad Request <code>ViewResult</code> with the appropriate data when <code>ModelState.IsValid</code> is <code>false</code></p>
+</li>
+<li><p>The <code>Add</code> method on the repository is called and a <code>RedirectToActionResult</code> is returned with the correct arguments when <code>ModelState.IsValid</code> is true.</p>
+</li>
+</ul>
+<p>Invalid model state can be tested by adding errors using <code>AddModelError</code> as shown in the first test below.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="8,15-16,37-39">[Fact]
+public async Task IndexPost_ReturnsBadRequestResult_WhenModelStateIsInvalid()
+{
+    // Arrange
+    var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+    mockRepo.Setup(repo =&gt; repo.ListAsync()).Returns(Task.FromResult(GetTestSessions()));
+    var controller = new HomeController(mockRepo.Object);
+    controller.ModelState.AddModelError(&quot;SessionName&quot;, &quot;Required&quot;);
+    var newSession = new HomeController.NewSessionModel();
+
+    // Act
+    var result = await controller.Index(newSession);
+
+    // Assert
+    var badRequestResult = Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+    Assert.IsType&lt;SerializableError&gt;(badRequestResult.Value);
+}
+
+[Fact]
+public async Task IndexPost_ReturnsARedirectAndAddsSession_WhenModelStateIsValid()
+{
+    // Arrange
+    var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+    mockRepo.Setup(repo =&gt; repo.AddAsync(It.IsAny&lt;BrainstormSession&gt;()))
+        .Returns(Task.CompletedTask)
+        .Verifiable();
+    var controller = new HomeController(mockRepo.Object);
+    var newSession = new HomeController.NewSessionModel()
+    {
+        SessionName = &quot;Test Name&quot;
+    };
+
+    // Act
+    var result = await controller.Index(newSession);
+
+    // Assert
+    var redirectToActionResult = Assert.IsType&lt;RedirectToActionResult&gt;(result);
+    Assert.Null(redirectToActionResult.ControllerName);
+    Assert.Equal(&quot;Index&quot;, redirectToActionResult.ActionName);
+    mockRepo.Verify();
+}
+</code></pre><p>The first test confirms when <code>ModelState</code> is not valid, the same <code>ViewResult</code> is returned as for a <code>GET</code> request. Note that the test doesn&#39;t attempt to pass in an invalid model. That wouldn&#39;t work anyway since model binding isn&#39;t running (though an <a class="xref" href="testing.html#integration-testing">integration test</a> would use exercise model binding). In this case, model binding is not being tested. These unit tests are only testing what the code in the action method does.</p>
+<p>The second test verifies that when <code>ModelState</code> is valid, a new <code>BrainstormSession</code> is added (via the repository), and the method returns a <code>RedirectToActionResult</code> with the expected properties. Mocked calls that aren&#39;t called are normally ignored, but calling <code>Verifiable</code> at the end of the setup call allows it to be verified in the test. This is done with the call to <code>mockRepo.Verify</code>, which will fail the test if the expected method was not called.</p>
+<div class="NOTE"><h5>Note</h5><p>The Moq library used in this sample makes it easy to mix verifiable, or &quot;strict&quot;, mocks with non-verifiable mocks (also called &quot;loose&quot; mocks or stubs). Learn more about <a href="https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior">customizing Mock behavior with Moq</a>.</p>
+</div>
+<p>Another controller in the app displays information related to a particular brainstorming session. It includes some logic to deal with invalid id values:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="19,20,21,22,25,26,27,28">using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.ViewModels;
+
+namespace TestingControllersSample.Controllers
+{
+    public class SessionController : Controller
+    {
+        private readonly IBrainstormSessionRepository _sessionRepository;
+
+        public SessionController(IBrainstormSessionRepository sessionRepository)
+        {
+            _sessionRepository = sessionRepository;
+        }
+
+        public async Task&lt;IActionResult&gt; Index(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction(actionName: nameof(Index), controllerName: &quot;Home&quot;);
+            }
+
+            var session = await _sessionRepository.GetByIdAsync(id.Value);
+            if (session == null)
+            {
+                return Content(&quot;Session not found.&quot;);
+            }
+
+            var viewModel = new StormSessionViewModel()
+            {
+                DateCreated = session.DateCreated,
+                Name = session.Name,
+                Id = session.Id
+            };
+
+            return View(viewModel);
+        }
+    }
+}
+</code></pre><p>The controller action has three cases to test, one for each <code>return</code> statement:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="27,28,29,46,47,64,65,66,67,68">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using TestingControllersSample.Controllers;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+using TestingControllersSample.ViewModels;
+using Xunit;
+
+namespace TestingControllersSample.Tests.UnitTests
+{
+    public class SessionControllerTests
+    {
+        [Fact]
+        public async Task IndexReturnsARedirectToIndexHomeWhenIdIsNull()
+        {
+            // Arrange
+            var controller = new SessionController(sessionRepository: null);
+
+            // Act
+            var result = await controller.Index(id: null);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType&lt;RedirectToActionResult&gt;(result);
+            Assert.Equal(&quot;Home&quot;, redirectToActionResult.ControllerName);
+            Assert.Equal(&quot;Index&quot;, redirectToActionResult.ActionName);
+        }
+
+        [Fact]
+        public async Task IndexReturnsContentWithSessionNotFoundWhenSessionNotFound()
+        {
+            // Arrange
+            int testSessionId = 1;
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            mockRepo.Setup(repo =&gt; repo.GetByIdAsync(testSessionId))
+                .Returns(Task.FromResult((BrainstormSession)null));
+            var controller = new SessionController(mockRepo.Object);
+
+            // Act
+            var result = await controller.Index(testSessionId);
+
+            // Assert
+            var contentResult = Assert.IsType&lt;ContentResult&gt;(result);
+            Assert.Equal(&quot;Session not found.&quot;, contentResult.Content);
+        }
+
+        [Fact]
+        public async Task IndexReturnsViewResultWithStormSessionViewModel()
+        {
+            // Arrange
+            int testSessionId = 1;
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            mockRepo.Setup(repo =&gt; repo.GetByIdAsync(testSessionId))
+                .Returns(Task.FromResult(GetTestSessions().FirstOrDefault(s =&gt; s.Id == testSessionId)));
+            var controller = new SessionController(mockRepo.Object);
+
+            // Act
+            var result = await controller.Index(testSessionId);
+
+            // Assert
+            var viewResult = Assert.IsType&lt;ViewResult&gt;(result);
+            var model = Assert.IsType&lt;StormSessionViewModel&gt;(viewResult.ViewData.Model);
+            Assert.Equal(&quot;Test One&quot;, model.Name);
+            Assert.Equal(2, model.DateCreated.Day);
+            Assert.Equal(testSessionId, model.Id);
+        }
+
+        private List&lt;BrainstormSession&gt; GetTestSessions()
+        {
+            var sessions = new List&lt;BrainstormSession&gt;();
+            sessions.Add(new BrainstormSession()
+            {
+                DateCreated = new DateTime(2016, 7, 2),
+                Id = 1,
+                Name = &quot;Test One&quot;
+            });
+            sessions.Add(new BrainstormSession()
+            {
+                DateCreated = new DateTime(2016, 7, 1),
+                Id = 2,
+                Name = &quot;Test Two&quot;
+            });
+            return sessions;
+        }
+    }
+}
+</code></pre><p>The app exposes functionality as a web API (a list of ideas associated with a brainstorming session and a method for adding new ideas to a session):</p>
+<p><a name="ideas-controller"></a></p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="21,22,27,30,31,32,33,34,35,36,41,42,46,52,65">using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using TestingControllersSample.ClientModels;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+
+namespace TestingControllersSample.Api
+{
+    [Route(&quot;api/ideas&quot;)]
+    public class IdeasController : Controller
+    {
+        private readonly IBrainstormSessionRepository _sessionRepository;
+
+        public IdeasController(IBrainstormSessionRepository sessionRepository)
+        {
+            _sessionRepository = sessionRepository;
+        }
+
+        [HttpGet(&quot;forsession/{sessionId}&quot;)]
+        public async Task&lt;IActionResult&gt; ForSession(int sessionId)
+        {
+            var session = await _sessionRepository.GetByIdAsync(sessionId);
+            if (session == null)
+            {
+                return NotFound(sessionId);
+            }
+
+            var result = session.Ideas.Select(idea =&gt; new IdeaDTO()
+            {
+                Id = idea.Id,
+                Name = idea.Name,
+                Description = idea.Description,
+                DateCreated = idea.DateCreated
+            }).ToList();
+
+            return Ok(result);
+        }
+
+        [HttpPost(&quot;create&quot;)]
+        public async Task&lt;IActionResult&gt; Create([FromBody]NewIdeaModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+            if (session == null)
+            {
+                return NotFound(model.SessionId);
+            }
+
+            var idea = new Idea()
+            {
+                DateCreated = DateTimeOffset.Now,
+                Description = model.Description,
+                Name = model.Name
+            };
+            session.AddIdea(idea);
+
+            await _sessionRepository.UpdateAsync(session);
+
+            return Ok(session);
+        }
+    }
+}
+</code></pre><p>The <code>ForSession</code> method returns a list of <code>IdeaDTO</code> types. Avoid returning your business domain entities directly via API calls, since frequently they include more data than the API client requires, and they unnecessarily couple your app&#39;s internal domain model with the API you expose externally. Mapping between domain entities and the types you will return over the wire can be done manually (using a LINQ <code>Select</code> as shown here) or using a library like <a href="https://github.com/AutoMapper/AutoMapper">AutoMapper</a></p>
+<p>The unit tests for the <code>Create</code> and <code>ForSession</code> API methods:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="18,23,29,33,38-39,43,50,58-59,68-70,76-78">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using TestingControllersSample.Api;
+using TestingControllersSample.ClientModels;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+using Xunit;
+
+namespace TestingControllersSample.Tests.UnitTests
+{
+    public class ApiIdeasControllerTests
+    {
+        [Fact]
+        public async Task Create_ReturnsBadRequest_GivenInvalidModel()
+        {
+            // Arrange &amp; Act
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            var controller = new IdeasController(mockRepo.Object);
+            controller.ModelState.AddModelError(&quot;error&quot;,&quot;some error&quot;);
+
+            // Act
+            var result = await controller.Create(model: null);
+
+            // Assert
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public async Task Create_ReturnsHttpNotFound_ForInvalidSession()
+        {
+            // Arrange
+            int testSessionId = 123;
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            mockRepo.Setup(repo =&gt; repo.GetByIdAsync(testSessionId))
+                .Returns(Task.FromResult((BrainstormSession)null));
+            var controller = new IdeasController(mockRepo.Object);
+
+            // Act
+            var result = await controller.Create(new NewIdeaModel());
+
+            // Assert
+            Assert.IsType&lt;NotFoundObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public async Task Create_ReturnsNewlyCreatedIdeaForSession()
+        {
+            // Arrange
+            int testSessionId = 123;
+            string testName = &quot;test name&quot;;
+            string testDescription = &quot;test description&quot;;
+            var testSession = GetTestSession();
+            var mockRepo = new Mock&lt;IBrainstormSessionRepository&gt;();
+            mockRepo.Setup(repo =&gt; repo.GetByIdAsync(testSessionId))
+                .Returns(Task.FromResult(testSession));
+            var controller = new IdeasController(mockRepo.Object);
+
+            var newIdea = new NewIdeaModel()
+            {
+                Description = testDescription,
+                Name = testName,
+                SessionId = testSessionId
+            };
+            mockRepo.Setup(repo =&gt; repo.UpdateAsync(testSession))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+
+            // Act
+            var result = await controller.Create(newIdea);
+
+            // Assert
+            var okResult = Assert.IsType&lt;OkObjectResult&gt;(result);
+            var returnSession = Assert.IsType&lt;BrainstormSession&gt;(okResult.Value);
+            mockRepo.Verify();
+            Assert.Equal(2, returnSession.Ideas.Count());
+            Assert.Equal(testName, returnSession.Ideas.LastOrDefault().Name);
+            Assert.Equal(testDescription, returnSession.Ideas.LastOrDefault().Description);
+        }
+
+        private BrainstormSession GetTestSession()
+        {
+            var session = new BrainstormSession()
+            {
+                DateCreated = new DateTime(2016, 7, 2),
+                Id = 1,
+                Name = &quot;Test One&quot;
+            };
+
+            var idea = new Idea() { Name = &quot;One&quot; };
+            session.AddIdea(idea);
+            return session;
+        }
+    }
+}
+</code></pre><p>As stated previously, to test the behavior of the method when <code>ModelState</code> is invalid, add a model error to the controller as part of the test. Don&#39;t try to test model validation or model binding in your unit tests - just test your action method&#39;s behavior when confronted with a particular <code>ModelState</code> value.</p>
+<p>The second test depends on the repository returning null, so the mock repository is configured to return null. There&#39;s no need to create a test database (in memory or otherwise) and construct a query that will return this result - it can be done in a single statement as shown.</p>
+<p>The last test verifies that the repository&#39;s <code>Update</code> method is called. As we did previously, the mock is called with <code>Verifiable</code> and then the mocked repository&#39;s <code>Verify</code> method is called to confirm the verifiable method was executed. It&#39;s not a unit test responsibility to ensure that the <code>Update</code> method saved the data; that can be done with an integration test.</p>
+<h2 id="integration-testing">Integration testing</h2>
+<p><a href="../../testing/integration-testing.html">Integration testing</a> is done to ensure separate modules within your app work correctly together. Generally, anything you can test with a unit test, you can also test with an integration test, but the reverse isn&#39;t true. However, integration tests tend to be much slower than unit tests. Thus, it&#39;s best to test whatever you can with unit tests, and use integration tests for scenarios that involve multiple collaborators.</p>
+<p>Although they may still be useful, mock objects are rarely used in integration tests. In unit testing, mock objects are an effective way to control how collaborators outside of the unit being tested should behave for the purposes of the test. In an integration test, real collaborators are used to confirm the whole subsystem works together correctly.</p>
+<h3 id="application-state">Application state</h3>
+<p>One important consideration when performing integration testing is how to set your app&#39;s state. Tests need to run independent of one another, and so each test should start with the app in a known state. If your app doesn&#39;t use a database or have any persistence, this may not be an issue. However, most real-world apps persist their state to some kind of data store, so any modifications made by one test could impact another test unless the data store is reset. Using the built-in <code>TestServer</code>, it&#39;s very straightforward to host ASP.NET Core apps within our integration tests, but that doesn&#39;t necessarily grant access to the data it will use. If you&#39;re using an actual database, one approach is to have the app connect to a test database, which your tests can access and ensure is reset to a known state before each test executes.</p>
+<p>In this sample application, I&#39;m using Entity Framework Core&#39;s InMemoryDatabase support, so I can&#39;t just connect to it from my test project. Instead, I expose an <code>InitializeDatabase</code> method from the app&#39;s <code>Startup</code> class, which I call when the app starts up if it&#39;s in the <code>Development</code> environment. My integration tests automatically benefit from this as long as they set the environment to <code>Development</code>. I don&#39;t have to worry about resetting the database, since the InMemoryDatabase is reset each time the app restarts.</p>
+<p>The <code>Startup</code> class:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="19,20,34,35,43,52">using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using TestingControllersSample.Core.Interfaces;
+using TestingControllersSample.Core.Model;
+using TestingControllersSample.Infrastructure;
+
+namespace TestingControllersSample
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext&lt;AppDbContext&gt;(
+                optionsBuilder =&gt; optionsBuilder.UseInMemoryDatabase(&quot;InMemoryDb&quot;));
+
+            services.AddMvc();
+
+            services.AddScoped&lt;IBrainstormSessionRepository,
+                EFStormSessionRepository&gt;();
+        }
+
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory)
+        {
+            if (env.IsDevelopment())
+            {
+                var repository = app.ApplicationServices.GetService&lt;IBrainstormSessionRepository&gt;();
+                InitializeDatabaseAsync(repository).Wait();
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvcWithDefaultRoute();
+        }
+
+        public async Task InitializeDatabaseAsync(IBrainstormSessionRepository repo)
+        {
+            var sessionList = await repo.ListAsync();
+            if (!sessionList.Any())
+            {
+                await repo.AddAsync(GetTestSession());
+            }
+        }
+
+        public static BrainstormSession GetTestSession()
+        {
+            var session = new BrainstormSession()
+            {
+                Name = &quot;Test Session 1&quot;,
+                DateCreated = new DateTime(2016, 8, 1)
+            };
+            var idea = new Idea()
+            {
+                DateCreated = new DateTime(2016, 8, 1),
+                Description = &quot;Totally awesome idea&quot;,
+                Name = &quot;Awesome idea&quot;
+            };
+            session.AddIdea(idea);
+            return session;
+        }
+    }
+}
+</code></pre><p>You&#39;ll see the <code>GetTestSession</code> method used frequently in the integration tests below.</p>
+<h3 id="accessing-views">Accessing views</h3>
+<p>Each integration test class configures the <code>TestServer</code> that will run the ASP.NET Core app. By default, <code>TestServer</code> hosts the web app in the folder where it&#39;s running - in this case, the test project folder. Thus, when you attempt to test controller actions that return <code>ViewResult</code>, you may see this error:</p>
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
+<pre><code class="lang-none">The view &#39;Index&#39; was not found. The following locations were searched:
+(list of locations)
+</code></pre><p>To correct this issue, you need to configure the server&#39;s content root, so it can locate the views for the project being tested. This is done by a call to <code>UseContentRoot</code> in the <code>TestFixture</code> class, shown below:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="30,33">using System;
+using System.IO;
+using System.Net.Http;
+using System.Reflection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace TestingControllersSample.Tests.IntegrationTests
+{
+    /// &lt;summary&gt;
+    /// A test fixture which hosts the target project (project we wish to test) in an in-memory server.
+    /// &lt;/summary&gt;
+    /// &lt;typeparam name=&quot;TStartup&quot;&gt;Target project&#39;s startup type&lt;/typeparam&gt;
+    public class TestFixture&lt;TStartup&gt; : IDisposable
+    {
+        private readonly TestServer _server;
+
+        public TestFixture()
+            : this(Path.Combine(&quot;src&quot;))
+        {
+        }
+
+        protected TestFixture(string relativeTargetProjectParentDir)
+        {
+            var startupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
+            var contentRoot = GetProjectPath(relativeTargetProjectParentDir, startupAssembly);
+
+            var builder = new WebHostBuilder()
+                .UseContentRoot(contentRoot)
+                .ConfigureServices(InitializeServices)
+                .UseEnvironment(&quot;Development&quot;)
+                .UseStartup(typeof(TStartup));
+
+            _server = new TestServer(builder);
+
+            Client = _server.CreateClient();
+            Client.BaseAddress = new Uri(&quot;http://localhost&quot;);
+        }
+
+        public HttpClient Client { get; }
+
+        public void Dispose()
+        {
+            Client.Dispose();
+            _server.Dispose();
+        }
+
+        protected virtual void InitializeServices(IServiceCollection services)
+        {
+            var startupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
+
+            // Inject a custom application part manager. 
+            // Overrides AddMvcCore() because it uses TryAdd().
+            var manager = new ApplicationPartManager();
+            manager.ApplicationParts.Add(new AssemblyPart(startupAssembly));
+            manager.FeatureProviders.Add(new ControllerFeatureProvider());
+            manager.FeatureProviders.Add(new ViewComponentFeatureProvider());
+
+            services.AddSingleton(manager);
+        }
+
+        /// &lt;summary&gt;
+        /// Gets the full path to the target project that we wish to test
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;projectRelativePath&quot;&gt;
+        /// The parent directory of the target project.
+        /// e.g. src, samples, test, or test/Websites
+        /// &lt;/param&gt;
+        /// &lt;param name=&quot;startupAssembly&quot;&gt;The target project&#39;s assembly.&lt;/param&gt;
+        /// &lt;returns&gt;The full path to the target project.&lt;/returns&gt;
+        private static string GetProjectPath(string projectRelativePath, Assembly startupAssembly)
+        {
+            // Get name of the target project which we want to test
+            var projectName = startupAssembly.GetName().Name;
+
+            // Get currently executing test project path
+            var applicationBasePath = System.AppContext.BaseDirectory;
+
+            // Find the path to the target project
+            var directoryInfo = new DirectoryInfo(applicationBasePath);
+            do
+            {
+                directoryInfo = directoryInfo.Parent;
+
+                var projectDirectoryInfo = new DirectoryInfo(Path.Combine(directoryInfo.FullName, projectRelativePath));
+                if (projectDirectoryInfo.Exists)
+                {
+                    var projectFileInfo = new FileInfo(Path.Combine(projectDirectoryInfo.FullName, projectName, $&quot;{projectName}.csproj&quot;));
+                    if (projectFileInfo.Exists)
+                    {
+                        return Path.Combine(projectDirectoryInfo.FullName, projectName);
+                    }
+                }
+            }
+            while (directoryInfo.Parent != null);
+
+            throw new Exception($&quot;Project root could not be located using the application root {applicationBasePath}.&quot;);
+        }
+    }
+}
+</code></pre><p>The <code>TestFixture</code> class is responsible for configuring and creating the <code>TestServer</code>, setting up an <code>HttpClient</code> to communicate with the <code>TestServer</code>. Each of the integration tests uses the <code>Client</code> property to connect to the test server and make a request.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="20,26,29,30,31,35,38,39,40,41,44,47,48">using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace TestingControllersSample.Tests.IntegrationTests
+{
+    public class HomeControllerTests : IClassFixture&lt;TestFixture&lt;TestingControllersSample.Startup&gt;&gt;
+    {
+        private readonly HttpClient _client;
+
+        public HomeControllerTests(TestFixture&lt;TestingControllersSample.Startup&gt; fixture)
+        {
+            _client = fixture.Client;
+        }
+
+        [Fact]
+        public async Task ReturnsInitialListOfBrainstormSessions()
+        {
+            // Arrange - get a session known to exist
+            var testSession = Startup.GetTestSession();
+
+            // Act
+            var response = await _client.GetAsync(&quot;/&quot;);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            Assert.Contains(testSession.Name, responseString);
+        }
+
+        [Fact]
+        public async Task PostAddsNewBrainstormSession()
+        {
+            // Arrange
+            string testSessionName = Guid.NewGuid().ToString();
+            var data = new Dictionary&lt;string, string&gt;();
+            data.Add(&quot;SessionName&quot;, testSessionName);
+            var content = new FormUrlEncodedContent(data);
+
+            // Act
+            var response = await _client.PostAsync(&quot;/&quot;, content);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(&quot;/&quot;, response.Headers.Location.ToString());
+        }
+    }
+}
+</code></pre><p>In the first test above, the <code>responseString</code> holds the actual rendered HTML from the View, which can be inspected to confirm it contains expected results.</p>
+<p>The second test constructs a form POST with a unique session name and POSTs it to the app, then verifies that the expected redirect is returned.</p>
+<h3 id="api-methods">API methods</h3>
+<p>If your app exposes web APIs, it&#39;s a good idea to have automated tests confirm they execute as expected. The built-in <code>TestServer</code> makes it easy to test web APIs. If your API methods are using model binding, you should always check <code>ModelState.IsValid</code>, and integration tests are the right place to confirm that your model validation is working properly.</p>
+<p>The following set of tests target the <code>Create</code> method in the <a class="xref" href="testing.html#ideas-controller">IdeasController</a> class shown above:</p>
+<pre><code class="lang-csharp" name="Main">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using TestingControllersSample.ClientModels;
+using TestingControllersSample.Core.Model;
+using Xunit;
+
+namespace TestingControllersSample.Tests.IntegrationTests
+{
+    public class ApiIdeasControllerTests : IClassFixture&lt;TestFixture&lt;TestingControllersSample.Startup&gt;&gt;
+    {
+        internal class NewIdeaDto
+        {
+            public NewIdeaDto(string name, string description, int sessionId)
+            {
+                Name = name;
+                Description = description;
+                SessionId = sessionId;
+            }
+
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int SessionId { get; set; }
+        }
+
+        private readonly HttpClient _client;
+
+        public ApiIdeasControllerTests(TestFixture&lt;TestingControllersSample.Startup&gt; fixture)
+        {
+            _client = fixture.Client;
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsBadRequestForMissingNameValue()
+        {
+            // Arrange
+            var newIdea = new NewIdeaDto(&quot;&quot;, &quot;Description&quot;, 1);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsBadRequestForMissingDescriptionValue()
+        {
+            // Arrange
+            var newIdea = new NewIdeaDto(&quot;Name&quot;, &quot;&quot;, 1);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsBadRequestForSessionIdValueTooSmall()
+        {
+            // Arrange
+            var newIdea = new NewIdeaDto(&quot;Name&quot;, &quot;Description&quot;, 0);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsBadRequestForSessionIdValueTooLarge()
+        {
+            // Arrange
+            var newIdea = new NewIdeaDto(&quot;Name&quot;, &quot;Description&quot;, 1000001);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsNotFoundForInvalidSession()
+        {
+            // Arrange
+            var newIdea = new NewIdeaDto(&quot;Name&quot;, &quot;Description&quot;, 123);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task CreatePostReturnsCreatedIdeaWithCorrectInputs()
+        {
+            // Arrange
+            var testIdeaName = Guid.NewGuid().ToString();
+            var newIdea = new NewIdeaDto(testIdeaName, &quot;Description&quot;, 1);
+
+            // Act
+            var response = await _client.PostAsJsonAsync(&quot;/api/ideas/create&quot;, newIdea);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+            var returnedSession = await response.Content.ReadAsJsonAsync&lt;BrainstormSession&gt;();
+            Assert.Equal(2, returnedSession.Ideas.Count);
+            Assert.Contains(testIdeaName, returnedSession.Ideas.Select(i =&gt; i.Name).ToList());
+        }
+
+        [Fact]
+        public async Task ForSessionReturnsNotFoundForBadSessionId()
+        {
+            // Arrange &amp; Act
+            var response = await _client.GetAsync(&quot;/api/ideas/forsession/500&quot;);
+
+            // Assert
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task ForSessionReturnsIdeasForValidSessionId()
+        {
+            // Arrange
+            var testSession = Startup.GetTestSession();
+
+            // Act
+            var response = await _client.GetAsync(&quot;/api/ideas/forsession/1&quot;);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+            var ideaList = JsonConvert.DeserializeObject&lt;List&lt;IdeaDTO&gt;&gt;(
+                await response.Content.ReadAsStringAsync());
+            var firstIdea = ideaList.First();
+            Assert.Equal(testSession.Ideas.First().Name, firstIdea.Name);
+        }
+    }
+}
+</code></pre><p>Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a <code>BrainstormSession</code> instance, and confirms that the idea was correctly added to its collection of ideas.</p>
+<p>You&#39;ll find additional examples of integration tests in this article&#39;s <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/testing/sample">sample project</a>.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/controllers/testing.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

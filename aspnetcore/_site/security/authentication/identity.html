@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction to Identity on ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction to Identity on ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/authentication/identity">
+<h1 id="introduction-to-identity-on-aspnet-core">Introduction to Identity on ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/rustd">Pranav Rastogi</a>, <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a>, <a href="https://github.com/tdykstra">Tom Dykstra</a>, Jon Galloway, <a href="https://github.com/Erikre">Erik Reitan</a>, and <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login provider such as Facebook, Google, Microsoft Account, Twitter or others.</p>
+<p>You can configure ASP.NET Core Identity to use a SQL Server database to store user names, passwords, and profile data. Alternatively, you can use your own persistent store, for example Azure Table Storage. This document contains instructions for Visual Studio and for using the CLI.</p>
+<h2 id="overview-of-identity">Overview of Identity</h2>
+<p>In this topic, you&#39;ll learn how to use ASP.NET Core Identity to add functionality to register, log in, and log out a user. For more detailed instructions about creating apps using ASP.NET Core Identity, see the Next Steps section at the end of this article.</p>
+<ol>
+<li><p>Create an ASP.NET Core Web Application project with Individual User Accounts.</p>
+<div class="tabGroup" id="tabgroup_yS0QDAFpXJ">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ_visual-studio" role="tab" aria-controls="tabpanel_yS0QDAFpXJ_visual-studio" data-tab="visual-studio" tabindex="0" aria-selected="true">Visual Studio</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ_netcore-cli" role="tab" aria-controls="tabpanel_yS0QDAFpXJ_netcore-cli" data-tab="netcore-cli" tabindex="-1">.NET Core CLI</a>
+</li>
+</ul>
+<section id="tabpanel_yS0QDAFpXJ_visual-studio" role="tabpanel" data-tab="visual-studio">
+<p>In Visual Studio, select <strong>File</strong> -&gt; <strong>New</strong> -&gt; <strong>Project</strong>. Select the <strong>ASP.NET Web Application</strong> from the <strong>New Project</strong> dialog box. Selecting an ASP.NET Core <strong>Web Application</strong> with <strong>Individual User Accounts</strong> as the authentication method.</p>
+<p>Note: You must select <strong>Individual User Accounts</strong>.</p>
+<p><img src="identity/_static/01-mvc.png" alt="New Project dialog"></p>
+</section>
+<section id="tabpanel_yS0QDAFpXJ_netcore-cli" role="tabpanel" data-tab="netcore-cli" aria-hidden="true" hidden="hidden">
+<p>If using the .NET Core CLI, create the new project using <code>dotnet new mvc --auth Individual</code>. This will create a new project with the same Identity template code Visual Studio creates.</p>
+<p>The created project contains the <code>Microsoft.AspNetCore.Identity.EntityFrameworkCore</code> package, which will persist the Identity data and schema to SQL Server using <a href="https://docs.microsoft.com/ef/">Entity Framework Core</a>.</p>
+</section>
+</div>
+</li>
+<li><p>Configure Identity services and add middleware in <code>Startup</code>.</p>
+<p>The Identity services are added to the application in the <code>ConfigureServices</code> method in the <code>Startup</code> class:</p>
+<div class="tabGroup" id="tabgroup_yS0QDAFpXJ-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ-1_aspnetcore2x" role="tab" aria-controls="tabpanel_yS0QDAFpXJ-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ-1_aspnetcore1x" role="tab" aria-controls="tabpanel_yS0QDAFpXJ-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_yS0QDAFpXJ-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="7-9,11-28,30-39">// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+    services.Configure&lt;IdentityOptions&gt;(options =&gt;
+    {
+        // Password settings
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = false;
+        options.Password.RequiredUniqueChars = 6;
+
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 10;
+        options.Lockout.AllowedForNewUsers = true;
+
+        // User settings
+        options.User.RequireUniqueEmail = true;
+    });
+
+    services.ConfigureApplicationCookie(options =&gt;
+    {
+        // Cookie settings
+        options.Cookie.HttpOnly = true;
+        options.Cookie.Expiration = TimeSpan.FromDays(150);
+        options.LoginPath = &quot;/Account/Login&quot;; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+        options.LogoutPath = &quot;/Account/Logout&quot;; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+        options.AccessDeniedPath = &quot;/Account/AccessDenied&quot;; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+        options.SlidingExpiration = true;
+    });
+
+    // Add application services.
+    services.AddTransient&lt;IEmailSender, EmailSender&gt;();
+
+    services.AddMvc();
+}
+</code></pre><p>These services are made available to the application through <a class="xref" href="../../fundamentals/dependency-injection.html">dependency injection</a>.</p>
+<p>Identity is enabled for the application by calling <code>UseAuthentication</code> in the <code>Configure</code> method. <code>UseAuthentication</code> adds authentication <a class="xref" href="../../fundamentals/middleware.html">middleware</a> to the request pipeline.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="17">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseBrowserLink();
+        app.UseDatabaseErrorPage();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/Home/Error&quot;);
+    }
+
+    app.UseStaticFiles();
+
+    app.UseAuthentication();
+
+    app.UseMvc(routes =&gt;
+    {
+        routes.MapRoute(
+            name: &quot;default&quot;,
+            template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+    });
+}
+</code></pre></section>
+<section id="tabpanel_yS0QDAFpXJ-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="7-9,13-34">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+    services.AddMvc();
+
+    // Configure Identity
+    services.Configure&lt;IdentityOptions&gt;(options =&gt;
+    {
+        // Password settings
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = false;
+
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 10;
+
+        // Cookie settings
+        options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+        options.Cookies.ApplicationCookie.LoginPath = &quot;/Account/LogIn&quot;;
+        options.Cookies.ApplicationCookie.LogoutPath = &quot;/Account/LogOut&quot;;
+
+        // User settings
+        options.User.RequireUniqueEmail = true;
+    });
+
+    // Add application services.
+    services.AddTransient&lt;IEmailSender, AuthMessageSender&gt;();
+    services.AddTransient&lt;ISmsSender, AuthMessageSender&gt;();
+}
+</code></pre><p>These services are made available to the application through <a class="xref" href="../../fundamentals/dependency-injection.html">dependency injection</a>.</p>
+<p>Identity is enabled for the application by calling <code>UseIdentity</code> in the <code>Configure</code> method. <code>UseIdentity</code> adds cookie-based authentication <a class="xref" href="../../fundamentals/middleware.html">middleware</a> to the request pipeline.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="21">public void Configure(IApplicationBuilder app,
+    IHostingEnvironment env, 
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole(Configuration.GetSection(&quot;Logging&quot;));
+    loggerFactory.AddDebug();
+
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
+        app.UseBrowserLink();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/Home/Error&quot;);
+    }
+
+    app.UseStaticFiles();
+
+    app.UseIdentity();
+
+    // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+
+    app.UseMvc(routes =&gt;
+    {
+        routes.MapRoute(
+            name: &quot;default&quot;,
+            template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+    });
+}
+</code></pre></section>
+</div>
+<p>For more information about the application start up process, see <a class="xref" href="../../fundamentals/startup.html">Application Startup</a>.</p>
+</li>
+<li><p>Create a user.</p>
+<p>Launch the application and then click on the <strong>Register</strong> link.</p>
+<p>If this is the first time you&#39;re performing this action, you may be required to run migrations. The application prompts you to <strong>Apply Migrations</strong>:</p>
+<p><img src="identity/_static/apply-migrations.png" alt="Apply Migrations Web Page"></p>
+<p>Alternately, you can test using ASP.NET Core Identity with your app without a persistent database by using an in-memory database. To use an in-memory database, add the <code>Microsoft.EntityFrameworkCore.InMemory</code> package to your app and modify your app&#39;s call to <code>AddDbContext</code> in <code>ConfigureServices</code> as follows:</p>
+<pre><code class="lang-csharp">services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+    options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+</code></pre><p>When the user clicks the <strong>Register</strong> link, the <code>Register</code> action is invoked on <code>AccountController</code>. The <code>Register</code> action creates the user by calling <code>CreateAsync</code> on the  <code>_userManager</code> object (provided to <code>AccountController</code> by dependency injection):</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="11">//
+// POST: /Account/Register
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Register(RegisterViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var result = await _userManager.CreateAsync(user, model.Password);
+        if (result.Succeeded)
+        {
+            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+            // Send an email with this link
+            //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //var callbackUrl = Url.Action(&quot;ConfirmEmail&quot;, &quot;Account&quot;, new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+            //await _emailSender.SendEmailAsync(model.Email, &quot;Confirm your account&quot;,
+            //    &quot;Please confirm your account by clicking this link: &lt;a href=\&quot;&quot; + callbackUrl + &quot;\&quot;&gt;link&lt;/a&gt;&quot;);
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            _logger.LogInformation(3, &quot;User created a new account with password.&quot;);
+            return RedirectToAction(nameof(HomeController.Index), &quot;Home&quot;);
+        }
+        AddErrors(result);
+    }
+
+    // If we got this far, something failed, redisplay form
+    return View(model);
+}
+</code></pre><p>If the user was created successfully, the user is logged in by the call to <code>_signInManager.SignInAsync</code>.</p>
+<p><strong>Note:</strong> See <a class="xref" href="accconfirm.html#prevent-login-at-registration">account confirmation</a> for steps to prevent immediate login at registration.</p>
+</li>
+<li><p>Log in.</p>
+<p>Users can sign in by clicking the <strong>Log in</strong> link at the top of the site, or they may be navigated to the Login page if they attempt to access a part of the site that requires authorization. When the user submits the form on the Login page, the <code>AccountController</code> <code>Login</code> action is called.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="13-14">//
+// POST: /Account/Login
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Login(LoginViewModel model, string returnUrl = null)
+{
+    ViewData[&quot;ReturnUrl&quot;] = returnUrl;
+    if (ModelState.IsValid)
+    {
+        // This doesn&#39;t count login failures towards account lockout
+        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+        var result = await _signInManager.PasswordSignInAsync(model.Email, 
+            model.Password, model.RememberMe, lockoutOnFailure: false);
+        if (result.Succeeded)
+        {
+            _logger.LogInformation(1, &quot;User logged in.&quot;);
+            return RedirectToLocal(returnUrl);
+        }
+        if (result.RequiresTwoFactor)
+        {
+            return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+        }
+        if (result.IsLockedOut)
+        {
+            _logger.LogWarning(2, &quot;User account locked out.&quot;);
+            return View(&quot;Lockout&quot;);
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, &quot;Invalid login attempt.&quot;);
+            return View(model);
+        }
+    }
+
+    // If we got this far, something failed, redisplay form
+    return View(model);
+}
+</code></pre><p>The <code>Login</code> action calls <code>PasswordSignInAsync</code> on the <code>_signInManager</code> object (provided to <code>AccountController</code> by dependency injection).</p>
+<p>The base <code>Controller</code> class exposes a <code>User</code> property that you can access from controller methods. For instance, you can enumerate <code>User.Claims</code> and make authorization decisions. For more information, see <a class="xref" href="../authorization/index.html">Authorization</a>.</p>
+</li>
+<li><p>Log out.</p>
+<p>Clicking the <strong>Log out</strong> link calls the <code>LogOut</code> action.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7">//
+// POST: /Account/LogOut
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; LogOut()
+{
+    await _signInManager.SignOutAsync();
+    _logger.LogInformation(4, &quot;User logged out.&quot;);
+    return RedirectToAction(nameof(HomeController.Index), &quot;Home&quot;);
+}
+</code></pre><p>The preceding code above calls the <code>_signInManager.SignOutAsync</code> method. The <code>SignOutAsync</code> method clears the user&#39;s claims stored in a cookie.</p>
+</li>
+<li><p>Configuration.</p>
+<p>Identity has some default behaviors that you can override in your application&#39;s startup class. You do not need to configure <code>IdentityOptions</code> if you are using the default behaviors.</p>
+<div class="tabGroup" id="tabgroup_yS0QDAFpXJ-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ-2_aspnetcore2x" role="tab" aria-controls="tabpanel_yS0QDAFpXJ-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_yS0QDAFpXJ-2_aspnetcore1x" role="tab" aria-controls="tabpanel_yS0QDAFpXJ-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_yS0QDAFpXJ-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="7-9,11-28,30-39">// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+    services.Configure&lt;IdentityOptions&gt;(options =&gt;
+    {
+        // Password settings
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = false;
+        options.Password.RequiredUniqueChars = 6;
+
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 10;
+        options.Lockout.AllowedForNewUsers = true;
+
+        // User settings
+        options.User.RequireUniqueEmail = true;
+    });
+
+    services.ConfigureApplicationCookie(options =&gt;
+    {
+        // Cookie settings
+        options.Cookie.HttpOnly = true;
+        options.Cookie.Expiration = TimeSpan.FromDays(150);
+        options.LoginPath = &quot;/Account/Login&quot;; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+        options.LogoutPath = &quot;/Account/Logout&quot;; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+        options.AccessDeniedPath = &quot;/Account/AccessDenied&quot;; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+        options.SlidingExpiration = true;
+    });
+
+    // Add application services.
+    services.AddTransient&lt;IEmailSender, EmailSender&gt;();
+
+    services.AddMvc();
+}
+</code></pre></section>
+<section id="tabpanel_yS0QDAFpXJ-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="13-34">public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;
+        options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+
+    services.AddIdentity&lt;ApplicationUser, IdentityRole&gt;()
+        .AddEntityFrameworkStores&lt;ApplicationDbContext&gt;()
+        .AddDefaultTokenProviders();
+
+    services.AddMvc();
+
+    // Configure Identity
+    services.Configure&lt;IdentityOptions&gt;(options =&gt;
+    {
+        // Password settings
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = false;
+
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 10;
+
+        // Cookie settings
+        options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+        options.Cookies.ApplicationCookie.LoginPath = &quot;/Account/LogIn&quot;;
+        options.Cookies.ApplicationCookie.LogoutPath = &quot;/Account/LogOut&quot;;
+
+        // User settings
+        options.User.RequireUniqueEmail = true;
+    });
+
+    // Add application services.
+    services.AddTransient&lt;IEmailSender, AuthMessageSender&gt;();
+    services.AddTransient&lt;ISmsSender, AuthMessageSender&gt;();
+}
+</code></pre></section>
+</div>
+<p>For more information about how to configure Identity, see <a class="xref" href="identity-configuration.html">Configure Identity</a>.</p>
+<p>You also can configure the data type of the primary key, see <a class="xref" href="identity-primary-key-configuration.html">Configure Identity primary keys data type</a>.</p>
+</li>
+<li><p>View the database.</p>
+<p>If your app is using a SQL Server database (the default on Windows and for Visual Studio users), you can view the database the app created. You can use <strong>SQL Server Management Studio</strong>. Alternatively, from Visual Studio, select <strong>View</strong> -&gt; <strong>SQL Server Object Explorer</strong>. Connect to <strong>(localdb)\MSSQLLocalDB</strong>. The database with a name matching <strong>aspnet-&lt;<em>name of your project</em>&gt;-&lt;<em>date string</em>&gt;</strong> is displayed.</p>
+<p><img src="identity/_static/04-db.png" alt="Contextual menu on AspNetUsers database table"></p>
+<p>Expand the database and its <strong>Tables</strong>, then right-click the <strong>dbo.AspNetUsers</strong> table and select <strong>View Data</strong>.</p>
+</li>
+</ol>
+<h2 id="identity-components">Identity Components</h2>
+<p>The primary reference assembly for the Identity system is <code>Microsoft.AspNetCore.Identity</code>. This package contains the core set of interfaces for ASP.NET Core Identity, and is included by <code>Microsoft.AspNetCore.Identity.EntityFrameworkCore</code>.</p>
+<p>These dependencies are needed to use the Identity system in ASP.NET Core applications:</p>
+<ul>
+<li><p><code>Microsoft.AspNetCore.Identity.EntityFrameworkCore</code> - Contains the required types to use Identity with Entity Framework Core.</p>
+</li>
+<li><p><code>Microsoft.EntityFrameworkCore.SqlServer</code> - Entity Framework Core is Microsoft&#39;s recommended data access technology for relational databases like SQL Server. For testing, you can use <code>Microsoft.EntityFrameworkCore.InMemory</code>.</p>
+</li>
+<li><p><code>Microsoft.AspNetCore.Authentication.Cookies</code> - Middleware that enables an app to use cookie-based authentication.</p>
+</li>
+</ul>
+<h2 id="migrating-to-aspnet-core-identity">Migrating to ASP.NET Core Identity</h2>
+<p>For additional information and guidance on migrating your existing Identity store see <a class="xref" href="../../migration/identity.html">Migrating Authentication and Identity</a>.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li><a class="xref" href="../../migration/identity.html">Migrating Authentication and Identity</a></li>
+<li><a class="xref" href="accconfirm.html">Account Confirmation and Password Recovery</a></li>
+<li><a class="xref" href="2fa.html">Two-factor authentication with SMS</a></li>
+<li><a class="xref" href="social/index.html">Enabling authentication using Facebook, Google and other external providers</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/authentication/identity.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

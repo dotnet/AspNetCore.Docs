@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enabling Cross-Origin Requests (CORS) </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enabling Cross-Origin Requests (CORS) ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/cors">
+<h1 id="enabling-cross-origin-requests-cors">Enabling Cross-Origin Requests (CORS)</h1>
+
+<p>By <a href="https://github.com/mikewasson">Mike Wasson</a>, <a href="https://twitter.com/spboyer">Shayne Boyer</a>, and <a href="https://github.com/tdykstra">Tom Dykstra</a></p>
+<p>Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the <em>same-origin policy</em>, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web API.</p>
+<p><a href="http://www.w3.org/TR/cors/">Cross Origin Resource Sharing</a> (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as <a href="https://wikipedia.org/wiki/JSONP">JSONP</a>. This topic shows how to enable CORS in an ASP.NET Core application.</p>
+<h2 id="what-is-same-origin">What is &quot;same origin&quot;?</h2>
+<p>Two URLs have the same origin if they have identical schemes, hosts, and ports. (<a href="http://tools.ietf.org/html/rfc6454">RFC 6454</a>)</p>
+<p>These two URLs have the same origin:</p>
+<ul>
+<li><p><code>http://example.com/foo.html</code></p>
+</li>
+<li><p><code>http://example.com/bar.html</code></p>
+</li>
+</ul>
+<p>These URLs have different origins than the previous two:</p>
+<ul>
+<li><p><code>http://example.net</code> - Different domain</p>
+</li>
+<li><p><code>http://www.example.com/foo.html</code> - Different subdomain</p>
+</li>
+<li><p><code>https://example.com/foo.html</code> - Different scheme</p>
+</li>
+<li><p><code>http://example.com:9000/foo.html</code> - Different port</p>
+</li>
+</ul>
+<div class="NOTE"><h5>Note</h5><p>Internet Explorer does not consider the port when comparing origins.</p>
+</div>
+<h2 id="setting-up-cors">Setting up CORS</h2>
+<p>To set up CORS for your application add the <code>Microsoft.AspNetCore.Cors</code> package to your project.</p>
+<p>Add the CORS services in Startup.cs:</p>
+<pre><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddCors();
+}
+</code></pre><h2 id="enabling-cors-with-middleware">Enabling CORS with middleware</h2>
+<p>To enable CORS for your entire application add the CORS middleware to your request pipeline using the <code>UseCors</code> extension method. Note that the CORS middleware must precede any defined endpoints in your app that you want to support cross-origin requests (ex. before any call to <code>UseMvc</code>).</p>
+<p>You can specify a cross-origin policy when adding the CORS middleware using the <code>CorsPolicyBuilder</code> class. There are two ways to do this. The first is to call UseCors with a lambda:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="11,12">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
+    // Shows UseCors with CorsPolicyBuilder.
+    app.UseCors(builder =&gt;
+       builder.WithOrigins(&quot;http://example.com&quot;));
+
+    app.Run(async (context) =&gt;
+    {
+        await context.Response.WriteAsync(&quot;Hello World!&quot;);
+    });
+</code></pre><p><strong>Note:</strong> The URL must be specified without a trailing slash (<code>/</code>). If the URL terminates with <code>/</code>, the comparison will return <code>false</code> and no header will be returned.</p>
+<p>The lambda takes a <code>CorsPolicyBuilder</code> object. You&#39;ll find a list of the <a href="#cors-policy-options">configuration options</a> later in this topic. In this example, the policy allows cross-origin requests from <code>http://example.com</code> and no other origins.</p>
+<p>Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3">app.UseCors(builder =&gt;
+    builder.WithOrigins(&quot;http://example.com&quot;)
+           .AllowAnyHeader()
+    );
+</code></pre><p>The second approach is to define one or more named CORS policies, and then select the policy by name at run time.</p>
+<pre><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddCors(options =&gt;
+    {
+        options.AddPolicy(&quot;AllowSpecificOrigin&quot;,
+            builder =&gt; builder.WithOrigins(&quot;http://example.com&quot;));
+    });
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
+    // Shows UseCors with named policy.
+    app.UseCors(&quot;AllowSpecificOrigin&quot;);
+    app.Run(async (context) =&gt;
+    {
+        await context.Response.WriteAsync(&quot;Hello World!&quot;);
+    });
+}
+</code></pre><p>This example adds a CORS policy named &quot;AllowSpecificOrigin&quot;. To select the policy, pass the name to <code>UseCors</code>.</p>
+<h2 id="enabling-cors-in-mvc">Enabling CORS in MVC</h2>
+<p>You can alternatively use MVC to apply specific CORS per action, per controller, or globally for all controllers. When using MVC to enable CORS the same CORS services are used, but the CORS middleware is not.</p>
+<h3 id="per-action">Per action</h3>
+<p>To specify a CORS policy for a specific action add the <code>[EnableCors]</code> attribute to the action. Specify the policy name.</p>
+<pre><code class="lang-csharp" name="Main">[HttpGet]
+[EnableCors(&quot;AllowSpecificOrigin&quot;)]
+public IEnumerable&lt;string&gt; Get()
+{
+    return new string[] { &quot;value1&quot;, &quot;value2&quot; };
+}
+</code></pre><h3 id="per-controller">Per controller</h3>
+<p>To specify the CORS policy for a specific controller add the <code>[EnableCors]</code> attribute to the controller class. Specify the policy name.</p>
+<pre><code class="lang-csharp" name="Main">[Route(&quot;api/[controller]&quot;)]
+[EnableCors(&quot;AllowSpecificOrigin&quot;)]
+public class ValuesController : Controller
+</code></pre><h3 id="globally">Globally</h3>
+<p>You can enable CORS globally for all controllers by adding the <code>CorsAuthorizationFilterFactory</code> filter to the global filter collection:</p>
+<pre><code class="lang-csharp" name="Main">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.Configure&lt;MvcOptions&gt;(options =&gt;
+    {
+        options.Filters.Add(new CorsAuthorizationFilterFactory(&quot;AllowSpecificOrigin&quot;));
+    });
+}
+</code></pre><p>The precedence order is: Action, controller, global. Action-level policies take precedence over controller-level policies, and controller-level policies take precedence over global policies.</p>
+<h3 id="disable-cors">Disable CORS</h3>
+<p>To disable CORS for a controller or action, use the <code>[DisableCors]</code> attribute.</p>
+<pre><code class="lang-csharp" name="Main">[HttpGet(&quot;{id}&quot;)]
+[DisableCors]
+public string Get(int id)
+{
+    return &quot;value&quot;;
+}
+</code></pre><h2 id="cors-policy-options">CORS policy options</h2>
+<p>This section describes the various options that you can set in a CORS policy.</p>
+<ul>
+<li><p><a href="#set-the-allowed-origins">Set the allowed origins</a></p>
+</li>
+<li><p><a href="#set-the-allowed-http-methods">Set the allowed HTTP methods</a></p>
+</li>
+<li><p><a href="#set-the-allowed-request-headers">Set the allowed request headers</a></p>
+</li>
+<li><p><a href="#set-the-exposed-response-headers">Set the exposed response headers</a></p>
+</li>
+<li><p><a href="#credentials-in-cross-origin-requests">Credentials in cross-origin requests</a></p>
+</li>
+<li><p><a href="#set-the-preflight-expiration-time">Set the preflight expiration time</a></p>
+</li>
+</ul>
+<p>For some options it may be helpful to read <a href="#how-cors-works">How CORS works</a> first.</p>
+<h3 id="set-the-allowed-origins">Set the allowed origins</h3>
+<p>To allow one or more specific origins:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowSpecificOrigins&quot;,
+builder =&gt;
+{
+    builder.WithOrigins(&quot;http://example.com&quot;, &quot;http://www.contoso.com&quot;);
+});
+</code></pre><p>To allow all origins:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowAllOrigins&quot;,
+    builder =&gt;
+    {
+        builder.AllowAnyOrigin();
+    });
+</code></pre><p>Consider carefully before allowing requests from any origin. It means that literally any website can make AJAX calls to your API.</p>
+<h3 id="set-the-allowed-http-methods">Set the allowed HTTP methods</h3>
+<p>To allow all HTTP methods:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowAllMethods&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .AllowAnyMethod();
+    });
+</code></pre><p>This affects pre-flight requests and Access-Control-Allow-Methods header.</p>
+<h3 id="set-the-allowed-request-headers">Set the allowed request headers</h3>
+<p>A CORS preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called &quot;author request headers&quot;).</p>
+<p>To whitelist specific headers:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowHeaders&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .WithHeaders(&quot;accept&quot;, &quot;content-type&quot;, &quot;origin&quot;, &quot;x-custom-header&quot;);
+    });
+</code></pre><p>To allow all author request headers:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowAllHeaders&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .AllowAnyHeader();
+    });
+</code></pre><p>Browsers are not entirely consistent in how they set Access-Control-Request-Headers. If you set headers to anything other than &quot;*&quot;, you should include at least &quot;accept&quot;, &quot;content-type&quot;, and &quot;origin&quot;, plus any custom headers that you want to support.</p>
+<h3 id="set-the-exposed-response-headers">Set the exposed response headers</h3>
+<p>By default, the browser does not expose all of the response headers to the application. (See <a href="http://www.w3.org/TR/cors/#simple-response-header">http://www.w3.org/TR/cors/#simple-response-header</a>.) The response headers that are available by default are:</p>
+<ul>
+<li><p>Cache-Control</p>
+</li>
+<li><p>Content-Language</p>
+</li>
+<li><p>Content-Type</p>
+</li>
+<li><p>Expires</p>
+</li>
+<li><p>Last-Modified</p>
+</li>
+<li><p>Pragma</p>
+</li>
+</ul>
+<p>The CORS spec calls these <em>simple response headers</em>. To make other headers available to the application:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;ExposeResponseHeaders&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .WithExposedHeaders(&quot;x-custom-header&quot;);
+    });
+</code></pre><h3 id="credentials-in-cross-origin-requests">Credentials in cross-origin requests</h3>
+<p>Credentials require special handling in a CORS request. By default, the browser does not send any credentials with a cross-origin request. Credentials include cookies as well as HTTP authentication schemes. To send credentials with a cross-origin request, the client must set XMLHttpRequest.withCredentials to true.</p>
+<p>Using XMLHttpRequest directly:</p>
+<pre><code class="lang-javascript">var xhr = new XMLHttpRequest();
+xhr.open(&#39;get&#39;, &#39;http://www.example.com/api/test&#39;);
+xhr.withCredentials = true;
+</code></pre><p>In jQuery:</p>
+<pre><code class="lang-jQuery">$.ajax({
+  type: &#39;get&#39;,
+  url: &#39;http://www.example.com/home&#39;,
+  xhrFields: {
+    withCredentials: true
+}
+</code></pre><p>In addition, the server must allow the credentials. To allow cross-origin credentials:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;AllowCredentials&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .AllowCredentials();
+    });
+</code></pre><p>Now the HTTP response will include an Access-Control-Allow-Credentials header, which tells the browser that the server allows credentials for a cross-origin request.</p>
+<p>If the browser sends credentials, but the response does not include a valid Access-Control-Allow-Credentials header, the browser will not expose the response to the application, and the AJAX request fails.</p>
+<p>Be very careful about allowing cross-origin credentials, because it means a website at another domain can send a logged-in user’s credentials to your app on the user’s behalf, without the user being aware. The CORS spec also states that setting origins to &quot;*&quot; (all origins) is invalid if the Access-Control-Allow-Credentials header is present.</p>
+<h3 id="set-the-preflight-expiration-time">Set the preflight expiration time</h3>
+<p>The Access-Control-Max-Age header specifies how long the response to the preflight request can be cached. To set this header:</p>
+<pre><code class="lang-csharp" name="Main">options.AddPolicy(&quot;SetPreflightExpiration&quot;,
+    builder =&gt;
+    {
+        builder.WithOrigins(&quot;http://example.com&quot;)
+               .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
+    });
+</code></pre><p><a name="cors-how-cors-works"></a></p>
+<h2 id="how-cors-works">How CORS works</h2>
+<p>This section describes what happens in a CORS request, at the level of the HTTP messages. It’s important to understand how CORS works, so that you can configure your CORS policy correctly, and troubleshoot if things don’t work as you expect.</p>
+<p>The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code.</p>
+<p>Here is an example of a cross-origin request. The &quot;Origin&quot; header gives the domain of the site that is making the request:</p>
+<pre><code>GET http://myservice.azurewebsites.net/api/test HTTP/1.1
+Referer: http://myclient.azurewebsites.net/
+Accept: */*
+Accept-Language: en-US
+Origin: http://myclient.azurewebsites.net
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+Host: myservice.azurewebsites.net
+</code></pre><p>If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value &quot;*&quot;, meaning that any origin is allowed.:</p>
+<pre><code>HTTP/1.1 200 OK
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: text/plain; charset=utf-8
+Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Date: Wed, 20 May 2015 06:27:30 GMT
+Content-Length: 12
+
+Test message
+</code></pre><p>If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.</p>
+<h3 id="preflight-requests">Preflight Requests</h3>
+<p>For some CORS requests, the browser sends an additional request, called a &quot;preflight request&quot;, before it sends the actual request for the resource. The browser can skip the preflight request if the following conditions are true:</p>
+<ul>
+<li><p>The request method is GET, HEAD, or POST, and</p>
+</li>
+<li><p>The application does not set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, and</p>
+</li>
+<li><p>The Content-Type header (if set) is one of the following:</p>
+<ul>
+<li><p>application/x-www-form-urlencoded</p>
+</li>
+<li><p>multipart/form-data</p>
+</li>
+<li><p>text/plain</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The rule about request headers applies to headers that the application sets by calling setRequestHeader on the XMLHttpRequest object. (The CORS specification calls these &quot;author request headers&quot;.) The rule does not apply to headers the browser can set, such as User-Agent, Host, or Content-Length.</p>
+<p>Here is an example of a preflight request:</p>
+<pre><code>OPTIONS http://myservice.azurewebsites.net/api/test HTTP/1.1
+Accept: */*
+Origin: http://myclient.azurewebsites.net
+Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: accept, x-my-custom-header
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+Host: myservice.azurewebsites.net
+Content-Length: 0
+</code></pre><p>The pre-flight request uses the HTTP OPTIONS method. It includes two special headers:</p>
+<ul>
+<li><p>Access-Control-Request-Method: The HTTP method that will be used for the actual request.</p>
+</li>
+<li><p>Access-Control-Request-Headers: A list of request headers that the application set on the actual request. (Again, this does not include headers that the browser sets.)</p>
+</li>
+</ul>
+<p>Here is an example response, assuming that the server allows the request:</p>
+<pre><code>HTTP/1.1 200 OK
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Length: 0
+Access-Control-Allow-Origin: http://myclient.azurewebsites.net
+Access-Control-Allow-Headers: x-my-custom-header
+Access-Control-Allow-Methods: PUT
+Date: Wed, 20 May 2015 06:33:22 GMT
+</code></pre><p>The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/cors.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Building projects with Yeoman in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Building projects with Yeoman in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="client-side/yeoman">
+<h1 id="introduction-to-building-projects-with-yeoman-in-aspnet-core">Introduction to building projects with Yeoman in ASP.NET Core</h1>
+
+<p><a href="http://yeoman.io/">Yeoman</a> is a project scaffolding system for creating many kinds of applications. The Yeoman generator for ASP.NET Core contains a variety of project templates for starting a new web, MVC, or console application.</p>
+<h2 id="install-nodejs-npm-and-yeoman">Install Node.js, npm, and Yeoman</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Node.js and npm are required for Yeoman. Download from <a href="https://nodejs.org/">Node.js</a>. The installer includes <a href="https://nodejs.org/">Node.js</a> and <a href="https://www.npmjs.com/">npm</a>. Bower is also required for installing UI frameworks like Bootstrap.</p>
+<p>To install Yeoman and Bower, run the following command:</p>
+<pre><code class="lang-console">npm install -g yo bower
+</code></pre><div class="NOTE"><h5>Note</h5><p>If you get the error <code>npm ERR! Please try running this command again as root/Administrator.</code> on macOS, run the following command using <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html">sudo</a>: <code>sudo npm install -g yo bower</code></p>
+</div>
+<p>From a command prompt, install the ASP.NET generator:</p>
+<pre><code class="lang-console">npm install -g generator-aspnet
+</code></pre><div class="NOTE"><h5>Note</h5><p>If you get a permission error, run the command under <code>sudo</code> as described above.</p>
+</div>
+<p>The <code>–g</code> flag installs the generator globally, so that it can be used from any path.</p>
+<h2 id="create-an-aspnet-app">Create an ASP.NET app</h2>
+<p>Run the Yeoman-based ASP.NET generator:</p>
+<pre><code class="lang-console">yo aspnet
+</code></pre><p>The generator displays a menu. Arrow down to the <strong>Web Application Basic [without Membership and Authorization]</strong> project and tap <strong>Enter</strong>:</p>
+<p><img src="yeoman/_static/yeoman-yo-aspnet.png" alt="Command window: What type of application do you want to create? Menu of application types"></p>
+<p>Select Bootstrap as the UI Framework and tap <strong>Enter</strong>.</p>
+<p>Use &quot;<strong>MyWebApp</strong>&quot; for the app name and then tap <strong>Enter</strong>.</p>
+<p>Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands.</p>
+<p><img src="yeoman/_static/yeoman-yo-aspnet-created.png" alt="Command window: What&#39;s the name of your ASP.NET application? Command prompt"></p>
+<p>The <a href="https://www.npmjs.com/package/generator-aspnet">ASP.NET generator</a> creates ASP.NET Core projects that can be loaded into Visual Studio Code, Visual Studio, or run from the command line.</p>
+<h2 id="restore-build-and-run">Restore, build, and run</h2>
+<p>Follow the suggested commands by changing directories to the <code>MyWebApp</code> directory. Then run <code>dotnet restore</code>.</p>
+<p><img src="yeoman/_static/dotnet-restore.png" alt="Command window"></p>
+<p>Build and run the app using <code>dotnet build</code> and <code>dotnet run</code>:</p>
+<p><img src="yeoman/_static/dotnet-build-run.png" alt="Command window"></p>
+<p>At this point, you can navigate to the URL shown to test the newly-created ASP.NET Core app.</p>
+<h2 id="client-side-packages">Client-side packages</h2>
+<p>The front-end resources are provided by the templates from the Yeoman generator using the <a class="xref" href="bower.html">Bower</a> client-side package manager, adding <em>bower.json</em> and <em>.bowerrc</em> files to restore client-side packages using Bower.</p>
+<p>The <a class="xref" href="bundling-and-minification.html">BundlerMinifier</a> component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript, and HTML.</p>
+<h2 id="building-and-running-from-visual-studio">Building and running from Visual Studio</h2>
+<p>You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there. Follow the instructions above to scaffold a new ASP.NET Core app using Yeoman. This time, choose <strong>Web Application</strong> from the menu and name the app <code>MyWebApp</code>.</p>
+<p>Open Visual Studio. From the File menu, select Open ‣ Project/Solution.</p>
+<p>In the Open Project dialog, navigate to the <em>.csproj</em> file, select it, and click the <strong>Open</strong> button. In the Solution Explorer, the project should look something like the screenshot below.</p>
+<p><img src="yeoman/_static/yeoman-solution.png" alt="Files and folders of a new project in Solution Explorer"></p>
+<p>Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the <strong>Dependencies/NuGet</strong> node, and client-side dependencies in the <strong>Dependencies/Bower</strong> node of Solution Explorer. Dependencies are restored automatically when the project is loaded.</p>
+<p><img src="yeoman/_static/yeoman-loading-dependencies.png" alt="Under the Dependencies node in the Solution Explorer tree view, the Bower folder is open listing its dependencies."></p>
+<p>When all the dependencies are restored, press <strong>F5</strong> to run the project. The default home page displays in the browser.</p>
+<p><img src="yeoman/_static/yeoman-home-page.png" alt="Web application open in Microsoft Edge"></p>
+<h2 id="restoring-building-and-hosting-from-a-command-line">Restoring, building, and hosting from a command line</h2>
+<p>You can prepare and host your web application using the .NET Core CLI.</p>
+<p>At a command prompt, change the current directory to the folder containing the project (that is, the folder containing the <em>.csproj</em> file):</p>
+<pre><code class="lang-console">cd src\MyWebApp
+</code></pre><p>Restore the project&#39;s NuGet package dependencies:</p>
+<pre><code class="lang-console">dotnet restore
+</code></pre><p>Run the application:</p>
+<pre><code class="lang-console">dotnet run
+</code></pre><p>The cross-platform <a class="xref" href="../fundamentals/servers/kestrel.html">Kestrel</a> web server will begin listening on port 5000.</p>
+<p>Open a web browser, and navigate to <code>http://localhost:5000</code>.</p>
+<p><img src="yeoman/_static/yeoman-home-page_5000.png" alt="Web application open in Microsoft Edge"></p>
+<h2 id="adding-to-your-project-with-sub-generators">Adding to your project with sub generators</h2>
+<p>Using Yeoman <a href="https://github.com/omnisharp/generator-aspnet">sub generators</a>, you can add either a <code>nuget.config</code> or a <code>web.config</code> after the project is created. For example, execute the following command from the directory in which the file should be created:</p>
+<pre><code class="lang-console">yo aspnet:nugetconfig
+</code></pre><p>The result is a NuGet configuration file named <code>nuget.config</code> with the following content:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;configuration&gt;
+ &lt;packageSources&gt;
+    &lt;!--To inherit the global NuGet package sources remove the &lt;clear/&gt; line below --&gt;
+    &lt;clear /&gt;
+ &lt;/packageSources&gt;
+&lt;/configuration&gt;
+</code></pre><h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a class="xref" href="../fundamentals/servers/index.html">Servers (Kestrel and WebListener)</a></li>
+<li><a class="xref" href="../fundamentals/index.html">Fundamentals</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/client-side/yeoman.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

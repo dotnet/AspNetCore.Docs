@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Request Features in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Request Features in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/request-features">
+<h1 id="request-features-in-aspnet-core">Request Features in ASP.NET Core</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the application&#39;s hosting pipeline.</p>
+<h2 id="feature-interfaces">Feature interfaces</h2>
+<p>ASP.NET Core defines a number of HTTP feature interfaces in <code>Microsoft.AspNetCore.Http.Features</code> which are used by servers to identify the features they support. The following feature interfaces handle requests and return responses:</p>
+<p><code>IHttpRequestFeature</code>
+   Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body.</p>
+<p><code>IHttpResponseFeature</code>
+   Defines the structure of an HTTP response, including the status code, headers, and body of the response.</p>
+<p><code>IHttpAuthenticationFeature</code>
+   Defines support for identifying users based on a <code>ClaimsPrincipal</code> and specifying an authentication handler.</p>
+<p><code>IHttpUpgradeFeature</code>
+   Defines support for <a href="https://tools.ietf.org/html/rfc2616.html#section-14.42">HTTP Upgrades</a>, which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.</p>
+<p><code>IHttpBufferingFeature</code>
+   Defines methods for disabling buffering of requests and/or responses.</p>
+<p><code>IHttpConnectionFeature</code>
+   Defines properties for local and remote addresses and ports.</p>
+<p><code>IHttpRequestLifetimeFeature</code>
+   Defines support for aborting connections, or detecting if a request has been terminated prematurely, such as by a client disconnect.</p>
+<p><code>IHttpSendFileFeature</code>
+   Defines a method for sending files asynchronously.</p>
+<p><code>IHttpWebSocketFeature</code>
+   Defines an API for supporting web sockets.</p>
+<p><code>IHttpRequestIdentifierFeature</code>
+   Adds a property that can be implemented to uniquely identify requests.</p>
+<p><code>ISessionFeature</code>
+   Defines <code>ISessionFactory</code> and <code>ISession</code> abstractions for supporting user sessions.</p>
+<p><code>ITlsConnectionFeature</code>
+   Defines an API for retrieving client certificates.</p>
+<p><code>ITlsTokenBindingFeature</code>
+   Defines methods for working with TLS token binding parameters.</p>
+<div class="NOTE"><h5>Note</h5><p><code>ISessionFeature</code> is not a server feature, but is implemented by the <code>SessionMiddleware</code> (see <a href="app-state.html">Managing Application State</a>).</p>
+</div>
+<h2 id="feature-collections">Feature collections</h2>
+<p>The <code>Features</code> property of <code>HttpContext</code> provides an interface for getting and setting the available HTTP features for the current request. Since the feature collection is mutable even within the context of a request, middleware can be used to modify the collection and add support for additional features.</p>
+<h2 id="middleware-and-request-features">Middleware and request features</h2>
+<p>While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the <code>StaticFileMiddleware</code> accesses the <code>IHttpSendFileFeature</code> feature. If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the <code>IHttpSendFileFeature</code> allows the operating
+system to open the file and perform a direct kernel mode copy to the network card.</p>
+<p>Additionally, middleware can add to the feature collection established by the server. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.</p>
+<p>By combining custom server implementations and specific middleware enhancements, the precise set of features an application requires can be constructed. This allows missing features to be added without requiring a change in server, and ensures only the minimal amount of features are exposed, thus limiting attack surface area and improving performance.</p>
+<h2 id="summary">Summary</h2>
+<p>Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p><a href="servers/index.html">Servers</a></p>
+</li>
+<li><p><a href="middleware.html">Middleware</a></p>
+</li>
+<li><p><a href="owin.html">Open Web Interface for .NET (OWIN)</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/request-features.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Custom formatters in ASP.NET Core MVC web APIs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Custom formatters in ASP.NET Core MVC web APIs ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/models/custom-formatters">
+<h1 id="custom-formatters-in-aspnet-core-mvc-web-apis">Custom formatters in ASP.NET Core MVC web APIs</h1>
+
+<p>By <a href="https://github.com/tdykstra">Tom Dykstra</a></p>
+<p>ASP.NET Core MVC has built-in support for data exchange in web APIs by using JSON, XML, or plain text formats. This article shows how to add support for additional formats by creating custom formatters.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample">View or download sample from GitHub</a>.</p>
+<h2 id="when-to-use-custom-formatters">When to use custom formatters</h2>
+<p>Use a custom formatter when you want the <a class="xref" href="../models/formatting.html">content negotiation</a> process to support a content type that isn&#39;t supported by the built-in formatters (JSON, XML, and plain text).</p>
+<p>For example, if some of the clients for your web API can handle the <a href="https://github.com/google/protobuf">Protobuf</a> format, you might want to use Protobuf with those clients because it&#39;s more efficient.  Or you might want your web API to send contact names and addresses in <a href="https://wikipedia.org/wiki/VCard">vCard</a> format, a commonly used format for exchanging contact data. The sample app provided with this article implements a simple vCard formatter.</p>
+<h2 id="overview-of-how-to-use-a-custom-formatter">Overview of how to use a custom formatter</h2>
+<p>Here are the steps to create and use a custom formatter:</p>
+<ul>
+<li>Create an output formatter class if you want to serialize data to send to the client.</li>
+<li>Create an input formatter class if you want to deserialize data received from the client. </li>
+<li>Add instances of your formatters to the <code>InputFormatters</code> and <code>OutputFormatters</code> collections in <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.mvcoptions">MvcOptions</a>.</li>
+</ul>
+<p>The following sections provide guidance and code examples for each of these steps.</p>
+<h2 id="how-to-create-a-custom-formatter-class">How to create a custom formatter class</h2>
+<p>To create a formatter:</p>
+<ul>
+<li>Derive the class from the appropriate base class.</li>
+<li>Specify valid media types and encodings in the constructor.</li>
+<li>Override <code>CanReadType</code>/<code>CanWriteType</code> methods</li>
+<li>Override <code>ReadRequestBodyAsync</code>/<code>WriteResponseBodyAsync</code> methods</li>
+</ul>
+<h3 id="derive-from-the-appropriate-base-class">Derive from the appropriate base class</h3>
+<p>For text media types (for example, vCard), derive from the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textinputformatter">TextInputFormatter</a> or <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter">TextOutputFormatter</a> base class.</p>
+<pre><code class="lang-csharp" name="Main">public class VcardOutputFormatter : TextOutputFormatter
+</code></pre><p>For binary types, derive from the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.inputformatter">InputFormatter</a> or <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformatter">OutputFormatter</a> base class.</p>
+<h3 id="specify-valid-media-types-and-encodings">Specify valid media types and encodings</h3>
+<p>In the constructor, specify valid media types and encodings by adding to the <code>SupportedMediaTypes</code> and <code>SupportedEncodings</code> collections.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3,5-6">public VcardOutputFormatter()
+{
+    SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse(&quot;text/vcard&quot;));
+
+    SupportedEncodings.Add(Encoding.UTF8);
+    SupportedEncodings.Add(Encoding.Unicode);
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>You can&#39;t do constructor dependency injection in a formatter class. For example, you can&#39;t get a logger by adding a logger parameter to the constructor. To access services, you have to use the context object that gets passed in to your methods. A code example <a href="#read-write">below</a> shows how to do this.</p>
+</div>
+<h3 id="override-canreadtypecanwritetype">Override CanReadType/CanWriteType</h3>
+<p>Specify the type you can deserialize into or serialize from by overriding the <code>CanReadType</code> or <code>CanWriteType</code> methods. For example, you might only be able to create vCard text from a <code>Contact</code> type and vice versa.</p>
+<pre><code class="lang-csharp" name="Main">protected override bool CanWriteType(Type type)
+{
+    if (typeof(Contact).IsAssignableFrom(type) 
+        || typeof(IEnumerable&lt;Contact&gt;).IsAssignableFrom(type))
+    {
+        return base.CanWriteType(type);
+    }
+    return false;
+}
+</code></pre><h4 id="the-canwriteresult-method">The CanWriteResult method</h4>
+<p>In some scenarios you have to override <code>CanWriteResult</code> instead of <code>CanWriteType</code>. Use <code>CanWriteResult</code> if the following conditions are true:</p>
+<ul>
+<li>Your action method returns a model class.</li>
+<li>There are derived classes which might be returned at runtime.</li>
+<li>You need to know at runtime which derived class was returned by the action.  </li>
+</ul>
+<p>For example, suppose your action method signature returns a <code>Person</code> type, but it may return a <code>Student</code> or <code>Instructor</code> type that derives from <code>Person</code>. If you want your formatter to handle only <code>Student</code> objects, check the type of <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object">Object</a> in the context object provided to the <code>CanWriteResult</code> method. Note that it&#39;s not necessary to use <code>CanWriteResult</code> when the action method returns <code>IActionResult</code>; in that case, the <code>CanWriteType</code> method receives the runtime type.</p>
+<p><a id="read-write"></a></p>
+<h3 id="override-readrequestbodyasyncwriteresponsebodyasync">Override ReadRequestBodyAsync/WriteResponseBodyAsync</h3>
+<p>You do the actual work of deserializing or serializing in <code>ReadRequestBodyAsync</code> or <code>WriteResponseBodyAsync</code>.  The highlighted lines in the following example show how to get services from the dependency injection container (you can&#39;t get them from constructor parameters).</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3-4">public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+{
+    IServiceProvider serviceProvider = context.HttpContext.RequestServices;
+    var logger = serviceProvider.GetService(typeof(ILogger&lt;VcardOutputFormatter&gt;)) as ILogger;
+
+    var response = context.HttpContext.Response;
+
+    var buffer = new StringBuilder();
+    if (context.Object is IEnumerable&lt;Contact&gt;)
+    {
+        foreach (Contact contact in context.Object as IEnumerable&lt;Contact&gt;)
+        {
+            FormatVcard(buffer, contact, logger);
+        }
+    }
+    else
+    {
+        var contact = context.Object as Contact;
+        FormatVcard(buffer, contact, logger);
+    }
+    return response.WriteAsync(buffer.ToString());
+}
+
+private static void FormatVcard(StringBuilder buffer, Contact contact, ILogger logger)
+{
+    buffer.AppendLine(&quot;BEGIN:VCARD&quot;);
+    buffer.AppendLine(&quot;VERSION:2.1&quot;);
+    buffer.AppendFormat($&quot;N:{contact.LastName};{contact.FirstName}\r\n&quot;);
+    buffer.AppendFormat($&quot;FN:{contact.FirstName} {contact.LastName}\r\n&quot;);
+    buffer.AppendFormat($&quot;UID:{contact.ID}\r\n&quot;);
+    buffer.AppendLine(&quot;END:VCARD&quot;);
+    logger.LogInformation($&quot;Writing {contact.FirstName} {contact.LastName}&quot;);
+}
+</code></pre><h2 id="how-to-configure-mvc-to-use-a-custom-formatter">How to configure MVC to use a custom formatter</h2>
+<p>To use a custom formatter, add an instance of the formatter class to the <code>InputFormatters</code> or <code>OutputFormatters</code> collection.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3-4">services.AddMvc(options =&gt;
+{
+    options.InputFormatters.Insert(0, new VcardInputFormatter());
+    options.OutputFormatters.Insert(0, new VcardOutputFormatter());
+});
+</code></pre><p>Formatters are evaluated in the order you insert them. The first one takes precedence. </p>
+<h2 id="next-steps">Next steps</h2>
+<p>See the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/advanced/custom-formatters/sample">sample application</a>, which implements simple vCard input and output formatters.  The application reads and writes vCards that look like the following example:</p>
+<pre><code>BEGIN:VCARD
+VERSION:2.1
+N:Davolio;Nancy
+FN:Nancy Davolio
+UID:20293482-9240-4d68-b475-325df4a83728
+END:VCARD
+</code></pre><p>To see vCard output, run the application and send a Get request with Accept header &quot;text/vcard&quot; to <code>http://localhost:63313/api/contacts/</code> (when running from Visual Studio) or <code>http://localhost:5000/api/contacts/</code> (when running from the command line).</p>
+<p>To add a vCard to the in-memory collection of contacts, send a Post request to the same URL, with Content-Type header &quot;text/vcard&quot; and with vCard text in the body, formatted like the example above.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/advanced/custom-formatters.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

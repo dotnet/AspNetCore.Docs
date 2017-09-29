@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Migrating from ASP.NET Web API </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Migrating from ASP.NET Web API ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="migration/webapi">
+<h1 id="migrating-from-aspnet-web-api">Migrating from ASP.NET Web API</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a> and <a href="https://scottaddie.com">Scott Addie</a></p>
+<p>Web APIs are HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Core MVC includes support for building Web APIs providing a single, consistent way of building web applications. In this article, we demonstrate the steps required to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/webapi/sample">View or download sample code</a></p>
+<h2 id="review-aspnet-web-api-project">Review ASP.NET Web API Project</h2>
+<p>This article uses the sample project, <em>ProductsApp</em>, created in the article <a href="https://docs.microsoft.com/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api">Getting Started with ASP.NET Web API</a> as its starting point. In that project, a simple ASP.NET Web API  project is configured as follows.</p>
+<p>In <em>Global.asax.cs</em>, a call is made to <code>WebApiConfig.Register</code>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="14">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+using System.Web.Routing;
+
+namespace ProductsApp
+{
+    public class WebApiApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+        }
+    }
+}
+</code></pre><p><code>WebApiConfig</code> is defined in <em>App_Start</em>, and has just one static <code>Register</code> method:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="15,16,17,18,19,20">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+
+namespace ProductsApp
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Web API configuration and services
+
+            // Web API routes
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: &quot;DefaultApi&quot;,
+                routeTemplate: &quot;api/{controller}/{id}&quot;,
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+}
+</code></pre><p>This class configures <a href="https://docs.microsoft.com/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2">attribute routing</a>, although it&#39;s not actually being used in the project. It also configures the routing table which is used by ASP.NET Web API. In this case, ASP.NET Web API will expect URLs to match the format <em>/api/{controller}/{id}</em>, with <em>{id}</em> being optional.</p>
+<p>The <em>ProductsApp</em> project includes just one simple controller, which inherits from <code>ApiController</code> and exposes two methods:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="19,24">using ProductsApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Http;
+
+namespace ProductsApp.Controllers
+{
+    public class ProductsController : ApiController
+    {
+        Product[] products = new Product[] 
+        { 
+            new Product { Id = 1, Name = &quot;Tomato Soup&quot;, Category = &quot;Groceries&quot;, Price = 1 }, 
+            new Product { Id = 2, Name = &quot;Yo-yo&quot;, Category = &quot;Toys&quot;, Price = 3.75M }, 
+            new Product { Id = 3, Name = &quot;Hammer&quot;, Category = &quot;Hardware&quot;, Price = 16.99M } 
+        };
+
+        public IEnumerable&lt;Product&gt; GetAllProducts()
+        {
+            return products;
+        }
+
+        public IHttpActionResult GetProduct(int id)
+        {
+            var product = products.FirstOrDefault((p) =&gt; p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+    }
+}
+</code></pre><p>Finally, the model, <em>Product</em>, used by the <em>ProductsApp</em>, is a simple class:</p>
+<pre><code class="lang-csharp" name="Main">
+namespace ProductsApp.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+</code></pre><p>Now that we have a simple project from which to start, we can demonstrate how to migrate this Web API project to ASP.NET Core MVC.</p>
+<h2 id="create-the-destination-project">Create the Destination Project</h2>
+<p>Using Visual Studio, create a new, empty solution, and name it <em>WebAPIMigration</em>. Add the existing <em>ProductsApp</em> project to it, then, add a new ASP.NET Core Web Application Project to the solution. Name the new project <em>ProductsCore</em>.</p>
+<p><img src="webapi/_static/add-web-project.png" alt="New Project dialog open to Web templates"></p>
+<p>Next, choose the Web API project template. We will migrate the <em>ProductsApp</em> contents to this new project.</p>
+<p><img src="webapi/_static/aspnet-5-webapi.png" alt="New Web Application dialog with Web API project template selected in the ASP.NET Core templates list"></p>
+<p>Delete the <code>Project_Readme.html</code> file from the new project. Your solution should now look like this:</p>
+<p><img src="webapi/_static/webapimigration-solution.png" alt="Application solution open in Solution Explorer showing files and folders of the ProductsApp and ProductsCore projects"></p>
+<h2 id="migrate-configuration">Migrate Configuration</h2>
+<p>ASP.NET Core no longer uses <em>Global.asax</em>, <em>web.config</em>, or <em>App_Start</em> folders. Instead, all startup tasks are done in <em>Startup.cs</em> in the root of the project (see <a href="../fundamentals/startup.html">Application Startup</a>). In ASP.NET Core MVC, attribute-based routing is now included by default when <code>UseMvc()</code> is called; and, this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).</p>
+<pre><code class="lang-none" name="Main" highlight-lines="40">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace ProductsCore
+{
+    public class Startup
+    {
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile(&quot;appsettings.json&quot;, optional: true, reloadOnChange: true)
+                .AddJsonFile($&quot;appsettings.{env.EnvironmentName}.json&quot;, optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Add framework services.
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection(&quot;Logging&quot;));
+            loggerFactory.AddDebug();
+
+            app.UseMvc();
+        }
+    }
+}
+</code></pre><p>Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample <code>ValuesController</code> class that is included in the Web API starter project:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="9,13,20,27,33,39">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ProductsCore.Controllers
+{
+    [Route(&quot;api/[controller]&quot;)]
+    public class ValuesController : Controller
+    {
+        // GET api/values
+        [HttpGet]
+        public IEnumerable&lt;string&gt; Get()
+        {
+            return new string[] { &quot;value1&quot;, &quot;value2&quot; };
+        }
+
+        // GET api/values/5
+        [HttpGet(&quot;{id}&quot;)]
+        public string Get(int id)
+        {
+            return &quot;value&quot;;
+        }
+
+        // POST api/values
+        [HttpPost]
+        public void Post([FromBody]string value)
+        {
+        }
+
+        // PUT api/values/5
+        [HttpPut(&quot;{id}&quot;)]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete(&quot;{id}&quot;)]
+        public void Delete(int id)
+        {
+        }
+    }
+}
+</code></pre><p>Note the presence of <em>[controller]</em> on line 8. Attribute-based routing now supports certain tokens, such as <em>[controller]</em> and <em>[action]</em>. These tokens are replaced at runtime with the name of the controller or action, respectively, to which the attribute has been applied. This serves to reduce the number of magic strings in the project, and it ensures the routes will be kept synchronized with their corresponding controllers and actions when automatic rename refactorings are applied.</p>
+<p>To migrate the Products API controller, we must first copy <em>ProductsController</em> to the new project. Then simply include the route attribute on the controller:</p>
+<pre><code class="lang-csharp">[Route(&quot;api/[controller]&quot;)]
+</code></pre><p>You also need to add the <code>[HttpGet]</code> attribute to the two methods, since they both should be called via HTTP Get. Include the expectation of an &quot;id&quot; parameter in the attribute for <code>GetProduct()</code>:</p>
+<pre><code class="lang-csharp">// /api/products
+[HttpGet]
+...
+
+// /api/products/1
+[HttpGet(&quot;{id}&quot;)]
+</code></pre><p>At this point, routing is configured correctly; however, we can&#39;t yet test it. Additional changes must be made before <em>ProductsController</em> will compile.</p>
+<h2 id="migrate-models-and-controllers">Migrate Models and Controllers</h2>
+<p>The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy <em>Controllers/ProductsController.cs</em> from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (<em>ProductsCore</em>).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:</p>
+<ul>
+<li><p><em>ApiController</em> does not exist</p>
+</li>
+<li><p><em>System.Web.Http</em> namespace does not exist</p>
+</li>
+<li><p><em>IHttpActionResult</em> does not exist</p>
+</li>
+</ul>
+<p>Fortunately, these are all very easy to correct:</p>
+<ul>
+<li><p>Change <em>ApiController</em> to <em>Controller</em> (you may need to add <em>using Microsoft.AspNetCore.Mvc</em>)</p>
+</li>
+<li><p>Delete any using statement referring to <em>System.Web.Http</em></p>
+</li>
+<li><p>Change any method returning <em>IHttpActionResult</em> to return a <em>IActionResult</em></p>
+</li>
+</ul>
+<p>Once these changes have been made and unused using statements removed, the migrated <em>ProductsController</em> class looks like this:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="1,2,6,8,9,27">using Microsoft.AspNetCore.Mvc;
+using ProductsCore.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ProductsCore.Controllers
+{
+    [Route(&quot;api/[controller]&quot;)]
+    public class ProductsController : Controller
+    {
+        Product[] products = new Product[]
+        {
+            new Product { Id = 1, Name = &quot;Tomato Soup&quot;, Category = &quot;Groceries&quot;, Price = 1 },
+            new Product { Id = 2, Name = &quot;Yo-yo&quot;, Category = &quot;Toys&quot;, Price = 3.75M },
+            new Product { Id = 3, Name = &quot;Hammer&quot;, Category = &quot;Hardware&quot;, Price = 16.99M }
+        };
+
+        // /api/products
+        [HttpGet]
+        public IEnumerable&lt;Product&gt; GetAllProducts()
+        {
+            return products;
+        }
+
+        // /api/products/1
+        [HttpGet(&quot;{id}&quot;)]
+        public IActionResult GetProduct(int id)
+        {
+            var product = products.FirstOrDefault((p) =&gt; p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+    }
+}
+</code></pre><p>You should now be able to run the migrated project and browse to <em>/api/products</em>; and, you should see the full list of 3 products. Browse to <em>/api/products/1</em> and you should see the first product.</p>
+<h2 id="summary">Summary</h2>
+<p>Migrating a simple ASP.NET Web API project to ASP.NET Core MVC is fairly straightforward, thanks to the built-in support for Web APIs in ASP.NET Core MVC. The main pieces every ASP.NET Web API project will need to migrate are routes, controllers, and models, along with updates to the types used by  controllers and actions.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/migration/webapi.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

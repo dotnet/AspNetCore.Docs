@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Globalization and localization in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Globalization and localization in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/localization">
+<h1 id="globalization-and-localization-in-aspnet-core">Globalization and localization in ASP.NET Core</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a>, <a href="https://twitter.com/damien_bod">Damien Bowden</a>, <a href="https://twitter.com/bartmax">Bart Calixto</a>, <a href="https://twitter.com/NadeemAfana">Nadeem Afana</a>, and <a href="https://twitter.com/hishambinateya">Hisham Bin Ateya</a></p>
+<p>Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.</p>
+<p>Internationalization involves <a href="https://docs.microsoft.com/dotnet/api/system.globalization">Globalization</a> and <a href="https://docs.microsoft.com/dotnet/standard/globalization-localization/localization">Localization</a>. Globalization is the process of designing apps that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.</p>
+<p>Localization is the process of adapting a globalized app, which you have already processed for localizability, to a particular culture/locale.  For more information see <strong>Globalization and localization terms</strong> near the end of this document.</p>
+<p>App localization involves the following:</p>
+<ol>
+<li><p>Make the app&#39;s content localizable</p>
+</li>
+<li><p>Provide localized resources for the languages and cultures you support</p>
+</li>
+<li><p>Implement a strategy to select the language/culture for each request</p>
+</li>
+</ol>
+<h2 id="make-the-apps-content-localizable">Make the app&#39;s content localizable</h2>
+<p>Introduced in ASP.NET Core, <code>IStringLocalizer</code> and <code>IStringLocalizer&lt;T&gt;</code> were architected to improve productivity when developing localized apps. <code>IStringLocalizer</code> uses the <a href="https://docs.microsoft.com/dotnet/api/system.resources.resourcemanager">ResourceManager</a> and <a href="https://docs.microsoft.com/dotnet/api/system.resources.resourcereader">ResourceReader</a> to provide culture-specific resources at run time. The simple interface has an indexer and an <code>IEnumerable</code> for returning localized strings. <code>IStringLocalizer</code> doesn&#39;t require you to store the default language strings in a resource file. You can develop an app
+targeted for localization and not need to create resource files early in development. The code below shows how to wrap the string &quot;About Title&quot; for localization.</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+
+namespace Localization.StarterWeb.Controllers
+{
+    [Route(&quot;api/[controller]&quot;)]
+    public class AboutController : Controller
+    {
+        private readonly IStringLocalizer&lt;AboutController&gt; _localizer;
+
+        public AboutController(IStringLocalizer&lt;AboutController&gt; localizer)
+        {
+            _localizer = localizer;
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return _localizer[&quot;About Title&quot;];
+        }
+    }
+}
+</code></pre><p>In the code above, the <code>IStringLocalizer&lt;T&gt;</code> implementation comes from <a href="dependency-injection.html">Dependency Injection</a>. If the localized value of &quot;About Title&quot; is not found, then the indexer key is returned, that is, the string &quot;About Title&quot;. You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language <em>.resx</em> file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.</p>
+<p>Use the <code>IHtmlLocalizer&lt;T&gt;</code> implementation for resources that contain HTML. <code>IHtmlLocalizer</code> HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the value of <code>name</code> parameter is HTML encoded.</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="3,5,20">using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+
+namespace Localization.StarterWeb.Controllers
+{
+    public class BookController : Controller
+    {
+        private readonly IHtmlLocalizer&lt;BookController&gt; _localizer;
+
+        public BookController(IHtmlLocalizer&lt;BookController&gt; localizer)
+        {
+            _localizer = localizer;
+        }
+
+        public IActionResult Hello(string name)
+        {
+            ViewData[&quot;Message&quot;] = _localizer[&quot;&lt;b&gt;Hello&lt;/b&gt;&lt;i&gt; {0}&lt;/i&gt;&quot;, name];
+
+            return View();
+        }
+
+</code></pre><p>Note: You generally want to only localize text and not HTML.</p>
+<p>At the lowest level, you can get <code>IStringLocalizerFactory</code> out of <a href="dependency-injection.html">Dependency Injection</a>:</p>
+<pre><code class="lang-csharp" name="Main" highlight-lines="7-13">{
+    public class TestController : Controller
+    {
+        private readonly IStringLocalizer _localizer;
+        private readonly IStringLocalizer _localizer2;
+
+        public TestController(IStringLocalizerFactory factory)
+        {
+            var type = typeof(SharedResource);
+            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
+            _localizer = factory.Create(type);
+            _localizer2 = factory.Create(&quot;SharedResource&quot;, assemblyName.Name);
+        }       
+
+        public IActionResult About()
+        {
+            ViewData[&quot;Message&quot;] = _localizer[&quot;Your application description page.&quot;] 
+                + &quot; loc 2: &quot; + _localizer2[&quot;Your application description page.&quot;];
+</code></pre><p>The code above demonstrates each of the two factory create methods.</p>
+<p>You can partition your localized strings by controller, area, or have just one container. In the sample app, a dummy class named <code>SharedResource</code> is used for shared resources.</p>
+<pre><code class="lang-csharp" name="Main">// Dummy class to group shared resources
+
+namespace Localization.StarterWeb
+{
+    public class SharedResource
+    {
+    }
+}
+</code></pre><p>Some developers use the <code>Startup</code> class to contain global or shared strings.  In the sample below, the <code>InfoController</code> and the <code>SharedResource</code> localizers are used:</p>
+<pre><code class="lang-csharp" name="Main">public class InfoController : Controller
+{
+    private readonly IStringLocalizer&lt;InfoController&gt; _localizer;
+    private readonly IStringLocalizer&lt;SharedResource&gt; _sharedLocalizer;
+
+    public InfoController(IStringLocalizer&lt;InfoController&gt; localizer,
+                   IStringLocalizer&lt;SharedResource&gt; sharedLocalizer)
+    {
+        _localizer = localizer;
+        _sharedLocalizer = sharedLocalizer;
+    }
+
+    public string TestLoc()
+    {
+        string msg = &quot;Shared resx: &quot; + _sharedLocalizer[&quot;Hello!&quot;] +
+                     &quot; Info resx &quot; + _localizer[&quot;Hello!&quot;];
+        return msg;
+    }
+</code></pre><h2 id="view-localization">View localization</h2>
+<p>The <code>IViewLocalizer</code> service provides localized strings for a <a href="https://docs.microsoft.com/aspnet/core">view</a>. The <code>ViewLocalizer</code> class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of <code>IViewLocalizer</code>:</p>
+<pre><code class="lang-HTML" name="Main">@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData[&quot;Title&quot;] = Localizer[&quot;About&quot;];
+}
+&lt;h2&gt;@ViewData[&quot;Title&quot;].&lt;/h2&gt;
+&lt;h3&gt;@ViewData[&quot;Message&quot;]&lt;/h3&gt;
+
+&lt;p&gt;@Localizer[&quot;Use this area to provide additional information.&quot;]&lt;/p&gt;
+</code></pre><p>The default implementation of <code>IViewLocalizer</code> finds the resource file based on the view&#39;s file name. There is no option to use a global shared resource file. <code>ViewLocalizer</code> implements the localizer using <code>IHtmlLocalizer</code>, so Razor doesn&#39;t HTML encode the localized string. You can parameterize resource strings and <code>IViewLocalizer</code> will HTML encode the parameters, but not the resource string. Consider the following Razor markup:</p>
+<pre><code class="lang-HTML">@Localizer[&quot;&lt;i&gt;Hello&lt;/i&gt; &lt;b&gt;{0}!&lt;/b&gt;&quot;, UserManager.GetUserName(User)]
+</code></pre><p>A French resource file could contain the following:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;i&gt;Hello&lt;/i&gt; &lt;b&gt;{0}!&lt;/b&gt;</code></td>
+<td><code>&lt;i&gt;Bonjour&lt;/i&gt; &lt;b&gt;{0} !&lt;/b&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>The rendered view would contain the HTML markup from the resource file.</p>
+<p>Notes:</p>
+<ul>
+<li>View localization requires the &quot;Localization.AspNetCore.TagHelpers&quot; NuGet package.</li>
+<li>You generally want to only localize text and not HTML.</li>
+</ul>
+<p>To use a shared resource file in a view, inject <code>IHtmlLocalizer&lt;T&gt;</code>:</p>
+<pre><code class="lang-HTML" name="Main" highlight-lines="5,12">@using Microsoft.AspNetCore.Mvc.Localization
+@using Localization.StarterWeb.Services
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer&lt;SharedResource&gt; SharedLocalizer
+
+@{
+    ViewData[&quot;Title&quot;] = Localizer[&quot;About&quot;];
+}
+&lt;h2&gt;@ViewData[&quot;Title&quot;].&lt;/h2&gt;
+
+&lt;h1&gt;@SharedLocalizer[&quot;Hello!&quot;]&lt;/h1&gt;
+</code></pre><h2 id="dataannotations-localization">DataAnnotations localization</h2>
+<p>DataAnnotations error messages are localized with <code>IStringLocalizer&lt;T&gt;</code>. Using the option <code>ResourcesPath = &quot;Resources&quot;</code>, the error messages in <code>RegisterViewModel</code> can be stored in either of the following paths:</p>
+<ul>
+<li>Resources/ViewModels.Account.RegisterViewModel.fr.resx</li>
+<li>Resources/ViewModels/Account/RegisterViewModel.fr.resx</li>
+</ul>
+<pre><code class="lang-csharp" name="Main">public class RegisterViewModel
+{
+    [Required(ErrorMessage = &quot;The Email field is required.&quot;)]
+    [EmailAddress(ErrorMessage = &quot;The Email field is not a valid e-mail address.&quot;)]
+    [Display(Name = &quot;Email&quot;)]
+    public string Email { get; set; }
+
+    [Required(ErrorMessage = &quot;The Password field is required.&quot;)]
+    [StringLength(8, ErrorMessage = &quot;The {0} must be at least {2} characters long.&quot;, MinimumLength = 6)]
+    [DataType(DataType.Password)]
+    [Display(Name = &quot;Password&quot;)]
+    public string Password { get; set; }
+
+    [DataType(DataType.Password)]
+    [Display(Name = &quot;Confirm password&quot;)]
+    [Compare(&quot;Password&quot;, ErrorMessage = &quot;The password and confirmation password do not match.&quot;)]
+    public string ConfirmPassword { get; set; }
+}
+</code></pre><p>In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does <strong>not</strong> look up localized strings for non-validation attributes.</p>
+<p><a name="one-resource-string-multiple-classes"></a></p>
+<h3 id="using-one-resource-string-for-multiple-classes">Using one resource string for multiple classes</h3>
+<p>The following code shows how to use one resource string for validation attributes with multiple classes:</p>
+<pre><code>public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc()
+        .AddDataAnnotationsLocalization(options =&gt; {
+            options.DataAnnotationLocalizerProvider = (type, factory) =&gt;
+                factory.Create(typeof(SharedResource));
+        });
+}
+</code></pre><p>In the preceeding code, <code>SharedResource</code> is the class corresponding to the resx where your validation messages are stored. With this approach,  DataAnnotations will only use <code>SharedResource</code>, rather than the resource for each class. </p>
+<h2 id="provide-localized-resources-for-the-languages-and-cultures-you-support">Provide localized resources for the languages and cultures you support</h2>
+<h3 id="supportedcultures-and-supporteduicultures">SupportedCultures and SupportedUICultures</h3>
+<p>ASP.NET Core allows you to specify two culture values, <code>SupportedCultures</code> and <code>SupportedUICultures</code>. The <a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a> object for <code>SupportedCultures</code> determines the results of culture-dependent functions, such as date, time, number, and currency formatting. <code>SupportedCultures</code> also determines the sorting order of text, casing conventions, and string comparisons. See <a href="https://docs.microsoft.com/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture">CultureInfo.CurrentCulture</a> for more info on how the server gets the Culture. The <code>SupportedUICultures</code> determines which translates strings (from <em>.resx</em> files) are looked up by the <a href="https://docs.microsoft.com/dotnet/api/system.resources.resourcemanager">ResourceManager</a>. The <code>ResourceManager</code> simply looks up culture-specific strings that is determined by <code>CurrentUICulture</code>. Every thread in .NET has
+<code>CurrentCulture</code> and <code>CurrentUICulture</code> objects. ASP.NET Core inspects these values when rendering culture-dependent functions. For example, if the current thread&#39;s culture is set to &quot;en-US&quot; (English, United States), <code>DateTime.Now.ToLongDateString()</code> displays &quot;Thursday, February 18, 2016&quot;, but if <code>CurrentCulture</code> is set to &quot;es-ES&quot; (Spanish, Spain) the output will be &quot;jueves, 18 de febrero de 2016&quot;.</p>
+<h2 id="working-with-resource-files">Working with resource files</h2>
+<p>A resource file is a useful mechanism for separating localizable strings from code. Translated strings for the non-default language are isolated <em>.resx</em> resource files. For example, you might want to create Spanish resource file named <em>Welcome.es.resx</em> containing translated strings. &quot;es&quot; is the language code for Spanish. To create this resource file in Visual Studio:</p>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, right click on the folder which will contain the resource file &gt; <strong>Add</strong> &gt; <strong>New Item</strong>.</p>
+<p> <img src="localization/_static/newi.png" alt="Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted."></p>
+</li>
+<li><p>In the <strong>Search installed templates</strong> box, enter &quot;resource&quot; and name the file.</p>
+<p> <img src="localization/_static/res.png" alt="Add New Item dialog"></p>
+</li>
+<li><p>Enter the key value (native string) in the <strong>Name</strong> column and the translated string in the <strong>Value</strong> column.</p>
+<p> <img src="localization/_static/hola.png" alt="Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column"></p>
+<p> Visual Studio shows the <em>Welcome.es.resx</em> file.</p>
+<p> <img src="localization/_static/se.png" alt="Solution Explorer showing the Welcome Spanish (es) resource file"></p>
+</li>
+</ol>
+<p><a name="error"></a></p>
+<p>If you are using Visual Studio 2017 Preview version 15.3, you&#39;ll get an error indicator in the resource editor. Remove the <em>ResXFileCodeGenerator</em>  value from the <em>Custom Tool</em>  properties grid to prevent this error message:</p>
+<p><img src="localization/_static/err.png" alt="Resx editor"></p>
+<p>Alternatively, you can ignore this error. We hope to fix this in the next release.</p>
+<h2 id="resource-file-naming">Resource file naming</h2>
+<p>Resources are named for the full type name of their class minus the assembly name. For example, a French resource in a project whose main assembly is <code>LocalizationWebsite.Web.dll</code> for the class <code>LocalizationWebsite.Web.Startup</code> would be named <em>Startup.fr.resx</em>. A resource for the class <code>LocalizationWebsite.Web.Controllers.HomeController</code> would be named <em>Controllers.HomeController.fr.resx</em>. If your targeted class&#39;s namespace is not the same as the assembly name you will need the full type name. For example, in the sample project a resource for the type <code>ExtraNamespace.Tools</code> would be named <em>ExtraNamespace.Tools.fr.resx</em>.</p>
+<p>In the sample project, the <code>ConfigureServices</code> method sets the <code>ResourcesPath</code> to &quot;Resources&quot;, so the project relative path for the home controller&#39;s French resource file is <em>Resources/Controllers.HomeController.fr.resx</em>. Alternatively, you can use folders to organize resource files. For the home controller, the path would be <em>Resources/Controllers/HomeController.fr.resx</em>. If you don&#39;t use the <code>ResourcesPath</code> option, the <em>.resx</em> file would go in the project base directory. The resource file for <code>HomeController</code> would be named <em>Controllers.HomeController.fr.resx</em>. The choice of using the dot or path naming convention depends on how you want to organize your resource files.</p>
+<table>
+<thead>
+<tr>
+<th>Resource name</th>
+<th>Dot or path naming</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resources/Controllers.HomeController.fr.resx</td>
+<td>Dot</td>
+</tr>
+<tr>
+<td>Resources/Controllers/HomeController.fr.resx</td>
+<td>Path</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Resource files using <code>@inject IViewLocalizer</code> in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the <code>ResourcesPath</code> to &quot;Resources&quot;, the French resource file associated with the <em>Views/Home/About.cshtml</em> view could be either of the following:</p>
+<ul>
+<li><p>Resources/Views/Home/About.fr.resx</p>
+</li>
+<li><p>Resources/Views.Home.About.fr.resx</p>
+</li>
+</ul>
+<p>If you don&#39;t use the <code>ResourcesPath</code> option, the <em>.resx</em> file for a view would be located in the same folder as the view.</p>
+<p>If you remove the &quot;.fr&quot; culture designator AND you have the culture set to French (via cookie or other mechanism), the default resource file is read and strings are localized. The Resource manager designates a default or fallback resource, when nothing meets your requested culture you&#39;re served the *.resx file without a culture designator. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.</p>
+<h3 id="generating-resource-files-with-visual-studio">Generating resource files with Visual Studio</h3>
+<p>If you create a resource file in Visual Studio without a culture in the file name (for example, <em>Welcome.resx</em>), Visual Studio will create a C# class with a property for each string. That&#39;s usually not what you want with ASP.NET Core; you typically don&#39;t have a default <em>.resx</em> resource file (A <em>.resx</em> file without the culture name). We suggest you create the <em>.resx</em> file with a culture name (for example <em>Welcome.fr.resx</em>). When you create a <em>.resx</em> file with a culture name, Visual Studio will not generate the class file. We anticipate that many developers will <strong>not</strong> create a default language resource file.</p>
+<h3 id="adding-other-cultures">Adding Other Cultures</h3>
+<p>Each language and culture combination (other than the default language) requires a unique resource file. You create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, <strong>en-us</strong>, <strong>fr-ca</strong>, and <strong>en-gb</strong>). These ISO codes are placed between the file name and the <em>.resx</em> file name extension, as in <em>Welcome.es-MX.resx</em> (Spanish/Mexico). To specify a culturally neutral language, remove the country code (<code>MX</code> in the preceding example). The culturally neutral Spanish resource file name is <em>Welcome.es.resx</em>.</p>
+<h2 id="implement-a-strategy-to-select-the-languageculture-for-each-request">Implement a strategy to select the language/culture for each request</h2>
+<h3 id="configuring-localization">Configuring localization</h3>
+<p>Localization is configured in the <code>ConfigureServices</code> method:</p>
+<pre><code class="lang-csharp" name="Main">services.AddLocalization(options =&gt; options.ResourcesPath = &quot;Resources&quot;);
+
+services.AddMvc()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+</code></pre><ul>
+<li><p><code>AddLocalization</code> Adds the localization services to the services container. The code above also sets the resources path to &quot;Resources&quot;.</p>
+</li>
+<li><p><code>AddViewLocalization</code> Adds support for localized view files. In this sample view localization is based on the view file suffix. For example &quot;fr&quot; in the <em>Index.fr.cshtml</em> file.</p>
+</li>
+<li><p><code>AddDataAnnotationsLocalization</code> Adds support for localized <code>DataAnnotations</code> validation messages through <code>IStringLocalizer</code> abstractions.</p>
+</li>
+</ul>
+<h3 id="localization-middleware">Localization middleware</h3>
+<p>The current culture on a request is set in the localization <a href="middleware.html">Middleware</a>. The localization middleware is enabled in the <code>Configure</code> method of <em>Program.cs</em> file. Note, the localization middleware must be configured before any middleware which might check the request culture (for example, <code>app.UseMvcWithDefaultRoute()</code>).</p>
+<pre><code class="lang-csharp" name="Main">var supportedCultures = new[]
+{
+    new CultureInfo(enUSCulture),
+    new CultureInfo(&quot;en-AU&quot;),
+    new CultureInfo(&quot;en-GB&quot;),
+    new CultureInfo(&quot;en&quot;),
+    new CultureInfo(&quot;es-ES&quot;),
+    new CultureInfo(&quot;es-MX&quot;),
+    new CultureInfo(&quot;es&quot;),
+    new CultureInfo(&quot;fr-FR&quot;),
+    new CultureInfo(&quot;fr&quot;),
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(enUSCulture),
+    // Formatting numbers, dates, etc.
+    SupportedCultures = supportedCultures,
+    // UI strings that we have localized.
+    SupportedUICultures = supportedCultures
+});
+
+app.UseStaticFiles();
+// To configure external authentication, 
+// see: http://go.microsoft.com/fwlink/?LinkID=532715
+app.UseAuthentication();
+app.UseMvcWithDefaultRoute();
+</code></pre><p><code>UseRequestLocalization</code> initializes a <code>RequestLocalizationOptions</code> object. On every request the list of <code>RequestCultureProvider</code> in the <code>RequestLocalizationOptions</code> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the <code>RequestLocalizationOptions</code> class:</p>
+<ol>
+<li><code>QueryStringRequestCultureProvider</code></li>
+<li><code>CookieRequestCultureProvider</code></li>
+<li><code>AcceptLanguageHeaderRequestCultureProvider</code></li>
+</ol>
+<p>The default list goes from most specific to least specific. Later in the article we&#39;ll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the <code>DefaultRequestCulture</code> is used.</p>
+<h3 id="querystringrequestcultureprovider">QueryStringRequestCultureProvider</h3>
+<p>Some apps will use a query string to set the <a href="https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx">culture and UI culture</a>. For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. By default, the <code>QueryStringRequestCultureProvider</code> is registered as the first localization provider in the <code>RequestCultureProvider</code> list. You pass the query string parameters <code>culture</code> and <code>ui-culture</code>. The following example sets the specific culture (language and region) to Spanish/Mexico:</p>
+<p>   <code>http://localhost:5000/?culture=es-MX&amp;ui-culture=es-MX</code></p>
+<p>If you only pass in one of the two (<code>culture</code> or <code>ui-culture</code>), the query string provider will set both values using the one you passed in. For example, setting just the culture will set both the <code>Culture</code> and the <code>UICulture</code>:</p>
+<p>   <code>http://localhost:5000/?culture=es-MX</code></p>
+<h3 id="cookierequestcultureprovider">CookieRequestCultureProvider</h3>
+<p>Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the <code>MakeCookieValue</code>  method to create a cookie.</p>
+<p>The <code>CookieRequestCultureProvider</code> <code>DefaultCookieName</code>  returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is &quot;.AspNetCore.Culture&quot;.</p>
+<p>The cookie format is <code>c=%LANGCODE%|uic=%LANGCODE%</code>, where <code>c</code> is <code>Culture</code> and <code>uic</code> is <code>UICulture</code>, for example:</p>
+<pre><code>c=en-UK|uic=en-US
+</code></pre><p>If you only specify one of culture info and UI culture, the specified culture will be used for both culture info and UI culture.</p>
+<h3 id="the-accept-language-http-header">The Accept-Language HTTP header</h3>
+<p>The <a href="https://www.w3.org/International/questions/qa-accept-lang-locales">Accept-Language header</a> is settable in most browsers and was originally intended to specify the user&#39;s language. This setting indicates what the browser has been set to send or has inherited from the underlying operating system. The Accept-Language HTTP header from a browser request is not an infallible way to detect the user&#39;s preferred language (see <a href="https://www.w3.org/International/questions/qa-lang-priorities.en.php">Setting language preferences in a browser</a>). A production app should include a way for a user to customize their choice of culture.</p>
+<h3 id="setting-the-accept-language-http-header-in-ie">Setting the Accept-Language HTTP header in IE</h3>
+<ol>
+<li><p>From the gear icon, tap <strong>Internet Options</strong>.</p>
+</li>
+<li><p>Tap <strong>Languages</strong>.</p>
+<p> <img src="localization/_static/lang.png" alt="Internet Options"></p>
+</li>
+<li><p>Tap <strong>Set Language Preferences</strong>.</p>
+</li>
+<li><p>Tap <strong>Add a language</strong>.</p>
+</li>
+<li><p>Add the language.</p>
+</li>
+<li><p>Tap the language, then tap <strong>Move Up</strong>.</p>
+</li>
+</ol>
+<h3 id="using-a-custom-provider">Using a custom provider</h3>
+<p>Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:</p>
+<pre><code class="lang-csharp">private const string enUSCulture = &quot;en-US&quot;;
+
+services.Configure&lt;RequestLocalizationOptions&gt;(options =&gt;
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo(enUSCulture),
+        new CultureInfo(&quot;fr&quot;)
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
+    options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =&gt;
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult(&quot;en&quot;);
+    }));
+});
+</code></pre><p>Use <code>RequestLocalizationOptions</code> to add or remove localization providers.</p>
+<h3 id="setting-the-culture-programmatically">Setting the culture programmatically</h3>
+<p>This sample <strong>Localization.StarterWeb</strong> project on <a href="https://github.com/aspnet/entropy">GitHub</a> contains UI to set the <code>Culture</code>. The <em>Views/Shared/_SelectLanguagePartial.cshtml</em> file allows you to select the culture from the list of supported cultures:</p>
+<pre><code class="lang-HTML" name="Main">@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions&lt;RequestLocalizationOptions&gt; LocOptions
+
+@{
+    var requestCulture = Context.Features.Get&lt;IRequestCultureFeature&gt;();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c =&gt; new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? &quot;~/&quot; : $&quot;~{Context.Request.Path.Value}&quot;;
+}
+
+&lt;div title=&quot;@Localizer[&quot;Request culture provider:&quot;] @requestCulture?.Provider?.GetType().Name&quot;&gt;
+    &lt;form id=&quot;selectLanguage&quot; asp-controller=&quot;Home&quot; 
+          asp-action=&quot;SetLanguage&quot; asp-route-returnUrl=&quot;@returnUrl&quot; 
+          method=&quot;post&quot; class=&quot;form-horizontal&quot; role=&quot;form&quot;&gt;
+        &lt;label asp-for=&quot;@requestCulture.RequestCulture.UICulture.Name&quot;&gt;@Localizer[&quot;Language:&quot;]&lt;/label&gt; &lt;select name=&quot;culture&quot;
+          onchange=&quot;this.form.submit();&quot;
+          asp-for=&quot;@requestCulture.RequestCulture.UICulture.Name&quot; asp-items=&quot;cultureItems&quot;&gt;
+        &lt;/select&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+</code></pre><p>The <em>Views/Shared/_SelectLanguagePartial.cshtml</em> file is added to the <code>footer</code> section of the layout file so it will be available to all views:</p>
+<pre><code class="lang-HTML" name="Main" highlight-lines="10">&lt;div class=&quot;container body-content&quot; style=&quot;margin-top:60px&quot;&gt;
+    @RenderBody()
+    &lt;hr&gt;
+    &lt;footer&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;p&gt;&amp;copy; @System.DateTime.Now.Year - Localization.StarterWeb&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-6 text-right&quot;&gt;
+                @await Html.PartialAsync(&quot;_SelectLanguagePartial&quot;)
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre><p>The <code>SetLanguage</code> method sets the culture cookie.</p>
+<pre><code class="lang-csharp" name="Main">[HttpPost]
+public IActionResult SetLanguage(string culture, string returnUrl)
+{
+    Response.Cookies.Append(
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+        new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+    );
+
+    return LocalRedirect(returnUrl);
+}
+</code></pre><p>You can&#39;t plug in the <em>_SelectLanguagePartial.cshtml</em> to sample code for this project. The <strong>Localization.StarterWeb</strong> project on <a href="https://github.com/aspnet/entropy">GitHub</a> has code to flow the <code>RequestLocalizationOptions</code> to a Razor partial through the <a href="dependency-injection.html">Dependency Injection</a> container.</p>
+<h2 id="globalization-and-localization-terms">Globalization and localization terms</h2>
+<p>The process of localizing your app also requires a basic understanding of relevant character sets commonly used in modern software development and an understanding of the issues associated with them. Although all computers store text as numbers (codes), different systems store the same text using different numbers. The localization process refers to translating the app user interface (UI) for a specific culture/locale.</p>
+<p><a href="https://docs.microsoft.com/dotnet/standard/globalization-localization/localizability-review">Localizability</a> is an intermediate process for verifying that a globalized app is ready for localization.</p>
+<p>The <a href="https://www.ietf.org/rfc/rfc4646.txt">RFC 4646</a> format for the culture name is &quot;<languagecode2>-<country egioncode2="">&quot;, where <languagecode2> is the language code and <country egioncode2=""> is the subculture code. For example, <code>es-CL</code> for Spanish (Chile), <code>en-US</code> for English (United States), and <code>en-AU</code> for English (Australia). <a href="https://www.ietf.org/rfc/rfc4646.txt">RFC 4646</a> is a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region.  See <a href="https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx">Language Culture Name</a>.<p>
+<p>Internationalization is often abbreviated to &quot;I18N&quot;. The abbreviation takes the first and last letters and the number of letters between them, so 18 stands for the number of letters between the first &quot;I&quot; and the last &quot;N&quot;. The same applies to Globalization (G11N), and Localization (L10N).</p>
+<p>Terms:</p>
+<ul>
+<li>Globalization (G11N): The process of making an app support different languages and regions.</li>
+<li>Localization (L10N): The process of customizing an app for a given language and region.</li>
+<li>Internationalization (I18N): Describes both globalization and localization.</li>
+<li>Culture: It is a language and, optionally, a region.</li>
+<li>Neutral culture: A culture that has a specified language, but not a region. (for example &quot;en&quot;, &quot;es&quot;)</li>
+<li>Specific culture: A culture that has a specified language and region. (for example &quot;en-US&quot;, &quot;en-GB&quot;, &quot;es-CL&quot;)</li>
+<li>Locale: A locale is the same as a culture.</li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a href="https://github.com/aspnet/entropy">Localization.StarterWeb project</a> used in the article.</li>
+<li><a href="https://docs.microsoft.com/cpp/windows/resource-files-visual-studio">Resource Files in Visual Studio</a></li>
+<li><a href="https://docs.microsoft.com/dotnet/framework/resources/working-with-resx-files-programmatically">Resources in .resx Files</a></li>
+</ul>
+</country></languagecode2></country></languagecode2></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/localization.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

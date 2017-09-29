@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Session and application state in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Session and application state in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/app-state">
+<h1 id="introduction-to-session-and-application-state-in-aspnet-core">Introduction to session and application state in ASP.NET Core</h1>
+
+<p>By <a href="https://twitter.com/RickAndMSFT">Rick Anderson</a>, <a href="https://ardalis.com/">Steve Smith</a>, and <a href="https://github.com/DianaLaRose">Diana LaRose</a></p>
+<p>HTTP is a stateless protocol. A  web server treats each HTTP request as an independent request and does not retain user values from previous requests. This article discusses different ways to preserve application and session state between requests. </p>
+<h2 id="session-state">Session state</h2>
+<p>Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app. Consisting of a dictionary or hash table on the server, session state persists data across requests from a browser. The session data is backed by a cache.</p>
+<p>ASP.NET Core maintains session state by giving the client a cookie that contains the session ID, which is sent to the server with each request. The server uses the session ID to fetch the session data. Because the session cookie is specific to the browser, you cannot share sessions across browsers. Session cookies are deleted only when the browser session ends. If a cookie is received for an expired session, a new session that uses the same session cookie  is created. </p>
+<p>The server retains a session for a limited time after the last request. You can either set the session timeout or use the default value of 20 minutes. Session state is ideal for storing user data that is specific to a particular session but doesn’t need to be persisted permanently. Data is deleted from the backing store either when you call <code>Session.Clear</code> or when the session expires in the data store. The server does not know when the browser is closed or when the session cookie is deleted.</p>
+<div class="WARNING"><h5>Warning</h5><p>Do not store sensitive data in session. The client might not close the browser and clear the session cookie (and some browsers keep session cookies alive across windows). Also, a session might not be restricted to a single user; the next user might continue with the same session.</p>
+</div>
+<p>The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don&#39;t require sticky sessions. For more information, see <a class="xref" href="../performance/caching/distributed.html">Working with a Distributed Cache</a>. For details on setting up service providers, see <a href="#configuring-session">Configuring Session</a> later in this article.</p>
+<p>The remainder of this section describes the options for storing user data.</p>
+<p><a name="temp"></a></p>
+<h3 id="tempdata">TempData</h3>
+<p>ASP.NET Core MVC exposes the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData">TempData</a> property on a <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controller">controller</a>. This property stores data until it is read. The <code>Keep</code> and <code>Peek</code> methods can be used to examine the data without deletion. <code>TempData</code> is particularly useful for redirection, when data is needed for more than a single request. <code>TempData</code> is built on top of session state. </p>
+<h2 id="cookie-based-tempdata-provider">Cookie-based TempData provider</h2>
+<p>In ASP.NET Core 1.1 and higher, you can use the cookie-based TempData provider to store a user&#39;s TempData in a cookie. To enable the  cookie-based TempData provider, register the <code>CookieTempDataProvider</code> service in <code>ConfigureServices</code>:</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    // Add CookieTempDataProvider after AddMvc and include ViewFeatures.
+    // using Microsoft.AspNetCore.Mvc.ViewFeatures;
+    services.AddSingleton&lt;ITempDataProvider, CookieTempDataProvider&gt;();
+}
+</code></pre><p>The cookie data is encoded with the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder">Base64UrlTextEncoder</a>. Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed, because compressing encryped data can lead to security problems such as the <a href="https://wikipedia.org/wiki/CRIME_(security_exploit)">CRIME</a> and <a href="https://wikipedia.org/wiki/BREACH_(security_exploit)">BREACH</a> attacks. For more information on the cookie-based TempData provider, see <a href="https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs">CookieTempDataProvider</a>.</p>
+<h3 id="query-strings">Query strings</h3>
+<p>You can pass a limited amount of data from one request to another by adding it to the new request’s query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason,  you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross-Site Request Forgery (CSRF)</a> attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on CSRF attacks, see <a href="../security/anti-request-forgery.html">Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core</a>.</p>
+<h3 id="post-data-and-hidden-fields">Post data and hidden fields</h3>
+<p>Data can be saved in hidden form fields and posted back on the next request. This is common in multipage forms. However, because the  client can potentially tamper with the data, the server must always revalidate it. </p>
+<h3 id="cookies">Cookies</h3>
+<p>Cookies provide a way to store user-specific data in web applications. Because cookies are sent with every request, their size should be kept to a minimum. Ideally, only an identifier should be stored in a cookie with the actual data stored on the server. Most browsers restrict cookies to 4096 bytes. In addition, only a limited number of cookies are available for each domain.  </p>
+<p>Because cookies are subject to tampering, they must be validated on the server. Although the durability of the cookie on a client is subject to user intervention and expiration, they are generally the most durable form of data persistence on the client.</p>
+<p>Cookies are often used for personalization, where content is customized for a known user. Because the user is only identified and not authenticated in most cases, you can typically secure a cookie by storing the user name, account name, or a unique user ID (such as a GUID) in the cookie. You can then use the cookie to access the user personalization infrastructure of a site.</p>
+<h3 id="httpcontextitems">HttpContext.Items</h3>
+<p>The <code>Items</code> collection is a good location to store data that is needed only while processing one particular request. The collection&#39;s contents are discarded after each request. The <code>Items</code> collection is best used as a way for components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters. For more information, see <a href="#working-with-httpcontextitems">Working with HttpContext.Items</a>, later in this article.</p>
+<h3 id="cache">Cache</h3>
+<p>Caching is an efficient way to store and retrieve data. You can control the lifetime of cached items based on time and other considerations. Learn more about <a href="../performance/caching/index.html">Caching</a>.</p>
+<p><a name="session"></a></p>
+<h2 id="configuring-session">Configuring Session</h2>
+<p>The <code>Microsoft.AspNetCore.Session</code> package provides middleware for managing session state. To enable the session middleware, <code>Startup</code>must contain:</p>
+<ul>
+<li>Any of the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache">IDistributedCache</a> memory caches. The <code>IDistributedCache</code> implementation is used as a backing store for session.</li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions#Microsoft_Extensions_DependencyInjection_SessionServiceCollectionExtensions_AddSession_Microsoft_Extensions_DependencyInjection_IServiceCollection_">AddSession</a> call, which requires NuGet package &quot;Microsoft.AspNetCore.Session&quot;.</li>
+<li><a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_">UseSession</a> call.</li>
+</ul>
+<p>The following code shows how to set up the in-memory session provider.</p>
+<div class="tabGroup" id="tabgroup_62VrE6K5rB">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_62VrE6K5rB_aspnetcore2x" role="tab" aria-controls="tabpanel_62VrE6K5rB_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_62VrE6K5rB_aspnetcore1x" role="tab" aria-controls="tabpanel_62VrE6K5rB_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_62VrE6K5rB_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="11-19,24">using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc();
+
+        // Adds a default in-memory implementation of IDistributedCache.
+        services.AddDistributedMemoryCache();
+
+        services.AddSession(options =&gt;
+        {
+            // Set a short timeout for easy testing.
+            options.IdleTimeout = TimeSpan.FromSeconds(10);
+            options.Cookie.HttpOnly = true;
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseSession();
+        app.UseMvcWithDefaultRoute();
+    }
+}
+</code></pre></section>
+<section id="tabpanel_62VrE6K5rB_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="11-19,24">using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc();
+
+        // Adds a default in-memory implementation of IDistributedCache.
+        services.AddDistributedMemoryCache();
+
+        services.AddSession(options =&gt;
+        {
+            // Set a short timeout for easy testing.
+            options.IdleTimeout = TimeSpan.FromSeconds(10);
+            options.CookieHttpOnly = true;
+        });
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseSession();
+        app.UseMvcWithDefaultRoute();
+    }
+}
+</code></pre></section>
+</div>
+<p>You can reference Session from <code>HttpContext</code> once it is installed and configured.</p>
+<p>If you try to access <code>Session</code> before <code>UseSession</code> has been called, the exception <code>InvalidOperationException: Session has not been configured for this application or request</code> is thrown.</p>
+<p>If you try to create a new <code>Session</code> (that is, no session cookie has been created) after you have already begun writing to the <code>Response</code> stream, the exception <code>InvalidOperationException: The session cannot be established after the response has started</code> is thrown. The exception can be found in the web server log; it will not be displayed in the browser.</p>
+<h3 id="loading-session-asynchronously">Loading Session asynchronously</h3>
+<p>The default session provider in ASP.NET Core loads the session record from the underlying <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache">IDistributedCache</a> store asynchronously only if the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.isession#Microsoft_AspNetCore_Http_ISession_LoadAsync">ISession.LoadAsync</a> method is explicitly called before  the <code>TryGetValue</code>, <code>Set</code>, or <code>Remove</code> methods. If <code>LoadAsync</code> is not called first, the underlying session record is loaded synchronously, which could potentially impact the ability of the app to scale.</p>
+<p>To have applications enforce this pattern, wrap the <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore">DistributedSessionStore</a> and <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.session.distributedsession">DistributedSession</a> implementations with versions that throw an exception if the <code>LoadAsync</code> method is not called before <code>TryGetValue</code>, <code>Set</code>, or <code>Remove</code>. Register the wrapped versions in the services container.</p>
+<h3 id="implementation-details">Implementation Details</h3>
+<p>Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named &quot;.AspNet.Session&quot;, and it uses a path of &quot;/&quot;. Because the cookie default does not specify a domain, it is not made available to the client-side script on the page (because <code>CookieHttpOnly</code> defaults to <code>true</code>).</p>
+<p>To override session defaults, use <code>SessionOptions</code>:</p>
+<div class="tabGroup" id="tabgroup_62VrE6K5rB-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_62VrE6K5rB-1_aspnetcore2x" role="tab" aria-controls="tabpanel_62VrE6K5rB-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_62VrE6K5rB-1_aspnetcore1x" role="tab" aria-controls="tabpanel_62VrE6K5rB-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_62VrE6K5rB-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="8-12">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    // Adds a default in-memory implementation of IDistributedCache.
+    services.AddDistributedMemoryCache();
+
+    services.AddSession(options =&gt;
+    {
+        options.Cookie.Name = &quot;.AdventureWorks.Session&quot;;
+        options.IdleTimeout = TimeSpan.FromSeconds(10);
+    });
+}
+</code></pre></section>
+<section id="tabpanel_62VrE6K5rB-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="8-12">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    // Adds a default in-memory implementation of IDistributedCache.
+    services.AddDistributedMemoryCache();
+
+    services.AddSession(options =&gt;
+    {
+        options.CookieName = &quot;.AdventureWorks.Session&quot;;
+        options.IdleTimeout = TimeSpan.FromSeconds(10);
+    });
+}
+</code></pre></section>
+</div>
+<p>The server uses the <code>IdleTimeout</code> property to determine how long a session can be idle before its contents are abandoned. This property is independent of the cookie expiration. Each request that passes through the Session middleware (read from or written to) resets the timeout.</p>
+<p>Because <code>Session</code> is <em>non-locking</em>, if two requests both attempt to modify the contents of session, the last one overrides the first. <code>Session</code> is implemented as a <em>coherent session</em>, which means that all the contents are stored together. Two requests that are modifying different parts of the session (different keys) might still impact each other.</p>
+<h2 id="setting-and-getting-session-values">Setting and getting Session values</h2>
+<p>Session is accessed through the <code>Session</code> property on <code>HttpContext</code>. This property is an <a href="https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.isession">ISession</a> implementation.</p>
+<p>The following example shows setting and getting an int and a string:</p>
+<pre><code class="lang-csharp" name="Main">public class HomeController : Controller
+{
+    const string SessionKeyName = &quot;_Name&quot;;
+    const string SessionKeyYearsMember = &quot;_YearsMember&quot;;
+    const string SessionKeyDate = &quot;_Date&quot;;
+
+    public IActionResult Index()
+    {
+        // Requires using Microsoft.AspNetCore.Http;
+        HttpContext.Session.SetString(SessionKeyName, &quot;Rick&quot;);
+        HttpContext.Session.SetInt32(SessionKeyYearsMember, 3);
+        return RedirectToAction(&quot;SessionNameYears&quot;);
+    }
+    public IActionResult SessionNameYears()
+    {
+        var name = HttpContext.Session.GetString(SessionKeyName);
+        var yearsMember = HttpContext.Session.GetInt32(SessionKeyYearsMember);
+
+        return Content($&quot;Name: \&quot;{name}\&quot;,  Membership years: \&quot;{yearsMember}\&quot;&quot;);
+    }
+</code></pre><p>If you add the following extension methods, you can set and get serializable objects to Session:</p>
+<pre><code class="lang-csharp" name="Main">using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+
+public static class SessionExtensions
+{
+    public static void Set&lt;T&gt;(this ISession session, string key, T value)
+    {
+        session.SetString(key, JsonConvert.SerializeObject(value));
+    }
+
+    public static T Get&lt;T&gt;(this ISession session,string key)
+    {
+        var value = session.GetString(key);
+        return value == null ? default(T) : 
+                              JsonConvert.DeserializeObject&lt;T&gt;(value);
+    }
+}
+</code></pre><p>The following sample shows how to set and get a serializable object:</p>
+<pre><code class="lang-csharp" name="Main">public IActionResult SetDate()
+{
+    // Requires you add the Set extension method mentioned in the article.
+    HttpContext.Session.Set&lt;DateTime&gt;(SessionKeyDate, DateTime.Now);
+    return RedirectToAction(&quot;GetDate&quot;);
+}
+
+public IActionResult GetDate()
+{
+    // Requires you add the Get extension method mentioned in the article.
+    var date = HttpContext.Session.Get&lt;DateTime&gt;(SessionKeyDate);
+    var sessionTime = date.TimeOfDay.ToString();
+    var currentTime = DateTime.Now.TimeOfDay.ToString();
+
+    return Content($&quot;Current time: {currentTime} - &quot;
+                 + $&quot;session time: {sessionTime}&quot;);
+}
+</code></pre><h2 id="working-with-httpcontextitems">Working with HttpContext.Items</h2>
+<p>The <code>HttpContext</code> abstraction provides support for a dictionary collection of type <code>IDictionary&lt;object, object&gt;</code>, called <code>Items</code>. This collection is available from the start of an <em>HttpRequest</em> and is discarded at the end of each request. You can access it by  assigning a value to a keyed entry, or by requesting the value for a particular key.</p>
+<p>In the sample below, <a href="middleware.html">Middleware</a> adds <code>isVerified</code> to the <code>Items</code> collection.</p>
+<pre><code class="lang-csharp">app.Use(async (context, next) =&gt;
+{
+    // perform some verification
+    context.Items[&quot;isVerified&quot;] = true;
+    await next.Invoke();
+});
+</code></pre><p>Later in the pipeline, another middleware could access it:</p>
+<pre><code class="lang-csharp">app.Run(async (context) =&gt;
+{
+    await context.Response.WriteAsync(&quot;Verified request? &quot; + 
+        context.Items[&quot;isVerified&quot;]);
+});
+</code></pre><p>For middleware that will only be used by a single app, <code>string</code> keys are acceptable. However, middleware that will be shared between applications should use unique object keys to avoid any chance of key collisions. If you are developing middleware that must work across multiple applications, use a unique object key defined in your middleware class as shown below:</p>
+<pre><code class="lang-csharp">public class SampleMiddleware
+{
+    public static readonly object SampleKey = new Object();
+
+    public async Task Invoke(HttpContext httpContext)
+    {
+        httpContext.Items[SampleKey] = &quot;some value&quot;;
+        // additional code omitted
+    }
+}
+</code></pre><p>Other code can access the value stored in <code>HttpContext.Items</code> using the key exposed by the middleware class:</p>
+<pre><code class="lang-csharp">public class HomeController : Controller
+{
+    public IActionResult Index()
+    {
+        string value = HttpContext.Items[SampleMiddleware.SampleKey];
+    }
+}
+</code></pre><p>This approach also has the advantage of eliminating repetition of &quot;magic strings&quot; in multiple places in the code.</p>
+<p><a name="appstate-errors"></a></p>
+<h2 id="application-state-data">Application state data</h2>
+<p>Use <a class="xref" href="dependency-injection.html">Dependency Injection</a> to make data available to all users:</p>
+<ol>
+<li>Define a service containing the data (for example, a class named <code>MyAppData</code>).</li>
+</ol>
+<pre><code class="lang-csharp">public class MyAppData
+{
+    // Declare properties/methods/etc.
+} 
+</code></pre><ol>
+<li>Add the service class to <code>ConfigureServices</code> (for example <code>services.AddSingleton&lt;MyAppData&gt;();</code>).</li>
+<li>Consume the data service class in each controller:</li>
+</ol>
+<pre><code class="lang-csharp">public class MyController : Controller
+{
+    public MyController(MyAppData myService)
+    {
+        // Do something with the service (read some data from it, 
+        // store it in a private field/property, etc.)
+    }
+} 
+</code></pre><h3 id="common-errors-when-working-with-session">Common errors when working with session</h3>
+<ul>
+<li><p>&quot;Unable to resolve service for type &#39;Microsoft.Extensions.Caching.Distributed.IDistributedCache&#39; while attempting to activate &#39;Microsoft.AspNetCore.Session.DistributedSessionStore&#39;.&quot;</p>
+<p>This is usually caused by failing to configure at least one <code>IDistributedCache</code> implementation. For more information, see <a class="xref" href="../performance/caching/distributed.html">Working with a Distributed Cache</a> and <a class="xref" href="../performance/caching/memory.html">In memory caching</a>.</p>
+</li>
+</ul>
+<h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession">ASP.NET Core 1.x: Sample code used in this document</a></li>
+<li><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App">ASP.NET Core 2.x: Sample code used in this document</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/app-state.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

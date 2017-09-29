@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with Multiple Environments </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with Multiple Environments ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="fundamentals/environments">
+<h1 id="working-with-multiple-environments">Working with multiple environments</h1>
+
+<p>By <a href="https://ardalis.com/">Steve Smith</a></p>
+<p>ASP.NET Core provides support for controlling app behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate the runtime environment, allowing the app to be configured for that environment.</p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample">View or download sample code</a></p>
+<h2 id="development-staging-production">Development, Staging, Production</h2>
+<p>ASP.NET Core references a particular <a href="https://github.com/aspnet/Home/wiki">environment variable</a>, <code>ASPNETCORE_ENVIRONMENT</code> to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: <code>Development</code>, <code>Staging</code>, and <code>Production</code>. You will find these values used in the samples and templates provided with ASP.NET Core.</p>
+<p>The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment <a href="../mvc/views/tag-helpers/index.html">tag helper</a> to include certain sections in your <a href="../mvc/views/index.html">view</a> based on the current application environment.</p>
+<p>Note: On Windows and macOS, the specified environment name is case insensitive. Whether you set the variable to <code>Development</code> or <code>development</code> or <code>DEVELOPMENT</code> the results will be the same. However, Linux is a <strong>case sensitive</strong> OS by default. Environment variables, file names and settings require case sensitivity.</p>
+<h3 id="development">Development</h3>
+<p>This should be the environment used when developing an application. It is typically used to enable features that you wouldn&#39;t want to be available when the app runs in production, such as the <a class="xref" href="error-handling.html#the-developer-exception-page">developer exception page</a>.</p>
+<p>If you&#39;re using Visual Studio, the environment can be configured in your project&#39;s debug profiles. Debug profiles specify the <a class="xref" href="servers/index.html">server</a> to use when launching the application and any environment variables to be set. Your project can have multiple debug profiles that set environment variables differently. You manage these profiles by using the <strong>Debug</strong> tab of your web application project&#39;s <strong>Properties</strong> menu. The values you set in project properties are persisted in the <em>launchSettings.json</em> file, and you can also configure profiles by editing that file directly.</p>
+<p>The profile for IIS Express is shown here:</p>
+<p><img src="environments/_static/project-properties-debug.png" alt="Project Properties Setting Environment variables"></p>
+<p>Here is a <code>launchSettings.json</code> file that includes profiles for <code>Development</code> and <code>Staging</code>:</p>
+<pre><code class="lang-json" name="Main" highlight-lines="15,22">{
+  &quot;iisSettings&quot;: {
+    &quot;windowsAuthentication&quot;: false,
+    &quot;anonymousAuthentication&quot;: true,
+    &quot;iisExpress&quot;: {
+      &quot;applicationUrl&quot;: &quot;http://localhost:40088/&quot;,
+      &quot;sslPort&quot;: 0
+    }
+  },
+  &quot;profiles&quot;: {
+    &quot;IIS Express&quot;: {
+      &quot;commandName&quot;: &quot;IISExpress&quot;,
+      &quot;launchBrowser&quot;: true,
+      &quot;environmentVariables&quot;: {
+        &quot;ASPNETCORE_ENVIRONMENT&quot;: &quot;Development&quot;
+      }
+    },
+    &quot;IIS Express (Staging)&quot;: {
+      &quot;commandName&quot;: &quot;IISExpress&quot;,
+      &quot;launchBrowser&quot;: true,
+      &quot;environmentVariables&quot;: {
+        &quot;ASPNETCORE_ENVIRONMENT&quot;: &quot;Staging&quot;
+      }
+    }
+  }
+}
+</code></pre><p>Changes made to project profiles may not take effect until the web server used is restarted (in particular, Kestrel must be restarted before it will detect changes made to its environment).</p>
+<div class="WARNING"><h5>Warning</h5><p>Environment variables stored in <em>launchSettings.json</em> are not secured in any way and will be part of the source code repository for your project, if you use one. <strong>Never store credentials or other secret data in this file.</strong> If you need a place to store such data, use the <em>Secret Manager</em> tool described in <a href="../security/app-secrets.html#security-app-secrets">Safe storage of app secrets during development</a>.</p>
+</div>
+<h3 id="staging">Staging</h3>
+<p>By convention, a <code>Staging</code> environment is a pre-production environment used for final testing before deployment to production. Ideally, its physical characteristics should mirror that of production, so that any issues that may arise in production occur first in the staging environment, where they can be addressed without impact to users.</p>
+<h3 id="production">Production</h3>
+<p>The <code>Production</code> environment is the environment in which the application runs when it is live and being used by end users. This environment should be configured to maximize security, performance, and application robustness. Some common settings that a production environment might have that would differ from development include:</p>
+<ul>
+<li><p>Turn on caching</p>
+</li>
+<li><p>Ensure all client-side resources are bundled, minified, and potentially served from a CDN</p>
+</li>
+<li><p>Turn off diagnostic ErrorPages</p>
+</li>
+<li><p>Turn on friendly error pages</p>
+</li>
+<li><p>Enable production logging and monitoring (for example, <a href="https://azure.microsoft.com/documentation/articles/app-insights-asp-net-five/">Application Insights</a>)</p>
+</li>
+</ul>
+<p>This is by no means meant to be a complete list. It&#39;s best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application&#39;s <code>Startup</code> class(es) wherever possible</p>
+<h2 id="setting-the-environment">Setting the environment</h2>
+<p>The method for setting the environment depends on the operating system.</p>
+<h3 id="windows">Windows</h3>
+<p>To set the <code>ASPNETCORE_ENVIRONMENT</code> for the current session, if the app is started using <code>dotnet run</code>, the following commands are used</p>
+<p><strong>Command line</strong></p>
+<pre><code>set ASPNETCORE_ENVIRONMENT=Development
+</code></pre><p><strong>PowerShell</strong></p>
+<pre><code>$Env:ASPNETCORE_ENVIRONMENT = &quot;Development&quot;
+</code></pre><p>These commands take effect only for the current window. When the window is closed, the ASPNETCORE_ENVIRONMENT setting reverts to the default setting or machine value. In order to set the value globally on Windows open the <strong>Control Panel</strong> &gt; <strong>System</strong> &gt; <strong>Advanced system settings</strong> and add or edit the <code>ASPNETCORE_ENVIRONMENT</code> value.</p>
+<p><img src="environments/_static/systemsetting_environment.png" alt="System Advanced Properties"></p>
+<p><img src="environments/_static/windows_aspnetcore_environment.png" alt="ASPNET Core Environment Variable"> </p>
+<p><strong>web.config</strong></p>
+<p>See the <em>Setting environment variables</em> section of the <a class="xref" href="../hosting/aspnet-core-module.html#setting-environment-variables">ASP.NET Core Module configuration reference</a> topic.</p>
+<p><strong>Per IIS Application Pool</strong></p>
+<p>If you need to set environment variables for individual apps running in isolated Application Pools (supported on IIS 10.0+), see the <em>AppCmd.exe command</em> section of the <a href="/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe">Environment Variables &lt;environmentVariables&gt;</a> topic in the IIS reference documentation.</p>
+<h3 id="macos">macOS</h3>
+<p>Setting the current environment for macOS can be done in-line when running the application;</p>
+<pre><code class="lang-bash">ASPNETCORE_ENVIRONMENT=Development dotnet run
+</code></pre><p>or using <code>export</code> to set it prior to running the app.</p>
+<pre><code class="lang-bash">export ASPNETCORE_ENVIRONMENT=Development
+</code></pre><p>Machine level environment variables are set in the <em>.bashrc</em>  or <em>.bash_profile</em> file. Edit the file using any text editor and add the following statment.</p>
+<pre><code>export ASPNETCORE_ENVIRONMENT=Development
+</code></pre><h3 id="linux">Linux</h3>
+<p>For Linux distros, use the <code>export</code> command at the command line for session based variable settings and <em>bash_profile</em> file for machine level environment settings.</p>
+<h2 id="determining-the-environment-at-runtime">Determining the environment at runtime</h2>
+<p>The <code>IHostingEnvironment</code> service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and can be injected into your startup logic via <a href="dependency-injection.html">Dependency Injection</a>. The ASP.NET Core web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app&#39;s error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling <code>EnvironmentName</code> or
+<code>IsEnvironment</code> on the instance of <code>IHostingEnvironment</code> passed into the appropriate method.</p>
+<div class="NOTE"><h5>Note</h5><p>If you need to check whether the application is running in a particular environment, use <code>env.IsEnvironment(&quot;environmentname&quot;)</code> since it will correctly ignore case (instead of checking if <code>env.EnvironmentName == &quot;Development&quot;</code> for example).</p>
+</div>
+<p>For example, you can use the following code in your Configure method to setup environment specific error handling:</p>
+<pre><code class="lang-csharp" name="Main">public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
+        app.UseBrowserLink();
+    }
+    else
+    {
+        app.UseExceptionHandler(&quot;/Home/Error&quot;);
+    }
+</code></pre><p>If the app is running in a <code>Development</code> environment, then it enables the runtime support necessary to use the &quot;BrowserLink&quot; feature in Visual Studio, development-specific error pages (which typically should not be run in production) and special database error pages (which provide a way to apply migrations and should therefore only be used in development). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.</p>
+<p>You may need to determine which content to send to the client at runtime, depending on the current environment. For example, in a development environment you generally serve non-minimized scripts and style sheets, which makes debugging easier. Production and test environments should serve the minified versions and generally from a CDN. You can do this using the Environment <a href="../mvc/views/tag-helpers/intro.html">tag helper</a>. The Environment tag helper will only render its contents if the current environment matches one of the environments specified using the <code>names</code> attribute.</p>
+<pre><code class="lang-html" name="Main">&lt;environment names=&quot;Development&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/lib/bootstrap/dist/css/bootstrap.css&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.css&quot; /&gt;
+&lt;/environment&gt;
+&lt;environment names=&quot;Staging,Production&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css&quot;
+          asp-fallback-href=&quot;~/lib/bootstrap/dist/css/bootstrap.min.css&quot;
+          asp-fallback-test-class=&quot;sr-only&quot; asp-fallback-test-property=&quot;position&quot; asp-fallback-test-value=&quot;absolute&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;~/css/site.min.css&quot; asp-append-version=&quot;true&quot; /&gt;
+&lt;/environment&gt;
+</code></pre><p>To get started with using tag helpers in your application see <a href="../mvc/views/tag-helpers/intro.html">Introduction to Tag Helpers</a>.</p>
+<h2 id="startup-conventions">Startup conventions</h2>
+<p>ASP.NET Core supports a convention-based approach to configuring an application&#39;s startup based on the current environment. You can also programmatically control how your application behaves according to which environment it is in, allowing you to create and manage your own conventions.</p>
+<p>When an ASP.NET Core application starts, the <code>Startup</code> class is used to bootstrap the application, load its configuration settings, etc. (<a href="startup.html">learn more about ASP.NET startup</a>). However, if a class exists named <code>Startup{EnvironmentName}</code> (for example <code>StartupDevelopment</code>), and the <code>ASPNETCORE_ENVIRONMENT</code> environment variable matches that name, then that <code>Startup</code> class is used instead. Thus, you could configure <code>Startup</code> for development, but have a separate <code>StartupProduction</code> that would be used when the app is run in production. Or vice versa.</p>
+<div class="NOTE"><h5>Note</h5><p>Calling <code>WebHostBuilder.UseStartup&lt;TStartup&gt;()</code> overrides configuration sections.</p>
+</div>
+<p>In addition to using an entirely separate <code>Startup</code> class based on the current environment, you can also make adjustments to how the application is configured within a <code>Startup</code> class. The <code>Configure()</code> and <code>ConfigureServices()</code> methods support environment-specific versions similar to the <code>Startup</code> class itself, of the form <code>Configure{EnvironmentName}()</code> and <code>Configure{EnvironmentName}Services()</code>. If you define a method <code>ConfigureDevelopment()</code> it will be called instead of <code>Configure()</code> when the environment is set to development. Likewise, <code>ConfigureDevelopmentServices()</code> would be called instead of <code>ConfigureServices()</code> in the same environment.</p>
+<h2 id="summary">Summary</h2>
+<p>ASP.NET Core provides a number of features and conventions that allow developers to easily control how their applications behave in different environments. When publishing an application from development to staging to production, environment variables set appropriately for the environment allow for optimization of the application for debugging, testing, or production use, as appropriate.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p><a href="configuration.html">Configuration</a></p>
+</li>
+<li><p><a href="../mvc/views/tag-helpers/intro.html">Introduction to Tag Helpers</a></p>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/fundamentals/environments.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

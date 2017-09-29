@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Environment Tag Helper in ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Environment Tag Helper in ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="mvc/views/tag-helpers/builtin-th/environment-tag-helper">
+<h1 id="environment-tag-helper-in-aspnet-core">Environment Tag Helper in ASP.NET Core</h1>
+
+<p>By <a href="http://peterkellner.net">Peter Kellner</a> and <a href="https://twitter.com/hishambinateya">Hisham Bin Ateya</a></p>
+<p>The Environment Tag Helper conditionally renders its enclosed content based on the current hosting environment. Its single attribute <code>names</code> is a comma separated list of environment names, that if any match to the current environment, will trigger the enclosed content to be rendered.</p>
+<h2 id="environment-tag-helper-attributes">Environment Tag Helper Attributes</h2>
+<h3 id="names">names</h3>
+<p>Accepts a single hosting environment name or a comma-separated list of hosting environment names that trigger the rendering of the enclosed content.</p>
+<p>These value(s) are compared to the current value returned from the ASP.NET Core static property <code>HostingEnvironment.EnvironmentName</code>.  This value is one of the following: <strong>Staging</strong>; <strong>Development</strong> or <strong>Production</strong>. The comparison ignores case.</p>
+<p>An example of a valid <code>environment</code> tag helper is:</p>
+<pre><code class="lang-cshtml">&lt;environment names=&quot;Staging,Production&quot;&gt;
+  &lt;strong&gt;HostingEnvironment.EnvironmentName is Staging or Production&lt;/strong&gt;
+&lt;/environment&gt;
+</code></pre><h2 id="include-and-exclude-attributes">include and exclude attributes</h2>
+<p>ASP.NET Core 2.x adds the <code>include</code> &amp; <code>exclude</code> attributes. These attributes control rendering the enclosed content based on the included or excluded hosting environment names.</p>
+<h3 id="include-aspnet-core-20-and-later">include ASP.NET Core 2.0 and later</h3>
+<p>The <code>include</code> property has a similar behavior of the <code>names</code> attribute in ASP.NET Core 1.0.</p>
+<pre><code class="lang-cshtml">&lt;environment include=&quot;Staging,Production&quot;&gt;
+  &lt;strong&gt;HostingEnvironment.EnvironmentName is Staging or Production&lt;/strong&gt;
+&lt;/environment&gt;
+</code></pre><h3 id="exclude-aspnet-core-20-and-later">exclude ASP.NET Core 2.0 and later</h3>
+<p>In contrast, the <code>exclude</code> property lets the <code>EnvironmentTagHelper</code> render the enclosed content for all hosting environment names except the one(s) that you specified.</p>
+<pre><code class="lang-cshtml">&lt;environment exclude=&quot;Development&quot;&gt;
+  &lt;strong&gt;HostingEnvironment.EnvironmentName is Staging or Production&lt;/strong&gt;
+&lt;/environment&gt;
+</code></pre><h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a class="xref" href="../../../../fundamentals/environments.html">Working with Multiple Environments</a></li>
+<li><a class="xref" href="../../../../fundamentals/dependency-injection.html#service-lifetimes-and-registration-options">Dependency Injection in ASP.NET Core</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/mvc/views/tag-helpers/built-in/environment-tag-helper.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

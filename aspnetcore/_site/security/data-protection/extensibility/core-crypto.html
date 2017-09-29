@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Core cryptography extensibility </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Core cryptography extensibility ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../../../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="security/data-protection/extensibility/core-crypto">
+<h1 id="core-cryptography-extensibility">Core cryptography extensibility</h1>
+
+<p><a name="data-protection-extensibility-core-crypto"></a></p>
+<div class="WARNING"><h5>Warning</h5><p>Types that implement any of the following interfaces should be thread-safe for multiple callers.</p>
+</div>
+<p><a name="data-protection-extensibility-core-crypto-iauthenticatedencryptor"></a></p>
+<h2 id="iauthenticatedencryptor">IAuthenticatedEncryptor</h2>
+<p>The <strong>IAuthenticatedEncryptor</strong> interface is the basic building block of the cryptographic subsystem. There is generally one IAuthenticatedEncryptor per key, and the IAuthenticatedEncryptor instance wraps all cryptographic key material and algorithmic information necessary to perform cryptographic operations.</p>
+<p>As its name suggests, the type is responsible for providing authenticated encryption and decryption services. It exposes the following two APIs.</p>
+<ul>
+<li><p>Decrypt(ArraySegment<byte> ciphertext, ArraySegment<byte> additionalAuthenticatedData) : byte[]<p>
+</byte></byte></li>
+<li><p>Encrypt(ArraySegment<byte> plaintext, ArraySegment<byte> additionalAuthenticatedData) : byte[]<p>
+</byte></byte></li>
+</ul>
+<p>The Encrypt method returns a blob that includes the enciphered plaintext and an authentication tag. The authentication tag must encompass the additional authenticated data (AAD), though the AAD itself need not be recoverable from the final payload. The Decrypt method validates the authentication tag and returns the deciphered payload. All failures (except ArgumentNullException and similar) should be homogenized to CryptographicException.</p>
+<div class="NOTE"><h5>Note</h5><p>The IAuthenticatedEncryptor instance itself doesn&#39;t actually need to contain the key material. For example, the implementation could delegate to an HSM for all operations.</p>
+</div>
+<p><a name="data-protection-extensibility-core-crypto-iauthenticatedencryptorfactory"></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor"></a></p>
+<h2 id="how-to-create-an-iauthenticatedencryptor">How to create an IAuthenticatedEncryptor</h2>
+<div class="tabGroup" id="tabgroup_0RJsJ5iCm9">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9_aspnetcore2x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9_aspnetcore1x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_0RJsJ5iCm9_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>The <strong>IAuthenticatedEncryptorFactory</strong> interface represents a type that knows how to create an <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptor">IAuthenticatedEncryptor</a> instance. Its API is as follows.</p>
+<ul>
+<li>CreateEncryptorInstance(IKey key) : IAuthenticatedEncryptor</li>
+</ul>
+<p>For any given IKey instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.</p>
+<pre><code class="lang-csharp">// we have an IAuthenticatedEncryptorFactory instance and an IKey instance
+IAuthenticatedEncryptorFactory factory = ...;
+IKey key = ...;
+
+// get an encryptor instance and perform an authenticated encryption operation
+ArraySegment&lt;byte&gt; plaintext = new ArraySegment&lt;byte&gt;(Encoding.UTF8.GetBytes(&quot;plaintext&quot;));
+ArraySegment&lt;byte&gt; aad = new ArraySegment&lt;byte&gt;(Encoding.UTF8.GetBytes(&quot;AAD&quot;));
+var encryptor1 = factory.CreateEncryptorInstance(key);
+byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
+
+// get another encryptor instance and perform an authenticated decryption operation
+var encryptor2 = factory.CreateEncryptorInstance(key);
+byte[] roundTripped = encryptor2.Decrypt(new ArraySegment&lt;byte&gt;(ciphertext), aad);
+
+
+// the &#39;roundTripped&#39; and &#39;plaintext&#39; buffers should be equivalent
+</code></pre></section>
+<section id="tabpanel_0RJsJ5iCm9_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>The <strong>IAuthenticatedEncryptorDescriptor</strong> interface represents a type that knows how to create an <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptor">IAuthenticatedEncryptor</a> instance. Its API is as follows.</p>
+<ul>
+<li><p>CreateEncryptorInstance() : IAuthenticatedEncryptor</p>
+</li>
+<li><p>ExportToXml() : XmlSerializedDescriptorInfo</p>
+</li>
+</ul>
+<p>Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor is assumed to wrap one specific key. This means that for any given IAuthenticatedEncryptorDescriptor instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.</p>
+<pre><code class="lang-csharp">// we have an IAuthenticatedEncryptorDescriptor instance
+IAuthenticatedEncryptorDescriptor descriptor = ...;
+
+// get an encryptor instance and perform an authenticated encryption operation
+ArraySegment&lt;byte&gt; plaintext = new ArraySegment&lt;byte&gt;(Encoding.UTF8.GetBytes(&quot;plaintext&quot;));
+ArraySegment&lt;byte&gt; aad = new ArraySegment&lt;byte&gt;(Encoding.UTF8.GetBytes(&quot;AAD&quot;));
+var encryptor1 = descriptor.CreateEncryptorInstance();
+byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
+
+// get another encryptor instance and perform an authenticated decryption operation
+var encryptor2 = descriptor.CreateEncryptorInstance();
+byte[] roundTripped = encryptor2.Decrypt(new ArraySegment&lt;byte&gt;(ciphertext), aad);
+
+
+// the &#39;roundTripped&#39; and &#39;plaintext&#39; buffers should be equivalent
+</code></pre></section>
+</div>
+<p><a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor"></a></p>
+<h2 id="iauthenticatedencryptordescriptor-aspnet-core-2x-only">IAuthenticatedEncryptorDescriptor (ASP.NET Core 2.x only)</h2>
+<div class="tabGroup" id="tabgroup_0RJsJ5iCm9-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9-1_aspnetcore2x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9-1_aspnetcore1x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_0RJsJ5iCm9-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>The <strong>IAuthenticatedEncryptorDescriptor</strong> interface represents a type that knows how to export itself to XML. Its API is as follows.</p>
+<ul>
+<li>ExportToXml() : XmlSerializedDescriptorInfo</li>
+</ul>
+</section>
+<section id="tabpanel_0RJsJ5iCm9-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+</section>
+</div>
+<h2 id="xml-serialization">XML Serialization</h2>
+<p>The primary difference between IAuthenticatedEncryptor and IAuthenticatedEncryptorDescriptor is that the descriptor knows how to create the encryptor and supply it with valid arguments. Consider an IAuthenticatedEncryptor whose implementation relies on SymmetricAlgorithm and KeyedHashAlgorithm. The encryptor&#39;s job is to consume these types, but it doesn&#39;t necessarily know where these types came from, so it can&#39;t really write out a proper description of how to recreate itself if the application restarts. The descriptor acts as a higher level on top of this. Since the descriptor knows how to create the encryptor instance (e.g., it knows how to create the required algorithms), it can serialize that knowledge in XML form so that the encryptor instance can be recreated after an application reset.</p>
+<p><a name="data-protection-extensibility-core-crypto-exporttoxml"></a></p>
+<p>The descriptor can be serialized via its ExportToXml routine. This routine returns an XmlSerializedDescriptorInfo which contains two properties: the XElement representation of the descriptor and the Type which represents an <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer">IAuthenticatedEncryptorDescriptorDeserializer</a> which can be used to resurrect this descriptor given the corresponding XElement.</p>
+<p>The serialized descriptor may contain sensitive information such as cryptographic key material. The data protection system has built-in support for encrypting information before it&#39;s persisted to storage. To take advantage of this, the descriptor should mark the element which contains sensitive information with the attribute name &quot;requiresEncryption&quot; (xmlns &quot;<a href="http://schemas.asp.net/2015/03/dataProtection">http://schemas.asp.net/2015/03/dataProtection</a>&quot;), value &quot;true&quot;.</p>
+<div class="TIP"><h5>Tip</h5><p>There&#39;s a helper API for setting this attribute. Call the extension method XElement.MarkAsRequiresEncryption() located in namespace Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.</p>
+</div>
+<p>There can also be cases where the serialized descriptor doesn&#39;t contain sensitive information. Consider again the case of a cryptographic key stored in an HSM. The descriptor cannot write out the key material when serializing itself since the HSM will not expose the material in plaintext form. Instead, the descriptor might write out the key-wrapped version of the key (if the HSM allows export in this fashion) or the HSM&#39;s own unique identifier for the key.</p>
+<p><a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer"></a></p>
+<h2 id="iauthenticatedencryptordescriptordeserializer">IAuthenticatedEncryptorDescriptorDeserializer</h2>
+<p>The <strong>IAuthenticatedEncryptorDescriptorDeserializer</strong> interface represents a type that knows how to deserialize an IAuthenticatedEncryptorDescriptor instance from an XElement. It exposes a single method:</p>
+<ul>
+<li>ImportFromXml(XElement element) : IAuthenticatedEncryptorDescriptor</li>
+</ul>
+<p>The ImportFromXml method takes the XElement that was returned by <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-exporttoxml">IAuthenticatedEncryptorDescriptor.ExportToXml</a> and creates an equivalent of the original IAuthenticatedEncryptorDescriptor.</p>
+<p>Types which implement IAuthenticatedEncryptorDescriptorDeserializer should have one of the following two public constructors:</p>
+<ul>
+<li><p>.ctor(IServiceProvider)</p>
+</li>
+<li><p>.ctor()</p>
+</li>
+</ul>
+<div class="NOTE"><h5>Note</h5><p>The IServiceProvider passed to the constructor may be null.</p>
+</div>
+<h2 id="the-top-level-factory">The top-level factory</h2>
+<div class="tabGroup" id="tabgroup_0RJsJ5iCm9-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9-2_aspnetcore2x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_0RJsJ5iCm9-2_aspnetcore1x" role="tab" aria-controls="tabpanel_0RJsJ5iCm9-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_0RJsJ5iCm9-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<p>The <strong>AlgorithmConfiguration</strong> class represents a type which knows how to create <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor">IAuthenticatedEncryptorDescriptor</a> instances. It exposes a single API.</p>
+<ul>
+<li>CreateNewDescriptor() : IAuthenticatedEncryptorDescriptor</li>
+</ul>
+<p>Think of AlgorithmConfiguration as the top-level factory. The configuration serves as a template. It wraps algorithmic information (e.g., this configuration produces descriptors with an AES-128-GCM master key), but it is not yet associated with a specific key.</p>
+<p>When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.</p>
+<p>The AlgorithmConfiguration type serves as the entry point for key creation routines such as <a href="../implementation/key-management.html#data-protection-implementation-key-management">automatic key rolling</a>. To change the implementation for all future keys, set the AuthenticatedEncryptorConfiguration property in KeyManagementOptions.</p>
+</section>
+<section id="tabpanel_0RJsJ5iCm9-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<p>The <strong>IAuthenticatedEncryptorConfiguration</strong> interface represents a type which knows how to create <a class="xref" href="core-crypto.html#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor">IAuthenticatedEncryptorDescriptor</a> instances. It exposes a single API.</p>
+<ul>
+<li>CreateNewDescriptor() : IAuthenticatedEncryptorDescriptor</li>
+</ul>
+<p>Think of IAuthenticatedEncryptorConfiguration as the top-level factory. The configuration serves as a template. It wraps algorithmic information (e.g., this configuration produces descriptors with an AES-128-GCM master key), but it is not yet associated with a specific key.</p>
+<p>When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.</p>
+<p>The IAuthenticatedEncryptorConfiguration type serves as the entry point for key creation routines such as <a href="../implementation/key-management.html#data-protection-implementation-key-management">automatic key rolling</a>. To change the implementation for all future keys, register a singleton IAuthenticatedEncryptorConfiguration in the service container.</p>
+</section>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/security/data-protection/extensibility/core-crypto.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

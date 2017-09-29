@@ -1,0 +1,500 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Response Compression Middleware for ASP.NET Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Response Compression Middleware for ASP.NET Core ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="/foo">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="performance/response-compression">
+<h1 id="response-compression-middleware-for-aspnet-core">Response Compression Middleware for ASP.NET Core</h1>
+
+<p>By <a href="https://github.com/guardrex">Luke Latham</a></p>
+<p><a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples">View or download sample code</a></p>
+<p>Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app&#39;s responses.</p>
+<h2 id="when-to-use-response-compression-middleware">When to use Response Compression Middleware</h2>
+<p>Use server-based response compression technologies in IIS, Apache, or Nginx where the performance of the middleware probably won&#39;t match that of the server modules. Use Response Compression Middleware when you&#39;re unable to use:</p>
+<ul>
+<li><a href="https://www.iis.net/overview/reliability/dynamiccachingandcompression">IIS Dynamic Compression module</a></li>
+<li><a href="http://httpd.apache.org/docs/current/mod/mod_deflate.html">Apache mod_deflate module</a></li>
+<li><a href="https://www.nginx.com/resources/admin-guide/compression-and-decompression/">NGINX Compression and Decompression</a></li>
+<li><a class="xref" href="../fundamentals/servers/httpsys.html">HTTP.sys server</a> (formerly called <a class="xref" href="../fundamentals/servers/weblistener.html">WebListener</a>)</li>
+<li><a class="xref" href="../fundamentals/servers/kestrel.html">Kestrel</a></li>
+</ul>
+<h2 id="response-compression">Response compression</h2>
+<p>Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn&#39;t compress natively compressed assets, such as PNG files. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression. Don&#39;t compress files smaller than about 150-1000 bytes (depending on the file&#39;s content and the efficiency of compression). The overhead of compressing small files may produce a compressed file larger than the uncompressed file.</p>
+<p>When a client can process compressed content, the client must inform the server of its capabilities by sending the <code>Accept-Encoding</code> header with the request. When a server sends compressed content, it must include information in the <code>Content-Encoding</code> header on how the compressed response is encoded. Content encoding designations supported by the middleware are shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><code>Accept-Encoding</code> header values</th>
+<th style="text-align:center">Middleware Supported</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>br</code></td>
+<td style="text-align:center">No</td>
+<td>Brotli Compressed Data Format</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>compress</code></td>
+<td style="text-align:center">No</td>
+<td>UNIX &quot;compress&quot; data format</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>deflate</code></td>
+<td style="text-align:center">No</td>
+<td>&quot;deflate&quot; compressed data inside the &quot;zlib&quot; data format</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>exi</code></td>
+<td style="text-align:center">No</td>
+<td>W3C Efficient XML Interchange</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>gzip</code></td>
+<td style="text-align:center">Yes (default)</td>
+<td>gzip file format</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>identity</code></td>
+<td style="text-align:center">Yes</td>
+<td>&quot;No encoding&quot; identifier: The response must not be encoded.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>pack200-gzip</code></td>
+<td style="text-align:center">No</td>
+<td>Network Transfer Format for Java Archives</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">Yes</td>
+<td>Any available content encoding not explicitly requested</td>
+</tr>
+</tbody>
+</table>
+<p>For more information, see the <a href="http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry">IANA Official Content Coding List</a>.</p>
+<p>The middleware allows you to add additional compression providers for custom <code>Accept-Encoding</code> header values. For more information, see <a href="#custom-providers">Custom Providers</a> below.</p>
+<p>The middleware is capable of reacting to quality value (qvalue, <code>q</code>) weighting when sent by the client to prioritize compression schemes. For more information, see <a href="https://tools.ietf.org/html/rfc7231#section-5.3.4">RFC 7231: Accept-Encoding</a>.</p>
+<p>Compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. <em>Effectiveness</em> in this context refers to the size of the output after compression. The smallest size is achieved by the most <em>optimal</em> compression.</p>
+<p>The headers involved in requesting, sending, caching, and receiving compressed content are described in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Accept-Encoding</code></td>
+<td>Sent from the client to the server to indicate the content encoding schemes acceptable to the client.</td>
+</tr>
+<tr>
+<td><code>Content-Encoding</code></td>
+<td>Sent from the server to the client to indicate the encoding of the content in the payload.</td>
+</tr>
+<tr>
+<td><code>Content-Length</code></td>
+<td>When compression occurs, the <code>Content-Length</code> header is removed, since the body content changes when the response is compressed.</td>
+</tr>
+<tr>
+<td><code>Content-MD5</code></td>
+<td>When compression occurs, the <code>Content-MD5</code> header is removed, since the body content has changed and the hash is no longer valid.</td>
+</tr>
+<tr>
+<td><code>Content-Type</code></td>
+<td>Specifies the MIME type of the content. Every response should specify its <code>Content-Type</code>. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of <a href="#mime-types">default MIME types</a> that it can encode, but you can replace or add MIME types.</td>
+</tr>
+<tr>
+<td><code>Vary</code></td>
+<td>When sent by the server with a value of <code>Accept-Encoding</code> to clients and proxies, the <code>Vary</code> header indicates to the client or proxy that it should cache (vary) responses based on the value of the <code>Accept-Encoding</code> header of the request. The result of returning content with the <code>Vary: Accept-Encoding</code> header is that both compressed and uncompressed responses are cached separately.</td>
+</tr>
+</tbody>
+</table>
+<p>You can explore the features of the Response Compression Middleware with the <a href="https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples">sample app</a>. The sample illustrates:</p>
+<ul>
+<li>The compression of app responses using gzip and custom compression providers.</li>
+<li>How to add a MIME type to the default list of MIME types for compression.</li>
+</ul>
+<h2 id="package">Package</h2>
+<p>To include the middleware in your project, add a reference to the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/"><code>Microsoft.AspNetCore.ResponseCompression</code></a> package or use the <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.All/"><code>Microsoft.AspNetCore.All</code></a> package. This feature is available for apps that target ASP.NET Core 1.1 or later.</p>
+<h2 id="configuration">Configuration</h2>
+<p>The following code shows how to enable the Response Compression Middleware with the with the default gzip compression and for default MIME types.</p>
+<div class="tabGroup" id="tabgroup_9ThmIvwZED">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED_aspnetcore2x" role="tab" aria-controls="tabpanel_9ThmIvwZED_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED_aspnetcore1x" role="tab" aria-controls="tabpanel_9ThmIvwZED_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_9ThmIvwZED_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="4,8">WebHost.CreateDefaultBuilder(args)
+    .ConfigureServices(services =&gt;
+    {
+        services.AddResponseCompression();
+    })
+    .Configure(app =&gt;
+    {
+        app.UseResponseCompression();
+
+        app.Run(async context =&gt;
+        {
+            context.Response.ContentType = &quot;text/plain&quot;;
+            await context.Response.WriteAsync(LoremIpsum.Text);
+        });
+    })
+    .Build();
+</code></pre></section>
+<section id="tabpanel_9ThmIvwZED_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="3,8">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddResponseCompression();
+}
+
+public void Configure(IApplicationBuilder app)
+{
+    app.UseResponseCompression();
+
+    app.Run(async context =&gt;
+    {
+        // If the Accept-Encoding header is present, add the Vary header
+        var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
+        if (!StringValues.IsNullOrEmpty(accept))
+        {
+            context.Response.Headers.Append(HeaderNames.Vary, HeaderNames.AcceptEncoding);
+        }
+        context.Response.ContentType = &quot;text/plain&quot;;
+        await context.Response.WriteAsync(LoremIpsum.Text);
+    });
+}
+</code></pre></section>
+</div>
+<div class="NOTE"><h5>Note</h5><p>Use a tool like <a href="http://www.telerik.com/fiddler">Fiddler</a>, <a href="http://getfirebug.com/">Firebug</a>, or <a href="https://www.getpostman.com/">Postman</a> to set the <code>Accept-Encoding</code> request header and study the response headers, size, and body.</p>
+</div>
+<p>Submit a request to the sample app without the <code>Accept-Encoding</code> header and observe that the response is uncompressed. The <code>Content-Encoding</code> and <code>Vary</code> headers aren&#39;t present on the response.</p>
+<p><img src="response-compression/_static/request-uncompressed.png" alt="Fiddler window showing result of a request without the Accept-Encoding header. The response is not compressed."></p>
+<p>Submit a request to the sample app with the <code>Accept-Encoding: gzip</code> header and observe that the response is compressed. The <code>Content-Encoding</code> and <code>Vary</code> headers are present on the response.</p>
+<p><img src="response-compression/_static/request-compressed.png" alt="Fiddler window showing result of a request with the Accept-Encoding header and a value of gzip. The Vary and Content-Encoding headers are added to the response. The response is compressed."></p>
+<h2 id="providers">Providers</h2>
+<h3 id="gzipcompressionprovider">GzipCompressionProvider</h3>
+<p>Use the <code>GzipCompressionProvider</code> to compress responses with gzip. This is the default compression provider if none are specified. You can set the compression level with the <code>GzipCompressionProviderOptions</code>. </p>
+<p>The gzip compression provider defaults to the fastest compression level (<code>CompressionLevel.Fastest</code>), which might not produce the most efficient compression. If the most efficient compression is desired, you can configure the middleware for optimal compression.</p>
+<table>
+<thead>
+<tr>
+<th>Compression Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompressionLevel.Fastest</code></td>
+<td>Compression should complete as quickly as possible, even if the resulting output is not optimally compressed.</td>
+</tr>
+<tr>
+<td><code>CompressionLevel.NoCompression</code></td>
+<td>No compression should be performed.</td>
+</tr>
+<tr>
+<td><code>CompressionLevel.Optimal</code></td>
+<td>Responses should be optimally compressed, even if the compression takes more time to complete.</td>
+</tr>
+</tbody>
+</table>
+<div class="tabGroup" id="tabgroup_9ThmIvwZED-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-1_aspnetcore2x" role="tab" aria-controls="tabpanel_9ThmIvwZED-1_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-1_aspnetcore1x" role="tab" aria-controls="tabpanel_9ThmIvwZED-1_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_9ThmIvwZED-1_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="3,8-11">services.AddResponseCompression(options =&gt;
+{
+    options.Providers.Add&lt;GzipCompressionProvider&gt;();
+    options.Providers.Add&lt;CustomCompressionProvider&gt;();
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+});
+
+services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+{
+    options.Level = CompressionLevel.Fastest;
+});
+</code></pre></section>
+<section id="tabpanel_9ThmIvwZED-1_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="5,10-13">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddResponseCompression(options =&gt;
+    {
+        options.Providers.Add&lt;GzipCompressionProvider&gt;();
+        options.Providers.Add&lt;CustomCompressionProvider&gt;();
+        options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+    });
+
+    services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+    {
+        options.Level = CompressionLevel.Fastest;
+    });
+}
+</code></pre></section>
+</div>
+<h2 id="mime-types">MIME types</h2>
+<p>The middleware specifies a default set of MIME types for compression:</p>
+<ul>
+<li><code>text/plain</code></li>
+<li><code>text/css</code></li>
+<li><code>application/javascript</code></li>
+<li><code>text/html</code></li>
+<li><code>application/xml</code></li>
+<li><code>text/xml</code></li>
+<li><code>application/json</code></li>
+<li><code>text/json</code></li>
+</ul>
+<p>You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as <code>text/*</code> aren&#39;t supported. The sample app adds a MIME type for <code>image/svg+xml</code> and compresses and serves the ASP.NET Core banner image (<em>banner.svg</em>).</p>
+<div class="tabGroup" id="tabgroup_9ThmIvwZED-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-2_aspnetcore2x" role="tab" aria-controls="tabpanel_9ThmIvwZED-2_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-2_aspnetcore1x" role="tab" aria-controls="tabpanel_9ThmIvwZED-2_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_9ThmIvwZED-2_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="5">services.AddResponseCompression(options =&gt;
+{
+    options.Providers.Add&lt;GzipCompressionProvider&gt;();
+    options.Providers.Add&lt;CustomCompressionProvider&gt;();
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+});
+
+services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+{
+    options.Level = CompressionLevel.Fastest;
+});
+</code></pre></section>
+<section id="tabpanel_9ThmIvwZED-2_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="7">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddResponseCompression(options =&gt;
+    {
+        options.Providers.Add&lt;GzipCompressionProvider&gt;();
+        options.Providers.Add&lt;CustomCompressionProvider&gt;();
+        options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+    });
+
+    services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+    {
+        options.Level = CompressionLevel.Fastest;
+    });
+}
+</code></pre></section>
+</div>
+<h3 id="custom-providers">Custom providers</h3>
+<p>You can create custom compression implementations with <code>ICompressionProvider</code>. The <code>EncodingName</code> represents the content encoding that this <code>ICompressionProvider</code> produces. The middleware uses this information to choose the provider based on the list specified in the <code>Accept-Encoding</code> header of the request.</p>
+<p>Using the sample app, the client submits a request with the <code>Accept-Encoding: mycustomcompression</code> header. The middleware uses the custom compression implementation and returns the response with a <code>Content-Encoding: mycustomcompression</code> header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.</p>
+<div class="tabGroup" id="tabgroup_9ThmIvwZED-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-3_aspnetcore2x" role="tab" aria-controls="tabpanel_9ThmIvwZED-3_aspnetcore2x" data-tab="aspnetcore2x" tabindex="0" aria-selected="true">ASP.NET Core 2.x</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9ThmIvwZED-3_aspnetcore1x" role="tab" aria-controls="tabpanel_9ThmIvwZED-3_aspnetcore1x" data-tab="aspnetcore1x" tabindex="-1">ASP.NET Core 1.x</a>
+</li>
+</ul>
+<section id="tabpanel_9ThmIvwZED-3_aspnetcore2x" role="tabpanel" data-tab="aspnetcore2x">
+<pre><code class="lang-csharp" name="Main" highlight-lines="4">services.AddResponseCompression(options =&gt;
+{
+    options.Providers.Add&lt;GzipCompressionProvider&gt;();
+    options.Providers.Add&lt;CustomCompressionProvider&gt;();
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+});
+
+services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+{
+    options.Level = CompressionLevel.Fastest;
+});
+</code></pre><pre><code class="lang-csharp" name="Main">public class CustomCompressionProvider : ICompressionProvider
+{
+    public string EncodingName =&gt; &quot;mycustomcompression&quot;;
+    public bool SupportsFlush =&gt; true;
+
+    public Stream CreateStream(Stream outputStream)
+    {
+        // Create a custom compression stream wrapper here
+        return outputStream;
+    }
+}
+</code></pre></section>
+<section id="tabpanel_9ThmIvwZED-3_aspnetcore1x" role="tabpanel" data-tab="aspnetcore1x" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-csharp" name="Main" highlight-lines="6">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddResponseCompression(options =&gt;
+    {
+        options.Providers.Add&lt;GzipCompressionProvider&gt;();
+        options.Providers.Add&lt;CustomCompressionProvider&gt;();
+        options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { &quot;image/svg+xml&quot; });
+    });
+
+    services.Configure&lt;GzipCompressionProviderOptions&gt;(options =&gt; 
+    {
+        options.Level = CompressionLevel.Fastest;
+    });
+}
+</code></pre><pre><code class="lang-csharp" name="Main">public class CustomCompressionProvider : ICompressionProvider
+{
+    public string EncodingName =&gt; &quot;mycustomcompression&quot;;
+    public bool SupportsFlush =&gt; true;
+
+    public Stream CreateStream(Stream outputStream)
+    {
+        // Create a custom compression stream wrapper here
+        return outputStream;
+    }
+}
+</code></pre></section>
+</div>
+<p>Submit a request to the sample app with the <code>Accept-Encoding: mycustomcompression</code> header and observe the response headers. The <code>Vary</code> and <code>Content-Encoding</code> headers are present on the response. The response body (not shown) isn&#39;t compressed by the sample. There isn&#39;t a compression implementation in the <code>CustomCompressionProvider</code> class of the sample. However, the sample shows where you would implement such a compression algorithm.</p>
+<p><img src="response-compression/_static/request-custom-compression.png" alt="Fiddler window showing result of a request with the Accept-Encoding header and a value of mycustomcompression. The Vary and Content-Encoding headers are added to the response."></p>
+<h2 id="compression-with-secure-protocol">Compression with secure protocol</h2>
+<p>Compressed responses over secure connections can be controlled with the <code>EnableForHttps</code> option, which is disabled by default. Using compression with dynamically generated pages can lead to security problems such as the <a href="https://wikipedia.org/wiki/CRIME_(security_exploit)">CRIME</a> and <a href="https://wikipedia.org/wiki/BREACH_(security_exploit)">BREACH</a> attacks.</p>
+<h2 id="adding-the-vary-header">Adding the Vary header</h2>
+<p>When compressing responses based on the <code>Accept-Encoding</code> header, there are potentially multiple compressed versions of the response and an uncompressed version. In order to instruct client and proxy caches that multiple versions exist and should be stored, the <code>Vary</code> header is added with an <code>Accept-Encoding</code> value. In ASP.NET Core 1.x, adding the <code>Vary</code> header to the response is accomplished manually. In ASP.NET Core 2.x, the middleware adds the <code>Vary</code> header automatically when the response is compressed.</p>
+<p><strong>ASP.NET Core 1.x only</strong></p>
+<pre><code class="lang-csharp" name="Main">// ONLY REQUIRED FOR ASP.NET CORE 1.x APPS
+private void ManageVaryHeader(HttpContext context)
+{
+    // If the Accept-Encoding header is present, add the Vary header
+    var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
+    if (!StringValues.IsNullOrEmpty(accept))
+    {
+        context.Response.Headers.Append(HeaderNames.Vary, HeaderNames.AcceptEncoding);
+    }
+}
+</code></pre><h2 id="middlware-issue-when-behind-an-nginx-reverse-proxy">Middlware issue when behind an Nginx reverse-proxy</h2>
+<p>When a request is proxied by Nginx, the <code>Accept-Encoding</code> header is removed. This prevents the middleware from compressing the response. For more information, see <a href="https://www.nginx.com/resources/admin-guide/compression-and-decompression/">NGINX: Compression and Decompression</a>. This issue is tracked by <a href="https://github.com/aspnet/BasicMiddleware/issues/123">Figure out pass-through compression for nginx (BasicMiddleware #123)</a>.</p>
+<h2 id="working-with-iis-dynamic-compression">Working with IIS dynamic compression</h2>
+<p>If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, you can do so with an addition to your <em>web.config</em> file. For more information, see <a class="xref" href="../hosting/iis-modules.html#disabling-iis-modules">Disabling IIS modules</a>.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Use a tool like <a href="http://www.telerik.com/fiddler">Fiddler</a>, <a href="http://getfirebug.com/">Firebug</a>, or <a href="https://www.getpostman.com/">Postman</a>, which allow you to set the <code>Accept-Encoding</code> request header and study the response headers, size, and body. The Response Compression Middleware compresses responses that meet the following conditions:</p>
+<ul>
+<li>The <code>Accept-Encoding</code> header is present with a value of <code>gzip</code>, <code>*</code>, or custom encoding that matches a custom compression provider that you&#39;ve established. The value must not be <code>identity</code> or have a quality value (qvalue, <code>q</code>) setting of 0 (zero).</li>
+<li>The MIME type (<code>Content-Type</code>) must be set and must match a MIME type configured on the <code>ResponseCompressionOptions</code>.</li>
+<li>The request must not include the <code>Content-Range</code> header.</li>
+<li>The request must use insecure protocol (http), unless secure protocol (https) is configured in the Response Compression Middleware options. <em>Note the danger <a href="#compression-with-secure-protocol">described above</a> when enabling secure content compression.</em></li>
+</ul>
+<h2 id="additional-resources">Additional resources</h2>
+<ul>
+<li><a class="xref" href="../fundamentals/startup.html">Application Startup</a></li>
+<li><a class="xref" href="../fundamentals/middleware.html">Middleware</a></li>
+<li><a href="https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding">Mozilla Developer Network: Accept-Encoding</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7231#section-3.1.2.1">RFC 7231 Section 3.1.2.1: Content Codings</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7230#section-4.2.3">RFC 7230 Section 4.2.3: Gzip Coding</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc1952.txt">GZIP file format specification version 4.3</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/aspnet/Docs/blob/w/riande/RP-EF/aspnetcore/performance/response-compression.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
