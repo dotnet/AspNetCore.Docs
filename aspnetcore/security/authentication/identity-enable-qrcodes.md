@@ -88,4 +88,4 @@ Use `@Html.Raw` to access the model property in a view (otherwise the ampersands
 
 ## TOTP client and server time skew
 
-TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If  TOTP 2FA logins are failing check that the server time is accurate, and preferably synchronized to an accurate NTP service.
+TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If TOTP 2FA logins are failing check that the server time is accurate, and preferably synchronized to an accurate NTP service.
