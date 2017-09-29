@@ -168,7 +168,7 @@ The database creation script retrieves the dev machine's IP address and sets a f
 
     [!code-powershell[Main](automate-everything/samples/sample14.ps1)]
 
-The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database. For an example that uses a single database, see [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/).
+The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database.
 
 ### Store app settings and connection strings
 
@@ -250,11 +250,11 @@ In the [next chapter](source-control.md) we'll look at source code and explain w
 
 ## Resources
 
-- [Install and Configure Windows PowerShell for Azure](https://www.windowsazure.com/en-us/manage/install-and-configure-windows-powershell/). Explains how to install the Azure PowerShell cmdlets and how to install the certificate that you need on your computer in order to manage your Azure account. This is a great place to get started because it also has links to resources for learning PowerShell itself.
-- [Azure Script Center](https://www.windowsazure.com/en-us/documentation/scripts/). WindowsAzure.com portal to resources for developing scripts that manage Azure services, with links to getting started tutorials, cmdlet reference documentation and source code, and sample scripts
+- [Install and Configure Windows PowerShell for Azure](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-4.3.1). Explains how to install the Azure PowerShell cmdlets and how to install the certificate that you need on your computer in order to manage your Azure account. This is a great place to get started because it also has links to resources for learning PowerShell itself.
+- [Azure Script Center](https://docs.microsoft.com/azure/automation/automation-runbook-gallery). WindowsAzure.com portal to resources for developing scripts that manage Azure services, with links to getting started tutorials, cmdlet reference documentation and source code, and sample scripts
 - [Weekend Scripter: Getting Started with Azure and PowerShell](http://blogs.technet.com/b/heyscriptingguy/archive/2013/06/22/weekend-scripter-getting-started-with-windows-azure-and-powershell.aspx). In a blog dedicated to Windows PowerShell, this post provides a great introduction to using PowerShell for Azure management functions.
-- [Install and Configure the Azure Cross-Platform Command-Line Interface](https://www.windowsazure.com/en-us/manage/install-and-configure-cli/). Getting-started tutorial for an Azure scripting framework that works on Mac and Linux as well as Windows systems.
-- [Azure Command Line Tools](https://www.windowsazure.com/en-us/downloads/#cmd-line-tools). Portal page for documentation and downloads related to command line tools for Azure.
+- [Install and Configure the Azure Cross-Platform Command-Line Interface](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest). Getting-started tutorial for an Azure scripting framework that works on Mac and Linux as well as Windows systems.
+- [Command-line tools section of the Download Azure SDKs and Tools topic](https://azure.microsoft.com/downloads/). Portal page for documentation and downloads related to command-line tools for Azure.
 - [Automating everything with the Azure Management Libraries and .NET](http://www.hanselman.com/blog/PennyPinchingInTheCloudAutomatingEverythingWithTheWindowsAzureManagementLibrariesAndNET.aspx). Scott Hanselman introduces the .NET management API for Azure.
 - [Using Windows PowerShell Scripts to Publish to Dev and Test Environments](https://msdn.microsoft.com/library/azure/dn642480.aspx). MSDN documentation that explains how to use publish scripts that Visual Studio automatically generates for web projects.
 - [PowerShell Tools for Visual Studio 2013](https://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597). Visual Studio extension that adds language support for Windows PowerShell in Visual Studio.

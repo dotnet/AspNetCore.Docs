@@ -2,7 +2,7 @@
 title: Working with the Application Model
 author: ardalis
 description: 
-keywords: ASP.NET Core, ASP.NET Core MVC, application model
+keywords: ASP.NET Core,ASP.NET Core MVC,application model
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

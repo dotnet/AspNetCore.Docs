@@ -12,11 +12,9 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/configuration
 ---
-<a name=fundamentals-configuration></a>
+# Configuration in ASP.NET Core
 
-  # Configuration in ASP.NET Core
-
-[Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), and [Daniel Roth](https://github.com/danroth27)
+[Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
 The Configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
 
@@ -61,7 +59,7 @@ The preceding sample uses the configuration indexer to read values. To access co
 It's typical to have different configuration settings for different environments, for example, development, test, and production. The `CreateDefaultBuilder` extension method in an ASP.NET Core 2.x app (or using `AddJsonFile` and `AddEnvironmentVariables` directly in an ASP.NET Core 1.x app) adds configuration providers for reading JSON files and system configuration sources:
 
 * *appsettings.json*
-* *appsettings.\<EnvironmentName>.json
+* *appsettings.\<EnvironmentName>.json*
 * environment variables
 
 See [AddJsonFile](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and higher. 
@@ -292,55 +290,187 @@ key3=value_from_json_3
 
 ## CommandLine configuration provider
 
-The following sample enables the CommandLine configuration provider last:
+The [CommandLine configuration provider](/aspnet/core/api/microsoft.extensions.configuration.commandline.commandlineconfigurationprovider) receives command-line argument key-value pairs for configuration at runtime.
 
-[!code-csharp[Main](configuration/sample/CommandLine/Program.cs)]
+[View or download the CommandLine configuration sample](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample/CommandLine)
+
+### Setting up the provider
+
+# [Basic Configuration](#tab/basicconfiguration)
+
+To activate command-line configuration, call the `AddCommandLine` extension method on an instance of [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder):
+
+[!code-csharp[Main](configuration/sample_snapshot/CommandLine/Program.cs?highlight=18,21)]
+
+Running the code, the following output is displayed:
+
+```console
+MachineName: MairaPC
+Left: 1980
+```
+
+Passing argument key-value pairs on the command line changes the values of `Profile:MachineName` and `App:MainWindow:Left`:
+
+```console
+dotnet run Profile:MachineName=BartPC App:MainWindow:Left=1979
+```
+
+The console window displays:
+
+```console
+MachineName: BartPC
+Left: 1979
+```
+
+To override configuration provided by other configuration providers with command-line configuration, call `AddCommandLine` last on `ConfigurationBuilder`:
+
+[!code-csharp[Main](configuration/sample_snapshot/CommandLine/Program2.cs?range=11-16&highlight=1,5)]
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Typical ASP.NET Core 2.x apps use the static convenience method `CreateDefaultBuilder` to build the host:
+
+[!code-csharp[Main](configuration/sample_snapshot/Program.cs?highlight=12)]
+
+`CreateDefaultBuilder` loads optional configuration from *appsettings.json*, *appsettings.{Environment}.json*, [user secrets](xref:security/app-secrets) (in the `Development` environment), environment variables, and command-line arguments. The CommandLine configuration provider is called last. Calling the provider last allows the command-line arguments passed at runtime to override configuration set by the other configuration providers called earlier.
+
+Note that for *appsettings* files that `reloadOnChange` is enabled. Command-line arguments are overridden if a matching configuration value in an *appsettings* file is changed after the app starts.
+
+> [!NOTE]
+> As an alternative to using the `CreateDefaultBuilder` method, creating a host using [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) and manually building configuration with [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder) is supported in ASP.NET Core 2.x. See the ASP.NET Core 1.x tab for more information.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+Create a [ConfigurationBuilder](/api/microsoft.extensions.configuration.configurationbuilder) and call the `AddCommandLine` method to use the CommandLine configuration provider. Calling the provider last allows the command-line arguments passed at runtime to override configuration set by the other configuration providers called earlier. Apply the configuration to [WebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilder) with the `UseConfiguration` method:
+
+[!code-csharp[Main](configuration/sample_snapshot/CommandLine/Program2.cs?highlight=11,15,19)]
+
+---
+
+### Arguments
+
+Arguments passed on the command line must conform to one of two formats shown in the following table.
+
+| Argument format                                                     | Example        |
+| ------------------------------------------------------------------- | :------------: |
+| Single argument: a key-value pair separated by an equals sign (`=`) | `key1=value`   |
+| Sequence of two arguments: a key-value pair separated by a space    | `/key1 value1` |
+
+**Single argument**
+
+The value must follow an equals sign (`=`). The value can be null (for example, `mykey=`).
+
+The key may have a prefix.
+
+| Key prefix               | Example         |
+| ------------------------ | :-------------: |
+| No prefix                | `key1=value1`   |
+| Single dash (`-`)&#8224; | `-key2=value2`  |
+| Two dashes (`--`)        | `--key3=value3` |
+| Forward slash (`/`)      | `/key4=value4`  |
+
+&#8224;A key with a single dash prefix (`-`) must be provided in [switch mappings](#switch-mappings), described below.
+
+Example command:
+
+```console
+dotnet run key1=value1 -key2=value2 --key3=value3 /key4=value4
+```
+
+Note: If `-key1` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
+
+**Sequence of two arguments**
+
+The value can't be null and must follow the key separated by a space.
+
+The key must have a prefix.
+
+| Key prefix               | Example         |
+| ------------------------ | :-------------: |
+| Single dash (`-`)&#8224; | `-key1 value1`  |
+| Two dashes (`--`)        | `--key2 value2` |
+| Forward slash (`/`)      | `/key3 value3`  |
+
+&#8224;A key with a single dash prefix (`-`) must be provided in [switch mappings](#switch-mappings), described below.
+
+Example command:
+
+```console
+dotnet run -key1 value1 --key2 value2 /key3 value3
+```
+
+Note: If `-key1` isn't present in the [switch mappings](#switch-mappings) given to the configuration provider, a `FormatException` is thrown.
+
+### Duplicate keys
+
+If duplicate keys are provided, the last key-value pair is used.
+
+### Switch mappings
+
+When manually building configuration with `ConfigurationBuilder`, you can optionally provide a switch mappings dictionary to the `AddCommandLine` method. Switch mappings allow you to provide key name replacement logic.
+
+When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value (the key replacement) is passed back to set the configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
+
+Switch mappings dictionary key rules:
+
+* Switches must start with a dash (`-`) or double-dash (`--`).
+* The switch mappings dictionary must not contain duplicate keys.
+
+In the following example, the `GetSwitchMappings` method allows your command-line arguments to use a single dash (`-`) key prefix and avoid leading subkey prefixes.
+
+[!code-csharp[Main](configuration/sample/CommandLine/Program.cs?highlight=10-19,32)]
+
+Without providing command-line arguments, the dictionary provided to `AddInMemoryCollection` sets the configuration values. Run the app with the following command:
+
+```console
+dotnet run
+```
+
+The console window displays:
+
+```console
+MachineName: RickPC
+Left: 1980
+```
 
 Use the following to pass in configuration settings:
 
 ```console
-dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
+dotnet run /Profile:MachineName=DahliaPC /App:MainWindow:Left=1984
 ```
 
-Which displays:
+The console window displays:
 
 ```console
-Hello Bob
-Left 1234
+MachineName: DahliaPC
+Left: 1984
 ```
 
-The `GetSwitchMappings` method allows you to use `-` rather than `/` and it strips the leading subkey prefixes. For example:
+After the switch mappings dictionary is created, it contains the data shown in the following table.
+
+| Key            | Value                 |
+| -------------- | --------------------- |
+| `-MachineName` | `Profile:MachineName` |
+| `-Left`        | `App:MainWindow:Left` |
+
+To demonstrate key switching using the dictionary, run the following command:
 
 ```console
-dotnet run -MachineName=Bob -Left=7734
+dotnet run -MachineName=ChadPC -Left=1988
 ```
 
-Displays:
+The command-line keys are swapped. The console window displays the configuration values for `Profile:MachineName` and `App:MainWindow:Left`:
 
 ```console
-Hello Bob
-Left 7734
+MachineName: ChadPC
+Left: 1988
 ```
-
-Command-line arguments must include a value (it can be null). For example:
-
-```console
-dotnet run /Profile:MachineName=
-```
-
-Is OK, but
-
-```console
-dotnet run /Profile:MachineName
-```
-
-results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there's no corresponding switch mapping.
 
 ## The web.config file
 
 A *web.config* file is required when you host the app in IIS or IIS-Express. *web.config* turns on the AspNetCoreModule in IIS to launch your app. Settings in *web.config* enable the AspNetCoreModule in IIS to launch your app and configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
-### Additional notes
+## Additional notes
 
 * Dependency Injection (DI) is not set up until after `ConfigureServices` is invoked.
 * The configuration system is not DI aware.
@@ -348,9 +478,10 @@ A *web.config* file is required when you host the app in IIS or IIS-Express. *we
   * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
   * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
 
-### Additional resources
+## Additional resources
 
 * [Working with Multiple Environments](environments.md)
 * [Safe storage of app secrets during development](../security/app-secrets.md)
+* [Hosting in ASP.NET Core](xref:fundamentals/hosting)
 * [Dependency Injection](dependency-injection.md)
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration)

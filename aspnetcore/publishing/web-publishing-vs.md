@@ -2,10 +2,10 @@
 title: Create publish profiles for Visual Studio and MSBuild
 author: rick-anderson
 description: Explains web publishing in Visual Studio.
-keywords: ASP.NET Core, web publishing, publishing, msbuild, web deploy, dotnet publish, Visual Studio 2017
+keywords: ASP.NET Core,web publishing,publishing,msbuild,web deploy,dotnet publish,Visual Studio 2017
 ms.author: riande
 manager: wpickett
-ms.date: 03/14/2017
+ms.date: 09/26/2017
 ms.topic: article
 ms.assetid: 0377a02d-8fda-47a5-929a-24a16e1d2c93
 ms.technology: aspnet
@@ -17,7 +17,7 @@ uid: publishing/web-publishing-vs
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This article focuses on using Visual Studio 2017 to create publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio 2017.
+This article focuses on using Visual Studio 2017 to create publish profiles. The publish profiles created with Visual Studio can be run from MSBuild and Visual Studio 2017. The article provides details of the publishing process. See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on publishing to Azure.
 
 The following *.csproj* file was created with the command `dotnet new mvc`:
 
@@ -92,7 +92,7 @@ When MSBuild or Visual Studio loads a project, the following high level actions 
 
 When the project is loaded, the project items (files) are computed. The `item type` attribute determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled.
 
-The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. [wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files in the *wwwroot* folder **and** subfolders. If you need to explicitly add a file to the publish list you can add the file directly in the *.csproj* file as shown in [Including Files](#including-files).
+The `Content` item list contains files that will be published in addition to the build outputs. By default, files matching the pattern wwwroot/** will be included in the `Content` item. [wwwroot/** is a globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) that specifies all files in the *wwwroot* folder **and** subfolders. To explicitly add a file to the publish list, add the file directly in the *.csproj* file as shown in [Including Files](#including-files).
 
 When you select the **Publish** button in Visual Studio or when you publish from command line:
 
@@ -102,7 +102,7 @@ When you select the **Publish** button in Visual Studio or when you publish from
 - The publish items are computed (the files that are needed to publish).
 - The project is published. (The computed files are copied to the publish destination.)
 
-## Simple command line publishing
+## Basic command line publishing
 
 This section works on all .NET Core supported platforms and doesn't require Visual Studio. In the samples below, the `dotnet publish` command is run from the project directory (which contains the *.csproj* file). If you're not in the project folder, you can explicitly pass in the project file path. For example:
 
@@ -112,23 +112,35 @@ dotnet publish  c:/webs/web1
 
 Run the following commands to create and publish a web app:
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+```console
+dotnet new mvc
+dotnet publish
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 ```console
 dotnet new mvc
 dotnet restore
 dotnet publish
 ```
 
+--------------
+
 The `dotnet publish` produces output similar to the following:
 
 ```console
 C:\Webs\Web1>dotnet publish
-Microsoft (R) Build Engine version 15.1.548.43366
+Microsoft (R) Build Engine version 15.3.409.57025 for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp1.1\Web1.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp2.0\Web1.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\netcoreapp2.0\publish\
 ```
 
-The default publish folder is `bin\$(Configuration)\netcoreapp<version>\publish`. The default for `$(Configuration)` is Debug. In the sample above, the `<TargetFramework>` is `netcoreapp1.1`. The actual path in the sample above is *bin\Debug\netcoreapp1.1\publish*.
+The default publish folder is `bin\$(Configuration)\netcoreapp<version>\publish`. The default for `$(Configuration)` is Debug. In the sample above, the `<TargetFramework>` is `netcoreapp2.0`.
 
 `dotnet publish -h` displays help information for publish.
 
@@ -186,7 +198,39 @@ Sensitive information (like the publish password) is encrypted on a per user/mac
 
 For an overview of how to publish a web app on ASP.NET Core see [Publishing and Deployment](index.md). [Publishing and Deployment](index.md) is an open source project at https://github.com/aspnet/websdk.
 
-Currently `dotnet publish` doesn’t have the ability to use publish profiles. To use publish profiles, use `dotnet build`. `dotnet build` invokes MSBuild on the project. Alternatively, call `msbuild` directly.
+ `dotnet publish` can use folder, Msdeploy, and [KUDU](https://github.com/projectkudu/kudu/wiki) publish profiles:
+ 
+Folder (works cross-platform)
+`dotnet publish WebApplication.csproj /p:PublishProfile=<FolderProfileName>`
+
+Msdeploy (currently this only works in windows since msdeploy is not cross-platform):
+`dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>`
+
+Msdeploy package(currently this only works in windows since msdeploy is not cross-platform):
+`dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileName>`
+
+In the preceeding samples, **don’t** pass `deployonbuild` to `dotnet publish`.
+
+For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish)
+
+`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it is supported by websdk for cross plat publish to Azure.
+
+Add a publish profile to *Properties/PublishProfiles* folder with the following content:
+
+```xml
+<Project>
+<PropertyGroup>
+                <PublishProtocol>Kudu</PublishProtocol>
+                <PublishSiteName>nodewebapp</PublishSiteName>
+                <UserName>username</UserName>
+                <Password>password</Password>
+</PropertyGroup>
+</Project>
+```
+
+Running the following command will zip up the publish contents and publish it to Azure using the KUDU APIs.
+
+`dotnet publish /p:PublishProfile=Azure /p:Configuration=Release`
 
 Set the following MSBuild properties when using a publish profile:
 
@@ -218,7 +262,7 @@ As previously mentioned, you can publish using `dotnet publish` or the `msbuild`
 
 The easiest way to publish with MSDeploy is to first create a publish profile in Visual Studio 2017 and use the profile from the command line.
 
-In the following sample, I created an ASP.NET Core web app ( using `dotnet new mvc`) and added an Azure publish profile with Visual Studio.
+In the following sample, an ASP.NET Core web app is created ( using `dotnet new mvc`) and an Azure publish profile is added with Visual Studio.
 
 You run `msbuild` from a **Developer Command Prompt for VS 2017**. The Developer Command Prompt will have the correct *msbuild.exe* in its path and set some MSBuild variables.
 

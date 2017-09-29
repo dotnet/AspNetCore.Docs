@@ -1,7 +1,7 @@
 ---
 title: Host ASP.NET Core on Linux with Apache
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web application running on Kestrel.
-keywords: ASP.NET Core, Apache, CentOS, Reverse Proxy, Linux, mod_proxy, httpd, hosting
+keywords: ASP.NET Core,Apache,CentOS,Reverse Proxy,Linux,mod_proxy,httpd,hosting
 author: spboyer
 ms.author: spboyer
 manager: wpickett
@@ -131,7 +131,8 @@ An example service file for our application.
     WorkingDirectory=/var/aspnetcore/hellomvc
     ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
-    RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
+    # Restart service after 10 seconds if dotnet service crashes
+    RestartSec=10
     SyslogIdentifier=dotnet-example
     User=apache
     Environment=ASPNETCORE_ENVIRONMENT=Production 

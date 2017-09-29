@@ -98,8 +98,6 @@ app.UseMvc(routes =>
 
 `UseMvc` and `UseMvcWithDefaultRoute` add an instance of `RouterMiddleware` to the middleware pipeline. MVC doesn't interact directly with middleware, and uses routing to handle requests. MVC is connected to the routes through an instance of `MvcRouteHandler`. The code inside of `UseMvc` is similar to the following:
 
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
-
 ```csharp
 var routes = new RouteBuilder(app);
 
@@ -120,8 +118,6 @@ app.UseRouter(routes.Build());
 ## Conventional routing
 
 The `default` route:
-
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
 ```csharp
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
@@ -147,15 +143,13 @@ Using this `default` route, the URL path `/Products/List` maps to the `ProductsC
 
 You can add multiple routes inside `UseMvc` by adding more calls to `MapRoute`. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
 
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
-
 ```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("blog", "blog/{*article}",
             defaults: new { controller = "Blog", action = "Article" });
    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-}
+});
 ```
 
 The `blog` route here is a *dedicated conventional route*, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since `controller` and `action` don't appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action `BlogController.Article`.
@@ -172,8 +166,6 @@ As part of request processing, MVC will verify that the route values can be used
 ### Disambiguating actions
 
 When two actions match through routing, MVC must disambiguate to choose the 'best' candidate or else throw an exception. For example:
-
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
 ```csharp
 public class ProductsController : Controller
@@ -279,8 +271,6 @@ public class MyDemoController : Controller
 
 Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 [HttpGet("/products")]
 public IActionResult ListProducts()
@@ -334,8 +324,6 @@ Route names can be used to generate a URL based on a specific route. Route names
 ### Combining routes
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("products")]
@@ -427,8 +415,6 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the *default conventional route* as shown in the following example:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 [Route("[controller]")]
 public class ProductsController : Controller
@@ -440,8 +426,6 @@ public class ProductsController : Controller
 ```
 
 Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("Store")]
@@ -455,8 +439,6 @@ public class ProductsController : Controller
 ```
 
 When multiple route attributes (that implement `IActionConstraint`) are placed on an action, then each action constraint combines with the route template from the attribute that defined it.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("api/[controller]")]
@@ -625,8 +607,6 @@ The action results factory methods follow a similar pattern to the methods on `I
 
 Conventional routing can use a special kind of route definition called a *dedicated conventional route*. In the example below, the route named `blog` is a dedicated conventional route.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 app.UseMvc(routes =>
 {
@@ -682,8 +662,6 @@ The first two controllers are members of areas, and only match when their respec
 When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
 
 [!code-csharp[Main](routing/sample/AreasRouting/Startup.cs?name=snippet3)]
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/mvc/controllers/routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs"} -->
 
 [!code-csharp[Main](routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 

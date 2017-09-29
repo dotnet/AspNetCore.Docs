@@ -2,7 +2,7 @@
 title: WebListener web server implementation in ASP.NET Core
 author: rick-anderson
 description: Introduces WebListener, a web server for ASP.NET Core on Windows. Built on the Http.Sys kernel mode driver, WebListener is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-keywords: ASP.NET Core, WebListener, HttpListener, url prefixes, SSL 
+keywords: ASP.NET Core,WebListener,HttpListener,url prefixes,SSL
 ms.author: riande
 manager: wpickett
 ms.date: 08/07/2017
@@ -75,7 +75,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/kb/820
 
 * Install the NuGet package [Microsoft.AspNetCore.Server.WebListener](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.WebListener/). This also installs [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) as a dependency.
 
-* Call the [`UseWebListener`](https://docs.microsoft.com/aspnet/core/api) extension method on [WebHostBuilder](https://docs.microsoft.com/aspnet/core/api) in your `Main` method, specifying any WebListener [options](https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.AspNetCore.Server.WebListener/WebListenerOptions.cs) and [settings](https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.Net.Http.Server/WebListenerSettings.cs) that you need, as shown in the following example:
+* Call the `UseWebListener` extension method on [WebHostBuilder](/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilder) in your `Main` method, specifying any WebListener [options](https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.AspNetCore.Server.WebListener/WebListenerOptions.cs) and [settings](https://github.com/aspnet/HttpSysServer/blob/rel/1.1.2/src/Microsoft.Net.Http.Server/WebListenerSettings.cs) that you need, as shown in the following example:
 
   [!code-csharp[](weblistener/sample/Program.cs?name=snippet_Main&highlight=13-17)]
 

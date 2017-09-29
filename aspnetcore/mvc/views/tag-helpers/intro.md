@@ -2,7 +2,7 @@
 title: Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn what tag helpers are and how to use them in ASP.NET Core.
-keywords: ASP.NET Core, tag helpers
+keywords: ASP.NET Core,tag helpers
 ms.author: riande
 manager: wpickett
 ms.date: 7/14/2017
@@ -67,9 +67,7 @@ To expose all of the Tag Helpers in this project (which creates an assembly name
 
 If your project contains an `EmailTagHelper` with the default namespace (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), you can provide the fully qualified name (FQN) of the Tag Helper:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3]}} -->
-
-```html
+```cshtml
 @using AuthoringTagHelpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers

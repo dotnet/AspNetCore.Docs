@@ -12,7 +12,6 @@ namespace MvcMusicStore.Models
         [Required(ErrorMessage = "An Album Title is required")]
         [StringLength(160)]
         public string   Title      { get; set; }
-        [Required(ErrorMessage = "Price is required")]
         [Range(0.01, 100.00,
             ErrorMessage = "Price must be between 0.01 and 100.00")]
         public decimal Price       { get; set; }

@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 11/1/2016
+ms.date: 11/01/2016
 ms.topic: article
 ms.assetid: E5931607-31C0-4B20-B416-85E3550F5EA8
 ms.technology: aspnet
@@ -60,6 +60,10 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddTwitter(twitterOptions =>
 {
     twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
@@ -67,7 +71,7 @@ services.AddAuthentication().AddTwitter(twitterOptions =>
 });
 ```
 
-The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

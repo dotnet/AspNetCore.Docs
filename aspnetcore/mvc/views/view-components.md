@@ -2,7 +2,7 @@
 title: View components
 author: rick-anderson
 description: View Components are intended anywhere you have reusable rendering logic.
-keywords: ASP.NET Core,view components, partial view
+keywords: ASP.NET Core,view components,partial view
 ms.author: riande
 manager: wpickett
 ms.date: 02/14/2017
@@ -217,8 +217,6 @@ If the PVC view is not rendered, verify you are calling the view component with 
 * Change the priority parameter to three or less so the priority view is not returned.
 * Temporarily rename the *Views/Todo/Components/PriorityList/Default.cshtml* to *1Default.cshtml*.
 * Test the app, you'll get the following error:
-
-   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
    ```
    An unhandled exception occurred while processing the request.

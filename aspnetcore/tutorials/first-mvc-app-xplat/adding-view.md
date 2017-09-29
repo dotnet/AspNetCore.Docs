@@ -2,7 +2,7 @@
 title: Adding a view
 author: rick-anderson
 description: Adding a view to a simple ASP.NET Core MVC app
-keywords: ASP.NET Core, cli
+keywords: ASP.NET Core,cli
 ms.author: riande
 manager: wpickett
 ms.date: 03/30/2017

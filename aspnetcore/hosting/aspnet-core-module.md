@@ -2,7 +2,7 @@
 title: ASP.NET Core Module configuration reference
 author: guardrex
 description: How to configure the ASP.NET Core Module for hosting ASP.NET Core applications.
-keywords: ASP.NET Core, ancm, core module, iis, stdout logging, environment variable, env var, subapplication, subapp, appoffline, app_offline, 502, schema
+keywords: ASP.NET Core,ancm,core module,iis,stdout logging,environment variable,env var,subapplication,subapp,appoffline,app_offline,502,schema
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
@@ -14,7 +14,7 @@ uid: hosting/aspnet-core-module
 ---
 # ASP.NET Core Module configuration reference
 
-By [Luke Latham](https://github.com/GuardRex), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
+By [Luke Latham](https://github.com/guardrex), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This document provides details on how to configure the ASP.NET Core Module for hosting ASP.NET Core applications. For an introduction to the ASP.NET Core Module and installation instructions, see the [ASP.NET Core Module overview](xref:fundamentals/servers/aspnet-core-module).
 

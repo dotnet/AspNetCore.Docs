@@ -54,7 +54,6 @@ ASP.NET MVC Getting Started
     - [Customizing a View](database-first-development/customizing-a-view.md)
     - [Enhancing Data Validation](database-first-development/enhancing-data-validation.md)
     - [Publish to Azure](database-first-development/publish-to-azure.md)
-- [ASP.NET MVC Facebook Birthday App](aspnet-mvc-facebook-birthday-app.md)
 - [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md)
 - [MVC Recommended Resources](recommended-resources-for-mvc.md)
 - [MVC recommended tutorials and articles](mvc-learning-sequence.md)

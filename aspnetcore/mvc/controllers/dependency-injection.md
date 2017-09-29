@@ -44,8 +44,6 @@ With this in place, we can use the service in our controller. In this case, we h
 
 If we run the application now, we will most likely encounter an error:
 
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
 ```
 An unhandled exception occurred while processing the request.
 
@@ -68,8 +66,6 @@ Once the service has been configured, running the application and navigating to 
 > See [Testing Controller Logic](testing.md) to learn how to explicitly request dependencies [http://deviq.com/explicit-dependencies-principle/](http://deviq.com/explicit-dependencies-principle/) in controllers makes code easier to test.
 
 ASP.NET Core's built-in dependency injection supports having only a single constructor for classes requesting services. If you have more than one constructor, you may get an exception stating:
-
-<!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
 ```
 An unhandled exception occurred while processing the request.

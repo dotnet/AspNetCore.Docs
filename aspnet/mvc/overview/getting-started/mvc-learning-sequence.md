@@ -21,7 +21,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Getting Started
 
 - [Getting Started with ASP.NET MVC 5](introduction/getting-started.md) This 11 part series is a good place to start.
-- [Pluralsight ASP.NET MVC 5 Fundamentals](https://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m1-introduction&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals)(video course)
+- [Pluralsight ASP.NET MVC 5 Fundamentals](https://pluralsight.com/training/Player?author=scott-allen&amp;name=aspdotnet-mvc5-fundamentals-m1-introduction&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc5-fundamentals) (video course)
 - [Intro to ASP.NET MVC](https://www.microsoftvirtualacademy.com/training-courses/introduction-to-asp-net-mvc) by Jon Galloway and Christopher Harrison
 - [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md) PDF document that charts the lifecycle of an ASP.NET MVC 5 app.
 
@@ -34,8 +34,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Security
 
 - [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/) This popular tutorial walks you through creating a simple app and adding membership and roles.
-- [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) This tutorial shows you how to build an ASP.NET MVC 5 web application that enables users to log in using OAuth 2.0 with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google.
-- [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md) First in a series on Identity, includes code to [resend a confirmation link.](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md#rsend)
+- [Create an ASP.NET MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) This tutorial shows you how to build an ASP.NET MVC 5 web application that enables users to log in using OAuth 2.0 with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google.
+- [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md) First in a series on Identity, includes code to [resend a confirmation link](../security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md#rsend).
 - [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](../security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md) Second on Identity series.
 - [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md)
 - [Two-factor authentication using SMS and email with ASP.NET Identity](../../../identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md) `isPersistent` and the security cookie, code to require a user to have a validated email account before they can log on, how SignInManager checks for 2FA requirement, and more.
@@ -51,8 +51,3 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Performance and Debugging
 
 - [Profile and debug your ASP.NET MVC app with Glimpse](../performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
-
-<a id="addRes"></a>
-## Additional Resources
-
-- [ASP.NET MVC Facebook Birthday App](aspnet-mvc-facebook-birthday-app.md)

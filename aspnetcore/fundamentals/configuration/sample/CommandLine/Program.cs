@@ -22,8 +22,8 @@ public class Program
     {
         var dict = new Dictionary<string, string>
             {
-                {"Profile:MachineName", "Rick"},
-                {"App:MainWindow:Left", "11"}
+                {"Profile:MachineName", "RickPC"},
+                {"App:MainWindow:Left", "1980"}
             };
 
         var builder = new ConfigurationBuilder();
@@ -33,8 +33,8 @@ public class Program
 
         Configuration = builder.Build();
 
-        Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
-        Console.WriteLine($"Left {Configuration["App:MainWindow:Left"]}");
+        Console.WriteLine($"MachineName: {Configuration["Profile:MachineName"]}");
+        Console.WriteLine($"Left: {Configuration["App:MainWindow:Left"]}");
         Console.WriteLine();
 
         Console.WriteLine("Press a key...");

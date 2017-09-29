@@ -5,7 +5,7 @@ description: Build a web API with ASP.NET Core MVC and Visual Studio for Windows
 keywords: ASP.NET Core,WebAPI,Web API,REST,HTTP,Service,HTTP Service
 ms.author: riande
 manager: wpickett
-ms.date: 8/15/2017
+ms.date: 08/15/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core

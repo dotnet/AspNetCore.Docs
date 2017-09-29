@@ -16,6 +16,5 @@ namespace RazorPagesMovie.Models
         public decimal Price { get; set; }
         public string Rating { get; set; }
     }
-
 }
 #endif

@@ -2,7 +2,7 @@
 title: Session and application state in ASP.NET Core
 author: rick-anderson
 description: Approaches to preserving application and user (session) state between requests.
-keywords: ASP.NET Core, Application state, session state, querystring, post
+keywords: ASP.NET Core,Application state,session state,querystring,post
 ms.author: riande
 manager: wpickett
 ms.date: 06/08/2017
@@ -92,7 +92,15 @@ The `Microsoft.AspNetCore.Session` package provides middleware for managing sess
 
 The following code shows how to set up the in-memory session provider.
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+[!code-csharp[Main](app-state/sample/src/WebAppSessionDotNetCore2.0App/Startup.cs?highlight=11-19,24)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 [!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highlight=11-19,24)]
+
+---
 
 You can reference Session from `HttpContext` once it is installed and configured.
 
@@ -112,7 +120,15 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override session defaults, use `SessionOptions`:
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+[!code-csharp[Main](app-state/sample/src/WebAppSessionDotNetCore2.0App/StartupCopy.cs?name=snippet1&highlight=8-12)]
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 [!code-csharp[Main](app-state/sample/src/WebAppSession/StartupCopy.cs?name=snippet1&highlight=8-12)]
+
+---
 
 The server uses the `IdleTimeout` property to determine how long a session can be idle before its contents are abandoned. This property is independent of the cookie expiration. Each request that passes through the Session middleware (read from or written to) resets the timeout.
 
@@ -226,4 +242,5 @@ public class MyController : Controller
 ### Additional Resources
 
 
-* [Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
+* [ASP.NET Core 1.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSession)
+* [ASP.NET Core 2.x: Sample code used in this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample/src/WebAppSessionDotNetCore2.0App)

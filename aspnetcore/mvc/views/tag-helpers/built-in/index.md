@@ -1,4 +1,3 @@
-
 ---
 title: ASP.NET Core built-in Tag Helpers
 author: pkellner
@@ -6,7 +5,7 @@ description: ASP.NET Core built-in Tag Helpers
 keywords: ASP.NET Core,tag helper
 ms.author: riande
 manager: wpickett
-ms.date: 7/11/2017
+ms.date: 09/13/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: aspnet-core
@@ -17,52 +16,46 @@ uid: mvc/views/tag-helpers/builtin-th/Index
 
 By [Peter Kellner](http://peterkellner.net) 
 
-The ASP.NET Core framework includes many Tag Helpers that can help you be more productive in writing robust code. This section provides an overview of all the built-in Tag Helpers.
+ASP.NET Core includes many built-in Tag Helpers to boost your productivity. This section provides an overview of the built-in Tag Helpers.
 
 > [!NOTE]
-> There are built-in Tag Helpers which are not discussed, since they are used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character which expands to the root path of the web site.
+> There are built-in Tag Helpers which aren't discussed, since they're used internally by the [Razor](xref:mvc/views/razor) view engine. This includes a Tag Helper for the ~ character, which expands to the root path of the website.
 
 ## Built-in ASP.NET Core Tag Helpers
 
-**[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/AnchorTagHelper)**
+**[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)**
 
-**[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/CacheTagHelper)**
+**[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)**
 
-**[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper)**
+**[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)**
 
-**[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper)**
+**[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
 
-[comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormActionTagHelper)**
+[comment]: **[FormActionTagHelper](xref:mvc/views/tag-helpers/builtin-th/form-action-tag-helper)**
 
-[comment]: **[FormTagTagHelper](xref:mvc/views/tag-helpers/builtin-th/FormTagHelper)**
+**[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper)**
 
-**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/ImageTagHelper)**
+**[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
 
-[comment]: **[InputTagHelper](xref:mvc/views/tag-helpers/builtin-th/InputTagHelper)**
+**[Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)**
 
-[comment]: **[LabelTagHelper](xref:mvc/views/tag-helpers/builtin-th/LabelTagHelper)**
+**[Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper)**
 
-[comment]: **[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/LinkTagHelper)**
+[comment]: **[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
 
-[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/OptionTagHelper)**
+[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/option-tag-helper)**
 
-[comment]: **[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/ScriptTagTagHelper)**
+[comment]: **[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
 
-[comment]: **[SelectTagHelper](xref:mvc/views/tag-helpers/builtin-th/SelectTagTagHelper)**
+**[Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper)**
 
-[comment]: **[TextAreaTagHelper](xref:mvc/views/tag-helpers/builtin-th/TextAreaTagHelper)**
+**[Textarea Tag Helper](xref:mvc/views/working-with-forms#the-textarea-tag-helper)**
 
-[comment]: **[ValidationMessageTagHelper](xref:mvc/views/tag-helpers/builtin-th/ValidationMessageTagHelper)**
+**[Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper)**
 
-[comment]: **[ValidationSummaryTagHelper](xref:mvc/views/tag-helpers/builtin-th/ValidationSummaryTagHelper)**  
-  
-  
-<!--
+**[Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper)**
 
-## Additional Resources
+## Additional resources
 
-REQUIRED These must be xref links, not relative, that is ../../
-* [Client-Side Development](../../../client-side/index.md)
-
+* [Client-Side Development](xref:client-side/index)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
--->

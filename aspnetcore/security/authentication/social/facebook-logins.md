@@ -5,7 +5,7 @@ description: Facebook external login setup in ASP.NET Core
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 8/1/2017
+ms.date: 08/01/2017
 ms.topic: article
 ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
 ms.technology: aspnet
@@ -74,6 +74,10 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -81,7 +85,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 });
 ```
 
-The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

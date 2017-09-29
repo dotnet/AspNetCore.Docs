@@ -3,7 +3,7 @@ title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
 author: tdykstra
 author: tdykstra
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
-keywords: ASP.NET Core, Entity Framework Core, sort, filter, paging, grouping
+keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
 ms.author: tdykstra
 ms.date: 03/15/2017
 ms.topic: get-started-article
@@ -64,7 +64,7 @@ Replace the code in *Views/Students/Index.cshtml*, with the following code to ad
 
 This code uses the information in `ViewData` properties to set up hyperlinks with the appropriate query string values.
 
-Run the page and click the **Last Name** and **Enrollment Date** column headings to verify that sorting works.
+Run the app, select the **Students** tab, and click the **Last Name** and **Enrollment Date** column headings to verify that sorting works.
 
 ![Students index page in name order](sort-filter-page/_static/name-order.png)
 
@@ -91,9 +91,9 @@ In *Views/Student/Index.cshtml*, add the highlighted code immediately before the
 
 [!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
-This code uses the `<form>` [tag helper](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action does not result in an update.
+This code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action does not result in an update.
 
-Run the page, enter a search string, and click Search to verify that filtering is working.
+Run the app, select the **Students** tab, enter a search string, and click Search to verify that filtering is working.
 
 ![Students index page with filtering](sort-filter-page/_static/filtering.png)
 
@@ -190,7 +190,7 @@ The paging buttons are displayed by tag helpers:
 </a>
 ```
 
-Run the page.
+Run the app and go to the Students page.
 
 ![Students index page with paging links](sort-filter-page/_static/paging.png)
 
@@ -238,7 +238,7 @@ Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
 [!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
 
-Run the app and click the **About** link. The count of students for each enrollment date is displayed in a table.
+Run the app and go to the About page. The count of students for each enrollment date is displayed in a table.
 
 ![About page](sort-filter-page/_static/about.png)
 

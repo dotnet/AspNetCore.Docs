@@ -2,10 +2,10 @@
 title: Enabling QR Code generation for authenticator apps in ASP.NET Core
 author: rick-anderson
 description: Enabling QR Code generation for authenticator apps in ASP.NET Core
-keywords: ASP.NET Core, MVC, QR Code generation, authenticator, 2FA
+keywords: ASP.NET Core,MVC,QR Code generation,authenticator,2FA
 ms.author: riande
 manager: wpickett
-ms.date: 7/24/2017
+ms.date: 09/24/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -14,7 +14,7 @@ uid: security/authentication/identity-enable-qrcodes
 
 # Enabling QR Code generation for authenticator apps in ASP.NET Core
 
-Note: This topic applies to ASP.NET Core 2.x with Razor Pages.
+Note: This topic applies to ASP.NET Core 2.x
 
 ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approch for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
 
@@ -26,7 +26,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 
 * Download the  [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-* In the *Pages\Account\Manage\EnableAuthenticator.cshtml* file, locate the `Scripts` section at the end of the file:
+* In *Pages\Account\Manage\EnableAuthenticator.cshtml* (Razor Pages) or *Views\Account\Manage\EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:
 
 ```cshtml
 @section Scripts {
@@ -40,7 +40,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
-    <script type="text/javascript" src="/lib/qrcode.js"></script>
+    <script type="text/javascript" src="~/lib/qrcode.js"></script>
     <script type="text/javascript">
         new QRCode(document.getElementById("qrCode"),
             {
@@ -85,3 +85,7 @@ The correctly formatted URL for the QR Code is available in the:
 * `data-url` property in the `qrCodeData` element. 
 
 Use `@Html.Raw` to access the model property in a view (otherwise the ampersands in the url will be double encoded and the label parameter of the QR Code will be ignored).
+
+## TOTP client and server time skew
+
+TOTP authentication depends on both the server and authenticator device having an accurate time. Tokens only last for 30 seconds. If TOTP 2FA logins are failing, check that the server time is accurate, and preferably synchronized to an accurate NTP service.

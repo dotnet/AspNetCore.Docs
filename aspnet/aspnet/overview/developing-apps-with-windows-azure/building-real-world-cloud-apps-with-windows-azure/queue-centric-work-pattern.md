@@ -86,7 +86,7 @@ To implement the queue pattern, we need to make two changes to the Fix It app.
 - When a user submits a new Fix It task, put the task in the queue, instead of writing it to the database.
 - Create a back-end service that processes messages in the queue.
 
-For the queue, we'll use the [Azure Queue Storage Service](https://www.windowsazure.com/en-us/develop/net/how-to-guides/queue-service/). Another option is to use [Azure Service Bus](https://www.windowsazure.com/en-us/documentation/services/service-bus/).
+For the queue, we'll use the [Azure Queue Storage Service](https://www.windowsazure.com/en-us/develop/net/how-to-guides/queue-service/). Another option is to use [Azure Service Bus](https://docs.microsoft.com/azure/service-bus/).
 
 To decide which queue service to use, consider how your app needs to send and receive the messages in the queue:
 

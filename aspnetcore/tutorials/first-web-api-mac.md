@@ -1,16 +1,19 @@
 ---
 title: Create a Web API with ASP.NET Core and Visual Studio for Mac
-author: rick-anderson
 description: Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
-keywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
+author: rick-anderson
 ms.author: riande
-manager: wpickett
-ms.date: 5/24/2017
+ms.date: 09/15/2017
 ms.topic: get-started-article
-ms.assetid: 830b4af5-ed14-1638-7734-764a6f13a8f6
-ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/first-web-api-mac
+helpviewer_heywords: ASP.NET Core, WebAPI, Web API, REST, mac, macOS, HTTP, Service, HTTP Service
+
+#ROBOTS: 
+ms.technology: aspnet
+keywords: ASP.NET Core,WebAPI,Web API,REST,mac,macOS,HTTP,Service,HTTP Service
+#ms.devlang: [LANGUAGES]
+manager: wpickett
 ---
 
 # Create a Web API with ASP.NET Core MVC and Visual Studio for Mac
@@ -35,7 +38,7 @@ There are 3 versions of this tutorial:
 
 Install the following:
 
-- [.NET Core SDK](https://www.microsoft.com/net/core#macos)  
+- [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later
 - [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
 
 ## Create the project
@@ -129,7 +132,7 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These are 
 
 [!code-csharp[Main](first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-This is an HTTP POST method, indicated by the [`[HttpPost]`](https://docs.microsoft.com/aspnet/core/api) attribute. The [`[FromBody]`](https://docs.microsoft.com/aspnet/core/api) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
+This is an HTTP POST method, indicated by the [`[HttpPost]`](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [`[FromBody]`](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
 The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 

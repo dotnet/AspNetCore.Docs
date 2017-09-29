@@ -90,7 +90,7 @@ In the **Publish** dialog, select **Microsoft Azure App Service** and click **Pu
 
 * Name the app a unique name. 
 
-* Select an MSDN subscription.
+* Select a subscription.
 
 * Select **New...** for the resource group and enter a name for the new resource group.
 

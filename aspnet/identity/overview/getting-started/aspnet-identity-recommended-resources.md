@@ -36,7 +36,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## Getting Started with ASP.NET Identity
 
 - [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) This tutorial shows you how to write an ASP.NET MVC 5 app with Facebook and Google OAuth 2 authorization. It also shows how to add additional data to the Identity database.
-- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). This tutorial adds Azure deployment, how to secure your app with roles, how to use the membership API to add users and roles, and additional security features.
+- [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Azure](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). This tutorial adds Azure deployment, how to secure your app with roles, how to use the membership API to add users and roles, and additional security features.
 - [Introduction to ASP.NET Identity](introduction-to-aspnet-identity.md)
 - [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset](../../../mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md)
 - [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](../../../mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md)

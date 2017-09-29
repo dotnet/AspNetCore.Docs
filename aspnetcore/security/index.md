@@ -74,7 +74,6 @@ uid: security/index
 *   [Safe storage of app secrets during development](app-secrets.md)
 *   [Azure Key Vault configuration provider](key-vault-configuration.md)
 *   [Enforcing SSL](enforcing-ssl.md)
-*   [Setting up HTTPS for development](https.md)
 *   [Anti-Request Forgery](anti-request-forgery.md)
 *   [Preventing Open Redirect Attacks](preventing-open-redirects.md)
 *   [Preventing Cross-Site Scripting](cross-site-scripting.md)

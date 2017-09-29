@@ -78,6 +78,10 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Microsoft Account service in the `ConfigureServices` method in *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 {
     microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
@@ -85,7 +89,7 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 });
 ```
 
-The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

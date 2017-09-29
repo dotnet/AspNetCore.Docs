@@ -1,7 +1,6 @@
 _build/
 _site/
 Properties/
-node_modules/
 
 # Use git add -f to force override .sln when required. Not needed in most cases.
 # git add -f myProj.sln
@@ -213,4 +212,6 @@ __pycache__/
 
 #Mac OSX 
 .DS_Store
-aspnetcore/fundamentals/servers/httpsys/_static/Thumbs.db
+
+# Windows thumbnail cache files
+Thumbs.db

@@ -13,7 +13,7 @@ uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
 
-By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/JunTaoLuo)
+By [Luke Latham](https://github.com/guardrex) and [John Luo](https://github.com/JunTaoLuo)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/samples)
 
@@ -101,6 +101,17 @@ Response caching by the middleware is configured via HTTP headers. The relevant 
 | Content-Length | When serving from cache, the `Content-Length` header is set by the middleware if it wasn't provided on the original response. |
 | Age | The `Age` header sent in the original response is ignored. The middleware computes a new value when serving a cached response. |
 
+## Caching respects request Cache-Control directives
+
+The middleware respects the rules of the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234#section-5.2). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force a server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
+
+[Future enhancements to the middleware](https://github.com/aspnet/ResponseCaching/issues/96) will permit configuring the middleware for caching scenarios where the request `Cache-Control` header should be ignored when deciding to serve a cached response. If you seek more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
+
+* [Introduction to in-memory caching in ASP.NET Core](xref:performance/caching/memory)
+* [Working with a distributed cache](xref:performance/caching/distributed)
+* [Cache Tag Helper in ASP.NET Core MVC](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)
+* [Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)
+
 ## Troubleshooting
 If caching behavior isn't as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. Enabling [logging](xref:fundamentals/logging) can help when debugging. The middleware logs caching behavior and when a response is retrieved from cache.
 
@@ -120,7 +131,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The `Set-Cookie` header must not be present.
 * `Vary` header parameters must be valid and not equal to `*`.
 * The `Content-Length` header value (if set) must match the size of the response body.
-* The `HttpSendFileFeature` isn't used.
+* The [IHttpSendFileFeature](/aspnet/core/api/microsoft.aspnetcore.http.features.ihttpsendfilefeature) isn't used.
 * The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering is successful, and the size of the response is smaller than the configured or default `SizeLimit`.
 * The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of [RFC 7234](https://tools.ietf.org/html/rfc7234) for details.

@@ -5,13 +5,12 @@ description: How to add validation to a Razor Page
 keywords: ASP.NET Core,validation,DataAnnotations,Razor,Razor Pages
 ms.author: riande
 manager: wpickett
-ms.date: 8/7/2017
+ms.date: 08/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/razor-pages/validation
 ---
-
 # Adding validation to a Razor Page
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -32,7 +31,12 @@ Update the `Movie` class to take advantage of the `Required`, `StringLength`, `R
 
 [!code-csharp[Main](../../tutorials/first-mvc-app/start-mvc//sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-Validation attributes specify behavior that is enforced on model properties. The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy the validation constraint. The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, `Genre` and `Rating` must use only letters (white space, numbers and special characters are not allowed). The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. [Value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
+Validation attributes specify behavior that's enforced on model properties:
+
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
+* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` and `Rating` must use only letters (whitespace, numbers, and special characters aren't allowed).
+* The `Range` attribute constrains a value to a specified range.
+* The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
 
 Having validation rules automatically enforced by ASP.NET Core helps make an app more robust. Automatic validation on models helps protect the app because you don't have to remember to apply them when new code is added.
 
@@ -124,8 +128,6 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-Thanks for completing this introduction to Razor Pages. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
-
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
@@ -135,3 +137,4 @@ Thanks for completing this introduction to Razor Pages. We appreciate any commen
 
 >[!div class="step-by-step"]
 [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
+[Next: Uploading files](xref:tutorials/razor-pages/uploading-files)

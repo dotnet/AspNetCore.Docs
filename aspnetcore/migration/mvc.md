@@ -2,7 +2,7 @@
 title: Migrating From ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: 
-keywords: ASP.NET Core, MVC, migrating
+keywords: ASP.NET Core,MVC,migrating
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
