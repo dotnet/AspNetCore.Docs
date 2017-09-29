@@ -99,11 +99,24 @@ The adoption of this new 2.0 pattern is highly recommended and is required for p
 Unable to create an object of type '<Context>'. Add an implementation of 'IDesignTimeDbContextFactory<Context>' to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
 ```
 
-<a name="adding-configuration"></a>
+<a name="add-modify-configuration"></a>
 
-## Adding additional configuration
+## Add or modify configuration providers
 
-In 2.0 projects, the boilerplate configuration code runs behind-the-scenes. By default, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance. To add or modify providers, invoke the `ConfigureAppConfiguration` method in *Program.cs*:
+In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance:
+
+```csharp
+public class Startup
+{
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+
+    public IConfiguration Configuration { get; }
+```
+
+To add or modify configuration providers, invoke the `IWebHostBuilder.ConfigureAppConfiguration` method in *Program.cs*:
 
 ```csharp
 public static void Main(string[] args)
