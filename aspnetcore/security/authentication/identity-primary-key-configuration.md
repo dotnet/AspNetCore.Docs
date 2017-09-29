@@ -29,7 +29,7 @@ ASP.NET Core Identity allows you to configure the data type used to represent a 
 
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Data/ApplicationDbContext.cs?highlight=3&range=9-26)]
 	
-1. Register your custom database context class when adding the Identity service in the app's startup class.
+1. Register the custom database context class when adding the Identity service in the app's startup class.
 
     # [ASP.NET Core 2.x](#tab/aspnetcore2x)
     
