@@ -14,7 +14,7 @@ namespace RazorPagesContacts
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-#if  Debug
+#if Debug
                 .UseStartup<StartupDebug>()
 #else
                 .UseStartup<Startup>()

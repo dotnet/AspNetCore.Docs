@@ -153,13 +153,9 @@ The code behind *Index.cshtml.cs* file:
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
-```cshtml
-<a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
-```
+[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
-used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#route)
-attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the [asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#route) attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`.
 
 The *Pages/Edit.cshtml* file:
 
@@ -170,6 +166,34 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 The *Pages/Edit.cshtml.cs* file:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+
+The *Index.cshtml* file also contains markup to create a delete button for each customer contact:
+
+[!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
+
+When the delete button is rendered in HTML, its `formaction` includes parameters for:
+
+* The customer contact ID specified by the `asp-route-id` attribute.
+* The `handler` specified by the `asp-page-handler` attribute.
+
+Here is an example of a rendered delete button with a customer contact ID of `1`:
+
+```html
+<button type="submit" formaction="/?id=1&amp;handler=delete">delete</button>
+```
+
+When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
+
+Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a page handler method with the name `OnPostRemoveAsync` is selected.
+
+[!code-cs[main](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs?range=26-37)]
+
+The `OnPostDeleteAsync` method:
+
+* Accepts the `id` from the query string.
+* Queries the database for the customer contact with `FindAsync`.
+* If the customer contact is found, they're removed from the list of customer contacts. The database is updated.
+* Calls `RedirectToPage` to redirect to the root Index page (`/Index`).
 
 <a name="xsrf"></a>
 

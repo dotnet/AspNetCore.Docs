@@ -65,7 +65,7 @@ Additionally, there are some special data types that MVC must consider when perf
 
 * `IFormFile`, `IEnumerable<IFormFile>`: One or more uploaded files that are part of the HTTP request.
 
-* `CancelationToken`: Used to cancel activity in asynchronous controllers.
+* `CancellationToken`: Used to cancel activity in asynchronous controllers.
 
 These types can be bound to action parameters or to properties on a class type.
 
