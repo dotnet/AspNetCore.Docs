@@ -254,8 +254,8 @@ ASP.NET Core 2.x unifies the APIs used for configuring cookies. The 1.x APIs hav
 An example of using `CookieAuthenticationOptions` in the `ConfigureServices` method of *Startup.cs* follows:
 
 ```csharp
-services.AddAuthentication()
-        .AddCookie(options =>
+services.AddAuthentication("MyCookieAuthenticationScheme")
+        .AddCookie("MyCookieAuthenticationScheme", options =>
         {
             options.Cookie.Name = "AuthCookie";
             options.Cookie.Domain = "contoso.com";
