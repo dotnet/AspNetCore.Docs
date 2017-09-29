@@ -136,6 +136,8 @@ public static IWebHost BuildWebHost(string[] args) =>
         .Build();
 ```
 
+The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/396f413b389f5983e413be465f917cbfdbda26c9/src/Microsoft.AspNetCore/WebHost.cs#L152).
+
 <a name="db-init-code"></a>
 
 ## Move database initialization code
