@@ -103,16 +103,24 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 ## Adding additional configuration
 
-In 2.0 projects, the boilerplate configuration code runs behind-the-scenes. By default, environment variables and app settings are loaded into startup so all that is required in *Startup.cs* is initializing `IConfiguration` with the injected instance. To add additional providers or to change existing providers, utilize `ConfigureAppConfiguration` on `IWebHostBuilder` in *Program.cs*:
+In 2.0 projects, the boilerplate configuration code runs behind-the-scenes. By default, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance. To add or modify providers, invoke the `ConfigureAppConfiguration` method in *Program.cs*:
 
 ```csharp
- var host = new WebHostBuilder()
-                .ConfigureAppConfiguration((hostContext, config) =>
-                {
-                    config.AddEnvironmentVariables();
-                    config.AddJsonFile("appsettings.json", optional: true);
-                    config.AddCommandLine(args);
-                });
+public static void Main(string[] args)
+{
+    BuildWebHost(args).Run();
+}
+
+public static IWebHost BuildWebHost(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .ConfigureAppConfiguration((hostContext, config) =>
+        {
+            config.AddEnvironmentVariables();
+            config.AddJsonFile("appsettings.json", optional: true);
+            config.AddCommandLine(args);
+        })
+        .Build();
 ```
 
 <a name="db-init-code"></a>
