@@ -139,6 +139,7 @@
 ## [Integration testing](testing/integration-testing.md)
 ## [Testing controllers](mvc/controllers/testing.md)
 ## [Remote debugging](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure)
+## [Snapshot debugging](https://docs.microsoft.com/azure/application-insights/app-insights-snapshot-debugger)
 
 # [Working with Data](data/index.md)
 ## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
