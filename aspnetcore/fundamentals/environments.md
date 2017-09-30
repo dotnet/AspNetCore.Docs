@@ -1,7 +1,7 @@
 ---
-title: Working with Multiple Environments
+title: Working with multiple environments in ASP.NET Core
 author: ardalis
-description: 
+description: Learn how ASP.NET Core provides support for controlling app behavior across multiple environments.
 keywords: ASP.NET Core,Environment settings,ASPNETCORE_ENVIRONMENT
 ms.author: riande
 manager: wpickett

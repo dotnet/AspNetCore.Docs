@@ -1,7 +1,7 @@
 ---
 title: Routing in ASP.NET Core
 author: ardalis
-description: 
+description: Discover how ASP.NET Core routing functionality is responsible for mapping an incoming request to a route handler.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
