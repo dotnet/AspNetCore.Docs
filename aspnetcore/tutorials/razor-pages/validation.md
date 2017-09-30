@@ -128,6 +128,10 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
+### Publish to Azure
+
+See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure.
+
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
