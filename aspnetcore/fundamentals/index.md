@@ -117,7 +117,7 @@ For more information, see [Configuration](xref:fundamentals/configuration).
 
 ## Logging
 
-ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers allow you send logs to one or more destinations, and you can add third-party logging frameworks.
+ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers support sending logs to one or more destinations. Third-party logging frameworks can be used.
 
 [Logging](xref:fundamentals/logging)
 
@@ -129,7 +129,7 @@ For more information, see [Error Handling](xref:fundamentals/error-handling).
 
 ## Routing
 
-ASP.NET Core offers features for routing of app requests to route handlers within your apps.
+ASP.NET Core offers features for routing of app requests to route handlers.
 
 For more information, see [Routing](xref:fundamentals/routing).
 
@@ -159,7 +159,7 @@ For more information, see [Session and application state](xref:fundamentals/app-
 
 ## Servers
 
-The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that you can access through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is often run behind a production web server, such as [IIS](https://www.iis.net/) or [nginx](http://nginx.org), but you can run Kestrel as an edge server if you wish.
+The ASP.NET Core hosting model doesn't directly listen for requests. The hosting model relies on an HTTP server implementation to forward the request to the app. The forwarded request is wrapped as a set of feature objects that can be accessed through interfaces. ASP.NET Core includes a managed, cross-platform web server, called [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is often run behind a production web server, such as [IIS](https://www.iis.net/) or [nginx](http://nginx.org). Kestrel can be run as an edge server.
 
 For more information, see [Servers](xref:fundamentals/servers/index) and the following topics:
 
