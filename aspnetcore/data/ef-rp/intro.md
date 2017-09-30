@@ -1,19 +1,16 @@
 ---
-title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10
-author: tdykstra
-description: 
-keywords:ASP.NET Core,Entity Framework Core,tutorial, Razor Pages
+title: Razor Pages with Entity Framework Core - Tutorial 1 of 10
+author: rick-anderson
+description: Shows how to create a Razor Pages app using Entity Framework Core
+keywords: ASP.NET Core,Entity Framework Core,tutorial
 ms.author: riande
 manager: wpickett
-ms.date: 03/15/2017
+ms.date: 10/15/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/intro
-
 ---
-
-[Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
 
 # Getting started with Razor Pages and Entity Framework Core using Visual Studio (1 of 10)
 
