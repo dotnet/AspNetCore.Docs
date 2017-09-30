@@ -103,7 +103,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 ## Add or modify configuration providers
 
-In 1.x projects, adding configuration providers to application was done during the middleware process by creating an instance of `ConfigurationBuilder`, loading applicable providers (environment variables, app settings, etc), and initializing a a member of `IConfigurationRoot`.
+In 1.x projects, adding configuration providers to an application was done during the middleware process by creating an instance of `ConfigurationBuilder`, loading applicable providers (environment variables, app settings, etc), and initializing a a member of `IConfigurationRoot`.
 
 ```csharp
 public Startup(IHostingEnvironment env)
@@ -119,7 +119,7 @@ public Startup(IHostingEnvironment env)
 public IConfigurationRoot Configuration { get; }        
 
 ```
-The above example loads the `Configuration` member with environment variables supplied in *launchSettings.json* and configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment` . The location of these files would be at the same path as `Startup.cs`
+The above example loads the `Configuration` member with environment variables supplied in *launchSettings.json* and configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as `Startup.cs`
 
 In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance:
 
