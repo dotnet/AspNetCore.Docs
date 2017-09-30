@@ -70,7 +70,7 @@ Open *Pages/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47)]
+[!code-html[](intro/samples/cu/Pages/_Layout.cshtml?highlight=6,29,35-38,47&range=1-50)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this app:
 
@@ -199,3 +199,22 @@ Add `using` statements:
 [!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Usings)]
 
 The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, you see how to modify the database when the data model changes, without deleting and re-creating it.
+
+<a name="scaffold"></a>
+### Scaffold the model
+
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  ```
+
+If you get the error:
+  ```
+  The process cannot access the file 
+ 'RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll' 
+  because it is being used by another process.
+  ```
+
+Exit Visual Studio and run the command again.
