@@ -21,11 +21,11 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ---
 
