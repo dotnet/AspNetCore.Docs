@@ -1,7 +1,7 @@
 ---
 title: Logging in ASP.NET Core
 author: ardalis
-description: Introduces the logging framework in ASP.NET Core. Includes a section for each built-in logging provider and links to some popular third-party providers.
+description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 keywords: ASP.NET Core,logging,logging providers,Microsoft.Extensions.Logging,ILogger,ILoggerFactory,LogLevel,WithFilter,TraceSource,EventLog,EventSource,scopes
 ms.author: tdykstra
 manager: wpickett
