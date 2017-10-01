@@ -19,7 +19,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core is not a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What is a PO file?
 

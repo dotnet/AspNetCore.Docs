@@ -27,7 +27,7 @@ This allows ASP.NET Core to be hosted on top of an OWIN compatible server/host, 
 
 Note: Using these adapters comes with a performance cost. Applications using only ASP.NET Core components should not use the Owin package or adapters.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Running OWIN middleware in the ASP.NET pipeline
 
