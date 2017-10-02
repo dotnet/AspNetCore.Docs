@@ -107,7 +107,7 @@ In 1.x projects, adding configuration providers to an application was done durin
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_1xStartup)]
 
-The above example loads the `Configuration` member with configuration settings from *appsettings.json* as well as any *appsettings.\<EnvironmentName\>.json* file matching the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as *Startup.cs*.
+The preceding example loads the `Configuration` member with configuration settings from *appsettings.json* as well as any *appsettings.\<EnvironmentName\>.json* file matching the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as *Startup.cs*.
 
 In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. The equivalent *Startup.cs* code is reduced to `IConfiguration` initialization with the injected instance:
 
