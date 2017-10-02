@@ -103,59 +103,23 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 ## Add configuration providers
 
-In 1.x projects, adding configuration providers to an application was done during the middleware process by creating an instance of `ConfigurationBuilder`, loading applicable providers (environment variables, app settings, etc), and initializing a a member of `IConfigurationRoot`.
+In 1.x projects, adding configuration providers to an application was done during the middleware process by creating an instance of `ConfigurationBuilder`, loading applicable providers (environment variables, app settings, etc.), and initializing a member of `IConfigurationRoot`.
 
-```csharp
-public Startup(IHostingEnvironment env)
-{
-    var builder = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-            .AddEnvironmentVariables();
-    Configuration = builder.Build();
-}
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_1xStartup)]
 
-public IConfigurationRoot Configuration { get; }
-```
-The above example loads the `Configuration` member with configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as `Startup.cs`
+The above example loads the `Configuration` member with configuration settings from *appsettings.json* as well as any *appsettings.\<EnvironmentName\>.json* file matching the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as *Startup.cs*.
 
-In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance:
+In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. The equivalent *Startup.cs* code is reduced to `IConfiguration` initialization with the injected instance:
 
-```csharp
-public class Startup
-{
-    public Startup(IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
-
-    public IConfiguration Configuration { get; }
-```
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
 To add configuration providers, invoke the `IWebHostBuilder.ConfigureAppConfiguration` method in *Program.cs*:
 
-```csharp
-public static void Main(string[] args)
-{
-    BuildWebHost(args).Run();
-}
-
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureAppConfiguration((hostContext, config) =>
-        {
-            config.AddEnvironmentVariables();
-            config.AddJsonFile("appsettings.json", optional: true);
-            config.AddCommandLine(args);
-        })
-        .Build();
-```
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders)]
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
-For more information on Configuration in ASP.Net Core, refer to the [documentation](xref:fundamentals/configuration)
+For more information on configuration in ASP.NET Core, refer to the [documentation](xref:fundamentals/configuration).
 
 <a name="db-init-code"></a>
 

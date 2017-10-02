@@ -17,6 +17,7 @@ namespace AspNetCoreDotNetCore1App
 {
     public class Startup
     {
+        #region snippet_1xStartup
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -35,6 +36,7 @@ namespace AspNetCoreDotNetCore1App
         }
 
         public IConfigurationRoot Configuration { get; }
+        #endregion
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
