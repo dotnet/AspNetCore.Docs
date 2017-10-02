@@ -101,7 +101,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 <a name="add-modify-configuration"></a>
 
-## Add or modify configuration providers
+## Add configuration providers
 
 In 1.x projects, adding configuration providers to an application was done during the middleware process by creating an instance of `ConfigurationBuilder`, loading applicable providers (environment variables, app settings, etc), and initializing a a member of `IConfigurationRoot`.
 
