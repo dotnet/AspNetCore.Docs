@@ -1,6 +1,6 @@
 ---
 title: Razor syntax reference for ASP.NET Core
-author: ntaylormullen
+author: guardrex
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 keywords: ASP.NET Core,Razor,Razor directives
 ms.author: riande
@@ -13,21 +13,13 @@ uid: mvc/views/razor
 ---
 # Razor syntax for ASP.NET Core
 
-By [Taylor Mullen](https://twitter.com/ntaylormullen) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Taylor Mullen](https://twitter.com/ntaylormullen), [Luke Latham](https://github.com/guardrex), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension.
 
 ## Rendering HTML
 
-The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. If you place the following markup into a Razor file, it's rendered by the server unchanged:
-
-```cshtml
-<p>Hello World</p>
-```
-
-```html
-<p>Hello World</p>
-```
+The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. If you place HTML markup into a *.cshtml* Razor file, it's rendered by the server unchanged.
 
 ## Razor syntax
 
