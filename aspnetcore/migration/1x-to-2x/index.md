@@ -107,17 +107,16 @@ In 1.x projects, adding configuration providers to an application was done durin
 
 ```csharp
 public Startup(IHostingEnvironment env)
-    {
-        var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-        Configuration = builder.Build();
-    }
+{
+    var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            .AddEnvironmentVariables();
+    Configuration = builder.Build();
+}
 
-public IConfigurationRoot Configuration { get; }        
-
+public IConfigurationRoot Configuration { get; }
 ```
 The above example loads the `Configuration` member with environment variables supplied in *launchSettings.json* and configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as `Startup.cs`
 
