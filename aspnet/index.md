@@ -62,7 +62,7 @@ description:
                                 </a>
                             </li>
                             <li>
-                                <a href="https://docs.microsoft.com/aspnet/core/api/">
+                                <a href="https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-2.0">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
