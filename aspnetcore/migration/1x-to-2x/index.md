@@ -154,7 +154,7 @@ public static IWebHost BuildWebHost(string[] args) =>
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
-For more information on configuration in ASP.NET Core, refer to the [documentation](xref:fundamentals/configuration).
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration).
 
 <a name="db-init-code"></a>
 
