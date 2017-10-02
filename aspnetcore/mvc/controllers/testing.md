@@ -42,7 +42,7 @@ Typical controller responsibilities:
 If you're writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.
 
 > [!TIP]
-> [Create and run unit tests with Visual Studio](https://www.visualstudio.com/docs/code/create-and-run-unit-tests-vs).
+> [Create and run unit tests with Visual Studio](https://docs.microsoft.com/visualstudio/test/unit-test-your-code).
 
 To demonstrate unit testing, review the following controller. It displays a list of brainstorming sessions and allows new brainstorming sessions to be created with a POST:
 
