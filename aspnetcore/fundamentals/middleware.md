@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 keywords: ASP.NET Core,Middleware,pipeline,delegate
 ms.author: riande
 manager: wpickett
-ms.date: 08/14/2017
+ms.date: 10/08/2017
 ms.topic: article
 ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
 ms.technology: aspnet
@@ -77,7 +77,7 @@ public void Configure(IApplicationBuilder app)
 
     app.UseStaticFiles();                   // Return static files and end pipeline.
 
-    app.UseIdentity();                     // Authenticate before you access
+    app.UseAuthentication();                     // Authenticate before you access
                                            // secure resources.
 
     app.UseMvcWithDefaultRoute();          // Add MVC to the request pipeline.
@@ -88,7 +88,7 @@ In the code above, `UseExceptionHandler` is the first middleware component added
 
 The static file middleware is called early in the pipeline so it can handle requests and short-circuit without going through the remaining components. The static file middleware provides **no** authorization checks. Any files served by it, including those under *wwwroot*, are publicly available. See [Working with static files](xref:fundamentals/static-files) for an approach to secure static files.
 
-If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseIdentity`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific controller and action.
+If the request is not handled by the static file middleware, it's passed on to the Identity middleware (`app.UseAuthentication`), which performs authentication. Identity does not short-circuit unauthenticated requests. Although Identity authenticates requests,  authorization (and rejection) occurs only after MVC selects a specific Razor Page or controller and action.
 
 The following example demonstrates a middleware ordering where requests for static files are handled by the static file middleware before the response compression middleware. Static files are not compressed with this ordering of the middleware. The MVC responses from [UseMvcWithDefaultRoute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.mvcapplicationbuilderextensions#Microsoft_AspNetCore_Builder_MvcApplicationBuilderExtensions_UseMvcWithDefaultRoute_Microsoft_AspNetCore_Builder_IApplicationBuilder_) can be compressed.
 
