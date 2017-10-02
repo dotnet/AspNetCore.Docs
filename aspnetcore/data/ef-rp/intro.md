@@ -176,11 +176,11 @@ The connection string specifies a SQL Server LocalDB database. LocalDB is a ligh
 
 ## Add code to initialize the database with test data
 
-EF will create an empty database.  In this section, you write a method that is called after the database is created to populate it with test data.
+EF will create an empty database. In this section, a *Seed* method is written to populate it with test data.
 
-You use the `EnsureCreated` method to automatically create the database. In a later tutorial, you see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
+The `EnsureCreated` method is added to automatically create the database. In a later tutorial, instructions shows how to handle model changes with Code First Migrations. Code First Migrations changes the database schema instead of dropping and re-creating the database.
 
-In the *Data* folder, create a new class file named *DbInitializer.cs* and replace the template code with the following code: 
+In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code: 
 
 [!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
@@ -200,6 +200,31 @@ Add `using` statements:
 
 The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, you see how to modify the database when the data model changes, without deleting and re-creating it.
 
+<a name="pmc"></a>
+## Add scaffold tooling and perform initial migration
+
+In this section, you use the Package Manager Console (PMC) to:
+
+* Add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
+* Add an initial migration.
+* Update the database with the initial migration.
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+
+In the Package Manager Console (PMC), enter the following commands:
+
+```powershell
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
+Add-Migration Initial
+Update-Database
+```
+
+The `Install-Package` command installs the tooling required to run the scaffolding engine.
+
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Data/SchoolContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
+
+The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+
 <a name="scaffold"></a>
 ### Scaffold the model
 
@@ -207,14 +232,5 @@ The first time the app is run, the database is created and seeded with test data
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Movie -dc MovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\CU --referenceScriptLibraries
   ```
-
-If you get the error:
-  ```
-  The process cannot access the file 
- 'RazorPagesMovie/bin/Debug/netcoreapp2.0/RazorPagesMovie.dll' 
-  because it is being used by another process.
-  ```
-
-Exit Visual Studio and run the command again.
