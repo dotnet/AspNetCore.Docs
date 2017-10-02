@@ -24,7 +24,7 @@ namespace AspNetCoreDotNetFx2._0App
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
                     config.AddEnvironmentVariables();
-                    config.AddJsonFile("appsettings.json", optional: true);
+                    config.AddJsonFile("myconfig.json", optional: true);
                     config.AddCommandLine(args);
                 })
                 .Build();
