@@ -68,7 +68,7 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 
 [!INCLUDE[model 4windows](../../includes/RP/model4Win.md)]
 
-[!INCLUDE[model 4](../../includes/RP/modeltbl.md)]
+[!INCLUDE[model 4](../../includes/RP/model4tbl.md)]
 
 <a name="test"></a>
 ### Test the app
