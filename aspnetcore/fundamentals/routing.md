@@ -41,18 +41,18 @@ Routing is connected to the [middleware](middleware.md) pipeline by the `RouterM
 
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
 
-Incoming requests enter the `RouterMiddleware`, which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext` `Handler` to a non-null
+Incoming requests enter the `RouterMiddleware`, which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext.Handler` to a non-null
 `RequestDelegate`. If a route sets a handler for the request, route processing stops and the handler will be invoked to process the request. If all routes are tried and no handler is found for the request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
 
-The primary input to `RouteAsync` is the `RouteContext` `HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext` `RouteData` are outputs that will be set after a route matches.
+The primary input to `RouteAsync` is the `RouteContext.HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext.RouteData` are outputs that will be set after a route matches.
 
 A match during `RouteAsync` will also set the properties of the `RouteContext.RouteData` to appropriate values based on the request processing done so far. If a route matches a request, the `RouteContext.RouteData` will contain important state information about the *result*.
 
-`RouteData` `Values` is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
+`RouteData.Values` is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
 
-`RouteData` `DataTokens`  is a property bag of additional data related to the matched route. `DataTokens` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in data tokens can be of any type, in contrast to route values, which must be easily convertible to and from strings.
+`RouteData.DataTokens`  is a property bag of additional data related to the matched route. `DataTokens` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in data tokens can be of any type, in contrast to route values, which must be easily convertible to and from strings.
 
-`RouteData` `Routers` is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the `Routers` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in `Routers` is the route collection, and should be used for URL generation. The last item in `Routers` is the route handler that matched.
+`RouteData.Routers` is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the `Routers` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in `Routers` is the route collection, and should be used for URL generation. The last item in `Routers` is the route handler that matched.
 
 ### URL generation
 
@@ -62,11 +62,11 @@ URL generation follows a similar iterative process, but starts with user or fram
 
 The primary inputs to `GetVirtualPath` are:
 
-* `VirtualPathContext` `HttpContext`
+* `VirtualPathContext.HttpContext`
 
-* `VirtualPathContext` `Values`
+* `VirtualPathContext.Values`
 
-* `VirtualPathContext` `AmbientValues`
+* `VirtualPathContext.AmbientValues`
 
 Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it is possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to get services or additional data associated with the current context.
 
@@ -74,11 +74,11 @@ Tip: Think of `Values` as being a set of overrides for the `AmbientValues`. URL 
 
 The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL as well as the some additional properties that should be set by the route.
 
-The `VirtualPathData` `VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
+The `VirtualPathData.VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
 
-The `VirtualPathData` `Router` is a reference to the route that successfully generated the URL.
+The `VirtualPathData.Router` is a reference to the route that successfully generated the URL.
 
-The `VirtualPathData` `DataTokens` properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of `RouteData.DataTokens`.
+The `VirtualPathData.DataTokens` properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of `RouteData.DataTokens`.
 
 ### Creating routes
 
