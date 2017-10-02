@@ -13,7 +13,7 @@ uid: mvc/views/razor
 ---
 # Razor syntax for ASP.NET Core
 
-By [Taylor Mullen](https://twitter.com/ntaylormullen), [Luke Latham](https://github.com/guardrex), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Luke Latham](https://github.com/guardrex), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Taylor Mullen](https://twitter.com/ntaylormullen)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension.
 
@@ -27,7 +27,7 @@ Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor e
 
 When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords), it transitions into Razor-specific markup. Otherwise, it transitions into plain C#.
 
-`@` symbols are escaped by an `@` symbol:
+To escape an `@` symbol in Razor markup, use a second `@` symbol:
 
 ```cshtml
 <p>@@Username</p>
