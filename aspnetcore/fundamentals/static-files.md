@@ -1,7 +1,7 @@
 ---
 title: Working with static files in ASP.NET Core
 author: rick-anderson
-description: Working with static files on ASP.NET Core
+description: Learn how to work with static files in ASP.NET Core.
 keywords: ASP.NET Core,static files,static assets,HTML,CSS,JavaScript
 ms.author: riande
 manager: wpickett
@@ -22,7 +22,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.NET Core app can serve directly to clients.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Serving static files
 
