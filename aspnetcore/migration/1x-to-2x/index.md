@@ -112,6 +112,10 @@ In 2.0 projects, the boilerplate configuration code inherent to 1.x projects run
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
+To add additional providers, utilize `IWebHostBuilder.ConfigureAppConfiguration` in *Program.cs*:
+
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders)]
+
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
 For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration).
