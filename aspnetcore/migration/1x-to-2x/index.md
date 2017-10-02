@@ -113,7 +113,6 @@ In 2.0 projects, the boilerplate configuration code inherent to 1.x projects run
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
-
 For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration).
 
 <a name="db-init-code"></a>
