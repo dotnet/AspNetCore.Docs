@@ -124,14 +124,12 @@ The preceding example loads the `Configuration` member with configuration settin
 In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. The equivalent *Startup.cs* code is reduced to `IConfiguration` initialization with the injected instance:
 
 ```csharp
-public class Startup
+public Startup(IConfiguration configuration)
 {
-    public Startup(IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
+    Configuration = configuration;
+}
 
-    public IConfiguration Configuration { get; }
+public IConfiguration Configuration { get; }
 ```
 
 To add configuration providers, invoke the `IWebHostBuilder.ConfigureAppConfiguration` method in *Program.cs*:
