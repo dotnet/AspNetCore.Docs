@@ -119,7 +119,7 @@ public Startup(IHostingEnvironment env)
 public IConfigurationRoot Configuration { get; }        
 
 ```
-The above example loads the `Configuration` member with environment variables supplied in *launchSettings.json* and configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as `Startup.cs`
+The above example loads the `Configuration` member with configuration settings from *appsettings.json* as well as any appsettings file that matches the `EnvironmentName` property provided in `IHostingEnvironment`. The location of these files would be at the same path as `Startup.cs`
 
 In 2.0 projects, the boilerplate configuration code inherent to 1.x projects runs behind-the-scenes. For example, environment variables and app settings are loaded at startup. All that is required in *Startup.cs* is `IConfiguration` initialization with the injected instance:
 
@@ -134,7 +134,7 @@ public class Startup
     public IConfiguration Configuration { get; }
 ```
 
-To add or modify configuration providers, invoke the `IWebHostBuilder.ConfigureAppConfiguration` method in *Program.cs*:
+To add configuration providers, invoke the `IWebHostBuilder.ConfigureAppConfiguration` method in *Program.cs*:
 
 ```csharp
 public static void Main(string[] args)
@@ -154,7 +154,7 @@ public static IWebHost BuildWebHost(string[] args) =>
         .Build();
 ```
 
-The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/396f413b389f5983e413be465f917cbfdbda26c9/src/Microsoft.AspNetCore/WebHost.cs#L152).
+The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
 For more information on Configuration in ASP.Net Core, refer to the [documentation](xref:fundamentals/configuration)
 
