@@ -94,7 +94,7 @@ In the following sections you'll create a class for each one of these entities.
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-Creat a *Models* folder. In the *Models* folder, create a class file named *Student.cs* and replace the code with the following:
+Create a *Models* folder. In the *Models* folder, create a class file named *Student.cs* and replace the code with the following:
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
@@ -226,7 +226,7 @@ The `Add-Migration` command generates code to create the initial database schema
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 <a name="scaffold"></a>
-### Scaffold the model
+## Scaffold the model
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Run the following command:
@@ -234,3 +234,12 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
   ```console
   dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\CU --referenceScriptLibraries
   ```
+  
+  Build the project and you get errors like the following:
+  
+  `1>Pages\CU\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
+  
+ Globally change `_context.Student` to `_context.Students` (that is, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633)in the next release.
+
+[!INCLUDE[model4tbl](../../includes/RP/model4tbl.md)]
+ 
