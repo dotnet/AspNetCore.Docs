@@ -112,7 +112,7 @@ In 2.0 projects, the boilerplate configuration code inherent to 1.x projects run
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
-To add additional providers, utilize `IWebHostBuilder.ConfigureAppConfiguration` in *Program.cs*:
+To remove all providers, use the `Clear()` extension on the `Sources` property of `IConfigurationBuilder` inside `ConfigureAppConfiguration`. After that point, there will be no Sources available and new ones will need to be added. To add additional providers, utilize `IWebHostBuilder.ConfigureAppConfiguration` in *Program.cs*:
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders&highlight=9-14)]
 

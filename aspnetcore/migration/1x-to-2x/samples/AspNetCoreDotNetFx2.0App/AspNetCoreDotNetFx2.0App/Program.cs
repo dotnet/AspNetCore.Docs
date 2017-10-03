@@ -23,6 +23,8 @@ namespace AspNetCoreDotNetFx2._0App
                 .UseStartup<Startup>()
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
+                    // delete all default configuration providers
+                    config.Sources.Clear();
                     config.AddJsonFile("myconfig.json", optional: true);
                 })
                 .Build();
