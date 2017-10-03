@@ -34,11 +34,10 @@ namespace Web2FA.Services
 
             TwilioClient.Init(accountSid, authToken);
 
-            var msg = MessageResource.Create(
+            return MessageResource.CreateAsync(
               to: new PhoneNumber(number),
               from: new PhoneNumber(Options.SMSAccountFrom),
               body: message);
-            return Task.FromResult(0);
         }
     }
 }
