@@ -35,13 +35,13 @@ Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and 
 Views help to establish a [**S**eparation **o**f **C**oncerns (SoC) design](http://deviq.com/separation-of-concerns/) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
 
 * The app is easier to maintain because it's better organized. Views are generally grouped by app feature. This makes it easier to find related views when working on a feature.
-* The parts of the app aren't tightly coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
+* The parts of the app are loosely coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
 * It's easier to test the user interface parts of the app because the views are separate units.
 * Due to better organization, it's less likely that you'll accidently repeat sections of the user interface.
 
 ## Creating a view
 
-Views that are specific to a controller are created in the *Views/[ControllerName]* folder. Views that are shared among controllers are placed in the *Views/Shared* folder. To create a view, add a new file and give it the same name as its associated controller action with the *.cshtml* file extension. To create a view for the *About* action in the *Home* controller, create an *About.cshtml* file in the *Views/Home* folder:
+Views that are specific to a controller are created in the *Views/[ControllerName]* folder. Views that are shared among controllers are placed in the *Views/Shared* folder. To create a view, add a new file and give it the same name as its associated controller action with the *.cshtml* file extension. To create a view that corresponds with the *About* action in the *Home* controller, create an *About.cshtml* file in the *Views/Home* folder:
 
 [!code-cshtml[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
@@ -83,7 +83,7 @@ The `View` helper method has several overloads. You can optionally specify:
 
 When an action returns a view, a process called *view discovery* takes place. This process determines which view file is used based on the view name. 
 
-When an action returns the `View` method (`return View();`) and a view isn't specified, the action name is used as the view name. For example, the *About* `ActionResult` method name of the controller is used to search for a view file named *About.cshtml*. First, the runtime looks in the *Views/[ControllerName]* folder for the view. If it doesn't find a matching view there, it searches the *Shared* folder for the view.
+The default behavior of the `View` method (`return View();`) is to return a view with the same name as the action method from which it's called. For example, the *About* `ActionResult` method name of the controller is used to search for a view file named *About.cshtml*. First, the runtime looks in the *Views/[ControllerName]* folder for the view. If it doesn't find a matching view there, it searches the *Shared* folder for the view.
 
 It doesn't matter if you implicitly return the `ViewResult` with `return View();` or explicitly pass the view name to the `View` method with `return View("<ViewName>");`. In both cases, view discovery searches for a matching view file in this order:
 
@@ -122,7 +122,7 @@ You can pass data to views using several approaches. The most robust approach is
 
 Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly-typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
-Tooling, such as [Visual Studio](https://www.visualstudio.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/), can also list members (properties of a model) while you're adding them to a view, which helps you write code faster with fewer errors. This feature is called [IntelliSense](/visualstudio/ide/using-intellisense) in Microsoft tools.
+[Visual Studio](https://www.visualstudio.com/vs/) and [Visual Studio Code](https://code.visualstudio.com/) list strongly-typed class members using a feature called [IntelliSense](/visualstudio/ide/using-intellisense). When you want to see the properties of a viewmodel, type the variable name for the viewmodel followed by a period (`.`). This helps you write code faster with fewer errors.
 
 Specify a model using the `@model` directive. Use the model with `@Model`:
 
@@ -311,7 +311,7 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 
 **When to use ViewData or ViewBag**
 
-Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use (or both) comes down to personal preference or the preference of your organization. Generally, developers are consistent in their use of one or the other. They either use `ViewData` everywhere or use `ViewBag` everywhere, but you're welcome to mix and match them. Since both are dynamically resolved at runtime and thus prone to causing runtime errors, use them carefully. Some developers avoid them completely.
+Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use (or both) comes down to personal preference or the preference of your organization. Though you can mix and match `ViewData` and `ViewBag` objects, the code is easier to read and maintain when you choose only one and use it consistently. Since both are dynamically resolved at runtime and thus prone to causing runtime errors, use them carefully. Some developers avoid them completely.
 
 ### Dynamic views
 
