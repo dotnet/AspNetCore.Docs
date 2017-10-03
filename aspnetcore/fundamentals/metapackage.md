@@ -14,7 +14,7 @@ uid: fundamentals/metapackage
 
 #Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.x
 
-This feature requires ASP.NET Core 2.x.
+This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
 The [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) metapackage for ASP.NET Core includes:
 
