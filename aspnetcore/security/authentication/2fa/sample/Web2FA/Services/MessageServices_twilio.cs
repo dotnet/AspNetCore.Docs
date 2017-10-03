@@ -31,7 +31,6 @@ namespace Web2FA.Services
             var accountSid = Options.SMSAccountIdentification;
             // Your Auth Token from twilio.com/console
             var authToken = Options.SMSAccountPassword;
-            var 
 
             TwilioClient.Init(accountSid, authToken);
 
