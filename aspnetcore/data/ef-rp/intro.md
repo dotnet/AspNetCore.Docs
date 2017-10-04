@@ -113,7 +113,7 @@ The `EnrollmentID` property is the primary key. This entity uses the `classnameI
 
 The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is nullable. A grade that's null is different from a zero grade -- null means a grade isn't known or hasn't been assigned yet.
 
-The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property contains a single `Student` entity. THe `Student` entity differs from the `Student.Enrollments` navigation property, which contains multiple `Enrollment` entities.
+The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property contains a single `Student` entity. The `Student` entity differs from the `Student.Enrollments` navigation property, which contains multiple `Enrollment` entities.
 
 The `CourseID` property is a foreign key, and the corresponding navigation property is `Course`. An `Enrollment` entity is associated with one `Course` entity.
 
@@ -146,7 +146,7 @@ This code creates a `DbSet` property for each entity set. In EF terminology:
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
 
-`DbSet<Enrollment>` and `DbSet<Course>` can be omitted and it works the same. The EF includes them implicitly because the `Student` entity references the `Enrollment` entity and the `Enrollment` entity references the `Course` entity. For this tutorial, keep `DbSet<Enrollment>` and `DbSet<Course>` in the `SchoolContext`.
+`DbSet<Enrollment>` and `DbSet<Course>` can be omitted. EF includes them implicitly because the `Student` entity references the `Enrollment` entity, and the `Enrollment` entity references the `Course` entity. For this tutorial, keep `DbSet<Enrollment>` and `DbSet<Course>` in the `SchoolContext`.
 
 When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, you override the default behavior by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
 
