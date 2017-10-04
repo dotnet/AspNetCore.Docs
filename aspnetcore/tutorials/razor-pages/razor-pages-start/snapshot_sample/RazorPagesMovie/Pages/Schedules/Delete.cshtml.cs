@@ -28,7 +28,7 @@ namespace RazorPagesMovie.Pages.Schedules
                 return NotFound();
             }
 
-            Schedule = await _context.Schedules.SingleOrDefaultAsync(m => m.ID == id);
+            Schedule = await _context.Schedule.SingleOrDefaultAsync(m => m.ID == id);
 
             if (Schedule == null)
             {
@@ -45,11 +45,11 @@ namespace RazorPagesMovie.Pages.Schedules
                 return NotFound();
             }
 
-            Schedule = await _context.Schedules.FindAsync(id);
+            Schedule = await _context.Schedule.FindAsync(id);
 
             if (Schedule != null)
             {
-                _context.Schedules.Remove(Schedule);
+                _context.Schedule.Remove(Schedule);
                 await _context.SaveChangesAsync();
             }
 

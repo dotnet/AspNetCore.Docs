@@ -42,7 +42,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             #endregion
 
-            Movies = await movies.ToListAsync();
+            Movie = await movies.ToListAsync();
         }
         #endregion
 #endif

@@ -24,13 +24,13 @@ namespace RazorPagesMovie.Pages.Schedules
         #endregion
 
         #region snippet2
-        public IList<Schedule> Schedules { get; private set; }
+        public IList<Schedule> Schedule { get; private set; }
         #endregion
 
         #region snippet3
         public async Task OnGetAsync()
         {
-            Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+            Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace RazorPagesMovie.Pages.Schedules
             // attribute violations.
             if (!ModelState.IsValid)
             {
-                Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+                Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
                 return Page();
             }
 
@@ -55,7 +55,7 @@ namespace RazorPagesMovie.Pages.Schedules
             // violations.
             if (!ModelState.IsValid)
             {
-                Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+                Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
                 return Page();
             }
 
@@ -69,7 +69,7 @@ namespace RazorPagesMovie.Pages.Schedules
                     UploadDT = DateTime.UtcNow
                 };
 
-            _context.Schedules.Add(schedule);
+            _context.Schedule.Add(schedule);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
