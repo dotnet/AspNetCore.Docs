@@ -259,7 +259,7 @@ The *.mdf* and *.ldf* database files are in the *C:\Users\<yourusername>* folder
 
 ## Conventions
 
-The amount of code you had to write in order for the Entity Framework to create a complete database is minimal because of the use of conventions, or assumptions that EF makes.
+The amount of code you had to write in order for EF to create a complete database is minimal because of the use of conventions, or assumptions that EF makes.
 
 * The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
 
@@ -291,7 +291,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
-Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
+Some things to be aware of when you are writing asynchronous code that uses EF:
 
 * Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`.  It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
