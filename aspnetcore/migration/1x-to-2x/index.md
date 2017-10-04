@@ -5,7 +5,7 @@ description: This article outlines the prerequisites and most common steps for m
 keywords: ASP.NET Core,migrating
 ms.author: scaddie
 manager: wpickett
-ms.date: 08/01/2017
+ms.date: 10/03/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
