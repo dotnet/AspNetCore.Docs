@@ -12,7 +12,7 @@ Build the project and you get 7 errors of the form:
 
 Error	CS1061	'MovieContext' does not contain a definition for 'Movie' and no extension method 'Movie' accepting a first argument of type 'MovieContext' could be found (are you missing a using directive or an assembly reference?)	RazorPagesMovie	
 
-Globally change `_context.Movie` to `_context.Movies` (that is, add an "s" to `Movie`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633)in the next release.
+Globally change `_context.Movie` to `_context.Movies` (that is, add an "s" to `Movie`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633) in the next release.
 
 If you get the error:
   ```
