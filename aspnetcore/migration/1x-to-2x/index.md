@@ -112,9 +112,9 @@ In 2.0 projects, the boilerplate configuration code inherent to 1.x projects run
 
 [!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
-To remove all providers, use the `Clear()` extension on the `Sources` property of `IWebHostBuilder.IConfigurationBuilder` inside `ConfigureAppConfiguration`. After that point, there will be no Sources available and new ones will need to be added. To add additional providers, utilize `ConfigureAppConfiguration` in *Program.cs*:
+To remove all providers, invoke the `Clear` method on the `Sources` property of `IWebHostBuilder.IConfigurationBuilder` (inside `ConfigureAppConfiguration`). To add providers back, utilize the `ConfigureAppConfiguration` method in *Program.cs*:
 
-[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders&highlight=9-12)]
+[!code-csharp[Main](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders&highlight=9-14)]
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
