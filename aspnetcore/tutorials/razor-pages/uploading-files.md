@@ -39,7 +39,7 @@ The class uses `Display` and `DisplayFormat` attributes, which produce friendly 
 
 Specify a `DbSet` in the `MovieContext` (*Models/MovieContext.cs*) for the schedules:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieContext.cs?highlight=13,18)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Models/MovieContext.cs?highlight=13)]
 
 ## Add the Schedule table to the database
 
