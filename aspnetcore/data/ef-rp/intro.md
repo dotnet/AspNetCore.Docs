@@ -22,9 +22,6 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [Download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-EF Core 2.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://docs.microsoft.com/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
-
-
 ## Prerequisites
 
 [!INCLUDE[install 2.0](../../includes/install2.0.md)]
@@ -192,11 +189,7 @@ In *Program.cs*, modify the `Main` method to do the following on application sta
 * Call the seed method, passing to it the context.
 * Dispose the context when the seed method is done.
 
-[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
-
-Add `using` statements:
-
-[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet_Usings)]
+[!code-csharp[Main](intro/samples/cu/Program.cs)]
 
 The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, you see how to modify the database when the data model changes, without deleting and re-creating it.
 
@@ -220,7 +213,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Students -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
   
   Build the project and you get errors like the following:

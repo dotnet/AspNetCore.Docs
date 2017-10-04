@@ -1,18 +1,15 @@
-﻿using System;
+﻿// Unused usings removed
+using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-// Unused usings removed.
-#region snippet_Usings
 using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data;
-#endregion
 
 namespace ContosoUniversity
 {
     public class Program
     {
-        #region snippet_Seed
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
@@ -34,7 +31,6 @@ namespace ContosoUniversity
 
             host.Run();
         }
-        #endregion
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
