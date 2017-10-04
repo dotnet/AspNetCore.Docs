@@ -38,21 +38,21 @@
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Schedules[0].Title)
+                @Html.DisplayNameFor(model => model.Schedule[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Schedules[0].UploadDT)
+                @Html.DisplayNameFor(model => model.Schedule[0].UploadDT)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Schedules[0].PublicScheduleSize)
+                @Html.DisplayNameFor(model => model.Schedule[0].PublicScheduleSize)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Schedules[0].PrivateScheduleSize)
+                @Html.DisplayNameFor(model => model.Schedule[0].PrivateScheduleSize)
             </th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Schedules) {
+    @foreach (var item in Model.Schedule) {
         <tr>
             <td>
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>

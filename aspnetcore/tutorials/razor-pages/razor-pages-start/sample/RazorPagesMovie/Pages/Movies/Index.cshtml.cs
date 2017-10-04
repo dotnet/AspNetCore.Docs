@@ -23,7 +23,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public List<Movie> Movies;
+        public List<Movie> Movie;
         public SelectList Genres;
         public string MovieGenre { get; set; }
         #endregion
@@ -32,7 +32,7 @@ namespace RazorPagesMovie.Pages.Movies
         #region snippet_1stSearch
         public async Task OnGetAsync(string searchString)
         {
-            var movies = from m in _context.Movies
+            var movies = from m in _context.Movie
                          select m;
 
             #region snippet_SearchNull
@@ -42,7 +42,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             #endregion
 
-            Movies = await movies.ToListAsync();
+            Movie = await movies.ToListAsync();
         }
         #endregion
 #endif
@@ -54,12 +54,12 @@ namespace RazorPagesMovie.Pages.Movies
         {
             #region snippet_LINQ
             // Use LINQ to get list of genres.
-            IQueryable<string> genreQuery = from m in _context.Movies
+            IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
             #endregion
 
-            var movies = from m in _context.Movies
+            var movies = from m in _context.Movie
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -74,7 +74,7 @@ namespace RazorPagesMovie.Pages.Movies
             #region snippet_SelectList
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             #endregion
-            Movies = await movies.ToListAsync();
+            Movie = await movies.ToListAsync();
         }
         #endregion
 #endif
