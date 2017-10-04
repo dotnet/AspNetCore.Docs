@@ -13,12 +13,7 @@ namespace ContosoUniversity.DAL
         {
             get
             {
-
-                if (this.departmentRepository == null)
-                {
-                    this.departmentRepository = new GenericRepository<Department>(context);
-                }
-                return departmentRepository;
+                return this.departmentRepository ?? new GenericRepository<Department>(context);
             }
         }
 
@@ -26,12 +21,7 @@ namespace ContosoUniversity.DAL
         {
             get
             {
-
-                if (this.courseRepository == null)
-                {
-                    this.courseRepository = new GenericRepository<Course>(context);
-                }
-                return courseRepository;
+                return this.courseRepository ?? new GenericRepository<Course>(context);
             }
         }
 
