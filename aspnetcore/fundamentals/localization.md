@@ -314,6 +314,7 @@ Terms:
 * Culture: It is a language and, optionally, a region.
 * Neutral culture: A culture that has a specified language, but not a region. (for example "en", "es")
 * Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
+* Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
 * Locale: A locale is the same as a culture.
 
 ## Additional resources
