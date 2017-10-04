@@ -33,7 +33,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return Page();
             }
 
-            _context.Movies.Add(Movie);
+            _context.Movie.Add(Movie);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

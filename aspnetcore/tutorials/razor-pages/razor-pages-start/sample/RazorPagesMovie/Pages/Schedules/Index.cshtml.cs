@@ -21,11 +21,11 @@ namespace RazorPagesMovie.Pages.Schedules
         [BindProperty]
         public FileUpload FileUpload { get; set; }
 
-        public IList<Schedule> Schedules { get; private set; }
+        public IList<Schedule> Schedule { get; private set; }
 
         public async Task OnGetAsync()
         {
-            Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+            Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -34,7 +34,7 @@ namespace RazorPagesMovie.Pages.Schedules
             // attribute violations.
             if (!ModelState.IsValid)
             {
-                Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+                Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
                 return Page();
             }
 
@@ -48,7 +48,7 @@ namespace RazorPagesMovie.Pages.Schedules
             // violations.
             if (!ModelState.IsValid)
             {
-                Schedules = await _context.Schedules.AsNoTracking().ToListAsync();
+                Schedule = await _context.Schedule.AsNoTracking().ToListAsync();
                 return Page();
             }
 
@@ -62,7 +62,7 @@ namespace RazorPagesMovie.Pages.Schedules
                     UploadDT = DateTime.UtcNow
                 };
 
-            _context.Schedules.Add(schedule);
+            _context.Schedule.Add(schedule);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
