@@ -213,7 +213,7 @@ Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
   
   Build the project and you get errors like the following:
@@ -235,7 +235,7 @@ Test the **Create**, **Edit**, and **Details** links.
 
 ## View the Database
 
-When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if there is a DB, and creates one if necesary. If there are no Students in the DB, the code adds students.
+When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if there is a DB, and creates one if necesary. If there are no Students in the DB, the `Initialize` method adds students.
 
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
 In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
