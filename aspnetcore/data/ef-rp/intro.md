@@ -105,7 +105,7 @@ If a navigation property can hold multiple entities, the navigation property mus
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
-In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
+In the *Models* folder, create *Enrollment.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
@@ -137,7 +137,7 @@ The main class that coordinates EF functionality for a given data model is the d
 
 In the project folder, create a folder named *Data*.
 
-In the *Data* folder create a *SchoolContext.cs* with the following code:
+In the *Data* folder create *SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
@@ -208,6 +208,11 @@ In the Package Manager Console (PMC), enter the following command:
 ```powershell
 Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
 ```
+
+The previous command adds the NuGet package `Microsoft.VisualStudio.Web.CodeGeneration.Design` to the *.csproj file:
+
+[!code-csharp[Main](intro/samples/cu/ContosoUniversity.csproj?highlight=9-11)]
+
 
 <a name="scaffold"></a>
 ## Scaffold the model

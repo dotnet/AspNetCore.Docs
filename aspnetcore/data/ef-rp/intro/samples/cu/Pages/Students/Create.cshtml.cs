@@ -21,7 +21,7 @@ namespace ContosoUniversity.Pages.Students
 
         public IActionResult OnGet()
         {
-             Student = new Student
+            Student = new Student
             {
                 EnrollmentDate = DateTime.Now,
                 FirstMidName = "Joe",
