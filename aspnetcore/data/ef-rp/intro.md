@@ -201,29 +201,17 @@ Add `using` statements:
 The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, you see how to modify the database when the data model changes, without deleting and re-creating it.
 
 <a name="pmc"></a>
-## Add scaffold tooling and perform initial migration
+## Add scaffold tooling
 
-In this section, you use the Package Manager Console (PMC) to:
-
-* Add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
-* Add an initial migration.
-* Update the database with the initial migration.
+In this section, you use the Package Manager Console (PMC) to add the Visual Studio web code generation package. This package is required to run the scaffolding engine.
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-In the Package Manager Console (PMC), enter the following commands:
+In the Package Manager Console (PMC), enter the following command:
 
 ```powershell
 Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
-Add-Migration Initial
-Update-Database
 ```
-
-The `Install-Package` command installs the tooling required to run the scaffolding engine.
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *Data/SchoolContext.cs* file). The `Initial` argument is used to name the migrations. You can use any name, but by convention you choose a name that describes the migration. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 <a name="scaffold"></a>
 ## Scaffold the model
@@ -232,14 +220,94 @@ The `Update-Database` command runs the `Up` method in the *Migrations/\<time-sta
 * Run the following command:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\CU --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Students -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
   
   Build the project and you get errors like the following:
   
-  `1>Pages\CU\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
+  `1>Pages\Students\Index.cshtml.cs(26,38,26,45): error CS1061: 'SchoolContext' does not contain a definition for 'Student'`
   
  Globally change `_context.Student` to `_context.Students` (that is, add an "s" to `Student`). 7 occurrences are found and updated. We hope to fix [this bug](https://github.com/aspnet/Scaffolding/issues/633)in the next release.
 
 [!INCLUDE[model4tbl](../../includes/RP/model4tbl.md)]
  
+ <a name="test"></a>
+### Test the app
+
+Run the app and select the **Students** link. Depending the browser width, the **Students** link appears at the top of the page. If the **Students** link is not visible, click the navigation icon in the upper right corner.
+
+![Contoso University home page narrow](intro/_static/home-page-narrow.png)
+
+Test the **Create**, **Edit**, and **Details** links.
+
+## View the Database
+
+When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if there is a DB, and creates one if necesary. If there are no Students in the DB, the code adds students.
+
+Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
+
+Expand the **Tables** node.
+
+Right-click the **Student** table and click **View Data** to see the columns that were created and the rows that were inserted into the table.
+
+The *.mdf* and *.ldf* database files are in the *C:\Users\<yourusername>* folder.
+
+`EnsureCreated` is called on app start, which allows the following work flow:
+
+* Delete the DB.
+* Change the DB schema (for example, add an `EmailAddress` field).
+* Run the app. 
+
+`EnsureCreated` will create a DB with the`EmailAddress` column.
+
+## Conventions
+
+The amount of code you had to write in order for the Entity Framework to be able to create a complete database is minimal because of the use of conventions, or assumptions that EF makes.
+
+* The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
+
+* Entity property names are used for column names.
+
+* Entity properties that are named ID or classnameID are recognized as primary key properties.
+
+* A property is interpreted as a foreign key property if it's named *<navigation property name><primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can be named *<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
+
+Conventional behavior can be overridden. For example, the table names can be explicitly specified, as shown earlier in this tutorial. The column names can be explicitly set. Primary keys and foreign keys can be explicitly set. This is shown in a later tutorial.
+
+## Asynchronous code
+
+Asynchronous programming is the default mode for ASP.NET Core and EF Core.
+
+A web server has a limited number of threads available, and in high load situations all of the available threads might be in use. When that happens, the server can't process new requests until the threads are freed up. With synchronous code, many threads may be tied up while they aren't actually doing any work because they're waiting for I/O to complete. With asynchronous code, when a process is waiting for I/O to complete, its thread is freed up for the server to use for processing other requests. As a result, asynchronous code enables server resources to be used more efficiently, and the server is enabled to handle more traffic without delays.
+
+Asynchronous code does introduce a small amount of overhead at run time, but for low traffic situations the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
+
+In the following code, the `async` keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
+
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_ScaffoldedIndex)]
+
+* The `async` keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that is returned. See [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType) for more information.
+
+* The implicit return type `Task` represents ongoing work.
+
+* The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.
+
+* `ToListAsync` is the asynchronous version of the `ToList` extension method.
+
+Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
+
+* Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`.  It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+
+* An EF context is not thread safe: don't try to do multiple operations in parallel. When you call any async EF method, always use the `await` keyword.
+
+* If you want to take advantage of the performance benefits of async code, make sure that any library packages that you're using (such as for paging), also use async if they call any EF methods that cause queries to be sent to the database.
+
+For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async).
+
+In the next tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
+
+<!--
+>[!div class="step-by-step"]
+[Next](crud.md)  
+-->

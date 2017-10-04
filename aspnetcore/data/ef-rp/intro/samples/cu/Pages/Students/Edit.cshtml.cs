@@ -4,17 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 
-namespace ContosoUniversity.Pages.CU
+namespace ContosoUniversity.Pages.Students
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
-        public DeleteModel(ContosoUniversity.Data.SchoolContext context)
+        public EditModel(ContosoUniversity.Data.SchoolContext context)
         {
             _context = context;
         }
@@ -38,19 +39,22 @@ namespace ContosoUniversity.Pages.CU
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Student = await _context.Students.FindAsync(id);
+            _context.Attach(Student).State = EntityState.Modified;
 
-            if (Student != null)
+            try
             {
-                _context.Students.Remove(Student);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
             }
 
             return RedirectToPage("./Index");

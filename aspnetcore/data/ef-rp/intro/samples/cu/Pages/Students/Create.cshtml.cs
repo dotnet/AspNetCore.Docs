@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 
-namespace ContosoUniversity.Pages.CU
+namespace ContosoUniversity.Pages.Students
 {
     public class CreateModel : PageModel
     {
@@ -21,6 +21,12 @@ namespace ContosoUniversity.Pages.CU
 
         public IActionResult OnGet()
         {
+             Student = new Student
+            {
+                EnrollmentDate = DateTime.Now,
+                FirstMidName = "Joe",
+                LastName = "Smith"
+            };
             return Page();
         }
 
