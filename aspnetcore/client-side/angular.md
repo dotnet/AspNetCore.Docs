@@ -20,7 +20,7 @@ By [Venkata Koppaka](https://blog.falafel.com/falafel-software-recognized-sitefi
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What is AngularJS?
 

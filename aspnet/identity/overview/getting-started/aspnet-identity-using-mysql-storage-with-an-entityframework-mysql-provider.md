@@ -51,7 +51,7 @@ At the end of this tutorial, you will have an MVC application with the ASP.NET I
   
  [Click the following image to expand it. ]  
     [![](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/_static/image10.png)](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/_static/image9.png)
-7. Copy the connection string by clicking on the copy button by the **CONECTIONSTRING** field and save it; you will use this information later in this tutorial for your MVC application:  
+7. Copy the connection string by clicking on the copy button by the **CONNECTIONSTRING** field and save it; you will use this information later in this tutorial for your MVC application:  
   
  [Click the following image to expand it. ]  
     [![](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/_static/image12.png)](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/_static/image11.png)

@@ -26,8 +26,6 @@ By installing Microsoft ASP.NET WebHooks you get a general WebHook controller wh
 
 The URI of this controller is the WebHook URI that you register with the service and is of the form:
 
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
-
 ```
 https://<host>/api/webhooks/incoming/<receiver>/{id}
 ```
@@ -37,8 +35,6 @@ For security reasons, many WebHook receivers require that the URI is an *https* 
 The *<receiver>* component is the name of the receiver, for example *github* or *slack*.
 
 The *{id}* is an optional identifier which can be used to identify a particular WebHook receiver configuration. This can be used to register N WebHooks with a particular receiver. For example, the following three URIs can be used to register for three independent WebHooks:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```
 https://<host>/api/webhooks/incoming/github
@@ -62,15 +58,11 @@ WebHook Receivers are configured through the [IWebHookReceiverConfig](https://gi
 
 The format for Application Setting keys is as follows:
 
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
-
 ```
 MS_WebHookReceiverSecret_<receiver>
-````
+```
 
 The value is a comma-separated list of values matching the *{id}* values for which WebHooks have been registered, for example:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```
 MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
@@ -79,8 +71,6 @@ MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
 ## Initializing a WebHook Receiver
 
 WebHook Receivers are initialized by registering them, typically in the *WebApiConfig* static class, for example:
-
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
 ```csharp
 namespace WebHookReceivers

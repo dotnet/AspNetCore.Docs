@@ -43,4 +43,4 @@ Press **F5** to run the app in debug mode or **Ctrl-F5** to run without attachin
 [!INCLUDE[razor-pages-start](../../includes/RP/razor-pages-start.md)]
 
 >[!div class="step-by-step"]
-[Next: Adding a model](xref:tutorials/razor-pages/modelz)
+[Next: Adding a model](xref:tutorials/razor-pages/model)

@@ -34,9 +34,7 @@ WebHooks is a pattern which means that it varies how it is used from service to 
 
 Typically the HTTP POST request contains a JSON object or HTML form data determined by the WebHook sender including information about the event causing the WebHook to trigger. For example, an example of a WebHook POST request body from [GitHub](http://www.github.com/) looks like this as a result of a new issue being opened in a particular repository:
 
-<!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
-
-````javascript
+```json
 {
   "action": "opened",
   "issue": {
@@ -60,7 +58,7 @@ Typically the HTTP POST request contains a JSON object or HTML form data determi
       ...
   }
 }
-````
+```
 
 To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then verified by the receiver. For example, [GitHub WebHooks](https://developer.github.com/webhooks/) includes an *X-Hub-Signature* HTTP header with a hash of the request body which is checked by the receiver implementation so you don't have to worry about it.
 

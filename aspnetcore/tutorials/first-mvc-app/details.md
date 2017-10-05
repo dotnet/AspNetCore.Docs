@@ -51,6 +51,10 @@ Another common work around for methods that have identical names and signatures 
 public async Task<IActionResult> Delete(int id, bool notUsed)
 ```
 
+### Publish to Azure
+
+See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure.
+
 Thanks for completing this introduction to ASP.NET Core MVC. We appreciate any comments you leave. [Getting started with MVC and EF Core](xref:data/ef-mvc/intro) is an excellent follow up to this tutorial.
 
 >[!div class="step-by-step"]
