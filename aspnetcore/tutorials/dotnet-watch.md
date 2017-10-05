@@ -16,7 +16,7 @@ uid: tutorials/dotnet-watch
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-`dotnet watch` is a tool that runs a [.NET Core CLI](/dotnet/core/tools) command when source files change. For example, a file change can trigger compilation, tests, or deployment.
+`dotnet watch` is a tool that runs a [.NET Core CLI](/dotnet/core/tools) command when source files change. For example, a file change can trigger compilation, test execution, or deployment.
 
 In this tutorial, we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains a bug that we'll fix as part of this tutorial.
 
@@ -44,25 +44,25 @@ Navigate to the product API (`http://localhost:<port number>/api/math/product?a=
 
 ## Add `dotnet watch` to a project
 
-- Add a `Microsoft.DotNet.Watcher.Tools` package reference to the *.csproj* file:
+1. Add a `Microsoft.DotNet.Watcher.Tools` package reference to the *.csproj* file:
 
- ```xml
- <ItemGroup>
-     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
- </ItemGroup> 
- ```
+    ```xml
+    <ItemGroup>
+        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    </ItemGroup> 
+    ```
 
-- Run `dotnet restore`.
+1. Run `dotnet restore`.
 
 ## Running .NET Core CLI commands using `dotnet watch`
 
-Any .NET Core CLI command can be run with `dotnet watch`. For example:
+Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `dotnet watch`. For example:
 
 | Command | Command with watch |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
-| dotnet run -f net461 | dotnet watch run -f net461 |
-| dotnet run -f net461 -- --arg1 | dotnet watch run -f net461 -- --arg1 |
+| dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
+| dotnet run -f netcoreapp2.0 -- --arg1 | dotnet watch run -f netcoreapp2.0 -- --arg1 |
 | dotnet test | dotnet watch test |
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
@@ -86,17 +86,17 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 ## Running tests using `dotnet watch`
 
-- Change the `Product` method of the `MathController` back to returning the sum and save the file.
-- In a command window, navigate to the *WebAppTests* folder.
-- Run `dotnet restore`
-- Run `dotnet watch test`. You see output indicating that a test failed and that watcher is waiting for file changes:
+1. Change the `Product` method of *MathController.cs* back to returning the sum and save the file.
+1. In a command shell, navigate to the *WebAppTests* folder.
+1. Run `dotnet restore`.
+1. Run `dotnet watch test`. Its output indicates that a test failed and that watcher is awaiting file changes:
 
- ```console
- Total tests: 2. Passed: 1. Failed: 1. Skipped: 0.
- Test Run Failed.
- ```
+     ```console
+     Total tests: 2. Passed: 1. Failed: 1. Skipped: 0.
+     Test Run Failed.
+     ```
 
-- Fix the `Product` method code so it returns the product. Save the file.
+1. Fix the `Product` method code so it returns the product. Save the file.
 
 `dotnet watch` detects the file change and reruns the tests. The console output indicates the tests passed.
 
