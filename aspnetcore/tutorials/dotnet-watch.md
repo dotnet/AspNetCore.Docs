@@ -38,7 +38,7 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-In a web browser, navigate to `http://localhost:<port number>/api/math/sum?a=4&b=5`. You should see the result `9`.
+In a web browser, navigate to `http://localhost:<port number>/api/math/sum?a=4&b=5`. You should see the result of `9`.
 
 Navigate to the product API (`http://localhost:<port number>/api/math/product?a=4&b=5`). It returns `9`, not `20` as you'd expect. We'll fix that later in the tutorial.
 
@@ -52,7 +52,11 @@ Navigate to the product API (`http://localhost:<port number>/api/math/product?a=
     </ItemGroup> 
     ```
 
-1. Run `dotnet restore`.
+1. Install the `Microsoft.DotNet.Watcher.Tools` package by running the following command:
+    
+    ```console
+    dotnet restore
+    ```
 
 ## Running .NET Core CLI commands using `dotnet watch`
 
