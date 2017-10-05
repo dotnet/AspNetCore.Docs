@@ -308,7 +308,5 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In the next tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
 
-<!--
 >[!div class="step-by-step"]
-[Next](crud.md)  
--->
+[ Next CRUD operations](xref:data/ef-rp/crud)

@@ -1,0 +1,35 @@
+---
+title: Razor Pages with EF Core - CRUD - 2 of 10
+author: rick-anderson
+description: Shows how to create,read,update,delete with EF Core
+keywords: ASP.NET Core,Entity Framework Core,CRUD,create,read,update,delete
+ms.author: riande
+manager: wpickett
+ms.date: 10/15/2017
+ms.topic: get-started-article
+ms.technology: aspnet
+ms.prod: asp.net-core
+uid: data/ef-rp/crud
+---
+# Create, Read, Update, and Delete - EF Core with Razor Pages tutorial (2 of 10)
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
+
+In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
+
+Note: It's a common practice to implement the repository pattern in order to create an abstraction layer between the UI (Razor Pages) and the data access layer. To keep these tutorials simple and focused on teaching EF, the repository pattern is not used. For information about repositories with EF, see [the last tutorial in this series](xref:data/ef-mvc/advanced).
+
+In this tutorial, you'll work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
+
+## Customize the Details page
+
+The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
+
+The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `SingleOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
+
+The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the reading related data tutorial.
+
+The `AsNoTracking` method improves performance in scenarios where the entities returned will not be updated in the current context's lifetime. You'll learn more about `AsNoTracking` at the end of this tutorial.
+

@@ -14,8 +14,9 @@ uid: data/index
 ---
 # Working with Data in ASP.NET Core 
 
-*   [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/index)
-    *   [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
+* [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/index)
+    * [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
+	* [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
 
 *   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
     *   [Getting started](ef-mvc/intro.md)
