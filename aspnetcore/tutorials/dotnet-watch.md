@@ -16,7 +16,7 @@ uid: tutorials/dotnet-watch
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-`dotnet watch` is a tool that runs a [.NET Core CLI](/dotnet/core/tools) (`dotnet`) command when source files change. For example, a file change can trigger compilation, tests, or deployment.
+`dotnet watch` is a tool that runs a [.NET Core CLI](/dotnet/core/tools) command when source files change. For example, a file change can trigger compilation, tests, or deployment.
 
 In this tutorial, we use an existing Web API app with two endpoints: one that returns a sum and one that returns a product. The product method contains a bug that we'll fix as part of this tutorial.
 
@@ -54,9 +54,9 @@ Navigate to the product API (`http://localhost:<port number>/api/math/product?a=
 
 - Run `dotnet restore`.
 
-## Running `dotnet` commands using `dotnet watch`
+## Running .NET Core CLI commands using `dotnet watch`
 
-Any `dotnet` command can be run with `dotnet watch`. For example:
+Any .NET Core CLI command can be run with `dotnet watch`. For example:
 
 | Command | Command with watch |
 | ---- | ----- |
@@ -71,7 +71,7 @@ Run `dotnet watch run` in the *WebApp* folder. The console output indicates `wat
 
 Make sure `dotnet watch` is running.
 
-Fix the bug in the `Product` method of the `MathController` so it returns the product and not the sum.
+Fix the bug in the `Product` method of *MathController.cs* so it returns the product and not the sum:
 
 ```csharp
 public static int Product(int a, int b)
@@ -80,7 +80,7 @@ public static int Product(int a, int b)
 } 
 ```
 
-Save the file. The console output shows messages indicating that `dotnet watch` detected a file change and restarted the app.
+Save the file. The console output indicates that `dotnet watch` detected a file change and restarted the app.
 
 Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the correct result.
 
