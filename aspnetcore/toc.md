@@ -209,6 +209,7 @@
 #### [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
 #### [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 ### [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/)
+### [Securing ASP.NET Core apps with Azure App Service Authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
 ## [Authorization](xref:security/authorization/index)
 ### [Introduction](xref:security/authorization/introduction)
 ### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)

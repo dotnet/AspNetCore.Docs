@@ -40,4 +40,4 @@ uid: security/authentication/index
 
 * [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io/release/)
 
-* [Securing ASP.NET Core apps with Azure App Service Authentication (Easy Auth) ](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
+* [Securing ASP.NET Core apps with Azure App Service Authentication (Easy Auth)](https://docs.microsoft.com/azure/app-service/app-service-authentication-overview)
