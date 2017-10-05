@@ -43,6 +43,11 @@ Web API configuration setttings are defined in the [HttpConfiguration](https://m
 | **Routes** | The collection of routes. See [Routing in ASP.NET Web API](../web-api-routing-and-actions/routing-in-aspnet-web-api.md). |
 | **Services** | The collection of services. See [Services](#services). |
 
+
+## Prerequisites
+
+[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional, or Enterprise Edition.
+
 <a id="webhost"></a>
 ## Configuring Web API with ASP.NET Hosting
 
@@ -52,7 +57,7 @@ Here is an example using an anonymous delegate:
 
 [!code-csharp[Main](configuring-aspnet-web-api/samples/sample1.cs)]
 
-In Visual Studio 2013, the "ASP.NET Web Application" project template automatically sets up the configuration code, if you select "Web API" in the **New ASP.NET Project** dialog.
+In Visual Studio 2017, the "ASP.NET Web Application" project template automatically sets up the configuration code, if you select "Web API" in the **New ASP.NET Project** dialog.
 
 [![](configuring-aspnet-web-api/_static/image2.png)](configuring-aspnet-web-api/_static/image1.png)
 
