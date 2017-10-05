@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
-ms.date: 09/27/2017
+ms.date: 10/05/2017
 ms.topic: get-started-article
 ms.assetid: 78571e4a-a143-452d-9cf2-0860f85972e6
 ms.technology: aspnet
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https
 
 ## Set up
 
-* Open a [free Azure account](https://azure.microsoft.com/en-us/free) if you do not have one. 
+* Open a [free Azure account](https://aka.ms/K5y5yh) if you do not have one. 
 
 ## Create a web app
 
