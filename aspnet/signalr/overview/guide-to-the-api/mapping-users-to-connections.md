@@ -72,7 +72,7 @@ The following table shows which approach works for these considerations.
 
 This feature allows users to specify what the userId is based on an IRequest via a new interface IUserIdProvider.
 
-**The IUserProvider**
+**The IUserIdProvider**
 
 [!code-csharp[Main](mapping-users-to-connections/samples/sample1.cs)]
 
