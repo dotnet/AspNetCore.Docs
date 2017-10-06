@@ -23,7 +23,7 @@ The recommended way to host an ASP.NET Core app on Windows when you don't use II
 
 ## Prerequisites
 
-* The app must run on the .NET framework runtime.  In the *.csproj* file, specify appropriate values for [TargetFramework](https://docs.microsoft.com/nuget/schema/target-frameworks) and [RuntimeIdentifier](https://docs.microsoft.com/dotnet/articles/core/rid-catalog). Here's an example:
+* The app must run on the .NET Framework runtime.  In the *.csproj* file, specify appropriate values for [TargetFramework](https://docs.microsoft.com/nuget/schema/target-frameworks) and [RuntimeIdentifier](https://docs.microsoft.com/dotnet/articles/core/rid-catalog). Here's an example:
 
   [!code-xml[](windows-service/sample/AspNetCoreService.csproj?range=3-6)]
 

@@ -73,7 +73,7 @@ Build the solution.
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
-```PMC
+```powershell
 Add-Migration Rating
 Update-Database
 ```
@@ -94,7 +94,7 @@ If you delete all the records in the DB, the initializer will seed the DB and in
 * Select **OK**.
 * In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
 
-  ```PMC
+  ```powershell
   Update-Database
   ```
 
