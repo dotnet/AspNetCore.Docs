@@ -13,3 +13,37 @@ ms.prod: asp.net-core
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 
+# Getting Started
+
+..components
+
+# Package install
+
+VS
+..console
+
+..package manager
+
+VS for Mac
+
+VS Code
+
+.NET Core CLI
+
+# Add and configure Swagger to the middleware
+
+..code
+
+..first launch (ref to main article)
+
+# Customization
+
+..description
+
+..xml comments
+
+..data annotations
+
+..attributes
+
+..ui customization
