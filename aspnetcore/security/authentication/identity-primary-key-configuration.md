@@ -1,23 +1,52 @@
 ---
-title: Configure Identity primary keys data type
+title: Configure Identity primary key data type
+author: AdrienTorris
+description: This article outlines the steps for configuring the desired data type used for the ASP.NET Core Identity primary key.
+keywords: ASP.NET Core,Identity,primary key
+ms.author: scaddie
+manager: wpickett
+ms.date: 09/28/2017
+ms.topic: article
+ms.technology: aspnet
+ms.prod: asp.net-core
 uid: security/authentication/identity-primary-key-configuration
 ---
-# Configure Identity primary keys data type
+# Configure the ASP.NET Core Identity primary key data type
 
-ASP.NET Core Identity allows you to easily configure the data type you want for the primary keys. By default, Identity uses string data type but you can very quickly override this behavior.
+ASP.NET Core Identity allows you to configure the data type used to represent a primary key. Identity uses the `string` data type by default. You can override this behavior.
 
-## How to
+## Customize the primary key data type
 
-1.  The first step is to implement the Identity's model, and override the string type with the data type you want.
+1. Create a custom implementation of the [IdentityUser](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser-1) class. It represents the type to be used for creating user objects. In the following example, the default `string` type is replaced with `Guid`.
 
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationUser.cs?highlight=4-6&range=7-13)]
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationUser.cs?highlight=4&range=7-13)]
 
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationRole.cs?highlight=3-5&range=7-12)]
+1. Create a custom implementation of the [IdentityRole](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.identity.entityframeworkcore.identityrole-1) class. It represents the type to be used for creating role objects. In the following example, the default `string` type is replaced with `Guid`.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationRole.cs?highlight=3&range=7-12)]
 	
-2.  Implement the database context of Identity with your models and the data type you want for primary keys
+1. Create a custom database context class. It inherits from the Entity Framework database context class used for Identity. The `TUser` and `TRole` arguments reference the custom user and role classes created in the previous step, respectively. The `Guid` data type is defined for the primary key.
 
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Data/ApplicationDbContext.cs?highlight=3&range=9-26)]
 	
-3.  Use your models and the data type you want for primary keys when you declare the identity service in your application's startup class
+1. Register the custom database context class when adding the Identity service in the app's startup class.
 
-    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-79)]
+    # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+    
+    The `AddEntityFrameworkStores` method doesn't accept a `TKey` argument as it did in ASP.NET Core 1.x. The primary key's data type is inferred by analyzing the `DbContext` object.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNETv2-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=6-8&range=25-37)]
+    
+    # [ASP.NET Core 1.x](#tab/aspnetcore1x)
+    
+    The `AddEntityFrameworkStores` method accepts a `TKey` argument indicating the primary key's data type.
+    
+    [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-55)]
+    
+    ---
+
+## Test the changes
+
+Upon completion of the configuration changes, the property representing the primary key reflects the new data type. The following example demonstrates accessing the property in an MVC controller.
+
+[!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Controllers/AccountController.cs?name=snippet_GetCurrentUserId&highlight=6)]

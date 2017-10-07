@@ -12,6 +12,7 @@ namespace AspNetCoreDotNetFx2._0App
 {
     public class Program
     {
+        #region snippet_ProgramMainConfigProviders
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
@@ -20,6 +21,13 @@ namespace AspNetCoreDotNetFx2._0App
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    // delete all default configuration providers
+                    config.Sources.Clear();
+                    config.AddJsonFile("myconfig.json", optional: true);
+                })
                 .Build();
+        #endregion
     }
 }

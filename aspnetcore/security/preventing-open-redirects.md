@@ -47,7 +47,7 @@ When developing web applications, treat all user-provided data as untrustworthy.
 
 Use the ``LocalRedirect`` helper method from the base `Controller` class:
 
-```
+```csharp
 public IActionResult SomeAction(string redirectUrl)
 {
     return LocalRedirect(redirectUrl);
@@ -62,7 +62,7 @@ Use the [IsLocalUrl](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet
 
 The following example shows how to check whether a URL is local before redirecting.
 
-```
+```csharp
 private IActionResult RedirectToLocal(string returnUrl)
 {
     if (Url.IsLocalUrl(returnUrl))

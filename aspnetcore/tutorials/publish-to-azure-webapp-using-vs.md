@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core
 ms.author: riande
 manager: wpickett
-ms.date: 09/01/2017
+ms.date: 10/05/2017
 ms.topic: get-started-article
 ms.assetid: 78571e4a-a143-452d-9cf2-0860f85972e6
 ms.technology: aspnet
@@ -16,11 +16,9 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs), and [Rachel Appel](https://twitter.com/rachelappel)
 
-## Set up the development environment
+## Set up
 
-* Install the latest [Azure SDK for Visual Studio](https://www.visualstudio.com/vs/azure-tools/). The SDK installs Visual Studio if you don't already have it.
-
-* Verify your [Azure account](https://portal.azure.com/). You can [open a free Azure account](https://azure.microsoft.com/pricing/free-trial/) or [Activate Visual Studio subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).
+* Open a [free Azure account](https://aka.ms/K5y5yh) if you do not have one. 
 
 ## Create a web app
 
@@ -181,8 +179,4 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ### Next steps
 
-* [Getting started with ASP.NET Core MVC and Visual Studio](first-mvc-app/start-mvc.md)
-
-* [Introduction to ASP.NET Core](../index.md)
-
-* [Fundamentals](../fundamentals/index.md)
+* [Continuous Deployment to Azure with Visual Studio and Git](../publishing/azure-continuous-deployment.md)

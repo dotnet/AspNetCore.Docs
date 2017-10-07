@@ -42,7 +42,7 @@ Typical controller responsibilities:
 If you're writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.
 
 > [!TIP]
-> [Create and run unit tests with Visual Studio](https://www.visualstudio.com/docs/code/create-and-run-unit-tests-vs).
+> [Create and run unit tests with Visual Studio](https://docs.microsoft.com/visualstudio/test/unit-test-your-code).
 
 To demonstrate unit testing, review the following controller. It displays a list of brainstorming sessions and allows new brainstorming sessions to be created with a POST:
 
@@ -117,9 +117,7 @@ You'll see the `GetTestSession` method used frequently in the integration tests 
 
 Each integration test class configures the `TestServer` that will run the ASP.NET Core app. By default, `TestServer` hosts the web app in the folder where it's running - in this case, the test project folder. Thus, when you attempt to test controller actions that return `ViewResult`, you may see this error:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
-
-```none
+```
 The view 'Index' was not found. The following locations were searched:
 (list of locations)
 ```

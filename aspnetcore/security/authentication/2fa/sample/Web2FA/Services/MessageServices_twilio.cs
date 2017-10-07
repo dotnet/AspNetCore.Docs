@@ -31,15 +31,13 @@ namespace Web2FA.Services
             var accountSid = Options.SMSAccountIdentification;
             // Your Auth Token from twilio.com/console
             var authToken = Options.SMSAccountPassword;
-            var 
 
             TwilioClient.Init(accountSid, authToken);
 
-            var msg = MessageResource.Create(
+            return MessageResource.CreateAsync(
               to: new PhoneNumber(number),
               from: new PhoneNumber(Options.SMSAccountFrom),
               body: message);
-            return Task.FromResult(0);
         }
     }
 }

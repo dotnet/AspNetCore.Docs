@@ -1,14 +1,11 @@
 ﻿@using  System.IO
 @using RazorSample.Models
+
 @{
-      Layout = null;
-  }
+    var output = "Hello World";
+}
   
-  @{
-      var output = "Hello World";
-  }
-  
-  <div>Output: @output</div>
+<div>Output: @output</div>
 
 @{
 /* C# */<text>I'm HTML</text>/* C# */
@@ -31,29 +28,29 @@
 
 <br /><br />
 
-  @for (var i = 0; i < people.Length; i++)
-  {
-      var person = people[i];
-      <text>Name: @person.Name</text>
-  }
+@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    <text>Name: @person.Name</text>
+}
 
-  @for (var i = 0; i < people.Length; i++)
-  {
-      var person = people[i];
-      @:Name: @person.Name
-  }
+@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    @:Name: @person.Name
+}
 
-  @{ 
-      var dir = Directory.GetCurrentDirectory();
-  }
-  <p>@dir</p>
+@{ 
+    var dir = Directory.GetCurrentDirectory();
+}
+<p>@dir</p>
 
 
-  @for (var i = 0; i < people.Length; i++)
-  {
-      var person = people[i];
-      <text>Name: @person.Name</text>
-      <!-- Removing HTML tags generates a Razor runtime error
-        Name: @person.Name
-      -->
-  }
+@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    <text>Name: @person.Name</text>
+    <!-- Removing HTML tags generates a Razor runtime error
+    Name: @person.Name
+    -->
+}

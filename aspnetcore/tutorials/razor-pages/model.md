@@ -9,7 +9,7 @@ ms.date: 07/27/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: tutorials/razor-pages/modelz
+uid: tutorials/razor-pages/model
 ---
 # Adding a model to a Razor Pages app
 

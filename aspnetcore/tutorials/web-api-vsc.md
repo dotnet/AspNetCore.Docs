@@ -35,7 +35,7 @@ There are 3 versions of this tutorial:
 ## Set up your development environment
 
 Download and install:
-- [.NET Core](https://www.microsoft.com/net/core)
+- [.NET Core 2.0.0 SDK](https://www.microsoft.com/net/core) or later.
 - [Visual Studio Code](https://code.visualstudio.com)
 - Visual Studio Code [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
 

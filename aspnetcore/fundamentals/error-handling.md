@@ -1,7 +1,7 @@
 ---
-title: Error Handling in ASP.NET Core
+title: Error handling in ASP.NET Core
 author: ardalis
-description: Explains how to handle errors in ASP.NET Core applications
+description: Discover how to handle errors in ASP.NET Core applications.
 keywords: ASP.NET Core,error handling,exception handling
 ms.author: tdykstra
 manager: wpickett
@@ -19,7 +19,7 @@ By [Steve Smith](https://ardalis.com/) and [Tom Dykstra](https://github.com/tdyk
 
 This article covers common appoaches to handling errors in ASP.NET Core apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## The developer exception page
 

@@ -16,7 +16,7 @@ uid: mvc/views/view-components
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Introducing view components
 
@@ -217,8 +217,6 @@ If the PVC view is not rendered, verify you are calling the view component with 
 * Change the priority parameter to three or less so the priority view is not returned.
 * Temporarily rename the *Views/Todo/Components/PriorityList/Default.cshtml* to *1Default.cshtml*.
 * Test the app, you'll get the following error:
-
-   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
    ```
    An unhandled exception occurred while processing the request.

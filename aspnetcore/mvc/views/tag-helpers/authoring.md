@@ -17,7 +17,7 @@ ms.custom: H1Hack27Feb2017
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Getting started with Tag Helpers
 
@@ -240,8 +240,6 @@ The condition tag helper renders output when passed a true value.
 
 2.  Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
-    <!-- literal_block {"xml:space": "preserve", "source": "mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
-    
     ```cshtml
     @using AuthoringTagHelpers.Models
     @model WebsiteContext

@@ -198,7 +198,39 @@ Sensitive information (like the publish password) is encrypted on a per user/mac
 
 For an overview of how to publish a web app on ASP.NET Core see [Publishing and Deployment](index.md). [Publishing and Deployment](index.md) is an open source project at https://github.com/aspnet/websdk.
 
-Currently `dotnet publish` doesn’t have the ability to use publish profiles. To use publish profiles, use `dotnet build`. `dotnet build` invokes MSBuild on the project. Alternatively, call `msbuild` directly.
+ `dotnet publish` can use folder, Msdeploy, and [KUDU](https://github.com/projectkudu/kudu/wiki) publish profiles:
+ 
+Folder (works cross-platform)
+`dotnet publish WebApplication.csproj /p:PublishProfile=<FolderProfileName>`
+
+Msdeploy (currently this only works in windows since msdeploy is not cross-platform):
+`dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>`
+
+Msdeploy package(currently this only works in windows since msdeploy is not cross-platform):
+`dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileName>`
+
+In the preceeding samples, **don’t** pass `deployonbuild` to `dotnet publish`.
+
+For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish)
+
+`dotnet publish` supports KUDU apis to publish to Azure from any platform. Visual Studio publish does support the KUDU APIs but it is supported by websdk for cross plat publish to Azure.
+
+Add a publish profile to *Properties/PublishProfiles* folder with the following content:
+
+```xml
+<Project>
+<PropertyGroup>
+                <PublishProtocol>Kudu</PublishProtocol>
+                <PublishSiteName>nodewebapp</PublishSiteName>
+                <UserName>username</UserName>
+                <Password>password</Password>
+</PropertyGroup>
+</Project>
+```
+
+Running the following command will zip up the publish contents and publish it to Azure using the KUDU APIs.
+
+`dotnet publish /p:PublishProfile=Azure /p:Configuration=Release`
 
 Set the following MSBuild properties when using a publish profile:
 

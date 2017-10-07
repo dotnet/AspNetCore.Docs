@@ -30,7 +30,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movies.SingleOrDefaultAsync(m => m.ID == id);
+            Movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)
             {
@@ -55,7 +55,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Movies.Any(e => e.ID == Movie.ID))
+                if (!_context.Movie.Any(e => e.ID == Movie.ID))
                 {
                     return NotFound();
                 }

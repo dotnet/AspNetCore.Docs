@@ -26,7 +26,7 @@ This topic shows how to enable attribute routing and describes the various optio
 
 ## Prerequisites
 
-[Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads) or [Visual Studio Express 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads#d-2013-express)
+[Visual Studio 2017](https://www.visualstudio.com/vs/) Community, Professional, or Enterprise Edition
 
 Alternatively, use NuGet Package Manager to install the necessary packages. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. Enter the following command in the Package Manager Console window:
 
