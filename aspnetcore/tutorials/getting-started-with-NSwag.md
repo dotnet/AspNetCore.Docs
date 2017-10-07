@@ -17,6 +17,10 @@ uid: tutorials/getting-started-with-NSwag
 
 ..components
 
+# Features
+
+..comparison to Swashbuckle
+
 # Package install
 
 VS
