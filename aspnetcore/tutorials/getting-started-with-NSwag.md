@@ -110,13 +110,13 @@ var todoClient = new TodoClient();
 var allTodos = await todoClient.GetAllAsync();
 
 // Create a new TodoItem and save it in the Api
-var createdTodo = await todoClient.CreateAsync(new TodoItem
+var createdTodo = await todoClient.CreateAsync(new TodoItem);
 
 // Get a single Todo by Id
 var foundTodo = await todoClient.GetByIdAsync(1);
 ```
 
-**NOTE: You can also inject a base Url and/or a http client into the API client. Best practice is to always reuse HttpClient.**
+**NOTE: You can also inject a base Url and/or a http client into the API client. Best practice is to always [reuse HttpClient](https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/).**
 
 You can now start implementing your API into client projects easily. 
 
@@ -128,19 +128,64 @@ You can also generate the code in other ways, more suited to your workflow
 
 * [In code](https://github.com/NSwag/NSwag/wiki/SwaggerToCSharpClientGenerator)
 
-# Example client
-
-..use the generated client
+* [T4 Templates](https://github.com/NSwag/NSwag/wiki/T4)
 
 # Customization
 
-..description
+### XML Comments
 
-..xml comments
+XML comments can be enabled with the following approaches:
 
-..data annotations
+# [Visual Studio](#tab/visual-studio)
 
-..attributes
+* Right-click the project in **Solution Explorer** and select **Properties**
+* Check the **XML documentation file** box under the **Output** section of the **Build** tab:
 
-..ui customization
+![Build tab of project properties](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Open the **Project Options** dialog > **Build** > **Compiler**
+* Check the **Generate xml documentation** box under the **General Options** section:
+
+![General Options section of project options](web-api-help-pages-using-swagger/_static/swagger-xml-comments-mac.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Manually add the following snippet to the *.csproj* file:
+
+[!code-xml[Main](../tutorials/web-api-help-pages-using-swagger/sample/TodoApi/TodoApi.csproj?range=7-9)]
+
+### Data Annotations
+
+Because NSwag uses Reflection and the best practice for Web API actions is to return IActionResult, NSwag cant know what exactly your action is doing and what it returns. 
+
+Sample:
+
+```csharp
+public IActionResult Create([FromBody] TodoItem item)
+{
+    if (item == null)
+    {
+        return BadRequest();
+    }
+
+    _context.TodoItems.Add(item);
+    _context.SaveChanges();
+
+     return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
+}
+```
+
+The action returns IActionResult, but inside the action its returning CreatedAtRoute or BadRequest. To tell clients which HTTP Response this action is really returning, we use Data Annotations. Insert the following Attributes above the action.
+
+```csharp
+[HttpPost]
+[ProducesResponseType(typeof(TodoItem), 201)] // Created
+[ProducesResponseType(typeof(TodoItem), 400)] // BadRequest
+public IActionResult Create([FromBody] TodoItem item)
+```
+
+The Swagger generator can now accurately describe this action and generated clients will know what they receive when calling the endpoint. It is highly recommended to decorate all actions with these attributes. For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
+
 
