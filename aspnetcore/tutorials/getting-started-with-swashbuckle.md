@@ -13,7 +13,10 @@ ms.prod: asp.net-core
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 
-# Getting Started
+# Getting Started with Swashbuckle
+<a name=getting-started-with-swashbuckle></a>
+
+By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
 
 There are three main components to Swashbuckle:
 
