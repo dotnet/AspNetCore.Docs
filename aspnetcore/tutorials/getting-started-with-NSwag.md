@@ -13,7 +13,11 @@ ms.prod: asp.net-core
 uid: tutorials/getting-started-with-NSwag
 ---
 
-# Getting Started
+# Getting Started with NSwag
+
+<a name=getting-started-with-NSwag></a>
+
+By [Christoph Nienaber](https://twitter.com/zuckerthoben)
 
 When using NSwag with ASP.NET Core there is only one package you need to get started:
 
