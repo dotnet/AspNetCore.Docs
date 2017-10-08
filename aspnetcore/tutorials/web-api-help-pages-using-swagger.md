@@ -16,7 +16,7 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 <a name=web-api-help-pages-using-swagger></a>
 
-By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
+By [Christoph Nienaber](https://twitter.com/zuckerthoben)
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application.
 
