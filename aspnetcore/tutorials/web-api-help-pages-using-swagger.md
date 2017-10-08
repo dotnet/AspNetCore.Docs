@@ -123,6 +123,6 @@ Each public action method in your Controllers can be tested from the UI. Click a
 
 See the following pages to integrate Swagger UI and the Swagger toolchain to your solution using one of the following middlewares: 
 
-[Getting Started with Swashbuckle](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-swashbuckle)  
+[Getting Started with Swashbuckle](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-swashbuckle.md)  
 
-[Getting Started with NSwag](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-nswag)
+[Getting Started with NSwag](https://github.com/zuckerthoben/Docs/blob/master/aspnetcore/tutorials/getting-started-with-nswag.md)
