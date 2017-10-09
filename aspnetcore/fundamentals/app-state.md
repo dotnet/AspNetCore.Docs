@@ -5,7 +5,7 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
-ms.date: 06/08/2017
+ms.date: 10/08/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
@@ -37,17 +37,23 @@ The in-memory session provider stores session data on the local server. If you p
 <a name="temp"></a>
 ## TempData
 
-ASP.NET Core MVC exposes the [TempData](/aspnet/core/api/microsoft.aspnetcore.mvc.controller#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](/aspnet/core/api/microsoft.aspnetcore.mvc.controller). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is implemented by TempData providers, for example, using either cookies or session state.
+ASP.NET Core MVC exposes the [TempDatahttps://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller?view=aspnetcore-2.0). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is implemented by TempData providers, for example, using either cookies or session state.
 
 ### TempData providers
 
-In ASP.NET Core 2.0 and higher, the cookie-based TempData provider is used by default to store TempData in cookies.
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-The cookie data is encoded with the [Base64UrlTextEncoder](/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). Because the cookie is encrypted and chunked, the single cookie size limit does not apply. The cookie data is not compressed because compressing encryped data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
+In ASP.NET Core 2.0 and later, the cookie-based TempData provider is used by default to store TempData in cookies.
 
-Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. When using the cookie TempData provider, be mindful of the total size of the data, accounting for the overheads of encryption and chunking.
+The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.webutilities.base64urltextencoder?view=aspnetcore-2.0). Because the cookie is encrypted and chunked, the single cookie size limit found in ASP.NET Core 1.x does not apply. The cookie data is not compressed because compressing encryped data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 In ASP.NET Core 1.0 and 1.1, the session state TempData provider is the default.
+
+Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. Therefore, when using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data, accounting for the overheads of encryption and chunking.
+
+--------------
 
 ### Choosing a TempData provider
 
