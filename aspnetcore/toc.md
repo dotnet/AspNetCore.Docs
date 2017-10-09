@@ -279,7 +279,7 @@
 ## [ASP.NET Core 1.x to 2.0](xref:migration/1x-to-2x/index)
 ### [Authentication and Identity](xref:migration/1x-to-2x/identity-2x)
 
-# [API Reference](/aspnet/core/api/)
+# [API Reference](https://docs.microsoft.com/dotnet/api/?view=aspnetcore-2.0)
 
 # [2.0 release notes](aspnetcore-2.0.md)
 ## [1.1 Release notes](aspnetcore-1.1.md)
