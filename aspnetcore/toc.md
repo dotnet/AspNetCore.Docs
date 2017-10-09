@@ -68,7 +68,7 @@
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)
 ## [Create a Web API](xref:tutorials/first-web-api-mac)
-### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
+### [ASP.NET Core Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 ### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 
 # [Fundamentals](fundamentals/index.md)
