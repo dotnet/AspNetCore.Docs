@@ -18,7 +18,7 @@ uid: security/authorization/limitingidentitybyscheme
 
 In some scenarios, such as Single Page Applications, it's common to use multiple authentication methods. For example, your application may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, you may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication has triggered (because the user requested an operation that requires extra security).
 
-Authentication schemes are named when authentication middleware is configured during authentication. For example:
+Authentication schemes are named when authentication middlewares or services are configured during authentication. For example:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -31,16 +31,14 @@ public void ConfigureServices(IServiceCollection services)
         .AddCookie(options => {
             options.LoginPath = "/Account/Unauthorized/";
             options.AccessDeniedPath = "/Account/Forbidden/";
-        });
-
-    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        })
         .AddJwtBearer();
 ```
 
 In the preceding code, two authentication services have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AutomaticAuthenticate` options property to false. If you fail to do this, filtering by scheme will not work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If you fail to do this, filtering by scheme will not work.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -67,7 +65,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AutomaticAuthenticate` options property to false. If you fail to do this, filtering by scheme will not work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If you fail to do this, filtering by scheme will not work.
 
 ---
 
