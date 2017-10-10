@@ -26,7 +26,7 @@ ASP.NET Core references a particular environment variable, `ASPNETCORE_ENVIRONME
 
 The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment [tag helper](../mvc/views/tag-helpers/index.md) to include certain sections in your [view](../mvc/views/index.md) based on the current application environment.
 
-Note: On Windows and macOS, the specified environment name is case insensitive. Whether you set the variable to `Development` or `development` or `DEVELOPMENT` the results will be the same. However, Linux is a **case sensitive** OS by default. Environment variables, file names and settings require case sensitivity.
+Note: On Windows and macOS, the specified environment name is not case insensitive. Whether you set the variable to `Development` or `development` or `DEVELOPMENT` the results will be the same. However, Linux is a **case sensitive** OS by default. Environment variables, file names and settings require case sensitivity.
 
 ### Development
 
