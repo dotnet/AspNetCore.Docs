@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
@@ -33,6 +30,7 @@ namespace ContosoUniversity.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
 
+        #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -40,10 +38,30 @@ namespace ContosoUniversity.Pages.Students
                 return Page();
             }
 
-            _context.Students.Add(Student);
-            await _context.SaveChangesAsync();
+            #region snippet_TryUpdateModelAsync
+            var studentToUpdate = new Student();
+            if (await TryUpdateModelAsync<Student>(
+                studentToUpdate,
+                "",     //  prefix to use with the form fields names
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+            #endregion
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToPage("./Index");
 
-            return RedirectToPage("./Index");
+                }
+                // requires using Microsoft.EntityFrameworkCore;
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to Create. ");
+                }
+            }
+
+            return Page();
         }
+        #endregion
     }
 }

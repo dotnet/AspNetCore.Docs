@@ -38,7 +38,7 @@ A request to the page with the "{id:int}" route template that does **not** inclu
  ```cshtml
 @page "{id:int?}"
 ```
-Run the app, click on a Details link and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/id=2`).
+Run the app, click on a Details link and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/2`).
 
 <!-- See https://github.com/aspnet/Scaffolding/issues/590 -->
 
@@ -54,7 +54,24 @@ The `Include` and `ThenInclude` methods cause the context to load the `Student.E
 
 The `AsNoTracking` method improves performance in scenarios when the entities returned will not be updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
+### Display related enrollments on the Details page
 
+Open *Pages/Students/Details.cshtml*.  Add the following highlighted code to display a list of enrollments:
+
+ <!--2do ricka. if doesn't change, remove dup -->
+[!code-cshtml[Main](intro/samples/cu/Pages/Students/Details1.cshtml?highlight=35-53)]
+
+If code indentation is wrong after you paste the code, press CTRL-K-D to correct it.
+
+The preceding code loops through the entities in the `Enrollments` navigation property. For each enrollment, it displays the course title and the grade. The course title is retrieved from the Course entity that's stored in the `Course` navigation property of the Enrollments entity.
+
+Run the app, select the **Students** tab, and click the **Details** link for a student. You see the list of courses and grades for the selected student.
+
+## Update the Create page
+
+Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 
 

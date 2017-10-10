@@ -55,9 +55,10 @@
 ### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 ### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
 ## [Data access - Razor Pages with EF Core](xref:data/index)
-### [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
+### [Getting started](xref:data/ef-rp/intro)
+### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
 
-## [Data access - working with EF Core](data/ef-mvc/index.md)
+## [Data access - MVC with EF Core](data/ef-mvc/index.md)
 ### [Getting started](data/ef-mvc/intro.md)
 ### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
 ### [Sorting, filtering, paging, and grouping](data/ef-mvc/sort-filter-page.md)
