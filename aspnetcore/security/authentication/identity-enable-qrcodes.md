@@ -16,7 +16,7 @@ uid: security/authentication/identity-enable-qrcodes
 
 Note: This topic applies to ASP.NET Core 2.x
 
-ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approch for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
+ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smart phone.
 
 The ASP.NET Core web app templates support authenticators, but do not provide support for QRCode generation. QRCode generators ease the setup of 2FA. This document will guide you through adding [QR Code](https://wikipedia.org/wiki/QR_code) generation to the 2FA configuration page.
 
@@ -24,9 +24,9 @@ The ASP.NET Core web app templates support authenticators, but do not provide su
 
 These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcodejs/ repo.
 
-* Download the  [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
+* Download the [qrcode.js javascript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-* In *Pages\Account\Manage\EnableAuthenticator.cshtml* (Razor Pages) or *Views\Account\Manage\EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:
+* In *Pages\Account\Manage\EnableAuthenticator.cshtml* (Razor Pages) or *Views\Manage\EnableAuthenticator.cshtml* (MVC), locate the `Scripts` section at the end of the file:
 
 ```cshtml
 @section Scripts {
@@ -58,7 +58,7 @@ Run your app and ensure that you can scan the QR code and validate the code the 
 
 ## Change the site name in the QR Code
 
-The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in  the *EnableAuthenticator.cshtml.cs* file. 
+The site name in the QR Code is taken from the project name you choose when initially creating your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the *Pages\Account\Manage\EnableAuthenticator.cshtml.cs* (Razor Pages) file or the *Controllers\AccountController.cs* (MVC) file. 
 
 The default code from the template looks as follows:
 
