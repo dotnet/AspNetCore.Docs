@@ -16,7 +16,7 @@ uid: security/authentication/cookie
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
 
-As you've seen in the earlier authentication topics, [ASP.NET Core Identity](xref:security/authentication/identity) is a *complete, full-featured* authentication provider for creating and maintaining logins. However, you may want to use your own custom authentication logic with cookie-based authentication at times. You can use ASP.NET Core Authentication Middleware for cookie-based authentication as a standalone authentication provider without ASP.NET Core Identity.
+As you've seen in the earlier authentication topics, [ASP.NET Core Identity](xref:security/authentication/identity) is a complete, full-featured authentication provider for creating and maintaining logins. However, you may want to use your own custom authentication logic with cookie-based authentication at times. You can use cookie-based authentication as a standalone authentication provider without ASP.NET Core Identity.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authentication/cookie/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -32,7 +32,7 @@ In the `ConfigureServices` method, create the Authentication Middleware service 
 
 [!code-csharp[Main](cookie/sample/Startup.cs?name=snippet1)]
 
-`AuthenticationScheme` passed to `AddAuthentication` sets the authentication scheme. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
+`AuthenticationScheme` passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
 
 In the `Configure` method, use the `UseAuthentication` method to invoke the Authentication Middleware that sets the `HttpContext.User` property. Call the `UseAuthentication` method before calling `AddMvcWithDefaultRoute` in an MVC app or `AddMvc` in a Razor Pages app:
 
@@ -44,7 +44,7 @@ The [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authenticatio
 
 | Option | Description |
 | ------ | ----------- |
-| [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath?view=aspnetcore-2.0) | Informs the handler that it should change an outgoing 403 Forbidden status code into a 302 Found (URL redirect) with the provided path. The default value is `/Account/AccessDenied`. |
+| [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath?view=aspnetcore-2.0) | Provides the path to supply with a 302 Found (URL redirect) when triggered by `HttpContext.ForbidAsync`. The default value is `/Account/AccessDenied`. |
 | [ClaimsIssuer](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions.claimsissuer?view=aspnetcore-2.0) | The issuer to use for the [Issuer](/dotnet/api/system.security.claims.claim.issuer) property on any claims created by the cookie authentication service. |
 | [Cookie.Domain](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.domain?view=aspnetcore-2.0) | The domain name where the cookie is served. By default, this is the host name of the request. The browser only sends the cookie in requests to a matching host name. You may wish to adjust this to have cookies available to any host in your domain. For example, setting the cookie domain to `.contoso.com` makes it available to `contoso.com`, `www.contoso.com`, and `staging.www.contoso.com`. |
 | [Cookie.Expiration](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.expiration?view=aspnetcore-2.0) | Gets or sets the lifespan of a cookie. Currently, this option no-ops and will become obsolete in ASP.NET Core 2.1+. Use the `ExpireTimeSpan` option to set cookie expiration. For more information, see [Clarify behavior of CookieAuthenticationOptions.Cookie.Expiration](https://github.com/aspnet/Security/issues/1293). |
@@ -56,12 +56,12 @@ The [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authenticatio
 | [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.dataprotectionprovider?view=aspnetcore-2.0) | Used by the `CookieAuthenticationHandler` for data protection. If not provided, the app's default data protection provider is used. |
 | [Events](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.events?view=aspnetcore-2.0) | The handler calls methods on the provider that give the app control at certain processing points. If `Events` aren't provided, a default instance is supplied that does nothing when the methods are called. |
 | [EventsType](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions.eventstype?view=aspnetcore-2.0) | Used as the service type to get the `Events` instance instead of the property. |
-| [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan?view=aspnetcore-2.0) | The `TimeSpan` after which the authentication ticket stored inside the cookie expires. `ExpireTimeSpan` is added to the current time to create the expiration time for the ticket. To use `ExpireTimeSpan`, you must set `IsPersistent` to `true` in the `AuthenticationProperties` passed to `SignInAsync`. The default value is 14 days. |
-| [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath?view=aspnetcore-2.0) | Informs the handler that it should change an outgoing 401 Unauthorized status code into a 302 Found (URL redirect) with the provided path. The current URL that generated the 401 is added to the `LoginPath` as a query string parameter named by the `ReturnUrlParameter`. Once a request to the `LoginPath` grants a new sign-in identity, the `ReturnUrlParameter` value is used to redirect the browser back to the URL that caused the original unauthorized status code. The default value is `/Account/Login`. |
+| [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan?view=aspnetcore-2.0) | The `TimeSpan` after which the authentication ticket stored inside the cookie expires. `ExpireTimeSpan` is added to the current time to create the expiration time for the ticket. The `ExpiredTimeSpan` value always goes into the encrypted AuthTicket verified by the server. It may also go into the [Set-Cookie](https://tools.ietf.org/html/rfc6265#section-4.1) header, but only if `IsPersistent` is set. To set `IsPersistent` to `true`, configure the [AuthenticationProperties](/dotnet/api/microsoft.aspnetcore.authentication.authenticationproperties) passed to `SignInAsync`. The default value of `ExpireTimeSpan` is 14 days. |
+| [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath?view=aspnetcore-2.0) | Provides the path to supply with a 302 Found (URL redirect) when triggered by `HttpContext.ChallengeAsync`. The current URL that generated the 401 is added to the `LoginPath` as a query string parameter named by the `ReturnUrlParameter`. Once a request to the `LoginPath` grants a new sign-in identity, the `ReturnUrlParameter` value is used to redirect the browser back to the URL that caused the original unauthorized status code. The default value is `/Account/Login`. |
 | [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath?view=aspnetcore-2.0) | If the `LogoutPath` is provided to the handler, then a request to that path redirects based on the value of the `ReturnUrlParameter`. The default value is `/Account/Logout`. |
-| [ReturnUrlParameter](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.returnurlparameter?view=aspnetcore-2.0) | Determines the name of the query string parameter that is appended by the handler when a 401 Unauthorized status code is changed to a 302 Found (URL redirect) to the `LoginPath`. `ReturnUrlParameter` is used when a request arrives on the `LoginPath` or `LogoutPath` to return the browser to the original URL after the login or logout action is performed. The default value is `ReturnUrl`. |
+| [ReturnUrlParameter](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.returnurlparameter?view=aspnetcore-2.0) | Determines the name of the query string parameter that's appended by the handler for a 302 Found (URL redirect) response. `ReturnUrlParameter` is used when a request arrives on the `LoginPath` or `LogoutPath` to return the browser to the original URL after the login or logout action is performed. The default value is `ReturnUrl`. |
 | [SessionStore](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.sessionstore?view=aspnetcore-2.0) | An optional container used to store identity across requests. When used, only a session identifier is sent to the client. `SessionStore` can be used to mitigate potential problems with large identities. |
-| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-2.0) | A flag indicating whether the cookie expiration date resets when more than half of the `ExpireTimeSpan` interval has passed. The new expiration date is moved forward to be the current date plus the `ExpireTimespan`. An [absolute cookie expiration time](xref:security/authentication/cookie#absolute-cookie-expiration) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiration time can improve the security of your app by limiting the amount of time that the authentication cookie is valid. The default value is `true`. |
+| [SlidingExpiration](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.slidingexpiration?view=aspnetcore-2.0) | A flag indicating if a new cookie with an updated expiration time should be issued dynamically. This can happen on any request where the current cookie expiration period is more than 50% expired. The new expiration date is moved forward to be the current date plus the `ExpireTimespan`. An [absolute cookie expiration time](xref:security/authentication/cookie#absolute-cookie-expiration) can be set by using the `AuthenticationProperties` class when calling `SignInAsync`. An absolute expiration time can improve the security of your app by limiting the amount of time that the authentication cookie is valid. The default value is `true`. |
 | [TicketDataFormat](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.ticketdataformat?view=aspnetcore-2.0) | The `TicketDataFormat` is used to protect and unprotect the identity and other properties that are stored in the cookie value. If not provided, a `TicketDataFormat` is created using the [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.dataprotectionprovider?view=aspnetcore-2.0). |
 | [Validate](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions.validate?view=aspnetcore-2.0) | Method that checks that the options are valid. |
 
@@ -125,7 +125,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 
 ## Cookie Policy Middleware
 
-[Cookie Policy Middleware](/dotnet/api/microsoft.aspnetcore.cookiepolicy.cookiepolicymiddleware) enables cookie policy capabilities in an app:
+[Cookie Policy Middleware](/dotnet/api/microsoft.aspnetcore.cookiepolicy.cookiepolicymiddleware) enables cookie policy capabilities in an app. Adding the middleware to the app processing pipeline is order sensitive; it only affects components registered after it in the pipeline.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -176,7 +176,7 @@ await HttpContext.Authentication.SignInAsync(
 
 ---
 
-`SignInAsync` creates an encrypted cookie and adds it to the current response. The `AuthenticationScheme` specified during [configuration](xref:security/authentication/cookie#configuration) must be used when calling `SignInAsync`.
+`SignInAsync` creates an encrypted cookie and adds it to the current response. If you don't specify an `AuthenticationScheme`, the default scheme is used.
 
 If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider.
 
@@ -204,13 +204,13 @@ await HttpContext.Authentication.SignOutAsync(
 
 ---
 
-If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider.
+If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") as the scheme (for example, "ContosoCookie"), supply the scheme you used when configuring the authentication provider. Otherwise, the default scheme is used.
 
 ## Reacting to back-end changes
 
 Once a cookie is created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie authentication system has no knowledge of this, and a user stays logged in as long as their cookie is valid.
 
-The [ValidatePrincipal](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationevents.validateprincipal) event in ASP.NET Core 2.x or the [ValidateAsync](/dotnet/api/microsoft.aspnetcore.identity.isecuritystampvalidator.validateasync?view=aspnetcore-1.1) method in ASP.NET Core 1.x can be used to intercept and override validation of the cookie identity. This approach mitigates the risk of unauthorized access to an app.
+The [ValidatePrincipal](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationevents.validateprincipal) event in ASP.NET Core 2.x or the [ValidateAsync](/dotnet/api/microsoft.aspnetcore.identity.isecuritystampvalidator.validateasync?view=aspnetcore-1.1) method in ASP.NET Core 1.x can be used to intercept and override validation of the cookie identity. This approach mitigates the risk of revoked users accessing the app.
 
 One approach to cookie validation is based on keeping track of when the user database has been changed. If the database hasn't been changed since the user's cookie was issued, there is no need to re-authenticate the user if their cookie is still valid. To implement this scenario, the database, which is implemented in `IUserRepository` for this example, stores a `LastChanged` value. When any user is updated in the database, the `LastChanged` value is set to the current time.
 
@@ -421,3 +421,4 @@ await HttpContext.Authentication.SignInAsync(
 ## See also
 
 * [Auth 2.0 Changes / Migration Announcement](https://github.com/aspnet/Announcements/issues/262)
+* [Limiting identity by scheme](xref:security/authorization/limitingidentitybyscheme)
