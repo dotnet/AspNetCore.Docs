@@ -114,11 +114,14 @@ In this case, only the middleware with the "Bearer" scheme runs. Any cookie-base
 If you prefer to specify the desired schemes in [policy](policies.md#security-authorization-policies-based), you can set the `AuthenticationSchemes` collection when adding your policy:
 
 ```csharp
-options.AddPolicy("Over18", policy =>
+services.AddAuthorization(options =>
 {
-    policy.AuthenticationSchemes.Add("Bearer");
-    policy.RequireAuthenticatedUser();
-    policy.Requirements.Add(new Over18Requirement());
+    options.AddPolicy("Over18", policy =>
+    {
+        policy.AuthenticationSchemes.Add("Bearer");
+        policy.RequireAuthenticatedUser();
+        policy.Requirements.Add(new Over18Requirement());
+    });
 });
 ```
 
