@@ -1,7 +1,7 @@
 ---
-title: Limiting identity by scheme
+title: Limiting identity by scheme - ASP.NET Core
 author: rick-anderson
-description: 
+description: This article explains how to limit identity to a specific schema when working with multiple authentication methods.
 keywords: ASP.NET Core,identity,authentication scheme
 ms.author: riande
 manager: wpickett
@@ -36,7 +36,7 @@ public void ConfigureServices(IServiceCollection services)
 In the preceding code, two authentication services have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If you fail to do this, filtering by scheme will not work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by supplying an argument, such as `CookieAuthenticationDefaults.AuthenticationScheme`, to the `AddAuthentication` method. If you fail to do this, filtering by scheme will not work.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
