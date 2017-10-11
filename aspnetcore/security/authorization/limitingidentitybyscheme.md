@@ -14,8 +14,6 @@ uid: security/authorization/limitingidentitybyscheme
 ---
 # Limiting identity by scheme
 
-<a name=security-authorization-limiting-by-scheme></a>
-
 In some scenarios, such as Single Page Applications, it's common to use multiple authentication methods. For example, your application may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, you may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication has triggered (because the user requested an operation that requires extra security).
 
 Authentication schemes are named when authentication middlewares or services are configured during authentication. For example:
