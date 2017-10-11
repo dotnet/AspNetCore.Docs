@@ -50,6 +50,7 @@ The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsof
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 In ASP.NET Core 1.0 and 1.1, the session state TempData provider is the default.
+
 --------------
 
 ### Choosing a TempData provider
