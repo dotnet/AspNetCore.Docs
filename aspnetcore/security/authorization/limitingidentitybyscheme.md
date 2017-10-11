@@ -42,25 +42,25 @@ In the preceding code, two authentication services have been added: one for cook
 
 Authentication schemes are named when authentication middlewares are configured during authentication. For example:
 
-    ```csharp
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    // Code omitted for brevity
+
+    app.UseCookieAuthentication(new CookieAuthenticationOptions()
     {
-        // Code omitted for brevity
+        AuthenticationScheme = "Cookie",
+        LoginPath = "/Account/Unauthorized/",
+        AccessDeniedPath = "/Account/Forbidden/",
+        AutomaticAuthenticate = false
+    });
     
-        app.UseCookieAuthentication(new CookieAuthenticationOptions()
-        {
-            AuthenticationScheme = "Cookie",
-            LoginPath = "/Account/Unauthorized/",
-            AccessDeniedPath = "/Account/Forbidden/",
-            AutomaticAuthenticate = false
-        });
-        
-        app.UseJwtBearerAuthentication(new JwtBearerOptions()
-        {
-            AuthenticationScheme = "Bearer",
-            AutomaticAuthenticate = false
-        });
-    ```
+    app.UseJwtBearerAuthentication(new JwtBearerOptions()
+    {
+        AuthenticationScheme = "Bearer",
+        AutomaticAuthenticate = false
+    });
+```
 
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
