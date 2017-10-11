@@ -111,7 +111,7 @@ In this case, only the middleware with the "Bearer" scheme runs. Any cookie-base
 
 ## Selecting the scheme with policies
 
-If you prefer to specify the desired schemes in [policy](policies.md#security-authorization-policies-based), you can set the `AuthenticationSchemes` collection when adding your policy:
+If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies#security-authorization-policies-based), you can set the `AuthenticationSchemes` collection when adding your policy:
 
 ```csharp
 services.AddAuthorization(options =>
