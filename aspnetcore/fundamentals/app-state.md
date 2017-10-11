@@ -50,9 +50,6 @@ The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsof
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 In ASP.NET Core 1.0 and 1.1, the session state TempData provider is the default.
-
-Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. Therefore, when using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data, accounting for the overheads of encryption and chunking.
-
 --------------
 
 ### Choosing a TempData provider
@@ -62,6 +59,9 @@ Choosing a TempData provider involves several considerations, such as:
 1. Does the application already use session state for other purposes? If so, using the session state TempData provider has no additional cost to the application (aside from the size of the data).
 2. Does the application use TempData only sparingly, for relatively small amounts of data (up to 500 bytes)? If so, the cookie TempData provider will add a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
 3. Does the application run in a web farm (multiple servers)? If so, there is no additional configuration needed to use the cookie TempData provider.
+
+> [!NOTE]
+> Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. Therefore, when using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data, accounting for the overheads of encryption and chunking.
 
 To configure the TempData provider for an application, register a TempData provider implementation in `ConfigureServices`:
 
