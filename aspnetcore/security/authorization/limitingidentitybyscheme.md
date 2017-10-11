@@ -16,9 +16,9 @@ uid: security/authorization/limitingidentitybyscheme
 
 In some scenarios, such as Single Page Applications, it's common to use multiple authentication methods. For example, your application may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, you may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication has triggered (because the user requested an operation that requires extra security).
 
-Authentication schemes are named when authentication middlewares or services are configured during authentication. For example:
-
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+An authentication scheme is named when the authentication service is configured during authentication. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -40,25 +40,27 @@ In the preceding code, two authentication services have been added: one for cook
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-{
-    // Code omitted for brevity
+Authentication schemes are named when authentication middlewares are configured during authentication. For example:
 
-    app.UseCookieAuthentication(new CookieAuthenticationOptions()
+    ```csharp
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
     {
-        AuthenticationScheme = "Cookie",
-        LoginPath = "/Account/Unauthorized/",
-        AccessDeniedPath = "/Account/Forbidden/",
-        AutomaticAuthenticate = false
-    });
+        // Code omitted for brevity
     
-    app.UseJwtBearerAuthentication(new JwtBearerOptions()
-    {
-        AuthenticationScheme = "Bearer",
-        AutomaticAuthenticate = false
-    });
-```
+        app.UseCookieAuthentication(new CookieAuthenticationOptions()
+        {
+            AuthenticationScheme = "Cookie",
+            LoginPath = "/Account/Unauthorized/",
+            AccessDeniedPath = "/Account/Forbidden/",
+            AutomaticAuthenticate = false
+        });
+        
+        app.UseJwtBearerAuthentication(new JwtBearerOptions()
+        {
+            AuthenticationScheme = "Bearer",
+            AutomaticAuthenticate = false
+        });
+    ```
 
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
@@ -93,12 +95,14 @@ In the example above, both the cookie and bearer middlewares run and have a chan
 
 ```csharp
 [Authorize(AuthenticationSchemes = "Bearer")]
+public class MixedController : Controller
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
 [Authorize(ActiveAuthenticationSchemes = "Bearer")]
+public class MixedController : Controller
 ```
 
 ---
