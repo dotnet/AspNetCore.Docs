@@ -210,17 +210,17 @@ If you aren't using `CookieAuthenticationDefaults.AuthenticationScheme` (or "Coo
 
 Once a cookie is created, it becomes the single source of identity. Even if you disable a user in your back-end systems, the cookie authentication system has no knowledge of this, and a user stays logged in as long as their cookie is valid.
 
-The `ValidateAsync()` event can be used to intercept and override validation of the cookie identity. This approach mitigates the risk of unauthorized access to an app.
+The [ValidatePrincipal](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationevents.validateprincipal) event in ASP.NET Core 2.x or the [ValidateAsync](/dotnet/api/microsoft.aspnetcore.identity.isecuritystampvalidator.validateasync) method in ASP.NET Core 1.x can be used to intercept and override validation of the cookie identity. This approach mitigates the risk of unauthorized access to an app.
 
-One approach to cookie validation is based on keeping track of when the user database has been changed. If the database hasn't been changed since the user's cookie was issued, there is no need to re-authenticate the user if their cookie is still valid. To implement this scenario, the database stores a `LastUpdated` value. When any user is updated in the database, the `LastUpdated` value is set to the current time.
+One approach to cookie validation is based on keeping track of when the user database has been changed. If the database hasn't been changed since the user's cookie was issued, there is no need to re-authenticate the user if their cookie is still valid. To implement this scenario, the database, which is implemented in `IUserRepository` for this example, stores a `LastChanged` value. When any user is updated in the database, the `LastChanged` value is set to the current time.
 
-In order to invalidate a cookie when the database changes based on the `LastUpdated` value, create the cookie with a `LastUpdated` claim containing the current `LastUpdated` value from the database:
+In order to invalidate a cookie when the database changes based on the `LastChanged` value, create the cookie with a `LastChanged` claim containing the current `LastChanged` value from the database:
 
 ```csharp
 var claims = new List<Claim>
 {
     new Claim(ClaimTypes.Name, user.Email),
-    new Claim("LastUpdated"), {Database Value})
+    new Claim("LastChanged"), {Database Value})
 };
 
 var claimsIdentity = new ClaimsIdentity(
@@ -232,18 +232,77 @@ await HttpContext.SignInAsync(
     new ClaimsPrincipal(claimsIdentity));
 ```
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+To implement an override for the `ValidatePrincipal` event, write a method with the following signature in a class that you derive from [CookieAuthenticationEvents](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationevents):
+
+```csharp
+ValidatePrincipal(CookieValidatePrincipalContext)
+```
+
+An example looks like the following:
+
+```csharp
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
+{
+    private readonly IUserRepository _userRepository;
+
+    public CustomCookieAuthenticationEvents(IUserRepository userRepository)
+    {
+        // Get the database from registered DI services.
+        _userRepository = userRepository;
+    }
+
+    public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
+    {
+        var userPrincipal = context.Principal;
+
+        // Look for the LastChanged claim.
+        var lastChanged = (from c in userPrincipal.Claims
+                           where c.Type == "LastChanged"
+                           select c.Value).FirstOrDefault();
+
+        if (string.IsNullOrEmpty(lastChanged) ||
+            !_userRepository.ValidateLastChanged(userPrincipal, lastChanged))
+        {
+            context.RejectPrincipal();
+
+            await context.HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+    }
+}
+```
+
+Register the events instance during cookie service registration in the `ConfigureServices` method. Provide a scoped service registration for your `CustomCookieAuthenticationEvents` class:
+
+```csharp
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.EventsType = typeof(CustomCookieAuthenticationEvents);
+    });
+
+services.AddScoped<CustomCookieAuthenticationEvents>();
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
 To implement an override for the `ValidateAsync` event, write a method with the following signature:
 
 ```csharp
 ValidateAsync(CookieValidatePrincipalContext)
 ```
 
-ASP.NET Core Identity implements this check as part of its `SecurityStampValidator`. An example looks like the following:
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+ASP.NET Core Identity implements this check as part of its [SecurityStampValidator](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidator-1.validateasync). An example looks like the following:
 
 ```csharp
-public static class LastUpdatedValidator
+public static class LastChangedValidator
 {
     public static async Task ValidateAsync(CookieValidatePrincipalContext context)
     {
@@ -254,56 +313,16 @@ public static class LastUpdatedValidator
         var userPrincipal = context.Principal;
 
         // Look for the last changed claim.
-        var lastUpdated = (from c in userPrincipal.Claims
-                           where c.Type == "LastUpdated"
+        var lastChanged = (from c in userPrincipal.Claims
+                           where c.Type == "LastChanged"
                            select c.Value).FirstOrDefault();
 
-        if (string.IsNullOrEmpty(lastUpdated) ||
-            !userRepository.ValidateLastUpdated(userPrincipal, lastUpdated))
+        if (string.IsNullOrEmpty(lastChanged) ||
+            !userRepository.ValidateLastChanged(userPrincipal, lastChanged))
         {
             context.RejectPrincipal();
+
             await context.HttpContext.SignOutAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme);
-        }
-    }
-}
-```
-
-Register the event during cookie service registration in the `ConfigureServices` method:
-
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Events = new CookieAuthenticationEvents
-        {
-            OnValidatePrincipal = LastUpdatedValidator.ValidateAsync
-        };
-    });
-```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-public static class LastUpdatedValidator
-{
-    public static async Task ValidateAsync(CookieValidatePrincipalContext context)
-    {
-        // Pull database from registered DI services.
-        var userRepository = 
-            context.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-        var userPrincipal = context.Principal;
-
-        // Look for the last changed claim.
-        var lastUpdated = (from c in userPrincipal.Claims
-                           where c.Type == "LastUpdated"
-                           select c.Value).FirstOrDefault();
-
-        if (string.IsNullOrEmpty(lastUpdated) ||
-            !userRepository.ValidateLastUpdated(userPrincipal, lastUpdated))
-        {
-            context.RejectPrincipal();
-            await context.HttpContext.Authentication.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }
@@ -317,7 +336,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 {
     Events = new CookieAuthenticationEvents
     {
-        OnValidatePrincipal = LastUpdatedValidator.ValidateAsync
+        OnValidatePrincipal = LastChangedValidator.ValidateAsync
     }
 });
 ```
@@ -325,6 +344,9 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 ---
 
 Consider a situation in which the user's name is updated &mdash; a decision that doesn't affect security in any way. If you want to non-destructively update the user principal, call `context.ReplacePrincipal` and set the `context.ShouldRenew` property to `true`.
+
+> [!WARNING]
+> The approach described here is triggered on every request. This can result in a large performance penalty for the app. Whatever logic that you provide in your `ValidateLastChanged` method, you should minimize database queries as much as possible.
 
 ## Persistent cookies
 
