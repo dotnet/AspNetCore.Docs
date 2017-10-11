@@ -25,18 +25,21 @@ public void ConfigureServices(IServiceCollection services)
 {
     // Code omitted for brevity
 
-    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    services.AddAuthentication()
         .AddCookie(options => {
             options.LoginPath = "/Account/Unauthorized/";
             options.AccessDeniedPath = "/Account/Forbidden/";
         })
-        .AddJwtBearer();
+        .AddJwtBearer(options => {
+            options.Audience = "http://localhost:5001/";
+            options.Authority = "http://localhost:5000/";
+        });
 ```
 
 In the preceding code, two authentication services have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by supplying an argument, such as `CookieAuthenticationDefaults.AuthenticationScheme`, to the `AddAuthentication` method. If you fail to do this, filtering by scheme will not work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by invoking `AddAuthentication` with no arguments. If you fail to do this, filtering by scheme doesn't work. For example, `AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)` makes cookies run automatically.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -58,20 +61,22 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
     app.UseJwtBearerAuthentication(new JwtBearerOptions()
     {
         AuthenticationScheme = "Bearer",
-        AutomaticAuthenticate = false
+        AutomaticAuthenticate = false,
+        Audience = "http://localhost:5001/",
+        Authority = "http://localhost:5000/"
     });
 ```
 
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If you fail to do this, filtering by scheme will not work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. You do this by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If you fail to do this, filtering by scheme doesn't work.
 
 ---
 
 ## Selecting the scheme with the Authorize attribute
 
-No authentication middleware is configured to automatically run and create an identity. At the point of authorization, you choose which middleware will be used. The simplest way to select the middleware with which you wish to authorize is to use the `ActiveAuthenticationSchemes` property. This property accepts a comma-delimited list of authentication schemes to use. For example:
+At the point of authorization, you indicate the middleware to be used. The simplest way to select the middleware with which you wish to authorize is to pass a comma-delimited list of authentication schemes to the `[Authorize]` attribute. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
