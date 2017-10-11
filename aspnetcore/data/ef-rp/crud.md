@@ -40,6 +40,8 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 ```
 Run the app, click on a Details link and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/2`).
 
+Don't globally change `@page` to `@page "{id:int}", doing so will break the links to the Home and Create pages.
+
 <!-- See https://github.com/aspnet/Scaffolding/issues/590 -->
 
 ### Add related data
@@ -72,6 +74,59 @@ Run the app, select the **Students** tab, and click the **Details** link for a s
 Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
+
+<a name="TryUpdateModelAsync"></a>
+### TryUpdateModelAsync
+
+Examine the [TryUpdateModelAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
+
+In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `emptyStudent` object using the the posted form values from the [PageContext](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) property in the [PageModel](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0). `TryUpdateModelAsync` will only take the properties listed ( `s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
+
+In the preceding sample:
+
+* The second argument ( `"", // Prefix ...`) is a the prefix uses to look up values. It's not used in this sample. 
+* The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding#how-model-binding-works).
+
+<a id="overpost"></a>
+###  Overposting
+
+Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that you don't want this web page to set.
+
+```csharp
+public class Student
+{
+    public int ID { get; set; }
+    public string LastName { get; set; }
+    public string FirstMidName { get; set; }
+    public DateTime EnrollmentDate { get; set; }
+    public string Secret { get; set; }
+}
+```
+
+Even if you don't have a `Secret` field on the web page, a hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value.  The original code doesn't limit the fields that the model binder uses when it creates a Student instance. 
+
+Whatever value the hacker specified for the `Secret` form field is updated in the database. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
+
+![Fiddler adding Secret field](../ef-mvc/crud/_static/fiddler.png)
+
+The value "OverPost" would is successfully added to the `Secret` property of the inserted row. The app designer never intended the `Secret` property to be set with the Create page.
+
+<!-- TODO ASP team review required -->
+<a name="vm"></a>
+### View model
+
+A view model is typically a subset of the model used by the application. The application model is ofen called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database.  The view model contains only the data needed for the UI layer (for example, the Create page). Consider the following `Student` view model:
+
+[!code-csharp[Main](intro/samples/cu/Models/StudentVM.cs)]
+
+View models provide an alternative way to prevent overposting. The view model contains only the properties to view (display) or update.
+
+The following code uses the `StudentVM`  view model to create a new student:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
+
 
 
 

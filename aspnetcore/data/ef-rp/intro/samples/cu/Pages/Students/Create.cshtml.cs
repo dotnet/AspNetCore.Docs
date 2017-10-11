@@ -18,6 +18,7 @@ namespace ContosoUniversity.Pages.Students
 
         public IActionResult OnGet()
         {
+            // TODO remove. For quick testing.
             Student = new Student
             {
                 EnrollmentDate = DateTime.Now,
@@ -39,13 +40,15 @@ namespace ContosoUniversity.Pages.Students
             }
 
             #region snippet_TryUpdateModelAsync
-            var studentToUpdate = new Student();
+
+            var emptyStudent = new Student();
+
             if (await TryUpdateModelAsync<Student>(
-                studentToUpdate,
-                "",     //  prefix to use with the form fields names
+                emptyStudent,
+                "",
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
-            #endregion
             {
+                #endregion
                 try
                 {
                     await _context.SaveChangesAsync();
