@@ -1,20 +1,20 @@
 ---
-title: Limiting identity by scheme - ASP.NET Core
+title: Authorize with a specific scheme - ASP.NET Core
 author: rick-anderson
-description: This article explains how to limit identity to a specific schema when working with multiple authentication methods.
+description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 keywords: ASP.NET Core,identity,authentication scheme
 ms.author: riande
 manager: wpickett
-ms.date: 10/10/2017
+ms.date: 10/12/2017
 ms.topic: article
 ms.assetid: d3d6ca1b-b4b5-4bf7-898e-dcd90ec1bf8c
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/limitingidentitybyscheme
 ---
-# Limiting identity by scheme
+# Authorize with a specific scheme
 
-In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
+In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication handler. For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -36,10 +36,10 @@ public void ConfigureServices(IServiceCollection services)
         });
 ```
 
-In the preceding code, two authentication services have been added: one for cookies and one for bearer.
+In the preceding code, two authentication handlers have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. Invoking `AddAuthentication` with no arguments ensures that no middleware is configured to run automatically. If the app invokes `AddAuthentication` with arguments, filtering by scheme doesn't work. For example, calling `AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)` makes cookies run automatically.
+>Specifying the default scheme results in the `HttpContext.User` property being set to that identity. If that behavior isn't desired, disable it by invoking the parameterless form of `AddAuthentication`.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -63,20 +63,21 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
         AuthenticationScheme = "Bearer",
         AutomaticAuthenticate = false,
         Audience = "http://localhost:5001/",
-        Authority = "http://localhost:5000/"
+        Authority = "http://localhost:5000/",
+        RequireHttpsMetadata = false
     });
 ```
 
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. An app ensures that no middleware is configured to run automatically by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If the app fails to set `AuthenticationOptions.AutomaticAuthenticate` to false, filtering by scheme doesn't work.
+>Specifying the default scheme results in the `HttpContext.User` property being set to that identity. If that behavior isn't desired, disable it by setting the `AuthenticationOptions.AutomaticAuthenticate` property to `false`.
 
 ---
 
 ## Selecting the scheme with the Authorize attribute
 
-At the point of authorization, the app indicates the middleware to be used. Select the middleware with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
+At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -94,7 +95,7 @@ public class MixedController : Controller
 
 ---
 
-In the preceding example, both the cookie and bearer middlewares run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the specified middleware runs.
+In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -112,7 +113,7 @@ public class MixedController : Controller
 
 ---
 
-In the preceding code, only the middleware with the "Bearer" scheme runs. Any cookie-based identities are ignored.
+In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
 ## Selecting the scheme with policies
 
@@ -125,9 +126,14 @@ services.AddAuthorization(options =>
     {
         policy.AuthenticationSchemes.Add("Bearer");
         policy.RequireAuthenticatedUser();
-        policy.Requirements.Add(new Over18Requirement());
+        policy.Requirements.Add(new MinimumAgeRequirement());
     });
 });
 ```
 
-In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" middleware.
+In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" handler. Use the policy by setting the `[Authorize]` attribute's `Policy` property:
+
+```csharp
+[Authorize(Policy = "Over18")]
+public class RegistrationController : Controller
+```
