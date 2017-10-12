@@ -51,7 +51,7 @@ The [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authenticatio
 | [Cookie.HttpOnly](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.httponly?view=aspnetcore-2.0) | A flag indicating if the cookie should be accessible only to servers. Changing this value to `false` permits client-side scripts to access the cookie and may open your app to cookie theft should your app have a [Cross-site scripting (XSS)](xref:security/cross-site-scripting) vulnerability. The default value is `true`. |
 | [Cookie.Name](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.name?view=aspnetcore-2.0) | Sets the name of the cookie. |
 | [Cookie.Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path?view=aspnetcore-2.0) | Used to isolate apps running on the same host name. If you have an app running at `/app1` and want to restrict cookies to that app, set the `CookiePath` property to `/app1`. By doing so, the cookie is only available on requests to `/app1` and any app underneath it. |
-| [Cookie.SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite?view=aspnetcore-2.0) | Indicates whether the browser should allow the cookie to be attached to same-site requests only (`SameSiteMode.Strict`) or cross-site requests using safe HTTP methods and same-site requests (`SameSiteMode.Lax`). When set to `SameSiteMode.None`, cookies are used for same-site and cross-site requests if the [MinimumSameSitePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.minimumsamesitepolicy) is also `SameSiteMode.None`; otherwise, the value for `Cookie.SameSite` is taken from `MinimumSameSitePolicy` (see [Cookie Policy Middleware](#cookie-policy-middleware) below). To support OAuth authentication, the default value is `SameSiteMode.Lax`. For more information, see [OAuth authentication broken due to SameSite cookie policy](https://github.com/aspnet/Security/issues/1231). |
+| [Cookie.SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite?view=aspnetcore-2.0) | Indicates whether the browser should allow the cookie to be attached to same-site requests only (`SameSiteMode.Strict`) or cross-site requests using safe HTTP methods and same-site requests (`SameSiteMode.Lax`). When set to `SameSiteMode.None`, the cookie header value isn't set. Note that [Cookie Policy Middleware](#cookie-policy-middleware) might overwrite the value that you provide. To support OAuth authentication, the default value is `SameSiteMode.Lax`. For more information, see [OAuth authentication broken due to SameSite cookie policy](https://github.com/aspnet/Security/issues/1231). |
 | [Cookie.SecurePolicy](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.securepolicy?view=aspnetcore-2.0) | A flag indicating if the cookie created should be limited to HTTPS (`CookieSecurePolicy.Always`), HTTP or HTTPS (`CookieSecurePolicy.None`), or the same protocol as the request (`CookieSecurePolicy.SameAsRequest`). The default value is `CookieSecurePolicy.SameAsRequest`. |
 | [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.dataprotectionprovider?view=aspnetcore-2.0) | Used by the `CookieAuthenticationHandler` for data protection. If not provided, the app's default data protection provider is used. |
 | [Events](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.events?view=aspnetcore-2.0) | The handler calls methods on the provider that give the app control at certain processing points. If `Events` aren't provided, a default instance is supplied that does nothing when the methods are called. |
@@ -136,10 +136,12 @@ app.UseCookiePolicy(cookiePolicyOptions);
 | Property | Description |
 | -------- | ----------- |
 | [HttpOnly](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.httponly) | Affects whether cookies must be HttpOnly, which is a flag indicating if the cookie should be accessible only to servers. The default value is `HttpOnlyPolicy.None`. |
-| [MinimumSameSitePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.minimumsamesitepolicy) | Affects the cookie's same-site attribute. The default value is `SameSiteMode.Lax`. This option is available for ASP.NET Core 2.0+. |
+| [MinimumSameSitePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.minimumsamesitepolicy) | Affects the cookie's same-site attribute (see below). The default value is `SameSiteMode.Lax`. This option is available for ASP.NET Core 2.0+. |
 | [OnAppendCookie](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.onappendcookie) | Called when a cookie is appended. |
 | [OnDeleteCookie](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.ondeletecookie) | Called when a cookie is deleted. |
 | [Secure](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.secure) | Affects whether cookies must be Secure. The default value is `CookieSecurePolicy.None`. |
+
+**MinimumSameSitePolicy** (ASP.NET Core 2.0+ only)
 
 The default `MinimumSameSitePolicy` value is `SameSiteMode.Lax` to permit OAuth2 authentication. To strictly enforce a same-site policy of `SameSiteMode.Strict`, set the `MinimumSameSitePolicy`. Although this setting breaks OAuth2 and other cross-origin authentication schemes, it elevates the level of cookie security for other types of apps that don't rely on cross-origin request processing.
 
@@ -149,6 +151,14 @@ var cookiePolicyOptions = new CookiePolicyOptions
     MinimumSameSitePolicy = SameSiteMode.Strict,
 };
 ```
+
+The Cookie Policy Middleware setting for `MinimumSameSitePolicy` can affect your setting of `Cookie.SameSite` in `CookieAuthenticationOptions` settings according to the matrix below.
+
+| MinimumSameSitePolicy | Cookie.SameSite | Resultant Cookie.SameSite setting |
+| --------------------- | --------------- | --------------------------------- |
+| SameSiteMode.None     | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
+| SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
 ## Creating an authentication cookie
 
