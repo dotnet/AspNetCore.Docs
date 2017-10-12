@@ -38,29 +38,19 @@ namespace ContosoUniversity.Pages.Students
             {
                 return Page();
             }
-
             #region snippet_TryUpdateModelAsync
 
             var emptyStudent = new Student();
 
             if (await TryUpdateModelAsync<Student>(
                 emptyStudent,
-                "",
+                "student",   // Prefix for form value.
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
                 #endregion
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    return RedirectToPage("./Index");
-
-                }
-                // requires using Microsoft.EntityFrameworkCore;
-                catch (DbUpdateException /* ex */)
-                {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to Create. ");
-                }
+                _context.Students.Add(emptyStudent);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
             return Page();

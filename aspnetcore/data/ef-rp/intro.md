@@ -218,9 +218,16 @@ The previous command adds the NuGet package `Microsoft.VisualStudio.Web.CodeGene
 ## Scaffold the model
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Run the following command:
+* Run the following commands:
+
+<!-- without dotnet restore some get 
+Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.VisualStudio.Web.CodeGeneration.Utils, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+   at Microsoft.VisualStudio.Web.CodeGeneration.Design.Program.Main(String[] args)
+RunTime 00:00:21.20
+-->
 
   ```console
+dotnet restore
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
   

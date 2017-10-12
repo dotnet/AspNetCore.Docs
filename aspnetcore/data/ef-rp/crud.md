@@ -13,13 +13,13 @@ uid: data/ef-rp/crud
 ---
 # Create, Read, Update, and Delete - EF Core with Razor Pages tutorial (2 of 10)
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
 Note: It's a common practice to implement the repository pattern in order to create an abstraction layer between the UI (Razor Pages) and the data access layer. To keep these tutorials simple and focused on teaching EF, the repository pattern is not used. For information about repositories with EF, see [the last tutorial in this series](xref:data/ef-mvc/advanced).
 
-In this tutorial, you'll work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
+In this tutorial, you work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
 
 ## Customize the Details page
 
@@ -33,14 +33,14 @@ Select a Details link. The URL is of the form `http://localhost:1234/Students/De
 
 Update the Edit, Details, and Delete Razor Pages to use the `"{id:int}"` route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. 
 
-A request to the page with the "{id:int}" route template that does **not** include the integer will return an HTTP 404 (not found) error. For example, `http://localhost:1234/Students/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the "{id:int}" route template that does **not** include the integer returns an HTTP 404 (not found) error. For example, `http://localhost:1234/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
  ```cshtml
 @page "{id:int?}"
 ```
-Run the app, click on a Details link and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/2`).
+Run the app, click on a Details link, and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/2`).
 
-Don't globally change `@page` to `@page "{id:int}", doing so will break the links to the Home and Create pages.
+Don't globally change `@page` to `@page "{id:int}", doing so breaks the links to the Home and Create pages.
 
 <!-- See https://github.com/aspnet/Scaffolding/issues/590 -->
 
@@ -52,9 +52,9 @@ The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `SingleOr
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
 
-The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You'll learn more about these methods in the reading related data tutorial.
+The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property.  You learn more about these methods in the reading-related data tutorial.
 
-The `AsNoTracking` method improves performance in scenarios when the entities returned will not be updated in the current context. `AsNoTracking` is discussed later in this tutorial.
+The `AsNoTracking` method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
 ### Display related enrollments on the Details page
 
@@ -82,11 +82,11 @@ Examine the [TryUpdateModelAsync](https://docs.microsoft.com/en-us/dotnet/api/mi
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
 
-In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `emptyStudent` object using the the posted form values from the [PageContext](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) property in the [PageModel](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0). `TryUpdateModelAsync` will only take the properties listed ( `s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
+In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `emptyStudent` object using the posted form values from the [PageContext](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) property in the [PageModel](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel?view=aspnetcore-2.0). `TryUpdateModelAsync` only updates the properties listed (`s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate`).
 
 In the preceding sample:
 
-* The second argument ( `"", // Prefix ...`) is a the prefix uses to look up values. It's not used in this sample. 
+* The second argument (` "student",   // Prefix`) is the prefix uses to look up values. It's not case sensitive.
 * The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding#how-model-binding-works).
 
 <a id="overpost"></a>
@@ -105,19 +105,19 @@ public class Student
 }
 ```
 
-Even if you don't have a `Secret` field on the web page, a hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value.  The original code doesn't limit the fields that the model binder uses when it creates a Student instance. 
+Even if you don't have a `Secret` field on the web page, a hacker could set the secret value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value.  The original code doesn't limit the fields that the model binder uses when it creates a Student instance. 
 
 Whatever value the hacker specified for the `Secret` form field is updated in the database. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
 ![Fiddler adding Secret field](../ef-mvc/crud/_static/fiddler.png)
 
-The value "OverPost" would is successfully added to the `Secret` property of the inserted row. The app designer never intended the `Secret` property to be set with the Create page.
+The value "OverPost" is successfully added to the `Secret` property of the inserted row. The app designer never intended the `Secret` property to be set with the Create page.
 
 <!-- TODO ASP team review required -->
 <a name="vm"></a>
 ### View model
 
-A view model is typically a subset of the model used by the application. The application model is ofen called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database.  The view model contains only the data needed for the UI layer (for example, the Create page). Consider the following `Student` view model:
+A view model is typically a subset of the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database.  The view model contains only the data needed for the UI layer (for example, the Create page). Consider the following `Student` view model:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentVM.cs)]
 
@@ -126,6 +126,7 @@ View models provide an alternative way to prevent overposting. The view model co
 The following code uses the `StudentVM`  view model to create a new student:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
+Using `StudentVM`  requires  [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
 
 
@@ -135,4 +136,4 @@ The following code uses the `StudentVM`  view model to create a new student:
 
 
 >[!div class="step-by-step"]
-[Previous Getting started](xref:data/ef-rp/intro)(intro.md)
+[Previous Getting started](xref:data/ef-rp/intro)
