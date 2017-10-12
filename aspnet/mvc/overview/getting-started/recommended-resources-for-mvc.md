@@ -27,7 +27,6 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Intro to ASP.NET MVC 5](introduction/getting-started.md)
 - [Introduction to ASP.NET MVC](https://pluralsight.com/training/Player?author=scott-allen&amp;name=mvc4-building-m1-intro&amp;mode=live&amp;clip=0&amp;course=mvc4-building) (video by Pluralsight)
 - [Understanding Model View Controller in Asp.Net MVC](http://www.dotnet-tricks.com/Tutorial/mvc/DIYG060113-Understanding-Model-View-Controller-in-Asp.Net-MVC.html) (short blog intro).
-- [ASP.NET MVC Quick Guide](http://qkview.com/techbrij/aspnet-mvc-4)
 - [ASP.NET MVC Overview](../older-versions-1/overview/asp-net-mvc-overview.md)
 - [Free 6 hour online course - Developing ASP.NET MVC 4 Web Applications Jump Start](https://weblogs.asp.net/jgalloway/archive/2013/10/09/free-6-hour-online-course-developing-asp-net-mvc-4-web-applications-jump-start.aspx)
 - [Learning MVC - Part 1: Introduction to MVC Architecture and Separation of Concerns](http://www.codeproject.com/Articles/620195/Learning-MVC-Part-1-Introduction-to-MVC-Architectu)
