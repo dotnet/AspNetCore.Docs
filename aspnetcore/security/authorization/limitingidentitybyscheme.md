@@ -14,7 +14,7 @@ uid: security/authorization/limitingidentitybyscheme
 ---
 # Limiting identity by scheme
 
-In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the application may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
+In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication middleware. For example, two cookie middlewares where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
