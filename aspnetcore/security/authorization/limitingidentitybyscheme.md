@@ -39,9 +39,7 @@ public void ConfigureServices(IServiceCollection services)
 In the preceding code, two authentication services have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. Invoking `AddAuthentication` with no arguments ensures that no middleware is configured to run automatically. If the app does **not** 
- invoke `AddAuthentication` with no arguments, filtering by scheme doesn't work. For example, calling
- `AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)` makes cookies run automatically.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. Invoking `AddAuthentication` with no arguments ensures that no middleware is configured to run automatically. If the app invokes `AddAuthentication` with arguments, filtering by scheme doesn't work. For example, calling `AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)` makes cookies run automatically.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -72,17 +70,13 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
 
 >[!NOTE]
->When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. An app ensures that no middleware is configured to run automatically by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If the app fails to  set`AuthenticationOptions.AutomaticAuthenticate` to false, filtering by scheme doesn't work.
+>When adding multiple authentication middlewares, ensure that no middleware is configured to run automatically. An app ensures that no middleware is configured to run automatically by setting the `AuthenticationOptions.AutomaticAuthenticate` property to false. If the app fails to set `AuthenticationOptions.AutomaticAuthenticate` to false, filtering by scheme doesn't work.
 
 ---
 
 ## Selecting the scheme with the Authorize attribute
 
-At the point of authorization, the app indicates the middleware to be used. The simplest way to select the middleware with which the app will authorize:
-<!-- I don't like single lists, but the sentence is too long for translation -- maybe there is a better way to split it up -->
-*  Pass a comma-delimited list of authentication schemes to the `[Authorize]` attribute. 
-
-The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
+At the point of authorization, the app indicates the middleware to be used. Select the middleware with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -118,8 +112,7 @@ public class MixedController : Controller
 
 ---
 
-<!-- check my change -->
-In the preceding code , only the middleware with the "Bearer" scheme runs. Any cookie-based identities are ignored.
+In the preceding code, only the middleware with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
 ## Selecting the scheme with policies
 
@@ -137,4 +130,4 @@ services.AddAuthorization(options =>
 });
 ```
 
-In the preceding  example, the "Over18" policy only runs against the identity created by the "Bearer" middleware.
+In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" middleware.
