@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers
 
-<a name=data-protection-implementation-key-storage-providers></a>
+<a name="data-protection-implementation-key-storage-providers"></a>
 
 By default the data protection system [employs a heuristic](../configuration/default-settings.md#data-protection-default-settings) to determine where cryptographic key material should be persisted. The developer can override the heuristic and manually specify the location.
 

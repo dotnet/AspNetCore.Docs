@@ -14,7 +14,7 @@ uid: security/data-protection/configuration/default-settings
 ---
 # Key management and lifetime
 
-<a name=data-protection-default-settings></a>
+<a name="data-protection-default-settings"></a>
 
 ## Key Management
 

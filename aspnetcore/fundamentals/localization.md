@@ -96,7 +96,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
 
-<a name=one-resource-string-multiple-classes></a>
+<a name="one-resource-string-multiple-classes"></a>
 ### Using one resource string for multiple classes
 
 The following code shows how to use one resource string for validation attributes with multiple classes:

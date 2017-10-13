@@ -14,7 +14,7 @@ uid: security/cross-site-scripting
 ---
 # Preventing Cross-Site Scripting
 
-<a name=security-cross-site-scripting></a>
+<a name="security-cross-site-scripting"></a>
 
 Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attackers scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it in a page without validating, encoding or escaping it.
 
@@ -178,7 +178,7 @@ After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%
 >[!WARNING]
 > Do not use untrusted input as part of a URL path. Always pass untrusted input as a query string value.
 
-<a name=security-cross-site-scripting-customization></a>
+<a name="security-cross-site-scripting-customization"></a>
 
 ## Customizing the Encoders
 

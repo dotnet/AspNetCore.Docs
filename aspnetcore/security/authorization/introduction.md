@@ -14,7 +14,7 @@ uid: security/authorization/introduction
 ---
 # Introduction
 
-<a name=security-authorization-introduction></a>
+<a name="security-authorization-introduction"></a>
 
 Authorization refers to the process that determines what a user is able to do. For example, an administrative user is allowed to create a document library, add documents, edit documents, and delete them. A non-administrative user working with the library is only authorized to read the documents.
 

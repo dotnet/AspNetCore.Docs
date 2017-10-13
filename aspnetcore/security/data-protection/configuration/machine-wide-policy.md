@@ -14,7 +14,7 @@ uid: security/data-protection/configuration/machine-wide-policy
 ---
 # Machine Wide Policy
 
-<a name=data-protection-configuration-machinewidepolicy></a>
+<a name="data-protection-configuration-machinewidepolicy"></a>
 
 When running on Windows, the data protection system has limited support for setting default machine-wide policy for all applications which consume data protection. The general idea is that an administrator might wish to change some default setting (such as algorithms used or key lifetime) without needing to manually update every application on the machine.
 
@@ -37,7 +37,7 @@ The supported values are:
 
 * KeyEscrowSinks [string] - specifies the types which will be used for key escrow. This value is a semicolon-delimited list of key escrow sinks, where each element in the list is the assembly qualified name of a type which implements IKeyEscrowSink.
 
-<a name=data-protection-encryption-types></a>
+<a name="data-protection-encryption-types"></a>
 
 ### Encryption types
 

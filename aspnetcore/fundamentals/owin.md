@@ -86,7 +86,7 @@ app.UseOwin(pipeline =>
 });
 ```
 
-<a name=hosting-on-owin></a>
+<a name="hosting-on-owin"></a>
 
 ## Using ASP.NET Hosting on an OWIN-based server
 

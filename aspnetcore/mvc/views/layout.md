@@ -46,7 +46,7 @@ The layout specified can use a full path (example: `/Views/Shared/_Layout.cshtml
 
 By default, every layout must call `RenderBody`. Wherever the call to `RenderBody` is placed, the contents of the view will be rendered.
 
-<a name=layout-sections-label></a>
+<a name="layout-sections-label"></a>
 
 ### Sections
 
@@ -72,7 +72,7 @@ To instruct the view engine to ignore the body or sections, call the `IgnoreBody
 
 The body and every section in a Razor page must be either rendered or ignored.
 
-<a name=viewimports></a>
+<a name="viewimports"></a>
 
 ## Importing Shared Directives
 
@@ -116,7 +116,7 @@ If multiple `_ViewImports.cshtml` files are run for a view, combined behavior of
 
 * `@inject`: for each property, the closest one to the view overrides any others with the same property name
 
-<a name=viewstart></a>
+<a name="viewstart"></a>
 
 ## Running Code Before Each View
 

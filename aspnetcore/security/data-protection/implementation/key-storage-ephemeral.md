@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/key-storage-ephemeral
 ---
 # Ephemeral data protection providers
 
-<a name=data-protection-implementation-key-storage-ephemeral></a>
+<a name="data-protection-implementation-key-storage-ephemeral"></a>
 
 There are scenarios where an application needs a throwaway IDataProtectionProvider. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the package Microsoft.AspNetCore.DataProtection includes a type EphemeralDataProtectionProvider. This type provides a basic implementation of IDataProtectionProvider whose key repository is held solely in-memory and isn't written out to any backing store.
 

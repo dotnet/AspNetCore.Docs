@@ -14,7 +14,7 @@ uid: security/authorization/roles
 ---
 # Role based Authorization
 
-<a name=security-authorization-role-based></a>
+<a name="security-authorization-role-based"></a>
 
 When an identity is created it may belong to one or more roles, for example Tracy may belong to the Administrator and User roles whilst Scott may only belong to the user role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](https://docs.microsoft.com/dotnet/api/system.security.principal.genericprincipal.isinrole) property on the [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) class.
 
@@ -88,7 +88,7 @@ public class ControlPanelController : Controller
 }
 ```
 
-<a name=security-authorization-role-policy></a>
+<a name="security-authorization-role-policy"></a>
 
 ## Policy based role checks
 

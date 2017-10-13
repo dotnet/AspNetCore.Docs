@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/context-headers
 ---
 # Context headers
 
-<a name=data-protection-implementation-context-headers></a>
+<a name="data-protection-implementation-context-headers"></a>
 
 ## Background and theory
 
@@ -28,7 +28,7 @@ We use this concept of strong PRPs and PRFs to build up a context header. This c
 
 ## CBC-mode encryption + HMAC authentication
 
-<a name=data-protection-implementation-context-headers-cbc-components></a>
+<a name="data-protection-implementation-context-headers-cbc-components"></a>
 
 The context header consists of the following components:
 

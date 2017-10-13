@@ -14,7 +14,7 @@ uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers
 
-<a name=dependency-injection-controllers></a>
+<a name="dependency-injection-controllers"></a>
 
 By [Steve Smith](https://ardalis.com/)
 

@@ -8,7 +8,7 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
-<a name=strongly-typed-models-keyword-label></a>
+<a name="strongly-typed-models-keyword-label"></a>
 
 ## Strongly typed models and the @model keyword
 
