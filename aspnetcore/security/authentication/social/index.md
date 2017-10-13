@@ -15,7 +15,7 @@ uid: security/authentication/social/index
 
 # Enabling authentication using Facebook, Google and other external providers
 
-<a name=security-authentication-social-logins></a>
+<a name="security-authentication-social-logins"></a>
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

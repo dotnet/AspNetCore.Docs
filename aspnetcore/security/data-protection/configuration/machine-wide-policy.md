@@ -16,6 +16,8 @@ uid: security/data-protection/configuration/machine-wide-policy
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<a name="data-protection-configuration-machinewidepolicy"></a>
+
 When running on Windows, the Data Protection system has limited support for setting a default machine-wide policy for all apps that consume ASP.NET Core Data Protection. The general idea is that an administrator might wish to change a default setting, such as the algorithms used or key lifetime, without the need to manually update every app on the machine.
 
 > [!WARNING]
@@ -48,6 +50,8 @@ If EncryptionType is CNG-CBC, the system is configured to use a CBC-mode symmetr
 | EncryptionAlgorithmKeySize  | DWORD  | The length (in bits) of the key to derive for the symmetric block cipher algorithm. |
 | HashAlgorithm               | string | The name of a hash algorithm understood by CNG. This algorithm is opened in HMAC mode. |
 | HashAlgorithmProvider       | string | The name of the CNG provider implementation that can produce the algorithm HashAlgorithm. |
+
+<a name="data-protection-encryption-types"></a>
 
 If EncryptionType is CNG-GCM, the system is configured to use a Galois/Counter Mode symmetric block cipher for confidentiality and authenticity with services provided by Windows CNG (see [Specifying custom Windows CNG algorithms](xref:security/data-protection/configuration/overview#specifying-custom-windows-cng-algorithms) for more details). The following additional values are supported, each of which corresponds to a property on the CngGcmAuthenticatedEncryptionSettings type.
 

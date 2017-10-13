@@ -14,7 +14,7 @@ uid: fundamentals/middleware
 ---
 # ASP.NET Core Middleware Fundamentals
 
-<a name=fundamentals-middleware></a>
+<a name="fundamentals-middleware"></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
@@ -133,7 +133,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-<a name=middleware-run-map-use></a>
+<a name="middleware-run-map-use"></a>
 
 ### Use, Run, and Map
 
@@ -201,7 +201,7 @@ ASP.NET Core ships with the following middleware components:
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
 | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
 
-<a name=middleware-writing-middleware></a>
+<a name="middleware-writing-middleware"></a>
 
 ## Writing middleware
 

@@ -71,7 +71,7 @@ The code snippets above configure some or all of the following options:
 
 * `AccessDeniedPath` - This is the relative path to which requests redirect when a user attempts to access a resource but does not pass any [authorization policies](xref:security/authorization/policies#security-authorization-policies-based) for that resource.
 
-* `AuthenticationScheme` - This is a value by which a particular cookie authentication scheme is known. This is useful when there are multiple instances of cookie authentication and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme#security-authorization-limiting-by-scheme).
+* `AuthenticationScheme` - This is a value by which a particular cookie authentication scheme is known. This is useful when there are multiple instances of cookie authentication and the app needs to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme).
 
 * `AutomaticAuthenticate` - This flag is relevant only for ASP.NET Core 1.x. It indicates that the cookie authentication should run on every request and attempt to validate and reconstruct any serialized principal it created.
 

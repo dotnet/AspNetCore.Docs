@@ -14,7 +14,7 @@ uid: security/data-protection/consumer-apis/purpose-strings
 ---
 # Purpose Strings
 
-<a name=data-protection-consumer-apis-purposes></a>
+<a name="data-protection-consumer-apis-purposes"></a>
 
 Components which consume IDataProtectionProvider must pass a unique *purposes* parameter to the CreateProtector method. The purposes *parameter* is inherent to the security of the data protection system, as it provides isolation between cryptographic consumers, even if the root cryptographic keys are the same.
 
@@ -33,7 +33,7 @@ The purpose string doesn't have to be secret. It should simply be unique in the 
 
 Since the purposes parameter to CreateProtector is a string array, the above could have been instead specified as [ "Contoso.Security.BearerToken", "v1" ]. This allows establishing a hierarchy of purposes and opens up the possibility of multi-tenancy scenarios with the data protection system.
 
-<a name=data-protection-contoso-purpose></a>
+<a name="data-protection-contoso-purpose"></a>
 
 >[!WARNING]
 > Components should not allow untrusted user input to be the sole source of input for the purposes chain.

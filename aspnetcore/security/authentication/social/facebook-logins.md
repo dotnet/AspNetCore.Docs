@@ -14,8 +14,6 @@ uid: security/authentication/facebook-logins
 ---
 # Configuring Facebook authentication
 
-<a name=security-authentication-facebook-logins></a>
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://www.facebook.com/unsupportedbrowser).

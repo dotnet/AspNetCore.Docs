@@ -11,7 +11,7 @@ uid: security/authentication/otherlogins
 ---
 # Short survey of other authentication providers
 
-<a name=security-authentication-other-logins></a>
+<a name="security-authentication-other-logins"></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 

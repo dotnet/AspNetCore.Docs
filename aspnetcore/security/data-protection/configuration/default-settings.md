@@ -16,6 +16,8 @@ uid: security/data-protection/configuration/default-settings
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<a name="data-protection-default-settings"></a>
+
 ## Key management
 
 The app attempts to detect its operational environment and handle key configuration on its own.

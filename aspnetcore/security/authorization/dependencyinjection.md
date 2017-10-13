@@ -14,7 +14,7 @@ uid: security/authorization/dependencyinjection
 ---
 # Dependency Injection in requirement handlers
 
-<a name=security-authorization-di></a>
+<a name="security-authorization-di"></a>
 
 [Authorization handlers must be registered](policies.md#security-authorization-policies-based-handler-registration) in the service collection during configuration (using [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection)).
 
