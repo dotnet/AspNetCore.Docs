@@ -164,7 +164,7 @@ Session is accessed through the `Session` property on `HttpContext`. This proper
 
 The following example shows setting and getting an int and a string:
 
-[!code-csharp[Main](app-state/sample/src/WebAppSession/Controllers/HomeController.cs?name=snippet1)]
+[!code-csharp[Main](app-state/sample/src/WebAppSession/Controllers/HomeController.cs?range=8-27,49)]
 
 If you add the following extension methods, you can set and get serializable objects to Session:
 
