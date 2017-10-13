@@ -39,6 +39,7 @@ The in-memory session provider stores session data on the local server. If you p
 
 ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller?view=aspnetcore-2.0). This property stores data until it is read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is particularly useful for redirection, when data is needed for more than a single request. `TempData` is implemented by TempData providers, for example, using either cookies or session state.
 
+<a name="tempdata-providers"></a>
 ### TempData providers
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
@@ -102,7 +103,7 @@ The `Items` collection is a good location to store data that is needed only whil
 
 Caching is an efficient way to store and retrieve data. You can control the lifetime of cached items based on time and other considerations. Learn more about [Caching](../performance/caching/index.md).
 
-<a name=session></a>
+<a name="session"></a>
 ## Working with Session State
 
 ### Configuring Session
@@ -228,7 +229,7 @@ public class HomeController : Controller
 
 This approach also has the advantage of eliminating repetition of "magic strings" in multiple places in the code.
 
-<a name=appstate-errors></a>
+<a name="appstate-errors"></a>
 
 ## Application state data
 

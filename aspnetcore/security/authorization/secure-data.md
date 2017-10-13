@@ -311,7 +311,7 @@ Test that the app seeded the database. The seed method does not run if there are
 
 [!code-csharp[Main](secure-data/samples/final/Authorization/ContactOperations.cs)]
 
-<a name=secure-data-add-resources-label></a>
+<a name="secure-data-add-resources-label"></a>
 
 ### Additional resources
 

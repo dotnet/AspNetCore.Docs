@@ -78,7 +78,7 @@ You can implement `IFilterFactory` on your own attribute implementations as anot
 
 The framework includes built-in attribute-based filters that you can subclass and customize. For example, the following Result filter adds a header to the response.
 
-<a name=add-header-attribute></a>
+<a name="add-header-attribute"></a>
 
 [!code-csharp[Main](./filters/sample/src/FiltersSample/Filters/AddHeaderAttribute.cs?highlight=5,16)]
 
@@ -164,7 +164,7 @@ The `Order` property trumps scope when determining the order in which filters wi
 
 You can short-circuit the filter pipeline at any point by setting the `Result` property on the `context` parameter provided to the filter method. For instance, the following Resource filter prevents the rest of the pipeline from executing.
 
-<a name=short-circuiting-resource-filter></a>
+<a name="short-circuiting-resource-filter"></a>
 
 [!code-csharp[Main](./filters/sample/src/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs?highlight=12,13,14,15)]
 

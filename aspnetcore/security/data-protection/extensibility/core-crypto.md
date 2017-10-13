@@ -13,12 +13,12 @@ uid: security/data-protection/extensibility/core-crypto
 ---
 # Core cryptography extensibility
 
-<a name=data-protection-extensibility-core-crypto></a>
+<a name="data-protection-extensibility-core-crypto"></a>
 
 >[!WARNING]
 > Types that implement any of the following interfaces should be thread-safe for multiple callers.
 
-<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptor></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptor"></a>
 
 ## IAuthenticatedEncryptor
 
@@ -35,8 +35,8 @@ The Encrypt method returns a blob that includes the enciphered plaintext and an 
 > [!NOTE]
 > The IAuthenticatedEncryptor instance itself doesn't actually need to contain the key material. For example, the implementation could delegate to an HSM for all operations.
 
-<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptorfactory></a>
-<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptorfactory"></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor"></a>
 
 ## How to create an IAuthenticatedEncryptor
 
@@ -97,7 +97,7 @@ byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad
 
 ---
 
-<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptor"></a>
 
 ## IAuthenticatedEncryptorDescriptor (ASP.NET Core 2.x only)
 
@@ -115,7 +115,7 @@ The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows
 
 The primary difference between IAuthenticatedEncryptor and IAuthenticatedEncryptorDescriptor is that the descriptor knows how to create the encryptor and supply it with valid arguments. Consider an IAuthenticatedEncryptor whose implementation relies on SymmetricAlgorithm and KeyedHashAlgorithm. The encryptor's job is to consume these types, but it doesn't necessarily know where these types came from, so it can't really write out a proper description of how to recreate itself if the application restarts. The descriptor acts as a higher level on top of this. Since the descriptor knows how to create the encryptor instance (e.g., it knows how to create the required algorithms), it can serialize that knowledge in XML form so that the encryptor instance can be recreated after an application reset.
 
-<a name=data-protection-extensibility-core-crypto-exporttoxml></a>
+<a name="data-protection-extensibility-core-crypto-exporttoxml"></a>
 
 The descriptor can be serialized via its ExportToXml routine. This routine returns an XmlSerializedDescriptorInfo which contains two properties: the XElement representation of the descriptor and the Type which represents an [IAuthenticatedEncryptorDescriptorDeserializer](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer) which can be used to resurrect this descriptor given the corresponding XElement.
 
@@ -126,7 +126,7 @@ The serialized descriptor may contain sensitive information such as cryptographi
 
 There can also be cases where the serialized descriptor doesn't contain sensitive information. Consider again the case of a cryptographic key stored in an HSM. The descriptor cannot write out the key material when serializing itself since the HSM will not expose the material in plaintext form. Instead, the descriptor might write out the key-wrapped version of the key (if the HSM allows export in this fashion) or the HSM's own unique identifier for the key.
 
-<a name=data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer></a>
+<a name="data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer"></a>
 
 ## IAuthenticatedEncryptorDescriptorDeserializer
 

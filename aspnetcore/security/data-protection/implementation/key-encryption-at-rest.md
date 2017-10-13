@@ -14,14 +14,14 @@ uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key Encryption At Rest
 
-<a name=data-protection-implementation-key-encryption-at-rest></a>
+<a name="data-protection-implementation-key-encryption-at-rest"></a>
 
 By default the data protection system [employs a heuristic](../configuration/default-settings.md#data-protection-default-settings) to determine how cryptographic key material should be encrypted at rest. The developer can override the heuristic and manually specify how keys should be encrypted at rest.
 
 > [!NOTE]
 > If you specify an explicit key encryption at rest mechanism, the data protection system will deregister the default key storage mechanism that the heuristic provided. You must [specify an explicit key storage mechanism](key-storage-providers.md#data-protection-implementation-key-storage-providers), otherwise the data protection system will fail to start.
 
-<a name=data-protection-implementation-key-encryption-at-rest-providers></a>
+<a name="data-protection-implementation-key-encryption-at-rest-providers"></a>
 
 The data protection system ships with three in-box key encryption mechanisms.
 
@@ -59,7 +59,7 @@ sc.AddDataProtection()
 
 Due to .NET Framework limitations only certificates with CAPI private keys are supported. See [Certificate-based encryption with Windows DPAPI-NG](#data-protection-implementation-key-encryption-at-rest-dpapi-ng) below for possible workarounds to these limitations.
 
-<a name=data-protection-implementation-key-encryption-at-rest-dpapi-ng></a>
+<a name="data-protection-implementation-key-encryption-at-rest-dpapi-ng"></a>
 
 ## Windows DPAPI-NG
 

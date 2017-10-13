@@ -14,7 +14,7 @@ uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility
 
-<a name=data-protection-extensibility-key-management></a>
+<a name="data-protection-extensibility-key-management"></a>
 
 >[!TIP]
 > Read the [key management](../implementation/key-management.md#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
@@ -58,7 +58,7 @@ The IKeyManager interface represents an object responsible for general key stora
 >[!WARNING]
 > Writing an IKeyManager is a very advanced task, and the majority of developers should not attempt it. Instead, most developers should take advantage of the facilities offered by the [XmlKeyManager](xref:security/data-protection/extensibility/key-management#data-protection-extensibility-key-management-xmlkeymanager) class.
 
-<a name=data-protection-extensibility-key-management-xmlkeymanager></a>
+<a name="data-protection-extensibility-key-management-xmlkeymanager"></a>
 
 ## XmlKeyManager
 
@@ -134,7 +134,7 @@ Implementations of IXmlRepository don't need to parse the XML passing through th
 
 There are two built-in concrete types which implement IXmlRepository: FileSystemXmlRepository and RegistryXmlRepository. See the [key storage providers document](../implementation/key-storage-providers.md#data-protection-implementation-key-storage-providers) for more information. Registering a custom IXmlRepository would be the appropriate manner to use a different backing store, e.g., Azure Blob Storage. To change the default repository application-wide, register a custom singleton IXmlRepository in the service provider.
 
-<a name=data-protection-extensibility-key-management-ixmlencryptor></a>
+<a name="data-protection-extensibility-key-management-ixmlencryptor"></a>
 
 ## IXmlEncryptor
 

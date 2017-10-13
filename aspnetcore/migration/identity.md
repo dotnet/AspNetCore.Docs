@@ -14,7 +14,7 @@ uid: migration/identity
 ---
 # Migrating Authentication and Identity
 
-<a name=migration-identity></a>
+<a name="migration-identity"></a>
 
 By [Steve Smith](https://ardalis.com/)
 

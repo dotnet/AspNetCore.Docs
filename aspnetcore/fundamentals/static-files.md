@@ -16,7 +16,7 @@ ms.custom: H1Hack27Feb2017
 
 # Working with static files in ASP.NET Core
 
-<a name=fundamentals-static-files></a>
+<a name="fundamentals-static-files"></a>
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
