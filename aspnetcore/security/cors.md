@@ -214,7 +214,7 @@ The Access-Control-Max-Age header specifies how long the response to the preflig
 
 [!code-csharp[Main](cors/sample/CorsExample4/Startup.cs?range=89-94)]
 
-<a name=cors-how-cors-works></a>
+<a name="cors-how-cors-works"></a>
 
 ## How CORS works
 

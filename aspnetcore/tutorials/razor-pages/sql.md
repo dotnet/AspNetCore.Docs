@@ -65,7 +65,7 @@ if (context.Movie.Any())
 
 Add the seed initializer to the end of the `Main` method in the *Program.cs* file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Program.cs?highlight=6,17-32)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Program.cs)]
 
 Test the app
 

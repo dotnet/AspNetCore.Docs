@@ -14,11 +14,11 @@ uid: security/data-protection/configuration/overview
 ---
 # Configuring data protection
 
-<a name=data-protection-configuring></a>
+<a name="data-protection-configuring"></a>
 
 When the data protection system is initialized it applies some [default settings](default-settings.md#data-protection-default-settings) based on the operational environment. These settings are generally good for applications running on a single machine. There are some cases where a developer may want to change these (perhaps because their application is spread across multiple machines or for compliance reasons), and for these scenarios the data protection system offers a rich configuration API.
 
-<a name=data-protection-configuration-callback></a>
+<a name="data-protection-configuration-callback"></a>
 
 There is an extension method AddDataProtection which returns an IDataProtectionBuilder which itself exposes extension methods that you can chain together to configure various data protection options. For instance, to store keys at a UNC share instead of %LOCALAPPDATA% (the default), configure the system as follows:
 
@@ -33,7 +33,7 @@ public void ConfigureServices(IServiceCollection services)
 >[!WARNING]
 > If you change the key persistence location, the system will no longer automatically encrypt keys at rest since it doesn't know whether DPAPI is an appropriate encryption mechanism.
 
-<a name=configuring-x509-certificate></a>
+<a name="configuring-x509-certificate"></a>
 
 You can configure the system to protect keys at rest by calling any of the ProtectKeysWith\* configuration APIs. Consider the example below, which stores keys at a UNC share and encrypts those keys at rest with a specific X.509 certificate.
 
@@ -60,7 +60,7 @@ public void ConfigureServices(IServiceCollection services)
 
 By default the data protection system isolates applications from one another, even if they're sharing the same physical key repository. This prevents the applications from understanding each other's protected payloads. To share protected payloads between two different applications, configure the system passing in the same application name for both applications as in the below example:
 
-<a name=data-protection-code-sample-application-name></a>
+<a name="data-protection-code-sample-application-name"></a>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -70,7 +70,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-<a name=data-protection-configuring-disable-automatic-key-generation></a>
+<a name="data-protection-configuring-disable-automatic-key-generation"></a>
 
 Finally, you may have a scenario where you do not want an application to automatically roll keys as they approach expiration. One example of this might be applications set up in a primary / secondary relationship, where only the primary application is responsible for key management concerns, and all secondary applications simply have a read-only view of the key ring. The secondary applications can be configured to treat the key ring as read-only by configuring the system as below:
 
@@ -82,7 +82,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-<a name=data-protection-configuration-per-app-isolation></a>
+<a name="data-protection-configuration-per-app-isolation"></a>
 
 ## Per-application isolation
 
@@ -100,7 +100,7 @@ This isolation mechanism assumes that the applications are not malicious. A mali
 
 If the data protection system is not provided by an ASP.NET Core host (e.g., if the developer instantiates it himself via the DataProtectionProvider concrete type), application isolation is disabled by default, and all applications backed by the same keying material can share payloads as long as they provide the appropriate purposes. To provide application isolation in this environment, call the SetApplicationName method on the configuration object, see the [code sample](#data-protection-code-sample-application-name) above.
 
-<a name=data-protection-changing-algorithms></a>
+<a name="data-protection-changing-algorithms"></a>
 
 ## Changing algorithms
 
@@ -139,7 +139,7 @@ The developer can manually specify an implementation if desired via a call to Us
 >[!TIP]
 > Changing algorithms does not affect existing keys in the key ring. It only affects newly-generated keys.
 
-<a name=data-protection-changing-algorithms-custom-managed></a>
+<a name="data-protection-changing-algorithms-custom-managed"></a>
 
 ### Specifying custom managed algorithms
 
@@ -188,7 +188,7 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 > [!NOTE]
 > The SymmetricAlgorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The KeyedHashAlgorithm must have a digest size of >= 128 bits, and it must support keys of length equal to the hash algorithm's digest length. The KeyedHashAlgorithm is not strictly required to be HMAC.
 
-<a name=data-protection-changing-algorithms-cng></a>
+<a name="data-protection-changing-algorithms-cng"></a>
 
 ### Specifying custom Windows CNG algorithms
 

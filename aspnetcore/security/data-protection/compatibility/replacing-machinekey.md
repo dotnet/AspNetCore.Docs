@@ -14,7 +14,7 @@ uid: security/data-protection/compatibility/replacing-machinekey
 ---
 # Replacing `<machineKey>` in ASP.NET
 
-<a name=compatibility-replacing-machinekey></a>
+<a name="compatibility-replacing-machinekey"></a>
 
 The implementation of the `<machineKey>` element in ASP.NET [is replaceable](https://blogs.msdn.microsoft.com/webdev/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2/). This allows most calls to ASP.NET cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
 

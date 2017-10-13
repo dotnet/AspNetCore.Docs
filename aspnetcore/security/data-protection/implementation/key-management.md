@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/key-management
 ---
 # Key Management
 
-<a name=data-protection-implementation-key-management></a>
+<a name="data-protection-implementation-key-management"></a>
 
 The data protection system automatically manages the lifetime of master keys used to protect and unprotect payloads. Each key can exist in one of four stages.
 
@@ -41,7 +41,7 @@ The reason the data protection system generates a new key immediately rather tha
 
 There is an exception. If the application developer has [disabled automatic key generation](../configuration/overview.md#data-protection-configuring-disable-automatic-key-generation), then the data protection system must choose something as the default key. In this fallback scenario, the system will choose the non-revoked key with the most recent activation date, with preference given to keys that have had time to propagate to other machines in the cluster. The fallback system may end up choosing an expired default key as a result. The fallback system will never choose a revoked key as the default key, and if the key ring is empty or every key has been revoked then the system will produce an error upon initialization.
 
-<a name=data-protection-implementation-key-management-expiration></a>
+<a name="data-protection-implementation-key-management-expiration"></a>
 
 ## Key expiration and rolling
 

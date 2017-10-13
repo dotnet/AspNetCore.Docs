@@ -14,7 +14,7 @@ uid: security/authorization/simple
 ---
 # Simple Authorization
 
-<a name=security-authorization-simple></a>
+<a name="security-authorization-simple"></a>
 
 Authorization in MVC is controlled through the `AuthorizeAttribute` attribute and its various parameters. At its simplest applying the `AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authenticated user.
 

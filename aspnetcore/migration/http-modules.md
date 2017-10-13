@@ -92,7 +92,7 @@ An existing HTTP module will look similar to this:
 
 As shown in the [Middleware](../fundamentals/middleware.md) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
 
-<a name=http-modules-usemiddleware></a>
+<a name="http-modules-usemiddleware"></a>
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
@@ -100,7 +100,7 @@ The above middleware template was taken from the section on [writing middleware]
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
-<a name=http-modules-shortcircuiting-middleware></a>
+<a name="http-modules-shortcircuiting-middleware"></a>
 
 Your module might terminate a request, for example if the user is not authorized:
 

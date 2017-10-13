@@ -15,7 +15,7 @@ ms.custom: H1Hack27Feb2017
 ---
 # Introduction to Dependency Injection in ASP.NET Core
 
-<a name=fundamentals-dependency-injection></a>
+<a name="fundamentals-dependency-injection"></a>
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
