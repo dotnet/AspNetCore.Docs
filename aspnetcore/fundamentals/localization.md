@@ -43,7 +43,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 [!code-csharp[Main](../fundamentals/localization/sample/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-Note: You generally want to only localize text and not HTML.
+**Note:** You generally want to only localize text and not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -55,7 +55,7 @@ You can partition your localized strings by controller, area, or have just one c
 
 [!code-csharp[Main](localization/sample/Localization/Resources/SharedResource.cs)]
 
-Some developers use the `Startup` class to contain global or shared strings.  In the sample below, the `InfoController` and the `SharedResource` localizers are used:
+Some developers use the `Startup` class to contain global or shared strings. In the sample below, the `InfoController` and the `SharedResource` localizers are used:
 
 [!code-csharp[Main](localization/sample/Localization/Controllers/InfoController.cs?range=9-26)]
 
@@ -79,9 +79,7 @@ A French resource file could contain the following:
 
 The rendered view would contain the HTML markup from the resource file.
 
-Notes:
-- View localization requires the "Localization.AspNetCore.TagHelpers" NuGet package.
-- You generally want to only localize text and not HTML.
+**Note:** You generally want to only localize text and not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -145,7 +143,7 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 <a name="error"></a>
 
-If you are using Visual Studio 2017 Preview version 15.3, you'll get an error indicator in the resource editor. Remove the *ResXFileCodeGenerator*  value from the *Custom Tool*  properties grid to prevent this error message:
+If you are using Visual Studio 2017 Preview version 15.3, you'll get an error indicator in the resource editor. Remove the *ResXFileCodeGenerator*  value from the *Custom Tool* properties grid to prevent this error message:
 
 ![Resx editor](localization/_static/err.png)
 
@@ -221,9 +219,9 @@ If you only pass in one of the two (`culture` or `ui-culture`), the query string
 
 ### CookieRequestCultureProvider
 
-Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the `MakeCookieValue`  method to create a cookie.
+Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the `MakeCookieValue` method to create a cookie.
 
-The `CookieRequestCultureProvider` `DefaultCookieName`  returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is ".AspNetCore.Culture".
+The `CookieRequestCultureProvider` `DefaultCookieName` returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is ".AspNetCore.Culture".
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
