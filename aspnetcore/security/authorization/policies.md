@@ -69,8 +69,6 @@ public class MinimumAgeRequirement : IAuthorizationRequirement
 
 A requirement doesn't need to have data or properties.
 
-<a name=security-authorization-policies-based-authorization-handler></a>
-
 ## Authorization Handlers
 
 An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
