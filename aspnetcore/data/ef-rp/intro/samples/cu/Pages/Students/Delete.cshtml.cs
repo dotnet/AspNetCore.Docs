@@ -44,6 +44,7 @@ namespace ContosoUniversity.Pages.Students
         }
         #endregion
 
+        #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
@@ -71,7 +72,7 @@ namespace ContosoUniversity.Pages.Students
                 //Log the error (uncomment ex variable name and write a log.)
                 return RedirectToAction("./Delete", new { id = id, saveChangesError = true });
             }
-
         }
+        #endregion
     }
 }

@@ -174,8 +174,60 @@ If you want to avoid the read-first approach, but you also want the SQL UPDATE s
 
 -->
 
+## Update the Delete page
+
+In this section you add code to implement a custom error message when the call to `SaveChanges` fails.
+
+The scaffolded code uses the following pattern for Create,  Edit, and Delete pages:
+
+* Get and show the data with the HTTP GET method `OnGetAsync`.
+* Save changes to the data with the HTTP POST method `OnPostAsync`.
 
 
+
+<!--
+You'll add a try-catch block to the HttpPost `Delete` method to handle any errors that might occur when the database is updated. If an error occurs, the HttpPost Delete method calls the HttpGet Delete method, passing it a parameter that indicates that an error has occurred. The HttpGet Delete method then redisplays the confirmation page along with the error message, giving the user an opportunity to cancel or try again.
+-->
+
+Replace the `OnGetAsync` method with the following code, which manages error reporting:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet_OnGetAsync&highlight=1,9,17-20)]
+
+
+The preceding code contains the optional parameter `saveChangesError`. `saveChangesError`  indicates whether the method was called after a failure to delete the student object. `saveChangesError` is false the first time `OnGetAsync` is called. When `OnGetAsync` is called by `OnPostAsync` because the delete operaton failed,   the parameter is true and an error message is set.
+
+
+### The read-first approach to HttpPost Delete
+
+Replace the `OnPostAsync` with the following code, which performs the delete and catches database exceptions:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Delete.cshtml.cs?name=snippet_OnPostAsync)]
+
+
+This code retrieves the selected entity, then calls the `Remove` method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated.
+
+<!--
+### The create-and-attach approach to HttpPost Delete
+
+If improving performance in a high-volume application is a priority, you could avoid an unnecessary SQL query by instantiating a Student entity using only the primary key value and then setting the entity state to `Deleted`. That's all that the Entity Framework needs in order to delete the entity. (Don't put this code in your project; it's here just to illustrate an alternative.)
+
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_DeleteWithoutReadFirst&highlight=7-8)]
+
+If the entity has related data that should also be deleted, make sure that cascade delete is configured in the database. With this approach to entity deletion, EF might not realize there are related entities to be deleted.
+
+### Update the Delete view
+
+In *Views/Student/Delete.cshtml*, add an error message between the h2 heading and the h3 heading, as shown in the following example:
+
+[!code-html[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
+
+Run the app, select the **Students** tab, and click a **Delete** hyperlink:
+
+![Delete confirmation page](crud/_static/student-delete.png)
+
+Click **Delete**. The Index page is displayed without the deleted student. (You'll see an example of the error handling code in action in the concurrency tutorial.)
+
+-->
 
 >[!div class="step-by-step"]
 [Previous Getting started](xref:data/ef-rp/intro)
