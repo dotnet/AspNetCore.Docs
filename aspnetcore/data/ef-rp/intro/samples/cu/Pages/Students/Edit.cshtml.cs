@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
@@ -39,25 +34,30 @@ namespace ContosoUniversity.Pages.Students
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        // divega review 
+        #region snippet_OnPostAsync
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Student).State = EntityState.Modified;
+            var studentToUpdate = await _context.Students.SingleOrDefaultAsync(
+                s => s.ID == id);
 
-            try
+            if (await TryUpdateModelAsync<Student>(
+                studentToUpdate,
+                "student",
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
+                _context.Students.Update(studentToUpdate);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
+            return Page();
         }
+        #endregion
     }
 }

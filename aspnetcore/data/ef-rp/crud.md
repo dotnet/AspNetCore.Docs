@@ -107,7 +107,7 @@ public class Student
 
 Even if you don't have a `Secret` field on the web page, a hacker could set the secret value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value.  The original code doesn't limit the fields that the model binder uses when it creates a Student instance. 
 
-Whatever value the hacker specified for the `Secret` form field is updated in the database. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
+Whatever value the hacker specified for the `Secret` form field is updated in the DB. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
 ![Fiddler adding Secret field](../ef-mvc/crud/_static/fiddler.png)
 
@@ -117,7 +117,7 @@ The value "OverPost" is successfully added to the `Secret` property of the inser
 <a name="vm"></a>
 ### View model
 
-A view model is typically a subset of the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database.  The view model contains only the data needed for the UI layer (for example, the Create page). Consider the following `Student` view model:
+A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). Consider the following `Student` view model:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentVM.cs)]
 
@@ -128,9 +128,51 @@ The following code uses the `StudentVM`  view model to create a new student:
 [!code-csharp[Main](intro/samples/cu/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
 Using `StudentVM`  requires  [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
+The [SetValues](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. The other object must be based on the same type as this object, or a type derived from the type for this object
 
+## Update the Edit page
 
+Update the Edit page code-behind file:
 
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Edit.cshtml.cs?name=snippet_OnPostAsync)]
+
+The code changes are similar to the Create page with a few exceptions:
+
+* `OnPostAsync` has an optional `id` parameter.
+* The current student is fetched from the DB, rather than creating an empty student.
+
+### Test the Edit and Create pages
+
+Create and edit a few student entities.
+
+## Entity States
+
+The DB context keeps track of whether entities in memory are in sync with their corresponding rows in the DB.  The DB context sync information determines what happens when `SaveChanges` is called. For example,  when a new entity is passed to the `Add` method, that entity's state is set to `Added`.  When `SaveChanges` is called, the DB context issues a SQL INSERT command.
+
+An entity may be in one of the following states:
+
+* `Added`: The entity does not yet exist in the DB. The `SaveChanges` method issues an INSERT statement.
+
+* `Unchanged`: Nothing needs to be done with this entity by the `SaveChanges` method.  An entity has this status when it is read from the DB.
+
+* `Modified`: Some or all of the entity's property values have been modified. The `SaveChanges` method issues an UPDATE statement.
+
+* `Deleted`: The entity has been marked for deletion. The `SaveChanges` method issues a DELETE statement.
+
+* `Detached`: The entity isn't being tracked by the DB context.
+
+In a desktop app, state changes are typically set automati cally. An entity is read, changes are made, and the  entity state to automatically be changed to `Modified`.  Calling `SaveChanges` generates a SQL UPDATE statement that updates only the changed properties.
+
+In a web app, the `DbContext` that reads an entity and displays the data  is disposed after a page is rendered. When a pages `OnPostAsync` method is called,  a new web request is made and with a new instance of the `DbContext`.  Re-reading the entity in that new context simulates desktop processing.
+
+<!-- I don't see how to use this with RP 
+To avoid an extra read operation, use the entity object created by the model binder. 
+
+But if you don't want to do the extra read operation, you have to use the entity object created by the model binder.  The simplest way to do this is to set the entity state to Modified as is done in the alternative HttpPost Edit code shown earlier. Then when you call `SaveChanges`, the Entity Framework updates all columns of the DB row, because the context has no way to know which properties you changed.
+
+If you want to avoid the read-first approach, but you also want the SQL UPDATE statement to update only the fields that the user actually changed, the code is more complex. You have to save the original values in some way (such as by using hidden fields) so that they are available when the HttpPost `Edit` method is called. Then you can create a Student entity using the original values, call the `Attach` method with that original version of the entity, update the entity's values to the new values, and then call `SaveChanges`.
+
+-->
 
 
 

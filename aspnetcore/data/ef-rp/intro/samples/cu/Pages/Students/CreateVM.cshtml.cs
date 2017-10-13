@@ -27,6 +27,7 @@ namespace ContosoUniversity.Pages.Students
             return Page();
         }
 
+        // divega review 
         #region snippet_OnPostAsync
         [BindProperty]
         public StudentVM StudentVM { get; set; }
