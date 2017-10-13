@@ -76,8 +76,6 @@ Configuration considerations:
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. Don't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [safe storage of app secrets during development](../security/app-secrets.md).
 * If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
 
-<a name=options-config-objects></a>
-
 ## Using Options and configuration objects
 
 The options pattern uses custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
@@ -88,8 +86,6 @@ The options pattern uses custom options classes to represent a group of related 
 The options class must be non-abstract with a public parameterless constructor. For example:
 
 [!code-csharp[Main](configuration/sample/UsingOptions/Models/MyOptions.cs)]
-
-<a name=options-example></a>
 
 In the following code, the JSON configuration provider is enabled. The `MyOptions` class is added to the service container and bound to configuration.
 
@@ -142,8 +138,6 @@ With the following `Controller`:
 You can also supply options in a view model or inject `IOptions<TOptions>` directly into a view:
 
 [!code-html[Main](configuration/sample/UsingOptions/Views/Home/Index.cshtml?highlight=3-4,16-17,20-21)]
-
-<a name=in-memory-provider></a>
 
 ## IOptionsSnapshot
 
@@ -241,8 +235,6 @@ public void CanBindObjectTree()
     Assert.Equal("connectionstring", options.Connection.Value);
 }
 ```
-
-<a name=custom-config-providers></a>
 
 ## Basic sample of Entity Framework custom provider
 
