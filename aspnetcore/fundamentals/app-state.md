@@ -163,29 +163,7 @@ Session is accessed through the `Session` property on `HttpContext`. This proper
 
 The following example shows setting and getting an int and a string:
 
-```csharp
-public class HomeController : Controller
-{
-    const string SessionKeyName = "_Name";
-    const string SessionKeyYearsMember = "_YearsMember";
-    const string SessionKeyDate = "_Date";
-
-    public IActionResult Index()
-    {
-        // Requires using Microsoft.AspNetCore.Http;
-        HttpContext.Session.SetString(SessionKeyName, "Rick");
-        HttpContext.Session.SetInt32(SessionKeyYearsMember, 3);
-        return RedirectToAction("SessionNameYears");
-    }
-    public IActionResult SessionNameYears()
-    {
-        var name = HttpContext.Session.GetString(SessionKeyName);
-        var yearsMember = HttpContext.Session.GetInt32(SessionKeyYearsMember);
-
-        return Content($"Name: \"{name}\",  Membership years: \"{yearsMember}\"");
-    }
-}
-```
+[!code-csharp[Main](app-state/sample/src/WebAppSession/Controllers/HomeController.cs?range=8-27,49)]
 
 If you add the following extension methods, you can set and get serializable objects to Session:
 
