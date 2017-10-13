@@ -28,8 +28,8 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 *  Create an ASP.NET Core MVC web app
 
-   ** [Web app with Visual Studio on Windows](first-mvc-app/index.md)
-   ** [Web app with Visual Studio on Mac](first-mvc-app-mac/index.md)
+   ** [Web app with Visual Studio for Windows](first-mvc-app/index.md)
+   ** [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
    ** [Web app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
 
 
@@ -40,9 +40,12 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
-* [Create a Web API with ASP.NET Core and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* [Create a Web API with ASP.NET Core and Visual Studio for Windows](first-web-api.md)
-* [Create a Web API with ASP.NET Core and Visual Studio Code](web-api-vsc.md)
+* [Create a Web API with ASP.NET Core]
+
+  * [Web API with Visual Studio for Windows](first-web-api.md)
+  * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+  * [Web API with Visual Studio Code](web-api-vsc.md)
+  
 * [ASP.NET Core Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
 * [Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)
 
