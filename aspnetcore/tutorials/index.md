@@ -28,9 +28,9 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 *  Create an ASP.NET Core MVC web app
 
-   ** [Web app with Visual Studio for Windows](first-mvc-app/index.md)
-   ** [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
-   ** [Web app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
+   * [Web app with Visual Studio for Windows](first-mvc-app/index.md)
+   * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
+   * [Web app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
 
 
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
