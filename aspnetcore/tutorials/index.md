@@ -40,7 +40,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
-* [Create a Web API with ASP.NET Core]
+* Create a Web API with ASP.NET Core
 
   * [Web API with Visual Studio for Windows](first-web-api.md)
   * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
