@@ -70,7 +70,8 @@ namespace ContosoUniversity.Pages.Students
             catch (DbUpdateException /* ex */)
             {
                 //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("./Delete", new { id = id, saveChangesError = true });
+                return RedirectToAction("./Delete", 
+                                     new { id = id, saveChangesError = true });
             }
         }
         #endregion

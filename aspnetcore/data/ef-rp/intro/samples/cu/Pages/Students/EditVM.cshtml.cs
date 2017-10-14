@@ -52,7 +52,7 @@ namespace ContosoUniversity.Pages.Students
             }
 
             var entry = await _context.FindAsync<Student>(id);
-            entry.CurrentValues.SetValues(StudentVM);
+           // entry.CurrentValues.SetValues(StudentVM);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
