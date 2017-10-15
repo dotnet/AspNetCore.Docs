@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,7 +32,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            string query = "SELECT * FROM Department WHERE DepartmentID = {0}";
+            var query = "SELECT * FROM Department WHERE DepartmentID = {0}";
             var department = await _context.Departments
                 .FromSql(query, id)
                 .Include(d => d.Administrator)
@@ -110,7 +108,7 @@ namespace ContosoUniversity.Controllers
 
             if (departmentToUpdate == null)
             {
-                Department deletedDepartment = new Department();
+                var deletedDepartment = new Department();
                 await TryUpdateModelAsync(deletedDepartment);
                 ModelState.AddModelError(string.Empty,
                     "Unable to save changes. The department was deleted by another user.");
@@ -158,7 +156,7 @@ namespace ContosoUniversity.Controllers
                         }
                         if (databaseValues.InstructorID != clientValues.InstructorID)
                         {
-                            Instructor databaseInstructor = await _context.Instructors.SingleOrDefaultAsync(i => i.ID == databaseValues.InstructorID);
+                            var databaseInstructor = await _context.Instructors.SingleOrDefaultAsync(i => i.ID == databaseValues.InstructorID);
                             ModelState.AddModelError("InstructorID", $"Current value: {databaseInstructor?.FullName}");
                         }
 

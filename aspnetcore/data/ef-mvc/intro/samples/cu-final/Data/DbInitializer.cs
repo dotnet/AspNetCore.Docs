@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Data
@@ -38,7 +36,7 @@ namespace ContosoUniversity.Data
                     EnrollmentDate = DateTime.Parse("2005-09-01") }
             };
 
-            foreach (Student s in students)
+            foreach (var s in students)
             {
                 context.Students.Add(s);
             }
@@ -58,7 +56,7 @@ namespace ContosoUniversity.Data
                     HireDate = DateTime.Parse("2004-02-12") }
             };
 
-            foreach (Instructor i in instructors)
+            foreach (var i in instructors)
             {
                 context.Instructors.Add(i);
             }
@@ -80,7 +78,7 @@ namespace ContosoUniversity.Data
                     InstructorID  = instructors.Single( i => i.LastName == "Kapoor").ID }
             };
 
-            foreach (Department d in departments)
+            foreach (var d in departments)
             {
                 context.Departments.Add(d);
             }
@@ -111,7 +109,7 @@ namespace ContosoUniversity.Data
                 },
             };
 
-            foreach (Course c in courses)
+            foreach (var c in courses)
             {
                 context.Courses.Add(c);
             }
@@ -130,7 +128,7 @@ namespace ContosoUniversity.Data
                     Location = "Thompson 304" },
             };
 
-            foreach (OfficeAssignment o in officeAssignments)
+            foreach (var o in officeAssignments)
             {
                 context.OfficeAssignments.Add(o);
             }
@@ -172,7 +170,7 @@ namespace ContosoUniversity.Data
                     },
             };
 
-            foreach (CourseAssignment ci in courseInstructors)
+            foreach (var ci in courseInstructors)
             {
                 context.CourseAssignments.Add(ci);
             }
@@ -236,7 +234,7 @@ namespace ContosoUniversity.Data
                     }
             };
 
-            foreach (Enrollment e in enrollments)
+            foreach (var e in enrollments)
             {
                 var enrollmentInDataBase = context.Enrollments.Where(
                     s =>
