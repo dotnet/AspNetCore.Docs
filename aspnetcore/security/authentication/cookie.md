@@ -32,7 +32,7 @@ In the `ConfigureServices` method, create the Authentication Middleware service 
 
 [!code-csharp[Main](cookie/sample/Startup.cs?name=snippet1)]
 
-`AuthenticationScheme` passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [limit authorization to one instance](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
+`AuthenticationScheme` passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to `CookieAuthenticationDefaults.AuthenticationScheme` provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
 
 In the `Configure` method, use the `UseAuthentication` method to invoke the Authentication Middleware that sets the `HttpContext.User` property. Call the `UseAuthentication` method before calling `AddMvcWithDefaultRoute` in an MVC app or `AddMvc` in a Razor Pages app:
 
@@ -53,7 +53,7 @@ The [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authenticatio
 | [Cookie.Path](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.path?view=aspnetcore-2.0) | Used to isolate apps running on the same host name. If you have an app running at `/app1` and want to restrict cookies to that app, set the `CookiePath` property to `/app1`. By doing so, the cookie is only available on requests to `/app1` and any app underneath it. |
 | [Cookie.SameSite](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.samesite?view=aspnetcore-2.0) | Indicates whether the browser should allow the cookie to be attached to same-site requests only (`SameSiteMode.Strict`) or cross-site requests using safe HTTP methods and same-site requests (`SameSiteMode.Lax`). When set to `SameSiteMode.None`, the cookie header value isn't set. Note that [Cookie Policy Middleware](#cookie-policy-middleware) might overwrite the value that you provide. To support OAuth authentication, the default value is `SameSiteMode.Lax`. For more information, see [OAuth authentication broken due to SameSite cookie policy](https://github.com/aspnet/Security/issues/1231). |
 | [Cookie.SecurePolicy](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder.securepolicy?view=aspnetcore-2.0) | A flag indicating if the cookie created should be limited to HTTPS (`CookieSecurePolicy.Always`), HTTP or HTTPS (`CookieSecurePolicy.None`), or the same protocol as the request (`CookieSecurePolicy.SameAsRequest`). The default value is `CookieSecurePolicy.SameAsRequest`. |
-| [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.dataprotectionprovider?view=aspnetcore-2.0) | Used by the `CookieAuthenticationHandler` for data protection. If not provided, the app's default data protection provider is used. |
+| [DataProtectionProvider](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.dataprotectionprovider?view=aspnetcore-2.0) | Sets the `DataProtectionProvider` that's used to create the default `TicketDataFormat`. If the `TicketDataFormat` property is set, the `DataProtectionProvider` option isn't used. If not provided, the app's default data protection provider is used. |
 | [Events](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.events?view=aspnetcore-2.0) | The handler calls methods on the provider that give the app control at certain processing points. If `Events` aren't provided, a default instance is supplied that does nothing when the methods are called. |
 | [EventsType](/dotnet/api/microsoft.aspnetcore.authentication.authenticationschemeoptions.eventstype?view=aspnetcore-2.0) | Used as the service type to get the `Events` instance instead of the property. |
 | [ExpireTimeSpan](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.expiretimespan?view=aspnetcore-2.0) | The `TimeSpan` after which the authentication ticket stored inside the cookie expires. `ExpireTimeSpan` is added to the current time to create the expiration time for the ticket. The `ExpiredTimeSpan` value always goes into the encrypted AuthTicket verified by the server. It may also go into the [Set-Cookie](https://tools.ietf.org/html/rfc6265#section-4.1) header, but only if `IsPersistent` is set. To set `IsPersistent` to `true`, configure the [AuthenticationProperties](/dotnet/api/microsoft.aspnetcore.authentication.authenticationproperties) passed to `SignInAsync`. The default value of `ExpireTimeSpan` is 14 days. |
@@ -230,7 +230,7 @@ In order to invalidate a cookie when the database changes based on the `LastChan
 var claims = new List<Claim>
 {
     new Claim(ClaimTypes.Name, user.Email),
-    new Claim("LastChanged"), {Database Value})
+    new Claim("LastChanged", {Database Value})
 };
 
 var claimsIdentity = new ClaimsIdentity(
