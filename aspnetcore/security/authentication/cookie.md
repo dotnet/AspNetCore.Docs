@@ -356,7 +356,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
 Consider a situation in which the user's name is updated &mdash; a decision that doesn't affect security in any way. If you want to non-destructively update the user principal, call `context.ReplacePrincipal` and set the `context.ShouldRenew` property to `true`.
 
 > [!WARNING]
-> The approach described here is triggered on every request. This can result in a large performance penalty for the app. In your `ValidateLastChanged` method, you should minimize database queries as much as possible. Instead of performing a database query for every request in `ValidateLastChanged`, which would be relatively slow, you could store the database's last changed value in an in-memory object that's updated with each user database update.
+> The approach described here is triggered on every request. This can result in a large performance penalty for the app.
 
 ## Persistent cookies
 
