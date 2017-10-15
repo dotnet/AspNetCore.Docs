@@ -278,7 +278,7 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
                            select c.Value).FirstOrDefault();
 
         if (string.IsNullOrEmpty(lastChanged) ||
-            !_userRepository.ValidateLastChanged(userPrincipal, lastChanged))
+            !_userRepository.ValidateLastChanged(lastChanged))
         {
             context.RejectPrincipal();
 
@@ -328,7 +328,7 @@ public static class LastChangedValidator
                            select c.Value).FirstOrDefault();
 
         if (string.IsNullOrEmpty(lastChanged) ||
-            !userRepository.ValidateLastChanged(userPrincipal, lastChanged))
+            !userRepository.ValidateLastChanged(lastChanged))
         {
             context.RejectPrincipal();
 
