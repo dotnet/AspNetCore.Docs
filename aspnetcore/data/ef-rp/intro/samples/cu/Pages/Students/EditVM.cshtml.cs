@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System;
 
 namespace ContosoUniversity.Pages.Students
 {
@@ -25,7 +26,7 @@ namespace ContosoUniversity.Pages.Students
                 return NotFound();
             }
 
-            Student  Student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            Student Student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
             CopyStudentToStudentVM(Student);
 
             if (Student == null)
@@ -51,10 +52,17 @@ namespace ContosoUniversity.Pages.Students
                 return Page();
             }
 
-            var entry = await _context.FindAsync<Student>(id);
-           // entry.CurrentValues.SetValues(StudentVM);
-            await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
+            var studentToUpdate = await _context.FindAsync<Student>(id);
+            if (await TryUpdateModelAsync(
+                studentToUpdate,
+                nameof(StudentVM),
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+
+            return Page();
         }
         #endregion
     }

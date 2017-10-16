@@ -13,18 +13,20 @@ uid: data/ef-rp/crud
 ---
 # Create, Read, Update, and Delete - EF Core with Razor Pages tutorial (2 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-Note: It's a common practice to implement the repository pattern in order to create an abstraction layer between the UI (Razor Pages) and the data access layer. To keep these tutorials simple and focused on teaching EF, the repository pattern is not used. For information about repositories with EF, see [the last tutorial in this series](xref:data/ef-mvc/advanced).
+Note: Some developers use a service layer or repository pattern in order to create an abstraction layer between the UI (Razor Pages) and the data access layer. To keep these tutorials simple and focused on EF, the repository pattern or service layer is not used. 
 
 In this tutorial, you work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
 
 The scaffolded code uses the following pattern for Create,  Edit, and Delete pages:
 
-* Get and show the data with the HTTP GET method `OnGetAsync`.
+* Get and display the requested data with the HTTP GET method `OnGetAsync`.
 * Save changes to the data with the HTTP POST method `OnPostAsync`.
+
+The Index and Details pages  get and display the requested data with the HTTP GET method `OnGetAsync`
 
 ## Customize the Details page
 
@@ -34,16 +36,17 @@ in the *Pages/Students/Index.cshtml* file.
 <!--2do ricka. if Index doesn't change, remove dup -->
 [!code-cshtml[Main](intro/samples/cu/Pages/Students/Index1.cshtml?range=40-44)]
 
-Select a Details link. The URL is of the form `http://localhost:1234/Students/Details?id=2`. The Student ID is passed using a query string (`?id=2`). 
+Select a Details link. The URL is of the form `http://localhost:5000/Students/Details?id=2`. The Student ID is passed using a query string (`?id=2`). 
 
 Update the Edit, Details, and Delete Razor Pages to use the `"{id:int}"` route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. 
 
-A request to the page with the "{id:int}" route template that does **not** include the integer returns an HTTP 404 (not found) error. For example, `http://localhost:1234/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the "{id:int}" route template that does **not** include the integer returns an HTTP 404 (not found) error. For example, `http://localhost:5000/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
  ```cshtml
 @page "{id:int?}"
 ```
-Run the app, click on a Details link, and verify the URL is passing the ID as route data (`http://localhost:1234/Students/Details/2`).
+
+Run the app, click on a Details link, and verify the URL is passing the ID as route data (`http://localhost:5000/Students/Details/2`).
 
 Don't globally change `@page` to `@page "{id:int}", doing so breaks the links to the Home and Create pages.
 
@@ -198,6 +201,14 @@ Add the following highlighted error message to the Delete Razor Page.
 [!code-cshtml[Main](intro/samples/cu/Pages/Students/Delete.cshtml?range=1-13&highlight=10)]
 
 Test Delete. 
+
+## Common errors
+
+If the Students/Home and Students/Details links don't work, verify the `@page` directive is **not** using the following route template:
+
+```cshtml
+`@page "{id:int}"
+```
 
 >[!div class="step-by-step"]
 [Previous Getting started](xref:data/ef-rp/intro)
