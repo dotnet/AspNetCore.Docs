@@ -19,7 +19,7 @@ Razor is a markup syntax for embedding server-based code into webpages. The Razo
 
 ## Rendering HTML
 
-The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. If you place HTML markup into a *.cshtml* Razor file, it's rendered by the server unchanged.
+The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file.  HTML markup in *.cshtml* Razor file is rendered by the server unchanged.
 
 ## Razor syntax
 
@@ -54,7 +54,7 @@ Implicit Razor expressions start with `@` followed by C# code:
 <p>@DateTime.IsLeapYear(2016)</p>
 ```
 
-With the exception of the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, you can intermingle spaces:
+With the exception of the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, spaces can be intermingled:
 
 ```cshtml
 <p>@await DoSomething("hello", "world")</p>
@@ -185,7 +185,7 @@ The code renders the following HTML:
 
 ### Implicit transitions
 
-The default language in a code block is C#, but you can transition back to HTML:
+The default language in a code block is C#, but the Razor Page can transition back to HTML:
 
 ```cshtml
 @{
@@ -225,7 +225,7 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 }
 ```
 
-Without the `@:` in the code, you receive a Razor runtime error.
+Without the `@:` in the code,  a Razor runtime error is generated.
 
 Warning: Extra `@` characters in a Razor file can cause  cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error.  This error is common after combining multiple implicit/explicit expressions into a single code block.
 
@@ -261,7 +261,7 @@ else
 }
 ```
 
-You can use a switch statement like the following code:
+The following markup shows how to use a switch statement:
 
 ```cshtml
 @switch (value)
@@ -280,7 +280,7 @@ You can use a switch statement like the following code:
 
 ### Looping @for, @foreach, @while, and @do while
 
-You can render templated HTML with looping control statements. To render a list of people:
+Templated HTML can be rendered with looping control statements.  To render a list of people:
 
 ```cshtml
 @{
@@ -293,7 +293,7 @@ You can render templated HTML with looping control statements. To render a list 
 }
 ```
 
-You can use any of the following looping statements:
+The following looping statements are supported:
 
 `@for`
 
@@ -346,7 +346,8 @@ You can use any of the following looping statements:
 
 ### Compound @using
 
-In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. For instance, you can utilize HTML Helpers to render a form tag with the `@using` statement:
+In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content.  In the following code, HTML Helpers render a form tag with the `@using` statement:
+
 
 ```cshtml
 @using (Html.BeginForm())
@@ -359,7 +360,7 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 }
 ```
 
-You can also perform scope-level actions with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+Scope-level actions can be performed with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ### @try, catch, finally
 
@@ -448,7 +449,7 @@ The `@model` directive specifies the type of the model passed to a view:
 @model TypeNameOfModel
 ```
 
-If you create an ASP.NET Core MVC app with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
+In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
 
 ```cshtml
 @model LoginViewModel
@@ -466,11 +467,11 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that your view derives from. If you don't specify the `@model` directive, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If  the `@model` directive is not specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
 
 ### @inherits
 
-The `@inherits` directive gives you full control of the class your view inherits:
+The `@inherits` directive provides  full control of the class the view inherits:
 
 ```cshtml
 @inherits TypeNameOfClassToInheritFrom
@@ -490,7 +491,7 @@ The code renders the following HTML:
 <div>Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping a slop bucket on the street below.</div>
 ```
 
-You can't use `@model` and `@inherits` in the same view. You can have `@inherits` in a *_ViewImports.cshtml* file that the view imports:
+ `@model` and `@inherits` can be used in the same view.  `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
 
 [!code-cshtml[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
 
@@ -507,11 +508,12 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 
 ### @inject
 
-The `@inject` directive enables you to inject a service from your [service container](xref:fundamentals/dependency-injection) into your view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+
+The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 ### @functions
 
-The `@functions` directive enables you to add function-level content to a view:
+The `@functions` directive enables a Razor Page to add function-level content to a view:
 
 ```cshtml
 @functions { // C# Code }
@@ -584,7 +586,7 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 ## Viewing the Razor C# class generated for a view
 
-Add the following class to your ASP.NET Core MVC project:
+Add the following class to the ASP.NET Core MVC project:
 
 [!code-csharp[Main](razor/sample/Utilities/CustomTemplateEngine.cs)]
 
@@ -610,4 +612,4 @@ Developers are encouraged to match the casing of file and directory names to the
     * Area, controller, and action names. 
     * Razor Pages.
     
-Matching case ensures your deployments find their views regardless of the underlying file system.
+Matching case ensures the deployments find their views regardless of the underlying file system.
