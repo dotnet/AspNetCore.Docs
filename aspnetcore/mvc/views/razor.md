@@ -60,13 +60,13 @@ With the exception of the C# `await` keyword, implicit expressions must not cont
 <p>@await DoSomething("hello", "world")</p>
 ```
 
-Implicit expressions may not contain C# generics, as the characters inside the brackets (`<>`) would be interpreted as an HTML tag:
+Implicit expressions can't contain C# generics, as the characters inside the brackets (`<>`) are interpreted as an HTML tag:
 
 ```cshtml
 <p>@GenericMethod<int>()</p>
 ```
 
-The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`  Instead, generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).  Note that this restriction does not apply to _.vbhtml_ Razor files, because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
+The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` Instead, generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks). Note that this restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
 ## Explicit Razor expressions
 
@@ -100,19 +100,19 @@ You can use an explicit expression to concatenate text with an expression result
 
 Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email address, and `<p>Age@joe.Age</p>` is rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
-You can also use explicit expressions to render output from generic methods in _.cshtml_ files.  In an implicit expression, the characters inside the brackets (`<>`) would be interpreted as an HTML tag:
+You can also use explicit expressions to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag:
 
 ```cshtml
 <p>@GenericMethod<int>()</p>
 ```
 
-The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`  However, when written as an explicit expression, the generic method's output will compile correctly.  
+The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` When written as an explicit expression, the generic method's output compiles correctly.
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
 ```
 
-Note that this restriction does not apply to _.vbhtml_ Razor files, because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
+Note that this restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
 ## Expression encoding
 
