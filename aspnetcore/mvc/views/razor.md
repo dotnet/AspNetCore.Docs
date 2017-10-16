@@ -1,11 +1,11 @@
 ---
 title: Razor syntax reference for ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 keywords: ASP.NET Core,Razor,Razor directives
 ms.author: riande
 manager: wpickett
-ms.date: 09/29/2017
+ms.date: 10/18/2017
 ms.topic: article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -13,7 +13,7 @@ uid: mvc/views/razor
 ---
 # Razor syntax for ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), and [Taylor Mullen](https://twitter.com/ntaylormullen)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex),  [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension.
 
@@ -54,19 +54,23 @@ Implicit Razor expressions start with `@` followed by C# code:
 <p>@DateTime.IsLeapYear(2016)</p>
 ```
 
-With the exception of the C# `await` keyword, implicit expressions must not contain spaces. You can intermingle spaces if the C# statement has a clear ending:
+With the exception of the C# `await` keyword, implicit expressions must not contain spaces. If the C# statement has a clear ending, you can intermingle spaces:
 
 ```cshtml
 <p>@await DoSomething("hello", "world")</p>
 ```
 
-Implicit expressions can't contain C# generics, as the characters inside the brackets (`<>`) are interpreted as an HTML tag:
+Implicit expressions **cannot** contain C# generics, as the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following code is **not** valid:
 
 ```cshtml
 <p>@GenericMethod<int>()</p>
 ```
 
-The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` Instead, generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks). Note that this restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
+The preceding code generates a compiler error similar to the following:
+
+* The "int" element was not closed.  All elements must be either self-closing or have a matching end tag or Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?
+ 
+Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks). This restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
 ## Explicit Razor expressions
 
@@ -88,7 +92,7 @@ The code renders the following HTML:
 <p>Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)</p>
 ```
 
-You can use an explicit expression to concatenate text with an expression result:
+Explicit expressions can be used to concatenate text with an expression result:
 
 ```cshtml
 @{
@@ -100,19 +104,24 @@ You can use an explicit expression to concatenate text with an expression result
 
 Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email address, and `<p>Age@joe.Age</p>` is rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
-You can also use explicit expressions to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag:
+
+Explicit expressions can be used to render output from generic methods in *.cshtml* files. In an implicit expression, the characters inside the brackets (`<>`) are interpreted as an HTML tag. The following markup is **not** valid Razor:
 
 ```cshtml
 <p>@GenericMethod<int>()</p>
 ```
 
-The code generates a compiler error like `The "int" element was not closed.  All elements must be either self-closing or have a matching end tag` or `Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` When written as an explicit expression, the generic method's output compiles correctly.
+The preceding code generates a compiler error similar to the following:
+
+ The "int" element was not closed.  All elements must be either self-closing or have a matching end tag or Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
+ 
+ The following markup shows the correct way write this code.  The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
 ```
 
-Note that this restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
+Note: this restriction doesn't apply to *.vbhtml* Razor files.  With *.vbhtml* Razor files, Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
 ## Expression encoding
 
@@ -187,7 +196,7 @@ The default language in a code block is C#, but you can transition back to HTML:
 
 ### Explicit delimited transition
 
-To define a sub-section of a code block that should render HTML, surround the characters for rendering with the Razor **\<text>** tag:
+To define a subsection of a code block that should render HTML, surround the characters for rendering with the Razor **\<text>** tag:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -197,9 +206,12 @@ To define a sub-section of a code block that should render HTML, surround the ch
 }
 ```
 
-Use this approach when you want to render HTML that isn't surrounded by an HTML tag. Without an HTML or Razor tag, you receive a Razor runtime error.
+Use this approach to render HTML that isn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
 
-The **\<text>** tag is also useful to control whitespace when rendering content. Only the content between the **\<text>** tags is rendered, and no whitespace before or after the **\<text>** tags appears in the HTML output.
+The **\<text>** tag is useful to control whitespace when rendering content:
+
+* Only the content between the **\<text>** tag is rendered. 
+* No whitespace before or after the **\<text>** tag appears in the HTML output.
 
 ### Explicit Line Transition with @:
 
@@ -213,14 +225,13 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 }
 ```
 
-Without the `@:` in the code, you recieve a Razor runtime error.
+Without the `@:` in the code, you receive a Razor runtime error.
 
-> [!WARNING]
-> Be sure to remove superfluous `@` characters from code blocks, as they can cause compiler errors at statements later in the block (such as generic method calls in _.cshtml_ files).  This error is common after combining multiple implicit/explicit expressions into a single code block.
+Warning: Extra `@` characters in a Razor file can cause  cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error.  This error is common after combining multiple implicit/explicit expressions into a single code block.
 
 ## Control Structures
 
-Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures.
+Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
 
 ### Conditionals @if, else if, else, and @switch
 
@@ -250,7 +261,7 @@ else
 }
 ```
 
-You can use a switch statement like this:
+You can use a switch statement like the following code:
 
 ```cshtml
 @switch (value)
@@ -455,7 +466,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that your view derives from. If you don't specify the `@model` directive, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. See [Strongly typed models and the @model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-keyword-label) for more information.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that your view derives from. If you don't specify the `@model` directive, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
 
 ### @inherits
 
@@ -465,7 +476,7 @@ The `@inherits` directive gives you full control of the class your view inherits
 @inherits TypeNameOfClassToInheritFrom
 ```
 
-The following is a custom Razor page type:
+The following code is a custom Razor page type:
 
 [!code-csharp[Main](razor/sample/Classes/CustomRazorPage.cs)]
 
@@ -483,7 +494,7 @@ You can't use `@model` and `@inherits` in the same view. You can have `@inherits
 
 [!code-cshtml[Main](razor/sample/Views/_ViewImportsModel.cshtml)]
 
-The following is an example of a strongly-typed view:
+The following code is an example of a strongly-typed view:
 
 [!code-cshtml[Main](razor/sample/Views/Home/Login1.cshtml)]
 
@@ -496,7 +507,7 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 
 ### @inject
 
-The `@inject` directive enables you to inject a service from your [service container](xref:fundamentals/dependency-injection) into your view. See [Dependency injection into views](xref:mvc/views/dependency-injection) for more information.
+The `@inject` directive enables you to inject a service from your [service container](xref:fundamentals/dependency-injection) into your view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 ### @functions
 
@@ -522,7 +533,7 @@ The following code is the generated Razor C# class:
 
 ### @section
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. See [Sections](xref:mvc/views/layout#layout-sections-label) for more information.
+The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
 
 ## Tag Helpers
 
@@ -591,7 +602,12 @@ The Razor view engine performs case-sensitive lookups for views. However, the ac
 
 * File based source: 
   * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for */Views/Home/Test.cshtml*, */Views/home/test.cshtml*, and any other casing variant.
-  * On case sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case sensitive. For example, `return View("Test")` specifically matches */Views/Home/Test.cshtml*.
+  * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches */Views/Home/Test.cshtml*.
 * Precompiled views: With ASP.Net Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
 
-Developers are encouraged to match the casing of file and directory names to the casing of area, controller, and action names. This ensures your deployments will find their views regardless of the underlying file system.
+Developers are encouraged to match the casing of file and directory names to the casing of:
+
+    * Area, controller, and action names. 
+    * Razor Pages.
+    
+Matching case ensures your deployments find their views regardless of the underlying file system.
