@@ -19,7 +19,7 @@ Razor is a markup syntax for embedding server-based code into webpages. The Razo
 
 ## Rendering HTML
 
-The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file.  HTML markup in *.cshtml* Razor file is rendered by the server unchanged.
+The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file.  HTML markup in *.cshtml* Razor files is rendered by the server unchanged.
 
 ## Razor syntax
 
@@ -66,9 +66,10 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 <p>@GenericMethod<int>()</p>
 ```
 
-The preceding code generates a compiler error similar to the following:
+The preceding code generates a compiler error similar to one of the following:
 
-* The "int" element was not closed.  All elements must be either self-closing or have a matching end tag or Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?
+ * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks). This restriction doesn't apply to *.vbhtml* Razor files because Visual Basic syntax places parentheses around generic type parameters instead of brackets.
 
@@ -111,9 +112,10 @@ Explicit expressions can be used to render output from generic methods in *.csht
 <p>@GenericMethod<int>()</p>
 ```
 
-The preceding code generates a compiler error similar to the following:
+The preceding code generates a compiler error similar to one of the following:
 
- The "int" element was not closed.  All elements must be either self-closing or have a matching end tag or Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
+ * The "int" element was not closed.  All elements must be either self-closing or have a matching end tag.
+ *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
  
  The following markup shows the correct way write this code.  The code is written as an explicit expression:
 
@@ -346,7 +348,7 @@ The following looping statements are supported:
 
 ### Compound @using
 
-In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content.  In the following code, HTML Helpers render a form tag with the `@using` statement:
+In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
 
 
 ```cshtml
@@ -467,7 +469,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If  the `@model` directive is not specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If  the `@model` directive iisn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the @model keyword.
 
 ### @inherits
 
