@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core tutorials
-author: tdykstra
+author: rick-anderson
 description: A list of step-by-step guides for learning how to develop ASP.NET Core applications.
 keywords: ASP.NET Core,
-ms.author: tdykstra
+ms.author: riande
 manager: wpickett
-ms.date: 07/14/2017
+ms.date: 10/14/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -20,12 +20,18 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 [Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
 
 * [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
-* [Create a Razor Pages web app with ASP.NET Core on Windows](xref:tutorials/razor-pages/index)
-* [Create a Razor Pages web app with ASP.NET Core on Mac](xref:tutorials/razor-pages-mac/index)  
-* [Create a Razor Pages web app with ASP.NET Core with VS Code](xref:tutorials/razor-pages-vsc/index) 
-* [Create an ASP.NET Core MVC web app with Visual Studio on Windows](first-mvc-app/index.md)
-* [Create an ASP.NET Core MVC web app with Visual Studio on Mac](first-mvc-app-mac/index.md)
-* [Create an ASP.NET Core MVC web app with Visual Studio Code on Mac or Linux ](first-mvc-app-xplat/index.md)
+* Create a Razor Pages web app with ASP.NET Core
+
+   * [Razor Pages on Windows](xref:tutorials/razor-pages/index)
+   * [Razor Pages on Mac](xref:tutorials/razor-pages-mac/index)
+   * [Razor Pages with VS Code](xref:tutorials/razor-pages-vsc/index)  
+
+* Create an ASP.NET Core MVC web app
+
+   * [Web app with Visual Studio for Windows](first-mvc-app/index.md)
+   * [Web app with Visual Studio for Mac](first-mvc-app-mac/index.md)
+   * [Web app with Visual Studio Code on Mac or Linux](first-mvc-app-xplat/index.md)
+
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
 * [Building projects with Yeoman](../client-side/yeoman.md)
 * [Authoring Tag Helpers](../mvc/views/tag-helpers/authoring.md)
@@ -33,9 +39,12 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 * [Developing ASP.NET Core applications using dotnet watch](dotnet-watch.md)
 
 ## Building web APIs
-* [Create a Web API with ASP.NET Core and Visual Studio for Mac](xref:tutorials/first-web-api-mac)
-* [Create a Web API with ASP.NET Core and Visual Studio for Windows](first-web-api.md)
-* [Create a Web API with ASP.NET Core and Visual Studio Code](web-api-vsc.md)
+* Create a Web API with ASP.NET Core
+
+  * [Web API with Visual Studio for Windows](first-web-api.md)
+  * [Web API with Visual Studio for Mac](xref:tutorials/first-web-api-mac)
+  * [Web API with Visual Studio Code](web-api-vsc.md)
+  
 * [ASP.NET Core Web API Help Pages using Swagger](web-api-help-pages-using-swagger.md)
 * [Creating backend web services for native mobile applications](../mobile/native-mobile-backend.md)
 
