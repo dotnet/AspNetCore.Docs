@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-Note: Some developers use a service layer or repository pattern in order to create an abstraction layer between the UI (Razor Pages) and the data access layer. To keep these tutorials simple and focused on EF, the repository pattern or service layer is not used. 
+Note: To minimize complexity and keep these tutorials focused on EF, we use EF code in the Razor Pages code-behind files.  Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
 In this tutorial, you work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
 

@@ -4,6 +4,7 @@ using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,9 +19,9 @@ namespace ContosoUniversity.Pages.Students
             _context = context;
         }
 
-#if first
         public IList<Student> Student { get; set; }
 
+#if first
         #region snippet_ScaffoldedIndex
         public async Task OnGetAsync()
         {
@@ -31,33 +32,31 @@ namespace ContosoUniversity.Pages.Students
 
 #if SortOnly
         #region snippet_SortOnly
-        public IQueryable<Student> Student { get; set; }
-
         public async Task OnGetAsync(string sortOrder)
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
 
             // Initialize IQueryable<Student> Student
-            Student = from s in _context.Students
-                      select s;
+            IQueryable<Student> studentIQ = from s in _context.Students
+                                            select s;
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    Student = Student.OrderByDescending(s => s.LastName);
+                    studentIQ = studentIQ.OrderByDescending(s => s.LastName);
                     break;
                 case "Date":
-                    Student = Student.OrderBy(s => s.EnrollmentDate);
+                    studentIQ = studentIQ.OrderBy(s => s.EnrollmentDate);
                     break;
                 case "date_desc":
-                    Student = Student.OrderByDescending(s => s.EnrollmentDate);
+                    studentIQ = studentIQ.OrderByDescending(s => s.EnrollmentDate);
                     break;
                 default:
-                    Student = Student.OrderBy(s => s.LastName);
+                    studentIQ = studentIQ.OrderBy(s => s.LastName);
                     break;
             }
-            await Student.AsNoTracking().ToListAsync();
+            Student = await studentIQ.AsNoTracking().ToListAsync();
         }
         #endregion
 #endif
