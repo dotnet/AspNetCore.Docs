@@ -206,6 +206,8 @@ FakesAssemblies/
 *.opt
 
 project.lock.json
+**/sample/**/wwwroot/lib/
+**/samples/**/wwwroot/lib/
 __pycache__/
 
 #Mac OSX 
