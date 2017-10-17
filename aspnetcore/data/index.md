@@ -15,14 +15,16 @@ uid: data/index
 # Working with Data in ASP.NET Core 
 
 * [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/index)
-    * [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
+   * [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
 	* [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
+   * [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
+
 
 *   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
     *   [Getting started](ef-mvc/intro.md)
-    *   [Create, Read, Update, and Delete operations](ef-mvc/crud.md)
-    *   [Sorting, filtering, paging, and grouping](ef-mvc/sort-filter-page.md)
-    *   [Migrations](ef-mvc/migrations.md)
+    *   [Create, Read, Update, and Delete operations](xref:data/ef-mvc/crud)
+    *   [Sorting, filtering, paging, and grouping](xref:data/ef-mvc/sort-filter-page)
+    *   [Migrations](xref:data/ef-mvc/migrations)
     *   [Creating a complex data model](ef-mvc/complex-data-model.md)
     *   [Reading related data](ef-mvc/read-related-data.md)
     *   [Updating related data](ef-mvc/update-related-data.md)

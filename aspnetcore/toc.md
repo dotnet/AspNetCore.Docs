@@ -57,6 +57,8 @@
 ## [Data access - Razor Pages with EF Core](xref:data/index)
 ### [Getting started](xref:data/ef-rp/intro)
 ### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
+### [Sorting, filtering, paging, and grouping](xref:data/ef-mvc/sort-filter-page)
+
 
 ## [Data access - MVC with EF Core](data/ef-mvc/index.md)
 ### [Getting started](data/ef-mvc/intro.md)

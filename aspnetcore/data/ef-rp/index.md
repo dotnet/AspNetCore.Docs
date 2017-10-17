@@ -17,7 +17,7 @@ This series of tutorials teaches you how to create ASP.NET Core MVC web applicat
 
 1. [Getting started](xref:data/ef-rp/intro)
 2. [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
-3. [Sorting, filtering, paging, and grouping](../ef-mvc/sort-filter-page.md)
+3. [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
 4. [Migrations](../ef-mvc/migrations.md)
 5. [Creating a complex data model](../ef-mvc/complex-data-model.md)
 6. [Reading related data](../ef-mvc/read-related-data.md)

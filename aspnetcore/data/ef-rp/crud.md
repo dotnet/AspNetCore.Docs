@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/crud
 ---
-# Create, Read, Update, and Delete - EF Core with Razor Pages tutorial (2 of 10)
+# Create, Read, Update, and Delete - EF Core with Razor Pages (2 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -212,3 +212,4 @@ If the Students/Home and Students/Details links don't work, verify the `@page` d
 
 >[!div class="step-by-step"]
 [Previous Getting started](xref:data/ef-rp/intro)
+[Next Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
