@@ -100,6 +100,7 @@
 # [MVC](mvc/overview.md)
 ## [Razor Pages](xref:mvc/razor-pages/index)
 ### [Razor syntax](mvc/views/razor.md)
+### [Authorization conventions](mvc/razor-pages/razor-pages-authorization-conventions.md)
 ## [Model Binding](mvc/models/model-binding.md)
 ### [Model validation](mvc/models/validation.md)
 ## [Views](mvc/views/overview.md)
