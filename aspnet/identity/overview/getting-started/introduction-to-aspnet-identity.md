@@ -66,7 +66,7 @@ Considering these changes in web application development, ASP.NET Identity was d
 
     - You have control over the schema of user and profile information. For example, you can easily enable the system to store birth dates entered by users when they register an account in your application.
 
-    **Persistence control**
+- **Persistence control**
 
     - By default, the ASP.NET Identity system stores all the user information in a database. ASP.NET Identity uses Entity Framework Code First to implement all of its persistence mechanism.
     - Since you control the database schema, common tasks such as changing table names or changing the data type of primary keys is simple to do.
