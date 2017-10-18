@@ -250,8 +250,8 @@ The condition tag helper renders output when passed a true value.
     
     <div>
         <h3>Information about our website (outdated):</h3>
-        <website-information info=Model />
-        <div condition="Model.Approved">
+        <website-information info=@Model />
+        <div condition="@Model.Approved">
             <p>
                 This website has <strong surround="em"> @Model.Approved </strong> been approved yet.
                 Visit www.contoso.com for more information.
