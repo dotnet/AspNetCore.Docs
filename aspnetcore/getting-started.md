@@ -1,18 +1,18 @@
 ---
-title: Getting Started with ASP.NET Core 2.0
+title: Get Started with ASP.NET Core 2.0
 author: rick-anderson
 description: A quick tutorial that creates and runs a simple Hello World app using ASP.NET Core.
 keywords: ASP.NET Core,tutorial,get started
 ms.author: riande
 manager: wpickett
-ms.date: 08/30/2017
+ms.date: 10/18/2017
 ms.topic: get-started-article
 ms.assetid: 73543e9d-d9d5-47d6-9664-17a9beea6cd3
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: getting-started
 ---
-# Getting Started with ASP.NET Core
+# Get Started with ASP.NET Core
 
 > [!NOTE]
 > These instructions are for the latest version of ASP.NET Core. Looking to get started with an earlier version? See [the 1.1 version of this tutorial](xref:getting-started-1.1).
