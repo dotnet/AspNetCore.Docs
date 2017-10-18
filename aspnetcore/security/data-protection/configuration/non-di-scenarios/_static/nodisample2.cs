@@ -6,12 +6,12 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // get the path to %LOCALAPPDATA%\myapp-keys
-        string destFolder = Path.Combine(
-            Environment.GetEnvironmentVariable("LOCALAPPDATA"),
+        // Get the path to %LOCALAPPDATA%\myapp-keys
+        var destFolder = Path.Combine(
+            System.Environment.GetEnvironmentVariable("LOCALAPPDATA"),
             "myapp-keys");
 
-        // instantiate the data protection system at this folder
+        // Instantiate the data protection system at this folder
         var dataProtectionProvider = DataProtectionProvider.Create(
             new DirectoryInfo(destFolder),
             configuration =>
@@ -22,14 +22,18 @@ public class Program
 
         var protector = dataProtectionProvider.CreateProtector("Program.No-DI");
         Console.Write("Enter input: ");
-        string input = Console.ReadLine();
+        var input = Console.ReadLine();
 
-        // protect the payload
-        string protectedPayload = protector.Protect(input);
+        // Protect the payload
+        var protectedPayload = protector.Protect(input);
         Console.WriteLine($"Protect returned: {protectedPayload}");
 
-        // unprotect the payload
-        string unprotectedPayload = protector.Unprotect(protectedPayload);
+        // Unprotect the payload
+        var unprotectedPayload = protector.Unprotect(protectedPayload);
         Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
+
+        Console.WriteLine();
+        Console.WriteLine("Press any key...");
+        Console.ReadKey();
     }
 }
