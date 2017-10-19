@@ -581,9 +581,6 @@ The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packag
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-> [!NOTE]
-> ASP.NET Core 2.0 is in preview.  Apps created with the latest preview release may not run when deployed to Azure App Service. When ASP.NET Core 2.0 is released, Azure App Service will run 2.0 apps, and the Azure App Service provider will work as indicated here.
-
 You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
