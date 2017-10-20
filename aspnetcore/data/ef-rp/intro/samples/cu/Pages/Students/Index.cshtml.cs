@@ -40,8 +40,10 @@ namespace ContosoUniversity.Pages.Students
         #region snippet_SortOnly
         public async Task OnGetAsync(string sortOrder)
         {
+        #region snippet_Ternary
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+        #endregion
 
             IQueryable<Student> studentIQ = from s in _context.Students
                                             select s;
@@ -107,7 +109,7 @@ namespace ContosoUniversity.Pages.Students
 #if SortFilterPage
         #region snippet_SortFilterPage
         #region snippet_SortFilterPage2
-        public async Task OnGetAsync(string sortOrder,    
+        public async Task OnGetAsync(string sortOrder,
             string currentFilter, string searchString, int? pageIndex)
         #endregion
         {
