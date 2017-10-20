@@ -1,10 +1,10 @@
 ---
-title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10
+title: Razor Pages with EF Core - Sort, Filter, Paging - 3 of 10
 author: tdykstra
 description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
 keywords: ASP.NET Core,Entity Framework Core,sort,filter,paging,grouping
 ms.author: tdykstra
-ms.date: 03/15/2017
+ms.date: 10/22/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -13,7 +13,7 @@ uid: data/ef-rp/sort-filter-page
 
 # Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 The Contoso University web app demonstrates how to create Razor Pages web apps using EF Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](xref:data/ef-rp/intro).
 
@@ -106,15 +106,18 @@ The preceding code:
 * Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that you' add in the next section.
 * Added to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
-Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
+Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
 For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. You could call the `ToUpper` method to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
-The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used.
+The preceding code would ensure that results are case-insensitive if the code changes to use `IEnumerable`. When `Contains` is called on an `IEnumerable` collection, the .NET Core implementation is used. When `Contains` is called on an `IQueryable` object, the database implementation is used. Returning an `IEnumerable` can have a significant performance penality:
 
-There is a performance penalty for calling `ToUpper`. The `ToUpper` code put a function in the WHERE clause of the TSQL SELECT statement. That prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
+1. All the rows are returned from the DB server.
+1. The filter is applied to all the returned rows in the application.
+
+There is a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
 ### Add a Search Box to the Student Index View
 
@@ -122,7 +125,7 @@ In *Views/Student/Index.cshtml*, add the following highlighted code to create a 
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-22&range=1-24)]
 
-The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
+The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When you specify HTTP GET, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
 
 Test the app:
 
@@ -192,7 +195,7 @@ The `PaginatedList.CreateAsync` method converts the student query to a single pa
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
-The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value.  If `pageIndex` doesn't have a value, return 1.
+The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
 ## Add paging links to the student Razor Page
 
@@ -223,9 +226,9 @@ To get a better understanding of the code:
 
 Step through the debugger.
 
-## Create an About page that shows student statistics
+## Update the About page to show student statistics
 
-In this step, *Pages\About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
+In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
 
 * Create a view model class for the data used by the **About** Page.
 * Modify the About Razor Page and code-behind file.
@@ -240,11 +243,13 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 ### Update the About code-behind page
 
-Update the *About.cshtml.cs* file with the following code:
+Update the *Pages/About.cshtml.cs* file with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/About.cshtml.cs)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
+
+Note: The LINQ `group` command isn't currently supported by EF Core. In the preceding code, all the student records are returned from SQL Server. The `group` command is applied in the Razor Pages app, not on the SQL Server. EF Core 2.1 will support this LINQ `group` operator, and the grouping occurs on the SQL Server. See [Relational: Support translating GroupBy() to SQL](https://github.com/aspnet/EntityFrameworkCore/issues/2341). [EF Core 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/roadmap) will be released with .NET Core 2.1. For more information, see the [.NET Core Roadmap](https://github.com/dotnet/core/blob/master/roadmap.md).
 
 ### Modify the About Razor Page
 
@@ -260,7 +265,7 @@ Run the app and navigate to the About page. The count of students for each enrol
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 
-In the next tutorial, that app uses migrations to update the data model.
+In the next tutorial, the app uses migrations to update the data model.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/crud)
