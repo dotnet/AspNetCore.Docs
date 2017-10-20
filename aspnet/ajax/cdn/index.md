@@ -5,7 +5,7 @@ author: rick-anderson
 description: ""
 ms.author: aspnetcontent
 manager: wpickett
-ms.date: 07/21/2014
+ms.date: 10/14/2017
 ms.topic: article
 ms.assetid: fc98bde7-484a-4191-bba2-04d29551cb8f
 ms.technology: 
@@ -55,6 +55,12 @@ Microsoft Ajax Content Delivery Network
     - [jQuery UI 1.12.1 on the Microsoft Ajax CDN](jquery-ui/cdnjqueryui1121.md)
 - [jQuery Validate](jquery-validate/index.md)
 
+    - [jQuery Validation 1.17.0](jquery-validate/cdnjqueryvalidate1170.md)
+    - [jQuery Validation 1.16.0](jquery-validate/cdnjqueryvalidate1160.md)
+    - [jQuery Validation 1.15.1](jquery-validate/cdnjqueryvalidate1151.md)
+    - [jQuery Validation 1.15.0](jquery-validate/cdnjqueryvalidate1150.md)
+    - [jQuery Validation 1.14.0](jquery-validate/cdnjqueryvalidate1140.md)
+    - [jQuery Validation 1.13.1](jquery-validate/cdnjqueryvalidate1131.md)
     - [jQuery Validation 1.13.0](jquery-validate/cdnjqueryvalidate1130.md)
     - [jQuery Validation 1.12.0](jquery-validate/cdnjqueryvalidate1120.md)
     - [jQuery Validation 1.11.1](jquery-validate/cdnjqueryvalidate1111.md)
@@ -66,11 +72,6 @@ Microsoft Ajax Content Delivery Network
     - [jquery.validate version 1.7](jquery-validate/cdnjqueryvalidate17.md)
     - [jQuery Validate 1.6](jquery-validate/cdnjqueryvalidate16.md)
     - [jQuery Validate 1.5.5](jquery-validate/cdnjqueryvalidate155.md)
-    - [jQuery Validation 1.13.1](jquery-validate/cdnjqueryvalidate1131.md)
-    - [jQuery Validation 1.14.0](jquery-validate/cdnjqueryvalidate1140.md)
-    - [jQuery Validation 1.15.0](jquery-validate/cdnjqueryvalidate1150.md)
-    - [jQuery Validation 1.15.1](jquery-validate/cdnjqueryvalidate1151.md)
-    - [jQuery Validation 1.16.0](jquery-validate/cdnjqueryvalidate1160.md)
 - [jQuery Mobile](jquery-mobile/index.md)
 
     - [jQuery Mobile 1.4.2 on the Microsoft Ajax CDN](jquery-mobile/cdnjquerymobile142.md)

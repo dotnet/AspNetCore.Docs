@@ -14,14 +14,14 @@ uid: security/data-protection/implementation/subkeyderivation
 ---
 # Subkey Derivation and Authenticated Encryption
 
-<a name=data-protection-implementation-subkey-derivation></a>
+<a name="data-protection-implementation-subkey-derivation"></a>
 
 Most keys in the key ring will contain some form of entropy and will have algorithmic information stating "CBC-mode encryption + HMAC validation" or "GCM encryption + validation". In these cases, we refer to the embedded entropy as the master keying material (or KM) for this key, and we perform a key derivation function to derive the keys that will be used for the actual cryptographic operations.
 
 > [!NOTE]
 > Keys are abstract, and a custom implementation might not behave as below. If the key provides its own implementation of IAuthenticatedEncryptor rather than using one of our built-in factories, the mechanism described in this section no longer applies.
 
-<a name=data-protection-implementation-subkey-derivation-aad></a>
+<a name="data-protection-implementation-subkey-derivation-aad"></a>
 
 ## Additional authenticated data and subkey derivation
 

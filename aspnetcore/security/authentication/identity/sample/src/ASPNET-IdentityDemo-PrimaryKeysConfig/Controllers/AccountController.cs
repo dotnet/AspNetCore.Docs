@@ -32,12 +32,14 @@ namespace webapptemplate.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
+        #region snippet_GetCurrentUserId
         [HttpGet]
-		[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<Guid> GetCurrentUserId()
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             return user.Id; // No need to cast here because user.Id is already a Guid, and not a string
         }
+        #endregion
     }
 }

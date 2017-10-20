@@ -1,7 +1,7 @@
 ---
 title: Logging in ASP.NET Core
 author: ardalis
-description: Introduces the logging framework in ASP.NET Core. Includes a section for each built-in logging provider and links to some popular third-party providers.
+description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 keywords: ASP.NET Core,logging,logging providers,Microsoft.Extensions.Logging,ILogger,ILoggerFactory,LogLevel,WithFilter,TraceSource,EventLog,EventSource,scopes
 ms.author: tdykstra
 manager: wpickett
@@ -21,11 +21,11 @@ ASP.NET Core supports a logging API that works with a variety of logging provide
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample2) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ---
 
@@ -580,9 +580,6 @@ The following example configures a `TraceSource` provider that logs `Warning` an
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider is available only for apps that target ASP.NET Core 1.1.0 or higher. 
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
-> [!NOTE]
-> ASP.NET Core 2.0 is in preview.  Apps created with the latest preview release may not run when deployed to Azure App Service. When ASP.NET Core 2.0 is released, Azure App Service will run 2.0 apps, and the Azure App Service provider will work as indicated here.
 
 You don't have to install the provider package or call the `AddAzureWebAppDiagnostics` extension method.  The provider is automatically available to your app when you deploy the app to Azure App Service.
 

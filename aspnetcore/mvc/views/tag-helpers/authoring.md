@@ -17,7 +17,7 @@ ms.custom: H1Hack27Feb2017
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Getting started with Tag Helpers
 
@@ -250,8 +250,8 @@ The condition tag helper renders output when passed a true value.
     
     <div>
         <h3>Information about our website (outdated):</h3>
-        <website-information info=Model />
-        <div condition="Model.Approved">
+        <website-information info=@Model />
+        <div condition="@Model.Approved">
             <p>
                 This website has <strong surround="em"> @Model.Approved </strong> been approved yet.
                 Visit www.contoso.com for more information.

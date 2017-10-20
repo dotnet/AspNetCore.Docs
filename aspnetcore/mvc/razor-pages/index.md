@@ -103,6 +103,10 @@ The data model:
 
 [!code-cs[main](index/sample/RazorPagesContacts/Data/Customer.cs)]
 
+The db context:
+
+[!code-cs[main](index/sample/RazorPagesContacts/Data/AppDbContext.cs)]
+
 The *Pages/Create.cshtml* view file:
 
 [!code-cshtml[main](index/sample/RazorPagesContacts/Pages/Create.cshtml)]

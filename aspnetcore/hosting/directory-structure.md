@@ -29,7 +29,7 @@ The contents of the *publish* directory represents the *content root path*, also
 ```xml
 <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
   <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
-  <MakeDir Directories="$(PublishUrl)Logs" Condition="!Exists('$(PublishUrl)Logs')" />
+  <MakeDir Directories="$(PublishUrl)logs" Condition="!Exists('$(PublishUrl)logs')" />
 </Target>
 ```
 

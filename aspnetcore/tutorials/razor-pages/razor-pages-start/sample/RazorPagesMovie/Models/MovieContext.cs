@@ -9,13 +9,7 @@ namespace RazorPagesMovie.Models
         {
         }
 
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Schedule> Schedules { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Movie>().ToTable("Movie");
-            modelBuilder.Entity<Schedule>().ToTable("Schedule");
-        }
+        public DbSet<Movie> Movie { get; set; }
+        public DbSet<Schedule> Schedule { get; set; }
     }
 }

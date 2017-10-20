@@ -12,9 +12,9 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: tutorials/web-api-help-pages-using-swagger
 ---
-# ASP.NET Web API Help Pages using Swagger
+# ASP.NET Core Web API Help Pages using Swagger
 
-<a name=web-api-help-pages-using-swagger></a>
+<a name="web-api-help-pages-using-swagger"></a>
 
 By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
 

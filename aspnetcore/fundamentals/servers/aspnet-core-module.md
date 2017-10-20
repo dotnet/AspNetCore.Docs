@@ -23,7 +23,7 @@ Supported Windows versions:
 
 * Windows 7 and Windows Server 2008 R2 and later
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What ASP.NET Core Module does
 

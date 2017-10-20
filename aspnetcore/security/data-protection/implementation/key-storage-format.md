@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/key-storage-format
 ---
 # Key Storage Format
 
-<a name=data-protection-implementation-key-storage-format></a>
+<a name="data-protection-implementation-key-storage-format"></a>
 
 Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\ASP.NET\DataProtection-Keys\.
 

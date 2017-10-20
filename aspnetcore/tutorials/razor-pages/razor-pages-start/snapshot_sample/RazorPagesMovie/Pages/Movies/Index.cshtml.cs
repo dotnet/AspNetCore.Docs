@@ -16,11 +16,11 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IList<Movie> Movies { get;set; }
+        public IList<Movie> Movie { get;set; }
 
         public async Task OnGetAsync()
         {
-            Movies = await _context.Movies.ToListAsync();
+            Movie = await _context.Movie.ToListAsync();
         }
     }
 }

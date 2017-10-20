@@ -42,7 +42,7 @@ Typical controller responsibilities:
 If you're writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.
 
 > [!TIP]
-> [Create and run unit tests with Visual Studio](https://www.visualstudio.com/docs/code/create-and-run-unit-tests-vs).
+> [Create and run unit tests with Visual Studio](https://docs.microsoft.com/visualstudio/test/unit-test-your-code).
 
 To demonstrate unit testing, review the following controller. It displays a list of brainstorming sessions and allows new brainstorming sessions to be created with a POST:
 
@@ -79,7 +79,7 @@ The controller action has three cases to test, one for each `return` statement:
 
 The app exposes functionality as a web API (a list of ideas associated with a brainstorming session and a method for adding new ideas to a session):
 
-<a name=ideas-controller></a>
+<a name="ideas-controller"></a>
 
 [!code-csharp[Main](testing/sample/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs?highlight=21,22,27,30,31,32,33,34,35,36,41,42,46,52,65)]
 
