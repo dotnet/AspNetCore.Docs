@@ -216,7 +216,7 @@ Data Protection keys used by ASP.NET applications are stored in registry hives e
 
 For standalone IIS installations, you may use the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1) for each app pool used with an ASP.NET Core app. This script creates a special registry key in the HKLM registry that is ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
 
-In web farm scenarios, an app can be configured to use a UNC path to store its data protection keyring. By default, the data protection keys are not encrypted. You should ensure that the file permissions for such a share are limited to the Windows account the app runs as. In addition, you may choose to protect keys at rest using an X509 certificate. You may wish to consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configuring Data Protection](xref:security/data-protection/configuration/overview#data-protection-configuring) for details.
+In web farm scenarios, an app can be configured to use a UNC path to store its data protection keyring. By default, the data protection keys are not encrypted. You should ensure that the file permissions for such a share are limited to the Windows account the app runs as. In addition, you may choose to protect keys at rest using an X509 certificate. You may wish to consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configuring Data Protection](xref:security/data-protection/configuration/overview) for details.
 
 ### 2. Configure the IIS Application Pool to load the user profile
 
@@ -224,7 +224,7 @@ This setting is in the **Process Model** section under the **Advanced Settings**
 
 ### 3. Machine-wide policy for data protection
 
-The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy#data-protection-configuration-machinewidepolicy) for all apps that consume the Data Protection APIs. See the [data protection](xref:security/data-protection/index) documentation for more details.
+The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. See the [data protection](xref:security/data-protection/index) documentation for more details.
 
 ## Configuration of sub-applications
 
