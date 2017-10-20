@@ -1,3 +1,4 @@
+using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,9 +9,9 @@ namespace ContosoUniversity.Pages.Students
 {
     public class CreateModel : PageModel
     {
-        private readonly ContosoUniversity.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public CreateModel(ContosoUniversity.Data.SchoolContext context)
+        public CreateModel(SchoolContext context)
         {
             _context = context;
         }
@@ -24,6 +25,7 @@ namespace ContosoUniversity.Pages.Students
                 FirstMidName = "Joe",
                 LastName = "Smith"
             };
+
             return Page();
         }
 
@@ -52,7 +54,9 @@ namespace ContosoUniversity.Pages.Students
                 return RedirectToPage("./Index");
             }
 
-            return Page();
+            //return Page();
+            return null;
+
         }
         #endregion
     }

@@ -207,9 +207,9 @@ Test Delete.
 If the Students/Home and Students/Details links don't work, verify the `@page` directive is **not** using the following route template:
 
 ```cshtml
-`@page "{id:int}"
+@page "{id:int}"
 ```
 
 >[!div class="step-by-step"]
-[Previous Getting started](xref:data/ef-rp/intro)
-[Next Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
+[Previous ](xref:data/ef-rp/intro)
+[Next](xref:data/ef-rp/sort-filter-page)

@@ -1,3 +1,4 @@
+@page
 @model ContosoUniversity.Pages.Students.IndexModel
 
 @{
@@ -9,6 +10,16 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form sp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>

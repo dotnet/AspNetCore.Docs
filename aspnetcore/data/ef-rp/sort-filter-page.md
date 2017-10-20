@@ -38,6 +38,8 @@ When the Index page is requested from the **Students** link, there's no query st
 
 The two `ViewData` elements (`NameSort` and `DateSort`) are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values.
 
+`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys.  `ViewData` provides a convienent way to pass data from a Razor Page to a code-behind file, and from a code-behind file to a Razor Page. See [Weakly-typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB) and [ViewData](xref:mvc/views/overview#VD) for more information.
+
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
 These are ternary statements. The first one specifies that if the `sortOrder` parameter is null or empty, NameSort should be set to "name_desc"; otherwise, it should be set to an empty string. These two statements enable the view to set the column heading hyperlinks as follows:
@@ -49,42 +51,44 @@ These are ternary statements. The first one specifies that if the `sortOrder` pa
 | Date ascending       | ascending           | descending     |
 | Date descending      | ascending           | ascending      |
 
-The method uses LINQ to Entities to specify the column to sort by. The code initializes  `IQueryable<Student> Student`  before the switch statement,  and modifies it in the switch statement:
+The method uses LINQ to Entities to specify the column to sort by. The code initializes  an `IQueryable<Student> `  before the switch statement,  and modifies it in the switch statement:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-)]
 
  When you create or modify  an`IQueryable`, no query is sent to the database. The query is not executed until you convert the `IQueryable` object into a collection by calling a method such as `ToListAsync`. Therefore, this code results in a single query that is not executed until the  following  statement:
  
-```c#
- await Student.AsNoTracking().ToListAsync();
- ```
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
 `OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that lets you pass the name of the `OrderBy` column in a string variable.
 
-
 ### Add column heading hyperlinks to the Student Index view
 
-Replace the code in *Students/Index.cshtml*, with the following code to add column heading hyperlinks. The changed lines are highlighted.
+Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=16,22)]
+[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
-This code uses the information in `ViewData` properties to set up hyperlinks with the appropriate query string values.
+The preceeding code:
 
-Run the app, select the **Students** tab, and click the **Last Name** and **Enrollment Date** column headings to verify that sorting works.
+* Adds  hyperlinks to to the `LastName` and `EnrollmentDate` column headings.
+* Uses the information in `ViewData` dictionary to set up hyperlinks with the current sort order values.
 
-![Students index page in name order](sort-filter-page/_static/name-order.png)
+Run the app, select the **Students** tab, and click the **Last Name** and **Enrollment Date** column headings to verify that sorting works. To get a better understaning of the code:
 
-<!--
+* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* Add a watch for `ViewData["NameSort"]` and `ViewData["DateSort"]`.
+* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+
+Step through the debugger.
 
 ## Add a Search Box to the Students Index page
 
-To add filtering to the Students Index page, you'll add a text box and a submit button to the view and make corresponding changes in the `Index` method. The text box will let you enter a string to search for in the first name and last name fields.
+To add filtering to the Students Index page, you add a text box and a submit button to the Razor Page and update the code-behind file. The text box accepts a string to search for in the first name and last name fields.
 
 ### Add filtering functionality to the Index method
 
-In *StudentsController.cs*, replace the `Index` method with the following code (the changes are highlighted).
+Update the *Students/Index.cshtml.cs*  `OnGetAsync` with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
 You've added a `searchString` parameter to the `Index` method. The search string value is received from a text box that you'll add to the Index view. You've also added to the LINQ statement a where clause that selects only students whose first name or last name contains the search string. The statement that adds the where clause is executed only if there's a value to search for.
 
@@ -95,33 +99,33 @@ You've added a `searchString` parameter to the `Index` method. The search string
 
 ### Add a Search Box to the Student Index View
 
-In *Views/Student/Index.cshtml*, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a **Search** button.
+In *Views/Student/Index.cshtml*, add the following highlighted code to create a  **Search** button and assorted chrome.
 
-[!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
+[!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-22&range=1-24)]
 
-This code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action does not result in an update.
+The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The W3C guidelines recommend that GET should be used when the action does not result in an update.
 
 Run the app, select the **Students** tab, enter a search string, and click Search to verify that filtering is working.
-
-![Students index page with filtering](sort-filter-page/_static/filtering.png)
 
 Notice that the URL contains the search string.
 
 ```html
-http://localhost:5813/Students?SearchString=an
+http://localhost:5000/Students?SearchString=an
 ```
 
-If you bookmark this page, you'll get the filtered list when you use the bookmark. Adding `method="get"` to the `form` tag is what caused the query string to be generated.
+If this page is bookmarked, the bookmark contains the URL to the page and the `SearchString` query string. The`method="get"` in the `form` tag is what caused the query string to be generated.
 
-At this stage, if you click a column heading sort link you'll lose the filter value that you entered in the **Search** box. You'll fix that in the next section.
+Currently, if you click a column heading sort link you'll lose the filter value that you entered in the **Search** box. You'll fix that in the next section.
+
+Currently, when click a column heading sort link  is selected,  the filter value from  the **Search** box is lost. You fix that in the next section.
 
 ## Add paging functionality to the Students Index page
 
-To add paging to the Students Index page, you'll create a `PaginatedList` class that uses `Skip` and `Take` statements to filter data on the server instead of always retrieving all rows of the table. Then you'll make additional changes in the `Index` method and add paging buttons to the `Index` view. The following illustration shows the paging buttons.
+To add paging to the Students Index page, you create a `PaginatedList` class. The `PaginatedList` class  uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
 ![Students index page with paging links](sort-filter-page/_static/paging.png)
 
-In the project folder, create `PaginatedList.cs`, and then replace the template code with the following code.
+In the project folder, create `PaginatedList.cs` with the following code:
 
 [!code-csharp[Main](intro/samples/cu/PaginatedList.cs)]
 
@@ -131,130 +135,111 @@ A `CreateAsync` method is used instead of a constructor to create the `Paginated
 
 ## Add paging functionality to the Index method
 
-In *StudentsController.cs*, replace the `Index` method with the following code.
+In *Students/Index.cshtml.cs* ,  update the  type of `Student` from  `IList<Student>` to  `PaginatedList<Student>`:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilterPage&highlight=1-5,7,11-18,45-46)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
-This code adds a page number parameter, a current sort order parameter, and a current filter parameter to the method signature.
+Update the *Students/Index.cshtml.cs*  `OnGetAsync` with the following code:
 
-```csharp
-public async Task<IActionResult> Index(
-    string sortOrder,
-    string currentFilter,
-    string searchString,
-    int? page)
-```
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-)]
 
-The first time the page is displayed, or if the user hasn't clicked a paging or sorting link, all the parameters will be null.  If a paging link is clicked, the page variable will contain the page number to display.
+The preceding code adds the page index,  the current `sortOrder`, and the `currentFilter` to the method signature.
 
-The `ViewData` element named CurrentSort provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging.
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage2)]
 
-The `ViewData` element named CurrentFilter provides the view with the current filter string. This value must be included in the paging links in order to maintain the filter settings during paging, and it must be restored to the text box when the page is redisplayed.
+When the page is called from the **Students** link, or if the user hasn't clicked a paging or sorting link, all the parameters are null.  When a paging link is clicked, the page index variable will contain the page number to display.
 
-If the search string is changed during paging, the page has to be reset to 1, because the new filter can result in different data to display. The search string is changed when a value is entered in the text box and the Submit button is pressed. In that case, the `searchString` parameter is not null.
+`ViewData["CurrentSort"]` provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
 
-```csharp
-if (searchString != null)
-{
-    page = 1;
-}
-else
-{
-    searchString = currentFilter;
-}
-```
+`ViewData["CurrentFilter"]` provides the Razor Page with the current filter string. The `ViewData["CurrentFilter"]` value:
 
-At the end of the `Index` method, the `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging. That single page of students is then passed to the view.
+*  Must be included in the paging links in order to maintain the filter settings during paging.
+*  Must be restored to the text box when the page is redisplayed.
 
-```csharp
-return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
-```
+If the search string is changed while paging, the page is reset to 1.  The page has to be reset to 1 because the new filter can result in different data to display. When a search value is entered and **Submit** is selected: 
 
-The `PaginatedList.CreateAsync` method takes a page number. The two question marks represent the null-coalescing operator. The null-coalescing operator defines a default value for a nullable type; the expression `(page ?? 1)` means return the value of `page` if it has a value, or return 1 if `page` is null.
+* The search string is changed.
+* The `searchString` parameter is not null.
 
-## Add paging links to the student Index view
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage3)]
 
-In *Views/Students/Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
+The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging. That single page of students is passed to the Razor Page.
 
-[!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
+[!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
-The `@model` statement at the top of the page specifies that the view now gets a `PaginatedList<T>` object instead of a `List<T>` object.
+The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type; the expression `(pageIndex  ?? 1)` means return the value of `pageIndex ` if it has a value, or return 1 if `pageIndex ` is null.
 
-The column header links use the query string to pass the current search string to the controller so that the user can sort within filter results:
+## Add paging links to the student Razor Page
 
-```html
-<a asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]" asp-route-currentFilter ="@ViewData["CurrentFilter"]">Enrollment Date</a>
-```
+Replace the code in *Students/Index.cshtml*, with the following highlighted code:
+
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?highlight=28-31,37-40,67-)]
+
+The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
+
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=28-31)]
+
 
 The paging buttons are displayed by tag helpers:
 
-```html
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled">
-   Previous
-</a>
-```
+[!code-html[](intro/samples/cu/Pages/Students/Index.cshtml?range=72-)]
 
 Run the app and go to the students page.
 
 ![students index page with paging links](sort-filter-page/_static/paging.png)
 
-Click the paging links in different sort orders to make sure paging works. Then enter a search string and try paging again to verify that paging also works correctly with sorting and filtering.
+* Click the paging links in different sort orders to make sure paging works.  
+* Enter a search string and try paging to verify that paging works correctly with sorting and filtering.
+
+To get a better understaning of the code:
+
+* In *Student/Index.cshtml.cs*, set a breakpoint on `switch (sortOrder)`.
+* Add a watch for `ViewData["NameSort"]`, `ViewData["DateSort"]`, ViewData["CurrentSort"], and `Model.Student.PageIndex`. 
+* In *Student/Index.cshtml*, set a breakpoint on `@Html.DisplayNameFor(model => model.Student[0].LastName)`.
+
+Step through the debugger.
 
 ## Create an About page that shows student statistics
 
-For the Contoso University website's **About** page, you'll display how many students have enrolled for each enrollment date. This requires grouping and simple calculations on the groups. To accomplish this, you'll do the following:
+In this step,  *Pages\About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping, and includes the following steps:
 
-* Create a view model class for the data that you need to pass to the view.
 
-* Modify the About method in the Home controller.
-
-* Modify the About view.
+* Create a view model class for the data used by the **About** Page.
+* Modify the About Razor Page and code-behind file.
 
 ### Create the view model
 
 Create a *SchoolViewModels* folder in the *Models* folder.
 
-In the new folder, add a class file *EnrollmentDateGroup.cs* and replace the template code with the following code:
+In the *SchoolViewModels*  folder, add a  *EnrollmentDateGroup.cs*  with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Modify the Home Controller
+###  Update the About code-behind page
 
-In *HomeController.cs*, add the following using statements at the top of the file:
+Update the *About.cshtml.cs* file with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings1)]
-
-Add a class variable for the database context immediately after the opening curly brace for the class, and get an instance of the context from ASP.NET Core DI:
-
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_AddContext&highlight=3,5,7)]
-
-Replace the `About` method with the following code:
-
-[!code-csharp[Main](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseDbSet)]
+[!code-csharp[Main](intro/samples/cu/Pages/About.cshtml.cs)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
-> [!NOTE] 
-> In the 1.0 version of Entity Framework Core, the entire result set is returned to the client, and grouping is done on the client. In some scenarios this could create performance problems. Be sure to test performance with production volumes of data, and if necessary use raw SQL to do the grouping on the server. For information about how to use raw SQL, see [the last tutorial in this series](advanced.md).
 
-### Modify the About View
+### Modify the About Razor Page
 
 Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
-[!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
+[!code-html[](intro/samples/cu/Pages/About.cshtml)]
 
-Run the app and go to the About page. The count of students for each enrollment date is displayed in a table.
+Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Summary
+## Additional Resources
 
-In this tutorial, you've seen how to perform sorting, filtering, paging, and grouping. In the next tutorial, you'll learn how to handle data model changes by using migrations.
+* [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/Docs/issues/4155)
 
--->
+
+In the next tutorial, you arn how to handle data model changes by using migrations.
+
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/crud)
