@@ -71,6 +71,13 @@
 ### [Handling concurrency conflicts](data/ef-mvc/concurrency.md)
 ### [Inheritance](data/ef-mvc/inheritance.md)
 ### [Advanced topics](data/ef-mvc/advanced.md)
+
+## [Data access - Razor Pages with EF Core](xref:data/ef-rp/index)
+### [Getting started](xref:data/ef-rp/intro)
+### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
+### [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
+### [Migrations](xref:data/ef-rp/migrations)
+
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)
 ## [Create a Web API](xref:tutorials/first-web-api-mac)
