@@ -99,7 +99,7 @@ The `ID` property becomes the primary key column of the database table that corr
 
 The `Enrollments` property is a navigation property. Navigation properties link to other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student`. For example, if a Student row in the database has two related Enrollment rows, the `Enrollments` navigation property contains those two `Enrollment` entities. A related `Enrollment` row is a row that contains that student's primary key value in the `StudentID` column. For example, suppose the student with ID=1 has two rows in the `Enrollment` table. The `Enrollment` table has two rows with `StudentID` = 1. `StudentID` is a foreign key in the `Enrollment` table that specifies the student in the `Student` table.
 
-If a navigation property can hold multiple entities, the navigation property must be a list type, such as `ICollection<T>`.  `ICollection<T>` can be specified, or a type such as `List<T>` or `HashSet<T>`. When `ICollection<T>` is used, EF creates a `HashSet<T>` collection by default. Navigation properties that hold multiple entities come from many-to-many and one-to-many relationships.
+If a navigation property can hold multiple entities, the navigation property must be a list type, such as `ICollection<T>`. `ICollection<T>` can be specified, or a type such as `List<T>` or `HashSet<T>`. When `ICollection<T>` is used, EF creates a `HashSet<T>` collection by default. Navigation properties that hold multiple entities come from many-to-many and one-to-many relationships.
 
 ### The Enrollment entity
 
@@ -148,7 +148,7 @@ This code creates a `DbSet` property for each entity set. In EF terminology:
 
 `DbSet<Enrollment>` and `DbSet<Course>` can be omitted. EF includes them implicitly because the `Student` entity references the `Enrollment` entity, and the `Enrollment` entity references the `Course` entity. For this tutorial, keep `DbSet<Enrollment>` and `DbSet<Course>` in the `SchoolContext`.
 
-When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials,  the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
+When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
 
@@ -196,7 +196,7 @@ The following code shows the updated *Program.cs* file.
 
 [!code-csharp[Main](intro/samples/cu/Program.cs)]
 
-The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials,  the database is updated when the data model changes, without deleting and re-creating the DB.
+The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, the database is updated when the data model changes, without deleting and re-creating the DB.
 
 <a name="pmc"></a>
 ## Add scaffold tooling

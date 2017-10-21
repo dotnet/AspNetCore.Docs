@@ -46,10 +46,10 @@ The following code contains the C# [?: operator](https://docs.microsoft.com/dotn
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_Ternary)]
 
- The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.  
- 
+ The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
+
 The `?: operator` is also known as the ternary operator.
- 
+
 These two statements enable the view to set the column heading hyperlinks as follows:
 
 | Current sort order | Last Name Hyperlink | Date Hyperlink |
@@ -63,8 +63,8 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-)]
 
- When an`IQueryable` is created or modified, no query is sent to the database. The query is not executed until the `IQueryable` object is converted  into a collection.  `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that is not executed until the following statement:
- 
+ When an`IQueryable` is created or modified, no query is sent to the database. The query is not executed until the `IQueryable` object is converted into a collection. `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that is not executed until the following statement:
+
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
 `OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that passes the name of the `OrderBy` column in a string variable.
@@ -73,7 +73,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
-[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)] 
+[!code-html[](intro/samples/cu/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
@@ -98,8 +98,8 @@ Step through the debugger.
 
 To add filtering to the Students Index page:
 
-*  A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
-*  The code-behind file is updated to use the text box value. 
+* A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
+* The code-behind file is updated to use the text box value.
 
 ### Add filtering functionality to the Index method
 
@@ -114,7 +114,7 @@ The preceding code:
 
 Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
-For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive.  `ToUpper` could be called to make the test explicitly case-insensitive:
+For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 

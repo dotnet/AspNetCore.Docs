@@ -103,7 +103,7 @@ Using `TryUpdateModel` to update fields with posted values is a security best pr
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Even if  the app doesn't have a `Secret` field on the  create/update Razor Page, a hacker could set the `Secret` value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. The original code doesn't limit the fields that the model binder uses when it creates a Student instance.
+Even if the app doesn't have a `Secret` field on the create/update Razor Page, a hacker could set the `Secret` value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. The original code doesn't limit the fields that the model binder uses when it creates a Student instance.
 
 Whatever value the hacker specified for the `Secret` form field is updated in the DB. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
@@ -114,7 +114,7 @@ The value "OverPost" is successfully added to the `Secret` property of the inser
 <a name="vm"></a>
 ### View model
 
-A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page).  In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages code-behind class and the browser. Consider the following `Student` view model:
+A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages code-behind class and the browser. Consider the following `Student` view model:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentVM.cs)]
 
@@ -128,7 +128,7 @@ The [SetValues](https://docs.microsoft.com/ dotnet/api/microsoft.entityframework
 
 Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
-In Razor Pages,  the `PageModel` derived class is the view model. 
+In Razor Pages, the `PageModel` derived class is the view model. 
 
 ## Update the Edit page
 
@@ -196,13 +196,15 @@ Test Delete.
 
 ## Common errors
 
-Student/Home or other link don't work:
+Student/Home or other links don't work:
 
 Verify the Razor Page contains the correct `@page` directive. For example, The Student/Home Razor Page should **not** contain a route template:
 
 ```cshtml
 @page "{id:int}"
 ```
+
+Each Razor Page must include the `@page` directive.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/intro)
