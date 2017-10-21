@@ -15,7 +15,7 @@ uid: data/ef-rp/sort-filter-page
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
-The Contoso University web app demonstrates how to create Razor Pages web apps using EF Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](xref:data/ef-rp/intro).
+The Contoso University web app demonstrates how to create Razor Pages web apps using EF Core and Visual Studio. For information about the tutorial series, see [the first tutorial](xref:data/ef-rp/intro).
 
 In this tutorial, sorting, filtering, grouping, and paging, functionality is added.
 
@@ -195,7 +195,7 @@ The `PaginatedList.CreateAsync` method converts the student query to a single pa
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage4)]
 
-The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
+The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](https://docs.microsoft.com/ dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
 ## Add paging links to the student Razor Page
 

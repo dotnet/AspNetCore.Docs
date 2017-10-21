@@ -54,9 +54,7 @@ namespace ContosoUniversity.Pages.Students
                 return RedirectToPage("./Index");
             }
 
-            //return Page();
             return null;
-
         }
         #endregion
     }

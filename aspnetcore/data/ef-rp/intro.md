@@ -61,7 +61,7 @@ A few changes set up the site menu, layout, and home page.
 
 Open *Pages/_Layout.cshtml* and make the following changes:
 
-* Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
+* Change each occurrence of "ContosoUniversity" to "Contoso University." There are three occurrences.
 
 * Add menu entries for **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Contact** menu entry.
 
@@ -190,7 +190,9 @@ In *Program.cs*, modify the `Main` method to do the following:
 
 * Get a database context instance from the dependency injection container.
 * Call the seed method, passing to it the context.
-* Dispose the context when the seed method is done.
+* Dispose the context when the seed method completes.
+
+The following code shows the updated *Program.cs* file.
 
 [!code-csharp[Main](intro/samples/cu/Program.cs)]
 
@@ -203,16 +205,16 @@ In this section, you use the Package Manager Console (PMC) to add the Visual Stu
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-In the Package Manager Console (PMC), enter the following command:
+In the Package Manager Console (PMC), enter the following commands:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 2.0.0
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 ```
 
-The previous command adds the NuGet package `Microsoft.VisualStudio.Web.CodeGeneration.Design` to the *.csproj file:
+The previous command adds the NuGet packages to the *.csproj file:
 
-[!code-csharp[Main](intro/samples/cu/ContosoUniversity.csproj?highlight=9-11)]
-
+[!code-csharp[Main](intro/samples/cu/ContosoUniversity.csproj?highlight=7-8)]
 
 <a name="scaffold"></a>
 ## Scaffold the model
@@ -250,7 +252,7 @@ Test the **Create**, **Edit**, and **Details** links.
 
 ## View the Database
 
-When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if there is a DB, and creates one if necessary. If there are no Students in the DB, the `Initialize` method adds students.
+When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if the DB exists, and creates one if necessary. If there are no Students in the DB, the `Initialize` method adds students.
 
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
 In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
@@ -281,7 +283,7 @@ The amount of code you had to write in order for EF to create a complete databas
 
 * A property is interpreted as a foreign key property if it's named *<navigation property name><primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can be named *<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
-Conventional behavior can be overridden. For example, the table names can be explicitly specified, as shown earlier in this tutorial. The column names can be explicitly set. Primary keys and foreign keys can be explicitly set. This is shown in a later tutorial.
+Conventional behavior can be overridden. For example, the table names can be explicitly specified, as shown earlier in this tutorial. The column names can be explicitly set. Primary keys and foreign keys can be explicitly set.
 
 ## Asynchronous code
 
@@ -289,13 +291,16 @@ Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
 A web server has a limited number of threads available, and in high load situations all of the available threads might be in use. When that happens, the server can't process new requests until the threads are freed up. With synchronous code, many threads may be tied up while they aren't actually doing any work because they're waiting for I/O to complete. With asynchronous code, when a process is waiting for I/O to complete, its thread is freed up for the server to use for processing other requests. As a result, asynchronous code enables server resources to be used more efficiently, and the server is enabled to handle more traffic without delays.
 
-Asynchronous code does introduce a small amount of overhead at run time. For low traffic situations the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
+Asynchronous code does introduce a small amount of overhead at run time. For low traffic situations, the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
 
 In the following code, the `async` keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_ScaffoldedIndex)]
 
-* The `async` keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that is returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
+* The `async` keyword tells the compiler to:
+
+  * Generate callbacks for parts of the method body.
+  * Automatically create the [Task](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task?view=netframework-4.7) object that is returned. For more information, see [Task Return Type](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType).
 
 * The implicit return type `Task` represents ongoing work.
 
@@ -309,11 +314,11 @@ Some things to be aware of when you are writing asynchronous code that uses EF:
 
 * An EF context is not threaded safe: don't try to do multiple operations in parallel. When you call any async EF method, always use the `await` keyword.
 
-* To take advantage of the performance benefits of async code, make sure that library packages (such as for paging) use async if they call EF methods that send queries to the database.
+* To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF methods that send queries to the database.
 
 For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async).
 
 In the next tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
 
 >[!div class="step-by-step"]
-[ Next CRUD operations](xref:data/ef-rp/crud)
+[Next(xref:data/ef-rp/crud)

@@ -14,6 +14,8 @@ uid: data/index
 ---
 # Working with Data in ASP.NET Core 
 
+The Razor Pages EF Core series is a work in progress. We hope to complete the series by 15 November, 2017.
+
 * [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/index)
 
    * [Getting started with Razor Pages and EF](xref:data/ef-rp/intro)
