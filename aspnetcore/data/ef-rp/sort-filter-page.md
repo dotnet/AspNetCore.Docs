@@ -11,7 +11,7 @@ ms.prod: asp.net-core
 uid: data/ef-rp/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 10)
+# Sorting, filtering, paging, and grouping - EF Core with Razor Pages
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
