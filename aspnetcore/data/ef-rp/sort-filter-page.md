@@ -36,18 +36,19 @@ The `sortOrder` parameter is either "Name" or "Date." The `sortOrder` parameter 
 
 When the Index page is requested from the **Students** link, there's no query string. The students are displayed in ascending order by last name. Ascending order by last name is the default (fall-through case) in the `switch` statement. When the user clicks a column heading link, the appropriate `sortOrder` value is provided in the query string value.
 
-The two `ViewData` elements (`NameSort` and `DateSort`) are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values.
-
-`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. `ViewData` provides a convenient way to pass data from a Razor Page to a code-behind file, and from a code-behind file to a Razor Page. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB) and [ViewData](xref:mvc/views/overview#VD).
+The two `ViewData` elements (`NameSort` and `DateSort`) are used by the Razor Page to configure the column heading hyperlinks with the appropriate query string values:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=3-4)]
 
-The following code contains ternary statements:
+`ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. `ViewData` provides a convenient way to pass data from a Razor Page to a code-behind file, and from a code-behind file to a Razor Page. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB) and [ViewData](xref:mvc/views/overview#VD).
+
+The following code contains the C# [?: operator](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/conditional-operator):
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_Ternary)]
 
-
- The first one specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string. These two statements enable the view to set the column heading hyperlinks as follows:
+ The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.  The `?: operator` is also known as the ternary operator.
+ 
+These two statements enable the view to set the column heading hyperlinks as follows:
 
 | Current sort order | Last Name Hyperlink | Date Hyperlink |
 |:--------------------:|:-------------------:|:--------------:|
@@ -60,11 +61,11 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnly&highlight=6-)]
 
- When you create or modify an`IQueryable`, no query is sent to the database. The query is not executed until you convert the `IQueryable` object into a collection by calling a method such as `ToListAsync`. Therefore, this code results in a single query that is not executed until the following statement:
-
+ When an`IQueryable` is created or modified, no query is sent to the database. The query is not executed until the `IQueryable` object is converted  into a collection.  `IQueryable` are converted to a collection by calling a method such as `ToListAsync`. Therefore, the `IQueryable` code results in a single query that is not executed until the following statement:
+ 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Index.cshtml.cs?name=snippet_SortOnlyRtn)]
 
-`OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that lets you pass the name of the `OrderBy` column in a string variable.
+`OnGetAsync` could get verbose with a large number of columns. [The last tutorial in this series](xref:data/ef-mvc/advanced#dynamic-linq) shows how to write code that passes the name of the `OrderBy` column in a string variable.
 
 ### Add column heading hyperlinks to the Student Index view
 
@@ -93,7 +94,10 @@ Step through the debugger.
 
 ## Add a Search Box to the Students Index page
 
-To add filtering to the Students Index page, you add a text box and a submit button to the Razor Page and update the code-behind file. The text box accepts a string to search for in the first name and last name fields.
+To add filtering to the Students Index page:
+
+*  A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
+*  The code-behind file is updated to use the text box value. 
 
 ### Add filtering functionality to the Index method
 
@@ -103,12 +107,12 @@ Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
 The preceding code:
 
-* Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that you' add in the next section.
+* Adds the `searchString` parameter to the `OnGetAsync` method. The search string value is received from a text box that is added in the next section.
 * Added to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
 Note: The preceding code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, tha app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
-For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive. You could call the `ToUpper` method to make the test explicitly case-insensitive:
+For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Serve defaults to case-insensitive.  `ToUpper` could be called to make the test explicitly case-insensitive:
 
 `Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
@@ -125,7 +129,7 @@ In *Views/Student/Index.cshtml*, add the following highlighted code to create a 
 
 [!code-html[](intro/samples/cu/Pages/Students/Index3.cshtml?highlight=14-22&range=1-24)]
 
-The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When you specify HTTP GET, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
+The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action does not result in an update.
 
 Test the app:
 

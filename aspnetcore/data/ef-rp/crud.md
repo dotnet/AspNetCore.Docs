@@ -19,7 +19,7 @@ In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was cre
 
 Note: To minimize complexity and keep these tutorials focused on EF, EF code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
-In this tutorial, you work with the Create, Edit, Delete, and Details Razor Pages in the *Student* folder.
+In this tutorial, the Create, Edit, Delete, and Details Razor Pages in the *Student* folder are modified.
 
 The scaffolded code uses the following pattern for Create, Edit, and Delete pages:
 
@@ -59,7 +59,7 @@ The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `SingleOr
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
 
-The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. You learn more about these methods in the reading-related data tutorial.
+The `Include` and `ThenInclude` methods cause the context to load the `Student.Enrollments` navigation property, and within each enrollment the `Enrollment.Course` navigation property. These methods are examinied in detail in the reading-related data tutorial.
 
 The `AsNoTracking` method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
@@ -70,11 +70,11 @@ Open *Pages/Students/Details.cshtml*. Add the following highlighted code to disp
  <!--2do ricka. if doesn't change, remove dup -->
 [!code-cshtml[Main](intro/samples/cu/Pages/Students/Details1.cshtml?highlight=35-53)]
 
-If code indentation is wrong after you paste the code, press CTRL-K-D to correct it.
+If code indentation is wrong after the code is pasted, press CTRL-K-D to correct it.
 
 The preceding code loops through the entities in the `Enrollments` navigation property. For each enrollment, it displays the course title and the grade. The course title is retrieved from the Course entity that's stored in the `Course` navigation property of the Enrollments entity.
 
-Run the app, select the **Students** tab, and click the **Details** link for a student. You see the list of courses and grades for the selected student.
+Run the app, select the **Students** tab, and click the **Details** link for a student. The list of courses and grades for the selected student is displayed.
 
 ## Update the Create page
 
@@ -99,11 +99,11 @@ In the preceding sample:
 <a id="overpost"></a>
 ### Overposting
 
-Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that you don't want this web page to set:
+Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page should not update or add:
 
 [!code-csharp[Main](intro/samples/cu/Models/StudentZsecret.cs?name=snippet_Intro&highlight=7)]
 
-Even if you don't have a `Secret` field on the web create/update page, a hacker could set the `Secret` value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. The original code doesn't limit the fields that the model binder uses when it creates a Student instance.
+Even if  the app doesn't have a `Secret` field on the  create/update Razor Page, a hacker could set the `Secret` value by overposting. A hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. The original code doesn't limit the fields that the model binder uses when it creates a Student instance.
 
 Whatever value the hacker specified for the `Secret` form field is updated in the DB. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
@@ -167,7 +167,7 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 ## Update the Delete page
 
-In this section, you add code to implement a custom error message when the call to `SaveChanges` fails.
+In this section, code is added to implement a custom error message when the call to `SaveChanges` fails.
 
 Replace the `OnGetAsync` method with the following code:
 
