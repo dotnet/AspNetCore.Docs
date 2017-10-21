@@ -14,7 +14,7 @@ uid: security/data-protection/extensibility/misc-apis
 ---
 # Miscellaneous APIs
 
-<a name=data-protection-extensibility-mics-apis></a>
+<a name="data-protection-extensibility-mics-apis"></a>
 
 >[!WARNING]
 > Types that implement any of the following interfaces should be thread-safe for multiple callers.

@@ -55,7 +55,7 @@ Create a new class named `SeedData` in the *Models* folder. Replace the generate
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
 ```csharp
-if (context.Movies.Any())
+if (context.Movie.Any())
 {
     return;   // DB has been seeded.
 }
@@ -65,7 +65,7 @@ if (context.Movies.Any())
 
 Add the seed initializer to the end of the `Main` method in the *Program.cs* file:
 
-[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Program.cs?highlight=6,17-32)]
+[!code-csharp[Main](razor-pages-start/sample/RazorPagesMovie/Program.cs)]
 
 Test the app
 

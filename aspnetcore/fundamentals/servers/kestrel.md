@@ -29,11 +29,11 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2)
+[View or download sample code for 2.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample2) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1)
+[View or download sample code for 1.x](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/sample1) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ---
 

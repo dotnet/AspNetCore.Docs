@@ -17,6 +17,8 @@ Getting Started with ASP.NET MVC 5
 ====================
 > Introduction to ASP.NET MVC 5
 
+An updated version of this tutorial is available [here](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc) using the latest version of [Visual Studio.](https://www.visualstudio.com) The new tutorial uses [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/), which provides **many** improvements over this tutorial.
+
 
 - [Getting Started](getting-started.md)
 - [Adding a Controller](adding-a-controller.md)

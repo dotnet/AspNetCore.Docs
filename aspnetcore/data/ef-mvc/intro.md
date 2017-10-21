@@ -89,11 +89,11 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,30,36-39,48)]
+[!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,30,36-39,48)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
-[!code-html[](intro/samples/cu/Views/Home/Index.cshtml)]
+[!code-cshtml[](intro/samples/cu/Views/Home/Index.cshtml)]
 
 Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** from the menu. You see the home page with tabs for the pages you'll create in these tutorials.
 
@@ -283,7 +283,7 @@ You'll learn about the asynchronous programming elements in this code later in t
 
 The *Views/Students/Index.cshtml* view displays this list in a table:
 
-[!code-html[](intro/samples/cu/Views/Students/Index1.cshtml)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index1.cshtml)]
 
 Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** from the menu.
 

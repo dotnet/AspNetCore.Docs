@@ -14,8 +14,6 @@ uid: security/authentication/microsoft-logins
 ---
 # Configuring Microsoft Account authentication
 
-<a name=security-authentication-microsoft-logins></a>
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md).

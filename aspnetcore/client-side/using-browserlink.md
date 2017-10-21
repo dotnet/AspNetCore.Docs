@@ -76,7 +76,7 @@ From the Browser Link toolbar control, you can:
 * Refresh the web application in several browsers at once.
 * Open the **Browser Link Dashboard**.
 * Enable or disable **Browser Link**. Note: Browser Link is disabled by default in Visual Studio 2017 (15.3).
-* Enable or disable CSS Auto-Sync.
+* Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).
 
 > [!NOTE]
 > Some Visual Studio plug-ins, most notably *Web Extension Pack 2015* and *Web Extension Pack 2017*, offer extended functionality for Browser Link, but some of the additional features don't work with ASP.NET Core projects.

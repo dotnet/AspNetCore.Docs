@@ -176,7 +176,9 @@ namespace WebApplication1.ViewModels
 > [!NOTE]
 > Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](xref:mvc/models/model-binding) and [validation](xref:mvc/models/validation) for data sent to the app by the user.
 
+
 <a name="VD_VB"></a>
+
 ### Weakly-typed data (ViewData and ViewBag)
 
 In addition to strongly-typed views, views have access to a *weakly-typed* (also called *loosely-typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly-typed data for passing small amounts of data in and out of controllers and views.
@@ -191,7 +193,9 @@ This collection can be referenced through either the `ViewData` or `ViewBag` pro
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
 
+
 <a name="VD"></a>
+
 **ViewData**
 
 `ViewData` is a [ViewDataDictionary](/aspnet/core/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).

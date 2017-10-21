@@ -18,7 +18,7 @@ By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/mah
 
 ASP.NET Core MVC supports partial views, which are useful when you have reusable parts of web pages you want to share between different views.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/partial/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/partial/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What are Partial Views?
 
