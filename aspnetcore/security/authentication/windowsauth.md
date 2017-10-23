@@ -1,11 +1,11 @@
 ---
 title: Configure Windows Authentication in ASP.NET Core
 author: ardalis
-description: How to configure Windows Authentication in ASP.NET Core
-keywords: ASP.NET Core,
+description: This article describes how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
+keywords: ASP.NET Core,Windows authentication
 ms.author: riande
 manager: wpickett
-ms.date: 07/05/2017
+ms.date: 10/23/2017
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-548ccb66ee83
 ms.technology: aspnet
@@ -16,7 +16,7 @@ uid: security/authentication/windowsauth
 
 By [Steve Smith](https://ardalis.com)
 
-Windows authentication can be configured for ASP.NET Core apps hosted with IIS or WebListener.
+Windows authentication can be configured for ASP.NET Core apps hosted with IIS, [HTTP.sys](xref:fundamentals/servers/httpsys), or [WebListener](xref:fundamentals/servers/weblistener).
 
 ## What is Windows authentication
 
@@ -31,9 +31,9 @@ The Visual Studio Web Application template can be configured to support Windows 
 ### Using the Windows authentication app template
 
 In Visual Studio:
-* Create a new ASP.NET Core Web Application. 
-* Select Web Application from the list of templates.
-* Select the Change Authentication button and select **Windows Authentication**. 
+1. Create a new ASP.NET Core Web Application. 
+1. Select Web Application from the list of templates.
+1. Select the **Change Authentication** button and select **Windows Authentication**. 
 
 Run the app. The username appears in the top right of the app.
 
@@ -43,7 +43,7 @@ For development work using IIS Express, the template provides all the configurat
 
 ### Visual Studio settings for Windows and anonymous authentication
 
-The Visual Studio properties page, debug tab provides check boxes for Windows authentication and anonymous authentication.
+The Visual Studio **Properties** page's **Debug** tab provides check boxes for Windows authentication and anonymous authentication.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
 
@@ -90,7 +90,34 @@ Learn more about [publishing to IIS](xref:publishing/iis).
 
 Launch the app to verify Windows authentication is working.
 
-## Enabling Windows authentication with WebListener
+## Enabling Windows authentication with HTTP.sys or WebListener
+
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+Although Kestrel doesn't support Windows authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows authentication:
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
+    }
+
+    public static IWebHost BuildWebHost(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .UseHttpSys(options =>
+            {
+                options.Authentication.Schemes = 
+                    AuthenticationSchemes.NTLM | AuthenticationSchemes.Negotiate;
+                options.Authentication.AllowAnonymous = false;
+            })
+            .Build();
+}
+```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
@@ -115,10 +142,12 @@ public class Program
 }
 ```
 
+---
+
 ## Working with Windows authentication
 
-If your app uses Windows authentication and anonymous access, you can use the ``[Authorize]`` and ``[AllowAnonymous]`` attributes. Apps that do not have anonymous enabled do not require ``[Authorize]``; the  app is treated as requiring authentication, anonymous requests are rejected. Note, if the IIS site is configured **not** to allow anonymous access, the ``[AllowAnonymous]`` attribute does **not** allow anonymous requests. The ``[AllowAnonymous]`` attribute overrides ``[Authorize]`` attribute usage within apps that allow anonymous access.
+If your app uses Windows authentication and anonymous access, you can use the `[Authorize]` and `[AllowAnonymous]` attributes. Apps disallowing anonymous access don't require `[Authorize]`. In this scenario, the app is treated as requiring authentication, and anonymous requests are rejected. If the IIS site is configured to disallow anonymous access, the `[AllowAnonymous]` attribute doesn't allow anonymous requests. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access.
 
 ### Impersonation
 
-ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use ``WindowsIdentity.RunImpersonated``. Run a single action in this context and then close the context. Note that ``RunImpersonated`` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
+ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context. Note that `RunImpersonated` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
