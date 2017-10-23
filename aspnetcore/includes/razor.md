@@ -2,5 +2,4 @@ This tutorial teaches ASP.NET Core MVC with controllers and views. Razor Pages i
 
 * Is easier to follow.
 * Covers more features.
-* Is the perferred approach for new application development.
-
+* Is the preferred approach for new application development.
