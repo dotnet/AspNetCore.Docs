@@ -12,19 +12,19 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authentication/windowsauth
 ---
-# Configure Windows Authentication in ASP.NET Core
+# Configure Windows authentication in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com)
 
 Windows authentication can be configured for ASP.NET Core apps hosted with IIS, [HTTP.sys](xref:fundamentals/servers/httpsys), or [WebListener](xref:fundamentals/servers/weblistener).
 
-## What is Windows authentication
+## What is Windows authentication?
 
 Windows authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is a secure form of authentication best suited to intranet environments where users, client applications, and web servers belong to the same Windows domain.
 
 [Learn more about Windows Authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
 
-## Enabling Windows authentication in an ASP.NET Core application
+## Enabling Windows authentication in an ASP.NET Core app
 
 The Visual Studio Web Application template can be configured to support Windows authentication.
 
@@ -62,7 +62,7 @@ You can also configure these properties in the `launchSettings.json` file:
 }
 ```
 
-## Enabling Windows Authentication with IIS
+## Enabling Windows authentication with IIS
 
 IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication:
 
@@ -70,7 +70,7 @@ IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module)
 
 Specify a name and folder and allow it to create a new application pool.
 
-### Customize Authentication
+### Customize authentication
 
 Open the Authentication menu for the site.
 
