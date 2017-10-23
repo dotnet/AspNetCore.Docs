@@ -96,51 +96,13 @@ Launch the app to verify Windows authentication is working.
 
 Although Kestrel doesn't support Windows authentication, you can use [HTTP.sys](xref:fundamentals/servers/httpsys) to support self-hosted scenarios on Windows. The following example configures the app's web host to use HTTP.sys with Windows authentication:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        BuildWebHost(args).Run();
-    }
-
-    public static IWebHost BuildWebHost(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .UseHttpSys(options =>
-            {
-                options.Authentication.Schemes = 
-                    AuthenticationSchemes.NTLM | AuthenticationSchemes.Negotiate;
-                options.Authentication.AllowAnonymous = false;
-            })
-            .Build();
-}
-```
+[!code-csharp[](windowsauth/sample/Program2x.cs?highlight=9-14)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 Although Kestrel doesn't support Windows authentication, you can use [WebListener](xref:fundamentals/servers/weblistener) to support self-hosted scenarios on Windows. The following example configures the app's web host to use WebListener with Windows authentication:
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var host = new WebHostBuilder()
-            .UseWebListener(options =>
-            {
-                options.ListenerSettings.Authentication.Schemes = 
-                    AuthenticationSchemes.Negotiate | AuthenticationSchemes.NTLM;
-                options.ListenerSettings.Authentication.AllowAnonymous = false;
-            })
-            .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseStartup<Startup>()
-            .Build();
-
-        host.Run();
-    }
-}
-```
+[!code-csharp[](windowsauth/sample/Program1x.cs?highlight=6-11)]
 
 ---
 
@@ -150,4 +112,4 @@ If your app uses Windows authentication and anonymous access, you can use the `[
 
 ### Impersonation
 
-ASP.NET Core does not implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context. Note that `RunImpersonated` does not support async and should not be used for complex scenarios. For example, wrapping entire requests or middleware chains is not supported or recommended.
+ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context. Note that `RunImpersonated` doesn't support async and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
