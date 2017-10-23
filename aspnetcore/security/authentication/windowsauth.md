@@ -24,11 +24,11 @@ Windows authentication relies on the operating system to authenticate users of A
 
 [Learn more about Windows Authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
 
-## Enabling Windows authentication in an ASP.NET Core app
+## Enable Windows authentication in an ASP.NET Core app
 
 The Visual Studio Web Application template can be configured to support Windows authentication.
 
-### Using the Windows authentication app template
+### Use the Windows authentication app template
 
 In Visual Studio:
 1. Create a new ASP.NET Core Web Application. 
@@ -62,7 +62,7 @@ You can also configure these properties in the `launchSettings.json` file:
 }
 ```
 
-## Enabling Windows authentication with IIS
+## Enable Windows authentication with IIS
 
 IIS uses the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) (ANCM) to host ASP.NET Core apps. The ANCM flows Windows authentication to IIS by default. Configuration of Windows authentication is done within IIS, not the application project. The following sections show how to use IIS Manager to configure an ASP.NET Core app to use Windows authentication:
 
@@ -90,7 +90,7 @@ Learn more about [publishing to IIS](xref:publishing/iis).
 
 Launch the app to verify Windows authentication is working.
 
-## Enabling Windows authentication with HTTP.sys or WebListener
+## Enable Windows authentication with HTTP.sys or WebListener
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -106,7 +106,7 @@ Although Kestrel doesn't support Windows authentication, you can use [WebListene
 
 ---
 
-## Working with Windows authentication
+## Work with Windows authentication
 
 If your app uses Windows authentication and anonymous access, you can use the `[Authorize]` and `[AllowAnonymous]` attributes. Apps disallowing anonymous access don't require `[Authorize]`. In this scenario, the app is treated as requiring authentication, and anonymous requests are rejected. If the IIS site is configured to disallow anonymous access, the `[AllowAnonymous]` attribute doesn't allow anonymous requests. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access.
 
