@@ -5,7 +5,7 @@ description: Table of contents for introduction to ASP.NET Core MVC using Visual
 keywords: ASP.NET Core, MVC, tutorial, introduction
 ms.author: riande
 manager: wpickett
-ms.date: 10/06/2017
+ms.date: 10/26/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
