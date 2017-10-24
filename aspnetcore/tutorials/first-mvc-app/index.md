@@ -13,7 +13,9 @@ uid: tutorials/first-mvc-app/index
 ---
 # Create a web app with ASP.NET Core MVC using Visual Studio
 
- [!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE[consider RP](../../includes/razor.md)]
+
+The tutorial series includes the following:
 
 1. [Getting started](start-mvc.md)
 1. [Adding a controller](adding-controller.md)
