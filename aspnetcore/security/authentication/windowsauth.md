@@ -1,11 +1,11 @@
 ---
-title: Configure Windows Authentication in ASP.NET Core
+title: Configure Windows authentication in ASP.NET Core
 author: ardalis
-description: This article describes how to configure Windows Authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
+description: This article describes how to configure Windows authentication in ASP.NET Core, using IIS Express, IIS, HTTP.sys, and WebListener.
 keywords: ASP.NET Core,Windows authentication
 ms.author: riande
 manager: wpickett
-ms.date: 10/23/2017
+ms.date: 10/24/2017
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-548ccb66ee83
 ms.technology: aspnet
@@ -49,18 +49,7 @@ The Visual Studio **Properties** page's **Debug** tab provides check boxes for W
 
 You can also configure these properties in the *launchSettings.json* file:
 
-```json
-{
-  "iisSettings": {
-    "windowsAuthentication": true,
-    "anonymousAuthentication": false,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:52171/",
-      "sslPort": 0
-    }
-  } // additional options trimmed
-}
-```
+[!code-json[](windowsauth/sample/launchSettings.json?highlight=3-4)]
 
 ## Enable Windows authentication with IIS
 
