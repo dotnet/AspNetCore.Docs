@@ -39,7 +39,7 @@ Run the app. The username appears in the top right of the app.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/browser-screenshot.png)
 
-For development work using IIS Express, the template provides all the configuration necessary to use Windows authentication. The next section shows how to configure an ASP.NET Core app manually for Windows authentication.
+For development work using IIS Express, the template provides all the configuration necessary to use Windows authentication. The following section shows how to configure an ASP.NET Core app manually for Windows authentication.
 
 ### Visual Studio settings for Windows and anonymous authentication
 
