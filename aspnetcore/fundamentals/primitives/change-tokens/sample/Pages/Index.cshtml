@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Detect changes";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Detect changes with Change Token</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Examples</h3>
+            </div>
+            <div class="panel-body">
+                <p><a href="/ConfigWatching" class="btn btn-primary" role="button">Watching for configuration changes</a></p>
+                <p><a href="/FileWatching" class="btn btn-primary" role="button"">Watching for changes in a file</a></p>
+                <p><a href="/ObjectWatching" class="btn btn-primary" role="button">Watching for changes in an object</a></p>
+            </div>
+        </div>
+
+    </div>
+</div>
