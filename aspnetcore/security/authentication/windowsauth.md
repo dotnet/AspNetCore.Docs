@@ -97,7 +97,7 @@ Although Kestrel doesn't support Windows authentication, you can use [WebListene
 
 ## Work with Windows authentication
 
-If your app uses Windows authentication and anonymous access, you can use the `[Authorize]` and `[AllowAnonymous]` attributes. Apps disallowing anonymous access don't require `[Authorize]`. In this scenario, the app is treated as requiring authentication, and anonymous requests are rejected. If the IIS site is configured to disallow anonymous access, the `[AllowAnonymous]` attribute doesn't allow anonymous requests. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access.
+If your app allows Windows authentication and anonymous access, you can use the `[Authorize]` and `[AllowAnonymous]` attributes. Apps disallowing anonymous access don't require `[Authorize]`. In this scenario, the app is treated as requiring authentication, and anonymous requests are rejected. If the IIS site is configured to disallow anonymous access, the `[AllowAnonymous]` attribute doesn't allow anonymous requests. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access. See [Simple Authorization](xref:security/authorization/simple) for more details.
 
 ### Impersonation
 
