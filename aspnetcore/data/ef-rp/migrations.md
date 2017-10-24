@@ -48,7 +48,7 @@ In the *appsettings.json* file, change the name of the DB in the connection stri
 
 [!code-json[Main](intro/samples/cu/appsettings2.json?range=1-4)]
 
-Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name does not exist. This isn't required for getting started with migrations. Later in the tutorial, the advantages of creating a new DB are explained.
+Changing the DB name in the connection string causes the first migration to create a new DB. A new DB is created because one with that name does not exist. This isn't required for getting started with migrations. 
 
 An alternative to changing the DB name is deleting the DB. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 
@@ -80,7 +80,7 @@ info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-It the following error message is displayed "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*":
+If the error message is displayed "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*":
 
 * Stop IIS Express.
 
@@ -88,38 +88,44 @@ It the following error message is displayed "*cannot access the file ... Contoso
    * Find the IIS Express icon in the Windows System Tray.
    * Right-click the IIS Express icon, and then click **ContosoUniversity > Stop Site**.
 
-## Examine the Up and Down methods
+### Examine the Up and Down methods
 
 The EF command `migrations add` generated  code to create the DB from scratch. This code is in the *Migrations* folder, in the file named *\<timestamp>_InitialCreate.cs*. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example.
 
 [!code-csharp[Main](intro/samples/cu/Migrations/20171021031845_InitialCreate.cs?range=8-24,77-)]
 
-Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, Migrations calls the `Down` method.
+Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, migrations calls the `Down` method.
 
-This code is for the initial migration that was created when you entered the `migrations add InitialCreate` command. The migration name parameter ("InitialCreate" in the example) is used for the file name and can be whatever you want. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, you might name a later migration "AddDepartmentTable".
+The preceding code is for the initial migration. That code was created when the `migrations add InitialCreate` command was run. The migration name parameter ("InitialCreate" in the example) is used for the file name. The migration name can be any valid file name. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, a migration that added a department table might be called "AddDepartmentTable".
 
-If you created the initial migration when the DB already exists, the DB creation code is generated but it doesn't have to run because the DB already matches the data model. When you deploy the app to another environment where the DB doesn't exist yet, this code will run to create your DB, so it's a good idea to test it first. That's why you changed the name of the DB in the connection string earlier -- so that migrations can create a new one from scratch.
+If the inital migration is created and the DB exits:
 
-## Examine the data model snapshot
+* The DB creation code is generated.
+* The DB creation code doesn't need to run because the DB already matches the data model. If the The DB creation code is run, it won't make any changes because the DB already matches the data model.
 
-Migrations also creates a *snapshot* of the current DB schema in *Migrations/SchoolContextModelSnapshot.cs*. Here's what that code looks like:
+When the app is deployed to a new environment, the DB creation code must be run to create the DB.
 
-<!-- zz
+Previously the connection string was changed to use a new name for the DB. The specified DB doesn't exist, so migrations will create the DB.
+
+### Examine the data model snapshot
+
+Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolContextModelSnapshot.cs*:
+
 [!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
 Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF determines what changed by comparing the data model to the snapshot file. EF interacts with the DB only when it has to update the DB. 
 
-The snapshot file has to be kept in sync with the migrations that create it, so you can't remove a migration just by deleting the file named  *\<timestamp>_\<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the DB snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
+The snapshot file has to be kept in sync with the migrations that create it. A migration can't be removed by deleting the file named  *\<timestamp>_\<migrationname>.cs*. If that file is deleted, the remaining migrations will be out of sync with the DB snapshot file. To delete the last migration added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
 
 ## Apply the migration to the DB
 
-In the command window, enter the following command to create the DB and tables in it.
+In the command window, enter the following to create the DB and tables.
 
 ```console
 dotnet ef database update
 ```
 
-The output from the command is similar to the `migrations add` command, except that you see logs for the SQL commands that set up the DB. Most of the logs are omitted in the following sample output. If you prefer not to see this level of detail in log messages, you can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging).
+The output from the command is similar to the `migrations add` command output. In the preceding command, logs for the SQL commands that set up the DB are displayed. Most of the logs are omitted in the following sample output:
 
 ```text
 info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[0]
@@ -146,18 +152,23 @@ info: Microsoft.EntityFrameworkCore.Database.Command[200101]
 Done.
 ```
 
-Use **SQL Server Object Explorer** to inspect the DB as you did in the first tutorial.  You'll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the DB. View the data in that table and you'll see one row for the first migration. (The last log in the preceding CLI output example shows the INSERT statement that creates this row.)
+To reduce the level of detail in log messages, can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging).
 
-Run the app to verify that everything still works the same as before.
+Use **SQL Server Object Explorer** to inspect the DB.  Notice the addition of an `__EFMigrationsHistory` table.  The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the DB. View the data in the `__EFMigrationsHistory` table table, it shows one row for the first migration. The last log in the preceding CLI output example shows the INSERT statement that creates this row.
 
-![Students Index page](migrations/_static/students-index.png)
+Run the app and verify that everything works.
 
 <a id="pmc"></a>
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
-The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. This tutorial shows how to use the CLI, but you can use the PMC if you prefer.
+The EF tooling for managing migrations is available from:
 
-The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is already included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
+* .NET Core CLI commands.
+* The PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. 
+
+This tutorial shows how to use the CLI, some developers prefer using the PMC.
+
+The EF commands for the PMC commands are in the [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package. This package is included in the [Microsoft.AspNetCore.All](xref:fundamentals/metapackage) metapackage, so you don't have to install it.
 
 **Important:** This is not the same package as the one you install for the CLI by editing the *.csproj* file. The name of this one ends in `Tools`, unlike the CLI package name which ends in `Tools.DotNet`.
 
@@ -167,7 +178,9 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 
 >[!div class="step-by-step"]
-[Previous](sort-filter-page.md)
-[Next](complex-data-model.md)  
+[Previous](xref:data/ef-rp/sort-filter-page)
+
+<!-- zz
+[Next](xref:data/ef-rp/complex-data-model)  
 
 -->
