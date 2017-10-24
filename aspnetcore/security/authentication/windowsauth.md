@@ -22,7 +22,7 @@ Windows authentication can be configured for ASP.NET Core apps hosted with IIS, 
 
 Windows authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows authentication when your server runs on a corporate network using Active Directory domain identities or other Windows accounts to identify users. Windows authentication is a secure form of authentication best suited to intranet environments where users, client applications, and web servers belong to the same Windows domain.
 
-[Learn more about Windows Authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
+[Learn more about Windows authentication and installing it for IIS](https://docs.microsoft.com/iis/configuration/system.webServer/security/authentication/windowsAuthentication/).
 
 ## Enable Windows authentication in an ASP.NET Core app
 
@@ -39,7 +39,7 @@ Run the app. The username appears in the top right of the app.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/browser-screenshot.png)
 
-For development work using IIS Express, the template provides all the configuration necessary to use Windows authentication. The following section shows how to configure an ASP.NET Core app manually for Windows authentication.
+For development work using IIS Express, the template provides all the configuration necessary to use Windows authentication. The following section shows how to manually configure an ASP.NET Core app for Windows authentication.
 
 ### Visual Studio settings for Windows and anonymous authentication
 
@@ -47,7 +47,7 @@ The Visual Studio **Properties** page's **Debug** tab provides check boxes for W
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
 
-You can also configure these properties in the `launchSettings.json` file:
+You can also configure these properties in the *launchSettings.json* file:
 
 ```json
 {
@@ -82,7 +82,7 @@ Disable Anonymous Authentication and enable Windows Authentication.
 
 ### Publish your project to the IIS site folder
 
-Using Visual Studio or the .NET Core CLI, *publish* your app to the destination folder.
+Using Visual Studio or the .NET Core CLI, publish the app to the destination folder.
 
 ![Visual Studio Publish Dialog](windowsauth/_static/vs-publish-app.png)
 
