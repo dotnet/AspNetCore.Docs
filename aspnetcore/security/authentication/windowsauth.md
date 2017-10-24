@@ -97,7 +97,37 @@ Although Kestrel doesn't support Windows authentication, you can use [WebListene
 
 ## Work with Windows authentication
 
-If your app allows Windows authentication and anonymous access, you can use the `[Authorize]` and `[AllowAnonymous]` attributes. Apps disallowing anonymous access don't require `[Authorize]`. In this scenario, the app is treated as requiring authentication, and anonymous requests are rejected. If the IIS site is configured to disallow anonymous access, the `[AllowAnonymous]` attribute doesn't allow anonymous requests. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access. See [Simple Authorization](xref:security/authorization/simple) for more details.
+The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the allowed and disallowed configuration states of anonymous access.
+
+### Allow anonymous access
+
+When both Windows authentication and anonymous access are enabled, use the `[Authorize]` and `[AllowAnonymous]` attributes. The `[Authorize]` attribute allows you to secure pieces of the app which truly do require Windows authentication. The `[AllowAnonymous]` attribute overrides `[Authorize]` attribute usage within apps which allow anonymous access. See [Simple Authorization](xref:security/authorization/simple) for attribute usage details.
+
+In ASP.NET Core 2.x, the `[Authorize]` attribute requires additional configuration in *Startup.cs* to challenge anonymous requests for Windows authentication. The recommended configuration varies slightly based on the web server being used.
+
+#### IIS
+
+If using IIS, add the following to the `ConfigureServices` method: 
+
+```csharp
+// IISDefaults requires the following import:
+// using Microsoft.AspNetCore.Server.IISIntegration;
+services.AddAuthentication(IISDefaults.AuthenticationScheme);
+```
+
+#### HTTP.sys
+
+If using HTTP.sys, add the following to the `ConfigureServices` method:
+
+```csharp
+// HttpSysDefaults requires the following import:
+// using Microsoft.AspNetCore.Server.HttpSys;
+services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+```
+
+### Disallow anonymous access
+
+When Windows authentication is enabled and anonymous access is disabled, the `[Authorize]` and `[AllowAnonymous]` attributes have no effect. If the IIS site (or HTTP.sys or WebListener server) is configured to disallow anonymous access, the request never reaches your app. For this reason, the `[AllowAnonymous]` attribute isn't applicable.
 
 ### Impersonation
 
