@@ -43,11 +43,11 @@ For development work using IIS Express, the template provides all the configurat
 
 ### Visual Studio settings for Windows and anonymous authentication
 
-The Visual Studio **Properties** page's **Debug** tab provides check boxes for Windows authentication and anonymous authentication.
+The Visual Studio project **Properties** page's **Debug** tab provides check boxes for Windows authentication and anonymous authentication.
 
 ![Windows Authentication Browser Screenshot](windowsauth/_static/vs-auth-property-menu.png)
 
-You can also configure these properties in the *launchSettings.json* file:
+Alternatively, these two properties can be configured in the *launchSettings.json* file:
 
 [!code-json[](windowsauth/sample/launchSettings.json?highlight=3-4)]
 
