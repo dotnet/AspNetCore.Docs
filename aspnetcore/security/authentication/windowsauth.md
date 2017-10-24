@@ -97,7 +97,11 @@ Although Kestrel doesn't support Windows authentication, you can use [WebListene
 
 ## Work with Windows authentication
 
-The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the allowed and disallowed configuration states of anonymous access.
+The configuration state of anonymous access determines the way in which the `[Authorize]` and `[AllowAnonymous]` attributes are used in the app. The following two sections explain how to handle the disallowed and allowed configuration states of anonymous access.
+
+### Disallow anonymous access
+
+When Windows authentication is enabled and anonymous access is disabled, the `[Authorize]` and `[AllowAnonymous]` attributes have no effect. If the IIS site (or HTTP.sys or WebListener server) is configured to disallow anonymous access, the request never reaches your app. For this reason, the `[AllowAnonymous]` attribute isn't applicable.
 
 ### Allow anonymous access
 
@@ -125,10 +129,8 @@ If using HTTP.sys, add the following to the `ConfigureServices` method:
 services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 ```
 
-### Disallow anonymous access
-
-When Windows authentication is enabled and anonymous access is disabled, the `[Authorize]` and `[AllowAnonymous]` attributes have no effect. If the IIS site (or HTTP.sys or WebListener server) is configured to disallow anonymous access, the request never reaches your app. For this reason, the `[AllowAnonymous]` attribute isn't applicable.
-
 ### Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context. Note that `RunImpersonated` doesn't support async and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
+ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context.
+
+Note that `RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
