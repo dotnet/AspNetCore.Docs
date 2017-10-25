@@ -248,11 +248,11 @@ To establish this scheme, inherit from the `DefaultPageApplicationModelProvider`
 Highlights of the class include:
 
 * The class inherits from `DefaultPageApplicationModelProvider`.
-* The `TryParseHandlerMethod` processes a handler to determine the HTTP verb (`httpMethod`) and named handler name (`handerName`) when creating the `PageHandlerModel`.
+* The `TryParseHandlerMethod` processes a handler to determine the HTTP verb (`httpMethod`) and named handler name (`handlerName`) when creating the `PageHandlerModel`.
   * An `Async` postfix is ignored, if present.
   * Casing is used to parse the HTTP verb from the method name.
-  * When the method name (without `Async`) is equal to the HTTP verb name, there's no named handler. The `handerName` is set to `null`, and the method name is `Get`, `Post`, `Delete`, `Put`, or `Patch`.
-  * When the method name (without `Async`) is longer than the HTTP verb name, there's a named handler. The `handerName` is set to `<method name (less 'Async', if present)>`. For example, both "GetMessage" and "GetMessageAsync" yield a handler name of "GetMessage".
+  * When the method name (without `Async`) is equal to the HTTP verb name, there's no named handler. The `handlerName` is set to `null`, and the method name is `Get`, `Post`, `Delete`, `Put`, or `Patch`.
+  * When the method name (without `Async`) is longer than the HTTP verb name, there's a named handler. The `handlerName` is set to `<method name (less 'Async', if present)>`. For example, both "GetMessage" and "GetMessageAsync" yield a handler name of "GetMessage".
   * DELETE, PUT, and PATCH HTTP verbs are converted to POST.
 
 Register the `CustomPageApplicationModelProvider` in the `Startup` class:
