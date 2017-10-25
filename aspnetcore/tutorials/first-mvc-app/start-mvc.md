@@ -5,7 +5,7 @@ description: Getting started with ASP.NET Core MVC and Visual Studio
 keywords: ASP.NET Core,MVC
 ms.author: riande
 manager: wpickett
-ms.date: 08/07/2017
+ms.date: 10/07/2017
 ms.topic: get-started-article
 ms.technology: aspnet
 ms.prod: asp.net-core
@@ -15,7 +15,7 @@ uid: tutorials/first-mvc-app/start-mvc
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio 2017](https://www.visualstudio.com/). [!INCLUDE[consider RP](../../includes/razor.md)]
+[!INCLUDE[consider RP](../../includes/razor.md)]
 
 There are 3 versions of this tutorial:
 
