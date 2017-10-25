@@ -9,7 +9,7 @@
 {
     <div class="row">
         <div class="col-md-12">
-            <div style="font-size:2.4em;margin-top:6px">Hello @HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</div>
+            <div class="welcome">Hello @HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</div>
             <p>Username: @HttpContextAccessor.HttpContext.User.Identity.Name</p>
         </div>
     </div>
