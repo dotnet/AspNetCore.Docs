@@ -54,6 +54,7 @@ In ASP.NET Core 1.0 and 1.1, the session state TempData provider is the default.
 
 --------------
 
+<a name="choose-temp"></a>
 ### Choosing a TempData provider
 
 Choosing a TempData provider involves several considerations, such as:
@@ -65,7 +66,17 @@ Choosing a TempData provider involves several considerations, such as:
 > [!NOTE]
 > Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. Therefore, when using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data, accounting for the overheads of encryption and chunking.
 
-To configure the TempData provider for an application, register a TempData provider implementation in `ConfigureServices`:
+<a name="config-temp"></a>
+### Configure the TempData provider
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
+In ASP.NET Core 2.0 and later, the cookie-based TempData provider is enabled by default. Use the following code to change the TempData provider.
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+To configure the TempData provider, register a TempData provider implementation in `ConfigureServices`:
+
+------
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

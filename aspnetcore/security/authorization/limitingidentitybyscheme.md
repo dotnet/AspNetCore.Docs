@@ -82,15 +82,27 @@ At the point of authorization, the app indicates the handler to be used. Select 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
-[Authorize(AuthenticationSchemes = "Cookie,Bearer")]
+[Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
+    // Requires the following imports:
+    // using Microsoft.AspNetCore.Authentication.Cookies;
+    // using Microsoft.AspNetCore.Authentication.JwtBearer;
+    private const string AuthSchemes =
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
+        JwtBearerDefaults.AuthenticationScheme;
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
-[Authorize(ActiveAuthenticationSchemes = "Cookie,Bearer")]
+[Authorize(ActiveAuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
+    // Requires the following imports:
+    // using Microsoft.AspNetCore.Authentication.Cookies;
+    // using Microsoft.AspNetCore.Authentication.JwtBearer;
+    private const string AuthSchemes =
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
+        JwtBearerDefaults.AuthenticationScheme;
 ```
 
 ---
@@ -100,14 +112,16 @@ In the preceding example, both the cookie and bearer handlers run and have a cha
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
-[Authorize(AuthenticationSchemes = "Bearer")]
+[Authorize(AuthenticationSchemes = 
+    JwtBearerDefaults.AuthenticationScheme)]
 public class MixedController : Controller
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
-[Authorize(ActiveAuthenticationSchemes = "Bearer")]
+[Authorize(ActiveAuthenticationSchemes = 
+    JwtBearerDefaults.AuthenticationScheme)]
 public class MixedController : Controller
 ```
 
@@ -124,7 +138,7 @@ services.AddAuthorization(options =>
 {
     options.AddPolicy("Over18", policy =>
     {
-        policy.AuthenticationSchemes.Add("Bearer");
+        policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
         policy.RequireAuthenticatedUser();
         policy.Requirements.Add(new MinimumAgeRequirement());
     });
