@@ -4,5 +4,5 @@ try
 }
 catch(HubException ex)
 {
-    Conosle.WriteLine(ex.Message);
+    Console.WriteLine(ex.Message);
 }
