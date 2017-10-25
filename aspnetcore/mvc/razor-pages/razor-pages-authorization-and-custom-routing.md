@@ -5,7 +5,7 @@ description: Learn how to control access to pages with conventions at startup th
 keywords: ASP.NET Core,Razor Pages,authorization,AllowAnonymousToPage,AllowAnonymousToFolder,AuthorizePage,AuthorizeFolder
 ms.author: riande
 manager: wpickett
-ms.date: 10/23/2017
+ms.date: 10/24/2017
 ms.topic: article
 ms.assetid: f65ad22d-9472-478a-856c-c59c8681fa71
 ms.technology: aspnet
@@ -16,7 +16,7 @@ uid: mvc/razor-pages/razor-pages-authorization-conventions
 
 By [Luke Latham](https://github.com/guardrex)
 
-To control access to the pages in your Razor Pages app, use conventions at startup to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this topic automatically apply [filters](xref:mvc/controllers/filters) to control access.
+One way to control access in your Razor Pages app is to use conventions at startup to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this topic automatically apply [authorization filters](xref:mvc/controllers/filters#authorization-filters) to control access.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-authorization-conventions/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -54,14 +54,14 @@ It's perfectly valid to specify that a folder of pages require authorization and
 
 ```csharp
 // This works.
-.AuthorizeFolder("/Private").AllowAnonymousToPage("/Public")
+.AuthorizeFolder("/Private").AllowAnonymousToPage("/Private/Public")
 ```
 
 The reverse, however, isn't true. You can't declare a folder of pages for anonymous access and specify a page within for authorization:
 
 ```csharp
 // This doesn't work!
-.AllowAnonymousToFolder("/Public").AuthorizePage("/Private") 
+.AllowAnonymousToFolder("/Public").AuthorizePage("/Public/Private") 
 ```
 
 Requiring authorization on the Private page won't work because when both the `AllowAnonymousFilter` and `AuthorizeFilter` filters are applied to the page, the `AllowAnonymousFilter` wins and controls access.
