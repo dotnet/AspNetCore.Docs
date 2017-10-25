@@ -17,7 +17,7 @@ namespace ModelProvidersSample.Pages.OtherPages
 
         public void Get()
         {
-            Message = $"Your application Page1 page.";
+            Message = "Your application Page1 page.";
 
             #region snippet1
             if (RouteData.Values["globalAttribute"] != null)
