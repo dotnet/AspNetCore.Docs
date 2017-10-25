@@ -22,9 +22,9 @@ Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/r
 
 | Features | The sample demonstrates ... |
 | -------- | --------------------------- |
-| [Route and app model conventions](#add-route-and-app-model-conventions) | Adding a route template and header to an app's pages. |
-| [Page route action conventions](#page-route-action-conventions) | Adding a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions) | Adding a header to pages in a folder, adding a header to a single page, and configuring a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Route and app model conventions](#add-route-and-app-model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li></ul> | Adding a route template and header to an app's pages. |
+| [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Adding a route template to pages in a folder and to a single page. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Adding a header to pages in a folder, adding a header to a single page, and configuring a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 | [Default page app model provider](#replace-the-default-page-app-model-provider) | Replacing the default page model provider to change the conventions for handler naming. |
 
 ## Add route and app model conventions
