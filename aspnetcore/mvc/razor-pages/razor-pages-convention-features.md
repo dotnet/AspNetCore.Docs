@@ -39,6 +39,9 @@ The sample app adds a `{globalAttribute?}` optional route attribute to all of th
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Conventions/GlobalAttributePageRouteModelConvention.cs?name=snippet1)]
 
+> [!NOTE]
+> The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this attribute is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutAttribute?}` optional route attribute later in the topic. The `{aboutAttribute?}` attribute is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["aboutAttribute"]` (`Order = 1`) due to setting the `Order` property.
+
 *Startup.cs*:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet1)]
@@ -77,6 +80,9 @@ The sample app uses `AddFolderRouteModelConvention` to add an `{otherPagesAttrib
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet3)]
 
+> [!NOTE]
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the attribute for `{globalAttribute?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["otherPagesAttribute"]` (`Order = 1`) due to setting the `Order` property.
+
 Request the sample's Page1 page at `localhost:5000/OtherPages/Page1/GlobalRouteValue/OtherPagesRouteValue` and inspect the result:
 
 ![Page1 in the OtherPages folder is requested with a route segment of GlobalRouteValue and OtherPagesRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-convention-features/_static/otherpages-page1-global-and-otherpages-attributes.png)
@@ -88,6 +94,9 @@ Use [AddPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicati
 The sample app uses `AddPageRouteModelConvention` to add an `{aboutAttribute?}` optional attribute to the About page:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet4)]
+
+> [!NOTE]
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the attribute for `{globalAttribute?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["aboutAttribute"]` (`Order = 1`) due to setting the `Order` property.
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue/AboutRouteValue` and inspect the result:
 
@@ -119,7 +128,7 @@ Visit the Contact page at either its ordinary route, `/Contact`, or the custom r
 
 ## Page model action conventions
 
-The default page model provider that derives from [IPageApplicationModelProvider](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageapplicationmodelprovider) invokes conventions which are designed to provide extensibility points for configuring page models. These conventions are useful when building and modifying page discovery and processing features.
+The default page model provider that implements [IPageApplicationModelProvider](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageapplicationmodelprovider) invokes conventions which are designed to provide extensibility points for configuring page models. These conventions are useful when building and modifying page discovery and processing features.
 
 For the examples in this section, the sample app uses an `AddHeaderAttribute` class, which is a [ResultFilterAttribute](/dotnet/api/microsoft.aspnetcore.mvc.filters.resultfilterattribute), that applies a response header:
 
@@ -261,18 +270,6 @@ Note that `Async` is optional between `DeleteAllMessages` and `DeleteMessageAsyn
 Note the handler names provided in *Index.cshtml* match the `DeleteAllMessages` and `DeleteMessageAsync` handler methods:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Pages/Index.cshtml?range=29-60&highlight=7-8,25-26)]
-
-**Additional control in CreateHandlerModel**
-
-`CreateHandlerModel` calls the `IsHandler` method ([reference source](https://github.com/aspnet/Mvc/blob/rel/2.0.1/src/Microsoft.AspNetCore.Mvc.RazorPages/Internal/DefaultPageApplicationModelProvider.cs#L244-L305)) to determine which methods are handlers. You can provide your own logic that deviates from the default behavior. Just replace the `IsHandler` method with your own method at this point in the `CreateHandlerModel` method:
-
-[!code-csharp[Main](razor-pages-convention-features/sample/CustomPageApplicationModelProvider.cs?range=19-22)]
-
-`CreateHandlerModel` also takes the parameters from the method and provides them to the handler model parameters collection. You can provide your own logic that interacts with the model parameters by modifying the default behavior:
-
-[!code-csharp[Main](razor-pages-convention-features/sample/CustomPageApplicationModelProvider.cs?range=39-48)]
-
-The [CreateModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.internal.defaultpageapplicationmodelprovider.createmodel) method ([reference source](https://github.com/aspnet/Mvc/blob/rel/2.0.1/src/Microsoft.AspNetCore.Mvc.RazorPages/Internal/DefaultPageApplicationModelProvider.cs#L45-L104)) can also be overridden to supply custom logic for creating a [PageApplicationModel](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageapplicationmodel) for the given `pageTypeInfo`.
 
 ## MVC Filters and the Page filter (IPageFilter)
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,7 +19,7 @@ namespace ModelProvidersSample.Pages
 
             if (RouteData.Values["text"] != null)
             {
-                RouteDataTextAttribute = $"Route data for 'text' was provided: {WebUtility.HtmlEncode(RouteData.Values["text"].ToString())}";
+                RouteDataTextAttribute = $"Route data for 'text' was provided: {RouteData.Values["text"]}";
             }
         }
     }

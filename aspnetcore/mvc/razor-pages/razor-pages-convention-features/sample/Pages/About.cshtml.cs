@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,14 +22,14 @@ namespace ModelProvidersSample.Pages
             #region snippet1
             if (RouteData.Values["globalAttribute"] != null)
             {
-                RouteDataGlobalAttribute = $"Route data for 'globalAttribute' was provided: {WebUtility.HtmlEncode(RouteData.Values["globalAttribute"].ToString())}";
+                RouteDataGlobalAttribute = $"Route data for 'globalAttribute' was provided: {RouteData.Values["globalAttribute"]}";
             }
             #endregion
 
             #region snippet2
             if (RouteData.Values["aboutAttribute"] != null)
             {
-                RouteDataAboutAttribute = $"Route data for 'aboutAttribute' was provided: {WebUtility.HtmlEncode(RouteData.Values["aboutAttribute"].ToString())}";
+                RouteDataAboutAttribute = $"Route data for 'aboutAttribute' was provided: {RouteData.Values["aboutAttribute"]}";
             }
             #endregion
         }

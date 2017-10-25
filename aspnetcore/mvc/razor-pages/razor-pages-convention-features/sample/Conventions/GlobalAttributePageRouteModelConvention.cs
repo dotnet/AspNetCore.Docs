@@ -16,6 +16,7 @@ namespace ModelProvidersSample.Conventions
                 {
                     AttributeRouteModel = new AttributeRouteModel
                     {
+                        Order = 0,
                         Template = AttributeRouteModel.CombineTemplates(
                             selector.AttributeRouteModel.Template, 
                             "{globalAttribute?}"),
