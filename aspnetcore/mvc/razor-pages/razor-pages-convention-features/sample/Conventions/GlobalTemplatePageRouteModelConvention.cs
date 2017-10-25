@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 namespace ModelProvidersSample.Conventions
 {
     #region snippet1
-    public class GlobalAttributePageRouteModelConvention 
+    public class GlobalTemplatePageRouteModelConvention 
         : IPageRouteModelConvention
     {
         public void Apply(PageRouteModel model)
@@ -19,7 +19,7 @@ namespace ModelProvidersSample.Conventions
                         Order = 0,
                         Template = AttributeRouteModel.CombineTemplates(
                             selector.AttributeRouteModel.Template, 
-                            "{globalAttribute?}"),
+                            "{globalTemplate?}"),
                     }
                 });
             }

@@ -22,9 +22,9 @@ Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/r
 
 | Features | The sample demonstrates ... |
 | -------- | --------------------------- |
-| [Route and app model conventions](#add-route-and-app-model-conventions) | Adding a route attribute and header to an app's pages. |
-| [Page route action conventions](#page-route-action-conventions) | Adding a route attribute to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions) | Adding a header to pages in a folder, adding a header to a single page, and configuring a filter factory to add a header to an app's pages. |
+| [Route and app model conventions](#add-route-and-app-model-conventions) | Adding a route template and header to an app's pages. |
+| [Page route action conventions](#page-route-action-conventions) | Adding a route template to pages in a folder and to a single page. |
+| [Page model action conventions](#page-model-action-conventions) | Adding a header to pages in a folder, adding a header to a single page, and configuring a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 | [Default page app model provider](#replace-the-default-page-app-model-provider) | Replacing the default page model provider to change the conventions for handler naming. |
 
 ## Add route and app model conventions
@@ -35,12 +35,12 @@ Add a delegate for [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applic
 
 Use [Conventions](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.razorpagesoptions.conventions) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) to the collection of [IPageConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageconvention) instances that are applied during route and page model construction.
 
-The sample app adds a `{globalAttribute?}` optional route attribute to all of the pages in the app:
+The sample app adds a `{globalTemplate?}` route template to all of the pages in the app:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Conventions/GlobalAttributePageRouteModelConvention.cs?name=snippet1)]
+[!code-csharp[Main](razor-pages-convention-features/sample/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this attribute is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutAttribute?}` optional route attribute later in the topic. The `{aboutAttribute?}` attribute is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["aboutAttribute"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `0` (zero). This ensures that this template is given priority for the first route data value position when a single route value is provided. For example, the sample adds an `{aboutTemplate?}` route template later in the topic. The `{aboutTemplate?}` template is given an `Order` of `1`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 *Startup.cs*:
 
@@ -48,7 +48,7 @@ The sample app adds a `{globalAttribute?}` optional route attribute to all of th
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue` and inspect the result:
 
-![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-convention-features/_static/about-page-global-attribute.png)
+![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-convention-features/_static/about-page-global-template.png)
 
 **Add an app model convention to all pages**
 
@@ -76,31 +76,31 @@ The default route model provider that derives from [IPageRouteModelProvider](/do
 
 Use [AddFolderRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection.addfolderroutemodelconvention) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) that invokes an action on the [PageRouteModel](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageroutemodel) for all of the pages under the specified folder.
 
-The sample app uses `AddFolderRouteModelConvention` to add an `{otherPagesAttribute?}` optional attribute to the pages in the *OtherPages* folder:
+The sample app uses `AddFolderRouteModelConvention` to add an `{otherPagesTemplate?}` route template to the pages in the *OtherPages* folder:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet3)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the attribute for `{globalAttribute?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["otherPagesAttribute"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the Page1 page is requested at `/OtherPages/Page1/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Request the sample's Page1 page at `localhost:5000/OtherPages/Page1/GlobalRouteValue/OtherPagesRouteValue` and inspect the result:
 
-![Page1 in the OtherPages folder is requested with a route segment of GlobalRouteValue and OtherPagesRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-convention-features/_static/otherpages-page1-global-and-otherpages-attributes.png)
+![Page1 in the OtherPages folder is requested with a route segment of GlobalRouteValue and OtherPagesRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-convention-features/_static/otherpages-page1-global-and-otherpages-templates.png)
 
 **Page route model convention**
 
 Use [AddPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection.addpageroutemodelconvention) to create and add an [IPageRouteModelConvention](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.ipageroutemodelconvention) that invokes an action on the [PageRouteModel](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageroutemodel) for the page with the specified name.
 
-The sample app uses `AddPageRouteModelConvention` to add an `{aboutAttribute?}` optional attribute to the About page:
+The sample app uses `AddPageRouteModelConvention` to add an `{aboutTemplate?}` route template to the About page:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet4)]
 
 > [!NOTE]
-> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the attribute for `{globalAttribute?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalAttribute"]` (`Order = 0`) and not `RouteData.Values["aboutAttribute"]` (`Order = 1`) due to setting the `Order` property.
+> The `Order` property for the `AttributeRouteModel` is set to `1`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic) is given priority for the first route data value position when a single route value is provided. If the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 0`) and not `RouteData.Values["aboutTemplate"]` (`Order = 1`) due to setting the `Order` property.
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue/AboutRouteValue` and inspect the result:
 
-![About page is requested with route segments for GlobalRouteValue and AboutRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-convention-features/_static/about-page-global-and-about-attributes.png)
+![About page is requested with route segments for GlobalRouteValue and AboutRouteValue. The rendered page shows that the route data values are captured in the OnGet method of the page.](razor-pages-convention-features/_static/about-page-global-and-about-templates.png)
 
 ## Configure a page route
 
@@ -178,7 +178,7 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 [ConfigureFilter](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.configurefilter?view=aspnetcore-2.0#Microsoft_Extensions_DependencyInjection_PageConventionCollectionExtensions_ConfigureFilter_Microsoft_AspNetCore_Mvc_ApplicationModels_PageConventionCollection_System_Func_Microsoft_AspNetCore_Mvc_ApplicationModels_PageApplicationModel_Microsoft_AspNetCore_Mvc_Filters_IFilterMetadata__) configures the specified factory to apply [filters](xref:mvc/controllers/filters) to all Razor Pages.
 
-The sample app provides an example of using a filter factory by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
+The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Startup.cs?name=snippet9)]
 
@@ -279,11 +279,11 @@ The Page filter ([IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipag
 
 [!code-csharp[Main](razor-pages-convention-features/sample/Filters/ReplaceRouteValueFilterAttribute.cs?name=snippet1)]
 
-This filter checks for a `globalAttribute` route value of "TriggerValue" and swaps in "ReplacementValue".
+This filter checks for a `globalTemplate` route value of "TriggerValue" and swaps in "ReplacementValue".
 
 The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel` in code-behind:
 
-[!code-csharp[Main](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=11-13&highlight=1)]
+[!code-csharp[Main](razor-pages-convention-features/sample/Pages/OtherPages/Page3.cshtml.cs?range=10-12&highlight=1)]
 
 Request the Page3 page from the sample app with at `localhost:5000/OtherPages/Page3/TriggerValue`. Notice how the filter replaces the route value:
 

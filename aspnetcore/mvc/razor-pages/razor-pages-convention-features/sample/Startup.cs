@@ -24,7 +24,7 @@ namespace ModelProvidersSample
                 .AddRazorPagesOptions(options =>
                 {
                     #region snippet1
-                    options.Conventions.Add(new GlobalAttributePageRouteModelConvention());
+                    options.Conventions.Add(new GlobalTemplatePageRouteModelConvention());
                     #endregion
 
                     #region snippet2
@@ -45,7 +45,7 @@ namespace ModelProvidersSample
                                     Order = 1,
                                     Template = AttributeRouteModel.CombineTemplates(
                                         selector.AttributeRouteModel.Template, 
-                                        "{otherPagesAttribute?}"),
+                                        "{otherPagesTemplate?}"),
                                 }
                             });
                         }
@@ -66,7 +66,7 @@ namespace ModelProvidersSample
                                     Order = 1,
                                     Template = AttributeRouteModel.CombineTemplates(
                                         selector.AttributeRouteModel.Template, 
-                                        "{aboutAttribute?}"),
+                                        "{aboutTemplate?}"),
                                 }
                             });
                         }

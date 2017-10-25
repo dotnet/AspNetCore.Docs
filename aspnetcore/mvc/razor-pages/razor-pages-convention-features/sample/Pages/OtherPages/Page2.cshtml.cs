@@ -11,22 +11,22 @@ namespace ModelProvidersSample.Pages.OtherPages
     {
         public string Message { get; private set; }
 
-        public string RouteDataGlobalAttribute { get; private set; }
+        public string RouteDataGlobalTemplateValue { get; private set; }
 
-        public string RouteDataOtherPagesAttribute { get; private set; }
+        public string RouteDataOtherPagesTemplateValue { get; private set; }
 
         public void Get()
         {
             Message = "Your application Page2 page.";
 
-            if (RouteData.Values["globalAttribute"] != null)
+            if (RouteData.Values["globalTemplate"] != null)
             {
-                RouteDataGlobalAttribute = $"Route data for 'globalAttribute' was provided: {RouteData.Values["globalAttribute"]}";
+                RouteDataGlobalTemplateValue = $"Route data for 'globalTemplate' was provided: {RouteData.Values["globalTemplate"]}";
             }
 
-            if (RouteData.Values["otherPagesAttribute"] != null)
+            if (RouteData.Values["otherPagesTemplate"] != null)
             {
-                RouteDataOtherPagesAttribute = $"Route data for 'otherPagesAttribute' was provided: {RouteData.Values["otherPagesAttribute"]}";
+                RouteDataOtherPagesTemplateValue = $"Route data for 'otherPagesTemplate' was provided: {RouteData.Values["otherPagesTemplate"]}";
             }
         }
     }

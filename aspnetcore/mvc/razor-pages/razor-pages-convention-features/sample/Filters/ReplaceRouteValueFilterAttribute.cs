@@ -18,12 +18,12 @@ public class ReplaceRouteValueFilterAttribute : Attribute, IPageFilter
     public void OnPageHandlerSelected(PageHandlerSelectedContext context)
     {
         // Called after a handler method is selected but before model binding occurs.
-        context.RouteData.Values.TryGetValue("globalAttribute", 
-            out var globalAttributeValue);
-        if (string.Equals((string)globalAttributeValue, "TriggerValue", 
+        context.RouteData.Values.TryGetValue("globalTemplate", 
+            out var globalTemplateValue);
+        if (string.Equals((string)globalTemplateValue, "TriggerValue", 
             StringComparison.Ordinal))
         {
-            context.RouteData.Values["globalAttribute"] = "ReplacementValue";
+            context.RouteData.Values["globalTemplate"] = "ReplacementValue";
         }
     }
 }

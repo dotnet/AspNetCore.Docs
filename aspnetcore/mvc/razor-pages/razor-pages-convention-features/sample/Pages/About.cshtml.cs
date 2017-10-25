@@ -11,25 +11,25 @@ namespace ModelProvidersSample.Pages
     {
         public string Message { get; private set; }
 
-        public string RouteDataGlobalAttribute { get; private set; }
+        public string RouteDataGlobalTemplateValue { get; private set; }
 
-        public string RouteDataAboutAttribute { get; private set; }
+        public string RouteDataAboutTemplateValue { get; private set; }
 
         public void Get()
         {
             Message = "Your application description page.";
 
             #region snippet1
-            if (RouteData.Values["globalAttribute"] != null)
+            if (RouteData.Values["globalTemplate"] != null)
             {
-                RouteDataGlobalAttribute = $"Route data for 'globalAttribute' was provided: {RouteData.Values["globalAttribute"]}";
+                RouteDataGlobalTemplateValue = $"Route data for 'globalTemplate' was provided: {RouteData.Values["globalTemplate"]}";
             }
             #endregion
 
             #region snippet2
-            if (RouteData.Values["aboutAttribute"] != null)
+            if (RouteData.Values["aboutTemplate"] != null)
             {
-                RouteDataAboutAttribute = $"Route data for 'aboutAttribute' was provided: {RouteData.Values["aboutAttribute"]}";
+                RouteDataAboutTemplateValue = $"Route data for 'aboutTemplate' was provided: {RouteData.Values["aboutTemplate"]}";
             }
             #endregion
         }

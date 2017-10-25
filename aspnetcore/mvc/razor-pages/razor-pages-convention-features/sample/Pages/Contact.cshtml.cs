@@ -11,7 +11,7 @@ namespace ModelProvidersSample.Pages
     {
         public string Message { get; private set; }
 
-        public string RouteDataTextAttribute { get; private set; }
+        public string RouteDataTextTemplateValue { get; private set; }
 
         public void Get()
         {
@@ -19,7 +19,7 @@ namespace ModelProvidersSample.Pages
 
             if (RouteData.Values["text"] != null)
             {
-                RouteDataTextAttribute = $"Route data for 'text' was provided: {RouteData.Values["text"]}";
+                RouteDataTextTemplateValue = $"Route data for 'text' was provided: {RouteData.Values["text"]}";
             }
         }
     }
