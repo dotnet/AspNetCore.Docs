@@ -1,6 +1,4 @@
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
-
-@if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">

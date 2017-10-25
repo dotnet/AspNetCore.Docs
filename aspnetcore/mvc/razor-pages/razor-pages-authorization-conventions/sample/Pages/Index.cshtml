@@ -1,16 +1,15 @@
 ﻿@page
 @model IndexModel
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @{
     ViewData["Title"] = "Home page";
 }
 
-@if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
     <div class="row">
         <div class="col-md-12">
-            <div class="welcome">Hello @HttpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</div>
-            <p>Username: @HttpContextAccessor.HttpContext.User.Identity.Name</p>
+            <div class="welcome">Hello @User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</div>
+            <p>Username: @User.Identity.Name</p>
         </div>
     </div>
 }
