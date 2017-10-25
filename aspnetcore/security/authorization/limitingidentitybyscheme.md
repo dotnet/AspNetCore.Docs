@@ -82,19 +82,27 @@ At the point of authorization, the app indicates the handler to be used. Select 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
-[Authorize(AuthenticationSchemes = 
-    CookieAuthenticationDefaults.AuthenticationScheme + "," + 
-    JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
+    // Requires the following imports:
+    // using Microsoft.AspNetCore.Authentication.Cookies;
+    // using Microsoft.AspNetCore.Authentication.JwtBearer;
+    private const string AuthSchemes =
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
+        JwtBearerDefaults.AuthenticationScheme;
 ```
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 ```csharp
-[Authorize(ActiveAuthenticationSchemes =
-    CookieAuthenticationDefaults.AuthenticationScheme + "," + 
-    JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(ActiveAuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
+    // Requires the following imports:
+    // using Microsoft.AspNetCore.Authentication.Cookies;
+    // using Microsoft.AspNetCore.Authentication.JwtBearer;
+    private const string AuthSchemes =
+        CookieAuthenticationDefaults.AuthenticationScheme + "," +
+        JwtBearerDefaults.AuthenticationScheme;
 ```
 
 ---
