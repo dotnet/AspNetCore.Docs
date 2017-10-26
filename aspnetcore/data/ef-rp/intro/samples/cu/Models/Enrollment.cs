@@ -1,4 +1,4 @@
-﻿#define Final // or Intro
+﻿#define Intro // or Intro
 
 #if Intro
 #region snippet_Intro

@@ -15,6 +15,8 @@ uid: data/ef-rp/crud
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+
 In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
 Note: To minimize complexity and keep these tutorials focused on EF, EF code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.

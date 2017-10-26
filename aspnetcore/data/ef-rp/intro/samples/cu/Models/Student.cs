@@ -1,4 +1,4 @@
-﻿#define Intro // AfterInheritance // or Intro or StringLength or DataType or BeforeInheritance
+﻿#define BeforeInheritance //Column // DataType // Intro // AfterInheritance // or Intro or StringLength or DataType or BeforeInheritance
 
 #if Intro
 #region snippet_Intro

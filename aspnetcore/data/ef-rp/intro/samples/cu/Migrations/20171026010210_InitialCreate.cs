@@ -73,8 +73,6 @@ namespace ContosoUniversity.Migrations
                 name: "IX_Enrollment_StudentID",
                 table: "Enrollment",
                 column: "StudentID");
-
-            // Code not displayed for brevity.
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
