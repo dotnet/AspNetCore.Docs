@@ -226,9 +226,9 @@ Make the following changes in *Startup.cs*:
     ```
 
 ### Setting Default Authentication Schemes
-In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties were intended to be set on a single authentication scheme. There was no good way to enforce this.
+In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the [AuthenticationOptions](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1) base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
-In 2.0, these two properties have been removed as flags on the individual `AuthenticationOptions` instance and have moved into the base [AuthenticationOptions](/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) class. The properties can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
+In 2.0, the `AuthenticationOptions` base class does not exist. The properties can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
