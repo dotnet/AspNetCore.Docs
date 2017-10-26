@@ -131,9 +131,7 @@ services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
 ### Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity.
-
-If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context.
 
 [!code-csharp[](windowsauth/sample/Startup.cs?name=snippet_Impersonate&highlight=10-18)]
 
