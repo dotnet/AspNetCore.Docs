@@ -128,8 +128,9 @@ Set up a route definition that works with your newly created areas. The [Routing
 ...
    app.UseMvc(routes =>
    {
-     routes.MapRoute(name: "areaRoute",
-       template: "{area:exists}/{controller=Home}/{action=Index}");
+     routes.MapRoute(
+         name: "areaRoute",
+         template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
      routes.MapRoute(
          name: "default",
