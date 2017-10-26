@@ -131,44 +131,12 @@ services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
 ### Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity. If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the application identity for all requests, using app pool or process identity.
 
-```csharp
-// code omitted for brevity
-...
+If you need to explicitly perform an action on behalf of a user, use `WindowsIdentity.RunImpersonated`. Run a single action in this context and then close the context.
 
-// DllImport requires the following import:
-// using System.Runtime.InteropServices;
-[DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-public static extern bool LogonUser(string lpszUsername, string lpszDomain, 
-    string lpszPassword, int dwLogonType, int dwLogonProvider,
-    out SafeAccessTokenHandle phToken);
-
-public void PerformElevatedPermissionsTask()
-{
-    // code omitted for brevity
-    ...
-
-    const int LOGON32_PROVIDER_DEFAULT = 0;
-    // This parameter causes LogonUser to create a primary token. 
-    const int LOGON32_LOGON_INTERACTIVE = 2;
-
-    // Call LogonUser to obtain a handle to an access token. 
-    SafeAccessTokenHandle safeAccessTokenHandle;
-    bool returnValue = LogonUser(userName, domainName, password,
-        LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT,
-        out safeAccessTokenHandle);
-
-    // WindowsIdentity requires the following import:
-    // using System.Security.Principal;
-    WindowsIdentity.RunImpersonated(safeAccessTokenHandle,
-        // User action
-        () =>
-        {
-            // Check the identity.
-            Console.WriteLine($"During impersonation: {WindowsIdentity.GetCurrent().Name}");
-        });
-}
-```
+[!code-csharp[](windowsauth/sample/Startup.cs?name=snippet_Impersonate&highlight=10-18)]
 
 Note that `RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
+
+---
