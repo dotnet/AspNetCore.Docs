@@ -48,11 +48,9 @@
                 @foreach (var message in Model.Messages)
                 {
                     <li>
-                        <td>@message.Text</td>
-                        <td>
-                            <button type="submit" asp-page-handler="DeleteMessage" 
-                                    asp-route-id="@message.Id">delete</button>
-                        </td>
+                        @message.Text
+                        <button type="submit" asp-page-handler="DeleteMessage" 
+                            asp-route-id="@message.Id">delete</button>
                     </li>
                 }
             </ol>
