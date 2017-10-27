@@ -14,9 +14,9 @@ uid: performance/response-compression
 ---
 # Response Compression Middleware for ASP.NET Core
 
-By [Luke Latham](https://github.com/GuardRex)
+By [Luke Latham](https://github.com/guardrex)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 

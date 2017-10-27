@@ -2,7 +2,7 @@
 title: Dependency Injection in ASP.NET Core
 author: ardalis
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
-keywords: ASP.NET Core, dependency injection, di
+keywords: ASP.NET Core,dependency injection,di
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -15,13 +15,13 @@ ms.custom: H1Hack27Feb2017
 ---
 # Introduction to Dependency Injection in ASP.NET Core
 
-<a name=fundamentals-dependency-injection></a>
+<a name="fundamentals-dependency-injection"></a>
 
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 ASP.NET Core is designed from the ground up to support and leverage dependency injection. ASP.NET Core applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET Core provides a minimal feature set and is not intended to replace other containers.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/dependency-injection/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What is Dependency Injection?
 

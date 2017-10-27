@@ -5,13 +5,11 @@ description: Learn about the web host in ASP.NET Core, which is responsible for 
 keywords: ASP.NET Core,web host,IWebHost,WebHostBuilder,IHostingEnvironment,IApplicationLifetime
 ms.author: riande
 manager: wpickett
-ms.date: 09/10/2017
+ms.date: 09/21/2017
 ms.topic: article
-ms.assetid: 4e45311d-8d56-46e2-b99d-6f65b648a277
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/hosting
-ms.custom: H1Hack27Feb2017
 ---
 # Hosting in ASP.NET Core
 
@@ -29,7 +27,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
 
 `CreateDefaultBuilder` performs the following tasks:
 
-* Configures [Kestrel](servers/kestrel.md) as the web server.
+* Configures [Kestrel](servers/kestrel.md) as the web server. For the Kestrel default options, see [the Kestrel options section of Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel#kestrel-options).
 * Sets the content root to [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
 * Loads optional configuration from:
   * *appsettings.json*.
@@ -38,7 +36,7 @@ Create a host using an instance of [WebHostBuilder](/dotnet/api/microsoft.aspnet
   * Environment variables.
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging) for console and debug output with [log filtering](xref:fundamentals/logging#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
-* When running behind IIS, enables IIS integration by configuring the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse-proxy between Kestrel and IIS. Also configures the app to [capture startup errors](#capture-startup-errors).
+* When running behind IIS, enables [IIS integration](xref:publishing/iis) by configuring the base path and port the server should listen on when using the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module). The module creates a reverse-proxy between IIS and Kestrel. Also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [the IIS options section of Host ASP.NET Core on Windows with IIS](xref:publishing/iis#iis-options).
 
 The *content root* determines where the host searches for content files, such as MVC view files. The default content root is [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory). This results in using the web project's root folder as the content root when the app is started from the root folder (for example, calling [dotnet run](/dotnet/core/tools/dotnet-run) from the project folder). This is the default used in [Visual Studio](https://www.visualstudio.com/) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 

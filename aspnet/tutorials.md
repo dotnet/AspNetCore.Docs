@@ -47,7 +47,7 @@ The following step-by-step guides for developing ASP.NET applications are availa
 * [Getting Started with EF 6 using MVC 5](mvc/overview/getting-started/getting-started-with-ef-using-mvc/index.md)
 * [EF Database First with ASP.NET MVC](mvc/overview/getting-started/database-first-development/index.md)
 * [Using Page Inspector in ASP.NET MVC](mvc/overview/views/using-page-inspector-in-aspnet-mvc.md)
-* [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)](mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)
+* [Create an ASP.NET MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)](mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)
 * [Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset (C#)](mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md)
 * [ASP.NET MVC 5 app with SMS and email Two-Factor Authentication](mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md)
 * [XSRF/CSRF Prevention in ASP.NET MVC and Web Pages](mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md)

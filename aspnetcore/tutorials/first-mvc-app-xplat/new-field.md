@@ -4,7 +4,7 @@ uid: tutorials/first-mvc-app-xplat/new-field
 title: Adding a New Field to an ASP.NET Core app
 author: rick-anderson
 description: Shows you how to add an new field to an exiting ASP.NET Core EF/MVC app.
-keywords: ASP.NET Core, EF migrations
+keywords: ASP.NET Core,EF migrations
 ms.author: riande
 manager: wpickett
 ms.date: 04/14/2017

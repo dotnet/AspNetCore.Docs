@@ -2,7 +2,7 @@
 title: Azure Key Vault configuration provider
 author: guardrex
 description: Learn how to use the Azure Key Vault Configuration Provider to configure an application using name-value pairs loaded at runtime.
-keywords: ASP.NET Core, configuration, Azure Key Vault
+keywords: ASP.NET Core,configuration,Azure Key Vault
 ms.author: riande
 manager: wpickett
 ms.date: 08/09/2017
@@ -13,21 +13,21 @@ uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider
 
-By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https://github.com/anurse)
+By [Luke Latham](https://github.com/guardrex) and [Andrew Stanton-Nurse](https://github.com/anurse)
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 View or download sample code for 2.x:
 
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
+* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/2.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values into an app.
+* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/2.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 View or download sample code for 1.x:
 
-* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x) - Reads secret values into an app.
-* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version. 
+* [Basic sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/basic-sample/1.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values into an app.
+* [Key name prefix sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/samples/key-name-prefix-sample/1.x) ([how to download](xref:tutorials/index#how-to-download-a-sample)) - Reads secret values using a key name prefix that represents the version of an app, which allows you to load a different set of secret values for each app version. 
 
 ---
 

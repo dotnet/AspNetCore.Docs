@@ -28,6 +28,6 @@ uid: security/authorization/index
 
 * [Resource Based Authorization](resourcebased.md)
 
-* [View Based Authorization](views.md)
+* [View-based authorization](views.md)
 
 * [Limiting identity by scheme](limitingidentitybyscheme.md)

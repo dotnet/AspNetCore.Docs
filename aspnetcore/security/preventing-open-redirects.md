@@ -2,10 +2,10 @@
 title: Preventing Open Redirect Attacks in an ASP.NET Core app | Microsoft Docs
 author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
-keywords: ASP.NET Core, Security, Open Redirect Attack
+keywords: ASP.NET Core,Security,Open Redirect Attack
 ms.author: riande
 manager: wpickett
-ms.date: 07/7/2017
+ms.date: 07/07/2017
 ms.topic: article
 ms.assetid: 4604e563-e91a-4ecd-b7ed-00b3f1eee2b5
 ms.technology: aspnet
@@ -47,7 +47,7 @@ When developing web applications, treat all user-provided data as untrustworthy.
 
 Use the ``LocalRedirect`` helper method from the base `Controller` class:
 
-```
+```csharp
 public IActionResult SomeAction(string redirectUrl)
 {
     return LocalRedirect(redirectUrl);
@@ -62,7 +62,7 @@ Use the [IsLocalUrl](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnet
 
 The following example shows how to check whether a URL is local before redirecting.
 
-```
+```csharp
 private IActionResult RedirectToLocal(string returnUrl)
 {
     if (Url.IsLocalUrl(returnUrl))

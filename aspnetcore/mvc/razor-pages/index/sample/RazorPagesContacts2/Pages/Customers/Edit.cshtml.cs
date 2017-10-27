@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesContacts.Data;
 
-#region namespace
+#region snippet_namespace
 namespace RazorPagesContacts.Pages
 {
     public class EditModel : PageModel

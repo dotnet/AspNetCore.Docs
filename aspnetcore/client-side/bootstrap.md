@@ -14,7 +14,7 @@ uid: client-side/bootstrap
 ---
 # Building beautiful, responsive sites with Bootstrap
 
-<a name=bootstrap-index></a>
+<a name="bootstrap-index"></a>
 
 By [Steve Smith](https://ardalis.com/)
 

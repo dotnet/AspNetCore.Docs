@@ -2,10 +2,10 @@
 title: Create an ASP.NET Core MVC app with Visual Studio Code
 author: rick-anderson
 description: Index page for first ASP.NET Core MVC app with Visual Studio Code
-keywords: ASP.NET Core,MVC, Entity Framework, Visual Studio Code, VS Code
+keywords: ASP.NET Core,MVC,Entity Framework,Visual Studio Code,VS Code
 ms.author: riande
 manager: wpickett
-ms.date: 5/17/2017
+ms.date: 05/17/2017
 ms.topic: get-started-article
 ms.assetid: 959ff4ca-be2d-1638-ac04-789e7f7146ff
 ms.technology: aspnet

@@ -2,7 +2,7 @@
 title: Custom storage providers for ASP.NET Core Identity | Microsoft Docs
 author: ardalis
 description: How to configure custom storage providers for ASP.NET Core Identity.
-keywords: ASP.NET Core, Identity, custom storage providers
+keywords: ASP.NET Core,Identity,custom storage providers
 ms.author: riande
 manager: wpickett
 ms.date: 05/24/2017
@@ -34,7 +34,7 @@ ASP.NET Core Identity is included in project templates in Visual Studio with the
 
 When using the .NET Core CLI, add `-au Individual`:
 
-```
+```console
 dotnet new mvc -au Individual
 dotnet new webapi -au Individual
 ```

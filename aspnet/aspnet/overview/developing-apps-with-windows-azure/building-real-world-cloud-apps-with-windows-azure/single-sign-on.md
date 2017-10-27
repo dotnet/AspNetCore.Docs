@@ -26,7 +26,7 @@ There are many security issues to think about when you're developing a cloud app
 
 ## Introduction to Azure AD
 
-[Azure AD](https://www.windowsazure.com/en-us/documentation/services/active-directory/) provides [Active Directory](https://msdn.microsoft.com/en-us/library/windows/desktop/aa746492.aspx) in the cloud. Key features include the following:
+[Azure AD](https://docs.microsoft.com/azure/active-directory/) provides [Active Directory](https://msdn.microsoft.com/en-us/library/windows/desktop/aa746492.aspx) in the cloud. Key features include the following:
 
 - It integrates with on-premises Active Directory.
 - It enables single sign-on with your apps.
@@ -178,8 +178,8 @@ The [next chapter](data-storage-options.md) looks at the data storage options av
 
 For more information, see the following resources:
 
-- [Azure Active Directory Documentation](https://www.windowsazure.com/en-us/documentation/services/active-directory/). Portal page for Azure AD documentation on the windowsazure.com site. For step by step tutorials, see the **Develop** section.
-- [Azure Multi-Factor Authentication](https://www.windowsazure.com/en-us/documentation/services/multi-factor-authentication/). Portal page for documentation about multi-factor authentication in Azure.
+- [Azure Active Directory Documentation](https://docs.microsoft.com/azure/active-directory/). Portal page for Azure AD documentation on the windowsazure.com site. For step by step tutorials, see the **Develop** section.
+- [Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/). Portal page for documentation about multi-factor authentication in Azure.
 - [Organizational account authentication options](../../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#orgauthoptions). Explanation of the Azure AD authentication options in the Visual Studio 2013 new-project dialog.
 - [Microsoft Patterns and Practices - Federated Identity Pattern](https://msdn.microsoft.com/en-us/library/dn589790.aspx).
 - [HowTo: Install the Azure Active Directory Sync Tool](https://social.technet.microsoft.com/wiki/contents/articles/19098.howto-install-the-windows-azure-active-directory-sync-tool-now-with-pictures.aspx).

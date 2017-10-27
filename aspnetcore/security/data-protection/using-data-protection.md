@@ -14,7 +14,7 @@ uid: security/data-protection/using-data-protection
 ---
 # Getting Started with the Data Protection APIs
 
-<a name=security-data-protection-getting-started></a>
+<a name="security-data-protection-getting-started"></a>
 
 At its simplest protecting data consists of the following steps:
 

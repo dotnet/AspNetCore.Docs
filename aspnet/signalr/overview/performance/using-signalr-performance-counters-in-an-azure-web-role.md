@@ -3,7 +3,7 @@ uid: signalr/overview/performance/using-signalr-performance-counters-in-an-azure
 title: Using SignalR performance counters in an Azure Web Role | Microsoft Docs
 author: guardrex
 description: How to install and use SignalR performance counters in an Azure Web Role.
-keywords: ASP.NET, signalr, performance counter, azure web role
+keywords: ASP.NET,signalr,performance counter,azure web role
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/11/2017
@@ -139,7 +139,7 @@ SignalR performance counters are used to monitor your app's performance in an Az
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample10.xml)]
 
-29. Deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/documentation/articles/cloud-services-how-to-create-deploy/).
+29. Deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy).
 
 30. Wait a few minutes. In **Cloud Explorer**, locate the storage account you configured above and find the `WADPerformanceCountersTable` table in it. You should see SignalR counters in the table data. If you don't see the table, you may need to re-enter your Azure Storage credentials. You may need to select the **Refresh** button to see the table in **Cloud Explorer** or select the **Refresh** button in the open table window to see data in the table.
 

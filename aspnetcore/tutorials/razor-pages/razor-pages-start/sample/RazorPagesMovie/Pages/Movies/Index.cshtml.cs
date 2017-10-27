@@ -35,12 +35,12 @@ namespace RazorPagesMovie.Pages.Movies
             var movies = from m in _context.Movie
                          select m;
 
-        #region snippet_SearchNull
+            #region snippet_SearchNull
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
-        #endregion
+            #endregion
 
             Movie = await movies.ToListAsync();
         }

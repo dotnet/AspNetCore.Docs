@@ -98,8 +98,6 @@ app.UseMvc(routes =>
 
 `UseMvc` and `UseMvcWithDefaultRoute` add an instance of `RouterMiddleware` to the middleware pipeline. MVC doesn't interact directly with middleware, and uses routing to handle requests. MVC is connected to the routes through an instance of `MvcRouteHandler`. The code inside of `UseMvc` is similar to the following:
 
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
-
 ```csharp
 var routes = new RouteBuilder(app);
 
@@ -115,13 +113,11 @@ app.UseRouter(routes.Build());
 
 `UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The [Attribute Routing](#attribute-routing-ref-label) section includes more details on attribute routing.
 
-<a name=routing-conventional-ref-label></a>
+<a name="routing-conventional-ref-label"></a>
 
 ## Conventional routing
 
 The `default` route:
-
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
 ```csharp
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
@@ -147,15 +143,13 @@ Using this `default` route, the URL path `/Products/List` maps to the `ProductsC
 
 You can add multiple routes inside `UseMvc` by adding more calls to `MapRoute`. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
 
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
-
 ```csharp
 app.UseMvc(routes =>
 {
    routes.MapRoute("blog", "blog/{*article}",
             defaults: new { controller = "Blog", action = "Article" });
    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-}
+});
 ```
 
 The `blog` route here is a *dedicated conventional route*, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since `controller` and `action` don't appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action `BlogController.Article`.
@@ -172,8 +166,6 @@ As part of request processing, MVC will verify that the route values can be used
 ### Disambiguating actions
 
 When two actions match through routing, MVC must disambiguate to choose the 'best' candidate or else throw an exception. For example:
-
-<!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
 ```csharp
 public class ProductsController : Controller
@@ -193,7 +185,7 @@ You will only need to write custom `IActionConstraint` implementations in specia
 
 If multiple routes match, and MVC can't find a 'best' route, it will throw an `AmbiguousActionException`.
 
-<a name=routing-route-name-ref-label></a>
+<a name="routing-route-name-ref-label"></a>
 
 ### Route names
 
@@ -213,7 +205,7 @@ The route names give the route a logical name so that the named route can be use
 
 Route names have no impact on URL matching or handling of requests; they are used only for URL generation. [Routing](xref:fundamentals/routing) has more detailed information on URL generation including URL generation in MVC-specific helpers.
 
-<a name=attribute-routing-ref-label></a>
+<a name="attribute-routing-ref-label"></a>
 
 ## Attribute routing
 
@@ -279,8 +271,6 @@ public class MyDemoController : Controller
 
 Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 [HttpGet("/products")]
 public IActionResult ListProducts()
@@ -329,13 +319,11 @@ Route names can be used to generate a URL based on a specific route. Route names
 > [!NOTE]
 > Contrast this with the conventional *default route*, which defines the `id` parameter as optional (`{id?}`). This ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
 
-<a name=routing-combining-ref-label></a>
+<a name="routing-combining-ref-label"></a>
 
 ### Combining routes
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("products")]
@@ -376,7 +364,7 @@ public class HomeController : Controller
 }
 ```
 
-<a name=routing-ordering-ref-label></a>
+<a name="routing-ordering-ref-label"></a>
 
 ### Ordering attribute routes
 
@@ -389,7 +377,7 @@ Attribute routes can configure an order, using the `Order` property of all of th
 > [!TIP]
 > Avoid depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using route name as an override is usually simpler than applying the `Order` property.
 
-<a name=routing-token-replacement-templates-ref-label></a>
+<a name="routing-token-replacement-templates-ref-label"></a>
 
 ## Token replacement in route templates ([controller], [action], [area])
 
@@ -421,13 +409,11 @@ Token replacement also applies to route names defined by attribute routes. `[Rou
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
-<a name=routing-multiple-routes-ref-label></a>
+<a name="routing-multiple-routes-ref-label"></a>
 
 ### Multiple Routes
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the *default conventional route* as shown in the following example:
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("[controller]")]
@@ -440,8 +426,6 @@ public class ProductsController : Controller
 ```
 
 Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 [Route("Store")]
@@ -456,8 +440,6 @@ public class ProductsController : Controller
 
 When multiple route attributes (that implement `IActionConstraint`) are placed on an action, then each action constraint combines with the route template from the attribute that defined it.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 [Route("api/[controller]")]
 public class ProductsController : Controller
@@ -471,7 +453,7 @@ public class ProductsController : Controller
 > [!TIP]
 > While using multiple routes on actions can seem powerful, it's better to keep your application's URL space simple and well-defined. Use multiple routes on actions only where needed, for example to support existing clients.
 
-<a name=routing-attr-options></a>
+<a name="routing-attr-options"></a>
 
 ### Specifying attribute route optional parameters, default values, and constraints
 
@@ -487,7 +469,7 @@ public IActionResult ShowProduct(int id)
 
 See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
 
-<a name=routing-cust-rt-attr-irt-ref-label></a>
+<a name="routing-cust-rt-attr-irt-ref-label"></a>
 
 ### Custom route attributes using `IRouteTemplateProvider`
 
@@ -508,7 +490,7 @@ public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
 
 The attribute from the above example automatically sets the `Template` to `"api/[controller]"` when `[MyApiController]` is applied.
 
-<a name=routing-app-model-ref-label></a>
+<a name="routing-app-model-ref-label"></a>
 
 ### Using Application Model to customize attribute routes
 
@@ -516,7 +498,7 @@ The *application model* is an object model created at startup with all of the me
 
 [!code-csharp[Main](routing/sample/main/NamespaceRoutingConvention.cs)]
 
-<a name=routing-mixed-ref-label></a>
+<a name="routing-mixed-ref-label"></a>
 
 ## Mixed routing: Attribute routing vs conventional routing
 
@@ -527,7 +509,7 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 > [!NOTE]
 > What distinguishes the two types of routing systems is the process applied after a URL matches a route template. In conventional routing, the route values from the match are used to choose the action and controller from a lookup table of all conventional routed actions. In attribute routing, each template is already associated with an action, and no further lookup is needed.
 
-<a name=routing-url-gen-ref-label></a>
+<a name="routing-url-gen-ref-label"></a>
 
 ## URL Generation
 
@@ -580,7 +562,7 @@ Longer overloads of `Url.Action` also take an additional *route values* object t
 > [!TIP]
 > To create an absolute URL, use an overload that accepts a `protocol`: `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
 
-<a name=routing-gen-urls-route-ref-label></a>
+<a name="routing-gen-urls-route-ref-label"></a>
 
 ### Generating URLs by route
 
@@ -588,7 +570,7 @@ The code above demonstrated generating a URL by passing in the controller and ac
 
 [!code-csharp[Main](routing/sample/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
 
-<a name=routing-gen-urls-html-ref-label></a>
+<a name="routing-gen-urls-html-ref-label"></a>
 
 ### Generating URLs in HTML
 
@@ -598,7 +580,7 @@ TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. B
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the above.
 
-<a name=routing-gen-urls-action-ref-label></a>
+<a name="routing-gen-urls-action-ref-label"></a>
 
 ### Generating URLS in Action Results
 
@@ -619,13 +601,11 @@ public Task<IActionResult> Edit(int id, Customer customer)
 
 The action results factory methods follow a similar pattern to the methods on `IUrlHelper`.
 
-<a name=routing-dedicated-ref-label></a>
+<a name="routing-dedicated-ref-label"></a>
 
 ### Special case for dedicated conventional routes
 
 Conventional routing can use a special kind of route definition called a *dedicated conventional route*. In the example below, the route named `blog` is a dedicated conventional route.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 app.UseMvc(routes =>
@@ -640,7 +620,7 @@ Using these route definitions, `Url.Action("Index", "Home")` will generate the U
 
 Dedicated conventional routes rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being "too greedy" with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
-<a name=routing-areas-ref-label></a>
+<a name="routing-areas-ref-label"></a>
 
 ## Areas
 
@@ -683,11 +663,9 @@ When executing an action inside an area, the route value for `area` will be avai
 
 [!code-csharp[Main](routing/sample/AreasRouting/Startup.cs?name=snippet3)]
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/mvc/controllers/routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs"} -->
-
 [!code-csharp[Main](routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 
-<a name=iactionconstraint-ref-label></a>
+<a name="iactionconstraint-ref-label"></a>
 
 ## Understanding IActionConstraint
 
@@ -712,7 +690,7 @@ When the `HttpGetAttribute` executes, it will say that *Edit()* is a match for *
 
 Conceptually, `IActionConstraint` is a form of *overloading*, but instead of overloading methods with the same name, it is overloading between actions that match the same URL. Attribute routing also uses `IActionConstraint` and can result in actions from different controllers both being considered candidates.
 
-<a name=iactionconstraint-impl-ref-label></a>
+<a name="iactionconstraint-impl-ref-label"></a>
 
 ### Implementing IActionConstraint
 

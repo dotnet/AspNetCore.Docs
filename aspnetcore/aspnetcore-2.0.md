@@ -2,7 +2,7 @@
 title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: What's new in ASP.NET Core 2.0
-keywords: ASP.NET Core, release notes, what's new
+keywords: ASP.NET Core,release notes,what's new
 ms.author: riande
 manager: wpickett
 ms.date: 07/10/2017
@@ -145,7 +145,6 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 * [Configuring Twitter authentication](xref:security/authentication/twitter-logins)
 * [Configuring Google authentication](xref:security/authentication/google-logins)
 * [Configuring Microsoft Account authentication](xref:security/authentication/microsoft-logins)
-* [Setting up HTTPS for development in ASP.NET Core](xref:security/https)
 
 ## Migration guidance
 

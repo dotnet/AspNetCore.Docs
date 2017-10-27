@@ -2,7 +2,7 @@
 title: Migrating From ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: 
-keywords: ASP.NET Core, MVC, migrating
+keywords: ASP.NET Core,MVC,migrating
 ms.author: riande
 manager: wpickett
 ms.date: 03/07/2017
@@ -145,7 +145,7 @@ Upon saving the file, Bower will automatically download the dependencies to the 
 
 See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more information.
 
-<a name=migrate-layout-file></a>
+<a name="migrate-layout-file"></a>
 
 ## Migrate the layout file
 

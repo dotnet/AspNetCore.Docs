@@ -69,6 +69,36 @@
         "source_path": "aspnetcore/razor-pages/index.md",
         "redirect_url": "/aspnet/core/mvc/razor-pages/",
         "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/AnchorTagHelper.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/anchor-tag-helper/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/CacheTagHelper.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/cache-tag-helper/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/DistributedCacheTagHelper.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/EnvironmentTagHelper.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/environment-tag-helper/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/mvc/views/tag-helpers/builtin-th/ImageTagHelper.md",
+        "redirect_url": "/aspnet/core/mvc/views/tag-helpers/builtin-th/image-tag-helper/",
+        "redirect_document_id": false
+    },
+    {
+        "source_path": "aspnetcore/security/https.md",
+        "redirect_url": "/aspnet/core/security/enforcing-ssl",
+        "redirect_document_id": false
     }
   ] 
 }

@@ -119,7 +119,7 @@ The NuGet **PagedList.Mvc** package automatically installs the **PagedList** pac
 
 From the **Tools** menu, select **Library Package Manager** and then **Package Manager Console**.
 
-In the **Package Manager Console** window, make sure ghe **Package source** is **nuget.org** and the **Default project** is **ContosoUniversity**, and then enter the following command:
+In the **Package Manager Console** window, make sure the **Package source** is **nuget.org** and the **Default project** is **ContosoUniversity**, and then enter the following command:
 
 `Install-Package PagedList.Mvc`
 

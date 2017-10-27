@@ -66,7 +66,7 @@ Considering these changes in web application development, ASP.NET Identity was d
 
     - You have control over the schema of user and profile information. For example, you can easily enable the system to store birth dates entered by users when they register an account in your application.
 
-    **Persistence control**
+- **Persistence control**
 
     - By default, the ASP.NET Identity system stores all the user information in a database. ASP.NET Identity uses Entity Framework Code First to implement all of its persistence mechanism.
     - Since you control the database schema, common tasks such as changing table names or changing the data type of primary keys is simple to do.
@@ -160,7 +160,7 @@ We hope to soon provide guidance on migrating your existing apps that use ASP.NE
 
 - [Create an ASP.NET MVC 5 App with Facebook and Google OAuth2 and OpenID Sign-on](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)  
  The tutorial uses the ASP.NET Identity API to add profile information to the user database, and how to authenticate with Google and Facebook.
-- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/)  
+- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data)  
  This tutorial shows how to use the Identity API to add users and roles.
 - [Individual User Accounts](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#indauth) in Creating ASP.NET Web Projects in Visual Studio 2013
 - [Organizational Accounts](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#orgauth) in Creating ASP.NET Web Projects in Visual Studio 2013

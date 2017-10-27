@@ -2,7 +2,7 @@
 title: Account Confirmation and Password Recovery in ASP.NET Core
 author: rick-anderson
 description: Shows how to build an ASP.NET Core app with email confirmation and password reset.
-keywords: ASP.NET Core, password reset, email confirmation, security
+keywords: ASP.NET Core,password reset,email confirmation,security
 ms.author: riande
 manager: wpickett
 ms.date: 07/19/2017
@@ -112,7 +112,7 @@ The preceding line prevents registered users from being logged in until their em
 
 In this tutorial, SendGrid is used to send email. You need a SendGrid account and key to send email. You can use other email providers. ASP.NET Core 2.x includes `System.Net.Mail`, which allows you to send email from your app. We recommend you use SendGrid or another email service to send email.
 
-The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration#fundamentals-configuration).
+The [Options pattern](xref:fundamentals/configuration#options-config-objects) is used to access the user account and key settings. For more information, see [configuration](xref:fundamentals/configuration).
 
 Create a class to fetch the secure email key. For this sample, the `AuthMessageSenderOptions` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 

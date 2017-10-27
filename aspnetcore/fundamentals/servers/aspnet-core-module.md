@@ -2,7 +2,7 @@
 title: ASP.NET Core Module
 author: tdykstra
 description: Introduces ASP.NET Core Module (ANCM), an IIS module that lets the Kestrel web server use IIS or IIS Express as a reverse proxy server.
-keywords: ASP.NET Core, IIS, IIS Express, ASP.NET Core Module, UseIISIntegration
+keywords: ASP.NET Core,IIS,IIS Express,ASP.NET Core Module,UseIISIntegration
 ms.author: tdykstra
 manager: wpickett
 ms.date: 08/03/2017
@@ -23,7 +23,7 @@ Supported Windows versions:
 
 * Windows 7 and Windows Server 2008 R2 and later
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/aspnet-core-module/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## What ASP.NET Core Module does
 

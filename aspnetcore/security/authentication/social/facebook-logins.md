@@ -5,7 +5,7 @@ description: Facebook external login setup in ASP.NET Core
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 8/1/2017
+ms.date: 08/01/2017
 ms.topic: article
 ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
 ms.technology: aspnet
@@ -14,15 +14,13 @@ uid: security/authentication/facebook-logins
 ---
 # Configuring Facebook authentication
 
-<a name=security-authentication-facebook-logins></a>
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://www.facebook.com/unsupportedbrowser).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](index.md). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
 
-*  Navigate to the [Facebook for Developers](https://www.facebook.com/unsupportedbrowser) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
+*  Navigate to the [Facebook for Developers](https://developers.facebook.com) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.
 
 * Tap the **Create App** button in the upper right corner to create a new App ID.
 
@@ -74,6 +72,10 @@ The project template used in this tutorial ensures that [Microsoft.AspNetCore.Au
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
+services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
 services.AddAuthentication().AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -81,7 +83,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 });
 ```
 
-The `AddAuthentication` method should only be called once when adding multiple authentication providers. Subsequent calls to it have the potential of overriding any previously configured [AuthenticationOptions](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.authenticationoptions) properties.
+[!INCLUDE[default settings configuration](includes/default-settings.md)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 

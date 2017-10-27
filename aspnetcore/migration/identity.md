@@ -14,7 +14,7 @@ uid: migration/identity
 ---
 # Migrating Authentication and Identity
 
-<a name=migration-identity></a>
+<a name="migration-identity"></a>
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -47,8 +47,6 @@ public void ConfigureServices(IServiceCollection services)
 At this point, there are two types referenced in the above code that we haven't yet migrated from the ASP.NET MVC project: `ApplicationDbContext` and `ApplicationUser`. Create a new *Models* folder in the ASP.NET Core project, and add two classes to it corresponding to these types. You will find the ASP.NET MVC versions of these classes in `/Models/IdentityModels.cs`, but we will use one file per class in the migrated project since that's more clear.
 
 ApplicationUser.cs:
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
 ```csharp
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -88,8 +86,6 @@ The ASP.NET Core MVC Starter Web project doesn't include much customization of u
 
 With these files in place, the Startup.cs file can be made to compile by updating its using statements:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
 ```csharp
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.AspNetCore.Hosting;
@@ -105,9 +101,7 @@ With identity services configured for the application and data access configured
 
 Update _Layout.cshtml; uncomment the @Html.Partial line:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
-
-```none
+```cshtml
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
     @*@Html.Partial("_LoginPartial")*@
@@ -119,9 +113,7 @@ Now, add a new MVC View Page called _LoginPartial to the Views/Shared folder:
 
 Update _LoginPartial.cshtml with the following code (replace all of its contents):
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
-
-```csharp
+```cshtml
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 

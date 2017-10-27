@@ -265,5 +265,4 @@ In this tutorial, you created a site that is integrated with Facebook for user a
 
 ## Related topics
 
-- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/)
-- [ASP.NET MVC Facebook Birthday App](../getting-started/aspnet-mvc-facebook-birthday-app.md)
+- [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data)

@@ -53,7 +53,7 @@ This topic contains the following sections:
 ## Understanding deployment options for web projects
 
 - [Web Deployment Overview for Visual Studio and ASP.NET](https://msdn.microsoft.com/en-us/library/dd394698.aspx) (MSDN).
-- [How to Deploy a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/). Explains options and links to resources for deploying web projects to Windows Azure Web Sites, including [continuous delivery](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) (automated from [source control](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md)) as well as using Visual Studio.
+- [How to Deploy a Windows Azure Web Site](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explains options and links to resources for deploying web projects to Windows Azure Web Sites, including [continuous delivery](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) (automated from [source control](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control.md)) as well as using Visual Studio.
 - [Visual Studio 2012 Web Publishing Improvements](../visual-studio/overview/2012/visual-studio-2012-web-publishing-improvements.md) (Video by Scott Hanselman).
 - [Overview Post for Web Deployment in VS 2010](http://vishaljoshi.blogspot.com/2009/09/overview-post-for-web-deployment-in-vs.html) (Vishal Joshi's blog). An older blog post but some of the Visual Studio 2010 resources it links to have information that is still relevant for Visual Studio 2012.
 
@@ -71,11 +71,11 @@ This topic contains the following sections:
 
 ## Deploying a web application from Visual Studio
 
-- [How to Deploy a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/). Explains options and provides links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about deploying from Visual Studio.
+- [How to Deploy a Windows Azure Web Site](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explains options and provides links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about deploying from Visual Studio.
 - [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy web applications with SQL Server databases. For database deployment uses both the dbDacFx provider and Entity Framework Code First Migrations. Also includes information about [Web.config file transformations](../web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations.md), [deploying individual files](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md#specificfiles), [command-line deployment](../web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment.md), and [how to customize the Visual Studio web publish pipeline by editing .pubxml files](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md). Applies to all ASP.NET web projects, including Web Forms, MVC, and Web API.)
 - [How to: Deploy a Web Project Using One-Click Publish in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337.aspx) (Reference information for the Visual Studio Web Publish wizard.)
 - [Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). This is an earlier version of **ASP.NET Web Deployment using Visual Studio** listed at the top of this section. Mainly useful now for information about how to deploy SQL Server Compact databases and how to migrate from SQL Server Compact to a full edition of SQL Server.
-- [.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/) (Microsoft Azure site). 5-part tutorial series, shows how to create an MVC project and deploy it to a Windows Azure Cloud Service.
+- [.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36) (Microsoft Azure site). 5-part tutorial series, shows how to create an MVC project and deploy it to a Windows Azure Cloud Service.
 
 
 <a id="package"></a>
@@ -96,7 +96,7 @@ See also the following section.
 ## Deploying a web application using a continuous integration (CI) process
 
 - [Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Windows Azure).](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) E-book chapter that introduces continuous integration and continuous delivery.
-- [How to Deploy a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/). Explains options and links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about automating deployment from source control.
+- [How to Deploy a Windows Azure Web Site](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explains options and links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about automating deployment from source control.
 - [Deploying Web Applications in Enterprise Scenarios](../web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md). 40-part tutorial series, shows how to automate deployment in a CI process using Visual Studio 2010 and Team Foundation Server 2010.
 - [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build, by Sayed Hashimi and William Bartholomew](http://msbuildbook.com). This is a book, not a web resource, but it is an essential guide for learning how to configure MSBuild for continuous integration scenarios.
 - [MSBuild Extension Pack](http://msbuildextensionpack.codeplex.com/) (CodePlex site). Includes deployment tasks.
@@ -153,7 +153,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 - [Configuring Database Deployment in Visual Studio](https://msdn.microsoft.com/en-us/library/dd394698.aspx#dbdeployment) (MSDN). Overview of options for deploying a database with a web project.
 - [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows database deployment by using dbDacFx provider and Entity Framework Code First Migrations.
 - [How to: Deploy a Web Project Using One-Click Publish in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337.aspx) (MSDN).
-- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
+- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
 - [Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). 12-part tutorial series, shows how to deploy SQL Server Compact databases and how to migrate from SQL Server Compact to a full edition of SQL Server.
 
 See also  Deploying a web application by creating and installing a web deployment package and  Deploying a web application using a continuous integration (CI) process earlier in this page.
@@ -166,7 +166,7 @@ See also  Deploying a web application by creating and installing a web deploymen
 
 - [SQL Server Data Tools](https://msdn.microsoft.com/en-us/library/hh272686(v=vs.103).aspx) (MSDN).
 - [Including Data in a SQL Server Database Project](https://blogs.msdn.com/b/ssdt/archive/2012/02/02/including-data-in-an-sql-server-database-project.aspx) (SQL Server Data Tools team blog). How to deploy both schema and data when deploying a database.
-- [How to Deploy a Database to Windows Azure](https://www.windowsazure.com/en-us/manage/services/sql-databases/how-to-deploy-a-sqldb/) (Microsoft Azure site)
+- [How to Deploy a Database to Windows Azure](https://docs.microsoft.com/azure/sql-database/sql-database-cloud-migrate) (Microsoft Azure site)
 - [Migrating Databases to Windows Azure SQL Database (formerly SQL Azure)](https://msdn.microsoft.com/en-us/library/windowsazure/ee730904.aspx) (MSDN).
 - [Migrating a Database to SQL Azure using SSDT](https://blogs.msdn.com/b/ssdt/archive/2012/04/19/migrating-a-database-to-sql-azure-using-ssdt.aspx) (SQL Server Data Tools team blog).
 - [Migrating Data-Centric Applications to Windows Azure](https://msdn.microsoft.com/en-us/library/jj156154.aspx) (MSDN).
@@ -179,7 +179,7 @@ See also  Deploying a web application by creating and installing a web deploymen
 
 ## Deploying a web application that uses ASP.NET application services such as membership and profiling
 
-- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
+- [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
 - [ASP.NET Identity](https://asp.net/identity/). Resources for ASP.NET Identity.
 - [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy an ASP.NET membership database.
 - [Configuring a Website that Uses Application Services](../web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs.md). For web site projects but is also relevant for web application projects.
@@ -242,7 +242,7 @@ See also  Deploying a web application by creating and installing a web deploymen
 
 ## Troubleshooting deployment problems
 
-- [Troubleshooting Windows Azure Web Sites in Visual Studio](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/) (Microsoft Azure site).
+- [Troubleshooting Windows Azure Web Sites in Visual Studio](https://docs.microsoft.com/azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio) (Microsoft Azure site).
 - [ASP.NET Web Deployment using Visual Studio: Troubleshooting](../web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting.md).
 - [Troubleshooting Common Problems With Web Deploy](https://www.iis.net/learn/publish/troubleshooting-web-deploy/troubleshooting-common-problems-with-web-deploy).
 - [Web Deploy Error Codes](https://www.iis.net/learn/publish/troubleshooting-web-deploy/web-deploy-error-codes) (IIS.net site).

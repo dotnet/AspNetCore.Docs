@@ -2,7 +2,7 @@
 title: Working with SQLite
 author: rick-anderson
 description: Using SQLite with a simple MVC app
-keywords: ASP.NET Core,SQLite, SQL Server 
+keywords: ASP.NET Core,SQLite,SQL Server
 ms.author: riande
 manager: wpickett
 ms.date: 04/07/2017

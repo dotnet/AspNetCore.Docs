@@ -2,7 +2,7 @@
 title: Tag Helpers in ASP.NET Core
 author: rick-anderson
 description: Learn what tag helpers are and how to use them in ASP.NET Core.
-keywords: ASP.NET Core, tag helpers
+keywords: ASP.NET Core,tag helpers
 ms.author: riande
 manager: wpickett
 ms.date: 7/14/2017
@@ -51,7 +51,7 @@ The `asp-for` attribute is made available by the `For` property in the `LabelTag
 
 Tag Helpers scope is controlled by a combination of `@addTagHelper`, `@removeTagHelper`, and the "!" opt-out character.
 
-<a name=add-helper-label></a>
+<a name="add-helper-label"></a>
 
 ### `@addTagHelper` makes Tag Helpers available
 
@@ -67,9 +67,7 @@ To expose all of the Tag Helpers in this project (which creates an assembly name
 
 If your project contains an `EmailTagHelper` with the default namespace (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), you can provide the fully qualified name (FQN) of the Tag Helper:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3]}} -->
-
-```html
+```cshtml
 @using AuthoringTagHelpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
@@ -84,7 +82,7 @@ To add a Tag Helper to a view using an FQN, you first add the FQN (`AuthoringTag
 
 As mentioned previously, adding the `@addTagHelper` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the `@addTagHelper` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
 
-<a name=remove-razor-directives-label></a>
+<a name="remove-razor-directives-label"></a>
 
 ### `@removeTagHelper` removes Tag Helpers
 
@@ -106,7 +104,7 @@ You can disable a Tag Helper at the element level with the Tag Helper opt-out ch
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
-<a name=prefix-razor-directives-label></a>
+<a name="prefix-razor-directives-label"></a>
 
 ### Using `@tagHelperPrefix` to make Tag Helper usage explicit
 
