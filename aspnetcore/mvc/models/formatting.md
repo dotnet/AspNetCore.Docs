@@ -95,7 +95,7 @@ If you would prefer your application honor browser accept headers, you can confi
 services.AddMvc(options =>
 {
     options.RespectBrowserAcceptHeader = true; // false by default
-}
+});
 ```
 
 ## Configuring Formatters

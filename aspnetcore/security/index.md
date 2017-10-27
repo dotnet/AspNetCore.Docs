@@ -36,7 +36,7 @@ uid: security/index
     *   [Custom Policy-Based Authorization](authorization/policies.md)
     *   [Dependency Injection in requirement handlers](authorization/dependencyinjection.md)
     *   [Resource Based Authorization](authorization/resourcebased.md)
-    *   [View Based Authorization](authorization/views.md)
+    *   [View-based authorization](authorization/views.md)
     *   [Limiting identity by scheme](authorization/limitingidentitybyscheme.md)
 *   [Data Protection](data-protection/index.md)
     *   [Introduction to Data Protection](data-protection/introduction.md)
