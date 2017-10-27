@@ -66,7 +66,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 
 For more information, see the [\<input> tag helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
-Run the app. Navigate to the Students Index page and notice that times are no longer displayed. The same will be true for any view that uses the Student model.
+Run the app. Navigate to the Students Index page and notice that times are no longer displayed. The same will be true for any view that uses the `Student` model.
 
 ![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
 
@@ -179,7 +179,7 @@ Create *Models/Instructor.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
-Notice that several properties are the same in the Student and Instructor entities. In the Implementing Inheritance tutorial later in this series, this code is refactored
+Notice that several properties are the same in the `Student` and `Instructor` entities. In the Implementing Inheritance tutorial later in this series, this code is refactored
 to eliminate the redundancy.
 
 Multiple attributes can be on one line. The `HireDate` attributes could be written as follows:
@@ -212,7 +212,7 @@ If `ICollection<T>` is specified, EF creates a `HashSet<T>` collection by defaul
 
 `CourseAssignment` entities is explained in the section on  many-to-many relationships.
 
-Contoso University business rules state that an instructor can have at most one office. The `OfficeAssignment` property holds a single OfficeAssignment entity. `OfficeAssignment` is null if no office is assigned.
+Contoso University business rules state that an instructor can have at most one office. The `OfficeAssignment` property holds a single `OfficeAssignment` entity. `OfficeAssignment` is null if no office is assigned.
 
 ```csharp
 public OfficeAssignment OfficeAssignment { get; set; }
@@ -383,11 +383,11 @@ If business rules required the `InstructorID` property be non-nullable,  use the
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
-## Modify the Enrollment entity
+## Update the Enrollment entity
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
-In *Models/Enrollment.cs*, replace the code you added earlier with the following code:
+Update *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
@@ -411,17 +411,19 @@ public Student Student { get; set; }
 
 ## Many-to-Many Relationships
 
-There's a many-to-many relationship between the Student and Course entities, and the Enrollment entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the Enrollment table contains additional data besides FKs for the joined tables (in this case, a PK and a Grade property).
+There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the `Enrollment`  table contains additional data besides FKs for the joined tables (in this case, a PK and a Grade property).
 
-The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using EF Power Tools for EF 6.x; creating the diagram isn't part of the tutorial, it's just being used here as an illustration.)
+The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using EF Power Tools for EF 6.x. Creating the diagram isn't part of the tutorial.)
 
 ![Student-Course many to many relationship](complex-data-model/_static/student-course.png)
 
 Each relationship line has a 1 at one end and an asterisk (*) at the other, indicating a one-to-many relationship.
 
-If the Enrollment table didn't include grade information, it would only need to contain the two FKs CourseID and StudentID. In that case, it would be a many-to-many join table without payload (or a pure join table) in the DB. The Instructor and Course entities have that kind of many-to-many relationship, and your next step is to create an entity class to function as a join table without payload.
+If the `Enrollment` table didn't include grade information, it would only need to contain the two FKs (`CourseID` and `StudentID`). A many-to-many join table without payload is sometimes called a pure join table (PJT). 
 
-(EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see the [discussion in the EF Core GitHub repository](https://github.com/aspnet/EntityFramework/issues/1368).) 
+The `Instructor` and `Course` entities have a many-to-many relationship using a pure join table.
+
+Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core does not. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
 ## The CourseAssignment entity
 
@@ -433,25 +435,41 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 ### Join entity names
 
-A join table is required in the DB for the Instructor-to-Courses many-to-many relationship, and it has to be represented by an entity set. It's common to name a join entity `EntityName1EntityName2`, which in this case would be `CourseInstructor`. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked through Ratings. For this relationship, `CourseAssignment` is a better choice than `CourseInstructor`.
+The Instructor-to-Courses many-to-many relationship:
+
+* Requires a join table that must be represented by an entity set.
+* Is a pure join table (table without payload).
+
+It's common to name a join entity `EntityName1EntityName2`. For example, the Instructor-to-Courses join table using this pattern is `CourseInstructor`. However, we recommend using a name that describes the relationship. 
+
+Data models start out simple and grow. No-payload joins (PJTs) frequently evolve to include payload. By starting with a descriptive entity name, the name won't need to change when the join table changes. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked with a join entity called Ratings. For the Instructor-to-Courses many-to-many relationship, `CourseAssignment` is peferred over `CourseInstructor`.
 
 ### Composite key
 
-Since the FKs are not nullable and together uniquely identify each row of the table, there is no need for a separate PK. The *InstructorID* and *CourseID* properties should function as a composite PK. The only way to identify composite PKs to EF is by using the *fluent API* (it can't be done by using attributes). You'll see how to configure the composite PK in the next section.
+FKs are not nullable. The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`)  together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF is with the *fluent API*. The next section shows how to configure the composite PK.
 
-The composite key ensures that while you can have multiple rows for one course, and multiple rows for one instructor, you can't have multiple rows for the same instructor and course. The `Enrollment` join entity defines its own PK, so duplicates of this sort are possible. To prevent such duplicates, you could add a unique index on the FK fields, or configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](https://docs.microsoft.com/ef/core/modeling/indexes).
+The composite key ensures:
+
+* Multiple rows are allowed for one course.
+* Multiple rows are allowed for one instructor.
+* Multiple rows for the same instructor and course is not allowed.
+
+The `Enrollment` join entity defines its own PK, so duplicates of this sort are possible. To prevent such duplicates:
+
+* Add a unique index on the FK fields, or 
+* Configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](https://docs.microsoft.com/ef/core/modeling/indexes).
 
 ## Update the DB context
 
-Add the following highlighted code to the *Data/SchoolContext.cs* file:
+Add the following highlighted code to *Data/SchoolContext.cs*:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
-This code adds the new entities and configures the CourseAssignment entity's composite PK.
+The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
 ## Fluent API alternative to attributes
 
-The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration):
+The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement.The [following code](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration) is an example of te fluent API:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -462,9 +480,14 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-In this tutorial, you're using the fluent API only for DB mapping that you can't do with attributes. However, you can also use the fluent API to specify most of the formatting, validation, and mapping rules that you can do by using attributes. Some attributes such as `MinimumLength` can't be applied with the fluent API. As mentioned previously, `MinimumLength` doesn't change the schema, it only applies a client and server side validation rule.
+In this tutorial, the fluent API is used only for DB mapping that can't be done with attributes. However, the fluent API can specify most of the formatting, validation, and mapping rules that can be done with attributes.
 
-Some developers prefer to use the fluent API exclusively so that they can keep their entity classes "clean." You can mix attributes and fluent API if you want, and there are a few customizations that can only be done by using fluent API, but in general the recommended practice is to choose one of these two approaches and use that consistently as much as possible. If you do use both, note that wherever there is a conflict, Fluent API overrides attributes.
+Some attributes such as `MinimumLength` can't be applied with the fluent API. `MinimumLength` doesn't change the schema, it only applies a minimum length validation rule.
+
+Some developers prefer to use the fluent API exclusively so that they can keep their entity classes "clean."  Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API (specifying a composite PK).  There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
+
+* Choose one of these two approaches.
+* Use the chosen approach consistently as much as possible. 
 
 For more information about attributes vs. fluent API, see [Methods of configuration](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration).
 
@@ -474,15 +497,22 @@ The following illustration shows the diagram that EF Power Tools create for the 
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
-Besides the one-to-many relationship lines (1 to \*), you can see here the one-to-zero-or-one relationship line (1 to 0..1) between the Instructor and OfficeAssignment entities and the zero-or-one-to-many relationship line (0..1 to *) between the Instructor and `Department` entities.
+The preceding diagram shows:
+
+* Several one-to-many relationship lines (1 to \*).
+* The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
+* The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
 ## Seed the DB with Test Data
 
-Replace the code in the *Data/DbInitializer.cs* file with the following code in order to provide seed data for the new entities you've created.
+Update the code in  *Data/DbInitializer.cs*: 
 
 [!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
 
-As you saw in the first tutorial, most of this code simply creates new entity objects and loads sample data into properties as required for testing. Notice how the many-to-many relationships are handled: the code creates relationships by creating entities in the `Enrollments` and `CourseAssignment` join entity sets.
+The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. The preceding code creates the following many-to-many relationships:
+
+* `Enrollments` 
+* `CourseAssignment`
 
 ## Add a migration
 
@@ -511,11 +541,13 @@ To make this migration work with existing data you have to change the code to gi
 
 * Comment out the line of code that adds the DepartmentID column to the Course table.
 
-  [!code-csharp[Main](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+<!-- zz
+[!code-csharp[Main](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
 
 * Add the following highlighted code after the code that creates the Department table:
 
   [!code-csharp[Main](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+-->
 
 In a production app, you would write code or scripts to add `Department` rows and relate Course rows to the new `Department` rows. You would then no longer need the "Temp" department or the default value on the Course.DepartmentID column.
 
@@ -563,6 +595,7 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/migrations)
 
+<!--
 [Next](read-related-data.md)  
 
 -->

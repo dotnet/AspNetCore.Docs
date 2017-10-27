@@ -1,4 +1,4 @@
-﻿#define TableNames //Intro // AfterInheritance // or Intro or TableNames or BeforeInheritance
+﻿#define BeforeInheritance //Intro // AfterInheritance // or Intro or TableNames or BeforeInheritance
 
 #if Intro
 #region snippet_Intro

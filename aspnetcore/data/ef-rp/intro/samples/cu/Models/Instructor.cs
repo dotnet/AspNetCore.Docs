@@ -1,4 +1,4 @@
-﻿#define AfterInheritance // or BeforeInheritance
+﻿#define BeforeInheritance // AfterInheritance // or BeforeInheritance
 
 #if BeforeInheritance
 #region snippet_BeforeInheritance
