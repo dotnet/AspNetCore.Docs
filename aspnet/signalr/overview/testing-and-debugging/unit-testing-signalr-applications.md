@@ -38,7 +38,7 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 
 You can use the unit test features in SignalR 2 to create unit tests for your SignalR application. SignalR 2 includes the [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) interface, which can be used to create a mock object to simulate your hub methods for testing.
 
-In this section, you'll add unit tests for the application created in the [Getting Started tutorial](../getting-started/tutorial-getting-started-with-signalr.md) using [XUnit.net](http://xunit.codeplex.com/) and [Moq](https://github.com/Moq/moq4).
+In this section, you'll add unit tests for the application created in the [Getting Started tutorial](../getting-started/tutorial-getting-started-with-signalr.md) using [XUnit.net](https://github.com/xunit/xunit) and [Moq](https://github.com/Moq/moq4).
 
 XUnit.net will be used to control the test; Moq will be used to create a [mock](http://en.wikipedia.org/wiki/Mock_object) object for testing. Other mocking frameworks can be used if desired; [NSubstitute](http://nsubstitute.github.io/) is also a good choice. This tutorial demonstrates how to set up the mock object in two ways: First, using a `dynamic` object (introduced in .NET Framework 4), and second, using an interface.
 

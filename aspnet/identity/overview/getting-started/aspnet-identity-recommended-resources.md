@@ -66,7 +66,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 - For StackOverflow, use the tag [aspnet-identity](http://stackoverflow.com/questions/tagged/asp.net-identity)
 - For the ASP.NET forums, post to the [Security forum](https://forums.asp.net/25.aspx) and add **ASP.NET Identity** to the title.
-- [CodePlex hosting site for ASP.NET Identity](http://aspnetidentity.codeplex.com/) Get nightly builds, request features, open bugs.
+- [ASP.NET Identity on GitHub](https://github.com/aspnet/AspNetIdentity) Get nightly builds, request features, open bugs.
 
 <a id="blog"></a>
 ## Blog posts on Identity

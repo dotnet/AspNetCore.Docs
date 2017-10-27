@@ -61,7 +61,7 @@ This tutorial will teach you the basics of how to deploy an MVC 5 application to
 This How To describes various ways to serve pages optimized for mobile devices from your ASP.NET Web Forms / MVC application, and suggests architectural and design issues to consider when targeting a broad range of devices.
 
 
-### [Detect the latest mobile devices using 51degrees.mobi Foundation](http://51degrees.codeplex.com/)
+### [Detect the latest mobile devices using 51degrees.mobi Foundation](https://github.com/51Degrees/dotNET-Device-Detection)
 
 51degrees.mobi Foundation is a third-party open source project that enhances ASP.NET's Request.Browser API so you can easily detect recently-released mobile devices including Windows Phone 7, Android, and Apple iPad.
 

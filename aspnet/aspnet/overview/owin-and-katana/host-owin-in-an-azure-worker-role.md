@@ -147,4 +147,4 @@ The Azure Activity Log window shows the progress of the deployment. When the app
 ## Additional Resources
 
 - [An Overview of Project Katana](an-overview-of-project-katana.md)
-- [Katana Project on CodePlex](http://katanaproject.codeplex.com/)
+- [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana/)

@@ -21,7 +21,7 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > This Lab works with ASP.NET MVC 4.
 > 
-> If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [[http://mvcmusicstore.codeplex.com/](http://mvcmusicstore.codeplex.com/)](http://mvcmusicstore.codeplex.com/).
+> If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
 > 
 > > [!NOTE]
 > > This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.

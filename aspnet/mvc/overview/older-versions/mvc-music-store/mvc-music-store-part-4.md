@@ -150,8 +150,6 @@ We're now able to browse from our Store page to a Genre page, which lists the av
 
 ![](mvc-music-store-part-4/_static/image6.png)
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
-
 >[!div class="step-by-step"]
 [Previous](mvc-music-store-part-3.md)
 [Next](mvc-music-store-part-5.md)

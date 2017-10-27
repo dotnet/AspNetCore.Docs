@@ -314,7 +314,7 @@ The ASP.NET MVC project templates for Visual Studio were updated to include the 
 <a id="RTM-2"></a>
 ### Change: Changed the default ModelMetadataProvider back to DataAnnotationsModelMetadataProvider
 
-The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available on the CodePlex website at [http://aspnet.codeplex.com/](http://aspnet.codeplex.com/).
+The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available at [ASP.Net WebStack](https://github.com/aspnet/AspNetWebStack).
 
 <a id="RTM-3"></a>
 ### Fixed: Pasting part of a Razor expression that contains whitespace results in it being reversed

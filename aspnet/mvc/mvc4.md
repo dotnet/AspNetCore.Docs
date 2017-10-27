@@ -31,7 +31,6 @@ ASP.NET MVC 4
 - Tutorial: [ASP.NET MVC 4 Mobile Features](overview/older-versions/aspnet-mvc-4-mobile-features.md)
 - [Release Notes for ASP.NET MVC 4](../whitepapers/mvc4-release-notes.md)
 - [New ASP.NET MVC 4 tutorial series](overview/older-versions/getting-started-with-aspnet-mvc4/intro-to-aspnet-mvc-4.md)
-- [ASP.NET MVC 4 Roadmap](http://aspnetwebstack.codeplex.com/wikipage?title=Roadmap)
 
 
 ### Install ASP.NET MVC 4 for Visual Studio 2010
@@ -48,5 +47,5 @@ ASP.NET MVC 4
 
 - [Known issues and breaking changes list](../whitepapers/mvc4-release-notes.md#_Toc303253815)
 - Get help and discuss ASP.NET MVC 4 in the [forums](https://forums.asp.net/1146.aspx)
-- [Report a bug in ASP.NET MVC 4](http://aspnetwebstack.codeplex.com/workitem/list/basic)
+- [Report a bug in ASP.NET MVC 4](https://github.com/aspnet/AspNetWebStack/issues)
 - [Make a feature request](http://aspnet.uservoice.com/forums/41201-asp-net-mvc)
