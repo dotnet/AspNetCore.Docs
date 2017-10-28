@@ -2,15 +2,14 @@
 title: Razor Pages authorization conventions in ASP.NET Core
 author: guardrex
 description: Learn how to control access to pages with conventions at startup that authorize users and allow anonymous users to access individual pages or folders of pages.
-keywords: ASP.NET Core,Razor Pages,authorization,AllowAnonymousToPage,AllowAnonymousToFolder,AuthorizePage,AuthorizeFolder
 ms.author: riande
 manager: wpickett
-ms.date: 10/24/2017
+ms.date: 10/27/2017
 ms.topic: article
 ms.assetid: f65ad22d-9472-478a-856c-c59c8681fa71
 ms.technology: aspnet
 ms.prod: asp.net-core
-uid: mvc/razor-pages/razor-pages-authorization-conventions
+uid: security/authorization/razor-pages-authorization
 ---
 # Razor Pages authorization conventions in ASP.NET Core
 
@@ -18,13 +17,13 @@ By [Luke Latham](https://github.com/guardrex)
 
 One way to control access in your Razor Pages app is to use authorization conventions at startup. These conventions allow you to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this topic automatically apply [authorization filters](xref:mvc/controllers/filters#authorization-filters) to control access.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/razor-pages/razor-pages-authorization-conventions/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
 ## Require authorization to access a page
 
 Use the [AuthorizePage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizepage) convention via [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) to add an [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) to the page at the specified path:
 
-[!code-csharp[Main](razor-pages-authorization-conventions/sample/Startup.cs?name=snippet1&highlight=2,4)]
+[!code-csharp[Main](razor-pages-authorization/sample/Startup.cs?name=snippet1&highlight=2,4)]
 
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
@@ -34,7 +33,7 @@ An [AuthorizePage overload](/dotnet/api/microsoft.extensions.dependencyinjection
 
 Use the [AuthorizeFolder](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.authorizefolder) convention via [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) to add an [AuthorizeFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.authorizefilter) to all of the pages in a folder at the specified path:
 
-[!code-csharp[Main](razor-pages-authorization-conventions/sample/Startup.cs?name=snippet1&highlight=2,5)]
+[!code-csharp[Main](razor-pages-authorization/sample/Startup.cs?name=snippet1&highlight=2,5)]
 
 The specified path is the View Engine path, which is the Razor Pages root relative path.
 
@@ -44,7 +43,7 @@ An [AuthorizeFolder overload](/dotnet/api/microsoft.extensions.dependencyinjecti
 
 Use the [AllowAnonymousToPage](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.allowanonymoustopage) convention via [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) to add an [AllowAnonymousFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.allowanonymousfilter) to a page at the specified path:
 
-[!code-csharp[Main](razor-pages-authorization-conventions/sample/Startup.cs?name=snippet1&highlight=2,6)]
+[!code-csharp[Main](razor-pages-authorization/sample/Startup.cs?name=snippet1&highlight=2,6)]
 
 The specified path is the View Engine path, which is the Razor Pages root relative path without an extension and containing only forward slashes.
 
@@ -52,7 +51,7 @@ The specified path is the View Engine path, which is the Razor Pages root relati
 
 Use the [AllowAnonymousToFolder](/dotnet/api/microsoft.extensions.dependencyinjection.pageconventioncollectionextensions.allowanonymoustofolder) convention via [AddRazorPagesOptions](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.addrazorpagesoptions) to add an [AllowAnonymousFilter](/dotnet/api/microsoft.aspnetcore.mvc.authorization.allowanonymousfilter) to all of the pages in a folder at the specified path:
 
-[!code-csharp[Main](razor-pages-authorization-conventions/sample/Startup.cs?name=snippet1&highlight=2,7)]
+[!code-csharp[Main](razor-pages-authorization/sample/Startup.cs?name=snippet1&highlight=2,7)]
 
 The specified path is the View Engine path, which is the Razor Pages root relative path.
 
@@ -76,4 +75,5 @@ Requiring authorization on the Private page won't work because when both the `Al
 
 ## See also
 
+* [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)
 * [PageConventionCollection](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.pageconventioncollection) class
