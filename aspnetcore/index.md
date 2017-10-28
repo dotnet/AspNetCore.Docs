@@ -1,7 +1,7 @@
 ---
 title: Introduction to ASP.NET Core
 author: rick-anderson
-description: 
+description: Provides an introduction to ASP.NET Core.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
