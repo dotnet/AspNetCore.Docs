@@ -34,7 +34,7 @@ How To: Add Mobile Pages to Your ASP.NET Web Forms / MVC Application
 - How ASP.NET MVC applications can present mobile-specific pages
 - Additional resources
 
-For downloadable code samples demonstrating this white paper's techniques for both ASP.NET Web Forms and MVC, see [http://aspnetmobilesamples.codeplex.com/](http://aspnetmobilesamples.codeplex.com/).
+For downloadable code samples demonstrating this white paper's techniques for both ASP.NET Web Forms and MVC, see [Mobile Apps & Sites with ASP.NET](https://docs.microsoft.com/aspnet/mobile/overview).
 
 ## Overview
 
@@ -124,7 +124,7 @@ While ASP.NET's built-in browser detection support will be sufficient for many a
 
 The [*Wireless Universal Resource File* (WURFL) project](http://wurfl.sourceforge.net/) maintains much more up-to-date and detailed information about mobile devices in use today.
 
-The great news for .NET developers is that ASP.NET's browser detection feature is extensible, so it's possible to enhance it to overcome these problems. For example, you can add the open source [*51Degrees.mobi Foundation*](http://51degrees.codeplex.com/) library to your project. It's an ASP.NET IHttpModule or Browser Capabilities Provider (usable on both Web Forms and MVC applications), that directly reads WURFL data and hooks it into ASP.NET's built-in browser detection mechanism. Once you've installed the module, *Request.Browser* will suddenly contain a lot more accurate and detailed information: it will correctly recognize many of the devices previously mentioned and list their capabilities (including additional capabilities such as input method). See the project's documentation for more details.
+The great news for .NET developers is that ASP.NET's browser detection feature is extensible, so it's possible to enhance it to overcome these problems. For example, you can add the open source [*51Degrees.mobi Foundation*](https://github.com/51Degrees/dotNET-Device-Detection) library to your project. It's an ASP.NET IHttpModule or Browser Capabilities Provider (usable on both Web Forms and MVC applications), that directly reads WURFL data and hooks it into ASP.NET's built-in browser detection mechanism. Once you've installed the module, *Request.Browser* will suddenly contain a lot more accurate and detailed information: it will correctly recognize many of the devices previously mentioned and list their capabilities (including additional capabilities such as input method). See the project's documentation for more details.
 
 ## How Web Forms applications can present mobile-specific pages
 
@@ -198,7 +198,7 @@ This will ensure that mobile visitors to the page don't receive output previousl
 
 ### A working example
 
-To see these techniques in action, download [this white paper's code samples](http://aspnetmobilesamples.codeplex.com/). The Web Forms sample application automatically redirects mobile users to a set of mobile-specific pages in a subfolder called Mobile. The markup and styling of those pages is better optimized for mobile browsers, as you can see from the following screenshots:
+To see these techniques in action, download [this white paper's code samples](https://docs.microsoft.com/aspnet/mobile/overview). The Web Forms sample application automatically redirects mobile users to a set of mobile-specific pages in a subfolder called Mobile. The markup and styling of those pages is better optimized for mobile browsers, as you can see from the following screenshots:
 
 ![](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/_static/image2.png)
 
@@ -288,7 +288,7 @@ This will ensure that mobile visitors to the page don't receive output previousl
 
 ### A working example
 
-To see these techniques in action, download [this white paper's code associated samples](http://aspnetmobilesamples.codeplex.com/). The sample includes an ASP.NET MVC 3 (Release Candidate) application enhanced to support mobile devices using the methods described above.
+To see these techniques in action, download [this white paper's code associated samples](https://docs.microsoft.com/aspnet/mobile/overview). The sample includes an ASP.NET MVC 3 (Release Candidate) application enhanced to support mobile devices using the methods described above.
 
 ## Further guidance and suggestions
 
@@ -304,7 +304,7 @@ The following element added to the fiftyOne section of the web.config file will 
 
 [!code-xml[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample15.xml)]
 
-For more details, see [51degrees.mobi Foundation documentation](http://51degrees.codeplex.com/documentation).
+For more details, see [51degrees.mobi Foundation documentation](https://github.com/51Degrees/dotNET-Device-Detection).
 
 > [!NOTE]
 > You *can* use 51Degrees.mobi Foundation's redirection feature on ASP.NET MVC applications, but you will need to define your redirection configuration in terms of plain URLs, not in terms of routing parameters or by putting MVC filters on actions. This is because (at the time of writing) 51Degrees.mobi Foundation does not recognize filters or routing.

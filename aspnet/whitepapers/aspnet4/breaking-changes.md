@@ -117,8 +117,6 @@ You can revert to the old browser definition files by copying the browser defini
 
 Copy the files into the corresponding `\CONFIG\Browsers` folder for ASP.NET 4. After you copy the files, run the Aspnet\_regbrowsers.exe command-line tool.
 
-For more information, download the ASP.NET Browser Definition Files release from [http://aspnet.codeplex.com/releases/view/41420](http://aspnet.codeplex.com/releases/view/41420). This download includes the old browser definition files, the new browser definition files, and instructions for installing the files.
-
 <a id="0.1__Toc255587635"></a><a id="0.1__Toc256770146"></a>
 
 ## System.Web.Mobile.dll Removed from Root Web Configuration File
@@ -253,9 +251,9 @@ Web servers that run SharePoint have a `Web.config` file that is deployed at the
 
 If you try to run an ASP.NET 4 Web site that is deployed as a child of this type of SharePoint Web site, you will see the following error:
 
-`Could not find permission set named 'ASP.Net'.`
+`Could not find permission set named 'ASP.NET'.`
 
-This error occurs because the ASP.NET 4 code access security (CAS) infrastructure looks for a permission set named ASP.Net. However, the partial trust configuration file that is referenced by WSS\_Minimal does not contain any permission sets with that name.
+This error occurs because the ASP.NET 4 code access security (CAS) infrastructure looks for a permission set named ASP.NET. However, the partial trust configuration file that is referenced by WSS\_Minimal does not contain any permission sets with that name.
 
 Currently there is not a version of SharePoint available that is compatible with ASP.NET. As a result, you should not attempt to run an ASP.NET 4 Web site as a child site underneath SharePoint Web sites.
 
