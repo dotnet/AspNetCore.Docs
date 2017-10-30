@@ -95,9 +95,9 @@ Create a *Models* folder. In the *Models* folder, create a class file named *Stu
 
 [!code-csharp[Main](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
-The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, the EF interprets a property that's named `ID` or `classnameID` as the primary key.
+The `ID` property becomes the primary key column of the database (DB) table that corresponds to this class. By default, the EF interprets a property that's named `ID` or `classnameID` as the primary key.
 
-The `Enrollments` property is a navigation property. Navigation properties link to other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student`. For example, if a Student row in the database has two related Enrollment rows, the `Enrollments` navigation property contains those two `Enrollment` entities. A related `Enrollment` row is a row that contains that student's primary key value in the `StudentID` column. For example, suppose the student with ID=1 has two rows in the `Enrollment` table. The `Enrollment` table has two rows with `StudentID` = 1. `StudentID` is a foreign key in the `Enrollment` table that specifies the student in the `Student` table.
+The `Enrollments` property is a navigation property. Navigation properties link to other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student`. For example, if a Student row in the DB has two related Enrollment rows, the `Enrollments` navigation property contains those two `Enrollment` entities. A related `Enrollment` row is a row that contains that student's primary key value in the `StudentID` column. For example, suppose the student with ID=1 has two rows in the `Enrollment` table. The `Enrollment` table has two rows with `StudentID` = 1. `StudentID` is a foreign key in the `Enrollment` table that specifies the student in the `Student` table.
 
 If a navigation property can hold multiple entities, the navigation property must be a list type, such as `ICollection<T>`. `ICollection<T>` can be specified, or a type such as `List<T>` or `HashSet<T>`. When `ICollection<T>` is used, EF creates a `HashSet<T>` collection by default. Navigation properties that hold multiple entities come from many-to-many and one-to-many relationships.
 
@@ -129,11 +129,11 @@ In the *Models* folder, create *Course.cs* with the following code:
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
-The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the database generate it.
+The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the DB generate it.
 
-## Create the SchoolContext database context
+## Create the SchoolContext DB context
 
-The main class that coordinates EF functionality for a given data model is the database context class. The data context is derived from `Microsoft.EntityFrameworkCore.DbContext`. The data context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF functionality for a given data model is the DB context class. The data context is derived from `Microsoft.EntityFrameworkCore.DbContext`. The data context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
 In the project folder, create a folder named *Data*.
 
@@ -143,18 +143,18 @@ In the *Data* folder create *SchoolContext.cs* with the following code:
 
 This code creates a `DbSet` property for each entity set. In EF terminology:
 
-* An entity set typically corresponds to a database table.
+* An entity set typically corresponds to a DB table.
 * An entity corresponds to a row in the table.
 
 `DbSet<Enrollment>` and `DbSet<Course>` can be omitted. EF includes them implicitly because the `Student` entity references the `Enrollment` entity, and the `Enrollment` entity references the `Course` entity. For this tutorial, keep `DbSet<Enrollment>` and `DbSet<Course>` in the `SchoolContext`.
 
-When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
+When the DB is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student). Developers disagree about whether table names should be plural. For these tutorials, the default behavior is overridden by specifying singular table names in the DbContext. To specify singular table names, add the following highlighted code:
 
 [!code-csharp[Main](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
 
 ## Register the context with dependency injection
 
-ASP.NET Core includes [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a db context instance is shown later in the tutorial.
+ASP.NET Core includes [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a db context instance is shown later in the tutorial.
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
@@ -172,23 +172,23 @@ Open the *appsettings.json* file and add a connection string as shown in the fol
 
 ### SQL Server Express LocalDB
 
-The connection string specifies a SQL Server LocalDB database. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates *.mdf* database files in the `C:/Users/<user>` directory.
+The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
-## Add code to initialize the database with test data
+## Add code to initialize the DB with test data
 
-EF creates an empty database. In this section, a *Seed* method is written to populate it with test data.
-
-The `EnsureCreated` method is added to automatically create the database. In a later tutorial, instructions show how to handle model changes with Code First Migrations. Code First Migrations changes the database schema instead of dropping and re-creating the database.
+EF creates an empty DB. In this section, a *Seed* method is written to populate it with test data.
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
 
 [!code-csharp[Main](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
-The code checks if there are any students in the database. If there are no students in the DB, the DB is seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
+The code checks if there are any students in the DB. If there are no students in the DB, the DB is seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
+
+The `EnsureCreated` method automatically creates the DB for the DB context. If the DB exists, `EnsureCreated` returns without modifying the DB.
 
 In *Program.cs*, modify the `Main` method to do the following:
 
-* Get a database context instance from the dependency injection container.
+* Get a DB context instance from the dependency injection container.
 * Call the seed method, passing to it the context.
 * Dispose the context when the seed method completes.
 
@@ -196,7 +196,7 @@ The following code shows the updated *Program.cs* file.
 
 [!code-csharp[Main](intro/samples/cu/Program.cs)]
 
-The first time the app is run, the database is created and seeded with test data. When the data model is updated, delete the database, update the seed method, and a new seeded DB is created. In later tutorials, the database is updated when the data model changes, without deleting and re-creating the DB.
+The first time the app is run, the DB is created and seeded with test data. When the data model is updated, delete the DB, update the seed method, and a new seeded DB is created. In later tutorials, the DB is updated when the data model changes, without deleting and re-creating the DB.
 
 <a name="pmc"></a>
 ## Add scaffold tooling
@@ -222,16 +222,23 @@ The previous command adds the NuGet packages to the *.csproj file:
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Run the following commands:
 
-<!-- without dotnet restore some get
-Unhandled Exception: System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.VisualStudio.Web.CodeGeneration.Utils, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
- at Microsoft.VisualStudio.Web.CodeGeneration.Design.Program.Main(String[] args)
-RunTime 00:00:21.20
--->
 
  ```console
 dotnet restore
 dotnet aspnet-codegenerator razorpage -m Student -dc SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
  ```
+ 
+If the following error is generated:
+
+```text
+Unhandled Exception: System.IO.FileNotFoundException: 
+Could not load file or assembly 
+'Microsoft.VisualStudio.Web.CodeGeneration.Utils, 
+Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. T
+he system cannot find the file specified.
+```
+
+Run the command again and leave a comment at the bottom of the page.
 
 Build the project. The build generates errors like the following:
 
@@ -250,7 +257,7 @@ Run the app and select the **Students** link. Depending on the browser width, th
 
 Test the **Create**, **Edit**, and **Details** links.
 
-## View the Database
+## View the DB
 
 When the app is started, `DbInitializer.Initialize` calls `EnsureCreated`. `EnsureCreated` detects if the DB exists, and creates one if necessary. If there are no Students in the DB, the `Initialize` method adds students.
 
@@ -261,7 +268,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-The *.mdf* and *.ldf* database files are in the *C:\Users\<yourusername>* folder.
+The *.mdf* and *.ldf* DB files are in the *C:\Users\<yourusername>* folder.
 
 `EnsureCreated` is called on app start, which allows the following work flow:
 
@@ -273,7 +280,7 @@ The *.mdf* and *.ldf* database files are in the *C:\Users\<yourusername>* folder
 
 ## Conventions
 
-The amount of code writen in order for EF to create a complete database is minimal because of the use of conventions, or assumptions that EF makes.
+The amount of code writen in order for EF to create a complete DB is minimal because of the use of conventions, or assumptions that EF makes.
 
 * The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
 
@@ -310,11 +317,11 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 
 Some things to be aware of when writing asynchronous code that uses EF:
 
-* Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`. It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`. It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
 * An EF context is not threaded safe: don't try to do multiple operations in parallel. 
 
-* To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF methods that send queries to the database.
+* To take advantage of the performance benefits of async code, verify that library packages (such as for paging) use async if they call EF methods that send queries to the DB.
 
 For more information about asynchronous programming in .NET, see [Async Overview](https://docs.microsoft.com/dotnet/articles/standard/async).
 

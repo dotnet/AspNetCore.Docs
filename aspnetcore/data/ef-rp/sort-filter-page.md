@@ -11,7 +11,7 @@ ms.prod: asp.net-core
 uid: data/ef-rp/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with Razor Pages
+# Sorting, filtering, paging, and grouping - EF Core with Razor Pages (3 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -264,6 +264,8 @@ Replace the code in the *Views/Home/About.cshtml* file with the following code:
 [!code-html[](intro/samples/cu/Pages/About.cshtml)]
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
+
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part3-sorting).
 
 ![About page](sort-filter-page/_static/about.png)
 

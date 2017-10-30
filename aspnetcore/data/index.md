@@ -22,6 +22,8 @@ The Razor Pages EF Core series is a work in progress. We hope to complete the se
    * [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
    * [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
    * [Migrations](xref:data/ef-rp/migrations)
+   * [Creating a complex data model](xref:data/ef-rp/complex-data-model)
+
 
 *   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
     *   [Getting started](ef-mvc/intro.md)

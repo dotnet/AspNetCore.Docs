@@ -54,6 +54,7 @@
 ### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 ### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 ### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
+
 ## [Data access - Razor Pages with EF Core](xref:data/index)
 ### [Getting started](xref:data/ef-rp/intro)
 ### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
@@ -73,12 +74,6 @@
 ### [Handling concurrency conflicts](data/ef-mvc/concurrency.md)
 ### [Inheritance](data/ef-mvc/inheritance.md)
 ### [Advanced topics](data/ef-mvc/advanced.md)
-
-## [Data access - Razor Pages with EF Core](xref:data/ef-rp/index)
-### [Getting started](xref:data/ef-rp/intro)
-### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
-### [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
-### [Migrations](xref:data/ef-rp/migrations)
 
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)

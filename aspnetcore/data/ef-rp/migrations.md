@@ -80,13 +80,15 @@ info: Microsoft.EntityFrameworkCore.Infrastructure[100403]
 Done. To undo this action, use 'ef migrations remove'
 ```
 
-If the error message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" is displayed:
+If the migration fails with the message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" is displayed:
 
 * Stop IIS Express.
 
    * Exit and restart Visual Studio, or
    * Find the IIS Express icon in the Windows System Tray.
    * Right-click the IIS Express icon, and then click **ContosoUniversity > Stop Site**.
+   
+If the error message "Build failed." is displayed, run the command again. If you get this error, leave a note at the bottom of this tutorial.
 
 ### Examine the Up and Down methods
 
@@ -116,6 +118,21 @@ Migrations creates a *snapshot* of the current DB schema in *Migrations/SchoolCo
 Because the current DB schema is represented in code, EF Core doesn't have to interact with the DB to create migrations. When you add a migration, EF determines what changed by comparing the data model to the snapshot file. EF interacts with the DB only when it has to update the DB.
 
 The snapshot file must be in sync with the migrations that created it. A migration can't be removed by deleting the file named *\<timestamp>_\<migrationname>.cs*. If that file is deleted, the remaining migrations are out of sync with the DB snapshot file. To delete the last migration added, use the [dotnet ef migrations remove](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
+
+## Remove EnsureCreated
+
+For the remainder of this tutorial, migrations will be used with the DB.`EnsureCreated`:
+ 
+* Bypasses migrations and  creates the DB and schema.
+* Does not create a migrations table. 
+* Can *not* be used with migrations.
+* Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
+
+Remove the following line from `DbInitializer`:
+
+```csharp
+context.Database.EnsureCreated();
+```
 
 ## Apply the migration to the DB
 
@@ -175,6 +192,16 @@ The EF commands for the PMC are in the [Microsoft.EntityFrameworkCore.Tools](htt
 For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet).
 
 For more information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/ef/core/miscellaneous/cli/powershell).
+
+## Troubleshooting
+
+The app generates the following exception:
+
+```text
+`SqlException: Cannot open database "ContosoUniversity" requested by the login. The login failed.
+Login failed for user 'user name'.
+
+Solution: Run `dotnet ef database update`
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/sort-filter-page)
