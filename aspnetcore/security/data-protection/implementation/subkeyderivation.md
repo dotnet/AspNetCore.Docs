@@ -60,7 +60,7 @@ Once K_E is generated via the above mechanism, we generate a random initializati
 *output:= keyModifier || iv || E_cbc (K_E,iv,data) || HMAC(K_H, iv || E_cbc (K_E,iv,data))*
 
 > [!NOTE]
-> The IDataProtector.Protect implementation will [prepend the magic header and key id](authenticated-encryption-details.md#data-protection-implementation-authenticated-encryption-details) to output before returning it to the caller. Because the magic header and key id are implicitly part of [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad), and because the key modifier is fed as input to the KDF, this means that every single byte of the final returned payload is authenticated by the MAC.
+> The IDataProtector.Protect implementation will [prepend the magic header and key id](authenticated-encryption-details.md) to output before returning it to the caller. Because the magic header and key id are implicitly part of [AAD](xref:security/data-protection/implementation/subkeyderivation#data-protection-implementation-subkey-derivation-aad), and because the key modifier is fed as input to the KDF, this means that every single byte of the final returned payload is authenticated by the MAC.
 
 ## Galois/Counter Mode encryption + validation
 

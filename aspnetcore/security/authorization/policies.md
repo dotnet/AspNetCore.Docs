@@ -1,5 +1,5 @@
 ---
-title: Custom Policy-Based Authorization
+title: Custom policy-based authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/policies
 ---
-# Custom Policy-Based Authorization
+# Custom policy-based authorization
 
 <a name="security-authorization-policies-based"></a>
 
@@ -71,7 +71,7 @@ A requirement doesn't need to have data or properties.
 
 <a name="security-authorization-policies-based-authorization-handler"></a>
 
-## Authorization Handlers
+## Authorization handlers
 
 An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
 
@@ -113,6 +113,7 @@ In the code above we first look to see if the current user principal has a date 
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
+### Handler registration
 Handlers must be registered in the services collection during configuration, for example;
 
 ```csharp
@@ -206,7 +207,7 @@ services.AddAuthorization(options =>
  }
 ```
 
-## Accessing MVC Request Context In Handlers
+## Accessing MVC request context in handlers
 
 The `Handle` method you must implement in an authorization handler has two parameters, an `AuthorizationContext` and the `Requirement` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the `Resource` property on the `AuthorizationContext` to pass through extra information.
 
