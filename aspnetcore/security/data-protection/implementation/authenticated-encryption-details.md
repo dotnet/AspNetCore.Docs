@@ -1,5 +1,5 @@
 ---
-title: Authenticated encryption details.
+title: Authenticated Encryption Details
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/data-protection/implementation/authenticated-encryption-details
 ---
-# Authenticated encryption details.
+# Authenticated Encryption Details
 
 <a name="data-protection-implementation-authenticated-encryption-details"></a>
 
