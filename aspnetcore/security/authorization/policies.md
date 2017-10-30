@@ -1,5 +1,5 @@
 ---
-title: Custom Policy-Based Authorization
+title: Custom policy-based authorization
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: security/authorization/policies
 ---
-# Custom Policy-Based Authorization
+# Custom policy-based authorization
 
 <a name="security-authorization-policies-based"></a>
 
