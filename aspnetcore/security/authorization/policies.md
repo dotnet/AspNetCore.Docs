@@ -113,6 +113,7 @@ In the code above we first look to see if the current user principal has a date 
 
 <a name="security-authorization-policies-based-handler-registration"></a>
 
+### Handler Registration
 Handlers must be registered in the services collection during configuration, for example;
 
 ```csharp
