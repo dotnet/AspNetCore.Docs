@@ -1,22 +1,24 @@
 ---
 title: Configuration in ASP.NET Core
 author: rick-anderson
-description: Learn how to use the Configuration API to configure an ASP.NET Core app from multiple sources.
-keywords: ASP.NET Core,configuration,JSON,config
+description: Use the Configuration API to configure an ASP.NET Core app by multiple methods.
+keywords: ASP.NET Core,configuration,JSON,config,ini,XML,provider
 ms.author: riande
 manager: wpickett
-ms.date: 6/24/2017
+ms.date: 11/01/2017
 ms.topic: article
 ms.assetid: b3a5984d-e172-42eb-8a48-547e4acb6806
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/configuration
 ---
-# Configuration in ASP.NET Core
+# Configure an ASP.NET Core App
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](https://ardalis.com/), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
-The Configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
+The Configuration API provides a way to configure an ASP.NET Core web app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. You can group these name-value pairs into a multi-level hierarchy. 
+
+There are configuration providers for:
 
 * File formats (INI, JSON, and XML)
 * Command-line arguments
@@ -78,7 +80,7 @@ Configuration considerations:
 
 <a name="options-config-objects"></a>
 
-## Using Options and configuration objects
+## Use Options and configuration objects
 
 The options pattern uses custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
 
@@ -157,13 +159,13 @@ The following sample demonstrates how a new `IOptionsSnapshot` is created after 
 
 The following image shows the server output:
 
-![browser image showing "Last Updated: 11/22/2016 4:43 PM"](configuration/_static/first.png)
+![browser shows image with text that says "Last Updated: 11/22/2016 4:43 PM"](configuration/_static/first.png)
 
 Refreshing the browser doesn't change the message value or time displayed (when *config.json* has not changed).
 
 Change and save the  *config.json* and then refresh the browser:
 
-![browser image showing "Last Updated to,e: 11/22/2016 4:53 PM"](configuration/_static/change.png)
+![browser shows image with text that says "Last Updated to,e: 11/22/2016 4:53 PM"](configuration/_static/change.png)
 
 ## In-memory provider and binding to a POCO class
 
@@ -193,7 +195,7 @@ The following sample demonstrates the [GetValue<T>](https://docs.microsoft.com/a
 
 The ConfigurationBinder's `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
-## Binding to an object graph
+## Bind to an object graph
 
 You can recursively bind to each object in a class. Consider the following `AppOptions` class:
 
@@ -244,7 +246,7 @@ public void CanBindObjectTree()
 
 <a name="custom-config-providers"></a>
 
-## Basic sample of Entity Framework custom provider
+## Create an Entity Framework custom provider
 
 In this section, a basic configuration provider that reads name-value pairs from a database using EF is created. 
 
@@ -294,7 +296,7 @@ The [CommandLine configuration provider](/aspnet/core/api/microsoft.extensions.c
 
 [View or download the CommandLine configuration sample](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample/CommandLine)
 
-### Setting up the provider
+### Setup and use the CommandLine configuration provider
 
 # [Basic Configuration](#tab/basicconfiguration)
 
