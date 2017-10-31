@@ -63,9 +63,9 @@ namespace ContactManager
             // requires using Microsoft.AspNetCore.Mvc;
             services.Configure<MvcOptions>(options =>
             {
-            // Set LocalTest:skipSSL to true to skip SSL requrement in 
-            // debug mode. This is useful when not using Visual Studio.
-            if (_hostingEnv.IsDevelopment() && !skipSSL)
+                // Set LocalTest:skipSSL to true to skip SSL requrement in 
+                // debug mode. This is useful when not using Visual Studio.
+                if (_hostingEnv.IsDevelopment() && !skipSSL)
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
@@ -113,7 +113,7 @@ namespace ContactManager
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
 
