@@ -4,6 +4,8 @@ In the following sections, `Create`, `Update`, and `Delete` methods are added to
 
 ### Create
 
+Add the following `Create` method.
+
 [!code-csharp[Main](../../tutorials/first-web-api/sample/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, indicated by the [`[HttpPost]`](/aspnet/core/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The [`[FromBody]`](/aspnet/core/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
@@ -34,7 +36,6 @@ The `CreatedAtRoute` method:
 ```
 
 * Select **Send**
-
 * Select the Headers tab in the lower pane and copy the **Location** header:
 
 ![Headers tab of the Postman console](../../tutorials/first-web-api/_static/pmget.png)
