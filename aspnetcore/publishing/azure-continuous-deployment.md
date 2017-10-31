@@ -111,7 +111,7 @@ Git is a distributed version control system that you can use to deploy your Azur
 
 7. In the **Web App** blade, click **Settings** > **Properties**. The URL of the remote Git repository that you'll deploy to is shown under **GIT URL**.
 
-10. Copy the **GIT URL** value for later use in the tutorial.
+8. Copy the **GIT URL** value for later use in the tutorial.
 
    ![Azure Portal: application Properties blade](azure-continuous-deployment/_static/09-azure-giturl.png)
 
