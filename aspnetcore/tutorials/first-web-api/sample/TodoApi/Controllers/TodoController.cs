@@ -10,7 +10,7 @@ namespace TodoApi.Controllers
     public class TodoController : Controller
     {
         private readonly TodoContext _context;
-#endregion
+        #endregion
 
         public TodoController(TodoContext context)
         {
@@ -30,6 +30,7 @@ namespace TodoApi.Controllers
             return _context.TodoItems.ToList();
         }
 
+        #region snippet_GetByID
         [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(long id)
         {
@@ -40,6 +41,7 @@ namespace TodoApi.Controllers
             }
             return new ObjectResult(item);
         }
+        #endregion
         #endregion
         #region snippet_Create
         [HttpPost]
