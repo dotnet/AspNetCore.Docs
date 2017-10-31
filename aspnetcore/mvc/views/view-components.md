@@ -84,23 +84,23 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 To use the view component, call the following inside a view:
 
-```html
+```cshtml
 @Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)
 ```
 
 The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 ## Invoking a view component as a Tag Helper
 
 For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [lower kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
-```html
+```cshtml
 <vc:[view-component-name]
   parameter1="parameter1 value"
   parameter2="parameter2 value">
@@ -109,7 +109,7 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 
 Note: In order to use a View Component as a Tag Helper, you must register the assembly containing the View Component using the `@addTagHelper` directive. For example, if your View Component is in an assembly called "MyWebApp", add the following directive to the `_ViewImports.cshtml` file:
 
-```csharp
+```cshtml
 @addTagHelper *, MyWebApp
 ```
 
@@ -117,11 +117,11 @@ You can register a View Component as a Tag Helper to any file that references th
 
 The `InvokeAsync` method used in this tutorial:
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 In Tag Helper markup:
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexTagHelper.cshtml?range=37-38)]
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in lower kebab case.
 
@@ -168,7 +168,7 @@ Notes on the code:
 * Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
 
 * Create a *Views/Shared/Components/PriorityList/Default.cshtml* Razor view:
-  [!code-html[Main](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
+  [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
     
    The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/Todo/Components/PriorityList/Default.cshtml)*.
     
@@ -176,7 +176,7 @@ Notes on the code:
 
 * Add a `div` containing a call to the priority list component to the bottom of the *Views/Todo/index.cshtml* file:
 
-    [!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFirst.cshtml?range=34-38)]
+    [!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFirst.cshtml?range=34-38)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -198,13 +198,13 @@ A complex view component might need to specify a non-default view under some con
 
 Copy the *Views/Shared/Components/PriorityList/Default.cshtml* file to a view named *Views/Shared/Components/PriorityList/PVC.cshtml*. Add a heading to indicate the PVC view is being used.
 
-[!code-html[Main](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
+[!code-cshtml[Main](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
 Update *Views/TodoList/Index.cshtml*:
 
 <!-- Views/TodoList/Index.cshtml is never imported, so change to test tutorial -->
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexFinal.cshtml?range=35)]
 
 Run the app and verify PVC view.
 
@@ -240,7 +240,7 @@ If you want compile time safety, you can replace the hard-coded view component n
 
 Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
-[!code-html[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
+[!code-cshtml[Main](view-components/sample/ViewCompFinal/Views/Todo/IndexNameof.cshtml?range=1-6,33-)]
 
 ## Additional Resources
 
