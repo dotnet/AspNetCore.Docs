@@ -157,7 +157,7 @@ Think of AlgorithmConfiguration as the top-level factory. The configuration serv
 
 When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.
 
-The AlgorithmConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#data-protection-implementation-key-management). To change the implementation for all future keys, set the AuthenticatedEncryptorConfiguration property in KeyManagementOptions.
+The AlgorithmConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#key-expiration-and-rolling). To change the implementation for all future keys, set the AuthenticatedEncryptorConfiguration property in KeyManagementOptions.
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -169,6 +169,6 @@ Think of IAuthenticatedEncryptorConfiguration as the top-level factory. The conf
 
 When CreateNewDescriptor is called, fresh key material is created solely for this call, and a new IAuthenticatedEncryptorDescriptor is produced which wraps this key material and the algorithmic information required to consume the material. The key material could be created in software (and held in memory), it could be created and held within an HSM, and so on. The crucial point is that any two calls to CreateNewDescriptor should never create equivalent IAuthenticatedEncryptorDescriptor instances.
 
-The IAuthenticatedEncryptorConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#data-protection-implementation-key-management). To change the implementation for all future keys, register a singleton IAuthenticatedEncryptorConfiguration in the service container.
+The IAuthenticatedEncryptorConfiguration type serves as the entry point for key creation routines such as [automatic key rolling](../implementation/key-management.md#key-expiration-and-rolling). To change the implementation for all future keys, register a singleton IAuthenticatedEncryptorConfiguration in the service container.
 
 ---
