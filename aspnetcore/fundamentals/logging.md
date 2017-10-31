@@ -63,7 +63,7 @@ A logging provider takes the messages that you create with an `ILogger` object a
 
 To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
 
-[!code-csharp[](logging/sample//Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
+[!code-csharp[](logging/sample/Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
 ASP.NET Core [dependency injection](dependency-injection.md) (DI) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider. 
 
@@ -123,21 +123,21 @@ A *category* is included with each log that you create.  You specify the categor
 
 You can specify the category as a string or use an extension method that derives the category from the type. To specify the category as a string, call `CreateLogger` on an `ILoggerFactory` instance, as shown below.
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
 
 Most of the time, it will be easier to use  `ILogger<T>`, as in the following example.
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
 
 This is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
 ## Log level
 
-Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
+Each time you write a log, you specify its [LogLevel](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel). The log level indicates the degree of severity or importance. For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
 
-In the following code example, the names of the methods (for example, `LogWarning`) specify the log level.  The first parameter is the [Log event ID](#log-event-id) (explained later in this article).  The remaining parameters construct a log message string.
+In the following code example, the names of the methods (for example, `LogWarning`) specify the log level. The first parameter is the [Log event ID](#log-event-id). The second parameter is a [message template](#log-message-template) with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in more detail later in this article.
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 Log methods that include the level in the method name are [extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions). Behind the scenes, these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
 
@@ -204,9 +204,9 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
 
 Each time you write a log, you can specify an *event ID*. The sample app does this by using a locally-defined `LoggingEvents` class:
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-[!code-csharp[](logging/sample//Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
+[!code-csharp[](logging/sample/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
 
 An event ID is an integer value that you can use to associate a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.
 
@@ -219,13 +219,13 @@ warn: TodoApi.Controllers.TodoController[4000]
       GetById(invalidid) NOT FOUND
 ```
 
-## Log message format string
+## Log message template
 
-Each time you write a log, you provide a text message. The message string can contain named placeholders into which argument values are placed, as in the following example:
+Each time you write a log message, you provide a message template. The message template can be a string or it can contain named placeholders into which argument values are placed. The template isn't a format string, and placeholders should be named, not numbered.
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
-The order of placeholders, not their names, determines which parameters are used for them. For example, if you have the following code:
+The order of placeholders, not their names, determines which parameters are used to provide their values. If you have the following code:
 
 ```csharp
 string p1 = "parm1";
@@ -233,25 +233,25 @@ string p2 = "parm2";
 _logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
-The resulting log message would look like this:
+The resulting log message looks like this:
 
 ```
 Parameter values: parm1, parm2
 ```
 
-The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). Because the arguments themselves are passed to the logging system, not just the formatted message string, logging providers can store the parameter values as fields in addition to the message string. For example, if you are directing your log output to Azure Table Storage, and your logger method call looks like this:
+The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). Because the arguments themselves are passed to the logging system, not just the formatted message template, logging providers can store the parameter values as fields in addition to the message template. If you're directing your log output to Azure Table Storage and your logger method call looks like this:
 
 ```csharp
 _logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
 ```
 
-Each Azure Table entity could have `ID` and `RequestTime` properties, which would simplify queries on log data. You could find all logs within a particular `RequestTime` range, without having to parse the time out of the text message.
+Each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. You can find all logs within a particular `RequestTime` range without the need to parse the time out of the text message.
 
 ## Logging exceptions
 
 The logger methods have overloads that let you pass in an exception, as in the following example:
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
 
 Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
 
@@ -372,7 +372,7 @@ You can group a set of logical operations within a *scope* in order to attach th
 
 A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TState>` method and lasts until it is disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
 
-[!code-csharp[](logging/sample//Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
+[!code-csharp[](logging/sample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
 
 The following code enables scopes for the console provider:
 
@@ -441,7 +441,7 @@ loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
 This code refers to the `Logging` section of the *appSettings.json* file:
 
-[!code-json[](logging/sample//appsettings.json)]
+[!code-json[](logging/sample/appsettings.json)]
 
 The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](configuration.md).
 
@@ -589,7 +589,7 @@ You don't have to install the provider package or call the `AddAzureWebAppDiagno
 loggerFactory.AddAzureWebAppDiagnostics();
 ```
 
-An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs), with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message format string that is applied to all logs, on top of the one that you provide when you call an `ILogger` method.)  
+An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/c7d0b1b88668ff4ef8a86ea7d2ebb5ca7f88d3e0/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs) with which you can override default settings such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs on top of the one that you provide when you call an `ILogger` method.)  
 
 ---
 
