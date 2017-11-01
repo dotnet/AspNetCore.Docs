@@ -14,7 +14,7 @@ uid: security/data-protection/implementation/index
 ---
 # Implementation
 
-* [Authenticated encryption details.](authenticated-encryption-details.md)
+* [Authenticated encryption details](authenticated-encryption-details.md)
 
 * [Subkey Derivation and Authenticated Encryption](subkeyderivation.md)
 
