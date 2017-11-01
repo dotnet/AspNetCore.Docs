@@ -1,8 +1,8 @@
 ---
-title: Introduction
+title: Introduction to authorization
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document provides a basic explanation of authorization and explains how authorization relates to ASP.NET Core.
+keywords: ASP.NET Core,authorization
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

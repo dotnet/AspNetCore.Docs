@@ -1,8 +1,8 @@
 ---
 title: Microsoft Account external login setup
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This tutorial demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
+keywords: ASP.NET Core,Microsoft account,login,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 08/24/2017

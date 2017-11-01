@@ -1,8 +1,8 @@
 ---
 title: Ephemeral data protection providers
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document explains the implementation details of the ASP.NET Core ephemeral data protection providers.
+keywords: ASP.NET Core,data protection,ephemeral providers
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -16,50 +16,50 @@ uid: security/data-protection/implementation/key-storage-ephemeral
 
 <a name="data-protection-implementation-key-storage-ephemeral"></a>
 
-There are scenarios where an application needs a throwaway IDataProtectionProvider. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the package Microsoft.AspNetCore.DataProtection includes a type EphemeralDataProtectionProvider. This type provides a basic implementation of IDataProtectionProvider whose key repository is held solely in-memory and isn't written out to any backing store.
+There are scenarios where an application needs a throwaway `IDataProtectionProvider`. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the [Microsoft.AspNetCore.DataProtection](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection/) package includes a type `EphemeralDataProtectionProvider`. This type provides a basic implementation of `IDataProtectionProvider` whose key repository is held solely in-memory and isn't written out to any backing store.
 
-Each instance of EphemeralDataProtectionProvider uses its own unique master key. Therefore, if an IDataProtector rooted at an EphemeralDataProtectionProvider generates a protected payload, that payload can only be unprotected by an equivalent IDataProtector (given the same [purpose](../consumer-apis/purpose-strings.md#data-protection-consumer-apis-purposes) chain) rooted at the same EphemeralDataProtectionProvider instance.
+Each instance of `EphemeralDataProtectionProvider` uses its own unique master key. Therefore, if an `IDataProtector` rooted at an `EphemeralDataProtectionProvider` generates a protected payload, that payload can only be unprotected by an equivalent `IDataProtector` (given the same [purpose](../consumer-apis/purpose-strings.md#data-protection-consumer-apis-purposes) chain) rooted at the same `EphemeralDataProtectionProvider` instance.
 
-The following sample demonstrates instantiating an EphemeralDataProtectionProvider and using it to protect and unprotect data.
+The following sample demonstrates instantiating an `EphemeralDataProtectionProvider` and using it to protect and unprotect data.
 
-```none
+```csharp
 using System;
-   using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection;
 
-   public class Program
-   {
-       public static void Main(string[] args)
-       {
-           const string purpose = "Ephemeral.App.v1";
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        const string purpose = "Ephemeral.App.v1";
 
-           // create an ephemeral provider and demonstrate that it can round-trip a payload
-           var provider = new EphemeralDataProtectionProvider();
-           var protector = provider.CreateProtector(purpose);
-           Console.Write("Enter input: ");
-           string input = Console.ReadLine();
+        // create an ephemeral provider and demonstrate that it can round-trip a payload
+        var provider = new EphemeralDataProtectionProvider();
+        var protector = provider.CreateProtector(purpose);
+        Console.Write("Enter input: ");
+        string input = Console.ReadLine();
 
-           // protect the payload
-           string protectedPayload = protector.Protect(input);
-           Console.WriteLine($"Protect returned: {protectedPayload}");
+        // protect the payload
+        string protectedPayload = protector.Protect(input);
+        Console.WriteLine($"Protect returned: {protectedPayload}");
 
-           // unprotect the payload
-           string unprotectedPayload = protector.Unprotect(protectedPayload);
-           Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
+        // unprotect the payload
+        string unprotectedPayload = protector.Unprotect(protectedPayload);
+        Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
 
-           // if I create a new ephemeral provider, it won't be able to unprotect existing
-           // payloads, even if I specify the same purpose
-           provider = new EphemeralDataProtectionProvider();
-           protector = provider.CreateProtector(purpose);
-           unprotectedPayload = protector.Unprotect(protectedPayload); // THROWS
-       }
-   }
+        // if I create a new ephemeral provider, it won't be able to unprotect existing
+        // payloads, even if I specify the same purpose
+        provider = new EphemeralDataProtectionProvider();
+        protector = provider.CreateProtector(purpose);
+        unprotectedPayload = protector.Unprotect(protectedPayload); // THROWS
+    }
+}
 
-   /*
-    * SAMPLE OUTPUT
-    *
-    * Enter input: Hello!
-    * Protect returned: CfDJ8AAAAAAAAAAAAAAAAAAAAA...uGoxWLjGKtm1SkNACQ
-    * Unprotect returned: Hello!
-    * << throws CryptographicException >>
-    */
-   ```
+/*
+* SAMPLE OUTPUT
+*
+* Enter input: Hello!
+* Protect returned: CfDJ8AAAAAAAAAAAAAAAAAAAAA...uGoxWLjGKtm1SkNACQ
+* Unprotect returned: Hello!
+* << throws CryptographicException >>
+*/
+```
