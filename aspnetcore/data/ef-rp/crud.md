@@ -34,8 +34,8 @@ The Index and Details pages get and display the requested data with the HTTP GET
 
 The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)  to fetch the requested entity. [FirstOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) is more efficient at fetching one entity:
 
-* Unless the code needs to verify that there are not more than one entity returned from the query. 
-* `SingleOrDefaultAsync` fetches more data and does more unnecessary work.
+* Unless the code needs to verify that there is not more than one entity returned from the query. 
+* `SingleOrDefaultAsync` fetches more data and does unnecessary work.
 
 Globally replace `SingleOrDefaultAsync` with `FirstOrDefaultAsync`. `SingleOrDefaultAsync` is used in 5 places:
 
@@ -53,7 +53,7 @@ Select a Details link. The URL is of the form `http://localhost:5000/Students/De
 
 Update the Edit, Details, and Delete Razor Pages to use the `"{id:int}"` route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`.
 
-A request to the page with the "{id:int}" route template that does **not** include the integer returns an HTTP 404 (not found) error. For example, `http://localhost:5000/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the "{id:int}" route template that does **not** include a integer route value returns an HTTP 404 (not found) error. For example, `http://localhost:5000/Students/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
  ```cshtml
 @page "{id:int?}"
@@ -61,13 +61,13 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 
 Run the app, click on a Details link, and verify the URL is passing the ID as route data (`http://localhost:5000/Students/Details/2`).
 
-Don't globally change `@page` to `@page "{id:int}", doing so breaks the links to the Home and Create pages.
+Don't globally change `@page` to `@page "{id:int}"`, doing so breaks the links to the Home and Create pages.
 
 <!-- See https://github.com/aspnet/Scaffolding/issues/590 -->
 
 ### Add related data
 
-The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
+The scaffolded code for the Students Index page does not include the `Enrollments` property. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
 
 The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
 

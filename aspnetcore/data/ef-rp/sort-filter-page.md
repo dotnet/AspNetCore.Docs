@@ -23,6 +23,8 @@ The following illustration shows a completed page. The column headings are click
 
 ![Students index page](sort-filter-page/_static/paging.png)
 
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part3-sorting).
+
 ## Add sorting to the Index page
 
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
@@ -277,6 +279,4 @@ In the next tutorial, the app uses migrations to update the data model.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/crud)
-<!--
 [Next](xref:data/ef-rp/migrations)
--->

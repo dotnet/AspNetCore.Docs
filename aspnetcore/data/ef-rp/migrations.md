@@ -20,6 +20,8 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part4-migrations).
+
 ## Introduction to migrations
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
@@ -121,7 +123,7 @@ The snapshot file must be in sync with the migrations that created it. A migrati
 
 ## Remove EnsureCreated
 
-For the remainder of this tutorial, migrations will be used with the DB.`EnsureCreated`:
+For the remainder of this tutorial, migrations will be used with the DB. `EnsureCreated`:
  
 * Bypasses migrations and  creates the DB and schema.
 * Does not create a migrations table. 
@@ -198,8 +200,10 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 The app generates the following exception:
 
 ```text
-`SqlException: Cannot open database "ContosoUniversity" requested by the login. The login failed.
+`SqlException: Cannot open database "ContosoUniversity" requested by the login. 
+The login failed.
 Login failed for user 'user name'.
+```
 
 Solution: Run `dotnet ef database update`
 
