@@ -256,7 +256,7 @@
 ####[Key management extensibility](xref:security/data-protection/extensibility/key-management)
 ####[Miscellaneous APIs](xref:security/data-protection/extensibility/misc-apis)
 ###[Implementation](xref:security/data-protection/implementation/index)
-####[Authenticated encryption details.](xref:security/data-protection/implementation/authenticated-encryption-details)
+####[Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
 ####[Subkey Derivation and Authenticated Encryption](xref:security/data-protection/implementation/subkeyderivation)
 ####[Context headers](xref:security/data-protection/implementation/context-headers)
 ####[Key Management](xref:security/data-protection/implementation/key-management)

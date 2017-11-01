@@ -52,7 +52,7 @@ uid: security/data-protection/index
 
 * [Implementation](implementation/index.md)
 
-  * [Authenticated encryption details.](implementation/authenticated-encryption-details.md)
+  * [Authenticated encryption details](implementation/authenticated-encryption-details.md)
 
   * [Subkey Derivation and Authenticated Encryption](implementation/subkeyderivation.md)
 
