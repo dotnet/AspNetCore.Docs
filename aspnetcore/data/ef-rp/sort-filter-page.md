@@ -23,7 +23,7 @@ The following illustration shows a completed page. The column headings are click
 
 ![Students index page](sort-filter-page/_static/paging.png)
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part3-sorting).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
 ## Add sorting to the Index page
 
@@ -267,7 +267,7 @@ Replace the code in the *Views/Home/About.cshtml* file with the following code:
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part3-sorting).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
 ![About page](sort-filter-page/_static/about.png)
 
