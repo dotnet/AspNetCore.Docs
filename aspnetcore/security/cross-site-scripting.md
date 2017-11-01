@@ -1,8 +1,8 @@
 ---
 title: Preventing Cross-Site Scripting
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document introduces Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
+keywords: ASP.NET Core,XSS,vulnerability
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

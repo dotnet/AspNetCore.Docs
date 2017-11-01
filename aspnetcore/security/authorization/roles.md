@@ -1,8 +1,8 @@
 ---
 title: Role based Authorization
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document demonstrates how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
+keywords: ASP.NET Core,authorization,roles
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -16,13 +16,13 @@ uid: security/authorization/roles
 
 <a name="security-authorization-role-based"></a>
 
-When an identity is created it may belong to one or more roles, for example Tracy may belong to the Administrator and User roles whilst Scott may only belong to the user role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](https://docs.microsoft.com/dotnet/api/system.security.principal.genericprincipal.isinrole) property on the [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) class.
+When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](https://docs.microsoft.com/dotnet/api/system.security.principal.genericprincipal.isinrole) property on the [ClaimsPrincipal](https://docs.microsoft.com/dotnet/api/system.security.claims.claimsprincipal) class.
 
 ## Adding role checks
 
-Role based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying roles which the current user must be a member of to access the requested resource.
+Role based authorization checks are declarative&mdash;the developer embeds them within their code, against a controller or an action within a controller, specifying roles which the current user must be a member of to access the requested resource.
 
-For example the following code would limit access to any actions on the `AdministrationController` to users who are a member of the `Administrator` group.
+For example, the following code would limit access to any actions on the `AdministrationController` to users who are a member of the `Administrator` group.
 
 ```csharp
 [Authorize(Roles = "Administrator")]
@@ -31,7 +31,7 @@ public class AdministrationController : Controller
 }
 ```
 
-You can specify multiple roles as a comma separated list;
+You can specify multiple roles as a comma separated list:
 
 ```csharp
 [Authorize(Roles = "HRManager,Finance")]
@@ -52,7 +52,7 @@ public class ControlPanelController : Controller
 }
 ```
 
-You can further limit access by applying additional role authorization attributes at the action level;
+You can further limit access by applying additional role authorization attributes at the action level:
 
 ```csharp
 [Authorize(Roles = "Administrator, PowerUser")]
@@ -106,7 +106,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute;
+Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -116,7 +116,7 @@ public IActionResult Shutdown()
 }
 ```
 
-If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method;
+If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method:
 
 ```csharp
 options.AddPolicy("ElevatedRights", policy =>
