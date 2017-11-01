@@ -31,7 +31,7 @@ namespace ContosoUniversity.Pages.Students
 
             Student = await _context.Students
                 .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {
@@ -55,7 +55,7 @@ namespace ContosoUniversity.Pages.Students
 
             var student = await _context.Students
                             .AsNoTracking()
-                            .SingleOrDefaultAsync(m => m.ID == id);
+                            .FirstOrDefaultAsync(m => m.ID == id);
 
             if (student == null)
             {
