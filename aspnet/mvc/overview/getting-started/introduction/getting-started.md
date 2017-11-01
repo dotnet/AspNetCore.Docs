@@ -17,20 +17,19 @@ Getting Started with ASP.NET MVC 5
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> > [!NOTE]
-> > An updated version of this tutorial is available [here](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc) using the latest version of [Visual Studio.](https://www.visualstudio.com) The new tutorial uses [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/mvc/), which provides many improvements over this tutorial.
-> 
-> 
-> This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
-> 
-> <!-- Download the [completed project](https://github.com/Rick-Anderson/MvcMovie5). -->
-> 
-> This tutorial was written by [Scott Guthrie](https://weblogs.asp.net/scottgu/) (twitter[@scottgu](https://twitter.com/scottgu) ), [Scott Hanselman](http://www.hanselman.com/blog/) (twitter: [@shanselman](https://twitter.com/shanselman) ), and [Rick Anderson](https://twitter.com/RickAndMSFT) ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) )
-> 
-> You need an Azure account to deploy this app to Azure:
-> 
-> - You can [open an Azure account for free](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
-> - You can [activate MSDN subscriber benefits](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
+[!INCLUDE[consider RP](../../../../includes/razor.md)]
+
+ 
+ This tutorial will teach you the basics of building an ASP.NET MVC 5 web app using [Visual Studio 2013](https://www.microsoft.com/visualstudio/eng/2013-downloads).
+ 
+ <!-- Download the [completed project](https://github.com/Rick-Anderson/MvcMovie5). -->
+ 
+ This tutorial was written by [Scott Guthrie](https://weblogs.asp.net/scottgu/) (twitter[@scottgu](https://twitter.com/scottgu) ), [Scott Hanselman](http://www.hanselman.com/blog/) (twitter: [@shanselman](https://twitter.com/shanselman) ), and [Rick Anderson](https://twitter.com/RickAndMSFT) ( [@RickAndMSFT](https://twitter.com/#!/RickAndMSFT) )
+ 
+ You need an Azure account to deploy this app to Azure:
+ 
+ - You can [open an Azure account for free](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
+ - You can [activate MSDN subscriber benefits](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
 
 
 ## Getting Started

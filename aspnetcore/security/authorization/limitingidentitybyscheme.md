@@ -131,7 +131,7 @@ In the preceding code, only the handler with the "Bearer" scheme runs. Any cooki
 
 ## Selecting the scheme with policies
 
-If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies#security-authorization-policies-based), you can set the `AuthenticationSchemes` collection when adding your policy:
+If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies), you can set the `AuthenticationSchemes` collection when adding your policy:
 
 ```csharp
 services.AddAuthorization(options =>

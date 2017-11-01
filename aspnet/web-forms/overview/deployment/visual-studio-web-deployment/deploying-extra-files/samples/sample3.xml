@@ -66,7 +66,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 
     <CopyAllFilesToSingleFolderForMsdeployDependsOn>
       CustomCollectFiles;
-      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+      $(CopyAllFilesToSingleFolderForMsdeployDependsOn);
     </CopyAllFilesToSingleFolderForMsdeployDependsOn>
   </PropertyGroup>
 </Project>

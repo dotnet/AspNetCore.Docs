@@ -35,13 +35,13 @@ Tag Helpers enable server-side code to participate in creating and rendering HTM
 
 Most of the built-in Tag Helpers target existing HTML elements and provide server-side attributes for the element. For example, the `<input>` element used in many of the views in the *Views/Account* folder contains the `asp-for` attribute, which extracts the name of the specified model property into the rendered HTML. The following Razor markup:
 
-```html
+```cshtml
 <label asp-for="Email"></label>
 ```
 
 Generates the following HTML:
 
-```html
+```cshtml
 <label for="Email">Email</label>
 ```
 
@@ -57,13 +57,13 @@ Tag Helpers scope is controlled by a combination of `@addTagHelper`, `@removeTag
 
 If you create a new ASP.NET Core web app named *AuthoringTagHelpers* (with no authentication), the following *Views/_ViewImports.cshtml* file will be added to your project:
 
-[!code-html[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=2&range=2-3)]
+[!code-cshtml[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=2&range=2-3)]
 
 The `@addTagHelper` directive makes Tag Helpers available to the view. In this case, the view file is *Views/_ViewImports.cshtml*, which by default is inherited by all view files in the *Views* folder and sub-directories; making Tag Helpers available. The code above uses the wildcard syntax ("\*") to specify that all Tag Helpers in the specified assembly (*Microsoft.AspNetCore.Mvc.TagHelpers*) will be available to every view file in the *Views* directory or sub-directory. The first parameter after `@addTagHelper` specifies the Tag Helpers to load (we are using "\*" for all Tag Helpers), and the second parameter "Microsoft.AspNetCore.Mvc.TagHelpers" specifies the assembly containing the Tag Helpers. *Microsoft.AspNetCore.Mvc.TagHelpers* is the assembly for the built-in ASP.NET Core Tag Helpers.
 
 To expose all of the Tag Helpers in this project (which creates an assembly named *AuthoringTagHelpers*), you would use the following:
 
-[!code-html[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=3)]
+[!code-cshtml[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=3)]
 
 If your project contains an `EmailTagHelper` with the default namespace (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), you can provide the fully qualified name (FQN) of the Tag Helper:
 
@@ -75,7 +75,7 @@ If your project contains an `EmailTagHelper` with the default namespace (`Author
 
 To add a Tag Helper to a view using an FQN, you first add the FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), and then the assembly name (*AuthoringTagHelpers*). Most developers prefer to use the  "\*" wildcard syntax. The wildcard syntax allows you to insert the wildcard character "\*" as the suffix in an FQN. For example, any of the following directives will bring in the `EmailTagHelper`:
 
-```csharp
+```cshtml
 @addTagHelper AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers
 @addTagHelper AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers
 ```
@@ -98,7 +98,7 @@ You can add a *_ViewImports.cshtml* to any view folder, and the view engine appl
 
 You can disable a Tag Helper at the element level with the Tag Helper opt-out character ("!"). For example, `Email` validation is disabled in the `<span>` with the Tag Helper opt-out character:
 
-```csharp
+```cshtml
 <!span asp-validation-for="Email" class="text-danger"></!span>
 ```
 
@@ -110,7 +110,7 @@ You must apply the Tag Helper opt-out character to the opening and closing tag. 
 
 The `@tagHelperPrefix` directive allows you to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit. For example, you could add the following markup to the *Views/_ViewImports.cshtml* file:
 
-```html
+```cshtml
 @tagHelperPrefix th:
 ```
 In the code image below, the Tag Helper prefix is set to `th:`, so only those elements using the prefix `th:` support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The `<label>` and `<input>` elements have the Tag Helper prefix and are Tag Helper-enabled, while the `<span>` element does not.
@@ -163,13 +163,13 @@ IntelliSense lists the properties and methods available to the model on the page
 
 Tag Helpers attach to HTML elements in Razor views, while [HTML Helpers](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) are invoked as methods interspersed with HTML in Razor views. Consider the following Razor markup, which creates an HTML label with the CSS class "caption":
 
-```html
+```cshtml
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
 ```
 
 The at (`@`) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so [IntelliSense](https://docs.microsoft.com/visualstudio/ide/using-intellisense) can't help. The last argument:
 
-```html
+```cshtml
 new {@class="caption"}
 ```
 
@@ -189,7 +189,7 @@ IntelliSense helps you write the entire line. The `LabelTagHelper` also defaults
 
 generates:
 
-```html
+```cshtml
 <label class="caption" for="FirstName">First Name</label>
 ```
 
@@ -199,7 +199,7 @@ The camel-cased to sentence-cased content is not used if you add content to the 
 
 generates:
 
-```html
+```cshtml
 <label class="caption" for="FirstName">Name First</label>
 ```
 
@@ -209,7 +209,7 @@ The following code image shows the Form portion of the *Views/Account/Register.c
 
 The Visual Studio editor displays C# code with a grey background. For example, the `AntiForgeryToken` HTML Helper:
 
-```html
+```cshtml
 @Html.AntiForgeryToken()
 ```
 
