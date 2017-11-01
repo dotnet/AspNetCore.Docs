@@ -144,6 +144,11 @@ In the command window, enter the following to create the DB and tables.
 dotnet ef database update
 ```
 
+Note: If the `update` command returns the error 'Build failed.`:
+
+* Run the command again.
+* Leave a message at the bottom of the page.
+
 The output from the command is similar to the `migrations add` command output. In the preceding command, logs for the SQL commands that set up the DB are displayed. Most of the logs are omitted in the following sample output:
 
 ```text
