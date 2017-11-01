@@ -54,7 +54,8 @@
 ### [Adding a New Field](tutorials/first-mvc-app-xplat/new-field.md)
 ### [Adding Validation](tutorials/first-mvc-app-xplat/validation.md)
 ### [Examining the Details and Delete methods](tutorials/first-mvc-app/details.md)
-## [Data access - working with EF Core](data/ef-mvc/index.md)
+
+## [Data access - MVC with EF Core](data/ef-mvc/index.md)
 ### [Getting started](data/ef-mvc/intro.md)
 ### [Create, Read, Update, and Delete operations](data/ef-mvc/crud.md)
 ### [Sorting, filtering, paging, and grouping](data/ef-mvc/sort-filter-page.md)
@@ -65,6 +66,18 @@
 ### [Handling concurrency conflicts](data/ef-mvc/concurrency.md)
 ### [Inheritance](data/ef-mvc/inheritance.md)
 ### [Advanced topics](data/ef-mvc/advanced.md)
+
+
+## [Data access - Razor Pages with EF Core](xref:data/index)
+### [Getting started](xref:data/ef-rp/intro)
+### [Create, Read, Update, and Delete operations](xref:data/ef-rp/crud)
+### [Sorting, filtering, paging, and grouping](xref:data/ef-mvc/sort-filter-page)
+### [Migrations](xref:data/ef-rp/migrations)
+### [Creating a complex data model](xref:data/ef-rp/complex-data-model)
+<!--
+### [Reading related data](xref:data/ef-rp/read-related-data)
+-->
+
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)
 ## [Create a Web API](xref:tutorials/first-web-api-mac)
@@ -141,6 +154,7 @@
 ## [Snapshot debugging](https://docs.microsoft.com/azure/application-insights/app-insights-snapshot-debugger)
 
 # [Working with Data](data/index.md)
+## [Getting started with Razor Pages and Entity Framework Core using Visual Studio](xref:data/ef-rp/intro)
 ## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
 ## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
 ## [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
