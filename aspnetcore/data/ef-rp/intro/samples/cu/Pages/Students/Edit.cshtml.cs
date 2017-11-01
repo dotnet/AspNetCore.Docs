@@ -51,7 +51,6 @@ namespace ContosoUniversity.Pages.Students
                 "student",
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                _context.Students.Update(studentToUpdate);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }

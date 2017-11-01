@@ -30,7 +30,7 @@ namespace ContosoUniversity.Pages.Students
                 return NotFound();
             }
 
-            Student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            Student = await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {
@@ -46,7 +46,7 @@ namespace ContosoUniversity.Pages.Students
                 return Page();
             }
 
-            var studentToUpdate = await _context.Students.SingleOrDefaultAsync(
+            var studentToUpdate = await _context.Students.FirstOrDefaultAsync(
                 s => s.ID == id);
 
             if (await TryUpdateModelAsync<Student>(
@@ -54,7 +54,6 @@ namespace ContosoUniversity.Pages.Students
                 "student",
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                _context.Students.Update(studentToUpdate);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }

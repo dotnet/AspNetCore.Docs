@@ -319,7 +319,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 
 Some things to be aware of when writing asynchronous code that uses EF:
 
-* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It does not include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It does not include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
 * An EF context is not threaded safe: don't try to do multiple operations in parallel. 
 

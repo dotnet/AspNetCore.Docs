@@ -497,6 +497,12 @@ Some developers prefer to use the fluent API exclusively so that they can keep t
 * Choose one of these two approaches.
 * Use the chosen approach consistently as much as possible.
 
+Some of the attributes used in the this tutorial are used for:
+
+* Validation only (for example, `MinimumLength`).
+* EF configuration only (for example, `HasKey`).
+* Validation and EF configuration (for example, `[StringLength(50)]`).
+
 For more information about attributes vs. fluent API, see [Methods of configuration](https://docs.microsoft.com/ef/core/modeling/#methods-of-configuration).
 
 ## Entity Diagram Showing Relationships
@@ -521,6 +527,8 @@ The preceding code provides seed data for the new entities. Most of this code cr
 
 * `Enrollments`
 * `CourseAssignment`
+
+Note: [EF 2.1](https://github.com/aspnet/EntityFrameworkCore/wiki/Roadmap) will support [data seeding](https://github.com/aspnet/EntityFrameworkCore/issues/629).
 
 ## Add a migration
 

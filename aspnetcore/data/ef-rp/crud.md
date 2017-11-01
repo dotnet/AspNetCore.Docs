@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE[validation](../../includes/RP-EF/intro.md)]
 
-In the [previous tutorial](xref:data/ef-rp/intro), a Razor Pages web app was created that stores and displays data using EF and SQL Server LocalDB. In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
+In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
 Note: To minimize complexity and keep these tutorials focused on EF, EF code is used in the Razor Pages code-behind files. Some developers use a service layer or repository pattern in to create an abstraction layer between the UI (Razor Pages) and the data access layer.
 
@@ -29,6 +29,18 @@ The scaffolded code uses the following pattern for Create, Edit, and Delete page
 * Save changes to the data with the HTTP POST method `OnPostAsync`.
 
 The Index and Details pages get and display the requested data with the HTTP GET method `OnGetAsync`
+
+## Replace SingleOrDefaultAsync with FirstOrDefaultAsync
+
+The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_)  to fetch the requested entity. [FirstOrDefaultAsync](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) is more efficient at fetching one entity:
+
+* Unless the code needs to verify that there are not more than one entity returned from the query. 
+* `SingleOrDefaultAsync` fetches more data and does more unnecessary work.
+
+Globally replace `SingleOrDefaultAsync` with `FirstOrDefaultAsync`. `SingleOrDefaultAsync` is used in 5 places:
+
+* `OnGetAsync` in the Details page.
+* `OnGetAsync` and `OnPostAsync` in the Edit and Delete pages.
 
 ## Customize the Details page
 
@@ -126,7 +138,7 @@ The following code uses the `StudentVM` view model to create a new student:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/CreateVM.cshtml.cs?name=snippet_OnPostAsync)]
 
-The [SetValues](https://docs.microsoft.com/ dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](https://docs.microsoft.com/ dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. The other object must be based on the same type as this object, or a type derived from the type for this object
+The [SetValues](https://docs.microsoft.com/ dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](https://docs.microsoft.com/ dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. `SetValues` uses property name matching. The view model type doesn't need to be related to the model type, it just needs to have properties that match.
 
 Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
