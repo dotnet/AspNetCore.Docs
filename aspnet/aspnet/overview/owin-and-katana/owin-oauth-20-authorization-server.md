@@ -33,7 +33,7 @@ by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://gith
 > 
 > ## Questions and Comments
 > 
-> If you have questions that are not directly related to the tutorial, you can post them at [http://katanaproject.codeplex.com/discussions](http://katanaproject.codeplex.com/discussions). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
+> If you have questions that are not directly related to the tutorial, you can post them at [Katana Project on GitHub](https://github.com/aspnet/AspNetKatana/). For questions and comments regarding the tutorial itself, see the comments section at the bottom of the page.
 
 
 The [OAuth 2.0 framework](http://tools.ietf.org/html/rfc6749) enables a third-party app to obtain limited access to an HTTP service. Instead of using the resource owner's credentials to access a protected resource, the client obtains an access token (which is a string denoting a specific scope, lifetime, and other access attributes). Access tokens are issued to third-party clients by an authorization server with the approval of the resource owner.

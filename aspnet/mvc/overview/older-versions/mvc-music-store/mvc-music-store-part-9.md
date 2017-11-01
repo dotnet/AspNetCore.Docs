@@ -157,7 +157,6 @@ Since this is a generic error page, the content is very simple. We'll include a 
 
 [!code-cshtml[Main](mvc-music-store-part-9/samples/sample13.cshtml)]
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
 >[!div class="step-by-step"]
 [Previous](mvc-music-store-part-8.md)

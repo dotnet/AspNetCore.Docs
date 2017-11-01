@@ -48,7 +48,7 @@ The benefits of using this approach is that the Model remains independent from t
 > [!NOTE]
 > This Lab is based on ASP.NET MVC 4 and a version of the Music Store sample application customized and minimized to fit only the features shown in this Hands-On Lab.
 > 
-> If you wish to explore the whole **Music Store** tutorial application you can find it in [[http://mvcmusicstore.codeplex.com/](http://mvcmusicstore.codeplex.com/)](http://mvcmusicstore.codeplex.com/).
+> If you wish to explore the whole **Music Store** tutorial application you can find it in [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
 
 
 <a id="Prerequisites"></a>

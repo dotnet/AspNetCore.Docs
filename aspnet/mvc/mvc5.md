@@ -79,7 +79,7 @@ For more information and tutorials, see [ASP.NET Scaffolding Overview](../visual
 
 - [Known issues and breaking changes list](../visual-studio/overview/2013/release-notes.md#knownissues)
 - Get help and discuss ASP.NET MVC 5 in the [forums](https://forums.asp.net/1146.aspx)
-- [Report a bug in ASP.NET MVC 5](http://aspnetwebstack.codeplex.com/workitem/list/basic)
+- [Report a bug in ASP.NET MVC 5](https://github.com/aspnet/AspNetWebStack/issues)
 - [Make a feature request](http://aspnet.uservoice.com/forums/41201-asp-net-mvc)
 
 ### Upgrading from ASP.NET MVC 4

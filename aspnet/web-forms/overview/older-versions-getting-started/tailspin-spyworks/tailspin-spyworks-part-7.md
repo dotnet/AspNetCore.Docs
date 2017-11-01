@@ -89,7 +89,7 @@ Note that we are passing the ProductID in the query string
 
 Next let's add page named ReviewAdd.aspx
 
-This page will use the ASP.NET AJAC Control Toolkit. If you have not already done so you can download it from here [http://ajaxcontroltoolkit.codeplex.com/](http://ajaxcontroltoolkit.codeplex.com/) and there is guidance on setting up the toolkit for use with Visual Studio here [https://www.asp.net/learn/ajax-videos/video-76.aspx](../../../videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md).
+This page will use the ASP.NET AJAX Control Toolkit. If you have not already done so you can download it from [DevExpress](http://devexpress.com/act) and there is guidance on setting up the toolkit for use with Visual Studio here [https://www.asp.net/learn/ajax-videos/video-76.aspx](../../../videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md).
 
 In design mode, drag controls and validators from the toolbox and build a form like the one below.
 

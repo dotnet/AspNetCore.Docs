@@ -314,7 +314,7 @@ The ASP.NET MVC project templates for Visual Studio were updated to include the 
 <a id="RTM-2"></a>
 ### Change: Changed the default ModelMetadataProvider back to DataAnnotationsModelMetadataProvider
 
-The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available on the CodePlex website at [http://aspnet.codeplex.com/](http://aspnet.codeplex.com/).
+The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProvider* class that provided caching on top of the existing *DataAnnotationsModelMetadataProvider* class as a performance improvement. However, some bugs were reported with this implementation, so the change has been reverted and moved into the MVC Futures project, which is available at [ASP.NET WebStack](https://github.com/aspnet/AspNetWebStack).
 
 <a id="RTM-3"></a>
 ### Fixed: Pasting part of a Razor expression that contains whitespace results in it being reversed
@@ -492,7 +492,7 @@ ASP.NET MVC 3 includes the NuGet Package Manager (formerly known as NuPack), whi
 
 You can work with NuGet as a command-line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as a set of PowerShell cmdlets.
 
-For more information about NuGet, visit [http://NuGet.codeplex.com/](http://nupack.codeplex.com/) and read the [Getting Started Guide](http://nupack.codeplex.com/documentation?title=Getting%20Started).
+For more information about NuGet, read the [Nuget Documentation](https://docs.microsoft.com/nuget/).
 
 <a id="_Toc276711787"></a>
 ### Improved "New Project" Dialog Box
@@ -628,13 +628,13 @@ ASP.NET MVC 3 Beta was released on October 6, 2010. The following notes are spec
 
 <a id="0.1__Default_validation_system"></a>This section describes features that have been introduced in the ASP.NET MVC 3 Beta release.
 
-### <a id="0.1__Toc274034216"></a>  NuPack Package Manager
+### <a id="0.1__Toc274034216"></a>  NuGet Package Manager
 
-ASP.NET MVC 3 includes NuPack Package Manager, which is an integrated package management tool for adding libraries and tools to Visual Studio projects. For the most part, it automates the steps that developers take today to get a library into their source tree.
+ASP.NET MVC 3 includes NuGet Package Manager, which is an integrated package management tool for adding libraries and tools to Visual Studio projects. For the most part, it automates the steps that developers take today to get a library into their source tree.
 
-You can work with NuPack as a command line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as set of PowerShell cmdlets.
+You can work with NuGet as a command line tool, as an integrated console window inside Visual Studio 2010, from the Visual Studio context menu, and as set of PowerShell cmdlets.
 
-For more information about NuPack, visit [http://nupack.codeplex.com/](http://nupack.codeplex.com/) and read the [Getting Started Guide](http://nupack.codeplex.com/documentation?title=Getting%20Started).
+For more information about NuGet, read the [NuGet Documentation](https://docs.microsoft.com/nuget/).
 
 ### <a id="0.1__Toc274034217"></a>  Improved New Project Dialog Box
 
@@ -706,7 +706,7 @@ Implementations of this interface should simply delegate to the underlying depen
 
 When there are no registered services of the requested type, ASP.NET MVC expects implementations of this interface to return null from GetService and to return an empty collection from GetServices.
 
-The new DependencyResolver class lets you register classes that implement either the new IDependencyResolver interface or the Common Service Locator interface (IServiceLocator). For more information about Common Service Locator, see [http://commonservicelocator.codeplex.com/](http://commonservicelocator.codeplex.com/).
+The new DependencyResolver class lets you register classes that implement either the new IDependencyResolver interface or the Common Service Locator interface (IServiceLocator). For more information about Common Service Locator, see [CommonServiceLocator on GitHub](https://github.com/unitycontainer/commonservicelocator).
 
 <a id="0.1__Breaking_Changes"></a>
 
