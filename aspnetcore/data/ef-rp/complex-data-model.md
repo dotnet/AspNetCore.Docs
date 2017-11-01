@@ -636,8 +636,4 @@ The next tutorial covers related data.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/migrations)
-
-<!--
-[Next](read-related-data.md)
-
--->
+[Next](xref:data/ef-rp/read-related-data)

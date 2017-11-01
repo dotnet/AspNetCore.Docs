@@ -57,7 +57,7 @@ Don't globally change `@page` to `@page "{id:int}", doing so breaks the links to
 
 The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
 
-The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `SingleOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
+The `OnGetAsync` method of *Pages/Students/Details.cshtml.cs* uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add the following highlighted code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Students/Details.cshtml.cs?name=snippet_Details&highlight=8-12)]
 

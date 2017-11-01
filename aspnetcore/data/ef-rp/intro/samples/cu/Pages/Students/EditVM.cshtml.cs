@@ -26,7 +26,7 @@ namespace ContosoUniversity.Pages.Students
                 return NotFound();
             }
 
-            Student Student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            Student Student = await _context.Students.FirstOrDefaultAsync (m => m.ID == id);
             CopyStudentToStudentVM(Student);
 
             if (Student == null)

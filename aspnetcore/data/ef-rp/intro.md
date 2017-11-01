@@ -170,6 +170,8 @@ Open the *appsettings.json* file and add a connection string as shown in the fol
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
+The preceding connection string uses `ConnectRetryCount=0` to prevent [SQLClient](https://docs.microsoft.com/dotnet/framework/data/adonet/ef/sqlclient-for-the-entity-framework) from hanging.
+
 ### SQL Server Express LocalDB
 
 The connection string specifies a SQL Server LocalDB DB. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
@@ -317,7 +319,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 
 Some things to be aware of when writing asynchronous code that uses EF:
 
-* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`. It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
+* Only statements that cause queries or commands to be sent to the DB are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync`, and `SaveChangesAsync`. It does not include statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
 * An EF context is not threaded safe: don't try to do multiple operations in parallel. 
 

@@ -277,4 +277,6 @@ In the next tutorial, the app uses migrations to update the data model.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/crud)
+<!--
 [Next](xref:data/ef-rp/migrations)
+-->
