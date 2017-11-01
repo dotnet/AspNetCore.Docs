@@ -203,7 +203,7 @@ For more information about TFVC (centralized version control) and Git (distribut
 For more information about branching strategies, see the following resources:
 
 - [Building a Release Pipeline with Team Foundation Server 2012](https://msdn.microsoft.com/en-us/library/dn449957.aspx). Microsoft Patterns and Practices documentation. See chapter 6 for a discussion of branching strategies. Advocates feature toggles over feature branches, and if branches for features are used, advocates keeping them short-lived (hours or days at most).
-- [Version Control Guide](http://vsarbranchingguide.codeplex.com/). Guide to branching strategies by the ALM Rangers. See Branching Strategies.pdf on the Downloads tab.
+- [Version Control Guide](https://aka.ms/vsarsolutions). Guide to branching strategies by the ALM Rangers. See Branching Strategies.pdf on the Downloads tab.
 - [Software Development with Feature Toggles](https://msdn.microsoft.com/en-us/magazine/dn683796.aspx). MSDN Magazine article.
 - [Feature Toggle](http://martinfowler.com/bliki/FeatureToggle.html). Introduction to feature toggles / feature flags on Martin Fowler's blog.
 - [Feature Toggles vs Feature Branches](http://geekswithblogs.net/Optikal/archive/2013/02/10/152069.aspx). Another blog post about feature toggles, by Dylan Smith.

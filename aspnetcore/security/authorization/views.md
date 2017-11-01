@@ -5,7 +5,7 @@ description: This document demonstrates how to inject and utilize the authorizat
 keywords: ASP.NET Core,authorization,IAuthorizationService,Razor authorization
 ms.author: riande
 manager: wpickett
-ms.date: 10/26/2017
+ms.date: 10/30/2017
 ms.topic: article
 ms.assetid: 24ce40d8-9b83-4bae-9d4c-a66350fcc8f8
 ms.technology: aspnet
@@ -71,5 +71,5 @@ In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in 
 
 In the preceding code, the model is passed as a resource the policy evaluation should take into consideration.
 
->[!WARNING]
->Don't rely on showing or hiding parts of your UI as your only authorization method. Hiding a UI element doesn't mean a user cannot access it. You must also authorize the user within your controller code.
+> [!WARNING]
+> Don't rely on toggling visibility of your app's UI elements as the sole authorization check. Hiding a UI element may not completely prevent access to its associated controller action. For example, consider the button in the preceding code snippet. A user can invoke the `Edit` action method if he or she knows the relative resource URL is */Document/Edit/1*. For this reason, the `Edit` action method should perform its own authorization check.

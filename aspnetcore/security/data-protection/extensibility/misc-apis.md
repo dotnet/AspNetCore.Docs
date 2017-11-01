@@ -1,8 +1,8 @@
 ---
 title: Miscellaneous APIs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document outlines the ASP.NET Core data protection ISecret interface.
+keywords: ASP.NET Core,data protection,ISecret
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -21,14 +21,14 @@ uid: security/data-protection/extensibility/misc-apis
 
 ## ISecret
 
-The ISecret interface represents a secret value, such as cryptographic key material. It contains the following API surface.
+The `ISecret` interface represents a secret value, such as cryptographic key material. It contains the following API surface:
 
-* Length : int
+* `Length`: `int`
 
-* Dispose() : void
+* `Dispose()`: `void`
 
-* WriteSecretIntoBuffer(ArraySegment<byte> buffer) : void
+* `WriteSecretIntoBuffer(ArraySegment<byte> buffer)`: `void`
 
-The WriteSecretIntoBuffer method populates the supplied buffer with the raw secret value. The reason this API takes the buffer as a parameter rather than returning a byte[] directly is that this gives the caller the opportunity to pin the buffer object, limiting secret exposure to the managed garbage collector.
+The `WriteSecretIntoBuffer` method populates the supplied buffer with the raw secret value. The reason this API takes the buffer as a parameter rather than returning a `byte[]` directly is that this gives the caller the opportunity to pin the buffer object, limiting secret exposure to the managed garbage collector.
 
-The Secret type is a concrete implementation of ISecret where the secret value is stored in in-process memory. On Windows platforms, the secret value is encrypted via [CryptProtectMemory](https://msdn.microsoft.com/library/windows/desktop/aa380262(v=vs.85).aspx).
+The `Secret` type is a concrete implementation of `ISecret` where the secret value is stored in in-process memory. On Windows platforms, the secret value is encrypted via [CryptProtectMemory](https://msdn.microsoft.com/library/windows/desktop/aa380262(v=vs.85).aspx).

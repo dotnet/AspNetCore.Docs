@@ -321,6 +321,6 @@ This How To explains patch management, including how to keep single or multiple 
 
 The ASP.NET Server Controls for Silverlight ("ASP.NET Silverlight controls"), which are the ASP.NET MediaPlayer and Silverlight controls, have been removed from the Silverlight SDK for Silverlight version 3. This document provides guidance for developers who worked with these ASP.NET...
 
-[Building High Performance Web Applications](https://ajaxcontroltoolkit.codeplex.com/documentation)
+[Building High Performance Web Applications](https://devexpress.com/act)
 
 Learn how to use the new features in ASP.NET Ajax Library to build High Performance Web Applications

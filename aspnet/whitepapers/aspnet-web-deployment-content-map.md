@@ -99,8 +99,8 @@ See also the following section.
 - [How to Deploy a Windows Azure Web Site](https://docs.microsoft.com/azure/app-service-web/web-sites-deploy). Explains options and links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about automating deployment from source control.
 - [Deploying Web Applications in Enterprise Scenarios](../web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md). 40-part tutorial series, shows how to automate deployment in a CI process using Visual Studio 2010 and Team Foundation Server 2010.
 - [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build, by Sayed Hashimi and William Bartholomew](http://msbuildbook.com). This is a book, not a web resource, but it is an essential guide for learning how to configure MSBuild for continuous integration scenarios.
-- [MSBuild Extension Pack](http://msbuildextensionpack.codeplex.com/) (CodePlex site). Includes deployment tasks.
-- [Team Foundation Build Customization Guide](http://vsarbuildguide.codeplex.com/) (CodePlex site). Documentation by ALM Rangers on setting up Team Foundation Server covers web deployment and includes tutorials and videos.
+- [MSBuild Extension Pack](https://github.com/mikefourie/MSBuildExtensionPack). Includes deployment tasks.
+- [Team Foundation Build Customization Guide](https://aka.ms/vsarsolutions). Documentation by ALM Rangers on setting up Team Foundation Server covers web deployment and includes tutorials and videos.
 - [SlowCheetah XML transforms from a CI server](http://sedodream.com/2011/12/12/SlowCheetahXMLTransformsFromACIServer.aspx) (Sayed Hashimi's blog). Explains how to use SlowCheetah, A Visual Studio add-in for transforming app.config and other XML files.
 
 See also [Making sure an application is off-line during deployment](aspnet-web-deployment-content-map.md#appoffline) later in this page.
@@ -171,7 +171,6 @@ See also  Deploying a web application by creating and installing a web deploymen
 - [Migrating a Database to SQL Azure using SSDT](https://blogs.msdn.com/b/ssdt/archive/2012/04/19/migrating-a-database-to-sql-azure-using-ssdt.aspx) (SQL Server Data Tools team blog).
 - [Migrating Data-Centric Applications to Windows Azure](https://msdn.microsoft.com/en-us/library/jj156154.aspx) (MSDN).
 - [Migrating SQL Server Databases to Windows Azure SQL Database](https://msdn.microsoft.com/en-us/library/windowsazure/jj156160.aspx) (MSDN).
-- [SQL Database Migration Wizard](http://sqlazuremw.codeplex.com/) (CodePlex.) A tool for migrating to Windows Azure SQL Database.
 
 
 <a id="aspnetmembership"></a>

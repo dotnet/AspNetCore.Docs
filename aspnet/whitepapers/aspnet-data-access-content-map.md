@@ -201,8 +201,8 @@ Both of these books are up-to-date with current recommended techniques. They pro
 - [SQL Server Editions](https://msdn.microsoft.com/en-us/library/ms178359.aspx#sqlserver) (MSDN). A summary of the available SQL Server editions, with links to more information about each one.)
 - [SQL Server Connection Strings for ASP.NET Web Applications](https://msdn.microsoft.com/en-us/library/jj653752.aspx) (MSDN).
 - [Using SQL Server Compact for ASP.NET Web Applications](https://msdn.microsoft.com/en-us/library/ms247257.aspx) (MSDN).
-- [Microsoft SQL Server: Database Product Samples](https://go.microsoft.com/fwlink?linkid=117483) (CodePlex site). Sample AdventureWorks databases.
-- [Installing Sample Databases](https://go.microsoft.com/fwlink/?linkid=142438) (CodePlex site). In addition to the methods shown here, you can also download one of the sample .mdf files to the App\_Data folder of a web project, convert the database to LocalDB, and create a LocalDB connection string. For information about how to do that, see [How to: Upgrade to LocalDB](https://msdn.microsoft.com/en-us/library/hh873188.aspx).
+- [Microsoft SQL Server: Database Product Samples](https://github.com/Microsoft/sql-server-samples/blob/master/samples/databases/adventure-works/README.md). Sample AdventureWorks databases.
+- [Installing Sample Databases](https://github.com/Microsoft/sql-server-samples/blob/master/samples/databases/adventure-works/README.md). In addition to the methods shown here, you can also download one of the sample .mdf files to the App\_Data folder of a web project, convert the database to LocalDB, and create a LocalDB connection string. For information about how to do that, see [How to: Upgrade to LocalDB](https://msdn.microsoft.com/en-us/library/hh873188.aspx).
 
 See also the following sections on working with SQL Server Express and LocalDB, and choosing between SQL Server and SQL Database.
 

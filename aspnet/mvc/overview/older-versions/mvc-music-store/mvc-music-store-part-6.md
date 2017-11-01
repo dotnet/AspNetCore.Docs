@@ -75,7 +75,6 @@ Typing a single letter in the Title field satisfies the validation requirements,
 
 ![](mvc-music-store-part-6/_static/image3.png)
 
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
 >[!div class="step-by-step"]
 [Previous](mvc-music-store-part-5.md)

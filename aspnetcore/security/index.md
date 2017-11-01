@@ -1,8 +1,8 @@
 ---
 title: Security
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as a table of contents for the various ASP.NET Core security topics.
+keywords: ASP.NET Core,security,authentication,authorization
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -58,7 +58,7 @@ uid: security/index
         *   [Key management extensibility](data-protection/extensibility/key-management.md)
         *   [Miscellaneous APIs](data-protection/extensibility/misc-apis.md)
     *   [Implementation](data-protection/implementation/index.md)
-        *   [Authenticated encryption details.](data-protection/implementation/authenticated-encryption-details.md)
+        *   [Authenticated encryption details](data-protection/implementation/authenticated-encryption-details.md)
         *   [Subkey Derivation and Authenticated Encryption](data-protection/implementation/subkeyderivation.md)
         *   [Context headers](data-protection/implementation/context-headers.md)
         *   [Key Management](data-protection/implementation/key-management.md)

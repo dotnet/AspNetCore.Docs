@@ -255,7 +255,7 @@ When you call the `SaveChanges` method, by default the Entity Framework validate
 <a id="source"></a>
 ## Entity Framework source code
 
-The source code for Entity Framework 6 is available at [http://entityframework.codeplex.com/](http://entityframework.codeplex.com/). Besides source code, you can get [nightly builds](https://entityframework.codeplex.com/wikipage?title=Nightly%20Builds), [issue tracking](http://entityframework.codeplex.com/workitem/list/basic), [feature specs](http://entityframework.codeplex.com/wikipage?title=specs), [design meeting notes](http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes), and more. You can file bugs, and you can contribute your own enhancements to the EF source code.
+The source code for Entity Framework 6 is available at [GitHub](https://github.com/aspnet/EntityFramework6). You can file bugs, and you can contribute your own enhancements to the EF source code.
 
 Although the source code is open, Entity Framework is fully supported as a Microsoft product. The Microsoft Entity Framework team keeps control over which contributions are accepted and tests all code changes to ensure the quality of each release.
 

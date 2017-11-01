@@ -30,11 +30,3 @@ You can install or update to the released NuGet packages by using the NuGet Pack
 
 [!code-console[Main](whats-new-aspnet-web-pages-31/samples/sample1.cmd)]
 
-<a id="bug-fixes"></a>
-## Bug Fixes
-
-ASP.NET Web Pages 3.1.0 contains several bug fixes. You can find the complete list [here](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&status=Closed&type=All&priority=All&release=v5.1%20Preview|v5.1%20RTM&assignedTo=All&component=Web%20Pages%2FRazor&sortField=AssignedTo&sortDirection=Ascending&page=0&reasonClosed=Fixed).
-
-The 3.1.1 package does not contain any changes. The package version number was updated to match the versions of MVC and Web API.
-
-The 3.1.2 package contains IntelliSense updates but no bug fixes.

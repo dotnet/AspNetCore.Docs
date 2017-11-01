@@ -246,7 +246,7 @@ ASP.NET MVC 3 provides better support for applying Dependency Injection (DI) and
 - Model metadata providers (registering and injecting).
 - Value providers (registering and injecting).
 
-MVC 3 supports the [Common Service Locator](http://commonservicelocator.codeplex.com/) library and any DI container that supports that library's `IServiceLocator` interface. It also supports a new `IDependencyResolver` interface that makes it easier to integrate DI frameworks.
+MVC 3 supports the [Common Service Locator](https://github.com/unitycontainer/commonservicelocator) library and any DI container that supports that library's `IServiceLocator` interface. It also supports a new `IDependencyResolver` interface that makes it easier to integrate DI frameworks.
 
 For more information about DI in MVC 3, see the following resources:
 
@@ -265,7 +265,7 @@ NuGet enables developers who maintain open source projects (for example, project
 
 With the ASP.NET 3 Tools Update, project templates include JavaScript libraries pre-installed NuGet packages, so they are updatable via NuGet. Entity Framework Code First is also pre-installed as a NuGet package.
 
-For more information about NuGet, see the [NuGet documentation on the CodePlex site](http://nuget.codeplex.com/documentation?title=Package%20Manager%20Console%20Command%20Reference).
+For more information about NuGet, see the [NuGet documentation](https://docs.microsoft.com/nuget/).
 
 ### Partial-Page Output Caching
 
