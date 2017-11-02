@@ -27,13 +27,13 @@ The sample app demonstrates `LoggerMessage` features with a simple quote trackin
 
 [Define(LogLevel, EventId, String)](/dotnet/api/microsoft.extensions.logging.loggermessage.define) creates an `Action` delegate for logging a message. `Define` overloads permit passing up to six type parameters to a named format string (template).
 
-The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive. The sample app uses all capital-letter placeholder names to distinguish them from any type of variable.
+The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
 
 ## LoggerMessage.DefineScope
 
 [DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) creates a `Func` delegate for defining a [log scope](xref:fundamentals/logging/index#log-scopes). `DefineScope` overloads permit passing up to three type parameters to a named format string (template).
 
-The string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive. The sample app uses all capital-letter placeholder names to distinguish them from any type of variable.
+The string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
 
 ## Implementing LoggerMessage.Define
 
@@ -41,9 +41,11 @@ Each logging message is an `Action` held in a static field created by `LoggerMes
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet1)]
 
-For the `Action`, specify a log level, a unique event identifier, and the message template. For a request for the Index page of the sample app, the log level is `Information`, the event id is `1`, and the template is a string:
+For the `Action`, specify a log level, a unique event identifier (`EventId`) with the name of the static extension method, and the message template. For a request for the Index page of the sample app, the log level is `Information`, the event id is `1` with the name of the `IndexPageRequested` method, and the template is a string:
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet5)]
+
+When you supply the name of the method with your event id, it's used by structured logging stores to provide richer event logging than supplying a numbered event id alone.
 
 The `Action` is invoked through a strongly-typed extension method. In the sample app, the method that logs a message for an Index page GET request is `IndexPageRequested`:
 

@@ -27,15 +27,15 @@ namespace LoggerMessageSample.Internal
             #region snippet5
             _indexPageRequested = LoggerMessage.Define(
                 LogLevel.Information, 
-                1, 
+                new EventId(1, nameof(IndexPageRequested)), 
                 "GET request for Index page");
             #endregion
 
             #region snippet6
             _quoteAdded = LoggerMessage.Define<string>(
                 LogLevel.Information, 
-                2, 
-                "Quote added (Quote = '{QUOTE}')");
+                new EventId(2, nameof(QuoteAdded)), 
+                "Quote added (Quote = '{Quote}')");
             #endregion
 
             // Reserve EventId: 3 (QuoteModified)
@@ -43,17 +43,17 @@ namespace LoggerMessageSample.Internal
             #region snippet7
             _quoteDeleted = LoggerMessage.Define<string, int>(
                 LogLevel.Information, 
-                4, 
-                "Quote deleted (Quote = '{QUOTE}' Id = {ID})");
+                new EventId(4, nameof(QuoteDeleted)), 
+                "Quote deleted (Quote = '{Quote}' Id = {Id})");
 
             _quoteDeleteFailed = LoggerMessage.Define<int>(
                 LogLevel.Error, 
-                5, 
-                "Quote delete failed (Id = {ID})");
+                new EventId(5, nameof(QuoteDeleteFailed)), 
+                "Quote delete failed (Id = {Id})");
             #endregion
 
             #region snippet8
-            _allQuotesDeletedScope = LoggerMessage.DefineScope<int>("All quotes deleted (Count = {COUNT})");
+            _allQuotesDeletedScope = LoggerMessage.DefineScope<int>("All quotes deleted (Count = {Count})");
             #endregion
         }
 

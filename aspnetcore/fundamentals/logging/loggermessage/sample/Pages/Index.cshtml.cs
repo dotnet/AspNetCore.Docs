@@ -16,10 +16,10 @@ namespace LoggerMessageSample.Pages
         private readonly AppDbContext _db;
         private readonly ILogger _logger;
 
-        public IndexModel(AppDbContext db, ILoggerFactory loggerFactory)
+        public IndexModel(AppDbContext db, ILogger<IndexModel> logger)
         {
             _db = db;
-            _logger = loggerFactory.CreateLogger<IndexModel>();
+            _logger = logger;
         }
         #endregion
 
