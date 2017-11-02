@@ -14,7 +14,7 @@ uid: security/authorization/resourcebased
 ---
 # Resource-based authorization
 
-Authorization strategy depends upon the resource being accessed. For example, a document may have an author property. Only the author is allowed to update the document. Consequently, the resource must be loaded from the document repository before an authorization evaluation can be made. This cannot be accomplished with an `Authorize` attribute, as attribute evaluation takes place before data binding and before your own code to load a resource runs inside an action. Instead of declarative authorization with an `Authorize` attribute, imperative authorization is used&mdash;a developer invokes a custom authorization function.
+Authorization strategy depends upon the resource being accessed. For example, a document may have an author property. Only the author is allowed to update the document. Consequently, the resource must be loaded from the document repository before an authorization evaluation can be made. This cannot be accomplished with an `[Authorize]` attribute, as attribute evaluation takes place before data binding and before your own code to load a resource runs inside an action. Instead of declarative authorization with `[Authorize]`, imperative authorization is used&mdash;a developer invokes a custom authorization function.
 
 ## Authorizing within your code
 
