@@ -37,10 +37,10 @@ public class DocumentController : Controller
 `IAuthorizationService` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
 
 ```csharp
-Task<bool> AuthorizeAsync(ClaimsPrincipal user,
+Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
                           object resource,
                           IEnumerable<IAuthorizationRequirement> requirements);
-Task<bool> AuthorizeAsync(ClaimsPrincipal user,
+Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
                           object resource,
                           string policyName);
 ```
@@ -59,7 +59,7 @@ public async Task<IActionResult> Edit(Guid documentId)
         return new HttpNotFoundResult();
     }
 
-    if (await _authorizationService.AuthorizeAsync(User, document, "EditPolicy"))
+    if ((await _authorizationService.AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
     {
         return View(document);
     }
