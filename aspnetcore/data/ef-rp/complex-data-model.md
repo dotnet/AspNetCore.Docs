@@ -646,6 +646,4 @@ The next tutorial covers related data.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/migrations)
-<!--
 [Next](xref:data/ef-rp/read-related-data)
--->

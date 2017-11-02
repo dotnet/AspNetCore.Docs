@@ -12,12 +12,13 @@ ms.prod: asp.net-core
 uid: data/ef-rp/read-related-data
 ---
 
+en-us/
+
 # Reading related data - EF Core with Razor Pages  (6 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[validation](../../includes/RP-EF/intro.md)]
-
 
 In this tutorial, related data is is read and displayed. Related data is data that EF loads into navigation properties.
 
@@ -31,34 +32,41 @@ The following illustrations show the completed pages for this tutorial:
 
 There are several ways that EF can load related data into the navigation properties of an entity:
 
-* Eager loading. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. Eager loading is specified in EF with the `Include` and `ThenInclude` methods.
+* [Eager loading](https://docs.microsoft.com/en-us/ef/core/querying/related-data). Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
   ![Eager loading example](read-related-data/_static/eager-loading.png)
-
-  zz
   
-Rather than a single join query, some of the data can be retrieved in separate queries, and EF "fixes up" the navigation properties. "fixes up" means that EF automatically adds the related entities where they belong. Eager loading with separate queries results in multiple queries sent to the DB.
-
-Consider a query that is currently returning a list, such as `ToList` or `Single`. Queries returning a list don't include related data. To include related data, use the `Load` method instead of a method that returns a list.
+ The data can be retrieved in separate queries, and EF "fixes up" the navigation properties. "fixes up" means that EF automatically populates the navigation properties. Eager loading with separate queries results in multiple queries sent to the DB.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
   
+  Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
 
-* Explicit loading. When the entity is first read, related data isn't retrieved. Code is written that retrieves the related data if it's needed. As in the case of eager loading with separate queries, explicit loading results in multiple queries sent to the DB. The difference is that with explicit loading, the code specifies the navigation properties to be loaded. In Entity Framework Core 1.1 you can use the `Load` method to do explicit loading. For example:
+* [Explicit loading](https://docs.microsoft.com/en-us/ef/core/querying/related-data). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the DB. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
 
   ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
-* Lazy loading. When the entity is first read, related data isn't retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time you try to get data from a navigation property for the first time. Entity Framework Core 1.0 does not support lazy loading.
+* Lazy loading. [EF Core does not currently support lazy loading](https://github.com/aspnet/EntityFrameworkCore/issues/3797). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the DB each time a navigation property is accessed for the first time.
 
 ### Performance considerations
 
-If you know you need related data for every entity retrieved, eager loading often offers the best performance, because a single query sent to the DB is typically more efficient than separate queries for each entity retrieved. For example, suppose that each department has ten related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the DB. A separate query for courses for each department would result in eleven round trips to the DB. The extra round trips to the DB are especially detrimental to performance when latency is high.
+If related data for every entity retrieved is needed:
 
-On the other hand, in some scenarios separate queries is more efficient. Eager loading of all related data in one query might cause a very complex join to be generated, which SQL Server can't process efficiently. Or if you need to access an entity's navigation properties only for a subset of a set of the entities you're processing, separate queries might perform better because eager loading of everything up front would retrieve more data than you need. If performance is critical, it's best to test performance both ways in order to make the best choice.
+* Eager loading generally offers the best performance.
+* Eager loading sends a single query to the DB. A single query is typically more efficient than separate queries for each entity retrieved. 
+
+For example, suppose that each department has 10 related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the DB. A separate query for courses for each department would result in 11 round trips to the DB. The extra round trips to the DB are especially detrimental to performance when latency is high.
+
+In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a very complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, eparate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than seperate queries. It's best to test performance both ways in order to find the optimal approach.
 
 ## Create a Courses page that displays Department name
 
-The Course entity includes a navigation property that contains the Department entity of the department that the course is assigned to. To display the name of the assigned department in a list of courses, you need to get the Name property from the Department entity that is in the `Course.Department` navigation property.
+The Course entity includes a navigation property that contains the Department entity.  The Department entity contains the department that the course is assigned to. 
+
+To display the name of the assigned department in a list of courses:
+
+* Get the `Name` property from the Department entity.
+* The Department entity comes from the `Course.Department` navigation property.
 
 Create a controller named CoursesController for the Course entity type, using the same options for the **MVC Controller with views, using Entity Framework** scaffolder that you did earlier for the Students controller, as shown in the following illustration:
 
