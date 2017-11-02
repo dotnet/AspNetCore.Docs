@@ -36,6 +36,8 @@ public class DocumentController : Controller
 
 `IAuthorizationService` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
 
+# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+
 ```csharp
 Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
                           object resource,
@@ -44,6 +46,19 @@ Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
                           object resource,
                           string policyName);
 ```
+
+# [ASP.NET Core 1.x](#tab/aspnetcore1x)
+
+```csharp
+Task<bool> AuthorizeAsync(ClaimsPrincipal user,
+                          object resource,
+                          IEnumerable<IAuthorizationRequirement> requirements);
+Task<bool> AuthorizeAsync(ClaimsPrincipal user,
+                          object resource,
+                          string policyName);
+```
+
+---
 
 <a name="security-authorization-resource-based-imperative"></a>
 
