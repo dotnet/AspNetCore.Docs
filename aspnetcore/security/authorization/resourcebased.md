@@ -10,18 +10,19 @@ ms.topic: article
 ms.assetid: 0902ba17-5304-4a12-a2d4-e0904569e988
 ms.technology: aspnet
 ms.prod: asp.net-core
-ms.custom: mvc
 uid: security/authorization/resourcebased
 ---
 # Resource-based authorization
 
-Authorization often depends upon the resource being accessed. For example, a document may have an author property. Only the document author would be allowed to update it, so the resource must be loaded from the document repository before an authorization evaluation can be made. This cannot be accomplished with an `Authorize` attribute, as attribute evaluation takes place before data binding and before your own code to load a resource runs inside an action. Instead of declarative authorization, the attribute method, we must use imperative authorization, where a developer calls an authorize function within their own code.
+Authorization strategy depends upon the resource being accessed. For example, a document may have an author property. Only the author is allowed to update the document. Consequently, the resource must be loaded from the document repository before an authorization evaluation can be made. This cannot be accomplished with an `Authorize` attribute, as attribute evaluation takes place before data binding and before your own code to load a resource runs inside an action. Instead of declarative authorization with an `Authorize` attribute, imperative authorization is used&mdash;a developer invokes a custom authorization function.
 
 ## Authorizing within your code
 
-Authorization is implemented as a service, `IAuthorizationService`, registered in the service collection and available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
+Authorization is implemented as an `IAuthorizationService` service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
 ```csharp
+using Microsoft.AspNetCore.Authorization;
+
 public class DocumentController : Controller
 {
     private readonly IAuthorizationService _authorizationService;
@@ -61,7 +62,7 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 <a name="security-authorization-resource-based-imperative"></a>
 
-To call the service, load your resource within your action. Then, call the appropriate `AuthorizeAsync` overload. For example:
+In the following controller, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. The "EditPolicy" authorization policy (not shown) is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
 ```csharp
 public async Task<IActionResult> Edit(Guid documentId)
@@ -86,7 +87,7 @@ public async Task<IActionResult> Edit(Guid documentId)
 
 ## Writing a resource-based handler
 
-Writing a handler for resource-based authorization is not much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). You create a requirement and implement a requirement handler, specifying the requirement as before and also the resource type. For example, a handler accepting a `Document` resource looks as follows:
+Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `MyRequirement` requirement and a `Document` resource looks as follows:
 
 ```csharp
 public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, Document>
@@ -100,6 +101,11 @@ public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, 
         return Task.CompletedTask;
     }
 }
+
+public class MyRequirement : IAuthorizationRequirement
+{
+    // code omitted for brevity
+}
 ```
 
 Don't forget to register the handler in the `Startup.ConfigureServices` method:
@@ -110,7 +116,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD operations, you can use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler, which has a parameterized operation name, rather than create individual classes for each operation. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD operations, you can use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler. Its parameterized operation name eliminates the need to create individual classes for each operation type. To use it, provide some operation names:
 
 ```csharp
 public static class Operations
@@ -126,7 +132,7 @@ public static class Operations
 }
 ```
 
-Your handler can be implemented as follows, using a hypothetical `Document` class as the resource:
+The handler is implemented as follows, using a hypothetical `Document` class as the resource:
 
 ```csharp
 public class DocumentAuthorizationHandler :
@@ -159,4 +165,4 @@ else
 }
 ```
 
-This example checks if the User is able to perform the read operation for the current `document` instance. If authorization succeeds, the view for the document will be returned. If authorization fails, returning `ChallengeResult` will inform any authentication middleware that authorization failed and the middleware can take the appropriate response. For example, returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
+This example checks if the user is able to perform the read operation for the current `document` instance. If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed and the middleware can take the appropriate response. For example, returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
