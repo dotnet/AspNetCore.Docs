@@ -70,21 +70,20 @@ Choosing a TempData provider involves several considerations, such as:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-If targeting .NET Framework, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
-
-The cookie-based TempData provider is enabled by default. Use the following code to change the TempData provider in your `Startup` class:
+The cookie-based TempData provider is enabled by default. The following `Startup` class code configures the session-based TempData provider:
 
 [!code-csharp[](app-state/sample/src/WebAppSessionDotNetCore2.0App/StartupTempDataSession.cs?name=snippet_TempDataSession&highlight=4,6,11)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-Add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
-
-Use the following code to configure the TempData provider in your `Startup` class:
+The following `Startup` class code configures the session-based TempData provider:
 
 [!code-csharp[](app-state/sample/src/WebAppSession/StartupTempDataSession.cs?name=snippet_TempDataSession&highlight=4,9)]
 
 ---
+
+> [!NOTE]
+> If targeting .NET Framework and using the session-based provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
 
 ## Query strings
 
