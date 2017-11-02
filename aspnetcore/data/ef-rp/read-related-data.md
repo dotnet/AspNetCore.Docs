@@ -14,6 +14,12 @@ uid: data/ef-rp/read-related-data
 
 en-us/
 
+\replace\
+
+It helps see the DB schema when reviewing the query:
+
+![Entity diagram](complex-data-model/_static/diagram.png)
+
 # Reading related data - EF Core with Razor Pages  (6 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -68,27 +74,42 @@ To display the name of the assigned department in a list of courses:
 * Get the `Name` property from the Department entity.
 * The Department entity comes from the `Course.Department` navigation property.
 
-Create a controller named CoursesController for the Course entity type, using the same options for the **MVC Controller with views, using Entity Framework** scaffolder that you did earlier for the Students controller, as shown in the following illustration:
+<a name="scaffold"></a>
+### Scaffold the Course model
 
-![Add Courses controller](read-related-data/_static/add-courses-controller.png)
+* Exit Visual Studio.
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
 
-Open *CoursesController.cs* and examine the `Index` method. The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
+ ```console
+dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
+ ```
 
-Replace the `Index` method with the following code that uses a more appropriate name for the `IQueryable` that returns Course entities (`courses` instead of `schoolContext`):
+The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
-<!-- zz
-[!code-csharp[Main](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_RevisedIndexMethod)]
+Build the project. The build generates errors like the following:
+
+`1>Pages\Courses\Index.cshtml.cs(26,37,26,43): error CS1061: 'SchoolContext' does not
+ contain a definition for 'Course' and no extension method 'Course' accepting a first
+ argument of type 'SchoolContext' could be found (are you missing a using directive or 
+ an assembly reference?)`
+
+ Globally change `_context.Course` to `_context.Courses` (that is, add an "s" to `Course`). 7 occurrences are found and updated. 
+ 
+Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
+
+Update the `OnGetAsync` method with the following code that adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The enties are not tracked because they won't be updated in the current context. 
+
+[!code-csharp[Main](intro\samples\cu\Pages\Courses\Index.cshtml.cs?name=snippet_RevisedIndexMethod)]
 
 Open *Views/Courses/Index.cshtml* and replace the template code with the following code. The changes are highlighted:
 
-[!code-html[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-html[](intro\samples\cu\Pages\Courses\Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
-You've made the following changes to the scaffolded code:
+The following changes have been made to the scaffolded code:
 
 * Changed the heading from Index to Courses.
-
-* Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they are meaningless to end users. However, in this case the primary key is meaningful and you want to show it.
-
+* Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they are meaningless to end users. However, in this case the primary key is meaningful.
 * Changed the **Department** column to display the department name. The code displays the `Name` property of the Department entity that's loaded into the `Department` navigation property:
 
   ```html
@@ -101,59 +122,76 @@ Run the app and select the **Courses** tab to see the list with department names
 
 ## Create an Instructors page that shows Courses and Enrollments
 
-In this section, you'll create a controller and view for the Instructor entity in order to display the Instructors page:
-
+In this section, the Instructors page is created. 
+<a name="IP"></a>
 ![Instructors Index page](read-related-data/_static/instructors-index.png)
 
 This page reads and displays related data in the following ways:
 
-* The list of instructors displays related data from the OfficeAssignment entity. The Instructor and OfficeAssignment entities are in a one-to-zero-or-one relationship. You'll use eager loading for the OfficeAssignment entities. As explained earlier, eager loading is typically more efficient when you need the related data for all retrieved rows of the primary table. In this case, you want to display office assignments for all displayed instructors.
-
-* When the user selects an instructor, related Course entities are displayed. The Instructor and Course entities are in a many-to-many relationship. You'll use eager loading for the Course entities and their related Department entities. In this case, separate queries might be more efficient because you need courses only for the selected instructor. However, this example shows how to use eager loading for navigation properties within entities that are themselves in navigation properties.
-
-* When the user selects a course, related data from the Enrollments entity set is displayed. The Course and Enrollment entities are in a one-to-many relationship. You'll use separate queries for Enrollment entities and their related Student entities.
+* The list of instructors displays related data from the `OfficeAssignment` entity. The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. Eager loading is used for the `OfficeAssignment` entities. Eager loading is typically more efficient when the related data needs to be displayed. In this case, office assignments for the instructors are displayed.
+* When the user selects an instructor, related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading for the `Course` entities and their related `Department` entities is used. In this case, separate queries might be more efficient because only courses for the selected instructor is needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
+* When the user selects a course, related data from the `Enrollments` entity is displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship. Separate queries for `Enrollment` entities and their related `Student` entities are used.
 
 ### Create a view model for the Instructor Index view
 
-The Instructors page shows data from three different tables. Therefore, you'll create a view model that includes three properties, each holding the data for one of the tables.
+The instructors page shows data from three different tables. A view model is created that includes three properties. Each property holds data for one of the tables.
 
-In the *SchoolViewModels* folder, create *InstructorIndexData.cs* and replace the existing code with the following code:
+In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/InstructorIndexData.cs)]
 
-### Create the Instructor controller and views
+### Scaffold the Instructor model
 
-Create an Instructors controller with EF read/write actions as shown in the following illustration:
+* Exit Visual Studio.
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Run the following command:
 
-![Add Instructors controller](read-related-data/_static/add-instructors-controller.png)
+ ```console
+dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+ ```
 
-Open *InstructorsController.cs* and add a using statement for the ViewModels namespace:
+The preceding command scaffolds the `Instructor` model. Open the project in Visual Studio.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Using)]
+Build the project. The build generates errors.
 
-Replace the Index method with the following code to do eager loading of related data and put it in the view model.
+Globally change `_context.Instructor` to `_context.Instructors` (that is, add an "s" to `Course`). 7 occurrences are found and updated. 
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_EagerLoading)]
+Replace *Pages\Instructors\Index.cshtml.cs* with the following code:
 
-The method accepts optional route data (`id`) and a query string parameter (`courseID`) that provide the ID values of the selected instructor and selected course. The parameters are provided by the **Select** hyperlinks on the page.
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index1.cshtml.cs?name=snippet_all&highlight=2,20-)]
 
-The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.CourseAssignments` navigation properties. Within the `CourseAssignments` property, the `Course` property is loaded, and within that, the `Enrollments` and `Department` properties are loaded, and within each `Enrollment` entity the `Student` property is loaded.
+The `OnGetAsync` method accepts optional route data:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude)]
+* `id`: The ID of the selected instructor.
+* `courseID` The ID of the selected course. 
 
-Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
+The parameters are provided by the **Select** hyperlinks on the *Pages\Instructors\Index.cshtml*  page.
+
+Examine the query on the *Pages\Instructors\Index.cshtml*  page:
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index1.cshtml.cs?name=snippet_ThenInclude)]
+
+The query has two includes:
+
+* `OfficeAssignment`: Displayed in the [instructors view](#IP). 
+* `CourseAssignments`: Which brings in the courses taught.
+
+<!--
+Used to create the **Select** link. The **Select** link changes the styling of the selected row.
+
+The view requires the `OfficeAssignment entity`, so it's included. `Course` entities are required when an instructor link is selected. A single query which includes `Course` entities is better than multiple queries only if the page is displayed more often with a course selected than without.
 
 The code repeats `CourseAssignments` and `Course` because you need two properties from `Course`. The first string of `ThenInclude` calls gets `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=3-6)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ThenInclude&highlight=3-6)]
 
 At that point in the code, another `ThenInclude` would be for navigation properties of `Student`, which you don't need. But calling `Include` starts over with `Instructor` properties, so you have to go through the chain again, this time specifying `Course.Department` instead of `Course.Enrollments`.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=7-9)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ThenInclude&highlight=7-9)]
 
 The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=56-62)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?range=56-62)]
 
 The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `CourseAssignments` property. The `CourseAssignments` property contains `CourseAssignment` entities, from which you want only the related `Course` entities.
 
@@ -171,7 +209,9 @@ Instead of:
 
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=64-69)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?range=1-)]
+
+<!-- zz
 
 ### Modify the Instructor Index view
 
@@ -243,7 +283,7 @@ When you retrieved the list of instructors in *InstructorsController.cs*, you sp
 
 Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it's requested. To see an example of how to do explicit loading, replace the `Index` method with the following code, which removes eager loading for Enrollments and loads that property explicitly. The code changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ExplicitLoading&highlight=23-29)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ExplicitLoading&highlight=2)]
 
 The new code drops the *ThenInclude* method calls for enrollment data from the code that retrieves instructor entities. If an instructor and course are selected, the highlighted code retrieves Enrollment entities for the selected course, and Student entities for each Enrollment.
 
