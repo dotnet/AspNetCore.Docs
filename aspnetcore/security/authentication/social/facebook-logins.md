@@ -58,6 +58,12 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 
+* To store Facebook `App ID` and `App Secret` in your `Secret Manager` execute the following.
+
+   `dotnet user-secrets set Authentication:Google:AppId <app-Id>`
+
+   `dotnet user-secrets set Authentication:Google:AppSecret <app-secret>`
+
 ## Configure Facebook Authentication
 
 The project template used in this tutorial ensures that [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) package is already installed.
