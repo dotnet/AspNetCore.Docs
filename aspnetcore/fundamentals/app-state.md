@@ -5,7 +5,7 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core,Application state,session state,querystring,post
 ms.author: riande
 manager: wpickett
-ms.date: 10/08/2017
+ms.date: 10/31/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
@@ -33,7 +33,6 @@ The server retains a session for a limited time after the last request. You can 
 
 The in-memory session provider stores session data on the local server. If you plan to run your web app on a server farm, you must use sticky sessions to tie each session to a specific server. The Windows Azure Web Sites platform defaults to sticky sessions (Application Request Routing or ARR). However, sticky sessions can affect scalability and complicate web app updates. A better option is to use the Redis or SQL Server distributed caches, which don't require sticky sessions. For more information, see [Working with a Distributed Cache](xref:performance/caching/distributed). For details on setting up service providers, see [Configuring Session](#configuring-session) later in this article.
 
-
 <a name="temp"></a>
 ## TempData
 
@@ -46,7 +45,7 @@ ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/dotnet/api/mi
 
 In ASP.NET Core 2.0 and later, the cookie-based TempData provider is used by default to store TempData in cookies.
 
-The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.webutilities.base64urltextencoder?view=aspnetcore-2.0). Because the cookie is encrypted and chunked, the single cookie size limit found in ASP.NET Core 1.x does not apply. The cookie data is not compressed because compressing encryped data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
+The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.webutilities.base64urltextencoder?view=aspnetcore-2.0). Because the cookie is encrypted and chunked, the single cookie size limit found in ASP.NET Core 1.x does not apply. The cookie data is not compressed because compressing encrypted data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs).
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -68,35 +67,31 @@ Choosing a TempData provider involves several considerations, such as:
 
 <a name="config-temp"></a>
 ### Configure the TempData provider
+
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-In ASP.NET Core 2.0 and later, the cookie-based TempData provider is enabled by default. Use the following code to change the TempData provider.
+The cookie-based TempData provider is enabled by default. The following `Startup` class code configures the session-based TempData provider:
+
+[!code-csharp[](app-state/sample/src/WebAppSessionDotNetCore2.0App/StartupTempDataSession.cs?name=snippet_TempDataSession&highlight=4,6,11)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-To configure the TempData provider, register a TempData provider implementation in `ConfigureServices`:
+The following `Startup` class code configures the session-based TempData provider:
 
-------
+[!code-csharp[](app-state/sample/src/WebAppSession/StartupTempDataSession.cs?name=snippet_TempDataSession&highlight=4,9)]
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services
-        .AddMvc()
-        .AddSessionStateTempDataProvider();
+---
 
-    // The Session State TempData Provider requires adding the session state service
-    services.AddSession();
-}
-```
+> [!IMPORTANT]
+> If targeting .NET Framework and using the session-based provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
 
 ## Query strings
 
-You can pass a limited amount of data from one request to another by adding it to the new request’s query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason,  you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on CSRF attacks, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md).
+You can pass a limited amount of data from one request to another by adding it to the new request’s query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. However, for this reason, you should never use query strings for sensitive data. In addition to being easily shared, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from your app or take malicious actions on behalf of the user. Any preserved application or session state must protect against CSRF attacks. For more information on CSRF attacks, see [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Post data and hidden fields
 
-Data can be saved in hidden form fields and posted back on the next request. This is common in multipage forms. However, because the  client can potentially tamper with the data, the server must always revalidate it. 
+Data can be saved in hidden form fields and posted back on the next request. This is common in multi-page forms. However, because the client can potentially tamper with the data, the server must always revalidate it. 
 
 ## Cookies
 
@@ -119,7 +114,7 @@ Caching is an efficient way to store and retrieve data. You can control the life
 
 ### Configuring Session
 
-The `Microsoft.AspNetCore.Session` package provides middleware for managing session state. To enable the session middleware, `Startup`must contain:
+The `Microsoft.AspNetCore.Session` package provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
 
 - Any of the [IDistributedCache](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session.
 - [AddSession](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions#Microsoft_Extensions_DependencyInjection_SessionServiceCollectionExtensions_AddSession_Microsoft_Extensions_DependencyInjection_IServiceCollection_) call, which requires NuGet package "Microsoft.AspNetCore.Session".

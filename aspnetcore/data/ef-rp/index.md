@@ -11,7 +11,7 @@ ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/ef-rp/index
 ---
-# Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
+# Getting started with Razor Pages and Entity Framework Core using Visual Studio
 
 This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2017.
 
