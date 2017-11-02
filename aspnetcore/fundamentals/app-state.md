@@ -82,7 +82,7 @@ The following `Startup` class code configures the session-based TempData provide
 
 ---
 
-> [!NOTE]
+> [!IMPORTANT]
 > If targeting .NET Framework and using the session-based provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session) NuGet package to your project.
 
 ## Query strings
