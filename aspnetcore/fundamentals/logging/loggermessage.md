@@ -15,9 +15,9 @@ uid: fundamentals/logging/loggermessage
 
 By [Luke Latham](https://github.com/guardrex)
 
-[LoggerMessage](/dotnet/api/microsoft.extensions.logging.loggermessage) features create cacheable delegates that require fewer object allocations than [logger extension methods](/dotnet/api/Microsoft.Extensions.Logging.LoggerExtensions), such as `LogInformation`, `LogDebug`, and `LogError`. For high-performance logging scenarios, use the `LoggerMessage` pattern.
+[LoggerMessage](/dotnet/api/microsoft.extensions.logging.loggermessage) features create cacheable delegates that require fewer object allocations and reduced computational overhead than [logger extension methods](/dotnet/api/Microsoft.Extensions.Logging.LoggerExtensions), such as `LogInformation`, `LogDebug`, and `LogError`. For high-performance logging scenarios, use the `LoggerMessage` pattern.
 
-Logger extension methods require "boxing" (converting) value types, such as `int`, into `object` types and back. The `LoggerMessage` pattern avoids boxing by using static `Action` fields to define logging messages for strongly-typed extension methods. 
+Logger extension methods require "boxing" (converting) value types, such as `int`, into `object` types and back. The `LoggerMessage` pattern avoids boxing by using static `Action` fields to define logging messages for strongly-typed extension methods. Additionally, the extension methods must parse the message template (named format string) every time a log message is written. Using `LoggerMessage` only requires parsing a template once when the message is defined.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
@@ -27,13 +27,13 @@ The sample app demonstrates `LoggerMessage` features with a simple quote trackin
 
 [Define(LogLevel, EventId, String)](/dotnet/api/microsoft.extensions.logging.loggermessage.define) creates an `Action` delegate for logging a message. `Define` overloads permit passing up to six type parameters to a named format string (template).
 
-The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
+The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses and we recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
 
 ## LoggerMessage.DefineScope
 
 [DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) creates a `Func` delegate for defining a [log scope](xref:fundamentals/logging/index#log-scopes). `DefineScope` overloads permit passing up to three type parameters to a named format string (template).
 
-The string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
+The string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses and we recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
 
 ## Implementing LoggerMessage.Define
 
@@ -153,6 +153,10 @@ Use `DefineScope` to create the delegate. Up to three types can be specified for
 Provide a static extension method with parameters for the types you intend to provide in the log message and returns the `Func` you created. The sample app takes in a `count` of quotes to delete and returns `_allQuotesDeletedScope`:
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet12)]
+
+The scope wraps the logging extension calls with a `using` block:
+
+[!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet4&highlight=5)]
 
 You can inspect the log messages in the app's console output. The following result shows three quotes deleted with the log scope message included:
 
