@@ -228,6 +228,7 @@
 ## [Authorization](xref:security/authorization/index)
 ### [Introduction](xref:security/authorization/introduction)
 ### [Create an app with user data protected by authorization](xref:security/authorization/secure-data)
+### [Razor Pages authorization](xref:security/authorization/razor-pages-authorization)
 ### [Simple Authorization](xref:security/authorization/simple)
 ### [Role based Authorization](xref:security/authorization/roles)
 ### [Claims-Based Authorization](xref:security/authorization/claims)
