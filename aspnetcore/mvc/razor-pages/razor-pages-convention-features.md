@@ -290,3 +290,7 @@ The `ReplaceRouteValueFilter` attribute can be applied directly to a `PageModel`
 Request the Page3 page from the sample app with at `localhost:5000/OtherPages/Page3/TriggerValue`. Notice how the filter replaces the route value:
 
 ![Request to OtherPages/Page3 with a TriggerValue route segment results in the filter replacing the route value with ReplacementValue.](razor-pages-convention-features/_static/otherpages-page3-filter-replacement-value.png)
+
+## See also
+
+* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
