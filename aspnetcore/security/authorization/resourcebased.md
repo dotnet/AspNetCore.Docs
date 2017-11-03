@@ -19,11 +19,13 @@ Authorization strategy depends upon the resource being accessed. Consider a docu
 
 Attribute evaluation occurs before data binding and before execution of the action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
 
+Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/razor-pages/resourcebased/sample) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
+
 ## Use imperative authorization
 
 Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6,9)]
+[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6,9)]
 
 `IAuthorizationService` has two `AuthorizeAsync` method overloads: one accepting the resource and the policy name and the other accepting the resource and a list of requirements to evaluate.
 
@@ -55,17 +57,17 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 In the following controller, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. The "EditPolicy" authorization policy (not shown) is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_DocumentEditAction)]
+[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_DocumentEditAction)]
 
 ## Write a resource-based handler
 
 Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `MyRequirement` requirement and a `Document` resource looks as follows:
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
+[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
 Don't forget to register the requirement and handler in the `Startup.ConfigureServices` method:
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
+[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 
 ### Operational requirements
 
