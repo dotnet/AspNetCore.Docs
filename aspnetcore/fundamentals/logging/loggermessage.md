@@ -6,7 +6,6 @@ ms.author: riande
 manager: wpickett
 ms.date: 10/31/2017
 ms.topic: article
-ms.assetid: 1725ffe9-b6be-4fbb-af35-c8b9363e2292
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: fundamentals/logging/loggermessage
@@ -17,23 +16,26 @@ By [Luke Latham](https://github.com/guardrex)
 
 [LoggerMessage](/dotnet/api/microsoft.extensions.logging.loggermessage) features create cacheable delegates that require fewer object allocations and reduced computational overhead than [logger extension methods](/dotnet/api/Microsoft.Extensions.Logging.LoggerExtensions), such as `LogInformation`, `LogDebug`, and `LogError`. For high-performance logging scenarios, use the `LoggerMessage` pattern.
 
-Logger extension methods require "boxing" (converting) value types, such as `int`, into `object` types and back. The `LoggerMessage` pattern avoids boxing by using static `Action` fields to define logging messages for strongly-typed extension methods. Additionally, the extension methods must parse the message template (named format string) every time a log message is written. Using `LoggerMessage` only requires parsing a template once when the message is defined.
+`LoggerMessage` provides the following performance advantages over Logger extension methods:
+
+* Logger extension methods require "boxing" (converting) value types, such as `int`, into `object`. The `LoggerMessage` pattern avoids boxing by using static `Action` fields. The static `Action` fields define logging messages for strongly-typed extension methods.
+* Logger extension methods must parse the message template (named format string) every time a log message is written. Using `LoggerMessage` only requires parsing a template once when the message is defined.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/sample/) ([how to download](xref:tutorials/index#how-to-download-a-sample))
 
-The sample app demonstrates `LoggerMessage` features with a simple quote tracking database. The user adds, deletes, and deletes all quotes from an in-memory database. As these operations occur, log messages are generated using static extension methods that trigger logging `Action`s.
+The sample app demonstrates `LoggerMessage` features with a basic quote tracking database. The app adds, deletes single, and deletes all quotes from an in-memory database. As these operations occur, log messages are generated using static extension methods that trigger logging actions.
 
 ## LoggerMessage.Define
 
 [Define(LogLevel, EventId, String)](/dotnet/api/microsoft.extensions.logging.loggermessage.define) creates an `Action` delegate for logging a message. `Define` overloads permit passing up to six type parameters to a named format string (template).
 
-The string provided to the `Define` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses and we recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
-
 ## LoggerMessage.DefineScope
 
 [DefineScope(String)](/dotnet/api/microsoft.extensions.logging.loggermessage.definescope) creates a `Func` delegate for defining a [log scope](xref:fundamentals/logging/index#log-scopes). `DefineScope` overloads permit passing up to three type parameters to a named format string (template).
 
-The string provided to the `DefineScope` method is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates because they serve as property names within structured log data. The sample app uses and we recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names (for example, "{Count}", "{FirstName}").
+## Define and DefineScope
+
+The string provided to the `Define` and `DefineScope` methods is a template and not an interpolated string. Placeholders are filled in the order that the types are specified. Placeholder names in the template should be descriptive and consistent across templates.  Placeholder names should be descriptive and consistent because they serve as property names within structured log data. We recommend [Pascal casing](/dotnet/standard/design-guidelines/capitalization-conventions) for placeholder names. For example, `"{Count}", "{FirstName}"`.
 
 ## Implementing LoggerMessage.Define
 
@@ -41,21 +43,36 @@ Each logging message is an `Action` held in a static field created by `LoggerMes
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet1)]
 
-For the `Action`, specify a log level, a unique event identifier (`EventId`) with the name of the static extension method, and the message template. For a request for the Index page of the sample app, the log level is `Information`, the event id is `1` with the name of the `IndexPageRequested` method, and the template is a string:
+For the `Action`, specify:
+
+* The log level.
+* A unique event identifier (`EventId`) with the name of the static extension method.
+* The message template. 
+
+A a request for the Index page of the sample app:
+
+* The log level is `Information`.
+* The event id is `1` with the name of the `IndexPageRequested` method.
+* The template is a string.
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet5)]
 
-When you supply the name of the method with your event id, it's used by structured logging stores to provide richer event logging than supplying a numbered event id alone.
+When the name of the method is supplied with the event id:
 
-The `Action` is invoked through a strongly-typed extension method. In the sample app, the method that logs a message for an Index page GET request is `IndexPageRequested`:
+* The method name is used by structured logging stores. 
+* The method name provides richer event logging than the numbered event id alone.
+
+The `Action` is invoked through a strongly-typed extension method. 
+
+The `IndexPageRequested` logs a logs a message for an Index page GET request in the sample app:
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet9)]
 
-In the Index page's code-behind file, `IndexPageRequested` is called on the logger to log the message (*Pages/Index.cshtml.cs*):
+`IndexPageRequested` logs the message in *Pages/Index.cshtml.cs*:
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet2&highlight=3)]
 
-You can inspect the message in the app's console output:
+The message can be inspected in the app's console output:
 
 ```console
 info: LoggerMessageSample.Pages.IndexModel[1]
@@ -75,11 +92,11 @@ The static extension method for adding a quote, `QuoteAdded`, receives the quote
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-In the Index page's code-behind file, `QuoteAdded` is called to log the message (*Pages/Index.cshtml.cs*):
+In the Index page's code-behind file (*Pages/Index.cshtml.cs*), `QuoteAdded` is called to log the message :
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
-You can inspect the message in the app's console output:
+The message can be inspected in the app's console output:
 
 ```console
 info: LoggerMessageSample.Pages.IndexModel[2]
@@ -87,7 +104,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
       Quote added (Quote = 'You can avoid reality, but you cannot avoid the consequences of avoiding reality. - Ayn Rand')
 ```
 
-The sample app implements a `try`-`catch` pattern for quote deletion. An informational message is logged for a successful delete operation, and an error message is logged for an unsuccessful (exception) delete operation. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
+The sample app implements a `try`-`catch` pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for an  delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -101,14 +118,14 @@ In the Index page code-behind, a successful quote deletion calls the `QuoteDelet
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 
-You can inspect the message in the app's console output when a quote is deleted:
+When a quote is deleted, the message in the app's console can be inspected:
 
 ```console
 info: LoggerMessageSample.Pages.IndexModel[4]
       => RequestId:0HL90M6E7PHK5:00000016 RequestPath:/ => /Index
       Quote deleted (Quote = 'You can avoid reality, but you cannot avoid the consequences of avoiding reality. - Ayn Rand' Id = 1)
 ```
-
+<!-- TODO remove you -->
 You can inspect the message in the app's console output when the exception is logged:
 
 ```console
@@ -136,12 +153,13 @@ Enable `IncludeScopes` in the console logger options:
 logging.AddConsole(options => options.IncludeScopes = true);
 ```
 
-Setting `IncludeScopes` is required in ASP.NET Core 2.0 apps to enable log scopes. Setting `IncludeScopes` via *appsettings* configuration files is a feature that will be available with the ASP.NET Core 2.1 release.
+Setting `IncludeScopes` is required in ASP.NET Core 2.0 apps to enable log scopes. Setting `IncludeScopes` via *appsettings* configuration files is a feature that is planned for the ASP.NET Core 2.1 release.
 
-The sample app also clears other providers and adds filters to reduce the logging output. This makes it easier to see the sample's log messages that demonstrate `LoggerMessage` features:
+The sample app clears other providers and adds filters to reduce the logging output. This makes it easier to see the sample's log messages that demonstrate `LoggerMessage` features:
 
 [!code-csharp[Main](loggermessage/sample/Program.cs?name=snippet1&highlight=22)]
 
+<!-- TODO Is this missing something? To create a field, the following code ???-->
 Create a field to hold a `Func` delegate for the log scope. The sample app creates a field called `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet4)]
@@ -150,6 +168,7 @@ Use `DefineScope` to create the delegate. Up to three types can be specified for
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet8)]
 
+<!-- TODO Is this missing something? Sentence is way to long for machine lang translation ???-->
 Provide a static extension method with parameters for the types you intend to provide in the log message and returns the `Func` you created. The sample app takes in a `count` of quotes to delete and returns `_allQuotesDeletedScope`:
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet12)]
@@ -157,6 +176,8 @@ Provide a static extension method with parameters for the types you intend to pr
 The scope wraps the logging extension calls with a `using` block:
 
 [!code-csharp[Main](loggermessage/sample/Pages/Index.cshtml.cs?name=snippet4&highlight=5)]
+
+<!-- TODO remove you-->
 
 You can inspect the log messages in the app's console output. The following result shows three quotes deleted with the log scope message included:
 
