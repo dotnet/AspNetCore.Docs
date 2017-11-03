@@ -5,7 +5,7 @@ description: This document explains how to handle resource-based authorization i
 keywords: ASP.NET Core,authorization
 ms.author: riande
 manager: wpickett
-ms.date: 11/02/2017
+ms.date: 11/03/2017
 ms.topic: article
 ms.assetid: 0902ba17-5304-4a12-a2d4-e0904569e988
 ms.technology: aspnet
@@ -17,10 +17,10 @@ uid: security/authorization/resourcebased
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Authorization strategy depends upon the resource being accessed. For example, a document may have an author property. Only the author is allowed to update the document. Consequently, the resource must be retrieved from the document repository before authorization evaluation can occur. 
+Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the resource must be retrieved from the document repository before authorization evaluation can occur.
 
 Attribute evaluation occurs before data binding and before execution of the action which loads a resource.
-For these reasons, declarative authorization with an `[Authorize]` attribute cannot be used. Instead, imperative authorization is used&mdash;a developer invokes a custom authorization function.
+For these reasons, declarative authorization with an `[Authorize]` attribute can't be used. Instead, imperative authorization is used&mdash;a developer invokes a custom authorization function.
 
 ## Authorizing within your code
 
@@ -122,7 +122,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD operations, you can use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler. Its parameterized operation name eliminates the need to create individual classes for each operation type. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD operations, use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler. Its parameterized operation name eliminates the need to create individual classes for each operation type. To use it, provide some operation names:
 
 ```csharp
 public static class Operations
@@ -156,7 +156,7 @@ public class DocumentAuthorizationHandler :
 }
 ```
 
-You can see the handler works on `OperationAuthorizationRequirement`. The code inside the handler must take the `Name` property of the supplied requirement into account when performing evaluations.
+The handler works on `OperationAuthorizationRequirement`. The code inside the handler must take the `Name` property of the supplied requirement into account when performing evaluations.
 
 To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your action. For example:
 
