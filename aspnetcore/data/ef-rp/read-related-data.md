@@ -217,7 +217,7 @@ Run the app and select the **Instructors** tab. The page displays the `Location`
 
 Update the `OnGetAsync` method in *Pages\Instructors\Index.cshtml.cs* with the following code:
 
-[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_OnGetAsync?highlight=1,8,16-)]
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-)]
 
 Examine the updated query:
 
