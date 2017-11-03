@@ -1,4 +1,4 @@
-#define first
+//#define first
 #if first
 #region snippet_all
 using ContosoUniversity.Models;

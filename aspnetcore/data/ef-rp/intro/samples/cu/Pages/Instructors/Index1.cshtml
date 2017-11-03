@@ -1,4 +1,4 @@
-@page "{id:int?}"
+@page
 @model ContosoUniversity.Pages.Instructors.IndexModel
 
 @{
@@ -63,64 +63,3 @@
         }
     </tbody>
 </table>
-
-@if (Model.Instructor.Courses != null)
-{
-    <h3>Courses Taught by Selected Instructor</h3>
-    <table class="table">
-        <tr>
-            <th></th>
-            <th>Number</th>
-            <th>Title</th>
-            <th>Department</th>
-        </tr>
-
-        @foreach (var item in Model.Instructor.Courses)
-        {
-            string selectedRow = "";
-            if (item.CourseID == (int?)ViewData["CourseID"])
-            {
-                selectedRow = "success";
-            }
-            <tr class="@selectedRow">
-                <td>
-                    @Html.ActionLink("Select", "OnGetAsync", new { courseID = item.CourseID })
-                </td>
-                <td>
-                    @item.CourseID
-                </td>
-                <td>
-                    @item.Title
-                </td>
-                <td>
-                    @item.Department.Name
-                </td>
-            </tr>
-        }
-
-    </table>
-}
-
-@if (Model.Instructor.Enrollments != null)
-{
-    <h3>
-        Students Enrolled in Selected Course
-    </h3>
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Grade</th>
-        </tr>
-        @foreach (var item in Model.Instructor.Enrollments)
-        {
-            <tr>
-                <td>
-                    @item.Student.FullName
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-            </tr>
-        }
-    </table>
-}

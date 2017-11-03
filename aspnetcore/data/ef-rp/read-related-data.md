@@ -160,12 +160,7 @@ Replace *Pages\Instructors\Index.cshtml.cs* with the following code:
 
 [!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index1.cshtml.cs?name=snippet_all&highlight=2,20-)]
 
-The `OnGetAsync` method accepts optional route data:
-
-* `id`: The ID of the selected instructor.
-* `courseID` The ID of the selected course. 
-
-The parameters are provided by the **Select** hyperlinks on the *Pages\Instructors\Index.cshtml*  page.
+The `OnGetAsync` method accepts optional route data for the ID of the selected instructor. 
 
 Examine the query on the *Pages\Instructors\Index.cshtml*  page:
 
@@ -176,56 +171,17 @@ The query has two includes:
 * `OfficeAssignment`: Displayed in the [instructors view](#IP). 
 * `CourseAssignments`: Which brings in the courses taught.
 
-<!--
-Used to create the **Select** link. The **Select** link changes the styling of the selected row.
 
-The view requires the `OfficeAssignment entity`, so it's included. `Course` entities are required when an instructor link is selected. A single query which includes `Course` entities is better than multiple queries only if the page is displayed more often with a course selected than without.
+### Update the instructors Index page
 
-The code repeats `CourseAssignments` and `Course` because you need two properties from `Course`. The first string of `ThenInclude` calls gets `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
+Update *Pages\Instructors\Index.cshtml* with the following markup:
 
-[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ThenInclude&highlight=3-6)]
+[!code-html[](intro\samples\cu\Pages\Instructors\Index.cshtml?range=1-65&highlight=5,8,16-21,25-32,43-57)]
 
-At that point in the code, another `ThenInclude` would be for navigation properties of `Student`, which you don't need. But calling `Include` starts over with `Instructor` properties, so you have to go through the chain again, this time specifying `Course.Department` instead of `Course.Enrollments`.
+The preceding markup makes the following changes:
 
-[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ThenInclude&highlight=7-9)]
-
-The following code executes when an instructor was selected. The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the Course entities from that instructor's `CourseAssignments` navigation property.
-
-[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?range=56-62)]
-
-The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single Instructor entity being returned. The `Single` method converts the collection into a single Instructor entity, which gives you access to that entity's `CourseAssignments` property. The `CourseAssignments` property contains `CourseAssignment` entities, from which you want only the related `Course` entities.
-
-You use the `Single` method on a collection when you know the collection will have only one item. The Single method throws an exception if the collection passed to it is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. However, in this case that would still result in an exception (from trying to find a `Courses` property on a null reference), and the exception message would less clearly indicate the cause of the problem. When you call the `Single` method, you can also pass in the Where condition instead of calling the `Where` method separately:
-
-```csharp
-.Single(i => i.ID == id.Value)
-```
-
-Instead of:
-
-```csharp
-.Where(I => i.ID == id.Value).Single()
-```
-
-Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
-
-[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?range=1-)]
-
-<!-- zz
-
-### Modify the Instructor Index view
-
-In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
-
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
-
-You've made the following changes to the existing code:
-
-* Changed the model class to `InstructorIndexData`.
-
-* Changed the page title from **Index** to **Instructors**.
-
-* Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` is not null. (Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.)
+* Page title renamed **Instructors**.
+* Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` is not null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -247,29 +203,87 @@ You've made the following changes to the existing code:
   <tr class="@selectedRow">
   ```
 
-* Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.
+* Added a new hyperlink labeled **Select**. This link sends the selected instructor's ID to the `Index` method and sets a background color.
 
   ```html
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
-Run the app and select the **Instructors** tab. The page displays the Location property of related OfficeAssignment entities and an empty table cell when there's no related OfficeAssignment entity.
+Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
 ![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
 
-In the *Views/Instructors/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
+### Add courses taught by selected instructor
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
+Update the `OnGetAsync` method in *Pages\Instructors\Index.cshtml.cs* with the following code:
 
-This code reads the `Courses` property of the view model to display a list of courses. It also provides a **Select** hyperlink that sends the ID of the selected course to the `Index` action method.
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_OnGetAsync?highlight=1,8,16-)]
 
-Refresh the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.
+Examine the updated query:
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_ThenInclude)]
+
+The preceding query adds the `Department` entities.
+
+The following code executes when an instructor is selected (`id != null`). The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_ID)]
+
+The `Where` method returns a collection. In the preceding `Where` method, only a single `Instructor` entity is returned. The `Single` method converts the collection into a single `Instructor` entity (`i.ID == id.Value`). The `Instructor` entity provides access to that to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
+
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
+
+The `Single` method  is used on a collection when  the collection has only one item. The `Single` method throws an exception if the collection passed to it is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. Using `SingleOrDefault` on an empty collection:
+
+* Results in an exception (from trying to find a `Courses` property on a null reference).
+* The exception message would less clearly indicate the cause of the problem. 
+
+The `Single` method can also pass in the `Where` condition instead of calling the `Where` method separately:
+
+```csharp
+.Single(i => i.ID == id.Value)
+```
+
+Instead of:
+
+```csharp
+.Where(I => i.ID == id.Value).Single()
+```
+
+The following code populates the view model's `Enrollments` property when a coure is selected:
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index2.cshtml.cs?name=snippet_courseID)]
+
+Add the following markup to the end of the *Pages\Courses\Index.cshtml* Razor Page:
+
+[!code-html[](intro\samples\cu\Pages\Instructors\Index.cshtml?range=60-&highlight=7-)]
+
+The preceding markup displays a list of courses related to an instructor when an instructor is selected.
+
+Test the app. Click on a **Select** link on the instructors page.
 
 ![Instructors Index page instructor selected](read-related-data/_static/instructors-index-instructor-selected.png)
 
+### Update the instructors page query
+
+Update the query in the `OnGetAsync` method in *Pages\Instructors\Index.cshtml.cs* with the following code:
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_all&highlight=7-9)]
+
+Update *Pages\Instructors\Index.cshtml* with the following markup:
+
+[!code-html[](intro\samples\cu\Pages\Instructors\Index.cshtml?range=1-65&highlight=5,8,16-21,25-32,43-57)]
+
+The preceding markup makes the following changes:
+
+[!code-csharp[Main](intro\samples\cu\Pages\Instructors\Index.cshtml.cs?name=snippet_ThenInclude&highlight=3-6)]
+
+<!-- zz
+
+
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml&range=103-125)]
 
 This code reads the Enrollments property of the view model in order to display a list of students enrolled in the course.
 
