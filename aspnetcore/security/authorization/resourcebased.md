@@ -61,7 +61,7 @@ In the following controller, the resource to be secured is loaded into a custom 
 
 ## Write a resource-based handler
 
-Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `MyRequirement` requirement and a `Document` resource looks as follows:
+Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource looks as follows:
 
 [!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
