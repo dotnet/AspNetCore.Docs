@@ -25,7 +25,7 @@ Use the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/secur
 
 Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
-[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6,9)]
+[!code-csharp[](resourcebased/sample/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
 `IAuthorizationService` has two `AuthorizeAsync` method overloads: one accepting the resource and the policy name and the other accepting the resource and a list of requirements to evaluate.
 
