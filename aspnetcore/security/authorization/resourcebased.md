@@ -17,11 +17,11 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 
 Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
 
-Attribute evaluation occurs before data binding and before execution of the action which loads a resource. For these reasons, declarative authorization with an `[Authorize]` attribute can't be used. Instead, imperative authorization is used&mdash;a developer invokes a custom authorization function.
+Attribute evaluation occurs before data binding and before execution of the action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
 
-## Authorize within your code
+## Use imperative authorization
 
-Authorization is implemented as an `IAuthorizationService` service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
+Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
