@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace ResourceBasedAuthApp.Controllers
 {
+    #region snippet_IAuthServiceDI
     public class DocumentController : Controller
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IDocumentRepository _documentRepository;
 
         public DocumentController(IAuthorizationService authorizationService,
-            IDocumentRepository documentRepository)
+                                  IDocumentRepository documentRepository)
         {
             _authorizationService = authorizationService;
             _documentRepository = documentRepository;
         }
+        #endregion
 
+        #region snippet_DocumentEditAction
         [HttpGet]
         public async Task<IActionResult> Edit(Guid documentId)
         {
@@ -38,6 +41,7 @@ namespace ResourceBasedAuthApp.Controllers
                 return new ChallengeResult();
             }
         }
+        #endregion
 
         public IActionResult Index() => View();
     }

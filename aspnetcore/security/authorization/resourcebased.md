@@ -23,19 +23,7 @@ Attribute evaluation occurs before data binding and before execution of the acti
 
 Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
-```csharp
-using Microsoft.AspNetCore.Authorization;
-
-public class DocumentController : Controller
-{
-    private readonly IAuthorizationService _authorizationService;
-
-    public DocumentController(IAuthorizationService authorizationService)
-    {
-        _authorizationService = authorizationService;
-    }
-}
-```
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6,9)]
 
 `IAuthorizationService` has two `AuthorizeAsync` method overloads: one accepting the resource and the policy name and the other accepting the resource and a list of requirements to evaluate.
 
@@ -67,55 +55,17 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 In the following controller, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. The "EditPolicy" authorization policy (not shown) is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
-```csharp
-public async Task<IActionResult> Edit(Guid documentId)
-{
-    Document document = documentRepository.Find(documentId);
-
-    if (document == null)
-    {
-        return new HttpNotFoundResult();
-    }
-
-    if ((await _authorizationService.AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
-    {
-        return View(document);
-    }
-    else
-    {
-        return new ChallengeResult();
-    }
-}
-```
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Controllers/DocumentController.cs?name=snippet_DocumentEditAction)]
 
 ## Write a resource-based handler
 
 Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `MyRequirement` requirement and a `Document` resource looks as follows:
 
-```csharp
-public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, Document>
-{
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                                   MyRequirement requirement,
-                                                   Document resource)
-    {
-        // Validate the requirement against the resource and identity.
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
-        return Task.CompletedTask;
-    }
-}
+Don't forget to register the requirement and handler in the `Startup.ConfigureServices` method:
 
-public class MyRequirement : IAuthorizationRequirement
-{
-    // code omitted for brevity
-}
-```
-
-Don't forget to register the handler in the `Startup.ConfigureServices` method:
-
-```csharp
-services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
-```
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 
 ### Operational requirements
 

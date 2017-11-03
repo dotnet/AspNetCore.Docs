@@ -33,6 +33,7 @@ namespace ResourceBasedAuthApp
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            #region snippet_ConfigureServicesSample
             services.AddMvc();
 
             services.AddAuthorization(options =>
@@ -43,6 +44,7 @@ namespace ResourceBasedAuthApp
 
             services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
             services.AddScoped<IDocumentRepository, DocumentRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
