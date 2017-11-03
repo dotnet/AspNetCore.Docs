@@ -2,27 +2,24 @@
 title: Resource-based authorization
 author: rick-anderson
 description: This document explains how to handle resource-based authorization in ASP.NET Core when an Authorize attribute won't suffice.
-keywords: ASP.NET Core,authorization
-ms.author: riande
 manager: wpickett
-ms.date: 11/03/2017
-ms.topic: article
-ms.assetid: 0902ba17-5304-4a12-a2d4-e0904569e988
-ms.technology: aspnet
-ms.prod: asp.net-core
+ms.author: riande
 ms.custom: mvc
+ms.date: 11/03/2017
+ms.devlang: csharp
+ms.prod: asp.net-core
+ms.technology: aspnet
 uid: security/authorization/resourcebased
 ---
 # Resource-based authorization
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the resource must be retrieved from the document repository before authorization evaluation can occur.
+Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
 
-Attribute evaluation occurs before data binding and before execution of the action which loads a resource.
-For these reasons, declarative authorization with an `[Authorize]` attribute can't be used. Instead, imperative authorization is used&mdash;a developer invokes a custom authorization function.
+Attribute evaluation occurs before data binding and before execution of the action which loads a resource. For these reasons, declarative authorization with an `[Authorize]` attribute can't be used. Instead, imperative authorization is used&mdash;a developer invokes a custom authorization function.
 
-## Authorizing within your code
+## Authorize within your code
 
 Authorization is implemented as an `IAuthorizationService` service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) for controllers to access.
 
@@ -91,7 +88,7 @@ public async Task<IActionResult> Edit(Guid documentId)
 }
 ```
 
-## Writing a resource-based handler
+## Write a resource-based handler
 
 Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `MyRequirement` requirement and a `Document` resource looks as follows:
 
