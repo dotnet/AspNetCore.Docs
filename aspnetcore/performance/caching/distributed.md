@@ -100,7 +100,7 @@ The SqlServerCache implementation allows the distributed cache to use a SQL Serv
 
 To use the sql-cache tool, add `SqlConfig.Tools` to the `<ItemGroup>` element of the *.csproj* file and run dotnet restore.
 
-[!code-csharp[Main](./distributed/sample/src/DistCacheSample/DistCacheSample.csproj?range=23-25)]
+[!code-xml[Main](./distributed/sample/src/DistCacheSample/DistCacheSample.csproj?range=23-25)]
 
 Test SqlConfig.Tools by running the following command
 
