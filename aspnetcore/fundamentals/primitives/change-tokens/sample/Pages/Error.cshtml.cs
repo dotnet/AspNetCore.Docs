@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ChangeTokenSample.Pages
@@ -13,7 +9,7 @@ namespace ChangeTokenSample.Pages
         
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public void Get()
+        public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
