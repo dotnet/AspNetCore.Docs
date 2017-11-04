@@ -17,7 +17,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Building web applications
 
-[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a Web UI with ASP.NET Core 2.0.
+[Razor Pages](xref:mvc/razor-pages/index) is the recommended approach to create a new Web UI app with ASP.NET Core 2.0.
 
 * [Introduction to Razor Pages in ASP.NET Core](xref:mvc/razor-pages/index)
 * Create a Razor Pages web app with ASP.NET Core
