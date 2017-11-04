@@ -77,7 +77,7 @@ namespace LoggerMessageSample.Pages
             // DO NOT use this approach in production code!
             // You should check quote to see if it's null before removing 
             // it and saving changes to the database. A try-catch is used 
-            // here for demonstration purposes of LoggerQuote features.
+            // here for demonstration purposes of LoggerMessage features.
             try
             {
                 _db.Quotes.Remove(quote);

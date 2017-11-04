@@ -24,7 +24,7 @@ namespace LoggerMessageSample
                     //
                     // Setting options.IncludeScopes is required in ASP.NET Core 2.0
                     // apps. Setting IncludeScopes via appsettings configuration files
-                    // is a feature that will be available with the ASP.NET Core 2.1 release.
+                    // is a feature that's planned for the ASP.NET Core 2.1 release.
                     // See: https://github.com/aspnet/Logging/pull/706
                     logging.ClearProviders();
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
