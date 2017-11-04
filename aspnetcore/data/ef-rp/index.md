@@ -22,3 +22,4 @@ The Razor Pages EF Core series is a work in progress. We hope to complete the se
 3. [Sorting, filtering, paging, and grouping](xref:data/ef-rp/sort-filter-page)
 4. [Migrations](xref:data/ef-rp/migrations)
 5. [Creating a complex data model](xref:data/ef-rp/complex-data-model)
+6. [Reading related data](xref:data/ef-mvc/read-related-data)
