@@ -57,7 +57,7 @@ If related data for every entity retrieved is needed:
 
 For example, suppose that each department has 10 related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the DB. A separate query for courses for each department would result in 11 round trips to the DB. The extra round trips to the DB are especially expensive when latency is high. Cloud environments can have high DB access latency.
 
-In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a very complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, separate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than seperate queries. Testing is required in order to find the optimal approach.
+In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, separate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than separate queries. Testing is required in order to find the optimal approach.
 
 ## Create a Courses page that displays department name
 
@@ -94,15 +94,15 @@ Build the project. The build generates errors like the following:
 
 Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
-Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which is not very useful.
+Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which is not useful.
 
 Update the `OnGetAsync` method with the following code:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod)]
 
-The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The enties are not tracked because they won't be updated in the current context.
+The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they are not updated in the current context.
 
-Update *Views/Courses/Index.cshtml* with the following highligted markup:
+Update *Views/Courses/Index.cshtml* with the following highlighted markup:
 
 [!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -130,12 +130,12 @@ In this section, the Instructors page is created.
 This page reads and displays related data in the following ways:
 
 * The list of instructors displays related data from the `OfficeAssignment` entity (Office in the preceding image). The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. Eager loading is used for the `OfficeAssignment` entities. Eager loading is typically more efficient when the related data needs to be displayed. In this case, office assignments for the instructors are displayed.
-* When the user selects an instructor (Harui in the preceding image), related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading for the `Course` entities and their related `Department` entities is used. In this case, separate queries might be more efficient because only courses for the selected instructor is needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
-* When the user selects a course (Chemistry in the preceding image), related data from the `Enrollments` entity is displayed. In the preceding image, student name and grade is displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship.
+* When the user selects an instructor (Harui in the preceding image), related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading for the `Course` entities and their related `Department` entities is used. In this case, separate queries might be more efficient because only courses for the selected instructor are needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
+* When the user selects a course (Chemistry in the preceding image), related data from the `Enrollments` entity is displayed. In the preceding image, student name and grade are displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship.
 
 ### Create a view model for the Instructor Index view
 
-The instructors page shows data from three different tables. A view model is created that includes the three enities representing the three tables.
+The instructors page shows data from three different tables. A view model is created that includes the three entities representing the three tables.
 
 In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the following code:
 
@@ -183,7 +183,7 @@ Update *Pages/Instructors/Index.cshtml* with the following markup:
 
 The preceding markup makes the following changes:
 
-* Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor when the page directive produces a URL like the the following:
+* Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor when the page directive produces a URL like the following:
 
 	`http://localhost:1234/Instructors?id=2`
 
@@ -263,7 +263,7 @@ Instead of:
 .Where(I => i.ID == id.Value).Single()
 ```
 
-The following code populates the view model's `Enrollments` property when a coure is selected:
+The following code populates the view model's `Enrollments` property when a course is selected:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
@@ -289,7 +289,7 @@ Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of 
 
 [!code-html[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=103-)]
 
-The preceding markup displays a list of the students who are enrolled in a course when that course is selected.
+The preceding markup displays a list of the students who are enrolled in the selected course.
 
 Refresh the page and select an instructor. Select a course to see the list of enrolled students and their grades.
 
@@ -301,7 +301,7 @@ The current code specifies eager loading for `Enrollments` and `Students`:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
 
-Suppose users rarely want to see enrollments in a course. In that case, a optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
+Suppose users rarely want to see enrollments in a course. In that case, an optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
 
 Update the `OnGetAsync` with the following code:
 
@@ -314,7 +314,7 @@ The preceding code drops the *ThenInclude* method calls for enrollment and stude
 
 Notice the preceding code comments out `.AsNoTracking()`. Navigation properties can only be explicitly loaded for tracked entities.
 
-Test the app. From a users perspective, the app behavies identically to the previous version.
+Test the app. From a users perspective, the app behaves identically to the previous version.
 
 The next tutorial shows how to update related data.
 
