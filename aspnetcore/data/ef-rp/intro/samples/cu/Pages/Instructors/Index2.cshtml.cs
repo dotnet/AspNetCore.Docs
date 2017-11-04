@@ -54,8 +54,8 @@ namespace ContosoUniversity.Pages.Instructors
                     x => x.CourseID == courseID).Single().Enrollments;
             }
             #endregion
-            #endregion
         }
+        #endregion
     }
 }
 #endregion

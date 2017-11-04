@@ -19,9 +19,8 @@ namespace ContosoUniversity.Pages.Courses
             _context = context;
         }
 
-        public IList<Course> Course { get; set; }
+        public IList<Course> Course { get;set; }
 
-        #region snippet_RevisedIndexMethod
         public async Task OnGetAsync()
         {
             Course = await _context.Courses
@@ -29,6 +28,5 @@ namespace ContosoUniversity.Pages.Courses
                 .AsNoTracking()
                 .ToListAsync();
         }
-        #endregion
     }
 }

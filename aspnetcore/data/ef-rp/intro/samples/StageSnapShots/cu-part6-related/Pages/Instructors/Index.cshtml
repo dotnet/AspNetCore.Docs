@@ -60,7 +60,7 @@
                     <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
             </tr>
-        }
+                        }
     </tbody>
 </table>
 
@@ -84,15 +84,15 @@
             }
             <tr class="@selectedRow">
                 <td>
-                    @Html.ActionLink("Select", "OnGetAsync", 
-                                  new { courseID = item.CourseID })
+                    @Html.ActionLink("Select", "OnGetAsync", new { courseID = item.CourseID })
                 </td>
                 <td>
                     @item.CourseID
                 </td>
                 <td>
                     @item.Title
-                </td>  <td>
+                </td>
+                <td>
                     @item.Department.Name
                 </td>
             </tr>
