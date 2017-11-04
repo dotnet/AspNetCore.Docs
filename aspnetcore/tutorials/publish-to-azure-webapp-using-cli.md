@@ -60,7 +60,7 @@ You can then test the application by browsing to the displayed address (usually 
 
 ## Create the Azure App Service instance
 
-Using either the [Azure Cloud Shell](/azure/cloud-shell/quickstart), create a resource group, App Service plan, and an App Service web app.
+Using the [Azure Cloud Shell](/azure/cloud-shell/quickstart), create a resource group, App Service plan, and an App Service web app.
 
 ```azurecli-interactive
 # Generate a unique Web App name
