@@ -69,6 +69,7 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Publishing and deployment
 * [Deploy an ASP.NET Core web app to Azure using Visual Studio](publish-to-azure-webapp-using-vs.md)
+* [Deploy an ASP.NET Core web app to Azure using the command line](publish-to-azure-webapp-using-cli.md)
 * [Publishing to an Azure Web App with Continuous Deployment](../publishing/azure-continuous-deployment.md)
 * [Deploy an ASP.NET container to a remote Docker host](https://docs.microsoft.com/azure/vs-azure-tools-docker-hosting-web-apps-in-docker)
 * [ASP.NET Core on Nano Server](nano-server.md)
