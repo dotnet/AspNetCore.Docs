@@ -1,6 +1,6 @@
 ---
 uid: web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-hidden-field-divs
-title: "ASP.NET 4 "Quick Hit" - Hidden Field Divs | Microsoft Docs"
+title:  Hidden Field Divs | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn how div elements around hidden fields are now styled so they do not interfere with user-created CSS rules."
 ms.author: aspnetcontent

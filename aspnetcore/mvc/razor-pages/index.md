@@ -409,4 +409,5 @@ services.AddMvc()
 
 ## See also
 
+* [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization)
 * [Razor Pages custom route and page model providers](xref:mvc/razor-pages/razor-pages-convention-features)

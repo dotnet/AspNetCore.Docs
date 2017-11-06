@@ -38,7 +38,10 @@ To complete this tutorial, you'll need:
 
 Create a new directory for the web application, create a new ASP.NET Core MVC application, and then run the website locally.
 
+<<<<<<< HEAD
 # [Windows](#tab/windows)
+=======
+>>>>>>> upstream/master
 ```cmd
 REM Create a new ASP.NET Core MVC application
 dotnet new razor -o MyApplication
@@ -50,6 +53,7 @@ REM Run the application
 dotnet run
 ```
 
+<<<<<<< HEAD
 # [Other](#tab/other)
 ```bash
 # Create a new ASP.NET Core MVC application
@@ -63,6 +67,8 @@ dotnet run
 ```
 ---
 
+=======
+>>>>>>> upstream/master
 ![Command line output](publish-to-azure-webapp-using-cli/_static/new_prj.png)
 
 Test the application by browsing to http://localhost:5000.
@@ -108,7 +114,10 @@ You're ready to deploy from your local machine using Git.
 
 > [!NOTE] It's safe to ignore any warnings from Git about line endings.
 
+<<<<<<< HEAD
 # [Windows](#tab/windows)
+=======
+>>>>>>> upstream/master
 ```cmd
 REM Initialize the local Git repository
 git init
@@ -126,6 +135,7 @@ REM Push the local repository to the remote
 git push azure master
 ```
 
+<<<<<<< HEAD
 # [Other](#tab/other)
 ```bash
 # Initialize the local Git repository
@@ -145,6 +155,8 @@ git push azure master
 ```
 ---
 
+=======
+>>>>>>> upstream/master
 Git will prompt for the deployment credentials that were set earlier.  After authenticating, the application will be pushed to the remote location, built, and deployed.
 
 ![Git deployment output](publish-to-azure-webapp-using-cli/_static/post_deploy.png)

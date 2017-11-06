@@ -1,6 +1,6 @@
 ---
 uid: web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-new-multi-targeting
-title: "Visual Studio 2010 "Quick Hit" - New Multi-Targeting | Microsoft Docs"
+title: Visual Studio 2010 Quick Hit- New Multi-Targeting | Microsoft Docs
 author: JoeStagner
 description: "In this video you will learn how to use Visual Studio's enhanced multi-targeting support which allows you to use and target multiple versions of .NET."
 ms.author: aspnetcontent
