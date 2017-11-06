@@ -15,9 +15,4 @@
     <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.5.357" />
   </ItemGroup>
 
-  <!-- For information on Bower, see https://bower.io/ and https://docs.microsoft.com/aspnet/core/client-side/bower -->
-  <Target Name="PreBuildScript" BeforeTargets="PrepareForBuild">
-    <Exec Command="bower install" />
-  </Target>
-
 </Project>
