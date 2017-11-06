@@ -99,7 +99,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
       Quote added (Quote = 'You can avoid reality, but you cannot avoid the consequences of avoiding reality. - Ayn Rand')
 ```
 
-The sample app implements a `try`&ndash;`catch` pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for an delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
+The sample app implements a `try`&ndash;`catch` pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for a delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[Main](loggermessage/sample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -148,7 +148,7 @@ Enable `IncludeScopes` in the console logger options:
 
 Setting `IncludeScopes` is required in ASP.NET Core 2.0 apps to enable log scopes. Setting `IncludeScopes` via *appsettings* configuration files is a feature that's planned for the ASP.NET Core 2.1 release.
 
-The sample app clears other providers and adds filters to reduce the logging output. This makes it easier to see the sample's log messages that demonstrate `LoggerMessage` features
+The sample app clears other providers and adds filters to reduce the logging output. This makes it easier to see the sample's log messages that demonstrate `LoggerMessage` features.
 
 To create a log scope, add a field to hold a `Func` delegate for the scope. The sample app creates a field called `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
