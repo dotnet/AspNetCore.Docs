@@ -71,7 +71,7 @@ Don't forget to register the requirement and handler in the `Startup.ConfigureSe
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD operations, use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler. Its parameterized operation name eliminates the need to create individual classes for each operation type. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD operations, use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
 
 ```csharp
 public static class Operations
