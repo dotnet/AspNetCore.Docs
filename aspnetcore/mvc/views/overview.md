@@ -317,7 +317,7 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
 
 **When to use ViewData or ViewBag**
 
-Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use (or both) comes down to personal preference or the preference of your organization. Though you can mix and match `ViewData` and `ViewBag` objects, the code is easier to read and maintain when you choose only one and use it consistently. Since both are dynamically resolved at runtime and thus prone to causing runtime errors, use them carefully. Some developers avoid them completely.
+Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use is based on preference. You can mix and match `ViewData` and `ViewBag` objects, however, the code is easier to read and maintain with one approach used consistently. Both approaches are dynamically resolved at runtime and thus prone to causing runtime errors. Some development teams avoid them.
 
 ### Dynamic views
 

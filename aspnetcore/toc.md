@@ -196,6 +196,7 @@
 #### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/)
 ## [Deployment](xref:tutorials/publish-to-azure-webapp-using-vs)
 ### [Publish to Azure with Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs)
+### [Publish to Azure with CLI tools](xref:tutorials/publish-to-azure-webapp-using-cli)
 ### [Continuous deployment to Azure with Visual Studio and Git](xref:publishing/azure-continuous-deployment)
 ### [Continuous deployment to Azure with VSTS](https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure)
 ### [Publish profiles in Visual Studio](xref:publishing/web-publishing-vs)
