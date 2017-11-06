@@ -39,13 +39,11 @@ To complete this tutorial, you'll need:
 Create a new directory for the web application, create a new ASP.NET Core MVC application, and then run the website locally.
 
 ```cmd
-REM Create the directory and navigate to it.
-REM These commands are Windows-specific. The Bash equivalents are mkdir and cd.
-md MyApplication
-cd MyApplication
-
 REM Create a new ASP.NET Core MVC application
-dotnet new mvc
+dotnet new razor -o MyApplication
+
+REM Change to the new directory that was just created
+cd MyApplication
 
 REM Run the application
 dotnet run
@@ -53,7 +51,7 @@ dotnet run
 
 ![Command line output](publish-to-azure-webapp-using-cli/_static/new_prj.png)
 
-You can then test the application by browsing to the displayed address (usually `http://localhost:5000`).
+Test the application by browsing to http://localhost:5000.
 
 ![The website running locally](publish-to-azure-webapp-using-cli/_static/app_test.png)
 
@@ -77,18 +75,18 @@ az appservice plan create --name $webappname --resource-group DotNetAzureTutoria
 az webapp create --name $webappname --resource-group DotNetAzureTutorial --plan $webappname
 ```
 
-Before you deploy, you need to set the account-level deployment credentials.  Use the script below, making sure to include your own values for the user name and password.
+Before deployment, set the account-level deployment credentials using the following command:
 
 ```azurecli-interactive
 az webapp deployment user set --user-name <desired user name> --password <desired password>
 ```
 
-You'll also need the deployment URL to deploy the application using Git.  Retrieve the URL like this.
+A deployment URL is needed to deploy the application using Git.  Retrieve the URL like this.
 
 ```azurecli-interactive
 az webapp deployment source config-local-git -n $webappname -g DotNetAzureTutorial --query [url] -o tsv
 ```
-Note the displayed URL ending in `.git`.  You'll need it in the next step.
+Note the displayed URL ending in `.git`. It's used in the next step.
 
 ## Deploy the application using Git
 
@@ -113,7 +111,7 @@ REM Push the local repository to the remote
 git push azure master
 ```
 
-You will be prompted for the deployment credentials you set earlier.  After authenticating, the application will be built remotely and deployed.
+Git will prompt for the deployment credentials that were set earlier.  After authenticating, the application will be pushed to the remote location, built, and deployed.
 
 ![Git deployment output](publish-to-azure-webapp-using-cli/_static/post_deploy.png)
 
@@ -129,7 +127,7 @@ az webapp show -n $webappname -g DotNetAzureTutorial --query defaultHostName -o 
 
 ## Clean up
 
-When you're done testing the app and inspecting the code and resources, you can delete the web app and plan by deleting the resource group.
+When finished testing the app and inspecting the code and resources, delete the web app and plan by deleting the resource group.
 
 ```azurecli-interactive
 az group delete -n DotNetAzureTutorial
