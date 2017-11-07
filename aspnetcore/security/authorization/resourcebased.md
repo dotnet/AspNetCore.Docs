@@ -87,7 +87,7 @@ The handler is implemented as follows, using a `Document` class as the resource:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_Handler)]
 
-The handler works on `OperationAuthorizationRequirement`. The code inside the handler must take the `Name` property of the supplied requirement into account when performing evaluations.
+The preceding handler accepts a requirement of type `OperationAuthorizationRequirement`. It validates the operation using the resource, the identity, and the requirement's `Name` property.
 
 To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your action. For example:
 

@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 
 namespace ResourceBasedAuthApp1.Services
 {
-    public class DocumentAuthorizationHandler : AuthorizationHandler<SameAuthorRequirement, Document>
+    public class DocumentAuthorizationHandler : 
+        AuthorizationHandler<SameAuthorRequirement, Document>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
                                                        SameAuthorRequirement requirement,

@@ -13,8 +13,6 @@ namespace ResourceBasedAuthApp1.Services
                                                        OperationAuthorizationRequirement requirement,
                                                        Document resource)
         {
-            // Validate the operation using the resource, the identity, and
-            // the Name property value from the requirement.
             if (context.User.Identity?.Name == resource.Author &&
                 requirement.Name == Operations.Read.Name)
             {
