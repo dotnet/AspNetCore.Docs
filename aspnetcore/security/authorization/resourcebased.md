@@ -1,5 +1,5 @@
 ---
-title: Resource-based authorization
+title: Resource-based authorization in ASP.NET Core
 author: rick-anderson
 description: This document explains how to handle resource-based authorization in ASP.NET Core when an Authorize attribute won't suffice.
 manager: wpickett
@@ -9,6 +9,7 @@ ms.date: 11/07/2017
 ms.devlang: csharp
 ms.prod: asp.net-core
 ms.technology: aspnet
+ms.topic: article
 uid: security/authorization/resourcebased
 ---
 # Resource-based authorization
@@ -79,15 +80,15 @@ Don't forget to register the requirement and handler in the `Startup.ConfigureSe
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD (**C**reate, **R**ead, **U**pdate, **D**elete) operations, use the native [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This requirement class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD (**C**reate, **R**ead, **U**pdate, **D**elete) operations, use the [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_OperationsClass)]
 
-The handler is implemented as follows, using a `Document` class as the resource:
+The handler is implemented as follows, using an `OperationAuthorizationRequirement` requirement and a `Document` resource:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_Handler)]
 
-The preceding handler accepts a requirement of type `OperationAuthorizationRequirement`. It validates the operation using the resource, the identity, and the requirement's `Name` property.
+The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
 To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your action. For example:
 
