@@ -495,7 +495,7 @@ namespace ResourceBasedAuthApp2.Controllers
         {
             return string.Format(
                 AuthenicatorUriFormat,
-                _urlEncoder.Encode("ResourceBasedAuthApp"),
+                _urlEncoder.Encode("ResourceBasedAuthApp2"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

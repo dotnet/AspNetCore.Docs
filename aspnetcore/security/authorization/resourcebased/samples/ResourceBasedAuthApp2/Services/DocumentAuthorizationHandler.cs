@@ -17,8 +17,6 @@ namespace ResourceBasedAuthApp2.Services
                 context.Succeed(requirement);
             }
 
-            // TODO: Use the following when targeting .NET Framework:
-            // return Task.FromResult(0);
             return Task.CompletedTask;
         }
     }

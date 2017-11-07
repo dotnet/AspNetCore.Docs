@@ -125,7 +125,7 @@ namespace ResourceBasedAuthApp2.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ResourceBasedAuthApp.Models.ApplicationUser", b =>
+            modelBuilder.Entity("ResourceBasedAuthApp2.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -184,7 +184,7 @@ namespace ResourceBasedAuthApp2.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("ResourceBasedAuthApp.Models.ApplicationUser")
+                    b.HasOne("ResourceBasedAuthApp2.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -192,7 +192,7 @@ namespace ResourceBasedAuthApp2.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("ResourceBasedAuthApp.Models.ApplicationUser")
+                    b.HasOne("ResourceBasedAuthApp2.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -205,7 +205,7 @@ namespace ResourceBasedAuthApp2.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ResourceBasedAuthApp.Models.ApplicationUser")
+                    b.HasOne("ResourceBasedAuthApp2.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
