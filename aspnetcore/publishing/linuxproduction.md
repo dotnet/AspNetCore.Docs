@@ -153,7 +153,8 @@ Restart=always
 RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
 SyslogIdentifier=dotnet-example
 User=www-data
-Environment=ASPNETCORE_ENVIRONMENT=Production 
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
 [Install]
 WantedBy=multi-user.target
