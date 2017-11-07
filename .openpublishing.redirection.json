@@ -99,6 +99,11 @@
         "source_path": "aspnetcore/security/https.md",
         "redirect_url": "/aspnet/core/security/enforcing-ssl",
         "redirect_document_id": false
-    }
+    },
+    {
+        "source_path": "aspnetcore/fundamentals/logging.md",
+        "redirect_url": "/aspnet/core/fundamentals/logging/",
+        "redirect_document_id": false
+    },
   ] 
 }
