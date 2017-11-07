@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-    <ProjectUiSubcaption>ASP.NET Core, .NET Core 1.1</ProjectUiSubcaption>
+    <ProjectUISubcaption>ASP.NET Core, .NET Core 1.1</ProjectUISubcaption>
     <UserSecretsId>aspnet-ResourceBasedAuthApp1-CC7427C8-AF04-45FF-B661-217560AD90A8</UserSecretsId>
   </PropertyGroup>
 

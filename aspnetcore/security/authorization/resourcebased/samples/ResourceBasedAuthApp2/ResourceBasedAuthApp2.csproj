@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ProjectUiSubcaption>ASP.NET Core, .NET Core 2.0</ProjectUiSubcaption>
+    <ProjectUISubcaption>ASP.NET Core, .NET Core 2.0</ProjectUISubcaption>
     <UserSecretsId>aspnet-ResourceBasedAuthApp-EE5E4AC0-FD64-482C-A34E-E1E13381148F</UserSecretsId>
   </PropertyGroup>
 
