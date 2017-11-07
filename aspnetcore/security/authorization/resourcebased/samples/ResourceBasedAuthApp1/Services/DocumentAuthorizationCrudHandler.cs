@@ -19,8 +19,9 @@ namespace ResourceBasedAuthApp1.Services
                 context.Succeed(requirement);
             }
 
-            // TODO: Use the following when targeting .NET Framework:
-            // return Task.FromResult(0);
+            //TODO: Use the following if targeting a version of
+            //.NET Framework older than 4.6:
+            //      return Task.FromResult(0);
             return Task.CompletedTask;
         }
     }
