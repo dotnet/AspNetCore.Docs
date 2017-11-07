@@ -36,6 +36,8 @@ The generated code uses [SingleOrDefaultAsync](https://docs.microsoft.com/en-us/
 
 * Unless the code needs to verify that there is not more than one entity returned from the query. 
 * `SingleOrDefaultAsync` fetches more data and does unnecessary work.
+* `SingleOrDefaultAsync` throws an exception if there is more than one entity that fits the filter part.
+*  FirstOrDefaultAsync doesn't throw if there is more than one entity that fits the filter part.
 
 Globally replace `SingleOrDefaultAsync` with `FirstOrDefaultAsync`. `SingleOrDefaultAsync` is used in 5 places:
 
@@ -154,6 +156,7 @@ The code changes are similar to the Create page with a few exceptions:
 
 * `OnPostAsync` has an optional `id` parameter.
 * The current student is fetched from the DB, rather than creating an empty student.
+* `FirstOrDefaultAsync` has been replaced with [FindAsync](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1.findasync?view=efcore-2.0). `FindAsync` is a good choice when selecting an entity from the primary key.
 
 ### Test the Edit and Create pages
 

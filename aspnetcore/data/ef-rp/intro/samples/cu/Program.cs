@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -20,6 +22,8 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
+                    // requires using Microsoft.EntityFrameworkCore;
+                    context.Database.Migrate();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
@@ -37,4 +41,5 @@ namespace ContosoUniversity
                 .UseStartup<Startup>()
                 .Build();
     }
+    #endregion
 }

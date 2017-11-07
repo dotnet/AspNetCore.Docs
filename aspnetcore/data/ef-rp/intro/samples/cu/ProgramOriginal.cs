@@ -1,11 +1,12 @@
-﻿// Unused usings removed
+﻿#if never
+#region snippet
+// Unused usings removed
 using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity
 {
@@ -21,7 +22,6 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.Migrate();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
@@ -40,3 +40,5 @@ namespace ContosoUniversity
                 .Build();
     }
 }
+#endregion
+#endif

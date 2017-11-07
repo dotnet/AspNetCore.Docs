@@ -23,8 +23,6 @@ In this tutorial, the EF Core migrations feature for managing data model changes
 If you run into problems you can't solve, download the [completed app for this stage](
 https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
-## Introduction to migrations
-
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
 
 * The DB is dropped.
@@ -32,6 +30,8 @@ When a new app is developed, the data model changes frequently. Each time the mo
 * The app seeds the DB with test data.
 
 This approach to keeping the DB in sync with the data model works well until you deploy the app to production. When the app is running in production, it is usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF to update the DB schema instead of creating a new DB.
+
+Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
 ## Entity Framework Core NuGet packages for migrations
 
@@ -90,7 +90,7 @@ If the migration fails with the message "*cannot access the file ... ContosoUniv
    * Exit and restart Visual Studio, or
    * Find the IIS Express icon in the Windows System Tray.
    * Right-click the IIS Express icon, and then click **ContosoUniversity > Stop Site**.
-   
+
 If the error message "Build failed." is displayed, run the command again. If you get this error, leave a note at the bottom of this tutorial.
 
 ### Examine the Up and Down methods
@@ -124,10 +124,10 @@ The snapshot file must be in sync with the migrations that created it. A migrati
 
 ## Remove EnsureCreated
 
-For the remainder of this tutorial, migrations will be used with the DB. `EnsureCreated`:
- 
-* Bypasses migrations and  creates the DB and schema.
-* Does not create a migrations table. 
+For early development, the `EnsureCreated` command was used. In this tutorial, migrations is used. `EnsureCreated` has the following limatitions:
+
+* Bypasses migrations and creates the DB and schema.
+* Does not create a migrations table.
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
@@ -137,7 +137,7 @@ Remove the following line from `DbInitializer`:
 context.Database.EnsureCreated();
 ```
 
-## Apply the migration to the DB
+## Apply the migration to the DB in development
 
 In the command window, enter the following to create the DB and tables.
 
@@ -148,6 +148,7 @@ dotnet ef database update
 Note: If the `update` command returns the error "Build failed.":
 
 * Run the command again.
+* If it fails again, exit Visual Studio and then run the `update` command.
 * Leave a message at the bottom of the page.
 
 The output from the command is similar to the `migrations add` command output. In the preceding command, logs for the SQL commands that set up the DB are displayed. Most of the logs are omitted in the following sample output:
@@ -183,6 +184,16 @@ Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an 
 
 Run the app and verify that everything works.
 
+## Apply migrations at startup
+
+Production apps generally do not run `dotnet ef database update` to migrate the DB to the current version. Some developers prefer to run migrations on application startup. The following code runs migrations on startup:
+
+[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet&highlight=13-24)]
+
+EF uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up to date, no migration is run.
+
+`Database.Migrate` should not be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
+
 <a id="pmc"></a>
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
@@ -209,7 +220,7 @@ https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/S
 The app generates the following exception:
 
 ```text
-`SqlException: Cannot open database "ContosoUniversity" requested by the login. 
+`SqlException: Cannot open database "ContosoUniversity" requested by the login.
 The login failed.
 Login failed for user 'user name'.
 ```

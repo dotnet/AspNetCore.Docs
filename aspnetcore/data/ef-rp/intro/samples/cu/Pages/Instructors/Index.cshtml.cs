@@ -1,4 +1,4 @@
-//#define Final
+#define Final
 #if Final
 #region snippet_all
 using ContosoUniversity.Models;

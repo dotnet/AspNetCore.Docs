@@ -196,7 +196,7 @@ In *Program.cs*, modify the `Main` method to do the following:
 
 The following code shows the updated *Program.cs* file.
 
-[!code-csharp[Main](intro/samples/cu/Program.cs)]
+[!code-csharp[Main](intro/samples/cu/ProgramOriginal.cs?name=snippet)]
 
 The first time the app is run, the DB is created and seeded with test data. When the data model is updated, delete the DB, update the seed method, and a new seeded DB is created. In later tutorials, the DB is updated when the data model changes, without deleting and re-creating the DB.
 

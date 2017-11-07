@@ -34,7 +34,6 @@ namespace ContosoUniversity.Pages.Students
             return Page();
         }
 
-        // divega review 
         #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync(int? id)
         {
@@ -43,8 +42,7 @@ namespace ContosoUniversity.Pages.Students
                 return Page();
             }
 
-            var studentToUpdate = await _context.Students.FirstOrDefaultAsync (
-                s => s.ID == id);
+            var studentToUpdate = await _context.Students.FindAsync(id);
 
             if (await TryUpdateModelAsync<Student>(
                 studentToUpdate,

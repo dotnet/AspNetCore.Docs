@@ -18,10 +18,10 @@ namespace ContosoUniversity
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
+
             services.AddDbContext<SchoolContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddMvc().AddSessionStateTempDataProvider();
 
             services.AddMvc();
         }
@@ -40,6 +40,7 @@ namespace ContosoUniversity
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

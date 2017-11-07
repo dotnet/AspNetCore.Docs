@@ -120,6 +120,25 @@ Run the app and select the **Courses** tab to see the list with department names
 
 ![Courses Index page](read-related-data/_static/courses-index.png)
 
+<a name="select"></a>
+### Loading related data with Select
+
+The `OnGetAsync` method loads related data with the `Include` method:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
+
+The `Select` operator loads only the related data needed, and is generally faster than using `Include`. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections it uses another database access, but so does the .`Include` operator on collections.
+
+The following code loads related data with the `Select` method:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
+
+The `CourseViewModel`:
+
+[!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
+
+See [IndexSelect.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and the [code-behind file](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+
 ## Create an Instructors page that shows Courses and Enrollments
 
 In this section, the Instructors page is created.

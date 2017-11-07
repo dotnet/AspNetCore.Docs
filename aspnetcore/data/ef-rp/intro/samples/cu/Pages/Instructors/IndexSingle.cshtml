@@ -1,5 +1,5 @@
 @page "{id:int?}"
-@model ContosoUniversity.Pages.Instructors.IndexModel
+@model ContosoUniversity.Pages.Instructors.IndexSingleModel
 
 @{
     ViewData["Title"] = "Instructors";
@@ -84,15 +84,15 @@
             }
             <tr class="@selectedRow">
                 <td>
-                    @Html.ActionLink("Select", "OnGetAsync", new { courseID = item.CourseID })
+                    @Html.ActionLink("Select", "OnGetAsync", 
+                                  new { courseID = item.CourseID })
                 </td>
                 <td>
                     @item.CourseID
                 </td>
                 <td>
                     @item.Title
-                </td>
-                <td>
+                </td>  <td>
                     @item.Department.Name
                 </td>
             </tr>
