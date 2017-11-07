@@ -12,6 +12,7 @@ ms.prod: asp.net-core
 ms.technology: aspnet
 ms.custom: mvc
 ms.devlang: dotnet
+uid: tutorials/publish-to-azure-webapp-using-cli
 ---
 
 # Deploy an ASP.NET Core application to Azure App Service from the command line
