@@ -33,7 +33,8 @@ namespace ResourceBasedAuthApp2.Controllers
                 return new NotFoundResult();
             }
 
-            if ((await _authorizationService.AuthorizeAsync(User, document, Operations.Read)).Succeeded)
+            if ((await _authorizationService
+                .AuthorizeAsync(User, document, Operations.Read)).Succeeded)
             {
                 return View(document);
             }
@@ -55,7 +56,8 @@ namespace ResourceBasedAuthApp2.Controllers
                 return new NotFoundResult();
             }
 
-            if ((await _authorizationService.AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
+            if ((await _authorizationService
+                .AuthorizeAsync(User, document, "EditPolicy")).Succeeded)
             {
                 return View(document);
             }
