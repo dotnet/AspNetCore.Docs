@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -48,6 +45,18 @@ namespace ResourceBasedAuthApp1
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            #region snippet_ConfigureServicesSample
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("EditPolicy", policy =>
+                    policy.Requirements.Add(new SameAuthorRequirement()));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+            #endregion
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
