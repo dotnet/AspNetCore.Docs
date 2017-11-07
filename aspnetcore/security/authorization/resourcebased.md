@@ -5,7 +5,7 @@ description: This document explains how to handle resource-based authorization i
 manager: wpickett
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/03/2017
+ms.date: 11/07/2017
 ms.devlang: csharp
 ms.prod: asp.net-core
 ms.technology: aspnet
@@ -101,4 +101,4 @@ To call an operational resource handler, specify the operation when invoking `Au
 
 ---
 
-This example checks if the user is able to perform the read operation for the current `document` instance. If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed and the middleware can take the appropriate response. For example, returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
+The preceding example checks if the user is able to perform the read operation for the provided document. If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed, and the middleware can take the appropriate response. An appropriate response could be returning a 401 or 403 status code. For interactive browser clients, it could mean redirecting the user to a login page.
