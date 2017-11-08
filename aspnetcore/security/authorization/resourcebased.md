@@ -18,13 +18,13 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 
 Authorization strategy depends upon the resource being accessed. Consider a document which has an author property. Only the author is allowed to update the document. Consequently, the document must be retrieved from the data store before authorization evaluation can occur.
 
-Attribute evaluation occurs before data binding and before execution of the action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
+Attribute evaluation occurs before data binding and before execution of the page handler or action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
 
 Use the [sample apps](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/razor-pages/resourcebased/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
 
 ## Use imperative authorization
 
-Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) to controllers.
+Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection#fundamentals-dependency-injection) to page handlers or actions.
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
@@ -56,11 +56,11 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 <a name="security-authorization-resource-based-imperative"></a>
 
-In the following controller, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "EditPolicy" authorization policy is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
+In the following example, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "EditPolicy" authorization policy is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_DocumentEditAction)]
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Pages/Document/Edit.cshtml.cs?name=snippet_DocumentEditHandler)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
@@ -74,7 +74,7 @@ Writing a handler for resource-based authorization isn't much different than [wr
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
-Don't forget to register the requirement and handler in the `Startup.ConfigureServices` method:
+Register the requirement and handler in the `Startup.ConfigureServices` method:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 
@@ -90,15 +90,15 @@ The handler is implemented as follows, using an `OperationAuthorizationRequireme
 
 The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
-To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your action. For example:
+To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your page handler or action. For example:
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11)]
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Pages/Document/View.cshtml.cs?name=snippet_DocumentViewHandler&highlight=10-11)]
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11)]
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=10-11)]
 
 ---
 
