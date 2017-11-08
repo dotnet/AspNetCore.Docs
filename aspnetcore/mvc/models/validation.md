@@ -175,8 +175,12 @@ You can implement remote validation in a two step process. First, you must annot
 
 [!code-csharp[Main](validation/sample/User.cs?range=5-9)]
 
-The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. It returns a `JsonResult` that the client side can use to proceed or pause and display an error if needed.
+The second step is putting the validation code in the corresponding action method as defined in the `[Remote]` attribute. According to the jQuery Validate [documentation](https://jqueryvalidation.org/remote-method/):
+
+> The serverside response must be a JSON string that must be `"true"` for valid elements, and can be `"false"`, `undefined`, or `null` for invalid elements, using the default error message. If the serverside response is a string, eg. `"That name is already taken, try peter123 instead"`, this string will be displayed as a custom error message in place of the default.
+
+The definition of the `VerifyEmail` method below follows these rules. It returns a validation error message if the email is taken, or `true` if the email is free, wrapped either way in a `JsonResult`. The client side can then use the returned value to proceed or display the error if needed.
 
 [!code-none[Main](validation/sample/UsersController.cs?range=19-28)]
 
-Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.
+Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken and, if so, displays the error message. Otherwise, the user can submit the form as usual.
