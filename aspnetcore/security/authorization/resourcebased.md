@@ -58,6 +58,9 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 In the following example, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "EditPolicy" authorization policy is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
+> [!NOTE]
+> The following code samples assume authentication has already run and set the `User` property.
+
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Pages/Document/Edit.cshtml.cs?name=snippet_DocumentEditHandler)]
@@ -90,16 +93,21 @@ The handler is implemented as follows, using an `OperationAuthorizationRequireme
 
 The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
-To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your page handler or action. For example:
+To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your page handler or action. The following example determines whether the authenticated user is permitted to view the provided document.
+
+> [!NOTE]
+> The following code samples assume authentication has already run and set the `User` property.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Pages/Document/View.cshtml.cs?name=snippet_DocumentViewHandler&highlight=10-11)]
 
+If authorization succeeds, the page for viewing the document is returned. If authorization fails but the user is authenticated, returning `ForbidResult` informs any authentication middleware that authorization failed. A `ChallengeResult` is returned when authentication must be performed. For interactive browser clients, it may be appropriate to redirect the user to a login page.
+
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11-12)]
 
----
+If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed, and the middleware can take the appropriate response. An appropriate response could be returning a 401 or 403 status code. For interactive browser clients, it could mean redirecting the user to a login page.
 
-The preceding example checks if the user is able to perform the read operation for the provided document. If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed, and the middleware can take the appropriate response. An appropriate response could be returning a 401 or 403 status code. For interactive browser clients, it could mean redirecting the user to a login page.
+---
