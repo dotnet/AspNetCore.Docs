@@ -32,10 +32,16 @@ namespace ResourceBasedAuthApp2.Pages.Document
                 return new NotFoundResult();
             }
 
-            if ((await _authorizationService
-                .AuthorizeAsync(User, Document, Operations.Read)).Succeeded)
+            var authorizationResult = await _authorizationService
+                    .AuthorizeAsync(User, Document, Operations.Read);
+
+            if (authorizationResult.Succeeded)
             {
                 return Page();
+            }
+            else if (User.Identity.IsAuthenticated)
+            {
+                return new ForbidResult();
             }
             else
             {

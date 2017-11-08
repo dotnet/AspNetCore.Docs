@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ResourceBasedAuthApp2.Data;
@@ -31,10 +32,16 @@ namespace ResourceBasedAuthApp2.Pages.Document
                 return new NotFoundResult();
             }
 
-            if ((await _authorizationService
-                .AuthorizeAsync(User, Document, "EditPolicy")).Succeeded)
+            var authorizationResult = await _authorizationService
+                    .AuthorizeAsync(User, Document, "EditPolicy");
+
+            if (authorizationResult.Succeeded)
             {
                 return Page();
+            }
+            else if (User.Identity.IsAuthenticated)
+            {
+                return new ForbidResult();
             }
             else
             {
