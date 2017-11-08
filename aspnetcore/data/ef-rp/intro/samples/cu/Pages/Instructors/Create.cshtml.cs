@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Pages.Instructors
 {
@@ -38,6 +39,15 @@ namespace ContosoUniversity.Pages.Instructors
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            var departmentsQuery = from d in _context.Departments
+                                   orderby d.Name
+                                   select d;
+            ViewData["DepartmentID"] = new SelectList(departmentsQuery.AsNoTracking(), 
+                "DepartmentID", "Name", selectedDepartment);
         }
     }
 }

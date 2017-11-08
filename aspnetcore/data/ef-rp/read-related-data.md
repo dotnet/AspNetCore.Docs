@@ -308,6 +308,8 @@ The `Single` method can pass in the `Where` condition instead of calling the `Wh
 
 [!code-csharp[Main](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21,28-29)]
 
+The preceding `Single` approach provides no benefits over using `Where`. Some developers prefer the `Single` approach style.
+
 ## Explicit loading
 
 The current code specifies eager loading for `Enrollments` and `Students`:

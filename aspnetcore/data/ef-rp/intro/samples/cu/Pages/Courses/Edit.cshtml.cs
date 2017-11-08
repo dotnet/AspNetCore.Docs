@@ -37,7 +37,8 @@ namespace ContosoUniversity.Pages.Courses
             {
                 return NotFound();
             }
-           ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID");
+            //ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID");
+            PopulateDepartmentsDropDownList(Course.DepartmentID);
             return Page();
         }
 
@@ -59,7 +60,17 @@ namespace ContosoUniversity.Pages.Courses
                 
             }
 
+            PopulateDepartmentsDropDownList(Course.DepartmentID);
             return RedirectToPage("./Index");
+        }
+
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            var departmentsQuery = from d in _context.Departments
+                                   orderby d.Name
+                                   select d;
+            ViewData["DepartmentID"] = new SelectList(departmentsQuery.AsNoTracking(),
+                "DepartmentID", "Name", selectedDepartment);
         }
     }
 }

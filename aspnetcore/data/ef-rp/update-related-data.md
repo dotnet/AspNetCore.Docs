@@ -1,5 +1,5 @@
 ---
-title:Razor Pages with EF Core - Update Related Data - 7 of 10
+title: Razor Pages with EF Core - Update Related Data - 7 of 10
 author: tdykstra
 description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
 keywords: ASP.NET Core,Entity Framework Core,related data,joins
@@ -18,17 +18,16 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 [!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
-In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
+This tutorial demonstrates updating related data.
 
-The following illustrations show some of the pages that you'll work with.
+The following illustrations shows some of the completed pages.
 
 ![Course Edit page](update-related-data/_static/course-edit.png)
-
 ![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
 
 ## Customize the Create and Edit Pages for Courses
 
-When a new course entity is created, it must have a relationship to an existing department. To facilitate this, the scaffolded code includes controller methods and Create and Edit views that include a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key property, and that's all the Entity Framework needs in order to load the `Department` navigation property with the appropriate Department entity. You'll use the scaffolded code, but change it slightly to add error handling and sort the drop-down list.
+When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the Create and Edit pages contain a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
 In *CoursesController.cs*, delete the four Create and Edit methods and replace them with the following code:
 <!--
