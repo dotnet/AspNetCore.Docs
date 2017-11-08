@@ -16,6 +16,8 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs), and [Rachel Appel](https://twitter.com/rachelappel)
 
+See [Publish to Azure from Visual Studio for Mac](https://blog.xamarin.com/publish-azure-visual-studio-mac/) if you are working on a Mac.
+
 ## Set up
 
 * Open a [free Azure account](https://aka.ms/K5y5yh) if you do not have one. 
