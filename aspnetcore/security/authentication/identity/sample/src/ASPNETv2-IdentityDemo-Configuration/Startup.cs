@@ -52,14 +52,13 @@ namespace WebApplication5
                 .AddDefaultTokenProviders();
 
             #region snippet_ConfigureCookie
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.Name = "YourAppCookieName";
-                options.Cookie.HttpOnly = true; 
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60); 
+             services.Configure<CookieAuthenticationOptions>(options => {
+                options.CookieName = "YourAppCookieName";
+                options.CookieHttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
-                options.AccessDeniedPath = "/Account/AccessDenied"; 
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
                 // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
