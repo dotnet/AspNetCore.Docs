@@ -75,6 +75,7 @@
 ### [Migrations](xref:data/ef-rp/migrations)
 ### [Creating a complex data model](xref:data/ef-rp/complex-data-model)
 ### [Reading related data](xref:data/ef-rp/read-related-data)
+### [Updating related data](xref:data/ef-rp/update-related-data)
 
 ## [Creating backend services for mobile apps](mobile/native-mobile-backend.md)
 ## [Building Web APIs](mvc/web-api/index.md)

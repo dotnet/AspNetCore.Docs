@@ -16,7 +16,7 @@ uid: data/ef-rp/read-related-data
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, related data is read and displayed. Related data is data that EF loads into navigation properties.
 
@@ -333,3 +333,4 @@ The next tutorial shows how to update related data.
 
 >[!div class="step-by-step"]
 >[Previous](xref:data/ef-rp/complex-data-model)
+>[Next](xref:data/ef-rp/update-related-data)

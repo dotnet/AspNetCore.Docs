@@ -1,13 +1,12 @@
 ---
 title: Working with Data in ASP.NET Core
 author: rick-anderson
-description: 
+description: Provides links to articles on working with data. Many use Entity Framework Core.
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe0ba2ef
 ms.technology: aspnet
 ms.prod: asp.net-core
 uid: data/index
@@ -46,4 +45,5 @@ The Razor Pages EF Core series is a work in progress. We hope to complete the se
    * [Migrations](xref:data/ef-rp/migrations)
    * [Creating a complex data model](xref:data/ef-rp/complex-data-model)
    * [Reading related data](xref:data/ef-rp/read-related-data)
+   * [Updating related data](xref:data/ef-rp/update-related-data)
 

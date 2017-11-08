@@ -16,7 +16,7 @@ uid: data/ef-rp/migrations
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 

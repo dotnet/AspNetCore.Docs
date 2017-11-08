@@ -16,7 +16,7 @@ uid: data/ef-rp/complex-data-model
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[!INCLUDE[validation](../../includes/RP-EF/intro.md)]
+[!INCLUDE[about the series](../../includes/RP-EF/intro.md)]
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
