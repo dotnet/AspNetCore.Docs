@@ -98,7 +98,7 @@ To call an operational resource handler, specify the operation when invoking `Au
 
 # [ASP.NET Core 1.x](#tab/aspnetcore1x)
 
-[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=10-11)]
+[!code-csharp[](resourcebased/samples/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11-12)]
 
 ---
 
