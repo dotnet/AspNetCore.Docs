@@ -14,7 +14,7 @@ uid: data/ef-rp/migrations
 
 # Migrations - EF Core with Razor Pages tutorial (4 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[validation](../../includes/RP-EF/intro.md)]
 
@@ -184,15 +184,16 @@ Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an 
 
 Run the app and verify that everything works.
 
-## Apply migrations at startup
+## Appling migrations in production
 
-Production apps generally do not run `dotnet ef database update` to migrate the DB to the current version. Some developers prefer to run migrations on application startup. The following code runs migrations on startup:
+We recommend production apps should **not** call [Database.Migrate](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` should not be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
-[!code-csharp[Main](intro/samples/cu/Program.cs?name=snippet&highlight=13-24)]
+Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
+
+* Using migrations to create SQL scripts and using the SQL scripts in deployment.
+* Running `dotnet ef database update` from a controlled environment.
 
 EF uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up to date, no migration is run.
-
-`Database.Migrate` should not be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 <a id="pmc"></a>
 ## Command-line interface (CLI) vs. Package Manager Console (PMC)

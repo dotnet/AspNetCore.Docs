@@ -96,7 +96,7 @@ In **SQL Server Object Explorer** (SSOX), open the Student table designer by dou
 
 ![Students table in SSOX before migrations](complex-data-model/_static/ssox-before-migration.png)
 
-The preceding image shows the schema for the `Student` table.
+The preceding image shows the schema for the `Student` table. The name fields have type `nvarchar(MAX)` because migrations has not been run on the DB. When migrations are run later in this tutorial, the name fields become `nvarchar(50)`.
 
 ### The Column attribute
 

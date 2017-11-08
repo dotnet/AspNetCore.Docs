@@ -14,7 +14,7 @@ uid: data/ef-rp/read-related-data
 
 # Reading related data - EF Core with Razor Pages (6 of 10)
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[validation](../../includes/RP-EF/intro.md)]
 
@@ -32,7 +32,7 @@ The following illustrations show the completed pages for this tutorial:
 
 There are several ways that EF can load related data into the navigation properties of an entity:
 
-* [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. Eager loading is specified with the `Include` and `ThenInclude` methods.
+* [Eager loading](https://docs.microsoft.com/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When the entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
  ![Eager loading example](read-related-data/_static/eager-loading.png)
 
@@ -57,7 +57,7 @@ If related data for every entity retrieved is needed:
 
 For example, suppose that each department has 10 related courses. Eager loading of all related data would result in just a single (join) query and a single round trip to the DB. A separate query for courses for each department would result in 11 round trips to the DB. The extra round trips to the DB are especially expensive when latency is high. Cloud environments can have high DB access latency.
 
-In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, separate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than separate queries. Testing is required in order to find the optimal approach.
+In some scenarios, separate queries is more efficient. Eager loading of all related data might cause a complex join to be generated. SQL Server might not be able to process a complex join efficiently. If only a subset of related data needs to be accessed, separate queries might perform better. Eager loading loads all related data, and the extra data fetching may cost more than separate queries. As a general guideline, minimize round trips to the DB for best performance. Testing is required in order to find the optimal approach.
 
 ## Create a Courses page that displays department name
 
@@ -137,7 +137,7 @@ The `CourseViewModel`:
 
 [!code-csharp[Main](intro/samples/cu/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
 
-See [IndexSelect.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and the [code-behind file](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+See [IndexSelect.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
 
 ## Create an Instructors page that shows Courses and Enrollments
 
@@ -270,18 +270,6 @@ The `Single` method is used on a collection when the collection has only one ite
 * Results in an exception (from trying to find a `Courses` property on a null reference).
 * The exception message would less clearly indicate the cause of the problem.
 
-The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
-
-```csharp
-.Single(i => i.ID == id.Value)
-```
-
-Instead of:
-
-```csharp
-.Where(I => i.ID == id.Value).Single()
-```
-
 The following code populates the view model's `Enrollments` property when a course is selected:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
@@ -313,6 +301,12 @@ The preceding markup displays a list of the students who are enrolled in the sel
 Refresh the page and select an instructor. Select a course to see the list of enrolled students and their grades.
 
 ![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index.png)
+
+## Using Single
+
+The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21,28-29)]
 
 ## Explicit loading
 

@@ -1,5 +1,5 @@
-#define Final
-#if Final
+//#define show_student_data
+#if show_student_data
 #region snippet_all
 using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;  // Add VM

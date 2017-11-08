@@ -46,7 +46,9 @@ namespace ContosoUniversity.Pages.Courses
                 return NotFound();
             }
 
-            Course = await _context.Courses.FindAsync(id);
+            // Course = await _context.Courses.FindAsync(id);
+            // Course = await _context.Courses.FirstAsync(m => m.CourseID == id);
+            Course = await _context.Courses.SingleAsync(m => m.CourseID == id);
 
             if (Course != null)
             {
