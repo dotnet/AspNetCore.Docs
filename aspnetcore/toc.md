@@ -236,7 +236,7 @@
 ### [Claims-Based Authorization](xref:security/authorization/claims)
 ### [Custom Policy-Based Authorization](xref:security/authorization/policies)
 ### [Dependency Injection in requirement handlers](xref:security/authorization/dependencyinjection)
-### [Resource Based Authorization](xref:security/authorization/resourcebased)
+### [Resource-based authorization](xref:security/authorization/resourcebased)
 ### [View-based authorization](xref:security/authorization/views)
 ### [Limiting identity by scheme](xref:security/authorization/limitingidentitybyscheme)
 ## [Data Protection](xref:security/data-protection/index)
