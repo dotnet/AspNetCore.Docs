@@ -59,7 +59,7 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 In the following example, the resource to be secured is loaded into a custom `Document` object. An `AuthorizeAsync` overload is invoked to determine whether the current user is allowed to edit the provided document. A custom "EditPolicy" authorization policy is factored into the decision. See [Custom policy-based authorization](xref:security/authorization/policies) for more on creating authorization policies.
 
 > [!NOTE]
-> The following code samples assume authentication has already run and set the `User` property.
+> The following code samples assume authentication has run and set the `User` property.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
@@ -73,7 +73,7 @@ In the following example, the resource to be secured is loaded into a custom `Do
 
 ## Write a resource-based handler
 
-Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). After creating a custom requirement class, implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource looks as follows:
+Writing a handler for resource-based authorization isn't much different than [writing a plain requirements handler](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler). Create a custom requirement class, and implement a requirement handler class. The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource looks as follows:
 
 [!code-csharp[](resourcebased/samples/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
@@ -96,7 +96,7 @@ The preceding handler validates the operation using the resource, the user's ide
 To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your page handler or action. The following example determines whether the authenticated user is permitted to view the provided document.
 
 > [!NOTE]
-> The following code samples assume authentication has already run and set the `User` property.
+> The following code samples assume authentication has run and set the `User` property.
 
 # [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
