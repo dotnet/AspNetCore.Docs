@@ -15,6 +15,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Course.CourseID" />
             <div class="form-group">
+                <label asp-for="Course.CourseID" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.Course.CourseID)</div>
+            </div>
+            <div class="form-group">
                 <label asp-for="Course.Title" class="control-label"></label>
                 <input asp-for="Course.Title" class="form-control" />
                 <span asp-validation-for="Course.Title" class="text-danger"></span>
@@ -25,8 +29,9 @@
                 <span asp-validation-for="Course.Credits" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.DepartmentID" class="control-label"></label>
-                <select asp-for="Course.DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+                <label asp-for="Course.Department" class="control-label"></label>
+                <select asp-for="Course.DepartmentID" class="form-control" 
+                        asp-items="ViewBag.DepartmentID"></select>
                 <span asp-validation-for="Course.DepartmentID" class="text-danger"></span>
             </div>
             <div class="form-group">

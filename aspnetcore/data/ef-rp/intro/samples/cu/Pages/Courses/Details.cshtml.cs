@@ -21,6 +21,7 @@ namespace ContosoUniversity.Pages.Courses
 
         public Course Course { get; set; }
 
+        #region snippet
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -29,7 +30,9 @@ namespace ContosoUniversity.Pages.Courses
             }
 
             Course = await _context.Courses
-                .Include(c => c.Department).SingleOrDefaultAsync(m => m.CourseID == id);
+                 .AsNoTracking()
+                 .Include(c => c.Department)
+                 .FirstOrDefaultAsync(m => m.CourseID == id);
 
             if (Course == null)
             {
@@ -37,5 +40,6 @@ namespace ContosoUniversity.Pages.Courses
             }
             return Page();
         }
+        #endregion
     }
 }

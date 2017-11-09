@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Courses
 {
@@ -37,31 +34,30 @@ namespace ContosoUniversity.Pages.Courses
             {
                 return NotFound();
             }
-            //ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentID");
             PopulateDepartmentsDropDownList(Course.DepartmentID);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Course).State = EntityState.Modified;
+            var courseToUpdate = await _context.Courses.FindAsync(id);
 
-            try
+            if (await TryUpdateModelAsync<Course>(
+                 courseToUpdate,
+                 "course",   // Prefix for form value.
+                   c => c.Credits, c => c.DepartmentID, c => c.Title))
             {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
+                return RedirectToPage("./Index");
             }
 
-            PopulateDepartmentsDropDownList(Course.DepartmentID);
-            return RedirectToPage("./Index");
+            PopulateDepartmentsDropDownList();
+            return Page();
         }
 
         private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
