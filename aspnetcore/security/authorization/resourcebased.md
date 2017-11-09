@@ -20,7 +20,7 @@ Authorization strategy depends upon the resource being accessed. Consider a docu
 
 Attribute evaluation occurs before data binding and before execution of the page handler or action which loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute won't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as imperative authorization.
 
-Use the [sample apps](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/razor-pages/resourcebased/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
+Use the [sample apps](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples) ([how to download](xref:tutorials/index#how-to-download-a-sample)) to explore the features described in this topic.
 
 ## Use imperative authorization
 
