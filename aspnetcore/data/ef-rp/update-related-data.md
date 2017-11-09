@@ -115,7 +115,7 @@ When editing an instructor record, you may want to update the instructor's offic
 
 Update the instructors Edit page model with the following code:
 
-[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet?highlight=20-23,39-)]
+[!code-csharp[Main](intro/samples/cu/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,39-)]
 
 The preceding code:
 
