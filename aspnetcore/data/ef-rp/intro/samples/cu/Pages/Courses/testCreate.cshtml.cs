@@ -1,14 +1,15 @@
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Courses
 {
-    public class CreateModel : DepartmentNamePageModel
+    public class TestCreate : DepartmentNamePageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
-        public CreateModel(ContosoUniversity.Data.SchoolContext context)
+        public TestCreate(ContosoUniversity.Data.SchoolContext context)
         {
             _context = context;
         }
@@ -16,6 +17,14 @@ namespace ContosoUniversity.Pages.Courses
         public IActionResult OnGet()
         {
             PopulateDepartmentsDropDownList(_context);
+            Random rnd = new Random();
+            Course = new Course
+            {
+                CourseID = rnd.Next(),
+                Credits = 3,
+                DepartmentID = 2,
+                Title = "Algebra 9"
+            };
             return Page();
         }
 
@@ -41,9 +50,9 @@ namespace ContosoUniversity.Pages.Courses
                 return RedirectToPage("./Index");
             }
 
-            // Select DepartmentID if TryUpdateModelAsync fails.
-            PopulateDepartmentsDropDownList(_context, emptyCourse.DepartmentID);
+            PopulateDepartmentsDropDownList(_context);
             return Page();
         }
+
       }
 }

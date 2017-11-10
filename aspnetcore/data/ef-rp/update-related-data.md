@@ -26,29 +26,54 @@ The following illustrations shows some of the completed pages.
 ![Course Edit page](update-related-data/_static/course-edit.png)
 ![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
 
-## Customize the Create and Edit Pages for Courses
+Examine and test the Create and Edit course pages. Create a new course. You need to select the department by it's primary key (an integer), not it's name. Edit the new course. When you have finished testing, delete the new course.
 
-When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the Create and Edit pages contain a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF uses the `Course.DepartmentID` FK to load the `Department` navigation property.
+## Create a base class to share common code
 
-Examine and test the create and edit course pages. Create and then edit a new course.
+The Courses\Create and Courses\Edit pages each need a list of department names. Create the following base class:
 
-Update the Create page model file with the following code:
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-[!code-csharp[Main](intro/samples/cu/Pages/Courses/Create.cshtml.cs)]
+The preceding code creates a [SelectList](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of deparment names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
-The `PopulateDepartmentsDropDownList` method:
-* Gets a list of all departments sorted by name.
-* Creates a `SelectList` collection for a drop-down list.
-* Saves the `SelectList` in the view data dictionary.
-* Accepts the optional `selectedDepartment` parameter.  `selectedDepartment` specifies the selected department name in the drop-down list. You can test this on the Edit page.
+The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-The Razor Page specifies the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
+## Customize the Courses Pages 
 
-```cshtml
-<select asp-for="Course.DepartmentID" class ="form-control" asp-items="ViewBag.DepartmentID"></select>
-```
+When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the base class for Create and Edit contains a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
-Test the Create page. The Create page now display the deparment name rather than the department ID.
+![Create course](update-related-data/_static/ddl.png)
+
+Update the Create page model with the following code:
+
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Create.cshtml.cs?highlight=7,18,32-)]
+
+The preceding code:
+
+* Derives from `DepartmentNamePageModel`.
+* Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
+* Replaces `ViewData["DepartmentID"]` with `DepartmentNameSL` (from the base class).
+
+`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are generally prefered over weaky typed. Ror more information, see [Weakly-typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
+
+### Update the Create page
+
+Update *Pages/Courses/Create.cshtml* with the following markup:
+
+[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?highlight=30-32)]
+
+The preceding markup makes the following changes:
+
+* Changes the caption from **DepartmentID** to **Department**.
+* Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
+* Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
+* Adds a validation message when the department is not selected.
+
+The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
+
+[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
+
+Test the Create page. The Create page displays the deparment name rather than the department ID.
 
 ### Update the Edit page.
 
@@ -56,46 +81,38 @@ Update the edit page model:
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Edit.cshtml.cs)]
 
-Test the updated code. The `OnGetAsync` sets the `selectedDepartment` when calling `PopulateDepartmentsDropDownList`.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select that department.
 
-### Update the Delete page model
+Update *Pages/Courses/Edit.cshtml* with the following markup:
 
-[AsNoTracking](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)  can improve performance when tracking is not required.
+[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,33-35)]
 
-[!code-csharp[Main](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet)]
+The preceding markup makes the following changes:
+
+* Displays the course ID. Generally the PK of an entity is not displayed. PKs are usually meaningless to users. In this case the PK is the course nummber.
+* Changes the caption from **DepartmentID** to **Department**.
+* Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
+* Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
+* Adds a validation message when the department is not selected.
+
+The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
+
+Test the updated code. Create, edit and delete a course.
+
+## Update the remaing pages
+
+[AsNoTracking](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)  can improve performance when tracking is not required. Add `AsNoTracking` to the Delete page model.
+
+[!code-csharp[Main](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
 ### Update the Details page model
 
 [!code-csharp[Main](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
-### Modify the Create page
-
-Update the `<div>` containing `DepartmentID` in *Pages/Courses/Create.cshtml* with the following markup:
-
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Create.cshtml?range=31-37)]
-
-The preceding code makes the following changes:
-
-* The caption changes from **DepartmentID** to **Department**.
-* The "Select Department" option is added. This change renders "Select Department" rather than the first department.
-* Adds a validation message when the department is not selected.
-
-### Modify the Edit page
-
-Update *Pages/Courses/Edit.cshtml* with the following markup:
-
-[!code-cshtml[Main](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,32)]
-
-The preceding markup:
-
-* Displays the course ID. Generally the PK of an entity is not displayed, PK are usually meaningless to users.
-* Display the caption **Department**.
-
-There's a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
 
 ### Modify the Delete and Details pages
 
-Update the Delete page with the following markup:
+Update the Delete Razor page with the following markup:
 
 [!code-cshtml[Main](intro/samples/cu/Pages/Courses/Delete.cshtml?highlight=15-21)]
 
@@ -103,7 +120,7 @@ Make the same changes to the Details page.
 
 ### Test the Course pages
 
-Create and edit a new course.
+Test create, edit, details, and delete.
 
 ## Updating the Instructors pages
 
