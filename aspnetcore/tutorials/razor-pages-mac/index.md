@@ -15,7 +15,7 @@ uid: tutorials/razor-pages-mac/index
 
 # Create a Razor Pages web app with ASP.NET Core and Visual Studio for Mac
 
-This is a work in progress. We hope to have the series complete within two weeks.
+This is a work in progress.
 
 This series explains the basics of building a Razor Pages web app with ASP.NET Core on Mac.
 
