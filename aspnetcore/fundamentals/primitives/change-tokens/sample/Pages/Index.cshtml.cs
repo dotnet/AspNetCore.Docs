@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
@@ -8,6 +9,7 @@ namespace ChangeTokenSample.Pages
     public class IndexModel : PageModel
     {
         private readonly IConfiguration _config;
+        private readonly IConfigurationMonitor _monitor;
 
         private readonly Dictionary<string, string> _styleDict = new Dictionary<string, string>() 
         {
@@ -19,28 +21,52 @@ namespace ChangeTokenSample.Pages
             { "Critical", "danger" }
         };
 
-        public IndexModel(IConfiguration config)
+        #region snippet1
+        public IndexModel(IConfiguration config, IConfigurationMonitor monitor)
         {
             _config = config;
+            _monitor = monitor;
         }
+        #endregion
 
         public string IncludeScopes { get; private set; }
         public string DefaultLogLevel { get; private set; }
         public string SystemLogLevel { get; private set; }
         public string MicrosoftLogLevel { get; private set; }
-        
+
+        [TempData]
+        public string CurrentState { get; set; }
+
         public void OnGet()
         {
-            #region snippet1
             IncludeScopes = _config["Logging:IncludeScopes"];
             DefaultLogLevel = _config["Logging:LogLevel:Default"];
             SystemLogLevel = _config["Logging:LogLevel:System"];
             MicrosoftLogLevel = _config["Logging:LogLevel:Microsoft"];
-            #endregion
-            ViewData["IncludeScopesStyle"] = string.Equals(_config["Logging:IncludeScopes"], "True", StringComparison.Ordinal) ? "success" : "danger";
+            ViewData["IncludeScopesStyle"] = string.Equals(_config["Logging:IncludeScopes"], "True", StringComparison.OrdinalIgnoreCase) ? "success" : "danger";
             ViewData["DefaultLogLevelStyle"] = _styleDict[_config["Logging:LogLevel:Default"]];
             ViewData["SystemLogLevelStyle"] = _styleDict[_config["Logging:LogLevel:System"]];
             ViewData["MicrosoftLogLevelStyle"] = _styleDict[_config["Logging:LogLevel:Microsoft"]];
+
+            CurrentState = _monitor.CurrentState;
         }
+
+        #region snippet2
+        public IActionResult OnPostStartMonitoring()
+        {
+            _monitor.MonitoringEnabled = true;
+            _monitor.CurrentState = string.Empty;
+
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostStopMonitoring()
+        {
+            _monitor.MonitoringEnabled = false;
+            _monitor.CurrentState = "Not monitoring";
+
+            return RedirectToPage();
+        }
+        #endregion
     }
 }

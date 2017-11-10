@@ -9,7 +9,7 @@ namespace ChangeTokenSample.Pages
         
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public void OnGet()
+        public void Get()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
