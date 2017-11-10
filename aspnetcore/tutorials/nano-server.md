@@ -190,7 +190,7 @@ Run the following commands in the remote session to create a new site in IIS for
 
 ```PowerShell
 Import-module IISAdministration
-New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:8000:"
+New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano\wwwroot -BindingInformation "*:8000:"
 ```
 
 ## Known issue running .NET Core CLI on Nano Server and workaround
