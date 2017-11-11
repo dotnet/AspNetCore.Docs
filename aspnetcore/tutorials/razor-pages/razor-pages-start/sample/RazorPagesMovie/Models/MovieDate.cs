@@ -4,7 +4,7 @@
 #region snippet_1
 using System;
 
-namespace RazorPagesMovie.Models
+namespace RazorPagesSampleMovie.Models
 {
     public class Movie
     {

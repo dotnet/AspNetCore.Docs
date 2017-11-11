@@ -4,7 +4,7 @@
 #region snippet_MovieNoEF
 using System;
 
-namespace RazorPagesMovie.Models
+namespace RazorPagesSampleMovie.Models
 {
     public class Movie
     {

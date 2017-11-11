@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 using RazorPagesMovie.Utilities;
 
-namespace RazorPagesMovie.Pages.Schedules
+namespace RazorPagesSampleMovie.Pages.Schedules
 {
     public class IndexModel : PageModel
     {

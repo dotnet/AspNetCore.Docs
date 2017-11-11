@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using RazorPagesMovie.Models;
 using System;
 
-namespace RazorPagesMovie.Migrations
+namespace RazorPagesSampleMovie.Migrations
 {
     [DbContext(typeof(MovieContext))]
     [Migration("20170804225952_Initial")]
