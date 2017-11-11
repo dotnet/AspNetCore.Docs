@@ -54,6 +54,10 @@ Deployment often requires additional tasks besides copying the output from `dotn
 
 You can deploy directly from Visual Studio to Azure App Service by using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs) or by using [built-in Git support](xref:publishing/azure-continuous-deployment). Visual Studio Team Services supports [continuous deployment to Azure App Service](https://www.visualstudio.com/docs/build/aspnet/core/quick-to-azure).
 
+## Publishing to Azure
+
+See [Publish an ASP.NET Core web app to Azure App Service using Visual Studio](xref:tutorials/publish-to-azure-webapp-using-vs) for instructions on how to publish this app to Azure using Visual Studio.  The app can also be published to Azure from the [command line](xref:tutorials/publish-to-azure-webapp-using-cli).
+
 ## Additional resources
 
 For information about using Docker as a hosting environment, see [Host ASP.NET Core apps in Docker](xref:publishing/docker).

@@ -20,7 +20,8 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part4-migrations).
+If you run into problems you can't solve, download the [completed app for this stage](
+https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
 ## Introduction to migrations
 
@@ -144,7 +145,7 @@ In the command window, enter the following to create the DB and tables.
 dotnet ef database update
 ```
 
-Note: If the `update` command returns the error 'Build failed.`:
+Note: If the `update` command returns the error "Build failed.":
 
 * Run the command again.
 * Leave a message at the bottom of the page.
@@ -176,7 +177,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[200101]
 Done.
 ```
 
-To reduce the level of detail in log messages, can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging).
+To reduce the level of detail in log messages, can change the log levels in the *appsettings.Development.json* file. For more information, see [Introduction to logging](xref:fundamentals/logging/index).
 
 Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an `__EFMigrationsHistory` table. The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the DB. View the data in the `__EFMigrationsHistory` table, it shows one row for the first migration. The last log in the preceding CLI output example shows the INSERT statement that creates this row.
 
@@ -202,6 +203,9 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 ## Troubleshooting
 
+Download the [completed app for this stage](
+https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
+
 The app generates the following exception:
 
 ```text
@@ -211,6 +215,11 @@ Login failed for user 'user name'.
 ```
 
 Solution: Run `dotnet ef database update`
+
+If the `update` command returns the error "Build failed.":
+
+* Run the command again.
+* Leave a message at the bottom of the page.
 
 >[!div class="step-by-step"]
 [Previous](xref:data/ef-rp/sort-filter-page)

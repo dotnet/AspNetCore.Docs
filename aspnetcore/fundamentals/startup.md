@@ -71,5 +71,5 @@ Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be
 
 * [Working with Multiple Environments](xref:fundamentals/environments)
 * [Middleware](xref:fundamentals/middleware)
-* [Logging](xref:fundamentals/logging)
+* [Logging](xref:fundamentals/logging/index)
 * [Configuration](xref:fundamentals/configuration)

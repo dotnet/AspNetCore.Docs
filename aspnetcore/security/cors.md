@@ -1,8 +1,8 @@
 ---
 title: Enabling Cross-Origin Requests (CORS)
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document introduces CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
+keywords: ASP.NET Core,CORS,cross origin
 ms.author: riande
 manager: wpickett
 ms.date: 05/17/2017

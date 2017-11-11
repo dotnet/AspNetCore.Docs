@@ -1,8 +1,8 @@
 ---
 title: Compatibility in ASP.NET Core
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: This document serves as a table of contents for various ASP.NET Core data protection compatibility topics.
+keywords: ASP.NET Core,compatibility,data protection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

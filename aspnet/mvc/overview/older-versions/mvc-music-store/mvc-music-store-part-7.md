@@ -79,7 +79,7 @@ Fill in the user information fields on the left using the following information:
 | **Security Question** | (whatever you like) |
 | **Security Answer** | (whatever you like) |
 
-*Note: You can of course use any password you'd like. The above password is shown as an example, and is assumed in the support forums on CodePlex. The default password security settings require a password that is 7 characters long and contains one non-alphanumeric character.*
+*Note: You can of course use any password you'd like. The default password security settings require a password that is 7 characters long and contains one non-alphanumeric character.*
 
 Select the Administrator role for this user, and click the Create User button.
 

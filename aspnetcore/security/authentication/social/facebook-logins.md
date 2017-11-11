@@ -1,8 +1,8 @@
 ---
 title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
-description: Facebook external login setup in ASP.NET Core
-keywords: ASP.NET Core,
+description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
+keywords: ASP.NET Core,Facebook,login,authentication
 ms.author: riande
 manager: wpickett
 ms.date: 08/01/2017
@@ -57,6 +57,13 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 ## Store Facebook App ID and App Secret
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
+
+Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
+
+```console
+dotnet user-secrets set Authentication:Facebook:AppId <app-id>
+dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
+```
 
 ## Configure Facebook Authentication
 

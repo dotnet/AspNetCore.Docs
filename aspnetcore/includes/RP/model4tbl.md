@@ -1,3 +1,4 @@
+<a name="codegenerator"></a>
 The following table details the ASP.NET Core code generators` parameters:
 
 | Parameter               | Description|

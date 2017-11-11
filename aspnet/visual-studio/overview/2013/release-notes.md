@@ -470,7 +470,7 @@ The **show detailed hub exceptions** setting has no bearing on **HubException** 
 
 ### Easier unit testing of hubs
 
-SignalR 2.0 includes an interface called `IHubCallerConnectionContext` on Hubs that makes it easier to create mock client side invocations. The following code snippets demonstrate using this interface with popular test harnesses [xUnit.net](http://xunit.codeplex.com/) and [moq](https://code.google.com/p/moq/).
+SignalR 2.0 includes an interface called `IHubCallerConnectionContext` on Hubs that makes it easier to create mock client side invocations. The following code snippets demonstrate using this interface with popular test harnesses [xUnit.net](https://github.com/xunit/xunit) and [moq](https://code.google.com/p/moq/).
 
 **Unit testing SignalR with xUnit.net**
 

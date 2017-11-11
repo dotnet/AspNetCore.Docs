@@ -135,7 +135,7 @@ Add some text to the end of the line in the *Site.Master* file.
 
 Now, press Ctrl+Alt+Enter or click the Update Bar to see the results in the Page Inspector browser window.
 
-![My ASP.Net Application Rocks!](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image11.png)
+![My ASP.NET Application Rocks!](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project/_static/image11.png)
 
 You might have thought that the footer was on the *Default.aspx* page, but it turned out to be in the master layout page, and Page Inspector found it for you.
 

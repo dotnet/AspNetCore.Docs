@@ -242,7 +242,7 @@ For model objects that use IDataErrorInfo to perform validation, every property 
 
 #### IIS script mapping script is no longer available in the installer
 
-The IIS script-mapping script is a command-line script that is used to configure script maps for IIS 6 and for IIS 7 in Classic mode. The script-mapping script is not needed if you use the Visual Studio Development Server or if you use IIS 7 in Integrated mode. The scripts are available as a separate unsupported download on the [ASP.NET CodePlex site](http://aspnet.codeplex.com/).
+The IIS script-mapping script is a command-line script that is used to configure script maps for IIS 6 and for IIS 7 in Classic mode. The script-mapping script is not needed if you use the Visual Studio Development Server or if you use IIS 7 in Integrated mode. The scripts are available as a separate unsupported download on the [ASP.NET WebStack](https://github.com/aspnet/AspNetWebStack).
 
 #### The Html.Substitute helper method in MVC Futures is no longer available
 

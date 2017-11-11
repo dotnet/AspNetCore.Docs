@@ -68,7 +68,7 @@ In addition to customer-faceing pages, we'll also build an administrator section
 
 This tutorial will begin by creating a new ASP.NET MVC 3 project using the free Visual Web Developer 2010 Express (which is free), and then we'll incrementally add features to create a complete functioning application. Along the way, we'll cover database access, form posting scenarios, data validation, using master pages for consistent page layout, using AJAX for page updates and validation, user login, and more.
 
-You can follow along step by step, or you can download the completed application from [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com).
+You can follow along step by step, or you can download the completed application from [MVC-Music-Store](https://github.com/evilDave/MVC-Music-Store).
 
 You can use either Visual Studio 2010 SP1 or Visual Web Developer 2010 Express SP1 (a free version of Visual Studio 2010) to build the application. We'll be using the SQL Server Compact (also free) to host the database. Before you start, make sure you've installed the prerequisites listed below.
 
@@ -119,8 +119,6 @@ ASP.NET MVC makes use of some basic naming conventions for folder names:
 | **/Scripts** | This folder holds our JavaScript files |
 
 These folders are included even in an Empty ASP.NET MVC application because the ASP.NET MVC framework by default uses a "convention over configuration" approach and makes some default assumptions based on folder naming conventions. For instance, controllers look for views in the Views folder by default without you having to explicitly specify this in your code. Sticking with the default conventions reduces the amount of code you need to write, and can also make it easier for other developers to understand your project. We'll explain these conventions more as we build our application.
-
-*Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
 >[!div class="step-by-step"]
 [Next](mvc-music-store-part-2.md)

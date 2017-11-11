@@ -27,7 +27,7 @@ The entity classes for the completed data model is shown in the following illust
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-part5-complex).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part5-complex).
 
 ## Customize the data model with attributes
 
