@@ -18,7 +18,7 @@ By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guar
 
 In the **M**odel-**V**iew-**C**ontroller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
-In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a in a *Views* folder at the root of the app:
+In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a *Views* folder at the root of the app:
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
