@@ -1,17 +1,12 @@
+using ContosoUniversity.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Pages.Instructors
 {
-    public class CreateModel : PageModel
+    public class CreateModel : InstructorCoursesPageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
@@ -22,32 +17,52 @@ namespace ContosoUniversity.Pages.Instructors
 
         public IActionResult OnGet()
         {
+            var instructor = new Instructor();
+            instructor.CourseAssignments = new List<CourseAssignment>();
+            PopulateAssignedCourseData(_context, instructor);
             return Page();
         }
 
         [BindProperty]
         public Instructor Instructor { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Instructors.Add(Instructor);
-            await _context.SaveChangesAsync();
+            if (selectedCourses != null)
+            {
+                Instructor.CourseAssignments = new List<CourseAssignment>();
+                foreach (var course in selectedCourses)
+                {
+                    var courseToAdd = new CourseAssignment {
+                        InstructorID = Instructor.ID, CourseID = int.Parse(course) };
+                    Instructor.CourseAssignments.Add(courseToAdd);
+                }
+            }
 
+            var instructorToUpdate = new Instructor();
+
+            if (await TryUpdateModelAsync<Instructor>(
+                           instructorToUpdate,
+                           "Instructor",
+                           i => i.FirstMidName, i => i.LastName,
+                           i => i.HireDate, i => i.OfficeAssignment))
+            {
+                if (String.IsNullOrWhiteSpace(
+                    instructorToUpdate.OfficeAssignment?.Location))
+                {
+                    instructorToUpdate.OfficeAssignment = null;
+                }
+                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                await _context.SaveChangesAsync();
+            }
+            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+            PopulateAssignedCourseData(_context, instructorToUpdate);
             return RedirectToPage("./Index");
-        }
-
-        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
-        {
-            var departmentsQuery = from d in _context.Departments
-                                   orderby d.Name
-                                   select d;
-            ViewData["DepartmentID"] = new SelectList(departmentsQuery.AsNoTracking(), 
-                "DepartmentID", "Name", selectedDepartment);
         }
     }
 }

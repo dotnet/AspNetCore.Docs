@@ -63,16 +63,7 @@ namespace ContosoUniversity.Pages.Instructors
                 {
                     instructorToUpdate.OfficeAssignment = null;
                 }
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException /* ex */)
-                {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. ");
-                }
-
+                await _context.SaveChangesAsync();
             }
             return RedirectToPage("./Index");
 

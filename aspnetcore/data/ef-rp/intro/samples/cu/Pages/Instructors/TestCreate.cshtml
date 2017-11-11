@@ -1,16 +1,18 @@
 @page
-@model ContosoUniversity.Pages.Instructors.EditModel
+@model ContosoUniversity.Pages.Instructors.TestCreateModel
+
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
-<h2>Edit</h2>
+
+<h2>Create</h2>
+
 <h4>Instructor</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Instructor.ID" />
             <div class="form-group">
                 <label asp-for="Instructor.LastName" class="control-label"></label>
                 <input asp-for="Instructor.LastName" class="form-control" />
@@ -26,6 +28,7 @@
                 <input asp-for="Instructor.HireDate" class="form-control" />
                 <span asp-validation-for="Instructor.HireDate" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="Instructor.OfficeAssignment.Location" class="control-label"></label>
                 <input asp-for="Instructor.OfficeAssignment.Location" class="form-control" />
@@ -58,14 +61,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

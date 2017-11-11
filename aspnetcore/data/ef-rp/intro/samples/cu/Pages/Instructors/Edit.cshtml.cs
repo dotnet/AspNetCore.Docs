@@ -1,7 +1,5 @@
 using ContosoUniversity.Models;
-using ContosoUniversity.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +9,7 @@ using System.Threading.Tasks;
 namespace ContosoUniversity.Pages.Instructors
 {
     #region snippet
-    public class EditModel : PageModel
+    public class EditModel : InstructorCoursesPageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
@@ -40,7 +38,7 @@ namespace ContosoUniversity.Pages.Instructors
             {
                 return NotFound();
             }
-            PopulateAssignedCourseData(Instructor);
+            PopulateAssignedCourseData(_context, Instructor);
             return Page();
         }
 
@@ -68,83 +66,14 @@ namespace ContosoUniversity.Pages.Instructors
                 {
                     instructorToUpdate.OfficeAssignment = null;
                 }
-                UpdateInstructorCourses(selectedCourses, instructorToUpdate);
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException /* ex */)
-                {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. ");
-                }
-
+                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            UpdateInstructorCourses(selectedCourses, instructorToUpdate);
-            PopulateAssignedCourseData(instructorToUpdate);
-            return RedirectToPage("./Index");
+            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+            PopulateAssignedCourseData(_context, instructorToUpdate);
+            return Page();
         }
-
-        private void PopulateAssignedCourseData(Instructor instructor)
-        {
-            var allCourses = _context.Courses;
-            var instructorCourses = new HashSet<int>(
-                instructor.CourseAssignments.Select(c => c.CourseID));
-            var viewModel = new List<AssignedCourseData>();
-            foreach (var course in allCourses)
-            {
-                viewModel.Add(new AssignedCourseData
-                {
-                    CourseID = course.CourseID,
-                    Title = course.Title,
-                    Assigned = instructorCourses.Contains(course.CourseID)
-                });
-            }
-            ViewData["Courses"] = viewModel;
-        }
-
-        #region snippet_UpdateCourses
-        private void UpdateInstructorCourses(string[] selectedCourses,
-            Instructor instructorToUpdate)
-        {
-            if (selectedCourses == null)
-            {
-                instructorToUpdate.CourseAssignments = new List<CourseAssignment>();
-                return;
-            }
-
-            var selectedCoursesHS = new HashSet<string>(selectedCourses);
-            var instructorCourses = new HashSet<int>
-                (instructorToUpdate.CourseAssignments.Select(c => c.Course.CourseID));
-            foreach (var course in _context.Courses)
-            {
-                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
-                {
-                    if (!instructorCourses.Contains(course.CourseID))
-                    {
-                        instructorToUpdate.CourseAssignments.Add(
-                            new CourseAssignment
-                            {
-                                InstructorID = instructorToUpdate.ID,
-                                CourseID = course.CourseID
-                            });
-                    }
-                }
-                else
-                {
-
-                    if (instructorCourses.Contains(course.CourseID))
-                    {
-                        CourseAssignment courseToRemove
-                            = instructorToUpdate
-                                .CourseAssignments
-                                .SingleOrDefault(i => i.CourseID == course.CourseID);
-                        _context.Remove(courseToRemove);
-                    }
-                }
-            }
-        }
-        #endregion
     }
     #endregion
 }
